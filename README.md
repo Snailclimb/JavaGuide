@@ -7,7 +7,7 @@
 [数据结构知识学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.md)
 
 ### 算法
-[算法](https://github.com/Snailclimb/Java_Guide/blob/master/%E7%AE%97%E6%B3%95.md)
+[算法学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/%E7%AE%97%E6%B3%95.md)
 
 ### 计算机网络
 [计算机网络学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.md)
