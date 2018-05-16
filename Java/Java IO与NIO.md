@@ -1,4 +1,36 @@
-由于内容比较多，我下面放的是我更新在我的微信公众号上的链接，微信排版比较好看，更加利于阅读。每一篇文章下面我都把文章的主要内容给列出来了，便于大家学习与回顾。
+由于内容比较多，我下面放的一部分是我更新在我的微信公众号上的链接，微信排版比较好看，更加利于阅读。每一篇文章下面我都把文章的主要内容给列出来了，便于大家学习与回顾。
+
+# IO流学习总结
+
+### [一　Java IO，硬骨头也能变软](https://zhuanlan.zhihu.com/p/28286559)
+
+### 主要内容：
+**（1） 按操作方式分类结构图：**
+
+![按操作方式分类结构图：](https://user-gold-cdn.xitu.io/2018/5/16/16367d4fd1ce1b46?w=720&h=1080&f=jpeg&s=69522)
+
+
+**（2）按操作对象分类结构图**
+
+![按操作对象分类结构图](https://user-gold-cdn.xitu.io/2018/5/16/16367d673b0e268d?w=720&h=535&f=jpeg&s=46081)
+
+### [二　java IO体系的学习总结](https://blog.csdn.net/nightcurtis/article/details/51324105) 
+1. **IO流的分类：**
+   - 按照流的流向分，可以分为输入流和输出流；
+   - 按照操作单元划分，可以划分为字节流和字符流；
+   - 按照流的角色划分为节点流和处理流。
+2. **流的原理浅析:**
+
+   java Io流共涉及40多个类，这些类看上去很杂乱，但实际上很有规则，而且彼此之间存在非常紧密的联系， Java Io流的40多个类都是从如下4个抽象类基类中派生出来的。
+
+   - **InputStream/Reader**: 所有的输入流的基类，前者是字节输入流，后者是字符输入流。
+   - **OutputStream/Writer**: 所有输出流的基类，前者是字节输出流，后者是字符输出流。
+3. **常用的io流的用法** 
+
+### [三　Java IO面试题](http://www.imooc.com/article/details/id/24305)
+
+# NIO学习总结
+
 
 ### [一　Java NIO 概览](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247483956&idx=1&sn=57692bc5b7c2c6dfb812489baadc29c9&chksm=fd985455caefdd4331d828d8e89b22f19b304aa87d6da73c5d8c66fcef16e4c0b448b1a6f791#rd)
 
@@ -58,6 +90,8 @@
 
 
 ### [三　Java NIO 之 Channel（通道）](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247483966&idx=1&sn=d5cf18c69f5f9ec2aff149270422731f&chksm=fd98545fcaefdd49296e2c78000ce5da277435b90ba3c03b92b7cf54c6ccc71d61d13efbce63#rd)
+### 主要内容:
+
 1.  **Channel（通道）介绍**
      - 通常来说NIO中的所有IO都是从 Channel（通道） 开始的。 
      - NIO Channel通道和流的区别：
@@ -74,6 +108,8 @@
    
 
 ### [四　Java NIO之Selector（选择器）](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247483966&idx=1&sn=d5cf18c69f5f9ec2aff149270422731f&chksm=fd98545fcaefdd49296e2c78000ce5da277435b90ba3c03b92b7cf54c6ccc71d61d13efbce63#rd)
+### 主要内容:
+
 1. **Selector（选择器）介绍**
    - Selector 一般称 为选择器 ，当然你也可以翻译为 多路复用器 。它是Java NIO核心组件中的一个，用于检查一个或多个NIO Channel（通道）的状态是否处于可读、可写。如此可以实现单线程管理多个channels,也就是可以管理多个网络链接。
    - 使用Selector的好处在于： 使用更少的线程来就可以来处理通道了， 相比使用多个线程，避免了线程上下文切换带来的开销。
