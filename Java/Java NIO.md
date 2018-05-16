@@ -1,6 +1,6 @@
 由于内容比较多，我下面放的是我更新在我的微信公众号上的链接，微信排版比较好看，更加利于阅读。每一篇文章下面我都把文章的主要内容给列出来了，便于大家学习与回顾。
 
-### [Java NIO 概览](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247483956&idx=1&sn=57692bc5b7c2c6dfb812489baadc29c9&chksm=fd985455caefdd4331d828d8e89b22f19b304aa87d6da73c5d8c66fcef16e4c0b448b1a6f791#rd)
+### [一　Java NIO 概览](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247483956&idx=1&sn=57692bc5b7c2c6dfb812489baadc29c9&chksm=fd985455caefdd4331d828d8e89b22f19b304aa87d6da73c5d8c66fcef16e4c0b448b1a6f791#rd)
 
 ### 主要内容:
 1.  **NIO简介**:
@@ -22,7 +22,7 @@
     - **Selectors**
 
 
-### [Java NIO 之 Buffer(缓冲区)](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247483961&idx=1&sn=f67bef4c279e78043ff649b6b03fdcbc&chksm=fd985458caefdd4e3317ccbdb2d0a5a70a5024d3255eebf38183919ed9c25ade536017c0a6ba#rd)
+### [二　Java NIO 之 Buffer(缓冲区)](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247483961&idx=1&sn=f67bef4c279e78043ff649b6b03fdcbc&chksm=fd985458caefdd4e3317ccbdb2d0a5a70a5024d3255eebf38183919ed9c25ade536017c0a6ba#rd)
 
 ### 主要内容:
 1. **Buffer(缓冲区)介绍:**
@@ -57,7 +57,7 @@
     说实话，NIO编程真的难，通过后面这个测试例子，你可能才能勉强理解前面说的Buffer方法的作用。
 
 
-### [Java NIO 之 Channel（通道）](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247483966&idx=1&sn=d5cf18c69f5f9ec2aff149270422731f&chksm=fd98545fcaefdd49296e2c78000ce5da277435b90ba3c03b92b7cf54c6ccc71d61d13efbce63#rd)
+### [三　Java NIO 之 Channel（通道）](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247483966&idx=1&sn=d5cf18c69f5f9ec2aff149270422731f&chksm=fd98545fcaefdd49296e2c78000ce5da277435b90ba3c03b92b7cf54c6ccc71d61d13efbce63#rd)
 1.  **Channel（通道）介绍**
      - 通常来说NIO中的所有IO都是从 Channel（通道） 开始的。 
      - NIO Channel通道和流的区别：
@@ -71,3 +71,32 @@
    - 在Java NIO中如果一个channel是FileChannel类型的，那么他可以直接把数据传输到另一个channel。
    - transferFrom() :transferFrom方法把数据从通道源传输到FileChannel
    - transferTo() :transferTo方法把FileChannel数据传输到另一个channel
+   
+
+### [四　Java NIO之Selector（选择器）](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247483966&idx=1&sn=d5cf18c69f5f9ec2aff149270422731f&chksm=fd98545fcaefdd49296e2c78000ce5da277435b90ba3c03b92b7cf54c6ccc71d61d13efbce63#rd)
+1. **Selector（选择器）介绍**
+   - Selector 一般称 为选择器 ，当然你也可以翻译为 多路复用器 。它是Java NIO核心组件中的一个，用于检查一个或多个NIO Channel（通道）的状态是否处于可读、可写。如此可以实现单线程管理多个channels,也就是可以管理多个网络链接。
+   - 使用Selector的好处在于： 使用更少的线程来就可以来处理通道了， 相比使用多个线程，避免了线程上下文切换带来的开销。
+2. **Selector（选择器）的使用方法介绍**
+   - Selector的创建
+   ```java
+   Selector selector = Selector.open();
+   ```
+   - 注册Channel到Selector(Channel必须是非阻塞的)
+   ```java
+   channel.configureBlocking(false);
+   SelectionKey key = channel.register(selector, Selectionkey.OP_READ);
+   ```
+   -  SelectionKey介绍
+   
+      一个SelectionKey键表示了一个特定的通道对象和一个特定的选择器对象之间的注册关系。
+   - 从Selector中选择channel(Selecting Channels via a Selector)
+   
+     选择器维护注册过的通道的集合，并且这种注册关系都被封装在SelectionKey当中.
+   - 停止选择的方法
+     
+     wakeup()方法 和close()方法。
+3.  **模板代码**
+
+    有了模板代码我们在编写程序时，大多数时间都是在模板代码中添加相应的业务代码。
+4. **客户端与服务端简单交互实例**
