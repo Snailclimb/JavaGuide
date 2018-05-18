@@ -1,9 +1,15 @@
 由于内容比较多，我下面放的一部分是我更新在我的微信公众号上的链接，微信排版比较好看，更加利于阅读。每一篇文章下面我都把文章的主要内容给列出来了，便于大家学习与回顾。
 
+<<<<<<< HEAD
 Java面试通关手册（Java学习指南） Github地址：[https://github.com/Snailclimb/Java_Guide](https://github.com/Snailclimb/Java_Guide)
 > # IO流学习总结
 
 ### [一　Java IO，硬骨头也能变软](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247483981&idx=1&sn=6e5c682d76972c8d2cf271a85dcf09e2&chksm=fd98542ccaefdd3a70428e9549bc33e8165836855edaa748928d16c1ebde9648579d3acaac10#rd)
+=======
+# IO流学习总结
+
+### [一　Java IO，硬骨头也能变软](https://zhuanlan.zhihu.com/p/28286559)
+>>>>>>> dd7361a05be2adae9681080398975190a4d86404
 
 ### 主要内容：
 **（1） 按操作方式分类结构图：**
@@ -30,7 +36,11 @@ Java面试通关手册（Java学习指南） Github地址：[https://github.com/
 
 ### [三　Java IO面试题](http://www.imooc.com/article/details/id/24305)
 
+<<<<<<< HEAD
 > # NIO学习总结
+=======
+# NIO学习总结
+>>>>>>> dd7361a05be2adae9681080398975190a4d86404
 
 
 ### [一　Java NIO 概览](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247483956&idx=1&sn=57692bc5b7c2c6dfb812489baadc29c9&chksm=fd985455caefdd4331d828d8e89b22f19b304aa87d6da73c5d8c66fcef16e4c0b448b1a6f791#rd)
@@ -108,7 +118,11 @@ Java面试通关手册（Java学习指南） Github地址：[https://github.com/
    - transferTo() :transferTo方法把FileChannel数据传输到另一个channel
    
 
+<<<<<<< HEAD
 ### [四　Java NIO之Selector（选择器）](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247483970&idx=1&sn=d5e2b133313b1d0f32872d54fbdf0aa7&chksm=fd985423caefdd354b587e57ce6cf5f5a7bec48b9ab7554f39a8d13af47660cae793956e0f46#rd)
+=======
+### [四　Java NIO之Selector（选择器）](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247483966&idx=1&sn=d5cf18c69f5f9ec2aff149270422731f&chksm=fd98545fcaefdd49296e2c78000ce5da277435b90ba3c03b92b7cf54c6ccc71d61d13efbce63#rd)
+>>>>>>> dd7361a05be2adae9681080398975190a4d86404
 ### 主要内容:
 
 1. **Selector（选择器）介绍**
@@ -137,6 +151,7 @@ Java面试通关手册（Java学习指南） Github地址：[https://github.com/
 
     有了模板代码我们在编写程序时，大多数时间都是在模板代码中添加相应的业务代码。
 4. **客户端与服务端简单交互实例**
+<<<<<<< HEAD
 
 
 
@@ -161,3 +176,5 @@ Java面试通关手册（Java学习指南） Github地址：[https://github.com/
 
 **欢迎关注我的微信公众号:"Java面试通关手册"（一个有温度的微信公众号，期待与你共同进步~~~坚持原创，分享美文，分享各种Java学习资源）：**
 ![微信公众号](https://user-gold-cdn.xitu.io/2018/5/13/163587eed3857758?w=300&h=390&f=png&s=13332)
+=======
+>>>>>>> dd7361a05be2adae9681080398975190a4d86404
