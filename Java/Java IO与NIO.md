@@ -28,7 +28,7 @@ Java面试通关手册（Java学习指南） Github地址：[https://github.com/
    - **OutputStream/Writer**: 所有输出流的基类，前者是字节输出流，后者是字符输出流。
 3. **常用的io流的用法** 
 
-### [三　Java IO面试题](http://www.imooc.com/article/details/id/24305)
+### [三　Java IO面试题](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247483985&idx=1&sn=38531c2cee7b87f125df7aef41637014&chksm=fd985430caefdd26b0506aa84fc26251877eccba24fac73169a4d6bd1eb5e3fbdf3c3b940261#rd)
 
 > # NIO学习总结
 
