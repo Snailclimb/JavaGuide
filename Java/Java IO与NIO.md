@@ -1,4 +1,3 @@
-由于内容比较多，我下面放的一部分是我更新在我的微信公众号上的链接，微信排版比较好看，更加利于阅读。每一篇文章下面我都把文章的主要内容给列出来了，便于大家学习与回顾。
 
 Java面试通关手册（Java学习指南） Github地址：[https://github.com/Snailclimb/Java_Guide](https://github.com/Snailclimb/Java_Guide)
 > # IO流学习总结
@@ -140,7 +139,7 @@ Java面试通关手册（Java学习指南） Github地址：[https://github.com/
 
 
 
-### [五 Java NIO之拥抱Path和Files](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&tempkey=OTU3X2k5RHFXbjA4MHhzcC9DN0F6TU1OdlgzVno5ZkhYV29GSEZURmktTWJRUkFib2FKNnRwZGE2RHdPTDJMUXl5cVVwMVJWUUVodU4zWlg4YUw1ZURPVXRXakJLcXhDN0VaenkyYjdJdm9uRVJrcWROcGh3d2c2NWNsQjFNWld5N2lNNmxVUWJ1enlad1dUNVoyNFBPaEJyU05KMmpaZEJCLVFSUWllbGd%2Bfg%3D%3D&chksm=7d9854254aefdd33a40a4bad918bdc54cc64450bc3d4597ee53151fdedcdbd2ce722fc8aca4d#rd)
+### [五 　Java NIO之拥抱Path和Files](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&tempkey=OTU3X2k5RHFXbjA4MHhzcC9DN0F6TU1OdlgzVno5ZkhYV29GSEZURmktTWJRUkFib2FKNnRwZGE2RHdPTDJMUXl5cVVwMVJWUUVodU4zWlg4YUw1ZURPVXRXakJLcXhDN0VaenkyYjdJdm9uRVJrcWROcGh3d2c2NWNsQjFNWld5N2lNNmxVUWJ1enlad1dUNVoyNFBPaEJyU05KMmpaZEJCLVFSUWllbGd%2Bfg%3D%3D&chksm=7d9854254aefdd33a40a4bad918bdc54cc64450bc3d4597ee53151fdedcdbd2ce722fc8aca4d#rd)
 ### 主要内容
 **一 文件I/O基石：Path：**
 - 创建一个Path
@@ -158,6 +157,27 @@ Java面试通关手册（Java学习指南） Github地址：[https://github.com/
 -   遍历一个文件夹
 -   Files.walkFileTree()遍历整个目录
 
+### [六 　NIO学习总结以及NIO新特性介绍](https://blog.csdn.net/a953713428/article/details/64907250)
+
+- **内存映射：**
+
+这个功能主要是为了提高大文件的读写速度而设计的。内存映射文件(memory-mappedfile)能让你创建和修改那些大到无法读入内存的文件。有了内存映射文件，你就可以认为文件已经全部读进了内存，然后把它当成一个非常大的数组来访问了。将文件的一段区域映射到内存中，比传统的文件处理速度要快很多。内存映射文件它虽然最终也是要从磁盘读取数据，但是它并不需要将数据读取到OS内核缓冲区，而是直接将进程的用户私有地址空间中的一部分区域与文件对象建立起映射关系，就好像直接从内存中读、写文件一样，速度当然快了。
+
+### [七　Java NIO AsynchronousFileChannel异步文件通](http://wiki.jikexueyuan.com/project/java-nio-zh/java-nio-asynchronousfilechannel.html)
+
+Java7中新增了AsynchronousFileChannel作为nio的一部分。AsynchronousFileChannel使得数据可以进行异步读写。
+
+### [八　高并发Java（8）：NIO和AIO](http://www.importnew.com/21341.html)
+
+
+
+
+> ## 推荐阅读
+
+### [在 Java 7 中体会 NIO.2 异步执行的快乐](https://www.ibm.com/developerworks/cn/java/j-lo-nio2/index.html)
+
+### [Java AIO总结与示例](https://blog.csdn.net/x_i_y_u_e/article/details/52223406)
+AIO是异步IO的缩写，虽然NIO在网络操作中，提供了非阻塞的方法，但是NIO的IO行为还是同步的。对于NIO来说，我们的业务线程是在IO操作准备好时，得到通知，接着就由这个线程自行进行IO操作，IO操作本身是同步的。
+
 
 **欢迎关注我的微信公众号:"Java面试通关手册"（一个有温度的微信公众号，期待与你共同进步~~~坚持原创，分享美文，分享各种Java学习资源）：**
-![微信公众号](https://user-gold-cdn.xitu.io/2018/5/13/163587eed3857758?w=300&h=390&f=png&s=13332)
