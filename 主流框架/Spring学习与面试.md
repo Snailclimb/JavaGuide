@@ -1,8 +1,4 @@
 
-<<<<<<< HEAD
-=======
- 
->>>>>>> b51018fb682dbdb89c657912fb121cef1eb5110e
 
 # Spring相关教程/资料：
 
@@ -54,11 +50,8 @@
 
 > ### SpringAOP,IOC实现原理
 
-<<<<<<< HEAD
 **AOP：**
 
-=======
->>>>>>> b51018fb682dbdb89c657912fb121cef1eb5110e
 [探秘Spring AOP](https://www.imooc.com/learn/869)
 
 慕课网视频，讲解的很不错，详细且深入
@@ -71,7 +64,6 @@
 
 通过源码分析Spring AOP的原理
 
-<<<<<<< HEAD
 **IOC：**
 
 Spring IOC的初始化过程：
@@ -84,8 +76,6 @@ Spring IOC的初始化过程：
 比较简短，推荐阅读。
 
 [Spring IOC 容器源码分析](https://javadoop.com/post/spring-ioc)
-=======
->>>>>>> b51018fb682dbdb89c657912fb121cef1eb5110e
 
 强烈推荐，内容详尽，而且便于阅读。
 
