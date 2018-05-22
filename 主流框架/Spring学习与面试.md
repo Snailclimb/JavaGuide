@@ -50,7 +50,21 @@
 
 > ### SpringAOP,IOC实现原理
 
+AOP实现原理、动态代理和静态代理、Spring IOC的初始化过程、IOC原理、自己实现怎么实现一个IOC容器？这些东西都是经常会被问到的。
+
+[自己动手实现的 Spring IOC 和 AOP - 上篇](http://www.coolblog.xyz/2018/01/18/自己动手实现的-Spring-IOC-和-AOP-上篇/)
+
+[自己动手实现的 Spring IOC 和 AOP - 下篇](http://www.coolblog.xyz/2018/01/18/自己动手实现的-Spring-IOC-和-AOP-下篇/)
+
 **AOP：**
+
+[一起来谈谈 Spring AOP！](https://juejin.im/post/5aa7818af265da23844040c6)
+
+带你入门的一篇文章。这篇文章主要介绍了AOP中的基本概念：5种类型的通知（Before，After，After-returning，After-throwing，Around）；Spring中对AOP的支持：AOP思想的实现一般都是基于代理模式，在JAVA中一般采用JDK动态代理模式，Spring AOP 同时支持 CGLIB、ASPECTJ、JDK动态代理，
+
+[Spring AOP 基于AspectJ注解如何实现AOP](https://juejin.im/post/5a55af9e518825734d14813f)
+
+主要介绍了@AspectJ 详解以及Spring AOP - AspectJ注解（讲的挺不错的）
 
 [探秘Spring AOP](https://www.imooc.com/learn/869)
 
@@ -78,6 +92,14 @@ Spring IOC的初始化过程：
 [Spring IOC 容器源码分析](https://javadoop.com/post/spring-ioc)
 
 强烈推荐，内容详尽，而且便于阅读。
+
+> ### 其他
+
+**Spring单例与线程安全：**
+
+[Spring框架中的单例模式（源码解读）](http://www.cnblogs.com/chengxuyuanzhilu/p/6404991.html)
+
+单例模式是一种常用的软件设计模式。通过单例模式可以保证系统中一个类只有一个实例。spring依赖注入时，使用了 多重判断加锁 的单例模式。
 
 > ### Spring源码阅读
 
