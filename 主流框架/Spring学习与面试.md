@@ -1,3 +1,4 @@
+* [系统学习教](#系统学习教程：)
 
 # Spring相关教程/资料：
 
@@ -29,7 +30,9 @@
 
 ### [慕课网相关视频](https://www.imooc.com/)
 
-黑马视频（非常推荐）：微信公众号“Java面试通关手册”后台回复“资源分享第一波”免费领取。
+### 黑马视频（非常推荐）：
+微信公众号：“**Java面试通关手册**”后台回复“**资源分享第一波**”免费领取。
+
 > ### 一些常用的东西
 
 ### [Spring Framework 4.3.17.RELEASE API](https://docs.spring.io/spring/docs/4.3.17.RELEASE/javadoc-api/)
@@ -37,10 +40,13 @@
 默认浏览器打开，当需要查某个类的作用的时候，可以在浏览器通过ctrl+f搜索。
 
 
-## 面试必备知识点
+# 面试必备知识点
+
 > ## Spring事务管理
 
+[可能是最漂亮的Spring事务管理详解](https://juejin.im/post/5b00c52ef265da0b95276091)
 
+[Spring编程式和声明式事务实例讲解](https://juejin.im/post/5b010f27518825426539ba38)
 
 > ## Spring AOP,IOC实现原理（IOC依赖注入使用的最多）
 
