@@ -4,9 +4,10 @@
     * [一些常用的东西](#一些常用的东西)
 * [面试必备知识点](#面试必备知识点)
     * [事务管理](#事务管理)
-    * [AOP和IOC实现原理](#AOP和IOC实现原理)
+    * [AOP和IOC实现原理](#AOP和IOC实现原理)
     * [一些常用的东西](#一些常用的东西)
     
+
 # Spring相关教程/资料：
 
 > ## 官网相关
@@ -49,13 +50,13 @@
 
 # 面试必备知识点
 
-### 事务管理
+> ### Spring事务管理
 
 [可能是最漂亮的Spring事务管理详解](https://juejin.im/post/5b00c52ef265da0b95276091)
 
 [Spring编程式和声明式事务实例讲解](https://juejin.im/post/5b010f27518825426539ba38)
 
-### AOP和IOC实现原理
+> ### SpringAOP,IOC实现原理
 
 [探秘Spring AOP](https://www.imooc.com/learn/869)
 
