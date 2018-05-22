@@ -3,11 +3,10 @@
     * [系统学习教程](#系统学习教程)
     * [一些常用的东西](#一些常用的东西)
 * [面试必备知识点](#面试必备知识点)
-   * [Spring事务管理](#Spring事务管理)
-   * [Spring AOP,IOC实现原理](#SpringAOP,IOC实现原理)
-   * [Spring源码阅读](#Spring源码阅读)
-   * [面试必备知识点](#面试必备知识点)
-
+    * [Spring事务管理](#事务管理)
+    * [Spring AOP,IOC实现原理](#SpringAOP,IOC实现原理)
+    * [Spring源码阅读](#Spring源码阅读)
+    
 # Spring相关教程/资料：
 
 > ## 官网相关
@@ -50,7 +49,7 @@
 
 # 面试必备知识点
 
-> ### Spring事务管理
+> ### 事务管理
 
 [可能是最漂亮的Spring事务管理详解](https://juejin.im/post/5b00c52ef265da0b95276091)
 
