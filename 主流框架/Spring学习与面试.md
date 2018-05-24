@@ -42,11 +42,6 @@
 
 # 面试必备知识点
 
-> ## Spring事务管理
-
-[可能是最漂亮的Spring事务管理详解](https://juejin.im/post/5b00c52ef265da0b95276091)
-
-[Spring编程式和声明式事务实例讲解](https://juejin.im/post/5b010f27518825426539ba38)
 
 > ## SpringAOP,IOC实现原理
 
@@ -65,7 +60,7 @@ AOP思想的实现一般都是基于 **代理模式** ，在JAVA中一般采用J
 
 
 
-[JDK动态代理、CGLIB动态代理讲解](http://www.cnblogs.com/puyangsky/p/6218925.html)
+[※静态代理、JDK动态代理、CGLIB动态代理讲解](http://www.cnblogs.com/puyangsky/p/6218925.html)
 
 我们知道AOP思想的实现一般都是基于 **代理模式** ，所以在看下面的文章之前建议先了解一下静态代理以及JDK动态代理、CGLIB动态代理的实现方式。
 
@@ -73,11 +68,15 @@ AOP思想的实现一般都是基于 **代理模式** ，在JAVA中一般采用J
 
 带你入门的一篇文章。这篇文章主要介绍了AOP中的基本概念：5种类型的通知（Before，After，After-returning，After-throwing，Around）；Spring中对AOP的支持：AOP思想的实现一般都是基于代理模式，在JAVA中一般采用JDK动态代理模式，Spring AOP 同时支持 CGLIB、ASPECTJ、JDK动态代理，
 
-[Spring AOP 基于AspectJ注解如何实现AOP](https://juejin.im/post/5a55af9e518825734d14813f)
+[※Spring AOP 基于AspectJ注解如何实现AOP](https://juejin.im/post/5a55af9e518825734d14813f)
 
-主要介绍了@AspectJ 详解以及Spring AOP - AspectJ注解（讲的挺不错的）
 
-[探秘Spring AOP（慕课网视频，很不错）](https://www.imooc.com/learn/869)
+**AspectJ是一个AOP框架，它能够对java代码进行AOP编译（一般在编译期进行），让java代码具有AspectJ的AOP功能（当然需要特殊的编译器）**，可以这样说AspectJ是目前实现AOP框架中最成熟，功能最丰富的语言，更幸运的是，AspectJ与java程序完全兼容，几乎是无缝关联，因此对于有java编程基础的工程师，上手和使用都非常容易
+
+Spring注意到AspectJ在AOP的实现方式上依赖于特殊编译器(ajc编译器)，因此Spring很机智回避了这点，转向采用动态代理技术的实现原理来构建Spring AOP的内部机制（动态织入），这是与AspectJ（静态织入）最根本的区别。
+
+
+[※探秘Spring AOP（慕课网视频，很不错）](https://www.imooc.com/learn/869)
 
 慕课网视频，讲解的很不错，详细且深入
 
@@ -100,6 +99,12 @@ Spring IOC的初始化过程：
 [Spring IOC 容器源码分析](https://javadoop.com/post/spring-ioc)
 
 强烈推荐，内容详尽，而且便于阅读。
+
+> ## Spring事务管理
+
+[可能是最漂亮的Spring事务管理详解](https://juejin.im/post/5b00c52ef265da0b95276091)
+
+[Spring编程式和声明式事务实例讲解](https://juejin.im/post/5b010f27518825426539ba38)
 
 > ## 其他
 
