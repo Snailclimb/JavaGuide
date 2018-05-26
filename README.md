@@ -39,10 +39,16 @@
 - ### Spring相关
   [Spring学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/%E4%B8%BB%E6%B5%81%E6%A1%86%E6%9E%B6/Spring%E5%AD%A6%E4%B9%A0%E4%B8%8E%E9%9D%A2%E8%AF%95.md)
 
+# 分布式
+- ### 分布式相关
+    [分布式学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/%E5%88%86%E5%B8%83%E5%BC%8F.md)
+
+
+***
 
 **为技术人员的朝圣之地-阿里打的一波不是广告的广告（非常推荐）：**
 
-> 如果大家想搭建个人博客（一般使用的是第三方WordPress搭建或者你也可以使用Tale等开源博客系统搭建，非常方便）或者说使用redis数据库、负载均衡等等第三方服务的话，推荐大家使用阿里云，客观角度来讲，阿里云的服务与质量都是最好的，而且学生优惠特别大，一年一下也就100多块钱。这里是我的优惠券地址（我本人使用的是轻量级服务器）：[优惠券地址](https://promotion.aliyun.com/ntms/act/ambassador/sharetouser.html?userCode=hf47liqn&utm_source=hf47liqn)
+> 如果大家想搭建个人博客（一般使用的是第三方WordPress搭建或者你也可以使用Tale等开源博客系统搭建，非常方便）或者说使用redis数据库、负载均衡等等第三方服务的话，推荐大家使用阿里云，客观角度来讲，阿里云的服务与质量都是最好的。这里是我的优惠券地址：[优惠券地址](https://promotion.aliyun.com/ntms/act/ambassador/sharetouser.html?userCode=hf47liqn&utm_source=hf47liqn)
 
 **欢迎关注我的微信公众号:"Java面试通关手册"（一个有温度的微信公众号，期待与你共同进步~~~坚持原创，分享美文，分享各种Java学习资源）：**
 ![](https://user-gold-cdn.xitu.io/2018/5/13/163587eed3857758?w=300&h=390&f=png&s=13332)
