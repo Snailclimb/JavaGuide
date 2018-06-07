@@ -43,8 +43,8 @@
   [Spring学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/%E4%B8%BB%E6%B5%81%E6%A1%86%E6%9E%B6/Spring%E5%AD%A6%E4%B9%A0%E4%B8%8E%E9%9D%A2%E8%AF%95.md)
 
 # 数据存储
-- ### Mysql
-  [Mysql学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/Mysql.md)
+- ### MySQL
+  [MySQL学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/Mysql.md)
 - ### Redis
   [Redis学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/Redis.md)
 
