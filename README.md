@@ -44,7 +44,7 @@
 
 # 数据存储
 - ### MySQL
-  [MySQL学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/Mysql.md)
+  [MySQL学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/MySQL.md)
 - ### Redis
   [Redis学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/Redis.md)
 
