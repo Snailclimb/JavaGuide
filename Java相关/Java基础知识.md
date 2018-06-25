@@ -1,3 +1,31 @@
+**我自己总结的Java学习的系统知识点以及面试问题，目前已经开源，会一直完善下去，欢迎建议和指导欢迎Star：** [https://github.com/Snailclimb/Java-Guide](https://github.com/Snailclimb/Java-Guide)
+> ### 学习书籍推荐
+
+**《Head First Java.第二版》：**
+可以说是我的Java启蒙书籍了，特别适合新手读当然也适合我们用来温故Java知识点。
+
+**《Java核心技术卷1+卷2》：**
+很棒的两本书，建议有点Java基础之后再读，介绍的还是比较深入的，非常推荐。
+
+**《Java编程思想(第4版)》：**
+这本书要常读，初学者可以快速概览，中等程序员可以深入看看java，老鸟还可以用之回顾java的体系。这本书之所以厉害，因为它在无形中整合了设计模式，这本书之所以难读，也恰恰在于他对设计模式的整合是无形的。
+
+> ### 学习视频推荐 
+
+[Java工程师学习路径完整版](https://www.imooc.com/course/programdetail/pid/31) （慕课网Java工程师路径）另外大家也可以关注微信公众号：**“Java面试通关手册”** 后台回复关键字 **“资源分享第一波”** 即可领取黑马内部Javaweb工程师以及大数据工程师相关视频以及配套资料。
+
+以下视频整理自慕课网Java工程师路径相关免费课程。
+
+- **语法基础：** [《Java入门第一季》](https://www.imooc.com/learn/85)
+- **面向对象：** [《Java入门第一季》](https://www.imooc.com/learn/124)
+- **常用工具类：** [《Java入门第三季》](https://www.imooc.com/learn/124)
+- **文件操作：** [《二进制基础》](https://www.imooc.com/learn/195) -> [《文件传输基础——Java IO流》](https://www.imooc.com/learn/123) -> [《Java眼中的XML---文件读取》](https://www.imooc.com/learn/171) ->[《Java眼中的XML 文件写入》](https://www.imooc.com/learn/251)
+- **网路Socket编程：** [《Java Socket应用---通信是这样练成的》](https://www.imooc.com/learn/161)
+- **Java进阶之反射与注解：** [《反射——Java高级开发必须懂的》](https://www.imooc.com/learn/199) -> [《全面解析Java注解》](https://www.imooc.com/learn/456)
+
+
+> ### 面试常见问题汇总 
+
 [超详细的Java面试题总结（一）之Java基础知识篇](https://link.juejin.im/?target=https%3A%2F%2Fjuejin.im%2Fpost%2F5a02cd53f265da431b6ca326)
 
 1. 重载和重写的区别
