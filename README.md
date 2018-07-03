@@ -5,7 +5,7 @@
 
 > # 目录结构
 - :coffee:[Java](#coffee-Java)
-- [数据结构](#open_file_folder-数据结构与算法)
+- :open_file_folder: [数据结构与算法](#open_file_folder-数据结构与算法)
 - [数据结构](#open_file_folder-数据结构与算法)
 - [数据结构](#open_file_folder-数据结构与算法)
 - [数据结构](#open_file_folder-数据结构与算法)
