@@ -4,7 +4,7 @@
 ### 下一步更新内容给：数据库相关内容
 
 > # 目录结构
-- :coffee: [Java](#coffee-Java)
+### 1. :coffee: [Java](#coffee-Java)
 - :open_file_folder: [数据结构与算法](#open_file_folder-数据结构与算法)
 - :computer: [计算机网络与数据通信](#computer-计算机网络与数据通信)
 - :pencil2: [主流框架](#pencil2-主流框架)
