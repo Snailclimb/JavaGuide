@@ -5,11 +5,11 @@
 
 > # 目录结构
 ### 1. :coffee: [Java](#coffee-Java)
-- :open_file_folder: [数据结构与算法](#open_file_folder-数据结构与算法)
-- :computer: [计算机网络与数据通信](#computer-计算机网络与数据通信)
-- :pencil2: [主流框架](#pencil2-主流框架)
-- :floppy_disk: [数据存储](#floppy_disk-数据存储)
-- :punch: [架构](#punch-架构)
+### 2. :open_file_folder: [数据结构与算法](#open_file_folder-数据结构与算法)
+### 3. :computer: [计算机网络与数据通信](#computer-计算机网络与数据通信)
+### 4. :pencil2: [主流框架](#pencil2-主流框架)
+### 5. :floppy_disk: [数据存储](#floppy_disk-数据存储)
+### 6. :punch: [架构](#punch-架构)
 
 # :coffee: Java
 -   ### Java基础
