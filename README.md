@@ -12,28 +12,28 @@
 > # 正文
 ## :coffee: Java
 -   ### Java基础
-    [Java基础知识学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/Java%E7%9B%B8%E5%85%B3/Java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.md)
+    [Java基础知识学习与面试](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/Java基础知识.md)
 
 -  ### Java多线程系列
-   [多线程系列学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/Java%E7%9B%B8%E5%85%B3/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%B3%BB%E5%88%97.md)
+   [多线程系列学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/多线程系列.md)
 
 
 - ### Java IO与NIO
-  [Java IO与NIO学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/Java%E7%9B%B8%E5%85%B3/Java%20IO%E4%B8%8ENIO.md)
+  [Java IO与NIO学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/Java%20IO与NIO.md)
 
 -  ### Java虚拟机（jvm）
-   [Java虚拟机（jvm）知识学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/Java%E7%9B%B8%E5%85%B3/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%EF%BC%88jvm%EF%BC%89.md)
+   [Java虚拟机（jvm）知识学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/Java虚拟机（jvm）.md)
 - ### 设计模式
-  [设计模式学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/Java%E7%9B%B8%E5%85%B3/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md)
+  [设计模式学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/设计模式.md)
 
 ## :open_file_folder: 数据结构与算法
    
 -  ### 数据结构
-   [数据结构知识学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.md)
+   [数据结构知识学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/数据结构与算法/数据结构.md)
 
 
 -  ### 算法
-   [算法学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95.md)
+   [算法学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/数据结构与算法/算法.md)
 
 
 ## :computer: 计算机网络与数据通信
@@ -45,22 +45,22 @@
 ## :iphone: 操作系统
 
 - ### Linux相关
-  [后端程序员必备的Linux基础知识](https://github.com/Snailclimb/Java-Guide/blob/master/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%90%8E%E7%AB%AF%E7%A8%8B%E5%BA%8F%E5%91%98%E5%BF%85%E5%A4%87%E7%9A%84Linux%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.md)  
+  [后端程序员必备的Linux基础知识](https://github.com/Snailclimb/Java-Guide/blob/master/操作系统/后端程序员必备的Linux基础知识.md)  
 
 ## :pencil2: 主流框架
 
 - ### Spring相关
-  [Spring学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/%E4%B8%BB%E6%B5%81%E6%A1%86%E6%9E%B6/Spring%E5%AD%A6%E4%B9%A0%E4%B8%8E%E9%9D%A2%E8%AF%95.md)
+  [Spring学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/主流框架/Spring学习与面试.md)
 
 ## :floppy_disk: 数据存储
 - ### MySQL
-  [MySQL学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/MySQL.md)
+  [MySQL学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/数据存储/MySQL.md)
 - ### Redis
-  [Redis学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/Redis.md)
+  [Redis学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/数据存储/Redis.md)
 
 ## :punch: 架构
 - ### 分布式相关
-    [分布式学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/%E6%9E%B6%E6%9E%84/%E5%88%86%E5%B8%83%E5%BC%8F.md)
+    [分布式学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/架构/分布式.md)
 
 
 ***
