@@ -1,3 +1,4 @@
+### :fire::fire::fire:我的Gitchat:[从应届程序员角度分析如何备战大厂面试](https://gitbook.cn/gitchat/activity/5b457a5df64d4d62e64a449a)
 
 > # 目录结构
 ### 1. :coffee: [Java](#coffee-Java)
