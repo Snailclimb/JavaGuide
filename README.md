@@ -65,6 +65,9 @@
 
 ## :musical_note: 面试必备知识点
 
+- ### 面试必备知识点
+    [面试必备知识点](https://github.com/Snailclimb/Java_Guide/blob/master/架构/分布式.md)
+
 ***
 
 > # 该开源文档一些说明
