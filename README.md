@@ -66,7 +66,7 @@
 ## :musical_note: 面试必备知识点
 
 - ### 面试必备知识点
-    [面试必备知识点](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备知识点/面试必备之乐观锁与悲观锁.md)
+    [面试必备之乐观锁与悲观锁](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备知识点/面试必备之乐观锁与悲观锁.md)
 
 ***
 
