@@ -26,7 +26,7 @@
 
 > ### 面试常见问题汇总 
 
-[超详细的Java面试题总结（一）之Java基础知识篇](https://link.juejin.im/?target=https%3A%2F%2Fjuejin.im%2Fpost%2F5a02cd53f265da431b6ca326)
+[超详细的Java面试题总结（一）之Java基础知识篇](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/Java基础知识面试题总结/超详细的Java面试题总结（一）之Java基础知识篇.md)
 
 1. 重载和重写的区别
 2. 自动装箱与拆箱
@@ -34,12 +34,12 @@
 4. 静态方法和实例方法有何不同？
 5. equals 和 == 的区别？
 
-[超详细的Java面试题总结（二）之Java基础知识篇](https://link.juejin.im/?target=https%3A%2F%2Fjuejin.im%2Fpost%2F5a339d936fb9a04501680492)
+[超详细的Java面试题总结（二）之Java基础知识篇](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/Java基础知识面试题总结/超详细的Java面试题总结（二）之Java基础知识篇.md)
 1. 创建线程有几种不同的方式？你喜欢哪一种？为什么？
 2. 线程有哪些基本状态？这些状态是如何定义的?
 3. finalize()方法什么时候被调用？析构函数(finalization)的目的是什么？
 
-[超详细的Java面试题总结（三）之Java集合篇常见问题](https://juejin.im/post/5a99544ef265da23a334ab6c)
+[超详细的Java面试题总结（三）之Java集合篇常见问题](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/Java基础知识面试题总结/超详细的Java面试题总结（三）之Java集合篇常见问题.md)
 1. List，Set,Map三者的区别及总结
 2. Arraylist 与 LinkedList 区别
 3. ArrayList 与 Vector 区别（为什么要用Arraylist取代Vector呢？）
@@ -59,7 +59,7 @@
 14. 集合的选用
 
 
-[超详细的Java面试题总结（四 ）之JavaWeb基础知识总结](https://juejin.im/post/5abf6c1b6fb9a028bd4c705f)
+[超详细的Java面试题总结（四 ）之JavaWeb基础知识总结](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/Java基础知识面试题总结/超详细的Java面试题总结（四%20）之JavaWeb基础知识总结.md)
 
 1. 简述Servlet
 2. 阐述Servlet和CGI的区别?
