@@ -8,7 +8,7 @@
 ### 5. :pencil2: [主流框架](#pencil2-主流框架)
 ### 6. :floppy_disk: [数据存储](#floppy_disk-数据存储)
 ### 7. :punch: [架构](#punch-架构)
-### 8. :musical_note: [面试必备知识点](#musical_note-面试必备知识点)
+### 8. :musical_note: [面试必备](#musical_note-面试必备)
 
 > # 正文
 ## :coffee: Java
@@ -63,10 +63,12 @@
 - ### 分布式相关
     [分布式学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/架构/分布式.md)
 
-## :musical_note: 面试必备知识点
+## :musical_note: 面试必备
 
 - ### 面试必备知识点
     [面试必备之乐观锁与悲观锁](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备知识点/面试必备之乐观锁与悲观锁.md)
+
+- ### 程序员如何写简历
 
 ***
 
