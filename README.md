@@ -96,7 +96,7 @@
 
 本人会利用业余时间一直更新下去，目前还有很多地方不完善，一些知识点我会原创总结，还有一些知识点如果说网上有比较好的文章了，我会把这些文章加入进去。您也可以关注我的微信公众号：“Java面试通关手册”，我会在这里分享一些自己的原创文章。 另外该文档格式参考：[Github Markdown格式](https://guides.github.com/features/mastering-markdown/)，表情素材来自：[EMOJI CHEAT SHEET](https://www.webpagefx.com/tools/emoji-cheat-sheet/)。
 
-### 如果你觉得本仓库对你有帮助的话，也可以打赏作者（记得备注信息）。如果你打赏的金额超过9.99的话，可以添加微信：bwcx9393或者QQ：1361583339领取一份我自己整理的学习视频汇总（包括49期黑马Java以及大数据全套视频、慕课网系列Java实战VIP视频、SpringBoot微服务视频、阿里dubbo至尊版Dubbo视频等等）。
+### 如果你觉得本仓库对你有帮助的话，也可以打赏作者（记得备注信息）。如果你打赏的金额超过9.99的话，可以添加微信：bwcx9393或者QQ：1361583339领取一份我自己整理的学习视频汇总（包括49期黑马Java以及大数据全套视频、慕课网系列Java实战VIP视频、SpringBoot微服务视频、阿里至尊版Dubbo视频等等）。
 
 ![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-7-3/48750303.jpg)
 ![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-7-3/62956005.jpg)
