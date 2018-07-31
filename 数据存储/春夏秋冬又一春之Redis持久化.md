@@ -1,196 +1,113 @@
-Redis 是一个使用 C 语言写成的，开源的 key-value 数据库。。和Memcached类似，它支持存储的value类型相对更多，包括string(字符串)、list(链表)、set(集合)、zset(sorted set --有序集合)和hash（哈希类型）。这些数据类型都支持push/pop、add/remove及取交集并集和差集及更丰富的操作，而且这些操作都是原子性的。在此基础上，redis支持各种不同方式的排序。与memcached一样，为了保证效率，数据都是缓存在内存中。区别的是redis会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件，并且在此基础上实现了master-slave(主从)同步。目前，Vmware在资助着redis项目的开发和维护。
 
-> ### 书籍推荐
 
-**《Redis实战》**
+非常感谢《redis实战》真本书，本文大多内容也参考了书中的内容。非常推荐大家看一下《redis实战》这本书，感觉书中的很多理论性东西还是很不错的。
 
-**《Redis设计与实现》**
+为什么本文的名字要加上春夏秋冬又一春，哈哈 ，这是一部韩国的电影，我感觉电影不错，所以就用在文章名字上了，没有什么特别的含义，然后下面的有些配图也是电影相关镜头。
 
-> ### 教程推荐
+![春夏秋冬又一春](https://user-gold-cdn.xitu.io/2018/6/13/163f97071d71f6de?w=1280&h=720&f=jpeg&s=205252)
 
-**redis官方中文版教程**：[http://www.redis.net.cn/tutorial/3501.html](http://www.redis.net.cn/tutorial/3501.html)
+**很多时候我们需要持久化数据也就是将内存中的数据写入到硬盘里面，大部分原因是为了之后重用数据（比如重启机器、机器故障之后回复数据），或者是为了防止系统故障而将数据备份到一个远程位置。**
 
-**Redis 教程（菜鸟教程）**：[http://www.runoob.com/redis/redis-tutorial.html](http://www.runoob.com/redis/redis-tutorial.html)
+Redis不同于Memcached的很重一点就是，**Redis支持持久化**，而且支持两种不同的持久化操作。Redis的一种持久化方式叫**快照（snapshotting，RDB）**,另一种方式是**只追加文件（append-only file,AOF）**.这两种方法各有千秋，下面我会详细这两种持久化方法是什么，怎么用，如何选择适合自己的持久化方法。
 
-> ### 常见问题总结
 
-**学完Redis之后要问自己下面几个问题：**
-- Redis的两种持久化操作以及如何保障数据安全（快照和AOF），
-- 如何防止数据出错（Redis事务），
-- 如何使用流水线来提升性能，
-- Redis主从复制，
-- Redis集群的搭建
-- Redis的几种淘汰策略
+## 快照（snapshotting）持久化
 
+Redis可以通过创建快照来获得存储在内存里面的数据在某个时间点上的副本。Redis创建快照之后，可以对快照进行备份，可以将快照复制到其他服务器从而创建具有相同数据的服务器副本（Redis主从结构，主要用来提高Redis性能），还可以将快照留在原地以便重启服务器的时候使用。
 
-**《一文轻松搞懂redis集群原理及搭建与使用》：**
-[https://juejin.im/post/5ad54d76f265da23970759d3](https://juejin.im/post/5ad54d76f265da23970759d3)
 
-昨天写了一篇自己搭建redis集群并在自己项目中使用的文章，今天早上看别人写的面经发现redis在面试中还是比较常问的（笔主主Java方向）。所以查阅官方文档以及他人造好的轮子，总结了一些redis面试和学习中你必须掌握的问题。事无巨细，不可能囊括到所有内容，尽量把比较常见的写出来。欢迎关注我的微信公众号：“**Java面试通关手册**”，也可以加我微信：“**bwcx9393**”与我学习交流。
+![春夏秋冬又一春](https://user-gold-cdn.xitu.io/2018/6/13/163f97568281782a?w=600&h=329&f=jpeg&s=88616)
 
-## Redis常见问题总结与好文Mark
+**快照持久化是Redis默认采用的持久化方式**，在redis.conf配置文件中默认有此下配置：
+```
 
-### 什么是Redis？
-> Redis 是一个使用 C 语言写成的，开源的 key-value 数据库。。和Memcached类似，它支持存储的value类型相对更多，包括string(字符串)、list(链表)、set(集合)、zset(sorted set --有序集合)和hash（哈希类型）。这些数据类型都支持push/pop、add/remove及取交集并集和差集及更丰富的操作，而且这些操作都是原子性的。在此基础上，redis支持各种不同方式的排序。与memcached一样，为了保证效率，数据都是缓存在内存中。区别的是redis会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件，并且在此基础上实现了master-slave(主从)同步。目前，Vmware在资助着redis项目的开发和维护。
+save 900 1              #在900秒(15分钟)之后，如果至少有1个key发生变化，Redis就会自动触发BGSAVE命令创建快照。
 
+save 300 10            #在300秒(5分钟)之后，如果至少有10个key发生变化，Redis就会自动触发BGSAVE命令创建快照。
 
-### Redis与Memcached的区别与比较
-1 、Redis不仅仅支持简单的k/v类型的数据，同时还提供list，set，zset，hash等数据结构的存储。memcache支持简单的数据类型，String。
+save 60 10000        #在60秒(1分钟)之后，如果至少有10000个key发生变化，Redis就会自动触发BGSAVE命令创建快照。
+```
 
-2 、Redis支持数据的备份，即master-slave模式的数据备份。
+根据配置，快照将被写入dbfilename选项指定的文件里面，并存储在dir选项指定的路径上面。如果在新的快照文件创建完毕之前，Redis、系统或者硬件这三者中的任意一个崩溃了，那么Redis将丢失最近一次创建快照写入的所有数据。
 
-3 、Redis支持数据的持久化，可以将内存中的数据保持在磁盘中，重启的时候可以再次加载进行使用,而Memecache把数据全部存在内存之中
+举个例子：假设Redis的上一个快照是2：35开始创建的，并且已经创建成功。下午3：06时，Redis又开始创建新的快照，并且在下午3：08快照创建完毕之前，有35个键进行了更新。如果在下午3：06到3：08期间，系统发生了崩溃，导致Redis无法完成新快照的创建工作，那么Redis将丢失下午2：35之后写入的所有数据。另一方面，如果系统恰好在新的快照文件创建完毕之后崩溃，那么Redis将丢失35个键的更新数据。
 
-4、 redis的速度比memcached快很多
+**创建快照的办法有如下几种：**
 
-5、Memcached是多线程，非阻塞IO复用的网络模型；Redis使用单线程的IO复用模型。
+- **BGSAVE命令：** 客户端向Redis发送 **BGSAVE命令** 来创建一个快照。对于支持BGSAVE命令的平台来说（基本上所有平台支持，除了Windows平台），Redis会调用fork来创建一个子进程，然后子进程负责将快照写入硬盘，而父进程则继续处理命令请求。
+- **SAVE命令：** 客户端还可以向Redis发送 **SAVE命令** 来创建一个快照，接到SAVE命令的Redis服务器在快照创建完毕之前不会再响应任何其他命令。SAVE命令不常用，我们通常只会在没有足够内存去执行BGSAVE命令的情况下，又或者即使等待持久化操作执行完毕也无所谓的情况下，才会使用这个命令。
+- **save选项：** 如果用户设置了save选项（一般会默认设置），比如 **save 60 10000**，那么从Redis最近一次创建快照之后开始算起，当“60秒之内有10000次写入”这个条件被满足时，Redis就会自动触发BGSAVE命令。
+- **SHUTDOWN命令：**  当Redis通过SHUTDOWN命令接收到关闭服务器的请求时，或者接收到标准TERM信号时，会执行一个SAVE命令，阻塞所有客户端，不再执行客户端发送的任何命令，并在SAVE命令执行完毕之后关闭服务器。
+- **一个Redis服务器连接到另一个Redis服务器：** 当一个Redis服务器连接到另一个Redis服务器，并向对方发送SYNC命令来开始一次复制操作的时候，如果主服务器目前没有执行BGSAVE操作，或者主服务器并非刚刚执行完BGSAVE操作，那么主服务器就会执行BGSAVE命令
 
-![Redis与Memcached的区别与比较](https://user-gold-cdn.xitu.io/2018/4/18/162d7773080d4570?w=621&h=378&f=jpeg&s=45278)
+如果系统真的发生崩溃，用户将丢失最近一次生成快照之后更改的所有数据。因此，快照持久化只适用于即使丢失一部分数据也不会造成一些大问题的应用程序。不能接受这个缺点的话，可以考虑AOF持久化。
 
-如果想要更详细了解的话，可以查看慕课网上的这篇手记（非常推荐） **：《脚踏两只船的困惑 - Memcached与Redis》**：[https://www.imooc.com/article/23549](https://www.imooc.com/article/23549)
 
-### Redis与Memcached的选择
-**终极策略：** 使用Redis的String类型做的事，都可以用Memcached替换，以此换取更好的性能提升； 除此以外，优先考虑Redis；
 
-### 使用redis有哪些好处？ 
-(1) **速度快**，因为数据存在内存中，类似于HashMap，HashMap的优势就是查找和操作的时间复杂度都是O(1) 
+## **AOF（append-only file）持久化**
+与快照持久化相比，AOF持久化 的实时性更好，因此已成为主流的持久化方案。默认情况下Redis没有开启AOF（append only file）方式的持久化，可以通过appendonly参数开启：
+```
+appendonly yes
+```
 
-(2)**支持丰富数据类型**，支持string，list，set，sorted set，hash 
+开启AOF持久化后每执行一条会更改Redis中的数据的命令，Redis就会将该命令写入硬盘中的AOF文件。AOF文件的保存位置和RDB文件的位置相同，都是通过dir参数设置的，默认的文件名是appendonly.aof。
 
-(3) **支持事务** ：redis对事务是部分支持的，如果是在入队时报错，那么都不会执行；在非入队时报错，那么成功的就会成功执行。详细了解请参考：《Redis事务介绍（四）》：[https://blog.csdn.net/cuipeng0916/article/details/53698774](https://blog.csdn.net/cuipeng0916/article/details/53698774)
+![春夏秋冬又一春](https://user-gold-cdn.xitu.io/2018/6/13/163f976818876166?w=400&h=219&f=jpeg&s=91022)
 
-redis监控：锁的介绍
+**在Redis的配置文件中存在三种同步方式，它们分别是：**
 
-(4) **丰富的特性**：可用于缓存，消息，按key设置过期时间，过期后将会自动删除
+```
 
-### Redis常见数据结构使用场景
+appendfsync always     #每次有数据修改发生时都会写入AOF文件,这样会严重降低Redis的速度
+appendfsync everysec  #每秒钟同步一次，显示地将多个写命令同步到硬盘
+appendfsync no      #让操作系统决定何时进行同步
+```
 
-#### 1. String
+**appendfsync always** 可以实现将数据丢失减到最少，不过这种方式需要对硬盘进行大量的写入而且每次只写入一个命令，十分影响Redis的速度。另外使用固态硬盘的用户谨慎使用appendfsync always选项，因为这会明显降低固态硬盘的使用寿命。
 
-> **常用命令:**  set,get,decr,incr,mget 等。
+为了兼顾数据和写入性能，用户可以考虑 **appendfsync everysec选项** ，让Redis每秒同步一次AOF文件，Redis性能几乎没受到任何影响。而且这样即使出现系统崩溃，用户最多只会丢失一秒之内产生的数据。当硬盘忙于执行写入操作的时候，Redis还会优雅的放慢自己的速度以便适应硬盘的最大写入速度。
 
 
-String数据结构是简单的key-value类型，value其实不仅可以是String，也可以是数字。 
-常规key-value缓存应用； 
-常规计数：微博数，粉丝数等。
+**appendfsync no**  选项一般不推荐，这种方案会使Redis丢失不定量的数据而且如果用户的硬盘处理写入操作的速度不够的话，那么当缓冲区被等待写入的数据填满时，Redis的写入操作将被阻塞，这会导致Redis的请求速度变慢。
 
-#### 2.Hash
-> **常用命令：** hget,hset,hgetall 等。
+**虽然AOF持久化非常灵活地提供了多种不同的选项来满足不同应用程序对数据安全的不同要求，但AOF持久化也有缺陷——AOF文件的体积太大。**
 
-Hash是一个string类型的field和value的映射表，hash特别适合用于存储对象。 比如我们可以Hash数据结构来存储用户信息，商品信息等等。
+## 重写/压缩AOF
 
-**举个例子：** 最近做的一个电商网站项目的首页就使用了redis的hash数据结构进行缓存，因为一个网站的首页访问量是最大的，所以通常网站的首页可以通过redis缓存来提高性能和并发量。我用**jedis客户端**来连接和操作我搭建的redis集群或者单机redis，利用jedis可以很容易的对redis进行相关操作，总的来说从搭一个简单的集群到实现redis作为缓存的整个步骤不难。感兴趣的可以看我昨天写的这篇文章：
+AOF虽然在某个角度可以将数据丢失降低到最小而且对性能影响也很小，但是极端的情况下，体积不断增大的AOF文件很可能会用完硬盘空间。另外，如果AOF体积过大，那么还原操作执行时间就可能会非常长。
 
-**《一文轻松搞懂redis集群原理及搭建与使用》：** [https://juejin.im/post/5ad54d76f265da23970759d3](https://juejin.im/post/5ad54d76f265da23970759d3)
+为了解决AOF体积过大的问题，用户可以向Redis发送 **BGREWRITEAOF命令** ，这个命令会通过移除AOF文件中的冗余命令来重写（rewrite）AOF文件来减小AOF文件的体积。BGREWRITEAOF命令和BGSAVE创建快照原理十分相似，所以AOF文件重写也需要用到子进程，这样会导致性能问题和内存占用问题，和快照持久化一样。更糟糕的是，如果不加以控制的话，AOF文件的体积可能会比快照文件大好几倍。
 
-#### 3.List
-> **常用命令:** lpush,rpush,lpop,rpop,lrange等
+**文件重写流程：**
 
-list就是链表，Redis list的应用场景非常多，也是Redis最重要的数据结构之一，比如微博的关注列表，粉丝列表，最新消息排行等功能都可以用Redis的list结构来实现。
+![文件重写流程](https://user-gold-cdn.xitu.io/2018/6/13/163f97f9bd0eea50?w=380&h=345&f=jpeg&s=14501)
+和快照持久化可以通过设置save选项来自动执行BGSAVE一样，AOF持久化也可以通过设置
 
-Redis list的实现为一个双向链表，即可以支持反向查找和遍历，更方便操作，不过带来了部分额外的内存开销。
+```
+auto-aof-rewrite-percentage
+```
 
+选项和
 
-#### 4.Set
-> **常用命令：**
-sadd,spop,smembers,sunion 等
+```
+auto-aof-rewrite-min-size
+```
 
-set对外提供的功能与list类似是一个列表的功能，特殊之处在于set是可以自动排重的。
-当你需要存储一个列表数据，又不希望出现重复数据时，set是一个很好的选择，并且set提供了判断某个成员是否在一个set集合内的重要接口，这个也是list所不能提供的。
+选项自动执行BGREWRITEAOF命令。举例：假设用户对Redis设置了如下配置选项并且启用了AOF持久化。那么当AOF文件体积大于64mb，并且AOF的体积比上一次重写之后的体积大了至少一倍（100%）的时候，Redis将执行BGREWRITEAOF命令。
 
+```
+auto-aof-rewrite-percentage 100  
+auto-aof-rewrite-min-size 64mb
+```
 
+无论是AOF持久化还是快照持久化，将数据持久化到硬盘上都是非常有必要的，但除了进行持久化外，用户还必须对持久化得到的文件进行备份（最好是备份到不同的地方），这样才能尽量避免数据丢失事故发生。如果条件允许的话，最好能将快照文件和重新重写的AOF文件备份到不同的服务器上面。
 
-在微博应用中，可以将一个用户所有的关注人存在一个集合中，将其所有粉丝存在一个集合。Redis可以非常方便的实现如共同关注、共同喜好、二度好友等功能。
+随着负载量的上升，或者数据的完整性变得 越来越重要时，用户可能需要使用到复制特性。
 
-#### 5.Sorted Set
-> **常用命令：** zadd,zrange,zrem,zcard等
+参考：
 
+《Redis实战》
 
-和set相比，sorted set增加了一个权重参数score，使得集合中的元素能够按score进行有序排列。
-
-**举例：** 在直播系统中，实时排行信息包含直播间在线用户列表，各种礼物排行榜，弹幕消息（可以理解为按消息维度的消息排行榜）等信息，适合使用Redis中的SortedSet结构进行存储。
-
-
-###  MySQL里有2000w数据，Redis中只存20w的数据，如何保证Redis中的数据都是热点数据（redis有哪些数据淘汰策略？？？）
-
-　　　相关知识：redis 内存数据集大小上升到一定大小的时候，就会施行数据淘汰策略（回收策略）。redis 提供 6种数据淘汰策略：
-1. **volatile-lru**：从已设置过期时间的数据集（server.db[i].expires）中挑选最近最少使用的数据淘汰
-2. **volatile-ttl**：从已设置过期时间的数据集（server.db[i].expires）中挑选将要过期的数据淘汰
-3. **volatile-random**：从已设置过期时间的数据集（server.db[i].expires）中任意选择数据淘汰
-4. **allkeys-lru**：从数据集（server.db[i].dict）中挑选最近最少使用的数据淘汰
-5. **allkeys-random**：从数据集（server.db[i].dict）中任意选择数据淘汰
-6. **no-enviction**（驱逐）：禁止驱逐数据
-
-### Redis的并发竞争问题如何解决?
-
-Redis为单进程单线程模式，采用队列模式将并发访问变为串行访问。Redis本身没有锁的概念，Redis对于多个客户端连接并不存在竞争，但是在Jedis客户端对Redis进行并发访问时会发生连接超时、数据转换错误、阻塞、客户端关闭连接等问题，这些问题均是由于客户端连接混乱造成。对此有2种解决方法：
-
-　1.客户端角度，为保证每个客户端间正常有序与Redis进行通信，对连接进行池化，同时对客户端读写Redis操作采用内部锁synchronized。
-　
-  2.服务器角度，利用setnx实现锁。
-  
-　注：对于第一种，需要应用程序自己处理资源的同步，可以使用的方法比较通俗，可以使用synchronized也可以使用lock；第二种需要用到Redis的setnx命令，但是需要注意一些问题。
-
-
-### Redis回收进程如何工作的? Redis回收使用的是什么算法?
-**Redis内存回收:LRU算法（写的很不错，推荐）**：[https://www.cnblogs.com/WJ5888/p/4371647.html](https://www.cnblogs.com/WJ5888/p/4371647.html)
-
-### Redis 大量数据插入
-官方文档给的解释：[http://www.redis.cn/topics/mass-insert.html](http://www.redis.cn/topics/mass-insert.html)
-
-### Redis 分区的优势、不足以及分区类型
-官方文档提供的讲解：[http://www.redis.net.cn/tutorial/3524.html](http://www.redis.net.cn/tutorial/3524.html)
-
-### Redis持久化数据和缓存怎么做扩容？
-
-**《redis的持久化和缓存机制》** ：[https://github.com/Snailclimb/Java-Guide/blob/master/数据存储/春夏秋冬又一春之Redis持久化.md](https://github.com/Snailclimb/Java-Guide/blob/master/数据存储/春夏秋冬又一春之Redis持久化.md)
-
-扩容的话可以通过redis集群实现，之前做项目的时候用过自己搭的redis集群
-然后写了一篇关于redis集群的文章：**《一文轻松搞懂redis集群原理及搭建与使用》**：[https://juejin.im/post/5ad54d76f265da23970759d3](https://juejin.im/post/5ad54d76f265da23970759d3)
-
-### Redis常见性能问题和解决方案:
-
-1. Master最好不要做任何持久化工作，如RDB内存快照和AOF日志文件 
-2. 如果数据比较重要，某个Slave开启AOF备份数据，策略设置为每秒同步一次 
-3. 为了主从复制的速度和连接的稳定性，Master和Slave最好在同一个局域网内 
-4. 尽量避免在压力很大的主库上增加从库
-
-### Redis与消息队列
->作者：翁伟
-链接：https://www.zhihu.com/question/20795043/answer/345073457
-
-不要使用redis去做消息队列，这不是redis的设计目标。但实在太多人使用redis去做去消息队列，redis的作者看不下去，另外基于redis的核心代码，另外实现了一个消息队列disque： antirez/disque:[https://github.com/antirez/disque](https://github.com/antirez/disque)部署、协议等方面都跟redis非常类似，并且支持集群，延迟消息等等。
-
-我在做网站过程接触比较多的还是使用redis做缓存，比如秒杀系统，首页缓存等等。
-
-
-
-
-
-## 好文Mark
-**非常非常推荐下面几篇文章。。。**
-
-**《Redis深入之道：原理解析、场景使用以及视频解读》**：[https://zhuanlan.zhihu.com/p/28073983](https://zhuanlan.zhihu.com/p/28073983):
-主要介绍了：Redis集群开源的方案、Redis协议简介及持久化Aof文件解析、Redis短连接性能优化等等内容，文章干货太大，容量很大，建议时间充裕可以看看。另外文章里面还提供了视频讲解，可以说是非常非常用心了。
-
-**《阿里云Redis混合存储典型场景：如何轻松搭建视频直播间系统》：**[https://yq.aliyun.com/articles/582487?utm_content=m_46529](https://yq.aliyun.com/articles/582487?utm_content=m_46529):
-主要介绍视频直播间系统，以及如何使用阿里云Redis混合存储实例方便快捷的构建大数据量，低延迟的视频直播间服务。还介绍到了我们之前提高过的redis的数据结构的使用场景
-
-
-**《美团在Redis上踩过的一些坑-5.redis cluster遇到的一些问》**：[http://carlosfu.iteye.com/blog/2254573](http://carlosfu.iteye.com/blog/2254573)：主要介绍了redis集群的两个常见问题，然后分享了 一些关于redis集群不错的文章。
-
-**参考：**
-
-https://www.cnblogs.com/Survivalist/p/8119891.html
-
-http://www.redis.net.cn/tutorial/3524.html
-
-https://redis.io/
-
-
-
-
-
-
+[深入学习Redis（2）：持久化](https://www.cnblogs.com/kismetv/p/9137897.html)
 
 
