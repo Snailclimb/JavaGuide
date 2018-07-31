@@ -28,9 +28,9 @@ public class RSADemo {
 		System.out.println("-----------------------------------");
 		byte[] encryptByPrivateKey = encryptByPrivateKey("123456".getBytes(), privateKey);
 		byte[] encryptByPublicKey = encryptByPublicKey("123456", publicKey);
-		System.out.println(encryptByPrivateKey);
+		System.out.println(new String(encryptByPrivateKey));
 		System.out.println("-----------------------------------");
-		System.out.println(encryptByPublicKey);
+		System.out.println(new String(encryptByPublicKey));
 		System.out.println("-----------------------------------");
 		String sign = sign(encryptByPrivateKey, privateKey);
 		System.out.println(sign);
@@ -40,9 +40,9 @@ public class RSADemo {
 		System.out.println("-----------------------------------");
 		byte[] decryptByPublicKey = decryptByPublicKey(encryptByPrivateKey, publicKey);
 		byte[] decryptByPrivateKey = decryptByPrivateKey(encryptByPublicKey, privateKey);
-		System.out.println(decryptByPublicKey);
+		System.out.println(new String(decryptByPublicKey));
 		System.out.println("-----------------------------------");
-		System.out.println(decryptByPrivateKey);
+		System.out.println(new String(decryptByPrivateKey));
 
 	}
 
