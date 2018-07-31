@@ -27,9 +27,9 @@ public class DesDemo {
 		byte[] result;
 		try {
 			result = DesDemo.encrypt(str.getBytes(), password);
-			System.out.println("加密后：" + new String(result));
+			System.out.println("加密后：" + result);
 			byte[] decryResult = DesDemo.decrypt(result, password);
-			System.out.println("解密后：" + new String(decryResult));
+			System.out.println("解密后：" + decryResult);
 		} catch (UnsupportedEncodingException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
