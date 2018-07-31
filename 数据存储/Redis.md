@@ -111,8 +111,3 @@ auto-aof-rewrite-min-size 64mb
 [深入学习Redis（2）：持久化](https://www.cnblogs.com/kismetv/p/9137897.html)
 
 
-> 欢迎关注我的微信公众号:"**Java面试通关手册**"（一个有温度的微信公众号，无广告，单纯技术分享，期待与你共同进步~~~坚持原创，分享美文，分享各种Java学习资源。)
-
-最后，就是使用阿里云服务器一段时间后，感觉阿里云真的很不错，就申请做了阿里云大使，然后这是[我的优惠券地址](https://promotion.aliyun.com/ntms/act/ambassador/sharetouser.html?userCode=hf47liqn&utm_source=hf47liqn).
-
-![二维码](https://user-gold-cdn.xitu.io/2018/6/13/163f9961b1ee7d0d?w=258&h=258&f=jpeg&s=27034)
