@@ -26,20 +26,20 @@
 
 > ### 面试常见问题汇总 
 
-[超详细的Java面试题总结（一）之Java基础知识篇](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/Java基础知识面试题总结/超详细的Java面试题总结（一）之Java基础知识篇.md)
+[Java基础知识篇](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/Java基础知识面试题总结/Java基础知识篇.md)
 
 1. 重载和重写的区别
 2. 自动装箱与拆箱
 3. 成员变量与局部变量的区别有那些？
 4. 静态方法和实例方法有何不同？
 5. equals 和 == 的区别？
+6. hashcode 和 equals（你重写过 hashcode 和 equals 么，要注意什么，为什么要同时重写 hashcode 和 equals）；
+6. 创建线程有几种不同的方式？你喜欢哪一种？为什么？
+7. 线程有哪些基本状态？这些状态是如何定义的?
+8. finalize()方法什么时候被调用？析构函数(finalization)的目的是什么？
 
-[超详细的Java面试题总结（二）之Java基础知识篇](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/Java基础知识面试题总结/超详细的Java面试题总结（二）之Java基础知识篇.md)
-1. 创建线程有几种不同的方式？你喜欢哪一种？为什么？
-2. 线程有哪些基本状态？这些状态是如何定义的?
-3. finalize()方法什么时候被调用？析构函数(finalization)的目的是什么？
 
-[超详细的Java面试题总结（三）之Java集合篇常见问题](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/Java基础知识面试题总结/超详细的Java面试题总结（三）之Java集合篇常见问题.md)
+[超详细的Java面试题总结（三）之Java集合篇常见问题](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/Java基础知识面试题总结/Java集合篇常见问题.md)
 1. List，Set,Map三者的区别及总结
 2. Arraylist 与 LinkedList 区别
 3. ArrayList 与 Vector 区别（为什么要用Arraylist取代Vector呢？）
@@ -59,7 +59,7 @@
 14. 集合的选用
 
 
-[超详细的Java面试题总结（四 ）之JavaWeb基础知识总结](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/Java基础知识面试题总结/超详细的Java面试题总结（四%20）之JavaWeb基础知识总结.md)
+[超详细的Java面试题总结（四 ）之JavaWeb基础知识总结](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/Java基础知识面试题总结/JavaWeb基础知识总结.md)
 
 1. 简述Servlet
 2. 阐述Servlet和CGI的区别?
