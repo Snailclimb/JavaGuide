@@ -50,9 +50,7 @@ Java环境变量PATH和CLASSPATH - 简书  http://www.jianshu.com/p/d63b099cf283
 
 [https://blog.csdn.net/jianyuerensheng/article/details/51602015](https://blog.csdn.net/jianyuerensheng/article/details/51602015)
 
-## <font face="楷体">java中equals方法的用法以及==的用法</font>
 
-[http://www.cnblogs.com/bluestorm/archive/2012/03/02/2377615.html](http://www.cnblogs.com/bluestorm/archive/2012/03/02/2377615.html)
 
 ## <font face="楷体">String和StringBuffer、StringBuilder的区别是什么？String为什么是不可变的？</font>
 
