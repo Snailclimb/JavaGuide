@@ -39,7 +39,7 @@
 8. finalize()方法什么时候被调用？析构函数(finalization)的目的是什么？
 
 
-[超详细的Java面试题总结（三）之Java集合篇常见问题](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/Java基础知识面试题总结/Java集合篇常见问题.md)
+[Java集合篇常见问题](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/Java基础知识面试题总结/Java集合篇常见问题.md)
 1. List，Set,Map三者的区别及总结
 2. Arraylist 与 LinkedList 区别
 3. ArrayList 与 Vector 区别（为什么要用Arraylist取代Vector呢？）
@@ -59,7 +59,7 @@
 14. 集合的选用
 
 
-[超详细的Java面试题总结（四 ）之JavaWeb基础知识总结](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/Java基础知识面试题总结/JavaWeb基础知识总结.md)
+[JavaWeb基础知识总结](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/Java基础知识面试题总结/JavaWeb基础知识总结.md)
 
 1. 简述Servlet
 2. 阐述Servlet和CGI的区别?
