@@ -9,7 +9,7 @@
 ### 6. :floppy_disk: [数据存储](#floppy_disk-数据存储)
 ### 7. :punch: [架构](#punch-架构)
 ### 8. :musical_note: [面试必备](#musical_note-面试必备)
-###    [关于该开源文档的一些说明](#该开源文档一些说明)
+### 9.:envelope: [关于该开源文档的一些说明](#envelope-该开源文档一些说明)
 
 > # 正文
 ## :coffee: Java
@@ -77,7 +77,7 @@
     [个人阅读书籍清单](https://github.com/Snailclimb/Java-Guide/blob/master/个人阅读书籍清单.md)  
 ***
 
-> # 该开源文档一些说明
+> # :envelope: 该开源文档一些说明
 
 ## 介绍
 该文档主要是笔主在学习Java的过程中的一些学习笔记，但是为了能够设计到大部分后端面试所需的技术知识点我也会引用别人的优秀文章。
