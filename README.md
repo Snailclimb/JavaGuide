@@ -9,7 +9,8 @@
 ### 6. :floppy_disk: [数据存储](#floppy_disk-数据存储)
 ### 7. :punch: [架构](#punch-架构)
 ### 8. :musical_note: [面试必备](#musical_note-面试必备)
-### 9.:envelope: [关于该开源文档的一些说明](#envelope-该开源文档一些说明)
+### 9. :art: [其他](#art-其他)
+### 10.:envelope: [关于该开源文档的一些说明](#envelope-该开源文档一些说明)
 
 > # 正文
 ## :coffee: Java
@@ -73,8 +74,16 @@
 
 - ### 程序员如何写简历
     [程序员的简历之道](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/程序员的简历之道.md)
+
+    
+## :art: 其他  
+
 - ### 个人书单推荐
-    [个人阅读书籍清单](https://github.com/Snailclimb/Java-Guide/blob/master/个人阅读书籍清单.md)  
+    [个人阅读书籍清单](https://github.com/Snailclimb/Java-Guide/blob/master/其他/个人阅读书籍清单.md)  
+
+- ### 技术方向选择
+    [选择技术方向都要考虑哪些因素](https://github.com/Snailclimb/Java-Guide/blob/master/其他/选择技术方向都要考虑哪些因素.md)  
+    
 ***
 
 > # :envelope: 该开源文档一些说明
