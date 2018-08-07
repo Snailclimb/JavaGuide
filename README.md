@@ -74,7 +74,7 @@
 - ### 最最最常见的Java面试题总结
    这里会分享一些出现频率极其极其高的面试题，初定周更一篇，什么时候更完什么时候停止。
    
-    [值传递和引用传递、==与equals、 hashCode与equals）](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/最最最常见的Java面试题总结/值传递和引用传递、==与equals、 hashCode与equals.md)
+    [值传递和引用传递、==与equals、 hashCode与equals](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/最最最常见的Java面试题总结/第一周（2018-8-7）.md)
 
 - ### 程序员如何写简历
     [程序员的简历之道](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/程序员的简历之道.md)
