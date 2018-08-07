@@ -116,5 +116,4 @@
 ![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-7-3/62956005.jpg)
 
 **欢迎关注我的微信公众号:"Java面试通关手册"（一个有温度的微信公众号，期待与你共同进步.坚持原创，分享美文，分享各种Java学习资源）：**
-
-![我的公众号](https://user-gold-cdn.xitu.io/2018/5/25/16396cf05d1f4fbf?w=180&h=234&f=png&s=28541)
+![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-7/27649673.jpg)
