@@ -71,6 +71,7 @@
 
 - ### 面试必备知识点
     [面试必备之乐观锁与悲观锁](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/面试必备之乐观锁与悲观锁.md)
+    [最最最常见的三道Java基础知识面试题总结](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/最最最常见的三道Java基础知识面试题总结.md)
 
 - ### 程序员如何写简历
     [程序员的简历之道](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/程序员的简历之道.md)
