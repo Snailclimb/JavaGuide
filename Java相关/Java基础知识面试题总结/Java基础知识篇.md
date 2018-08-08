@@ -19,12 +19,24 @@
 　　任何一种可以运行Java字节码的软件均可看成是Java的虚拟机（JVM）
 ## <font face="楷体">什么是Java程序的主类？应用程序和小程序的主类有何不同？</font>
 　　一个程序中可以有多个类，但只能有一个类是主类。在Java应用程序中，这个主类是指包含main（）方法的类。而在Java小程序中，这个主类是一个继承自系统类JApplet或Applet的子类。应用程序的主类不一定要求是public类，但小程序的主类要求必须是public类。主类是Java程序执行的入口点。
-## <font face="楷体">什么是JDK?什么是JRE？</font>
-　　JDK: 顾名思义它是给开发者提供的开发工具箱,是给程序开发者用的。它除了包括完整的JRE（Java Runtime Environment），Java运行环境，还包含了其他供开发者使用的工具包。
-![JDK](https://user-gold-cdn.xitu.io/2017/11/8/9cf7f48fdbe608ae70080aa6c5a2f910?w=680&h=278&f=png&s=-1)
-　　JRE:普通用户而只需要安装JRE（Java Runtime Environment）来 来运行Java程序。而程序开发者必须安装JDK来编译、调试程序。
+
+## 什么是JDK?什么是JRE？什么是JVM？三者之间的联系与区别
+
+**JDK:**  顾名思义它是给开发者提供的开发工具箱,是给程序开发者用的。它除了包括完整的JRE（Java Runtime Environment），Java运行环境，还包含了其他供开发者使用的工具包。
+
+**JRE:** 普通用户而只需要安装JRE（Java Runtime Environment）来运行Java程序。而程序开发者必须安装JDK来编译、调试程序。
+
+**JVM：** 当我们运行一个程序时，JVM负责将字节码转换为特定机器代码，JVM提供了内存管理/垃圾回收和安全机制等。这种独立于硬件和操作系统，正是java程序可以一次编写多处执行的原因。
+
+**区别与联系：**
+
+ 1. JDK用于开发，JRE用于运行java程序 ；
+ 2. JDK和JRE中都包含JVM ；
+ 3. JVM是java编程语言的核心并且具有平台独立性。
+  
 ## <font face="楷体">环境变量Path和ClassPath的作用是什么？如何设置这两个环境变量？</font>
 Java环境变量PATH和CLASSPATH - 简书  http://www.jianshu.com/p/d63b099cf283
+
 ## <font face="楷体">Java应用程序与小程序之间有那些差别？</font>
 简单说应用程序是从主线程启动(也就是main()方法)。applet小程序没有main方法，主要是嵌在浏览器页面上运行(调用init()线程或者run()来启动)，嵌入浏览器这点跟flash的小游戏类似。
 ## <font face="楷体">字符型常量和字符串常量的区别</font>
@@ -44,8 +56,10 @@ Java环境变量PATH和CLASSPATH - 简书  http://www.jianshu.com/p/d63b099cf283
 　　在讲继承的时候我们就知道父类的私有属性和构造方法并不能被继承，所以Constructor也就不能被override,但是可以overload,所以你可以看到一个类中有多个构造函数的情况。 
 
 ## <font face="楷体">重载和重写的区别</font>
-　　重载：发生在同一个类中，方法名必须相同，参数类型不同、个数不同、顺序不同，方法返回值和访问修饰符可以不同，发生在编译时。
-　　重写：发生在父子类中，方法名、参数列表必须相同，返回值小于等于父类，抛出的异常小于等于父类，访问修饰符大于等于父类；如果父类方法访问修饰符为private则子类中就不是重写。
+**重载：** 发生在同一个类中，方法名必须相同，参数类型不同、个数不同、顺序不同，方法返回值和访问修饰符可以不同，发生在编译时。 　　
+
+**重写：** 发生在父子类中，方法名、参数列表必须相同，返回值范围小于等于父类，抛出的异常范围小于等于父类，访问修饰符范围大于等于父类；如果父类方法访问修饰符为private则子类就不能重写该方法。
+
 ## <font face="楷体">java 面向对象编程三大特性------封装、继承、多态</font>
 
 [https://blog.csdn.net/jianyuerensheng/article/details/51602015](https://blog.csdn.net/jianyuerensheng/article/details/51602015)
