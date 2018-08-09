@@ -1,33 +1,29 @@
-### <font face="楷体"> **目录：**</font>
-<a href="#1" target="_self">0-1. 简介</a>
+<!-- MarkdownTOC -->
 
-<a href="#2" target="_self">0-2. 内部结构分析</a>
+- [简介](#简介)
+- [内部结构分析](#内部结构分析)
+    - [JDK1.8之前](#jdk18之前)
+    - [JDK1.8之后](#jdk18之后)
+- [HashMap源码分析](#hashmap源码分析)
+    - [构造方法](#构造方法)
+    - [put方法](#put方法)
+    - [get方法](#get方法)
+    - [resize方法](#resize方法)
+- [HashMap常用方法测试](#hashmap常用方法测试)
 
-　　<a href="#2.1" target="_self">0-2-1. JDK18之前</a>
+<!-- /MarkdownTOC -->
 
-　　<a href="#2.2" target="_self">0-2-2. JDK18之后</a>
 
-<a href="#3" target="_self">0-3. LinkedList源码分析</a>
-
-　　<a href="#3.1" target="_self">0-3-1. 构造方法</a>
-
-　　<a href="#3.2" target="_self">0-3-2. put方法</a>
-
-　　<a href="#3.3" target="_self">0-3-3. get方法</a>
-
-　　<a href="#3.4" target="_self">0-3-4. resize方法</a>
-
-<a href="#4" target="_self">0-4. HashMap常用方法测试</a>
 ## <font face="楷体" id="1">简介</font>
 <font color="red">HashMap</font>主要用来存放<font color="red">键值对</font>，它<font color="red">基于哈希表的Map接口实现</font>，是常用的Java集合之一。与HashTable主要区别为<font color="red">不支持同步和允许null作为key和value</font>，所以如果你想要保证线程安全，可以使用<font color="red">ConcurrentHashMap</font>代替而不是线程安全的HashTable，因为HashTable基本已经被淘汰。
 ## <font face="楷体" id="2">内部结构分析
-### <font face="楷体" id="2.1">JDK1.8之前：</font>
+### <font face="楷体" id="2.1">JDK1.8之前</font>
 JDK1.8之前HashMap底层是<font color="red">数组和链表</font>结合在一起使用也就是<font color="red">链表散列</font>。HashMap通过key的hashCode来计算hash值，当hashCode相同时，通过<font color="red">“拉链法”</font>解决冲突。
 
 所谓<font color="red">“拉链法”</font>就是：将链表和数组相结合。也就是说创建一个链表数组，数组中每一格就是一个链表。若遇到哈希冲突，则将冲突的值加到链表中即可。
 ![jdk1.8之前的内部结构](https://user-gold-cdn.xitu.io/2018/3/20/16240dbcc303d872?w=348&h=427&f=png&s=10991)
 简单来说，JDK1.8之前HashMap由<font color="red">数组+链表组成的，数组是HashMap的主体，链表则是主要为了解决哈希冲突而存在的，如果定位到的数组位置不含链表（当前entry的next指向null）,那么对于查找，添加等操作很快，仅需一次寻址即可；如果定位到的数组包含链表，对于添加操作，其时间复杂度依然为O(1)，因为最新的Entry会插入链表头部，急需要简单改变引用链即可，而对于查找操作来讲，此时就需要遍历链表，然后通过key对象的equals方法逐一比对查找.</font>
-### <font face="楷体" id="2.2">JDK1.8之后：</font>
+### <font face="楷体" id="2.2">JDK1.8之后</font>
 相比于之前的版本，jdk1.8在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为8）时，将链表转化为红黑树，以减少搜索时间。
 ![JDK1.8之后的内部结构](https://user-gold-cdn.xitu.io/2018/3/20/16240e0e30123cfc?w=552&h=519&f=png&s=15827)
 **类的属性：**
@@ -391,66 +387,66 @@ import java.util.Set;
 
 public class HashMapDemo {
 
-	public static void main(String[] args) {
-		HashMap<String, String> map = new HashMap<String, String>();
-		// 键不能重复，值可以重复
-		map.put("san", "张三");
-		map.put("si", "李四");
-		map.put("wu", "王五");
-		map.put("wang", "老王");
-		map.put("wang", "老王2");// 老王被覆盖
-		map.put("lao", "老王");
-		System.out.println("-------直接输出hashmap:-------");
-		System.out.println(map);
-		/**
-		 * 遍历HashMap
-		 */
-		// 1.获取Map中的所有键
-		System.out.println("-------foreach获取Map中所有的键:------");
-		Set<String> keys = map.keySet();
-		for (String key : keys) {
-			System.out.print(key+"  ");
-		}
-		System.out.println();//换行
-		// 2.获取Map中所有值
-		System.out.println("-------foreach获取Map中所有的值:------");
-		Collection<String> values = map.values();
-		for (String value : values) {
-			System.out.print(value+"  ");
-		}
-		System.out.println();//换行
-		// 3.得到key的值的同时得到key所对应的值
-		System.out.println("-------得到key的值的同时得到key所对应的值:-------");
-		Set<String> keys2 = map.keySet();
-		for (String key : keys2) {
-			System.out.print(key + "：" + map.get(key)+"   ");
+    public static void main(String[] args) {
+        HashMap<String, String> map = new HashMap<String, String>();
+        // 键不能重复，值可以重复
+        map.put("san", "张三");
+        map.put("si", "李四");
+        map.put("wu", "王五");
+        map.put("wang", "老王");
+        map.put("wang", "老王2");// 老王被覆盖
+        map.put("lao", "老王");
+        System.out.println("-------直接输出hashmap:-------");
+        System.out.println(map);
+        /**
+         * 遍历HashMap
+         */
+        // 1.获取Map中的所有键
+        System.out.println("-------foreach获取Map中所有的键:------");
+        Set<String> keys = map.keySet();
+        for (String key : keys) {
+            System.out.print(key+"  ");
+        }
+        System.out.println();//换行
+        // 2.获取Map中所有值
+        System.out.println("-------foreach获取Map中所有的值:------");
+        Collection<String> values = map.values();
+        for (String value : values) {
+            System.out.print(value+"  ");
+        }
+        System.out.println();//换行
+        // 3.得到key的值的同时得到key所对应的值
+        System.out.println("-------得到key的值的同时得到key所对应的值:-------");
+        Set<String> keys2 = map.keySet();
+        for (String key : keys2) {
+            System.out.print(key + "：" + map.get(key)+"   ");
 
-		}
-		/**
-		 * 另外一种不常用的遍历方式
-		 */
-		// 当我调用put(key,value)方法的时候，首先会把key和value封装到
-		// Entry这个静态内部类对象中，把Entry对象再添加到数组中，所以我们想获取
-		// map中的所有键值对，我们只要获取数组中的所有Entry对象，接下来
-		// 调用Entry对象中的getKey()和getValue()方法就能获取键值对了
-		Set<java.util.Map.Entry<String, String>> entrys = map.entrySet();
-		for (java.util.Map.Entry<String, String> entry : entrys) {
-			System.out.println(entry.getKey() + "--" + entry.getValue());
-		}
-		
-		/**
-		 * HashMap其他常用方法
-		 */
-		System.out.println("after map.size()："+map.size());
-		System.out.println("after map.isEmpty()："+map.isEmpty());
-		System.out.println(map.remove("san"));
-		System.out.println("after map.remove()："+map);
-		System.out.println("after map.get(si)："+map.get("si"));
-		System.out.println("after map.containsKey(si)："+map.containsKey("si"));
-		System.out.println("after containsValue(李四)："+map.containsValue("李四"));
-		System.out.println(map.replace("si", "李四2"));
-		System.out.println("after map.replace(si, 李四2):"+map);
-	}
+        }
+        /**
+         * 另外一种不常用的遍历方式
+         */
+        // 当我调用put(key,value)方法的时候，首先会把key和value封装到
+        // Entry这个静态内部类对象中，把Entry对象再添加到数组中，所以我们想获取
+        // map中的所有键值对，我们只要获取数组中的所有Entry对象，接下来
+        // 调用Entry对象中的getKey()和getValue()方法就能获取键值对了
+        Set<java.util.Map.Entry<String, String>> entrys = map.entrySet();
+        for (java.util.Map.Entry<String, String> entry : entrys) {
+            System.out.println(entry.getKey() + "--" + entry.getValue());
+        }
+        
+        /**
+         * HashMap其他常用方法
+         */
+        System.out.println("after map.size()："+map.size());
+        System.out.println("after map.isEmpty()："+map.isEmpty());
+        System.out.println(map.remove("san"));
+        System.out.println("after map.remove()："+map);
+        System.out.println("after map.get(si)："+map.get("si"));
+        System.out.println("after map.containsKey(si)："+map.containsKey("si"));
+        System.out.println("after containsValue(李四)："+map.containsValue("李四"));
+        System.out.println(map.replace("si", "李四2"));
+        System.out.println("after map.replace(si, 李四2):"+map);
+    }
 
 }
 
