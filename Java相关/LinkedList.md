@@ -1,23 +1,20 @@
-<a href="#1" target="_self">0-1. 简介</a>
 
-<a href="#2" target="_self">0-2. 内部结构分析</a>
+<!-- MarkdownTOC -->
 
-<a href="#3" target="_self">0-3. LinkedList源码分析</a>
+- [简介](#简介)
+- [内部结构分析](#内部结构分析)
+- [LinkedList源码分析](#linkedlist源码分析)
+    - [构造方法](#构造方法)
+    - [添加（add）方法](#添加（add）方法)
+    - [根据位置取数据的方法](#根据位置取数据的方法)
+    - [根据对象得到索引的方法](#根据对象得到索引的方法)
+    - [检查链表是否包含某对象的方法：](#检查链表是否包含某对象的方法：)
+    - [删除（remove/pop）方法](#删除（removepop）方法)
+- [LinkedList类常用方法测试：](#linkedlist类常用方法测试：)
 
-　　<a href="#3.1" target="_self">0-3-1. 构造方法</a>
+<!-- /MarkdownTOC -->
 
-　　<a href="#3.2" target="_self">0-3-2. 添加add方法</a>
-
-　　<a href="#3.3" target="_self">0-3-3. 根据位置取数据的方法</a>
-
-　　<a href="#3.4" target="_self">0-3-4. 根据对象得到索引的方法</a>
-
-　　<a href="#3.5" target="_self">0-3-5. 检查链表是否包含某对象的方法</a>
-
-　　<a href="#3.6" target="_self">0-3-6. 删除removepop方法</a>
-
-<a href="#4" target="_self">0-4. LinkedList类常用方法</a>
-## <font face="楷体" id="1"> 简介</font>
+## <font face="楷体" id="1">简介</font>
 <font color="red">LinkedList</font>是一个实现了<font color="red">List接口</font>和<font color="red">Deque接口</font>的<font color="red">双端链表</font>。 
 LinkedList底层的链表结构使它<font color="red">支持高效的插入和删除操作</font>，另外它实现了Deque接口，使得LinkedList类也具有队列的特性;
 LinkedList<font color="red">不是线程安全的</font>，如果想使LinkedList变成线程安全的，可以调用静态类<font color="red">Collections类</font>中的<font color="red">synchronizedList</font>方法： 
@@ -43,7 +40,7 @@ private static class Node<E> {
 ```
 这个类就代表双端链表的节点Node。这个类有三个属性，分别是前驱节点，本节点的值，后继结点。
 
-## <font face="楷体" id="3"> LinkedList源码分析</font>
+## <font face="楷体" id="3">LinkedList源码分析</font>
 ### <font face="楷体" id="3.1">构造方法</font>
 **空构造方法：**
 ```java
@@ -291,7 +288,7 @@ public int lastIndexOf(Object o) {
         return indexOf(o) != -1;
     }
 ```
-###<font face="楷体" id="3.6"> 删除（remove/pop）方法</font>
+###<font face="楷体" id="3.6">删除（remove/pop）方法</font>
 **remove()** ,**removeFirst(),pop():** 删除头节点
 ```
 public E pop() {
@@ -400,119 +397,119 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 public class LinkedListDemo {
-	public static void main(String[] srgs) {
-		//创建存放int类型的linkedList
-		LinkedList<Integer> linkedList = new LinkedList<>();
-		/************************** linkedList的基本操作 ************************/
-		linkedList.addFirst(0); // 添加元素到列表开头
-		linkedList.add(1); // 在列表结尾添加元素
-		linkedList.add(2, 2); // 在指定位置添加元素
-		linkedList.addLast(3); // 添加元素到列表结尾
+    public static void main(String[] srgs) {
+        //创建存放int类型的linkedList
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        /************************** linkedList的基本操作 ************************/
+        linkedList.addFirst(0); // 添加元素到列表开头
+        linkedList.add(1); // 在列表结尾添加元素
+        linkedList.add(2, 2); // 在指定位置添加元素
+        linkedList.addLast(3); // 添加元素到列表结尾
         
-		System.out.println("LinkedList（直接输出的）: " + linkedList);
+        System.out.println("LinkedList（直接输出的）: " + linkedList);
 
-		System.out.println("getFirst()获得第一个元素: " + linkedList.getFirst()); // 返回此列表的第一个元素
-		System.out.println("getLast()获得第最后一个元素: " + linkedList.getLast()); // 返回此列表的最后一个元素
-		System.out.println("removeFirst()删除第一个元素并返回: " + linkedList.removeFirst()); // 移除并返回此列表的第一个元素
-		System.out.println("removeLast()删除最后一个元素并返回: " + linkedList.removeLast()); // 移除并返回此列表的最后一个元素
-		System.out.println("After remove:" + linkedList);
-		System.out.println("contains()方法判断列表是否包含1这个元素:" + linkedList.contains(1)); // 判断此列表包含指定元素，如果是，则返回true
-		System.out.println("该linkedList的大小 : " + linkedList.size()); // 返回此列表的元素个数
+        System.out.println("getFirst()获得第一个元素: " + linkedList.getFirst()); // 返回此列表的第一个元素
+        System.out.println("getLast()获得第最后一个元素: " + linkedList.getLast()); // 返回此列表的最后一个元素
+        System.out.println("removeFirst()删除第一个元素并返回: " + linkedList.removeFirst()); // 移除并返回此列表的第一个元素
+        System.out.println("removeLast()删除最后一个元素并返回: " + linkedList.removeLast()); // 移除并返回此列表的最后一个元素
+        System.out.println("After remove:" + linkedList);
+        System.out.println("contains()方法判断列表是否包含1这个元素:" + linkedList.contains(1)); // 判断此列表包含指定元素，如果是，则返回true
+        System.out.println("该linkedList的大小 : " + linkedList.size()); // 返回此列表的元素个数
 
-		/************************** 位置访问操作 ************************/
-		System.out.println("-----------------------------------------");
-		linkedList.set(1, 3); // 将此列表中指定位置的元素替换为指定的元素
-		System.out.println("After set(1, 3):" + linkedList);
-		System.out.println("get(1)获得指定位置（这里为1）的元素: " + linkedList.get(1)); // 返回此列表中指定位置处的元素
+        /************************** 位置访问操作 ************************/
+        System.out.println("-----------------------------------------");
+        linkedList.set(1, 3); // 将此列表中指定位置的元素替换为指定的元素
+        System.out.println("After set(1, 3):" + linkedList);
+        System.out.println("get(1)获得指定位置（这里为1）的元素: " + linkedList.get(1)); // 返回此列表中指定位置处的元素
 
-		/************************** Search操作 ************************/
-		System.out.println("-----------------------------------------");
-		linkedList.add(3);
-		System.out.println("indexOf(3): " + linkedList.indexOf(3)); // 返回此列表中首次出现的指定元素的索引
-		System.out.println("lastIndexOf(3): " + linkedList.lastIndexOf(3));// 返回此列表中最后出现的指定元素的索引
+        /************************** Search操作 ************************/
+        System.out.println("-----------------------------------------");
+        linkedList.add(3);
+        System.out.println("indexOf(3): " + linkedList.indexOf(3)); // 返回此列表中首次出现的指定元素的索引
+        System.out.println("lastIndexOf(3): " + linkedList.lastIndexOf(3));// 返回此列表中最后出现的指定元素的索引
 
-		/************************** Queue操作 ************************/
-		System.out.println("-----------------------------------------");
-		System.out.println("peek(): " + linkedList.peek()); // 获取但不移除此列表的头
-		System.out.println("element(): " + linkedList.element()); // 获取但不移除此列表的头
-		linkedList.poll(); // 获取并移除此列表的头
-		System.out.println("After poll():" + linkedList);
-		linkedList.remove();
-		System.out.println("After remove():" + linkedList); // 获取并移除此列表的头
-		linkedList.offer(4);
-		System.out.println("After offer(4):" + linkedList); // 将指定元素添加到此列表的末尾
+        /************************** Queue操作 ************************/
+        System.out.println("-----------------------------------------");
+        System.out.println("peek(): " + linkedList.peek()); // 获取但不移除此列表的头
+        System.out.println("element(): " + linkedList.element()); // 获取但不移除此列表的头
+        linkedList.poll(); // 获取并移除此列表的头
+        System.out.println("After poll():" + linkedList);
+        linkedList.remove();
+        System.out.println("After remove():" + linkedList); // 获取并移除此列表的头
+        linkedList.offer(4);
+        System.out.println("After offer(4):" + linkedList); // 将指定元素添加到此列表的末尾
 
-		/************************** Deque操作 ************************/
-		System.out.println("-----------------------------------------");
-		linkedList.offerFirst(2); // 在此列表的开头插入指定的元素
-		System.out.println("After offerFirst(2):" + linkedList);
-		linkedList.offerLast(5); // 在此列表末尾插入指定的元素
-		System.out.println("After offerLast(5):" + linkedList);
-		System.out.println("peekFirst(): " + linkedList.peekFirst()); // 获取但不移除此列表的第一个元素
-		System.out.println("peekLast(): " + linkedList.peekLast()); // 获取但不移除此列表的第一个元素
-		linkedList.pollFirst(); // 获取并移除此列表的第一个元素
-		System.out.println("After pollFirst():" + linkedList);
-		linkedList.pollLast(); // 获取并移除此列表的最后一个元素
-		System.out.println("After pollLast():" + linkedList);
-		linkedList.push(2); // 将元素推入此列表所表示的堆栈（插入到列表的头）
-		System.out.println("After push(2):" + linkedList);
-		linkedList.pop(); // 从此列表所表示的堆栈处弹出一个元素（获取并移除列表第一个元素）
-		System.out.println("After pop():" + linkedList);
-		linkedList.add(3);
-		linkedList.removeFirstOccurrence(3); // 从此列表中移除第一次出现的指定元素（从头部到尾部遍历列表）
-		System.out.println("After removeFirstOccurrence(3):" + linkedList);
-		linkedList.removeLastOccurrence(3); // 从此列表中移除最后一次出现的指定元素（从头部到尾部遍历列表）
-		System.out.println("After removeFirstOccurrence(3):" + linkedList);
+        /************************** Deque操作 ************************/
+        System.out.println("-----------------------------------------");
+        linkedList.offerFirst(2); // 在此列表的开头插入指定的元素
+        System.out.println("After offerFirst(2):" + linkedList);
+        linkedList.offerLast(5); // 在此列表末尾插入指定的元素
+        System.out.println("After offerLast(5):" + linkedList);
+        System.out.println("peekFirst(): " + linkedList.peekFirst()); // 获取但不移除此列表的第一个元素
+        System.out.println("peekLast(): " + linkedList.peekLast()); // 获取但不移除此列表的第一个元素
+        linkedList.pollFirst(); // 获取并移除此列表的第一个元素
+        System.out.println("After pollFirst():" + linkedList);
+        linkedList.pollLast(); // 获取并移除此列表的最后一个元素
+        System.out.println("After pollLast():" + linkedList);
+        linkedList.push(2); // 将元素推入此列表所表示的堆栈（插入到列表的头）
+        System.out.println("After push(2):" + linkedList);
+        linkedList.pop(); // 从此列表所表示的堆栈处弹出一个元素（获取并移除列表第一个元素）
+        System.out.println("After pop():" + linkedList);
+        linkedList.add(3);
+        linkedList.removeFirstOccurrence(3); // 从此列表中移除第一次出现的指定元素（从头部到尾部遍历列表）
+        System.out.println("After removeFirstOccurrence(3):" + linkedList);
+        linkedList.removeLastOccurrence(3); // 从此列表中移除最后一次出现的指定元素（从头部到尾部遍历列表）
+        System.out.println("After removeFirstOccurrence(3):" + linkedList);
 
-		/************************** 遍历操作 ************************/
-		System.out.println("-----------------------------------------");
-		linkedList.clear();
-		for (int i = 0; i < 100000; i++) {
-			linkedList.add(i);
-		}
-		// 迭代器遍历
-		long start = System.currentTimeMillis();
-		Iterator<Integer> iterator = linkedList.iterator();
-		while (iterator.hasNext()) {
-			iterator.next();
-		}
-		long end = System.currentTimeMillis();
-		System.out.println("Iterator：" + (end - start) + " ms");
+        /************************** 遍历操作 ************************/
+        System.out.println("-----------------------------------------");
+        linkedList.clear();
+        for (int i = 0; i < 100000; i++) {
+            linkedList.add(i);
+        }
+        // 迭代器遍历
+        long start = System.currentTimeMillis();
+        Iterator<Integer> iterator = linkedList.iterator();
+        while (iterator.hasNext()) {
+            iterator.next();
+        }
+        long end = System.currentTimeMillis();
+        System.out.println("Iterator：" + (end - start) + " ms");
 
-		// 顺序遍历(随机遍历)
-		start = System.currentTimeMillis();
-		for (int i = 0; i < linkedList.size(); i++) {
-			linkedList.get(i);
-		}
-		end = System.currentTimeMillis();
-		System.out.println("for：" + (end - start) + " ms");
+        // 顺序遍历(随机遍历)
+        start = System.currentTimeMillis();
+        for (int i = 0; i < linkedList.size(); i++) {
+            linkedList.get(i);
+        }
+        end = System.currentTimeMillis();
+        System.out.println("for：" + (end - start) + " ms");
 
-		// 另一种for循环遍历
-		start = System.currentTimeMillis();
-		for (Integer i : linkedList)
-			;
-		end = System.currentTimeMillis();
-		System.out.println("for2：" + (end - start) + " ms");
+        // 另一种for循环遍历
+        start = System.currentTimeMillis();
+        for (Integer i : linkedList)
+            ;
+        end = System.currentTimeMillis();
+        System.out.println("for2：" + (end - start) + " ms");
 
-		// 通过pollFirst()或pollLast()来遍历LinkedList
-		LinkedList<Integer> temp1 = new LinkedList<>();
-		temp1.addAll(linkedList);
-		start = System.currentTimeMillis();
-		while (temp1.size() != 0) {
-			temp1.pollFirst();
-		}
-		end = System.currentTimeMillis();
-		System.out.println("pollFirst()或pollLast()：" + (end - start) + " ms");
+        // 通过pollFirst()或pollLast()来遍历LinkedList
+        LinkedList<Integer> temp1 = new LinkedList<>();
+        temp1.addAll(linkedList);
+        start = System.currentTimeMillis();
+        while (temp1.size() != 0) {
+            temp1.pollFirst();
+        }
+        end = System.currentTimeMillis();
+        System.out.println("pollFirst()或pollLast()：" + (end - start) + " ms");
 
-		// 通过removeFirst()或removeLast()来遍历LinkedList
-		LinkedList<Integer> temp2 = new LinkedList<>();
-		temp2.addAll(linkedList);
-		start = System.currentTimeMillis();
-		while (temp2.size() != 0) {
-			temp2.removeFirst();
-		}
-		end = System.currentTimeMillis();
-		System.out.println("removeFirst()或removeLast()：" + (end - start) + " ms");
-	}
+        // 通过removeFirst()或removeLast()来遍历LinkedList
+        LinkedList<Integer> temp2 = new LinkedList<>();
+        temp2.addAll(linkedList);
+        start = System.currentTimeMillis();
+        while (temp2.size() != 0) {
+            temp2.removeFirst();
+        }
+        end = System.currentTimeMillis();
+        System.out.println("removeFirst()或removeLast()：" + (end - start) + " ms");
+    }
 }
 ```
