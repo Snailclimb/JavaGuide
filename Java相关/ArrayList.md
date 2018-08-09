@@ -1,14 +1,14 @@
 
 <!-- MarkdownTOC -->
 
-- [ArrayList简介：](#arraylist简介)
-- [ArrayList核心源码：](#arraylist核心源码)
-- [ArrayList源码分析：](#arraylist源码分析)
+- [ArrayList简介：](#ArrayList简介)
+- [ArrayList核心源码：](#ArrayList核心源码)
+- [ArrayList源码分析：](#ArrayList源码分析)
     - [System.arraycopy\(\)和Arrays.copyOf\(\)方法](#systemarraycopy和arrayscopyof方法)
         - [两者联系与区别：](#两者联系与区别：)
-    - [ArrayList核心扩容技术](#arraylist核心扩容技术)
+    - [ArrayList核心扩容技术](#ArrayList核心扩容技术)
     - [内部类](#内部类)
-- [ArrayList经典Demo：](#arraylist经典demo)
+- [ArrayList经典Demo：](#ArrayList经典demo)
 
 <!-- /MarkdownTOC -->
 
