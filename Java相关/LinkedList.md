@@ -5,12 +5,12 @@
 - [内部结构分析](#内部结构分析)
 - [LinkedList源码分析](#linkedlist源码分析)
     - [构造方法](#构造方法)
-    - [添加（add）方法](#添加（add）方法)
+    - [添加（add）方法](#add方法)
     - [根据位置取数据的方法](#根据位置取数据的方法)
     - [根据对象得到索引的方法](#根据对象得到索引的方法)
     - [检查链表是否包含某对象的方法：](#检查链表是否包含某对象的方法：)
-    - [删除（remove/pop）方法](#删除（removepop）方法)
-- [LinkedList类常用方法测试：](#linkedlist类常用方法测试：)
+    - [删除（remove/pop）方法](#删除方法)
+- [LinkedList类常用方法测试：](#linkedlist类常用方法测试)
 
 <!-- /MarkdownTOC -->
 
@@ -54,7 +54,7 @@ private static class Node<E> {
         addAll(c);
     }
 ```
-### <font face="楷体" id="3.2">添加（add）方法</font>
+### <font face="楷体" id="3.2">add方法</font>
 **add(E e)** 方法：将元素添加到链表尾部
 ```java
 public boolean add(E e) {
@@ -288,7 +288,7 @@ public int lastIndexOf(Object o) {
         return indexOf(o) != -1;
     }
 ```
-###<font face="楷体" id="3.6">删除（remove/pop）方法</font>
+###<font face="楷体" id="3.6">删除方法</font>
 **remove()** ,**removeFirst(),pop():** 删除头节点
 ```
 public E pop() {
@@ -388,7 +388,7 @@ public E remove(int index) {
         return unlink(node(index));
     }
 ```
-## <font face="楷体" id="4">LinkedList类常用方法测试</font>：
+## <font face="楷体" id="4">LinkedList类常用方法测试</font>
 
 ```java
 package list;
