@@ -1,27 +1,19 @@
 
 <!-- MarkdownTOC -->
 
-- [集合框架知识回顾：](#集合框架知识回顾：)
-- [ArrayList简介：](#arraylist简介：)
-- [ArrayList核心源码：](#arraylist核心源码：)
-- [ArrayList源码分析：](#arraylist源码分析：)
+- [ArrayList简介：](#arraylist简介)
+- [ArrayList核心源码：](#arraylist核心源码)
+- [ArrayList源码分析：](#arraylist源码分析)
     - [System.arraycopy\(\)和Arrays.copyOf\(\)方法](#systemarraycopy和arrayscopyof方法)
         - [两者联系与区别：](#两者联系与区别：)
     - [ArrayList核心扩容技术](#arraylist核心扩容技术)
     - [内部类](#内部类)
-- [ArrayList经典Demo：](#arraylist经典demo：)
+- [ArrayList经典Demo：](#arraylist经典demo)
 
 <!-- /MarkdownTOC -->
 
 
-
-        
-### <font face="楷体" id="2"> 集合框架知识回顾：</font>
-**总体知识脉络**
-
-![集合框架](https://ws1.sinaimg.cn/large/006rNwoDgy1flk1g7h1lzj318a0sjac8.jpg)
-
-### <font face="楷体" id="3"> ArrayList简介：</font>
+### <font face="楷体" id="3"> ArrayList简介</font>
 　　ArrayList 的底层是数组队列，相当于<font color="red">动态数组</font>。与Java中的数组相比，它的容量能动态增长。在添加大量元素前，应用程序可以使用<font color="red">ensureCapacity </font>操作来增加 ArrayList 实例的容量。这可以减少递增式再分配的数量。它继承于**AbstractList**，实现了**List**, **RandomAccess**, **Cloneable**, **java.io.Serializable**这些接口。
    　　在我们学数据结构的时候就知道了线性表的顺序存储，插入删除元素的时间复杂度为**O（n）**,求表长以及增加元素，取第 i   元素的时间复杂度为**O（1）**
 　　ArrayList 继承了AbstractList，实现了List。它是一个数组队列，提供了相关的添加、删除、修改、遍历等功能。
@@ -29,7 +21,7 @@
 　　ArrayList 实现了**Cloneable接口**，即覆盖了函数clone()，**能被克隆**。
 　　ArrayList 实现**java.io.Serializable接口**，这意味着ArrayList**支持序列化**，**能通过序列化去传输**。
 　　和Vector不同，**ArrayList中的操作不是线程安全的**！所以，建议在单线程中才使用ArrayList，而在多线程中可以选择Vector或者CopyOnWriteArrayList。
-### <font face="楷体" id="4"> ArrayList核心源码：</font>
+### <font face="楷体" id="4"> ArrayList核心源码</font>
 ```java
 package java.util;
 
@@ -532,7 +524,7 @@ public class ArrayList<E> extends AbstractList<E>
 
   
 ```
-### <font face="楷体" id="1" id="5"> ArrayList源码分析：</font>
+### <font face="楷体" id="1" id="5"> ArrayList源码分析</font>
 ####  System.arraycopy()和Arrays.copyOf()方法
 　　通过上面源码我们发现这两个实现数组复制的方法被广泛使用而且很多地方都特别巧妙。比如下面<font color="red">add(int index, E element)</font>方法就很巧妙的用到了<font color="red">arraycopy()方法</font>让数组自己复制自己实现让index开始之后的所有成员后移一个位置:
 ```java 
@@ -660,8 +652,8 @@ public class ArrayList<E> extends AbstractList<E>
     (3)private class SubList extends AbstractList<E> implements RandomAccess  
     (4)static final class ArrayListSpliterator<E> implements Spliterator<E>  
 ```  
-　　ArrayList有四个内部类，其中的**Itr是实现了Iterator接口**，同时重写了里面的**hasNext()**，**next()**，**remove()**等方法；其中的**ListItr**继承**Itr**，实现了**ListIterator接口**，同时重写了**hasPrevious()**，**nextIndex()**，**previousIndex()**，**previous()**，**set(E e)**，**add(E e)**等方法，所以这也可以看出了**Iterator和ListIterator的区别:**ListIterator在Iterator的基础上增加了添加对象，修改对象，逆向遍历等方法，这些是Iterator不能实现的。具体可以参考http://blog.csdn.net/a597926661/article/details/7679765。其中的**SubList继承AbstractList，实现了RandmAccess接口**，类内部实现了对子序列的增删改查等方法，但它同时也充分利用了内部类的优点，就是共享ArrayList的全局变量，例如检查器变量modCount，数组elementData等，所以SubList进行的增删改查操作都是对ArrayList的数组进行的，并没有创建新的数组。(内部类这里参考了这位老兄的博客http://blog.csdn.net/ljcitworld/article/details/52041836)
-### <font face="楷体" id="6"> ArrayList经典Demo：</font>
+　　ArrayList有四个内部类，其中的**Itr是实现了Iterator接口**，同时重写了里面的**hasNext()**，**next()**，**remove()**等方法；其中的**ListItr**继承**Itr**，实现了**ListIterator接口**，同时重写了**hasPrevious()**，**nextIndex()**，**previousIndex()**，**previous()**，**set(E e)**，**add(E e)**等方法，所以这也可以看出了**Iterator和ListIterator的区别:**ListIterator在Iterator的基础上增加了添加对象，修改对象，逆向遍历等方法，这些是Iterator不能实现的。
+### <font face="楷体" id="6"> ArrayList经典Demo</font>
 
 ```java
 package list;
