@@ -524,7 +524,7 @@ public class ArrayList<E> extends AbstractList<E>
 
   
 ```
-### <font face="楷体" id="1" id="5"> ArrayList源码分析</font>
+### <font face="楷体" id="1" id="5">ArrayList源码分析</font>
 ####  System.arraycopy()和Arrays.copyOf()方法
 　　通过上面源码我们发现这两个实现数组复制的方法被广泛使用而且很多地方都特别巧妙。比如下面<font color="red">add(int index, E element)</font>方法就很巧妙的用到了<font color="red">arraycopy()方法</font>让数组自己复制自己实现让index开始之后的所有成员后移一个位置:
 ```java 
