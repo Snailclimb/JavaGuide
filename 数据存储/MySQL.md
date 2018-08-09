@@ -169,9 +169,4 @@ Java面试通关手册（Java学习指南，欢迎Star，会一直完善下去�
   详细内容可以参考：
   [MySQL大表优化方案](https://segmentfault.com/a/1190000006158186)
   
-> 欢迎关注我的微信公众号:"**Java面试通关手册**"（一个有温度的微信公众号，无广告，单纯技术分享，期待与你共同进步~~~坚持原创，分享美文，分享各种Java学习资源。)
 
-最后，就是使用阿里云服务器一段时间后，感觉阿里云真的很不错，就申请做了阿里云大使，然后这是[我的优惠券地址](https://promotion.aliyun.com/ntms/act/ambassador/sharetouser.html?userCode=hf47liqn&utm_source=hf47liqn).
-
-
-![我的公众号](https://user-gold-cdn.xitu.io/2018/5/25/16396cf05d1f4fbf?w=180&h=234&f=png&s=28541)
