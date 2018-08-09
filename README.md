@@ -1,4 +1,3 @@
-### :fire::fire::fire:我的Gitchat:[从应届程序员角度分析如何备战大厂面试](https://gitbook.cn/gitchat/activity/5b457a5df64d4d62e64a449a)
 
 > # 目录结构
 ### 1. :coffee: [Java](#coffee-Java)
@@ -119,6 +118,6 @@
 ![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-7-3/48750303.jpg)
 ![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-7-3/62956005.jpg)
 
-**欢迎关注我的微信公众号:"Java面试通关手册"（一个有温度的微信公众号，期待与你共同进步.坚持原创，分享美文，分享各种Java学习资源）：**
+**你若盛开，清风自来。 欢迎关注我的微信公众号：“Java面试通关手册”，一个有温度的微信公众号。公众号有大量资料，回复关键字“1”你可能看到想要的东西哦！：**
 
 ![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-7/27649673.jpg)
