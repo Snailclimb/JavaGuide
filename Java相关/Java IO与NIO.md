@@ -1,27 +1,28 @@
-
 <!-- MarkdownTOC -->
 
-- [一　Java IO，硬骨头也能变软](#一-java-io，硬骨头也能变软)
-- [二　java IO体系的学习总结](#二-java-io体系的学习总结)
-- [三　Java IO面试题](#三-java-io面试题)
-- [一　Java NIO 概览](#一-java-nio-概览)
-- [二　Java NIO 之 Buffer\(缓冲区\)](#二-java-nio-之-buffer缓冲区)
-- [三　Java NIO 之 Channel（通道）](#三-java-nio-之-channel（通道）)
-- [四　Java NIO之Selector（选择器）](#四-java-nio之selector（选择器）)
-- [五 　Java NIO之拥抱Path和Files](#五-java-nio之拥抱path和files)
-- [六 　NIO学习总结以及NIO新特性介绍](#六-nio学习总结以及nio新特性介绍)
-- [七　Java NIO AsynchronousFileChannel异步文件通](#七-java-nio-asynchronousfilechannel异步文件通)
-- [八　高并发Java（8）：NIO和AIO](#八-高并发java（8）：nio和aio)
-- [在 Java 7 中体会 NIO.2 异步执行的快乐](#在-java-7-中体会-nio2-异步执行的快乐)
-- [Java AIO总结与示例](#java-aio总结与示例)
+- [IO流学习总结](#io流学习总结)
+  - [一　Java IO，硬骨头也能变软](#一-java-io，硬骨头也能变软)
+  - [二　java IO体系的学习总结](#二-java-io体系的学习总结)
+  - [三　Java IO面试题](#三-java-io面试题)
+  - [一　Java NIO 概览](#一-java-nio-概览)
+  - [二　Java NIO 之 Buffer\(缓冲区\)](#二-java-nio-之-buffer缓冲区)
+  - [三　Java NIO 之 Channel（通道）](#三-java-nio-之-channel（通道）)
+  - [四　Java NIO之Selector（选择器）](#四-java-nio之selector（选择器）)
+  - [五 　Java NIO之拥抱Path和Files](#五-java-nio之拥抱path和files)
+  - [六 　NIO学习总结以及NIO新特性介绍](#六-nio学习总结以及nio新特性介绍)
+  - [七　Java NIO AsynchronousFileChannel异步文件通](#七-java-nio-asynchronousfilechannel异步文件通)
+  - [八　高并发Java（8）：NIO和AIO](#八-高并发java（8）：nio和aio)
+- [推荐阅读](#推荐阅读)
+  - [在 Java 7 中体会 NIO.2 异步执行的快乐](#在-java-7-中体会-nio2-异步执行的快乐)
+  - [Java AIO总结与示例](#java-aio总结与示例)
 
 <!-- /MarkdownTOC -->
 
-> # IO流学习总结
+
+## IO流学习总结
 
 ### [一　Java IO，硬骨头也能变软](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247483981&idx=1&sn=6e5c682d76972c8d2cf271a85dcf09e2&chksm=fd98542ccaefdd3a70428e9549bc33e8165836855edaa748928d16c1ebde9648579d3acaac10#rd)
 
-### 主要内容：
 **（1） 按操作方式分类结构图：**
 
 ![按操作方式分类结构图：](https://user-gold-cdn.xitu.io/2018/5/16/16367d4fd1ce1b46?w=720&h=1080&f=jpeg&s=69522)
@@ -51,7 +52,6 @@
 
 ### [一　Java NIO 概览](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247483956&idx=1&sn=57692bc5b7c2c6dfb812489baadc29c9&chksm=fd985455caefdd4331d828d8e89b22f19b304aa87d6da73c5d8c66fcef16e4c0b448b1a6f791#rd)
 
-### 主要内容:
 1.  **NIO简介**:
 
     Java NIO 是 java 1.4, 之后新出的一套IO接口NIO中的N可以理解为Non-blocking，不单纯是New。
@@ -73,7 +73,6 @@
 
 ### [二　Java NIO 之 Buffer(缓冲区)](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247483961&idx=1&sn=f67bef4c279e78043ff649b6b03fdcbc&chksm=fd985458caefdd4e3317ccbdb2d0a5a70a5024d3255eebf38183919ed9c25ade536017c0a6ba#rd)
 
-### 主要内容:
 1. **Buffer(缓冲区)介绍:**
    - Java NIO Buffers用于和NIO Channel交互。 我们从Channel中读取数据到buffers里，从Buffer把数据写入到Channels；
    - Buffer本质上就是一块内存区；
@@ -107,7 +106,7 @@
 
 
 ### [三　Java NIO 之 Channel（通道）](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247483966&idx=1&sn=d5cf18c69f5f9ec2aff149270422731f&chksm=fd98545fcaefdd49296e2c78000ce5da277435b90ba3c03b92b7cf54c6ccc71d61d13efbce63#rd)
-### 主要内容:
+
 
 1.  **Channel（通道）介绍**
      - 通常来说NIO中的所有IO都是从 Channel（通道） 开始的。 
@@ -125,7 +124,7 @@
    
 
 ### [四　Java NIO之Selector（选择器）](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247483970&idx=1&sn=d5e2b133313b1d0f32872d54fbdf0aa7&chksm=fd985423caefdd354b587e57ce6cf5f5a7bec48b9ab7554f39a8d13af47660cae793956e0f46#rd)
-### 主要内容:
+
 
 1. **Selector（选择器）介绍**
    - Selector 一般称 为选择器 ，当然你也可以翻译为 多路复用器 。它是Java NIO核心组件中的一个，用于检查一个或多个NIO Channel（通道）的状态是否处于可读、可写。如此可以实现单线程管理多个channels,也就是可以管理多个网络链接。
@@ -157,7 +156,7 @@
 
 
 ### [五 　Java NIO之拥抱Path和Files](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&tempkey=OTU3X2k5RHFXbjA4MHhzcC9DN0F6TU1OdlgzVno5ZkhYV29GSEZURmktTWJRUkFib2FKNnRwZGE2RHdPTDJMUXl5cVVwMVJWUUVodU4zWlg4YUw1ZURPVXRXakJLcXhDN0VaenkyYjdJdm9uRVJrcWROcGh3d2c2NWNsQjFNWld5N2lNNmxVUWJ1enlad1dUNVoyNFBPaEJyU05KMmpaZEJCLVFSUWllbGd%2Bfg%3D%3D&chksm=7d9854254aefdd33a40a4bad918bdc54cc64450bc3d4597ee53151fdedcdbd2ce722fc8aca4d#rd)
-### 主要内容
+
 **一 文件I/O基石：Path：**
 - 创建一个Path
 - File和Path之间的转换，File和URI之间的转换
@@ -188,8 +187,7 @@ Java7中新增了AsynchronousFileChannel作为nio的一部分。AsynchronousFile
 
 
 
-
-> ## 推荐阅读
+## 推荐阅读
 
 ### [在 Java 7 中体会 NIO.2 异步执行的快乐](https://www.ibm.com/developerworks/cn/java/j-lo-nio2/index.html)
 
