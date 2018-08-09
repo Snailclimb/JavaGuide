@@ -2,7 +2,7 @@
 
 1. [List，Set,Map三者的区别及总结](#list，setmap三者的区别及总结)
 1. [Arraylist 与 LinkedList 区别](#arraylist-与-linkedlist-区别)
-1. [ArrayList 与 Vector 区别（为什么要用Arraylist取代Vector呢？）](#arraylist-与-vector-区别（为什么要用arraylist取代vector呢？）)
+1. [ArrayList 与 Vector 区别（为什么要用Arraylist取代Vector呢？）](#arraylist-与-vector-区别)
 1. [HashMap 和 Hashtable 的区别](#hashmap-和-hashtable-的区别)
 1. [HashSet 和 HashMap 区别](#hashset-和-hashmap-区别)
 1. [HashMap 和 ConcurrentHashMap 的区别](#hashmap-和-concurrenthashmap-的区别)
@@ -42,7 +42,7 @@
 ## <font face="楷体">Arraylist 与 LinkedList 区别</font>
 Arraylist底层使用的是数组（存读数据效率高，插入删除特定位置效率低），LinkedList底层使用的是双向循环链表数据结构（插入，删除效率特别高）。学过数据结构这门课后我们就知道采用链表存储，插入，删除元素时间复杂度不受元素位置的影响，都是近似O（1）而数组为近似O（n），因此当数据特别多，而且经常需要插入删除元素时建议选用LinkedList.一般程序只用Arraylist就够用了，因为一般数据量都不会蛮大，Arraylist是使用最多的集合类。
 
-## <font face="楷体">ArrayList 与 Vector 区别（为什么要用Arraylist取代Vector呢？）</font>
+## <font face="楷体">ArrayList 与 Vector 区别</font>
 Vector类的所有方法都是同步的。可以由两个线程安全地访问一个Vector对象、但是一个线程访问Vector
 ，代码要在同步操作上耗费大量的时间。Arraylist不是同步的，所以在不需要同步时建议使用Arraylist。
 
