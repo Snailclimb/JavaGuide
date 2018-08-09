@@ -1,12 +1,32 @@
-[List，Set,Map三者的区别及总结](#List，Set,Map三者的区别及总结)
+<!-- MarkdownTOC -->
 
-[Arraylist与LinkedList区别](#Arraylist与LinkedList区别)
+1. [List，Set,Map三者的区别及总结](#list，setmap三者的区别及总结)
+1. [Arraylist 与 LinkedList 区别](#arraylist-与-linkedlist-区别)
+1. [ArrayList 与 Vector 区别（为什么要用Arraylist取代Vector呢？）](#arraylist-与-vector-区别（为什么要用arraylist取代vector呢？）)
+1. [HashMap 和 Hashtable 的区别](#hashmap-和-hashtable-的区别)
+1. [HashSet 和 HashMap 区别](#hashset-和-hashmap-区别)
+1. [HashMap 和 ConcurrentHashMap 的区别](#hashmap-和-concurrenthashmap-的区别)
+1. [HashSet如何检查重复](#hashset如何检查重复)
+1. [comparable 和 comparator的区别？](#comparable-和-comparator的区别？)
+	1. [Comparator定制排序](#comparator定制排序)
+	1. [重写compareTo方法实现按年龄来排序](#重写compareto方法实现按年龄来排序)
+1. [如何对Object的list排序？](#如何对object的list排序？)
+1. [如何实现数组与List的相互转换？](#如何实现数组与list的相互转换？)
+1. [如何求ArrayList集合的交集 并集 差集 去重复并集](#如何求arraylist集合的交集-并集-差集-去重复并集)
+1. [HashMap 的工作原理及代码实现](#hashmap-的工作原理及代码实现)
+1. [ConcurrentHashMap 的工作原理及代码实现](#concurrenthashmap-的工作原理及代码实现)
+1. [集合框架底层数据结构总结](#集合框架底层数据结构总结)
+	1. [- Collection](#--collection)
+		1. [1. List](#1-list)
+		1. [2. Set](#2-set)
+	1. [- Map](#--map)
+1. [集合的选用](#集合的选用)
+1. [集合的常用方法](#集合的常用方法)
 
-[ArrayList与Vector区别](#ArrayList与Vector区别)
+<!-- /MarkdownTOC -->
 
-[HashMap和Hashtable的区别](#HashMap和Hashtable的区别)
 
-## List，Set,Map三者的区别及总结
+## <font face="楷体">List，Set,Map三者的区别及总结</font>
 - **List：对付顺序的好帮手**
 
   List接口存储一组不唯一（可以有多个元素引用相同的对象），有序的对象
@@ -19,14 +39,14 @@
   使用键值对存储。Map会维护与Key有关联的值。两个Key可以引用相同的对象，但Key不能重复，典型的Key是String类型，但也可以是任何对象。
   
 
-## Arraylist与LinkedList区别
+## <font face="楷体">Arraylist 与 LinkedList 区别</font>
 Arraylist底层使用的是数组（存读数据效率高，插入删除特定位置效率低），LinkedList底层使用的是双向循环链表数据结构（插入，删除效率特别高）。学过数据结构这门课后我们就知道采用链表存储，插入，删除元素时间复杂度不受元素位置的影响，都是近似O（1）而数组为近似O（n），因此当数据特别多，而且经常需要插入删除元素时建议选用LinkedList.一般程序只用Arraylist就够用了，因为一般数据量都不会蛮大，Arraylist是使用最多的集合类。
 
-## ArrayList与Vector 区别（为什么要用Arraylist取代Vector呢？）
+## <font face="楷体">ArrayList 与 Vector 区别（为什么要用Arraylist取代Vector呢？）</font>
 Vector类的所有方法都是同步的。可以由两个线程安全地访问一个Vector对象、但是一个线程访问Vector
 ，代码要在同步操作上耗费大量的时间。Arraylist不是同步的，所以在不需要同步时建议使用Arraylist。
 
-## HashMap和Hashtable的区别
+## <font face="楷体">HashMap 和 Hashtable 的区别</font>
 1. HashMap是非线程安全的，HashTable是线程安全的；HashTable内部的方法基本都经过synchronized修饰。
 
 2. 因为线程安全的问题，HashMap要比HashTable效率高一点，HashTable基本被淘汰。
