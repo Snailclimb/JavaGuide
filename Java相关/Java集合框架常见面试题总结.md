@@ -7,11 +7,11 @@
 1. [HashSet 和 HashMap 区别](#hashset-和-hashmap-区别)
 1. [HashMap 和 ConcurrentHashMap 的区别](#hashmap-和-concurrenthashmap-的区别)
 1. [HashSet如何检查重复](#hashset如何检查重复)
-1. [comparable 和 comparator的区别？](#comparable-和-comparator的区别？)
+1. [comparable 和 comparator的区别](#comparable-和-comparator的区别)
 	1. [Comparator定制排序](#comparator定制排序)
 	1. [重写compareTo方法实现按年龄来排序](#重写compareto方法实现按年龄来排序)
-1. [如何对Object的list排序？](#如何对object的list排序？)
-1. [如何实现数组与List的相互转换？](#如何实现数组与list的相互转换？)
+1. [如何对Object的list排序？](#如何对object的list排序)
+1. [如何实现数组与List的相互转换？](#如何实现数组与list的相互转换)
 1. [如何求ArrayList集合的交集 并集 差集 去重复并集](#如何求arraylist集合的交集-并集-差集-去重复并集)
 1. [HashMap 的工作原理及代码实现](#hashmap-的工作原理及代码实现)
 1. [ConcurrentHashMap 的工作原理及代码实现](#concurrenthashmap-的工作原理及代码实现)
@@ -78,7 +78,7 @@ Hashtable和HashMap有几个主要的不同：线程安全以及速度。仅在�
 1. ==是判断两个变量或实例是不是指向同一个内存空间    equals是判断两个变量或实例所指向的内存空间的值是不是相同
 2. ==是指对内存地址进行比较    equals()是对字符串的内容进行比较3.==指引用是否相同    equals()指的是值是否相同
 
-## <font face="楷体">comparable 和 comparator的区别？</font>
+## <font face="楷体">comparable 和 comparator的区别</font>
 - comparable接口实际上是出自java.lang包 它有一个 compareTo(Object obj)方法用来排序
 - comparator接口实际上是出自 java.util 包它有一个compare(Object obj1, Object obj2)方法用来排序
 
@@ -220,12 +220,12 @@ class Person implements Comparable<Person> {
 }
 ```
 
-## <font face="楷体">如何对Object的list排序？</font>
+## <font face="楷体">如何对Object的list排序</font>
 -   对objects数组进行排序，我们可以用Arrays.sort()方法
 -   对objects的集合进行排序，需要使用Collections.sort()方法
   
 
-## <font face="楷体">如何实现数组与List的相互转换？</font>
+## <font face="楷体">如何实现数组与List的相互转换</font>
 List转数组：toArray(arraylist.size()方法；数组转List:Arrays的asList(a)方法
 ```java
 List<String> arrayList = new ArrayList<String>();
