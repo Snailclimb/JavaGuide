@@ -1,7 +1,10 @@
 [List，Set,Map三者的区别及总结](#List，Set,Map三者的区别及总结)
-[Arraylist 与 LinkedList 区别](#Arraylist 与 LinkedList 区别)
-[ArrayList 与 Vector 区别](#ArrayList 与 Vector 区别)
-[HashMap 和 Hashtable 的区别](#HashMap 和 Hashtable 的区别)
+
+[Arraylist与LinkedList 区别](#Arraylist与LinkedList 区别)
+
+[ArrayList与Vector区别](#ArrayList与Vector区别)
+
+[HashMap和Hashtable 的区别](#HashMap和Hashtable 的区别)
 
 ## <font face="楷体">List，Set,Map三者的区别及总结</font>
 - **List：对付顺序的好帮手**
@@ -16,14 +19,14 @@
   使用键值对存储。Map会维护与Key有关联的值。两个Key可以引用相同的对象，但Key不能重复，典型的Key是String类型，但也可以是任何对象。
   
 
-## <font face="楷体">Arraylist 与 LinkedList 区别</font>
+## <font face="楷体">Arraylist与LinkedList区别</font>
 Arraylist底层使用的是数组（存读数据效率高，插入删除特定位置效率低），LinkedList底层使用的是双向循环链表数据结构（插入，删除效率特别高）。学过数据结构这门课后我们就知道采用链表存储，插入，删除元素时间复杂度不受元素位置的影响，都是近似O（1）而数组为近似O（n），因此当数据特别多，而且经常需要插入删除元素时建议选用LinkedList.一般程序只用Arraylist就够用了，因为一般数据量都不会蛮大，Arraylist是使用最多的集合类。
 
-## <font face="楷体">ArrayList 与 Vector 区别（为什么要用Arraylist取代Vector呢？）</font>
+## <font face="楷体">ArrayList与Vector 区别（为什么要用Arraylist取代Vector呢？）</font>
 Vector类的所有方法都是同步的。可以由两个线程安全地访问一个Vector对象、但是一个线程访问Vector
 ，代码要在同步操作上耗费大量的时间。Arraylist不是同步的，所以在不需要同步时建议使用Arraylist。
 
-## <font face="楷体">HashMap 和 Hashtable 的区别</font>
+## <font face="楷体">HashMap和Hashtable 的区别</font>
 1. HashMap是非线程安全的，HashTable是线程安全的；HashTable内部的方法基本都经过synchronized修饰。
 
 2. 因为线程安全的问题，HashMap要比HashTable效率高一点，HashTable基本被淘汰。
