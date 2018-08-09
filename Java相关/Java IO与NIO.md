@@ -23,7 +23,7 @@
 
   ## IO流学习总结
 
-  ### [一　Java IO，硬骨头也能变软](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247483981&idx=1&sn=6e5c682d76972c8d2cf271a85dcf09e2&chksm=fd98542ccaefdd3a70428e9549bc33e8165836855edaa748928d16c1ebde9648579d3acaac10#rd)
+  ### [一 Java IO，硬骨头也能变软](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247483981&idx=1&sn=6e5c682d76972c8d2cf271a85dcf09e2&chksm=fd98542ccaefdd3a70428e9549bc33e8165836855edaa748928d16c1ebde9648579d3acaac10#rd)
 
   **（1） 按操作方式分类结构图：**
 
@@ -34,7 +34,7 @@
 
   ![按操作对象分类结构图](https://user-gold-cdn.xitu.io/2018/5/16/16367d673b0e268d?w=720&h=535&f=jpeg&s=46081)
 
-  ### [二　java IO体系的学习总结](https://blog.csdn.net/nightcurtis/article/details/51324105) 
+  ### [二 java IO体系的学习总结](https://blog.csdn.net/nightcurtis/article/details/51324105) 
   1. **IO流的分类：**
      - 按照流的流向分，可以分为输入流和输出流；
      - 按照操作单元划分，可以划分为字节流和字符流；
@@ -47,7 +47,7 @@
      - **OutputStream/Writer**: 所有输出流的基类，前者是字节输出流，后者是字符输出流。
   3. **常用的io流的用法** 
 
-  ### [三　Java IO面试题](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247483985&idx=1&sn=38531c2cee7b87f125df7aef41637014&chksm=fd985430caefdd26b0506aa84fc26251877eccba24fac73169a4d6bd1eb5e3fbdf3c3b940261#rd)
+  ### [三 Java IO面试题](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247483985&idx=1&sn=38531c2cee7b87f125df7aef41637014&chksm=fd985430caefdd26b0506aa84fc26251877eccba24fac73169a4d6bd1eb5e3fbdf3c3b940261#rd)
 
   ## NIO与AIO学习总结
 
