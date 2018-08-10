@@ -41,57 +41,57 @@
 
 
 -  ### 算法
-   [算法学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/数据结构与算法/算法.md)
+   - [算法学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/数据结构与算法/算法.md)
    
-   [常见安全算法（MD5、SHA1、Base64等等）总结](https://github.com/Snailclimb/Java_Guide/blob/master/数据结构与算法/常见安全算法（MD5、SHA1、Base64等等）总结.md)
+   - [常见安全算法（MD5、SHA1、Base64等等）总结](https://github.com/Snailclimb/Java_Guide/blob/master/数据结构与算法/常见安全算法（MD5、SHA1、Base64等等）总结.md)
 
 
 ## :computer: 计算机网络与数据通信
 - ### 网络相关
-   [计算机网络学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/计算机网络与数据通信/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.md)
+   - [计算机网络学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/计算机网络与数据通信/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.md)
 - ### 数据通信(RESTful、RPC、消息队列)
-  [数据通信(RESTful、RPC、消息队列)学习与面试](https://github.com/Snailclimb/Java-Guide/blob/master/计算机网络与数据通信/%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1(RESTful%E3%80%81RPC%E3%80%81%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97).md)
+  - [数据通信(RESTful、RPC、消息队列)学习与面试](https://github.com/Snailclimb/Java-Guide/blob/master/计算机网络与数据通信/%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1(RESTful%E3%80%81RPC%E3%80%81%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97).md)
 
 ## :iphone: 操作系统
 
 - ### Linux相关
-  [后端程序员必备的Linux基础知识](https://github.com/Snailclimb/Java-Guide/blob/master/操作系统/后端程序员必备的Linux基础知识.md)  
+  - [后端程序员必备的Linux基础知识](https://github.com/Snailclimb/Java-Guide/blob/master/操作系统/后端程序员必备的Linux基础知识.md)  
 
 ## :pencil2: 主流框架
 
 - ### Spring相关
-  [Spring学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/主流框架/Spring学习与面试.md)
+  - [Spring学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/主流框架/Spring学习与面试.md)
 
 ## :floppy_disk: 数据存储
 - ### MySQL
-  [MySQL学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/数据存储/MySQL.md)
+  - [MySQL学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/数据存储/MySQL.md)
 - ### Redis
-  [Redis学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/数据存储/Redis.md)
+  - [Redis学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/数据存储/Redis.md)
 
 ## :punch: 架构
 - ### 分布式相关
-    [分布式学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/架构/分布式.md)
+    - [分布式学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/架构/分布式.md)
 
 ## :musical_note: 面试必备
 
 - ### 面试必备知识点
-    [面试必备之乐观锁与悲观锁](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/面试必备之乐观锁与悲观锁.md)
+    - [面试必备之乐观锁与悲观锁](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/面试必备之乐观锁与悲观锁.md)
 - ### 最最最常见的Java面试题总结
    这里会分享一些出现频率极其极其高的面试题，初定周更一篇，什么时候更完什么时候停止。
    
-    [值传递和引用传递、==与equals、 hashCode与equals](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/最最最常见的Java面试题总结/第一周（2018-8-7）.md)
+    - [第一周（2018-8-7）](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/最最最常见的Java面试题总结/第一周（2018-8-7）.md)
 
 - ### 程序员如何写简历
-    [程序员的简历之道](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/程序员的简历之道.md)
+    - [程序员的简历之道](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/程序员的简历之道.md)
 
     
 ## :art: 其他  
 
 - ### 个人书单推荐
-    [个人阅读书籍清单](https://github.com/Snailclimb/Java-Guide/blob/master/其他/个人阅读书籍清单.md)  
+    - [个人阅读书籍清单](https://github.com/Snailclimb/Java-Guide/blob/master/其他/个人阅读书籍清单.md)  
 
 - ### 技术方向选择
-    [选择技术方向都要考虑哪些因素](https://github.com/Snailclimb/Java-Guide/blob/master/其他/选择技术方向都要考虑哪些因素.md)  
+    - [选择技术方向都要考虑哪些因素](https://github.com/Snailclimb/Java-Guide/blob/master/其他/选择技术方向都要考虑哪些因素.md)  
     
 ***
 
