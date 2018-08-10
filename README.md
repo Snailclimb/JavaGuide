@@ -1,3 +1,7 @@
+[![QQ群](https://img.shields.io/badge/QQ%E7%BE%A4-577511615-red.svg)](//shang.qq.com/wpa/qunwpa?idkey=739cdd1ec7401e4beb1c3da382f6c1fac1f96c8d506b8519804ecd342f4cb07a)
+<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=739cdd1ec7401e4beb1c3da382f6c1fac1f96c8d506b8519804ecd342f4cb07a"><img border="0" src="https://user-gold-cdn.xitu.io/2018/8/10/16523ff8f095e2c9?w=90&h=22&f=png&s=1827" alt="Java面试通关手册" title="Java面试通关手册"></a>  
+备注： 此群为开源文档——Java-Guide交流群。群里会不定时分享资源以及学习资料~~~
+
 
 > # 目录结构
 ### 1. :coffee: [Java](#coffee-Java)
