@@ -23,16 +23,16 @@
     - [HashMap(JDK1.8)源码学习](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/HashMap.md)  
    
 -  ### Java多线程
-   [多线程系列学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/多线程系列.md)
+   - [多线程系列文章](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/多线程系列.md)
 
 
 - ### Java IO与NIO
-  [Java IO与NIO学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/Java%20IO与NIO.md)
+  - [Java IO与NIO系列文章](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/Java%20IO与NIO.md)
 
 -  ### Java虚拟机（jvm）
-   [Java虚拟机（jvm）知识学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/Java虚拟机（jvm）.md)
+   - [Java虚拟机（jvm）学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/Java虚拟机（jvm）.md)
 - ### 设计模式
-  [设计模式学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/设计模式.md)
+   - [设计模式系列文章](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/设计模式.md)
 
 ## :open_file_folder: 数据结构与算法
    
