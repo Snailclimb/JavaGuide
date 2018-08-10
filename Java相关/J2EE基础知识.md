@@ -3,7 +3,7 @@
 - [Servlet总结](#servlet总结)
 - [阐述Servlet和CGI的区别?](#阐述servlet和cgi的区别)
     - [CGI的不足之处:](#cgi的不足之处)
-    - [Servlet的优点：](#servlet的优点：)
+    - [Servlet的优点：](#servlet的优点)
 - [Servlet接口中有哪些方法及Servlet生命周期探秘](#servlet接口中有哪些方法及servlet生命周期探秘)
 - [get和post请求的区别](#get和post请求的区别)
 - [什么情况下调用doGet\(\)和doPost\(\)](#什么情况下调用doget和dopost)
