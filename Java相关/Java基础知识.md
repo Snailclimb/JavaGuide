@@ -160,7 +160,7 @@ Java语言通过字节码的方式，在一定程度上解决了传统解释型�
 
 在Java中有两种形式可以实现多态：继承（多个子类对同一方法的重写）和接口（实现接口并覆盖接口中同一方法）。
 
-## 12. tring和StringBuffer、StringBuilder的区别是什么？String为什么是不可变的？
+## 12. String和StringBuffer、StringBuilder的区别是什么？String为什么是不可变的？
 
 **可变性**
 　
@@ -176,6 +176,7 @@ String中的对象是不可变的，也就可以理解为常量，线程安全�
 **性能**
 
 每次对String 类型进行改变的时候，都会生成一个新的String对象，然后将指针指向新的String 对象。StringBuffer每次都会对StringBuffer对象本身进行操作，而不是生成新的对象并改变对象引用。相同情况下使用StirngBuilder 相比使用StringBuffer 仅能获得10%~15% 左右的性能提升，但却要冒多线程不安全的风险。
+
 **对于三者使用的总结：** 
 如果要操作少量的数据用 = String
 单线程操作字符串缓冲区 下操作大量数据 = StringBuilder
