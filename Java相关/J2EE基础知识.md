@@ -7,7 +7,7 @@
 - [Servlet接口中有哪些方法及Servlet生命周期探秘](#servlet接口中有哪些方法及servlet生命周期探秘)
 - [get和post请求的区别](#get和post请求的区别)
 - [什么情况下调用doGet\(\)和doPost\(\)](#什么情况下调用doget和dopost)
-- [转发（Forward）和重定向（Redirect）的区别](#转发（forward）和重定向（redirect）的区别)
+- [转发（Forward）和重定向（Redirect）的区别](#转发forward和重定向redirect的区别)
 - [自动刷新\(Refresh\)](#自动刷新refresh)
 - [Servlet与线程安全](#servlet与线程安全)
 - [JSP和Servlet是什么关系](#jsp和servlet是什么关系)
@@ -82,7 +82,7 @@ Servlet接口定义了5个方法，其中**前三个方法与Servlet生命周期
 ## 什么情况下调用doGet()和doPost()
 Form标签里的method的属性为get时调用doGet()，为post时调用doPost()。
 
-## 转发（Forward）和重定向（Redirect）的区别
+## 转发(Forward)和重定向(Redirect)的区别
 
 **转发是服务器行为，重定向是客户端行为。**
 
