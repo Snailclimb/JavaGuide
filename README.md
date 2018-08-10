@@ -120,12 +120,7 @@
 
 本人会利用业余时间一直更新下去，目前还有很多地方不完善，一些知识点我会原创总结，还有一些知识点如果说网上有比较好的文章了，我会把这些文章加入进去。您也可以关注我的微信公众号：“Java面试通关手册”，我会在这里分享一些自己的原创文章。 另外该文档格式参考：[Github Markdown格式](https://guides.github.com/features/mastering-markdown/)，表情素材来自：[EMOJI CHEAT SHEET](https://www.webpagefx.com/tools/emoji-cheat-sheet/)。
 
-## 欢迎赞赏（附赠终极学习大礼包）
 
-如果你觉得本仓库对你有帮助的话，也可以打赏作者（记得备注信息）。如果你赞赏的金额大于或等于**9.9**的话，可以添加微信：**bwcx9393** 领取一份我自己整理的学习视频汇总（包括49期黑马Java以及大数据全套视频、慕课网系列Java实战VIP视频、SpringBoot微服务视频、阿里至尊版Dubbo视频等等。视频都是经过我的筛选得到，非常适合新手以及向往架构师方向发展的朋友学习）。
-![](https://user-gold-cdn.xitu.io/2018/8/10/16522f1abd6eb705?w=1221&h=502&f=png&s=112080)
-![](https://user-gold-cdn.xitu.io/2018/8/10/16522f1abd5d9bcb?w=216&h=328&f=jpeg&s=30692)
-![](https://user-gold-cdn.xitu.io/2018/8/10/16522f1abf4cd6c9?w=249&h=341&f=png&s=29514)
 
 **你若盛开，清风自来。 欢迎关注我的微信公众号：“Java面试通关手册”，一个有温度的微信公众号。公众号有大量资料，回复关键字“1”你可能看到想要的东西哦！：**
 
