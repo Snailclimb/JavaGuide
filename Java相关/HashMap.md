@@ -21,7 +21,9 @@
 JDK1.8之前HashMap底层是<font color="red">数组和链表</font>结合在一起使用也就是<font color="red">链表散列</font>。HashMap通过key的hashCode来计算hash值，当hashCode相同时，通过<font color="red">“拉链法”</font>解决冲突。
 
 所谓<font color="red">“拉链法”</font>就是：将链表和数组相结合。也就是说创建一个链表数组，数组中每一格就是一个链表。若遇到哈希冲突，则将冲突的值加到链表中即可。
+
 ![jdk1.8之前的内部结构](https://user-gold-cdn.xitu.io/2018/3/20/16240dbcc303d872?w=348&h=427&f=png&s=10991)
+
 简单来说，JDK1.8之前HashMap由<font color="red">数组+链表组成的，数组是HashMap的主体，链表则是主要为了解决哈希冲突而存在的，如果定位到的数组位置不含链表（当前entry的next指向null）,那么对于查找，添加等操作很快，仅需一次寻址即可；如果定位到的数组包含链表，对于添加操作，其时间复杂度依然为O(1)，因为最新的Entry会插入链表头部，急需要简单改变引用链即可，而对于查找操作来讲，此时就需要遍历链表，然后通过key对象的equals方法逐一比对查找.</font>
 ### <font face="楷体" id="2.2">JDK1.8之后</font>
 相比于之前的版本，jdk1.8在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为8）时，将链表转化为红黑树，以减少搜索时间。
