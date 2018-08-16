@@ -17,21 +17,21 @@
 
 > # 正文
 ## :coffee: Java
--   ### Java/J2EE基础
-    - [Java基础知识回顾](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/Java基础知识.md)
-    - [J2EE基础知识回顾](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/J2EE基础知识.md)
--   ### Java集合框架
-    - [Java集合框架常见面试题总结](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/Java集合框架常见面试题总结.md)
-    - [ArrayList源码学习](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/ArrayList.md)    
-    - [LinkedList源码学习](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/LinkedList.md)   
+-   ### Java/J2EE 基础
+    - [Java 基础知识回顾](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/Java基础知识.md)
+    - [J2EE 基础知识回顾](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/J2EE基础知识.md)
+-   ### Java 集合框架
+    - [Java 集合框架常见面试题总结](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/Java集合框架常见面试题总结.md)
+    - [ArrayList 源码学习](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/ArrayList.md)    
+    - [LinkedList 源码学习](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/LinkedList.md)   
     - [HashMap(JDK1.8)源码学习](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/HashMap.md)  
    
--  ### Java多线程
+-  ### Java 多线程
    - [多线程系列文章](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/多线程系列.md)
 
 
-- ### Java IO与NIO
-  - [Java IO与NIO系列文章](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/Java%20IO与NIO.md)
+- ### Java IO 与 NIO
+  - [Java IO 与 NIO系列文章](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/Java%20IO与NIO.md)
 
 -  ### Java虚拟机（jvm）
    - [Java虚拟机（jvm）学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/Java虚拟机（jvm）.md)
@@ -62,18 +62,18 @@
 ## :iphone: 操作系统
 
 - ### Linux相关
-  - [后端程序员必备的Linux基础知识](https://github.com/Snailclimb/Java-Guide/blob/master/操作系统/后端程序员必备的Linux基础知识.md)  
+  - [后端程序员必备的 Linux 基础知识](https://github.com/Snailclimb/Java-Guide/blob/master/操作系统/后端程序员必备的Linux基础知识.md)  
 
 ## :pencil2: 主流框架
 
 - ### Spring相关
-  - [Spring学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/主流框架/Spring学习与面试.md)
+  - [Spring 学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/主流框架/Spring学习与面试.md)
 
 ## :floppy_disk: 数据存储
 - ### MySQL
-  - [MySQL学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/数据存储/MySQL.md)
+  - [MySQL 学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/数据存储/MySQL.md)
 - ### Redis
-  - [Redis学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/数据存储/Redis.md)
+  - [Redis 学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/数据存储/Redis.md)
 
 ## :punch: 架构
 - ### 分布式相关
