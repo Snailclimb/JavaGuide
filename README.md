@@ -4,23 +4,10 @@
 
 
 
-| Ⅰ | Ⅱ | Ⅲ | Ⅳ | Ⅴ | Ⅵ | Ⅶ | Ⅷ | Ⅸ | Ⅹ |
-| :--------: | :---------: | :---------: | :---------: | :---------: | :---------:| :---------: | :-------: | :-------:| :------:|
-| [Java](#coffee-Java) |  [数据结构与算法](#open_file_folder-数据结构与算法)|[计算机网络与数据通信](#computer-计算机网络与数据通信) | [操作系统](#iphone-操作系统)| [主流框架](#pencil2-主流框架)|  [数据存储](#floppy_disk-数据存储)|[架构](#punch-架构)|  [面试必备](#musical_note-面试必备)| [其他](#art-其他)| [关于该开源文档的一些说明](#envelope-该开源文档一些说明)|
+| Ⅰ  | Ⅱ | Ⅲ | Ⅳ | Ⅴ | Ⅵ | Ⅶ | Ⅷ | Ⅸ | Ⅹ |
+| :--------: | :----------: | :-----------: | :---------: | :---------: | :---------:| :---------: | :-------: | :-------:| :----:|
+| [Java](#coffee-Java)  |  [数据结构与算法](#open_file_folder-数据结构与算法)|[计算机网络与数据通信](#computer-计算机网络与数据通信) | [操作系统](#iphone-操作系统)| [主流框架](#pencil2-主流框架)|  [数据存储](#floppy_disk-数据存储)|[架构](#punch-架构)|  [面试必备](#musical_note-面试必备)| [其他](#art-其他)| [关于该开源文档的一些说明](#envelope-该开源文档一些说明)|
 
-> # 目录结构
-### 1. :coffee: [Java](#coffee-Java)
-### 2. :open_file_folder: [数据结构与算法](#open_file_folder-数据结构与算法)
-### 3. :computer: [计算机网络与数据通信](#computer-计算机网络与数据通信)
-### 4. :iphone: [操作系统](#iphone-操作系统)
-### 5. :pencil2: [主流框架](#pencil2-主流框架)
-### 6. :floppy_disk: [数据存储](#floppy_disk-数据存储)
-### 7. :punch: [架构](#punch-架构)
-### 8. :musical_note: [面试必备](#musical_note-面试必备)
-### 9. :art: [其他](#art-其他)
-### 10.:envelope: [关于该开源文档的一些说明](#envelope-该开源文档一些说明)
-
-> # 正文
 ## :coffee: Java
 -   ### Java/J2EE 基础
     - [Java 基础知识回顾](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/Java基础知识.md)
