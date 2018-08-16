@@ -13,15 +13,24 @@
 <!-- /MarkdownTOC -->
 
 
-### <font face="楷体" id="3">ArrayList简介</font>
-　　ArrayList 的底层是数组队列，相当于<font color="red">动态数组</font>。与Java中的数组相比，它的容量能动态增长。在添加大量元素前，应用程序可以使用<font color="red">ensureCapacity </font>操作来增加 ArrayList 实例的容量。这可以减少递增式再分配的数量。它继承于**AbstractList**，实现了**List**, **RandomAccess**, **Cloneable**, **java.io.Serializable**这些接口。
-   　　在我们学数据结构的时候就知道了线性表的顺序存储，插入删除元素的时间复杂度为**O（n）**,求表长以及增加元素，取第 i   元素的时间复杂度为**O（1）**
-　　ArrayList 继承了AbstractList，实现了List。它是一个数组队列，提供了相关的添加、删除、修改、遍历等功能。
-　　ArrayList 实现了**RandmoAccess接口**，即提供了随机访问功能。RandmoAccess是java中用来被List实现，为List提供**快速访问功能**的。在ArrayList中，我们即可以通过元素的序号快速获取元素对象，这就是快速随机访问。
-　　ArrayList 实现了**Cloneable接口**，即覆盖了函数clone()，**能被克隆**。
-　　ArrayList 实现**java.io.Serializable接口**，这意味着ArrayList**支持序列化**，**能通过序列化去传输**。
-　　和Vector不同，**ArrayList中的操作不是线程安全的**！所以，建议在单线程中才使用ArrayList，而在多线程中可以选择Vector或者CopyOnWriteArrayList。
-### <font face="楷体" id="4">ArrayList核心源码</font>
+### ArrayList简介
+　　ArrayList 的底层是数组队列，相当于动态数组。与 Java 中的数组相比，它的容量能动态增长。在添加大量元素前，应用程序可以使用`ensureCapacity`操作来增加 ArrayList 实例的容量。这可以减少递增式再分配的数量。
+    
+   它继承于 **AbstractList**，实现了 **List**, **RandomAccess**, **Cloneable**, **java.io.Serializable** 这些接口。
+    
+   在我们学数据结构的时候就知道了线性表的顺序存储，插入删除元素的时间复杂度为**O（n）**,求表长以及增加元素，取第 i   元素的时间复杂度为**O（1）**
+   
+　  ArrayList 继承了AbstractList，实现了List。它是一个数组队列，提供了相关的添加、删除、修改、遍历等功能。
+   
+　　ArrayList 实现了**RandmoAccess 接口**，即提供了随机访问功能。RandmoAccess 是 Java 中用来被 List 实现，为 List 提供**快速访问功能**的。在 ArrayList 中，我们即可以通过元素的序号快速获取元素对象，这就是快速随机访问。
+  
+　　ArrayList 实现了**Cloneable 接口**，即覆盖了函数 clone()，**能被克隆**。
+  
+　　ArrayList 实现**java.io.Serializable 接口**，这意味着ArrayList**支持序列化**，**能通过序列化去传输**。
+  
+　　和 Vector 不同，**ArrayList 中的操作不是线程安全的**！所以，建议在单线程中才使用 ArrayList，而在多线程中可以选择 Vector 或者  CopyOnWriteArrayList。
+### ArrayList核心源码
+
 ```java
 package java.util;
 
@@ -559,11 +568,11 @@ public class ArrayList<E> extends AbstractList<E>
 ```
 ##### 两者联系与区别
 **联系：**
-看两者源代码可以发现<font color="red">copyOf()</font>内部调用了<font color="red">System.arraycopy()</font>方法
+看两者源代码可以发现`copyOf()`内部调用了`System.arraycopy()`方法
 **区别：**
-1，<font color="red">arraycopy()需要目标数组，将原数组拷贝到你自己定义的数组里</font>，而且可以选择拷贝的起点和长度以及放入新数组中的位置
-2，<font color="red">copyOf()是系统自动在内部新建一个数组，并返回该数组。</font>
-#### ArrayList核心扩容技术
+1. arraycopy()需要目标数组，将原数组拷贝到你自己定义的数组里，而且可以选择拷贝的起点和长度以及放入新数组中的位置
+2. copyOf()是系统自动在内部新建一个数组，并返回该数组。
+#### ArrayList 核心扩容技术
 ```java
 //下面是ArrayList的扩容机制
 //ArrayList的扩容机制提高了性能，如果每次只扩充一个，
@@ -634,15 +643,15 @@ public class ArrayList<E> extends AbstractList<E>
 　　**简介**：移位运算符就是在二进制的基础上对数字进行平移。按照平移的方向和填充数字的规则分为三种:<font color="red"><<(左移)</font>、<font color="red">>>(带符号右移)</font>和<font color="red">>>>(无符号右移)</font>。
 　　**作用**：**对于大数据的2进制运算,位移运算符比那些普通运算符的运算要快很多,因为程序仅仅移动一下而已,不去计算,这样提高了效率,节省了资源**
 　　比如这里：int newCapacity = oldCapacity + (oldCapacity >> 1);
-右移一位相当于除2，右移n位相当于除以2的n次方。这里oldCapacity 明显右移了1位所以相当于oldCapacity /2。
+右移一位相当于除2，右移n位相当于除以 2 的 n 次方。这里 oldCapacity 明显右移了1位所以相当于oldCapacity /2。
 
 **另外需要注意的是：**
 
-1. java中的**length属性**是针对数组说的,比如说你声明了一个数组,想知道这个数组的长度则用到了length这个属性.
+1. java 中的**length 属性**是针对数组说的,比如说你声明了一个数组,想知道这个数组的长度则用到了 length 这个属性.
 
-2. java中的**length()方法**是针对字  符串String说的,如果想看这个字符串的长度则用到length()这个方法.
+2. java 中的**length()方法**是针对字  符串String说的,如果想看这个字符串的长度则用到 length()这个方法.
 
-3. .java中的**size()方法**是针对泛型集合说的,如果想看这个泛型有多少个元素,就调用此方法来查看!
+3. .java 中的**size()方法**是针对泛型集合说的,如果想看这个泛型有多少个元素,就调用此方法来查看!
 
  
 #### 内部类
