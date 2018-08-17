@@ -1,3 +1,7 @@
+[![QQ群](https://img.shields.io/badge/QQ%E7%BE%A4-474862212-red.svg)](//shang.qq.com/wpa/qunwpa?idkey=85632cce1ae462f8761613d2b0f10be786053c46ee7477ed302413044990b6cc)
+<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=85632cce1ae462f8761613d2b0f10be786053c46ee7477ed302413044990b6cc"><img border="0" src="https://user-gold-cdn.xitu.io/2018/8/10/16523ff8f095e2c9?w=90&h=22&f=png&s=1827" alt="JAVA架构师交流群" title="JAVA架构师交流群"></a>  
+备注：此群为Java架构师学习群（474862212），入群之后每周6天，每天2小时（20:00-22:00）提醒督促你免费学习java知识，国防科大知名讲师讲解,学知识，交朋友，遇到问题老师耐心细致讲解。喜欢Java的，喜欢编程，有梦想成为架构师的程序员们，我只能帮你们到这里了。
+
 > **Java学习指南：** 一份涵盖大部分Java程序员所需要掌握的核心知识，正在一步一步慢慢完善，期待您的参与。
 
 | Ⅰ  | Ⅱ | Ⅲ | Ⅳ | Ⅴ | Ⅵ | Ⅶ | Ⅷ | Ⅸ | Ⅹ |
