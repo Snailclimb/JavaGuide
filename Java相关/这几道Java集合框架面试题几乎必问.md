@@ -74,6 +74,27 @@ JDK1.8 之前 HashMap 由 **数组+链表** 组成的（**“链表散列”** �
 
 我们首先可能会想到采用%取余的操作来实现。但是，重点来了：**“取余(%)操作中如果除数是2的幂次则等价于与其除数减一的与(&)操作（也就是说 hash%length==hash&(length-1)的前提是 length 是2的 n 次方；）。”** 并且 **采用二进制位操作 &，相对于%能够提高运算效率，这就解释了 HashMap 的长度为什么是2的幂次方。**
 
+## HashMap 多线程操作导致死循环问题
+
+在多线程下，进行put操作会导致hash map死循环，原因在于hashmap 的扩容resize方法，由于扩容是新建一个数组，复制原数据到数组，由于数组下标挂有链表，所以需要复制链表，多线程操作有可能导致环形链表，复制链表过程如下:  
+以下模拟2个线程同时扩容。假设，当前hashmap的空间为2（临界值为1），hashcode分别为0和1，在散列地址0处有元素A和B，这时候要添加元素C，C经过hash运算，得到散列地址为1，这时候由于超过了临界值，空间不够，需要调用resize方法进行扩容，那么在多线程条件下，会出现条件竞争，模拟过程如下：
+
+ 线程一：读取到当前的hashmap情况，在准备扩容时，线程二介入
+
+![](https://note.youdao.com/yws/public/resource/e4cec65883d9fdc24effba57dcfa5241/xmlnote/41aed567e3419e1314bfbf689e3255a2/192)
+
+线程二：读取hashmap，进行扩容
+
+![](https://note.youdao.com/yws/public/resource/e4cec65883d9fdc24effba57dcfa5241/xmlnote/f44624419c0a49686fb12aa37527ee65/191)
+
+线程一：继续执行
+
+![](https://note.youdao.com/yws/public/resource/e4cec65883d9fdc24effba57dcfa5241/xmlnote/79424b2bf4a89902a9e85c64600268e4/193)
+
+这个过程为，先将A复制到新的hash表中，然后接着复制B到链头（A的前边：B.next=A），本来B.next=null，到此也就结束了（跟线程二一样的过程），但是，由于线程二扩容的原因，将B.next=A，所以，这里继续复制A，让A.next=B，由此，环形链表出现：B.next=A; A.next=B 
+
+
+
 ## HashSet 和 HashMap 区别
 
 ![HashSet 和 HashMap 区别](https://user-gold-cdn.xitu.io/2018/3/2/161e717d734f3b23?w=896&h=363&f=jpeg&s=205536)
