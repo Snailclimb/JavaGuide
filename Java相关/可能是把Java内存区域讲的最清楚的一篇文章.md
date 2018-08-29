@@ -223,7 +223,7 @@ JDK1.4中新加入的 **NIO(New Input/Output) 类**，引入了一种基于**通
 ```
 ![](https://user-gold-cdn.xitu.io/2018/8/22/16561e59a4d13f92?w=593&h=603&f=png&s=22265)
 
-尽量避免多个字符串拼接，因为这样会重新创建对象。如果需要改变字符串的花，可以使用 StringBuilder 或者 StringBuffer。
+尽量避免多个字符串拼接，因为这样会重新创建对象。如果需要改变字符串的话，可以使用 StringBuilder 或者 StringBuffer。
 ### String s1 = new String("abc");这句话创建了几个对象？
 
 **创建了两个对象。**
