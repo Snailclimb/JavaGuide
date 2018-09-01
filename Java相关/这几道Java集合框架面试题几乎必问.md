@@ -98,6 +98,8 @@ JDK1.8 之前 HashMap 由 **数组+链表** 组成的（**“链表散列”** �
 
 ## HashSet 和 HashMap 区别
 
+如果你看过 HashSet 源码的话就应该知道：HashSet 底层就是基于 HashMap 实现的。（HashSet 的源码非常非常少，因为除了 clone() 方法、writeObject()方法、readObject()方法是 HashSet 自己不得不实现之外，其他方法都是直接调用 HashMap 中的方法。）
+
 ![HashSet 和 HashMap 区别](https://user-gold-cdn.xitu.io/2018/3/2/161e717d734f3b23?w=896&h=363&f=jpeg&s=205536)
 
 ## ConcurrentHashMap 和 Hashtable 的区别
