@@ -13,6 +13,8 @@
 
 <!-- /MarkdownTOC -->
 
+> 感谢 [changfubai](https://github.com/changfubai) 对本文的改进做出的贡献！
+
 ## HashMap 简介
 HashMap 主要用来存放键值对，它基于哈希表的Map接口实现</font>，是常用的Java集合之一。 
 
@@ -55,7 +57,7 @@ static int hash(int h) {
 所谓 **“拉链法”** 就是：将链表和数组相结合。也就是说创建一个链表数组，数组中每一格就是一个链表。若遇到哈希冲突，则将冲突的值加到链表中即可。
 
 ![jdk1.8之前的内部结构](https://user-gold-cdn.xitu.io/2018/3/20/16240dbcc303d872?w=348&h=427&f=png&s=10991)
-如果定位到的数组位置不含链表（当前entry的next指向null）,那么对于查找，添加等操作很快，仅需一次寻址即可；如果定位到的数组包含链表，对于添加操作，其时间复杂度依然为O(1)，因为最新的Entry会插入链表头部，急需要简单改变引用链即可，而对于查找操作来讲，此时就需要遍历链表，然后通过key对象的equals方法逐一比对查找.
+
 ### JDK1.8之后
 相比于之前的版本，jdk1.8在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为8）时，将链表转化为红黑树，以减少搜索时间。
 ![JDK1.8之后的内部结构](https://user-gold-cdn.xitu.io/2018/3/20/16240e0e30123cfc?w=552&h=519&f=png&s=15827)
@@ -90,17 +92,18 @@ public class HashMap<K,V> extends AbstractMap<K,V> implements Map<K,V>, Cloneabl
     final float loadFactor;
 }
 ```
-- **(1)loadFactor加载因子**
+- **loadFactor加载因子**
 
   loadFactor加载因子是控制数组存放数据的疏密程度，loadFactor越趋近于1，那么   数组中存放的数据(entry)也就越多，也就越密，也就是会让链表的长度增加，load   Factor越小，也就是趋近于0，
 
   **loadFactor太大导致查找元素效率低，太小导致数组的利用率低，存放的数据会很分散。loadFactor的默认值为0.75f是官方给出的一个比较好的临界值**。 　
 
-- **(2)threshold**
+- **threshold**
 
   **threshold = capacity * loadFactor**，**当Size>=threshold**的时候，那么就要考虑对数组的扩增了，也就是说，这个的意思就是 **衡量数组是否需要扩增的一个标准**。
 
 **Node节点类源码:**
+
 ```java
 // 继承自 Map.Entry<K,V>
 static class Node<K,V> implements Map.Entry<K,V> {
@@ -224,6 +227,16 @@ final void putMapEntries(Map<? extends K, ? extends V> m, boolean evict) {
 ```
 ### put方法
 HashMap只提供了put用于添加元素，putVal方法只是给put方法调用的一个方法，并没有提供给用户使用。
+
+**对putVal方法添加元素的分析如下：**
+
+- ①如果定位到的数组位置没有元素 就直接插入。
+- ②如果定位到的数组位置有元素就和要插入的key比较，如果key相同就直接覆盖，如果key不相同，就判断p是否是一个树节点，如果是就调用`e = ((TreeNode<K,V>)p).putTreeVal(this, tab, hash, key, value)`将元素添加进入。如果不是就遍历链表插入。
+
+
+
+![put方法](https://user-gold-cdn.xitu.io/2018/9/2/16598bf758c747e6?w=999&h=679&f=png&s=54486)
+
 ```java
 public V put(K key, V value) {
     return putVal(hash(key), key, value, false, true);
@@ -297,7 +310,42 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
     return null;
 } 
 ```
-### <font face="楷体" id="3.3">get方法</font>
+
+**我们再来对比一下 JDK1.7 put方法的代码**
+
+**对于put方法的分析如下：**
+
+- ①如果定位到的数组位置没有元素 就直接插入。
+- ②如果定位到的数组位置有元素，遍历以这个元素为头结点的链表，依次和插入的key比较，如果key相同就直接覆盖，不同就采用头插法插入元素。
+
+```java
+public V put(K key, V value)
+    if (table == EMPTY_TABLE) { 
+    inflateTable(threshold); 
+}  
+    if (key == null)
+        return putForNullKey(value);
+    int hash = hash(key);
+    int i = indexFor(hash, table.length);
+    for (Entry<K,V> e = table[i]; e != null; e = e.next) { // 先遍历
+        Object k;
+        if (e.hash == hash && ((k = e.key) == key || key.equals(k))) {
+            V oldValue = e.value;
+            e.value = value;
+            e.recordAccess(this);
+            return oldValue; 
+        }
+    }
+
+    modCount++;
+    addEntry(hash, key, value, i);  // 再插入
+    return null;
+}
+```
+
+
+
+### get方法
 ```java
 public V get(Object key) {
     Node<K,V> e;
