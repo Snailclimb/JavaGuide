@@ -83,7 +83,7 @@
     - [第四周(2018-8-30).md](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/最最最常见的Java面试题总结/第四周(2018-8-30).md) （主要内容是几道面试常问的多线程基础题。）
 - ### 程序员如何写简历
     - [程序员的简历之道](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/程序员的简历之道.md)
-
+    - [手把手教你用Markdown写一份高质量的简历](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/手把手教你用Markdown写一份高质量的简历.md)
     
 ## :art: 其他  
 
