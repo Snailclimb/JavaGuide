@@ -60,7 +60,9 @@ static int hash(int h) {
 
 ### JDK1.8之后
 相比于之前的版本，jdk1.8在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为8）时，将链表转化为红黑树，以减少搜索时间。
-![JDK1.8之后的内部结构](https://user-gold-cdn.xitu.io/2018/3/20/16240e0e30123cfc?w=552&h=519&f=png&s=15827)
+
+![JDK1.8之后的HashMap底层数据结构](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-22/67233764.jpg)
+
 **类的属性：**
 ```java
 public class HashMap<K,V> extends AbstractMap<K,V> implements Map<K,V>, Cloneable, Serializable {
