@@ -55,10 +55,12 @@
 - ### Linux相关
   - [后端程序员必备的 Linux 基础知识](https://github.com/Snailclimb/Java-Guide/blob/master/操作系统/后端程序员必备的Linux基础知识.md)  
 
-## :pencil2: 主流框架
+## :pencil2: 主流框架/软件
 
-- ### Spring相关
+- ### Spring
   - [Spring 学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/主流框架/Spring学习与面试.md)
+  
+- ### ZooKeeper
   - [可能是把 ZooKeeper 概念讲的最清楚的一篇文章](https://github.com/Snailclimb/Java_Guide/blob/master/主流框架/ZooKeeper.md)
 ## :floppy_disk: 数据存储
 - ### MySQL
