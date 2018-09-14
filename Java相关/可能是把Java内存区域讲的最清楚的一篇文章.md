@@ -103,7 +103,8 @@ HotSpot 虚拟机中方法区也常被称为 **“永久代”**，本质上两�
 
 **JDK1.7及之后版本的 JVM 已经将运行时常量池从方法区中移了出来，在 Java 堆（Heap）中开辟了一块区域存放运行时常量池。** 
 
-![](https://img-blog.csdn.net/20170329213804490?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvU3VnYXJfUmFpbmJvdw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)——图片来源：https://blog.csdn.net/wangbiao007/article/details/78545189
+![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-14/26038433.jpg)
+——图片来源：https://blog.csdn.net/wangbiao007/article/details/78545189
 
 
 
