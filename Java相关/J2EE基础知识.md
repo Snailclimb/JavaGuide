@@ -78,6 +78,10 @@ Servlet接口定义了5个方法，其中**前三个方法与Servlet生命周期
 
 补充：GET方式提交表单的典型应用是搜索引擎。GET方式就是被设计为查询用的。
 
+还有另外一种回答。推荐大家看一下：
+
+- https://www.zhihu.com/question/28586791
+- https://mp.weixin.qq.com/s?__biz=MzI3NzIzMzg3Mw==&mid=100000054&idx=1&sn=71f6c214f3833d9ca20b9f7dcd9d33e4#rd
 
 ## 什么情况下调用doGet()和doPost()
 Form标签里的method的属性为get时调用doGet()，为post时调用doPost()。
