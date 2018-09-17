@@ -41,13 +41,11 @@ ZooKeeper 是一个开源的分布式协调服务，ZooKeeper框架最初是在�
 
 **为什么最好使用奇数台服务器构成 ZooKeeper 集群？**
 
-我们知道在Zookeeper中 Leader 选举算法采用了Zab协议。Zab核心思想是当多数 Server 写成功，则任务数据写成功。
+所谓的zookeeper容错是指，当宕掉几个zookeeper服务器之后，剩下的个数必须大于宕掉的个数的话整个zookeeper才依然可用。假如我们的集群中有n台zookeeper服务器，那么也就是剩下的服务数必须大于n/2。先说一下结论，2n和2n-1的容忍度是一样的，都是n-1，大家可以先自己仔细想一想，这应该是一个很简单的数学问题了。
+比如假如我们有3台，那么最大允许宕掉1台zookeeper服务器，如果我们有4台的的时候也同样只允许宕掉1台。
+假如我们有5台，那么最大允许宕掉2台zookeeper服务器，如果我们有6台的的时候也同样只允许宕掉2台。
 
-①如果有3个Server，则最多允许1个Server 挂掉。
-
-②如果有4个Server，则同样最多允许1个Server挂掉。
-
-既然3个或者4个Server，同样最多允许1个Server挂掉，那么它们的可靠性是一样的，所以选择奇数个ZooKeeper Server即可，这里选择3个Server。12341234
+综上，何必增加那一个不必要的zookeeper呢？
 
 
 
@@ -120,7 +118,7 @@ ZooKeeper 允许分布式进程通过共享的层次结构命名空间进行相�
 
 上图中每一个Server代表一个安装Zookeeper服务的服务器。组成 ZooKeeper 服务的服务器都会在内存中维护当前的服务器状态，并且每台服务器之间都互相保持着通信。集群间通过 Zab 协议（Zookeeper Atomic Broadcast）来保持数据的一致性。
 
-###4.3 顺序访问
+### 4.3 顺序访问
 
 **对于来自客户端的每个更新请求，ZooKeeper 都会分配一个全局唯一的递增编号，这个编号反应了所有事务操作的先后顺序，应用程序可以使用 ZooKeeper 这个特性来实现更高层次的同步原语。** **这个编号也叫做时间戳——zxid（Zookeeper Transaction Id）**
 
@@ -138,7 +136,16 @@ ZooKeeper 允许分布式进程通过共享的层次结构命名空间进行相�
 
  **ZooKeeper 集群中的所有机器通过一个 Leader 选举过程来选定一台称为 “Leader” 的机器，Leader 既可以为客户端提供写服务又能提供读服务。除了 Leader 外，Follower 和  Observer 都只能提供读服务。Follower 和  Observer 唯一的区别在于 Observer 机器不参与 Leader 的选举过程，也不参与写操作的“过半写成功”策略，因此 Observer 机器可以在不影响写性能的情况下提升集群的读性能。**
 
-![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-10/77341396.jpg)
+![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-13/91622395.jpg)
+
+**当 Leader 服务器出现网络中断、崩溃退出与重启等异常情况时，ZAB 协议就会进人恢复模式并选举产生新的Leader服务器。这个过程大致是这样的：**
+
+1. Leader election（选举阶段）：节点在一开始都处于选举阶段，只要有一个节点得到超半数节点的票数，它就可以当选准 leader。
+2. Discovery（发现阶段）：在这个阶段，followers 跟准 leader 进行通信，同步 followers 最近接收的事务提议。
+3. Synchronization（同步阶段）:同步阶段主要是利用 leader 前一阶段获得的最新提议历史，同步集群中所有的副本。同步完成之后
+准 leader 才会成为真正的 leader。
+4. Broadcast（广播阶段）
+到了这个阶段，Zookeeper 集群才能正式对外提供事务服务，并且 leader 可以进行消息广播。同时如果有新的节点加入，还需要对新节点进行同步。
 
 ## 六 ZooKeeper &ZAB 协议&Paxos算法
 
