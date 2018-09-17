@@ -69,7 +69,7 @@ public class Sub extends Super {
 
 **使用 this 和 super 要注意的问题：**
 
-- super 调用父类中的其他构造方法时，调用时要放在构造方法的首行！this 调用奔雷中的其他构造方法时，也要放在首行。
+- super 调用父类中的其他构造方法时，调用时要放在构造方法的首行！this 调用本类中的其他构造方法时，也要放在首行。
 -  this、super不能用在static方法中。
 
 **简单解释一下：**
