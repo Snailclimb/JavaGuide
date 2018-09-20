@@ -164,7 +164,9 @@ public class Solution {
 
 ### 问题分析
 
-首先两个节点/指针，一个节点 node1 先开始跑，指针 node1 跑到 k-1 个节点后，另一个节点 node2 开始跑，当 node1 跑到最后时，node2 所指的节点就是倒数第k个节点。
+> **链表中倒数第k个节点也就是正数第(L-K+1)个节点，知道了只一点，这一题基本就没问题！**
+
+首先两个节点/指针，一个节点 node1 先开始跑，指针 node1 跑到 k-1 个节点后，另一个节点 node2 开始跑，当 node1 跑到最后时，node2 所指的节点就是倒数第k个节点也就是正数第(L-K+1)个节点。
 
 
 ### Solution
@@ -180,41 +182,42 @@ public class ListNode {
     }
 }*/
 
-//时间复杂度O(n),一次遍历即可
-//https://www.nowcoder.com/practice/529d3ae5a407492994ad2a246518148a?tpId=13&tqId=11167&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking
+// 时间复杂度O(n),一次遍历即可
+// https://www.nowcoder.com/practice/529d3ae5a407492994ad2a246518148a?tpId=13&tqId=11167&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking
 public class Solution {
-    public ListNode FindKthToTail(ListNode head,int k) {
-       //如果链表为空或者k小于等于0
-       if(head==null||k<=0){
-            return null;
-        }
+	public ListNode FindKthToTail(ListNode head, int k) {
+		// 如果链表为空或者k小于等于0
+		if (head == null || k <= 0) {
+			return null;
+		}
 		// 声明两个指向头结点的节点
 		ListNode node1 = head, node2 = head;
-        //记录节点的个数
-        int count=0;
-        //记录k值，后面要使用
-        int index=k;
-        //p指针先跑，并且记录节点数，当node1节点跑了k-1个节点后，node2节点开始跑，
-        //当node1节点跑到最后时，node2节点所指的节点就是倒数第k个节点
-        while(node1!=null){
-            node1=node1.next;
-            count++;
-            if(k<1){
-                node2=node2.next;
-            }
-            k--;
-        }
-        //如果节点个数小于所求的倒数第k个节点，则返回空
-        if(count<index) return null;
-        return node2;
-            
-    }
-}
+		// 记录节点的个数
+		int count = 0;
+		// 记录k值，后面要使用
+		int index = k;
+		// p指针先跑，并且记录节点数，当node1节点跑了k-1个节点后，node2节点开始跑，
+		// 当node1节点跑到最后时，node2节点所指的节点就是倒数第k个节点
+		while (node1 != null) {
+			node1 = node1.next;
+			count++;
+			if (k < 1 && node1 != null) {
+				node2 = node2.next;
+			}
+			k--;
+		}
+		// 如果节点个数小于所求的倒数第k个节点，则返回空
+		if (count < index)
+			return null;
+		return node2;
 
+	}
+}
 ```
 
 
 # 4. 删除链表的倒数第N个节点
+
 
 > Leetcode:给定一个链表，删除链表的倒数第 n 个节点，并且返回链表的头结点。
 
@@ -239,7 +242,8 @@ public class Solution {
 
 ### 问题分析
 
-我们注意到这个问题可以容易地简化成另一个问题：删除从列表开头数起的第 (L - n + 1)个结点，其中 LL 是列表的长度。只要我们找到列表的长度 L，这个问题就很容易解决。
+
+我们注意到这个问题可以容易地简化成另一个问题：删除从列表开头数起的第 (L - n + 1)个结点，其中 L是列表的长度。只要我们找到列表的长度 L，这个问题就很容易解决。
 
 ![图 1. 删除列表中的第 L - n + 1 个元素](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-20/94354387.jpg)
 
@@ -247,7 +251,7 @@ public class Solution {
 
 **两次遍历法**
 
-首先我们将添加一个 **哑结点** 作为辅助，该结点位于列表头部。哑结点用来简化某些极端情况，例如列表中只含有一个结点，或需要删除列表的头部。在第一次遍历中，我们找出列表的长度 L。然后设置一个指向哑结点的指针，并移动它遍历列表，直至它到达第 (L - n) 个结点那里。我们把第 (L - n)个结点的 next 指针重新链接至第 (L - n + 2)个结点，完成这个算法。
+首先我们将添加一个 **哑结点** 作为辅助，该结点位于列表头部。哑结点用来简化某些极端情况，例如列表中只含有一个结点，或需要删除列表的头部。在第一次遍历中，我们找出列表的长度 L。然后设置一个指向哑结点的指针，并移动它遍历列表，直至它到达第 (L - n) 个结点那里。**我们把第 (L - n)个结点的 next 指针重新链接至第 (L - n + 2)个结点，完成这个算法。**
 
 ```java
 /**
@@ -286,15 +290,17 @@ public class Solution {
 }
 ```
 
-复杂度分析：
+**复杂度分析：**
 
-- 时间复杂度 O(L) ：该算法对列表进行了两次遍历，首先计算了列表的长度 LL 其次找到第 (L - n)(L−n) 个结点。 操作执行了 2L-n2L−n 步，时间复杂度为 O(L)O(L)。
-
-- 空间复杂度 O(1) ：我们只用了常量级的额外空间。 
+- **时间复杂度 O(L)** ：该算法对列表进行了两次遍历，首先计算了列表的长度 LL 其次找到第 (L - n)(L−n) 个结点。 操作执行了 2L-n2L−n 步，时间复杂度为 O(L)O(L)。
+- **空间复杂度 O(1)** ：我们只用了常量级的额外空间。 
 
 
 
 **进阶——一次遍历法：**
+
+
+> **链表中倒数第N个节点也就是正数第(L-N+1)个节点。
 
 其实这种方法就和我们上面第四题找“链表中倒数第k个节点”所用的思想是一样的。**基本思路就是：**  定义两个节点 node1、node2;node1 节点先跑，node1节点 跑到第 n+1 个节点的时候,node2 节点开始跑.当node1 节点跑到最后一个节点时，node2 节点所在的位置就是第 （L-n ） 个节点（L代表总链表长度，也就是倒数第 n+1 个节点）
 
@@ -315,17 +321,17 @@ public class Solution {
 		// 声明两个指向头结点的节点
 		ListNode node1 = dummy, node2 = dummy;
 
-        // node1 节点先跑，node1节点 跑到第 n+1 个节点的时候,node2 节点开始跑
-        //当node1 节点跑到最后一个节点时，node2 节点所在的位置就是第 （L-n ） 个节点（L代表总链表长度，也就是倒数第 n+1 个节点）
+		// node1 节点先跑，node1节点 跑到第 n 个节点的时候,node2 节点开始跑
+		// 当node1 节点跑到最后一个节点时，node2 节点所在的位置就是第 （L-n ） 个节点，也就是倒数第 n+1（L代表总链表长度）
 		while (node1 != null) {
 			node1 = node1.next;
-			if (n < 0) {
+			if (n < 1 && node1 != null) {
 				node2 = node2.next;
 			}
 			n--;
 		}
 
-          node2.next = node2.next.next;
+		node2.next = node2.next.next;
 
 		return dummy.next;
 
@@ -388,5 +394,4 @@ public ListNode Merge(ListNode list1,ListNode list2) {
    }
 }
 ```
-
 
