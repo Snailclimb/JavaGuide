@@ -1,3 +1,27 @@
+<!-- MarkdownTOC -->
+
+- [1. 两数相加](#1-两数相加)
+  - [题目描述](#题目描述)
+  - [问题分析](#问题分析)
+  - [Solution](#solution)
+- [2. 翻转链表](#2-翻转链表)
+  - [题目描述](#题目描述-1)
+  - [问题分析](#问题分析-1)
+  - [Solution](#solution-1)
+- [3. 链表中倒数第k个节点](#3-链表中倒数第k个节点)
+  - [题目描述](#题目描述-2)
+  - [问题分析](#问题分析-2)
+  - [Solution](#solution-2)
+- [4. 删除链表的倒数第N个节点](#4-删除链表的倒数第n个节点)
+  - [问题分析](#问题分析-3)
+  - [Solution](#solution-3)
+- [5. 合并两个排序的链表](#5-合并两个排序的链表)
+  - [题目描述](#题目描述-3)
+  - [问题分析](#问题分析-4)
+  - [Solution](#solution-4)
+
+<!-- /MarkdownTOC -->
+
 
 # 1. 两数相加
 
@@ -85,12 +109,12 @@ public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 
 ```java
 public class ListNode {
-	int val;
-	ListNode next = null;
+  int val;
+  ListNode next = null;
 
-	ListNode(int val) {
-		this.val = val;
-	}
+  ListNode(int val) {
+    this.val = val;
+  }
 }
 ```
 
@@ -103,23 +127,23 @@ public class ListNode {
  */
 public class Solution {
 
-	public ListNode ReverseList(ListNode head) {
+  public ListNode ReverseList(ListNode head) {
 
-		ListNode next = null;
-		ListNode pre = null;
+    ListNode next = null;
+    ListNode pre = null;
 
-		while (head != null) {
-			// 保存要反转到头的那个节点
-			next = head.next;
-			// 要反转的那个节点指向已经反转的上一个节点(备注:第一次反转的时候会指向null)
-			head.next = pre;
-			// 上一个已经反转到头部的节点
-			pre = head;
-			// 一直向链表尾走
-			head = next;
-		}
-		return pre;
-	}
+    while (head != null) {
+      // 保存要反转到头的那个节点
+      next = head.next;
+      // 要反转的那个节点指向已经反转的上一个节点(备注:第一次反转的时候会指向null)
+      head.next = pre;
+      // 上一个已经反转到头部的节点
+      pre = head;
+      // 一直向链表尾走
+      head = next;
+    }
+    return pre;
+  }
 
 }
 ```
@@ -127,23 +151,23 @@ public class Solution {
 测试方法：
 
 ```java
-	public static void main(String[] args) {
+  public static void main(String[] args) {
 
-		ListNode a = new ListNode(1);
-		ListNode b = new ListNode(2);
-		ListNode c = new ListNode(3);
-		ListNode d = new ListNode(4);
-		ListNode e = new ListNode(5);
-		a.next = b;
-		b.next = c;
-		c.next = d;
-		d.next = e;
-		new Solution().ReverseList(a);
-		while (e != null) {
-			System.out.println(e.val);
-			e = e.next;
-		}
-	}
+    ListNode a = new ListNode(1);
+    ListNode b = new ListNode(2);
+    ListNode c = new ListNode(3);
+    ListNode d = new ListNode(4);
+    ListNode e = new ListNode(5);
+    a.next = b;
+    b.next = c;
+    c.next = d;
+    d.next = e;
+    new Solution().ReverseList(a);
+    while (e != null) {
+      System.out.println(e.val);
+      e = e.next;
+    }
+  }
 ```
 
 输出：
@@ -185,33 +209,33 @@ public class ListNode {
 // 时间复杂度O(n),一次遍历即可
 // https://www.nowcoder.com/practice/529d3ae5a407492994ad2a246518148a?tpId=13&tqId=11167&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking
 public class Solution {
-	public ListNode FindKthToTail(ListNode head, int k) {
-		// 如果链表为空或者k小于等于0
-		if (head == null || k <= 0) {
-			return null;
-		}
-		// 声明两个指向头结点的节点
-		ListNode node1 = head, node2 = head;
-		// 记录节点的个数
-		int count = 0;
-		// 记录k值，后面要使用
-		int index = k;
-		// p指针先跑，并且记录节点数，当node1节点跑了k-1个节点后，node2节点开始跑，
-		// 当node1节点跑到最后时，node2节点所指的节点就是倒数第k个节点
-		while (node1 != null) {
-			node1 = node1.next;
-			count++;
-			if (k < 1 && node1 != null) {
-				node2 = node2.next;
-			}
-			k--;
-		}
-		// 如果节点个数小于所求的倒数第k个节点，则返回空
-		if (count < index)
-			return null;
-		return node2;
+  public ListNode FindKthToTail(ListNode head, int k) {
+    // 如果链表为空或者k小于等于0
+    if (head == null || k <= 0) {
+      return null;
+    }
+    // 声明两个指向头结点的节点
+    ListNode node1 = head, node2 = head;
+    // 记录节点的个数
+    int count = 0;
+    // 记录k值，后面要使用
+    int index = k;
+    // p指针先跑，并且记录节点数，当node1节点跑了k-1个节点后，node2节点开始跑，
+    // 当node1节点跑到最后时，node2节点所指的节点就是倒数第k个节点
+    while (node1 != null) {
+      node1 = node1.next;
+      count++;
+      if (k < 1 && node1 != null) {
+        node2 = node2.next;
+      }
+      k--;
+    }
+    // 如果节点个数小于所求的倒数第k个节点，则返回空
+    if (count < index)
+      return null;
+    return node2;
 
-	}
+  }
 }
 ```
 
@@ -264,29 +288,29 @@ public class Solution {
  */
 // https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/description/
 public class Solution {
-	public ListNode removeNthFromEnd(ListNode head, int n) {
-		// 哑结点，哑结点用来简化某些极端情况，例如列表中只含有一个结点，或需要删除列表的头部
-		ListNode dummy = new ListNode(0);
-		// 哑结点指向头结点
-		dummy.next = head;
-		// 保存链表长度
-		int length = 0;
-		ListNode len = head;
-		while (len != null) {
-			length++;
-			len = len.next;
-		}
-		length = length - n;
-		ListNode target = dummy;
-		// 找到 L-n 位置的节点
-		while (length > 0) {
-			target = target.next;
-			length--;
-		}
-		// 把第 (L - n)个结点的 next 指针重新链接至第 (L - n + 2)个结点
-		target.next = target.next.next;
-		return dummy.next;
-	}
+  public ListNode removeNthFromEnd(ListNode head, int n) {
+    // 哑结点，哑结点用来简化某些极端情况，例如列表中只含有一个结点，或需要删除列表的头部
+    ListNode dummy = new ListNode(0);
+    // 哑结点指向头结点
+    dummy.next = head;
+    // 保存链表长度
+    int length = 0;
+    ListNode len = head;
+    while (len != null) {
+      length++;
+      len = len.next;
+    }
+    length = length - n;
+    ListNode target = dummy;
+    // 找到 L-n 位置的节点
+    while (length > 0) {
+      target = target.next;
+      length--;
+    }
+    // 把第 (L - n)个结点的 next 指针重新链接至第 (L - n + 2)个结点
+    target.next = target.next.next;
+    return dummy.next;
+  }
 }
 ```
 
@@ -314,28 +338,28 @@ public class Solution {
  * }
  */
 public class Solution {
-	public ListNode removeNthFromEnd(ListNode head, int n) {
+  public ListNode removeNthFromEnd(ListNode head, int n) {
 
-		ListNode dummy = new ListNode(0);
-		dummy.next = head;
-		// 声明两个指向头结点的节点
-		ListNode node1 = dummy, node2 = dummy;
+    ListNode dummy = new ListNode(0);
+    dummy.next = head;
+    // 声明两个指向头结点的节点
+    ListNode node1 = dummy, node2 = dummy;
 
-		// node1 节点先跑，node1节点 跑到第 n 个节点的时候,node2 节点开始跑
-		// 当node1 节点跑到最后一个节点时，node2 节点所在的位置就是第 （L-n ） 个节点，也就是倒数第 n+1（L代表总链表长度）
-		while (node1 != null) {
-			node1 = node1.next;
-			if (n < 1 && node1 != null) {
-				node2 = node2.next;
-			}
-			n--;
-		}
+    // node1 节点先跑，node1节点 跑到第 n 个节点的时候,node2 节点开始跑
+    // 当node1 节点跑到最后一个节点时，node2 节点所在的位置就是第 （L-n ） 个节点，也就是倒数第 n+1（L代表总链表长度）
+    while (node1 != null) {
+      node1 = node1.next;
+      if (n < 1 && node1 != null) {
+        node2 = node2.next;
+      }
+      n--;
+    }
 
-		node2.next = node2.next.next;
+    node2.next = node2.next.next;
 
-		return dummy.next;
+    return dummy.next;
 
-	}
+  }
 }
 ```
 
