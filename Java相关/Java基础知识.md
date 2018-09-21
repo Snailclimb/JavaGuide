@@ -1,4 +1,3 @@
-
 <!-- MarkdownTOC -->
 
 - [1. 面向对象和面向过程的区别](#1-面向对象和面向过程的区别)
@@ -168,8 +167,23 @@ Java 语言通过字节码的方式，在一定程度上解决了传统解释型
 **可变性**
 　
 
-String 类中使用字符数组保存字符串，private　final　char　value[]，所以 String 对象是不可变的。StringBuilder 与 StringBuffer 都继承自AbstractStringBuilder 类，在 AbstractStringBuilder 中也是使用字符数组保存字符串，char[]value，这两种对象都是可变的。
-　　
+简单的来说：String 类中使用 final 关键字字符数组保存字符串，`private　final　char　value[]`，所以 String 对象是不可变的。而StringBuilder 与 StringBuffer 都继承自 AbstractStringBuilder 类，在 AbstractStringBuilder 中也是使用字符数组保存字符串`char[]value` 但是没有用 final 关键字修饰，所以这两种对象都是可变的。
+
+StringBuilder 与 StringBuffer 的构造方法都是调用父类构造方法也就是 AbstractStringBuilder 实现的，大家可以自行查阅源码。
+
+AbstractStringBuilder.java
+
+```java
+abstract class AbstractStringBuilder implements Appendable, CharSequence {
+    char[] value;
+    int count;
+    AbstractStringBuilder() {
+    }
+    AbstractStringBuilder(int capacity) {
+        value = new char[capacity];
+    }
+```
+
 
 **线程安全性**
 
@@ -377,7 +391,5 @@ final关键字主要用在三个地方：变量、方法、类。
 
 **《Java编程思想(第4版)》：**
 这本书要常读，初学者可以快速概览，中等程序员可以深入看看 Java，老鸟还可以用之回顾 Java 的体系。这本书之所以厉害，因为它在无形中整合了设计模式，这本书之所以难读，也恰恰在于他对设计模式的整合是无形的。
-
-
 
 
