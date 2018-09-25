@@ -1,3 +1,20 @@
+<!-- MarkdownTOC -->
+
+- [说明](#说明)
+- [1. KMP 算法](#1-kmp-算法)
+- [2. 替换空格](#2-替换空格)
+- [3. 最长公共前缀](#3-最长公共前缀)
+- [4. 回文串](#4-回文串)
+  - [4.1. 最长回文串](#41-最长回文串)
+  - [4.2. 验证回文串](#42-验证回文串)
+  - [4.3. 最长回文子串](#43-最长回文子串)
+  - [4.4. 最长回文子序列](#44-最长回文子序列)
+- [5. 括号匹配深度](#5-括号匹配深度)
+- [6. 把字符串转换成整数](#6-把字符串转换成整数)
+
+<!-- /MarkdownTOC -->
+
+
 ## 说明
 
 - 本文作者：wwwxmu
@@ -36,34 +53,34 @@
 //https://www.weiweiblog.cn/replacespace/
 public class Solution {
 
-	/**
-	 * 第一种方法：常规方法。利用String.charAt(i)以及String.valueOf(char).equals(" "
-	 * )遍历字符串并判断元素是否为空格。是则替换为"%20",否则不替换
-	 */
-	public static String replaceSpace(StringBuffer str) {
+  /**
+   * 第一种方法：常规方法。利用String.charAt(i)以及String.valueOf(char).equals(" "
+   * )遍历字符串并判断元素是否为空格。是则替换为"%20",否则不替换
+   */
+  public static String replaceSpace(StringBuffer str) {
 
-		int length = str.length();
-		// System.out.println("length=" + length);
-		StringBuffer result = new StringBuffer();
-		for (int i = 0; i < length; i++) {
-			char b = str.charAt(i);
-			if (String.valueOf(b).equals(" ")) {
-				result.append("%20");
-			} else {
-				result.append(b);
-			}
-		}
-		return result.toString();
+    int length = str.length();
+    // System.out.println("length=" + length);
+    StringBuffer result = new StringBuffer();
+    for (int i = 0; i < length; i++) {
+      char b = str.charAt(i);
+      if (String.valueOf(b).equals(" ")) {
+        result.append("%20");
+      } else {
+        result.append(b);
+      }
+    }
+    return result.toString();
 
-	}
+  }
 
-	/**
-	 * 第二种方法：利用API替换掉所用空格，一行代码解决问题
-	 */
-	public static String replaceSpace2(StringBuffer str) {
+  /**
+   * 第二种方法：利用API替换掉所用空格，一行代码解决问题
+   */
+  public static String replaceSpace2(StringBuffer str) {
 
-		return str.toString().replaceAll("\\s", "%20");
-	}
+    return str.toString().replaceAll("\\s", "%20");
+  }
 }
 
 ```
@@ -93,36 +110,36 @@ public class Solution {
 ```java
 //https://leetcode-cn.com/problems/longest-common-prefix/description/
 public class Main {
-	public static String replaceSpace(String[] strs) {
+  public static String replaceSpace(String[] strs) {
 
-		// 数组长度
-		int len = strs.length;
-		// 用于保存结果
-		StringBuffer res = new StringBuffer();
-		// 注意：=是赋值，==是判断
-		if (strs == null || strs.length == 0) {
-			return "";
-		}
-		// 给字符串数组的元素按照升序排序(包含数字的话，数字会排在前面)
-		Arrays.sort(strs);
-		int m = strs[0].length();
-		int n = strs[len - 1].length();
-		int num = Math.min(m, n);
-		for (int i = 0; i < num; i++) {
-			if (strs[0].charAt(i) == strs[len - 1].charAt(i)) {
-				res.append(strs[0].charAt(i));
-			} else
-				break;
+    // 数组长度
+    int len = strs.length;
+    // 用于保存结果
+    StringBuffer res = new StringBuffer();
+    // 注意：=是赋值，==是判断
+    if (strs == null || strs.length == 0) {
+      return "";
+    }
+    // 给字符串数组的元素按照升序排序(包含数字的话，数字会排在前面)
+    Arrays.sort(strs);
+    int m = strs[0].length();
+    int n = strs[len - 1].length();
+    int num = Math.min(m, n);
+    for (int i = 0; i < num; i++) {
+      if (strs[0].charAt(i) == strs[len - 1].charAt(i)) {
+        res.append(strs[0].charAt(i));
+      } else
+        break;
 
-		}
-		return res.toString();
+    }
+    return res.toString();
 
-	} 
+  } 
      //测试
-	public static void main(String[] args) {
-		String[] strs = { "customer", "car", "cat" };
-		System.out.println(Main.replaceSpace(strs));//c
-	}
+  public static void main(String[] args) {
+    String[] strs = { "customer", "car", "cat" };
+    System.out.println(Main.replaceSpace(strs));//c
+  }
 }
 
 ```
@@ -161,23 +178,23 @@ public class Main {
 ```java
 //https://leetcode-cn.com/problems/longest-palindrome/description/
 class Solution {
-	public  int longestPalindrome(String s) {
-		if (s.length() == 0)
-			return 0;
-		// 用于存放字符
-		HashSet<Character> hashset = new HashSet<Character>();
-		char[] chars = s.toCharArray();
-		int count = 0;
-		for (int i = 0; i < chars.length; i++) {
-			if (!hashset.contains(chars[i])) {// 如果hashset没有该字符就保存进去
-				hashset.add(chars[i]);
-			} else {// 如果有,就让count++（说明找到了一个成对的字符），然后把该字符移除
-				hashset.remove(chars[i]);
-				count++;
-			}
-		}
-		return hashset.isEmpty() ? count * 2 : count * 2 + 1;
-	}
+  public  int longestPalindrome(String s) {
+    if (s.length() == 0)
+      return 0;
+    // 用于存放字符
+    HashSet<Character> hashset = new HashSet<Character>();
+    char[] chars = s.toCharArray();
+    int count = 0;
+    for (int i = 0; i < chars.length; i++) {
+      if (!hashset.contains(chars[i])) {// 如果hashset没有该字符就保存进去
+        hashset.add(chars[i]);
+      } else {// 如果有,就让count++（说明找到了一个成对的字符），然后把该字符移除
+        hashset.remove(chars[i]);
+        count++;
+      }
+    }
+    return hashset.isEmpty() ? count * 2 : count * 2 + 1;
+  }
 }
 ```
 
@@ -203,26 +220,26 @@ class Solution {
 ```java
 //https://leetcode-cn.com/problems/valid-palindrome/description/
 class Solution {
-	public  boolean isPalindrome(String s) {
-		if (s.length() == 0)
-			return true;
-		int l = 0, r = s.length() - 1;
-		while (l < r) {
-			// 从头和尾开始向中间遍历
-			if (!Character.isLetterOrDigit(s.charAt(l))) {// 字符不是字母和数字的情况
-				l++;
-			} else if (!Character.isLetterOrDigit(s.charAt(r))) {// 字符不是字母和数字的情况
-				r--;
-			} else {
-				// 判断二者是否相等
-				if (Character.toLowerCase(s.charAt(l)) != Character.toLowerCase(s.charAt(r)))
-					return false;
-				l++;
-				r--;
-			}
-		}
-		return true;
-	}
+  public  boolean isPalindrome(String s) {
+    if (s.length() == 0)
+      return true;
+    int l = 0, r = s.length() - 1;
+    while (l < r) {
+      // 从头和尾开始向中间遍历
+      if (!Character.isLetterOrDigit(s.charAt(l))) {// 字符不是字母和数字的情况
+        l++;
+      } else if (!Character.isLetterOrDigit(s.charAt(r))) {// 字符不是字母和数字的情况
+        r--;
+      } else {
+        // 判断二者是否相等
+        if (Character.toLowerCase(s.charAt(l)) != Character.toLowerCase(s.charAt(r)))
+          return false;
+        l++;
+        r--;
+      }
+    }
+    return true;
+  }
 }
 ```
 
@@ -254,28 +271,28 @@ class Solution {
 ```java
 //https://leetcode-cn.com/problems/longest-palindromic-substring/description/
 class Solution {
-	private int index, len;
+  private int index, len;
 
-	public String longestPalindrome(String s) {
-		if (s.length() < 2)
-			return s;
-		for (int i = 0; i < s.length() - 1; i++) {
-			PalindromeHelper(s, i, i);
-			PalindromeHelper(s, i, i + 1);
-		}
-		return s.substring(index, index + len);
-	}
+  public String longestPalindrome(String s) {
+    if (s.length() < 2)
+      return s;
+    for (int i = 0; i < s.length() - 1; i++) {
+      PalindromeHelper(s, i, i);
+      PalindromeHelper(s, i, i + 1);
+    }
+    return s.substring(index, index + len);
+  }
 
-	public void PalindromeHelper(String s, int l, int r) {
-		while (l >= 0 && r < s.length() && s.charAt(l) == s.charAt(r)) {
-			l--;
-			r++;
-		}
-		if (len < r - l - 1) {
-			index = l + 1;
-			len = r - l - 1;
-		}
-	}
+  public void PalindromeHelper(String s, int l, int r) {
+    while (l >= 0 && r < s.length() && s.charAt(l) == s.charAt(r)) {
+      l--;
+      r++;
+    }
+    if (len < r - l - 1) {
+      index = l + 1;
+      len = r - l - 1;
+    }
+  }
 }
 ```
 
@@ -329,7 +346,7 @@ class Solution {
 }
 ```
 
-### 5. 括号匹配深度
+## 5. 括号匹配深度
 
 > 爱奇艺 2018 秋招 Java：
 >一个合法的括号匹配序列有以下定义:
@@ -381,20 +398,20 @@ import java.util.Scanner;
  * @Description: TODO 求给定合法括号序列的深度
  */
 public class Main {
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		String s = sc.nextLine();
-		int cnt = 0, max = 0, i;
-		for (i = 0; i < s.length(); ++i) {
-			if (s.charAt(i) == '(')
-				cnt++;
-			else
-				cnt--;
-			max = Math.max(max, cnt);
-		}
-		sc.close();
-		System.out.println(max);
-	}
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.nextLine();
+    int cnt = 0, max = 0, i;
+    for (i = 0; i < s.length(); ++i) {
+      if (s.charAt(i) == '(')
+        cnt++;
+      else
+        cnt--;
+      max = Math.max(max, cnt);
+    }
+    sc.close();
+    System.out.println(max);
+  }
 }
 
 ```
@@ -407,38 +424,38 @@ public class Main {
 //https://www.weiweiblog.cn/strtoint/
 public class Main {
 
-	public static int StrToInt(String str) {
-		if (str.length() == 0)
-			return 0;
-		char[] chars = str.toCharArray();
-		// 判断是否存在符号位
-		int flag = 0;
-		if (chars[0] == '+')
-			flag = 1;
-		else if (chars[0] == '-')
-			flag = 2;
-		int start = flag > 0 ? 1 : 0;
-		int res = 0;// 保存结果
-		for (int i = start; i < chars.length; i++) {
-			if (Character.isDigit(chars[i])) {// 调用Character.isDigit(char)方法判断是否是数字，是返回True，否则False
-				int temp = chars[i] - '0';
-				res = res * 10 + temp;
-			} else {
-				return 0;
-			}
-		}
-		return flag == 1 ? res : -res;
+  public static int StrToInt(String str) {
+    if (str.length() == 0)
+      return 0;
+    char[] chars = str.toCharArray();
+    // 判断是否存在符号位
+    int flag = 0;
+    if (chars[0] == '+')
+      flag = 1;
+    else if (chars[0] == '-')
+      flag = 2;
+    int start = flag > 0 ? 1 : 0;
+    int res = 0;// 保存结果
+    for (int i = start; i < chars.length; i++) {
+      if (Character.isDigit(chars[i])) {// 调用Character.isDigit(char)方法判断是否是数字，是返回True，否则False
+        int temp = chars[i] - '0';
+        res = res * 10 + temp;
+      } else {
+        return 0;
+      }
+    }
+    return flag == 1 ? res : -res;
 
-	}
+  }
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		String s = "-12312312";
-		System.out.println("使用库函数转换：" + Integer.valueOf(s));
-		int res = Main.StrToInt(s);
-		System.out.println("使用自己写的方法转换：" + res);
+  public static void main(String[] args) {
+    // TODO Auto-generated method stub
+    String s = "-12312312";
+    System.out.println("使用库函数转换：" + Integer.valueOf(s));
+    int res = Main.StrToInt(s);
+    System.out.println("使用自己写的方法转换：" + res);
 
-	}
+  }
 
 }
 

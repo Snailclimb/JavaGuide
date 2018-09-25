@@ -141,7 +141,7 @@ Redis为单进程单线程模式，采用队列模式将并发访问变为串行
 
 ### Redis持久化数据和缓存怎么做扩容？
 
-**《redis的持久化和缓存机制》** ：[https://github.com/Snailclimb/Java-Guide/blob/master/数据存储/春夏秋冬又一春之Redis持久化.md](https://github.com/Snailclimb/Java-Guide/blob/master/数据存储/春夏秋冬又一春之Redis持久化.md)
+**《redis的持久化和缓存机制》** ：[https://github.com/Snailclimb/Java-Guide/blob/master/数据存储/R春夏秋冬又一春之Redis持久化.md](https://github.com/Snailclimb/Java-Guide/blob/master/数据存储/Redis/春夏秋冬又一春之Redis持久化.md)
 
 扩容的话可以通过redis集群实现，之前做项目的时候用过自己搭的redis集群
 然后写了一篇关于redis集群的文章：**《一文轻松搞懂redis集群原理及搭建与使用》**：[https://juejin.im/post/5ad54d76f265da23970759d3](https://juejin.im/post/5ad54d76f265da23970759d3)
