@@ -76,8 +76,7 @@
   - [Redis 总结](https://github.com/Snailclimb/Java_Guide/blob/master/数据存储/Redis/Redis.md)
   - [Redlock分布式锁](https://github.com/Snailclimb/Java_Guide/blob/master/数据存储/Redis/Redlock分布式锁.md)
   - [如何做可靠的分布式锁，Redlock真的可行么](https://github.com/Snailclimb/Java_Guide/blob/master/数据存储/Redis/如何做可靠的分布式锁，Redlock真的可行么.md)\
-  - [春夏秋冬又一春之Redis持久化](https://github.com/Snailclimb/Java_Guide/blob/master/数据存储/Redis/春夏秋冬又一春之Redis持久化.md)
-  
+
 ## :punch: 架构
 - ### 分布式相关
     - [分布式学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/架构/分布式.md)
