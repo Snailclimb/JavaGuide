@@ -340,7 +340,7 @@ public class EnsureCapacityTest {
 
 ```
 使用ensureCapacity方法前：4637
-使用ensureCapacity方法前：241
+使用ensureCapacity方法后：241
 
 ```
 
