@@ -400,7 +400,7 @@ final关键字主要用在三个地方：变量、方法、类。
 
 **注意：异常和错误的区别：异常能被程序本身可以处理，错误是无法处理。**
 
-### Trowable类常用方法
+### Throwable类常用方法
 
 - **public string getMessage()**:返回异常发生时的详细信息
 - **public string toString()**:返回异常发生时的简要描述
