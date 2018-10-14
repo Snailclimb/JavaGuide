@@ -224,7 +224,7 @@ Node: 链表节点）：
 
 首先将数据分为一段一段的存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据时，其他段的数据也能被其他线程访问。
 
-**ConcurrentHashMap 是由 Segment 数组结构和 HahEntry 数组结构组成**。
+**ConcurrentHashMap 是由 Segment 数组结构和 HashEntry 数组结构组成**。
 
 Segment 实现了 ReentrantLock,所以 Segment 是一种可重入锁，扮演锁的角色。HashEntry 用于存储键值对数据。
 
