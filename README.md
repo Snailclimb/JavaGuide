@@ -1,5 +1,7 @@
 > 推荐几个比较实用的阿里云服务，按需选择：1. [拉1人拼团，立享云服务器￥234/年](https://promotion.aliyun.com/ntms/act/vmpt/aliyun-group/home.html?spm=5176.11533447.1097531.1.48875cfaRbfCkY&userCode=hf47liqn)、2. [最高￥1888云产品通用代金券](https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=hf47liqn)、3. [企业级性能云服务器限时2折起](https://promotion.aliyun.com/ntms/act/enterprise-discount.html?userCode=hf47liqn)、4. [阿里云建站服务](https://promotion.aliyun.com/ntms/act/jianzhanquan.html?userCode=hf47liqn)（企业官网、电商网站，多种可供选择模板，代金券免费领取）
 
+Gitchat 推荐：[Java 程序员必备：并发知识系统总结](https://gitbook.cn/gitchat/activity/5bc2b6af56f0425673d299bb)
+
 | Ⅰ  | Ⅱ | Ⅲ | Ⅳ | Ⅴ | Ⅵ | Ⅶ | Ⅷ | Ⅸ | Ⅹ |
 | :--------: | :----------: | :-----------: | :---------: | :---------: | :---------:| :---------: | :-------: | :-------:| :----:|
 | [Java](#coffee-Java)  |  [数据结构与算法](#open_file_folder-数据结构与算法)|[计算机网络与数据通信](#computer-计算机网络与数据通信) | [操作系统](#iphone-操作系统)| [主流框架](#pencil2-主流框架)|  [数据存储](#floppy_disk-数据存储)|[架构](#punch-架构)|  [面试必备](#musical_note-面试必备)| [其他](#art-其他)| [说明](#envelope-该开源文档一些说明)|
