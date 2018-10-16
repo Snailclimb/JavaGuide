@@ -190,6 +190,7 @@ static int hash(int h) {
  
 这个过程为，先将 A 复制到新的 hash 表中，然后接着复制 B 到链头（A 的前边：B.next=A），本来 B.next=null，到此也就结束了（跟线程二一样的过程），但是，由于线程二扩容的原因，将 B.next=A，所以，这里继续复制A，让 A.next=B，由此，环形链表出现：B.next=A; A.next=B 
 
+**注意：jdk1.8已经解决了死循环的问题。**
 
 
 ## HashSet 和 HashMap 区别
