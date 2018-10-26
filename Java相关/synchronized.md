@@ -1,3 +1,7 @@
+以下内容摘自我的 Gitchat ：[Java 程序员必备：并发知识系统总结](https://gitbook.cn/gitchat/activity/5bc2b6af56f0425673d299bb)，欢迎订阅！
+
+Github 地址：[https://github.com/Snailclimb/JavaGuide/edit/master/Java相关/synchronized.md](https://github.com/Snailclimb/JavaGuide/edit/master/Java相关/synchronized.md)
+
 ###  synchronized关键字最主要的三种使用方式的总结
 
 - **修饰实例方法，作用于当前对象实例加锁，进入同步代码前要获得当前对象实例的锁**
