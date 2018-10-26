@@ -2,6 +2,8 @@
 
 Github 地址：[https://github.com/Snailclimb/JavaGuide/edit/master/Java相关/synchronized.md](https://github.com/Snailclimb/JavaGuide/edit/master/Java相关/synchronized.md)
 
+![Synchronized 关键字使用、底层原理、JDK1.6 之后的底层优化以及 和ReenTrantLock 的对比](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/Java%20%E7%A8%8B%E5%BA%8F%E5%91%98%E5%BF%85%E5%A4%87%EF%BC%9A%E5%B9%B6%E5%8F%91%E7%9F%A5%E8%AF%86%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BB%93/%E4%BA%8C%20%20Synchronized%20%E5%85%B3%E9%94%AE%E5%AD%97%E4%BD%BF%E7%94%A8%E3%80%81%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E3%80%81JDK1.6%20%E4%B9%8B%E5%90%8E%E7%9A%84%E5%BA%95%E5%B1%82%E4%BC%98%E5%8C%96%E4%BB%A5%E5%8F%8A%20%E5%92%8CReenTrantLock%20%E7%9A%84%E5%AF%B9%E6%AF%94.png)
+
 ###  synchronized关键字最主要的三种使用方式的总结
 
 - **修饰实例方法，作用于当前对象实例加锁，进入同步代码前要获得当前对象实例的锁**
