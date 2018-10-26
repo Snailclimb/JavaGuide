@@ -23,7 +23,7 @@ Gitchat 推荐：[Java 程序员必备：并发知识系统总结](https://gitbo
    
 -  ### Java 多线程
    - [多线程系列文章](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/多线程系列.md)
-   - [值得立马保存的 synchronized 关键字总结](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/synchronized.md)
+   - [Synchronized 关键字使用、底层原理、JDK1.6 之后的底层优化以及 和ReenTrantLock 的对比](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/synchronized.md)
 
 - ### Java IO 与 NIO
   - [Java IO 与 NIO系列文章](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/Java%20IO与NIO.md)
