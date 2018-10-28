@@ -1,4 +1,4 @@
-> 阿里云技术有保障，在云服务技术上远远领先于国内其他云服务提供商。大家或者公司如果需要用到云服务器的话，推进阿里云服务器，下面是阿里云目前正在做的一些活动：
+> 阿里云技术有保障，在云服务技术上远远领先于国内其他云服务提供商。大家或者公司如果需要用到云服务器的话，推荐阿里云服务器，下面是阿里云目前正在做的一些活动，错过这波，后续可能多花很多钱：
 
 1. [全民云计算：ECS云服务器2折起,1核1G仅需293元/年](https://promotion.aliyun.com/ntms/act/qwbk.html?userCode=hf47liqn)
 2. [高性能企业级性能云服务器限时2折起,2核4G仅需720元/年](https://promotion.aliyun.com/ntms/act/enterprise-discount.html?userCode=hf47liqn)
