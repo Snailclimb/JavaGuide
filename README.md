@@ -1,12 +1,4 @@
-阿里云双11最新活动（仅限阿里云新用户购买，老用户拉新用户可以获得返现红包，后续有机会平分百万红包），优惠力度非常非常非常大，另外加入拼团，后续还有几乎平分100w红包！划重点了：1核2G云服务器1年仅需99.5元！！！该折扣仅限新人！这是我的拼团团队地址：https://m.aliyun.com/act/team1111/#/share?params=N.FF7yxCciiM.hf47liqn （如果还有不懂的可以加我微信：bwcx9393 咨询） 举个栗子：以原价1020元的云服务器ECS（t5 1c2g+1M+40G高效云盘） 为例，双11新用户专享价为199元，如果您成功拉一个新人拼团，您和团员都将享受折上9折优惠，199*90%=179.1元，将返还您和团员每人19.9元。随着您拉新人数增多，享受折扣将不断叠加， 当您参加的团中有6个及以上新用户时，您和团员即可享受折上5折优惠，即199元的云服务器再打5折，可享受99.5元的优惠价，将返还您和团员购买价减去99.5元的差价。希望大家加入拼团之后尽自己力量邀请时候身边的阿里云新人参团，这样你可以获得最高1111的红包，而且后面如果团队拉的新人在前100名的话就可以平分100w红包。老用户也可以选择参加下面的活动！
-
-> 阿里云技术有保障，在云服务技术上远远领先于国内其他云服务提供商。大家或者公司如果需要用到云服务器的话，推荐阿里云服务器，下面是阿里云目前正在做的一些活动，错过这波，后续可能多花很多钱：
-
-1. [全民云计算：ECS云服务器2折起,1核1G仅需293元/年](https://promotion.aliyun.com/ntms/act/qwbk.html?userCode=hf47liqn)
-2. [高性能企业级性能云服务器限时2折起,2核4G仅需720元/年](https://promotion.aliyun.com/ntms/act/enterprise-discount.html?userCode=hf47liqn)
-3. [拉1人拼团，立享云服务器￥234/年](https://promotion.aliyun.com/ntms/act/vmpt/aliyun-group/home.html?spm=5176.8849694.home.4.27a24b70kENhtV&userCode=hf47liqn)
-4. [最高￥1888云产品通用代金券](https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=hf47liqn) 
-5. [阿里云建站服务](https://promotion.aliyun.com/ntms/act/jianzhanquan.html?userCode=hf47liqn)（企业官网、电商网站，多种可供选择模板，代金券免费领取）
+阿里云双11最新活动（仅限阿里云新用户购买，老用户拉新用户可以获得返现红包，后续有机会平分百万红包），优惠力度非常非常非常大，另外加入拼团，后续还有几乎平分100w红包！划重点了：1核2G云服务器1年仅需99.5元！！！该折扣仅限新人！这是我的拼团团队地址：https://m.aliyun.com/act/team1111/#/share?params=N.FF7yxCciiM.hf47liqn （如果还有不懂的可以加我微信：bwcx9393 咨询） 文尾有详细说明哦！
 
 Gitchat 推荐：[Java 程序员必备：并发知识系统总结](https://gitbook.cn/gitchat/activity/5bc2b6af56f0425673d299bb)
 
@@ -143,6 +135,17 @@ Gitchat 推荐：[Java 程序员必备：并发知识系统总结](https://gitbo
 
 本人会利用业余时间一直更新下去，目前还有很多地方不完善，一些知识点我会原创总结，还有一些知识点如果说网上有比较好的文章了，我会把这些文章加入进去。您也可以关注我的微信公众号：“Java面试通关手册”，我会在这里分享一些自己的原创文章。 另外该文档格式参考：[Github Markdown格式](https://guides.github.com/features/mastering-markdown/)，表情素材来自：[EMOJI CHEAT SHEET](https://www.webpagefx.com/tools/emoji-cheat-sheet/)。
 
+## 阿里云活动推荐
+
+阿里云双11最新活动（仅限阿里云新用户购买，老用户拉新用户可以获得返现红包，后续有机会平分百万红包），优惠力度非常非常非常大，另外加入拼团，后续还有几乎平分100w红包！划重点了：1核2G云服务器1年仅需99.5元！！！该折扣仅限新人！这是我的拼团团队地址：https://m.aliyun.com/act/team1111/#/share?params=N.FF7yxCciiM.hf47liqn （如果还有不懂的可以加我微信：bwcx9393 咨询） 举个栗子：以原价1020元的云服务器ECS（t5 1c2g+1M+40G高效云盘） 为例，双11新用户专享价为199元，如果您成功拉一个新人拼团，您和团员都将享受折上9折优惠，199*90%=179.1元，将返还您和团员每人19.9元。随着您拉新人数增多，享受折扣将不断叠加， 当您参加的团中有6个及以上新用户时，您和团员即可享受折上5折优惠，即199元的云服务器再打5折，可享受99.5元的优惠价，将返还您和团员购买价减去99.5元的差价。希望大家加入拼团之后尽自己力量邀请时候身边的阿里云新人参团，这样你可以获得最高1111的红包，而且后面如果团队拉的新人在前100名的话就可以平分100w红包。老用户也可以选择参加下面的活动！
+
+> 阿里云技术有保障，在云服务技术上远远领先于国内其他云服务提供商。大家或者公司如果需要用到云服务器的话，推荐阿里云服务器，下面是阿里云目前正在做的一些活动，错过这波，后续可能多花很多钱：
+
+1. [全民云计算：ECS云服务器2折起,1核1G仅需293元/年](https://promotion.aliyun.com/ntms/act/qwbk.html?userCode=hf47liqn)
+2. [高性能企业级性能云服务器限时2折起,2核4G仅需720元/年](https://promotion.aliyun.com/ntms/act/enterprise-discount.html?userCode=hf47liqn)
+3. [拉1人拼团，立享云服务器￥234/年](https://promotion.aliyun.com/ntms/act/vmpt/aliyun-group/home.html?spm=5176.8849694.home.4.27a24b70kENhtV&userCode=hf47liqn)
+4. [最高￥1888云产品通用代金券](https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=hf47liqn) 
+5. [阿里云建站服务](https://promotion.aliyun.com/ntms/act/jianzhanquan.html?userCode=hf47liqn)（企业官网、电商网站，多种可供选择模板，代金券免费领取）
 
 
 **你若盛开，清风自来。 欢迎关注我的微信公众号：“Java面试通关手册”，一个有温度的微信公众号。公众号有大量资料，回复关键字“1”你可能看到想要的东西哦！：**
