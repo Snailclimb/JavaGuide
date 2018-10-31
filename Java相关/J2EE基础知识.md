@@ -66,6 +66,9 @@ Servlet接口定义了5个方法，其中**前三个方法与Servlet生命周期
 参考：《javaweb整合开发王者归来》P81
 
 ## get和post请求的区别
+
+> 网上也有文章说：get和post请求实际上是没有区别，大家可以自行查询相关文章！我下面给出的只是一种常见的答案。
+
 ①get请求用来从服务器上获得资源，而post是用来向服务器提交数据；
 
 ②get将表单中数据按照name=value的形式，添加到action 所指向的URL 后面，并且两者使用"?"连接，而各个变量之间使用"&"连接；post是将表单中的数据放在HTTP协议的请求头或消息体中，传递到action所指向URL；
@@ -78,6 +81,10 @@ Servlet接口定义了5个方法，其中**前三个方法与Servlet生命周期
 
 补充：GET方式提交表单的典型应用是搜索引擎。GET方式就是被设计为查询用的。
 
+还有另外一种回答。推荐大家看一下：
+
+- https://www.zhihu.com/question/28586791
+- https://mp.weixin.qq.com/s?__biz=MzI3NzIzMzg3Mw==&mid=100000054&idx=1&sn=71f6c214f3833d9ca20b9f7dcd9d33e4#rd
 
 ## 什么情况下调用doGet()和doPost()
 Form标签里的method的属性为get时调用doGet()，为post时调用doPost()。
