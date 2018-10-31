@@ -1,4 +1,4 @@
-> 推荐一个福利给大家：阿里云双11活动，优惠力度非常大，只限阿里云新人购买。通过我的拼团团队地址：[https://m.aliyun.com/act/team1111/#/share?params=N.FF7yxCciiM.hf47liqn](https://m.aliyun.com/act/team1111/#/share?params=N.FF7yxCciiM.hf47liqn) 即享一折！ **1核2G云服务器1年仅需99.5元！！！1核2G云服务器3年仅需298.50元！！！一个月仅需8.2元** （我自己借别人账号又屯了台3年的1核2g得服务器）。
+> 推荐一个福利给大家：阿里云双11活动，优惠力度非常大，只限阿里云新人购买。通过我的拼团团队地址：[https://m.aliyun.com/act/team1111/#/share?params=N.FF7yxCciiM.hf47liqn](https://m.aliyun.com/act/team1111/#/share?params=N.FF7yxCciiM.hf47liqn) 即享一折！ **1核2G云服务器1年仅需99.5元！！！1核2G云服务器3年仅需298.50元！！！一个月仅需8.2元** （强烈建议入手！阿里云这次真的下了血本，错误这次活动后面后悔别来找我！）。
 
 
 | Ⅰ  | Ⅱ | Ⅲ | Ⅳ | Ⅴ | Ⅵ | Ⅶ | Ⅷ | Ⅸ | Ⅹ |
