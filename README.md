@@ -1,8 +1,5 @@
-> 福利：看本文之前，推荐给大家一个阿里云双11活动，真的非常非常非常推荐，对于新人福利，阿里云这次真的是下血本了，建议阿里云新人一定一定一定不要错过。如果觉得这单纯是广告的话（阿里云肯找我做广告就好了，嘿嘿），你可以直接跳过看正文。
+> 推荐一个福利给大家：阿里云双11活动，优惠力度非常大，只限阿里云新人购买。通过我的拼团团队地址：[https://m.aliyun.com/act/team1111/#/share?params=N.FF7yxCciiM.hf47liqn](https://m.aliyun.com/act/team1111/#/share?params=N.FF7yxCciiM.hf47liqn) 即享一折！ **1核2G云服务器1年仅需99.5元！！！1核2G云服务器3年仅需298.50元！！！一个月仅需8.2元** （我自己借别人账号又屯了台3年的1核2g得服务器）。
 
-阿里云双11最新活动（仅限阿里云新用户购买，老用户拉新用户可以获得返现红包，后续有机会平分百万红包），优惠力度非常非常非常大，另外加入拼团，后续还有机会平分100w红包！**目前我的战队已经有40多位新人了，现在是折上5折了也就是1折购买，已经达到了最低折扣！！！！！！。** 划重点了： **1核2G云服务器1年仅需99.5元！！！1核2G云服务器3年仅需298.50元！！！一个月仅需8.2元** 该折扣仅限新人！这是我的拼团团队地址：[https://m.aliyun.com/act/team1111/#/share?params=N.FF7yxCciiM.hf47liqn](https://m.aliyun.com/act/team1111/#/share?params=N.FF7yxCciiM.hf47liqn) ！
-
-另外，老用户和新用户可以帮忙拉新，拉新你可以获得什么福利呢？①即时红包，即拆即用（最低红包10元，最高1111元）；②瓜分百万红包的机会（目前我的战队已经有29位新人，所以冲进前100的可能性非常大！冲进之后即可瓜分百万红包！）③返现奖励，如果你邀请了新人你会获得返现奖励，返现奖励直接到你的账户！（我希望我的团队最后能够冲进前100，别的不多说！！！诚信！）
 
 | Ⅰ  | Ⅱ | Ⅲ | Ⅳ | Ⅴ | Ⅵ | Ⅶ | Ⅷ | Ⅸ | Ⅹ |
 | :--------: | :----------: | :-----------: | :---------: | :---------: | :---------:| :---------: | :-------: | :-------:| :----:|
@@ -25,8 +22,8 @@
    
 -  ### Java 多线程
    - [多线程系列文章](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/多线程系列.md)
-   - [Synchronized 关键字使用、底层原理、JDK1.6 之后的底层优化以及 和ReenTrantLock 的对比](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/synchronized.md)
-
+   - [并发编程面试必备：synchronized 关键字使用、底层原理、JDK1.6 之后的底层优化以及 和ReenTrantLock 的对比](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/synchronized.md)
+   - [并发编程面试必备：JUC 中的 Atomic 原子类总结](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/Multithread/Atomic.md)
 - ### Java IO 与 NIO
   - [Java IO 与 NIO系列文章](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/Java%20IO与NIO.md)
 
