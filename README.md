@@ -1,4 +1,4 @@
-> 推荐一个福利给大家：阿里云双11活动，优惠力度非常大，只限阿里云新人购买。通过我的拼团团队地址：[https://m.aliyun.com/act/team1111/#/share?params=N.FF7yxCciiM.hf47liqn](https://m.aliyun.com/act/team1111/#/share?params=N.FF7yxCciiM.hf47liqn) 即享一折！ **1核2G云服务器1年仅需99.5元！！！1核2G云服务器3年仅需298.50元！！！一个月仅需8.2元** （强烈建议入手3年的！阿里云这次真的下了血本，错误这次活动后面后悔别来找我！）。
+> 【强烈推荐！非广告！】阿里云褥羊毛活动：[https://m.aliyun.com/act/team1111/#/share?params=N.FF7yxCciiM.hf47liqn](https://m.aliyun.com/act/team1111/#/share?params=N.FF7yxCciiM.hf47liqn) 。一句话解析该次活动：新用户低至一折购买（1核2g服务器仅8.3/月，比学生机还便宜，真的强烈推荐屯3年）。老用户可以加入我的战队，然后分享自己的链接，可以获得红包和25%的返现，我们的战队目前300位新人，所以可以排进前100，后面可以瓜分百万现金（按拉新人数瓜分现金，拉的越多分的越多！不要自己重新开战队，后面不能参与瓜分现金）。
 
 
 | Ⅰ  | Ⅱ | Ⅲ | Ⅳ | Ⅴ | Ⅵ | Ⅶ | Ⅷ | Ⅸ | Ⅹ |
