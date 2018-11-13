@@ -1,6 +1,7 @@
 仓库新增了【备战春招/秋招系列】，希望可以为马上面临春招或者以后需要面试的小老哥助力！拟定一周更新2篇内容。
 > 腾讯云双11一折活动链接：https://cloud.tencent.com/redirect.php?redirect=1034&cps_key=2b96dd3b35e69197e2f3dfb779a6139b&from=console
-> 腾讯云新用户代金券：https://cloud.tencent.com/redirect.php?redirect=1025&cps_key=2b96dd3b35e69197e2f3dfb779a6139b&from=console
+>
+> 腾讯云新用户大额代金券：https://cloud.tencent.com/redirect.php?redirect=1025&cps_key=2b96dd3b35e69197e2f3dfb779a6139b&from=console
 
 
 | Ⅰ  | Ⅱ | Ⅲ | Ⅳ | Ⅴ | Ⅵ | Ⅶ | Ⅷ | Ⅸ | Ⅹ |
