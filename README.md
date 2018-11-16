@@ -1,3 +1,9 @@
+<div align="center">  
+
+<img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-16/98431228.jpg" width=""/> 
+
+</div>
+
 仓库新增了【备战春招/秋招系列】，希望可以为马上面临春招或者以后需要面试的小老哥助力！拟定一周更新2篇内容。
 > 腾讯云热门云产品1折起，送13000元续费/升级大礼包：https://cloud.tencent.com/redirect.php?redirect=1034&cps_key=2b96dd3b35e69197e2f3dfb779a6139b&from=console
 >
