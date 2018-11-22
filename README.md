@@ -1,4 +1,4 @@
-我整理了一份面试相关资源（视频+PDF文档） 如果大家需要的话可以点击此链接[添加我的微信](#最后) （记得备注来自Github），成功通过好友请求之后回复“面试”免费领取！
+[月底最后一波知识福利（建议微信断打开）](https://mp.weixin.qq.com/s/jNwhlHvR2EB_f4z0hy1rfA)。我整理了一份面试相关资源（视频+PDF文档） 如果大家需要的话可以点击此链接[添加我的微信](#最后) （记得备注来自Github），成功通过好友请求之后回复“面试”免费领取！
 <div align="center">  
 
 <img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-16/49833984.jpg" width=""/>
