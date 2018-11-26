@@ -1,3 +1,5 @@
+为了增加大家的阅读体验，我重新进行了排版，并且增加了较为消息的目录供大家参考！如果有老哥对操作系统比较重要的知识总结过的话，欢迎找我哦！
+
 <div align="center">  
 
 <img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-16/49833984.jpg" width=""/>
