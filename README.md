@@ -122,7 +122,7 @@
 ### Linux相关
 
 * [后端程序员必备的 Linux 基础知识](https://github.com/Snailclimb/Java-Guide/blob/master/操作系统/后端程序员必备的Linux基础知识.md)  
-
+* [Shell 编程入门](https://github.com/Snailclimb/Java-Guide/blob/master/操作系统/Shell.md)  
 ## :pencil2: 主流框架/软件
 
 ### Spring
