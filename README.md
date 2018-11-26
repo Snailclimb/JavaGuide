@@ -15,7 +15,7 @@
 
 ## 目录
 
-- [Java](#coffee-java)
+- [:coffee: Java](#coffee-java)
   - [Java/J2EE 基础](#javaj2ee-基础)
   - [Java 集合框架](#java-集合框架)
   - [Java 多线程](#java-多线程)
