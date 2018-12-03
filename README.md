@@ -1,6 +1,6 @@
 【安利一下】今开始支付宝红包还挺大的！打开支付宝首页搜索“567179137” 立即领红包。
 
-为了增加大家的阅读体验，我重新进行了排版，并且增加了较为详细的目录供大家参考！如果有老哥对操作系统比较重要的知识总结过的话，欢迎找我哦！如果想学 SpringBoot 的话，推荐笔主的另外一个仓库[springboot-integration-examples](https://github.com/Snailclimb/springboot-integration-examples)
+为了增加大家的阅读体验，我重新进行了排版，并且增加了较为详细的目录供大家参考！如果有老哥对操作系统比较重要的知识总结过的话，欢迎找我哦！如果想学 SpringBoot 的话，推荐笔主的另外一个仓库[springboot-integration-examples](https://github.com/Snailclimb/springboot-integration-examples),如果需要买阿里云服务器的话，这里有一些福利了解一下：[阿里云服务器优惠福利](#福利)。
 
 <div align="center">  
 
@@ -11,10 +11,7 @@
 
 </div>
 
-仓库新增了【备战春招/秋招系列】，希望可以为马上面临春招或者以后需要面试的小老哥助力！目前更新了美团常见面试题以及一些面试必备内容。下面是腾讯云双11做的活动，最后几天了哦，秒杀的服务器很便宜哦！
-> 腾讯云热门云产品1折起，送13000元续费/升级大礼包：https://cloud.tencent.com/redirect.php?redirect=1034&cps_key=2b96dd3b35e69197e2f3dfb779a6139b&from=console
->
-> 腾讯云新用户大额代金券：https://cloud.tencent.com/redirect.php?redirect=1025&cps_key=2b96dd3b35e69197e2f3dfb779a6139b&from=console
+仓库新增了【备战春招/秋招系列】，希望可以为马上面临春招或者以后需要面试的小老哥助力！目前更新了美团常见面试题以及一些面试必备内容。
 
 
 ## 目录
