@@ -1,6 +1,5 @@
-【安利一下】今开始支付宝红包还挺大的！打开支付宝首页搜索“567179137” 立即领红包。
 
-为了增加大家的阅读体验，我重新进行了排版，并且增加了较为详细的目录供大家参考！如果有老哥对操作系统比较重要的知识总结过的话，欢迎找我哦！如果想学 SpringBoot 的话，推荐笔主的另外一个仓库[springboot-integration-examples](https://github.com/Snailclimb/springboot-integration-examples),如果需要买阿里云服务器的话，这里有一些福利了解一下：[阿里云服务器优惠福利](#福利)。
+为了增加大家的阅读体验，我重新进行了排版，并且增加了较为详细的目录供大家参考！如果有老哥对操作系统比较重要的知识总结过的话，欢迎找我哦！如果想学 SpringBoot 的话，推荐笔主的另外一个仓库[springboot-integration-examples](https://github.com/Snailclimb/springboot-integration-examples),如果需要买阿里云服务器的话，这里有一些福利了解一下：[阿里云服务器优惠福利](#福利)。笔主最近在学的一门课程推荐：[程序员的数学课推荐](#程序员的数学课)。
 
 <div align="center">  
 
@@ -219,6 +218,10 @@
 2. [高性能企业级性能云服务器限时2折起,2核4G仅需720元/年](https://promotion.aliyun.com/ntms/act/enterprise-discount.html?userCode=hf47liqn)
 3. [最高￥1888云产品通用代金券](https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=hf47liqn) 
 4. [阿里云建站服务](https://promotion.aliyun.com/ntms/act/jianzhanquan.html?userCode=hf47liqn)（企业官网、电商网站，多种可供选择模板，代金券免费领取）
+
+### 程序员的数学课
+
+![程序员的数学课](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-12-4/71245138.jpg)
 
 ### 公众号
 
