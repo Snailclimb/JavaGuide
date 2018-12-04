@@ -221,7 +221,7 @@
 
 ### 程序员的数学课
 
-![程序员的数学课](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-12-4/71245138.jpg)
+![程序员的数学课](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-12-4/56085913.jpg)
 
 ### 公众号
 
