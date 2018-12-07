@@ -118,7 +118,7 @@
 
 ### Dubbo
 
-* [Dubbo 总结](https://github.com/Snailclimb/Java-Guide/blob/master/计算机网络与数据通信/.md)
+* [Dubbo 总结](https://github.com/Snailclimb/Java-Guide/blob/master/计算机网络与数据通信/dubbo.md)
 
 ## :iphone: 操作系统
 
