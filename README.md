@@ -1,5 +1,9 @@
+> 工作一年以上的小伙伴可以加这个交流群，群内有免费公开课,现在加入就送Java架构师进阶系列电子书籍：[![QQ群](https://img.shields.io/badge/QQ%E7%BE%A4-959442351-blue.svg)](https://jq.qq.com/?_wv=1027&k=5tjF8vk).
+>
+> 阿里云双12正在做活动啦，两折，需要的不要错过！新人专属,活动地址：[https://m.aliyun.com/act/team1212?params=N.TD4MOG6m2w](https://m.aliyun.com/act/team1212?params=N.TD4MOG6m2w)
 
 为了优化大家的阅读体验，我重新进行了排版，并且增加了较为详细的目录供大家参考！如果有老哥对操作系统比较重要的知识总结过的话，欢迎找我哦！如果想学 SpringBoot 的话，推荐笔主的另外一个仓库[springboot-integration-examples](https://github.com/Snailclimb/springboot-integration-examples)。笔主最近在学的一门课程推荐：[程序员的数学课推荐](#程序员的数学课)。
+
 
 <div align="center">  
 
@@ -27,6 +31,7 @@
 - [:computer: 计算机网络与数据通信](#computer-计算机网络与数据通信)
   - [网络相关](#网络相关)
   - [数据通信\(RESTful、RPC、消息队列\)](#数据通信restfulrpc消息队列)
+  - [Dubbo](#Dubbo)
 - [:iphone: 操作系统](#iphone-操作系统)
   - [Linux相关](#linux相关)
 - [:pencil2: 主流框架/软件](#pencil2-主流框架软件)
@@ -110,10 +115,13 @@
 * [计算机网络常见面试题](https://github.com/Snailclimb/Java_Guide/blob/master/计算机网络与数据通信/计算机网络.md)
 * [计算机网络基础知识总结](https://github.com/Snailclimb/Java_Guide/blob/master/计算机网络与数据通信/干货：计算机网络知识总结.md)
 
-### 数据通信(RESTful、RPC、消息队列)
+### 数据通信(RESTful、RPC、消息队列)总结
 
 * [数据通信(RESTful、RPC、消息队列)相关知识点总结](https://github.com/Snailclimb/Java-Guide/blob/master/计算机网络与数据通信/数据通信(RESTful、RPC、消息队列).md)
-  
+
+### Dubbo
+
+* [Dubbo 总结](https://github.com/Snailclimb/Java-Guide/blob/master/计算机网络与数据通信/dubbo.md)
 
 ## :iphone: 操作系统
 
