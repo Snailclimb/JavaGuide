@@ -1,4 +1,4 @@
-> 工作一年以上的小伙伴可以加这个交流群，群内有免费公开课,现在加入就送Java架构师进阶系列电子书籍：[![QQ群](https://img.shields.io/badge/QQ%E7%BE%A4-959442351-blue.svg)](https://jq.qq.com/?_wv=1027&k=5tjF8vk)
+> 工作一年以上的小伙伴可以加这个交流群，群内有免费公开课,现在加入就送Java架构师进阶系列电子书籍：[![QQ群](https://img.shields.io/badge/QQ%E7%BE%A4-959442351-blue.svg)](https://jq.qq.com/?_wv=1027&k=5tjF8vk).为阿里云免费打波广告，现在阿里云双12正在做活动啦，两折，需要的不要错过！
 
 <div align="center">  
 <a href="https://m.aliyun.com/act/team1212?params=N.TD4MOG6m2w"><img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-12-7/77714144.jpg" width=""/></a>
