@@ -1,17 +1,29 @@
-> 本文是“最最最常见Java面试题总结”系列第三周的文章。
-> 主要内容：
-> 1. Arraylist 与 LinkedList 异同
-> 2. ArrayList 与 Vector 区别
-> 3. HashMap的底层实现
-> 4. HashMap 和 Hashtable 的区别
-> 5. HashMap 的长度为什么是2的幂次方
-> 6. HashMap 多线程操作导致死循环问题
-> 7. HashSet 和 HashMap 区别
-> 8. ConcurrentHashMap 和 Hashtable 的区别
-> 9. ConcurrentHashMap线程安全的具体实现方式/底层具体实现
-> 10. 集合框架底层数据结构总结
 
 
+<!-- MarkdownTOC -->
+
+- [Arraylist 与 LinkedList 异同](#arraylist-与-linkedlist-异同)
+  - [补充：数据结构基础之双向链表](#补充：数据结构基础之双向链表)
+- [ArrayList 与 Vector 区别](#arraylist-与-vector-区别)
+- [HashMap的底层实现](#hashmap的底层实现)
+  - [JDK1.8之前](#jdk18之前)
+  - [JDK1.8之后](#jdk18之后)
+- [HashMap 和 Hashtable 的区别](#hashmap-和-hashtable-的区别)
+- [HashMap 的长度为什么是2的幂次方](#hashmap-的长度为什么是2的幂次方)
+- [HashMap 多线程操作导致死循环问题](#hashmap-多线程操作导致死循环问题)
+- [HashSet 和 HashMap 区别](#hashset-和-hashmap-区别)
+- [ConcurrentHashMap 和 Hashtable 的区别](#concurrenthashmap-和-hashtable-的区别)
+- [ConcurrentHashMap线程安全的具体实现方式/底层具体实现](#concurrenthashmap线程安全的具体实现方式底层具体实现)
+  - [JDK1.7（上面有示意图）](#jdk17（上面有示意图）)
+  - [JDK1.8 （上面有示意图）](#jdk18-（上面有示意图）)
+- [集合框架底层数据结构总结](#集合框架底层数据结构总结)
+  - [Collection](#collection)
+    - [1. List](#1-list)
+    - [2. Set](#2-set)
+  - [Map](#map)
+  - [推荐阅读：](#推荐阅读：)
+
+<!-- /MarkdownTOC -->
 
 ## Arraylist 与 LinkedList 异同
 
