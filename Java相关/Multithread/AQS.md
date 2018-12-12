@@ -1,9 +1,32 @@
 
-> 常见问题：AQS 原理？;CountDownLatch和CyclicBarrier了解吗,两者的区别是什么？用过Semaphore吗？
+
+> 常见问题：AQS原理？;CountDownLatch和CyclicBarrier了解吗,两者的区别是什么？用过Semaphore吗？
 
 **本节思维导图：**
 
 ![并发编程面试必备：AQS 原理以及 AQS 同步组件总结](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-10-31/61115865.jpg)
+
+<!-- MarkdownTOC -->
+
+- [1 AQS 简单介绍](#1-aqs-简单介绍)
+- [2 AQS 原理](#2-aqs-原理)
+  - [2.1 AQS 原理概览](#21-aqs-原理概览)
+  - [2.2 AQS 对资源的共享方式](#22-aqs-对资源的共享方式)
+  - [2.3 AQS底层使用了模板方法模式](#23-aqs底层使用了模板方法模式)
+- [3 Semaphore\(信号量\)-允许多个线程同时访问](#3-semaphore信号量-允许多个线程同时访问)
+- [4 CountDownLatch （倒计时器）](#4-countdownlatch-（倒计时器）)
+  - [4.1 CountDownLatch 的三种典型用法](#41-countdownlatch-的三种典型用法)
+  - [4.2 CountDownLatch 的使用示例](#42-countdownlatch-的使用示例)
+  - [4.3 CountDownLatch 的不足](#43-countdownlatch-的不足)
+  - [4.4 CountDownLatch相常见面试题：](#44-countdownlatch相常见面试题：)
+- [5 CyclicBarrier\(循环栅栏\)](#5-cyclicbarrier循环栅栏)
+  - [5.1 CyclicBarrier 的应用场景](#51-cyclicbarrier-的应用场景)
+  - [5.2 CyclicBarrier 的使用示例](#52-cyclicbarrier-的使用示例)
+  - [5.3 CyclicBarrier和CountDownLatch的区别](#53-cyclicbarrier和countdownlatch的区别)
+- [6 ReentrantLock 和 ReentrantReadWriteLock](#6-reentrantlock-和-reentrantreadwritelock)
+
+<!-- /MarkdownTOC -->
+
 
 ### 1 AQS 简单介绍
 AQS的全称为（AbstractQueuedSynchronizer），这个类在java.util.concurrent.locks包下面。
@@ -115,38 +138,38 @@ tryReleaseShared(int)//共享方式。尝试释放资源，成功则返回true�
  * @Description: 需要一次性拿一个许可的情况
  */
 public class SemaphoreExample1 {
-	// 请求的数量
-	private static final int threadCount = 550;
+  // 请求的数量
+  private static final int threadCount = 550;
 
-	public static void main(String[] args) throws InterruptedException {
-		// 创建一个具有固定线程数量的线程池对象（如果这里线程池的线程数量给太少的话你会发现执行的很慢）
-		ExecutorService threadPool = Executors.newFixedThreadPool(300);
-		// 一次只能允许执行的线程数量。
-		final Semaphore semaphore = new Semaphore(20);
+  public static void main(String[] args) throws InterruptedException {
+    // 创建一个具有固定线程数量的线程池对象（如果这里线程池的线程数量给太少的话你会发现执行的很慢）
+    ExecutorService threadPool = Executors.newFixedThreadPool(300);
+    // 一次只能允许执行的线程数量。
+    final Semaphore semaphore = new Semaphore(20);
 
-		for (int i = 0; i < threadCount; i++) {
-			final int threadnum = i;
-			threadPool.execute(() -> {// Lambda 表达式的运用
-				try {
-					semaphore.acquire();// 获取一个许可，所以可运行线程数量为20/1=20
-					test(threadnum);
-					semaphore.release();// 释放一个许可
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+    for (int i = 0; i < threadCount; i++) {
+      final int threadnum = i;
+      threadPool.execute(() -> {// Lambda 表达式的运用
+        try {
+          semaphore.acquire();// 获取一个许可，所以可运行线程数量为20/1=20
+          test(threadnum);
+          semaphore.release();// 释放一个许可
+        } catch (InterruptedException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
 
-			});
-		}
-		threadPool.shutdown();
-		System.out.println("finish");
-	}
+      });
+    }
+    threadPool.shutdown();
+    System.out.println("finish");
+  }
 
-	public static void test(int threadnum) throws InterruptedException {
-		Thread.sleep(1000);// 模拟请求的耗时操作
-		System.out.println("threadnum:" + threadnum);
-		Thread.sleep(1000);// 模拟请求的耗时操作
-	}
+  public static void test(int threadnum) throws InterruptedException {
+    Thread.sleep(1000);// 模拟请求的耗时操作
+    System.out.println("threadnum:" + threadnum);
+    Thread.sleep(1000);// 模拟请求的耗时操作
+  }
 }
 ```
 
@@ -155,9 +178,9 @@ public class SemaphoreExample1 {
 当然一次也可以一次拿取和释放多个许可，不过一般没有必要这样做：
 
 ```java
-					semaphore.acquire(5);// 获取5个许可，所以可运行线程数量为20/5=4
-					test(threadnum);
-					semaphore.release(5);// 获取5个许可，所以可运行线程数量为20/5=4
+          semaphore.acquire(5);// 获取5个许可，所以可运行线程数量为20/5=4
+          test(threadnum);
+          semaphore.release(5);// 获取5个许可，所以可运行线程数量为20/5=4
 ```
 
 除了 `acquire`方法之外，另一个比较常用的与之对应的方法是`tryAcquire`方法，该方法如果获取不到许可就立即返回false。
@@ -207,37 +230,37 @@ CountDownLatch是一个同步工具类，它允许一个或多个线程一直等
  * @Description: CountDownLatch 使用方法示例
  */
 public class CountDownLatchExample1 {
-	// 请求的数量
-	private static final int threadCount = 550;
+  // 请求的数量
+  private static final int threadCount = 550;
 
-	public static void main(String[] args) throws InterruptedException {
-		// 创建一个具有固定线程数量的线程池对象（如果这里线程池的线程数量给太少的话你会发现执行的很慢）
-		ExecutorService threadPool = Executors.newFixedThreadPool(300);
-		final CountDownLatch countDownLatch = new CountDownLatch(threadCount);
-		for (int i = 0; i < threadCount; i++) {
-			final int threadnum = i;
-			threadPool.execute(() -> {// Lambda 表达式的运用
-				try {
-					test(threadnum);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} finally {
-					countDownLatch.countDown();// 表示一个请求已经被完成
-				}
+  public static void main(String[] args) throws InterruptedException {
+    // 创建一个具有固定线程数量的线程池对象（如果这里线程池的线程数量给太少的话你会发现执行的很慢）
+    ExecutorService threadPool = Executors.newFixedThreadPool(300);
+    final CountDownLatch countDownLatch = new CountDownLatch(threadCount);
+    for (int i = 0; i < threadCount; i++) {
+      final int threadnum = i;
+      threadPool.execute(() -> {// Lambda 表达式的运用
+        try {
+          test(threadnum);
+        } catch (InterruptedException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        } finally {
+          countDownLatch.countDown();// 表示一个请求已经被完成
+        }
 
-			});
-		}
-		countDownLatch.await();
-		threadPool.shutdown();
-		System.out.println("finish");
-	}
+      });
+    }
+    countDownLatch.await();
+    threadPool.shutdown();
+    System.out.println("finish");
+  }
 
-	public static void test(int threadnum) throws InterruptedException {
-		Thread.sleep(1000);// 模拟请求的耗时操作
-		System.out.println("threadnum:" + threadnum);
-		Thread.sleep(1000);// 模拟请求的耗时操作
-	}
+  public static void test(int threadnum) throws InterruptedException {
+    Thread.sleep(1000);// 模拟请求的耗时操作
+    System.out.println("threadnum:" + threadnum);
+    Thread.sleep(1000);// 模拟请求的耗时操作
+  }
 }
 
 ```
@@ -283,42 +306,42 @@ CyclicBarrier 可以用于多线程计算数据，最后合并计算结果的应
  * @Description: 测试 CyclicBarrier 类中带参数的 await() 方法
  */
 public class CyclicBarrierExample2 {
-	// 请求的数量
-	private static final int threadCount = 550;
-	// 需要同步的线程数量
-	private static final CyclicBarrier cyclicBarrier = new CyclicBarrier(5);
+  // 请求的数量
+  private static final int threadCount = 550;
+  // 需要同步的线程数量
+  private static final CyclicBarrier cyclicBarrier = new CyclicBarrier(5);
 
-	public static void main(String[] args) throws InterruptedException {
-		// 创建线程池
-		ExecutorService threadPool = Executors.newFixedThreadPool(10);
+  public static void main(String[] args) throws InterruptedException {
+    // 创建线程池
+    ExecutorService threadPool = Executors.newFixedThreadPool(10);
 
-		for (int i = 0; i < threadCount; i++) {
-			final int threadNum = i;
-			Thread.sleep(1000);
-			threadPool.execute(() -> {
-				try {
-					test(threadNum);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (BrokenBarrierException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			});
-		}
-		threadPool.shutdown();
-	}
+    for (int i = 0; i < threadCount; i++) {
+      final int threadNum = i;
+      Thread.sleep(1000);
+      threadPool.execute(() -> {
+        try {
+          test(threadNum);
+        } catch (InterruptedException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        } catch (BrokenBarrierException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+      });
+    }
+    threadPool.shutdown();
+  }
 
-	public static void test(int threadnum) throws InterruptedException, BrokenBarrierException {
-		System.out.println("threadnum:" + threadnum + "is ready");
-		try {
-			cyclicBarrier.await(2000, TimeUnit.MILLISECONDS);
-		} catch (Exception e) {
-			System.out.println("-----CyclicBarrierException------");
-		}
-		System.out.println("threadnum:" + threadnum + "is finish");
-	}
+  public static void test(int threadnum) throws InterruptedException, BrokenBarrierException {
+    System.out.println("threadnum:" + threadnum + "is ready");
+    try {
+      cyclicBarrier.await(2000, TimeUnit.MILLISECONDS);
+    } catch (Exception e) {
+      System.out.println("-----CyclicBarrierException------");
+    }
+    System.out.println("threadnum:" + threadnum + "is finish");
+  }
 
 }
 ```
@@ -360,40 +383,40 @@ threadnum:6is finish
  * @Description: 新建 CyclicBarrier 的时候指定一个 Runnable
  */
 public class CyclicBarrierExample3 {
-	// 请求的数量
-	private static final int threadCount = 550;
-	// 需要同步的线程数量
-	private static final CyclicBarrier cyclicBarrier = new CyclicBarrier(5, () -> {
-		System.out.println("------当线程数达到之后，优先执行------");
-	});
+  // 请求的数量
+  private static final int threadCount = 550;
+  // 需要同步的线程数量
+  private static final CyclicBarrier cyclicBarrier = new CyclicBarrier(5, () -> {
+    System.out.println("------当线程数达到之后，优先执行------");
+  });
 
-	public static void main(String[] args) throws InterruptedException {
-		// 创建线程池
-		ExecutorService threadPool = Executors.newFixedThreadPool(10);
+  public static void main(String[] args) throws InterruptedException {
+    // 创建线程池
+    ExecutorService threadPool = Executors.newFixedThreadPool(10);
 
-		for (int i = 0; i < threadCount; i++) {
-			final int threadNum = i;
-			Thread.sleep(1000);
-			threadPool.execute(() -> {
-				try {
-					test(threadNum);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (BrokenBarrierException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			});
-		}
-		threadPool.shutdown();
-	}
+    for (int i = 0; i < threadCount; i++) {
+      final int threadNum = i;
+      Thread.sleep(1000);
+      threadPool.execute(() -> {
+        try {
+          test(threadNum);
+        } catch (InterruptedException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        } catch (BrokenBarrierException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+      });
+    }
+    threadPool.shutdown();
+  }
 
-	public static void test(int threadnum) throws InterruptedException, BrokenBarrierException {
-		System.out.println("threadnum:" + threadnum + "is ready");
-		cyclicBarrier.await();
-		System.out.println("threadnum:" + threadnum + "is finish");
-	}
+  public static void test(int threadnum) throws InterruptedException, BrokenBarrierException {
+    System.out.println("threadnum:" + threadnum + "is ready");
+    cyclicBarrier.await();
+    System.out.println("threadnum:" + threadnum + "is finish");
+  }
 
 }
 ```
