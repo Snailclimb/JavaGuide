@@ -1,11 +1,5 @@
 
-
-> 常见问题：AQS原理？;CountDownLatch和CyclicBarrier了解吗,两者的区别是什么？用过Semaphore吗？
-
-**本节思维导图：**
-
-![并发编程面试必备：AQS 原理以及 AQS 同步组件总结](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-10-31/61115865.jpg)
-
+**目录：**
 <!-- MarkdownTOC -->
 
 - [1 AQS 简单介绍](#1-aqs-简单介绍)
@@ -14,11 +8,11 @@
   - [2.2 AQS 对资源的共享方式](#22-aqs-对资源的共享方式)
   - [2.3 AQS底层使用了模板方法模式](#23-aqs底层使用了模板方法模式)
 - [3 Semaphore\(信号量\)-允许多个线程同时访问](#3-semaphore信号量-允许多个线程同时访问)
-- [4 CountDownLatch （倒计时器）](#4-countdownlatch-（倒计时器）)
+- [4 CountDownLatch （倒计时器）](#4-countdownlatch-倒计时器)
   - [4.1 CountDownLatch 的三种典型用法](#41-countdownlatch-的三种典型用法)
   - [4.2 CountDownLatch 的使用示例](#42-countdownlatch-的使用示例)
   - [4.3 CountDownLatch 的不足](#43-countdownlatch-的不足)
-  - [4.4 CountDownLatch相常见面试题：](#44-countdownlatch相常见面试题：)
+  - [4.4 CountDownLatch相常见面试题：](#44-countdownlatch相常见面试题)
 - [5 CyclicBarrier\(循环栅栏\)](#5-cyclicbarrier循环栅栏)
   - [5.1 CyclicBarrier 的应用场景](#51-cyclicbarrier-的应用场景)
   - [5.2 CyclicBarrier 的使用示例](#52-cyclicbarrier-的使用示例)
@@ -26,6 +20,12 @@
 - [6 ReentrantLock 和 ReentrantReadWriteLock](#6-reentrantlock-和-reentrantreadwritelock)
 
 <!-- /MarkdownTOC -->
+
+> 常见问题：AQS原理？;CountDownLatch和CyclicBarrier了解吗,两者的区别是什么？用过Semaphore吗？
+
+**本节思维导图：**
+
+![并发编程面试必备：AQS 原理以及 AQS 同步组件总结](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-10-31/61115865.jpg)
 
 
 ### 1 AQS 简单介绍
