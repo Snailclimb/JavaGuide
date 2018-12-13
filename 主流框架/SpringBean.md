@@ -65,7 +65,7 @@ public class ServiceImpl{
 
 ### 3. request——每一次HTTP请求都会产生一个新的bean，该bean仅在当前HTTP request内有效
 
-**request只适用于Web程序，每一次 HTTP 请求都会产生一个新的bean，同时该bean仅在当前HTTP request内有效，当请求结束后，该对象的生命周期即告结束。** 在 XML 中将 bean 定义成 prototype ，可以这样配置：
+**request只适用于Web程序，每一次 HTTP 请求都会产生一个新的bean，同时该bean仅在当前HTTP request内有效，当请求结束后，该对象的生命周期即告结束。** 在 XML 中将 bean 定义成 request ，可以这样配置：
 
 ```java
 <bean id="loginAction" class=cn.csdn.LoginAction" scope="request"/>
