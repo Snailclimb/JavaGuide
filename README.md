@@ -4,7 +4,7 @@
 
 **【强烈推荐】** 我自费在我的公众号给大家送了波福利：[【冬日的温暖】简单说下自己近期的感受，再自费送点礼物给大家](https://mp.weixin.qq.com/s/lOdgU7aJ0iNz4opb_2MsJA)(推荐使用微信打开) ，欢迎各位参加。
 
-为了优化大家的阅读体验，我重新进行了排版，并且增加了较为详细的目录供大家参考！如果有老哥对操作系统比较重要的知识总结过的话，欢迎找我哦！如果想学 SpringBoot 的话，推荐笔主的另外一个仓库[springboot-integration-examples](https://github.com/Snailclimb/springboot-integration-examples)。笔主最近在学的一门课程推荐：[程序员的数学课推荐](#程序员的数学课)。12.7日新增内容：[Dubbo 总结第一弹！](https://github.com/Snailclimb/Java-Guide/blob/master/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1/dubbo.md),12-10号新增内容：[并发容器总结](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/Multithread/并发容器总结.md)
+为了优化大家的阅读体验，我重新进行了排版，并且增加了较为详细的目录供大家参考！如果有老哥对操作系统比较重要的知识总结过的话，欢迎找我哦！如果想学 SpringBoot 的话，推荐笔主的另外一个仓库[springboot-integration-examples](https://github.com/Snailclimb/springboot-integration-examples)。笔主最近在学的一门课程推荐：[玩转 Git 三剑客](#玩转Git三剑客)。12.7日新增内容：[Dubbo 总结第一弹！](https://github.com/Snailclimb/Java-Guide/blob/master/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1/dubbo.md),12-10号新增内容：[并发容器总结](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/Multithread/并发容器总结.md)
 
 
 <div align="center">  
@@ -226,9 +226,9 @@
 3. [最高￥1888云产品通用代金券](https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=hf47liqn) 
 4. [阿里云建站服务](https://promotion.aliyun.com/ntms/act/jianzhanquan.html?userCode=hf47liqn)（企业官网、电商网站，多种可供选择模板，代金券免费领取）
 
-### 程序员的数学课
+### 玩转Git三剑客
 
-![程序员的数学课](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-12-4/56085913.jpg)
+![玩转Git三剑客](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-12-14/95366616.jpg)
 
 ### 公众号
 
