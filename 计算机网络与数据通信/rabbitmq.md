@@ -141,6 +141,8 @@ headers 类型的交换器不依赖于路由键的匹配规则来路由消息，
 
 ## 二 安装 RabbitMq
 
+通过 Docker 安装非常方便，只需要几条命令就好了，我这里是只说一下常规安装方法。
+
 前面提到了 RabbitMQ 是由 Erlang语言编写的，也正因如此，在安装RabbitMQ 之前需要安装 Erlang。
 
 ### 2.1 安装 erlang
