@@ -133,7 +133,7 @@ direct 类型常用在处理有优先级的任务，根据任务的优先级把�
 - 路由键为 “com.hidden.client” 的消息只会路由到 Queue2 中；
 - 路由键为 “com.hidden.demo” 的消息只会路由到 Queue2 中；
 - 路由键为 “java.rabbitmq.demo” 的消息只会路由到Queuel中；
-- 路由键为 “java.util、concurrent” 的消息将会被丢弃或者返回给生产者（需要设置 mandatory 参数），因为它没有匹配任何路由键。
+- 路由键为 “java.util.concurrent” 的消息将会被丢弃或者返回给生产者（需要设置 mandatory 参数），因为它没有匹配任何路由键。
 
 ##### ④ headers(不推荐)
 
