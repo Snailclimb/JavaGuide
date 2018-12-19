@@ -362,11 +362,15 @@ hashCode() 的作用是获取哈希码，也称为散列码；它实际上是返
 ![](https://user-gold-cdn.xitu.io/2018/8/9/1651f19d7c4e93a3?w=876&h=492&f=png&s=128092)
 
 **备注：**
-1、t.start() 是开启线程，真正运行线程是t.run() 方法
-2、只有开启之后，获取时间片段的线程才能运行。
-3、Thread.yield();方法的作：能将running状态的线程恢复到Runable状态。一般在多线程调试中使用。
-4、Thread.sleep();线程从running--->block阻塞状态，但是线程不会被释放。
-5、Thread.wait();线程进入等待状态，此时锁会被释放。当执行t.notify()或 t.notifyAll()时，线程被唤醒。
+1. t.start() 是开启线程，真正运行线程是t.run() 方法。
+
+2. 只有开启之后，获取时间片段的线程才能运行。
+
+3. Thread.yield();方法的作：能将running状态的线程恢复到Runable状态。一般在多线程调试中使用。
+
+4. Thread.sleep();线程从running--->block阻塞状态，但是线程不会被释放。
+
+5. Thread.wait();线程进入等待状态，此时锁会被释放。当执行t.notify()或 t.notifyAll()时，线程被唤醒。
 
 
 ## 31 关于 final 关键字的一些总结
