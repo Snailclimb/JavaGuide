@@ -59,8 +59,8 @@ ArraysList 实现了 RandomAccess 接口， 而 LinkedList 没有实现。为什
 
 **下面再总结一下 list 的遍历方式选择：**
 
-- 实现了RadmoAcces接口的list，优先选择普通for循环 ，其次foreach,
-- 未实现RadmoAcces接口的ist， 优先选择iterator遍历（foreach遍历底层也是通过iterator实现的），大size的数据，千万不要使用普通for循环
+- 实现了RandomAccess接口的list，优先选择普通for循环 ，其次foreach,
+- 未实现RandomAccess接口的ist， 优先选择iterator遍历（foreach遍历底层也是通过iterator实现的），大size的数据，千万不要使用普通for循环
 
 
 ### 补充：数据结构基础之双向链表
