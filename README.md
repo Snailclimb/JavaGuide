@@ -2,7 +2,7 @@
 >
 > **【强烈推荐】** 阿里云双12正在做活动啦，两折，需要的不要错过！新人专属（老用户如果不想错过阿里云年底这波福利的话，可以用别人身份证再注册一个阿里云账号）,活动地址：[https://m.aliyun.com/act/team1212?spm=5176.8142029.1139928.2.90ee6d3e7cFdsl#/](https://m.aliyun.com/act/team1212?params=N.TD4MOG6m2w) 。1核1G云服务器1年CPU100%不限性能仅需277，3年仅需708,强烈推荐！
 
-为了优化大家的阅读体验，我重新进行了排版，并且增加了较为详细的目录供大家参考！如果有老哥对操作系统比较重要的知识总结过的话，欢迎找我哦！如果想学 SpringBoot 的话，推荐笔主的另外一个仓库[springboot-integration-examples](https://github.com/Snailclimb/springboot-integration-examples)。笔主最近在学的一门课程推荐：[玩转 Git 三剑客](#玩转Git三剑客)。
+为了优化大家的阅读体验，我重新进行了排版，并且增加了较为详细的目录供大家参考！如果有老哥对操作系统比较重要的知识总结过的话，欢迎找我哦！如果想学 SpringBoot 的话，推荐笔主的另外一个仓库[springboot-integration-examples](https://github.com/Snailclimb/springboot-integration-examples)。
 
 <div align="center">  
 <img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-16/49833984.jpg" width=""/>
@@ -39,6 +39,7 @@
 - [:musical_note: 面试必备](#musical_note-面试必备)
   - [备战春招/秋招系列](#备战春招秋招系列)
   - [最最最常见的Java面试题总结](#最最最常见的java面试题总结)
+  - [Java学习/面试开源仓库推荐](#Java学习面试开源仓库推荐)
 - [:art: 闲谈](#art-闲谈)
 - [:envelope: 说明](#envelope-说明)
   - [项目介绍](#项目介绍)
@@ -176,13 +177,15 @@
 * [第三周（2018-08-22）](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/这几道Java集合框架面试题几乎必问.md) （Arraylist 与 LinkedList 异同、ArrayList 与 Vector 区别、HashMap的底层实现、HashMap 和 Hashtable 的区别、HashMap 的长度为什么是2的幂次方、HashSet 和 HashMap 区别、ConcurrentHashMap 和 Hashtable 的区别、ConcurrentHashMap线程安全的具体实现方式/底层具体实现、集合框架底层数据结构总结）
 * [第四周(2018-8-30).md](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/最最最常见的Java面试题总结/第四周(2018-8-30).md) （主要内容是几道面试常问的多线程基础题。）
 
+### Java学习/面试开源仓库推荐
+
+* [盘点一下Github上开源的Java面试/学习相关的仓库，看完弄懂薪资至少增加10k](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/JavaInterviewGithub.md)
     
 ## :art: 闲谈  
 
 * [选择技术方向都要考虑哪些因素](https://github.com/Snailclimb/Java-Guide/blob/master/其他/选择技术方向都要考虑哪些因素.md) 
 * [结束了我短暂的秋招，说点自己的感受](https://github.com/Snailclimb/JavaGuide/blob/master/%E5%85%B6%E4%BB%96/2018%20%E7%A7%8B%E6%8B%9B.md) 
  
-
 ***
 
 ## :envelope: 说明
@@ -222,9 +225,6 @@
 3. [最高￥1888云产品通用代金券](https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=hf47liqn) 
 4. [阿里云建站服务](https://promotion.aliyun.com/ntms/act/jianzhanquan.html?userCode=hf47liqn)（企业官网、电商网站，多种可供选择模板，代金券免费领取）
 
-### 玩转Git三剑客
-
-![玩转Git三剑客](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-12-14/95366616.jpg)
 
 ### 公众号
 
