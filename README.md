@@ -1,234 +1,81 @@
-> 工作一年以上的小伙伴可以加这个交流群，群内有免费公开课,现在加入就送Java架构师进阶系列电子书籍：[![QQ群](https://img.shields.io/badge/QQ%E7%BE%A4-959442351-blue.svg)](https://jq.qq.com/?_wv=1027&k=5tjF8vk).
->
-> **【强烈推荐，最后3天】** 阿里云双12正在做活动啦，两折，需要的不要错过！新人专属（老用户如果不想错过阿里云年底这波福利的话，可以用别人身份证再注册一个阿里云账号）,活动地址：[https://m.aliyun.com/act/team1212?spm=5176.8142029.1139928.2.90ee6d3e7cFdsl#/](https://m.aliyun.com/act/team1212?params=N.TD4MOG6m2w) 。1核1G云服务器1年CPU100%不限性能仅需277，3年仅需708,强烈推荐！
-
-为了优化大家的阅读体验，我重新进行了排版，并且增加了较为详细的目录供大家参考！如果有老哥对操作系统比较重要的知识总结过的话，欢迎找我哦！如果想学 SpringBoot 的话，推荐笔主的另外一个仓库[springboot-integration-examples](https://github.com/Snailclimb/springboot-integration-examples)。
-
-<div align="center">  
-<img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-16/49833984.jpg" width=""/>
-</br>
-
-[![QQ群](https://img.shields.io/badge/QQ%E7%BE%A4-577511615-red.svg)](//shang.qq.com/wpa/qunwpa?idkey=f128b25264f43170c2721e0789b24b180fc482113b6f256928b6198ae07fe5d4)
-
-</div>
-
-## 目录
-
-- [:coffee: Java](#coffee-java)
-  - [Java/J2EE 基础](#javaj2ee-基础)
-  - [Java 集合框架](#java-集合框架)
-  - [Java 多线程](#java-多线程)
-  - [Java IO 与 NIO](#java-io-与-nio)
-  - [Java 虚拟机 jvm](#java-虚拟机-jvm)
-- [:open_file_folder: 数据结构与算法](#open_file_folder-数据结构与算法)
-  - [数据结构](#数据结构)
-  - [算法](#算法)
-- [:computer: 计算机网络与数据通信](#computer-计算机网络与数据通信)
-  - [网络相关](#网络相关)
-  - [数据通信\(RESTful、RPC、消息队列\)](#数据通信restfulrpc消息队列)
-- [:iphone: 操作系统](#iphone-操作系统)
-  - [Linux相关](#linux相关)
-- [:pencil2: 主流框架/软件](#pencil2-主流框架软件)
-  - [Spring](#spring)
-  - [ZooKeeper](#zookeeper)
-- [:floppy_disk: 数据存储](#floppy_disk-数据存储)
-  - [MySQL](#mysql)
-  - [Redis](#redis)
-- [:punch: 架构](#punch-架构)
-  - [分布式相关](#分布式相关)
-- [:musical_note: 面试必备](#musical_note-面试必备)
-  - [备战春招/秋招系列](#备战春招秋招系列)
-  - [最最最常见的Java面试题总结](#最最最常见的java面试题总结)
-  - [Java学习/面试开源仓库推荐](#Java学习面试开源仓库推荐)
-- [:art: 闲谈](#art-闲谈)
-- [:envelope: 说明](#envelope-说明)
-  - [项目介绍](#项目介绍)
-  - [关于转载](#关于转载)
-  - [如何对该开源文档进行贡献](#如何对该开源文档进行贡献)
-  - [为什么要做这个开源文档？](#为什么要做这个开源文档)
-  - [最后](#最后)
-  - [福利](#福利)
-  - [公众号](#公众号)
-  
-## :coffee: Java
-
-### Java/J2EE 基础
-
-* [Java 基础知识回顾](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/Java基础知识.md)
-* [J2EE 基础知识回顾](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/J2EE基础知识.md)
-* [static、final、this、super关键字总结](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/final、static、this、super.md) 
-* [static 关键字详解](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/static.md)   
-    
-### Java 集合框架
+　　身边的朋友或者公众号的粉丝很多人都向我询问过:“我是双非/三本/专科学校的，我有机会进入大厂吗？”、“非计算机专业的学生能学好吗？”、“如何学习Java？”、“Java学习该学那些东西？”、“我该如何准备Java面试？”......这些方面的问题。我会根据自己的一点经验对大部分人关心的这些问题进行答疑解惑。现在又刚好赶上考研结束，这篇文章也算是给考研结束准备往Java后端方向发展的朋友们指名一条学习之路。道理懂了如果没有实际行动，那这篇文章对你或许没有任何意义。
 
-* [这几道Java集合框架面试题几乎必问](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/这几道Java集合框架面试题几乎必问.md)
-* [Java 集合框架常见面试题总结](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/Java集合框架常见面试题总结.md)
-* [ArrayList 源码学习](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/ArrayList.md) 
-* [【面试必备】透过源码角度一步一步带你分析 ArrayList 扩容机制](https://github.com/Snailclimb/JavaGuide/blob/master/Java相关/ArrayList-Grow.md)    
-* [LinkedList 源码学习](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/LinkedList.md)   
-* [HashMap(JDK1.8)源码学习](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/HashMap.md)  
-   
-### Java 多线程
-* [多线程系列文章](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/多线程系列.md)
-* [并发编程面试必备：synchronized 关键字使用、底层原理、JDK1.6 之后的底层优化以及 和ReenTrantLock 的对比](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/synchronized.md)
-* [并发编程面试必备：乐观锁与悲观锁](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/面试必备之乐观锁与悲观锁.md)
-* [并发编程面试必备：JUC 中的 Atomic 原子类总结](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/Multithread/Atomic.md)
-* [并发编程面试必备：AQS 原理以及 AQS 同步组件总结](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/Multithread/AQS.md)
-* [BATJ都爱问的多线程面试题](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/Multithread/BATJ都爱问的多线程面试题.md)
-* [并发容器总结](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/Multithread/并发容器总结.md)
-
-### Java 虚拟机 jvm
-
-* [可能是把Java内存区域讲的最清楚的一篇文章](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/可能是把Java内存区域讲的最清楚的一篇文章.md)
-* [搞定JVM垃圾回收就是这么简单](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/搞定JVM垃圾回收就是这么简单.md)
-* [《深入理解Java虚拟机》第2版学习笔记](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/Java虚拟机（jvm）.md)
-
-
-### Java IO 与 NIO
-
-* [Java IO 与 NIO系列文章](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/Java%20IO与NIO.md)
-
-### 设计模式
-
-* [设计模式系列文章](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/设计模式.md)
-
-## :open_file_folder: 数据结构与算法
-   
-### 数据结构
+### Question1:我是双非/三本/专科学校的，我有机会进入大厂吗？
 
-* [数据结构知识学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/数据结构与算法/数据结构.md)
+　　我自己也是非985非211学校的，结合自己的经历以及一些朋友的经历，我觉得让我回答这个问题再好不过。
 
-### 算法
+　　首先，我觉得学校歧视很正常，真的太正常了，如果要抱怨的话，你只能抱怨自己没有进入名校。但是，千万不要动不动说自己学校差，动不动拿自己学校当做自己进不了大厂的借口，学历只是筛选简历的很多标准中的一个而已，如果你够优秀，简历够丰富，你也一样可以和名校同学一起同台竞争。
 
-* [算法学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/数据结构与算法/算法.md)  
-* [常见安全算法（MD5、SHA1、Base64等等）总结](https://github.com/Snailclimb/Java_Guide/blob/master/数据结构与算法/常见安全算法（MD5、SHA1、Base64等等）总结.md)
-* [算法总结——几道常见的子符串算法题 ](https://github.com/Snailclimb/Java_Guide/blob/master/数据结构与算法/搞定BAT面试——几道常见的子符串算法题.md)
-* [算法总结——几道常见的链表算法题 ](https://github.com/Snailclimb/Java_Guide/blob/master/数据结构与算法/Leetcode-LinkList1.md)   
+　　企业HR肯定是更喜欢高学历的人，毕竟985，211优秀人才比例肯定比普通学校高很多，HR团队肯定会优先在这些学校里选。这就好比相亲，你是愿意在很多优秀的人中选一个优秀的，还是愿意在很多普通的人中选一个优秀的呢？
+　　
+　　双非本科甚至是二本、三本甚至是专科的同学也有很多进入大厂的，不过比率相比于名校的低很多而已。从大厂招聘的结果上看，高学历人才的数量占据大头，那些成功进入BAT、美团，京东，网易等大厂的双非本科甚至是二本、三本甚至是专科的同学往往是因为具备丰富的项目经历或者在某个含金量比较高的竞赛比如ACM中取得了不错的成绩。**一部分学历不突出但能力出众的面试者能够进入大厂并不是说明学历不重要，而是学历的软肋能够通过其他的优势来弥补。** 所以，如果你的学校不够好而你自己又想去大厂的话，建议你可以从这几点来做：**①尽量在面试前最好有一个可以拿的出手的项目；②有实习条件的话，尽早出去实习，实习经历也会是你的简历的一个亮点（有能力在大厂实习最佳！）；③参加一些含金量比较高的比赛，拿不拿得到名次没关系，重在锻炼。**
 
-## :computer: 计算机网络与数据通信
 
-### 网络相关
+### Question2:非计算机专业的学生能学好Java后台吗？我能进大厂吗？
 
-* [计算机网络常见面试题](https://github.com/Snailclimb/Java_Guide/blob/master/计算机网络与数据通信/计算机网络.md)
-* [计算机网络基础知识总结](https://github.com/Snailclimb/Java_Guide/blob/master/计算机网络与数据通信/干货：计算机网络知识总结.md)
+　　当然可以！现在非科班的程序员很多，很大一部分原因是互联网行业的工资比较高。我们学校外面的培训班里面90%都是非科班，我觉得他们很多人学的都还不错。另外，我的一个朋友本科是机械专业，大一开始自学安卓，技术贼溜，在我看来他比大部分本科是计算机的同学学的还要好。参考Question1的回答，即使你是非科班程序员，如果你想进入大厂的话，你也可以通过自己的其他优势来弥补。
 
-### 数据通信(RESTful、RPC、消息队列)总结
+　　我觉得我们不应该因为自己的专业给自己划界限或者贴标签，说实话，很多科班的同学可能并不如你，你以为科班的同学就会认真听讲吗？还不是几乎全靠自己课下自学！不过如果你是非科班的话，你想要学好，那么注定就要舍弃自己本专业的一些学习时间，这是无可厚非的。
 
-* [数据通信(RESTful、RPC、消息队列)相关知识点总结](https://github.com/Snailclimb/Java-Guide/blob/master/计算机网络与数据通信/数据通信(RESTful、RPC、消息队列).md)
-* [Dubbo 总结：关于 Dubbo 的重要知识点](https://github.com/Snailclimb/Java-Guide/blob/master/计算机网络与数据通信/dubbo.md)
-* [消息队列总结：新手也能看懂，消息队列其实很简单](https://github.com/Snailclimb/Java-Guide/blob/master/计算机网络与数据通信/message-queue.md)
-* [一文搞懂 RabbitMQ 的重要概念以及安装](https://github.com/Snailclimb/Java-Guide/blob/master/计算机网络与数据通信/rabbitmq.md)
+　　建议非科班的同学，首先要打好计算机基础知识基础：①计算机网络、②操作系统、③数据机构与算法，我个人觉得这3个对你最重要。这些东西就像是内功，对你以后的长远发展非常有用。当然，如果你想要进大厂的话，这些知识也是一定会被问到的。另外，“一定学好数据机构与算法！一定学好数据机构与算法！一定学好数据机构与算法！”，重要的东西说3遍。
 
-## :iphone: 操作系统
 
-### Linux相关
 
-* [后端程序员必备的 Linux 基础知识](https://github.com/Snailclimb/Java-Guide/blob/master/操作系统/后端程序员必备的Linux基础知识.md)  
-* [Shell 编程入门](https://github.com/Snailclimb/Java-Guide/blob/master/操作系统/Shell.md)  
-## :pencil2: 主流框架/软件
+### Question4: 我没有实习经历的话找工作是不是特别艰难？
 
-### Spring
+　　没有实习经历没关系，只要你有拿得出手的项目或者大赛经历的话，你依然有可能拿到大厂的 offer 。笔主当时找工作的时候就没有实习经历以及大赛获奖经历，单纯就是凭借自己的项目经验撑起了整个面试。
 
-* [Spring 学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/主流框架/Spring学习与面试.md)
-* [Spring中bean的作用域与生命周期](https://github.com/Snailclimb/Java_Guide/blob/master/主流框架/SpringBean.md)
-* [SpringMVC 工作原理详解](https://github.com/Snailclimb/JavaGuide/blob/master/主流框架/SpringMVC%20%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E8%AF%A6%E8%A7%A3.md)
+　　如果你既没有实习经历，又没有拿得出手的项目或者大赛经历的话，我觉得在简历关，除非你有其他特别的亮点，不然，你应该就会被刷。
 
-### ZooKeeper
+### Question4: 我该如何准备面试呢？面试的注意事项有哪些呢？
 
-* [可能是把 ZooKeeper 概念讲的最清楚的一篇文章](https://github.com/Snailclimb/Java_Guide/blob/master/主流框架/ZooKeeper.md)
-  
-## :floppy_disk: 数据存储
+下面是我总结的一些准备面试的Tips以及面试必备的注意事项：
 
-### MySQL
+1.  **准备一份自己的自我介绍，面试的时候根据面试对象适当进行修改**（突出重点，突出自己的优势在哪里，切忌流水账）；
+2. **注意随身带上自己的成绩单和简历复印件；** （有的公司在面试前都会让你交一份成绩单和简历当做面试中的参考。）
+3. **如果需要笔试就提前刷一些笔试题，大部分在线笔试的类型是选择题+编程题，有的还会有简答题。**（平时空闲时间多的可以刷一下笔试题目（牛客网上有很多），但是不要只刷面试题，不动手code，程序员不是为了考试而存在的。）另外，注意抓重点，因为题目太多了，但是有很多题目几乎次次遇到，像这样的题目一定要搞定。
+4. **提前准备技术面试。** 搞清楚自己面试中可能涉及哪些知识点、那些知识点是重点。面试中哪些问题会被经常问到、自己改如何回答。(强烈不推荐背题，第一：通过背这种方式你能记住多少？能记住多久？第二：背题的方式的学习很难坚持下去！)
+5. **面试之前做好定向复习。** 也就是专门针对你要面试的公司来复习。比如你在面试之前可以在网上找找有没有你要面试的公司的面经。
+6.  **准备好自己的项目介绍。** 如果有项目的话，技术面试第一步，面试官一般都是让你自己介绍一下你的项目。你可以从下面几个方向来考虑：①对项目整体设计的一个感受（面试官可能会让你画系统的架构图；②在这个项目中你负责了什么、做了什么、担任了什么角色；③ 从这个项目中你学会了那些东西，使用到了那些技术，学会了那些新技术的使用；④项目描述中，最好可以体现自己的综合素质，比如你是如何协调项目组成员协同开发的或者在遇到某一个棘手的问题的时候你是如何解决的又或者说你在这个项目用了什么技术实现了什么功能比如:用redis做缓存提高访问速度和并发量、使用消息队列削峰和降流等等。
+7. **面试之后记得复盘。** 面试遭遇失败是很正常的事情，所以善于总结自己的失败原因才是最重要的。如果失败，不要灰心；如果通过，切勿狂喜。
 
-* [MySQL 学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/数据存储/MySQL.md)
-* [【思维导图-索引篇】搞定数据库索引就是这么简单](https://github.com/Snailclimb/Java_Guide/blob/master/数据存储/MySQL%20Index.md)
 
-### Redis
+**一些还算不错的 Java面试/学习相关的仓库，相信对大家准备面试一定有帮助：**[盘点一下Github上开源的Java面试/学习相关的仓库，看完弄懂薪资至少增加10k](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247484817&idx=1&sn=12f0c254a240c40c2ccab8314653216b&chksm=fd9853f0caefdae6d191e6bf085d44ab9c73f165e3323aa0362d830e420ccbfad93aa5901021&token=766994974&lang=zh_CN#rd)
 
-* [Redis 总结](https://github.com/Snailclimb/Java_Guide/blob/master/数据存储/Redis/Redis.md)
-* [Redlock分布式锁](https://github.com/Snailclimb/Java_Guide/blob/master/数据存储/Redis/Redlock分布式锁.md)
-* [如何做可靠的分布式锁，Redlock真的可行么](https://github.com/Snailclimb/Java_Guide/blob/master/数据存储/Redis/如何做可靠的分布式锁，Redlock真的可行么.md)
+### Question5: 我该自学还是报培训班呢？
 
-## :punch: 架构
+　　我本人更加赞同自学（你要知道去了公司可没人手把手教你了，而且几乎所有的公司都对培训班出生的有偏见。为什么有偏见，你学个东西还要去培训班，说明什么，同等水平下，你的自学能力以及自律能力一定是比不上自学的人的）。但是如果，你连每天在寝室坚持学上8个小时以上都坚持不了，或者总是容易半途而废的话，我还是推荐你去培训班。观望身边同学去培训班的，大多是非计算机专业或者是没有自律能力以及自学能力非常差的人。
 
-### 分布式相关
+　　另外，如果自律能力不行，你也可以通过结伴学习、参加老师的项目等方式来督促自己学习。
 
-* [一文读懂分布式应该学什么](https://github.com/Snailclimb/Java_Guide/blob/master/架构/分布式.md)
+　　总结：去不去培训班主要还是看自己，如果自己能坚持自学就自学，坚持不下来就去培训班。
 
-## :musical_note: 面试必备
+### Question6: 没有项目经历/博客/Github开源项目怎么办？
 
-### 备战春招/秋招系列
+　　从现在开始做！
 
-* [【备战春招/秋招系列1】程序员的简历就该这样写](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/程序员的简历之道.md)
-* [手把手教你用Markdown写一份高质量的简历](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/手把手教你用Markdown写一份高质量的简历.md)
-* [【备战春招/秋招系列2】初出茅庐的程序员该如何准备面试？](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/interviewPrepare.md)
-* [【备战春招/秋招系列3】Java程序员必备书单](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/books.md)   
-* [ 【备战春招/秋招系列4】美团面经总结基础篇 （附详解答案）](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/美团-基础篇.md)
-* [ 【备战春招/秋招系列5】美团面经总结进阶篇 （附详解答案）](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/美团-进阶篇.md)
-* [ 【备战春招/秋招系列5】美团面经总结终结篇篇 （附详解答案）](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/美团-终结篇.md)
+　　网上有很多非常不错的项目视频，你就跟着一步一步做，不光要做，还要改进，改善。另外，如果你的老师有相关 Java 后台项目的话，你也可以主动申请参与进来。
 
-### 最最最常见的Java面试题总结
-   
-这里会分享一些出现频率极其极其高的面试题，初定周更一篇，什么时候更完什么时候停止。
-   
-* [第一周（2018-8-7）](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/最最最常见的Java面试题总结/第一周（2018-8-7）.md) (为什么 Java 中只有值传递、==与equals、 hashCode与equals)
-* [第二周（2018-8-13）](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/最最最常见的Java面试题总结/第二周(2018-8-13).md)(String和StringBuffer、StringBuilder的区别是什么？String为什么是不可变的？、什么是反射机制？反射机制的应用场景有哪些？......)
-* [第三周（2018-08-22）](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/这几道Java集合框架面试题几乎必问.md) （Arraylist 与 LinkedList 异同、ArrayList 与 Vector 区别、HashMap的底层实现、HashMap 和 Hashtable 的区别、HashMap 的长度为什么是2的幂次方、HashSet 和 HashMap 区别、ConcurrentHashMap 和 Hashtable 的区别、ConcurrentHashMap线程安全的具体实现方式/底层具体实现、集合框架底层数据结构总结）
-* [第四周(2018-8-30).md](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/最最最常见的Java面试题总结/第四周(2018-8-30).md) （主要内容是几道面试常问的多线程基础题。）
+　　如果有自己的博客，也算是简历上的一个亮点。建议可以在掘金、Segmentfault、CSDN等技术交流社区写博客，当然，你也可以自己搭建一个博客（采用 Hexo+Githup Pages 搭建非常简单）。写一些什么？学习笔记、实战内容、读书笔记等等都可以。
 
-### Java学习/面试开源仓库推荐
+　　多用 Github，用好 Github，上传自己不错的项目，写好 readme 文档，在其他技术社区做好宣传。相信你也会收获一个不错的开源项目！
 
-* [盘点一下Github上开源的Java面试/学习相关的仓库，看完弄懂薪资至少增加10k](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/JavaInterviewGithub.md)
-    
-## :art: 闲谈  
 
-* [选择技术方向都要考虑哪些因素](https://github.com/Snailclimb/Java-Guide/blob/master/其他/选择技术方向都要考虑哪些因素.md) 
-* [结束了我短暂的秋招，说点自己的感受](https://github.com/Snailclimb/JavaGuide/blob/master/%E5%85%B6%E4%BB%96/2018%20%E7%A7%8B%E6%8B%9B.md) 
- 
-***
+### Question7: 大厂到底青睐什么样的应届生？
 
-## :envelope: 说明
+　　从阿里、腾讯等大厂招聘官网对于Java后端方向/后端方向的应届实习生的要求，我们大概可以总结归纳出下面这 4 点能给简历增加很多分数：
 
-### 项目介绍
+- 参加过竞赛（含金量超高的是ACM）；
+- 对数据结构与算法非常熟练；
+- 参与过实际项目（比如学校网站）；
+- 参与过某个知名的开源项目或者自己的某个开源项目很不错；
 
-该文档主要是笔主在学习 Java 的过程中的一些学习笔记，但是为了能够涉及到大部分后端学习所需的技术知识点我也会偶尔引用一些别人的优秀文章的链接。文档大部分内容都是笔者参考书籍以及自己的原创。少部分面试题回答参考了其他人已有答案，上面都已注明。
+　　除了我上面说的这三点，在面试Java工程师的时候，下面几点也提升你的个人竞争力：
 
-该文档涉及的主要内容包括： Java、 数据结构与算法、计算机网络与数据通信、 操作系统、主流框架、数据存储、架构、面试必备知识点等等。相信不论你是前端还是后端都能在这份文档中收获到东西。
+- 熟悉Python、Shell、Perl等脚本语言；
+- 熟悉 Java 优化，JVM调优；
+- 熟悉 SOA 模式；
+- 熟悉自己所用框架的底层知识比如Spring；
+- 了解分布式一些常见的理论；
+- 具备高并发开发经验；大数据开发经验等等。
 
-### 关于转载
-
-**如果需要引用到本仓库的一些东西，必须注明转载地址！！！毕竟大多都是手敲的，或者引用的是我的原创文章，希望大家尊重一下作者的劳动**:smiley::smiley::smiley:！
-
-### 如何对该开源文档进行贡献
-
-1. 笔记内容大多是手敲，所以难免会有笔误，你可以帮我找错别字。
-2. 很多知识点我可能没有涉及到，所以你可以对其他知识点进行补充。
-3. 现有的知识点难免存在不完善或者错误，所以你可以对已有知识点的修改/补充。
-
-### 为什么要做这个开源文档？
-
-在我们学习Java的时候，很多人会面临我不知道继续学什么或者面试会问什么的尴尬情况（我本人之前就很迷茫:smile:）。所以，我决定通过这个开源平台来帮助一些有需要的人，通过下面的内容，你会掌握系统的Java学习以及面试的相关知识。本来是想通过Gitbook的形式来制作的，后来想了想觉得可能有点大题小做 :grin: 。另外，我自己一个人的力量毕竟有限，希望各位有想法的朋友可以提issue。开源的最大目的是，让更多人参与进来，这样文档的正确性才能得以保障！
-
-### 最后
-
-本人会利用业余时间一直更新下去，目前还有很多地方不完善，一些知识点我会原创总结，还有一些知识点如果说网上有比较好的文章了，我会把这些文章加入进去。您也可以关注我的微信公众号：“Java面试通关手册”，我会在这里分享一些自己的原创文章。 另外该文档格式参考：[Github Markdown格式](https://guides.github.com/features/mastering-markdown/)，表情素材来自：[EMOJI CHEAT SHEET](https://www.webpagefx.com/tools/emoji-cheat-sheet/)。如果大家需要与我交流，可以扫描下方二维码添加我的微信：
-
-![我的微信](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-17/16009393.jpg)
-
-### 福利
-
-> 阿里云技术有保障，在云服务技术上远远领先于国内其他云服务提供商。大家或者公司如果需要用到云服务器的话，推荐阿里云服务器，下面是阿里云目前正在做的一些活动，错过这波，后续可能多花很多钱：
-
-1. [全民云计算：ECS云服务器2折起,1核1G仅需293元/年](https://promotion.aliyun.com/ntms/act/qwbk.html?userCode=hf47liqn)
-2. [高性能企业级性能云服务器限时2折起,2核4G仅需720元/年](https://promotion.aliyun.com/ntms/act/enterprise-discount.html?userCode=hf47liqn)
-3. [最高￥1888云产品通用代金券](https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=hf47liqn) 
-4. [阿里云建站服务](https://promotion.aliyun.com/ntms/act/jianzhanquan.html?userCode=hf47liqn)（企业官网、电商网站，多种可供选择模板，代金券免费领取）
-
-
-### 公众号
-
-如果大家想要实时关注我更新的文章以及分享的干货的话，可以关注我的公众号。我是 ThoughtWorks 准入职Java工程师。专注Java知识分享！开源 Java 学习指南——JavaGuide（12k+ Star）的作者。公众号多篇文章被各大技术社区转载。公众号后台回复关键字“1”可以领取一份我精选的Java资源哦！可以扫描下方二维码或者通过微信的搜一搜搜索ID：“Java_Guide”即可。
-
-
-![我的公众号](https://user-gold-cdn.xitu.io/2018/11/28/167598cd2e17b8ec?w=258&h=258&f=jpeg&s=27334)
