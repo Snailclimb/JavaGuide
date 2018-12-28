@@ -1,0 +1,65 @@
+
+Quickstart for Android
+
+
+Set up your development environment  -
+Install Android Studio version 3.1 or higher with Android SDK Platform version 7.0 (API level 24) or higher.
+You will need a basic understanding of Android development. If you are new to Android, see Building your first Android app for beginners.
+
+Open the sample project  -
+This quickstart uses Sceneform, a 3D framework for that makes it easy for Java developers to build ARCore apps without OpenGL. 
+To use ARCore in your app without Sceneform, review the Enable ARCore documentation.
+To continue with Sceneform, get the sample projects. You can either:
+
+Download and extract the Sceneform Samples
+-or-
+Clone the repository with the following command:
+
+git clone https://github.com/google-ar/sceneform-android-sdk.git
+In Android Studio, open the Hello Sceneform sample project, located in the sceneform-android-sdk/ directory.
+
+Prepare your device or emulator  -
+You can run AR apps on a supported device or in the Android Emulator:
+
+In the emulator, you must sign into the Play Store or update ARCore manually.
+There are additional requirements to run Sceneform apps in the emulator:
+You need Android Emulator version 27.2.9 or later.
+OpenGL ES 3.0 or higher must be supported and enabled in the Android Emulator.
+Make sure your emulator is configured to use the latest version. In the Extended controls panel (More on the Toolbar), 
+select Settings > Advanced > OpenGL ES API level > Renderer maximum (up to OpenGL ES 3.1), and then restart the emulator.
+Run the emulator, briefly interact with the emulated deivce, then check whether OpenGL ES 3.0 or higher is being used:
+adb logcat | grep eglMakeCurrent
+If you see ver 3 0 or higher version, then you can run Sceneform apps. If you see a lower version, then your desktop GPU does not
+support OpenGL ES 3.0 and you must use a supported device to run Sceneform apps.
+
+Run the sample -
+Make sure your Android device is connected to the development machine and click Run  in Android Studio. Then, choose your device as
+the deployment target and click OK.
+
+Android Studio builds your project into a debuggable APK, installs the APK, and then runs the app on your device. For more information, 
+see Build and Run Your App.You may be prompted to install or update the ARCore app if it is missing or out of date. Select CONTINUE to 
+install it from Google Play Store.The Hello Sceneform app lets you place and manipulate Android figurines on flat surfaces.
+
+Add Sceneform to an existing project -
+To use Sceneform in an existing project:
+Follow the steps to Enable ARCore in your app
+Add the Sceneform library to your app's build.gradle file:
+
+android {
+    // Sceneform libraries use language constructs from Java 8.
+    // Add these compile options if targeting minSdkVersion < 26.
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+}
+
+dependencies {
+    …
+
+    // Provides ArFragment, and other UX resources.
+    implementation 'com.google.ar.sceneform.ux:sceneform-ux:1.6.0'
+
+    // Alternatively, use ArSceneView without the UX dependency.
+    implementation 'com.google.ar.sceneform:core:1.6.0'
+}
