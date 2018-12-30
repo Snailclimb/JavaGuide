@@ -85,7 +85,7 @@ public class ArrayList<E> extends AbstractList<E>
     }
 
     /**
-     *默认构造函数，其默认初始容量为10
+     *默认构造函数，DEFAULTCAPACITY_EMPTY_ELEMENTDATA 为0.初始化为10，也就是说初始其实是空数组 当添加第一个元素的时候数组容量才变成10
      */
     public ArrayList() {
         this.elementData = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;
