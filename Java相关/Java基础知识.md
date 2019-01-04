@@ -46,7 +46,7 @@
   - [Trowable类常用方法](#trowable类常用方法)
   - [异常处理总结](#异常处理总结)
 - [33 Java序列话中如果有些字段不想进行序列化 怎么办](#33-java序列话中如果有些字段不想进行序列化-怎么办)
-- [Java基础学习书籍推荐](#java基础学习书籍推荐)
+
 
 <!-- /MarkdownTOC -->
 
@@ -442,17 +442,3 @@ input.close();
 BufferedReader input = new BufferedReader(new InputStreamReader(System.in)); 
 String s = input.readLine(); 
 ```
-
-
-# Java基础学习书籍推荐
-
-**《Head First Java.第二版》：**
-可以说是我的 Java 启蒙书籍了，特别适合新手读当然也适合我们用来温故Java知识点。
-
-**《Java核心技术卷1+卷2》：**
-很棒的两本书，建议有点 Java 基础之后再读，介绍的还是比较深入的，非常推荐。
-
-**《Java编程思想(第4版)》：**
-这本书要常读，初学者可以快速概览，中等程序员可以深入看看 Java，老鸟还可以用之回顾 Java 的体系。这本书之所以厉害，因为它在无形中整合了设计模式，这本书之所以难读，也恰恰在于他对设计模式的整合是无形的。
-
-
