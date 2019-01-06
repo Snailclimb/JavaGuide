@@ -75,4 +75,4 @@
 
 1. Star 数高达 4w+的 CS 笔记-CS-Notes：[https://github.com/CyC2018/CS-Notes](https://github.com/CyC2018/CS-Notes)
 2. 后端（尤其是Java）程序员的 Linux 学习仓库-Linux-Tutorial：[https://github.com/judasn/Linux-Tutorial](https://github.com/judasn/Linux-Tutorial)( Star:4.6k)
-3. 两个算法相关的仓库，刷 Leetcode 的小伙伴必备：①awesome-java-leetcode：[https://github.com/awangdev/LintCode](https://github.com/awangdev/LintCode)；②LintCode：[https://github.com/awangdev/LintCode](https://github.com/awangdev/LintCode)
+3. 两个算法相关的仓库，刷 Leetcode 的小伙伴必备：①awesome-java-leetcode：[https://github.com/Blankj/awesome-java-leetcode](https://github.com/awangdev/LintCode)；②LintCode：[https://github.com/awangdev/LintCode](https://github.com/awangdev/LintCode)
