@@ -1,5 +1,6 @@
 
-为了优化大家的阅读体验，我重新进行了排版，并且增加了较为详细的目录供大家参考！如果有老哥对操作系统比较重要的知识总结过的话，欢迎找我哦！[工作三年了，写不出好代码咋办？](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247484855&idx=1&sn=10e2b580fb246744632690d2cd2f6181&chksm=fd9853d6caefdac0661df8a85da6b48d6222ed81ce5bef3efaf7056da00f8c08cafef0840dec&token=1698876864&lang=zh_CN#rd)
+为了优化大家的阅读体验，我重新进行了排版，并且增加了较为详细的目录供大家参考！如果有老哥对操作系统比较重要的知识总结过的话，欢迎找我哦！[工作三年了，写不出好代码咋办？](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247484855&idx=1&sn=10e2b580fb246744632690d2cd2f6181&chksm=fd9853d6caefdac0661df8a85da6b48d6222ed81ce5bef3efaf7056da00f8c08cafef0840dec&token=1698876864&lang=zh_CN#rd)。
+一些常用资源[公众号](#公众号)后台回复关键字“1”即可免费无套路获取。
 
 <div align="center">  
 <img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-16/49833984.jpg" width=""/>
@@ -8,6 +9,8 @@
 [![QQ群](https://img.shields.io/badge/QQ%E7%BE%A4-577511615-red.svg)](//shang.qq.com/wpa/qunwpa?idkey=f128b25264f43170c2721e0789b24b180fc482113b6f256928b6198ae07fe5d4)
 
 </div>
+
+
 
 ## 目录
 
