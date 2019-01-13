@@ -1,12 +1,12 @@
 
-为了优化大家的阅读体验，我重新进行了排版，并且增加了较为详细的目录供大家参考！如果有老哥对操作系统比较重要的知识总结过的话，欢迎找我哦！[工作三年了，写不出好代码咋办？](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247484855&idx=1&sn=10e2b580fb246744632690d2cd2f6181&chksm=fd9853d6caefdac0661df8a85da6b48d6222ed81ce5bef3efaf7056da00f8c08cafef0840dec&token=1698876864&lang=zh_CN#rd)。
+为了优化大家的阅读体验，我重新进行了排版，并且增加了较为详细的目录供大家参考！如果有老哥对操作系统比较重要的知识总结过的话，欢迎找我哦！
 一些常用资源[公众号](#公众号)后台回复关键字“1”即可免费无套路获取。
 
 <div align="center">  
 <img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-16/49833984.jpg" width=""/>
 </br>
 
-[![QQ群](https://img.shields.io/badge/QQ%E7%BE%A4-577511615-red.svg)](//shang.qq.com/wpa/qunwpa?idkey=f128b25264f43170c2721e0789b24b180fc482113b6f256928b6198ae07fe5d4)
+[![QQ群](https://img.shields.io/badge/QQ%E7%BE%A4-577511615-red.svg)](//shang.qq.com/wpa/qunwpa?idkey=f128b25264f43170c2721e0789b24b180fc482113b6f256928b6198ae07fe5d4)微信交流群添加 [我的微信](#我的微信) 后回复关键字“加群”即可入群。
 
 </div>
 
@@ -25,7 +25,7 @@
   - [算法](#算法)
 - [:computer: 计算机网络与数据通信](#computer-计算机网络与数据通信)
   - [网络相关](#网络相关)
-  - [数据通信\(RESTful、RPC、消息队列\)](#数据通信restfulrpc消息队列)
+  - [数据通信\(RESTful,RPC,消息队列\)总结](#数据通信restfulrpc消息队列总结)
 - [:iphone: 操作系统](#iphone-操作系统)
   - [Linux相关](#linux相关)
 - [:pencil2: 主流框架/软件](#pencil2-主流框架软件)
@@ -39,7 +39,7 @@
 - [:musical_note: 面试必备](#musical_note-面试必备)
   - [备战春招/秋招系列](#备战春招秋招系列)
   - [最最最常见的Java面试题总结](#最最最常见的java面试题总结)
-  - [Java学习/面试开源仓库推荐](#Java学习面试开源仓库推荐)
+  - [Java学习/面试开源仓库推荐](#java学习面试开源仓库推荐)
 - [:art: 闲谈](#art-闲谈)
 - [:envelope: 说明](#envelope-说明)
   - [项目介绍](#项目介绍)
@@ -47,6 +47,7 @@
   - [如何对该开源文档进行贡献](#如何对该开源文档进行贡献)
   - [为什么要做这个开源文档？](#为什么要做这个开源文档)
   - [最后](#最后)
+  - [我的微信](#我的微信)
   - [福利](#福利)
   - [公众号](#公众号)
   
@@ -112,7 +113,7 @@
 * [计算机网络常见面试题](https://github.com/Snailclimb/Java_Guide/blob/master/计算机网络与数据通信/计算机网络.md)
 * [计算机网络基础知识总结](https://github.com/Snailclimb/Java_Guide/blob/master/计算机网络与数据通信/干货：计算机网络知识总结.md)
 
-### 数据通信(RESTful、RPC、消息队列)总结
+### 数据通信(RESTful,RPC,消息队列)总结
 
 * [数据通信(RESTful、RPC、消息队列)相关知识点总结](https://github.com/Snailclimb/Java-Guide/blob/master/计算机网络与数据通信/数据通信(RESTful、RPC、消息队列).md)
 * [Dubbo 总结：关于 Dubbo 的重要知识点](https://github.com/Snailclimb/Java-Guide/blob/master/计算机网络与数据通信/dubbo.md)
@@ -215,6 +216,8 @@
 ### 最后
 
 本人会利用业余时间一直更新下去，目前还有很多地方不完善，一些知识点我会原创总结，还有一些知识点如果说网上有比较好的文章了，我会把这些文章加入进去。您也可以关注我的微信公众号：“Java面试通关手册”，我会在这里分享一些自己的原创文章。 另外该文档格式参考：[Github Markdown格式](https://guides.github.com/features/mastering-markdown/)，表情素材来自：[EMOJI CHEAT SHEET](https://www.webpagefx.com/tools/emoji-cheat-sheet/)。如果大家需要与我交流，可以扫描下方二维码添加我的微信：
+
+### 我的微信
 
 ![我的微信](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-17/16009393.jpg)
 
