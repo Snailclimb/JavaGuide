@@ -123,9 +123,9 @@ redirect:低.
 ## 自动刷新(Refresh)
 自动刷新不仅可以实现一段时间之后自动跳转到另一个页面，还可以实现一段时间之后自动刷新本页面。Servlet中通过HttpServletResponse对象设置Header属性实现自动刷新例如：
 ```java
-Response.setHeader("Refresh","1000;URL=http://localhost:8080/servlet/example.htm");
+Response.setHeader("Refresh","5;URL=http://localhost:8080/servlet/example.htm");
 ```
-其中1000为时间，单位为毫秒。URL指定就是要跳转的页面（如果设置自己的路径，就会实现没过一秒自动刷新本页面一次）
+其中5为时间，单位为秒。URL指定就是要跳转的页面（如果设置自己的路径，就会实现每过一秒自动刷新本页面一次）
 
 
 ## Servlet与线程安全

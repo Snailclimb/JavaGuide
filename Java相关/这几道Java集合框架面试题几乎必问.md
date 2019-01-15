@@ -1,22 +1,34 @@
-> 本文是“最最最常见Java面试题总结”系列第三周的文章。
-> 主要内容：
-> 1. Arraylist 与 LinkedList 异同
-> 2. ArrayList 与 Vector 区别
-> 3. HashMap的底层实现
-> 4. HashMap 和 Hashtable 的区别
-> 5. HashMap 的长度为什么是2的幂次方
-> 6. HashMap 多线程操作导致死循环问题
-> 7. HashSet 和 HashMap 区别
-> 8. ConcurrentHashMap 和 Hashtable 的区别
-> 9. ConcurrentHashMap线程安全的具体实现方式/底层具体实现
-> 10. 集合框架底层数据结构总结
 
 
+<!-- MarkdownTOC -->
+
+- [Arraylist 与 LinkedList 异同](#arraylist-与-linkedlist-异同)
+  - [补充：数据结构基础之双向链表](#补充：数据结构基础之双向链表)
+- [ArrayList 与 Vector 区别](#arraylist-与-vector-区别)
+- [HashMap的底层实现](#hashmap的底层实现)
+  - [JDK1.8之前](#jdk18之前)
+  - [JDK1.8之后](#jdk18之后)
+- [HashMap 和 Hashtable 的区别](#hashmap-和-hashtable-的区别)
+- [HashMap 的长度为什么是2的幂次方](#hashmap-的长度为什么是2的幂次方)
+- [HashMap 多线程操作导致死循环问题](#hashmap-多线程操作导致死循环问题)
+- [HashSet 和 HashMap 区别](#hashset-和-hashmap-区别)
+- [ConcurrentHashMap 和 Hashtable 的区别](#concurrenthashmap-和-hashtable-的区别)
+- [ConcurrentHashMap线程安全的具体实现方式/底层具体实现](#concurrenthashmap线程安全的具体实现方式底层具体实现)
+  - [JDK1.7（上面有示意图）](#jdk17（上面有示意图）)
+  - [JDK1.8 （上面有示意图）](#jdk18-（上面有示意图）)
+- [集合框架底层数据结构总结](#集合框架底层数据结构总结)
+  - [Collection](#collection)
+    - [1. List](#1-list)
+    - [2. Set](#2-set)
+  - [Map](#map)
+  - [推荐阅读：](#推荐阅读：)
+
+<!-- /MarkdownTOC -->
 
 ## Arraylist 与 LinkedList 异同
 
 - **1. 是否保证线程安全：** ArrayList 和 LinkedList 都是不同步的，也就是不保证线程安全；
-- **2. 底层数据结构：** Arraylist 底层使用的是Object数组；LinkedList 底层使用的是双向链表数据结构（注意双向链表和双向循环链表的区别：）；
+- **2. 底层数据结构：** Arraylist 底层使用的是Object数组；LinkedList 底层使用的是双向链表数据结构（JDK1.6之前为循环链表，JDK1.7取消了循环。注意双向链表和双向循环链表的区别：）； 详细可阅读[JDK1.7-LinkedList循环链表优化](https://www.cnblogs.com/xingele0917/p/3696593.html)
 -  **3. 插入和删除是否受元素位置的影响：** ① **ArrayList 采用数组存储，所以插入和删除元素的时间复杂度受元素位置的影响。** 比如：执行`add(E e)  `方法的时候， ArrayList 会默认在将指定的元素追加到此列表的末尾，这种情况时间复杂度就是O(1)。但是如果要在指定位置 i 插入和删除元素的话（`add(int index, E element) `）时间复杂度就为 O(n-i)。因为在进行上述操作的时候集合中第 i 和第 i 个元素之后的(n-i)个元素都要执行向后位/向前移一位的操作。 ② **LinkedList 采用链表存储，所以插入，删除元素时间复杂度不受元素位置的影响，都是近似 O（1）而数组为近似 O（n）。**
 - **4. 是否支持快速随机访问：** LinkedList 不支持高效的随机元素访问，而 ArrayList 支持。快速随机访问就是通过元素的序号快速获取元素对象(对应于`get(int index) `方法)。
 - **5. 内存空间占用：** ArrayList的空 间浪费主要体现在在list列表的结尾会预留一定的容量空间，而LinkedList的空间花费则体现在它的每一个元素都需要消耗比ArrayList更多的空间（因为要存放直接后继和直接前驱以及数据）。 
@@ -44,12 +56,11 @@ public interface RandomAccess {
 ```
 ArraysList 实现了 RandomAccess 接口， 而 LinkedList 没有实现。为什么呢？我觉得还是和底层数据结构有关！ArraysList 底层是数组，而 LinkedList 底层是链表。数组天然支持随机访问，时间复杂度为 O（1），所以称为快速随机访问。链表需要遍历到特定位置才能访问特定位置的元素，时间复杂度为 O（n），所以不支持快速随机访问。，ArraysList 实现了 RandomAccess 接口，就表明了他具有快速随机访问功能。 RandomAccess 接口只是标识，并不是说 ArraysList 实现 RandomAccess 接口才具有快速随机访问功能的！
 
-**补充内容:RandomAccess接口**
- 
+
 **下面再总结一下 list 的遍历方式选择：**
 
-- 实现了RadmoAcces接口的list，优先选择普通for循环 ，其次foreach,
-- 未实现RadmoAcces接口的ist， 优先选择iterator遍历（foreach遍历底层也是通过iterator实现的），大size的数据，千万不要使用普通for循环
+- 实现了RandomAccess接口的list，优先选择普通for循环 ，其次foreach,
+- 未实现RandomAccess接口的ist， 优先选择iterator遍历（foreach遍历底层也是通过iterator实现的），大size的数据，千万不要使用普通for循环
 
 
 ### 补充：数据结构基础之双向链表
@@ -70,7 +81,7 @@ Arraylist不是同步的，所以在不需要保证线程安全时时建议使�
 
 ### JDK1.8之前
 
-JDK1.8 之前 HashMap 底层是 **数组和链表** 结合在一起使用也就是 **链表散列**。**HashMap 通过 key 的 hashCode 经过扰动函数处理过后得到 hash  值，然后通过 `(n - 1) & hash` 判断当前元素存放的位置（这里的 n 指的时数组的长度），如果当前位置存在元素的话，就判断该元素与要存入的元素的 hash 值以及 key 是否相同，如果相同的话，直接覆盖，不相同就通过拉链法解决冲突。**
+JDK1.8 之前 HashMap 底层是 **数组和链表** 结合在一起使用也就是 **链表散列**。**HashMap 通过 key 的 hashCode 经过扰动函数处理过后得到 hash  值，然后通过 `(n - 1) & hash` 判断当前元素存放的位置（这里的 n 指的是数组的长度），如果当前位置存在元素的话，就判断该元素与要存入的元素的 hash 值以及 key 是否相同，如果相同的话，直接覆盖，不相同就通过拉链法解决冲突。**
 
 **所谓扰动函数指的就是 HashMap 的 hash 方法。使用 hash 方法也就是扰动函数是为了防止一些实现比较差的 hashCode() 方法 换句话说使用扰动函数之后可以减少碰撞。**
 
@@ -167,7 +178,7 @@ static int hash(int h) {
 
 ## HashMap 的长度为什么是2的幂次方
 
-为了能让 HashMap 存取高效，尽量较少碰撞，也就是要尽量把数据分配均匀。我们上面也讲到了过了，Hash 值的范围值-2147483648到2147483648，前后加起来大概40亿的映射空间，只要哈希函数映射得比较均匀松散，一般应用是很难出现碰撞的。但问题是一个40亿长度的数组，内存是放不下的。所以这个散列值是不能直接拿来用的。用之前还要先做对数组的长度取模运算，得到的余数才能用来要存放的位置也就是对应的数组下标。这个数组下标的计算方法是“ `(n - 1) & hash` ”。（n代表数组长度）。这也就解释了 HashMap 的长度为什么是2的幂次方。
+为了能让 HashMap 存取高效，尽量较少碰撞，也就是要尽量把数据分配均匀。我们上面也讲到了过了，Hash 值的范围值-2147483648到2147483647，前后加起来大概40亿的映射空间，只要哈希函数映射得比较均匀松散，一般应用是很难出现碰撞的。但问题是一个40亿长度的数组，内存是放不下的。所以这个散列值是不能直接拿来用的。用之前还要先做对数组的长度取模运算，得到的余数才能用来要存放的位置也就是对应的数组下标。这个数组下标的计算方法是“ `(n - 1) & hash` ”。（n代表数组长度）。这也就解释了 HashMap 的长度为什么是2的幂次方。
 
 **这个算法应该如何设计呢？**
 
@@ -206,7 +217,7 @@ static int hash(int h) {
 ConcurrentHashMap 和 Hashtable 的区别主要体现在实现线程安全的方式上不同。
 
 - **底层数据结构：** JDK1.7的 ConcurrentHashMap 底层采用 **分段的数组+链表** 实现，JDK1.8 采用的数据结构跟HashMap1.8的结构一样，数组+链表/红黑二叉树。Hashtable 和 JDK1.8 之前的 HashMap 的底层数据结构类似都是采用 **数组+链表** 的形式，数组是 HashMap 的主体，链表则是主要为了解决哈希冲突而存在的；
-- **实现线程安全的方式（重要）：** ① **在JDK1.7的时候，ConcurrentHashMap（分段锁）** 对整个桶数组进行了分割分段(Segment)，每一把锁只锁容器其中一部分数据，多线程访问容器里不同数据段的数据，就不会存在锁竞争，提高并发访问率。（默认分配16个Segment，比Hashtable效率提高16倍。） **到了 JDK1.8 的时候已经摒弃了Segment的概念，而是直接用 Node 数组+链表+红黑树的数据结构来实现，并发控制使用 synchronized 和 CAS 来操作。（JDK1.6以后 对 synchronized锁做了很多优化）**  整个看起来就像是优化过且线程安全的 HashMap，虽然在JDK1.8中还能看到 Segment 的数据结构，但是已经简化了属性，只是为了兼容旧版本；② **Hashtable(同一把锁)** :使用 synchronized 来保证线程安全，效率非常低下。当一个线程访问同步方法时，其他线程也访问同步方法，可能会进入阻塞或轮询状态，如使用 put 添加元素，另一个线程不能使用 put 添加元素，也不能使用 get，竞争会越来越激烈效率越低。
+- **实现线程安全的方式（重要）：** ① **在JDK1.7的时候，ConcurrentHashMap（分段锁）** 对整个桶数组进行了分割分段(Segment)，每一把锁只锁容器其中一部分数据，多线程访问容器里不同数据段的数据，就不会存在锁竞争，提高并发访问率。 **到了 JDK1.8 的时候已经摒弃了Segment的概念，而是直接用 Node 数组+链表+红黑树的数据结构来实现，并发控制使用 synchronized 和 CAS 来操作。（JDK1.6以后 对 synchronized锁做了很多优化）**  整个看起来就像是优化过且线程安全的 HashMap，虽然在JDK1.8中还能看到 Segment 的数据结构，但是已经简化了属性，只是为了兼容旧版本；② **Hashtable(同一把锁)** :使用 synchronized 来保证线程安全，效率非常低下。当一个线程访问同步方法时，其他线程也访问同步方法，可能会进入阻塞或轮询状态，如使用 put 添加元素，另一个线程不能使用 put 添加元素，也不能使用 get，竞争会越来越激烈效率越低。
 
 **两者的对比图：** 
 
@@ -252,7 +263,8 @@ synchronized只锁定当前链表或红黑二叉树的首节点，这样只要ha
 ####  1. List
    - **Arraylist：** Object数组
    - **Vector：** Object数组
-   - **LinkedList：** 双向循环链表
+   - **LinkedList：** 双向链表(JDK1.6之前为循环链表，JDK1.7取消了循环)
+   详细可阅读[JDK1.7-LinkedList循环链表优化](https://www.cnblogs.com/xingele0917/p/3696593.html)
 
 ####  2. Set
   - **HashSet（无序，唯一）:**  基于 HashMap 实现的，底层采用 HashMap 来保存元素
