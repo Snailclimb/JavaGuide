@@ -28,8 +28,8 @@ List list=Collections.synchronizedList(new LinkedList(...));
 ```java
 private static class Node<E> {
         E item;//节点值
-        Node<E> next;//前驱节点
-        Node<E> prev;//后继节点
+        Node<E> next;//后继节点
+        Node<E> prev;//前驱节点
 
         Node(Node<E> prev, E element, Node<E> next) {
             this.item = element;

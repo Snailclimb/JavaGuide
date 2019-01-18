@@ -22,7 +22,7 @@
    
 　  ArrayList 继承了AbstractList，实现了List。它是一个数组队列，提供了相关的添加、删除、修改、遍历等功能。
    
-　　ArrayList 实现了**RandmoAccess 接口**，即提供了随机访问功能。RandmoAccess 是 Java 中用来被 List 实现，为 List 提供**快速访问功能**的。在 ArrayList 中，我们即可以通过元素的序号快速获取元素对象，这就是快速随机访问。
+　　ArrayList 实现了**RandomAccess 接口**，即提供了随机访问功能。RandomAccess 是 Java 中用来被 List 实现，为 List 提供**快速访问功能**的。在 ArrayList 中，我们即可以通过元素的序号快速获取元素对象，这就是快速随机访问。
   
 　　ArrayList 实现了**Cloneable 接口**，即覆盖了函数 clone()，**能被克隆**。
   
@@ -85,7 +85,7 @@ public class ArrayList<E> extends AbstractList<E>
     }
 
     /**
-     *默认构造函数，其默认初始容量为10
+     *默认构造函数，DEFAULTCAPACITY_EMPTY_ELEMENTDATA 为0.初始化为10，也就是说初始其实是空数组 当添加第一个元素的时候数组容量才变成10
      */
     public ArrayList() {
         this.elementData = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;
