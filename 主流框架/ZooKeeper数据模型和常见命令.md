@@ -176,3 +176,7 @@ numChildren = 1
 在后面我会介绍到 Java 客户端 API的使用以及开源 Zookeeper 客户端 ZkClient 和 Curator 的使用。
 
 
+### 参考
+
+《从Paxos到Zookeeper  分布式一致性原理与实践》
+
