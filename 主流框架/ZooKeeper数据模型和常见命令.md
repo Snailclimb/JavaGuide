@@ -72,7 +72,7 @@ numChildren = 1
 
 #### 连接 ZooKeeper 服务
 
-进入安装 ZooKeeper文件夹的 bin 目录下执行下面的命令连接 ZooKeeper 服务（Linux环境下）。
+进入安装 ZooKeeper文件夹的 bin 目录下执行下面的命令连接 ZooKeeper 服务（Linux环境下）（连接之前首选要确定你的 ZooKeeper 服务已经启动成功）。
 
 ```shell
 ./zkCli.sh -server 127.0.0.1:2181
