@@ -230,7 +230,7 @@ AOF重写是一个有歧义的名字，该功能是通过读取数据库中的�
 
 **更多内容可以查看我的这篇文章：**
 
-- [https://github.com/Snailclimb/JavaGuide/blob/master/数据存储/Redis/Redis持久化.md](https://github.com/Snailclimb/JavaGuide/blob/master/数据存储/Redis/Redis持久化.md)
+- [https://github.com/Snailclimb/JavaGuide/blob/master/数据存储/Redis/Redis持久化.md](./Redis持久化.md)
 
 
 ### redis 事务
