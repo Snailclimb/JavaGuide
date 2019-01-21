@@ -1,3 +1,23 @@
+<!-- MarkdownTOC -->
+
+- [ZooKeeper 数据模型](#zookeeper-数据模型)
+- [ZNode\(数据节点\)的结构](#znode数据节点的结构)
+- [测试 ZooKeeper 中的常见操作](#测试-zookeeper-中的常见操作)
+  - [连接 ZooKeeper 服务](#连接-zookeeper-服务)
+  - [查看常用命令\(help 命令\)](#查看常用命令help-命令)
+  - [创建节点\(create 命令\)](#创建节点create-命令)
+  - [更新节点数据内容\(set 命令\)](#更新节点数据内容set-命令)
+  - [获取节点的数据\(get 命令\)](#获取节点的数据get-命令)
+  - [查看某个目录下的子节点\(ls 命令\)](#查看某个目录下的子节点ls-命令)
+  - [查看节点状态\(stat 命令\)](#查看节点状态stat-命令)
+  - [查看节点信息和状态\(ls2 命令\)](#查看节点信息和状态ls2-命令)
+  - [删除节点\(delete 命令\)](#删除节点delete-命令)
+- [参考](#参考)
+
+<!-- /MarkdownTOC -->
+
+> 看本文之前如果你没有安装 ZooKeeper 的话，可以参考这篇文章：[《使用 SpringBoot+Dubbo 搭建一个简单分布式服务》](https://github.com/Snailclimb/springboot-integration-examples/blob/master/md/springboot-dubbo.md) 的 “开始实战 1 ：zookeeper 环境安装搭建” 这部分进行安装（Centos7.4 环境下）。如果你想对 ZooKeeper 有一个整体了解的话，可以参考这篇文章：[《可能是把 ZooKeeper 概念讲的最清楚的一篇文章》](https://github.com/Snailclimb/JavaGuide/blob/master/%E4%B8%BB%E6%B5%81%E6%A1%86%E6%9E%B6/ZooKeeper.md)
+
 ### ZooKeeper 数据模型
 
 ZNode（数据节点）是 ZooKeeper 中数据的最小单元，每个ZNode上都可以保存数据，同时还是可以有子节点（这就像树结构一样，如下图所示）。可以看出，节点路径标识方式和Unix文件
