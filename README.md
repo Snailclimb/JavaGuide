@@ -56,7 +56,7 @@
 * [J2EE 基础知识回顾](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/J2EE基础知识.md)
 * [static、final、this、super关键字总结](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/final、static、this、super.md) 
 * [static 关键字详解](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/static.md)   
-    
+  
 ### Java 集合框架
 
 * [这几道Java集合框架面试题几乎必问](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/这几道Java集合框架面试题几乎必问.md)
@@ -65,7 +65,7 @@
 * [【面试必备】透过源码角度一步一步带你分析 ArrayList 扩容机制](https://github.com/Snailclimb/JavaGuide/blob/master/Java相关/ArrayList-Grow.md)    
 * [LinkedList 源码学习](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/LinkedList.md)   
 * [HashMap(JDK1.8)源码学习](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/HashMap.md)  
-   
+  
 ### Java 多线程
 * [多线程系列文章](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/多线程系列.md)
 * [并发编程面试必备：synchronized 关键字使用、底层原理、JDK1.6 之后的底层优化以及 和ReenTrantLock 的对比](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/synchronized.md)
@@ -91,7 +91,7 @@
 * [设计模式系列文章](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/设计模式.md)
 
 ## :open_file_folder: 数据结构与算法
-   
+
 ### 数据结构
 
 * [数据结构知识学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/数据结构与算法/数据结构.md)
@@ -141,6 +141,7 @@
 
 * [MySQL 学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/数据存储/MySQL.md)
 * [【思维导图-索引篇】搞定数据库索引就是这么简单](https://github.com/Snailclimb/Java_Guide/blob/master/数据存储/MySQL%20Index.md)
+* [数据库执行计划explain学习](https://segmentfault.com/a/1190000008131735)
 
 ### Redis
 
@@ -167,9 +168,9 @@
 * [ 【备战春招/秋招系列5】美团面经总结终结篇篇 （附详解答案）](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/美团-终结篇.md)
 
 ### 最最最常见的Java面试题总结
-   
+
 这里会分享一些出现频率极其极其高的面试题，初定周更一篇，什么时候更完什么时候停止。
-   
+
 * [第一周（2018-8-7）](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/最最最常见的Java面试题总结/第一周（2018-8-7）.md) (为什么 Java 中只有值传递、==与equals、 hashCode与equals)
 * [第二周（2018-8-13）](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/最最最常见的Java面试题总结/第二周(2018-8-13).md)(String和StringBuffer、StringBuilder的区别是什么？String为什么是不可变的？、什么是反射机制？反射机制的应用场景有哪些？......)
 * [第三周（2018-08-22）](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/这几道Java集合框架面试题几乎必问.md) （Arraylist 与 LinkedList 异同、ArrayList 与 Vector 区别、HashMap的底层实现、HashMap 和 Hashtable 的区别、HashMap 的长度为什么是2的幂次方、HashSet 和 HashMap 区别、ConcurrentHashMap 和 Hashtable 的区别、ConcurrentHashMap线程安全的具体实现方式/底层具体实现、集合框架底层数据结构总结）
@@ -178,7 +179,7 @@
 ### Java学习/面试开源仓库推荐
 
 * [盘点一下Github上开源的Java面试/学习相关的仓库，看完弄懂薪资至少增加10k](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/JavaInterviewGithub.md)
-    
+  
 ## :art: 闲谈  
 
 * [选择技术方向都要考虑哪些因素](https://github.com/Snailclimb/Java-Guide/blob/master/其他/选择技术方向都要考虑哪些因素.md) 
