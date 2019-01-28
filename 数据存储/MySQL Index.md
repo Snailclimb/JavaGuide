@@ -60,7 +60,7 @@ MySQL中的索引可以以一定顺序引用多列，这种索引叫作联合索
 ```                                                                                       
 select * from user where name=xx and city=xx ; ／／可以命中索引
 select * from user where name=xx ; // 可以命中索引
-select * from user where city=xx; // 法命中索引            
+select * from user where city=xx; // 无法命中索引            
 ```                                                          
 这里需要注意的是，查询的时候如果两个条件都用上了，但是顺序不同，如 `city= xx and name ＝xx`，那么现在的查询引擎会自动优化为匹配联合索引的顺序，这样是能够命中索引的.
 
