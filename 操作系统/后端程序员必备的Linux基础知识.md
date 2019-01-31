@@ -337,6 +337,8 @@ passwd命令用于设置用户的认证信息，包括用户密码、密码过�
     - 查看当前系统的网卡信息：ifconfig
     - 查看与某台机器的连接情况：ping 
     - 查看当前系统的端口使用：netstat -an
+-  **net-tools 和 iproute2 ：**
+    `net-tools`起源于BSD的TCP/IP工具箱，后来成为老版本Linux内核中配置网络功能的工具。但自2001年起，Linux社区已经对其停止维护。同时，一些Linux发行版比如Arch Linux和CentOS/RHEL 7则已经完全抛弃了net-tools，只支持`iproute2`。linux ip命令类似于ifconfig，但功能更强大，旨在替代它。更多详情请阅读[如何在Linux中使用IP命令和示例](https://linoxide.com/linux-command/use-ip-command-linux)
 - **`shutdown`：**  `shutdown -h now`： 指定现在立即关机；`shutdown +5 "System will shutdown after 5 minutes"`:指定5分钟后关机，同时送出警告信息给登入用户。
 - **`reboot`：**  **`reboot`：**  重开机。**`reboot -w`：** 做个重开机的模拟（只有纪录并不会真的重开机）。
  
