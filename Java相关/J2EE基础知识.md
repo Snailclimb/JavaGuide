@@ -66,6 +66,9 @@ Servlet接口定义了5个方法，其中**前三个方法与Servlet生命周期
 参考：《javaweb整合开发王者归来》P81
 
 ## get和post请求的区别
+
+> 网上也有文章说：get和post请求实际上是没有区别，大家可以自行查询相关文章！我下面给出的只是一种常见的答案。
+
 ①get请求用来从服务器上获得资源，而post是用来向服务器提交数据；
 
 ②get将表单中数据按照name=value的形式，添加到action 所指向的URL 后面，并且两者使用"?"连接，而各个变量之间使用"&"连接；post是将表单中的数据放在HTTP协议的请求头或消息体中，传递到action所指向URL；
@@ -120,9 +123,9 @@ redirect:低.
 ## 自动刷新(Refresh)
 自动刷新不仅可以实现一段时间之后自动跳转到另一个页面，还可以实现一段时间之后自动刷新本页面。Servlet中通过HttpServletResponse对象设置Header属性实现自动刷新例如：
 ```java
-Response.setHeader("Refresh","1000;URL=http://localhost:8080/servlet/example.htm");
+Response.setHeader("Refresh","5;URL=http://localhost:8080/servlet/example.htm");
 ```
-其中1000为时间，单位为毫秒。URL指定就是要跳转的页面（如果设置自己的路径，就会实现没过一秒自动刷新本页面一次）
+其中5为时间，单位为秒。URL指定就是要跳转的页面（如果设置自己的路径，就会实现每过一秒自动刷新本页面一次）
 
 
 ## Servlet与线程安全
