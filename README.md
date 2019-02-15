@@ -6,7 +6,7 @@
 <img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-16/49833984.jpg" width=""/>
 </br>
 
-[![QQ群](https://img.shields.io/badge/QQ%E7%BE%A4-577511615-red.svg)](//shang.qq.com/wpa/qunwpa?idkey=f128b25264f43170c2721e0789b24b180fc482113b6f256928b6198ae07fe5d4)
+[![QQ群](https://img.shields.io/badge/QQ%E7%BE%A4-984466017-red.svg)](//shang.qq.com/wpa/qunwpa?idkey=10aee68bd241e739e59a8dfb0d4b33690bd3a4b5af0d09142cbdae2cb8c3966a)
 </br>
 微信交流群添加 [我的微信](#我的微信) 后回复关键字“加群”即可入群。
 
