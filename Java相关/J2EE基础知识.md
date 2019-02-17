@@ -98,7 +98,7 @@ Form标签里的method的属性为get时调用doGet()，为post时调用doPost()
 ```java
      request.getRequestDispatcher("login_success.jsp").forward(request, response);
 ```
-**重定向（Redirect）** 是利用服务器返回的状态吗来实现的。客户端浏览器请求服务器的时候，服务器会返回一个状态码。服务器通过HttpServletRequestResponse的setStatus(int status)方法设置状态码。如果服务器返回301或者302，则浏览器会到新的网址重新请求该资源。 
+**重定向（Redirect）** 是利用服务器返回的状态码来实现的。客户端浏览器请求服务器的时候，服务器会返回一个状态码。服务器通过HttpServletRequestResponse的setStatus(int status)方法设置状态码。如果服务器返回301或者302，则浏览器会到新的网址重新请求该资源。 
 
 1. **从地址栏显示来说**
 
