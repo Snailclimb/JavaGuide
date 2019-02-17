@@ -156,9 +156,8 @@
 
 ## :punch: 架构
 
-### 分布式相关
-
 * [一文读懂分布式应该学什么](https://github.com/Snailclimb/Java_Guide/blob/master/架构/分布式.md)
+* [8 张图读懂大型网站技术架构](https://github.com/Snailclimb/JavaGuide/blob/master/8%20张图读懂大型网站技术架构.md)
 
 ## :musical_note: 面试必备
 
