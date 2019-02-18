@@ -37,7 +37,6 @@
   - [MySQL](#mysql)
   - [Redis](#redis)
 - [:punch: 架构](#punch-架构)
-  - [分布式相关](#分布式相关)
 - [:musical_note: 面试必备](#musical_note-面试必备)
   - [备战春招/秋招系列](#备战春招秋招系列)
   - [最最最常见的Java面试题总结](#最最最常见的java面试题总结)
