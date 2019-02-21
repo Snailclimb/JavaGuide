@@ -47,6 +47,7 @@
 ## 待办
 
 - [ ] Java 8 新特性总结
+- [x] BIO,NIO,AIO 总结 
 - [ ] Netty 总结
 
   
