@@ -90,13 +90,13 @@ public class HashMap<K,V> extends AbstractMap<K,V> implements Map<K,V>, Cloneabl
     transient int modCount;   
     // 临界值 当实际大小(容量*填充因子)超过临界值时，会进行扩容
     int threshold;
-    // 填充因子
+    // 加载因子
     final float loadFactor;
 }
 ```
 - **loadFactor加载因子**
 
-  loadFactor加载因子是控制数组存放数据的疏密程度，loadFactor越趋近于1，那么   数组中存放的数据(entry)也就越多，也就越密，也就是会让链表的长度增加，load   Factor越小，也就是趋近于0，
+  loadFactor加载因子是控制数组存放数据的疏密程度，loadFactor越趋近于1，那么   数组中存放的数据(entry)也就越多，也就越密，也就是会让链表的长度增加，loadFactor越小，也就是趋近于0，数组中存放的数据(entry)也就越少，也就越稀疏。
 
   **loadFactor太大导致查找元素效率低，太小导致数组的利用率低，存放的数据会很分散。loadFactor的默认值为0.75f是官方给出的一个比较好的临界值**。 
   
@@ -401,7 +401,7 @@ final Node<K,V>[] resize() {
     else if (oldThr > 0) // initial capacity was placed in threshold
         newCap = oldThr;
     else { 
-        signifies using defaults
+        // signifies using defaults
         newCap = DEFAULT_INITIAL_CAPACITY;
         newThr = (int)(DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);
     }
