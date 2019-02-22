@@ -18,7 +18,7 @@
     - [2.3  NIO 读数据和写数据方式](#23-nio-读数据和写数据方式)
     - [2.4 NIO核心组件简单介绍](#24-nio核心组件简单介绍)
     - [2.5 代码示例](#25-代码示例)
-    - [AIO  \(Asynchronous I/O\)](#aio-asynchronous-io)
+  - [3. AIO  \(Asynchronous I/O\)](#3-aio-asynchronous-io)
   - [参考](#参考)
 
 <!-- /MarkdownTOC -->
@@ -333,7 +333,7 @@ public class NIOServer {
 
 Netty 的出现很大程度上改善了 JDK 原生 NIO 所存在的一些让人难以忍受的问题。
 
-### AIO  (Asynchronous I/O)
+### 3. AIO (Asynchronous I/O)
 
 AIO 也就是 NIO 2。在 Java 7 中引入了 NIO 的改进版 NIO 2,它是异步非阻塞的IO模型。异步 IO 是基于事件和回调机制实现的，也就是应用操作之后会直接返回，不会堵塞在那里，当后台处理完成，操作系统会通知相应的线程进行后续的操作。
 
