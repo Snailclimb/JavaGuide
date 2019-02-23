@@ -125,7 +125,7 @@ redirect:低.
 ```java
 Response.setHeader("Refresh","5;URL=http://localhost:8080/servlet/example.htm");
 ```
-其中5为时间，单位为秒。URL指定就是要跳转的页面（如果设置自己的路径，就会实现每过一秒自动刷新本页面一次）
+其中5为时间，单位为秒。URL指定就是要跳转的页面（如果设置自己的路径，就会实现每过5秒自动刷新本页面一次）
 
 
 ## Servlet与线程安全
