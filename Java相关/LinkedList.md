@@ -288,8 +288,9 @@ public int lastIndexOf(Object o) {
         return indexOf(o) != -1;
     }
 ```
-###<font face="楷体" id="3.6">删除方法</font>
+### <font face="楷体" id="3.6">删除方法</font>
 **remove()** ,**removeFirst(),pop():** 删除头节点
+
 ```
 public E pop() {
         return removeFirst();
