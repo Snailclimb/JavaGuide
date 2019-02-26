@@ -1,6 +1,6 @@
 
 为了优化大家的阅读体验，我重新进行了排版，并且增加了较为详细的目录供大家参考！如果有老哥对操作系统比较重要的知识总结过的话，欢迎找我哦！
-一些常用资源[公众号](#公众号)后台回复关键字“1”即可免费无套路获取。
+一些常用资源[公众号](#公众号)后台回复关键字“1”即可免费无套路获取。[Java 并发编程面试必备](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247484986&idx=1&sn=e6605d52332b78d133ce6b917732f7fc&chksm=fd98505bcaefd94ddbac437e036dc61e9cb1b1a0699d75982b45cce4c68ab1aec2e8a537b393&token=415999652&lang=zh_CN#rd) (专栏限时优惠还有一天半结束)
 
 <div align="center">  
 <img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-16/49833984.jpg" width=""/>
@@ -20,7 +20,7 @@
   - [Java/J2EE 基础](#javaj2ee-基础)
   - [Java 集合框架](#java-集合框架)
   - [Java 多线程](#java-多线程)
-  - [Java IO 与 NIO](#java-io-与-nio)
+  - [Java BIO,NIO,AIO](#java-bionioaio)
   - [Java 虚拟机 jvm](#java-虚拟机-jvm)
 - [:open_file_folder: 数据结构与算法](#open_file_folder-数据结构与算法)
   - [数据结构](#数据结构)
@@ -43,14 +43,13 @@
   - [Java学习/面试开源仓库推荐](#java学习面试开源仓库推荐)
 - [:art: 闲谈](#art-闲谈)
 - [:envelope: 说明](#envelope-说明)
-  - [项目介绍](#项目介绍)
-  - [关于转载](#关于转载)
-  - [如何对该开源文档进行贡献](#如何对该开源文档进行贡献)
-  - [为什么要做这个开源文档？](#为什么要做这个开源文档)
-  - [最后](#最后)
-  - [我的微信](#我的微信)
-  - [福利](#福利)
-  - [公众号](#公众号)
+
+## 待办
+
+- [ ] Java 8 新特性总结
+- [x] BIO,NIO,AIO 总结 
+- [ ] Netty 总结
+
   
 ## :coffee: Java
 
@@ -86,8 +85,9 @@
 * [《深入理解Java虚拟机》第2版学习笔记](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/Java虚拟机（jvm）.md)
 
 
-### Java IO 与 NIO
+### Java BIO,NIO,AIO
 
+* [BIO,NIO,AIO 总结 ](https://github.com/Snailclimb/JavaGuide/blob/master/Java%E7%9B%B8%E5%85%B3/BIO%2CNIO%2CAIO%20summary.md)
 * [Java IO 与 NIO系列文章](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/Java%20IO与NIO.md)
 
 ### 设计模式
@@ -113,6 +113,7 @@
 
 * [计算机网络常见面试题](https://github.com/Snailclimb/Java_Guide/blob/master/计算机网络与数据通信/计算机网络.md)
 * [计算机网络基础知识总结](https://github.com/Snailclimb/Java_Guide/blob/master/计算机网络与数据通信/干货：计算机网络知识总结.md)
+* [HTTPS中的TLS](https://github.com/Snailclimb/Java_Guide/blob/master/计算机网络与数据通信/HTTPS中的TLS.md)
 
 ### 数据通信(RESTful,RPC,消息队列)总结
 
