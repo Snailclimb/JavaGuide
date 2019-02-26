@@ -67,13 +67,13 @@ Servlet接口定义了5个方法，其中**前三个方法与Servlet生命周期
 
 ## get和post请求的区别
 
-> 网上也有文章说：get和post请求实际上是没有区别，大家可以自行查询相关文章！我下面给出的只是一种常见的答案。
+> 网上也有文章说：get和post请求实际上是没有区别，大家可以自行查询相关文章（参考文章：[https://www.cnblogs.com/logsharing/p/8448446.html](https://www.cnblogs.com/logsharing/p/8448446.html)，知乎对应的问题链接：[get和post区别？](https://www.zhihu.com/question/28586791)）！我下面给出的只是一种常见的答案。
 
 ①get请求用来从服务器上获得资源，而post是用来向服务器提交数据；
 
 ②get将表单中数据按照name=value的形式，添加到action 所指向的URL 后面，并且两者使用"?"连接，而各个变量之间使用"&"连接；post是将表单中的数据放在HTTP协议的请求头或消息体中，传递到action所指向URL；
 
-③get传输的数据要受到URL长度限制（1024字节即256个字符）；而post可以传输大量的数据，上传文件通常要使用post方式；
+③get传输的数据要受到URL长度限制（最大长度是 2048 个字符）；而post可以传输大量的数据，上传文件通常要使用post方式；
 
 ④使用get时参数会显示在地址栏上，如果这些数据不是敏感数据，那么可以使用get；对于敏感数据还是应用使用post；
 
