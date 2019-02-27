@@ -228,6 +228,8 @@
 
 ### Java并发编程专栏
 
+微信扫描下方二维码，购买之后我会将自己得到的24元返现都还给你，减轻各位的学习成本！
+
 ![ Java并发编程专栏](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-2/Java并发编程实战.jpg)
 
 ### 公众号
