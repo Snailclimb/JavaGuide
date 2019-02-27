@@ -51,6 +51,7 @@
 - [ ] Java 8 新特性总结
 - [x] BIO,NIO,AIO 总结 
 - [ ] Netty 总结
+- [ ] 数据结构总结重构
 
   
 ## :coffee: Java
