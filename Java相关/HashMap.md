@@ -173,23 +173,23 @@ static final class TreeNode<K,V> extends LinkedHashMap.Entry<K,V> {
 ![四个构造方法](https://user-gold-cdn.xitu.io/2018/3/20/162410d912a2e0e1?w=336&h=90&f=jpeg&s=26744)
 ```java
     // 默认构造函数。
-    public More ...HashMap() {
+    public HashMap() {
         this.loadFactor = DEFAULT_LOAD_FACTOR; // all   other fields defaulted
      }
      
      // 包含另一个“Map”的构造函数
-     public More ...HashMap(Map<? extends K, ? extends V> m) {
+     public HashMap(Map<? extends K, ? extends V> m) {
          this.loadFactor = DEFAULT_LOAD_FACTOR;
          putMapEntries(m, false);//下面会分析到这个方法
      }
      
      // 指定“容量大小”的构造函数
-     public More ...HashMap(int initialCapacity) {
+     public HashMap(int initialCapacity) {
          this(initialCapacity, DEFAULT_LOAD_FACTOR);
      }
      
      // 指定“容量大小”和“加载因子”的构造函数
-     public More ...HashMap(int initialCapacity, float loadFactor) {
+     public HashMap(int initialCapacity, float loadFactor) {
          if (initialCapacity < 0)
              throw new IllegalArgumentException("Illegal initial capacity: " + initialCapacity);
          if (initialCapacity > MAXIMUM_CAPACITY)

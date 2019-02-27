@@ -1,6 +1,6 @@
 
 为了优化大家的阅读体验，我重新进行了排版，并且增加了较为详细的目录供大家参考！如果有老哥对操作系统比较重要的知识总结过的话，欢迎找我哦！
-一些常用资源[公众号](#公众号)后台回复关键字“1”即可免费无套路获取。
+一些常用资源[公众号](#公众号)后台回复关键字“1”即可免费无套路获取。[Java 并发编程面试必备](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247484986&idx=1&sn=e6605d52332b78d133ce6b917732f7fc&chksm=fd98505bcaefd94ddbac437e036dc61e9cb1b1a0699d75982b45cce4c68ab1aec2e8a537b393&token=415999652&lang=zh_CN#rd) (专栏限时优惠还有一天半结束)
 
 <div align="center">  
 <img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-16/49833984.jpg" width=""/>
