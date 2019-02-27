@@ -1,6 +1,8 @@
 
 为了优化大家的阅读体验，我重新进行了排版，并且增加了较为详细的目录供大家参考！如果有老哥对操作系统比较重要的知识总结过的话，欢迎找我哦！
-一些常用资源[公众号](#公众号)后台回复关键字“1”即可免费无套路获取。[Java 并发编程面试必备](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247484986&idx=1&sn=e6605d52332b78d133ce6b917732f7fc&chksm=fd98505bcaefd94ddbac437e036dc61e9cb1b1a0699d75982b45cce4c68ab1aec2e8a537b393&token=415999652&lang=zh_CN#rd) (专栏限时优惠还有一天半结束)
+一些常用资源[公众号](#公众号)后台回复关键字“1”即可免费无套路获取。
+
+【限时福利】极客时间[《Java 并发编程面试必备》](#Java并发编程专栏)专栏限时特惠，购买之后的小伙伴加 [我的微信](#我的微信) 报上自己的极客时间大名可以找我领取24元返现。
 
 <div align="center">  
 <img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-16/49833984.jpg" width=""/>
@@ -224,15 +226,9 @@
 
 ![我的微信](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-2/JavaGuide.jpg)
 
-### 福利
+### Java并发编程专栏
 
-> 阿里云技术有保障，在云服务技术上远远领先于国内其他云服务提供商。大家或者公司如果需要用到云服务器的话，推荐阿里云服务器，下面是阿里云目前正在做的一些活动，错过这波，后续可能多花很多钱：
-
-1. [全民云计算：ECS云服务器2折起,1核1G仅需293元/年](https://promotion.aliyun.com/ntms/act/qwbk.html?userCode=hf47liqn)
-2. [高性能企业级性能云服务器限时2折起,2核4G仅需720元/年](https://promotion.aliyun.com/ntms/act/enterprise-discount.html?userCode=hf47liqn)
-3. [最高￥1888云产品通用代金券](https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=hf47liqn) 
-4. [阿里云建站服务](https://promotion.aliyun.com/ntms/act/jianzhanquan.html?userCode=hf47liqn)（企业官网、电商网站，多种可供选择模板，代金券免费领取）
-
+![ Java并发编程专栏](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-2/Java并发编程实战.jpg)
 
 ### 公众号
 
