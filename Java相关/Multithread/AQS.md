@@ -58,7 +58,7 @@ AQS使用一个int成员变量来表示同步状态，通过内置的FIFO队列�
 private volatile int state;//共享变量，使用volatile修饰保证线程可见性
 ```
 
-状态信息通过procted类型的getState，setState，compareAndSetState进行操作
+状态信息通过protected类型的getState，setState，compareAndSetState进行操作
 
 ```java
 
