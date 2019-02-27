@@ -336,7 +336,8 @@ public class CyclicBarrierExample2 {
   public static void test(int threadnum) throws InterruptedException, BrokenBarrierException {
     System.out.println("threadnum:" + threadnum + "is ready");
     try {
-      cyclicBarrier.await(2000, TimeUnit.MILLISECONDS);
+      /**等待60秒，保证子线程完全执行结束*/  
+      cyclicBarrier.await(60, TimeUnit.SECONDS);
     } catch (Exception e) {
       System.out.println("-----CyclicBarrierException------");
     }
