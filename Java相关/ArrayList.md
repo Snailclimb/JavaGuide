@@ -21,7 +21,7 @@
 
 　  ArrayList 继承了AbstractList，实现了List。它是一个数组队列，提供了相关的添加、删除、修改、遍历等功能。
 
-　　ArrayList 实现了**RandomAccess 接口**，即提供了随机访问功能。RandomAccess 是 Java 中用来被 List 实现，为 List 提供**快速访问功能**的。在 ArrayList 中，我们即可以通过元素的序号快速获取元素对象，这就是快速随机访问。
+　　ArrayList 实现了**RandomAccess 接口**， RandomAccess 是一个标志接口，表明实现这个这个接口的 List 集合是支持**快速随机访问**的。在 ArrayList 中，我们即可以通过元素的序号快速获取元素对象，这就是快速随机访问。
 
 　　ArrayList 实现了**Cloneable 接口**，即覆盖了函数 clone()，**能被克隆**。
 
@@ -660,7 +660,7 @@ public class ArrayList<E> extends AbstractList<E>
     (3)private class SubList extends AbstractList<E> implements RandomAccess  
     (4)static final class ArrayListSpliterator<E> implements Spliterator<E>  
 ```
-　　ArrayList有四个内部类，其中的**Itr是实现了Iterator接口**，同时重写了里面的**hasNext()**，**next()**，**remove()**等方法；其中的**ListItr**继承**Itr**，实现了**ListIterator接口**，同时重写了**hasPrevious()**，**nextIndex()**，**previousIndex()**，**previous()**，**set(E e)**，**add(E e)**等方法，所以这也可以看出了**Iterator和ListIterator的区别:**ListIterator在Iterator的基础上增加了添加对象，修改对象，逆向遍历等方法，这些是Iterator不能实现的。
+　　ArrayList有四个内部类，其中的**Itr是实现了Iterator接口**，同时重写了里面的**hasNext()**，**next()**，**remove()**等方法；其中的**ListItr**继承**Itr**，实现了**ListIterator接口**，同时重写了**hasPrevious()**，**nextIndex()**，**previousIndex()**，**previous()**，**set(E e)**，**add(E e)**等方法，所以这也可以看出了 **Iterator和ListIterator的区别:**ListIterator在Iterator的基础上增加了添加对象，修改对象，逆向遍历等方法，这些是Iterator不能实现的。
 ### <font face="楷体" id="6"> ArrayList经典Demo</font>
 
 ```java
