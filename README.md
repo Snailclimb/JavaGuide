@@ -235,27 +235,34 @@
 
 ### 致谢
 
+下面是笔主收集的一些对本仓库提过有价值的pr或者issue的朋友，人数较多，如果你也对本仓库提过不错的pr或者issue的话，你可以加我的微信与我联系。下面的排名不分先后！
+
 <a href="https://github.com/fanofxiaofeng">
-    <img src="https://avatars0.githubusercontent.com/u/3983683?s=460&v=4" width="55px"></a>
+    <img src="https://avatars0.githubusercontent.com/u/3983683?s=460&v=4" width="45px"></a>
 <a href="https://github.com/Gene1994">
-    <img src="https://avatars3.githubusercontent.com/u/24930369?s=460&v=4" width="55px">
+    <img src="https://avatars3.githubusercontent.com/u/24930369?s=460&v=4" width="45px">
 </a>
 <a href="https://github.com/illusorycloud">
-    <img src="https://avatars3.githubusercontent.com/u/31980412?s=460&v=4" width="50px">
+    <img src="https://avatars3.githubusercontent.com/u/31980412?s=460&v=4" width="45px">
 </a>
 <a href="https://github.com/LiWenGu">
-    <img src="https://avatars0.githubusercontent.com/u/15909210?s=460&v=4" width="50px">
+    <img src="https://avatars0.githubusercontent.com/u/15909210?s=460&v=4" width="45px">
 </a>
 <a href="https://github.com/kinglaw1204">
-    <img src="https://avatars1.githubusercontent.com/u/20039931?s=460&v=4" width="50px">
+    <img src="https://avatars1.githubusercontent.com/u/20039931?s=460&v=4" width="45px">
 </a>
 <a href="https://github.com/jun1st">
-    <img src="https://avatars2.githubusercontent.com/u/14312378?s=460&v=4" width="50px">
+    <img src="https://avatars2.githubusercontent.com/u/14312378?s=460&v=4" width="45px">
 </a>"
 <a href="https://github.com/fantasygg">  
-    <img src="https://avatars3.githubusercontent.com/u/13445354?s=460&v=4" width="50px">
+    <img src="https://avatars3.githubusercontent.com/u/13445354?s=460&v=4" width="45px">
 </a>
-
+<a href="https://github.com/debugjoker">  
+    <img src="https://avatars3.githubusercontent.com/u/26218005?s=460&v=4" width="45px">
+</a>
+<a href="https://github.com/zhyank">  
+    <img src="https://avatars0.githubusercontent.com/u/17696240?s=460&v=4" width="45px">
+</a>
 ### 公众号
 
 如果大家想要实时关注我更新的文章以及分享的干货的话，可以关注我的公众号。我是 ThoughtWorks 准入职Java工程师。专注Java知识分享！开源 Java 学习指南——JavaGuide（12k+ Star）的作者。公众号多篇文章被各大技术社区转载。公众号后台回复关键字“1”可以领取一份我精选的Java资源哦！可以扫描下方二维码或者通过微信的搜一搜搜索ID：“Java_Guide”即可。
