@@ -233,6 +233,28 @@
 
 ![ Java并发编程专栏](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-2/Java并发编程实战.jpg)
 
+### 致谢
+
+<a href="https://github.com/fanofxiaofeng">
+    <img src="https://avatars0.githubusercontent.com/u/3983683?s=460&v=4" width="55px"></a>
+<a href="https://github.com/linw7">
+    <img src="https://avatars3.githubusercontent.com/u/24930369?s=460&v=4" width="55px">
+</a>
+<a href="https://github.com/illusorycloud">
+    <img src="https://avatars3.githubusercontent.com/u/31980412?s=460&v=4" width="50px">
+</a>
+<a href="https://github.com/LiWenGu">
+    <img src="https://avatars0.githubusercontent.com/u/15909210?s=460&v=4" width="50px">
+</a>
+<a href="https://github.com/kinglaw1204">
+    <img src="https://avatars1.githubusercontent.com/u/20039931?s=460&v=4" width="50px">
+</a>
+<a href="https://github.com/jun1st">
+    <img src="https://avatars2.githubusercontent.com/u/14312378?s=460&v=4" width="50px">
+</a>"
+<a href="https://github.com/fantasygg">  
+    <img src="https://avatars3.githubusercontent.com/u/13445354?s=460&v=4" width="50px">
+</a>
 ### 公众号
 
 如果大家想要实时关注我更新的文章以及分享的干货的话，可以关注我的公众号。我是 ThoughtWorks 准入职Java工程师。专注Java知识分享！开源 Java 学习指南——JavaGuide（12k+ Star）的作者。公众号多篇文章被各大技术社区转载。公众号后台回复关键字“1”可以领取一份我精选的Java资源哦！可以扫描下方二维码或者通过微信的搜一搜搜索ID：“Java_Guide”即可。
