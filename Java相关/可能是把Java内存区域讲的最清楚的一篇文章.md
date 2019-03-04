@@ -235,7 +235,7 @@ JDK1.4中新加入的 **NIO(New Input/Output) 类**，引入了一种基于**通
 **验证：**
 
 ```java
-		String s1 = new String("abc");// 堆内存的地值值
+		String s1 = new String("abc");// 堆内存的地址值
 		String s2 = "abc";
 		System.out.println(s1 == s2);// 输出false,因为一个是堆内存，一个是常量池的内存，故两者是不同的。
 		System.out.println(s1.equals(s2));// 输出true
