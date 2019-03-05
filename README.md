@@ -22,6 +22,7 @@
   * [Java 多线程](#java-多线程)
   * [Java BIO,NIO,AIO](#java-bionioaio)
   * [Java 虚拟机 jvm](#java-虚拟机-jvm)
+  * [设计模式](#设计模式)
 * [:open_file_folder: 数据结构与算法](#open_file_folder-数据结构与算法)
   * [数据结构](#数据结构)
   * [算法](#算法)
