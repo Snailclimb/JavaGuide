@@ -166,7 +166,7 @@
 
 * [【备战面试1】程序员的简历就该这样写](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/程序员的简历之道.md)
 * [【备战面试2】初出茅庐的程序员该如何准备面试？](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/interviewPrepare.md)
-* [【备战面试3】初出茅庐的程序员该如何准备面试？](https://github.com/Snailclimb/JavaGuide/blob/master/面试必备/JavaProgrammerNeedKnow.md)
+* [【备战面试3】7个大部分程序员在面试前很关心的问题](https://github.com/Snailclimb/JavaGuide/blob/master/面试必备/JavaProgrammerNeedKnow.md)
 * [【备战面试4】Java程序员必备书单](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/books.md)
 * [【备战面试5】美团面试常见问题总结（附详解答案）](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/美团面试常见问题总结.md)
 
