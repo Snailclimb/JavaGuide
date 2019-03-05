@@ -185,10 +185,11 @@
 
 ## :art: 闲谈  
 
-* [选择技术方向都要考虑哪些因素](https://github.com/Snailclimb/Java-Guide/blob/master/其他/选择技术方向都要考虑哪些因素.md) 
-* [结束了我短暂的秋招，说点自己的感受](https://github.com/Snailclimb/JavaGuide/blob/master/%E5%85%B6%E4%BB%96/2018%20%E7%A7%8B%E6%8B%9B.md) 
-* [这7个问题，可能大部分Java程序员都比较关心吧！](https://github.com/Snailclimb/JavaGuide/blob/master/%E9%9D%A2%E8%AF%95%E5%BF%85%E5%A4%87/java%20programmer%20need%20know.md)
-* [【2018总结】即使平凡，也要热爱自己的生活](https://github.com/Snailclimb/JavaGuide/blob/master/%E5%85%B6%E4%BB%96/2018%20summary.md)
+* [选择技术方向都要考虑哪些因素](https://github.com/Snailclimb/Java-Guide/blob/master/闲谈/选择技术方向都要考虑哪些因素.md) 
+* [结束了我短暂的秋招，说点自己的感受](https://github.com/Snailclimb/JavaGuide/blob/master/闲谈/2018%20%E7%A7%8B%E6%8B%9B.md) 
+* [这7个问题，可能大部分Java程序员都比较关心吧！](https://github.com/Snailclimb/JavaGuide/blob/master/闲谈/java%20programmer%20need%20know.md)
+* [【2018总结】即使平凡，也要热爱自己的生活](https://github.com/Snailclimb/JavaGuide/blob/master/闲谈/2018%20summary.md)
+* [Java项目 Github Trending 月榜](https://github.com/Snailclimb/JavaGuide/blob/master/闲谈/JavaGithubTrending/JavaGithubTrending.md)
 
 ***
 
