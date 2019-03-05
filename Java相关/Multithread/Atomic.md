@@ -20,7 +20,7 @@ Atomic 翻译成中文是原子的意思。在化学上，我们知道原子是�
 
 使用原子的方式更新基本类型
 
-- AtomicInteger：整形原子类
+- AtomicInteger：整型原子类
 - AtomicLong：长整型原子类
 -  AtomicBoolean ：布尔型原子类
 
@@ -29,8 +29,8 @@ Atomic 翻译成中文是原子的意思。在化学上，我们知道原子是�
 使用原子的方式更新数组里的某个元素
 
 
-- AtomicIntegerArray：整形数组原子类
-- AtomicLongArray：长整形数组原子类
+- AtomicIntegerArray：整型数组原子类
+- AtomicLongArray：长整型数组原子类
 - AtomicReferenceArray ：引用类型数组原子类
 
 **引用类型**
@@ -41,8 +41,8 @@ Atomic 翻译成中文是原子的意思。在化学上，我们知道原子是�
 
 **对象的属性修改类型**
 
-- AtomicIntegerFieldUpdater:原子更新整形字段的更新器
-- AtomicLongFieldUpdater：原子更新长整形字段的更新器
+- AtomicIntegerFieldUpdater:原子更新整型字段的更新器
+- AtomicLongFieldUpdater：原子更新长整型字段的更新器
 - AtomicStampedReference ：原子更新带有版本号的引用类型。该类将整数值与引用关联起来，可用于解决原子的更新数据和数据的版本号，可以解决使用 CAS 进行原子更新时可能出现的 ABA 问题。
 
 下面我们来详细介绍一下这些原子类。
@@ -53,7 +53,7 @@ Atomic 翻译成中文是原子的意思。在化学上，我们知道原子是�
 
 使用原子的方式更新基本类型
 
-- AtomicInteger：整形原子类
+- AtomicInteger：整型原子类
 - AtomicLong：长整型原子类
 -  AtomicBoolean ：布尔型原子类
 
