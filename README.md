@@ -166,8 +166,9 @@
 
 * [【备战面试1】程序员的简历就该这样写](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/程序员的简历之道.md)
 * [【备战面试2】初出茅庐的程序员该如何准备面试？](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/interviewPrepare.md)
-* [【备战面试3】Java程序员必备书单](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/books.md)
-* [【备战面试4】美团面试常见问题总结（附详解答案）](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/美团面试常见问题总结.md)
+* [【备战面试3】初出茅庐的程序员该如何准备面试？](https://github.com/Snailclimb/JavaGuide/blob/master/面试必备/JavaProgrammerNeedKnow.md)
+* [【备战面试4】Java程序员必备书单](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/books.md)
+* [【备战面试5】美团面试常见问题总结（附详解答案）](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/美团面试常见问题总结.md)
 
 
 ### 最最最常见的Java面试题总结
@@ -187,7 +188,6 @@
 
 * [选择技术方向都要考虑哪些因素](https://github.com/Snailclimb/Java-Guide/blob/master/闲谈/选择技术方向都要考虑哪些因素.md) 
 * [结束了我短暂的秋招，说点自己的感受](https://github.com/Snailclimb/JavaGuide/blob/master/闲谈/2018%20%E7%A7%8B%E6%8B%9B.md) 
-* [这7个问题，可能大部分Java程序员都比较关心吧！](https://github.com/Snailclimb/JavaGuide/blob/master/闲谈/java%20programmer%20need%20know.md)
 * [【2018总结】即使平凡，也要热爱自己的生活](https://github.com/Snailclimb/JavaGuide/blob/master/闲谈/2018%20summary.md)
 * [Java项目 Github Trending 月榜](https://github.com/Snailclimb/JavaGuide/blob/master/闲谈/JavaGithubTrending/JavaGithubTrending.md)
 
