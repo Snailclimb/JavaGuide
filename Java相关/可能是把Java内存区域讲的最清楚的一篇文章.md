@@ -21,7 +21,8 @@
 
 ## 2 运行时数据区域
 Java 虚拟机在执行 Java 程序的过程中会把它管理的内存划分成若干个不同的数据区域。
-![运行时数据区域](https://user-gold-cdn.xitu.io/2018/4/27/16306a34cd8a4354?w=513&h=404&f=png&s=132068)
+![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/JVM运行时数据区域.png)
+
 这些组成部分一些是线程私有的，其他的则是线程共享的。
 
 **线程私有的：**
