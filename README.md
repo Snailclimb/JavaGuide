@@ -1,7 +1,5 @@
 # Java 学习/面试指南
 
-工作一年以上的朋友可以加这个群，群内有免费Java进阶架构师资料：[![QQ群](https://img.shields.io/badge/QQ%E7%BE%A4-959442351-blue.svg)](https://jq.qq.com/?_wv=1027&k=5tjF8vk).
-
 <div align="center">  
 <img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-16/49833984.jpg" width=""/>
 </br>
