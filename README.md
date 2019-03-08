@@ -39,9 +39,9 @@
   * [Redis](#redis)
 * [:punch: 架构](#punch-架构)
 * [:musical_note: 面试必备](#musical_note-面试必备)
-  * [备战面试](#备战面试)
-  * [最最最常见的Java面试题总结](#最最最常见的java面试题总结)
-  * [Java学习/面试开源仓库推荐](#java学习面试开源仓库推荐)
+* [:musical_note: 面试必备\(Essential content for the interview\)](#musical_note-面试必备essential-content-for-the-interview)
+  * [备战面试\(Preparing for an interview\)](#备战面试preparing-for-an-interview)
+  * [最常见的Java面试题总结\(Summary of the most common Java interview questions\)](#最常见的java面试题总结summary-of-the-most-common-java-interview-questions)
 * [:art: 闲谈](#art-闲谈)
 * [:envelope: 说明](#envelope-说明)
 
@@ -163,24 +163,21 @@
 
 ## :musical_note: 面试必备(Essential content for the interview)
 
-### 备战面试
+### 备战面试(Preparing for an interview)
 
 * [【备战面试1】程序员的简历就该这样写](https://github.com/Snailclimb/JavaGuide/blob/master/EssentialContentForInterview/PreparingForInterview/程序员的简历之道.md)
 * [【备战面试2】初出茅庐的程序员该如何准备面试？](https://github.com/Snailclimb/Java-Guide/blob/master/EssentialContentForInterview/PreparingForInterview/interviewPrepare.md)
 * [【备战面试3】7个大部分程序员在面试前很关心的问题](https://github.com/Snailclimb/JavaGuide/blob/master/EssentialContentForInterview/PreparingForInterview/JavaProgrammerNeedKnow.md)
 * [【备战面试4】Java程序员必备书单](https://github.com/Snailclimb/Java-Guide/blob/master/EssentialContentForInterview/PreparingForInterview/books.md)
-* [【备战面试5】美团面试常见问题总结（附详解答案）](https://github.com/Snailclimb/Java-Guide/blob/master/EssentialContentForInterview/PreparingForInterview/美团面试常见问题总结.md)
+* [【备战面试5】Github上开源的Java面试/学习相关的仓库推荐](https://github.com/Snailclimb/Java-Guide/blob/master/EssentialContentForInterview/PreparingForInterview/JavaInterviewLibrary.md)
+* [【备战面试6】美团面试常见问题总结（附详解答案）](https://github.com/Snailclimb/Java-Guide/blob/master/EssentialContentForInterview/PreparingForInterview/美团面试常见问题总结.md)
 
-### 最常见的Java面试题总结
+### 最常见的Java面试题总结(Summary of the most common Java interview questions)
 
 * [第一周（2018-8-7）](https://github.com/Snailclimb/Java-Guide/blob/master/EssentialContentForInterview/MostCommonJavaInterviewQuestions/第一周（2018-8-7）.md) (为什么 Java 中只有值传递、==与equals、 hashCode与equals)
 * [第二周（2018-8-13）](https://github.com/Snailclimb/Java-Guide/blob/master/EssentialContentForInterview/MostCommonJavaInterviewQuestions/第二周(2018-8-13).md)(String和StringBuffer、StringBuilder的区别是什么？String为什么是不可变的？、什么是反射机制？反射机制的应用场景有哪些？......)
 * [第三周（2018-08-22）](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/这几道Java集合框架面试题几乎必问.md) （Arraylist 与 LinkedList 异同、ArrayList 与 Vector 区别、HashMap的底层实现、HashMap 和 Hashtable 的区别、HashMap 的长度为什么是2的幂次方、HashSet 和 HashMap 区别、ConcurrentHashMap 和 Hashtable 的区别、ConcurrentHashMap线程安全的具体实现方式/底层具体实现、集合框架底层数据结构总结）
 * [第四周(2018-8-30).md](https://github.com/Snailclimb/Java-Guide/blob/master/EssentialContentForInterview/MostCommonJavaInterviewQuestions/第四周(2018-8-30).md) （主要内容是几道面试常问的多线程基础题。）
-
-### Java学习/面试开源仓库推荐
-
-* [盘点一下Github上开源的Java面试/学习相关的仓库，看完弄懂薪资至少增加10k](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/JavaInterviewGithub.md)
 
 ## :art: 闲谈  
 
