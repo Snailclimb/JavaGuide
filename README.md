@@ -16,33 +16,33 @@
 
 ## 目录
 
-* [:coffee: Java](#coffee-java)
+* [Java](#java)
   * [Java/J2EE 基础](#javaj2ee-基础)
   * [Java 集合框架](#java-集合框架)
   * [Java 多线程](#java-多线程)
   * [Java BIO,NIO,AIO](#java-bionioaio)
   * [Java 虚拟机 jvm](#java-虚拟机-jvm)
   * [设计模式](#设计模式)
-* [:open_file_folder: 数据结构与算法](#open_file_folder-数据结构与算法)
+* [数据结构与算法](#数据结构与算法)
   * [数据结构](#数据结构)
   * [算法](#算法)
-* [:computer: 计算机网络与数据通信](#computer-计算机网络与数据通信)
+* [计算机网络与数据通信](#计算机网络与数据通信)
   * [网络相关](#网络相关)
   * [数据通信\(RESTful,RPC,消息队列\)总结](#数据通信restfulrpc消息队列总结)
-* [:iphone: 操作系统](#iphone-操作系统)
+* [操作系统](#操作系统)
   * [Linux相关](#linux相关)
-* [:pencil2: 主流框架/软件](#pencil2-主流框架软件)
+* [主流框架/软件](#主流框架软件)
   * [Spring](#spring)
   * [ZooKeeper](#zookeeper)
-* [:floppy_disk: 数据存储](#floppy_disk-数据存储)
+* [数据存储](#数据存储)
   * [MySQL](#mysql)
   * [Redis](#redis)
-* [:punch: 架构](#punch-架构)
-* [:musical_note: 面试必备\(Essential content for the interview\)](#musical_note-面试必备essential-content-for-the-interview)
+* [架构](#架构)
+* [面试必备\(Essential content for the interview\)](#面试必备essential-content-for-the-interview)
   * [备战面试\(Preparing for an interview\)](#备战面试preparing-for-an-interview)
   * [最常见的Java面试题总结\(Summary of the most common Java interview questions\)](#最常见的java面试题总结summary-of-the-most-common-java-interview-questions)
-* [:art: 闲谈](#art-闲谈)
-* [:envelope: 说明](#envelope-说明)
+* [闲谈](#闲谈)
+* [说明](#说明)
 
 ## 待办
 
@@ -52,7 +52,7 @@
 * [ ] Netty 总结
 * [ ] 数据结构总结重构
   
-## :coffee: Java
+## Java
 
 ### Java/J2EE 基础
 
@@ -94,7 +94,7 @@
 
 * [设计模式系列文章](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/设计模式.md)
 
-## :open_file_folder: 数据结构与算法
+## 数据结构与算法
 
 ### 数据结构
 
@@ -107,7 +107,7 @@
 * [算法总结——几道常见的子符串算法题 ](https://github.com/Snailclimb/Java_Guide/blob/master/数据结构与算法/搞定BAT面试——几道常见的子符串算法题.md)
 * [算法总结——几道常见的链表算法题 ](https://github.com/Snailclimb/Java_Guide/blob/master/数据结构与算法/Leetcode-LinkList1.md)   
 
-## :computer: 计算机网络与数据通信
+## 计算机网络与数据通信
 
 ### 网络相关
 
@@ -122,13 +122,13 @@
 * [消息队列总结：新手也能看懂，消息队列其实很简单](https://github.com/Snailclimb/Java-Guide/blob/master/计算机网络与数据通信/message-queue.md)
 * [一文搞懂 RabbitMQ 的重要概念以及安装](https://github.com/Snailclimb/Java-Guide/blob/master/计算机网络与数据通信/rabbitmq.md)
 
-## :iphone: 操作系统
+## 操作系统
 
 ### Linux相关
 
 * [后端程序员必备的 Linux 基础知识](https://github.com/Snailclimb/Java-Guide/blob/master/操作系统/后端程序员必备的Linux基础知识.md)  
 * [Shell 编程入门](https://github.com/Snailclimb/Java-Guide/blob/master/操作系统/Shell.md)  
-## :pencil2: 主流框架/软件
+## 主流框架/软件
 
 ### Spring
 
@@ -141,7 +141,7 @@
 * [可能是把 ZooKeeper 概念讲的最清楚的一篇文章](https://github.com/Snailclimb/Java_Guide/blob/master/主流框架/ZooKeeper.md)
 * [ZooKeeper 数据模型和常见命令了解一下，速度收藏！](https://github.com/Snailclimb/Java_Guide/blob/master/主流框架/ZooKeeper数据模型和常见命令.md)
   
-## :floppy_disk: 数据存储
+## 数据存储
 
 ### MySQL
 
@@ -154,13 +154,13 @@
 * [Redlock分布式锁](https://github.com/Snailclimb/Java_Guide/blob/master/数据存储/Redis/Redlock分布式锁.md)
 * [如何做可靠的分布式锁，Redlock真的可行么](https://github.com/Snailclimb/Java_Guide/blob/master/数据存储/Redis/如何做可靠的分布式锁，Redlock真的可行么.md)
 
-## :punch: 架构
+## 架构
 
 * [一文读懂分布式应该学什么](https://github.com/Snailclimb/Java_Guide/blob/master/架构/分布式.md)
 * [8 张图读懂大型网站技术架构](https://github.com/Snailclimb/JavaGuide/blob/master/架构/8%20张图读懂大型网站技术架构.md)
 * [【面试精选】关于大型网站系统架构你不得不懂的10个问题](https://github.com/Snailclimb/JavaGuide/blob/master/架构/【面试精选】关于大型网站系统架构你不得不懂的10个问题.md)
 
-## :musical_note: 面试必备(Essential content for the interview)
+## 面试必备(Essential content for the interview)
 
 ### 备战面试(Preparing for an interview)
 
@@ -178,7 +178,7 @@
 * [第三周（2018-08-22）](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/这几道Java集合框架面试题几乎必问.md) （Arraylist 与 LinkedList 异同、ArrayList 与 Vector 区别、HashMap的底层实现、HashMap 和 Hashtable 的区别、HashMap 的长度为什么是2的幂次方、HashSet 和 HashMap 区别、ConcurrentHashMap 和 Hashtable 的区别、ConcurrentHashMap线程安全的具体实现方式/底层具体实现、集合框架底层数据结构总结）
 * [第四周(2018-8-30).md](https://github.com/Snailclimb/Java-Guide/blob/master/EssentialContentForInterview/MostCommonJavaInterviewQuestions/第四周(2018-8-30).md) （主要内容是几道面试常问的多线程基础题。）
 
-## :art: 闲谈  
+## 闲谈  
 
 * [选择技术方向都要考虑哪些因素](https://github.com/Snailclimb/Java-Guide/blob/master/闲谈/选择技术方向都要考虑哪些因素.md) 
 * [结束了我短暂的秋招，说点自己的感受](https://github.com/Snailclimb/JavaGuide/blob/master/闲谈/2018%20%E7%A7%8B%E6%8B%9B.md) 
@@ -187,7 +187,7 @@
 
 ***
 
-## :envelope: 说明
+## 说明
 
 ### 介绍
 
