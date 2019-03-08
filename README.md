@@ -38,7 +38,6 @@
   * [MySQL](#mysql)
   * [Redis](#redis)
 * [:punch: 架构](#punch-架构)
-* [:musical_note: 面试必备](#musical_note-面试必备)
 * [:musical_note: 面试必备\(Essential content for the interview\)](#musical_note-面试必备essential-content-for-the-interview)
   * [备战面试\(Preparing for an interview\)](#备战面试preparing-for-an-interview)
   * [最常见的Java面试题总结\(Summary of the most common Java interview questions\)](#最常见的java面试题总结summary-of-the-most-common-java-interview-questions)
