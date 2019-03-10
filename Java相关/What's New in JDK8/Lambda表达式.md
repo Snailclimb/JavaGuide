@@ -15,13 +15,13 @@ JDK8--Lambda表达式
 **函数式接口指的是有且只有一个抽象(abstract)方法的接口**<br>
 当需要一个函数式接口的对象时，就可以用Lambda表达式来实现，举个常用的例子:
 <br>
-```
+```java
   Thread thread = new Thread(() -> {
       System.out.println("This is JDK8's Lambda!");
   });
 ```
 这段代码和函数式接口有啥关系？我们回忆一下，Thread类的构造函数里是不是有一个以Runnable接口为参数的？
-```
+```java
 public Thread(Runnable target) {...}
 
 /**
@@ -33,7 +33,7 @@ public interface Runnable {
 }
 ```
 到这里大家可能已经明白了，**Lambda表达式相当于一个匿名类或者说是一个匿名方法**。上面Thread的例子相当于
-```
+```java
   Thread thread = new Thread(new Runnable() {
       @Override
       public void run() {
