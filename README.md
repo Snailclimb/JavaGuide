@@ -56,33 +56,33 @@
 
 ### Java/J2EE 基础
 
-* [Java 基础知识回顾](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/Java基础知识.md)
-* [J2EE 基础知识回顾](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/J2EE基础知识.md)
+* [Java 基础知识回顾](https://github.com/Snailclimb/Java-Guide/blob/master/Java/Java基础知识.md)
+* [J2EE 基础知识回顾](https://github.com/Snailclimb/Java-Guide/blob/master/Java/J2EE基础知识.md)
 * [Java常见关键字总结：static、final、this、super](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/final、static、this、super.md) 
 
 ### Java 集合框架
 
-* [这几道Java集合框架面试题几乎必问](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/这几道Java集合框架面试题几乎必问.md)
-* [Java 集合框架常见面试题总结](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/Java集合框架常见面试题总结.md)
-* [ArrayList 源码学习](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/ArrayList.md) 
-* [【面试必备】透过源码角度一步一步带你分析 ArrayList 扩容机制](https://github.com/Snailclimb/JavaGuide/blob/master/Java相关/ArrayList-Grow.md)    
-* [LinkedList 源码学习](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/LinkedList.md)   
-* [HashMap(JDK1.8)源码学习](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/HashMap.md)  
+* [这几道Java集合框架面试题几乎必问](https://github.com/Snailclimb/Java-Guide/blob/master/Java/这几道Java集合框架面试题几乎必问.md)
+* [Java 集合框架常见面试题总结](https://github.com/Snailclimb/Java-Guide/blob/master/Java/Java集合框架常见面试题总结.md)
+* [ArrayList 源码学习](https://github.com/Snailclimb/Java-Guide/blob/master/Java/ArrayList.md) 
+* [【面试必备】透过源码角度一步一步带你分析 ArrayList 扩容机制](https://github.com/Snailclimb/JavaGuide/blob/master/Java/ArrayList-Grow.md)    
+* [LinkedList 源码学习](https://github.com/Snailclimb/Java-Guide/blob/master/Java/LinkedList.md)   
+* [HashMap(JDK1.8)源码学习](https://github.com/Snailclimb/Java-Guide/blob/master/Java/HashMap.md)  
 
 ### Java 多线程
 
-* [并发编程面试必备：synchronized 关键字使用、底层原理、JDK1.6 之后的底层优化以及 和ReenTrantLock 的对比](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/synchronized.md)
-* [并发编程面试必备：乐观锁与悲观锁](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/面试必备之乐观锁与悲观锁.md)
-* [并发编程面试必备：JUC 中的 Atomic 原子类总结](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/Multithread/Atomic.md)
-* [并发编程面试必备：AQS 原理以及 AQS 同步组件总结](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/Multithread/AQS.md)
-* [BATJ都爱问的多线程面试题](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/Multithread/BATJ都爱问的多线程面试题.md)
-* [并发容器总结](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/Multithread/并发容器总结.md)
+* [并发编程面试必备：synchronized 关键字使用、底层原理、JDK1.6 之后的底层优化以及 和ReenTrantLock 的对比](https://github.com/Snailclimb/Java_Guide/blob/master/Java/synchronized.md)
+* [并发编程面试必备：乐观锁与悲观锁](https://github.com/Snailclimb/Java-Guide/blob/master/EssentialContentForInterview/面试必备之乐观锁与悲观锁.md)
+* [并发编程面试必备：JUC 中的 Atomic 原子类总结](https://github.com/Snailclimb/Java_Guide/blob/master/Java/Multithread/Atomic.md)
+* [并发编程面试必备：AQS 原理以及 AQS 同步组件总结](https://github.com/Snailclimb/Java_Guide/blob/master/Java/Multithread/AQS.md)
+* [BATJ都爱问的多线程面试题](https://github.com/Snailclimb/Java_Guide/blob/master/Java/Multithread/BATJ都爱问的多线程面试题.md)
+* [并发容器总结](https://github.com/Snailclimb/Java_Guide/blob/master/Java/Multithread/并发容器总结.md)
 
 ### Java 虚拟机 jvm
 
-* [可能是把Java内存区域讲的最清楚的一篇文章](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/可能是把Java内存区域讲的最清楚的一篇文章.md)
-* [搞定JVM垃圾回收就是这么简单](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/搞定JVM垃圾回收就是这么简单.md)
-* [《深入理解Java虚拟机》第2版学习笔记](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/Java虚拟机（jvm）.md)
+* [可能是把Java内存区域讲的最清楚的一篇文章](https://github.com/Snailclimb/Java_Guide/blob/master/Java/可能是把Java内存区域讲的最清楚的一篇文章.md)
+* [搞定JVM垃圾回收就是这么简单](https://github.com/Snailclimb/Java_Guide/blob/master/Java/搞定JVM垃圾回收就是这么简单.md)
+* [《深入理解Java虚拟机》第2版学习笔记](https://github.com/Snailclimb/Java_Guide/blob/master/Java/Java虚拟机（jvm）.md)
 
 ### Java BIO,NIO,AIO
 
