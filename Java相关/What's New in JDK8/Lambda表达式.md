@@ -78,6 +78,7 @@ public class VaraibleHide {
         };
         inner.printInt(30);
         inner = (s) -> {
+            //Variable used in lambda expression should be final or effectively final
             //!int x = 10;
             //!x= 50; error
             System.out.print(x);
@@ -85,4 +86,10 @@ public class VaraibleHide {
         inner.printInt(30);
     }
 }
+输出 :
+30
+20
 ```
+lambda表达式和内部类一样，对外部变量捕获时，外部变量必须为final或者是最终变量(effectively final)的，也就是说这个变量初始化后就不能为它赋新值，
+同时lambda不像内部类/匿名类，lambda表达式与外围嵌套块有着相同的作用域，因此对变量命名的有关规则对lambda同样适用。
+## 5.[方法引用]()
