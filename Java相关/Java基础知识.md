@@ -370,15 +370,25 @@ hashCode() 的作用是获取哈希码，也称为散列码；它实际上是返
 
 ## 30. 线程有哪些基本状态?
 
-参考《Java 并发编程艺术》4.1.4节。
-
-Java 线程在运行的生命周期中的指定时刻只可能处于下面6种不同状态的其中一个状态。
+Java 线程在运行的生命周期中的指定时刻只可能处于下面6种不同状态的其中一个状态（图源《Java 并发编程艺术》4.1.4节）。
 
 ![Java线程的状态](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/19-1-29/Java%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81.png)
 
-线程在生命周期中并不是固定处于某一个状态而是随着代码的执行在不同状态之间切换。Java 线程状态变迁如下图所示：
+线程在生命周期中并不是固定处于某一个状态而是随着代码的执行在不同状态之间切换。Java 线程状态变迁如下图所示（图源《Java 并发编程艺术》4.1.4节）：
 
 ![Java线程状态变迁](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/19-1-29/Java%20%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81%E5%8F%98%E8%BF%81.png)
+
+
+
+由上图可以看出：
+
+线程创建之后它将处于 **NEW（新建）** 状态，调用 `start()` 方法后开始运行，线程这时候处于 **READY（可运行）** 状态。可运行状态的线程获得了 cpu 时间片（timeslice）后就处于 **RUNNING（运行）** 状态。
+
+> 操作系统隐藏 Java虚拟机（JVM）中的 RUNNABLE 和 RUNNING 状态，它只能看到 RUNNABLE 状态（图源：[HowToDoInJava](https://howtodoinjava.com/)：[Java Thread Life Cycle and Thread States](https://howtodoinjava.com/java/multi-threading/java-thread-life-cycle-and-thread-states/)），所以 Java 系统一般将这两个状态统称为 **RUNNABLE（运行中）** 状态 。
+
+![RUNNABLE-VS-RUNNING](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/RUNNABLE-VS-RUNNING.png)
+
+当线程执行 `wait()`方法之后，线程进入 **WAITING（等待）**状态。进入等待状态的线程需要依靠其他线程的通知才能够返回到运行状态，而 **TIME_WAITING(超时等待)** 状态相当于在等待状态的基础上增加了超时限制，比如通过 `sleep（long millis）`方法或 `wait（long millis）`方法可以将 Java 线程置于 TIMED WAITING 状态。当超时时间到达后 Java 线程将会返回到 RUNNABLE 状态。当线程调用同步方法时，在没有获取到锁的情况下，线程将会进入到 **BLOCKED（阻塞）** 状态。线程在执行 Runnable 的` run() `方法之后将会进入到 **TERMINATED（终止）** 状态。
 
 ## 31 关于 final 关键字的一些总结
 
@@ -412,16 +422,28 @@ final关键字主要用在三个地方：变量、方法、类。
 
 ### 异常处理总结
 
-- try 块：用于捕获异常。其后可接零个或多个catch块，如果没有catch块，则必须跟一个finally块。
-- catch 块：用于处理try捕获到的异常。
-- finally 块：无论是否捕获或处理异常，finally块里的语句都会被执行。当在try块或catch块中遇到return语句时，finally语句块将在方法返回之前被执行。
+- **try 块：**用于捕获异常。其后可接零个或多个catch块，如果没有catch块，则必须跟一个finally块。
+- **catch 块：**用于处理try捕获到的异常。
+- **finally 块：**无论是否捕获或处理异常，finally块里的语句都会被执行。当在try块或catch块中遇到return语句时，finally语句块将在方法返回之前被执行。
 
 **在以下4种特殊情况下，finally块不会被执行：**
 
-1. 在finally语句块中发生了异常。
-2. 在前面的代码中用了System.exit()退出程序。
+1. 在finally语句块第一行发生了异常。 因为在其他行，finally块还是会得到执行
+2. 在前面的代码中用了System.exit(int)已退出程序。 exit是带参函数 ；若该语句在异常语句之后，finally会执行
 3. 程序所在的线程死亡。
 4. 关闭CPU。
+
+下面这部分内容来自issue:<https://github.com/Snailclimb/JavaGuide/issues/190>。
+
+**关于返回值：**
+
+如果try语句里有return，返回的是try语句块中变量值。 
+详细执行过程如下：
+
+1. 如果有返回值，就把返回值保存到局部变量中；
+2. 执行jsr指令跳到finally语句里执行；
+3. 执行完finally语句后，返回之前保存在局部变量表里的值。
+4. 如果try，finally语句里均有return，忽略try的return，而使用finally的return.
 
 ## 33 Java序列化中如果有些字段不想进行序列化 怎么办
 
