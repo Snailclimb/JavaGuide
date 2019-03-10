@@ -60,5 +60,3 @@ public interface Runnable {
   - ```Predicate<T> {boolean test(T t);}``` 判断，接受一个T对象，返回一个布尔值。
   - ```Supplier<T> {T get();} 提供者(工厂)``` 返回一个T对象。
   - 其他的跟上面的相似，大家可以看一下function包下的具体接口。
-
-## 4.[方法引用]()
