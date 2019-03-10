@@ -5,7 +5,7 @@ JDK8新特性总结
 -----
 - [Java语言特性]()
   - [Lambda表达式是一个新的语言特性，已经在JDK8中加入。它是一个可以传递的代码块，你也可以把它们当做方法参数。
-  Lambda表达式允许您更紧凑地创建单虚方法接口（称为功能接口）的实例。]()
+  Lambda表达式允许您更紧凑地创建单虚方法接口（称为功能接口）的实例。](https://github.com/Goose9527/JavaGuide/blob/master/Java%E7%9B%B8%E5%85%B3/What's%20New%20in%20JDK8/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F.md)
   
   - [方法引用为已经存在的具名方法提供易于阅读的Lambda表达式]()
   
