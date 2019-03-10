@@ -60,3 +60,29 @@ public interface Runnable {
   - ```Predicate<T> {boolean test(T t);}``` 判断，接受一个T对象，返回一个布尔值。
   - ```Supplier<T> {T get();} 提供者(工厂)``` 返回一个T对象。
   - 其他的跟上面的相似，大家可以看一下function包下的具体接口。
+## 4.变量作用域
+```java
+public class VaraibleHide {
+    @FunctionalInterface
+    interface IInner {
+        void printInt(int x);
+    }
+    public static void main(String[] args) {
+        int x = 20;
+        IInner inner = new IInner() {
+            int x = 10;
+            @Override
+            public void printInt(int x) {
+                System.out.println(x);
+            }
+        };
+        inner.printInt(30);
+        inner = (s) -> {
+            //!int x = 10;
+            //!x= 50; error
+            System.out.print(x);
+        };
+        inner.printInt(30);
+    }
+}
+```
