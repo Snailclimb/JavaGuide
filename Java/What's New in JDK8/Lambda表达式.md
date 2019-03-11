@@ -8,7 +8,7 @@ JDK8--Lambda表达式
 <br>参数列表可以为空```()->{}```
 <br>可以加类型声明比如```(String para1, int para2) -> {return para1 + para2;}```我们可以看到，lambda同样可以有返回值.
 <br>在编译器可以推断出类型的时候，可以将类型声明省略，比如```(para1, para2) -> {return para1 + para2;}```
-<br>(lambda有点像动态类型语言，并且lambda在字节码层面是用invokedynamic实现的，而这条指令就是为了让JVM更好的支持运行在其上的动态类型语言)
+<br>(lambda有点像动态类型语言语法。lambda在字节码层面是用invokedynamic实现的，而这条指令就是为了让JVM更好的支持运行在其上的动态类型语言)
 
 ## 3.函数式接口
 在了解Lambda表达式之前，有必要先了解什么是函数式接口```(@FunctionalInterface)```<br>
@@ -43,6 +43,11 @@ public interface Runnable {
 ```
 也就是说，上面的lambda表达式相当于实现了这个run()方法，然后当做参数传入(个人感觉可以这么理解,lambda表达式就是一个函数，只不过它的返回值、参数列表都
 由编译器帮我们推断，因此可以减少很多代码量)。
+<br>Lambda也可以这样用 :
+```java
+  Runnable runnable = () -> {...};
+```
+其实这和上面的用法没有什么本质上的区别。
 <br>至此大家应该明白什么是函数式接口以及函数式接口和lambda表达式之间的关系了。在JDK8中修改了接口的规范，
 目的是为了在给接口添加新的功能时保持向前兼容(个人理解)，比如一个已经定义了的函数式接口，某天我们想给它添加新功能，那么就不能保持向前兼容了，
 因为在旧的接口规范下，添加新功能必定会破坏这个函数式接口[(JDK8中接口规范)]()
@@ -77,6 +82,7 @@ public class VaraibleHide {
             }
         };
         inner.printInt(30);
+        
         inner = (s) -> {
             //Variable used in lambda expression should be final or effectively final
             //!int x = 10;
@@ -90,6 +96,8 @@ public class VaraibleHide {
 30
 20
 ```
-lambda表达式和内部类一样，对外部变量捕获时，外部变量必须为final或者是最终变量(effectively final)的，也就是说这个变量初始化后就不能为它赋新值，
-同时lambda不像内部类/匿名类，lambda表达式与外围嵌套块有着相同的作用域，因此对变量命名的有关规则对lambda同样适用。
-## 5.[方法引用]()
+对于lambda表达式```java inner = (s) -> {System.out.print(x);};```,变量x并不是在lambda表达式中定义的，像这样并不是在lambda中定义或者通过lambda的参数列表()获取的变量成为自由变量，它是被lambda表达式捕获的。
+<br>lambda表达式和内部类一样，对外部自由变量捕获时，外部自由变量必须为final或者是最终变量(effectively final)的，也就是说这个变量初始化后就不能为它赋新值，
+同时lambda不像内部类/匿名类，lambda表达式与外围嵌套块有着相同的作用域，因此对变量命名的有关规则对lambda同样适用。大家阅读上面的代码对这些概念应该
+不难理解。
+## 5.[方法引用](../方法引用.md)
