@@ -30,7 +30,7 @@
   * [数据通信\(RESTful,RPC,消息队列\)总结](#数据通信restfulrpc消息队列总结)
 * [操作系统](#操作系统)
   * [Linux相关](#linux相关)
-* [主流框架/软件](#主流框架软件)
+* [主流框架](#主流框架)
   * [Spring](#spring)
   * [ZooKeeper](#zookeeper)
 * [数据存储](#数据存储)
@@ -56,42 +56,44 @@
 
 ### Java/J2EE 基础
 
-* [Java 基础知识回顾](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/Java基础知识.md)
-* [J2EE 基础知识回顾](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/J2EE基础知识.md)
-* [Java常见关键字总结：static、final、this、super](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/final、static、this、super.md) 
+* [Java 基础知识回顾](https://github.com/Snailclimb/Java-Guide/blob/master/Java/Java基础知识.md)
+* [J2EE 基础知识回顾](https://github.com/Snailclimb/Java-Guide/blob/master/Java/J2EE基础知识.md)
+* [Java常见关键字总结：static、final、this、super](https://github.com/Snailclimb/Java-Guide/blob/master/Java/final、static、this、super.md) 
 
 ### Java 集合框架
 
-* [这几道Java集合框架面试题几乎必问](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/这几道Java集合框架面试题几乎必问.md)
-* [Java 集合框架常见面试题总结](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/Java集合框架常见面试题总结.md)
-* [ArrayList 源码学习](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/ArrayList.md) 
-* [【面试必备】透过源码角度一步一步带你分析 ArrayList 扩容机制](https://github.com/Snailclimb/JavaGuide/blob/master/Java相关/ArrayList-Grow.md)    
-* [LinkedList 源码学习](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/LinkedList.md)   
-* [HashMap(JDK1.8)源码学习](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/HashMap.md)  
+* **常见问题总结：**
+  * [这几道Java集合框架面试题几乎必问](https://github.com/Snailclimb/Java-Guide/blob/master/Java/这几道Java集合框架面试题几乎必问.md)
+  * [Java 集合框架常见面试题总结](https://github.com/Snailclimb/Java-Guide/blob/master/Java/Java集合框架常见面试题总结.md)
+* **源码分析：**
+  * [ArrayList 源码学习](https://github.com/Snailclimb/Java-Guide/blob/master/Java/ArrayList.md) 
+  * [【面试必备】透过源码角度一步一步带你分析 ArrayList 扩容机制](https://github.com/Snailclimb/JavaGuide/blob/master/Java/ArrayList-Grow.md)    
+  * [LinkedList 源码学习](https://github.com/Snailclimb/Java-Guide/blob/master/Java/LinkedList.md)   
+  * [HashMap(JDK1.8)源码学习](https://github.com/Snailclimb/Java-Guide/blob/master/Java/HashMap.md)  
 
 ### Java 多线程
 
-* [并发编程面试必备：synchronized 关键字使用、底层原理、JDK1.6 之后的底层优化以及 和ReenTrantLock 的对比](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/synchronized.md)
-* [并发编程面试必备：乐观锁与悲观锁](https://github.com/Snailclimb/Java-Guide/blob/master/面试必备/面试必备之乐观锁与悲观锁.md)
-* [并发编程面试必备：JUC 中的 Atomic 原子类总结](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/Multithread/Atomic.md)
-* [并发编程面试必备：AQS 原理以及 AQS 同步组件总结](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/Multithread/AQS.md)
-* [BATJ都爱问的多线程面试题](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/Multithread/BATJ都爱问的多线程面试题.md)
-* [并发容器总结](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/Multithread/并发容器总结.md)
+* [并发编程面试必备：synchronized 关键字使用、底层原理、JDK1.6 之后的底层优化以及 和ReenTrantLock 的对比](https://github.com/Snailclimb/Java_Guide/blob/master/Java/synchronized.md)
+* [并发编程面试必备：乐观锁与悲观锁](https://github.com/Snailclimb/Java-Guide/blob/master/EssentialContentForInterview/面试必备之乐观锁与悲观锁.md)
+* [并发编程面试必备：JUC 中的 Atomic 原子类总结](https://github.com/Snailclimb/Java_Guide/blob/master/Java/Multithread/Atomic.md)
+* [并发编程面试必备：AQS 原理以及 AQS 同步组件总结](https://github.com/Snailclimb/Java_Guide/blob/master/Java/Multithread/AQS.md)
+* [BATJ都爱问的多线程面试题](https://github.com/Snailclimb/Java_Guide/blob/master/Java/Multithread/BATJ都爱问的多线程面试题.md)
+* [并发容器总结](https://github.com/Snailclimb/Java_Guide/blob/master/Java/Multithread/并发容器总结.md)
 
 ### Java 虚拟机 jvm
 
-* [可能是把Java内存区域讲的最清楚的一篇文章](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/可能是把Java内存区域讲的最清楚的一篇文章.md)
-* [搞定JVM垃圾回收就是这么简单](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/搞定JVM垃圾回收就是这么简单.md)
-* [《深入理解Java虚拟机》第2版学习笔记](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/Java虚拟机（jvm）.md)
+* [可能是把Java内存区域讲的最清楚的一篇文章](https://github.com/Snailclimb/Java_Guide/blob/master/Java/可能是把Java内存区域讲的最清楚的一篇文章.md)
+* [搞定JVM垃圾回收就是这么简单](https://github.com/Snailclimb/Java_Guide/blob/master/Java/搞定JVM垃圾回收就是这么简单.md)
+* [《深入理解Java虚拟机》第2版学习笔记](https://github.com/Snailclimb/Java_Guide/blob/master/Java/Java虚拟机（jvm）.md)
 
 ### Java BIO,NIO,AIO
 
-* [BIO,NIO,AIO 总结 ](https://github.com/Snailclimb/JavaGuide/blob/master/Java%E7%9B%B8%E5%85%B3/BIO%2CNIO%2CAIO%20summary.md)
-* [Java IO 与 NIO系列文章](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/Java%20IO与NIO.md)
+* [BIO,NIO,AIO 总结 ](https://github.com/Snailclimb/JavaGuide/blob/master/Java/BIO%2CNIO%2CAIO%20summary.md)
+* [Java IO 与 NIO系列文章](https://github.com/Snailclimb/Java_Guide/blob/master/Java/Java%20IO与NIO.md)
 
 ### 设计模式
 
-* [设计模式系列文章](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/设计模式.md)
+* [设计模式系列文章](https://github.com/Snailclimb/Java_Guide/blob/master/Java/设计模式.md)
 
 ## 数据结构与算法
 
@@ -127,7 +129,8 @@
 
 * [后端程序员必备的 Linux 基础知识](https://github.com/Snailclimb/Java-Guide/blob/master/操作系统/后端程序员必备的Linux基础知识.md)  
 * [Shell 编程入门](https://github.com/Snailclimb/Java-Guide/blob/master/操作系统/Shell.md)  
-## 主流框架/软件
+
+## 主流框架
 
 ### Spring
 
@@ -168,7 +171,8 @@
 * [【备战面试3】7个大部分程序员在面试前很关心的问题](https://github.com/Snailclimb/JavaGuide/blob/master/EssentialContentForInterview/PreparingForInterview/JavaProgrammerNeedKnow.md)
 * [【备战面试4】Java程序员必备书单](https://github.com/Snailclimb/Java-Guide/blob/master/EssentialContentForInterview/PreparingForInterview/books.md)
 * [【备战面试5】Github上开源的Java面试/学习相关的仓库推荐](https://github.com/Snailclimb/Java-Guide/blob/master/EssentialContentForInterview/PreparingForInterview/JavaInterviewLibrary.md)
-* [【备战面试6】美团面试常见问题总结（附详解答案）](https://github.com/Snailclimb/Java-Guide/blob/master/EssentialContentForInterview/PreparingForInterview/美团面试常见问题总结.md)
+* [【备战面试6】如果面试官问你“你有什么问题问我吗？”时，你该如何回答](https://github.com/Snailclimb/Java-Guide/blob/master/EssentialContentForInterview/PreparingForInterview/如果面试官问你“你有什么问题问我吗？”时，你该如何回答.md)
+* [【备战面试7】美团面试常见问题总结（附详解答案）](https://github.com/Snailclimb/Java-Guide/blob/master/EssentialContentForInterview/PreparingForInterview/美团面试常见问题总结.md)
 
 ### BATJ真实面经(BATJ real interview experience)
 
