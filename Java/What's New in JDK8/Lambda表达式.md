@@ -100,4 +100,136 @@ public class VaraibleHide {
 <br>lambda表达式和内部类一样，对外部自由变量捕获时，外部自由变量必须为final或者是最终变量(effectively final)的，也就是说这个变量初始化后就不能为它赋新值，
 同时lambda不像内部类/匿名类，lambda表达式与外围嵌套块有着相同的作用域，因此对变量命名的有关规则对lambda同样适用。大家阅读上面的代码对这些概念应该
 不难理解。
-## 5.[方法引用](../方法引用.md)
+## 5.方法引用
+**只需要提供方法的名字，具体的调用过程由Lambda和函数式接口来确定，这样的方法调用成为方法引用。**
+<br>下面的例子会打印list中的每个元素:
+```java
+List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < 10; ++i) {
+            list.add(i);
+        }
+        list.forEach(System.out::println);
+```
+其中```System.out::println```这个就是一个方法引用，等价于Lambda表达式 ```(para)->{System.out.println(para);}```
+<br>我们看一下List#forEach方法 ```default void forEach(Consumer<? super T> action)```可以看到它的参数是一个Consumer接口，该接口是一个函数式接口
+```java
+@FunctionalInterface
+public interface Consumer<T> {
+    void accept(T t);
+```
+大家能发现这个函数接口的方法和```System.out::println```有什么相似的么？没错，它们有着相似的参数列表和返回值。
+<br>我们自己定义一个方法，看看能不能像标准输出的打印函数一样被调用
+```java
+public class MethodReference {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < 10; ++i) {
+            list.add(i);
+        }
+        list.forEach(MethodReference::myPrint);
+    }
+
+    static void myPrint(int i) {
+        System.out.print(i + ", ");
+    }
+}
+
+输出: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 
+```
+可以看到，我们自己定义的方法也可以当做方法引用。
+<br>到这里大家多少对方法引用有了一定的了解，我们再来说一下方法引用的形式。
+- 方法引用
+  - 类名::静态方法名
+  - 类名::实例方法名
+  - 类名::new (构造方法引用)
+  - 实例名::实例方法名
+可以看出，方法引用是通过(方法归属名)::(方法名)来调用的。通过上面的例子已经讲解了一个`类名::静态方法名`的使用方法了，下面再依次介绍其余的几种
+方法引用的使用方法。<br>
+**类名::实例方法名**<br>
+先来看一段代码
+```java
+  String[] strings = new String[10];
+  Arrays.sort(strings, String::compareToIgnoreCase);
+```
+**上面的String::compareToIgnoreCase等价于(x, y) -> {return x.compareToIgnoreCase(y);}**<br>
+我们看一下`Arrays#sort`方法`public static <T> void sort(T[] a, Comparator<? super T> c)`,
+可以看到第二个参数是一个Comparator接口，该接口也是一个函数式接口，其中的抽象方法是`int compare(T o1, T o2);`，再看一下
+`String#compareToIgnoreCase`方法,`public int compareToIgnoreCase(String str)`，这个方法好像和上面讲方法引用中`类名::静态方法名`不大一样啊，它
+的参数列表和函数式接口的参数列表不一样啊，虽然它的返回值一样？
+<br>是的，确实不一样但是别忘了，String类的这个方法是个实例方法，而不是静态方法，也就是说，这个方法是需要有一个接收者的。所谓接收者就是
+instance.method(x)中的instance，
+它是某个类的实例，有的朋友可能已经明白了。上面函数式接口的`compare(T o1, T o2)`中的第一个参数作为了实例方法的接收者，而第二个参数作为了实例方法的
+参数。我们再举一个自己实现的例子:
+```java
+public class MethodReference {
+    static Random random = new Random(47);
+    public static void main(String[] args) {
+        MethodReference[] methodReferences = new MethodReference[10];
+        Arrays.sort(methodReferences, MethodReference::myCompare);
+    }
+    int myCompare(MethodReference o) {
+        return random.nextInt(2) - 1;
+    }
+}
+```
+上面的例子可以在IDE里通过编译，大家有兴趣的可以模仿上面的例子自己写一个程序，打印出排序后的结果。
+<br>**构造器引用**<br>
+构造器引用仍然需要与特定的函数式接口配合使用，并不能像下面这样直接使用。IDE会提示String不是一个函数式接口
+```java
+  //compile error : String is not a functional interface
+  String str = String::new;
+```
+下面是一个使用构造器引用的例子，可以看出构造器引用可以和这种工厂型的函数式接口一起使用的。
+```java
+  interface IFunctional<T> {
+    T func();
+}
+
+public class ConstructorReference {
+
+    public ConstructorReference() {
+    }
+
+    public static void main(String[] args) {
+        Supplier<ConstructorReference> supplier0 = () -> new ConstructorReference();
+        Supplier<ConstructorReference> supplier1 = ConstructorReference::new;
+        IFunctional<ConstructorReference> functional = () -> new ConstructorReference();
+        IFunctional<ConstructorReference> functional1 = ConstructorReference::new;
+    }
+}
+```
+下面是一个JDK官方的例子
+```java
+  public static <T, SOURCE extends Collection<T>, DEST extends Collection<T>>
+    DEST transferElements(
+        SOURCE sourceCollection,
+        Supplier<DEST> collectionFactory) {
+
+        DEST result = collectionFactory.get();
+        for (T t : sourceCollection) {
+            result.add(t);
+        }
+        return result;
+    }
+    
+    ...
+    
+    Set<Person> rosterSet = transferElements(
+            roster, HashSet::new);
+```
+
+**实例::实例方法**
+<br>
+其实开始那个例子就是一个实例::实例方法的引用
+```java
+List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < 10; ++i) {
+            list.add(i);
+        }
+        list.forEach(System.out::println);
+```
+其中System.out就是一个实例，println是一个实例方法。相信不用再给大家做解释了。
+## 总结
+Lambda表达式是JDK8引入Java的函数式编程语法，使用Lambda需要直接或者间接的与函数式接口配合，在开发中使用Lambda可以减少代码量，
+但是并不是说必须要使用Lambda(虽然它是一个很酷的东西)。有些情况下使用Lambda会使代码的可读性急剧下降，并且也节省不了多少代码，
+所以在实际开发中还是需要仔细斟酌是否要使用Lambda。和Lambda相似的还有JDK10中加入的var类型推断，同样对于这个特性需要斟酌使用。
