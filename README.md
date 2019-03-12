@@ -260,6 +260,9 @@
 <a href="https://github.com/zhyank">  
     <img src="https://avatars0.githubusercontent.com/u/17696240?s=460&v=4" width="45px">
 </a>
+<a href="https://github.com/Goose9527">  
+    <img src="https://avatars2.githubusercontent.com/u/43314997?s=460&v=4" width="45px">
+</a>
 
 ### 公众号
 
