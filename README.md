@@ -95,6 +95,8 @@
 
 ### Java8 New Features
 
+* [Java 8 新特性总结](https://github.com/Snailclimb/JavaGuide/blob/master/Java/What's%20New%20in%20JDK8/Java8Tutorial.md)
+
 ### 设计模式
 
 * [设计模式系列文章](https://github.com/Snailclimb/Java_Guide/blob/master/Java/设计模式.md)
