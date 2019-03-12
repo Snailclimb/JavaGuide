@@ -881,8 +881,3 @@ System.out.println(hints2.length);          // 2
 
 关于Java 8的新特性就写到这了，肯定还有更多的特性等待发掘。JDK 1.8里还有很多很有用的东西，比如`Arrays.parallelSort`, `StampedLock`和`CompletableFuture`等等。
 
-### 参考
-
-- https://www.jb51.net/article/48304.htm
-- https://github.com/winterbe/java8-tutorial#predicates
-
