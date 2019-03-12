@@ -16,11 +16,12 @@
 ## 目录
 
 * [Java](#java)
-  * [Java/J2EE 基础](#javaj2ee-基础)
-  * [Java 集合框架](#java-集合框架)
-  * [Java 多线程](#java-多线程)
-  * [Java BIO,NIO,AIO](#java-bionioaio)
-  * [Java 虚拟机 jvm](#java-虚拟机-jvm)
+  * [基础](#基础)
+  * [集合框架](#集合框架)
+  * [多线程](#多线程)
+  * [BIO,NIO,AIO](#bionioaio)
+  * [JVM](#jvm)
+  * [Java8 New Features](#java8-new-features)
   * [设计模式](#设计模式)
 * [数据结构与算法](#数据结构与算法)
   * [数据结构](#数据结构)
@@ -55,13 +56,13 @@
   
 ## Java
 
-### Java/J2EE 基础
+### 基础
 
 * [Java 基础知识回顾](https://github.com/Snailclimb/Java-Guide/blob/master/Java/Java基础知识.md)
 * [J2EE 基础知识回顾](https://github.com/Snailclimb/Java-Guide/blob/master/Java/J2EE基础知识.md)
 * [Java常见关键字总结：static、final、this、super](https://github.com/Snailclimb/Java-Guide/blob/master/Java/final、static、this、super.md) 
 
-### Java 集合框架
+### 集合框架
 
 * **常见问题总结：**
   * [这几道Java集合框架面试题几乎必问](https://github.com/Snailclimb/Java-Guide/blob/master/Java/这几道Java集合框架面试题几乎必问.md)
@@ -72,7 +73,7 @@
   * [LinkedList 源码学习](https://github.com/Snailclimb/Java-Guide/blob/master/Java/LinkedList.md)   
   * [HashMap(JDK1.8)源码学习](https://github.com/Snailclimb/Java-Guide/blob/master/Java/HashMap.md)  
 
-### Java 多线程
+### 多线程
 
 * [并发编程面试必备：synchronized 关键字使用、底层原理、JDK1.6 之后的底层优化以及 和ReenTrantLock 的对比](https://github.com/Snailclimb/Java_Guide/blob/master/Java/synchronized.md)
 * [并发编程面试必备：乐观锁与悲观锁](https://github.com/Snailclimb/Java-Guide/blob/master/EssentialContentForInterview/面试必备之乐观锁与悲观锁.md)
@@ -81,16 +82,18 @@
 * [BATJ都爱问的多线程面试题](https://github.com/Snailclimb/Java_Guide/blob/master/Java/Multithread/BATJ都爱问的多线程面试题.md)
 * [并发容器总结](https://github.com/Snailclimb/Java_Guide/blob/master/Java/Multithread/并发容器总结.md)
 
-### Java 虚拟机 jvm
+### JVM
 
 * [可能是把Java内存区域讲的最清楚的一篇文章](https://github.com/Snailclimb/Java_Guide/blob/master/Java/可能是把Java内存区域讲的最清楚的一篇文章.md)
 * [搞定JVM垃圾回收就是这么简单](https://github.com/Snailclimb/Java_Guide/blob/master/Java/搞定JVM垃圾回收就是这么简单.md)
 * [《深入理解Java虚拟机》第2版学习笔记](https://github.com/Snailclimb/Java_Guide/blob/master/Java/Java虚拟机（jvm）.md)
 
-### Java BIO,NIO,AIO
+### BIO,NIO,AIO
 
 * [BIO,NIO,AIO 总结 ](https://github.com/Snailclimb/JavaGuide/blob/master/Java/BIO%2CNIO%2CAIO%20summary.md)
 * [Java IO 与 NIO系列文章](https://github.com/Snailclimb/Java_Guide/blob/master/Java/Java%20IO与NIO.md)
+
+### Java8 New Features
 
 ### 设计模式
 
