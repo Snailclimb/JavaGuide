@@ -132,7 +132,7 @@ List 类本身就有一个 `sort` 方法。并且Java编译器可以自动推导
 
 ### 函数式接口(Functional Interfaces)
 
-**译者注：**原文对这部分解释不太清楚，故做了修改！
+**译者注：** 原文对这部分解释不太清楚，故做了修改！
 
 Java 语言设计者们投入了大量精力来思考如何使现有的函数友好地支持Lambda。最终采取的方法是：增加函数式接口的概念。**“函数式接口”是指仅仅只包含一个抽象方法,但是可以有多个非抽象方法(也就是上面提到的默认方法)的接口。** 像这样的接口，可以被隐式转换为lambda表达式。`java.lang.Runnable` 与 `java.util.concurrent.Callable` 是函数式接口最典型的两个例子。Java 8增加了一种特殊的注解`@FunctionalInterface`,但是这个注解通常不是必须的(某些情况建议使用)，只要接口只包含一个抽象方法，虚拟机会自动判断该接口为函数式接口。一般建议在接口上使用`@FunctionalInterface` 注解进行声明，这样的话，编译器如果发现你标注了这个注解的接口有多于一个抽象方法的时候会报错的，如下图所示
 
@@ -154,7 +154,7 @@ public interface Converter<F, T> {
     System.out.println(converted.getClass()); //class java.lang.Integer
 ```
 
-**译者注：**大部分函数式接口都不用我们自己写，Java8都给我们实现好了，这些接口都在java.util.function包里。
+**译者注：** 大部分函数式接口都不用我们自己写，Java8都给我们实现好了，这些接口都在java.util.function包里。
 
 ### 方法和构造函数引用(Method and Constructor References)
 
@@ -289,7 +289,7 @@ JDK 1.8 API包含许多内置函数式接口。 其中一些借口在老版本�
 
 Predicate 接口是只有一个参数的返回布尔类型值的 **断言型** 接口。该接口包含多种默认方法来将 Predicate 组合成其他复杂的逻辑（比如：与，或，非）：
 
-**译者注：**Predicate 接口源码如下
+**译者注：** Predicate 接口源码如下
 
 ```java
 package java.util.function;
@@ -342,7 +342,7 @@ Predicate<String> isNotEmpty = isEmpty.negate();
 
 Function 接口接受一个参数并生成结果。默认方法可用于将多个函数链接在一起（compose, andThen）：
 
-**译者注：**Function  接口源码如下
+**译者注：** Function  接口源码如下
 
 ```java
 
