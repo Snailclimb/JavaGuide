@@ -27,10 +27,10 @@ ___
 <!-- 标题与跳转-->
 <span id="JavaProgrammingLanguage"></span> 
 <span id="LambdaExpressions"></span>
-<table><tr><td bgcolor='PowderBlue'>这里的背景色是：PowderBlue，  十六进制颜色值： #B0E0E6，rgb(176, 224, 230)</td></tr></table>
 <!-- 标题与跳转结束-->
 <!-- 正文-->
 
+## 　　　　　　　　　　　　　Lambda表达式
 ### 1.什么是Lambda表达式
 **Lambda表达式实质上是一个可传递的代码块，Lambda又称为闭包或者匿名函数，是函数式编程语法，让方法可以像普通参数一样传递**
 
@@ -127,10 +127,9 @@ public class VaraibleHide {
 30
 20
 ```
-对于lambda表达式```java inner = (s) -> {System.out.print(x);};```,变量x并不是在lambda表达式中定义的，像这样并不是在lambda中定义或者通过lambda的参数列表()获取的变量成为自由变量，它是被lambda表达式捕获的。
-<br>lambda表达式和内部类一样，对外部自由变量捕获时，外部自由变量必须为final或者是最终变量(effectively final)的，也就是说这个变量初始化后就不能为它赋新值，
-同时lambda不像内部类/匿名类，lambda表达式与外围嵌套块有着相同的作用域，因此对变量命名的有关规则对lambda同样适用。大家阅读上面的代码对这些概念应该
-不难理解。
+对于lambda表达式```java inner = (s) -> {System.out.print(x);};```,变量x并不是在lambda表达式中定义的，像这样并不是在lambda中定义或者通过lambda
+的参数列表()获取的变量成为自由变量，它是被lambda表达式捕获的。
+<br>lambda表达式和内部类一样，对外部自由变量捕获时，外部自由变量必须为final或者是最终变量(effectively final)的，也就是说这个变量初始化后就不能为它赋新值，同时lambda不像内部类/匿名类，lambda表达式与外围嵌套块有着相同的作用域，因此对变量命名的有关规则对lambda同样适用。大家阅读上面的代码对这些概念应该不难理解。
 <span id="MethodReferences"></span>
 ### 5.方法引用
 **只需要提供方法的名字，具体的调用过程由Lambda和函数式接口来确定，这样的方法调用成为方法引用。**
@@ -269,8 +268,8 @@ Lambda表达式是JDK8引入Java的函数式编程语法，使用Lambda需要直
 <!-- ---------------------------------------------------Lambda表达式结束---------------------------------------------------- -->
 ___
 <!-- ---------------------------------------------------接口默认方法-------------------------------------------------------- -->
-<span id="MethodReferences"></span>
-## JDK8接口规范
+<span id="DefaultMethods"></span>
+## 　　　　　　　　　　　　　JDK8接口规范
 ### 在JDK8中引入了lambda表达式，出现了函数式接口的概念，为了在扩展接口时保持向前兼容性(比如泛型也是为了保持兼容性而失去了在一些别的语言泛型拥有的功能)，Java接口规范发生了一些改变。。
 ### 1.JDK8以前的接口规范
 - JDK8以前接口可以定义的变量和方法
@@ -340,7 +339,8 @@ public interface AInterfaceInJDK8 {
       throws java.io.IOException
 }
 ```
-可以看到 default关键字修饰的方法是像实例方法一样定义的，所以我们来定义一个只有default的方法并且实现一下试一试。
+可以看到 default关键字修饰的方法是像实例方法(就是普通类中定义的普通方法)一样定义的，所以我们来定义一个只有default方法的接口并且实现一下这个接口试一
+试。
 ```java
 interface Default {
     default int defaultMethod() {
@@ -357,7 +357,7 @@ public class DefaultMethod implements Default {
     }
 }
 ```
-可以看到default方法确实像实例方法一样，必须有实例对象才能调用，并且子类在实现接口时，可以不用实现default方法，也可以覆盖该方法。
+可以看到default方法确实像实例方法一样，必须有实例对象才能调用，并且子类在实现接口时，可以不用实现default方法，也可以选择覆盖该方法。
 这有点像子类继承父类实例方法。
 <br>
 接口静态方法就像是类静态方法，唯一的区别是**接口静态方法只能通过接口名调用，而类静态方法既可以通过类名调用也可以通过实例调用**
@@ -397,8 +397,7 @@ public class DefaultMethod implements Default,Default2 {
 ```
 出现上面的情况时，会优先找继承树上近的方法，类似于“短路优先”。
 <br>
-那么如果一个类实现了两个没有继承关系的接口，且这两个接口有同名方法的话会怎么样呢？IDE会要求你重写这个冲突的方法，让你自己选择去执行哪个方法，因为IDE它
-还没智能到你不告诉它，它就知道你想执行哪个方法。可以通过```java 接口名.super```指针来访问接口中定义的实例(default)方法。
+那么如果一个类实现了两个没有继承关系的接口，且这两个接口有同名方法的话会怎么样呢？IDE会要求你重写这个冲突的方法，让你自己选择去执行哪个方法，因为IDE它还没智能到你不告诉它，它就知道你想执行哪个方法。可以通过```java 接口名.super```指针来访问接口中定义的实例(default)方法。
 ```java
 interface Default {
     default int defaultMethod() {
@@ -436,13 +435,122 @@ public class DefaultMethod implements Default,Default2 {
 ___
 <!-- --------------------------------------------------- 改进的类型推断 ---------------------------------------------------- -->
 <span id="ImprovedTypeInference"></span>
+## 　　　　　　　　　　　　　改进的类型推断
+### 1.什么是类型推断
+类型推断就像它的字面意思一样，编译器根据<b><i>你显示声明的已知的信息</i></b> 推断出你没有显示声明的类型，这就是类型推断。
+看过《Java编程思想 第四版》的朋友可能还记得里面讲解泛型一章的时候，里面很多例子是下面这样的:
+```java
+  Map<String, Object> map = new Map<String, Object>();
+```
+而我们平常写的都是这样的:
+```java
+  Map<String, Object> map = new Map<>();
+```
+这就是类型推断，《Java编程思想 第四版》这本书出书的时候最新的JDK只有1.6(JDK7推出的类型推断)，在Java编程思想里Bruce Eckel大叔还提到过这个问题
+(可能JDK的官方人员看了Bruce Eckel大叔的Thinking in Java才加的类型推断，☺)，在JDK7中推出了上面这样的类型推断，可以减少一些无用的代码。
+(Java编程思想到现在还只有第四版，是不是因为Bruce Eckel大叔觉得Java新推出的语言特性“然并卵”呢？/滑稽)
+<br>
+在JDK7中，类型推断只有上面例子的那样的能力，即只有在使用**赋值语句**时才能自动推断出泛型参数信息(即<>里的信息)，下面的官方文档里的例子在JDK7里会编译
+错误
+```java
+  List<String> stringList = new ArrayList<>();
+  stringList.add("A");
+  //error : addAll(java.util.Collection<? extends java.lang.String>)in List cannot be applied to (java.util.List<java.lang.Object>)
+  stringList.addAll(Arrays.asList());  
+```
+但是上面的代码在JDK8里可以通过，也就说，JDK8里，类型推断不仅可以用于赋值语句，而且可以根据代码中上下文里的信息推断出更多的信息，因此我们需要些的代码
+会更少。加强的类型推断还有一个就是用于Lambda表达式了。
+<br>
+大家其实不必细究类型推断，在日常使用中IDE会自动判断，当IDE自己无法推断出足够的信息时，就需要我们额外做一下工作，比如在<>里添加更多的类型信息，
+相信随着Java的进化，这些便利的功能会越来越强大。
+
 <!-- --------------------------------------------------- 改进的类型推断结束------------------------------------------------- -->
-___
+____
 <!-- --------------------------------------------------- 反射获得方法参数信息------------------------------------------------- -->
 <span id="MethodParameterReflection"></span>
+## 　　　　　　　　　　　　　通过反射获得方法的参数信息
+JDK8之前 .class文件是不会存储方法参数信息的，因此也就无法通过反射获取该信息(想想反射获取类信息的入口是什么？当然就是Class类了)。即是是在JDK11里
+也不会默认生成这些信息，可以通过在javac加上-parameters参数来让javac生成这些信息(javac就是java编译器，可以把java文件编译成.class文件)。生成额外
+的信息(运行时非必须信息)会消耗内存并且有可能公布敏感信息(某些方法参数比如password，JDK文档里这么说的)，并且确实很多信息javac并不会为我们生成，比如
+LocalVariableTable，javac就不会默认生成，需要你加上 -g:vars来强制让编译器生成，同样的，方法参数信息也需要加上
+-parameters来让javac为你在.class文件中生成这些信息，否则运行时反射是无法获取到这些信息的。在讲解Java语言层面的方法之前，先看一下javac加上该
+参数和不加生成的信息有什么区别(不感兴趣想直接看运行代码的可以跳过这段)。下面是随便写的一个类。
+```java
+public class ByteCodeParameters {
+    public String simpleMethod(String canUGetMyName, Object yesICan) {
+        return "9527";
+    }
+}
+```
+先来不加参数编译和反编译一下这个类javac ByteCodeParameters.java , javap -v ByteCodeParameters:
+```java
+  //只截取了部分信息
+  public java.lang.String simpleMethod(java.lang.String, java.lang.Object);
+    descriptor: (Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=3, args_size=3
+         0: ldc           #2                  // String 9527
+         2: areturn
+      LineNumberTable:
+        line 5: 0
+  //这个方法的描述到这里就结束了
+```
+接下来我们加上参数javac -parameters ByteCodeParameters.java 再来看反编译的信息:
+```java
+ public java.lang.String simpleMethod(java.lang.String, java.lang.Object);
+    descriptor: (Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=3, args_size=3
+         0: ldc           #2                  // String 9527
+         2: areturn
+      LineNumberTable:
+        line 8: 0
+    MethodParameters:
+      Name                           Flags
+      canUGetMyName
+      yesICan
+```
+可以看到.class文件里多了一个MethodParameters信息，这就是参数的名字，可以看到默认是不保存的。
+<br>下面看一下在Intelj Idea里运行的这个例子，我们试一下通过反射获取方法名 :
+```java
+public class ByteCodeParameters {
+    public String simpleMethod(String canUGetMyName, Object yesICan) {
+        return "9527";
+    }
+
+    public static void main(String[] args) throws NoSuchMethodException {
+        Class<?> clazz = ByteCodeParameters.class;
+        Method simple = clazz.getDeclaredMethod("simpleMethod", String.class, Object.class);
+        Parameter[] parameters = simple.getParameters();
+        for (Parameter p : parameters) {
+            System.out.println(p.getName());
+        }
+    }
+}
+输出 :
+arg0
+arg1
+```
+？？？说好的方法名呢？？？？别急，哈哈。前面说了，默认是不生成参数名信息的，因此我们需要做一些配置，我们找到IDEA的settings里的Java Compiler选项，在
+Additional command line parameters:一行加上-parameters(Eclipse 也是找到Java Compiler选中Stoer information about method parameters)，或者自
+己编译一个.class文件放在IDEA的out下，然后再来运行 :
+```java
+输出 :
+canUGetMyName
+yesICan
+```
+这样我们就通过反射获取到参数信息了。想要了解更多的同学可以自己研究一下 [官方文档]
+(https://docs.oracle.com/javase/tutorial/reflect/member/methodparameterreflection.html)
+<br>
+## 总结与补充
+在JDK8之后，可以通过-parameters参数来让编译器生成参数信息然后在运行时通过反射获取方法参数信息，其实在SpringFramework
+里面也有一个LocalVariableTableParameterNameDiscoverer对象可以获取方法参数名信息，有兴趣的同学可以自行百度(这个类在打印日志时可能会比较有用吧，个人感觉)。
 <!-- --------------------------------------------------- 反射获得方法参数信息结束------------------------------------------------- -->
-___
+____
 <!-- --------------------------------------------------- JDK8流库------------------------------------------------------------- -->
 <span id="stream"></span>
+
 <!-- --------------------------------------------------- JDK8流库结束------------------------------------------------- -->
 ___
