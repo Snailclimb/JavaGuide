@@ -1,7 +1,48 @@
 随着 Java 8 的普及度越来越高，很多人都提到面试中关于Java 8 也是非常常问的知识点。应各位要求和需要，我打算对这部分知识做一个总结。本来准备自己总结的，后面看到Github 上有一个相关的仓库，地址：
 [https://github.com/winterbe/java8-tutorial](https://github.com/winterbe/java8-tutorial)。这个仓库是英文的，我对其进行了翻译并添加和修改了部分内容，下面是正文了。
 
-# Java 8 
+<!-- MarkdownTOC -->
+
+- [Java 8 Tutorial](#java-8-tutorial)
+    - [接口的默认方法\(Default Methods for Interfaces\)](#接口的默认方法default-methods-for-interfaces)
+    - [Lambda表达式\(Lambda expressions\)](#lambda表达式lambda-expressions)
+    - [函数式接口\(Functional Interfaces\)](#函数式接口functional-interfaces)
+    - [方法和构造函数引用\(Method and Constructor References\)](#方法和构造函数引用method-and-constructor-references)
+    - [Lamda 表达式作用域\(Lambda Scopes\)](#lamda-表达式作用域lambda-scopes)
+      - [访问局部变量](#访问局部变量)
+      - [访问字段和静态变量](#访问字段和静态变量)
+      - [访问默认接口方法](#访问默认接口方法)
+    - [内置函数式接口\(Built-in Functional Interfaces\)](#内置函数式接口built-in-functional-interfaces)
+      - [Predicates](#predicates)
+      - [Functions](#functions)
+      - [Suppliers](#suppliers)
+      - [Consumers](#consumers)
+      - [Comparators](#comparators)
+  - [Optionals](#optionals)
+  - [Streams\(流\)](#streams流)
+    - [Filter\(过滤\)](#filter过滤)
+    - [Sorted\(排序\)](#sorted排序)
+    - [Map\(映射\)](#map映射)
+    - [Match\(匹配\)](#match匹配)
+    - [Count\(计数\)](#count计数)
+    - [Reduce\(规约\)](#reduce规约)
+  - [Parallel Streams\(并行流\)](#parallel-streams并行流)
+    - [Sequential Sort\(串行排序\)](#sequential-sort串行排序)
+    - [Parallel Sort\(并行排序\)](#parallel-sort并行排序)
+  - [Maps](#maps)
+  - [Data API\(日期相关API\)](#data-api日期相关api)
+    - [Clock](#clock)
+    - [Timezones\(时区\)](#timezones时区)
+    - [LocalTime\(本地时间\)](#localtime本地时间)
+    - [LocalDate\(本地日期\)](#localdate本地日期)
+    - [LocalDateTime\(本地日期时间\)](#localdatetime本地日期时间)
+  - [Annotations\(注解\)](#annotations注解)
+  - [Whete to go from here?](#whete-to-go-from-here)
+
+<!-- /MarkdownTOC -->
+
+
+# Java 8 Tutorial 
 
 欢迎阅读我对Java 8的介绍。本教程将逐步指导您完成所有新语言功能。 在简短的代码示例的基础上，您将学习如何使用默认接口方法，lambda表达式，方法引用和可重复注释。 在本文的最后，您将熟悉最新的 API 更改，如流，函数式接口(Functional Interfaces)，Map 类的扩展和新的 Date API。 没有大段枯燥的文字，只有一堆注释的代码片段。
 
@@ -29,19 +70,19 @@ Formula 接口中除了抽象方法计算接口公式还定义了默认方法 `s
 ```java
 public class Main {
 
-	public static void main(String[] args) {
-		// TODO 通过匿名内部类方式访问接口
-		Formula formula = new Formula() {
-		    @Override
-		    public double calculate(int a) {
-		        return sqrt(a * 100);
-		    }
-		};
+  public static void main(String[] args) {
+    // TODO 通过匿名内部类方式访问接口
+    Formula formula = new Formula() {
+        @Override
+        public double calculate(int a) {
+            return sqrt(a * 100);
+        }
+    };
 
-		System.out.println(formula.calculate(100));     // 100.0
-		System.out.println(formula.sqrt(16));           // 4.0
+    System.out.println(formula.calculate(100));     // 100.0
+    System.out.println(formula.sqrt(16));           // 4.0
 
-	}
+  }
 
 }
 ```
@@ -102,15 +143,15 @@ Java 语言设计者们投入了大量精力来思考如何使现有的函数友
 ```java
 @FunctionalInterface
 public interface Converter<F, T> {
-	T convert(F from);
+  T convert(F from);
 }
 ```
 
 ```java
-		// TODO 将数字字符串转换为整数类型
-		Converter<String, Integer> converter = (from) -> Integer.valueOf(from);
-		Integer converted = converter.convert("123");
-		System.out.println(converted.getClass()); //class java.lang.Integer
+    // TODO 将数字字符串转换为整数类型
+    Converter<String, Integer> converter = (from) -> Integer.valueOf(from);
+    Integer converted = converter.convert("123");
+    System.out.println(converted.getClass()); //class java.lang.Integer
 ```
 
 **译者注：**大部分函数式接口都不用我们自己写，Java8都给我们实现好了，这些接口都在java.util.function包里。
@@ -120,9 +161,9 @@ public interface Converter<F, T> {
 前一节中的代码还可以通过静态方法引用来表示：
 
 ```java
-		Converter<String, Integer> converter = Integer::valueOf;
-		Integer converted = converter.convert("123");
-		System.out.println(converted.getClass());   //class java.lang.Integer
+    Converter<String, Integer> converter = Integer::valueOf;
+    Integer converted = converter.convert("123");
+    System.out.println(converted.getClass());   //class java.lang.Integer
 ```
 Java 8允许您通过`::`关键字传递方法或构造函数的引用。 上面的示例显示了如何引用静态方法。 但我们也可以引用对象方法：
 
@@ -755,7 +796,7 @@ System.out.println("今天是周几:"+dayOfWeek);//TUESDAY
 从字符串解析一个 LocalDate 类型和解析 LocalTime 一样简单,下面是使用  `DateTimeFormatter` 解析字符串的例子：
 
 ```java
-		String str1 = "2014==04==12 01时06分09秒";
+    String str1 = "2014==04==12 01时06分09秒";
         // 根据需要解析的日期、时间字符串定义解析所用的格式器
         DateTimeFormatter fomatter1 = DateTimeFormatter
                 .ofPattern("yyyy==MM==dd HH时mm分ss秒");
