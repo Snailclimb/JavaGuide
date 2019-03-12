@@ -186,7 +186,7 @@ public void addLast(E e) {
     }
 ```
 ### <font face="楷体" id="3.3">根据位置取数据的方法</font>
-**get(int index)：**：根据指定索引返回数据
+**get(int index)：** 根据指定索引返回数据
 ```java
 public E get(int index) {
         //检查index范围是否在size之内
