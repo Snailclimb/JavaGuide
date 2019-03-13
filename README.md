@@ -1,7 +1,7 @@
 <h1 align="center">Java 学习/面试指南</h1>
 
 <div align="center">  
-<img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-16/49833984.jpg" width=""/>
+<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/logo - 副本.png" width=""/>
 </br>
 </div>
 
