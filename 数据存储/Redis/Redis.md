@@ -262,7 +262,7 @@ Redis 通过 MULTI、EXEC、WATCH 等命令来实现事务(transaction)功能。
 
 参考：
 
-- https://blog.csdn.net/zeb_perfect/article/details/54135506[enter link description here](https://blog.csdn.net/zeb_perfect/article/details/54135506)
+- [https://blog.csdn.net/zeb_perfect/article/details/54135506](https://blog.csdn.net/zeb_perfect/article/details/54135506)
 
 ### 如何解决 Redis 的并发竞争 Key 问题
 

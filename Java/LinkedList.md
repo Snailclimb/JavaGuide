@@ -186,7 +186,7 @@ public void addLast(E e) {
     }
 ```
 ### <font face="楷体" id="3.3">根据位置取数据的方法</font>
-**get(int index)：**：根据指定索引返回数据
+**get(int index)：** 根据指定索引返回数据
 ```java
 public E get(int index) {
         //检查index范围是否在size之内
@@ -220,7 +220,7 @@ public E peekFirst() {
 getFirst(),element(),peek(),peekFirst()
 这四个获取头结点方法的区别在于对链表为空时的处理，是抛出异常还是返回null，其中**getFirst()** 和**element()** 方法将会在链表为空时，抛出异常
 
-element()方法的内部就是使用getFirst()实现的。它们会在链表为空时，抛出NoSuchElementException
+element()方法的内部就是使用getFirst()实现的。它们会在链表为空时，抛出NoSuchElementException  
 **获取尾节点（index=-1）数据方法:**
 ```java
  public E getLast() {
@@ -288,7 +288,7 @@ public int lastIndexOf(Object o) {
         return indexOf(o) != -1;
     }
 ```
-###<font face="楷体" id="3.6">删除方法</font>
+### <font face="楷体" id="3.6">删除方法</font>
 **remove()** ,**removeFirst(),pop():** 删除头节点
 ```
 public E pop() {
@@ -359,7 +359,7 @@ E unlink(Node<E> x) {
 
         //删除前驱指针
         if (prev == null) {
-            first = next;如果删除的节点是头节点,令头节点指向该节点的后继节点
+            first = next;//如果删除的节点是头节点,令头节点指向该节点的后继节点
         } else {
             prev.next = next;//将前驱节点的后继节点指向后继节点
             x.prev = null;
