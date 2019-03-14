@@ -108,38 +108,57 @@ public class Solution {
 思路很简单！先利用Arrays.sort(strs)为数组排序，再将数组第一个元素和最后一个元素的字符从前往后对比即可！
 
 ```java
-//https://leetcode-cn.com/problems/longest-common-prefix/description/
 public class Main {
-  public static String replaceSpace(String[] strs) {
+	public static String replaceSpace(String[] strs) {
 
-    // 数组长度
-    int len = strs.length;
-    // 用于保存结果
-    StringBuffer res = new StringBuffer();
-    // 注意：=是赋值，==是判断
-    if (strs == null || strs.length == 0) {
-      return "";
-    }
-    // 给字符串数组的元素按照升序排序(包含数字的话，数字会排在前面)
-    Arrays.sort(strs);
-    int m = strs[0].length();
-    int n = strs[len - 1].length();
-    int num = Math.min(m, n);
-    for (int i = 0; i < num; i++) {
-      if (strs[0].charAt(i) == strs[len - 1].charAt(i)) {
-        res.append(strs[0].charAt(i));
-      } else
-        break;
+		// 如果检查值不合法及就返回空串
+		if (!chechStrs(strs)) {
+			return "";
+		}
+		// 数组长度
+		int len = strs.length;
+		// 用于保存结果
+		StringBuilder res = new StringBuilder();
+		// 给字符串数组的元素按照升序排序(包含数字的话，数字会排在前面)
+		Arrays.sort(strs);
+		int m = strs[0].length();
+		int n = strs[len - 1].length();
+		int num = Math.min(m, n);
+		for (int i = 0; i < num; i++) {
+			if (strs[0].charAt(i) == strs[len - 1].charAt(i)) {
+				res.append(strs[0].charAt(i));
+			} else
+				break;
 
-    }
-    return res.toString();
+		}
+		return res.toString();
 
-  } 
-     //测试
-  public static void main(String[] args) {
-    String[] strs = { "customer", "car", "cat" };
-    System.out.println(Main.replaceSpace(strs));//c
-  }
+	}
+
+	private static boolean chechStrs(String[] strs) {
+		boolean flag = false;
+		// 注意：=是赋值，==是判断
+		if (strs != null) {
+			// 遍历strs检查元素值
+			for (int i = 0; i < strs.length; i++) {
+				if (strs[i] != null && strs[i].length() != 0) {
+					flag = true;
+				} else {
+					flag = false;
+				}
+			}
+		}
+		return flag;
+	}
+
+	// 测试
+	public static void main(String[] args) {
+		String[] strs = { "customer", "car", "cat" };
+		// String[] strs = { "customer", "car", null };//空串
+		// String[] strs = {};//空串
+		// String[] strs = null;//空串
+		System.out.println(Main.replaceSpace(strs));// c
+	}
 }
 
 ```
