@@ -165,7 +165,7 @@
 
 * [MySQL 学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/数据存储/MySQL.md)
 * [【思维导图-索引篇】搞定数据库索引就是这么简单](https://github.com/Snailclimb/Java_Guide/blob/master/数据存储/MySQL%20Index.md)
-* [一千行MySQL命令](https://github.com/Snailclimb/JavaGuide/blob/master/数据存储/一千行MySQL命令.md)
+* [一千行MySQL学习笔记](https://github.com/Snailclimb/JavaGuide/blob/master/数据存储/一千行MySQL命令.md)
 
 ### Redis
 
