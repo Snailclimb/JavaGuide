@@ -1,3 +1,8 @@
+> 原文地址：https://shockerli.net/post/1000-line-mysql-note/
+> 作者：格物
+
+非常不错的总结，强烈建议保存下来，需要的时候看一看。
+
 ### 基本操作
 
 ```mysql
