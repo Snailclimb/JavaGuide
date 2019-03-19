@@ -57,10 +57,10 @@
 
 ## ToDoList(待办清单)
 
-* [x] Java 8 新特性总结
+* [x] [Java 8 新特性总结](https://github.com/Snailclimb/JavaGuide/blob/master/Java/What's%20New%20in%20JDK8/Java8Tutorial.md)
 * [ ] Java 8 新特性详解
 * [ ] Java 多线程类别知识重构
-* [x] BIO,NIO,AIO 总结 
+* [x] [BIO,NIO,AIO 总结 ](https://github.com/Snailclimb/JavaGuide/blob/master/Java/BIO%2CNIO%2CAIO%20summary.md)
 * [ ] Netty 总结
 * [ ] 数据结构总结重构
   
