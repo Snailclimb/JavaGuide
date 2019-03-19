@@ -1,6 +1,6 @@
 <h1 align="center">Java 学习/面试指南</h1>
 
-Java后端技术交流群(限工作一年及以上，群内有免费学习视频和面试资料，**非本仓库作者本人的群**) ：[![QQ群](https://img.shields.io/badge/QQ%E7%BE%A4-869815609-red.svg)](//shang.qq.com/wpa/qunwpa?idkey=39f41ae604e3dc72a763279fea1dc6c5f14d5f19aef04e38065d0f173095d921) 
+Java后端技术交流群(限工作一年及以上，群内有免费学习视频和面试资料，**非本仓库作者本人的群**) ：[![QQ群](https://img.shields.io/badge/QQ%E7%BE%A4-869815609-red.svg)](https://jq.qq.com/?_wv=1027&k=5QqyxIx) 
 
 <div align="center">  
 <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/logo - 副本.png" width=""/>
