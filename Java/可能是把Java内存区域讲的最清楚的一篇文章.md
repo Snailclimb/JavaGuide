@@ -42,7 +42,7 @@ Java 虚拟机在执行 Java 程序的过程中会把它管理的内存划分成
 
 - 堆
 - 方法区
-- 直接内存
+- 直接内存(非运行时数据区的一部分)
 
 
 ### 2.1 程序计数器
@@ -124,8 +124,6 @@ JDK 1.8 的时候，方法区被彻底移除了（JDK1.7就已经开始了），
 
 ![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-14/26038433.jpg)
 ——图片来源：https://blog.csdn.net/wangbiao007/article/details/78545189
-
-推荐阅读：《Java 中几种常量池的区分》： [https://blog.csdn.net/qq_26222859/article/details/73135660](https://blog.csdn.net/qq_26222859/article/details/73135660)
 
 
 ### 2.7 直接内存
