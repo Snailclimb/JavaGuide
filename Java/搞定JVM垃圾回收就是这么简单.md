@@ -28,11 +28,17 @@
 
 Java 的自动内存管理主要是针对对象内存的回收和对象内存的分配。同时，Java 自动内存管理最核心的功能是 **堆** 内存中对象的分配与回收。
 
-**JDK1.8之前的堆内存示意图：**
+Java 堆是垃圾收集器管理的主要区域，因此也被称作**GC堆（Garbage Collected Heap）**.从垃圾回收的角度，由于现在收集器基本都采用分代垃圾收集算法，所以 Java 堆还可以细分为：新生代和老年代：再细致一点有：Eden空间、From Survivor、To Survivor空间等。**进一步划分的目的是更好地回收内存，或者更快地分配内存。**
 
-![](https://user-gold-cdn.xitu.io/2018/8/25/16570344a29c3433?w=599&h=250&f=png&s=8946)
+**堆空间的基本结构：**
 
-从上图可以看出堆内存分为新生代、老年代和永久代。新生代又被进一步分为：Eden 区＋Survivor1 区＋Survivor2 区。值得注意的是，在 JDK 1.8中移除整个永久代，取而代之的是一个叫元空间（Metaspace）的区域（永久代使用的是JVM的堆内存空间，而元空间使用的是物理内存，直接受到本机的物理内存限制）。
+<div align="center">  
+<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3堆结构.png" width="400px"/>
+</div>
+
+上图所示的 eden区、s0区、s1区都属于新生代，tentired 区属于老年代。大部分情况，对象都会首先在 Eden 区域分配，在一次新生代垃圾回收后，如果对象还存活，则会进入 s0 或者 s1，并且对象的年龄还会加 1(Eden区->Survivor 区后对象的初始年龄变为1)，当它的年龄增加到一定程度（默认为15岁），就会被晋升到老年代中。对象晋升到老年代的年龄阈值，可以通过参数 `-XX:MaxTenuringThreshold` 来设置。
+
+
 
 ![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-27/89294547.jpg)
 
@@ -306,7 +312,7 @@ Parallel Scavenge 收集器类似于ParNew 收集器。 **那么它有什么特�
 
 ### 4.5 Parallel Old收集器
  **Parallel Scavenge收集器的老年代版本**。使用多线程和“标记-整理”算法。在注重吞吐量以及CPU资源的场合，都可以优先考虑 Parallel Scavenge收集器和Parallel Old收集器。
- 
+
 ### 4.6 CMS收集器
 
 **CMS（Concurrent Mark Sweep）收集器是一种以获取最短回收停顿时间为目标的收集器。它而非常符合在注重用户体验的应用上使用。**

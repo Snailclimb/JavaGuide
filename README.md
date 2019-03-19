@@ -1,11 +1,21 @@
-# Java 学习/面试指南
+<h1 align="center">Java 学习/面试指南</h1>
 
 <div align="center">  
-<img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-16/49833984.jpg" width=""/>
+<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/logo - 副本.png" width=""/>
+</br>
+</div>
+
+<h2 align="center">Special Sponsors</h3>
+<div align="center">  
+<a href="https://e.coding.net/?utm_source=JavaGuide" target="_blank">
+  <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/Coding Devops.png" width=""/>
+ </a>
 </br>
 </div>
 
 ## 阅读之前必看
+
+[《深入拆解Java虚拟机》](#深入拆解Java虚拟机)。
 
 1. **加群：** 微信交流群添加 [我的微信](#联系我) 后回复关键字“加群”即可入群。
 2. **Java工程师必备学习资源:** 一些Java工程师常用学习资源[公众号](#公众号)后台回复关键字 **“1”** 即可免费无套路获取。 
@@ -47,10 +57,10 @@
 
 ## ToDoList(待办清单)
 
-* [x] Java 8 新特性总结
+* [x] [Java 8 新特性总结](https://github.com/Snailclimb/JavaGuide/blob/master/Java/What's%20New%20in%20JDK8/Java8Tutorial.md)
 * [ ] Java 8 新特性详解
 * [ ] Java 多线程类别知识重构
-* [x] BIO,NIO,AIO 总结 
+* [x] [BIO,NIO,AIO 总结 ](https://github.com/Snailclimb/JavaGuide/blob/master/Java/BIO%2CNIO%2CAIO%20summary.md)
 * [ ] Netty 总结
 * [ ] 数据结构总结重构
   
@@ -155,6 +165,7 @@
 
 * [MySQL 学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/数据存储/MySQL.md)
 * [【思维导图-索引篇】搞定数据库索引就是这么简单](https://github.com/Snailclimb/Java_Guide/blob/master/数据存储/MySQL%20Index.md)
+* [一千行MySQL学习笔记](https://github.com/Snailclimb/JavaGuide/blob/master/数据存储/一千行MySQL命令.md)
 
 ### Redis
 
@@ -188,7 +199,7 @@
 
 * [第一周（2018-8-7）](https://github.com/Snailclimb/Java-Guide/blob/master/EssentialContentForInterview/MostCommonJavaInterviewQuestions/第一周（2018-8-7）.md) (为什么 Java 中只有值传递、==与equals、 hashCode与equals)
 * [第二周（2018-8-13）](https://github.com/Snailclimb/Java-Guide/blob/master/EssentialContentForInterview/MostCommonJavaInterviewQuestions/第二周(2018-8-13).md)(String和StringBuffer、StringBuilder的区别是什么？String为什么是不可变的？、什么是反射机制？反射机制的应用场景有哪些？......)
-* [第三周（2018-08-22）](https://github.com/Snailclimb/Java-Guide/blob/master/Java相关/这几道Java集合框架面试题几乎必问.md) （Arraylist 与 LinkedList 异同、ArrayList 与 Vector 区别、HashMap的底层实现、HashMap 和 Hashtable 的区别、HashMap 的长度为什么是2的幂次方、HashSet 和 HashMap 区别、ConcurrentHashMap 和 Hashtable 的区别、ConcurrentHashMap线程安全的具体实现方式/底层具体实现、集合框架底层数据结构总结）
+* [第三周（2018-08-22）](https://github.com/Snailclimb/Java-Guide/blob/master/Java/这几道Java集合框架面试题几乎必问.md) （Arraylist 与 LinkedList 异同、ArrayList 与 Vector 区别、HashMap的底层实现、HashMap 和 Hashtable 的区别、HashMap 的长度为什么是2的幂次方、HashSet 和 HashMap 区别、ConcurrentHashMap 和 Hashtable 的区别、ConcurrentHashMap线程安全的具体实现方式/底层具体实现、集合框架底层数据结构总结）
 * [第四周(2018-8-30).md](https://github.com/Snailclimb/Java-Guide/blob/master/EssentialContentForInterview/MostCommonJavaInterviewQuestions/第四周(2018-8-30).md) （主要内容是几道面试常问的多线程基础题。）
 
 ## 闲谈  
@@ -229,6 +240,15 @@
 如果大家需要与我交流，可以扫描下方二维码添加我的微信获取关注[我的公众号](#公众号)：
 
 ![我的微信](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-2/JavaGuide.jpg)
+
+### 深入拆解Java虚拟机
+
+极客时间的《深入拆解Java虚拟机》正在拼团中（优惠活动马上结束），关注本仓库的很多小伙伴应该需要。原价99，拼团价58。大家使用微信扫描我的二维码购买的话，可以添加[我的微信](#联系我)然后获得18元返现，减轻你们的学习成本。
+
+<div align="center">  
+<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3深入拆解Java虚拟机.jpg" width="300px"/>
+</br>
+</div>
 
 ### Contributor
 
