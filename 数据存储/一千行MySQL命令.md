@@ -103,7 +103,7 @@ SHOW VARIABLES -- 显示系统变量信息
         PARTITION BY ... (详细见手册)
 -- 查看所有表
     SHOW TABLES[ LIKE 'pattern']
-    SHOW TABLES FROM 表名
+    SHOW TABLES FROM  库名
 -- 查看表机构
     SHOW CREATE TABLE 表名 （信息更详细）
     DESC 表名 / DESCRIBE 表名 / EXPLAIN 表名 / SHOW COLUMNS FROM 表名 [LIKE 'PATTERN']
