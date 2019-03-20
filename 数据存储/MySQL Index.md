@@ -55,7 +55,7 @@ MySQL的基本存储结构是页(记录都存在页里边)：
 
 ### 最左前缀原则
 
-MySQL中的索引可以以一定顺序引用多列，这种索引叫作联合索引。如User表的name和city加联合索引就是(name,city)o而最左前缀原则指的是，如果查询的时候查询条件精确匹配索引的左边连续一列或几列，则此列就可以被用到。如下：        
+MySQL中的索引可以以一定顺序引用多列，这种索引叫作联合索引。如User表的name和city加联合索引就是(name,city)，而最左前缀原则指的是，如果查询的时候查询条件精确匹配索引的左边连续一列或几列，则此列就可以被用到。如下：        
 
 ```                                                                                       
 select * from user where name=xx and city=xx ; ／／可以命中索引
@@ -70,7 +70,7 @@ select * from user where city=xx; // 无法命中索引
 
 冗余索引指的是索引的功能相同，能够命中 就肯定能命中 ，那么 就是冗余索引如（name,city ）和（name ）这两个索引就是冗余索引，能够命中后者的查询肯定是能够命中前者的 在大多数情况下，都应该尽量扩展已有的索引而不是创建新索引。
 
-MySQLS.7 版本后，可以通过查询 sys 库的 `schemal_r dundant_indexes` 表来查看冗余索引             
+MySQLS.7 版本后，可以通过查询 sys 库的 `schema_redundant_indexes` 表来查看冗余索引             
 
 ### Mysql如何为表字段添加索引？？？
 
