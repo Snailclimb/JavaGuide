@@ -8,6 +8,8 @@
   <a href="https://gitee.com/SnailClimb/JavaGuide"><img src="https://img.shields.io/badge/chat-微信群-blue.svg" alt="微信群"></a>
   <a href="https://gitee.com/SnailClimb/JavaGuide"><img src="https://img.shields.io/badge/%E7%A0%81%E4%BA%91-SnailClimb-brightgreen.svg" alt="码云地址"></a>
   <a href="#公众号"><img src="https://img.shields.io/badge/%E5%85%AC%E4%BC%97%E5%8F%B7-JavaGuide-lightgrey.svg" alt="公众号"></a>
+  <a href="#公众号"><img src="https://img.shields.io/badge/PDF-Java面试突击-important.svg" alt="公众号"></a>
+  
 </p>
 
 <h2 align="center">Special Sponsors</h3>
@@ -18,10 +20,7 @@
  </a>
 </p>
 
-## 阅读之前必看
 
-1. **Java工程师必备学习资源:** 一些Java工程师常用学习资源[公众号](#公众号)后台回复关键字 **“1”** 即可免费无套路获取。 
-1. **《Java面试突击》:** 由本文档衍生的专为面试而生的《Java面试突击》V2.0 PDF 版本[公众号](#公众号)后台回复 **"Java面试突击"** 即可免费领取！
 1. **关于贡献者:** 对本仓库提过有价值的 issue 或 pr 的小伙伴将出现在 [Contributor](#Contributor) 这里。
 1. **欢迎投稿：** 由于我个人能力有限，很多知识点我可能没有涉及到，所以你可以对其他知识点进行补充。**对于不错的原创文章我根据你的选择给予现金(50-300)、付费专栏或者任选书籍进行奖励！所以，快提 pr 或者邮件的方式（邮件地址在主页）给我投稿吧！** 当然，我觉得奖励是次要的，最重要的是你可以从自己整理知识点的过程中学习到很多知识。
 
@@ -289,5 +288,9 @@
 ### 公众号
 
 如果大家想要实时关注我更新的文章以及分享的干货的话，可以关注我的公众号。
+
+**《Java面试突击》:** 由本文档衍生的专为面试而生的《Java面试突击》V2.0 PDF 版本[公众号](#公众号)后台回复 **"Java面试突击"** 即可免费领取！
+
+**Java工程师必备学习资源:** 一些Java工程师常用学习资源[公众号](#公众号)后台回复关键字 **“1”** 即可免费无套路获取。 
 
 ![我的公众号](https://user-gold-cdn.xitu.io/2018/11/28/167598cd2e17b8ec?w=258&h=258&f=jpeg&s=27334)
