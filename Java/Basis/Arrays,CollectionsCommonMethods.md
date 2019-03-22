@@ -207,6 +207,14 @@ synchronizedSet(Set<T> s) //返回指定 set 支持的同步（线程安全的�
 
 ```
 
+在做算法面试题的时候，我们还可能会经常遇到对字符串排序的情况,`Arrays.sort()` 对每个字符串的特定位置进行比较，然后按照升序排序。
+
+```java
+String[] strs = { "abcdehg", "abcdefg", "abcdeag" };
+Arrays.sort(strs);
+System.out.println(Arrays.toString(strs));//[abcdeag, abcdefg, abcdehg]
+```
+
 ### 查找 : `binarySearch()`
 
 ```java
