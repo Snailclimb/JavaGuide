@@ -69,7 +69,8 @@
 
 * [Java 基础知识回顾](https://github.com/Snailclimb/Java-Guide/blob/master/Java/Java基础知识.md)
 * [J2EE 基础知识回顾](https://github.com/Snailclimb/Java-Guide/blob/master/Java/J2EE基础知识.md)
-* [Java常见关键字总结：static、final、this、super](https://github.com/Snailclimb/Java-Guide/blob/master/Java/final、static、this、super.md) 
+* [Collections 工具类和 Arrays 工具类常见方法](https://github.com/Snailclimb/JavaGuide/blob/master/Java/Basis/Arrays%2CCollectionsCommonMethods.md)
+* [Java常见关键字总结：static、final、this、super](https://github.com/Snailclimb/Java-Guide/blob/master/Java/Basis/final、static、this、super.md) 
 
 ### 集合框架
 
