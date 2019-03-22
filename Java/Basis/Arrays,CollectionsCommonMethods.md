@@ -1,3 +1,20 @@
+<!-- TOC -->
+
+- [Collections 工具类和 Arrays 工具类常见方法](#collections-工具类和-arrays-工具类常见方法)
+    - [Collections](#collections)
+        - [排序操作](#排序操作)
+        - [查找,替换操作](#查找替换操作)
+        - [同步控制](#同步控制)
+    - [Arrays类的常见操作](#arrays类的常见操作)
+        - [排序 : `sort()`](#排序--sort)
+        - [查找 : `binarySearch()`](#查找--binarysearch)
+        - [比较: `equals()`](#比较-equals)
+        - [填充 : `fill()`](#填充--fill)
+        - [转列表 `asList()`](#转列表-aslist)
+        - [转字符串 `toString()`](#转字符串-tostring)
+        - [复制 `copyOf()`](#复制-copyof)
+
+<!-- /TOC -->
 # Collections 工具类和 Arrays 工具类常见方法
 
 ## Collections
