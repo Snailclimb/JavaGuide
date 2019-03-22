@@ -217,7 +217,6 @@
 
 * [选择技术方向都要考虑哪些因素](./闲谈/选择技术方向都要考虑哪些因素.md) 
 * [结束了我短暂的秋招，说点自己的感受](./闲谈/2018%20%E7%A7%8B%E6%8B%9B.md) 
-* [【2018总结】即使平凡，也要热爱自己的生活](./闲谈/2018%20summary.md)
 * [Java项目 Github Trending 月榜](./闲谈/JavaGithubTrending/JavaGithubTrending.md)
 
 ***
