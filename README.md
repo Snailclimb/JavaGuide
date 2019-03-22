@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <a href="https://gitee.com/SnailClimb/JavaGuide"><img src="https://img.shields.io/badge/chat-微信群-blue.svg" alt="微信群"></a>
+  <a href="#联系我"><img src="https://img.shields.io/badge/chat-微信群-blue.svg" alt="微信群"></a>
   <a href="https://gitee.com/SnailClimb/JavaGuide"><img src="https://img.shields.io/badge/%E7%A0%81%E4%BA%91-SnailClimb-brightgreen.svg" alt="码云地址"></a>
   <a href="#公众号"><img src="https://img.shields.io/badge/%E5%85%AC%E4%BC%97%E5%8F%B7-JavaGuide-lightgrey.svg" alt="公众号"></a>
   <a href="#公众号"><img src="https://img.shields.io/badge/PDF-Java面试突击-important.svg" alt="公众号"></a>
