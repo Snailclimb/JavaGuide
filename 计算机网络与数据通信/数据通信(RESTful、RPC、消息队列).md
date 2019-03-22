@@ -55,7 +55,7 @@
  
 [《消息队列深入解析》](https://blog.csdn.net/qq_34337272/article/details/80029918)
 
-当前使用较多的消息队列有ActiveMQ（性能差，不推荐使用）、RabbitMQ、RocketMQ、Kafka等等，我们之前提高的redis数据库也可以实现消息队列，不过不推荐，redis本身设计就不是用来做消息队列的。
+当前使用较多的消息队列有ActiveMQ（性能差，不推荐使用）、RabbitMQ、RocketMQ、Kafka等等，我们之前提到的redis数据库也可以实现消息队列，不过不推荐，redis本身设计就不是用来做消息队列的。
 
 -  **ActiveMQ：** ActiveMQ是Apache出品，最流行的，能力强劲的开源消息总线。ActiveMQ是一个完全支持JMS1.1和J2EE 1.4规范的JMSProvider实现,尽管JMS规范出台已经是很久的事情了,但是JMS在当今的J2EE应用中间仍然扮演着特殊的地位。
 
@@ -80,7 +80,7 @@
    [《十分钟入门RocketMQ》](http://jm.taobao.org/2017/01/12/rocketmq-quick-start-in-10-minutes/) （阿里中间件团队博客）
 
 
-- **Kafka**：Kafka是一个分布式的、可分区的、可复制的、基于发布/订阅的消息系统,Kafka主要用于大数据领域,当然在分布式系统中也有应用。目前市面上流行的消息队列RocketMQ就是阿里借鉴Kafka的原理、用Java开发而得。
+- **Kafka**：Kafka是一个分布式的、可分区的、可复制的、基于发布/订阅的消息系统（现在官方的描述是“一个分布式流平台”）,Kafka主要用于大数据领域,当然在分布式系统中也有应用。目前市面上流行的消息队列RocketMQ就是阿里借鉴Kafka的原理、用Java开发而得。
   
   具体可以参考：
 
