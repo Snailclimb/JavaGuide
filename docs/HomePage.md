@@ -1,3 +1,6 @@
+
+对于复习 Linux 的朋友,推荐一下刘超(网易杭州研究院云计算技术部首席架构师)老师的《趣谈Linux操作系统——像故事一样的操作系统入门课》，这门课程是刚上新的，目前正在优惠，看过这位老师的《趣谈网络协议》的朋友应该都知道他，非常厉害，课程内容非常棒。[点击了解详情](https://shimo.im/docs/Jp998jwxhHwTp3sq/)。
+
 <h2 align="center">Special Sponsors</h2>
 <p align="center">
 <a href="https://e.coding.net/?utm_source=JavaGuide" target="_blank">
