@@ -8,9 +8,9 @@
 <p align="center">
   <a href="https://snailclimb.gitee.io/javaguide"><img src="https://img.shields.io/badge/阅读-read-brightgreen.svg" alt="阅读"></a>
   <a href="#联系我"><img src="https://img.shields.io/badge/chat-微信群-blue.svg" alt="微信群"></a>
-  <a href="https://gitee.com/SnailClimb/JavaGuide"><img src="https://img.shields.io/badge/%E7%A0%81%E4%BA%91-SnailClimb-brightgreen.svg" alt="码云地址"></a>
   <a href="#公众号"><img src="https://img.shields.io/badge/%E5%85%AC%E4%BC%97%E5%8F%B7-JavaGuide-lightgrey.svg" alt="公众号"></a>
   <a href="#公众号"><img src="https://img.shields.io/badge/PDF-Java面试突击-important.svg" alt="公众号"></a>
+  <a href="#投稿"><img src="https://img.shields.io/badge/support-投稿-critical.svg" alt="投稿"></a>
 <h2 align="center">Special Sponsors</h2>
 </p>
 
@@ -21,9 +21,10 @@
 </p>
 
 
-1. **如何阅读：** 推荐使用 <http://snailclimb.top/JavaGuide/> 在线阅读(访问速度慢的话，请使用<https://snailclimb.gitee.io/javaguide>)，在线阅读内容本仓库同步一致。这种方式阅读的优势在于：有侧边栏阅读体验更好，Gitee pages 的访问速度相对来说也比较快。
-1. **关于贡献者:** 对本仓库提过有价值的 issue 或 pr 的小伙伴将出现在 [Contributor](#Contributor) 这里。
-1. **欢迎投稿：** 由于我个人能力有限，很多知识点我可能没有涉及到，所以你可以对其他知识点进行补充。**对于不错的原创文章我根据你的选择给予现金(50-300)、付费专栏或者任选书籍进行奖励！所以，快提 pr 或者邮件的方式（邮件地址在主页）给我投稿吧！** 当然，我觉得奖励是次要的，最重要的是你可以从自己整理知识点的过程中学习到很多知识。
+**如何阅读：** 推荐使用 <http://snailclimb.top/JavaGuide/> 在线阅读(访问速度慢的话，请使用<https://snailclimb.gitee.io/javaguide>)，在线阅读内容本仓库同步一致。这种方式阅读的优势在于：有侧边栏阅读体验更好，Gitee pages 的访问速度相对来说也比较快。
+
+
+
 
 ## 目录
 
@@ -259,6 +260,10 @@ Markdown 格式参考：[Github Markdown格式](https://guides.github.com/featur
 ### 为什么要做这个开源文档？
 
 初始想法源于自己的个人那一段比较迷茫的学习经历。主要目的是为了通过这个开源平台来帮助一些在学习 Java 或者面试过程中遇到问题的小伙伴。
+
+### 投稿
+
+由于我个人能力有限，很多知识点我可能没有涉及到，所以你可以对其他知识点进行补充。大家也可以对自己的文章进行自荐，对于不错的文章不仅可以成功在本仓库展示出来更可以获得作者送出的 50 元左右的任意书籍进行奖励。
 
 ### 联系我
 
