@@ -66,7 +66,7 @@
 
 * [Java 基础知识回顾](docs/java/Java基础知识.md)
 * [J2EE 基础知识回顾](docs/java/J2EE基础知识.md)
-* [Collections 工具类和 Arrays 工具类常见方法](./java/Basis/Arrays%2CCollectionsCommonMethods.md)
+* [Collections 工具类和 Arrays 工具类常见方法](docs/java/Basis/Arrays%2CCollectionsCommonMethods.md)
 * [Java常见关键字总结：static、final、this、super](docs/java/Basis/final、static、this、super.md) 
 
 ### 容器
@@ -83,7 +83,7 @@
 ### 并发
 
 * [并发编程面试必备：synchronized 关键字使用、底层原理、JDK1.6 之后的底层优化以及 和ReenTrantLock 的对比](docs/java/synchronized.md)
-* [并发编程面试必备：乐观锁与悲观锁](docs/EssentialContentForInterview/面试必备之乐观锁与悲观锁.md)
+* [并发编程面试必备：乐观锁与悲观锁](docs/essential-content-for-interview/面试必备之乐观锁与悲观锁.md)
 * [并发编程面试必备：JUC 中的 Atomic 原子类总结](docs/java/Multithread/Atomic.md)
 * [并发编程面试必备：AQS 原理以及 AQS 同步组件总结](docs/java/Multithread/AQS.md)
 * [BATJ都爱问的多线程面试题](docs/java/Multithread/BATJ都爱问的多线程面试题.md)
@@ -97,8 +97,8 @@
 
 ### I/O
 
-* [BIO,NIO,AIO 总结 ](docs/java/BIO%2CNIO%2CAIO%20summary.md)
-* [Java IO 与 NIO系列文章](docs/Java/Java%20IO与NIO.md)
+* [BIO,NIO,AIO 总结 ](docs/java/BIO-NIO-AIO.md)
+* [Java IO 与 NIO系列文章](docs/java/Java%20IO与NIO.md)
 
 ### Java 8 
 
