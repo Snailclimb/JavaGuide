@@ -3,8 +3,6 @@
 <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/logo - 副本.png" width=""/>
 </p>
 
-由于对文件目录结构进行了大幅度修改，所以如果遇到文章中有 Github 404 链接请 [联系我](#联系我)
-
 <p align="center">
   <a href="https://snailclimb.gitee.io/javaguide"><img src="https://img.shields.io/badge/阅读-read-brightgreen.svg" alt="阅读"></a>
   <a href="#联系我"><img src="https://img.shields.io/badge/chat-微信群-blue.svg" alt="微信群"></a>
@@ -20,11 +18,11 @@
  </a>
 </p>
 
+由于对文件目录结构进行了大幅度修改，所以如果遇到文章中有 Github 404 链接请 [联系我](#联系我)
 
-**如何阅读：** 推荐使用 <http://snailclimb.top/JavaGuide/> 在线阅读(访问速度慢的话，请使用<https://snailclimb.gitee.io/javaguide>)，在线阅读内容本仓库同步一致。这种方式阅读的优势在于：有侧边栏阅读体验更好，Gitee pages 的访问速度相对来说也比较快。
+对于复习 Linux 的朋友,推荐一下刘超(网易杭州研究院云计算技术部首席架构师)老师的《趣谈Linux操作系统——像故事一样的操作系统入门课》，这门课程是刚上新的，目前正在优惠，看过这位老师的《趣谈网络协议》的朋友应该都知道他，非常厉害，课程内容非常棒。[点击了解详情](https://shimo.im/docs/Jp998jwxhHwTp3sq/)。
 
-
-
+推荐使用 <http://snailclimb.top/JavaGuide/> 在线阅读(访问速度慢的话，请使用<https://snailclimb.gitee.io/javaguide>)，在线阅读内容本仓库同步一致。这种方式阅读的优势在于：有侧边栏阅读体验更好，Gitee pages 的访问速度相对来说也比较快。
 
 ## 目录
 
