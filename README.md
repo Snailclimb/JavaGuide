@@ -19,7 +19,7 @@
 </p>
 
 
-1. **如何阅读：** 推荐使用 <http://snailclimb.top/JavaGuide/> 在线阅读(访问速度慢的话，请使用<https://snailclimb.gitee.io/javaguide>)，在线阅读内容本仓库同步一致。
+1. **如何阅读：** 推荐使用 <http://snailclimb.top/JavaGuide/> 在线阅读(访问速度慢的话，请使用<https://snailclimb.gitee.io/javaguide>)，在线阅读内容本仓库同步一致。这种方式阅读的优势在于：有侧边栏阅读体验更好，Gitee pages 的访问速度相对来说也比较快。
 1. **关于贡献者:** 对本仓库提过有价值的 issue 或 pr 的小伙伴将出现在 [Contributor](#Contributor) 这里。
 1. **欢迎投稿：** 由于我个人能力有限，很多知识点我可能没有涉及到，所以你可以对其他知识点进行补充。**对于不错的原创文章我根据你的选择给予现金(50-300)、付费专栏或者任选书籍进行奖励！所以，快提 pr 或者邮件的方式（邮件地址在主页）给我投稿吧！** 当然，我觉得奖励是次要的，最重要的是你可以从自己整理知识点的过程中学习到很多知识。
 
@@ -240,7 +240,9 @@
 也是你学习和复习 Java 知识不错的实践；
 *  **对于非 Java 初学者来说：** 本文档更适合回顾知识，准备面试，搞清面试应该把重心放在那些问题上。要搞清楚这个道理：提前知道那些面试常见，不是为了背下来应付面试，而是为了让你可以更有针对的学习重点。
 
-本文档 Markdown 格式参考：[Github Markdown格式](https://guides.github.com/features/mastering-markdown/)，表情素材来自：[EMOJI CHEAT SHEET](https://www.webpagefx.com/tools/emoji-cheat-sheet/)。
+Markdown 格式参考：[Github Markdown格式](https://guides.github.com/features/mastering-markdown/)，表情素材来自：[EMOJI CHEAT SHEET](https://www.webpagefx.com/tools/emoji-cheat-sheet/)。
+
+利用 docsify 生成文档部署在 Github pages: [docsify 官网介绍](https://docsify.js.org/#/)
 
 ### 关于转载
 
