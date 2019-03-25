@@ -174,7 +174,7 @@
 
 - [一文读懂分布式应该学什么](docs/system-design/website-architecture/分布式.md)
 - [8 张图读懂大型网站技术架构](docs/system-design/website-architecture/8%20张图读懂大型网站技术架构.md)
-- [【面试精选】关于大型网站系统架构你不得不懂的10个问题](docs/system-design/website-architecture/[面试精选]关于大型网站系统架构你不得不懂的10个问题.md)
+- [【面试精选】关于大型网站系统架构你不得不懂的10个问题](docs/system-design/website-architecture/【面试精选】关于大型网站系统架构你不得不懂的10个问题.md)
 
 ## 面试指南
 
