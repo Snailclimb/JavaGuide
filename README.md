@@ -1,5 +1,5 @@
 <h1 align="center">Java 学习/面试指南</h1>
-
+<p align="center">由于对文件目录结构进行了大幅度修改，所以如果遇到文章中有 Github 404 链接请 [联系我](#联系我) 。</p>
 <p align="center">
 <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/logo - 副本.png" width=""/>
 </p>
