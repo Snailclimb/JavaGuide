@@ -6,6 +6,7 @@
 由于对文件目录结构进行了大幅度修改，所以如果遇到文章中有 Github 404 链接请 [联系我](#联系我)
 
 <p align="center">
+  <a href="https://snailclimb.gitee.io/javaguide"><img src="https://img.shields.io/badge/阅读-read-brightgreen.svg" alt="阅读"></a>
   <a href="#联系我"><img src="https://img.shields.io/badge/chat-微信群-blue.svg" alt="微信群"></a>
   <a href="https://gitee.com/SnailClimb/JavaGuide"><img src="https://img.shields.io/badge/%E7%A0%81%E4%BA%91-SnailClimb-brightgreen.svg" alt="码云地址"></a>
   <a href="#公众号"><img src="https://img.shields.io/badge/%E5%85%AC%E4%BC%97%E5%8F%B7-JavaGuide-lightgrey.svg" alt="公众号"></a>
