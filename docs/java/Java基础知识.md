@@ -110,7 +110,7 @@ JRE 是 Java运行时环境。它是运行已编译 Java 程序所需的所有�
 
 ## 4. Oracle JDK 和 OpenJDK 的对比
 
-可能在看这个问题之前很多人和我一样并没有接触和使用过  OpenJDK 。那么Oracle和OpenJDK之间是否存在重大差异？下面通过我通过我收集到一些资料对你解答这个被很多人忽视的问题。
+可能在看这个问题之前很多人和我一样并没有接触和使用过  OpenJDK 。那么Oracle和OpenJDK之间是否存在重大差异？下面我通过收集到的一些资料，为你解答这个被很多人忽视的问题。
 
 对于Java 7，没什么关键的地方。OpenJDK项目主要基于Sun捐赠的HotSpot源代码。此外，OpenJDK被选为Java 7的参考实现，由Oracle工程师维护。关于JVM，JDK，JRE和OpenJDK之间的区别，Oracle博客帖子在2012年有一个更详细的答案：
 
