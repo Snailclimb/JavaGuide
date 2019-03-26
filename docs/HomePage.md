@@ -77,6 +77,7 @@
 - [算法总结——几道常见的子符串算法题 ](./dataStructures-algorithms/搞定BAT面试——几道常见的子符串算法题.md)
 - [算法总结——几道常见的链表算法题 ](./dataStructures-algorithms/Leetcode-LinkList1.md)   
 - [常见安全算法（MD5、SHA1、Base64等等）总结](./dataStructures-algorithms/常见安全算法（MD5、SHA1、Base64等等）总结.md)
+- [回溯算法经典案例之N皇后问题](./dataStructures-algorithms/Backtracking-NQueens.md)
 
 ## 数据库
 
