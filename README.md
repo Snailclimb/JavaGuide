@@ -133,7 +133,7 @@
 
 ### 算法
 
-- [算法学习与面试](docs/dataStructures-algorithms/算法学习资源推荐.md)  
+- [算法学习资源推荐](docs/dataStructures-algorithms/算法学习资源推荐.md)  
 - [算法总结——几道常见的子符串算法题 ](docs/dataStructures-algorithms/几道常见的子符串算法题.md)
 - [算法总结——几道常见的链表算法题 ](docs/dataStructures-algorithms/几道常见的链表算法题.md)   
 - [剑指offer部分编程题](docs/dataStructures-algorithms/剑指offer部分编程题.md)
