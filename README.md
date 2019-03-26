@@ -110,7 +110,7 @@
 
 ### 编程规范
 
-[Java 编程规范](docs/java/Java编程规范.md)
+- [Java 编程规范](docs/java/Java编程规范.md)
 
 ## 网络
 
