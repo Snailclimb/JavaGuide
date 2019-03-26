@@ -51,6 +51,11 @@
 ### Java 8 
 
 * [Java 8 新特性总结](./java/What's%20New%20in%20JDK8/Java8Tutorial.md)
+* [Java 8 学习资源推荐](./java/What's%20New%20in%20JDK8/Java8教程推荐.md)
+
+### 编程规范
+
+- [Java 编程规范](./java/Java编程规范.md)
 
 ## 网络
 
@@ -73,10 +78,11 @@
 
 ### 算法
 
-- [算法学习与面试](./dataStructures-algorithms/算法.md)  
-- [算法总结——几道常见的子符串算法题 ](./dataStructures-algorithms/搞定BAT面试——几道常见的子符串算法题.md)
-- [算法总结——几道常见的链表算法题 ](./dataStructures-algorithms/Leetcode-LinkList1.md)   
-- [常见安全算法（MD5、SHA1、Base64等等）总结](./dataStructures-algorithms/常见安全算法（MD5、SHA1、Base64等等）总结.md)
+- [算法学习资源推荐](./dataStructures-algorithms/算法学习资源推荐.md)  
+- [算法总结——几道常见的子符串算法题 ](./dataStructures-algorithms/几道常见的子符串算法题.md)
+- [算法总结——几道常见的链表算法题 ](./dataStructures-algorithms/几道常见的链表算法题.md)   
+- [剑指offer部分编程题](./dataStructures-algorithms/剑指offer部分编程题.md)
+- [公司真题](./dataStructures-algorithms/公司真题.md)
 
 ## 数据库
 
