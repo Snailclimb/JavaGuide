@@ -356,7 +356,7 @@ hashCode() 的作用是获取哈希码，也称为散列码；它实际上是返
 
 ## 28. 为什么Java中只有值传递
 
- [为什么Java中只有值传递？](https://github.com/Snailclimb/JavaGuide/blob/master/EssentialContentForInterview/MostCommonJavaInterviewQuestions/%E7%AC%AC%E4%B8%80%E5%91%A8%EF%BC%882018-8-7%EF%BC%89.md)
+ [为什么Java中只有值传递？](https://github.com/Snailclimb/JavaGuide/blob/master/docs/essential-content-for-interview/MostCommonJavaInterviewQuestions/%E7%AC%AC%E4%B8%80%E5%91%A8%EF%BC%882018-8-7%EF%BC%89.md)
 
 
 ## 29. 简述线程,程序,进程的基本概念.以及他们之间关系是什么?
