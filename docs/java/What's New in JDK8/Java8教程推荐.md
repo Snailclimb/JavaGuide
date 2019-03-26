@@ -5,7 +5,7 @@
 - **《Java8 In Action》**
 - **《写给大忙人看的Java SE 8》**
 
-上述书籍的PDF版本见 https://shimo.im/docs/CPB0PK05rP4CFmI2/ 
+上述书籍的PDF版本见 https://shimo.im/docs/CPB0PK05rP4CFmI2/ 中的 “Java 书籍推荐”。
 
 ### 开源文档
 
