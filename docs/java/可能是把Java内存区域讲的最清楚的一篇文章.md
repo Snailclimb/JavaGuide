@@ -26,6 +26,7 @@ Java 虚拟机在执行 Java 程序的过程中会把它管理的内存划分成
 <div align="center">  
 <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/JVM运行时数据区域.png" width="600px"/>
 </div>
+
 **JDK 1.8 ：**
 
 <div align="center">  
