@@ -51,7 +51,6 @@ Java 虚拟机在执行 Java 程序的过程中会把它管理的内存划分成
 <div align="center">  
 <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/JVM运行时数据区域.png" width="600px"/>
 </div>
-
 **JDK 1.8 ：**
 
 <div align="center">  
@@ -130,15 +129,41 @@ Java 堆是垃圾收集器管理的主要区域，因此也被称作**GC堆（Ga
 
 ### 2.5 方法区
 
-**方法区与 Java 堆一样，是各个线程共享的内存区域，它用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。虽然Java虚拟机规范把方法区描述为堆的一个逻辑部分，但是它却有一个别名叫做 Non-Heap（非堆），目的应该是与 Java 堆区分开来。**
+方法区与 Java 堆一样，是各个线程共享的内存区域，它用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。虽然Java虚拟机规范把方法区描述为堆的一个逻辑部分，但是它却有一个别名叫做 **Non-Heap（非堆）**，目的应该是与 Java 堆区分开来。
 
-HotSpot 虚拟机中方法区也常被称为 **“永久代”**，本质上两者并不等价。仅仅是因为 HotSpot 虚拟机设计团队用永久代来实现方法区而已，这样 HotSpot 虚拟机的垃圾收集器就可以像管理 Java 堆一样管理这部分内存了。但是这并不是一个好主意，因为这样更容易遇到内存溢出问题。
+方法区也被称为永久代。很多人都会分不清方法区和永久代的关系，为此我也查阅了文献。
 
-**相对而言，垃圾收集行为在这个区域是比较少出现的，但并非数据进入方法区后就“永久存在”了。**
+#### 方法区和永久代的关系
 
-JDK 1.8 的时候，方法区被彻底移除了（JDK1.7就已经开始了），取而代之是元空间，元空间使用的是直接内存。
+> 《Java虚拟机规范》只是规定了有方法区这么个概念和它的作用，并没有规定如何去实现它。那么，在不同的 JVM 上方法区的实现肯定是不同的了。  **方法区和永久代的关系很像Java中接口和类的关系，类实现了接口，而永久代就是HotSpot虚拟机对虚拟机规范中方法区的一种实现方式。** 也就是说，永久代是HotSpot的概念，方法区是Java虚拟机规范中的定义，是一种规范，而永久代是一种实现，一个是标准一个是实现，其他的虚拟机实现并没有永久带这一说法。
 
-我们可以使用参数： `-XX:MetaspaceSize ` 来指定元数据区的大小。与永久区很大的不同就是，如果不指定大小的话，随着更多类的创建，虚拟机会耗尽所有可用的系统内存。
+#### 常用参数
+
+JDK 1.8 之前永久代还没被彻底移除的时候通常通过下面这些参数来调节方法区大小
+
+```java
+-XX:PermSize=N //方法区(永久代)初始大小
+-XX:MaxPermSize=N //方法区(永久代)最大大小,超过这个值将会抛出OutOfMemoryError异常:java.lang.OutOfMemoryError: PermGen
+```
+
+相对而言，垃圾收集行为在这个区域是比较少出现的，但并非数据进入方法区后就“永久存在”了。**
+
+JDK 1.8 的时候，方法区（HotSpot的永久代）被彻底移除了（JDK1.7就已经开始了），取而代之是元空间，元空间使用的是直接内存。
+
+下面是一些常用参数：
+
+```java
+-XX:MetaspaceSize=N //设置Metaspace的初始（和最小大小）
+-XX:MaxMetaspaceSize=N //设置Metaspace的最大大小
+```
+
+与永久代很大的不同就是，如果不指定大小的话，随着更多类的创建，虚拟机会耗尽所有可用的系统内存。
+
+#### 为什么要将永久代(PermGen)替换为元空间(MetaSpace)呢?
+
+整个永久代有一个 JVM 本身设置固定大小上线，无法进行调整，而元空间使用的是直接内存，受本机可用内存的限制，并且永远不会得到java.lang.OutOfMemoryError。你可以使用 `-XX：MaxMetaspaceSize` 标志设置最大元空间大小，默认值为 unlimited，这意味着它只受系统内存的限制。`-XX：MetaspaceSize` 调整标志定义元空间的初始大小如果未指定此标志，则 Metaspace 将根据运行时的应用程序需求动态地重新调整大小。
+
+当然这只是其中一个原因，还有很多底层的原因，这里就不提了。
 
 ### 2.6 运行时常量池
 
@@ -368,10 +393,10 @@ i4=i5+i6   true
 
 - 《深入理解Java虚拟机：JVM高级特性与最佳实践（第二版》
 - 《实战java虚拟机》
-- https://www.cnblogs.com/CZDblog/p/5589379.html
-- https://www.cnblogs.com/java-zhao/p/5180492.html
-- https://blog.csdn.net/qq_26222859/article/details/73135660
-- https://blog.csdn.net/cugwuhan2014/article/details/78038254
+- <https://docs.oracle.com/javase/specs/index.html>
+- <http://www.pointsoftware.ch/en/under-the-hood-runtime-data-areas-javas-memory-model/>
+- <https://dzone.com/articles/jvm-permgen-%E2%80%93-where-art-thou>
+- <https://stackoverflow.com/questions/9095748/method-area-and-permgen>
 
 
 
