@@ -133,10 +133,11 @@
 
 ### 算法
 
-- [算法学习与面试](docs/dataStructures-algorithms/算法.md)  
-- [算法总结——几道常见的子符串算法题 ](docs/dataStructures-algorithms/搞定BAT面试——几道常见的子符串算法题.md)
-- [算法总结——几道常见的链表算法题 ](docs/dataStructures-algorithms/Leetcode-LinkList1.md)   
-- [常见安全算法（MD5、SHA1、Base64等等）总结](docs/dataStructures-algorithms/常见安全算法（MD5、SHA1、Base64等等）总结.md)
+- [算法学习资源推荐](docs/dataStructures-algorithms/算法学习资源推荐.md)  
+- [算法总结——几道常见的子符串算法题 ](docs/dataStructures-algorithms/几道常见的子符串算法题.md)
+- [算法总结——几道常见的链表算法题 ](docs/dataStructures-algorithms/几道常见的链表算法题.md)   
+- [剑指offer部分编程题](docs/dataStructures-algorithms/剑指offer部分编程题.md)
+- [公司真题](docs/dataStructures-algorithms/公司真题.md)
 
 ## 数据库
 
@@ -236,10 +237,10 @@
 
 ## 待办
 
-- [x] [Java 8 新特性总结](./Java/What's%20New%20in%20JDK8/Java8Tutorial.md)
+- [x] [Java 8 新特性总结](docs/java/What's%20New%20in%20JDK8/Java8Tutorial.md)
 - [ ] Java 8 新特性详解
 - [ ] Java 多线程类别知识重构
-- [x] [BIO,NIO,AIO 总结 ](./Java/BIO%2CNIO%2CAIO%20summary.md)
+- [x] [BIO,NIO,AIO 总结 ](docs/java/BIO-NIO-AIO.md)
 - [ ] Netty 总结
 - [ ] 数据结构总结重构
 
