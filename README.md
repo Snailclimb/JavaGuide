@@ -237,10 +237,10 @@
 
 ## 待办
 
-- [x] [Java 8 新特性总结](./Java/What's%20New%20in%20JDK8/Java8Tutorial.md)
+- [x] [Java 8 新特性总结](docs/java/What's%20New%20in%20JDK8/Java8Tutorial.md)
 - [ ] Java 8 新特性详解
 - [ ] Java 多线程类别知识重构
-- [x] [BIO,NIO,AIO 总结 ](./Java/BIO%2CNIO%2CAIO%20summary.md)
+- [x] [BIO,NIO,AIO 总结 ](docs/java/BIO-NIO-AIO.md)
 - [ ] Netty 总结
 - [ ] 数据结构总结重构
 
