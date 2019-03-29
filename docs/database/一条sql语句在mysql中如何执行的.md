@@ -1,4 +1,4 @@
-本文来自 Github 用户[木木匠](https://github.com/kinglaw1204)投稿，[SnailClimb](https://github.com/Snailclimb) 对本文进行了内容和排版进行了修改完善。
+本文来自[木木匠](https://github.com/kinglaw1204)投稿，[SnailClimb](https://github.com/Snailclimb) 对本文进行了内容和排版进行了修改完善。
 
 <!-- TOC -->
 
