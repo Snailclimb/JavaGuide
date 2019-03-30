@@ -20,10 +20,23 @@
 	  coverpage: true,//封面,_coverpage.md
 	  auto2top: true,//切换页面后是否自动跳转到页面顶部
 	  //logo: 'https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3logo-透明.png' ,
+	  depth: 4,
+	  search: {
+        noData: {
+          '/': 'No results!'
+        },
+        paths: 'auto',
+        placeholder: {
+          '/': 'Search'
+        }
+      },
+	  
     }
   </script>
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
   <!--Java代码高亮-->
   <script src="//unpkg.com/prismjs/components/prism-java.min.js"></script>
+  <!--全文搜索-->
+  <script src="//unpkg.com/docsify/lib/plugins/search.js"></script>
 </body>
 </html>
