@@ -20,13 +20,13 @@
 	  coverpage: true,//封面,_coverpage.md
 	  auto2top: true,//切换页面后是否自动跳转到页面顶部
 	  //logo: 'https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3logo-透明.png' ,
-	  depth: 4,
      search: {
-            paths: 'auto',
-            placeholder: '搜索',
-            noData: '找不到结果',
-            // Headline depth, 1 - 6
-            depth: 6
+	    maxAge: 86400000, // 过期时间，单位毫秒，默认一天
+        paths: 'auto',
+		placeholder: '搜索',
+		noData: '找不到结果',
+		// Headline depth, 1 - 6
+		depth: 2
         },
 	  
     }
@@ -34,8 +34,8 @@
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
   <!--Java代码高亮-->
   <script src="//unpkg.com/prismjs/components/prism-java.min.js"></script>
-  <!--全文搜索-->
-  <script src="//unpkg.com/docsify/lib/plugins/search.js"></script>
+  <!--全文搜索,直接用官方提供的无法生效-->
+  <script src="https://cdn.bootcss.com/docsify/4.5.9/plugins/search.min.js"></script>
 
 </body>
 </html>
