@@ -21,15 +21,13 @@
 	  auto2top: true,//切换页面后是否自动跳转到页面顶部
 	  //logo: 'https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3logo-透明.png' ,
 	  depth: 4,
-	  search: {
-        noData: {
-          '/': 'No results!'
+     search: {
+            paths: 'auto',
+            placeholder: '搜索',
+            noData: '找不到结果',
+            // Headline depth, 1 - 6
+            depth: 6
         },
-        paths: 'auto',
-        placeholder: {
-          '/': 'Search'
-        }
-      },
 	  
     }
   </script>
@@ -38,5 +36,6 @@
   <script src="//unpkg.com/prismjs/components/prism-java.min.js"></script>
   <!--全文搜索-->
   <script src="//unpkg.com/docsify/lib/plugins/search.js"></script>
+
 </body>
 </html>
