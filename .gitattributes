@@ -1,9 +1,4 @@
-# Auto detect text files and perform LF normalization
-* linguist-vendored
-*.c linguist-vendored=false
-*.h linguist-vendored=false
-*.c linguist-language=java
-*.h linguist-language=java
-*.m linguist-language=java
-*.html linguist-language=java
+* text=auto
 *.js linguist-language=java
+*.css linguist-language=java
+*.html linguist-language=java
