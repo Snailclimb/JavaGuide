@@ -168,7 +168,7 @@
 
 ### 书单
 
-- [Java程序员必备书单](./essential-content-for-interview//PreparingForInterview/books.md)
+- [Java程序员必备书单](./essential-content-for-interview/PreparingForInterview/books.md)
 
 ### Github榜单
 
