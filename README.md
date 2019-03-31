@@ -146,6 +146,7 @@
 * [一千行MySQL学习笔记](docs/database/一千行MySQL命令.md)
 * [【思维导图-索引篇】搞定数据库索引就是这么简单](docs/database/MySQL%20Index.md)
 * [事务隔离级别(图文详解)](docs/database/事务隔离级别(图文详解).md)
+* [一条sql语句在MySQL中如何执行的](docs/database/一条sql语句在mysql中如何执行的.md)
 
 ### Redis
 
