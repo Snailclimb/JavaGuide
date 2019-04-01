@@ -7,7 +7,6 @@
   <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/Coding Devops.png" width=""/>
  </a>
 </p>
-
 ## Java
 
 ### 基础
@@ -90,8 +89,10 @@
 ### MySQL
 
 * [MySQL 学习与面试](./database/MySQL.md)
-* [【思维导图-索引篇】搞定数据库索引就是这么简单](./database/MySQL%20Index.md)
 * [一千行MySQL学习笔记](./database/一千行MySQL命令.md)
+* [【思维导图-索引篇】搞定数据库索引就是这么简单](./database/MySQL%20Index.md)
+* [事务隔离级别(图文详解)](./database/事务隔离级别(图文详解).md)
+* [一条sql语句在MySQL中如何执行的](./database/一条sql语句在mysql中如何执行的.md)
 
 ### Redis
 
@@ -176,6 +177,7 @@
 
 ## 闲谈  
 
+* [如何提问](./chat/如何提问.md) 
 * [选择技术方向都要考虑哪些因素](./chat/选择技术方向都要考虑哪些因素.md) 
 * [结束了我短暂的秋招，说点自己的感受](./chat/2018%20%E7%A7%8B%E6%8B%9B.md) 
 
