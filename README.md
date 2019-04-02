@@ -20,9 +20,7 @@
 
 由于对文件目录结构进行了大幅度修改，所以如果遇到文章中有 Github 404 链接请 [联系我](#联系我)
 
-对于复习 Linux 的朋友,推荐一下刘超(网易杭州研究院云计算技术部首席架构师)老师的《趣谈Linux操作系统——像故事一样的操作系统入门课》，这门课程是刚上新的，目前正在优惠，看过这位老师的《趣谈网络协议》的朋友应该都知道他，非常厉害，课程内容非常棒。[点击了解详情](https://shimo.im/docs/Jp998jwxhHwTp3sq/) 有福利哦！。
-
-推荐使用 <http://snailclimb.top/JavaGuide/> 在线阅读(访问速度慢的话，请使用 <https://snailclimb.gitee.io/javaguide> )，在线阅读内容本仓库同步一致。这种方式阅读的优势在于：有侧边栏阅读体验更好，Gitee pages 的访问速度相对来说也比较快。
+推荐使用 <https://snailclimb.top/JavaGuide/> 在线阅读(访问速度慢的话，请使用 <https://snailclimb.gitee.io/javaguide> )，在线阅读内容本仓库同步一致。这种方式阅读的优势在于：有侧边栏阅读体验更好，Gitee pages 的访问速度相对来说也比较快。
 
 ## 目录
 
@@ -145,8 +143,10 @@
 ### MySQL
 
 * [MySQL 学习与面试](docs/database/MySQL.md)
-* [【思维导图-索引篇】搞定数据库索引就是这么简单](docs/database/MySQL%20Index.md)
 * [一千行MySQL学习笔记](docs/database/一千行MySQL命令.md)
+* [【思维导图-索引篇】搞定数据库索引就是这么简单](docs/database/MySQL%20Index.md)
+* [事务隔离级别(图文详解)](docs/database/事务隔离级别(图文详解).md)
+* [一条sql语句在MySQL中如何执行的](docs/database/一条sql语句在mysql中如何执行的.md)
 
 ### Redis
 
@@ -223,7 +223,7 @@
 
 ### 书单
 
-- [Java程序员必备书单](docs/essential-content-for-interview//PreparingForInterview/books.md)
+- [Java程序员必备书单](docs/essential-content-for-interview/PreparingForInterview/books.md)
 
 ### Github榜单
 
@@ -231,6 +231,7 @@
 
 ## 闲谈  
 
+* [如何提问](docs/chat/如何提问.md) 
 * [选择技术方向都要考虑哪些因素](docs/chat/选择技术方向都要考虑哪些因素.md) 
 * [结束了我短暂的秋招，说点自己的感受](docs/chat/2018%20%E7%A7%8B%E6%8B%9B.md) 
 
