@@ -240,11 +240,11 @@
 ## 待办
 
 - [x] [Java 8 新特性总结](docs/java/What's%20New%20in%20JDK8/Java8Tutorial.md)
-- [ ] Java 8 新特性详解
-- [ ] Java 多线程类别知识重构
+- [x] [Java 8 新特性详解](docs/java/What's%20New%20in%20JDK8/Java8教程推荐.md)
+- [ ] Java 多线程类别知识重构(---正在进行中---)
 - [x] [BIO,NIO,AIO 总结 ](docs/java/BIO-NIO-AIO.md)
-- [ ] Netty 总结
-- [ ] 数据结构总结重构
+- [ ] Netty 总结(---正在进行中---)
+- [ ] 数据结构总结重构(---正在进行中---)
 
 ## 说明
 
