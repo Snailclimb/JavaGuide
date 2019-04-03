@@ -4,8 +4,6 @@
 	<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/logo - 副本.png" width=""/>
 </a>
 </p>
-
-
 <h2 align="center">Special Sponsors</h2>
 <p align="center">
 <a href="https://e.coding.net/?utm_source=JavaGuide" target="_blank">
