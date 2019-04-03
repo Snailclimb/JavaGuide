@@ -56,7 +56,6 @@
 - [资料](#资料)
     - [书单](#书单)
     - [Github榜单](#Github榜单)
-- [闲谈](#闲谈)
 - [待办](#待办)
 - [说明](#说明)
 
@@ -228,12 +227,6 @@
 ### Github榜单
 
 - [Java 项目月榜单](docs/github-trending/JavaGithubTrending.md)
-
-## 闲谈  
-
-* [如何提问](docs/chat/如何提问.md) 
-* [选择技术方向都要考虑哪些因素](docs/chat/选择技术方向都要考虑哪些因素.md) 
-* [结束了我短暂的秋招，说点自己的感受](docs/chat/2018%20%E7%A7%8B%E6%8B%9B.md) 
 
 ***
 
