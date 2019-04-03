@@ -30,7 +30,7 @@
     - [Sequential Sort\(串行排序\)](#sequential-sort串行排序)
     - [Parallel Sort\(并行排序\)](#parallel-sort并行排序)
   - [Maps](#maps)
-  - [Data API\(日期相关API\)](#data-api日期相关api)
+  - [Date API\(日期相关API\)](#date-api日期相关api)
     - [Clock](#clock)
     - [Timezones\(时区\)](#timezones时区)
     - [LocalTime\(本地时间\)](#localtime本地时间)
@@ -705,7 +705,7 @@ map.get(9);             // val9concat
 
 Merge 做的事情是如果键名不存在则插入，否则则对原键对应的值做合并操作并重新插入到map中。
 
-## Data API(日期相关API)
+## Date API(日期相关API)
 
 Java 8在 `java.time` 包下包含一个全新的日期和时间API。新的Date API与Joda-Time库相似，但它们不一样。以下示例涵盖了此新 API 的最重要部分。译者对这部分内容参考相关书籍做了大部分修改。
 
