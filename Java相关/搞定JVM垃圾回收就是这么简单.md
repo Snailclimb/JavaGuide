@@ -65,7 +65,7 @@ public class GCTest {
 添加的参数：`-XX:+PrintGCDetails`
 ![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-26/10317146.jpg)
 
-运行结果：
+运行结果(红色字体描述有误，应该是对应于JDK1.7的永久代)：
 
 ![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-26/28954286.jpg)
 

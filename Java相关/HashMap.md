@@ -90,15 +90,17 @@ public class HashMap<K,V> extends AbstractMap<K,V> implements Map<K,V>, Cloneabl
     transient int modCount;   
     // 临界值 当实际大小(容量*填充因子)超过临界值时，会进行扩容
     int threshold;
-    // 填充因子
+    // 加载因子
     final float loadFactor;
 }
 ```
 - **loadFactor加载因子**
 
-  loadFactor加载因子是控制数组存放数据的疏密程度，loadFactor越趋近于1，那么   数组中存放的数据(entry)也就越多，也就越密，也就是会让链表的长度增加，load   Factor越小，也就是趋近于0，
+  loadFactor加载因子是控制数组存放数据的疏密程度，loadFactor越趋近于1，那么   数组中存放的数据(entry)也就越多，也就越密，也就是会让链表的长度增加，loadFactor越小，也就是趋近于0，数组中存放的数据(entry)也就越少，也就越稀疏。
 
-  **loadFactor太大导致查找元素效率低，太小导致数组的利用率低，存放的数据会很分散。loadFactor的默认值为0.75f是官方给出的一个比较好的临界值**。 　
+  **loadFactor太大导致查找元素效率低，太小导致数组的利用率低，存放的数据会很分散。loadFactor的默认值为0.75f是官方给出的一个比较好的临界值**。 
+  
+  给定的默认容量为 16，负载因子为 0.75。Map 在使用过程中不断的往里面存放数据，当数量达到了 16 * 0.75 = 12 就需要将当前 16 的容量进行扩容，而扩容这个过程涉及到 rehash、复制数据等操作，所以非常消耗性能。
 
 - **threshold**
 
@@ -171,23 +173,23 @@ static final class TreeNode<K,V> extends LinkedHashMap.Entry<K,V> {
 ![四个构造方法](https://user-gold-cdn.xitu.io/2018/3/20/162410d912a2e0e1?w=336&h=90&f=jpeg&s=26744)
 ```java
     // 默认构造函数。
-    public More ...HashMap() {
+    public HashMap() {
         this.loadFactor = DEFAULT_LOAD_FACTOR; // all   other fields defaulted
      }
      
      // 包含另一个“Map”的构造函数
-     public More ...HashMap(Map<? extends K, ? extends V> m) {
+     public HashMap(Map<? extends K, ? extends V> m) {
          this.loadFactor = DEFAULT_LOAD_FACTOR;
          putMapEntries(m, false);//下面会分析到这个方法
      }
      
      // 指定“容量大小”的构造函数
-     public More ...HashMap(int initialCapacity) {
+     public HashMap(int initialCapacity) {
          this(initialCapacity, DEFAULT_LOAD_FACTOR);
      }
      
      // 指定“容量大小”和“加载因子”的构造函数
-     public More ...HashMap(int initialCapacity, float loadFactor) {
+     public HashMap(int initialCapacity, float loadFactor) {
          if (initialCapacity < 0)
              throw new IllegalArgumentException("Illegal initial capacity: " + initialCapacity);
          if (initialCapacity > MAXIMUM_CAPACITY)
@@ -399,7 +401,7 @@ final Node<K,V>[] resize() {
     else if (oldThr > 0) // initial capacity was placed in threshold
         newCap = oldThr;
     else { 
-        signifies using defaults
+        // signifies using defaults
         newCap = DEFAULT_INITIAL_CAPACITY;
         newThr = (int)(DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);
     }
