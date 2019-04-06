@@ -1,4 +1,4 @@
-作者: 听风，原文地址: <https://www.cnblogs.com/huchong/p/10219318.html>。我已于原作者联系获得授权。
+作者: 听风，原文地址: <https://www.cnblogs.com/huchong/p/10219318.html>。JavaGuide已获得作者授权。
 
 <!-- TOC -->
 
