@@ -1,3 +1,5 @@
+Java后端技术交流群(限工作一年及以上，架构视频免费领取) ：[![QQ群](https://img.shields.io/badge/QQ%E7%BE%A4-869815609-red.svg)](https://jq.qq.com/?_wv=1027&k=5QqyxIx) 
+
 <h1 align="center">Java 学习/面试指南</h1>
 <p align="center">
 <a href="https://github.com/Snailclimb/JavaGuide" target="_blank">
