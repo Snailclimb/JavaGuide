@@ -142,7 +142,7 @@ boolean replaceAll(List list, Object oldVal, Object newVal), 用新元素替换�
 
 ### 同步控制
 
-Collectons提供了多个`synchronizedXxx()`方法·，该方法可以将指定集合包装成线程同步的集合，从而解决多线程并发访问集合时的线程安全问题。
+Collections提供了多个`synchronizedXxx()`方法·，该方法可以将指定集合包装成线程同步的集合，从而解决多线程并发访问集合时的线程安全问题。
 
 我们知道 HashSet，TreeSet，ArrayList,LinkedList,HashMap,TreeMap 都是线程不安全的。Collections提供了多个静态方法可以把他们包装成线程同步的集合。
 
@@ -224,7 +224,7 @@ unmodifiableXxx(): 返回指定集合对象的不可变视图，此处的集合�
 4. 填充 : `fill()`
 5. 转列表:  `asList()`
 6. 转字符串 : `toString()`
-7. 
+7. 复制: `copyOf()`
 
 ### 排序 : `sort()`
 
