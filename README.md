@@ -84,7 +84,7 @@
 
 ### 并发
 
-* [并发编程面试必备：synchronized 关键字使用、底层原理、JDK1.6 之后的底层优化以及 和ReenTrantLock 的对比](docs/java/synchronized.md)
+* [并发编程面试必备：synchronized 关键字使用、底层原理、JDK1.6 之后的底层优化以及 和ReentrantLock 的对比](docs/java/synchronized.md)
 * [并发编程面试必备：乐观锁与悲观锁](docs/essential-content-for-interview/面试必备之乐观锁与悲观锁.md)
 * [并发编程面试必备：JUC 中的 Atomic 原子类总结](docs/java/Multithread/Atomic.md)
 * [并发编程面试必备：AQS 原理以及 AQS 同步组件总结](docs/java/Multithread/AQS.md)
