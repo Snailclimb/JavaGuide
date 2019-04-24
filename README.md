@@ -17,7 +17,7 @@
 <h2 align="center">Special Sponsors</h2>
 
 <p align="center">
-<a href="https://e.coding.net/?utm_source=JavaGuide" target="_blank">
+<a href="https://coding.net/?utm_source=JavaGuide" target="_blank">
   <img src="https://ws1.sinaimg.cn/large/006rNwoDgy1g2dw5gau7nj30eg02vwfr.jpg"/>
  </a>
 </p>
