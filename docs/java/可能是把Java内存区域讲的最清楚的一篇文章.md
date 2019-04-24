@@ -254,16 +254,23 @@ JDK1.4 中新加入的 **NIO(New Input/Output) 类**，引入了一种基于**�
 **1 String 对象的两种创建方式：**
 
 ```java
-     String str1 = "abcd";
-     String str2 = new String("abcd");
-     System.out.println(str1==str2);//false
+String str1 = "abcd";//先检查字符串常量池中有没有"abcd"，如果字符串常量池中没有，则创建一个，然后str1指向字符串常量池中的对象，如果有，则直接将str1指向"abcd""；
+String str2 = new String("abcd");//堆中创建一个新的对象
+String str3 = new String("abcd");//堆中创建一个新的对象
+System.out.println(str1==str2);//false
+System.out.println(str2==str3);//false
 ```
 
-这两种不同的创建方法是有差别的，第一种方式是在常量池中拿对象，第二种方式是直接在堆内存空间创建一个新的对象。
-![](https://user-gold-cdn.xitu.io/2018/8/22/16561e59a59c0873?w=698&h=355&f=png&s=10449)
-记住：只要使用new方法，便需要创建新的对象。
+这两种不同的创建方法是有差别的。
 
+- 第一种方式是在常量池中拿对象；
+- 第二种方式是直接在堆内存空间创建一个新的对象。
 
+记住一点：**只要使用new方法，便需要创建新的对象。**
+
+再给大家一个图应该更容易理解，图片来源：<https://www.journaldev.com/797/what-is-java-string-pool>：
+
+![String-Pool-Java](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3String-Pool-Java1-450x249.png)
 
 **2 String 类型的常量池比较特殊。它的主要使用方法有两种：**
 
@@ -293,9 +300,9 @@ JDK1.4 中新加入的 **NIO(New Input/Output) 类**，引入了一种基于**�
 ![](https://user-gold-cdn.xitu.io/2018/8/22/16561e59a4d13f92?w=593&h=603&f=png&s=22265)
 
 尽量避免多个字符串拼接，因为这样会重新创建对象。如果需要改变字符串的话，可以使用 StringBuilder 或者 StringBuffer。
-### String s1 = new String("abc");这句话创建了几个对象？
+### String s1 = new String("abc");这句话创建了几个字符串对象？
 
-**创建了两个对象。**
+**将创建1或2个字符串。如果池中已存在字符串文字“abc”，则池中只会创建一个字符串“s1”。如果池中没有字符串文字“abc”，那么它将首先在池中创建，然后在堆空间中创建，因此将创建总共2个字符串对象。**
 
 **验证：**
 
@@ -312,10 +319,6 @@ JDK1.4 中新加入的 **NIO(New Input/Output) 类**，引入了一种基于**�
 false
 true
 ```
-
-**解释：**
-
-先有字符串"abc"放入常量池，然后 new 了一份字符串"abc"放入Java堆(字符串常量"abc"在编译期就已经确定放入常量池，而 Java 堆上的"abc"是在运行期初始化阶段才确定)，然后 Java 栈的 str1 指向Java堆上的"abc"。 
 
 ### 8种基本类型的包装类和常量池
 

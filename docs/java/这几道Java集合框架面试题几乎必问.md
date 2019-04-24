@@ -185,24 +185,9 @@ static int hash(int h) {
 
 ## HashMap 多线程操作导致死循环问题
 
-在多线程下，进行 put 操作会导致 HashMap 死循环，原因在于 HashMap 的扩容 resize()方法。由于扩容是新建一个数组，复制原数据到数组。由于数组下标挂有链表，所以需要复制链表，但是多线程操作有可能导致环形链表。复制链表过程如下:  
-以下模拟2个线程同时扩容。假设，当前 HashMap 的空间为2（临界值为1），hashcode 分别为 0 和 1，在散列地址 0 处有元素 A 和 B，这时候要添加元素 C，C 经过 hash 运算，得到散列地址为 1，这时候由于超过了临界值，空间不够，需要调用 resize 方法进行扩容，那么在多线程条件下，会出现条件竞争，模拟过程如下：
+主要原因在于 并发下的Rehash 会造成元素之间会形成一个循环链表。不过，jdk 1.8 后解决了这个问题，但是还是不建议在多线程下使用 HashMap,因为多线程下使用 HashMap 还是会存在其他问题比如数据丢失。并发环境下推荐使用 ConcurrentHashMap 。
 
- 线程一：读取到当前的 HashMap 情况，在准备扩容时，线程二介入
-
-![](https://note.youdao.com/yws/public/resource/e4cec65883d9fdc24effba57dcfa5241/xmlnote/41aed567e3419e1314bfbf689e3255a2/192)
-
-线程二：读取 HashMap，进行扩容
-
-![](https://note.youdao.com/yws/public/resource/e4cec65883d9fdc24effba57dcfa5241/xmlnote/f44624419c0a49686fb12aa37527ee65/191)
-
-线程一：继续执行
-
-![](https://note.youdao.com/yws/public/resource/e4cec65883d9fdc24effba57dcfa5241/xmlnote/79424b2bf4a89902a9e85c64600268e4/193)
- 
-这个过程为，先将 A 复制到新的 hash 表中，然后接着复制 B 到链头（A 的前边：B.next=A），本来 B.next=null，到此也就结束了（跟线程二一样的过程），但是，由于线程二扩容的原因，将 B.next=A，所以，这里继续复制A，让 A.next=B，由此，环形链表出现：B.next=A; A.next=B 
-
-**注意：jdk1.8已经解决了死循环的问题。**详细信息请阅读[jdk1.8 hashmap多线程put不会造成死循环](https://blog.csdn.net/qq_27007251/article/details/71403647)
+详情请查看：<https://coolshell.cn/articles/9606.html>
 
 
 ## HashSet 和 HashMap 区别
@@ -258,12 +243,12 @@ synchronized只锁定当前链表或红黑二叉树的首节点，这样只要ha
 
 ## 集合框架底层数据结构总结
 ###  Collection
-  
+
 ####  1. List
    - **Arraylist：** Object数组
    - **Vector：** Object数组
    - **LinkedList：** 双向链表(JDK1.6之前为循环链表，JDK1.7取消了循环)
-   详细可阅读[JDK1.7-LinkedList循环链表优化](https://www.cnblogs.com/xingele0917/p/3696593.html)
+      详细可阅读[JDK1.7-LinkedList循环链表优化](https://www.cnblogs.com/xingele0917/p/3696593.html)
 
 ####  2. Set
   - **HashSet（无序，唯一）:**  基于 HashMap 实现的，底层采用 HashMap 来保存元素
@@ -271,11 +256,11 @@ synchronized只锁定当前链表或红黑二叉树的首节点，这样只要ha
   - **TreeSet（有序，唯一）：** 红黑树(自平衡的排序二叉树。)
 
 ###  Map 
- -  **HashMap：** JDK1.8之前HashMap由数组+链表组成的，数组是HashMap的主体，链表则是主要为了解决哈希冲突而存在的（“拉链法”解决冲突）.JDK1.8以后在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为8）时，将链表转化为红黑树，以减少搜索时间
- -  **LinkedHashMap:** LinkedHashMap 继承自 HashMap，所以它的底层仍然是基于拉链式散列结构即由数组和链表或红黑树组成。另外，LinkedHashMap 在上面结构的基础上，增加了一条双向链表，使得上面的结构可以保持键值对的插入顺序。同时通过对链表进行相应的操作，实现了访问顺序相关逻辑。详细可以查看：[《LinkedHashMap 源码详细分析（JDK1.8）》](https://www.imooc.com/article/22931)
- -  **HashTable:** 数组+链表组成的，数组是 HashMap 的主体，链表则是主要为了解决哈希冲突而存在的
- -  **TreeMap:** 红黑树（自平衡的排序二叉树）
- 
+ -  **HashMap：** JDK1.8之前HashMap由数组+链表组成的，数组是HashMap的主体，链表则是主要为了解决哈希冲突而存在的（“拉链法”解决冲突）。JDK1.8以后在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为8）时，将链表转化为红黑树，以减少搜索时间
+ -  **LinkedHashMap：** LinkedHashMap 继承自 HashMap，所以它的底层仍然是基于拉链式散列结构即由数组和链表或红黑树组成。另外，LinkedHashMap 在上面结构的基础上，增加了一条双向链表，使得上面的结构可以保持键值对的插入顺序。同时通过对链表进行相应的操作，实现了访问顺序相关逻辑。详细可以查看：[《LinkedHashMap 源码详细分析（JDK1.8）》](https://www.imooc.com/article/22931)
+ -  **Hashtable：** 数组+链表组成的，数组是 HashMap 的主体，链表则是主要为了解决哈希冲突而存在的
+ -  **TreeMap：** 红黑树（自平衡的排序二叉树）
+
 
 
 
