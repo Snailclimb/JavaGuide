@@ -12,12 +12,13 @@
   <a href="#公众号"><img src="https://img.shields.io/badge/%E5%85%AC%E4%BC%97%E5%8F%B7-JavaGuide-lightgrey.svg" alt="公众号"></a>
   <a href="#公众号"><img src="https://img.shields.io/badge/PDF-Java面试突击-important.svg" alt="公众号"></a>
   <a href="#投稿"><img src="https://img.shields.io/badge/support-投稿-critical.svg" alt="投稿"></a>
-<h2 align="center">Special Sponsors</h2>
 </p>
+
+<h2 align="center">Special Sponsors</h2>
 
 <p align="center">
 <a href="https://e.coding.net/?utm_source=JavaGuide" target="_blank">
-  <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/Coding Devops.png" width=""/>
+  <img src="https://ws1.sinaimg.cn/large/006rNwoDgy1g2dw5gau7nj30eg02vwfr.jpg"/>
  </a>
 </p>
 
