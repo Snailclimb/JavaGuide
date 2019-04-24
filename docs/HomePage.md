@@ -1,6 +1,6 @@
 Java后端技术交流群(限工作一年及以上，架构视频免费领取) ：[![QQ群](https://img.shields.io/badge/QQ%E7%BE%A4-869815609-red.svg)](https://jq.qq.com/?_wv=1027&k=5QqyxIx) 
 
-强烈推荐七牛云CEO老许的[架构专栏](#架构)，微信扫描二维码购买后，[加我好友](#联系我)私聊我领取24元返现。129元的课程相当于75入手。
+点击订阅[Java面试进阶指南](https://xiaozhuanlan.com/javainterview?rel=javaguide)(专为Java面试方向准备)。[为什么要弄这个专栏?](https://shimo.im/docs/9BJjNsNg7S4dCnz3/)
 
 <h1 align="center">Java 学习/面试指南</h1>
 <p align="center">
@@ -10,8 +10,8 @@ Java后端技术交流群(限工作一年及以上，架构视频免费领取) �
 </p>
 <h2 align="center">Special Sponsors</h2>
 <p align="center">
-<a href="https://e.coding.net/?utm_source=JavaGuide" target="_blank">
-  <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/Coding Devops.png" width=""/>
+<a href="https://coding.net/?utm_source=JavaGuide" target="_blank">
+  <img src="https://ws1.sinaimg.cn/large/006rNwoDgy1g2dw5gau7nj30eg02vwfr.jpg"/>
  </a>
 </p>
 
@@ -200,13 +200,6 @@ Java后端技术交流群(限工作一年及以上，架构视频免费领取) �
 添加我的微信备注“Github”,回复关键字 **“加群”** 即可入群。
 
 ![我的微信](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-2/JavaGuide.jpg)
-
-
-## 架构
-
-<a href="https://time.geekbang.org/column/intro/166?code=-qJu3VIe2PPcts3jpNEti1EflIaCAZwLkQhd2mF4ESg%3D&utm_term=SPoster" target="_blank">
-	<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3微信图片_20190411230100.jpg" width="300px"/>
-</a>
 
 ## 公众号
 
