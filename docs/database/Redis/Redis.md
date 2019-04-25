@@ -1,32 +1,32 @@
-<!-- MarkdownTOC -->
+
+<!-- TOC -->
 
 - [redis 简介](#redis-简介)
-- [为什么要用 redis /为什么要用缓存](#为什么要用-redis-为什么要用缓存)
+- [为什么要用 redis/为什么要用缓存](#为什么要用-redis为什么要用缓存)
 - [为什么要用 redis 而不用 map/guava 做缓存?](#为什么要用-redis-而不用-mapguava-做缓存)
 - [redis 和 memcached 的区别](#redis-和-memcached-的区别)
 - [redis 常见数据结构以及使用场景分析](#redis-常见数据结构以及使用场景分析)
-  - [1. String](#1-string)
-  - [2.Hash](#2hash)
-  - [3.List](#3list)
-  - [4.Set](#4set)
-  - [5.Sorted Set](#5sorted-set)
+    - [1.String](#1string)
+    - [2.Hash](#2hash)
+    - [3.List](#3list)
+    - [4.Set](#4set)
+    - [5.Sorted Set](#5sorted-set)
 - [redis 设置过期时间](#redis-设置过期时间)
-- [redis 内存淘汰机制（MySQL里有2000w数据，Redis中只存20w的数据，如何保证Redis中的数据都是热点数据？）](#redis-内存淘汰机制（mysql里有2000w数据，redis中只存20w的数据，如何保证redis中的数据都是热点数据？）)
-- [redis 持久化机制（怎么保证 redis 挂掉之后再重启数据可以进行恢复）](#redis-持久化机制（怎么保证-redis-挂掉之后再重启数据可以进行恢复）)
+- [redis 内存淘汰机制(MySQL里有2000w数据，Redis中只存20w的数据，如何保证Redis中的数据都是热点数据?)](#redis-内存淘汰机制mysql里有2000w数据redis中只存20w的数据如何保证redis中的数据都是热点数据)
+- [redis 持久化机制(怎么保证 redis 挂掉之后再重启数据可以进行恢复)](#redis-持久化机制怎么保证-redis-挂掉之后再重启数据可以进行恢复)
 - [redis 事务](#redis-事务)
 - [缓存雪崩和缓存穿透问题解决方案](#缓存雪崩和缓存穿透问题解决方案)
 - [如何解决 Redis 的并发竞争 Key 问题](#如何解决-redis-的并发竞争-key-问题)
-- [如何保证缓存与数据库双写时的数据一致性？](#如何保证缓存与数据库双写时的数据一致性？)
-- [参考：](#参考：)
+- [如何保证缓存与数据库双写时的数据一致性?](#如何保证缓存与数据库双写时的数据一致性)
+- [参考：](#参考)
 
-<!-- /MarkdownTOC -->
-
+<!-- /TOC -->
 
 ### redis 简介
 
 简单来说 redis 就是一个数据库，不过与传统数据库不同的是 redis 的数据是存在内存中的，所以读写速度非常快，因此 redis 被广泛应用于缓存方向。另外，redis 也经常用来做分布式锁。redis 提供了多种数据类型来支持不同的业务场景。除此之外，redis 支持事务 、持久化、LUA脚本、LRU驱动事件、多种集群方案。 
 
-### 为什么要用 redis /为什么要用缓存
+### 为什么要用 redis/为什么要用缓存
 
 主要从“高性能”和“高并发”这两点来看待这个问题。
 
@@ -72,7 +72,7 @@
 
 ### redis 常见数据结构以及使用场景分析
 
-#### 1. String
+#### 1.String
 
 > **常用命令:**  set,get,decr,incr,mget 等。
 
@@ -151,7 +151,7 @@ Redis中有个设置时间过期的功能，即对存储在 redis 数据库中�
 
 **redis 内存淘汰机制。**
 
-### redis 内存淘汰机制（MySQL里有2000w数据，Redis中只存20w的数据，如何保证Redis中的数据都是热点数据？）
+### redis 内存淘汰机制(MySQL里有2000w数据，Redis中只存20w的数据，如何保证Redis中的数据都是热点数据?)
 
 redis 配置文件 redis.conf 中有相关注释，我这里就不贴了，大家可以自行查阅或者通过这个网址查看： [http://download.redis.io/redis-stable/redis.conf](http://download.redis.io/redis-stable/redis.conf)
 
@@ -168,7 +168,7 @@ redis 配置文件 redis.conf 中有相关注释，我这里就不贴了，大�
 **备注： 关于 redis 设置过期时间以及内存淘汰机制，我这里只是简单的总结一下，后面会专门写一篇文章来总结！**
 
 
-### redis 持久化机制（怎么保证 redis 挂掉之后再重启数据可以进行恢复）
+### redis 持久化机制(怎么保证 redis 挂掉之后再重启数据可以进行恢复)
 
 很多时候我们需要持久化数据也就是将内存中的数据写入到硬盘里面，大部分原因是为了之后重用数据（比如重启机器、机器故障之后回复数据），或者是为了防止系统故障而将数据备份到一个远程位置。
 
@@ -188,7 +188,6 @@ save 300 10          #在300秒(5分钟)之后，如果至少有10个key发生�
 
 save 60 10000        #在60秒(1分钟)之后，如果至少有10000个key发生变化，Redis就会自动触发BGSAVE命令创建快照。
 ```
-
 
 **AOF（append-only file）持久化**
 
@@ -210,14 +209,11 @@ appendfsync no        #让操作系统决定何时进行同步
 
 为了兼顾数据和写入性能，用户可以考虑 appendfsync everysec选项 ，让Redis每秒同步一次AOF文件，Redis性能几乎没受到任何影响。而且这样即使出现系统崩溃，用户最多只会丢失一秒之内产生的数据。当硬盘忙于执行写入操作的时候，Redis还会优雅的放慢自己的速度以便适应硬盘的最大写入速度。
 
-
 **Redis 4.0 对于持久化机制的优化**
 
 Redis 4.0 开始支持 RDB 和 AOF 的混合持久化（默认关闭，可以通过配置项 `aof-use-rdb-preamble` 开启）。
 
 如果把混合持久化打开，AOF 重写的时候就直接把 RDB 的内容写到 AOF 文件开头。这样做的好处是可以结合 RDB 和 AOF 的优点, 快速加载同时避免丢失过多的数据。当然缺点也是有的， AOF 里面的 RDB 部分是压缩格式不再是 AOF 格式，可读性较差。
-
-
 
 **补充内容：AOF 重写**
 
@@ -227,10 +223,9 @@ AOF重写是一个有歧义的名字，该功能是通过读取数据库中的�
 
 在执行 BGREWRITEAOF 命令时，Redis 服务器会维护一个 AOF 重写缓冲区，该缓冲区会在子进程创建新AOF文件期间，记录服务器执行的所有写命令。当子进程完成创建新AOF文件的工作之后，服务器会将重写缓冲区中的所有内容追加到新AOF文件的末尾，使得新旧两个AOF文件所保存的数据库状态一致。最后，服务器用新的AOF文件替换旧的AOF文件，以此来完成AOF文件重写操作
 
-
 **更多内容可以查看我的这篇文章：**
 
-- [https://github.com/Snailclimb/JavaGuide/blob/master/数据存储/Redis/Redis持久化.md](https://github.com/Snailclimb/JavaGuide/blob/master/数据存储/Redis/Redis持久化.md)
+- [Redis持久化](Redis持久化.md)
 
 
 ### redis 事务
@@ -278,9 +273,7 @@ Redis 通过 MULTI、EXEC、WATCH 等命令来实现事务(transaction)功能。
 
 - https://www.jianshu.com/p/8bddd381de06
 
-
-### 如何保证缓存与数据库双写时的数据一致性？
-
+### 如何保证缓存与数据库双写时的数据一致性?
 
 你只要用缓存，就可能会涉及到缓存与数据库双存储双写，你只要是双写，就一定会有数据一致性的问题，那么你如何解决一致性问题？
 
