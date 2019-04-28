@@ -1,19 +1,24 @@
+<!-- TOC -->
 
+- [书籍推荐](#书籍推荐)
+- [文字教程推荐](#文字教程推荐)
+- [视频教程推荐](#视频教程推荐)
+- [常见问题总结](#常见问题总结)
 
-Java面试通关手册（Java学习指南，欢迎Star，会一直完善下去，欢迎建议和指导）：[https://github.com/Snailclimb/Java_Guide](https://github.com/Snailclimb/Java_Guide)
+<!-- /TOC -->
 
-> ## 书籍推荐
+## 书籍推荐
 
-**《高性能MySQL : 第3版》**
+- 《SQL基础教程（第2版）》 （入门级）
+- 《高性能MySQL : 第3版》 (进阶)
 
-> ## 文字教程推荐
+## 文字教程推荐
 
 [MySQL 教程（菜鸟教程）](http://www.runoob.com/mysql/mysql-tutorial.html)
 
 [MySQL教程（易百教程）](https://www.yiibai.com/mysql/)
 
-> ## 视频教程推荐
-
+## 视频教程推荐
 
 **基础入门：** [与MySQL的零距离接触-慕课网](https://www.imooc.com/learn/122)
 
@@ -23,9 +28,7 @@ Java面试通关手册（Java学习指南，欢迎Star，会一直完善下去�
 
 [MySQL集群（PXC）入门](https://www.imooc.com/learn/993)　　[MyCAT入门及应用](https://www.imooc.com/learn/951)
 
-
-
-> ## 常见问题总结
+## 常见问题总结
 
 - ### ①存储引擎
 
