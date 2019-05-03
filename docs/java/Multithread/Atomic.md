@@ -44,6 +44,7 @@ Atomic 翻译成中文是原子的意思。在化学上，我们知道原子是�
 - AtomicIntegerFieldUpdater:原子更新整型字段的更新器
 - AtomicLongFieldUpdater：原子更新长整型字段的更新器
 - AtomicStampedReference ：原子更新带有版本号的引用类型。该类将整数值与引用关联起来，可用于解决原子的更新数据和数据的版本号，可以解决使用 CAS 进行原子更新时可能出现的 ABA 问题。
+- AtomicMarkableReference：原子更新带有标记的引用类型。该类将 boolean 标记与引用关联起来，也可以解决使用 CAS 进行原子更新时可能出现的 ABA 问题。
 
 下面我们来详细介绍一下这些原子类。
 
