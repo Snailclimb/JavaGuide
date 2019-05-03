@@ -326,7 +326,7 @@ currentValue=0, currentStamp=0
 currentValue=666, currentStamp=999, wCasResult=true
 ```
 
-#### 4.4 AtomicStampedReference 类使用示例
+#### 4.4 AtomicMarkableReference 类使用示例
 
 ``` java
 import java.util.concurrent.atomic.AtomicMarkableReference;
