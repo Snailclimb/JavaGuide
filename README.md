@@ -95,8 +95,8 @@
 
 ### JVM
 
-* [可能是把Java内存区域讲的最清楚的一篇文章](docs/java/可能是把Java内存区域讲的最清楚的一篇文章.md)
-* [搞定JVM垃圾回收就是这么简单](docs/java/搞定JVM垃圾回收就是这么简单.md)
+* [Java内存区域章](docs/java/可能是把Java内存区域讲的最清楚的一篇文章.md)
+* [JVM垃圾回收](docs/java/搞定JVM垃圾回收就是这么简单.md)
 * [《深入理解Java虚拟机》第2版学习笔记](docs/java/Java虚拟机（jvm）.md)
 
 ### I/O
