@@ -87,15 +87,16 @@
 
 * [Java 并发基础常见面试题总结](docs/java/Multithread/JavaConcurrencyBasicsCommonInterviewQuestionsSummary.md)
 * [Java 并发进阶常见面试题总结](docs/java/Multithread/JavaConcurrencyAdvancedCommonInterviewQuestions.md)
-* [并发编程面试必备：synchronized 关键字使用、底层原理、JDK1.6 之后的底层优化以及 和ReentrantLock 的对比](docs/java/synchronized.md)
-* [并发编程面试必备：乐观锁与悲观锁](docs/essential-content-for-interview/面试必备之乐观锁与悲观锁.md)
-* [并发编程面试必备：JUC 中的 Atomic 原子类总结](docs/java/Multithread/Atomic.md)
-* [并发编程面试必备：AQS 原理以及 AQS 同步组件总结](docs/java/Multithread/AQS.md)
 * [并发容器总结](docs/java/Multithread/并发容器总结.md)
+* [synchronized 关键字使用、底层原理、JDK1.6 之后的底层优化以及 和ReentrantLock 的对比](docs/java/synchronized.md)
+* [乐观锁与悲观锁](docs/essential-content-for-interview/面试必备之乐观锁与悲观锁.md)
+* [JUC 中的 Atomic 原子类总结](docs/java/Multithread/Atomic.md)
+* [AQS 原理以及 AQS 同步组件总结](docs/java/Multithread/AQS.md)
+
 
 ### JVM
 
-* [Java内存区域章](docs/java/可能是把Java内存区域讲的最清楚的一篇文章.md)
+* [Java内存区域](docs/java/可能是把Java内存区域讲的最清楚的一篇文章.md)
 * [JVM垃圾回收](docs/java/搞定JVM垃圾回收就是这么简单.md)
 * [《深入理解Java虚拟机》第2版学习笔记](docs/java/Java虚拟机（jvm）.md)
 
@@ -135,8 +136,8 @@
 ### 算法
 
 - [算法学习资源推荐](docs/dataStructures-algorithms/算法学习资源推荐.md)  
-- [算法总结——几道常见的子符串算法题 ](docs/dataStructures-algorithms/几道常见的子符串算法题.md)
-- [算法总结——几道常见的链表算法题 ](docs/dataStructures-algorithms/几道常见的链表算法题.md)   
+- [几道常见的子符串算法题总结 ](docs/dataStructures-algorithms/几道常见的子符串算法题.md)
+- [几道常见的链表算法题总结 ](docs/dataStructures-algorithms/几道常见的链表算法题.md)   
 - [剑指offer部分编程题](docs/dataStructures-algorithms/剑指offer部分编程题.md)
 - [公司真题](docs/dataStructures-algorithms/公司真题.md)
 - [回溯算法经典案例之N皇后问题](docs/dataStructures-algorithms/Backtracking-NQueens.md)
@@ -174,15 +175,15 @@
 
 #### ZooKeeper
 
-- [可能是把 ZooKeeper 概念讲的最清楚的一篇文章](docs/system-design/framework/ZooKeeper.md)
-- [ZooKeeper 数据模型和常见命令了解一下，速度收藏！](docs/system-design/framework/ZooKeeper数据模型和常见命令.md)
+- [ZooKeeper 相关概念总结](docs/system-design/framework/ZooKeeper.md)
+- [ZooKeeper 数据模型和常见命令](docs/system-design/framework/ZooKeeper数据模型和常见命令.md)
 
 ### 数据通信
 
 - [数据通信(RESTful、RPC、消息队列)相关知识点总结](docs/system-design/data-communication/数据通信(RESTful、RPC、消息队列).md)
 - [Dubbo 总结：关于 Dubbo 的重要知识点](docs/system-design/data-communication/dubbo.md)
-- [消息队列总结：新手也能看懂，消息队列其实很简单](docs/system-design/data-communication/message-queue.md)
-- [一文搞懂 RabbitMQ 的重要概念以及安装](docs/system-design/data-communication/rabbitmq.md)
+- [消息队列总结(docs/system-design/data-communication/message-queue.md)
+- [RabbitMQ 的重要概念以及安装](docs/system-design/data-communication/rabbitmq.md)
 
 ### 网站架构
 
