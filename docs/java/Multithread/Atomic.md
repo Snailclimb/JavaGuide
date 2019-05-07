@@ -36,7 +36,7 @@ Atomic 翻译成中文是原子的意思。在化学上，我们知道原子是�
 **引用类型**
 
 - AtomicReference：引用类型原子类
-- AtomicStampedRerence：原子更新引用类型里的字段原子类
+- AtomicStampedReference：原子更新引用类型里的字段原子类
 - AtomicMarkableReference ：原子更新带有标记位的引用类型
 
 **对象的属性修改类型**
@@ -44,6 +44,79 @@ Atomic 翻译成中文是原子的意思。在化学上，我们知道原子是�
 - AtomicIntegerFieldUpdater:原子更新整型字段的更新器
 - AtomicLongFieldUpdater：原子更新长整型字段的更新器
 - AtomicStampedReference ：原子更新带有版本号的引用类型。该类将整数值与引用关联起来，可用于解决原子的更新数据和数据的版本号，可以解决使用 CAS 进行原子更新时可能出现的 ABA 问题。
+- AtomicMarkableReference：原子更新带有标记的引用类型。该类将 boolean 标记与引用关联起来，也可以解决使用 CAS 进行原子更新时可能出现的 ABA 问题。
+
+**CAS ABA 问题**
+- 描述: 第一个线程取到了变量 x 的值 A，然后巴拉巴拉干别的事，总之就是只拿到了变量 x 的值 A。这段时间内第二个线程也取到了变量 x 的值 A，然后把变量 x 的值改为 B，然后巴拉巴拉干别的事，最后又把变量 x 的值变为 A （相当于还原了）。在这之后第一个线程终于进行了变量 x 的操作，但是此时变量 x 的值还是 A，所以 compareAndSet 操作是成功。
+- 例子描述(可能不太合适，但好理解): 年初，现金为零，然后通过正常劳动赚了三百万，之后正常消费了（比如买房子）三百万。年末，虽然现金零收入（可能变成其他形式了），但是赚了钱是事实，还是得交税的！
+- 代码例子（以``` AtomicInteger ```为例）
+```java
+import java.util.concurrent.atomic.AtomicInteger;
+
+public class AtomicIntegerDefectDemo {
+    public static void main(String[] args) {
+        defectOfABA();
+    }
+
+    static void defectOfABA() {
+        final AtomicInteger atomicInteger = new AtomicInteger(1);
+
+        Thread coreThread = new Thread(
+                () -> {
+                    final int currentValue = atomicInteger.get();
+                    System.out.println(Thread.currentThread().getName() + " ------ currentValue=" + currentValue);
+
+                    // 这段目的：模拟处理其他业务花费的时间
+                    try {
+                        Thread.sleep(300);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    boolean casResult = atomicInteger.compareAndSet(1, 2);
+                    System.out.println(Thread.currentThread().getName()
+                            + " ------ currentValue=" + currentValue
+                            + ", finalValue=" + atomicInteger.get()
+                            + ", compareAndSet Result=" + casResult);
+                }
+        );
+        coreThread.start();
+
+        // 这段目的：为了让 coreThread 线程先跑起来
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        Thread amateurThread = new Thread(
+                () -> {
+                    int currentValue = atomicInteger.get();
+                    boolean casResult = atomicInteger.compareAndSet(1, 2);
+                    System.out.println(Thread.currentThread().getName()
+                            + " ------ currentValue=" + currentValue
+                            + ", finalValue=" + atomicInteger.get()
+                            + ", compareAndSet Result=" + casResult);
+
+                    currentValue = atomicInteger.get();
+                    casResult = atomicInteger.compareAndSet(2, 1);
+                    System.out.println(Thread.currentThread().getName()
+                            + " ------ currentValue=" + currentValue
+                            + ", finalValue=" + atomicInteger.get()
+                            + ", compareAndSet Result=" + casResult);
+                }
+        );
+        amateurThread.start();
+    }
+}
+```
+输出内容如下：
+```
+Thread-0 ------ currentValue=1
+Thread-1 ------ currentValue=1, finalValue=2, compareAndSet Result=true
+Thread-1 ------ currentValue=2, finalValue=1, compareAndSet Result=true
+Thread-0 ------ currentValue=1, finalValue=2, compareAndSet Result=true
+```
 
 下面我们来详细介绍一下这些原子类。
 
@@ -210,7 +283,7 @@ public class AtomicIntegerArrayTest {
 基本类型原子类只能更新一个变量，如果需要原子更新多个变量，需要使用 引用类型原子类。
 
 - AtomicReference：引用类型原子类
-- AtomicStampedRerence：原子更新引用类型里的字段原子类
+- AtomicStampedReference：原子更新引用类型里的字段原子类
 - AtomicMarkableReference ：原子更新带有标记位的引用类型
 
 上面三个类提供的方法几乎相同，所以我们这里以 AtomicReference 为例子来介绍。
@@ -326,7 +399,7 @@ currentValue=0, currentStamp=0
 currentValue=666, currentStamp=999, wCasResult=true
 ```
 
-#### 4.4 AtomicStampedReference 类使用示例
+#### 4.4 AtomicMarkableReference 类使用示例
 
 ``` java
 import java.util.concurrent.atomic.AtomicMarkableReference;
