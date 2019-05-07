@@ -69,8 +69,6 @@
 
 * [Java 基础知识回顾](docs/java/Java基础知识.md)
 * [J2EE 基础知识回顾](docs/java/J2EE基础知识.md)
-* [Collections 工具类和 Arrays 工具类常见方法](docs/java/Basis/Arrays%2CCollectionsCommonMethods.md)
-* [Java常见关键字总结：static、final、this、super](docs/java/Basis/final、static、this、super.md) 
 
 ### 容器
 
