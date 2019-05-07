@@ -74,14 +74,10 @@
 
 ### 容器
 
-* **常见问题总结：**
-  * [这几道Java集合框架面试题几乎必问](docs/java/这几道Java集合框架面试题几乎必问.md)
-  * [Java 集合框架常见面试题总结](docs/java/Java集合框架常见面试题总结.md)
-* **源码分析：**
-  * [ArrayList 源码学习](docs/java/ArrayList.md) 
-  * [【面试必备】透过源码角度一步一步带你分析 ArrayList 扩容机制](docs/java/ArrayList-Grow.md)    
-  * [LinkedList 源码学习](docs/java/LinkedList.md)   
-  * [HashMap(JDK1.8)源码学习](docs/java/HashMap.md)  
+* [这几道Java集合框架面试题几乎必问](docs/java/这几道Java集合框架面试题几乎必问.md)
+* [ArrayList 源码学习](docs/java/collection/ArrayList.md)  
+* [LinkedList 源码学习](docs/java/collection/LinkedList.md)   
+* [HashMap(JDK1.8)源码学习](docs/java/collection/HashMap.md)  
 
 ### 并发
 
