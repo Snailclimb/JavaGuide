@@ -21,7 +21,7 @@
 - [网易云课堂——58集精通java教程Spring框架开发](http://study.163.com/course/courseMain.htm?courseId=1004475015#/courseDetail?tab=1&35)
 -  [慕课网相关视频](https://www.imooc.com/)
 
-- **黑马视频和尚硅谷视频（非常推荐）：** 微信公众号：“**JavaGuie**”后台回复关键字 “**1**” 免费领取。
+- **黑马视频和尚硅谷视频（非常推荐）：** 微信公众号：“**JavaGui**”后台回复关键字 “**1**” 免费领取。
 
 
 ## 面试必备知识点
