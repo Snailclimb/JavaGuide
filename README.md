@@ -182,7 +182,7 @@
 
 - [数据通信(RESTful、RPC、消息队列)相关知识点总结](docs/system-design/data-communication/数据通信(RESTful、RPC、消息队列).md)
 - [Dubbo 总结：关于 Dubbo 的重要知识点](docs/system-design/data-communication/dubbo.md)
-- [消息队列总结(docs/system-design/data-communication/message-queue.md)
+- [消息队列总结](docs/system-design/data-communication/message-queue.md)
 - [RabbitMQ 的重要概念以及安装](docs/system-design/data-communication/rabbitmq.md)
 
 ### 网站架构
