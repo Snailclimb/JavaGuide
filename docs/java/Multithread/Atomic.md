@@ -50,6 +50,7 @@ Atomic 翻译成中文是原子的意思。在化学上，我们知道原子是�
 - 描述: 第一个线程取到了变量 x 的值 A，然后巴拉巴拉干别的事，总之就是只拿到了变量 x 的值 A。这段时间内第二个线程也取到了变量 x 的值 A，然后把变量 x 的值改为 B，然后巴拉巴拉干别的事，最后又把变量 x 的值变为 A （相当于还原了）。在这之后第一个线程终于进行了变量 x 的操作，但是此时变量 x 的值还是 A，所以 compareAndSet 操作是成功。
 - 例子描述(可能不太合适，但好理解): 年初，现金为零，然后通过正常劳动赚了三百万，之后正常消费了（比如买房子）三百万。年末，虽然现金零收入（可能变成其他形式了），但是赚了钱是事实，还是得交税的！
 - 代码例子（以``` AtomicInteger ```为例）
+
 ```java
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -110,7 +111,9 @@ public class AtomicIntegerDefectDemo {
     }
 }
 ```
+
 输出内容如下：
+
 ```
 Thread-0 ------ currentValue=1
 Thread-1 ------ currentValue=1, finalValue=2, compareAndSet Result=true
