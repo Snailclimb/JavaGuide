@@ -156,7 +156,7 @@ Server is ready.
 
 **下面是一个线程死锁的代码。我们下面会通过 `jstack` 命令进行死锁检查，输出死锁信息，找到发生死锁的线程。**
 
-```
+```java
 public class DeadLockDemo {
     private static Object resource1 = new Object();//资源 1
     private static Object resource2 = new Object();//资源 2
