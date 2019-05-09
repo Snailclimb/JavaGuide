@@ -442,15 +442,15 @@ optional.ifPresent((s) -> System.out.println(s.charAt(0)));     // "b"
 首先看看Stream是怎么用，首先创建实例代码的用到的数据List：
 
 ```java
-List<String> stringCollection = new ArrayList<>();
-stringCollection.add("ddd2");
-stringCollection.add("aaa2");
-stringCollection.add("bbb1");
-stringCollection.add("aaa1");
-stringCollection.add("bbb3");
-stringCollection.add("ccc");
-stringCollection.add("bbb2");
-stringCollection.add("ddd1");
+List<String> stringList = new ArrayList<>();
+stringList.add("ddd2");
+stringList.add("aaa2");
+stringList.add("bbb1");
+stringList.add("aaa1");
+stringList.add("bbb3");
+stringList.add("ccc");
+stringList.add("bbb2");
+stringList.add("ddd1");
 ```
 
 Java 8扩展了集合类，可以通过 Collection.stream() 或者 Collection.parallelStream() 来创建一个Stream。下面几节将详细解释常用的Stream操作：
