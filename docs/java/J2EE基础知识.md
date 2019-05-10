@@ -93,7 +93,7 @@ Form标签里的method的属性为get时调用doGet()，为post时调用doPost()
 
 **转发是服务器行为，重定向是客户端行为。**
 
-**转发（Forword）**
+**转发（Forward）**
 通过RequestDispatcher对象的forward（HttpServletRequest request,HttpServletResponse response）方法实现的。RequestDispatcher可以通过HttpServletRequest 的getRequestDispatcher()方法获得。例如下面的代码就是跳转到login_success.jsp页面。
 ```java
      request.getRequestDispatcher("login_success.jsp").forward(request, response);
