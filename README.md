@@ -18,7 +18,7 @@
 
 <p align="center">
 <a href="https://coding.net/?utm_source=JavaGuide" target="_blank">
-  <img src="https://ws1.sinaimg.cn/large/006rNwoDgy1g2dw5gau7nj30eg02vwfr.jpg"/>
+  <img src="http://pqrlmrv7w.bkt.clouddn.com/img/2019-4/006rNwoDgy1g2dw5gau7nj30eg02vwfr.jpg"/>
  </a>
 </p>
 
