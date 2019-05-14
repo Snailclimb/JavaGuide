@@ -18,9 +18,13 @@
 
 <p align="center">
 <a href="https://coding.net/?utm_source=JavaGuide" target="_blank">
-  <img src="http://pqrlmrv7w.bkt.clouddn.com/img/2019-4/006rNwoDgy1g2dw5gau7nj30eg02vwfr.jpg"/>
+  <img src="http://pqrlmrv7w.bkt.clouddn.com/img/2019-4/006rNwoDgy1g2dw5gau7nj30eg02vwfr.jpg"  width="390px"/>
+</a>
+  <a href="https://coding.net/?utm_source=JavaGuide" target="_blank">
+  <img src="http://pqrlmrv7w.bkt.clouddn.com/img/2019-4/QQ图片20190514211856.gif" width="390px"/>
  </a>
 </p>
+
 
 推荐一下我的另外一个正在维护的项目：[programmer-advancement](https://github.com/Snailclimb/programmer-advancement) (技术人员成长必备！)
 
@@ -279,7 +283,6 @@ Markdown 格式参考：[Github Markdown格式](https://guides.github.com/featur
 ### Contributor
 
 下面是笔主收集的一些对本仓库提过有价值的pr或者issue的朋友，人数较多，如果你也对本仓库提过不错的pr或者issue的话，你可以加我的微信与我联系。下面的排名不分先后！
-
 
 <a href="https://github.com/fanofxiaofeng">
     <img src="https://avatars0.githubusercontent.com/u/3983683?s=460&v=4" width="45px"></a>
