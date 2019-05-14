@@ -1,5 +1,3 @@
-Java后端技术交流群(限工作一年及以上，架构视频免费领取) ：[![QQ群](https://img.shields.io/badge/QQ%E7%BE%A4-869815609-red.svg)](https://jq.qq.com/?_wv=1027&k=5QqyxIx) 
-
 点击订阅[Java面试进阶指南](https://xiaozhuanlan.com/javainterview?rel=javaguide)(专为Java面试方向准备)。[为什么要弄这个专栏?](https://shimo.im/./9BJjNsNg7S4dCnz3/)
 
 <h1 align="center">Java 学习/面试指南</h1>
