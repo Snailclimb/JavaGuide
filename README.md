@@ -20,13 +20,12 @@
 <a href="https://coding.net/?utm_source=JavaGuide" target="_blank">
   <img src="http://pqrlmrv7w.bkt.clouddn.com/img/2019-4/006rNwoDgy1g2dw5gau7nj30eg02vwfr.jpg"  width="390px"/>
 </a>
-  <a href="https://coding.net/?utm_source=JavaGuide" target="_blank">
+  <a href="http://www.lubanjava.com/luban/index.html?=javaguide
+" target="_blank">
   <img src="http://pqrlmrv7w.bkt.clouddn.com/img/2019-4/QQ图片20190514211856.gif" width="390px"/>
  </a>
 </p>
 
-
-推荐一下我的另外一个正在维护的项目：[programmer-advancement](https://github.com/Snailclimb/programmer-advancement) (技术人员成长必备！)
 
 推荐使用 <https://snailclimb.top/JavaGuide/> 在线阅读(访问速度慢的话，请使用 <https://snailclimb.gitee.io/javaguide> )，在线阅读内容本仓库同步一致。这种方式阅读的优势在于：有侧边栏阅读体验更好，Gitee pages 的访问速度相对来说也比较快。
 
