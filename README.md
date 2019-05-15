@@ -94,7 +94,6 @@
 * [Java内存区域](docs/java/jvm/Java内存区域.md)
 * [JVM垃圾回收](docs/java/jvm/JVM垃圾回收.md)
 * [JDK 监控和故障处理工具](docs/java/jvm/JDK监控和故障处理工具总结.md)
-* [《深入理解Java虚拟机》第2版学习笔记](docs/java/Java虚拟机（jvm）.md)
 
 ### I/O
 
