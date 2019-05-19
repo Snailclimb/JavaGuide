@@ -5,13 +5,6 @@
 <a href="https://github.com/Snailclimb/JavaGuide" target="_blank">
 	<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/logo - 副本.png" width=""/>
 </a>
-</p>
-<h2 align="center">Special Sponsors</h2>
-<p align="center">
-<a href="https://coding.net/?utm_source=JavaGuide" target="_blank">
-  <img src="http://pqrlmrv7w.bkt.clouddn.com/img/2019-4/006rNwoDgy1g2dw5gau7nj30eg02vwfr.jpg"/>
- </a>
-</p>
 
 ## Java
 
@@ -38,10 +31,12 @@
 
 ### JVM
 
-* [Java内存区域](./java/jvm/Java内存区域.md)
-* [JVM垃圾回收](./java/jvm/JVM垃圾回收.md)
-* [JDK 监控和故障处理工具](./java/jvm/JDK监控和故障处理工具总结.md)
-* [《深入理解Java虚拟机》第2版学习笔记](./java/Java虚拟机（jvm）.md)
+* [一 Java内存区域](./java/jvm/Java内存区域.md)
+* [二 JVM垃圾回收](./java/jvm/JVM垃圾回收.md)
+* [三 JDK 监控和故障处理工具](./java/jvm/JDK监控和故障处理工具总结.md)
+* [四 类文件结构](./java/jvm/类文件结构.md)
+* [五 类加载过程](./java/jvm/类加载过程.md)
+* [六 类加载器](./java/jvm/类加载器.md)
 
 ### I/O
 
@@ -178,7 +173,6 @@
 ### Github榜单
 
 - [Java 项目月榜单](./github-trending/JavaGithubTrending.md)
-
 
 ***
 
