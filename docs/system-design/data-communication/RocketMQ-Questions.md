@@ -1,3 +1,4 @@
+本文来自读者 [PR](https://github.com/Snailclimb/JavaGuide/pull/291)。
 <!-- TOC -->
 
 - [1 单机版消息中心](#1-%E5%8D%95%E6%9C%BA%E7%89%88%E6%B6%88%E6%81%AF%E4%B8%AD%E5%BF%83)
