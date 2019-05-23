@@ -1,3 +1,27 @@
+<!-- TOC -->
+
+- [控制反转(IoC)和依赖注入(DI)](#控制反转ioc和依赖注入di)
+- [工厂设计模式](#工厂设计模式)
+- [单例设计模式](#单例设计模式)
+- [代理设计模式](#代理设计模式)
+    - [代理模式在 AOP 中的应用](#代理模式在-aop-中的应用)
+    - [Spring AOP 和 AspectJ AOP 有什么区别?](#spring-aop-和-aspectj-aop-有什么区别)
+- [模板方法](#模板方法)
+- [观察者模式](#观察者模式)
+    - [Spring 事件驱动模型中的三种角色](#spring-事件驱动模型中的三种角色)
+        - [事件角色](#事件角色)
+        - [事件监听者角色](#事件监听者角色)
+        - [事件发布者角色](#事件发布者角色)
+    - [Spring 的事件流程总结](#spring-的事件流程总结)
+- [适配器模式](#适配器模式)
+    - [spring AOP中的适配器模式](#spring-aop中的适配器模式)
+    - [spring MVC中的适配器模式](#spring-mvc中的适配器模式)
+- [装饰者模式](#装饰者模式)
+- [总结](#总结)
+- [参考](#参考)
+
+<!-- /TOC -->
+
 JDK 中用到了那些设计模式?Spring 中用到了那些设计模式?这两个问题，在面试中比较常见。我在网上搜索了一下关于 Spring 中设计模式的讲解几乎都是千篇一律，而且大部分都年代久远。所以，花了几天时间自己总结了一下，由于我的个人能力有限，文中如有任何错误各位都可以指出。另外，文章篇幅有限，对于设计模式以及一些源码的解读我只是一笔带过，这篇文章的主要目的是回顾一下 Spring 中的设计模式。
 
 Design Patterns(设计模式) 表示面向对象软件开发中最好的计算机编程实践。 Spring 框架中广泛使用了不同类型的设计模式，下面我们来看看到底有哪些设计模式?
@@ -275,7 +299,7 @@ public class DemoPublisher {
 
 ### spring AOP中的适配器模式	
 
-我们知道 Spring AOP 的实现是基于代理模式，但是 Spring AOP 的增强或通知(Advice)实用到了适配器模式，与之相关的接口是`AdvisorAdapter ` 。Advice 常用的类型有：`BeforeAdvice`（目标方法调用前,前置通知）、`AfterAdvice`（目标方法调用后,后置通知）、`AfterReturningAdvice`(目标方法执行结束后，return之前)等等。每个类型Advice（通知）都有对应的拦截器:`MethodBeforeAdviceInterceptor`、`AfterReturningAdviceAdapter`、`AfterReturningAdviceInterceptor`。Spring预定义的通知要通过对应的适配器，适配成 `MethodInterceptor`接口(方法拦截器)类型的对象（如：`MethodBeforeAdviceInterceptor` 负责适配 `MethodBeforeAdvice`）。
+我们知道 Spring AOP 的实现是基于代理模式，但是 Spring AOP 的增强或通知(Advice)使用到了适配器模式，与之相关的接口是`AdvisorAdapter ` 。Advice 常用的类型有：`BeforeAdvice`（目标方法调用前,前置通知）、`AfterAdvice`（目标方法调用后,后置通知）、`AfterReturningAdvice`(目标方法执行结束后，return之前)等等。每个类型Advice（通知）都有对应的拦截器:`MethodBeforeAdviceInterceptor`、`AfterReturningAdviceAdapter`、`AfterReturningAdviceInterceptor`。Spring预定义的通知要通过对应的适配器，适配成 `MethodInterceptor`接口(方法拦截器)类型的对象（如：`MethodBeforeAdviceInterceptor` 负责适配 `MethodBeforeAdvice`）。
 
 ### spring MVC中的适配器模式
 
@@ -302,6 +326,19 @@ if(mappedHandler.getHandler() instanceof MultiActionController){
 ![装饰者模式示意图](http://pqrlmrv7w.bkt.clouddn.com/img/2019-4/Decorator.jpg)
 
 Spring 中配置 DataSource 的时候，DataSource 可能是不同的数据库和数据源。我们能否根据客户的需求在少修改原有类的代码下动态切换不同的数据源？这个时候就要用到装饰者模式(这一点我自己还没太理解具体原理)。Spring 中用到的包装器模式在类名上含有 `Wrapper`或者 `Decorator`。这些类基本上都是动态地给一个对象添加一些额外的职责
+
+## 总结
+
+Spring 框架中用到了哪些设计模式？
+
+- **工厂设计模式** : Spring使用工厂模式通过 `BeanFactory`、`ApplicationContext` 创建 bean 对象。
+- **代理设计模式** : Spring AOP 功能的实现。
+- **单例设计模式** : Spring 中的 Bean 默认都是单例的。
+- **模板方法模式** : Spring 中 `jdbcTemplate`、`hibernateTemplate` 等以 Template 结尾的对数据库操作的类，它们就使用到了模板模式。
+- **包装器设计模式** : 我们的项目需要连接多个数据库，而且不同的客户在每次访问中根据需要会去访问不同的数据库。这种模式让我们可以根据客户的需求能够动态切换不同的数据源。
+- **观察者模式:** Spring 事件驱动模型就是观察者模式很经典的一个应用。
+- **适配器模式** :Spring AOP 的增强或通知(Advice)使用到了适配器模式、spring MVC 中也是用到了适配器模式适配`Controller`。
+- ......
 
 ## 参考
 
