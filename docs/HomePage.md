@@ -5,7 +5,6 @@
 <a href="https://github.com/Snailclimb/JavaGuide" target="_blank">
 	<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/logo - 副本.png" width=""/>
 </a>
-
 ## Java
 
 ### 基础
@@ -107,9 +106,10 @@
 
 #### Spring
 
-- [Spring 学习与面试](./system-design/framework/Spring学习与面试.md)
-- [Spring中bean的作用域与生命周期](./system-design/framework/SpringBean.md)
-- [SpringMVC 工作原理详解](./system-design/framework/SpringMVC%20%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E8%AF%A6%E8%A7%A3.md)
+- [Spring 学习与面试](./system-design/framework/spring/Spring.md)
+- [Spring中bean的作用域与生命周期](./system-design/framework/spring/SpringBean.md)
+- [SpringMVC 工作原理详解](./system-design/framework/spring/SpringMVC-Principle.md)
+- [Spring中都用到了那些设计模式?](./system-design/framework/spring/Spring-Design-Patterns.md)
 
 #### ZooKeeper
 
@@ -119,7 +119,7 @@
 ### 数据通信
 
 - [数据通信(RESTful、RPC、消息队列)相关知识点总结](./system-design/data-communication/summary.md)
-- [Dubbo 总结：关于 Dubbo 的重要知识点](./system-design/data-communication/Dubbo.md)
+- [Dubbo 总结：关于 Dubbo 的重要知识点](./system-design/data-communication/dubbo.md)
 - [消息队列总结](./system-design/data-communication/message-queue.md)
 - [RabbitMQ 入门](./system-design/data-communication/RabbitMQ.md)
 - [RocketMQ的几个简单问题与答案](./system-design/data-communication/RocketMQ-Questions.md)
