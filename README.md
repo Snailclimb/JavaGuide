@@ -49,8 +49,8 @@
     - [MySQL](#mysql)
     - [Redis](#redis)
 - [系统设计](#系统设计)
-    - [设计模式](#设计模式)
-    - [常用框架](#常用框架)
+    - [设计模式(工厂模式、单例模式)](#设计模式)
+    - [常用框架(Spring、Zookeeper)](#常用框架)
     - [数据通信(消息队列、Dubbo)](#数据通信)
     - [网站架构](#网站架构)
 - [面试指南](#面试指南)
@@ -167,9 +167,10 @@
 
 #### Spring
 
-- [Spring 学习与面试](docs/system-design/framework/Spring学习与面试.md)
-- [Spring中bean的作用域与生命周期](docs/system-design/framework/SpringBean.md)
-- [SpringMVC 工作原理详解](docs/system-design/framework/SpringMVC%20%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E8%AF%A6%E8%A7%A3.md)
+- [Spring 学习与面试](docs/system-design/framework/spring/Spring.md)
+- [Spring中bean的作用域与生命周期](docs/system-design/framework/spring/SpringBean.md)
+- [SpringMVC 工作原理详解](docs/system-design/framework/spring/SpringMVC-Principle.md)
+- [Spring中都用到了那些设计模式?](docs/system-design/framework/spring/Spring-Design-Patterns.md)
 
 #### ZooKeeper
 
