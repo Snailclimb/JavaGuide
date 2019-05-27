@@ -326,6 +326,9 @@ Markdown 格式参考：[Github Markdown格式](https://guides.github.com/featur
 <a href="https://github.com/cnLGMing">  
     <img src="https://avatars2.githubusercontent.com/u/15910705?s=460&v=4" width="45px">
 </a>
+<a href="https://github.com/fanchenggang">  
+    <img src="https://avatars0.githubusercontent.com/u/20358122?s=460&v=4" width="45px">
+</a>
 
 ### 公众号
 
