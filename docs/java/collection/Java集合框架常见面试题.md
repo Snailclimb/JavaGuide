@@ -3,7 +3,7 @@
 - [剖析面试最常见问题之Java基础知识](#剖析面试最常见问题之java基础知识)
     - [说说List,Set,Map三者的区别？](#说说listsetmap三者的区别)
     - [Arraylist 与 LinkedList 区别?](#arraylist-与-linkedlist-区别)
-        - [**补充内容:RandomAccess接口**](#补充内容randomaccess接口)
+        - [补充内容:RandomAccess接口](#补充内容randomaccess接口)
         - [补充内容:双向链表和双向循环链表](#补充内容双向链表和双向循环链表)
     - [ArrayList 与 Vector 区别呢?为什么要用Arraylist取代Vector呢？](#arraylist-与-vector-区别呢为什么要用arraylist取代vector呢)
     - [说一说 ArrayList 的扩容机制吧](#说一说-arraylist-的扩容机制吧)
@@ -28,7 +28,6 @@
             - [2. Set](#2-set)
         - [Map](#map)
     - [如何选用集合?](#如何选用集合)
-    - [集合的选用](#集合的选用)
 
 <!-- /TOC -->
 
@@ -88,7 +87,7 @@ ArrayList 实现了 RandomAccess 接口， 而 LinkedList 没有实现。为什�
 
 **双向循环链表：** 最后一个节点的 next 指向head，而 head 的prev指向最后一个节点，构成一个环。 
 
-![](https://ws1.sinaimg.cn/large/006rNwoDgy1g2dp8a1hxej30eu06zgmd.jpg)
+![双向循环链表](https://ws1.sinaimg.cn/large/006rNwoDgy1g2dp8a1hxej30eu06zgmd.jpg)
 
 ## ArrayList 与 Vector 区别呢?为什么要用Arraylist取代Vector呢？
 
@@ -252,9 +251,17 @@ ConcurrentHashMap 和 Hashtable 的区别主要体现在实现线程安全的方
 
 图片来源：<http://www.cnblogs.com/chengxiao/p/6842045.html>
 
-HashTable: [![img](https://camo.githubusercontent.com/b8e66016373bb109e923205857aeee9689baac9e/687474703a2f2f6d792d626c6f672d746f2d7573652e6f73732d636e2d6265696a696e672e616c6979756e63732e636f6d2f31382d382d32322f35303635363638312e6a7067)](https://camo.githubusercontent.com/b8e66016373bb109e923205857aeee9689baac9e/687474703a2f2f6d792d626c6f672d746f2d7573652e6f73732d636e2d6265696a696e672e616c6979756e63732e636f6d2f31382d382d32322f35303635363638312e6a7067)
+**HashTable:** 
 
-**JDK1.7的ConcurrentHashMap：** [![img](https://camo.githubusercontent.com/443af05b6be6ed09e50c78a1dca39bf75acb106d/687474703a2f2f6d792d626c6f672d746f2d7573652e6f73732d636e2d6265696a696e672e616c6979756e63732e636f6d2f31382d382d32322f33333132303438382e6a7067)](https://camo.githubusercontent.com/443af05b6be6ed09e50c78a1dca39bf75acb106d/687474703a2f2f6d792d626c6f672d746f2d7573652e6f73732d636e2d6265696a696e672e616c6979756e63732e636f6d2f31382d382d32322f33333132303438382e6a7067)**JDK1.8的ConcurrentHashMap（TreeBin: 红黑二叉树节点 Node: 链表节点）：** [![img](https://camo.githubusercontent.com/2d779bf515db75b5bf364c4f23c31268330a865e/687474703a2f2f6d792d626c6f672d746f2d7573652e6f73732d636e2d6265696a696e672e616c6979756e63732e636f6d2f31382d382d32322f39373733393232302e6a7067)](https://camo.githubusercontent.com/2d779bf515db75b5bf364c4f23c31268330a865e/687474703a2f2f6d792d626c6f672d746f2d7573652e6f73732d636e2d6265696a696e672e616c6979756e63732e636f6d2f31382d382d32322f39373733393232302e6a7067)
+![HashTable全表锁](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/HashTable全表锁.png)
+
+**JDK1.7的ConcurrentHashMap：**
+
+![JDK1.7的ConcurrentHashMap](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/ConcurrentHashMap分段锁.jpg)
+
+**JDK1.8的ConcurrentHashMap（TreeBin: 红黑二叉树节点 Node: 链表节点）：**
+
+![JDK1.8的ConcurrentHashMap](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/JDK1.8 ConcurrentHashMap.jpg)
 
 ## ConcurrentHashMap线程安全的具体实现方式/底层具体实现
 
@@ -434,6 +441,14 @@ Output：
 
 ## 如何选用集合?
 
-## 集合的选用
-
 主要根据集合的特点来选用，比如我们需要根据键值获取到元素值时就选用Map接口下的集合，需要排序时选择TreeMap,不需要排序时就选择HashMap,需要保证线程安全就选用ConcurrentHashMap.当我们只需要存放元素值时，就选择实现Collection接口的集合，需要保证元素唯一时选择实现Set接口的集合比如TreeSet或HashSet，不需要就选择实现List接口的比如ArrayList或LinkedList，然后再根据实现这些接口的集合的特点来选用。
+
+## 公众号
+
+如果大家想要实时关注我更新的文章以及分享的干货的话，可以关注我的公众号。
+
+**《Java面试突击》:** 由本文档衍生的专为面试而生的《Java面试突击》V2.0 PDF 版本[公众号](#公众号)后台回复 **"Java面试突击"** 即可免费领取！
+
+**Java工程师必备学习资源:** 一些Java工程师常用学习资源公众号后台回复关键字 **“1”** 即可免费无套路获取。 
+
+![我的公众号](https://user-gold-cdn.xitu.io/2018/11/28/167598cd2e17b8ec?w=258&h=258&f=jpeg&s=27334)
