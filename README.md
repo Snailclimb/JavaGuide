@@ -18,15 +18,13 @@
 
 <p align="center">
 <a href="https://coding.net/?utm_source=JavaGuide" target="_blank">
-  <img src="http://pqrlmrv7w.bkt.clouddn.com/img/2019-4/006rNwoDgy1g2dw5gau7nj30eg02vwfr.jpg"  width="390px"/>
+  <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/006rNwoDgy1g2dw5gau7nj30eg02vwfr.jpg"  width="390px"/>
 </a>
   <a href="http://www.lubanjava.com/luban/index.html?=javaguide
 " target="_blank">
-  <img src="http://pqrlmrv7w.bkt.clouddn.com/img/2019-4/QQ图片20190514211856.gif" width="390px"/>
+  <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/QQ图片20190514211856.gif" width="390px"/>
  </a>
 </p>
-
-
 推荐使用 <https://snailclimb.top/JavaGuide/> 在线阅读(访问速度慢的话，请使用 <https://snailclimb.gitee.io/javaguide> )，在线阅读内容本仓库同步一致。这种方式阅读的优势在于：有侧边栏阅读体验更好，Gitee pages 的访问速度相对来说也比较快。
 
 ## 目录
@@ -49,9 +47,9 @@
     - [MySQL](#mysql)
     - [Redis](#redis)
 - [系统设计](#系统设计)
-    - [设计模式(工厂模式、单例模式)](#设计模式)
-    - [常用框架(Spring、Zookeeper)](#常用框架)
-    - [数据通信(消息队列、Dubbo)](#数据通信)
+    - [设计模式(工厂模式、单例模式 ... )](#设计模式)
+    - [常用框架(Spring、Zookeeper ... )](#常用框架)
+    - [数据通信(消息队列、Dubbo ... )](#数据通信)
     - [网站架构](#网站架构)
 - [面试指南](#面试指南)
     - [备战面试](#备战面试)
@@ -168,6 +166,7 @@
 #### Spring
 
 - [Spring 学习与面试](docs/system-design/framework/spring/Spring.md)
+- [Spring 常见问题总结](docs/system-design/framework/spring/SpringInterviewQuestions.md)
 - [Spring中bean的作用域与生命周期](docs/system-design/framework/spring/SpringBean.md)
 - [SpringMVC 工作原理详解](docs/system-design/framework/spring/SpringMVC-Principle.md)
 - [Spring中都用到了那些设计模式?](docs/system-design/framework/spring/Spring-Design-Patterns.md)
@@ -325,6 +324,9 @@ Markdown 格式参考：[Github Markdown格式](https://guides.github.com/featur
 </a>
 <a href="https://github.com/cnLGMing">  
     <img src="https://avatars2.githubusercontent.com/u/15910705?s=460&v=4" width="45px">
+</a>
+<a href="https://github.com/fanchenggang">  
+    <img src="https://avatars0.githubusercontent.com/u/20358122?s=460&v=4" width="45px">
 </a>
 
 ### 公众号
