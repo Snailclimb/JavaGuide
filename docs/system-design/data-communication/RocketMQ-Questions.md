@@ -155,7 +155,10 @@ class Broker {
 
 ### 2.1.5 顺序消息的实现
 
-与定时消息同原理，生产者生产消息时指定特定的 MessageQueue ，消费者消费消息时，消费特定的 MessageQueue，其实单机版的消息中心在一个 MessageQueue 就天然支持了顺序消息
+1. 与定时消息同原理，生产者生产消息时指定特定的 MessageQueue ，消费者消费消息时，消费特定的 MessageQueue，其实单机版的消息中心在一个 MessageQueue 就天然支持了顺序消息
+2. 注意：同一个 MessageQueue 保证里面的消息是顺序消费的前提是：消费者是串行的消费该 MessageQueue，因为就算 MessageQueue 是顺序的，但是当并行消费时，还是会有顺序问题，但是串行消费也同时引入了两个问题：
+>1. 引入锁来实现串行
+>2. 前一个消费阻塞时后面都会被阻塞
 
 ### 2.1.6 分布式消息的实现
 
@@ -194,8 +197,9 @@ class Broker {
 加分项咯 
 1. 包括组件通信间使用 Netty 的自定义协议
 2. 消息重试负载均衡策略（具体参考 Dubbo 负载均衡策略）
-3. 消息过滤器（Producer 发送消息到 Broker，Broker 存储消息信息，Consumer 消费时请求 Broker 端从磁盘文件查询消息文件时就使用过滤服务器进行过滤）  
+3. 消息过滤器（Producer 发送消息到 Broker，Broker 存储消息信息，Consumer 消费时请求 Broker 端从磁盘文件查询消息文件时,在 Broker 端就使用过滤服务器进行过滤）  
 4. Broker 同步双写和异步双写中 Master 和 Slave 的交互
+5. Broker 在 4.5.0 版本更新中引入了基于 Raft 协议的多副本选举，之前这是商业版才有的特性 [ISSUE-1046][2]
 
 # 3 参考
 
@@ -207,3 +211,4 @@ class Broker {
 6. 基于《RocketMQ技术内幕》源码注释：https://github.com/LiWenGu/awesome-rocketmq
 
 [1]: https://leran2deeplearnjavawebtech.oss-cn-beijing.aliyuncs.com/somephoto/RocketMQ%E6%B5%81%E7%A8%8B.png
+[2]: http://rocketmq.apache.org/release_notes/release-notes-4.5.0/
