@@ -83,11 +83,11 @@ ArrayList 实现了 RandomAccess 接口， 而 LinkedList 没有实现。为什�
 
 **双向链表：** 包含两个指针，一个prev指向前一个节点，一个next指向后一个节点。 
 
-![双向链表](https://ws1.sinaimg.cn/large/006rNwoDgy1g2dp8qi5xij30fk06idgj.jpg)
+![双向链表](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/双向链表.png)
 
 **双向循环链表：** 最后一个节点的 next 指向head，而 head 的prev指向最后一个节点，构成一个环。 
 
-![双向循环链表](https://ws1.sinaimg.cn/large/006rNwoDgy1g2dp8a1hxej30eu06zgmd.jpg)
+![双向循环链表](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/双向循环链表.png)
 
 ## ArrayList 与 Vector 区别呢?为什么要用Arraylist取代Vector呢？
 
