@@ -66,7 +66,7 @@
 
 ## Java
 
-### 基础
+### 基本
 
 * [Java 基础知识回顾](docs/java/Java基础知识.md)
 * [J2EE 基础知识回顾](docs/java/J2EE基础知识.md)
@@ -209,7 +209,7 @@
 * [第四周(2018-8-30).md](docs/essential-content-for-interview/MostCommonJavaInterviewQuestions/第四周(2018-8-30).md) （主要内容是几道面试常问的多线程基础题。）
 
 ### 面经
-
+基礎
 - [5面阿里,终获offer(2018年秋招)](docs/essential-content-for-interview/BATJrealInterviewExperience/5面阿里,终获offer.md)
 - [蚂蚁金服2019实习生面经总结(已拿口头offer)](docs/essential-content-for-interview/BATJrealInterviewExperience/蚂蚁金服实习生面经总结(已拿口头offer).md)
 - [2019年蚂蚁金服、头条、拼多多的面试总结](docs/essential-content-for-interview/BATJrealInterviewExperience/2019alipay-pinduoduo-toutiao.md)
