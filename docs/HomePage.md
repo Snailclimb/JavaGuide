@@ -1,55 +1,42 @@
-Java后端技术交流群(限工作一年及以上，架构视频免费领取) ：[![QQ群](https://img.shields.io/badge/QQ%E7%BE%A4-869815609-red.svg)](https://jq.qq.com/?_wv=1027&k=5QqyxIx) 
-
-强烈推荐七牛云CEO老许的[架构专栏](#架构)，微信扫描二维码购买后，[加我好友](#联系我)私聊我领取24元返现。129元的课程相当于75入手。
+点击订阅[Java面试进阶指南](https://xiaozhuanlan.com/javainterview?rel=javaguide)(专为Java面试方向准备)。[为什么要弄这个专栏?](https://shimo.im/./9BJjNsNg7S4dCnz3/)
 
 <h1 align="center">Java 学习/面试指南</h1>
 <p align="center">
 <a href="https://github.com/Snailclimb/JavaGuide" target="_blank">
 	<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/logo - 副本.png" width=""/>
 </a>
-</p>
-<h2 align="center">Special Sponsors</h2>
-<p align="center">
-<a href="https://e.coding.net/?utm_source=JavaGuide" target="_blank">
-  <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/Coding Devops.png" width=""/>
- </a>
-</p>
-
-
+	
 ## Java
 
 ### 基础
 
 * [Java 基础知识回顾](./java/Java基础知识.md)
 * [J2EE 基础知识回顾](./java/J2EE基础知识.md)
-* [Collections 工具类和 Arrays 工具类常见方法](./java/Basis/Arrays%2CCollectionsCommonMethods.md)
-* [Java常见关键字总结：static、final、this、super](./java/Basis/final、static、this、super.md) 
 
 ### 容器
 
-* **常见问题总结：**
-  * [这几道Java集合框架面试题几乎必问](./java/这几道Java集合框架面试题几乎必问.md)
-  * [Java 集合框架常见面试题总结](./java/Java集合框架常见面试题总结.md)
-* **源码分析：**
-  * [ArrayList 源码学习](./java/ArrayList.md) 
-  * [【面试必备】透过源码角度一步一步带你分析 ArrayList 扩容机制](./java/ArrayList-Grow.md)    
-  * [LinkedList 源码学习](./java/LinkedList.md)   
-  * [HashMap(JDK1.8)源码学习](./java/HashMap.md)  
+* [常见面试题](./java/collection/Java集合框架常见面试题.md)
+* [ArrayList 源码学习](./java/collection/ArrayList.md)  
+* [LinkedList 源码学习](./java/collection/LinkedList.md)   
+* [HashMap(JDK1.8)源码学习](./java/collection/HashMap.md)  
 
 ### 并发
 
-* [并发编程面试必备：synchronized 关键字使用、底层原理、JDK1.6 之后的底层优化以及 和ReenTrantLock 的对比](./java/synchronized.md)
-* [并发编程面试必备：乐观锁与悲观锁](./essential-content-for-interview/面试必备之乐观锁与悲观锁.md)
-* [并发编程面试必备：JUC 中的 Atomic 原子类总结](./java/Multithread/Atomic.md)
-* [并发编程面试必备：AQS 原理以及 AQS 同步组件总结](./java/Multithread/AQS.md)
-* [BATJ都爱问的多线程面试题](./java/Multithread/BATJ都爱问的多线程面试题.md)
+* [Java 并发基础常见面试题总结](./java/Multithread/JavaConcurrencyBasicsCommonInterviewQuestionsSummary.md)
+* [Java 并发进阶常见面试题总结](./java/Multithread/JavaConcurrencyAdvancedCommonInterviewQuestions.md)
 * [并发容器总结](./java/Multithread/并发容器总结.md)
+* [乐观锁与悲观锁](./essential-content-for-interview/面试必备之乐观锁与悲观锁.md)
+* [JUC 中的 Atomic 原子类总结](./java/Multithread/Atomic.md)
+* [AQS 原理以及 AQS 同步组件总结](./java/Multithread/AQS.md)
 
 ### JVM
 
-* [可能是把Java内存区域讲的最清楚的一篇文章](./java/可能是把Java内存区域讲的最清楚的一篇文章.md)
-* [搞定JVM垃圾回收就是这么简单](./java/搞定JVM垃圾回收就是这么简单.md)
-* [《深入理解Java虚拟机》第2版学习笔记](./java/Java虚拟机（jvm）.md)
+* [一 Java内存区域](./java/jvm/Java内存区域.md)
+* [二 JVM垃圾回收](./java/jvm/JVM垃圾回收.md)
+* [三 JDK 监控和故障处理工具](./java/jvm/JDK监控和故障处理工具总结.md)
+* [四 类文件结构](./java/jvm/类文件结构.md)
+* [五 类加载过程](./java/jvm/类加载过程.md)
+* [六 类加载器](./java/jvm/类加载器.md)
 
 ### I/O
 
@@ -87,8 +74,8 @@ Java后端技术交流群(限工作一年及以上，架构视频免费领取) �
 ### 算法
 
 - [算法学习资源推荐](./dataStructures-algorithms/算法学习资源推荐.md)  
-- [算法总结——几道常见的子符串算法题 ](./dataStructures-algorithms/几道常见的子符串算法题.md)
-- [算法总结——几道常见的链表算法题 ](./dataStructures-algorithms/几道常见的链表算法题.md)   
+- [几道常见的子符串算法题总结 ](./dataStructures-algorithms/几道常见的子符串算法题.md)
+- [几道常见的链表算法题总结 ](./dataStructures-algorithms/几道常见的链表算法题.md)   
 - [剑指offer部分编程题](./dataStructures-algorithms/剑指offer部分编程题.md)
 - [公司真题](./dataStructures-algorithms/公司真题.md)
 - [回溯算法经典案例之N皇后问题](./dataStructures-algorithms/Backtracking-NQueens.md)
@@ -99,7 +86,8 @@ Java后端技术交流群(限工作一年及以上，架构视频免费领取) �
 
 * [MySQL 学习与面试](./database/MySQL.md)
 * [一千行MySQL学习笔记](./database/一千行MySQL命令.md)
-* [【思维导图-索引篇】搞定数据库索引就是这么简单](./database/MySQL%20Index.md)
+* [MySQL高性能优化规范建议](./database/MySQL高性能优化规范建议.md)
+* [搞定数据库索引就是这么简单](./database/MySQL%20Index.md)
 * [事务隔离级别(图文详解)](./database/事务隔离级别(图文详解).md)
 * [一条SQL语句在MySQL中如何执行的](./database/一条sql语句在mysql中如何执行的.md)
 
@@ -119,21 +107,23 @@ Java后端技术交流群(限工作一年及以上，架构视频免费领取) �
 
 #### Spring
 
-- [Spring 学习与面试](./system-design/framework/Spring学习与面试.md)
-- [Spring中bean的作用域与生命周期](./system-design/framework/SpringBean.md)
-- [SpringMVC 工作原理详解](./system-design/framework/SpringMVC%20%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E8%AF%A6%E8%A7%A3.md)
+- [Spring 学习与面试](./system-design/framework/spring/Spring.md)
+- [Spring中bean的作用域与生命周期](./system-design/framework/spring/SpringBean.md)
+- [SpringMVC 工作原理详解](./system-design/framework/spring/SpringMVC-Principle.md)
+- [Spring中都用到了那些设计模式?](./system-design/framework/spring/Spring-Design-Patterns.md)
 
 #### ZooKeeper
 
-- [可能是把 ZooKeeper 概念讲的最清楚的一篇文章](./system-design/framework/ZooKeeper.md)
-- [ZooKeeper 数据模型和常见命令了解一下，速度收藏！](./system-design/framework/ZooKeeper数据模型和常见命令.md)
+- [ZooKeeper 相关概念总结](./system-design/framework/ZooKeeper.md)
+- [ZooKeeper 数据模型和常见命令](./system-design/framework/ZooKeeper数据模型和常见命令.md)
 
 ### 数据通信
 
-- [数据通信(RESTful、RPC、消息队列)相关知识点总结](./system-design/data-communication/数据通信(RESTful、RPC、消息队列).md)
+- [数据通信(RESTful、RPC、消息队列)相关知识点总结](./system-design/data-communication/summary.md)
 - [Dubbo 总结：关于 Dubbo 的重要知识点](./system-design/data-communication/dubbo.md)
-- [消息队列总结：新手也能看懂，消息队列其实很简单](./system-design/data-communication/message-queue.md)
-- [一文搞懂 RabbitMQ 的重要概念以及安装](./system-design/data-communication/rabbitmq.md)
+- [消息队列总结](./system-design/data-communication/message-queue.md)
+- [RabbitMQ 入门](./system-design/data-communication/RabbitMQ.md)
+- [RocketMQ的几个简单问题与答案](./system-design/data-communication/RocketMQ-Questions.md)
 
 ### 网站架构
 
@@ -156,12 +146,14 @@ Java后端技术交流群(限工作一年及以上，架构视频免费领取) �
 
 * [第一周（2018-8-7）](./essential-content-for-interview/MostCommonJavaInterviewQuestions/第一周（2018-8-7）.md) (为什么 Java 中只有值传递、==与equals、 hashCode与equals)
 * [第二周（2018-8-13）](./essential-content-for-interview/MostCommonJavaInterviewQuestions/第二周(2018-8-13).md)(String和StringBuffer、StringBuilder的区别是什么？String为什么是不可变的？、什么是反射机制？反射机制的应用场景有哪些？......)
-* [第三周（2018-08-22）](./java/这几道Java集合框架面试题几乎必问.md) （Arraylist 与 LinkedList 异同、ArrayList 与 Vector 区别、HashMap的底层实现、HashMap 和 Hashtable 的区别、HashMap 的长度为什么是2的幂次方、HashSet 和 HashMap 区别、ConcurrentHashMap 和 Hashtable 的区别、ConcurrentHashMap线程安全的具体实现方式/底层具体实现、集合框架底层数据结构总结）
+* [第三周（2018-08-22）](./java/collection/Java集合框架常见面试题.md) （Arraylist 与 LinkedList 异同、ArrayList 与 Vector 区别、HashMap的底层实现、HashMap 和 Hashtable 的区别、HashMap 的长度为什么是2的幂次方、HashSet 和 HashMap 区别、ConcurrentHashMap 和 Hashtable 的区别、ConcurrentHashMap线程安全的具体实现方式/底层具体实现、集合框架底层数据结构总结）
 * [第四周(2018-8-30).md](./essential-content-for-interview/MostCommonJavaInterviewQuestions/第四周(2018-8-30).md) （主要内容是几道面试常问的多线程基础题。）
 
 ### 面经
 
 - [5面阿里,终获offer(2018年秋招)](./essential-content-for-interview/BATJrealInterviewExperience/5面阿里,终获offer.md)
+- [蚂蚁金服2019实习生面经总结(已拿口头offer)](./essential-content-for-interview/BATJrealInterviewExperience/蚂蚁金服实习生面经总结(已拿口头offer).md)
+- [2019年蚂蚁金服、头条、拼多多的面试总结](./essential-content-for-interview/BATJrealInterviewExperience/2019alipay-pinduoduo-toutiao.md)
 
 ## 工具
 
@@ -200,13 +192,6 @@ Java后端技术交流群(限工作一年及以上，架构视频免费领取) �
 添加我的微信备注“Github”,回复关键字 **“加群”** 即可入群。
 
 ![我的微信](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-2/JavaGuide.jpg)
-
-
-## 架构
-
-<a href="https://time.geekbang.org/column/intro/166?code=-qJu3VIe2PPcts3jpNEti1EflIaCAZwLkQhd2mF4ESg%3D&utm_term=SPoster" target="_blank">
-	<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3微信图片_20190411230100.jpg" width="300px"/>
-</a>
 
 ## 公众号
 

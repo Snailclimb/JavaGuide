@@ -92,7 +92,7 @@ Linux文件系统的结构层次鲜明，就像一棵倒立的树，最顶层是
 
 **常见目录说明：**
 
-- **/bin：** 存放二进制可执行文件(ls,cat,mkdir等)，常用命令一般都在这里；
+- **/bin：** 存放二进制可执行文件(ls、cat、mkdir等)，常用命令一般都在这里；
 - **/etc：**  存放系统管理和配置文件；
 - **/home：**  存放所有用户文件的根目录，是用户主目录的基点，比如用户user的主目录就是/home/user，可以用~user表示；
 - **/usr ：** 用于存放系统应用程序；
@@ -165,7 +165,7 @@ Linux命令大全：[http://man.linuxde.net/](http://man.linuxde.net/)
 
    **在实际开发中，使用vim编辑器主要作用就是修改配置文件，下面是一般步骤：**
    
-    vim 文件------>进入文件----->命令模式------>按i进入编辑模式----->编辑文件  ------->按Esc进入底行模式----->输入:wq/q! （输入wq代表写入内容并退出，即保存；输入q!代表强制退出不保存。）
+    vim 文件------>进入文件----->命令模式------>按i进入编辑模式----->编辑文件  ------->按Esc进入底行模式----->输入：wq/q! （输入wq代表写入内容并退出，即保存；输入q!代表强制退出不保存。）
 4. **`rm -rf 文件`：** 删除文件（删）
 
     同目录删除：熟记 `rm -rf` 文件 即可
@@ -188,7 +188,7 @@ Linux中的打包文件一般是以.tar结尾的，压缩的命令一般是以.g
   
   f：指定文件名
 
-比如：加入test目录下有三个文件分别是 :aaa.txt bbb.txt ccc.txt,如果我们要打包test目录并指定压缩后的压缩包名称为test.tar.gz可以使用命令：**`tar -zcvf test.tar.gz aaa.txt bbb.txt ccc.txt`或：`tar -zcvf test.tar.gz       /test/`**
+比如：加入test目录下有三个文件分别是：aaa.txt bbb.txt ccc.txt，如果我们要打包test目录并指定压缩后的压缩包名称为test.tar.gz可以使用命令：**`tar -zcvf test.tar.gz aaa.txt bbb.txt ccc.txt`或：`tar -zcvf test.tar.gz       /test/`**
 
 
 **2）解压压缩包：**
@@ -339,7 +339,7 @@ passwd命令用于设置用户的认证信息，包括用户密码、密码过�
     - 查看当前系统的端口使用：netstat -an
 -  **net-tools 和 iproute2 ：**
     `net-tools`起源于BSD的TCP/IP工具箱，后来成为老版本Linux内核中配置网络功能的工具。但自2001年起，Linux社区已经对其停止维护。同时，一些Linux发行版比如Arch Linux和CentOS/RHEL 7则已经完全抛弃了net-tools，只支持`iproute2`。linux ip命令类似于ifconfig，但功能更强大，旨在替代它。更多详情请阅读[如何在Linux中使用IP命令和示例](https://linoxide.com/linux-command/use-ip-command-linux)
-- **`shutdown`：**  `shutdown -h now`： 指定现在立即关机；`shutdown +5 "System will shutdown after 5 minutes"`:指定5分钟后关机，同时送出警告信息给登入用户。
+- **`shutdown`：**  `shutdown -h now`： 指定现在立即关机；`shutdown +5 "System will shutdown after 5 minutes"`：指定5分钟后关机，同时送出警告信息给登入用户。
 - **`reboot`：**  **`reboot`：**  重开机。**`reboot -w`：** 做个重开机的模拟（只有纪录并不会真的重开机）。
  
 
