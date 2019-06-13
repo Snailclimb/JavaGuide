@@ -165,8 +165,8 @@ ZAB协议包括两种基本的模式，分别是 **崩溃恢复和消息广播**
 
 关于 **ZAB 协议&Paxos算法** 需要讲和理解的东西太多了，说实话，笔主到现在不太清楚这俩兄弟的具体原理和实现过程。推荐阅读下面两篇文章：
 
--  [图解 Paxos 一致性协议](http://blog.xiaohansong.com/2016/09/30/Paxos/)
--  [Zookeeper ZAB 协议分析](http://blog.xiaohansong.com/2016/08/25/zab/)
+-  [图解 Paxos 一致性协议](http://codemacro.com/2014/10/15/explain-poxos/)
+-  [Zookeeper ZAB 协议分析](https://dbaplus.cn/news-141-1875-1.html)
 
 关于如何使用 zookeeper 实现分布式锁，可以查看下面这篇文章：
 

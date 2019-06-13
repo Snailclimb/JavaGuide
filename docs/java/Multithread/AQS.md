@@ -471,6 +471,3 @@ CyclicBarrier和CountDownLatch的区别这部分内容参考了如下两篇文�
 
 ReentrantLock 和 synchronized 的区别在上面已经讲过了这里就不多做讲解。另外，需要注意的是：读写锁 ReentrantReadWriteLock 可以保证多个线程可以同时读，所以在读操作远大于写操作的时候，读写锁就非常有用了。
 
-由于篇幅问题，关于 ReentrantLock 和 ReentrantReadWriteLock 详细内容可以查看我的这篇原创文章。
-
-- [ReentrantLock 和 ReentrantReadWriteLock](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247483745&idx=2&sn=6778ee954a19816310df54ef9a3c2f8a&chksm=fd985700caefde16b9970f5e093b0c140d3121fb3a8458b11871e5e9723c5fd1b5a961fd2228&token=1829606453&lang=zh_CN#rd)
