@@ -17,10 +17,12 @@
 <h2 align="center">Special Sponsors</h2>
 
 <p align="center">
-<a href="https://coding.net/?utm_source=JavaGuide" target="_blank">
+<a href="https://www.aliyun.com/acts/hi618/index?userCode=hf47liqn" target="_blank">
+   <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/阿里云外投-1600-300.png"  width="390px"/>
   <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/006rNwoDgy1g2dw5gau7nj30eg02vwfr.jpg"  width="390px"/>
 </a>
 </p>
+
 推荐使用 https://snailclimb.top/JavaGuide/ 在线阅读(访问速度慢的话，请使用 https://snailclimb.gitee.io/javaguide )，在线阅读内容本仓库同步一致。这种方式阅读的优势在于：有侧边栏阅读体验更好，Gitee pages 的访问速度相对来说也比较快。
 
 ## 目录
