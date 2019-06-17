@@ -272,7 +272,7 @@ for i in ${array[@]};do echo $i ;done # 遍历数组，数组元素为空，没�
 > 说明：图片来自《菜鸟教程》
 
  Shell 编程支持下面几种运算符
- 
+
 - 算数运算符
 - 关系运算符
 - 布尔运算符
@@ -380,10 +380,10 @@ a 不等于 b
 #!/bin/bash
 a=3;
 b=9;
-if [ $a = $b ]
+if [ $a -eq $b ]
 then
    echo "a 等于 b"
-elif [ $a > $b ]
+elif [ $a -gt $b ]
 then
    echo "a 大于 b"
 else
@@ -394,7 +394,7 @@ fi
 输出结果：
 
 ```
-a 大于 b
+a 小于 b
 ```
 
 相信大家通过上面的示例就已经掌握了 shell 编程中的 if 条件语句。不过，还要提到的一点是，不同于我们常见的 Java 以及 PHP 中的 if 条件语句，shell  if 条件语句中不能包含空语句也就是什么都不做的语句。
@@ -482,16 +482,20 @@ done
 
 ```shell
 #!/bin/bash
-function(){
+hello(){
     echo "这是我的第一个 shell 函数!"
 }
-function
+echo "-----函数开始执行-----"
+hello
+echo "-----函数执行完毕-----"
 ```
 
 输出结果：
 
 ```
+-----函数开始执行-----
 这是我的第一个 shell 函数!
+-----函数执行完毕-----
 ```
 
 
