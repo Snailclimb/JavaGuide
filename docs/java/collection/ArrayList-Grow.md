@@ -270,7 +270,6 @@ public class ArrayscopyOfTest {
 10
 ```
 
-
 ### 3.3 两者联系和区别
 
 **联系：** 
@@ -280,8 +279,6 @@ public class ArrayscopyOfTest {
 **区别：**
 
 `arraycopy()` 需要目标数组，将原数组拷贝到你自己定义的数组里或者原数组，而且可以选择拷贝的起点和长度以及放入新数组中的位置 `copyOf()` 是系统自动在内部新建一个数组，并返回该数组。
-
-
 
 ## 四 `ensureCapacity`方法
 
@@ -341,7 +338,6 @@ public class EnsureCapacityTest {
 ```
 使用ensureCapacity方法前：4637
 使用ensureCapacity方法后：241
-
 ```
 
 通过运行结果，我们可以很明显的看出向 ArrayList 添加大量元素之前最好先使用`ensureCapacity` 方法，以减少增量重新分配的次数
