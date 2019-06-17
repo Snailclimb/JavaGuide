@@ -458,7 +458,7 @@ public class LinkedListDemo {
         linkedList.add(3);
         linkedList.removeFirstOccurrence(3); // 从此列表中移除第一次出现的指定元素（从头部到尾部遍历列表）
         System.out.println("After removeFirstOccurrence(3):" + linkedList);
-        linkedList.removeLastOccurrence(3); // 从此列表中移除最后一次出现的指定元素（从头部到尾部遍历列表）
+        linkedList.removeLastOccurrence(3); // 从此列表中移除最后一次出现的指定元素（从尾部到头部遍历列表）
         System.out.println("After removeFirstOccurrence(3):" + linkedList);
 
         /************************** 遍历操作 ************************/

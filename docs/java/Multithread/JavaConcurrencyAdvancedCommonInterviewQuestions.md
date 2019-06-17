@@ -55,7 +55,7 @@ synchronized关键字解决的是多个线程之间访问资源的同步性，sy
 - **修饰静态方法:** :也就是给当前类加锁，会作用于类的所有对象实例，因为静态成员不属于任何一个实例对象，是类成员（ static 表明这是该类的一个静态资源，不管new了多少个对象，只有一份）。所以如果一个线程A调用一个实例对象的非静态 synchronized 方法，而线程B需要调用这个实例对象所属类的静态 synchronized 方法，是允许的，不会发生互斥现象，**因为访问静态 synchronized 方法占用的锁是当前类的锁，而访问非静态 synchronized 方法占用的锁是当前实例对象锁**。
 - **修饰代码块:** 指定加锁对象，对给定对象加锁，进入同步代码库前要获得给定对象的锁。
 
-**总结：** synchronized 关键字加到 static 静态方法和 synchronized(class)代码块上都是是给 Class 类上锁。synchronized 关键字加到静态方法上是给对象实例上锁。尽量不要使用 synchronized(String a) 因为JVM中，字符串常量池具有缓存功能！
+**总结：** synchronized 关键字加到 static 静态方法和 synchronized(class)代码块上都是是给 Class 类上锁。synchronized 关键字加到实例方法上是给对象实例上锁。尽量不要使用 synchronized(String a) 因为JVM中，字符串常量池具有缓存功能！
 
 下面我以一个常见的面试题为例讲解一下 synchronized 关键字的具体使用。
 
@@ -144,7 +144,7 @@ JDK1.6 对锁的实现引入了大量的优化，如偏向锁、轻量级锁、�
 
 锁主要存在四种状态，依次是：无锁状态、偏向锁状态、轻量级锁状态、重量级锁状态，他们会随着竞争的激烈而逐渐升级。注意锁可以升级不可降级，这种策略是为了提高获得锁和释放锁的效率。
 
-关于这几种优化的详细信息可以查看：[synchronized 关键字使用、底层原理、JDK1.6 之后的底层优化以及 和ReenTrantLock 的对比](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247484539&idx=1&sn=3500cdcd5188bdc253fb19a1bfa805e6&chksm=fd98521acaefdb0c5167247a1fa903a1a53bb4e050b558da574f894f9feda5378ec9d0fa1ac7&token=1604028915&lang=zh_CN#rd)
+关于这几种优化的详细信息可以查看笔主的这篇文章：<https://gitee.com/SnailClimb/JavaGuide/blob/master/docs/java/Multithread/synchronized.md>
 
 ### 1.5. 谈谈 synchronized和ReentrantLock 的区别
 
@@ -204,7 +204,7 @@ synchronized 是依赖于 JVM 实现的，前面我们也讲到了 虚拟机团�
 
 再举个简单的例子： 
 
-比如有两个人去宝屋收集宝物，这两个共用一个袋子的话肯定会产生争执，但是给他们两个人每个人分配一个袋子的话就不会出现这样的问题。如果把这两个人比作线程的话，那么ThreadLocal就是用来这两个线程竞争的。
+比如有两个人去宝屋收集宝物，这两个共用一个袋子的话肯定会产生争执，但是给他们两个人每个人分配一个袋子的话就不会出现这样的问题。如果把这两个人比作线程的话，那么ThreadLocal就是用来避免这两个线程竞争的。
 
 ### 3.2. ThreadLocal示例
 
@@ -429,7 +429,7 @@ Atomic 翻译成中文是原子的意思。在化学上，我们知道原子是�
 **引用类型**
 
 - AtomicReference：引用类型原子类
-- AtomicStampedRerence：原子更新引用类型里的字段原子类
+- AtomicStampedReference：原子更新引用类型里的字段原子类
 - AtomicMarkableReference ：原子更新带有标记位的引用类型
 
 **对象的属性修改类型**
