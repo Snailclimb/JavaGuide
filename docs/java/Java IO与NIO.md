@@ -27,12 +27,12 @@
 
 **（1） 按操作方式分类结构图：**
 
-![按操作方式分类结构图：](https://user-gold-cdn.xitu.io/2018/5/16/16367d4fd1ce1b46?w=720&h=1080&f=jpeg&s=69522)
+![IO-操作方式分类](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/IO-操作方式分类.png)
 
 
 **（2）按操作对象分类结构图**
 
-![按操作对象分类结构图](https://user-gold-cdn.xitu.io/2018/5/16/16367d673b0e268d?w=720&h=535&f=jpeg&s=46081)
+![IO-操作对象分类](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/IO-操作对象分类.png)
 
 ### [二　java IO体系的学习总结](https://blog.csdn.net/nightcurtis/article/details/51324105) 
 1. **IO流的分类：**
@@ -92,7 +92,7 @@
     - 写入数据到缓冲区（Writing Data to a Buffer）
     
      **写数据到Buffer有两种方法：**
-      
+    
       1.从Channel中写数据到Buffer
       ```java
       int bytesRead = inChannel.read(buf); //read into buffer.
@@ -103,7 +103,7 @@
       ```
 
 4. **Buffer常用方法测试**
-     
+   
     说实话，NIO编程真的难，通过后面这个测试例子，你可能才能勉强理解前面说的Buffer方法的作用。
 
 
