@@ -6,11 +6,11 @@
 
 ## 涉及文章的相对路径
 
-1. [https://github.com/Snailclimb/JavaGuide/blob/master/docs/java/BIO-NIO-AIO.md](BIO-NIO-AIO)
+1. [BIO-NIO-AIO](https://github.com/Snailclimb/JavaGuide/blob/master/docs/java/BIO-NIO-AIO.md)
 
 ## 错误原文或讨论点
 
-BIO-NIO-AIO.md  
+BIO-NIO-AIO.md：  
 原文：
 >异步就是发起一个调用后，立刻得到被调用者的回应表示已接收到请求，但是被调用者并没有返回结果，此时我们可以处理其他的请求，被调用者通常依靠事件，回调等机制来通知调用者其返回结果。
 
