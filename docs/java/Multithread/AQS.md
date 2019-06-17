@@ -1,5 +1,5 @@
 
-**目录：**
+点击关注[公众号](#公众号)及时获取笔主最新更新文章，并可免费领取本文档配套的《Java面试突击》以及Java工程师必备学习资源。
 <!-- MarkdownTOC -->
 
 - [1 AQS 简单介绍](#1-aqs-简单介绍)
@@ -22,10 +22,6 @@
 <!-- /MarkdownTOC -->
 
 > 常见问题：AQS原理？;CountDownLatch和CyclicBarrier了解吗,两者的区别是什么？用过Semaphore吗？
-
-**本节思维导图：**
-
-![并发编程面试必备：AQS 原理以及 AQS 同步组件总结](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-10-31/61115865.jpg)
 
 
 ### 1 AQS 简单介绍
@@ -471,3 +467,12 @@ CyclicBarrier和CountDownLatch的区别这部分内容参考了如下两篇文�
 
 ReentrantLock 和 synchronized 的区别在上面已经讲过了这里就不多做讲解。另外，需要注意的是：读写锁 ReentrantReadWriteLock 可以保证多个线程可以同时读，所以在读操作远大于写操作的时候，读写锁就非常有用了。
 
+## 公众号
+
+如果大家想要实时关注我更新的文章以及分享的干货的话，可以关注我的公众号。
+
+**《Java面试突击》:** 由本文档衍生的专为面试而生的《Java面试突击》V2.0 PDF 版本[公众号](#公众号)后台回复 **"面试突击"** 即可免费领取！
+
+**Java工程师必备学习资源:** 一些Java工程师常用学习资源公众号后台回复关键字 **“1”** 即可免费无套路获取。 
+
+![我的公众号](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/167598cd2e17b8ec.png)

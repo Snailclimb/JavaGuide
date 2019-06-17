@@ -1,3 +1,5 @@
+点击关注[公众号](#公众号)及时获取笔主最新更新文章，并可免费领取本文档配套的《Java面试突击》以及Java工程师必备学习资源。
+
 <!-- TOC -->
 
 - [Java 内存区域详解](#java-内存区域详解)
@@ -203,7 +205,7 @@ JDK1.4 中新加入的 **NIO(New Input/Output) 类**，引入了一种基于**�
 
 ### 3.1 对象的创建
 下图便是 Java 对象的创建过程，我建议最好是能默写出来，并且要掌握每一步在做什么。
-![Java 对象的创建过程 ](https://user-gold-cdn.xitu.io/2018/8/22/16561e59a4135869?w=950&h=279&f=png&s=28529)
+![Java创建对象的过程](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/Java创建对象的过程.png)
 
 #### Step1:类加载检查
 
@@ -218,7 +220,7 @@ JDK1.4 中新加入的 **NIO(New Input/Output) 类**，引入了一种基于**�
 
 选择以上两种方式中的哪一种，取决于 Java 堆内存是否规整。而 Java 堆内存是否规整，取决于 GC 收集器的算法是"标记-清除"，还是"标记-整理"（也称作"标记-压缩"），值得注意的是，复制算法内存也是规整的
 
-![](https://user-gold-cdn.xitu.io/2018/8/22/16561e59a40a2c3d?w=1426&h=333&f=png&s=26346)
+![内存分配的两种方式](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/内存分配的两种方式.png)
 
 **内存分配并发问题（补充内容，需要掌握）**
 
@@ -254,11 +256,12 @@ JDK1.4 中新加入的 **NIO(New Input/Output) 类**，引入了一种基于**�
 建立对象就是为了使用对象，我们的 Java 程序通过栈上的 reference 数据来操作堆上的具体对象。对象的访问方式有虚拟机实现而定，目前主流的访问方式有**①使用句柄**和**②直接指针**两种：
 
 1. **句柄：** 如果使用句柄的话，那么 Java 堆中将会划分出一块内存来作为句柄池，reference 中存储的就是对象的句柄地址，而句柄中包含了对象实例数据与类型数据各自的具体地址信息；
-![使用句柄 ](https://user-gold-cdn.xitu.io/2018/4/27/16306b9573968946?w=786&h=362&f=png&s=109201)
+
+  ![对象的访问定位-使用句柄](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/对象的访问定位-使用句柄.png)
 
 2. **直接指针：**  如果使用直接指针访问，那么 Java 堆对象的布局中就必须考虑如何放置访问类型数据的相关信息，而 reference 中存储的直接就是对象的地址。
 
-![使用直接指针 ](https://user-gold-cdn.xitu.io/2018/4/27/16306ba3a41b6b65?w=766&h=353&f=png&s=99172)
+![对象的访问定位-直接指针](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/对象的访问定位-直接指针.png)
 
 **这两种对象访问方式各有优势。使用句柄来访问的最大好处是 reference 中存储的是稳定的句柄地址，在对象被移动时只会改变句柄中的实例数据指针，而 reference 本身不需要修改。使用直接指针访问方式最大的好处就是速度快，它节省了一次指针定位的时间开销。**
 
@@ -306,7 +309,7 @@ System.out.println(str2==str3);//false
 ```java
 		  String str1 = "str";
 		  String str2 = "ing";
-		  
+		 
 		  String str3 = "str" + "ing";//常量池中的对象
 		  String str4 = str1 + str2; //在堆上创建的新的对象	  
 		  String str5 = "string";//常量池中的对象
@@ -314,7 +317,7 @@ System.out.println(str2==str3);//false
 		  System.out.println(str3 == str5);//true
 		  System.out.println(str4 == str5);//false
 ```
-![](https://user-gold-cdn.xitu.io/2018/8/22/16561e59a4d13f92?w=593&h=603&f=png&s=22265)
+![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/字符串拼接.png)
 
 尽量避免多个字符串拼接，因为这样会重新创建对象。如果需要改变字符串的话，可以使用 StringBuilder 或者 StringBuffer。
 ### 4.2 String s1 = new String("abc");这句话创建了几个字符串对象？
@@ -418,3 +421,13 @@ i4=i5+i6   true
 - <http://www.pointsoftware.ch/en/under-the-hood-runtime-data-areas-javas-memory-model/>
 - <https://dzone.com/articles/jvm-permgen-%E2%80%93-where-art-thou>
 - <https://stackoverflow.com/questions/9095748/method-area-and-permgen>
+
+## 公众号
+
+如果大家想要实时关注我更新的文章以及分享的干货的话，可以关注我的公众号。
+
+**《Java面试突击》:** 由本文档衍生的专为面试而生的《Java面试突击》V2.0 PDF 版本[公众号](#公众号)后台回复 **"Java面试突击"** 即可免费领取！
+
+**Java工程师必备学习资源:** 一些Java工程师常用学习资源[公众号](#公众号)后台回复关键字 **“1”** 即可免费无套路获取。 
+
+![我的公众号](https://user-gold-cdn.xitu.io/2018/11/28/167598cd2e17b8ec?w=258&h=258&f=jpeg&s=27334)
