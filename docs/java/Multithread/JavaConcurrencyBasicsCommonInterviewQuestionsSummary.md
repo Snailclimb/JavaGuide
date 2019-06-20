@@ -290,7 +290,8 @@ Process finished with exit code 0
 - 两者最主要的区别在于：**sleep 方法没有释放锁，而 wait 方法释放了锁** 。
 - 两者都可以暂停线程的执行。
 - Wait 通常被用于线程间交互/通信，sleep 通常被用于暂停执行。
-- wait() 方法被调用后，线程不会自动苏醒，需要别的线程调用同一个对象上的 notify() 或者 notifyAll() 方法。sleep() 方法执行完成后，线程会自动苏醒。
+- wait() 方法被调用后，线程不会自动苏醒，需要别的线程调用同一个对象上的 notify() 或者 notifyAll() 方法。sleep() 方法执行完成后，线程会自动苏醒。或者可以使用wait(long timeout)超时后线程会自动苏醒。
+
 
 ## 10. 为什么我们调用 start() 方法时会执行 run() 方法，为什么我们不能直接调用 run() 方法？
 
