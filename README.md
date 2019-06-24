@@ -19,9 +19,11 @@
 <h2 align="center">Special Sponsors</h2>
 
 <p align="center">
+<!--
 <a href="https://www.aliyun.com/acts/hi618/index?userCode=hf47liqn" target="_blank">
    <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/阿里云外投-1600-300.png"  width="390px"  height="70px" alt="阿里云618 2折起！"/>
 </a>
+-->
 <a href="https://coding.net/?utm_source=JavaGuide" target="_blank">
   <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/006rNwoDgy1g2dw5gau7nj30eg02vwfr.jpg"  alt="零成本开启敏捷研发" height="70px" width="390px"/>
 </a>  
@@ -134,7 +136,7 @@
 ### 算法
 
 - [算法学习资源推荐](docs/dataStructures-algorithms/算法学习资源推荐.md)  
-- [几道常见的子符串算法题总结 ](docs/dataStructures-algorithms/几道常见的子符串算法题.md)
+- [几道常见的字符串算法题总结 ](docs/dataStructures-algorithms/几道常见的子符串算法题.md)
 - [几道常见的链表算法题总结 ](docs/dataStructures-algorithms/几道常见的链表算法题.md)   
 - [剑指offer部分编程题](docs/dataStructures-algorithms/剑指offer部分编程题.md)
 - [公司真题](docs/dataStructures-algorithms/公司真题.md)
