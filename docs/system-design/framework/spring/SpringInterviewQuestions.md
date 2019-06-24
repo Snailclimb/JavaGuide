@@ -42,7 +42,7 @@ Spring 官网列出的 Spring 的 6 个特征:
 
 ![Spring主要模块](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/Spring主要模块.png)
 
-- **Spring Core：** 基础,可以说 Spring 其他所有的功能都需要依赖于该类库。主要提供 IOC 依赖注入功能。
+- **Spring Core：** 基础,可以说 Spring 其他所有的功能都需要依赖于该类库。主要提供 IoC 依赖注入功能。
 - **Spring  Aspects ** ： 该模块为与AspectJ的集成提供支持。
 - **Spring AOP** ：提供了面向方面的编程实现。
 - **Spring JDBC** : Java数据库连接。
@@ -57,16 +57,16 @@ Spring 官网列出的 Spring 的 6 个特征:
 
 IoC（Inverse of Control:控制反转）是一种**设计思想**，就是 **将原本在程序中手动创建对象的控制权，交由Spring框架来管理。**  IoC 在其他语言中也有应用，并非 Spirng 特有。 **IoC 容器是 Spring 用来实现 IoC 的载体，  IoC 容器实际上就是个Map（key，value）,Map 中存放的是各种对象。**
 
-将对象之间的相互依赖关系交给 IOC 容器来管理，并由 IOC 容器完成对象的注入。这样可以很大程度上简化应用的开发，把应用从复杂的依赖关系中解放出来。  **IOC 容器就像是一个工厂一样，当我们需要创建一个对象的时候，只需要配置好配置文件/注解即可，完全不用考虑对象是如何被创建出来的。** 在实际项目中一个 Service 类可能有几百甚至上千个类作为它的底层，假如我们需要实例化这个 Service，你可能要每次都要搞清这个 Service 所有底层类的构造函数，这可能会把人逼疯。如果利用 IOC 的话，你只需要配置好，然后在需要的地方引用就行了，这大大增加了项目的可维护性且降低了开发难度。
+将对象之间的相互依赖关系交给 IoC 容器来管理，并由 IoC 容器完成对象的注入。这样可以很大程度上简化应用的开发，把应用从复杂的依赖关系中解放出来。  **IoC 容器就像是一个工厂一样，当我们需要创建一个对象的时候，只需要配置好配置文件/注解即可，完全不用考虑对象是如何被创建出来的。** 在实际项目中一个 Service 类可能有几百甚至上千个类作为它的底层，假如我们需要实例化这个 Service，你可能要每次都要搞清这个 Service 所有底层类的构造函数，这可能会把人逼疯。如果利用 IoC 的话，你只需要配置好，然后在需要的地方引用就行了，这大大增加了项目的可维护性且降低了开发难度。
 
 Spring 时代我们一般通过 XML 文件来配置 Bean，后来开发人员觉得 XML 文件来配置不太好，于是 SpringBoot 注解配置就慢慢开始流行起来。
 
 推荐阅读：https://www.zhihu.com/question/23277575/answer/169698662
 
-**Spring IOC的初始化过程：** 
-![Spring IOC的初始化过程](https://user-gold-cdn.xitu.io/2018/9/22/165fea36b569d4f4?w=709&h=56&f=png&s=4673)
+**Spring IoC的初始化过程：** 
+![Spring IoC的初始化过程](https://user-gold-cdn.xitu.io/2018/9/22/165fea36b569d4f4?w=709&h=56&f=png&s=4673)
 
-IOC源码阅读
+IoC源码阅读
 
 - https://javadoop.com/post/spring-ioc
 

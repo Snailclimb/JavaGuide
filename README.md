@@ -1,5 +1,7 @@
 点击订阅[Java面试进阶指南](https://xiaozhuanlan.com/javainterview?rel=javaguide)(专为Java面试方向准备)。[为什么要弄这个专栏?](https://shimo.im/docs/9BJjNsNg7S4dCnz3/)
 
+点击关注[公众号](#公众号)及时获取笔主最新更新文章，并可免费领取本文档配套的《Java面试突击》以及Java工程师必备学习资源。
+
 <p align="center">
 <a href="https://github.com/Snailclimb/JavaGuide" target="_blank">
 	<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/logo - 副本.png" width=""/>
@@ -17,10 +19,16 @@
 <h2 align="center">Special Sponsors</h2>
 
 <p align="center">
-<a href="https://coding.net/?utm_source=JavaGuide" target="_blank">
-  <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/006rNwoDgy1g2dw5gau7nj30eg02vwfr.jpg"  width="390px"/>
+<!--
+<a href="https://www.aliyun.com/acts/hi618/index?userCode=hf47liqn" target="_blank">
+   <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/阿里云外投-1600-300.png"  width="390px"  height="70px" alt="阿里云618 2折起！"/>
 </a>
+-->
+<a href="https://coding.net/?utm_source=JavaGuide" target="_blank">
+  <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/006rNwoDgy1g2dw5gau7nj30eg02vwfr.jpg"  alt="零成本开启敏捷研发" height="70px" width="390px"/>
+</a>  
 </p>
+
 推荐使用 https://snailclimb.top/JavaGuide/ 在线阅读(访问速度慢的话，请使用 https://snailclimb.gitee.io/javaguide )，在线阅读内容本仓库同步一致。这种方式阅读的优势在于：有侧边栏阅读体验更好，Gitee pages 的访问速度相对来说也比较快。
 
 ## 目录
@@ -69,7 +77,7 @@
 
 ### 容器
 
-* [常见面试题](docs/java/collection/Java集合框架常见面试题.md)
+* [Java容器常见面试题/知识点总结](docs/java/collection/Java集合框架常见面试题.md)
 * [ArrayList 源码学习](docs/java/collection/ArrayList.md)  
 * [LinkedList 源码学习](docs/java/collection/LinkedList.md)   
 * [HashMap(JDK1.8)源码学习](docs/java/collection/HashMap.md)  
@@ -128,7 +136,7 @@
 ### 算法
 
 - [算法学习资源推荐](docs/dataStructures-algorithms/算法学习资源推荐.md)  
-- [几道常见的子符串算法题总结 ](docs/dataStructures-algorithms/几道常见的子符串算法题.md)
+- [几道常见的字符串算法题总结 ](docs/dataStructures-algorithms/几道常见的子符串算法题.md)
 - [几道常见的链表算法题总结 ](docs/dataStructures-algorithms/几道常见的链表算法题.md)   
 - [剑指offer部分编程题](docs/dataStructures-algorithms/剑指offer部分编程题.md)
 - [公司真题](docs/dataStructures-algorithms/公司真题.md)
@@ -141,7 +149,7 @@
 * [MySQL 学习与面试](docs/database/MySQL.md)
 * [一千行MySQL学习笔记](docs/database/一千行MySQL命令.md)
 * [MySQL高性能优化规范建议](docs/database/MySQL高性能优化规范建议.md)
-* [搞定数据库索引就是这么简单](docs/database/MySQL%20Index.md)
+* [数据库索引总结](docs/database/MySQL%20Index.md)
 * [事务隔离级别(图文详解)](docs/database/事务隔离级别(图文详解).md)
 * [一条SQL语句在MySQL中如何执行的](docs/database/一条sql语句在mysql中如何执行的.md)
 
