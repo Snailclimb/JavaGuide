@@ -432,15 +432,21 @@ final关键字主要用在三个地方：变量、方法、类。
 
 下面这部分内容来自issue:<https://github.com/Snailclimb/JavaGuide/issues/190>。
 
-**关于返回值：**
+**注意：** 当try语句和finally语句中都有return语句时，在方法返回之前，finally语句的内容将被执行，并且finally语句的返回值将会覆盖原始的返回值。如下：
 
-如果try语句里有return，返回的是try语句块中变量值。 
-详细执行过程如下：
+```java
+    public static int f(int value) {
+        try {
+            return value * value;
+        } finally {
+            if (value == 2) {
+                return 0;
+            }
+        }
+    }
+```
 
-1. 如果有返回值，就把返回值保存到局部变量中；
-2. 执行jsr指令跳到finally语句里执行；
-3. 执行完finally语句后，返回之前保存在局部变量表里的值。
-4. 如果try，finally语句里均有return，忽略try的return，而使用finally的return.
+如果调用 `f(2)`，返回值将是0，因为finally语句的返回值覆盖了try语句块的返回值。
 
 ## 33 Java序列化中如果有些字段不想进行序列化，怎么办？
 
