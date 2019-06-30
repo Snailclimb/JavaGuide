@@ -317,7 +317,7 @@ Serial（串行）收集器收集器是最基本、历史最悠久的垃圾收�
 
 ### 4.3 Parallel Scavenge 收集器
 
-Parallel Scavenge 收集器类似于 ParNew 收集器。 **那么它有什么特别之处呢？**
+Parallel Scavenge 收集器也是使用复制算法的多线程收集器，它看上去几乎和ParNew都一样。 **那么它有什么特别之处呢？**
 
 ```
 -XX:+UseParallelGC 
@@ -333,7 +333,7 @@ Parallel Scavenge 收集器类似于 ParNew 收集器。 **那么它有什么特
 **Parallel Scavenge 收集器关注点是吞吐量（高效率的利用 CPU）。CMS 等垃圾收集器的关注点更多的是用户线程的停顿时间（提高用户体验）。所谓吞吐量就是 CPU 中用于运行用户代码的时间与 CPU 总消耗时间的比值。** Parallel Scavenge 收集器提供了很多参数供用户找到最合适的停顿时间或最大吞吐量，如果对于收集器运作不太了解的话，手工优化存在的话可以选择把内存管理优化交给虚拟机去完成也是一个不错的选择。
 
  **新生代采用复制算法，老年代采用标记-整理算法。**
-![ParNew 收集器 ](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-27/22018368.jpg)
+![Parallel Scavenge 收集器 ](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-27/22018368.jpg)
 
 
 ### 4.4.Serial Old 收集器
