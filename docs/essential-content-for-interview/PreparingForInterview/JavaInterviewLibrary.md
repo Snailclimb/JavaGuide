@@ -1,3 +1,5 @@
+昨天我整理了公众号历史所有和面试相关的我觉得还不错的文章：[整理了一些有助于你拿Offer的文章](<https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247485434&idx=1&sn=f6bdf19d2594bf719e149e48d1384340&chksm=cea24831f9d5c1278617d347238f65f0481f36291675f05fabb382b69ea0ff3adae7ee6e6524&token=1452779379&lang=zh_CN#rd>) 。今天分享一下最近逛Github看到了一些我觉得对于Java面试以及学习有帮助的仓库，这些仓库涉及Java核心知识点整理、Java常见面试题、算法、基础知识点比如网络和操作系统等等。
+
 ## 知识点相关
 
 ### 1.JavaGuide
@@ -12,43 +14,43 @@
 - Star:  68.3k 
 - 介绍: 技术面试必备基础知识、Leetcode 题解、后端面试、Java 面试、春招、秋招、操作系统、计算机网络、系统设计。
 
-### 4. advanced-java
+### 3. advanced-java
 
 - Github地址：[https://github.com/doocs/advanced-java](https://github.com/doocs/advanced-java)
 - star: 23.4k
 - 介绍: 互联网 Java 工程师进阶知识完全扫盲：涵盖高并发、分布式、高可用、微服务等领域知识，后端同学必看，前端同学也可学习。
 
-### 5.JCSprout
+### 4.JCSprout
 
 - Github地址：[https://github.com/crossoverJie/JCSprout](https://github.com/crossoverJie/JCSprout)
 - star: 21.2k
 - 介绍: Java Core Sprout：处于萌芽阶段的 Java 核心知识库。
 
-### 6.technology-talk
+### 5.technology-talk
 
 - Github地址： [https://github.com/aalansehaiyang/technology-talk](https://github.com/aalansehaiyang/technology-talk)
 - star: 6.1k
 - 介绍: 汇总java生态圈常用技术框架、开源中间件，系统架构、项目管理、经典架构案例、数据库、常用三方库、线上运维等知识。
 
-### 7.fullstack-tutorial
+### 6.fullstack-tutorial
 
 - Github地址： [https://github.com/frank-lam/fullstack-tutorial](https://github.com/frank-lam/fullstack-tutorial)
 - star: 4.0k
 - 介绍: fullstack tutorial 2019，后台技术栈/架构师之路/全栈开发社区，春招/秋招/校招/面试。
 
-### 8.3y
+### 7.3y
 
 - Github地址：[https://github.com/ZhongFuCheng3y/3y](https://github.com/ZhongFuCheng3y/3y)
 - star: 1.9 k
 - 介绍: Java 知识整合。
 
-### 9.java-bible
+### 8.java-bible
 
 - Github地址：[https://github.com/biezhi/java-bible](https://github.com/biezhi/java-bible)
 - star: 2.3k
 - 介绍:  这里记录了一些技术摘要，部分文章来自网络，本项目的目的力求分享精品技术干货，以Java为主。
 
-### 10.interviews
+### 9.interviews
 
 - Github地址:  [https://github.com/kdn251/interviews/blob/master/README-zh-cn.md](https://github.com/kdn251/interviews/blob/master/README-zh-cn.md)
 - star: 35.3k
