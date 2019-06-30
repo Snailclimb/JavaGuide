@@ -3,7 +3,7 @@
 ### 团队
 
 - **阿里巴巴Java开发手册（详尽版）** <https://github.com/alibaba/p3c/blob/master/阿里巴巴Java开发手册（详尽版）.pdf>
-- **Google Java编程风格指南：** <http://www.hawstein.com/posts/google-java-style.html>
+- **Google Java编程风格指南：** <http://hawstein.com/2014/01/20/google-java-style/>
 
 ### 个人
 
