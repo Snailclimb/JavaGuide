@@ -26,31 +26,43 @@
 - star: 21.2k
 - 介绍: Java Core Sprout：处于萌芽阶段的 Java 核心知识库。
 
-### 5.technology-talk
+### 5.toBeTopJavaer
+
+- Github地址：[https://github.com/hollischuang/toBeTopJavaer](https://github.com/hollischuang/toBeTopJavaer)
+- star: 4.0 k
+- 介绍: Java工程师成神之路。
+
+### 6.architect-awesome
+
+- Github地址：[https://github.com/xingshaocheng/architect-awesome](https://github.com/xingshaocheng/architect-awesome)
+- star: 34.4 k
+- 介绍:后端架构师技术图谱。
+
+### 7.technology-talk
 
 - Github地址： [https://github.com/aalansehaiyang/technology-talk](https://github.com/aalansehaiyang/technology-talk)
 - star: 6.1k
 - 介绍: 汇总java生态圈常用技术框架、开源中间件，系统架构、项目管理、经典架构案例、数据库、常用三方库、线上运维等知识。
 
-### 6.fullstack-tutorial
+### 8.fullstack-tutorial
 
 - Github地址： [https://github.com/frank-lam/fullstack-tutorial](https://github.com/frank-lam/fullstack-tutorial)
 - star: 4.0k
 - 介绍: fullstack tutorial 2019，后台技术栈/架构师之路/全栈开发社区，春招/秋招/校招/面试。
 
-### 7.3y
+### 9.3y
 
 - Github地址：[https://github.com/ZhongFuCheng3y/3y](https://github.com/ZhongFuCheng3y/3y)
 - star: 1.9 k
 - 介绍: Java 知识整合。
 
-### 8.java-bible
+### 10.java-bible
 
 - Github地址：[https://github.com/biezhi/java-bible](https://github.com/biezhi/java-bible)
 - star: 2.3k
 - 介绍:  这里记录了一些技术摘要，部分文章来自网络，本项目的目的力求分享精品技术干货，以Java为主。
 
-### 9.interviews
+### 11.interviews
 
 - Github地址:  [https://github.com/kdn251/interviews/blob/master/README-zh-cn.md](https://github.com/kdn251/interviews/blob/master/README-zh-cn.md)
 - star: 35.3k
