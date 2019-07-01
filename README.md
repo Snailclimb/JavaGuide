@@ -284,7 +284,7 @@ Markdown 格式参考：[Github Markdown格式](https://guides.github.com/featur
 
 添加我的微信备注“Github”,回复关键字 **“加群”** 即可入群。
 
-![我的微信](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-2/JavaGuide.jpg)
+![我的微信](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/wechat1.jpg)
 
 ### Contributor
 
