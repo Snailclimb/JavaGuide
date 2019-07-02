@@ -1,3 +1,13 @@
+<!-- TOC -->
+
+- [Arrays.asList()使用指南](#arraysaslist使用指南)
+    - [简介](#简介)
+    - [《阿里巴巴Java 开发手册》对其的描述](#阿里巴巴java-开发手册对其的描述)
+    - [使用时的注意事项总结](#使用时的注意事项总结)
+    - [如何正确的将数组转换为ArrayList?](#如何正确的将数组转换为arraylist)
+
+<!-- /TOC -->
+
 ## Arrays.asList()使用指南
 
 最近使用`Arrays.asList()`遇到了一些坑，然后在网上看到这篇文章：[Java Array to List Examples](http://javadevnotes.com/java-array-to-list-examples) 感觉挺不错的，但是还是特别全面。所以，自己对于这块小知识点进行了简单的总结。
@@ -183,3 +193,4 @@ List<String> l3 = Lists.newArrayList("or", "string", "elements"); // from vararg
 List<String> list = new ArrayList<String>();
 CollectionUtils.addAll(list, str);
 ```
+
