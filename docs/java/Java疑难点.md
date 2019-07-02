@@ -5,6 +5,7 @@
     - [《阿里巴巴Java 开发手册》对其的描述](#阿里巴巴java-开发手册对其的描述)
     - [使用时的注意事项总结](#使用时的注意事项总结)
     - [如何正确的将数组转换为ArrayList?](#如何正确的将数组转换为arraylist)
+- [`Collection.toArray()`方法使用的坑&如何反转数组](#collectiontoarray方法使用的坑如何反转数组)
 
 <!-- /TOC -->
 
@@ -194,3 +195,17 @@ List<String> list = new ArrayList<String>();
 CollectionUtils.addAll(list, str);
 ```
 
+## `Collection.toArray()`方法使用的坑&如何反转数组
+
+该方法是一个泛型方法：`<T> T[] toArray(T[] a);` 如果`toArray`方法中没有传递任何参数的话返回的是`Object`类型数组。
+
+```java
+String [] s= new String[]{
+    "dog", "lazy", "a", "over", "jumps", "fox", "brown", "quick", "A"
+};
+List<String> list = Arrays.asList(s);
+Collections.reverse(list);
+s=list.toArray(new String[0]);//没有指定类型的话会报错
+```
+
+由于JVM优化，`new String[0]`作为`Collection.toArray()`方法的参数现在使用更好，`new String[0]`就是起一个模板的作用，指定了返回数组的类型，0是为了节省空间，因为它只是为了说明返回的类型。详见：<https://shipilev.net/blog/2016/arrays-wisdom-ancients/>
