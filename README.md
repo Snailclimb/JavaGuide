@@ -73,6 +73,7 @@
 ### 基础
 
 * [Java 基础知识回顾](docs/java/Java基础知识.md)
+* [Java 基础知识疑难点总结](docs/java/Java疑难点.md)
 * [J2EE 基础知识回顾](docs/java/J2EE基础知识.md)
 
 ### 容器
@@ -125,7 +126,7 @@
 ### Linux相关
 
 * [后端程序员必备的 Linux 基础知识](docs/operating-system/后端程序员必备的Linux基础知识.md)  
-* [Shell 编程入门](docs/operating-system/Shell.md)  
+* [Shell 编程入门](docs/operating-system/Shell.md) 
 
 ## 数据结构与算法
 
@@ -185,7 +186,7 @@
 - [数据通信(RESTful、RPC、消息队列)相关知识点总结](docs/system-design/data-communication/summary.md)
 - [Dubbo 总结：关于 Dubbo 的重要知识点](docs/system-design/data-communication/dubbo.md)
 - [消息队列总结](docs/system-design/data-communication/message-queue.md)
-- [RabbitMQ 入门](docs/system-design/data-communication/RabbitMQ.md)
+- [RabbitMQ 入门](docs/system-design/data-communication/rabbitmq.md)
 - [RocketMQ的几个简单问题与答案](docs/system-design/data-communication/RocketMQ-Questions.md)
 
 ### 网站架构
@@ -284,7 +285,7 @@ Markdown 格式参考：[Github Markdown格式](https://guides.github.com/featur
 
 添加我的微信备注“Github”,回复关键字 **“加群”** 即可入群。
 
-![我的微信](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-2/JavaGuide.jpg)
+![我的微信](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/wechat1.jpg)
 
 ### Contributor
 
@@ -339,6 +340,6 @@ Markdown 格式参考：[Github Markdown格式](https://guides.github.com/featur
 
 **《Java面试突击》:** 由本文档衍生的专为面试而生的《Java面试突击》V2.0 PDF 版本[公众号](#公众号)后台回复 **"Java面试突击"** 即可免费领取！
 
-**Java工程师必备学习资源:** 一些Java工程师常用学习资源[公众号](#公众号)后台回复关键字 **“1”** 即可免费无套路获取。 
+**Java工程师必备学习资源:** 一些Java工程师常用学习资源公众号后台回复关键字 **“1”** 即可免费无套路获取。 
 
-![我的公众号](https://user-gold-cdn.xitu.io/2018/11/28/167598cd2e17b8ec?w=258&h=258&f=jpeg&s=27334)
+![我的公众号](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/167598cd2e17b8ec.png)
