@@ -383,7 +383,7 @@ ThreadLocal.ThreadLocalMap inheritableThreadLocals = null;
 >
 > - **FixedThreadPool 和 SingleThreadExecutor** ： 允许请求的队列长度为 Integer.MAX_VALUE ，可能堆积大量的请求，从而导致OOM。
 > - **CachedThreadPool 和 ScheduledThreadPool** ： 允许创建的线程数量为 Integer.MAX_VALUE ，可能会创建大量线程，从而导致OOM。
-
+补充：oom:Out Of Memory  内存泄漏
 **方式一：通过构造方法实现**
 ![ThreadPoolExecutor构造方法](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/ThreadPoolExecutor构造方法.png)
 **方式二：通过Executor 框架的工具类Executors来实现**
