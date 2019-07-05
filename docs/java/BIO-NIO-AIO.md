@@ -174,6 +174,11 @@ public class IOServer {
  
 NIO中的N可以理解为Non-blocking，不单纯是New。它支持面向缓冲的，基于通道的I/O操作方法。 NIO提供了与传统BIO模型中的 `Socket` 和 `ServerSocket` 相对应的 `SocketChannel` 和 `ServerSocketChannel` 两种不同的套接字通道实现,两种通道都支持阻塞和非阻塞两种模式。阻塞模式使用就像传统中的支持一样，比较简单，但是性能和可靠性都不好；非阻塞模式正好与之相反。对于低负载、低并发的应用程序，可以使用同步阻塞I/O来提升开发速率和更好的维护性；对于高负载、高并发的（网络）应用，应使用 NIO 的非阻塞模式来开发。
 
+NIO 常常被叫做非阻塞 IO，主要是因为 NIO 在网络通信中的非阻塞特性被广泛使用。
+NIO 实现了 IO 多路复用中的 Reactor 模型，一个线程 Thread 使用一个选择器 Selector 通过轮询的方式去监听多个通道 Channel 上的事件，从而让一个线程就可以处理多个事件。
+通过配置监听的通道 Channel 为非阻塞，那么当 Channel 上的 IO 事件还未到达时，就不会进入阻塞状态一直等待，而是继续轮询其它 Channel，找到 IO 事件已经到达的 Channel 执行。
+因为创建和切换线程的开销很大，因此使用一个线程来处理多个事件而不是一个线程处理一个事件，对于 IO 密集型的应用具有很好地性能。
+
 ### 2.2 NIO的特性/NIO与IO区别
 
 如果是在面试中回答这个问题，我觉得首先肯定要从 NIO 流是非阻塞 IO 而 IO 流是阻塞 IO 说起。然后，可以从 NIO 的3个核心组件/特性为 NIO 带来的一些改进来分析。如果，你把这些都回答上了我觉得你对于 NIO 就有了更为深入一点的认识，面试官问到你这个问题，你也能很轻松的回答上来了。
@@ -332,6 +337,36 @@ public class NIOServer {
 - 项目庞大之后，自行实现的 NIO 很容易出现各类 bug，维护成本较高，上面这一坨代码我都不能保证没有 bug
 
 Netty 的出现很大程度上改善了 JDK 原生 NIO 所存在的一些让人难以忍受的问题。
+
+补充
+1. 创建选择器
+Selector selector = Selector.open();
+2. 将通道注册到选择器上
+ServerSocketChannel ssChannel = ServerSocketChannel.open();
+ssChannel.configureBlocking(false);
+ssChannel.register(selector, SelectionKey.OP_ACCEPT);
+通道必须配置为非阻塞模式，否则使用选择器就没有任何意义了，因为如果通道在某个事件上被阻塞，那么服务器就不能响应其它事件，必须等待这个事件处理完毕才能去处理其它事件，显然这和选择器的作用背道而驰。
+
+在将通道注册到选择器上时，还需要指定要注册的具体事件，主要有以下几类：
+
+SelectionKey.OP_CONNECT
+SelectionKey.OP_ACCEPT
+SelectionKey.OP_READ
+SelectionKey.OP_WRITE
+它们在 SelectionKey 的定义如下：
+
+public static final int OP_READ = 1 << 0;
+public static final int OP_WRITE = 1 << 2;
+public static final int OP_CONNECT = 1 << 3;
+public static final int OP_ACCEPT = 1 << 4;
+可以看出每个事件可以被当成一个位域，从而组成事件集整数。例如：
+
+int interestSet = SelectionKey.OP_READ | SelectionKey.OP_WRITE;
+3. 监听事件
+int num = selector.select();
+使用 select() 来监听到达的事件，它会一直阻塞直到有至少一个事件到达。
+
+4
 
 ### 3. AIO (Asynchronous I/O)
 
