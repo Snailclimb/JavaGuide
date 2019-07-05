@@ -408,3 +408,16 @@ AIO 是异步IO的缩写，虽然 NIO 在网络操作中，提供了非阻塞的
 - 《Netty 权威指南》第二版
 - https://zhuanlan.zhihu.com/p/23488863 (美团技术团队)
 注：阻塞与非阻塞指的的是当不能进行读写（网卡满时的写/网卡空的时候的读）的时候，I/O 操作立即返回还是阻塞；同步异步指的是，当数据已经ready的时候，读写操作是同步读还是异步读，阶段不同而已。
+
+
+补充参考：
+- Eckel B, 埃克尔, 昊鹏, 等. Java 编程思想 [M]. 机械工业出版社, 2002.
+- [IBM: NIO 入门](https://www.ibm.com/developerworks/cn/education/java/j-nio/j-nio.html)
+- [Java NIO Tutorial](http://tutorials.jenkov.com/java-nio/index.html)
+- [Java NIO 浅析](https://tech.meituan.com/nio.html)
+- [IBM: 深入分析 Java I/O 的工作机制](https://www.ibm.com/developerworks/cn/java/j-lo-javaio/index.html)
+- [IBM: 深入分析 Java 中的中文编码问题](https://www.ibm.com/developerworks/cn/java/j-lo-chinesecoding/index.html)
+- [IBM: Java 序列化的高级认识](https://www.ibm.com/developerworks/cn/java/j-lo-serial/index.html)
+- [NIO 与传统 IO 的区别](http://blog.csdn.net/shimiso/article/details/24990499)
+- [Decorator Design Pattern](http://stg-tud.github.io/sedc/Lecture/ws13-14/5.3-Decorator.html#mode=document)
+- [Socket Multicast](http://labojava.blogspot.com/2012/12/socket-multicast.html)
