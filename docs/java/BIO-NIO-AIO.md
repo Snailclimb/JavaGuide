@@ -366,8 +366,35 @@ int interestSet = SelectionKey.OP_READ | SelectionKey.OP_WRITE;
 int num = selector.select();
 使用 select() 来监听到达的事件，它会一直阻塞直到有至少一个事件到达。
 
-4
+4. 获取到达的事件
+Set<SelectionKey> keys = selector.selectedKeys();
+Iterator<SelectionKey> keyIterator = keys.iterator();
+while (keyIterator.hasNext()) {
+    SelectionKey key = keyIterator.next();
+    if (key.isAcceptable()) {
+        // ...
+    } else if (key.isReadable()) {
+        // ...
+    }
+    keyIterator.remove();
+}
+5. 事件循环
+因为一次 select() 调用不能处理完所有的事件，并且服务器端有可能需要一直监听事件，因此服务器端处理事件的代码一般会放在一个死循环内。
 
+while (true) {
+    int num = selector.select();
+    Set<SelectionKey> keys = selector.selectedKeys();
+    Iterator<SelectionKey> keyIterator = keys.iterator();
+    while (keyIterator.hasNext()) {
+        SelectionKey key = keyIterator.next();
+        if (key.isAcceptable()) {
+            // ...
+        } else if (key.isReadable()) {
+            // ...
+        }
+        keyIterator.remove();
+    }
+}
 ### 3. AIO (Asynchronous I/O)
 
 AIO 也就是 NIO 2。在 Java 7 中引入了 NIO 的改进版 NIO 2,它是异步非阻塞的IO模型。异步 IO 是基于事件和回调机制实现的，也就是应用操作之后会直接返回，不会堵塞在那里，当后台处理完成，操作系统会通知相应的线程进行后续的操作。
