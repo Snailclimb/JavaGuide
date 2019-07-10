@@ -17,7 +17,6 @@
 </p>
 
 <h2 align="center">Special Sponsors</h2>
-
 <p align="center">
 <!--
 <a href="https://www.aliyun.com/acts/hi618/index?userCode=hf47liqn" target="_blank">
@@ -244,10 +243,7 @@
 
 ## 待办
 
-- [x] [Java 8 新特性总结](docs/java/What's%20New%20in%20JDK8/Java8Tutorial.md)
-- [x] [Java 8 新特性详解](docs/java/What's%20New%20in%20JDK8/Java8教程推荐.md)
 - [ ] Java 多线程类别知识重构(---正在进行中---)
-- [x] [BIO,NIO,AIO 总结 ](docs/java/BIO-NIO-AIO.md)
 - [ ] Netty 总结(---正在进行中---)
 - [ ] 数据结构总结重构(---正在进行中---)
 

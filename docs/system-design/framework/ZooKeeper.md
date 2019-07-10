@@ -47,8 +47,6 @@ ZooKeeper 是一个开源的分布式协调服务，ZooKeeper框架最初是在�
 
 综上，何必增加那一个不必要的zookeeper呢？
 
-
-
 ## 二 关于 ZooKeeper  的一些重要概念
 
 ### 2.1 重要概念总结
