@@ -195,7 +195,7 @@ List<String> list = new ArrayList<String>();
 CollectionUtils.addAll(list, str);
 ```
 
-## `Collection.toArray()`方法使用的坑&如何反转数组
+## Collection.toArray()方法使用的坑&如何反转数组
 
 该方法是一个泛型方法：`<T> T[] toArray(T[] a);` 如果`toArray`方法中没有传递任何参数的话返回的是`Object`类型数组。
 
@@ -209,3 +209,13 @@ s=list.toArray(new String[0]);//没有指定类型的话会报错
 ```
 
 由于JVM优化，`new String[0]`作为`Collection.toArray()`方法的参数现在使用更好，`new String[0]`就是起一个模板的作用，指定了返回数组的类型，0是为了节省空间，因为它只是为了说明返回的类型。详见：<https://shipilev.net/blog/2016/arrays-wisdom-ancients/>
+
+## 不要在 foreach 循环里进行元素的 remove/add 操作
+
+如果要进行remove操作，可以调用迭代器的 remove 方法而不是集合类的 remove 方法。因为如果列表在任何时间从结构上修改创建迭代器之后，以任何方式除非通过迭代器自身remove/add方法，迭代器都将抛出一个ConcurrentModificationException,这就是单线程状态下产生的 fail-fast 机制。
+
+> fail-fast 机制：多个线程对 fail-fast 集合进行修改的时，可能会抛出ConcurrentModificationException，单线程下也会出现这种情况，上面已经提到过。
+
+java.util包下面的所有的集合类都是fail-fast的，而java.util.concurrent包下面的所有的类都是fail-safe的。
+
+![不要在 foreach 循环里进行元素的 remove/add 操作](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019/7/15497724883532-1.jpg)
