@@ -72,7 +72,7 @@
 ### 基础
 
 * [Java 基础知识回顾](docs/java/Java基础知识.md)
-* [Java 基础知识疑难点总结](docs/java/Java疑难点.md)
+* [Java 基础知识疑难点/易错点](docs/java/Java疑难点.md)
 * [J2EE 基础知识回顾](docs/java/J2EE基础知识.md)
 
 ### 容器
