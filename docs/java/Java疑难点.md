@@ -80,7 +80,7 @@ System.out.println(n);// 1.255
 
 注意：我们在使用BigDecimal时，为了防止精度丢失，推荐使用它的**BigDecimal(String)**构造方法来创建对象。《阿里巴巴Java开发手册》对这部分内容也有提到如下图所示。
 
-![BigDecimal](../../images/BigDecimal.png)
+![BigDecimal](../images/BigDecimal.png)
 
 ### 总结
 
