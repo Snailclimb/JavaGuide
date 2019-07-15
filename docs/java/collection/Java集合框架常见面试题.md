@@ -117,7 +117,7 @@ https://blog.csdn.net/Jae_Wang/article/details/80526216
 
 ## 说一说 ArrayList 的扩容机制吧
 
-详见笔主的这篇文章:[通过源码一步一步分析ArrayList 扩容机制](ArrayList-Grow.md)
+详见笔主的这篇文章:[通过源码一步一步分析ArrayList 扩容机制](https://github.com/Snailclimb/JavaGuide/blob/master/docs/java/collection/ArrayList-Grow.md)
 
 ## HashMap 和 Hashtable 的区别
 

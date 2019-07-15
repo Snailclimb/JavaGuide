@@ -124,7 +124,7 @@ tryReleaseShared(int)//共享方式。尝试释放资源，成功则返回true�
 
 ### 3 Semaphore(信号量)-允许多个线程同时访问
 
-**synchronized 和 ReentrantLock 都是一次只允许一个线程访问某个资源，Semaphore(信号量)可以指定多个线程同时访问某个资源。**示例代码如下：
+**synchronized 和 ReentrantLock 都是一次只允许一个线程访问某个资源，Semaphore(信号量)可以指定多个线程同时访问某个资源。** 示例代码如下：
 
 ```java
 /**
