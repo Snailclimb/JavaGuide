@@ -206,7 +206,7 @@ Linux中的打包文件一般是以.tar结尾的，压缩的命令一般是以.g
 
 1 将/test下的test.tar.gz解压到当前目录下可以使用命令：**`tar -xvf test.tar.gz`**
 
-2 将/test下的test.tar.gz解压到根目录/usr下:**`tar -xvf xxx.tar.gz -C /usr`**（- C代表指定解压的位置）
+2 将/test下的test.tar.gz解压到根目录/usr下:**`tar -xvf test.tar.gz -C /usr`**（- C代表指定解压的位置）
 
 
 ### 4.5 Linux的权限命令
