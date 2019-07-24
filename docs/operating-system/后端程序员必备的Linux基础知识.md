@@ -32,7 +32,7 @@
 
 ### 1.1 操作系统简介
 
-我通过以下四点介绍什么操作系统：
+我通过以下四点介绍什么是操作系统：
 
 - **操作系统（Operation System，简称OS）是管理计算机硬件与软件资源的程序，是计算机系统的内核与基石；**
 - **操作系统本质上是运行在计算机上的软件程序 ；**
@@ -193,7 +193,7 @@ Linux中的打包文件一般是以.tar结尾的，压缩的命令一般是以.g
 
   f：指定文件名
 
-比如：加入test目录下有三个文件分别是：aaa.txt bbb.txt ccc.txt，如果我们要打包test目录并指定压缩后的压缩包名称为test.tar.gz可以使用命令：**`tar -zcvf test.tar.gz aaa.txt bbb.txt ccc.txt`或：`tar -zcvf test.tar.gz       /test/`**
+比如：假如test目录下有三个文件分别是：aaa.txt bbb.txt ccc.txt，如果我们要打包test目录并指定压缩后的压缩包名称为test.tar.gz可以使用命令：**`tar -zcvf test.tar.gz aaa.txt bbb.txt ccc.txt`或：`tar -zcvf test.tar.gz       /test/`**
 
 
 **2）解压压缩包：**
