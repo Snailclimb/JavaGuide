@@ -43,7 +43,7 @@ Spring 官网列出的 Spring 的 6 个特征:
 ![Spring主要模块](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/Spring主要模块.png)
 
 - **Spring Core：** 基础,可以说 Spring 其他所有的功能都需要依赖于该类库。主要提供 IoC 依赖注入功能。
-- **Spring  Aspects ** ： 该模块为与AspectJ的集成提供支持。
+- **Spring  Aspects** ： 该模块为与AspectJ的集成提供支持。
 - **Spring AOP** ：提供了面向切面的编程实现。
 - **Spring JDBC** : Java数据库连接。
 - **Spring JMS** ：Java消息服务。
@@ -227,7 +227,7 @@ public OneService getService(status) {
 
 我们一般使用 `@Autowired` 注解自动装配 bean，要想把类标识成可用于 `@Autowired` 注解自动装配的 bean 的类,采用以下注解可实现：
 
-- `@Component` ：通用的注解，可标注任意类为 `Spring` 组件。如果一个Bean不知道属于拿个层，可以使用`@Component` 注解标注。
+- `@Component` ：通用的注解，可标注任意类为 `Spring` 组件。如果一个Bean不知道属于哪个层，可以使用`@Component` 注解标注。
 - `@Repository` : 对应持久层即 Dao 层，主要用于数据库相关操作。
 - `@Service` : 对应服务层，主要涉及一些复杂的逻辑，需要用到 Dao层。
 - `@Controller` : 对应 Spring MVC 控制层，主要用户接受用户请求并调用 Service 层返回数据给前端页面。
