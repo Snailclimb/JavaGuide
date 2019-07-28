@@ -36,9 +36,13 @@
 
 ## 文字教程推荐
 
-[MySQL 教程（菜鸟教程）](http://www.runoob.com/MySQL/MySQL-tutorial.html)
+- [Github-MySQL入门教程（MySQL tutorial book）](https://github.com/jaywcjlove/mysql-tutorial) （从零开始学习MySQL，主要是面向MySQL数据库管理系统初学者）
+- [官方教程](https://dev.mysql.com/doc/refman/5.7/)
+- [MySQL 教程（菜鸟教程）](http://www.runoob.com/MySQL/MySQL-tutorial.html)
 
-[MySQL教程（易百教程）](https://www.yiibai.com/MySQL/)
+## 相关资源推荐
+
+- [中国5级行政区域mysql库](https://github.com/kakuilan/china_area_mysql)
 
 ## 视频教程推荐
 
