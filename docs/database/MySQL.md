@@ -36,7 +36,7 @@
 
 ## 文字教程推荐
 
-- [SQL Tutorial](https://www.w3schools.com/sql/default.asp) （SQL语句学习）、[SQL语句在线练习](https://www.w3schools.com/sql/exercise.asp) （非常不错）
+- [SQL Tutorial](https://www.w3schools.com/sql/default.asp) （SQL语句学习,英文）、[SQL Tutorial](https://www.w3school.com.cn/sql/index.asp)（SQL语句学习,中文）、[SQL语句在线练习](https://www.w3schools.com/sql/exercise.asp) （非常不错）
 - [Github-MySQL入门教程（MySQL tutorial book）](https://github.com/jaywcjlove/mysql-tutorial) （从零开始学习MySQL，主要是面向MySQL数据库管理系统初学者）
 - [官方教程](https://dev.mysql.com/doc/refman/5.7/)
 - [MySQL 教程（菜鸟教程）](http://www.runoob.com/MySQL/MySQL-tutorial.html)
