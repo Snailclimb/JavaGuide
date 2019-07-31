@@ -419,11 +419,11 @@ final关键字主要用在三个地方：变量、方法、类。
 
 ### 异常处理总结
 
-- **try 块：**用于捕获异常。其后可接零个或多个catch块，如果没有catch块，则必须跟一个finally块。
-- **catch 块：**用于处理try捕获到的异常。
-- **finally 块：**无论是否捕获或处理异常，finally块里的语句都会被执行。当在try块或catch块中遇到return语句时，finally语句块将在方法返回之前被执行。
+- **try 块**：用于捕获异常。其后可接零个或多个catch块，如果没有catch块，则必须跟一个finally块。
+- **catch 块**：用于处理try捕获到的异常。
+- **finally 块**：无论是否捕获或处理异常，finally块里的语句都会被执行。当在try块或catch块中遇到return语句时，finally语句块将在方法返回之前被执行。
 
-**在以下4种特殊情况下，finally块不会被执行：**
+**在以下4种特殊情况下，finally块不会被执行**：
 
 1. 在finally语句块第一行发生了异常。 因为在其他行，finally块还是会得到执行
 2. 在前面的代码中用了System.exit(int)已退出程序。 exit是带参函数 ；若该语句在异常语句之后，finally会执行
