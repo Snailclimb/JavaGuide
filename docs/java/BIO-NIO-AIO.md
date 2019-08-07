@@ -202,13 +202,13 @@ NIO 通过Channel（通道） 进行读写。
 
 通道是双向的，可读也可写，而流的读写是单向的。无论读写，通道只能和Buffer交互。因为 Buffer，通道可以异步地读写。
 
-####  4)Selectors(选择器)
+#### 4)Selector (选择器)
 
 NIO有选择器，而IO没有。
 
 选择器用于使用单个线程处理多个通道。因此，它需要较少的线程来处理这些通道。线程之间的切换对于操作系统来说是昂贵的。 因此，为了提高系统效率选择器是有用的。
 
-![一个单线程中Slector维护3个Channel的示意图](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-2/Slector.png)
+![一个单线程中Selector维护3个Channel的示意图](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-2/Slector.png)
 
 ### 2.3  NIO 读数据和写数据方式
 通常来说NIO中的所有IO都是从 Channel（通道） 开始的。
@@ -273,8 +273,7 @@ public class NIOServer {
 
               if (key.isAcceptable()) {
                 try {
-                  // (1)
-                  // 每来一个新连接，不需要创建一个线程，而是直接注册到clientSelector
+                  // (1) 每来一个新连接，不需要创建一个线程，而是直接注册到clientSelector
                   SocketChannel clientChannel = ((ServerSocketChannel) key.channel()).accept();
                   clientChannel.configureBlocking(false);
                   clientChannel.register(clientSelector, SelectionKey.OP_READ);
