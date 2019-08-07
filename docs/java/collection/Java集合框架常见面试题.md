@@ -112,7 +112,7 @@ public interface RandomAccess {
 **HashMap 中带有初始容量的构造函数：**
 
 ```java
-    public HashMap(int initialCapacity, float loadFactor) {
+    public HashMap(int initialCapacity, float loadFactor) {//loadFactor:加载因子即当 元素个数 超过 容量长度的0.75倍 时，进行扩容
         if (initialCapacity < 0)
             throw new IllegalArgumentException("Illegal initial capacity: " +
                                                initialCapacity);
