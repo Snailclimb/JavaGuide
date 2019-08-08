@@ -428,6 +428,10 @@ final关键字主要用在三个地方：变量、方法、类。
 
 transient关键字的作用是：阻止实例中那些用此关键字修饰的的变量序列化；当对象被反序列化时，被transient修饰的变量值不会被持久化和恢复。transient只能修饰变量，不能修饰类和方法。
 [序列化serializable和transient关键字的用法](https://www.cnblogs.com/huhx/p/serializable.html)
+
+## 34 enum的用法
+[enum的用法](https://www.jianshu.com/p/46dbd930f6a2)
+
 # Java基础学习书籍推荐
 
 **《Head First Java.第二版》：**
