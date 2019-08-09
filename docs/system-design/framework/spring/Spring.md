@@ -71,7 +71,7 @@ Spring IOC的初始化过程：
 
 ### Spring源码阅读
 
-阅读源码不仅可以加深我们对Spring设计思想的理解，提高自己的编码水品，还可以让自己在面试中如鱼得水。下面的是Github上的一个开源的Spring源码阅读，大家有时间可以看一下，当然你如果有时间也可以自己慢慢研究源码。
+阅读源码不仅可以加深我们对Spring设计思想的理解，提高自己的编码水平，还可以让自己在面试中如鱼得水。下面的是Github上的一个开源的Spring源码阅读，大家有时间可以看一下，当然你如果有时间也可以自己慢慢研究源码。
 
  - [spring-core](https://github.com/seaswalker/Spring/blob/master/note/Spring.md)
 - [spring-aop](https://github.com/seaswalker/Spring/blob/master/note/spring-aop.md)
