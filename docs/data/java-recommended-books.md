@@ -1,5 +1,7 @@
 
 <!-- TOC -->
+linux命令：https://yq.aliyun.com/articles/681643
+linux命令缩写：https://www.cnblogs.com/z-bear/p/8558051.html
 
 - [Java](#java)
     - [基础](#基础)
