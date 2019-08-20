@@ -175,6 +175,7 @@
 - [Spring中bean的作用域与生命周期](docs/system-design/framework/spring/SpringBean.md)
 - [SpringMVC 工作原理详解](docs/system-design/framework/spring/SpringMVC-Principle.md)
 - [Spring中都用到了那些设计模式?](docs/system-design/framework/spring/Spring-Design-Patterns.md)
+- [RestControllerVSController](docs/system-design/framework/spring/RestControllerVSController.md)
 
 #### ZooKeeper
 
