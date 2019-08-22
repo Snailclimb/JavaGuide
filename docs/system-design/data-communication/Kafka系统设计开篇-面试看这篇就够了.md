@@ -1,4 +1,4 @@
-## 原文链接：https://mp.weixin.qq.com/s/zxPz_aFEMrshApZQ727h4g**
+> 原文链接：https://mp.weixin.qq.com/s/zxPz_aFEMrshApZQ727h4g 
 
 ## 引言
 
@@ -275,8 +275,6 @@ zero-copy
 增大producer数量
 ack配置
 batch
-
-## 原文链接：https://mp.weixin.qq.com/s/zxPz_aFEMrshApZQ727h4g **
 
 如果喜欢我的文章，欢迎扫码关注
 
