@@ -51,6 +51,8 @@ Spring 官网列出的 Spring 的 6 个特征:
 - **Spring Web** : 为创建Web应用程序提供支持。
 - **Spring Test** : 提供了对 JUnit 和 TestNG 测试的支持。
 
+
+
 ## 谈谈自己对于 Spring IoC 和 AOP 的理解
 
 ### IoC
@@ -276,7 +278,43 @@ public OneService getService(status) {
 
 当`@Transactional`注解作用于类上时，该类的所有 public 方法将都具有该类型的事务属性，同时，我们也可以在方法级别使用该标注来覆盖类级别的定义。如果类或者方法加了这个注解，那么这个类里面的方法抛出异常，就会回滚，数据库里面的数据也会回滚。
 
-在`@Transactional`注解中如果不配置`rollbackFor`属性,那么事物只会在遇到`RuntimeException`的时候才会回滚,加上`rollbackFor=Exception.class`,可以让事物在遇到非运行时异常时也回滚
+在`@Transactional`注解中如果不配置`rollbackFor`属性,那么事物只会在遇到`RuntimeException`的时候才会回滚,加上`rollbackFor=Exception.class`,可以让事物在遇到非运行时异常时也回滚。
+
+## 如何使用JPA在数据库中非持久化一个字段？
+
+假如我们有有下面一个类：
+
+```java
+Entity(name="USER")
+public class User {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
+    private Long id;
+    
+    @Column(name="USER_NAME")
+    private String userName;
+    
+    @Column(name="PASSWORD")
+    private String password;
+  
+    private String secrect;
+  
+}
+```
+
+如果我们想让`secrect` 这个字段不被持久化，也就是不被数据库存储怎么办？我们可以采用下面几种方法：
+
+```java
+static String transient1; // not persistent because of static
+final String transient2 = “Satish”; // not persistent because of final
+transient String transient3; // not persistent because of transient
+@Transient
+String transient4; // not persistent because of @Transient
+```
+
+一般使用后面两种方式比较多，我个人使用注解的方式比较多。
 
 ## 参考
 
