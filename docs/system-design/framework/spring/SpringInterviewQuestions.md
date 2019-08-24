@@ -2,7 +2,13 @@
 
 - [什么是 Spring 框架?](#什么是-spring-框架)
 - [列举一些重要的Spring模块？](#列举一些重要的spring模块)
+- [@RestController vs @Controller](#restcontroller-vs-controller)
+    - [Controller 返回一个页面](#controller-返回一个页面)
+    - [@RestController 返回JSON 或 XML 形式数据](#restcontroller-返回json-或-xml-形式数据)
+    - [@Controller +@ResponseBody 返回JSON 或 XML 形式数据](#controller-responsebody-返回json-或-xml-形式数据)
 - [谈谈自己对于 Spring IoC 和 AOP 的理解](#谈谈自己对于-spring-ioc-和-aop-的理解)
+    - [IoC](#ioc)
+    - [AOP](#aop)
 - [Spring AOP 和 AspectJ AOP 有什么区别？](#spring-aop-和-aspectj-aop-有什么区别)
 - [Spring 中的 bean 的作用域有哪些?](#spring-中的-bean-的作用域有哪些)
 - [Spring 中的单例 bean 的线程安全问题了解吗？](#spring-中的单例-bean-的线程安全问题了解吗)
@@ -15,7 +21,10 @@
 - [Spring 管理事务的方式有几种？](#spring-管理事务的方式有几种)
 - [Spring 事务中的隔离级别有哪几种?](#spring-事务中的隔离级别有哪几种)
 - [Spring 事务中哪几种事务传播行为?](#spring-事务中哪几种事务传播行为)
+- [@Transactional(rollbackFor = Exception.class)注解了解吗？](#transactionalrollbackfor--exceptionclass注解了解吗)
+- [如何使用JPA在数据库中非持久化一个字段？](#如何使用jpa在数据库中非持久化一个字段)
 - [参考](#参考)
+- [公众号](#公众号)
 
 <!-- /TOC -->
 
@@ -51,7 +60,32 @@ Spring 官网列出的 Spring 的 6 个特征:
 - **Spring Web** : 为创建Web应用程序提供支持。
 - **Spring Test** : 提供了对 JUnit 和 TestNG 测试的支持。
 
+## @RestController vs @Controller
 
+### Controller 返回一个页面
+
+单独使用 `@Controller` 不加 `@ResponseBody`的话一般使用在要返回一个视图的情况，这种情况属于比较传统的Spring MVC 的应用，对应于前后端不分离的情况。
+
+![SpringMVC 传统工作流程](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/SpringMVC传统工作流程.png)
+
+### @RestController 返回JSON 或 XML 形式数据
+
+但`@RestController`只返回对象，对象数据直接以 JSON 或 XML 形式写入 HTTP 响应(Response)中，这种情况属于 RESTful Web服务，这也是目前日常开发所接触的最常用的情况（前后端分离）。
+
+![SpringMVC+RestController](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/SpringMVCRestController.png)
+
+### @Controller +@ResponseBody 返回JSON 或 XML 形式数据
+
+如果你需要在Spring4之前开发 RESTful Web服务的话，你需要使用`@Controller` 并结合`@ResponseBody`注解，也就是说`@Controller` +`@ResponseBody`= `@RestController`（Spring 4 之后新加的注解）。
+
+> `@ResponseBody` 注解的作用是将 `Controller` 的方法返回的对象通过适当的转换器转换为指定的格式之后，写入到HTTP 响应(Response)对象的 body 中，通常用来返回 JSON 或者 XML 数据，返回 JSON 数据的情况比较多。
+
+![Spring3.xMVC RESTfulWeb服务工作流程](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/Spring3.xMVCRESTfulWeb服务工作流程.png)
+
+Reference:
+
+- https://dzone.com/articles/spring-framework-restcontroller-vs-controller（图片来源）
+- https://javarevisited.blogspot.com/2017/08/difference-between-restcontroller-and-controller-annotations-spring-mvc-rest.html?m=1
 
 ## 谈谈自己对于 Spring IoC 和 AOP 的理解
 
@@ -327,7 +361,7 @@ String transient4; // not persistent because of @Transient
 - <http://www.tomaszezula.com/2014/02/09/spring-series-part-5-component-vs-bean/>
 - <https://stackoverflow.com/questions/34172888/difference-between-bean-and-autowired>
 
-### 公众号
+## 公众号
 
 如果大家想要实时关注我更新的文章以及分享的干货的话，可以关注我的公众号。
 
@@ -336,3 +370,4 @@ String transient4; // not persistent because of @Transient
 **Java工程师必备学习资源:** 一些Java工程师常用学习资源公众号后台回复关键字 **“1”** 即可免费无套路获取。 
 
 ![我的公众号](https://user-gold-cdn.xitu.io/2018/11/28/167598cd2e17b8ec?w=258&h=258&f=jpeg&s=27334)
+
