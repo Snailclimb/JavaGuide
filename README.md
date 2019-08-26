@@ -61,7 +61,7 @@
 - [工具](#工具)
     - [Git](#git)
     - [Docker](#Docker)
-- [资料](#资料)
+- [资源](#资源)
     - [书单](#书单)
     - [Github榜单](#Github榜单)
 - [待办](#待办)
@@ -110,6 +110,7 @@
 
 * [Java 8 新特性总结](docs/java/What's%20New%20in%20JDK8/Java8Tutorial.md)
 * [Java 8 学习资源推荐](docs/java/What's%20New%20in%20JDK8/Java8教程推荐.md)
+* [Java8 forEach 指南](docs/java/What's%20New%20in%20JDK8/Java8foreach指南.md)
 
 ### 编程规范
 
@@ -231,13 +232,17 @@
 * [Docker 入门](docs/tools/Docker.md)
 * [一文搞懂 Docker 镜像的常用操作！](docs/tools/Docker-Image.md)
 
-## 资料
+## 资源
 
 ### 书单
 
 - [Java程序员必备书单](docs/data/java-recommended-books.md)
 
-### Github榜单
+### 实战项目推荐
+
+- [onemall](https://github.com/YunaiV/onemall) : mall 商城，基于微服务的思想，构建在 B2C 电商场景下的项目实战。核心技术栈，是 Spring Boot + Dubbo 。未来，会重构成 Spring Cloud Alibaba 。
+
+### Github 历史榜单
 
 - [Java 项目月榜单](docs/github-trending/JavaGithubTrending.md)
 
