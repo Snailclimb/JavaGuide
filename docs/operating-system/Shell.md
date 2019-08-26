@@ -290,7 +290,7 @@ for i in ${array[@]};do echo $i ;done # 遍历数组，数组元素为空，没�
 a=3;b=3;
 val=`expr $a + $b`
 #输出：Total value : 6
-echo "Total value : $val
+echo "Total value : $val"
 ```
 
 
