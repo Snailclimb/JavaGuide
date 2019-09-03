@@ -2,7 +2,13 @@
 
 - [什么是 Spring 框架?](#什么是-spring-框架)
 - [列举一些重要的Spring模块？](#列举一些重要的spring模块)
+- [@RestController vs @Controller](#restcontroller-vs-controller)
+    - [Controller 返回一个页面](#controller-返回一个页面)
+    - [@RestController 返回JSON 或 XML 形式数据](#restcontroller-返回json-或-xml-形式数据)
+    - [@Controller +@ResponseBody 返回JSON 或 XML 形式数据](#controller-responsebody-返回json-或-xml-形式数据)
 - [谈谈自己对于 Spring IoC 和 AOP 的理解](#谈谈自己对于-spring-ioc-和-aop-的理解)
+    - [IoC](#ioc)
+    - [AOP](#aop)
 - [Spring AOP 和 AspectJ AOP 有什么区别？](#spring-aop-和-aspectj-aop-有什么区别)
 - [Spring 中的 bean 的作用域有哪些?](#spring-中的-bean-的作用域有哪些)
 - [Spring 中的单例 bean 的线程安全问题了解吗？](#spring-中的单例-bean-的线程安全问题了解吗)
@@ -15,11 +21,14 @@
 - [Spring 管理事务的方式有几种？](#spring-管理事务的方式有几种)
 - [Spring 事务中的隔离级别有哪几种?](#spring-事务中的隔离级别有哪几种)
 - [Spring 事务中哪几种事务传播行为?](#spring-事务中哪几种事务传播行为)
+- [@Transactional(rollbackFor = Exception.class)注解了解吗？](#transactionalrollbackfor--exceptionclass注解了解吗)
+- [如何使用JPA在数据库中非持久化一个字段？](#如何使用jpa在数据库中非持久化一个字段)
 - [参考](#参考)
+- [公众号](#公众号)
 
 <!-- /TOC -->
 
-这篇文章主要是想通过一些问题，加深大家对于 Spring 的理解，所以不会涉及太多的代码！这篇文章整理了挺长时间，下面的很多问题我自己在使用 Spring 的过程中也并没有注意，自己也是临时查阅了很多资料和书籍补上的。网上也有一些很多关于 Spring 常见问题/面试题整理的文章，我感觉大部分都是互相 copy，而且很多问题也不是很汗，有些回答也存在问题。所以，自己花了一周的业余时间整理了一下，希望对大家有帮助。
+这篇文章主要是想通过一些问题，加深大家对于 Spring 的理解，所以不会涉及太多的代码！这篇文章整理了挺长时间，下面的很多问题我自己在使用 Spring 的过程中也并没有注意，自己也是临时查阅了很多资料和书籍补上的。网上也有一些很多关于 Spring 常见问题/面试题整理的文章，我感觉大部分都是互相 copy，而且很多问题也不是很好，有些回答也存在问题。所以，自己花了一周的业余时间整理了一下，希望对大家有帮助。
 
 ## 什么是 Spring 框架?
 
@@ -43,13 +52,40 @@ Spring 官网列出的 Spring 的 6 个特征:
 ![Spring主要模块](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/Spring主要模块.png)
 
 - **Spring Core：** 基础,可以说 Spring 其他所有的功能都需要依赖于该类库。主要提供 IoC 依赖注入功能。
-- **Spring  Aspects ** ： 该模块为与AspectJ的集成提供支持。
-- **Spring AOP** ：提供了面向方面的编程实现。
+- **Spring  Aspects** ： 该模块为与AspectJ的集成提供支持。
+- **Spring AOP** ：提供了面向切面的编程实现。
 - **Spring JDBC** : Java数据库连接。
 - **Spring JMS** ：Java消息服务。
 - **Spring ORM** : 用于支持Hibernate等ORM工具。
 - **Spring Web** : 为创建Web应用程序提供支持。
 - **Spring Test** : 提供了对 JUnit 和 TestNG 测试的支持。
+
+## @RestController vs @Controller
+
+### Controller 返回一个页面
+
+单独使用 `@Controller` 不加 `@ResponseBody`的话一般使用在要返回一个视图的情况，这种情况属于比较传统的Spring MVC 的应用，对应于前后端不分离的情况。
+
+![SpringMVC 传统工作流程](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/SpringMVC传统工作流程.png)
+
+### @RestController 返回JSON 或 XML 形式数据
+
+但`@RestController`只返回对象，对象数据直接以 JSON 或 XML 形式写入 HTTP 响应(Response)中，这种情况属于 RESTful Web服务，这也是目前日常开发所接触的最常用的情况（前后端分离）。
+
+![SpringMVC+RestController](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/SpringMVCRestController.png)
+
+### @Controller +@ResponseBody 返回JSON 或 XML 形式数据
+
+如果你需要在Spring4之前开发 RESTful Web服务的话，你需要使用`@Controller` 并结合`@ResponseBody`注解，也就是说`@Controller` +`@ResponseBody`= `@RestController`（Spring 4 之后新加的注解）。
+
+> `@ResponseBody` 注解的作用是将 `Controller` 的方法返回的对象通过适当的转换器转换为指定的格式之后，写入到HTTP 响应(Response)对象的 body 中，通常用来返回 JSON 或者 XML 数据，返回 JSON 数据的情况比较多。
+
+![Spring3.xMVC RESTfulWeb服务工作流程](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/Spring3.xMVCRESTfulWeb服务工作流程.png)
+
+Reference:
+
+- https://dzone.com/articles/spring-framework-restcontroller-vs-controller（图片来源）
+- https://javarevisited.blogspot.com/2017/08/difference-between-restcontroller-and-controller-annotations-spring-mvc-rest.html?m=1
 
 ## 谈谈自己对于 Spring IoC 和 AOP 的理解
 
@@ -64,7 +100,8 @@ Spring 时代我们一般通过 XML 文件来配置 Bean，后来开发人员觉
 推荐阅读：https://www.zhihu.com/question/23277575/answer/169698662
 
 **Spring IoC的初始化过程：** 
-![Spring IoC的初始化过程](https://user-gold-cdn.xitu.io/2018/9/22/165fea36b569d4f4?w=709&h=56&f=png&s=4673)
+
+![Spring IoC的初始化过程](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/SpringIOC初始化过程.png)
 
 IoC源码阅读
 
@@ -141,7 +178,7 @@ AOP(Aspect-Oriented Programming:面向切面编程)能够将那些与业务无�
 - **Model1 时代** : 很多学 Java 后端比较晚的朋友可能并没有接触过  Model1 模式下的 JavaWeb 应用开发。在 Model1 模式下，整个 Web 应用几乎全部用 JSP 页面组成，只用少量的 JavaBean 来处理数据库连接、访问等操作。这个模式下 JSP 即是控制层又是表现层。显而易见，这种模式存在很多问题。比如①将控制逻辑和表现逻辑混杂在一起，导致代码重用率极低；②前端和后端相互依赖，难以进行测试并且开发效率极低；
 - **Model2 时代** ：学过 Servlet 并做过相关 Demo 的朋友应该了解“Java Bean(Model)+ JSP（View,）+Servlet（Controller）  ”这种开发模式,这就是早期的 JavaWeb MVC 开发模式。Model:系统涉及的数据，也就是 dao 和 bean。View：展示模型中的数据，只是用来展示。Controller：处理用户请求都发送给 ，返回数据给 JSP 并展示给用户。
 
-Model2 模式下还存在很多问题，Model2的抽象和封装程度还远远不够，使用Model2进行开发时不可避免地会重复造轮子，这就大大降低了程序的可维护性和复用性。于是很多JavaWeb开发相关的 MVC 框架营运而生比如Struts2，但是 Struts2 比较笨重。随着 Spring 轻量级开发框架的流行，Spring 生态圈出现了 Spring MVC 框架， Spring MVC 是当前最优秀的 MVC 框架。相比于 Struts2 ， Spring MVC 使用更加简单和方便，开发效率更高，并且 Spring MVC 运行速度更快。
+Model2 模式下还存在很多问题，Model2的抽象和封装程度还远远不够，使用Model2进行开发时不可避免地会重复造轮子，这就大大降低了程序的可维护性和复用性。于是很多JavaWeb开发相关的 MVC 框架应运而生比如Struts2，但是 Struts2 比较笨重。随着 Spring 轻量级开发框架的流行，Spring 生态圈出现了 Spring MVC 框架， Spring MVC 是当前最优秀的 MVC 框架。相比于 Struts2 ， Spring MVC 使用更加简单和方便，开发效率更高，并且 Spring MVC 运行速度更快。
 
 MVC 是一种设计模式,Spring MVC 是一款很优秀的 MVC 框架。Spring MVC 可以帮助我们进行更简洁的Web层的开发，并且它天生与 Spring 框架集成。Spring MVC 下我们一般把后端项目分为 Service层（处理业务）、Dao层（数据库操作）、Entity层（实体类）、Controller层(控制层，返回数据给前台页面)。
 
@@ -227,7 +264,7 @@ public OneService getService(status) {
 
 我们一般使用 `@Autowired` 注解自动装配 bean，要想把类标识成可用于 `@Autowired` 注解自动装配的 bean 的类,采用以下注解可实现：
 
-- `@Component` ：通用的注解，可标注任意类为 `Spring` 组件。如果一个Bean不知道属于拿个层，可以使用`@Component` 注解标注。
+- `@Component` ：通用的注解，可标注任意类为 `Spring` 组件。如果一个Bean不知道属于哪个层，可以使用`@Component` 注解标注。
 - `@Repository` : 对应持久层即 Dao 层，主要用于数据库相关操作。
 - `@Service` : 对应服务层，主要涉及一些复杂的逻辑，需要用到 Dao层。
 - `@Controller` : 对应 Spring MVC 控制层，主要用户接受用户请求并调用 Service 层返回数据给前端页面。
@@ -270,17 +307,62 @@ public OneService getService(status) {
 
 - **TransactionDefinition.PROPAGATION_NESTED：** 如果当前存在事务，则创建一个事务作为当前事务的嵌套事务来运行；如果当前没有事务，则该取值等价于TransactionDefinition.PROPAGATION_REQUIRED。
 
+## @Transactional(rollbackFor = Exception.class)注解了解吗？
+
+我们知道：Exception分为运行时异常RuntimeException和非运行时异常。事务管理对于企业应用来说是至关重要的，即使出现异常情况，它也可以保证数据的一致性。
+
+当`@Transactional`注解作用于类上时，该类的所有 public 方法将都具有该类型的事务属性，同时，我们也可以在方法级别使用该标注来覆盖类级别的定义。如果类或者方法加了这个注解，那么这个类里面的方法抛出异常，就会回滚，数据库里面的数据也会回滚。
+
+在`@Transactional`注解中如果不配置`rollbackFor`属性,那么事物只会在遇到`RuntimeException`的时候才会回滚,加上`rollbackFor=Exception.class`,可以让事物在遇到非运行时异常时也回滚。
+
+## 如何使用JPA在数据库中非持久化一个字段？
+
+假如我们有有下面一个类：
+
+```java
+Entity(name="USER")
+public class User {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
+    private Long id;
+    
+    @Column(name="USER_NAME")
+    private String userName;
+    
+    @Column(name="PASSWORD")
+    private String password;
+  
+    private String secrect;
+  
+}
+```
+
+如果我们想让`secrect` 这个字段不被持久化，也就是不被数据库存储怎么办？我们可以采用下面几种方法：
+
+```java
+static String transient1; // not persistent because of static
+final String transient2 = “Satish”; // not persistent because of final
+transient String transient3; // not persistent because of transient
+@Transient
+String transient4; // not persistent because of @Transient
+```
+
+一般使用后面两种方式比较多，我个人使用注解的方式比较多。
+
 ## 参考
 
 - 《Spring 技术内幕》
 - <http://www.cnblogs.com/wmyskxz/p/8820371.html>
 - <https://www.journaldev.com/2696/spring-interview-questions-and-answers>
 - <https://www.edureka.co/blog/interview-questions/spring-interview-questions/>
+- https://www.cnblogs.com/clwydjgs/p/9317849.html
 - <https://howtodoinjava.com/interview-questions/top-spring-interview-questions-with-answers/>
 - <http://www.tomaszezula.com/2014/02/09/spring-series-part-5-component-vs-bean/>
 - <https://stackoverflow.com/questions/34172888/difference-between-bean-and-autowired>
 
-### 公众号
+## 公众号
 
 如果大家想要实时关注我更新的文章以及分享的干货的话，可以关注我的公众号。
 
@@ -288,4 +370,5 @@ public OneService getService(status) {
 
 **Java工程师必备学习资源:** 一些Java工程师常用学习资源公众号后台回复关键字 **“1”** 即可免费无套路获取。 
 
-![我的公众号](https://user-gold-cdn.xitu.io/2018/11/28/167598cd2e17b8ec?w=258&h=258&f=jpeg&s=27334)
+![公众号](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/javaguide1.jpg)
+

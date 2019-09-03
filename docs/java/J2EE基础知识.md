@@ -59,7 +59,7 @@ Servlet接口定义了5个方法，其中**前三个方法与Servlet生命周期
 
 - `void init(ServletConfig config) throws ServletException`
 - `void service(ServletRequest req, ServletResponse resp) throws ServletException, java.io.IOException`
-- `void destory()`
+- `void destroy()`
 - `java.lang.String getServletInfo()`
 - `ServletConfig getServletConfig()`
 

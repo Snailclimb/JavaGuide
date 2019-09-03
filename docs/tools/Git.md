@@ -112,7 +112,7 @@ Git 有三种状态，你的文件可能处于其中之一：
 2. **已修改（modified）**：已修改表示修改了文件，但还没保存到数据库中。
 3. **已暂存（staged）**：表示对一个已修改文件的当前版本做了标记，使之包含在下次提交的快照中。
 
-由此引入 Git 项目的三个工作区域的概念：**Git 仓库(.git directoty) **、**工作目录(Working Directory)** 以及 **暂存区域(Staging Area)** 。
+由此引入 Git 项目的三个工作区域的概念：**Git 仓库(.git directoty)**、**工作目录(Working Directory)** 以及 **暂存区域(Staging Area)** 。
 
 <div align="center">  
 <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3areas.png" width="500px"/>
