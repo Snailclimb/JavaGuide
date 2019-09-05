@@ -16,18 +16,6 @@
   <a href="#投稿"><img src="https://img.shields.io/badge/support-投稿-critical.svg" alt="投稿"></a>
 </p>
 
-<h2 align="center">Special Sponsors</h2>
-<p align="center">
-<!--
-<a href="https://www.aliyun.com/acts/hi618/index?userCode=hf47liqn" target="_blank">
-   <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/阿里云外投-1600-300.png"  width="390px"  height="70px" alt="阿里云618 2折起！"/>
-</a>
--->
-<a href="https://coding.net/?utm_source=JavaGuide" target="_blank">
-  <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/006rNwoDgy1g2dw5gau7nj30eg02vwfr.jpg"  alt="零成本开启敏捷研发" height="70px" width="390px"/>
-</a>  
-</p>
-
 推荐使用 https://snailclimb.top/JavaGuide/ 在线阅读(访问速度慢的话，请使用 https://snailclimb.gitee.io/javaguide )，在线阅读内容本仓库同步一致。这种方式阅读的优势在于：有侧边栏阅读体验更好，Gitee pages 的访问速度相对来说也比较快。
 
 ## 目录
@@ -61,7 +49,7 @@
 - [工具](#工具)
     - [Git](#git)
     - [Docker](#Docker)
-- [资料](#资料)
+- [资源](#资源)
     - [书单](#书单)
     - [Github榜单](#Github榜单)
 - [待办](#待办)
@@ -110,6 +98,7 @@
 
 * [Java 8 新特性总结](docs/java/What's%20New%20in%20JDK8/Java8Tutorial.md)
 * [Java 8 学习资源推荐](docs/java/What's%20New%20in%20JDK8/Java8教程推荐.md)
+* [Java8 forEach 指南](docs/java/What's%20New%20in%20JDK8/Java8foreach指南.md)
 
 ### 编程规范
 
@@ -188,6 +177,7 @@
 - [消息队列总结](docs/system-design/data-communication/message-queue.md)
 - [RabbitMQ 入门](docs/system-design/data-communication/rabbitmq.md)
 - [RocketMQ的几个简单问题与答案](docs/system-design/data-communication/RocketMQ-Questions.md)
+- [Kafka系统设计开篇-面试看这篇就够了](docs/system-design/data-communication/Kafka系统设计开篇-面试看这篇就够了.md)
 
 ### 网站架构
 
@@ -230,13 +220,17 @@
 * [Docker 入门](docs/tools/Docker.md)
 * [一文搞懂 Docker 镜像的常用操作！](docs/tools/Docker-Image.md)
 
-## 资料
+## 资源
 
 ### 书单
 
 - [Java程序员必备书单](docs/data/java-recommended-books.md)
 
-### Github榜单
+### 实战项目推荐
+
+- [onemall](https://github.com/YunaiV/onemall) : mall 商城，基于微服务的思想，构建在 B2C 电商场景下的项目实战。核心技术栈，是 Spring Boot + Dubbo 。未来，会重构成 Spring Cloud Alibaba 。
+
+### Github 历史榜单
 
 - [Java 项目月榜单](docs/github-trending/JavaGithubTrending.md)
 
@@ -290,7 +284,10 @@ Markdown 格式参考：[Github Markdown格式](https://guides.github.com/featur
 
 <a href="https://github.com/fanofxiaofeng">
     <img src="https://avatars0.githubusercontent.com/u/3983683?s=460&v=4" width="45px"></a>
-<a href="https://github.com/dongzl">
+<a href="https://github.com/fanchenggang">  
+    <img src="https://avatars2.githubusercontent.com/u/8225921?s=460&v=4" width="45px">
+</a>
+<a href="https://github.com/ipofss">
     <img src="https://avatars1.githubusercontent.com/u/5917359?s=460&v=4" width="45px"></a>
 <a href="https://github.com/Gene1994">
     <img src="https://avatars3.githubusercontent.com/u/24930369?s=460&v=4" width="45px">

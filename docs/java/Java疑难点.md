@@ -78,7 +78,7 @@ System.out.println(x == y);// true
 Integer a = new Integer(3);
 Integer b = new Integer(3);
 System.out.println(a == b);//false
-System.out.println(a.equals(b));//false
+System.out.println(a.equals(b));//true
 ```
 
 当使用自动装箱方式创建一个Integer对象时，当数值在-128 ~127时，会将创建的 Integer 对象缓存起来，当下次再出现该数值时，直接从缓存中取出对应的Integer对象。所以上述代码中，x和y引用的是相同的Integer对象。	
@@ -161,7 +161,7 @@ Reference:《阿里巴巴Java开发手册》
 
 ## 2.1. Arrays.asList()使用指南
 
-最近使用`Arrays.asList()`遇到了一些坑，然后在网上看到这篇文章：[Java Array to List Examples](http://javadevnotes.com/java-array-to-list-examples) 感觉挺不错的，但是还是特别全面。所以，自己对于这块小知识点进行了简单的总结。
+最近使用`Arrays.asList()`遇到了一些坑，然后在网上看到这篇文章：[Java Array to List Examples](http://javadevnotes.com/java-array-to-list-examples) 感觉挺不错的，但是还不是特别全面。所以，自己对于这块小知识点进行了简单的总结。
 
 ### 2.1.1. 简介
 
