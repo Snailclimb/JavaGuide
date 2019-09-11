@@ -89,6 +89,10 @@ System.out.println(a.equals(b));//true
 
 ### 1.3.1. BigDecimal 的用处
 
+补充丢失精度的原因：https://blog.csdn.net/m0_37482190/article/details/87437605
+
+
+
 《阿里巴巴Java开发手册》中提到：**浮点数之间的等值判断，基本数据类型不能用==来比较，包装数据类型不能用 equals 来判断。** 具体原理和浮点数的编码方式有关，这里就不多提了，我们下面直接上实例：
 
 ```java
