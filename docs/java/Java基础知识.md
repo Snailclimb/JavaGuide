@@ -123,7 +123,7 @@ JRE 是 Java运行时环境。它是运行已编译 Java 程序所需的所有�
 
 **总结：**
 
-1. Oracle JDK版本将每三年发布一次，而OpenJDK版本每三个月发布一次；
+1. Oracle JDK大概没6个月发一次主要版本，而OpenJDK版本大概每三个月发布一次。但这不是固定的，我觉得了解这个没啥用处。详情参见：https://blogs.oracle.com/java-platform-group/update-and-faq-on-the-java-se-release-cadence。
 2. OpenJDK 是一个参考模型并且是完全开源的，而Oracle JDK是OpenJDK的一个实现，并不是完全开源的；
 3. Oracle JDK 比 OpenJDK 更稳定。OpenJDK和Oracle JDK的代码几乎相同，但Oracle JDK有更多的类和一些错误修复。因此，如果您想开发企业/商业软件，我建议您选择Oracle JDK，因为它经过了彻底的测试和稳定。某些情况下，有些人提到在使用OpenJDK 可能会遇到了许多应用程序崩溃的问题，但是，只需切换到Oracle JDK就可以解决问题；
 4. 在响应性和JVM性能方面，Oracle JDK与OpenJDK相比提供了更好的性能；
