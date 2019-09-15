@@ -351,6 +351,8 @@ String transient4; // not persistent because of @Transient
 
 一般使用后面两种方式比较多，我个人使用注解的方式比较多。
 
+# 认证 (authentication) 和授权 (authorization) 
+
 ## 参考
 
 - 《Spring 技术内幕》
@@ -371,4 +373,3 @@ String transient4; // not persistent because of @Transient
 **Java工程师必备学习资源:** 一些Java工程师常用学习资源公众号后台回复关键字 **“1”** 即可免费无套路获取。 
 
 ![公众号](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/javaguide1.jpg)
-
