@@ -1,4 +1,4 @@
-<!-- TOC -->
+[<!-- TOC -->
 
 - [1. 基础](#1-基础)
     - [1.1. 正确使用 equals 方法](#11-正确使用-equals-方法)
@@ -370,4 +370,39 @@ s=list.toArray(new String[0]);//没有指定类型的话会报错
 ![不要在 foreach 循环里进行元素的 remove/add 操作](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019/7/foreach-remove:add.png)
 
 
+
+### java中List集合 removeIf()方法删除符合条件的元素
+
+```java
+/**
+- 移除集合中满足给定条件的所有元素，错误或者运行时异常发生在迭代时或者把条件传递给调用者的时候。
+  *
+- @implSpec
+- 默认的实现贯穿了使用迭代器iterator的集合的所有元素。每一个匹配的元素都将被用Iterator接口中的
+- remove()方法移除。如果集合的迭代器不支持移除，则在第一次匹配时就会抛出异常 UnsupportedOperationException
+  *
+- @param filter 令元素移除成功的条件
+- @return {@code true} 如果所有的元素都被移除
+- @throws NullPointerException 如果有一个过滤器是空的
+- @throws UnsupportedOperationException 如果元素不能被从该集合中移除。如果一个匹配元素不能被移除，
+- 通常来说，它就不支持移除操作，这时可能抛出这个异常。
+- @since 1.8
+  */
+   default boolean removeIf(Predicate<? super E> filter) {
+  Objects.requireNonNull(filter);
+  boolean removed = false;
+  final Iterator<E> each = iterator();
+  while (each.hasNext()) {
+      if (filter.test(each.next())) {
+          each.remove();
+          removed = true;
+      }
+  }
+  return removed;
+   }
+
+List list3 =Arrays.stream(aaa).boxed().collect(Collectors.toList());
+list3.removeIf(next->next.equals(3));
+System.out.println(list3.toString());
+```
 
