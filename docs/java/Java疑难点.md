@@ -2,7 +2,7 @@
 
 - [1. 基础](#1-基础)
     - [1.1. 正确使用 equals 方法](#11-正确使用-equals-方法)
-    - [1.2. 整形包装类值的比较](#12-整形包装类值的比较)
+    - [1.2. 整型包装类值的比较](#12-整型包装类值的比较)
     - [1.3. BigDecimal](#13-bigdecimal)
         - [1.3.1. BigDecimal 的用处](#131-bigdecimal-的用处)
         - [1.3.2. BigDecimal 的大小比较](#132-bigdecimal-的大小比较)
@@ -62,12 +62,12 @@ public static boolean equals(Object a, Object b) {
 Reference:[Java中equals方法造成空指针异常的原因及解决方案](https://blog.csdn.net/tick_tock97/article/details/72824894)
 
 - 每种原始类型都有默认值一样，如int默认值为 0，boolean 的默认值为 false，null 是任何引用类型的默认值，不严格的说是所有 Object 类型的默认值。
-- 可以使用==或者!=操作来比较null值，但是不能使用其他算法或者逻辑操作。在Java中`null==null`将返回true。
+- 可以使用 == 或者 != 操作来比较null值，但是不能使用其他算法或者逻辑操作。在Java中`null == null`将返回true。
 - 不能使用一个值为null的引用类型变量来调用非静态方法，否则会抛出异常
 
-## 1.2. 整形包装类值的比较
+## 1.2. 整型包装类值的比较
 
-所有整形包装类对象值的比较必须使用equals方法。
+所有整型包装类对象值的比较必须使用equals方法。
 
 先看下面这个例子：
 
