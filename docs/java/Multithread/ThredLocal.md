@@ -129,7 +129,19 @@ ThreadLocal.ThreadLocalMap inheritableThreadLocals = null;
 
 通过上面这些内容，我们足以通过猜测得出结论：**最终的变量是放在了当前线程的 `ThreadLocalMap` 中，并不是存在 `ThreadLocal` 上，ThreadLocal 可以理解为只是ThreadLocalMap的封装，传递了变量值。**
 
-**每个`Thread`中都具备一个`ThreadLocalMap`，而`ThreadLocalMap`可以存储以`ThreadLocal`为key的键值对。这里解释了为什么每个线程访问同一个`ThreadLocal`，得到的确是不同的数值。另外，`ThreadLocal` 是 map结构是为了让每个线程可以关联多个 `ThreadLocal`变量。**
+**每个Thread中都具备一个ThreadLocalMap，而ThreadLocalMap可以存储以ThreadLocal为key的键值对。** 比如我们在同一个线程中声明了两个 `ThreadLocal` 对象的话，会使用 `Thread`内部都是使用仅有那个`ThreadLocalMap` 存放数据的，`ThreadLocalMap`的 key 就是 `ThreadLocal`对象，value 就是 `ThreadLocal` 对象调用`set`方法设置的值。`ThreadLocal` 是 map结构是为了让每个线程可以关联多个 `ThreadLocal`变量。这也就解释了ThreadLocal声明的变量为什么在每一个线程都有自己的专属本地变量。
+
+```java
+public class Thread implements Runnable {
+ ......
+//与此线程有关的ThreadLocal值。由ThreadLocal类维护
+ThreadLocal.ThreadLocalMap threadLocals = null;
+
+//与此线程有关的InheritableThreadLocal值。由InheritableThreadLocal类维护
+ThreadLocal.ThreadLocalMap inheritableThreadLocals = null;
+ ......
+}
+```
 
 `ThreadLocalMap`是`ThreadLocal`的静态内部类。
 
