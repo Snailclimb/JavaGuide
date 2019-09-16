@@ -230,6 +230,9 @@ static int hash(int h) {
 
 相比于 JDK1.8 的 hash 方法 ，JDK 1.7 的 hash 方法的性能会稍差一点点，因为毕竟扰动了 4 次。
 
+补充：二进制学习：https://www.cnblogs.com/jiangxinlingdu/p/7986239.html
+      hashmap数组取值：https://www.cnblogs.com/rese-t/p/8016642.html
+
 所谓 **“拉链法”** 就是：将链表和数组相结合。也就是说创建一个链表数组，数组中每一格就是一个链表。若遇到哈希冲突，则将冲突的值加到链表中即可。
 
 ![jdk1.8之前的内部结构-HashMap](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/jdk1.8之前的内部结构-HashMap.jpg)
