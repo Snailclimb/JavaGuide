@@ -104,7 +104,7 @@ SHOW VARIABLES -- 显示系统变量信息
 -- 查看所有表
     SHOW TABLES[ LIKE 'pattern']
     SHOW TABLES FROM  库名
--- 查看表机构
+-- 查看表结构
     SHOW CREATE TABLE 表名 （信息更详细）
     DESC 表名 / DESCRIBE 表名 / EXPLAIN 表名 / SHOW COLUMNS FROM 表名 [LIKE 'PATTERN']
     SHOW TABLE STATUS [FROM db_name] [LIKE 'pattern']
@@ -590,7 +590,7 @@ CREATE [OR REPLACE] [ALGORITHM = {UNDEFINED | MERGE | TEMPTABLE}] VIEW view_name
 ```mysql
 事务是指逻辑上的一组操作，组成这组操作的各个单元，要不全成功要不全失败。
     - 支持连续SQL的集体成功或集体撤销。
-    - 事务是数据库在数据晚自习方面的一个功能。
+    - 事务是数据库在数据完整性方面的一个功能。
     - 需要利用 InnoDB 或 BDB 存储引擎，对自动提交的特性支持完成。
     - InnoDB被称为事务安全型引擎。
 -- 事务开启
