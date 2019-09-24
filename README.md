@@ -164,6 +164,8 @@
 - [Spring中bean的作用域与生命周期](docs/system-design/framework/spring/SpringBean.md)
 - [SpringMVC 工作原理详解](docs/system-design/framework/spring/SpringMVC-Principle.md)
 - [Spring中都用到了那些设计模式?](docs/system-design/framework/spring/Spring-Design-Patterns.md)
+- [SpringBoot 使用指南](https://github.com/Snailclimb/springboot-guide)
+- [Spring Security with JWT](https://github.com/Snailclimb/spring-security-jwt-guide)
 
 #### ZooKeeper
 
