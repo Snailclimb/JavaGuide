@@ -38,8 +38,9 @@
     - [MySQL](#mysql)
     - [Redis](#redis)
 - [系统设计](#系统设计)
-    - [设计模式(工厂模式、单例模式 ... )](#设计模式)
     - [常用框架(Spring、Zookeeper ... )](#常用框架)
+    - [权限认证](#权限认证)
+    - [设计模式(工厂模式、单例模式 ... )](#设计模式)
     - [数据通信(消息队列、Dubbo ... )](#数据通信)
     - [网站架构](#网站架构)
 - [面试指南](#面试指南)
@@ -151,10 +152,6 @@
 
 ## 系统设计
 
-### 设计模式
-
-- [设计模式系列文章](docs/system-design/设计模式.md)
-
 ### 常用框架
 
 #### Spring
@@ -165,12 +162,21 @@
 - [SpringMVC 工作原理详解](docs/system-design/framework/spring/SpringMVC-Principle.md)
 - [Spring中都用到了那些设计模式?](docs/system-design/framework/spring/Spring-Design-Patterns.md)
 - [SpringBoot 使用指南](https://github.com/Snailclimb/springboot-guide)
-- [Spring Security with JWT](https://github.com/Snailclimb/spring-security-jwt-guide)
+- 
 
 #### ZooKeeper
 
 - [ZooKeeper 相关概念总结](docs/system-design/framework/ZooKeeper.md)
 - [ZooKeeper 数据模型和常见命令](docs/system-design/framework/ZooKeeper数据模型和常见命令.md)
+
+### 权限认证
+
+- [权限认证基础:]()
+- [适合初学者入门 Spring Security With JWT 的 Demo](https://github.com/Snailclimb/spring-security-jwt-guide)
+
+### 设计模式
+
+- [设计模式系列文章](docs/system-design/设计模式.md)
 
 ### 数据通信
 
