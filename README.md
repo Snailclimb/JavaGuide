@@ -16,18 +16,6 @@
   <a href="#投稿"><img src="https://img.shields.io/badge/support-投稿-critical.svg" alt="投稿"></a>
 </p>
 
-<h2 align="center">Special Sponsors</h2>
-<p align="center">
-<!--
-<a href="https://www.aliyun.com/acts/hi618/index?userCode=hf47liqn" target="_blank">
-   <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/阿里云外投-1600-300.png"  width="390px"  height="70px" alt="阿里云618 2折起！"/>
-</a>
--->
-<a href="https://coding.net/?utm_source=JavaGuide" target="_blank">
-  <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/006rNwoDgy1g2dw5gau7nj30eg02vwfr.jpg"  alt="零成本开启敏捷研发" height="70px" width="390px"/>
-</a>  
-</p>
-
 推荐使用 https://snailclimb.top/JavaGuide/ 在线阅读(访问速度慢的话，请使用 https://snailclimb.gitee.io/javaguide )，在线阅读内容本仓库同步一致。这种方式阅读的优势在于：有侧边栏阅读体验更好，Gitee pages 的访问速度相对来说也比较快。
 
 ## 目录
@@ -50,8 +38,9 @@
     - [MySQL](#mysql)
     - [Redis](#redis)
 - [系统设计](#系统设计)
-    - [设计模式(工厂模式、单例模式 ... )](#设计模式)
     - [常用框架(Spring、Zookeeper ... )](#常用框架)
+    - [权限认证](#权限认证)
+    - [设计模式(工厂模式、单例模式 ... )](#设计模式)
     - [数据通信(消息队列、Dubbo ... )](#数据通信)
     - [网站架构](#网站架构)
 - [面试指南](#面试指南)
@@ -61,7 +50,7 @@
 - [工具](#工具)
     - [Git](#git)
     - [Docker](#Docker)
-- [资料](#资料)
+- [资源](#资源)
     - [书单](#书单)
     - [Github榜单](#Github榜单)
 - [待办](#待办)
@@ -110,6 +99,7 @@
 
 * [Java 8 新特性总结](docs/java/What's%20New%20in%20JDK8/Java8Tutorial.md)
 * [Java 8 学习资源推荐](docs/java/What's%20New%20in%20JDK8/Java8教程推荐.md)
+* [Java8 forEach 指南](docs/java/What's%20New%20in%20JDK8/Java8foreach指南.md)
 
 ### 编程规范
 
@@ -162,10 +152,6 @@
 
 ## 系统设计
 
-### 设计模式
-
-- [设计模式系列文章](docs/system-design/设计模式.md)
-
 ### 常用框架
 
 #### Spring
@@ -175,11 +161,22 @@
 - [Spring中bean的作用域与生命周期](docs/system-design/framework/spring/SpringBean.md)
 - [SpringMVC 工作原理详解](docs/system-design/framework/spring/SpringMVC-Principle.md)
 - [Spring中都用到了那些设计模式?](docs/system-design/framework/spring/Spring-Design-Patterns.md)
+- [SpringBoot 使用指南](https://github.com/Snailclimb/springboot-guide)
+- 
 
 #### ZooKeeper
 
 - [ZooKeeper 相关概念总结](docs/system-design/framework/ZooKeeper.md)
 - [ZooKeeper 数据模型和常见命令](docs/system-design/framework/ZooKeeper数据模型和常见命令.md)
+
+### 权限认证
+
+- [权限认证基础:区分Authentication,Authorization以及Cookie、Session、Token](docs/system-design/authority-certification/basis-of-authority-certification.md)
+- [适合初学者入门 Spring Security With JWT 的 Demo](https://github.com/Snailclimb/spring-security-jwt-guide)
+
+### 设计模式
+
+- [设计模式系列文章](docs/system-design/设计模式.md)
 
 ### 数据通信
 
@@ -231,13 +228,17 @@
 * [Docker 入门](docs/tools/Docker.md)
 * [一文搞懂 Docker 镜像的常用操作！](docs/tools/Docker-Image.md)
 
-## 资料
+## 资源
 
 ### 书单
 
 - [Java程序员必备书单](docs/data/java-recommended-books.md)
 
-### Github榜单
+### 实战项目推荐
+
+- [onemall](https://github.com/YunaiV/onemall) : mall 商城，基于微服务的思想，构建在 B2C 电商场景下的项目实战。核心技术栈，是 Spring Boot + Dubbo 。未来，会重构成 Spring Cloud Alibaba 。
+
+### Github 历史榜单
 
 - [Java 项目月榜单](docs/github-trending/JavaGithubTrending.md)
 
@@ -283,7 +284,7 @@ Markdown 格式参考：[Github Markdown格式](https://guides.github.com/featur
 
 添加我的微信备注“Github”,回复关键字 **“加群”** 即可入群。
 
-![我的微信](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/wechat1.jpg)
+![个人微信](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/wechat3.jpeg)
 
 ### Contributor
 
