@@ -190,7 +190,7 @@
 - [RabbitMQ 入门](docs/system-design/data-communication/rabbitmq.md)
 - [RocketMQ的几个简单问题与答案](docs/system-design/data-communication/RocketMQ-Questions.md)
 - [Kafka系统设计开篇-面试看这篇就够了](docs/system-design/data-communication/Kafka系统设计开篇-面试看这篇就够了.md)
-
+- [最简单的Kafka理解](https://www.jianshu.com/p/ff6788e68a8e)
 ### 网站架构
 
 - [一文读懂分布式应该学什么](docs/system-design/website-architecture/分布式.md)
