@@ -78,8 +78,8 @@ JWT 最适合的场景是无状态的场景，如果考虑到 token 注销和 to
 
 ##  Reference
 
+- [JWT 超详细分析](https://learnku.com/articles/17883?order_by=vote_count&)
 - https://medium.com/devgorilla/how-to-log-out-when-using-jwt-a8c7823e8a6
--  [JWT 超详细分析](https://learnku.com/articles/17883?order_by=vote_count&)
 - https://medium.com/@agungsantoso/csrf-protection-with-json-web-tokens-83e0f2fcbcc
 - [Invalidating JSON Web Tokens](https://stackoverflow.com/questions/21978658/invalidating-json-web-tokens)
 
