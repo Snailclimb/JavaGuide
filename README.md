@@ -176,7 +176,7 @@
 ### 权限认证
 
 - **[权限认证基础:区分Authentication,Authorization以及Cookie、Session、Token](docs/system-design/authority-certification/basis-of-authority-certification.md)**
-- **[JWT 优劣势分析](docs/system-design/authority-certification/JWT-advantages-and-disadvantages.md)**
+- **[JWT 优缺点分析以及常见问题解决方案](docs/system-design/authority-certification/JWT-advantages-and-disadvantages.md)**
 - **[适合初学者入门 Spring Security With JWT 的 Demo](https://github.com/Snailclimb/spring-security-jwt-guide)**
 
 ### 设计模式
