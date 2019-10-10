@@ -24,7 +24,7 @@ Kafka 是一种分布式的，基于发布 / 订阅的消息系统。主要设�
 
 ### 概念一：生产者与消费者
 
-
+![](./../../../media/pictures/kafaka/生产者和消费者.png)
 
 对于 Kafka 来说客户端有两种基本类型：**生产者（Producer）**和**消费者（Consumer）**。除此之外，还有用来做数据集成的 Kafka Connect API 和流式处理的 Kafka Streams 等高阶客户端，但这些高阶客户端底层仍然是生产者和消费者API，它们只不过是在上层做了封装。
 
