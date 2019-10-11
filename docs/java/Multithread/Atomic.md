@@ -56,7 +56,7 @@ Atomic 翻译成中文是原子的意思。在化学上，我们知道原子是�
 **引用类型**
 
 - AtomicReference：引用类型原子类
-- AtomicStampedReference：原子更新引用类型里的字段原子类
+- AtomicReferenceFieldUpdater：原子更新引用类型里的字段
 - AtomicMarkableReference ：原子更新带有标记位的引用类型
 
 **对象的属性修改类型**

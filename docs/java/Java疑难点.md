@@ -2,7 +2,7 @@
 
 - [1. 基础](#1-基础)
     - [1.1. 正确使用 equals 方法](#11-正确使用-equals-方法)
-    - [1.2. 整形包装类值的比较](#12-整形包装类值的比较)
+    - [1.2. 整型包装类值的比较](#12-整型包装类值的比较)
     - [1.3. BigDecimal](#13-bigdecimal)
         - [1.3.1. BigDecimal 的用处](#131-bigdecimal-的用处)
         - [1.3.2. BigDecimal 的大小比较](#132-bigdecimal-的大小比较)
@@ -61,13 +61,13 @@ public static boolean equals(Object a, Object b) {
 
 Reference:[Java中equals方法造成空指针异常的原因及解决方案](https://blog.csdn.net/tick_tock97/article/details/72824894)
 
-- 每种原始类型都有默认值一样，如int默认值为0，boolean的默认值为false，null是任何引用类型的默认值，不严格的说是所有object类型的默认值。
-- 可以使用==或者!=操作来比较null值，但是不能使用其他算法或者逻辑操作。在Java中`null==null`将返回true。
+- 每种原始类型都有默认值一样，如int默认值为 0，boolean 的默认值为 false，null 是任何引用类型的默认值，不严格的说是所有 Object 类型的默认值。
+- 可以使用 == 或者 != 操作来比较null值，但是不能使用其他算法或者逻辑操作。在Java中`null == null`将返回true。
 - 不能使用一个值为null的引用类型变量来调用非静态方法，否则会抛出异常
 
-## 1.2. 整形包装类值的比较
+## 1.2. 整型包装类值的比较
 
-所有整形包装类对象值得比较必须使用equals方法。
+所有整型包装类对象值的比较必须使用equals方法。
 
 先看下面这个例子：
 
@@ -78,10 +78,10 @@ System.out.println(x == y);// true
 Integer a = new Integer(3);
 Integer b = new Integer(3);
 System.out.println(a == b);//false
-System.out.println(a.equals(b));//false
+System.out.println(a.equals(b));//true
 ```
 
-当使用自动装箱方式创建一个Integer对象时，当数值在-128 ~127时，会将创建的Integer对象缓存起来，当下次再出现该数值时，直接从缓存中取出对应的Integer对象。所以上述代码中，x和y引用的是相同的Integer对象。	
+当使用自动装箱方式创建一个Integer对象时，当数值在-128 ~127时，会将创建的 Integer 对象缓存起来，当下次再出现该数值时，直接从缓存中取出对应的Integer对象。所以上述代码中，x和y引用的是相同的Integer对象。	
 
 **注意：**如果你的IDE(IDEA/Eclipse)上安装了阿里巴巴的p3c插件，这个插件如果检测到你用 ==的话会报错提示，推荐安装一个这个插件，很不错。
 
@@ -150,20 +150,17 @@ Reference:《阿里巴巴Java开发手册》
 
 比如我们如果自定义了一个Student类,其中有一个属性是成绩score,如果用Integer而不用int定义,一次考试,学生可能没考,值是null,也可能考了,但考了0分,值是0,这两个表达的状态明显不一样.
 
-**说明** :POJO 类属性没有初值是提醒使用者在需要使用时，必须自己显式地进行赋值，任何 NPE 问题，或
-者入库检查，都由使用者来保证。
+**说明** :POJO 类属性没有初值是提醒使用者在需要使用时，必须自己显式地进行赋值，任何 NPE 问题，或者入库检查，都由使用者来保证。
 
 **正例** : 数据库的查询结果可能是 null，因为自动拆箱，用基本数据类型接收有 NPE 风险。
 
-**反例** : 比如显示成交总额涨跌情况，即正负 x%，x 为基本数据类型，调用的 RPC 服务，调用不成功时，
-返回的是默认值，页面显示为 0%，这是不合理的，应该显示成中划线。所以包装数据类型的 null 值，能
-够表示额外的信息，如:远程调用失败，异常退出。
+**反例** : 比如显示成交总额涨跌情况，即正负 x%，x 为基本数据类型，调用的 RPC 服务，调用不成功时，返回的是默认值，页面显示为 0%，这是不合理的，应该显示成中划线。所以包装数据类型的 null 值，能够表示额外的信息，如:远程调用失败，异常退出。
 
 # 2. 集合
 
 ## 2.1. Arrays.asList()使用指南
 
-最近使用`Arrays.asList()`遇到了一些坑，然后在网上看到这篇文章：[Java Array to List Examples](http://javadevnotes.com/java-array-to-list-examples) 感觉挺不错的，但是还是特别全面。所以，自己对于这块小知识点进行了简单的总结。
+最近使用`Arrays.asList()`遇到了一些坑，然后在网上看到这篇文章：[Java Array to List Examples](http://javadevnotes.com/java-array-to-list-examples) 感觉挺不错的，但是还不是特别全面。所以，自己对于这块小知识点进行了简单的总结。
 
 ### 2.1.1. 简介
 
