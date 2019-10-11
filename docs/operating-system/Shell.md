@@ -78,7 +78,7 @@ echo  "helloworld!"
 shell中 # 符号表示注释。**shell 的第一行比较特殊，一般都会以#!开始来指定使用的 shell 类型。在linux中，除了bash shell以外，还有很多版本的shell， 例如zsh、dash等等...不过bash shell还是我们使用最多的。**
 
 
-(4) 运行脚本:`./helloworld.sh` 。（注意，一定要写成 `./helloworld.sh` ，而不是 `helloworld.sh` ，运行其它二进制的程序也一样，直接写 `helloworld.sh` ，linux 系统会去 PATH 里寻找有没有叫 test.sh 的，而只有 /bin, /sbin, /usr/bin，/usr/sbin 等在 PATH 里，你的当前目录通常不在 PATH 里，所以写成 `helloworld.sh` 是会找不到命令的，要用`./helloworld.sh` 告诉系统说，就在当前目录找。）
+(4) 运行脚本:`./helloworld.sh` 。（注意，一定要写成 `./helloworld.sh` ，而不是 `helloworld.sh` ，运行其它二进制的程序也一样，直接写 `helloworld.sh` ，linux 系统会去 PATH 里寻找有没有叫 helloworld.sh 的，而只有 /bin, /sbin, /usr/bin，/usr/sbin 等在 PATH 里，你的当前目录通常不在 PATH 里，所以写成 `helloworld.sh` 是会找不到命令的，要用`./helloworld.sh` 告诉系统说，就在当前目录找。）
 
 ![shell 编程Hello World](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-16/55296212.jpg)
 
@@ -260,7 +260,7 @@ echo $length #输出：5
 echo $length2 #输出：5
 # 输出数组第三个元素
 echo ${array[2]} #输出：3
-unset array[1]# 删除下表为1的元素也就是删除第二个元素
+unset array[1]# 删除下标为1的元素也就是删除第二个元素
 for i in ${array[@]};do echo $i ;done # 遍历数组，输出： 1 3 4 5 
 unset arr_number; # 删除数组中的所有元素
 for i in ${array[@]};do echo $i ;done # 遍历数组，数组元素为空，没有任何输出内容
@@ -272,7 +272,7 @@ for i in ${array[@]};do echo $i ;done # 遍历数组，数组元素为空，没�
 > 说明：图片来自《菜鸟教程》
 
  Shell 编程支持下面几种运算符
- 
+
 - 算数运算符
 - 关系运算符
 - 布尔运算符
@@ -283,14 +283,14 @@ for i in ${array[@]};do echo $i ;done # 遍历数组，数组元素为空，没�
 
 ![算数运算符](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-22/4937342.jpg)
 
-我以加法运算符做一个简单的示例：
+我以加法运算符做一个简单的示例（注意：不是单引号，是反引号）：
 
 ```shell
 #!/bin/bash
 a=3;b=3;
 val=`expr $a + $b`
 #输出：Total value : 6
-echo "Total value : $val
+echo "Total value : $val"
 ```
 
 
@@ -380,10 +380,10 @@ a 不等于 b
 #!/bin/bash
 a=3;
 b=9;
-if [ $a = $b ]
+if [ $a -eq $b ]
 then
    echo "a 等于 b"
-elif [ $a > $b ]
+elif [ $a -gt $b ]
 then
    echo "a 大于 b"
 else
@@ -394,7 +394,7 @@ fi
 输出结果：
 
 ```
-a 大于 b
+a 小于 b
 ```
 
 相信大家通过上面的示例就已经掌握了 shell 编程中的 if 条件语句。不过，还要提到的一点是，不同于我们常见的 Java 以及 PHP 中的 if 条件语句，shell  if 条件语句中不能包含空语句也就是什么都不做的语句。
@@ -467,7 +467,7 @@ done
 是的！变形金刚 是一个好电影
 ```
 
-**无线循环：**
+**无限循环：**
 
 ```shell
 while true
@@ -482,16 +482,20 @@ done
 
 ```shell
 #!/bin/bash
-function(){
+hello(){
     echo "这是我的第一个 shell 函数!"
 }
-function
+echo "-----函数开始执行-----"
+hello
+echo "-----函数执行完毕-----"
 ```
 
 输出结果：
 
 ```
+-----函数开始执行-----
 这是我的第一个 shell 函数!
+-----函数执行完毕-----
 ```
 
 
