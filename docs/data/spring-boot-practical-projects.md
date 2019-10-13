@@ -1,0 +1,4 @@
+- [paascloud-master](https://github.com/paascloud/paascloud-master) : spring cloud + vue + oAuth2.0全家桶实战，前后端分离模拟商城，完整的购物流程、后端运营平台，可以实现快速搭建企业级微服务项目。支持微信登录等三方登录。
+- [onemall](https://github.com/YunaiV/onemall) : mall 商城，基于微服务的思想，构建在 B2C 电商场景下的项目实战。核心技术栈，是 Spring Boot + Dubbo 。未来，会重构成 Spring Cloud Alibaba 。
+- [vhr](https://github.com/lenve/vhr) ： 微人事是一个前后端分离的人力资源管理系统，项目采用SpringBoot+Vue开发。
+- [eladmin](https://github.com/elunez/eladmin) ：项目基于 Spring Boot 2.1.0 、 Jpa、 Spring Security、redis、Vue的前后端分离的后台管理系统，项目采用分模块开发方式， 权限控制采用 RBAC，支持数据字典与数据权限管理，支持一键生成前后端代码，支持动态路由。
