@@ -143,6 +143,7 @@
 ### MySQL
 
 * **[MySQL 学习与面试](docs/database/MySQL.md)**
+* **[阿里巴巴开发手册数据库部分的一些最佳实践](docs/database/阿里巴巴开发手册数据库部分的一些最佳实践.md)**
 * **[一千行MySQL学习笔记](docs/database/一千行MySQL命令.md)**
 * [MySQL高性能优化规范建议](docs/database/MySQL高性能优化规范建议.md)
 * [数据库索引总结](docs/database/MySQL%20Index.md)
