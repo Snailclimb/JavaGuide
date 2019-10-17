@@ -21,6 +21,9 @@
   <a href="https://xiaozhuanlan.com/javainterview?rel=javaguide"><img src="https://img.shields.io/badge/Java-面试指南-important" alt="投稿"></a>
 </p>
 
+<h3 align="center">Sponsor</h3>
+<img src="./media/sponsor/WechatIMG143.jpeg" href="https://study.163.com/topics/JavaGuide/" width=""/>
+
 推荐使用 https://snailclimb.top/JavaGuide/ 在线阅读(访问速度慢的话，请使用 https://snailclimb.gitee.io/javaguide )，在线阅读内容本仓库同步一致。这种方式阅读的优势在于：有侧边栏阅读体验更好，Gitee pages 的访问速度相对来说也比较快。
 
 ## 目录
@@ -142,7 +145,7 @@
 
 ### MySQL
 
-* **[MySQL 学习与面试](docs/database/MySQL.md)**
+* **[【推荐】MySQL/数据库 知识点总结](docs/database/MySQL.md)**
 * **[阿里巴巴开发手册数据库部分的一些最佳实践](docs/database/阿里巴巴开发手册数据库部分的一些最佳实践.md)**
 * **[一千行MySQL学习笔记](docs/database/一千行MySQL命令.md)**
 * [MySQL高性能优化规范建议](docs/database/MySQL高性能优化规范建议.md)
