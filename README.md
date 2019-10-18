@@ -23,7 +23,9 @@
 
 <h3 align="center">Sponsor</h3>
 <p align="center">
-<img src="./media/sponsor/WechatIMG143.jpeg" href="https://study.163.com/topics/JavaGuide/" width="" style="margin: 0 auto;"/>
+  <a  href="https://study.163.com/topics/JavaGuide/" >
+<img src="./media/sponsor/WechatIMG143.jpeg"width="" style="margin: 0 auto;"/>
+  </a>
 </p>
 
 推荐使用 https://snailclimb.top/JavaGuide/ 在线阅读(访问速度慢的话，请使用 https://snailclimb.gitee.io/javaguide )，在线阅读内容本仓库同步一致。这种方式阅读的优势在于：有侧边栏阅读体验更好，Gitee pages 的访问速度相对来说也比较快。
