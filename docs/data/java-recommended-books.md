@@ -29,6 +29,7 @@ linux命令缩写：https://www.cnblogs.com/z-bear/p/8558051.html
 - [《Java 核心技术卷 1+卷 2》](https://book.douban.com/subject/25762168/)（推荐）: 很棒的两本书，建议有点 Java 基础之后再读，介绍的还是比较深入的，非常推荐。这两本书我一般也会用来巩固知识点，是两本适合放在自己身边的好书。
 - [《JAVA 网络编程 第 4 版》](https://book.douban.com/subject/26259017/)：  可以系统的学习一下网络的一些概念以及网络编程在 Java 中的使用。
 - [《Java 编程思想 (第 4 版)》](https://book.douban.com/subject/2130190/)（推荐，豆瓣评分 9.1，3.2K+人评价）：大部分人称之为Java领域的圣经，但我不推荐初学者阅读，有点劝退的味道。稍微有点基础后阅读更好。
+- [《Java性能权威指南》](https://book.douban.com/subject/26740520/)（推荐，豆瓣评分 8.2，0.1K+人评价）：O'Reilly 家族书，性能调优的入门书，我个人觉得性能调优是每个 Java 从业者必备知识，这本书的缺点就是太老了，但是这本书可以作为一个实战书，尤其是 JVM 调优！不适合初学者。前置书籍：《深入理解 Java 虚拟机》
 
 ### 并发
 
@@ -95,6 +96,7 @@ linux命令缩写：https://www.cnblogs.com/z-bear/p/8558051.html
 - [《RabbitMQ 实战指南》](https://book.douban.com/subject/27591386/)：《RabbitMQ 实战指南》从消息中间件的概念和 RabbitMQ 的历史切入，主要阐述 RabbitMQ 的安装、使用、配置、管理、运维、原理、扩展等方面的细节。如果你想浅尝 RabbitMQ 的使用，这本书是你最好的选择；如果你想深入 RabbitMQ 的原理，这本书也是你最好的选择；总之，如果你想玩转 RabbitMQ，这本书一定是最值得看的书之一
 - [《Spring Cloud 微服务实战》](https://book.douban.com/subject/27025912/)：从时下流行的微服务架构概念出发，详细介绍了 Spring Cloud 针对微服务架构中几大核心要素的解决方案和基础组件。对于各个组件的介绍，《Spring Cloud 微服务实战》主要以示例与源码结合的方式来帮助读者更好地理解这些组件的使用方法以及运行原理。同时，在介绍的过程中，还包含了作者在实践中所遇到的一些问题和解决思路，可供读者在实践中作为参考。
 - [《第一本 Docker 书》](https://book.douban.com/subject/26780404/)：Docker 入门书籍！
+- [《Spring Boot编程思想（核心篇）》](https://book.douban.com/subject/33390560/)（推荐，豆瓣评分 6.2）：SpringBoot深入书，不适合初学者。书尤其的厚，评分低的的理由是书某些知识过于拖沓，评分高的理由是书中对SpringBoot内部原理讲解很清楚。作者小马哥：Apache Dubbo PMC、Spring Cloud Alibaba项目架构师。B站作者地址：https://space.bilibili.com/327910845?from=search&seid=17095917016893398636。
 
 ### 网站架构
 
@@ -109,6 +111,7 @@ linux命令缩写：https://www.cnblogs.com/z-bear/p/8558051.html
 ## 其他
 
 - [《黑客与画家》](https://read.douban.com/ebook/387525/?dcs=subject-rec&dcm=douban&dct=2243615)：这本书是硅谷创业之父，Y Combinator 创始人 Paul Graham 的文集。之所以叫这个名字，是因为作者认为黑客（并非负面的那个意思）与画家有着极大的相似性，他们都是在创造，而不是完成某个任务。
+- [《图解密码技术》](https://book.douban.com/subject/26265544/)（推荐，豆瓣评分 9.1，0.3K+人评价）：本书以**图配文**的形式，第一部分讲述了密码技术的历史沿革、对称密码、分组密码模式（包括ECB、CBC、CFB、OFB、CTR）、公钥、混合密码系统。第二部分重点介绍了认证方面的内容，涉及单向散列函数、消息认证码、数字签名、证书等。第三部分讲述了密钥、随机数、PGP、SSL/TLS 以及密码技术在现实生活中的应用。关键字：JWT 前置知识、区块链密码技术前置知识。属于密码知识入门书籍。
 
   
 

@@ -21,6 +21,13 @@
   <a href="https://xiaozhuanlan.com/javainterview?rel=javaguide"><img src="https://img.shields.io/badge/Java-面试指南-important" alt="投稿"></a>
 </p>
 
+<h3 align="center">Sponsor</h3>
+<p align="center">
+  <a  href="https://study.163.com/topics/JavaGuide/" >
+<img src="./media/sponsor/WechatIMG143.jpeg"width="" style="margin: 0 auto;"/>
+  </a>
+</p>
+
 推荐使用 https://snailclimb.top/JavaGuide/ 在线阅读(访问速度慢的话，请使用 https://snailclimb.gitee.io/javaguide )，在线阅读内容本仓库同步一致。这种方式阅读的优势在于：有侧边栏阅读体验更好，Gitee pages 的访问速度相对来说也比较快。
 
 ## 目录
@@ -142,7 +149,8 @@
 
 ### MySQL
 
-* **[MySQL 学习与面试](docs/database/MySQL.md)**
+* **[【推荐】MySQL/数据库 知识点总结](docs/database/MySQL.md)**
+* **[阿里巴巴开发手册数据库部分的一些最佳实践](docs/database/阿里巴巴开发手册数据库部分的一些最佳实践.md)**
 * **[一千行MySQL学习笔记](docs/database/一千行MySQL命令.md)**
 * [MySQL高性能优化规范建议](docs/database/MySQL高性能优化规范建议.md)
 * [数据库索引总结](docs/database/MySQL%20Index.md)
@@ -190,6 +198,7 @@
 - [消息队列总结](docs/system-design/data-communication/message-queue.md)
 - [RabbitMQ 入门](docs/system-design/data-communication/rabbitmq.md)
 - [RocketMQ的几个简单问题与答案](docs/system-design/data-communication/RocketMQ-Questions.md)
+- [Kafka入门看这一篇就够了](docs/system-design/data-communication/Kafka入门看这一篇就够了.md)
 - [Kafka系统设计开篇-面试看这篇就够了](docs/system-design/data-communication/Kafka系统设计开篇-面试看这篇就够了.md)
 
 ### 网站架构
@@ -208,6 +217,7 @@
 * **[【备战面试4】Github上开源的Java面试/学习相关的仓库推荐](docs/essential-content-for-interview/PreparingForInterview/JavaInterviewLibrary.md)**
 * **[【备战面试5】如果面试官问你“你有什么问题问我吗？”时，你该如何回答](docs/essential-content-for-interview/PreparingForInterview/如果面试官问你"你有什么问题问我吗？"时，你该如何回答.md)**
 * **[【备战面试6】美团面试常见问题总结（附详解答案）](docs/essential-content-for-interview/PreparingForInterview/美团面试常见问题总结.md)**
+* **[【备战面试7】一些刁难的面试问题总结](https://xiaozhuanlan.com/topic/9056431872)**
 
 ### 常见面试题总结
 
@@ -241,8 +251,7 @@
 
 ### 实战项目推荐
 
-- [onemall](https://github.com/YunaiV/onemall) : mall 商城，基于微服务的思想，构建在 B2C 电商场景下的项目实战。核心技术栈，是 Spring Boot + Dubbo 。未来，会重构成 Spring Cloud Alibaba 。
-- 
+- [Github 上热门的 Spring Boot 项目实战推荐](docs/data/spring-boot-practical-projects.md)
 
 ### Github 历史榜单
 
