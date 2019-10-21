@@ -28,7 +28,7 @@
 
 ### 概念一：生产者与消费者
 
-![生产者与消费者](./../../../media/pictures/kafaka/生产者和消费者.png)
+![生产者与消费者](./../../../media/pictures/kafka/生产者和消费者.png)
 
 对于 Kafka 来说客户端有两种基本类型：
 
@@ -41,7 +41,7 @@
 
 ### 概念二：主题（Topic）与分区（Partition）
 
-![主题（Topic）与分区（Partition）](./../../../media/pictures/kafaka/主题与分区.png)
+![主题（Topic）与分区（Partition）](./../../../media/pictures/kafka/主题与分区.png)
 
 在 Kafka 中，消息以**主题（Topic）**来分类，每一个主题都对应一个 **「消息队列」**，这有点儿类似于数据库中的表。但是如果我们把所有同类的消息都塞入到一个“中心”队列中，势必缺少可伸缩性，无论是生产者/消费者数目的增加，还是消息数量的增加，都可能耗尽系统的性能或存储。
 
@@ -53,7 +53,7 @@
 
 若干个 Broker 组成一个集群（Cluster），其中集群内某个 Broker 会成为集群控制器（Cluster Controller），它负责管理集群，包括分配分区到 Broker、监控 Broker 故障等。在集群内，一个分区由一个 Broker 负责，这个 Broker 也称为这个分区的 Leader；当然一个分区可以被复制到多个 Broker 上来实现冗余，这样当存在 Broker 故障时可以将其分区重新分配到其他 Broker 来负责。下图是一个样例：
 
-![Broker和集群](./../../../media/pictures/kafaka/Broker和集群.png)
+![Broker和集群](./../../../media/pictures/kafka/Broker和集群.png)
 
 Kafka 的一个关键性质是日志保留（retention），我们可以配置主题的消息保留策略，譬如只保留一段时间的日志或者只保留特定大小的日志。当超过这些限制时，老的消息会被删除。我们也可以针对某个主题单独设置消息过期策略，这样对于不同应用可以实现个性化。
 
@@ -84,7 +84,7 @@ Kafka 的一个关键性质是日志保留（retention），我们可以配置�
 
 **上述的 Topic 其实是逻辑上的概念，面相消费者和生产者，物理上存储的其实是 Partition**，每一个 Partition 最终对应一个目录，里面存储所有的消息和索引文件。默认情况下，每一个 Topic 在创建时如果不指定 Partition 数量时只会创建 1 个 Partition。比如，我创建了一个 Topic 名字为 test ，没有指定 Partition 的数量，那么会默认创建一个 test-0 的文件夹，这里的命名规则是：`<topic_name>-<partition_id>`。
 
-![主题（Topic）与分区（Partition）](./../../../media/pictures/kafaka/kafka存在文件系统上.png)
+![主题（Topic）与分区（Partition）](./../../../media/pictures/kafka/kafka存在文件系统上.png)
 
 任何发布到 Partition 的消息都会被追加到 Partition 数据文件的尾部，这样的顺序写磁盘操作让 Kafka 的效率非常高（经验证，顺序写磁盘效率比随机写内存还要高，这是 Kafka 高吞吐率的一个很重要的保证）。
 
@@ -122,7 +122,7 @@ Kafka 的一个关键性质是日志保留（retention），我们可以配置�
 
 以上面的一对 Segment File 为例，说明一下索引文件和数据文件对应关系：
 
-![索引文件和数据文件](./../../../media/pictures/kafaka/segment是kafka文件存储的最小单位.png)
+![索引文件和数据文件](./../../../media/pictures/kafka/segment是kafka文件存储的最小单位.png)
 
 
 
@@ -150,7 +150,7 @@ Kafka 的一个关键性质是日志保留（retention），我们可以配置�
 
 不同的业务需要使用不同的写入方式和配置。具体的方式我们在这里不做讨论，现在先看下生产者写消息的基本流程：
 
-![生产者设计概要](./../../../media/pictures/kafaka/生产者设计概要.png)
+![生产者设计概要](./../../../media/pictures/kafka/生产者设计概要.png)
 
 图片来源：[http://www.dengshenyu.com/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/2017/11/12/kafka-producer.html](http://www.dengshenyu.com/分布式系统/2017/11/12/kafka-producer.html)
 
@@ -173,24 +173,24 @@ Kafka 的一个关键性质是日志保留（retention），我们可以配置�
 
 Kafka消费者是**消费组**的一部分，当多个消费者形成一个消费组来消费主题时，每个消费者会收到不同分区的消息。假设有一个T1主题，该主题有4个分区；同时我们有一个消费组G1，这个消费组只有一个消费者C1。那么消费者C1将会收到这4个分区的消息，如下所示：
 
-![生产者设计概要](./../../../media/pictures/kafaka/消费者设计概要1.png)
+![生产者设计概要](./../../../media/pictures/kafka/消费者设计概要1.png)
 如果我们增加新的消费者C2到消费组G1，那么每个消费者将会分别收到两个分区的消息，如下所示：
 
-![生产者设计概要](./../../../media/pictures/kafaka/消费者设计概要2.png)
+![生产者设计概要](./../../../media/pictures/kafka/消费者设计概要2.png)
 
 如果增加到4个消费者，那么每个消费者将会分别收到一个分区的消息，如下所示：
 
-![生产者设计概要](./../../../media/pictures/kafaka/消费者设计概要3.png)
+![生产者设计概要](./../../../media/pictures/kafka/消费者设计概要3.png)
 
 但如果我们继续增加消费者到这个消费组，剩余的消费者将会空闲，不会收到任何消息：
 
-![生产者设计概要](./../../../media/pictures/kafaka/消费者设计概要4.png)
+![生产者设计概要](./../../../media/pictures/kafka/消费者设计概要4.png)
 
 总而言之，我们可以通过增加消费组的消费者来进行水平扩展提升消费能力。这也是为什么建议创建主题时使用比较多的分区数，这样可以在消费负载高的情况下增加消费者来提升性能。另外，消费者的数量不应该比分区数多，因为多出来的消费者是空闲的，没有任何帮助。
 
 **Kafka一个很重要的特性就是，只需写入一次消息，可以支持任意多的应用读取这个消息。**换句话说，每个应用都可以读到全量的消息。为了使得每个应用都能读到全量消息，应用需要有不同的消费组。对于上面的例子，假如我们新增了一个新的消费组G2，而这个消费组有两个消费者，那么会是这样的：
 
-![生产者设计概要](./../../../media/pictures/kafaka/消费者设计概要5.png)
+![生产者设计概要](./../../../media/pictures/kafka/消费者设计概要5.png)
 
 在这个场景中，消费组G1和消费组G2都能收到T1主题的全量消息，在逻辑意义上来说它们属于不同的应用。
 
@@ -216,7 +216,7 @@ Kafka消费者是**消费组**的一部分，当多个消费者形成一个消�
 
 无论消息是否被消费，除非消息到期 Partition 从不删除消息。例如设置保留时间为 2 天，则消息发布 2 天内任何 Group 都可以消费，2 天后，消息自动被删除。
 Partition 会为每个 Consumer Group 保存一个偏移量，记录 Group 消费到的位置。 如下图：
-![生产者设计概要](./../../../media/pictures/kafaka/Partition与消费模型.png)
+![生产者设计概要](./../../../media/pictures/kafka/Partition与消费模型.png)
 
 
 
@@ -269,7 +269,7 @@ vi /usr/local/etc/kafka/server.properties
 
 然后修改成下图的样子：
 
-![启动服务](./../../../media/pictures/kafaka/启动服务.png)
+![启动服务](./../../../media/pictures/kafka/启动服务.png)
 依次启动 Zookeeper 和 Kafka：
 
 ```shell
@@ -305,7 +305,7 @@ kafka-console-producer --broker-list localhost:9092 --topic test
 
 能通过消费者窗口观察到正确的消息：
 
-![发送消息](./../../../media/pictures/kafaka/发送消息.png)
+![发送消息](./../../../media/pictures/kafka/发送消息.png)
 
 # 参考资料
 
