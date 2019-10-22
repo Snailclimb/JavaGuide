@@ -3,8 +3,6 @@
 <!-- TOC -->
 
 - [1. 面向对象和面向过程的区别](#1-面向对象和面向过程的区别)
-    - [面向过程](#面向过程)
-    - [面向对象](#面向对象)
 - [2. Java 语言有哪些特点?](#2-java-语言有哪些特点)
 - [3. 关于 JVM JDK 和 JRE 最详细通俗的解答](#3-关于-jvm-jdk-和-jre-最详细通俗的解答)
     - [JVM](#jvm)
@@ -49,8 +47,9 @@
     - [异常处理总结](#异常处理总结)
 - [33 Java序列化中如果有些字段不想进行序列化，怎么办？](#33-java序列化中如果有些字段不想进行序列化怎么办)
 - [34 获取用键盘输入常用的两种方法](#34-获取用键盘输入常用的两种方法)
-- [35 Java 中 IO 流分为几种?BIO,NIO,AIO 有什么区别?](#35-java-中-io-流分为几种bionioaio-有什么区别)
-    - [java 中 IO 流分为几种?](#java-中-io-流分为几种)
+- [35 Java 中 IO 流](#35-java-中-io-流)
+    - [Java 中 IO 流分为几种?](#java-中-io-流分为几种)
+    - [既然有了字节流,为什么还要有字符流?](#既然有了字节流为什么还要有字符流)
     - [BIO,NIO,AIO 有什么区别?](#bionioaio-有什么区别)
 - [36. 常见关键字总结:static,final,this,super](#36-常见关键字总结staticfinalthissuper)
 - [37. Collections 工具类和 Arrays 工具类常见方法总结](#37-collections-工具类和-arrays-工具类常见方法总结)
@@ -384,7 +383,7 @@ Java 线程在运行的生命周期中的指定时刻只可能处于下面6种�
 
 线程创建之后它将处于 **NEW（新建）** 状态，调用 `start()` 方法后开始运行，线程这时候处于 **READY（可运行）** 状态。可运行状态的线程获得了 cpu 时间片（timeslice）后就处于 **RUNNING（运行）** 状态。
 
-> 操作系统隐藏 Java虚拟机（JVM）中的 RUNNABLE 和 RUNNING 状态，它只能看到 RUNNABLE 状态（图源：[HowToDoInJava](https://howtodoinjava.com/)：[Java Thread Life Cycle and Thread States](https://howtodoinjava.com/java/multi-threading/java-thread-life-cycle-and-thread-states/)），所以 Java 系统一般将这两个状态统称为 **RUNNABLE（运行中）** 状态 。
+> 操作系统隐藏 Java虚拟机（JVM）中的 READY 和 RUNNING 状态，它只能看到 RUNNABLE 状态（图源：[HowToDoInJava](https://howtodoinjava.com/)：[Java Thread Life Cycle and Thread States](https://howtodoinjava.com/java/multi-threading/java-thread-life-cycle-and-thread-states/)），所以 Java 系统一般将这两个状态统称为 **RUNNABLE（运行中）** 状态 。
 
 ![RUNNABLE-VS-RUNNING](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/RUNNABLE-VS-RUNNING.png)
 
@@ -478,9 +477,9 @@ BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 String s = input.readLine(); 
 ```
 
-## 35 Java 中 IO 流分为几种?BIO,NIO,AIO 有什么区别?
+## 35 Java 中 IO 流
 
-### java 中 IO 流分为几种?
+### Java 中 IO 流分为几种?
 
    - 按照流的流向分，可以分为输入流和输出流；
    - 按照操作单元划分，可以划分为字节流和字符流；
@@ -499,6 +498,12 @@ Java Io流共涉及40多个类，这些类看上去很杂乱，但实际上很�
 按操作对象分类结构图：
 
 ![IO-操作对象分类](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/IO-操作对象分类.png)
+
+### 既然有了字节流,为什么还要有字符流?
+
+问题本质想问：**不管是文件读写还是网络发送接收，信息的最小存储单元都是字节，那为什么 I/O 流操作要分为字节流操作和字符流操作呢？**
+
+回答：字符流是由 Java 虚拟机将字节转换得到的，问题就出在这个过程还算是非常耗时，并且，如果我们不知道编码类型就很容易出现乱码问题。所以， I/O 流就干脆提供了一个直接操作字符的接口，方便我们平时对字符进行流操作。如果音频文件、图片等媒体文件用字节流比较好，如果涉及到字符的话使用字符流比较好。
 
 ### BIO,NIO,AIO 有什么区别?
 
@@ -529,3 +534,4 @@ Java Io流共涉及40多个类，这些类看上去很杂乱，但实际上很�
 **Java工程师必备学习资源:** 一些Java工程师常用学习资源公众号后台回复关键字 **“1”** 即可免费无套路获取。 
 
 ![我的公众号](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/167598cd2e17b8ec.png)
+
