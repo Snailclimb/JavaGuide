@@ -24,7 +24,7 @@
 <h3 align="center">Sponsor</h3>
 <p align="center">
   <a  href="https://study.163.com/topics/JavaGuide/" >
-<img src="./media/sponsor/WechatIMG143.jpeg"width="" style="margin: 0 auto;"/>
+<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/WechatIMG1.png"width="" style="margin: 0 auto;"/>
   </a>
 </p>
 
