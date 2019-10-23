@@ -10,7 +10,7 @@
 稍微正式点（啰嗦点）的说法就是：
 
 - **Authentication（认证）** 是验证您的身份的凭据（例如用户名/用户ID和密码），通过这个凭据，系统得以知道你就是你，也就是说系统存在你这个用户。所以，Authentication 被称为身份/用户验证。
-- **Authorization（授权）** 发生在 **Authentication（认证）**之后。授权嘛，光看意思大家应该就明白，它主要掌管我们访问系统的权限。比如有些特定资源只能具有特定权限的人才能访问比如admin，有些对系统资源操作比如删除、添加、更新只能特定人才具有。
+- **Authorization（授权）** 发生在 **Authentication（认证）** 之后。授权嘛，光看意思大家应该就明白，它主要掌管我们访问系统的权限。比如有些特定资源只能具有特定权限的人才能访问比如admin，有些对系统资源操作比如删除、添加、更新只能特定人才具有。
 
 这两个一般在我们的系统中被结合在一起使用，目的就是为了保护我们系统的安全性。
 
@@ -105,7 +105,7 @@ public String readAllCookies(HttpServletRequest request) {
 
 **JWT 本质上就一段签名的 JSON 格式的数据。由于它是带有签名的，因此接收者便可以验证它的真实性。**
 
-下面是 [RFC 7519](https://link.juejin.im/?target=https%3A%2F%2Ftools.ietf.org%2Fhtml%2Frfc7519) 对 JWT 做的较为正式的定义。
+下面是 [RFC 7519](https://tools.ietf.org/html/rfc7519) 对 JWT 做的较为正式的定义。
 
 > JSON Web Token (JWT) is a compact, URL-safe means of representing claims to be transferred between two parties. The claims in a JWT are encoded as a JSON object that is used as the payload of a JSON Web Signature (JWS) structure or as the plaintext of a JSON Web Encryption (JWE) structure, enabling the claims to be digitally signed or integrity protected with a Message Authentication Code (MAC) and/or encrypted.    ——[JSON Web Token (JWT)](https://tools.ietf.org/html/rfc7519)
 
@@ -140,7 +140,7 @@ OAuth 是一个行业的标准授权协议，主要用来授权第三方应用�
 
 OAuth 2.0 比较常用的场景就是第三方登录，当你的网站接入了第三方登录的时候一般就是使用的 OAuth 2.0 协议。
 
-推荐阅读：
+**推荐阅读：**
 
 - [OAuth 2.0 的一个简单解释](http://www.ruanyifeng.com/blog/2019/04/oauth_design.html)
 - [10 分钟理解什么是 OAuth 2.0 协议](https://deepzz.com/post/what-is-oauth2-protocol.html)
