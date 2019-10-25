@@ -1,6 +1,6 @@
 点击关注[公众号](#公众号)及时获取笔主最新更新文章，并可免费领取本文档配套的《Java面试突击》以及Java工程师必备学习资源。
 
-推荐一下京东云最近的活动，刚好自己需要，感觉优惠力度挺大的，除了新人有很多一折服务器外，消费还会返还金豆，[点击了解](https://re.jdcloud.com/cps?returnUrl=aHR0cHM6Ly93d3cuamRjbG91ZC5jb20vY24vYWN0aXZpdHkveWVhci1lbmQ_bUlkPTE4JmNwc0tleT0xZGExN2NjYjQ1OGY0NWI2OWYxYjZjZWRkYTRkN2E4ZA==)
+**[推荐一下阿里云双11的活动：云服务器1折起，仅86元/年，限量抢购！](https://www.aliyun.com/1111/2019/group-buying-share?ptCode=32AE103FC8249634736194795A3477C4647C88CF896EF535&userCode=hf47liqn&share_source=copy_link)** 
 
 <p align="center">
 <a href="https://github.com/Snailclimb/JavaGuide" target="_blank">
@@ -22,9 +22,6 @@
   <a  href="https://study.163.com/topics/JavaGuide/" >
 <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/WechatIMG1.png"width="" style="margin: 0 auto;"/>
   </a >
-    <a  href="https://re.jdcloud.com/cps?returnUrl=aHR0cHM6Ly93d3cuamRjbG91ZC5jb20vY24vYWN0aXZpdHkveWVhci1lbmQ_bUlkPTE4JmNwc0tleT0xZGExN2NjYjQ1OGY0NWI2OWYxYjZjZWRkYTRkN2E4ZA==" >
-<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/728*90.jpg"width="" style="margin: 0 auto;"/>
-  </a>
 </p>
 
 推荐使用 https://snailclimb.top/JavaGuide/ 在线阅读(访问速度慢的话，请使用 https://snailclimb.gitee.io/javaguide )，在线阅读内容本仓库同步一致。这种方式阅读的优势在于：有侧边栏阅读体验更好，Gitee pages 的访问速度相对来说也比较快。
