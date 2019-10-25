@@ -1,0 +1,47 @@
+
+Sequential search -
+     searching an element by comparing each element.
+usefull if array length is less thsn or equal to 20.
+ex- 
+public class search{
+public static void main(String [] args){
+ Scanner scan = new Scanner(System.in);
+ int n = scan.nextInt();
+ int p[] = new int[n];
+ int a = 3         
+int temp=0;  //element to search in array
+ for(int i =0;i<n;i++){
+  if(p[i]==a)
+    System.out.println("Element is present at "+i+"postion");
+      temp+=1;
+ } if(temp==0)
+    System.out.println("Element is not present");  
+}
+}
+Binary search -is the searching technique for an SORTED array.
+it is faster than liner search .
+syntax-
+public class search{
+public static void main(String [] args){
+Scanner scan= new Scanner(System.in)'
+int p[] ={10, 20, 40, 55, 65,67,68}
+int a = 67;  //element to search 
+int li =p[0];
+int hi =p[6];
+int mi=(li+hi);
+while(li<=hi){
+   if(p[mi]==a){
+    System.out.println("Element is present at :"+mi);
+   }
+    else 
+    if(a<p[mi]){
+    li = mi+1;
+    }
+    else{
+      hi = mi+1;
+}
+}
+}
+}
+   
+ 
