@@ -37,7 +37,7 @@ Spring Boot Starters 是一系列依赖关系的集合，因为它的存在，�
 </dependency>
 ```
 
-### 5.如何在Spring Boot应用程序中使用Jetty而不是Tomcat?
+### 5. 如何在Spring Boot应用程序中使用Jetty而不是Tomcat?
 
 Spring Boot Web starter使用Tomcat作为默认的嵌入式servlet容器, 如果你想使用 Jetty 的话只需要修改pom.xml(Maven)或者build.gradle(Gradle)就可以了。
 
@@ -73,7 +73,7 @@ compile("org.springframework.boot:spring-boot-starter-jetty")
 
 说个题外话，从上面可以看出使用 Gradle 更加简洁明了，但是国内目前还是 Maven 使用的多一点，我个人觉得 Gradle 在很多方面都要好很多。
 
-### 6.介绍一下@SpringBootApplication注解
+### 6. 介绍一下@SpringBootApplication注解
 
 ```java
 package org.springframework.boot.autoconfigure;
@@ -108,7 +108,7 @@ public @interface SpringBootConfiguration {
 - `@ComponentScan`： 扫描被`@Component` (`@Service`,`@Controller`)注解的bean，注解默认会扫描该类所在的包下所有的类。
 - `@Configuration`：允许在上下文中注册额外的bean或导入其他配置类
 
-### （重要）Spring Boot 的自动配置是如何实现的？
+### 7. (重要)Spring Boot 的自动配置是如何实现的?
 
 这个是因为`@SpringBootApplication `注解的原因，在上一个问题中已经提到了这个注解。我们知道 `@SpringBootApplication `看作是 `@Configuration`、`@EnableAutoConfiguration`、`@ComponentScan ` 注解的集合。
 
@@ -177,7 +177,7 @@ public class WebSecurityEnablerConfiguration {
 
 更多内容可以参考这篇文章：https://sylvanassun.github.io/2018/01/08/2018-01-08-spring_boot_auto_configure/
 
-### 7. Spring Boot支持哪些嵌入式web容器？
+### 8. Spring Boot支持哪些嵌入式web容器？
 
 Spring Boot支持以下嵌入式servlet容器:
 
@@ -191,7 +191,7 @@ Spring Boot支持以下嵌入式servlet容器:
 
 这就是你为什么可以通过直接像运行 普通 Java 项目一样运行 SpringBoot 项目。这样的确省事了很多，方便了我们进行开发，降低了学习难度。
 
-### 什么是Spring Security ?
+### 9. 什么是Spring Security ?
 
 Spring Security 应该属于 Spring 全家桶中学习曲线比较陡峭的几个模块之一，下面我将从起源和定义这两个方面来简单介绍一下它。
 
