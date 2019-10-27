@@ -47,9 +47,9 @@
     - [Redis](#redis)
 - [系统设计](#系统设计)
     - [常用框架(Spring/SpringBoot、Zookeeper ... )](#常用框架)
+    - [数据通信(消息队列、Dubbo ... )](#数据通信)
     - [权限认证](#权限认证)
     - [设计模式(工厂模式、单例模式 ... )](#设计模式)
-    - [数据通信(消息队列、Dubbo ... )](#数据通信)
     - [网站架构](#网站架构)
 - [面试指南](#面试指南)
     - [备战面试](#备战面试)
@@ -177,6 +177,22 @@
 - [ZooKeeper 相关概念总结](docs/system-design/framework/ZooKeeper.md)
 - [ZooKeeper 数据模型和常见命令](docs/system-design/framework/ZooKeeper数据模型和常见命令.md)
 
+### 数据通信
+
+- [数据通信(RESTful、RPC、消息队列)相关知识点总结](docs/system-design/data-communication/summary.md)
+
+#### Dubbo
+
+- [Dubbo 总结：关于 Dubbo 的重要知识点](docs/system-design/data-communication/dubbo.md)
+
+#### 消息中间件
+
+- [消息队列总结](docs/system-design/data-communication/message-queue.md)
+- [RabbitMQ 入门](docs/system-design/data-communication/rabbitmq.md)
+- [RocketMQ的几个简单问题与答案](docs/system-design/data-communication/RocketMQ-Questions.md)
+- [Kafka入门看这一篇就够了](docs/system-design/data-communication/Kafka入门看这一篇就够了.md)
+- [Kafka系统设计开篇-面试看这篇就够了](docs/system-design/data-communication/Kafka系统设计开篇-面试看这篇就够了.md)
+
 ### 权限认证
 
 - **[权限认证基础:区分Authentication,Authorization以及Cookie、Session、Token](docs/system-design/authority-certification/basis-of-authority-certification.md)**
@@ -186,16 +202,6 @@
 ### 设计模式
 
 - [设计模式系列文章](docs/system-design/设计模式.md)
-
-### 数据通信
-
-- [数据通信(RESTful、RPC、消息队列)相关知识点总结](docs/system-design/data-communication/summary.md)
-- [Dubbo 总结：关于 Dubbo 的重要知识点](docs/system-design/data-communication/dubbo.md)
-- [消息队列总结](docs/system-design/data-communication/message-queue.md)
-- [RabbitMQ 入门](docs/system-design/data-communication/rabbitmq.md)
-- [RocketMQ的几个简单问题与答案](docs/system-design/data-communication/RocketMQ-Questions.md)
-- [Kafka入门看这一篇就够了](docs/system-design/data-communication/Kafka入门看这一篇就够了.md)
-- [Kafka系统设计开篇-面试看这篇就够了](docs/system-design/data-communication/Kafka系统设计开篇-面试看这篇就够了.md)
 
 ### 网站架构
 
