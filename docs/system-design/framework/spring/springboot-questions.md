@@ -198,3 +198,5 @@ Spring Security 应该属于 Spring 全家桶中学习曲线比较陡峭的几�
 - **起源：** Spring Security 实际上起源于 Acegi Security，这个框架能为基于 Spring 的企业应用提供强大而灵活安全访问控制解决方案，并且框架这个充分利用 Spring 的 IoC 和 AOP 功能，提供声明式安全访问控制的功能。后面，随着这个项目发展， Acegi Security 成为了Spring官方子项目，后来被命名为 “Spring Security”。
 - **定义：**Spring Security 是一个功能强大且高度可以定制的框架，侧重于为Java 应用程序提供身份验证和授权。——[官方介绍](https://spring.io/projects/spring-security)。
 
+### 10. JPA 和 Hibernate 有哪些区别？JPA 可以支持动态 SQL 吗？
+
