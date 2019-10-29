@@ -31,9 +31,9 @@
 
 学习完之后可以看一下下面这几篇文章，检查一下自己的学习情况：
 
-- **[Java 基础知识回顾](../java/Java基础知识.md "Java 基础知识回顾")**
-- **[Java 基础知识疑难点/易错点](../java/Java疑难点.md "Java 基础知识疑难点/易错点")**
-- **[一些重要的 Java 程序设计题](../java/Java程序设计题.md "一些重要的Java程序设计题")**
+- **[Java 基础知识回顾](https://github.com/Snailclimb/JavaGuide/blob/master/docs/java/Java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86.md)**
+- **[Java 基础知识疑难点/易错点](https://github.com/Snailclimb/JavaGuide/blob/master/docs/java/Java%E7%96%91%E9%9A%BE%E7%82%B9.md)**
+- **[一些重要的 Java 程序设计题](https://github.com/Snailclimb/JavaGuide/blob/master/docs/java/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E9%A2%98.md)**
 
 检测一下自己的掌握情况，这 34 个问题都时 Java 中比较重要的知识点，最重要的是在 Java 后端面试中的出场率非常高。
 
@@ -67,12 +67,12 @@
 
 另外，推荐看一下下面这几篇文章：
 
-- **[Java 并发基础常见面试题总结](../java/Multithread/JavaConcurrencyBasicsCommonInterviewQuestionsSummary.md "Java 并发基础常见面试题总结")**
-- **[Java 并发进阶常见面试题总结](../java/Multithread/JavaConcurrencyAdvancedCommonInterviewQuestions.md "Java 并发进阶常见面试题总结")**
-- [并发容器总结](../java/Multithread/并发容器总结.md "并发容器总结")
-- [乐观锁与悲观锁](../essential-content-for-interview/面试必备之乐观锁与悲观锁.md "乐观锁与悲观锁")
-- [JUC 中的 Atomic 原子类总结](../java/Multithread/Atomic.md "JUC 中的 Atomic 原子类总结")
-- [AQS 原理以及 AQS 同步组件总结](../java/Multithread/AQS.md "AQS 原理以及 AQS 同步组件总结")
+- **[Java 并发基础常见面试题总结](https://github.com/Snailclimb/JavaGuide/blob/master/docs/java/Multithread/JavaConcurrencyBasicsCommonInterviewQuestionsSummary.md)**
+- **[Java 并发进阶常见面试题总结](https://github.com/Snailclimb/JavaGuide/blob/master/docs/java/Multithread/JavaConcurrencyAdvancedCommonInterviewQuestions.md)**
+- [并发容器总结](https://github.com/Snailclimb/JavaGuide/blob/master/docs/java/Multithread/%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8%E6%80%BB%E7%BB%93.md)
+- [乐观锁与悲观锁](https://github.com/Snailclimb/JavaGuide/blob/master/docs/essential-content-for-interview/%E9%9D%A2%E8%AF%95%E5%BF%85%E5%A4%87%E4%B9%8B%E4%B9%90%E8%A7%82%E9%94%81%E4%B8%8E%E6%82%B2%E8%A7%82%E9%94%81.md)
+- [JUC 中的 Atomic 原子类总结](https://github.com/Snailclimb/JavaGuide/blob/master/docs/java/Multithread/Atomic.md)
+- [AQS 原理以及 AQS 同步组件总结](https://github.com/Snailclimb/JavaGuide/blob/master/docs/java/Multithread/AQS.md)
 
 ### step 3(可选):操作系统与计算机网络
 
@@ -104,19 +104,19 @@
 
 下面这些 MySQL 相关的文章强烈推荐你看看：
 
-- **[【推荐】MySQL/数据库 知识点总结](../database/MySQL.md "【推荐】MySQL/数据库 知识点总结")**
-- **[阿里巴巴开发手册数据库部分的一些最佳实践](../database/阿里巴巴开发手册数据库部分的一些最佳实践.md "阿里巴巴开发手册数据库部分的一些最佳实践")**
-- **[一千行 MySQL 学习笔记](../database/一千行MySQL命令.md "一千行MySQL学习笔记")**
-- [MySQL 高性能优化规范建议](../database/MySQL高性能优化规范建议.md "MySQL高性能优化规范建议")
-- [数据库索引总结](../database/MySQL%20Index.md "数据库索引总结")
-- [事务隔离级别(图文详解)](../database/事务隔离级别(图文详解 "事务隔离级别(图文详解 "事务隔离级别(图文详解)")").md)
-- [一条 SQL 语句在 MySQL 中如何执行的](../database/一条sql语句在mysql中如何执行的.md "一条SQL语句在MySQL中如何执行的")
+- **[【推荐】MySQL/数据库 知识点总结](https://github.com/Snailclimb/JavaGuide/blob/master/docs/database/MySQL.md)**
+- **[阿里巴巴开发手册数据库部分的一些最佳实践](https://github.com/Snailclimb/JavaGuide/blob/master/docs/database/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E9%83%A8%E5%88%86%E7%9A%84%E4%B8%80%E4%BA%9B%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5.md)**
+- **[一千行 MySQL 学习笔记](https://github.com/Snailclimb/JavaGuide/blob/master/docs/database/%E4%B8%80%E5%8D%83%E8%A1%8CMySQL%E5%91%BD%E4%BB%A4.md)**
+- [MySQL 高性能优化规范建议](https://github.com/Snailclimb/JavaGuide/blob/master/docs/database/MySQL%E9%AB%98%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E8%A7%84%E8%8C%83%E5%BB%BA%E8%AE%AE.md)
+- [数据库索引总结](https://github.com/Snailclimb/JavaGuide/blob/master/docs/database/MySQL%20Index.md)
+- [事务隔离级别(图文详解)](https://github.com/Snailclimb/JavaGuide/blob/master/docs/database/%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB(%E5%9B%BE%E6%96%87%E8%AF%A6%E8%A7%A3).md)
+- [一条 SQL 语句在 MySQL 中如何执行的](https://github.com/Snailclimb/JavaGuide/blob/master/docs/database/%E4%B8%80%E6%9D%A1sql%E8%AF%AD%E5%8F%A5%E5%9C%A8mysql%E4%B8%AD%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C%E7%9A%84.md)
 
 ### step 6:常用工具
 
 1. **Maven** ：建议学习常用框架之前可以提前花半天时间学习一下**Maven**的使用。（到处找 Jar 包，下载 Jar 包是真的麻烦费事，使用 Maven 可以为你省很多事情）。
-2. **Git** ：基本的 Git 技能也是必备的，试着在学习的过程中将自己的代码托管在 Github 上。（[Git 入门](../tools/Git.md "Git入门")）
-3. **Docker** ：学着用 Docker 安装学习中需要用到的软件比如 MySQL ,这样方便很多，可以为你节省不少时间。（[Docker 入门](../tools/Docker.md "Docker 入门")）
+2. **Git** ：基本的 Git 技能也是必备的，试着在学习的过程中将自己的代码托管在 Github 上。（[Git 入门](https://github.com/Snailclimb/JavaGuide/blob/master/docs/tools/Git.md)）
+3. **Docker** ：学着用 Docker 安装学习中需要用到的软件比如 MySQL ,这样方便很多，可以为你节省不少时间。（[Docker 入门](https://github.com/Snailclimb/JavaGuide/blob/master/docs/tools/Docker.md)）
 
 ### step 7:常用框架
 

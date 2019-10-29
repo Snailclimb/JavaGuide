@@ -19,7 +19,7 @@
 
 <h3 align="center">Sponsor</h3>
 <p align="center">
-  <a  href="https://study.163.com/topics/JavaGuide/" >
+  <a  href="https://url.163.com/hXm" >
 <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/WechatIMG1.png"width="" style="margin: 0 auto;"/>
   </a >
 </p>
@@ -238,6 +238,7 @@
 ## Java学习常见问题汇总
 
 - [Java学习路线和方法推荐](docs/questions/java-learning-path-and-methods.md)
+- [Java培训四个月能学会吗？](docs/questions/java-training-4-month.md)
 
 ## 工具
 
