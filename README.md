@@ -1,6 +1,6 @@
 点击关注[公众号](#公众号)及时获取笔主最新更新文章，并可免费领取本文档配套的《Java面试突击》以及Java工程师必备学习资源。
 
-**[推荐一下阿里云双11的活动：云服务器1折起，仅86元/年，限量抢购！](https://www.aliyun.com/1111/2019/group-buying-share?ptCode=32AE103FC8249634736194795A3477C4647C88CF896EF535&userCode=hf47liqn&share_source=copy_link)** 
+**[推荐一下阿里云双11的活动：云服务器1折起，仅86元/年，限量抢购！](https://www.aliyun.com/1111/2019/group-buying-share?ptCode=32AE103FC8249634736194795A3477C4647C88CF896EF535&userCode=hf47liqn&share_source=copy_link)** （仅限新人，老用户可以考虑使用家人或者朋友账号购买，推荐799/3年 2核4G 这个性价比和适用面更广）
 
 <p align="center">
 <a href="https://github.com/Snailclimb/JavaGuide" target="_blank">
