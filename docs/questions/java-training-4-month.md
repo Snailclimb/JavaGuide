@@ -18,7 +18,7 @@
 
 ## 编程好习惯推荐
 
-> **下面这些我都总结在了 Github 上，更多内容可以通过这个链接查看：https://github.com/Snailclimb/programmer-advancement。**
+> **下面这些我都总结在了 Github 上，更多内容可以通过这个链接查看：** https://github.com/Snailclimb/programmer-advancement 。
 
 ### 正确提问
 
