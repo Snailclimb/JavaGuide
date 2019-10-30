@@ -419,7 +419,7 @@ final关键字主要用在三个地方：变量、方法、类。
 
 - **public string getMessage()**:返回异常发生时的简要描述
 - **public string toString()**:返回异常发生时的详细信息
-- **public string getLocalizedMessage()**:返回异常对象的本地化信息。使用Throwable的子类覆盖这个方法，可以声称本地化信息。如果子类没有覆盖该方法，则该方法返回的信息与getMessage（）返回的结果相同
+- **public string getLocalizedMessage()**:返回异常对象的本地化信息。使用Throwable的子类覆盖这个方法，可以生成本地化信息。如果子类没有覆盖该方法，则该方法返回的信息与getMessage（）返回的结果相同
 - **public void printStackTrace()**:在控制台上打印Throwable对象封装的异常信息
 
 ### 异常处理总结
