@@ -1,5 +1,5 @@
 
-**目录：**
+点击关注[公众号](#公众号)及时获取笔主最新更新文章，并可免费领取本文档配套的《Java面试突击》以及Java工程师必备学习资源。
 <!-- MarkdownTOC -->
 
 - [1 AQS 简单介绍](#1-aqs-简单介绍)
@@ -23,10 +23,6 @@
 
 > 常见问题：AQS原理？;CountDownLatch和CyclicBarrier了解吗,两者的区别是什么？用过Semaphore吗？
 
-**本节思维导图：**
-
-![并发编程面试必备：AQS 原理以及 AQS 同步组件总结](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-10-31/61115865.jpg)
-
 
 ### 1 AQS 简单介绍
 AQS的全称为（AbstractQueuedSynchronizer），这个类在java.util.concurrent.locks包下面。
@@ -37,7 +33,7 @@ AQS是一个用来构建锁和同步器的框架，使用AQS能简单且高效�
 
 ### 2 AQS 原理
 
-> 在面试中被问到并发知识的时候，大多都会被问到“请你说一下自己对于AQS原理的理解”。下面给大家一个示例供大家参加，面试不是背题，大家一定要加入自己的思想，即使加入不了自己的思想也要保证自己能够通俗的讲出来而不是背出来。
+> 在面试中被问到并发知识的时候，大多都会被问到“请你说一下自己对于AQS原理的理解”。下面给大家一个示例供大家参考，面试不是背题，大家一定要加入自己的思想，即使加入不了自己的思想也要保证自己能够通俗的讲出来而不是背出来。
 
 下面大部分内容其实在AQS类注释上已经给出了，不过是英语看着比较吃力一点，感兴趣的话可以看看源码。
 
@@ -128,7 +124,7 @@ tryReleaseShared(int)//共享方式。尝试释放资源，成功则返回true�
 
 ### 3 Semaphore(信号量)-允许多个线程同时访问
 
-**synchronized 和 ReentrantLock 都是一次只允许一个线程访问某个资源，Semaphore(信号量)可以指定多个线程同时访问某个资源。**示例代码如下：
+**synchronized 和 ReentrantLock 都是一次只允许一个线程访问某个资源，Semaphore(信号量)可以指定多个线程同时访问某个资源。** 示例代码如下：
 
 ```java
 /**
@@ -471,6 +467,12 @@ CyclicBarrier和CountDownLatch的区别这部分内容参考了如下两篇文�
 
 ReentrantLock 和 synchronized 的区别在上面已经讲过了这里就不多做讲解。另外，需要注意的是：读写锁 ReentrantReadWriteLock 可以保证多个线程可以同时读，所以在读操作远大于写操作的时候，读写锁就非常有用了。
 
-由于篇幅问题，关于 ReentrantLock 和 ReentrantReadWriteLock 详细内容可以查看我的这篇原创文章。
+## 公众号
 
-- [ReentrantLock 和 ReentrantReadWriteLock](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247483745&idx=2&sn=6778ee954a19816310df54ef9a3c2f8a&chksm=fd985700caefde16b9970f5e093b0c140d3121fb3a8458b11871e5e9723c5fd1b5a961fd2228&token=1829606453&lang=zh_CN#rd)
+如果大家想要实时关注我更新的文章以及分享的干货的话，可以关注我的公众号。
+
+**《Java面试突击》:** 由本文档衍生的专为面试而生的《Java面试突击》V2.0 PDF 版本[公众号](#公众号)后台回复 **"面试突击"** 即可免费领取！
+
+**Java工程师必备学习资源:** 一些Java工程师常用学习资源公众号后台回复关键字 **“1”** 即可免费无套路获取。 
+
+![我的公众号](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/167598cd2e17b8ec.png)
