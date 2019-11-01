@@ -35,7 +35,7 @@
     - [JVM](#jvm)
     - [I/O](#io)
     - [Java 8](#java-8)
-    - [编程规范](#编程规范)
+    - [编程规范/优雅 Java代码必备实践](#编程规范/优雅 Java代码必备实践)
 - [网络](#网络)
 - [操作系统](#操作系统)
     - [Linux相关](#linux相关)
@@ -110,9 +110,9 @@
 * [Java 8 学习资源推荐](docs/java/What's%20New%20in%20JDK8/Java8教程推荐.md)
 * [Java8 forEach 指南](docs/java/What's%20New%20in%20JDK8/Java8foreach指南.md)
 
-### 编程规范
+  ### 编程规范/优雅 Java代码必备实践
 
-- [Java 编程规范](docs/java/Java编程规范.md)
+* [Java 编程规范](docs/java/Java编程规范.md)
 
 ## 网络
 
