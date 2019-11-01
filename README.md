@@ -112,7 +112,7 @@
 
 ### 优雅 Java 代码必备实践(Java编程规范)
 
-* [Java 编程规范](docs/java/Java编程规范.md)
+* [Java 编程规范以及优雅Java代码实践总结](docs/java/Java编程规范.md)
 
 ## 网络
 
