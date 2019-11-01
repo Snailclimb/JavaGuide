@@ -8,3 +8,24 @@
 ### 个人
 
 - **程序员你为什么这么累:** <https://xwjie.github.io/rule/>
+
+### 如何写出优雅的 Java 代码
+
+1. 使用 IntelliJ IDEA 作为您的集成开发环境 (IDE)
+1. 使用 JDK 8 或更高版本
+1. 使用 Maven/Gradle
+1. 使用 Lombok
+1. 编写单元测试
+1. 重构:常见,但也很慢
+1. 注意代码规范
+1. 定期联络客户，以获取他们的反馈
+
+上述建议的详细内容：[八点建议助您写出优雅的Java代码](docs/八点建议助您写出优雅的Java代码.md)。
+
+更多代码优化相关内容推荐：
+
+- [业务复杂=if else？刚来的大神竟然用策略+工厂彻底干掉了他们！](https://juejin.im/post/5dad23685188251d2c4ea2b6)
+
+- [一些不错的 Java 实践！推荐阅读3遍以上！](http://lrwinx.github.io/2017/03/04/%E7%BB%86%E6%80%9D%E6%9E%81%E6%81%90-%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BC%9A%E5%86%99java%E5%90%97/)
+
+- [[解锁新姿势] 兄dei，你代码需要优化了](https://juejin.im/post/5dafbc02e51d4524a0060bdd)
