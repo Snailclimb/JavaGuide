@@ -110,7 +110,7 @@
 * [Java 8 学习资源推荐](docs/java/What's%20New%20in%20JDK8/Java8教程推荐.md)
 * [Java8 forEach 指南](docs/java/What's%20New%20in%20JDK8/Java8foreach指南.md)
 
-  ### 优雅 Java代码必备实践(Java编程规范)
+### 优雅 Java代码必备实践(Java编程规范)
 
 * [Java 编程规范](docs/java/Java编程规范.md)
 
