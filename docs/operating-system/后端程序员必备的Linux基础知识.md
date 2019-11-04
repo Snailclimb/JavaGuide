@@ -147,10 +147,10 @@ Linux命令大全：[http://man.linuxde.net/](http://man.linuxde.net/)
   
     注意：mv语法不仅可以对目录进行剪切操作，对文件和压缩包等都可执行剪切操作。另外mv与cp的结果不同，mv好像文件“搬家”，文件个数并未增加。而cp对文件进行复制，文件个数增加了。
 6. **`cp -r 目录名称 目录拷贝的目标位置`：** 拷贝目录（改），-r代表递归拷贝 
-   
+  
     注意：cp命令不仅可以拷贝目录还可以拷贝文件，压缩包等，拷贝文件和压缩包时不  用写-r递归
 7. **`rm [-rf] 目录`:** 删除目录（删）
-   
+  
     注意：rm不仅可以删除目录，也可以删除其他文件或压缩包，为了增强大家的记忆，  无论删除任何目录或文件，都直接使用`rm -rf` 目录/文件/压缩包
 
 
@@ -331,20 +331,29 @@ passwd命令用于设置用户的认证信息，包括用户密码、密码过�
 ### 4.8 其他常用命令
 
 - **`pwd`：** 显示当前所在位置
+
+- `sudo + 其他命令`：以系统管理者的身份执行指令，也就是说，经由 sudo 所执行的指令就好像是 root 亲自执行。
+
 - **`grep 要搜索的字符串 要搜索的文件 --color`：** 搜索命令，--color代表高亮显示
+
 - **`ps -ef`/`ps -aux`：** 这两个命令都是查看当前系统正在运行进程，两者的区别是展示格式不同。如果想要查看特定的进程可以使用这样的格式：**`ps aux|grep redis`** （查看包括redis字符串的进程），也可使用 `pgrep redis -a`。
 
   注意：如果直接用ps（（Process Status））命令，会显示所有进程的状态，通常结合grep命令查看某进程的状态。
+  
 - **`kill -9 进程的pid`：** 杀死进程（-9 表示强制终止。）
 
   先用ps查找进程，然后用kill杀掉
+  
 - **网络通信命令：**
     - 查看当前系统的网卡信息：ifconfig
     - 查看与某台机器的连接情况：ping 
     - 查看当前系统的端口使用：netstat -an
+    
 -  **net-tools 和 iproute2 ：**
     `net-tools`起源于BSD的TCP/IP工具箱，后来成为老版本Linux内核中配置网络功能的工具。但自2001年起，Linux社区已经对其停止维护。同时，一些Linux发行版比如Arch Linux和CentOS/RHEL 7则已经完全抛弃了net-tools，只支持`iproute2`。linux ip命令类似于ifconfig，但功能更强大，旨在替代它。更多详情请阅读[如何在Linux中使用IP命令和示例](https://linoxide.com/linux-command/use-ip-command-linux)
+    
 - **`shutdown`：**  `shutdown -h now`： 指定现在立即关机；`shutdown +5 "System will shutdown after 5 minutes"`：指定5分钟后关机，同时送出警告信息给登入用户。
+
 - **`reboot`：**  **`reboot`：**  重开机。**`reboot -w`：** 做个重开机的模拟（只有纪录并不会真的重开机）。
 
 ## 公众号
