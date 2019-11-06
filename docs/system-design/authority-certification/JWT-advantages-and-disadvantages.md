@@ -1,4 +1,12 @@
-# JWT 优缺点分析以及常见问题解决方案
+# JWT 身份认证优缺点分析以及常见问题解决方案
+
+之前分享了一个使用 Spring Security 实现 JWT 身份认证的 Demo，文章地址：[适合初学者入门 Spring Security With JWT 的 Demo](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247485622&idx=1&sn=e9750ed63c47457ba1896db8dfceac6a&chksm=cea2477df9d5ce6b7af20e582c6c60b7408a6459b05b849394c45f04664d1651510bdee029f7&token=684071313&lang=zh_CN&scene=21#wechat_redirect)。 Demo 非常简单，没有介绍到 JWT 存在的一些问题。所以，单独抽了一篇文章出来介绍。为了完成这篇文章，我查阅了很多资料和文献，我觉得应该对大家有帮助。
+
+相关阅读：
+
+- [《一问带你区分清楚Authentication,Authorization以及Cookie、Session、Token》](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247485626&idx=1&sn=3247aa9000693dd692de8a04ccffeec1&chksm=cea24771f9d5ce675ea0203633a95b68bfe412dc6a9d05f22d221161147b76161d1b470d54b3&token=684071313&lang=zh_CN&scene=21#wechat_redirect)
+- [适合初学者入门 Spring Security With JWT 的 Demo](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247485622&idx=1&sn=e9750ed63c47457ba1896db8dfceac6a&chksm=cea2477df9d5ce6b7af20e582c6c60b7408a6459b05b849394c45f04664d1651510bdee029f7&token=684071313&lang=zh_CN&scene=21#wechat_redirect) 
+- [Spring Boot 使用 JWT 进行身份和权限验证](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247485640&idx=1&sn=0ff147808318d53b371f16bb730c96ef&chksm=cea24703f9d5ce156ba67662f6f3f482330e8e6ebd9d44c61bf623083e9b941d8a180db6b0ea&token=1533246333&lang=zh_CN#rd)
 
 ## Token 认证的优势
 
@@ -6,7 +14,7 @@
 
 ### 1.无状态
 
-token 自身包含了身份验证所需要的所有信息，使得我们的服务器不需要存储 Session 信息，这显然增加了系统的可用性和伸缩性，大大减轻了服务端的压力。但是，也正是由于 token 的无状态，也导致了它最大的缺点：当后端 在token 有效期内废弃一个 token 或者更改它的权限的话，不会立即生效，一般需要等到有效期过后才可以。另外，当用户 Logout 的话，token 也还有效。除非，我们在后端增加额外的处理逻辑。
+token 自身包含了身份验证所需要的所有信息，使得我们的服务器不需要存储 Session 信息，这显然增加了系统的可用性和伸缩性，大大减轻了服务端的压力。但是，也正是由于 token 的无状态，也导致了它最大的缺点：当后端在token 有效期内废弃一个 token 或者更改它的权限的话，不会立即生效，一般需要等到有效期过后才可以。另外，当用户 Logout 的话，token 也还有效。除非，我们在后端增加额外的处理逻辑。
 
 ### 2.有效避免了CSRF 攻击
 
@@ -14,19 +22,19 @@ token 自身包含了身份验证所需要的所有信息，使得我们的服�
 
 那么究竟什么是  **跨站请求伪造** 呢？说简单用你的身份去发送一些对你不友好的请求。举个简单的例子：
 
-小壮登录了某网上银行，它来到了网上银行的帖子区，看到一个帖子下面有一个链接写着“科学理财，年盈利率过万”，小壮好奇的点开了这个链接，结果发现自己的账户少了10000元。这是这么回事呢？原来黑客在链接中藏了一个请求，这个请求直接利用小壮的身份给银行发送了一个转账请求,也就是通过你的 Cookie 向银行发出请求。
+小壮登录了某网上银行，他来到了网上银行的帖子区，看到一个帖子下面有一个链接写着“科学理财，年盈利率过万”，小壮好奇的点开了这个链接，结果发现自己的账户少了10000元。这是这么回事呢？原来黑客在链接中藏了一个请求，这个请求直接利用小壮的身份给银行发送了一个转账请求,也就是通过你的 Cookie 向银行发出请求。
 
 ```html
 <a src=http://www.mybank.com/Transfer?bankId=11&money=10000>科学理财，年盈利率过万</>
 ```
 
-导致这个问题很大的愿意就是： Session 认证中 Cookie 中的 session_id 是由浏览器发送到服务端的，借助这个特性，攻击者就可以通过让用户误点攻击链接，达到攻击效果。
+导致这个问题很大的原因就是： Session 认证中 Cookie 中的 session_id 是由浏览器发送到服务端的，借助这个特性，攻击者就可以通过让用户误点攻击链接，达到攻击效果。
 
 **那为什么 token 不会存在这种问题呢？**
 
 我是这样理解的：一般情况下我们使用 JWT 的话，在我们登录成功获得 token 之后，一般会选择存放在  local storage 中。然后我们在前端通过某些方式会给每个发到后端的请求加上这个 token,这样就不会出现 CSRF 漏洞的问题。因为，即使有个你点击了非法链接发送了请求到服务端，这个非法请求是不会携带 token 的，所以这个请求将是非法的。
 
-但是这样会存在  XSS 攻击中被盗的风险，为了避免 XSS 攻击，你可以选择将 token 存储在标记为`httpOnly`  的cookie 中。但是，这样有导致了你必须自己提供CSRF保护。
+但是这样会存在  XSS 攻击中被盗的风险，为了避免 XSS 攻击，你可以选择将 token 存储在标记为`httpOnly`  的cookie 中。但是，这样又导致了你必须自己提供CSRF保护。
 
 具体采用上面哪两种方式存储 token 呢，大部分情况下存放在  local storage 下都是最好的选择，某些情况下可能需要存放在标记为`httpOnly`  的cookie 中会更好。
 
@@ -74,7 +82,7 @@ token 有效期一般都建议设置的不太长，那么 token 过期后如何�
 
 ## 总结
 
-JWT 最适合的场景是无状态的场景，如果考虑到 token 注销和 token 续签的场景话，没有特别好的解决方案，大部分解决方案都给 token 加上了状态，这就有点类似 Session 认证了。
+JWT 最适合的场景是不需要服务端保存用户状态的场景，比如如果考虑到 token 注销和 token 续签的场景话，没有特别好的解决方案，大部分解决方案都给 token 加上了状态，这就有点类似 Session 认证了。
 
 ##  Reference
 
