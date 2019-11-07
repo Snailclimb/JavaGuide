@@ -163,6 +163,10 @@
 * [如何做可靠的分布式锁，Redlock真的可行么](docs/database/Redis/如何做可靠的分布式锁，Redlock真的可行么.md)
 * [几种常见的 Redis 集群以及使用场景](docs/database/Redis/redis集群以及应用场景.md) 
 
+### 数据库扩展
+
+代办......
+
 ## 系统设计
 
 ### 常用框架
@@ -204,22 +208,36 @@
 - **[JWT 优缺点分析以及常见问题解决方案](docs/system-design/authority-certification/JWT-advantages-and-disadvantages.md)**
 - **[适合初学者入门 Spring Security With JWT 的 Demo](https://github.com/Snailclimb/spring-security-jwt-guide)**
 
-### 设计模式
+### 分布式 & 微服务
 
-- [设计模式系列文章](docs/system-design/设计模式.md)
+- [分布式应该学什么](docs/system-design/website-architecture/分布式.md)
 
-### 微服务
+#### API 网关
+
+网关主要用于请求转发、安全认证、协议转换、容灾。
 
 - [浅析如何设计一个亿级网关（API Gateway）](docs/system-design/micro-service/谈谈微服务中的 API 网关.md)
 
-### 分布式
+#### 配置中心
 
-- [分布式应该学什么](docs/system-design/website-architecture/分布式.md)
+代办......
+
+#### 唯一 id 生成
+
+代办......
+
+#### 服务治理：服务注册与发现、服务路由控制
+
+代办......
 
 ### 架构
 
 - [8 张图读懂大型网站技术架构](docs/system-design/website-architecture/8%20张图读懂大型网站技术架构.md)
 - [【面试精选】关于大型网站系统架构你不得不懂的10个问题](docs/system-design/website-architecture/关于大型网站系统架构你不得不懂的10个问题.md)
+
+### 设计模式
+
+- [设计模式系列文章](docs/system-design/设计模式.md)
 
 ## 面试指南
 
