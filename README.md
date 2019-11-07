@@ -160,7 +160,7 @@
 
 * [Redis 总结](docs/database/Redis/Redis.md)
 * [Redlock分布式锁](docs/database/Redis/Redlock分布式锁.md)
-* [如何做可靠的分布式锁，Redlock真的可行么]()
+* [如何做可靠的分布式锁，Redlock真的可行么](docs/database/Redis/如何做可靠的分布式锁，Redlock真的可行么.md)
 * [几种常见的 Redis 集群以及使用场景](docs/database/Redis/redis集群以及应用场景.md) 
 
 ## 系统设计
