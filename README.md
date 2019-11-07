@@ -221,7 +221,7 @@
 
 网关主要用于请求转发、安全认证、协议转换、容灾。
 
-- [浅析如何设计一个亿级网关（API Gateway）](docs/system-design/micro-service/谈谈微服务中的 API 网关.md)
+- [浅析如何设计一个亿级网关(API Gateway)](docs/system-design/micro-service/谈谈微服务中的 API 网关.md)
 
 #### 配置中心
 
