@@ -47,10 +47,11 @@
     - [Redis](#redis)
 - [系统设计](#系统设计)
     - [常用框架(Spring/SpringBoot、Zookeeper ... )](#常用框架)
-    - [数据通信(消息队列、Dubbo ... )](#数据通信)
+    - [数据通信/中间件(消息队列、RPC ... )](#数据通信中间件)
     - [权限认证](#权限认证)
     - [设计模式(工厂模式、单例模式 ... )](#设计模式)
     - [微服务](#微服务)
+    - [分布式](#分布式)
     - [架构](#架构)
 - [面试指南](#面试指南)
     - [备战面试](#备战面试)
@@ -180,16 +181,16 @@
 - [ZooKeeper 相关概念总结](docs/system-design/framework/ZooKeeper.md)
 - [ZooKeeper 数据模型和常见命令](docs/system-design/framework/ZooKeeper数据模型和常见命令.md)
 
-### 数据通信
+### 数据通信/中间件
 
 - [数据通信(RESTful、RPC、消息队列)相关知识点总结](docs/system-design/data-communication/summary.md)
-- [服务之间的调用为啥不直接用 HTTP 而用 RPC？](docs/system-design/data-communication/why-use-rpc.md)
 
-#### Dubbo
+#### RPC
 
 - [Dubbo 总结：关于 Dubbo 的重要知识点](docs/system-design/data-communication/dubbo.md)
+- [服务之间的调用为啥不直接用 HTTP 而用 RPC？](docs/system-design/data-communication/why-use-rpc.md)
 
-#### 消息中间件
+#### 消息队列
 
 - [消息队列总结](docs/system-design/data-communication/message-queue.md)
 - [RabbitMQ 入门](docs/system-design/data-communication/rabbitmq.md)
@@ -211,9 +212,12 @@
 
 - [浅析如何设计一个亿级网关（API Gateway）](docs/system-design/micro-service/谈谈微服务中的 API 网关.md)
 
+### 分布式
+
+- [分布式应该学什么](docs/system-design/website-architecture/分布式.md)
+
 ### 架构
 
-- [一文读懂分布式应该学什么](docs/system-design/website-architecture/分布式.md)
 - [8 张图读懂大型网站技术架构](docs/system-design/website-architecture/8%20张图读懂大型网站技术架构.md)
 - [【面试精选】关于大型网站系统架构你不得不懂的10个问题](docs/system-design/website-architecture/关于大型网站系统架构你不得不懂的10个问题.md)
 
