@@ -519,6 +519,13 @@ Java Io流共涉及40多个类，这些类看上去很杂乱，但实际上很�
 
 详见笔主的这篇文章: <https://gitee.com/SnailClimb/JavaGuide/blob/master/docs/java/Basis/Arrays,CollectionsCommonMethods.md>
 
+### 38. 深拷贝 vs 浅拷贝
+
+1. **浅拷贝**：对基本数据类型进行值传递，对引用数据类型进行引用传递般的拷贝，此为浅拷贝。
+2. **深拷贝**：对基本数据类型进行值传递，对引用数据类型，创建一个新的对象，并复制其内容，此为深拷贝。
+
+![deep and shallow copy](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/java-deep-and-shallow-copy.jpg)
+
 ## 参考
 
 - https://stackoverflow.com/questions/1906445/what-is-the-difference-between-jdk-and-jre
