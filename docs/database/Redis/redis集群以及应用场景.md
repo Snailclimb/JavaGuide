@@ -37,7 +37,7 @@
 #### 节点下线
 - 客观下线
     - 所有 Sentinel 节点对 Redis 节点失败要达成共识,即超过 quorum 个统一.
-- 主管下线
+- 主观下线
     - 即 Sentinel 节点对 Redis 节点失败的偏见,超出超时时间认为 Master 已经宕机.
 #### leader选举
 - 选举出一个 Sentinel 作为 Leader:集群中至少有三个 Sentinel 节点,但只有其中一个节点可完成故障转移.通过以下命令可以进行失败判定或领导者选举.
