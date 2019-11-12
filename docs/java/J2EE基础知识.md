@@ -234,7 +234,7 @@ JSP中的四种作用域包括page、request、session和application，具体来
 
 ## 如何实现JSP或Servlet的单线程模式
 对于JSP页面，可以通过page指令进行设置。
-`<%@page isThreadSafe=”false”%>`
+`<%@page isThreadSafe="false"%>`
 
 对于Servlet，可以让自定义的Servlet实现SingleThreadModel标识接口。
 
