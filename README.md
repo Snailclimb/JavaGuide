@@ -93,8 +93,9 @@
 * **[Java 并发基础常见面试题总结](docs/java/Multithread/JavaConcurrencyBasicsCommonInterviewQuestionsSummary.md)**
 * **[Java 并发进阶常见面试题总结](docs/java/Multithread/JavaConcurrencyAdvancedCommonInterviewQuestions.md)**
 * [并发容器总结](docs/java/Multithread/并发容器总结.md)
+* **[Java线程池学习总结](./docs/java/Multithread/java线程池学习总结.md)**
+
 * [乐观锁与悲观锁](docs/essential-content-for-interview/面试必备之乐观锁与悲观锁.md)
-* [Java线程池学习总结](./docs/java/Multithread/java线程池学习总结.md)
 * [JUC 中的 Atomic 原子类总结](docs/java/Multithread/Atomic.md)
 * [AQS 原理以及 AQS 同步组件总结](docs/java/Multithread/AQS.md)
 
