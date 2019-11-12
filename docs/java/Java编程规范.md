@@ -20,7 +20,7 @@
 1. 注意代码规范
 1. 定期联络客户，以获取他们的反馈
 
-上述建议的详细内容：[八点建议助您写出优雅的Java代码](docs/八点建议助您写出优雅的Java代码.md)。
+上述建议的详细内容：[八点建议助您写出优雅的Java代码](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247485140&idx=1&sn=ecaeace613474f1859aaeed0282ae680&chksm=cea2491ff9d5c00982ffaece847ce1aead89fdb3fe190752d9837c075c79fc95db5940992c56&token=1328169465&lang=zh_CN&scene=21#wechat_redirect)。
 
 更多代码优化相关内容推荐：
 
