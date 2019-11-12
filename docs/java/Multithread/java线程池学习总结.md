@@ -1,4 +1,40 @@
-Java 面试通关手册（Java 学习指南，欢迎 Star，会一直完善下去，欢迎建议和指导）：[https://github.com/Snailclimb/Java_Guide](https://github.com/Snailclimb/Java_Guide "https://github.com/Snailclimb/Java_Guide")
+<!-- TOC -->
+
+- [一 使用线程池的好处](#一-使用线程池的好处)
+- [二 Executor 框架](#二-executor-框架)
+    - [2.1 简介](#21-简介)
+    - [2.2 Executor 框架结构(主要由三大部分组成)](#22-executor-框架结构主要由三大部分组成)
+        - [1 任务。](#1-任务)
+        - [2 任务的执行](#2-任务的执行)
+        - [3 异步计算的结果](#3-异步计算的结果)
+    - [2.3 Executor 框架的使用示意图](#23-executor-框架的使用示意图)
+- [三 ThreadPoolExecutor 类简单介绍(重要)](#三-threadpoolexecutor-类简单介绍重要)
+    - [3.1 ThreadPoolExecutor 类分析](#31-threadpoolexecutor-类分析)
+    - [3.2 推荐使用ThreadPoolExecutor 构造函数创建线程池](#32-推荐使用threadpoolexecutor-构造函数创建线程池)
+- [四 ThreadPoolExecutor 使用示例](#四-threadpoolexecutor-使用示例)
+    - [4.1 示例代码](#41-示例代码)
+    - [4.2 原理分析](#42-原理分析)
+    - [4.3 几个常见的方法对比](#43-几个常见的方法对比)
+        - [4.3.1 shutdown（）VS shutdownNow（）](#431-shutdownvs-shutdownnow)
+        - [4.3.2 isTerminated() Vs isShutdown()](#432-isterminated-vs-isshutdown)
+- [五 几种常见的线程池详解](#五-几种常见的线程池详解)
+    - [5.1 FixedThreadPool 详解](#51-fixedthreadpool-详解)
+    - [5.2 SingleThreadExecutor 详解](#52-singlethreadexecutor-详解)
+    - [5.3 CachedThreadPool 详解](#53-cachedthreadpool-详解)
+- [六 ScheduledThreadPoolExecutor 详解](#六-scheduledthreadpoolexecutor-详解)
+    - [6.1 简介](#61-简介)
+    - [6.2 运行机制](#62-运行机制)
+    - [6.3 ScheduledThreadPoolExecutor 执行周期任务的步骤](#63-scheduledthreadpoolexecutor-执行周期任务的步骤)
+    - [6.4 ScheduledThreadPoolExecutor 使用示例](#64-scheduledthreadpoolexecutor-使用示例)
+        - [6.4.1 ScheduledExecutorService scheduleAtFixedRate(Runnable command,long initialDelay,long period,TimeUnit unit)方法](#641-scheduledexecutorservice-scheduleatfixedraterunnable-commandlong-initialdelaylong-periodtimeunit-unit方法)
+        - [6.4.2 ScheduledExecutorService scheduleWithFixedDelay(Runnable command,long initialDelay,long delay,TimeUnit unit)方法](#642-scheduledexecutorservice-schedulewithfixeddelayrunnable-commandlong-initialdelaylong-delaytimeunit-unit方法)
+        - [6.4.3 scheduleWithFixedDelay() vs scheduleAtFixedRate()](#643-schedulewithfixeddelay-vs-scheduleatfixedrate)
+- [七 各种线程池的适用场景介绍](#七-各种线程池的适用场景介绍)
+- [八 总结](#八-总结)
+- [九 参考](#九-参考)
+- [十 其他推荐阅读](#十-其他推荐阅读)
+
+<!-- /TOC -->
 
 ## 一 使用线程池的好处
 
@@ -181,11 +217,11 @@ public class ScheduledThreadPoolExecutor
 对应 Executors 工具类中的方法如图所示：
 ![通过Executor 框架的工具类Executors来实现](https://imgconvert.csdnimg.cn/aHR0cDovL215LWJsb2ctdG8tdXNlLm9zcy1jbi1iZWlqaW5nLmFsaXl1bmNzLmNvbS8xOC00LTE2LzEzMjk2OTAxLmpwZw?x-oss-process=image/format,png)
 
-## 五 ThreadPoolExecutor 使用示例
+## 四 ThreadPoolExecutor 使用示例
 
 我们上面讲解了 `Executor`框架以及 `ThreadPoolExecutor` 类，下面让我们实战一下，来通过写一个 `ThreadPoolExecutor` 的小 Demo 来回顾上面的内容。
 
-### 5.1 示例代码
+### 4.1 示例代码
 
 首先创建一个 `Runnable` 接口的实现类（当然也可以是 `Callable` 接口，我们上面也说了两者的区别是：`Runnable` 接口不会返回结果但是 `Callable` 接口可以返回结果。后面介绍 `Executors` 类的一些方法的时候会介绍到两者的相互转换。）
 
@@ -300,7 +336,7 @@ pool-1-thread-1 End. Time = Tue Nov 12 20:59:54 CST 2019
 
 ```
 
-### 5.2 原理分析
+### 4.2 原理分析
 
 承接 5.1 节，我们通过代码输出结果可以看出：**线程池每次会同时执行 5 个任务，这5 个任务执行完之后，剩余的 5 个任务才会被执行。** 大家可以先通过上面讲解的内容，分析一下到底是咋回事？（自己独立思考一会）
 
@@ -361,21 +397,21 @@ pool-1-thread-1 End. Time = Tue Nov 12 20:59:54 CST 2019
 
 >  我们在代码中模拟了 10 个任务，我们配置的核心线程数为 5 、等待队列容量为 100 ，所以每次只可能存在 5 个任务同时执行，剩下的 5 个任务会被放到等待队列中去。当前的 5 个任务之行完成后，才会之行剩下的 5 个任务。
 
-### 5.3 几个常见的方法对比
+### 4.3 几个常见的方法对比
 
-#### 5.3.1 shutdown（）VS shutdownNow（）
+#### 4.3.1 shutdown（）VS shutdownNow（）
 
 - **`shutdown（）`**  :关闭线程池，线程池的状态变为 `SHUTDOWN `。线程池不再接受新任务了，但是队列里的任务得执行完毕。
 - **`shutdownNow（）`** :关闭线程池，线程的状态变为 `STOP`。线程池会终止当前正在运行的任务，并停止处理排队的任务并返回正在等待执行的 List。
 
-#### 5.3.2 isTerminated() Vs isShutdown()
+#### 4.3.2 isTerminated() Vs isShutdown()
 
 - **`isShutDown`** 当调用 `shutdown()` 方法后返回为true。 
 - **`isTerminated`** 当调用 `shutdown()` 方法后，并且所有提交的任务完成后返回为true
 
-##四 几种常见的线程池详解 
+##五 几种常见的线程池详解 
 
-### 4.1 FixedThreadPool 详解
+### 5.1 FixedThreadPool 详解
 
 `FixedThreadPool` 被称为可重用固定线程数的线程池。通过 Executors 类中的相关源代码来看一下相关实现：
 
@@ -419,7 +455,7 @@ pool-1-thread-1 End. Time = Tue Nov 12 20:59:54 CST 2019
 3. 由于 1 和 2，使用无界队列时 keepAliveTime 将是一个无效参数；
 4. 运行中的 FixedThreadPool（未执行 shutdown()或 shutdownNow()方法）不会拒绝任务
 
-### 3.5 SingleThreadExecutor 详解
+### 5.2 SingleThreadExecutor 详解
 
 SingleThreadExecutor 是使用单个 worker 线程的 Executor。下面看看**SingleThreadExecutor 的实现：**
 
@@ -462,7 +498,7 @@ SingleThreadExecutor 是使用单个 worker 线程的 Executor。下面看看**S
 2. 当前线程池中有一个运行的线程后，将任务加入 LinkedBlockingQueue
 3. 线程执行完 1 中的任务后，会在循环中反复从 LinkedBlockingQueue 中获取任务来执行；
 
-### 3.6 CachedThreadPool 详解
+### 5.3 CachedThreadPool 详解
 
 CachedThreadPool 是一个会根据需要创建新线程的线程池。下面通过源码来看看 CachedThreadPool 的实现：
 
@@ -501,31 +537,31 @@ CachedThreadPool 的 corePoolSize 被设置为空（0），maximumPoolSize 被�
 1. 首先执行 SynchronousQueue.offer(Runnable task)。如果当前 maximumPool 中有闲线程正在执行 SynchronousQueue.poll(keepAliveTime,TimeUnit.NANOSECONDS)，那么主线程执行 offer 操作与空闲线程执行的 poll 操作配对成功，主线程把任务交给空闲线程执行，execute()方法执行完成，否则执行下面的步骤 2；
 2. 当初始 maximumPool 为空，或者 maximumPool 中没有空闲线程时，将没有线程执行 SynchronousQueue.poll(keepAliveTime,TimeUnit.NANOSECONDS)。这种情况下，步骤 1 将失败，此时 CachedThreadPool 会创建新线程执行任务，execute 方法执行完成；
 
-## 四 ScheduledThreadPoolExecutor 详解
+## 六 ScheduledThreadPoolExecutor 详解
 
-### 4.1 简介
+### 6.1 简介
 
-**ScheduledThreadPoolExecutor 主要用来在给定的延迟后运行任务，或者定期执行任务。**
+**`ScheduledThreadPoolExecutor` 主要用来在给定的延迟后运行任务，或者定期执行任务。**
 
-**ScheduledThreadPoolExecutor 使用的任务队列 DelayQueue 封装了一个 PriorityQueue，PriorityQueue 会对队列中的任务进行排序，执行所需时间短的放在前面先被执行(ScheduledFutureTask 的 time 变量小的先执行)，如果执行所需时间相同则先提交的任务将被先执行(ScheduledFutureTask 的 squenceNumber 变量小的先执行)。**
+**`ScheduledThreadPoolExecutor` 使用的任务队列 `DelayQueue` 封装了一个 `PriorityQueue`，`PriorityQueue` 会对队列中的任务进行排序，执行所需时间短的放在前面先被执行(`ScheduledFutureTask` 的 `time` 变量小的先执行)，如果执行所需时间相同则先提交的任务将被先执行(`ScheduledFutureTask` 的 `squenceNumber` 变量小的先执行)。**
 
-**ScheduledThreadPoolExecutor 和 Timer 的比较：**
+**`ScheduledThreadPoolExecutor` 和 `Timer` 的比较：**
 
-- Timer 对系统时钟的变化敏感，ScheduledThreadPoolExecutor 不是；
-- Timer 只有一个执行线程，因此长时间运行的任务可以延迟其他任务。 ScheduledThreadPoolExecutor 可以配置任意数量的线程。 此外，如果你想（通过提供 ThreadFactory），你可以完全控制创建的线程;
-- 在 TimerTask 中抛出的运行时异常会杀死一个线程，从而导致 Timer 死机:-( ...即计划任务将不再运行。ScheduledThreadExecutor 不仅捕获运行时异常，还允许您在需要时处理它们（通过重写 afterExecute 方法 ThreadPoolExecutor）。抛出异常的任务将被取消，但其他任务将继续运行。
+- `Timer` 对系统时钟的变化敏感，`ScheduledThreadPoolExecutor `不是；
+- `Timer` 只有一个执行线程，因此长时间运行的任务可以延迟其他任务。 `ScheduledThreadPoolExecutor` 可以配置任意数量的线程。 此外，如果你想（通过提供 ThreadFactory），你可以完全控制创建的线程;
+- 在` TimerTask` 中抛出的运行时异常会杀死一个线程，从而导致 `Timer` 死机:-( ...即计划任务将不再运行。`ScheduledThreadExecutor` 不仅捕获运行时异常，还允许您在需要时处理它们（通过重写 `afterExecute` 方法` ThreadPoolExecutor`）。抛出异常的任务将被取消，但其他任务将继续运行。
 
 **综上，在 JDK1.5 之后，你没有理由再使用 Timer 进行任务调度了。**
 
 > **备注：** Quartz 是一个由 java 编写的任务调度库，由 OpenSymphony 组织开源出来。在实际项目开发中使用 Quartz 的还是居多，比较推荐使用 Quartz。因为 Quartz 理论上能够同时对上万个任务进行调度，拥有丰富的功能特性，包括任务调度、任务持久化、可集群化、插件等等。
 
-### 4.2 ScheduledThreadPoolExecutor 运行机制
+### 6.2 运行机制
 
 ![ScheduledThreadPoolExecutor运行机制](https://imgconvert.csdnimg.cn/aHR0cDovL215LWJsb2ctdG8tdXNlLm9zcy1jbi1iZWlqaW5nLmFsaXl1bmNzLmNvbS8xOC00LTE2LzkyNTk0Njk4LmpwZw?x-oss-process=image/format,png)
 
-**ScheduledThreadPoolExecutor 的执行主要分为两大部分：**
+**`ScheduledThreadPoolExecutor` 的执行主要分为两大部分：**
 
-1. 当调用 ScheduledThreadPoolExecutor 的 **scheduleAtFixedRate()** 方法或者**scheduleWirhFixedDelay()** 方法时，会向 ScheduledThreadPoolExecutor 的 **DelayQueue** 添加一个实现了 **RunnableScheduledFutur** 接口的 **ScheduledFutureTask** 。
+1. 当调用 `ScheduledThreadPoolExecutor` 的 **`scheduleAtFixedRate()`** 方法或者**`scheduleWirhFixedDelay()`** 方法时，会向 `ScheduledThreadPoolExecutor` 的 **`DelayQueue`** 添加一个实现了 **`RunnableScheduledFuture`** 接口的 **`ScheduledFutureTask`** 。
 2. 线程池中的线程从 DelayQueue 中获取 ScheduledFutureTask，然后执行任务。
 
 **ScheduledThreadPoolExecutor 为了实现周期性的执行任务，对 ThreadPoolExecutor 做了如下修改：**
@@ -534,7 +570,7 @@ CachedThreadPool 的 corePoolSize 被设置为空（0），maximumPoolSize 被�
 - 获取任务的方不同
 - 执行周期任务后，增加了额外的处理
 
-### 4.3 ScheduledThreadPoolExecutor 执行周期任务的步骤
+### 6.3 ScheduledThreadPoolExecutor 执行周期任务的步骤
 
 ![ScheduledThreadPoolExecutor执行周期任务的步骤](https://imgconvert.csdnimg.cn/aHR0cDovL215LWJsb2ctdG8tdXNlLm9zcy1jbi1iZWlqaW5nLmFsaXl1bmNzLmNvbS8xOC01LTMwLzU5OTE2Mzg5LmpwZw?x-oss-process=image/format,png)
 
@@ -543,7 +579,7 @@ CachedThreadPool 的 corePoolSize 被设置为空（0），maximumPoolSize 被�
 3. 线程 1 修改 ScheduledFutureTask 的 time 变量为下次将要被执行的时间；
 4. 线程 1 把这个修改 time 之后的 ScheduledFutureTask 放回 DelayQueue 中（DelayQueue.add())。
 
-### 4.4 ScheduledThreadPoolExecutor 使用示例
+### 6.4 ScheduledThreadPoolExecutor 使用示例
 
 1. 创建一个简单的实现 Runnable 接口的类（我们上面的例子已经实现过）
 
@@ -596,7 +632,7 @@ Current Time = Wed May 30 17:11:49 CST 2018
 Finished all threads
 ```
 
-#### 4.4.1 ScheduledExecutorService scheduleAtFixedRate(Runnable command,long initialDelay,long period,TimeUnit unit)方法
+#### 6.4.1 ScheduledExecutorService scheduleAtFixedRate(Runnable command,long initialDelay,long period,TimeUnit unit)方法
 
 我们可以使用 ScheduledExecutorService scheduleAtFixedRate 方法来安排任务在初始延迟后运行，然后在给定的时间段内运行。
 
@@ -645,7 +681,7 @@ Process finished with exit code 0
 
 ```
 
-#### 4.4.2 ScheduledExecutorService scheduleWithFixedDelay(Runnable command,long initialDelay,long delay,TimeUnit unit)方法
+#### 6.4.2 ScheduledExecutorService scheduleWithFixedDelay(Runnable command,long initialDelay,long delay,TimeUnit unit)方法
 
 ScheduledExecutorService scheduleWithFixedDelay 方法可用于以初始延迟启动周期性执行，然后以给定延迟执行。 延迟时间是线程完成执行的时间。
 
@@ -700,7 +736,7 @@ pool-1-thread-2 End. Time = Wed May 30 17:58:46 CST 2018
 Finished all threads
 ```
 
-#### 4.4.3 scheduleWithFixedDelay() vs scheduleAtFixedRate()
+#### 6.4.3 scheduleWithFixedDelay() vs scheduleAtFixedRate()
 
 scheduleAtFixedRate（...）将延迟视为两个任务开始之间的差异（即定期调用）
 scheduleWithFixedDelay（...）将延迟视为一个任务结束与下一个任务开始之间的差异
@@ -708,7 +744,7 @@ scheduleWithFixedDelay（...）将延迟视为一个任务结束与下一个任�
 > **scheduleAtFixedRate():** 创建并执行在给定的初始延迟之后，随后以给定的时间段首先启用的周期性动作; 那就是执行将在 initialDelay 之后开始，然后 initialDelay+period ，然后是 initialDelay + 2 \* period ，等等。 如果任务的执行遇到异常，则后续的执行被抑制。 否则，任务将仅通过取消或终止执行人终止。 如果任务执行时间比其周期长，则后续执行可能会迟到，但不会同时执行。
 > **scheduleWithFixedDelay() :** 创建并执行在给定的初始延迟之后首先启用的定期动作，随后在一个执行的终止和下一个执行的开始之间给定的延迟。 如果任务的执行遇到异常，则后续的执行被抑制。 否则，任务将仅通过取消或终止执行终止。
 
-## 五 各种线程池的适用场景介绍
+## 七 各种线程池的适用场景介绍
 
 - **FixedThreadPool：** 适用于为了满足资源管理需求，而需要限制当前线程数量的应用场景。它适用于负载比较重的服务器；
 
@@ -720,19 +756,20 @@ scheduleWithFixedDelay（...）将延迟视为一个任务结束与下一个任�
 
 **SingleThreadScheduledExecutor：** 适用于需要单个后台线程执行周期任务，同时保证顺序地执行各个任务的应用场景。
 
-## 六 总结
+## 八 总结
 
 本节只是简单的介绍了一下使用线程池的好处，然后花了大量篇幅介绍 Executor 框架。详细介绍了 Executor 框架中 ThreadPoolExecutor 和 ScheduledThreadPoolExecutor，并且通过实例详细讲解了 ScheduledThreadPoolExecutor 的使用。对于 FutureTask 只是粗略带过，因为篇幅问题，并没有深究它的原理，后面的文章会进行补充。这一篇文章只是大概带大家过一下线程池的基本概览，深入讲解的地方不是很多，后续会通过源码深入研究其中比较重要的一些知识点。
 
 最后，就是这两周要考试了，会抽点时间出来简单应付一下学校考试了。然后，就是写这篇多线程的文章废了好多好多时间。一直不知从何写起。
 
-## 参考
+## 九 参考
 
 - 《Java 并发编程的艺术》
 - [Java Scheduler ScheduledExecutorService ScheduledThreadPoolExecutor Example](https://www.journaldev.com/2340/java-scheduler-scheduledexecutorservice-scheduledthreadpoolexecutor-example "Java Scheduler ScheduledExecutorService ScheduledThreadPoolExecutor Example")
 - [java.util.concurrent.ScheduledThreadPoolExecutor Example](https://examples.javacodegeeks.com/core-java/util/concurrent/scheduledthreadpoolexecutor/java-util-concurrent-scheduledthreadpoolexecutor-example/ "java.util.concurrent.ScheduledThreadPoolExecutor Example")
 - [ThreadPoolExecutor – Java Thread Pool Example](https://www.journaldev.com/1069/threadpoolexecutor-java-thread-pool-example-executorservice "ThreadPoolExecutor – Java Thread Pool Example")
 
-## 其他推荐阅读
+## 十 其他推荐阅读
 
 - [Java并发（三）线程池原理](https://www.cnblogs.com/warehouse/p/10720781.html)
+- [如何优雅的使用和理解线程池](https://github.com/crossoverJie/JCSprout/blob/master/MD/ThreadPoolExecutor.md)
