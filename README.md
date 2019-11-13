@@ -92,6 +92,7 @@
 * **[Java 并发进阶常见面试题总结](docs/java/Multithread/JavaConcurrencyAdvancedCommonInterviewQuestions.md)**
 * [并发容器总结](docs/java/Multithread/并发容器总结.md)
 * **[Java线程池学习总结](./docs/java/Multithread/java线程池学习总结.md)**
+* [（待办）如何确定线程池线程数量？]()
 
 * [乐观锁与悲观锁](docs/essential-content-for-interview/面试必备之乐观锁与悲观锁.md)
 * [JUC 中的 Atomic 原子类总结](docs/java/Multithread/Atomic.md)
@@ -119,7 +120,7 @@
 
 ### 优雅 Java 代码必备实践(Java编程规范)
 
-* [Java 编程规范以及优雅Java代码实践总结](docs/java/Java编程规范.md)
+* [Java 编程规范以及优雅 Java 代码实践总结](docs/java/Java编程规范.md)
 
 ## 网络
 

@@ -197,8 +197,6 @@ public class ScheduledThreadPoolExecutor
 对应 Executors 工具类中的方法如图所示：
 ![通过Executor 框架的工具类Executors来实现](https://imgconvert.csdnimg.cn/aHR0cDovL215LWJsb2ctdG8tdXNlLm9zcy1jbi1iZWlqaW5nLmFsaXl1bmNzLmNvbS8xOC00LTE2LzEzMjk2OTAxLmpwZw?x-oss-process=image/format,png)
 
-
-
 ## 四 (重要)ThreadPoolExecutor 使用示例
 
 我们上面讲解了 `Executor`框架以及 `ThreadPoolExecutor` 类，下面让我们实战一下，来通过写一个 `ThreadPoolExecutor` 的小 Demo 来回顾上面的内容。
@@ -549,8 +547,6 @@ Wed Nov 13 13:40:43 CST 2019::pool-1-thread-1
 Wed Nov 13 13:40:43 CST 2019::pool-1-thread-4
 Wed Nov 13 13:40:43 CST 2019::pool-1-thread-5
 ```
-
-
 
 ##五 几种常见的线程池详解
 
