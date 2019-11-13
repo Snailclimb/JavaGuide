@@ -1,13 +1,16 @@
+package threadPoolExecutor;
+
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-public class ThreadPoolExecutorDemo {
-    private static final int CORE_POOL_SIZE = 5;
-    private static final int MAX_POOL_SIZE = 10;
-    private static final int QUEUE_CAPACITY = 100;
-    private static final Long KEEP_ALIVE_TIME = 1L;
+import static common.ThreadPoolConstants.CORE_POOL_SIZE;
+import static common.ThreadPoolConstants.KEEP_ALIVE_TIME;
+import static common.ThreadPoolConstants.MAX_POOL_SIZE;
+import static common.ThreadPoolConstants.QUEUE_CAPACITY;
 
+
+public class ThreadPoolExecutorDemo {
 
     public static void main(String[] args) {
 
@@ -23,7 +26,7 @@ public class ThreadPoolExecutorDemo {
 
         for (int i = 0; i < 10; i++) {
             //创建WorkerThread对象（WorkerThread类实现了Runnable 接口）
-            Runnable worker = new WorkerThread("" + i);
+            Runnable worker = new MyRunnable("" + i);
             //执行Runnable
             executor.execute(worker);
         }

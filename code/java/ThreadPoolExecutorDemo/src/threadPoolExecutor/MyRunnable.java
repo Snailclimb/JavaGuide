@@ -1,14 +1,16 @@
+package threadPoolExecutor;
+
 import java.util.Date;
 
 /**
  * 这是一个简单的Runnable类，需要大约5秒钟来执行其任务。
  * @author shuang.kou
  */
-public class WorkerThread implements Runnable {
+public class MyRunnable implements Runnable {
 
     private String command;
 
-    public WorkerThread(String s) {
+    public MyRunnable(String s) {
         this.command = s;
     }
 
