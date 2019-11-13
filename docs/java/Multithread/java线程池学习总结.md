@@ -162,6 +162,10 @@ public class ScheduledThreadPoolExecutor
 3. **`threadFactory`** :executor 创建新线程的时候会用到。
 4. **`handler`** :饱和策略。关于饱和策略下面单独介绍一下。
 
+下面这张图可以加深你对线程池中各个参数的相互关系的理解（图片来源：《Java性能调优实战》）：
+
+![线程池各个参数的关系](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/线程池各个参数的关系.jpg)
+
 **`ThreadPoolExecutor` 饱和策略定义:**
 
 如果当前同时运行的线程数量达到最大线程数量并且队列也已经被放满了任时，`ThreadPoolTaskExecutor` 定义一些策略:
