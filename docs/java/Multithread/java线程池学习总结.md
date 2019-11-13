@@ -255,7 +255,7 @@ public class ThreadPoolExecutorDemo {
 5. `workQueue`：任务队列为 `ArrayBlockingQueue`，并且容量为 100;
 6. `handler`:饱和策略为 `CallerRunsPolicy`。
 
-输出示例：
+**Output：**
 
 ```
 pool-1-thread-2 Start. Time = Tue Nov 12 20:59:44 CST 2019
@@ -491,6 +491,23 @@ public class CallableDemo {
 }
 ```
 
+Output:
+
+```
+Wed Nov 13 13:40:41 CST 2019::pool-1-thread-1
+Wed Nov 13 13:40:42 CST 2019::pool-1-thread-2
+Wed Nov 13 13:40:42 CST 2019::pool-1-thread-3
+Wed Nov 13 13:40:42 CST 2019::pool-1-thread-4
+Wed Nov 13 13:40:42 CST 2019::pool-1-thread-5
+Wed Nov 13 13:40:42 CST 2019::pool-1-thread-3
+Wed Nov 13 13:40:43 CST 2019::pool-1-thread-2
+Wed Nov 13 13:40:43 CST 2019::pool-1-thread-1
+Wed Nov 13 13:40:43 CST 2019::pool-1-thread-4
+Wed Nov 13 13:40:43 CST 2019::pool-1-thread-5
+```
+
+
+
 ##五 几种常见的线程池详解
 
 ### 5.1 FixedThreadPool
@@ -634,6 +651,8 @@ public class CallableDemo {
 
 ## 六 ScheduledThreadPoolExecutor 详解
 
+这个在实际项目中基本不会被用到，所以对这部分大家只需要简单了解一下它的思想。
+
 ### 6.1 简介
 
 **`ScheduledThreadPoolExecutor` 主要用来在给定的延迟后运行任务，或者定期执行任务。**
@@ -657,11 +676,11 @@ public class CallableDemo {
 **`ScheduledThreadPoolExecutor` 的执行主要分为两大部分：**
 
 1. 当调用 `ScheduledThreadPoolExecutor` 的 **`scheduleAtFixedRate()`** 方法或者**`scheduleWirhFixedDelay()`** 方法时，会向 `ScheduledThreadPoolExecutor` 的 **`DelayQueue`** 添加一个实现了 **`RunnableScheduledFuture`** 接口的 **`ScheduledFutureTask`** 。
-2. 线程池中的线程从 DelayQueue 中获取 ScheduledFutureTask，然后执行任务。
+2. 线程池中的线程从 `DelayQueue` 中获取 `ScheduledFutureTask`，然后执行任务。
 
-**ScheduledThreadPoolExecutor 为了实现周期性的执行任务，对 ThreadPoolExecutor 做了如下修改：**
+**`ScheduledThreadPoolExecutor` 为了实现周期性的执行任务，对 `ThreadPoolExecutor `做了如下修改：**
 
-- 使用 **DelayQueue** 作为任务队列；
+- 使用 **`DelayQueue`** 作为任务队列；
 - 获取任务的方不同
 - 执行周期任务后，增加了额外的处理
 
@@ -674,197 +693,14 @@ public class CallableDemo {
 3. 线程 1 修改 ScheduledFutureTask 的 time 变量为下次将要被执行的时间；
 4. 线程 1 把这个修改 time 之后的 ScheduledFutureTask 放回 DelayQueue 中（DelayQueue.add())。
 
-### 6.4 ScheduledThreadPoolExecutor 使用示例
-
-1. 创建一个简单的实现 Runnable 接口的类（我们上面的例子已经实现过）
-
-2. 测试程序使用 ScheduledExecutorService 和 ScheduledThreadPoolExecutor 实现的 java 调度。
-
-```java
-/**
- * 使用ScheduledExecutorService和ScheduledThreadPoolExecutor实现的java调度程序示例程序。
- */
-public class ScheduledThreadPoolDemo {
-
-    public static void main(String[] args) throws InterruptedException {
-
-        //创建一个ScheduledThreadPoolExecutor对象
-        ScheduledExecutorService scheduledThreadPool = Executors.newScheduledThreadPool(5);
-        //计划在某段时间后运行
-        System.out.println("Current Time = "+new Date());
-        for(int i=0; i<3; i++){
-            Thread.sleep(1000);
-            WorkerThread worker = new WorkerThread("do heavy processing");
-            //创建并执行在给定延迟后启用的单次操作。
-            scheduledThreadPool.schedule(worker, 10, TimeUnit.SECONDS);
-        }
-
-        //添加一些延迟让调度程序产生一些线程
-        Thread.sleep(30000);
-        System.out.println("Current Time = "+new Date());
-        //关闭线程池
-        scheduledThreadPool.shutdown();
-        while(!scheduledThreadPool.isTerminated()){
-            //等待所有任务完成
-        }
-        System.out.println("Finished all threads");
-    }
-
-}
-```
-
-运行结果：
-
-```
-Current Time = Wed May 30 17:11:16 CST 2018
-pool-1-thread-1 Start. Time = Wed May 30 17:11:27 CST 2018
-pool-1-thread-2 Start. Time = Wed May 30 17:11:28 CST 2018
-pool-1-thread-3 Start. Time = Wed May 30 17:11:29 CST 2018
-pool-1-thread-1 End. Time = Wed May 30 17:11:32 CST 2018
-pool-1-thread-2 End. Time = Wed May 30 17:11:33 CST 2018
-pool-1-thread-3 End. Time = Wed May 30 17:11:34 CST 2018
-Current Time = Wed May 30 17:11:49 CST 2018
-Finished all threads
-```
-
-#### 6.4.1 ScheduledExecutorService scheduleAtFixedRate(Runnable command,long initialDelay,long period,TimeUnit unit)方法
-
-我们可以使用 ScheduledExecutorService scheduleAtFixedRate 方法来安排任务在初始延迟后运行，然后在给定的时间段内运行。
-
-时间段是从池中第一个线程的开始，因此如果您将 period 指定为 1 秒并且线程运行 5 秒，那么只要第一个工作线程完成执行，下一个线程就会开始执行。
-
-```java
-for (int i = 0; i < 3; i++) {
-	Thread.sleep(1000);
-	WorkerThread worker = new WorkerThread("do heavy processing");
-	// schedule task to execute at fixed rate
-	scheduledThreadPool.scheduleAtFixedRate(worker, 0, 10,
-	TimeUnit.SECONDS);
-}
-```
-
-输出示例:
-
-```
-Current Time = Wed May 30 17:47:09 CST 2018
-pool-1-thread-1 Start. Time = Wed May 30 17:47:10 CST 2018
-pool-1-thread-2 Start. Time = Wed May 30 17:47:11 CST 2018
-pool-1-thread-3 Start. Time = Wed May 30 17:47:12 CST 2018
-pool-1-thread-1 End. Time = Wed May 30 17:47:15 CST 2018
-pool-1-thread-2 End. Time = Wed May 30 17:47:16 CST 2018
-pool-1-thread-3 End. Time = Wed May 30 17:47:17 CST 2018
-pool-1-thread-1 Start. Time = Wed May 30 17:47:20 CST 2018
-pool-1-thread-4 Start. Time = Wed May 30 17:47:21 CST 2018
-pool-1-thread-2 Start. Time = Wed May 30 17:47:22 CST 2018
-pool-1-thread-1 End. Time = Wed May 30 17:47:25 CST 2018
-pool-1-thread-4 End. Time = Wed May 30 17:47:26 CST 2018
-pool-1-thread-2 End. Time = Wed May 30 17:47:27 CST 2018
-pool-1-thread-1 Start. Time = Wed May 30 17:47:30 CST 2018
-pool-1-thread-3 Start. Time = Wed May 30 17:47:31 CST 2018
-pool-1-thread-5 Start. Time = Wed May 30 17:47:32 CST 2018
-pool-1-thread-1 End. Time = Wed May 30 17:47:35 CST 2018
-pool-1-thread-3 End. Time = Wed May 30 17:47:36 CST 2018
-pool-1-thread-5 End. Time = Wed May 30 17:47:37 CST 2018
-pool-1-thread-1 Start. Time = Wed May 30 17:47:40 CST 2018
-pool-1-thread-2 Start. Time = Wed May 30 17:47:41 CST 2018
-Current Time = Wed May 30 17:47:42 CST 2018
-pool-1-thread-1 End. Time = Wed May 30 17:47:45 CST 2018
-pool-1-thread-2 End. Time = Wed May 30 17:47:46 CST 2018
-Finished all threads
-
-Process finished with exit code 0
-
-```
-
-#### 6.4.2 ScheduledExecutorService scheduleWithFixedDelay(Runnable command,long initialDelay,long delay,TimeUnit unit)方法
-
-ScheduledExecutorService scheduleWithFixedDelay 方法可用于以初始延迟启动周期性执行，然后以给定延迟执行。 延迟时间是线程完成执行的时间。
-
-```java
-for (int i = 0; i < 3; i++) {
-	Thread.sleep(1000);
-	WorkerThread worker = new WorkerThread("do heavy processing");
-	scheduledThreadPool.scheduleWithFixedDelay(worker, 0, 1,
-	TimeUnit.SECONDS);
-}
-```
-
-输出示例：
-
-```
-Current Time = Wed May 30 17:58:09 CST 2018
-pool-1-thread-1 Start. Time = Wed May 30 17:58:10 CST 2018
-pool-1-thread-2 Start. Time = Wed May 30 17:58:11 CST 2018
-pool-1-thread-3 Start. Time = Wed May 30 17:58:12 CST 2018
-pool-1-thread-1 End. Time = Wed May 30 17:58:15 CST 2018
-pool-1-thread-2 End. Time = Wed May 30 17:58:16 CST 2018
-pool-1-thread-1 Start. Time = Wed May 30 17:58:16 CST 2018
-pool-1-thread-3 End. Time = Wed May 30 17:58:17 CST 2018
-pool-1-thread-4 Start. Time = Wed May 30 17:58:17 CST 2018
-pool-1-thread-2 Start. Time = Wed May 30 17:58:18 CST 2018
-pool-1-thread-1 End. Time = Wed May 30 17:58:21 CST 2018
-pool-1-thread-1 Start. Time = Wed May 30 17:58:22 CST 2018
-pool-1-thread-4 End. Time = Wed May 30 17:58:22 CST 2018
-pool-1-thread-2 End. Time = Wed May 30 17:58:23 CST 2018
-pool-1-thread-2 Start. Time = Wed May 30 17:58:23 CST 2018
-pool-1-thread-4 Start. Time = Wed May 30 17:58:24 CST 2018
-pool-1-thread-1 End. Time = Wed May 30 17:58:27 CST 2018
-pool-1-thread-2 End. Time = Wed May 30 17:58:28 CST 2018
-pool-1-thread-1 Start. Time = Wed May 30 17:58:28 CST 2018
-pool-1-thread-2 Start. Time = Wed May 30 17:58:29 CST 2018
-pool-1-thread-4 End. Time = Wed May 30 17:58:29 CST 2018
-pool-1-thread-4 Start. Time = Wed May 30 17:58:30 CST 2018
-pool-1-thread-1 End. Time = Wed May 30 17:58:33 CST 2018
-pool-1-thread-2 End. Time = Wed May 30 17:58:34 CST 2018
-pool-1-thread-1 Start. Time = Wed May 30 17:58:34 CST 2018
-pool-1-thread-2 Start. Time = Wed May 30 17:58:35 CST 2018
-pool-1-thread-4 End. Time = Wed May 30 17:58:35 CST 2018
-pool-1-thread-4 Start. Time = Wed May 30 17:58:36 CST 2018
-pool-1-thread-1 End. Time = Wed May 30 17:58:39 CST 2018
-pool-1-thread-2 End. Time = Wed May 30 17:58:40 CST 2018
-pool-1-thread-5 Start. Time = Wed May 30 17:58:40 CST 2018
-pool-1-thread-4 End. Time = Wed May 30 17:58:41 CST 2018
-pool-1-thread-2 Start. Time = Wed May 30 17:58:41 CST 2018
-Current Time = Wed May 30 17:58:42 CST 2018
-pool-1-thread-5 End. Time = Wed May 30 17:58:45 CST 2018
-pool-1-thread-2 End. Time = Wed May 30 17:58:46 CST 2018
-Finished all threads
-```
-
-#### 6.4.3 scheduleWithFixedDelay() vs scheduleAtFixedRate()
-
-scheduleAtFixedRate（...）将延迟视为两个任务开始之间的差异（即定期调用）
-scheduleWithFixedDelay（...）将延迟视为一个任务结束与下一个任务开始之间的差异
-
-> **scheduleAtFixedRate():** 创建并执行在给定的初始延迟之后，随后以给定的时间段首先启用的周期性动作; 那就是执行将在 initialDelay 之后开始，然后 initialDelay+period ，然后是 initialDelay + 2 \* period ，等等。 如果任务的执行遇到异常，则后续的执行被抑制。 否则，任务将仅通过取消或终止执行人终止。 如果任务执行时间比其周期长，则后续执行可能会迟到，但不会同时执行。
-> **scheduleWithFixedDelay() :** 创建并执行在给定的初始延迟之后首先启用的定期动作，随后在一个执行的终止和下一个执行的开始之间给定的延迟。 如果任务的执行遇到异常，则后续的执行被抑制。 否则，任务将仅通过取消或终止执行终止。
-
-## 七 各种线程池的适用场景介绍
-
-- **FixedThreadPool：** 适用于为了满足资源管理需求，而需要限制当前线程数量的应用场景。它适用于负载比较重的服务器；
-
-- **SingleThreadExecutor：** 适用于需要保证顺序地执行各个任务并且在任意时间点，不会有多个线程是活动的应用场景。
-
-**CachedThreadPool：** 适用于执行很多的短期异步任务的小程序，或者是负载较轻的服务器；
-
-**ScheduledThreadPoolExecutor：** 适用于需要多个后台执行周期任务，同时为了满足资源管理需求而需要限制后台线程的数量的应用场景，
-
-**SingleThreadScheduledExecutor：** 适用于需要单个后台线程执行周期任务，同时保证顺序地执行各个任务的应用场景。
-
-## 八 总结
-
-本节只是简单的介绍了一下使用线程池的好处，然后花了大量篇幅介绍 Executor 框架。详细介绍了 Executor 框架中 ThreadPoolExecutor 和 ScheduledThreadPoolExecutor，并且通过实例详细讲解了 ScheduledThreadPoolExecutor 的使用。对于 FutureTask 只是粗略带过，因为篇幅问题，并没有深究它的原理，后面的文章会进行补充。这一篇文章只是大概带大家过一下线程池的基本概览，深入讲解的地方不是很多，后续会通过源码深入研究其中比较重要的一些知识点。
-
-最后，就是这两周要考试了，会抽点时间出来简单应付一下学校考试了。然后，就是写这篇多线程的文章废了好多好多时间。一直不知从何写起。
-
-## 九 参考
+## 七 参考
 
 - 《Java 并发编程的艺术》
 - [Java Scheduler ScheduledExecutorService ScheduledThreadPoolExecutor Example](https://www.journaldev.com/2340/java-scheduler-scheduledexecutorservice-scheduledthreadpoolexecutor-example "Java Scheduler ScheduledExecutorService ScheduledThreadPoolExecutor Example")
 - [java.util.concurrent.ScheduledThreadPoolExecutor Example](https://examples.javacodegeeks.com/core-java/util/concurrent/scheduledthreadpoolexecutor/java-util-concurrent-scheduledthreadpoolexecutor-example/ "java.util.concurrent.ScheduledThreadPoolExecutor Example")
 - [ThreadPoolExecutor – Java Thread Pool Example](https://www.journaldev.com/1069/threadpoolexecutor-java-thread-pool-example-executorservice "ThreadPoolExecutor – Java Thread Pool Example")
 
-## 十 其他推荐阅读
+## 八 其他推荐阅读
 
 - [Java 并发（三）线程池原理](https://www.cnblogs.com/warehouse/p/10720781.html "Java并发（三）线程池原理")
 - [如何优雅的使用和理解线程池](https://github.com/crossoverJie/JCSprout/blob/master/MD/ThreadPoolExecutor.md "如何优雅的使用和理解线程池")
