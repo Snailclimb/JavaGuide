@@ -80,6 +80,8 @@
 7. 支持网络编程并且很方便（ Java 语言诞生本身就是为简化网络编程设计的，因此 Java 语言不仅支持网络编程而且很方便）；
 8. 编译与解释并存；
 
+> 修正（参见： [issue#544](https://github.com/Snailclimb/JavaGuide/issues/544)）：C++11开始（2011年的时候）,C++就引入了多线程库，在windows、linux、macos都可以使用`std::thread`和`std::async`来创建线程。
+
 ## 3. 关于 JVM JDK 和 JRE 最详细通俗的解答
 
 ### JVM
