@@ -153,7 +153,7 @@ public class ScheduledThreadPoolExecutor
 
 - **`corePoolSize` :** 核心线程数线程数定义了最小可以同时运行的线程数量。
 - **`maximumPoolSize` :** 当队列中存放的任务达到队列容量的时候，当前可以同时运行的线程数量变为最大线程数。
-- **`workQueue`:** 当新任务来的时候会先判断当前运行的线程数量是否达到核心线程数，如果达到的话，信任就会被存放在队列中。
+- **`workQueue`:** 当新任务来的时候会先判断当前运行的线程数量是否达到核心线程数，如果达到的话，新的任务就会被存放在队列中。
 
 `ThreadPoolExecutor`其他常见参数:
 
