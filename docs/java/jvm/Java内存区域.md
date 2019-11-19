@@ -32,6 +32,7 @@
         - [4.2 String s1 = new String("abc");这句话创建了几个字符串对象？](#42-string-s1--new-stringabc这句话创建了几个字符串对象)
         - [4.3 8 种基本类型的包装类和常量池](#43-8-种基本类型的包装类和常量池)
     - [参考](#参考)
+    - [公众号](#公众号)
 
 <!-- /TOC -->
 
@@ -431,4 +432,4 @@ i4=i5+i6   true
 
 **Java工程师必备学习资源:** 一些Java工程师常用学习资源[公众号](#公众号)后台回复关键字 **“1”** 即可免费无套路获取。 
 
-![我的公众号](https://user-gold-cdn.xitu.io/2018/11/28/167598cd2e17b8ec?w=258&h=258&f=jpeg&s=27334)
+![我的公众号](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/167598cd2e17b8ec.png)
