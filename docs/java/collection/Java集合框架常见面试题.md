@@ -2,7 +2,7 @@
 
 <!-- TOC -->
 
-- [剖析面试最常见问题之Java基础知识](#剖析面试最常见问题之java基础知识)
+- [剖析面试最常见问题之Java集合框架](#剖析面试最常见问题之java集合框架)
     - [说说List,Set,Map三者的区别？](#说说listsetmap三者的区别)
     - [Arraylist 与 LinkedList 区别?](#arraylist-与-linkedlist-区别)
         - [补充内容:RandomAccess接口](#补充内容randomaccess接口)
@@ -33,7 +33,7 @@
 
 <!-- /TOC -->
 
-# 剖析面试最常见问题之Java基础知识
+# 剖析面试最常见问题之Java集合框架
 
 ## 说说List,Set,Map三者的区别？
 
