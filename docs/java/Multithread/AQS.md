@@ -78,7 +78,7 @@ protected final boolean compareAndSetState(int expect, int update) {
 
 - **Exclusive**（独占）：只有一个线程能执行，如ReentrantLock。又可分为公平锁和非公平锁：
     - 公平锁：按照线程在队列中的排队顺序，先到者先拿到锁
-    - 非公平锁：当线程要获取锁时，无视队列顺序直接去抢锁，谁抢到就是谁的
+    - 非公平锁：当线程要获取锁时，先通过 CAS 操作和队列头的线程去抢锁，如果没抢到，当前线程再加入到队列中等待唤醒。
 -  **Share**（共享）：多个线程可同时执行，如Semaphore/CountDownLatch。Semaphore、CountDownLatCh、 CyclicBarrier、ReadWriteLock 我们都会在后面讲到。
 
 ReentrantReadWriteLock 可以看成是组合式，因为ReentrantReadWriteLock也就是读写锁允许多个线程同时对某一资源进行读。
