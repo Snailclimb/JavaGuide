@@ -300,8 +300,9 @@
 
 - [Github 上热门的 Spring Boot 项目实战推荐](docs/data/spring-boot-practical-projects.md)
 
-### Github 历史榜单
+### Github
 
+- [Github 上 Star 数最多的 10 个项目，看完之后很意外!](docs/tools/github/github-star-ranking.md)
 - [Java 项目月榜单](docs/github-trending/JavaGithubTrending.md)
 
 ***
