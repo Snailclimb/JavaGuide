@@ -220,8 +220,8 @@ DECR key：给 key 的 value 值减去一
 - 主动更新：代码层面控制生命周期，一致性最好，维护成本高。
 
 在 Redis 根据在 redis.conf 的参数 `maxmemory` 来做更新淘汰策略：
-1. noeviction: 不删除策略, 达到最大内存限制时, 如果需要更多内存, 直接返回错误信息。大多数写命令都会导致占用更多的内存(有极少数会例外, 如 DEL )。
-2. allkeys-lru: 所有key通用; 优先删除最近最少使用(less recently used ,LRU) 的 key。
+1. noeviction: 不删除策略, 达到最大内存限制时, 如果需要更多内存, 直接返回错误信息。大多数写命令都会导致占用更多的内存(有极少数会例外, 如 DEL 命令)。
+2. allkeys-lru: 所有 key 通用; 优先删除最近最少使用(less recently used ,LRU) 的 key。
 3. volatile-lru: 只限于设置了 expire 的部分; 优先删除最近最少使用(less recently used ,LRU) 的 key。
 4. allkeys-random: 所有key通用; 随机删除一部分 key。
 5. volatile-random: 只限于设置了 expire 的部分; 随机删除一部分 key。
