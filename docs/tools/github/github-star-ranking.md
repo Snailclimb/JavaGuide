@@ -92,4 +92,3 @@
 下面就是 oh-my-zsh 提供的一个花里胡哨的主题：
 
 ![oh-my-zsh-theme](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/ohmyzsh-theme.png)
-
