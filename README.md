@@ -22,7 +22,7 @@
   </a >
 </p>
 
-推荐使用 https://snailclimb.github.io/JavaGuide/ 在线阅读(访问速度慢的话，请使用 https://snailclimb.gitee.io/javaguide )，在线阅读内容本仓库同步一致。这种方式阅读的优势在于：有侧边栏阅读体验更好，Gitee pages 的访问速度相对来说也比较快。
+推荐使用  https://snailclimb.gitee.io/javaguide 在线阅读，在线阅读内容本仓库同步一致。这种方式阅读的优势在于：阅读体验会更好。
 
 ## 目录
 
@@ -103,6 +103,8 @@
 * [四 类文件结构](docs/java/jvm/类文件结构.md)
 * **[五 类加载过程](docs/java/jvm/类加载过程.md)**
 * [六 类加载器](docs/java/jvm/类加载器.md)
+* **[【待完成】八 最重要的 JVM 参数指南（翻译完善了一半）](docs/java/jvm/最重要的JVM参数指南.md)**
+* [九 JVM 配置常用参数和常用 GC 调优策略](docs/java/jvm/GC调优参数.md)
 
 ### I/O
 
@@ -298,8 +300,9 @@
 
 - [Github 上热门的 Spring Boot 项目实战推荐](docs/data/spring-boot-practical-projects.md)
 
-### Github 历史榜单
+### Github
 
+- [Github 上 Star 数最多的 10 个项目，看完之后很意外!](docs/tools/github/github-star-ranking.md)
 - [Java 项目月榜单](docs/github-trending/JavaGithubTrending.md)
 
 ***
@@ -336,7 +339,7 @@ Markdown 格式参考：[Github Markdown格式](https://guides.github.com/featur
 
 1. 笔记内容大多是手敲，所以难免会有笔误，你可以帮我找错别字。
 2. 很多知识点我可能没有涉及到，所以你可以对其他知识点进行补充。
-3. 现有的知识点难免存在不完善或者错误，所以你可以对已有知识点的修改/补充。
+3. 现有的知识点难免存在不完善或者错误，所以你可以对已有知识点进行修改/补充。
 
 ### 为什么要做这个开源文档？
 

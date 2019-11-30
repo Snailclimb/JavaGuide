@@ -1,5 +1,3 @@
-如遇链接无法打开，建议使用 https://github.com/Snailclimb/JavaGuide/blob/master/docs/questions/java-learning-path-and-methods.md 这个链接进行阅读。
-
 到目前为止，我觉得不管是在公众号后台、知乎还是微信上面我被问的做多的就是：“大佬，有没有 Java 学习路线和方法”。所以，这部分单独就自己的学习经历来说点自己的看法。
 
 ## 前言
