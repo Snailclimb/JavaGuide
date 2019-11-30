@@ -1,7 +1,5 @@
 点击关注[公众号](#公众号)及时获取笔主最新更新文章，并可免费领取本文档配套的《Java面试突击》以及Java工程师必备学习资源。
 
-**[推荐一下阿里云双11的活动：云服务器1折起，仅86元/年，限量抢购！](https://www.aliyun.com/1111/2019/group-buying-share?ptCode=32AE103FC8249634736194795A3477C4647C88CF896EF535&userCode=hf47liqn&share_source=copy_link)** （仅限新人，老用户可以考虑使用家人或者朋友账号购买，推荐799/3年 2核4G 这个性价比和适用面更广。不懂怎么使用云服务器的朋友可以看这篇[阿里云服务器使用经验](docs/tools/阿里云服务器使用经验.md)）。
-
 <p align="center">
 <a href="https://github.com/Snailclimb/JavaGuide" target="_blank">
 	<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/logo - 副本.png" width=""/>
@@ -24,7 +22,7 @@
   </a >
 </p>
 
-推荐使用 https://snailclimb.top/JavaGuide/ 在线阅读(访问速度慢的话，请使用 https://snailclimb.gitee.io/javaguide )，在线阅读内容本仓库同步一致。这种方式阅读的优势在于：有侧边栏阅读体验更好，Gitee pages 的访问速度相对来说也比较快。
+推荐使用  https://snailclimb.gitee.io/javaguide 在线阅读，在线阅读内容本仓库同步一致。这种方式阅读的优势在于：阅读体验会更好。
 
 ## 目录
 
@@ -38,7 +36,6 @@
     - [优雅 Java 代码必备实践(Java编程规范)](#优雅-java-代码必备实践java编程规范)
 - [网络](#网络)
 - [操作系统](#操作系统)
-  
     - [Linux相关](#linux相关)
 - [数据结构与算法](#数据结构与算法)
     - [数据结构](#数据结构)
@@ -93,6 +90,7 @@
 * **[Java 并发基础常见面试题总结](docs/java/Multithread/JavaConcurrencyBasicsCommonInterviewQuestionsSummary.md)**
 * **[Java 并发进阶常见面试题总结](docs/java/Multithread/JavaConcurrencyAdvancedCommonInterviewQuestions.md)**
 * [并发容器总结](docs/java/Multithread/并发容器总结.md)
+* **[Java线程池学习总结](./docs/java/Multithread/java线程池学习总结.md)**
 * [乐观锁与悲观锁](docs/essential-content-for-interview/面试必备之乐观锁与悲观锁.md)
 * [JUC 中的 Atomic 原子类总结](docs/java/Multithread/Atomic.md)
 * [AQS 原理以及 AQS 同步组件总结](docs/java/Multithread/AQS.md)
@@ -105,6 +103,8 @@
 * [四 类文件结构](docs/java/jvm/类文件结构.md)
 * **[五 类加载过程](docs/java/jvm/类加载过程.md)**
 * [六 类加载器](docs/java/jvm/类加载器.md)
+* **[【待完成】八 最重要的 JVM 参数指南（翻译完善了一半）](docs/java/jvm/最重要的JVM参数指南.md)**
+* [九 JVM 配置常用参数和常用 GC 调优策略](docs/java/jvm/GC调优参数.md)
 
 ### I/O
 
@@ -119,7 +119,7 @@
 
 ### 优雅 Java 代码必备实践(Java编程规范)
 
-* [Java 编程规范以及优雅Java代码实践总结](docs/java/Java编程规范.md)
+* [Java 编程规范以及优雅 Java 代码实践总结](docs/java/Java编程规范.md)
 
 ## 网络
 
@@ -252,7 +252,7 @@
 * **[【备战面试2】初出茅庐的程序员该如何准备面试？](docs/essential-content-for-interview/PreparingForInterview/interviewPrepare.md)**
 * **[【备战面试3】7个大部分程序员在面试前很关心的问题](docs/essential-content-for-interview/PreparingForInterview/JavaProgrammerNeedKnow.md)**
 * **[【备战面试4】Github上开源的Java面试/学习相关的仓库推荐](docs/essential-content-for-interview/PreparingForInterview/JavaInterviewLibrary.md)**
-* **[【备战面试5】如果面试官问你“你有什么问题问我吗？”时，你该如何回答](docs/essential-content-for-interview/PreparingForInterview/如果面试官问你"你有什么问题问我吗？"时，你该如何回答.md)**
+* **[【备战面试5】如果面试官问你“你有什么问题问我吗？”时，你该如何回答](docs/essential-content-for-interview/PreparingForInterview/面试官-你有什么问题要问我.md)**
 * **[【备战面试6】美团面试常见问题总结（附详解答案）](docs/essential-content-for-interview/PreparingForInterview/美团面试常见问题总结.md)**
 * **[【备战面试7】一些刁难的面试问题总结](https://xiaozhuanlan.com/topic/9056431872)**
 
@@ -300,15 +300,16 @@
 
 - [Github 上热门的 Spring Boot 项目实战推荐](docs/data/spring-boot-practical-projects.md)
 
-### Github 历史榜单
+### Github
 
+- [Github 上 Star 数最多的 10 个项目，看完之后很意外!](docs/tools/github/github-star-ranking.md)
 - [Java 项目月榜单](docs/github-trending/JavaGithubTrending.md)
 
 ***
 
 ## 待办
 
-- [ ] Java 多线程类别知识重构(---正在进行中---)
+- [x] Java 多线程类别知识重构
 - [ ] Netty 总结(---正在进行中---)
 - [ ] 数据结构总结重构(---正在进行中---)
 
@@ -338,7 +339,7 @@ Markdown 格式参考：[Github Markdown格式](https://guides.github.com/featur
 
 1. 笔记内容大多是手敲，所以难免会有笔误，你可以帮我找错别字。
 2. 很多知识点我可能没有涉及到，所以你可以对其他知识点进行补充。
-3. 现有的知识点难免存在不完善或者错误，所以你可以对已有知识点的修改/补充。
+3. 现有的知识点难免存在不完善或者错误，所以你可以对已有知识点进行修改/补充。
 
 ### 为什么要做这个开源文档？
 

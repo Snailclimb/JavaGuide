@@ -32,6 +32,7 @@
         - [4.2 String s1 = new String("abc");这句话创建了几个字符串对象？](#42-string-s1--new-stringabc这句话创建了几个字符串对象)
         - [4.3 8 种基本类型的包装类和常量池](#43-8-种基本类型的包装类和常量池)
     - [参考](#参考)
+    - [公众号](#公众号)
 
 <!-- /TOC -->
 
@@ -135,15 +136,54 @@ Java 虚拟机所管理的内存中最大的一块，Java 堆是所有线程共�
 
 Java 堆是垃圾收集器管理的主要区域，因此也被称作**GC 堆（Garbage Collected Heap）**.从垃圾回收的角度，由于现在收集器基本都采用分代垃圾收集算法，所以 Java 堆还可以细分为：新生代和老年代：再细致一点有：Eden 空间、From Survivor、To Survivor 空间等。**进一步划分的目的是更好地回收内存，或者更快地分配内存。**
 
-<div align="center">  
-<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3堆结构.png" width="400px"/>
-</div>
+在 JDK 7 版本及JDK 7 版本之前，堆内存被通常被分为下面三部分：
 
-上图所示的 eden 区、s0 区、s1 区都属于新生代，tentired 区属于老年代。大部分情况，对象都会首先在 Eden 区域分配，在一次新生代垃圾回收后，如果对象还存活，则会进入 s0 或者 s1，并且对象的年龄还会加 1(Eden 区->Survivor 区后对象的初始年龄变为 1)，当它的年龄增加到一定程度（默认为 15 岁），就会被晋升到老年代中。对象晋升到老年代的年龄阈值，可以通过参数 `-XX:MaxTenuringThreshold` 来设置。
+1. 新生代内存(Young Ceneration)
+2. 老生代(Old Generation)
+3. 永生代(Permanent Generation)
+
+![JVM堆内存结构-JDK7](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/JVM堆内存结构-JDK7.jpg)
+
+JDK 8 版本之后方法区（HotSpot 的永久代）被彻底移除了（JDK1.7 就已经开始了），取而代之是元空间，元空间使用的是直接内存。
+
+![JVM堆内存结构-JDK8](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/JVM堆内存结构-jdk8.jpg)
+
+**上图所示的 Eden 区、两个 Survivor 区都属于新生代（为了区分，这两个 Survivor 区域按照顺序被命名为 from 和 to），中间一层属于老年代。**
+
+大部分情况，对象都会首先在 Eden 区域分配，在一次新生代垃圾回收后，如果对象还存活，则会进入 s0 或者 s1，并且对象的年龄还会加  1(Eden 区->Survivor 区后对象的初始年龄变为 1)，当它的年龄增加到一定程度（默认为 15 岁），就会被晋升到老年代中。对象晋升到老年代的年龄阈值，可以通过参数 `-XX:MaxTenuringThreshold` 来设置。
+
+> 修正（[issue552](https://github.com/Snailclimb/JavaGuide/issues/552)）：“Hotspot遍历所有对象时，按照年龄从小到大对其所占用的大小进行累积，当累积的某个年龄大小超过了survivor区的一半时，取这个年龄和MaxTenuringThreshold中更小的一个值，作为新的晋升年龄阈值”。
+>
+> **动态年龄计算的代码如下**
+>
+> ```c++
+> uint ageTable::compute_tenuring_threshold(size_t survivor_capacity) {
+> 	//survivor_capacity是survivor空间的大小
+>   size_t desired_survivor_size = (size_t)((((double) survivor_capacity)*TargetSurvivorRatio)/100);
+>   size_t total = 0;
+>   uint age = 1;
+>   while (age < table_size) {
+>     total += sizes[age];//sizes数组是每个年龄段对象大小
+>     if (total > desired_survivor_size) break;
+>     age++;
+>   }
+>   uint result = age < MaxTenuringThreshold ? age : MaxTenuringThreshold;
+> 	...
+> }
+> 
+> ```
+>
+> 
+
+堆这里最容易出现的就是  OutOfMemoryError 异常，并且出现这种异常之后的表现形式还会有几种，比如：
+
+1. **`OutOfMemoryError: GC Overhead Limit Exceeded`** ： 当JVM花太多时间执行垃圾回收并且只能回收很少的堆空间时，就会发生此错误。
+2. **`java.lang.OutOfMemoryError: Java heap space`** :假如在创建新的对象时, 堆内存中的空间不足以存放新创建的对象, 就会引发`java.lang.OutOfMemoryError: Java heap space` 错误。(和本机物理内存无关，和你配置的对内存大小有关！)
+3. ......
 
 ### 2.5 方法区
 
-方法区与 Java 堆一样，是各个线程共享的内存区域，它用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。虽然 Java 虚拟机规范把方法区描述为堆的一个逻辑部分，但是它却有一个别名叫做 **Non-Heap（非堆）**，目的应该是与 Java 堆区分开来。
+方法区与 Java 堆一样，是各个线程共享的内存区域，它用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。虽然 **Java 虚拟机规范把方法区描述为堆的一个逻辑部分**，但是它却有一个别名叫做 **Non-Heap（非堆）**，目的应该是与 Java 堆区分开来。
 
 方法区也被称为永久代。很多人都会分不清方法区和永久代的关系，为此我也查阅了文献。
 
@@ -175,7 +215,7 @@ JDK 1.8 的时候，方法区（HotSpot 的永久代）被彻底移除了（JDK1
 
 #### 2.5.3 为什么要将永久代 (PermGen) 替换为元空间 (MetaSpace) 呢?
 
-整个永久代有一个 JVM 本身设置固定大小上限，无法进行调整，而元空间使用的是直接内存，受本机可用内存的限制，并且永远不会得到 java.lang.OutOfMemoryError。你可以使用 `-XX：MaxMetaspaceSize` 标志设置最大元空间大小，默认值为 unlimited，这意味着它只受系统内存的限制。`-XX：MetaspaceSize` 调整标志定义元空间的初始大小如果未指定此标志，则 Metaspace 将根据运行时的应用程序需求动态地重新调整大小。
+整个永久代有一个 JVM 本身设置固定大小上限，无法进行调整，而元空间使用的是直接内存，受本机可用内存的限制，并且永远不会得到 `java.lang.OutOfMemoryError`。你可以使用 `-XX：MaxMetaspaceSize` 标志设置最大元空间大小，默认值为 unlimited，这意味着它只受系统内存的限制。`-XX：MetaspaceSize` 调整标志定义元空间的初始大小如果未指定此标志，则 Metaspace 将根据运行时的应用程序需求动态地重新调整大小。
 
 当然这只是其中一个原因，还有很多底层的原因，这里就不提了。
 
@@ -317,7 +357,7 @@ System.out.println(str2==str3);//false
 		  System.out.println(str3 == str5);//true
 		  System.out.println(str4 == str5);//false
 ```
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/字符串拼接.png)
+![字符串拼接](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/字符串拼接-常量池2.png)
 
 尽量避免多个字符串拼接，因为这样会重新创建对象。如果需要改变字符串的话，可以使用 StringBuilder 或者 StringBuffer。
 ### 4.2 String s1 = new String("abc");这句话创建了几个字符串对象？
@@ -431,4 +471,4 @@ i4=i5+i6   true
 
 **Java工程师必备学习资源:** 一些Java工程师常用学习资源[公众号](#公众号)后台回复关键字 **“1”** 即可免费无套路获取。 
 
-![我的公众号](https://user-gold-cdn.xitu.io/2018/11/28/167598cd2e17b8ec?w=258&h=258&f=jpeg&s=27334)
+![我的公众号](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/167598cd2e17b8ec.png)
