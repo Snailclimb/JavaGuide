@@ -7,8 +7,8 @@
 3. 布隆过滤器使用场景。
 4. 通过 Java 编程手动实现布隆过滤器。
 5. 利用Google开源的Guava中自带的布隆过滤器。
-6. Redis 中的布隆过滤器。
-7. 总结。
+6. Redis 中的布隆过滤器(待完成)。
+7. 总结(待完成)。
 
 ### 1.什么是布隆过滤器？
 
@@ -227,11 +227,66 @@ true
 
 在我们的示例中，当`mightContain（）` 方法返回*true*时，我们可以99％确定该元素在过滤器中，当过滤器返回*false*时，我们可以100％确定该元素不存在于过滤器中。
 
+**Guava 提供的布隆过滤器的实现还是很不错的（想要详细了解的可以看一下它的源码实现），但是它有一个重大的缺陷就是只能单机使用（另外，容量扩展也不容易），而现在互联网一般都是分布式的场景。为了解决这个问题，我们就需要用到 Redis 中的布隆过滤器了。**
+
 ### 6.Redis 中的布隆过滤器
 
-- https://juejin.im/post/5bc7446e5188255c791b3360
+Redis v4.0 之后有了 Module（模块/插件） 功能，Redis Modules 让 Redis 可以使用外部模块扩展其功能 。布隆过滤器就是其中的 Module。详情可以查看 Redis 官方对 Redis Modules 的介绍 ：https://redis.io/modules。
 
-### 8.其他推荐阅读
+另外，官网推荐了一个 RedisBloom  作为 Redis 布隆过滤器的 Module,地址：https://github.com/RedisBloom/RedisBloom。其他还有：
 
-1. 详解布隆过滤器的原理，使用场景和注意事项：https://zhuanlan.zhihu.com/p/43263751
-2. 
+- redis-lua-scaling-bloom-filter （lua 脚本实现）：https://github.com/erikdubbelboer/redis-lua-scaling-bloom-filter
+- pyreBloom（Python中的快速Redis 布隆过滤器） ：https://github.com/seomoz/pyreBloom
+- ......
+
+如果我们需要体验 Redis 中的布隆过滤器非常简单，通过 Docker  就可以了！我们直接在 Google 搜索**docker redis bloomfilter** 然后在排除广告的第一条搜素结果就找到了我们想要的答案（这是我平常解决问题的一种方式，分享一下），具体地址：https://hub.docker.com/r/redislabs/rebloom/ （介绍的很详细 ）。
+
+**具体操作如下：**
+
+```
+➜  ~ docker run -p 6379:6379 --name redis-redisbloom redislabs/rebloom:latest
+➜  ~ docker exec -it redis-redisbloom bash
+root@21396d02c252:/data# redis-cli
+127.0.0.1:6379> 
+```
+
+**常用命令：**
+
+>  注意：   key:布隆过滤器的名称，item : 添加的元素。
+
+1. **`BF.ADD `**：将元素添加到布隆过滤器中，如果该过滤器尚不存在，则创建该过滤器。格式：`BF.ADD {key} {item}`。
+2. **`BF.MADD `** : 将一个或多个元素添加到“布隆过滤器”中，并创建一个尚不存在的过滤器。该命令的操作方式`BF.ADD`与之相同，只不过它允许多个输入并返回多个值。格式：`BF.MADD {key} {item} [item ...]` 。
+3. **`BF.EXISTS` ** : 确定元素是否在布隆过滤器中存在。格式：`BF.EXISTS {key} {item}`。
+4. **`BF.MEXISTS`** ： 确定一个或者多个元素是否在布隆过滤器中存在格式：`BF.MEXISTS {key} {item} [item ...]`。
+
+另外，`BF.RESERVE` 命令需要单独介绍一下：
+
+这个命令的格式如下：
+
+`BF.RESERVE {key} {error_rate} {capacity} [EXPANSION expansion] `。
+
+下面简单介绍一下每个参数的具体含义：
+
+1. key：布隆过滤器的名称
+2. error_rate :误报的期望概率。这应该是介于0到1之间的十进制值。例如，对于期望的误报率0.1％（1000中为1），error_rate应该设置为0.001。该数字越接近零，则每个项目的内存消耗越大，并且每个操作的CPU使用率越高。
+3. capacity:  过滤器的容量。当实际存储的元素个数超过这个值之后，性能将开始下降。实际的降级将取决于超出限制的程度。随着过滤器元素数量呈指数增长，性能将线性下降。
+
+可选参数：
+
+- expansion：如果创建了一个新的子过滤器，则其大小将是当前过滤器的大小乘以`expansion`。默认扩展值为2。这意味着每个后续子过滤器将是前一个子过滤器的两倍。
+
+实际使用：
+
+```shell
+127.0.0.1:6379> BF.ADD myFilter java
+(integer) 1
+127.0.0.1:6379> BF.ADD myFilter javaguide
+(integer) 1
+127.0.0.1:6379> BF.EXISTS myFilter java
+(integer) 1
+127.0.0.1:6379> BF.EXISTS myFilter javaguide
+(integer) 1
+127.0.0.1:6379> BF.EXISTS myFilter github
+(integer) 0
+```
+
