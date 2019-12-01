@@ -1,4 +1,4 @@
-最近，当我在做一个项目的时候需要过滤掉重复的 URL ，为了完成这个任务，我学到了一种称为 Bloom Filter （布隆过滤器）的东西，然后我学会了它并写下了这个博客。
+海量数据处理以及缓存穿透这两个场景让我认识了 布隆过滤器 ，我查阅了一些资料来了解它，但是很多现成资料并不满足我的需求，所以就决定自己总结一篇关于布隆过滤器的文章。希望通过这篇文章让更多人了解布隆过滤器，并且会实际去使用它！
 
 下面我们将分为几个方面来介绍布隆过滤器：
 
@@ -7,8 +7,7 @@
 3. 布隆过滤器使用场景。
 4. 通过 Java 编程手动实现布隆过滤器。
 5. 利用Google开源的Guava中自带的布隆过滤器。
-6. Redis 中的布隆过滤器(待完成)。
-7. 总结(待完成)。
+6. Redis 中的布隆过滤器。
 
 ### 1.什么是布隆过滤器？
 
@@ -231,6 +230,8 @@ true
 
 ### 6.Redis 中的布隆过滤器
 
+#### 6.1介绍
+
 Redis v4.0 之后有了 Module（模块/插件） 功能，Redis Modules 让 Redis 可以使用外部模块扩展其功能 。布隆过滤器就是其中的 Module。详情可以查看 Redis 官方对 Redis Modules 的介绍 ：https://redis.io/modules。
 
 另外，官网推荐了一个 RedisBloom  作为 Redis 布隆过滤器的 Module,地址：https://github.com/RedisBloom/RedisBloom。其他还有：
@@ -238,6 +239,10 @@ Redis v4.0 之后有了 Module（模块/插件） 功能，Redis Modules 让 Red
 - redis-lua-scaling-bloom-filter （lua 脚本实现）：https://github.com/erikdubbelboer/redis-lua-scaling-bloom-filter
 - pyreBloom（Python中的快速Redis 布隆过滤器） ：https://github.com/seomoz/pyreBloom
 - ......
+
+RedisBloom 提供了多种语言的客户端支持，包括：Python、Java、JavaScript 和 PHP。
+
+#### 6.2使用Docker安装
 
 如果我们需要体验 Redis 中的布隆过滤器非常简单，通过 Docker  就可以了！我们直接在 Google 搜索**docker redis bloomfilter** 然后在排除广告的第一条搜素结果就找到了我们想要的答案（这是我平常解决问题的一种方式，分享一下），具体地址：https://hub.docker.com/r/redislabs/rebloom/ （介绍的很详细 ）。
 
@@ -250,7 +255,7 @@ root@21396d02c252:/data# redis-cli
 127.0.0.1:6379> 
 ```
 
-**常用命令：**
+#### 6.3常用命令一览
 
 >  注意：   key:布隆过滤器的名称，item : 添加的元素。
 
@@ -275,7 +280,7 @@ root@21396d02c252:/data# redis-cli
 
 - expansion：如果创建了一个新的子过滤器，则其大小将是当前过滤器的大小乘以`expansion`。默认扩展值为2。这意味着每个后续子过滤器将是前一个子过滤器的两倍。
 
-实际使用：
+#### 6.4实际使用
 
 ```shell
 127.0.0.1:6379> BF.ADD myFilter java
