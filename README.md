@@ -1,5 +1,7 @@
 点击关注[公众号](#公众号)及时获取笔主最新更新文章，并可免费领取本文档配套的《Java面试突击》以及Java工程师必备学习资源。
 
+**[推荐一下阿里云双12的活动，优惠福利比双11还大系列，新老用户同享！](https://www.aliyun.com/minisite/goods?userCode=hf47liqn&share_source=copy_link)**
+
 <p align="center">
 <a href="https://github.com/Snailclimb/JavaGuide" target="_blank">
 	<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/logo - 副本.png" width=""/>
