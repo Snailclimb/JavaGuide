@@ -138,7 +138,7 @@ Java 堆是垃圾收集器管理的主要区域，因此也被称作**GC 堆（G
 
 在 JDK 7 版本及JDK 7 版本之前，堆内存被通常被分为下面三部分：
 
-1. 新生代内存(Young Ceneration)
+1. 新生代内存(Young Generation)
 2. 老生代(Old Generation)
 3. 永生代(Permanent Generation)
 
