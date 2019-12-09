@@ -259,6 +259,10 @@
 * **[【备战面试6】美团面试常见问题总结(附详解答案)](docs/essential-content-for-interview/PreparingForInterview/美团面试常见问题总结.md)**
 * **[【备战面试7】一些刁难的面试问题总结](https://xiaozhuanlan.com/topic/9056431872)**
 
+### 真实面试经历分析
+
+- [我和阿里面试官的一次“邂逅”(附问题详解)](docs/essential-content-for-interview/real-interview-experience-analysis/alibaba-1.md)
+
 ### 面经
 
 - [5面阿里,终获offer(2018年秋招)](docs/essential-content-for-interview/BATJrealInterviewExperience/5面阿里,终获offer.md)
