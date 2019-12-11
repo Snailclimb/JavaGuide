@@ -1,6 +1,6 @@
 点击关注[公众号](#公众号)及时获取笔主最新更新文章，并可免费领取本文档配套的《Java面试突击》以及Java工程师必备学习资源。
 
-**[推荐一下阿里云双12的活动，优惠福利比双11还大系列，新老用户同享！（新用户 ECS 1 核 2g 一年只要 89!）](https://www.aliyun.com/minisite/goods?userCode=hf47liqn&share_source=copy_link)**
+**[安利一下阿里云双 12 的活动，1 核 2g 只要 89 一年，薅波羊毛，感觉甚爽，不过最低的优惠都是新人才能享有的，我是用我女朋友的账号买的，没有女朋友自己，emm.....，可以考虑一下亲人的。](https://www.aliyun.com/minisite/goods?userCode=hf47liqn&share_source=copy_link)**
 
 <p align="center">
 <a href="https://github.com/Snailclimb/JavaGuide" target="_blank">
