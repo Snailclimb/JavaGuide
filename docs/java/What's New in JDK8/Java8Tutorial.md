@@ -39,7 +39,7 @@
     - [LocalDate\(本地日期\)](#localdate本地日期)
     - [LocalDateTime\(本地日期时间\)](#localdatetime本地日期时间)
   - [Annotations\(注解\)](#annotations注解)
-  - [Whete to go from here?](#whete-to-go-from-here)
+  - [Where to go from here?](#where-to-go-from-here)
 
 <!-- /MarkdownTOC -->
 
