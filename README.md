@@ -23,7 +23,7 @@
 <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/WechatIMG1.png"width="" style="margin: 0 auto;"/>
 </a>
 <a  href="http://mp.weixin.qq.com/s?__biz=MjM5MTE1NTQ4Mg==&mid=502249586&idx=1&sn=6384cb5b150b8e2a1c71715d6e4ea777&chksm=3ea2cc0709d54511aaa36b6f6d626219ece05295f80fad2c8e5df877345698b7eb92e1f454b3#rd">
-<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/WechatIMG1523123.jpeg"  style=" margin: 0 auto;"/>
+<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/WechatIMG24.jpeg"  style=" margin: 0 auto;"/>
 </a>
 </p>
 
