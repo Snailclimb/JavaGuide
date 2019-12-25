@@ -157,6 +157,11 @@ public interface RandomAccess {
 |  调用 `put（）`向map中添加元素   |              调用 `add（）`方法向Set中添加元素               |
 | HashMap使用键（Key）计算Hashcode | HashSet使用成员对象来计算hashcode值，对于两个对象来说hashcode可能相同，所以equals()方法用来判断对象的相等性， |
 
+上表中最后一条，HashSet中计算hashCode的也是用key来计算的，HashSet底层是使用HashMap，但是只将key，传入，value值为null，在添加元素的时候依然使用HashMap中的put方法，所以流程是一样的
+   public boolean add(E e) {
+        return map.put(e, PRESENT)==null;
+   }
+
 ## HashSet如何检查重复
 
 当你把对象加入`HashSet`时，HashSet会先计算对象的`hashcode`值来判断对象加入的位置，同时也会与其他加入的对象的hashcode值作比较，如果没有相符的hashcode，HashSet会假设对象没有重复出现。但是如果发现有相同hashcode值的对象，这时会调用`equals（）`方法来检查hashcode相等的对象是否真的相同。如果两者相同，HashSet就不会让加入操作成功。（摘自我的Java启蒙书《Head fist java》第二版）
