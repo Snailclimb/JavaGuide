@@ -208,6 +208,7 @@
 
 - [消息队列总结](docs/system-design/data-communication/message-queue.md)
 - [RabbitMQ 入门](docs/system-design/data-communication/rabbitmq.md)
+- [RocketMQ 入门](docs/system-design/data-communication/RocketMQ.md)
 - [RocketMQ的几个简单问题与答案](docs/system-design/data-communication/RocketMQ-Questions.md)
 - [Kafka入门看这一篇就够了](docs/system-design/data-communication/Kafka入门看这一篇就够了.md)
 - [Kafka系统设计开篇-面试看这篇就够了](docs/system-design/data-communication/Kafka系统设计开篇-面试看这篇就够了.md)
@@ -306,6 +307,7 @@
 ### Github
 
 - [Github 上 Star 数最多的 10 个项目，看完之后很意外!](docs/tools/github/github-star-ranking.md)
+- [年末将至，值得你关注的16个Java 开源项目！](docs/github-trending/2019-12.md)
 - [Java 项目月榜单](docs/github-trending/JavaGithubTrending.md)
 
 ***
