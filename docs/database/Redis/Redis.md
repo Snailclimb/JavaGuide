@@ -304,7 +304,7 @@ public Object getObjectInclNullById(Integer id) {
     // 从缓存中获取数据
     Object cacheValue = cache.get(id);
     // 缓存为空
-    if (cacheValue != null) {
+    if (cacheValue == null) {
         // 从数据库中获取
         Object storageValue = storage.get(key);
         // 缓存空对象
