@@ -652,9 +652,9 @@ Wed Nov 13 13:40:43 CST 2019::pool-1-thread-5
 2. 当前线程池中有一个运行的线程后，将任务加入 `LinkedBlockingQueue`
 3. 线程执行完当前的任务后，会在循环中反复从` LinkedBlockingQueue` 中获取任务来执行；
 
-#### 5.2.3 为什么不推荐使用`FixedThreadPool`？ 
+#### 5.2.3 为什么不推荐使用`SingleThreadExecutor`？
 
-`SingleThreadExecutor` 使用无界队列 `LinkedBlockingQueue` 作为线程池的工作队列（队列的容量为 Intger.MAX_VALUE）。`SingleThreadExecuto`r 使用无界队列作为线程池的工作队列会对线程池带来的影响与 `FixedThreadPool` 相同。说简单点就是可能会导致 OOM，
+`SingleThreadExecutor` 使用无界队列 `LinkedBlockingQueue` 作为线程池的工作队列（队列的容量为 Intger.MAX_VALUE）。`SingleThreadExecutor` 使用无界队列作为线程池的工作队列会对线程池带来的影响与 `FixedThreadPool` 相同。说简单点就是可能会导致 OOM，
 
 ### 5.3 CachedThreadPool 详解
 
