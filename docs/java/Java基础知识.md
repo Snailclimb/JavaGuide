@@ -139,7 +139,7 @@ JRE 是 Java运行时环境。它是运行已编译 Java 程序所需的所有�
 - Java 不提供指针来直接访问内存，程序内存更加安全
 - Java 的类是单继承的，C++ 支持多重继承；虽然 Java 的类不可以多继承，但是接口可以多继承。
 - Java 有自动内存管理机制，不需要程序员手动释放无用内存
-- **在 C 语言中，字符串或字符数组最后都会有一个额外的字符‘\0’来表示结束。但是，Java 语言中没有结束符这一概念。** 这是一个值得深度思考的问题，具体原因推荐看这篇文章： [https://blog.csdn.net/sszgg2006/article/details/49148189]( https://blog.csdn.net/sszgg2006/article/details/49148189) 。
+- **在 C 语言中，字符串或字符数组最后都会有一个额外的字符‘\0’来表示结束。但是，Java 语言中没有结束符这一概念。** 这是一个值得深度思考的问题，具体原因推荐看这篇文章： [https://blog.csdn.net/sszgg2006/article/details/49148189]( https://blog.csdn.net/sszgg2006/article/details/49148189)
 
 
 ## 6. 什么是 Java 程序的主类 应用程序和小程序的主类有何不同?
@@ -367,7 +367,7 @@ hashCode() 的作用是获取哈希码，也称为散列码；它实际上是返
 
 ## 28. 为什么Java中只有值传递？
 
- [为什么Java中只有值传递？](https://github.com/Snailclimb/JavaGuide/blob/master/docs/essential-content-for-interview/PreparingForInterview/%E5%BA%94%E5%B1%8A%E7%94%9F%E9%9D%A2%E8%AF%95%E6%9C%80%E7%88%B1%E9%97%AE%E7%9A%84%E5%87%A0%E9%81%93Java%E5%9F%BA%E7%A1%80%E9%97%AE%E9%A2%98.md#%E4%B8%80-%E4%B8%BA%E4%BB%80%E4%B9%88-java-%E4%B8%AD%E5%8F%AA%E6%9C%89%E5%80%BC%E4%BC%A0%E9%80%92)
+[为什么Java中只有值传递？](https://juejin.im/post/5e18879e6fb9a02fc63602e2)
 
 
 ## 29. 简述线程、程序、进程的基本概念。以及他们之间关系是什么?
