@@ -12,7 +12,7 @@
     - [4.1 CountDownLatch 的三种典型用法](#41-countdownlatch-的三种典型用法)
     - [4.2 CountDownLatch 的使用示例](#42-countdownlatch-的使用示例)
     - [4.3 CountDownLatch 的不足](#43-countdownlatch-的不足)
-    - [4.4 CountDownLatch 相常见面试题：](#44-countdownlatch-相常见面试题)
+    - [4.4 CountDownLatch 常见面试题：](#44-countdownlatch-相常见面试题)
 - [5 CyclicBarrier(循环栅栏)](#5-cyclicbarrier循环栅栏)
     - [5.1 CyclicBarrier 的应用场景](#51-cyclicbarrier-的应用场景)
     - [5.2 CyclicBarrier 的使用示例](#52-cyclicbarrier-的使用示例)
