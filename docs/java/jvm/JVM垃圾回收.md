@@ -147,7 +147,31 @@ public class GCTest {
 
 ### 1.4 动态对象年龄判定
 
-为了更好的适应不同程序的内存情况，虚拟机不是永远要求对象年龄必须达到了某个值才能进入老年代，如果 Survivor 空间中相同年龄所有对象大小的总和大于 Survivor 空间的一半，年龄大于或等于该年龄的对象就可以直接进入老年代，无需达到要求的年龄。
+
+大部分情况，对象都会首先在 Eden 区域分配，在一次新生代垃圾回收后，如果对象还存活，则会进入 s0 或者 s1，并且对象的年龄还会加  1(Eden 区->Survivor 区后对象的初始年龄变为 1)，当它的年龄增加到一定程度（默认为 15 岁），就会被晋升到老年代中。对象晋升到老年代的年龄阈值，可以通过参数 `-XX:MaxTenuringThreshold` 来设置。
+
+> 修正（[issue552](https://github.com/Snailclimb/JavaGuide/issues/552)）：“Hotspot遍历所有对象时，按照年龄从小到大对其所占用的大小进行累积，当累积的某个年龄大小超过了survivor区的一半时，取这个年龄和MaxTenuringThreshold中更小的一个值，作为新的晋升年龄阈值”。
+>
+> **动态年龄计算的代码如下**
+>
+> ```c++
+> uint ageTable::compute_tenuring_threshold(size_t survivor_capacity) {
+> 	//survivor_capacity是survivor空间的大小
+>   size_t desired_survivor_size = (size_t)((((double) survivor_capacity)*TargetSurvivorRatio)/100);
+>   size_t total = 0;
+>   uint age = 1;
+>   while (age < table_size) {
+>     total += sizes[age];//sizes数组是每个年龄段对象大小
+>     if (total > desired_survivor_size) break;
+>     age++;
+>   }
+>   uint result = age < MaxTenuringThreshold ? age : MaxTenuringThreshold;
+> 	...
+> }
+> 
+> ```
+>
+> 
 
 
 ## 2 对象已经死亡？
