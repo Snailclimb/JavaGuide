@@ -232,7 +232,7 @@ Options:  -f, --filter filter   Filter output based on conditions provided      
 举个列子，比如我们想搜索官方提供的 mysql 镜像，命令如下：
 
 ```
-docker search --filter=is-offical=true mysql
+docker search --filter=is-official=true mysql
 ```
 
 ![Docker 搜索官方镜像](https://mmbiz.qpic.cn/mmbiz_jpg/knmrNHnmCLHC3QNcSiaib3u3EM014CpBTPup8t50skwCOEX0pwnR9uicvWZWNxc7Vv4slXzIoGLhSPcwDq51xpUGA/?wx_fmt=jpeg)
