@@ -50,7 +50,7 @@
     - [Redis](#redis)
     - [数据库扩展](#数据库扩展)
 - [系统设计](#系统设计)
-    - [常用框架(Spring/SpringBoot、Zookeeper ... )](#常用框架)
+    - [常用框架(Spring,SpringBoot)](#常用框架)
     - [数据通信/中间件(消息队列、RPC ... )](#数据通信中间件)
     - [权限认证](#权限认证)
     - [分布式 & 微服务](#分布式--微服务)
@@ -181,19 +181,17 @@
 
 ### 常用框架
 
-#### Spring/SpringBoot
+#### Spring
 
 - [Spring 学习与面试](docs/system-design/framework/spring/Spring.md)
 - **[Spring 常见问题总结](docs/system-design/framework/spring/SpringInterviewQuestions.md)**
-- **[SpringBoot 指南/常见面试题总结](https://github.com/Snailclimb/springboot-guide)**
-- [Spring中bean的作用域与生命周期](docs/system-design/framework/spring/SpringBean.md)
+- [Spring中 Bean 的作用域与生命周期](docs/system-design/framework/spring/SpringBean.md)
 - [SpringMVC 工作原理详解](docs/system-design/framework/spring/SpringMVC-Principle.md)
 - [Spring中都用到了那些设计模式?](docs/system-design/framework/spring/Spring-Design-Patterns.md)
 
-#### ZooKeeper
+#### SpringBoot
 
-- [ZooKeeper 相关概念总结](docs/system-design/framework/ZooKeeper.md)
-- [ZooKeeper 数据模型和常见命令](docs/system-design/framework/ZooKeeper数据模型和常见命令.md)
+- **[SpringBoot 指南/常见面试题总结](https://github.com/Snailclimb/springboot-guide)**
 
 ### 数据通信/中间件
 
@@ -235,11 +233,17 @@
 
 #### 唯一 id 生成
 
- [分布式id生成方案总结](docs/system-design/micro-service/分布式id生成方案总结.md)
+-  [分布式id生成方案总结](docs/system-design/micro-service/分布式id生成方案总结.md)
 
 #### 服务治理：服务注册与发现、服务路由控制
 
-待办......
+**ZooKeeper:**
+
+> 前两篇文章可能有内容重合部分，推荐都看一遍。
+
+- [【入门】ZooKeeper 相关概念总结](docs/system-design/framework/ZooKeeper.md)
+- [【进阶】Zookeeper 原理简单入门！](docs/system-design/framework/ZooKeeper-plus.md)
+- [【拓展】ZooKeeper 数据模型和常见命令](docs/system-design/framework/ZooKeeper数据模型和常见命令.md)
 
 ### 大型网站架构
 
