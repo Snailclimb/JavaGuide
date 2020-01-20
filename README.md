@@ -258,6 +258,8 @@
 
 #### 高可用
 
+- [如何设计一个高可用系统？要考虑哪些地方？](docs/system-design/website-architecture/如何设计一个高可用系统？要考虑哪些地方？.md)
+
 ### 设计模式
 
 - [设计模式系列文章](docs/system-design/设计模式.md)
