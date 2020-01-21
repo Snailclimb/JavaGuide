@@ -387,8 +387,27 @@ true
 
 ### 4.3 8 种基本类型的包装类和常量池
 
-- **Java 基本类型的包装类的大部分都实现了常量池技术，即 Byte,Short,Integer,Long,Character,Boolean；前面 4 种包装类默认创建了数值[-128，127] 的相应类型的缓存数据，Character创建了数值在[0,127]范围的缓存数据。如果超出对应范围仍然会去创建新的对象。** 为啥把缓存设置为[-128，127]区间？（[参见issue/461](https://github.com/Snailclimb/JavaGuide/issues/461)）性能和资源之间的权衡。
-- **两种浮点数类型的包装类 Float,Double 并没有实现常量池技术。**
+**Java 基本类型的包装类的大部分都实现了常量池技术，即 Byte,Short,Integer,Long,Character,Boolean；前面 4 种包装类默认创建了数值[-128，127] 的相应类型的缓存数据，Character创建了数值在[0,127]范围的缓存数据，Boolean 直接返回True Or False。如果超出对应范围仍然会去创建新的对象。** 为啥把缓存设置为[-128，127]区间？（[参见issue/461](https://github.com/Snailclimb/JavaGuide/issues/461)）性能和资源之间的权衡。
+
+```java
+public static Boolean valueOf(boolean b) {
+    return (b ? TRUE : FALSE);
+}
+```
+
+```java
+private static class CharacterCache {         
+    private CharacterCache(){}
+          
+    static final Character cache[] = new Character[127 + 1];          
+    static {             
+        for (int i = 0; i < cache.length; i++)                 
+            cache[i] = new Character((char)i);         
+    }   
+}
+```
+
+两种浮点数类型的包装类 Float,Double 并没有实现常量池技术。**
 
 ```java
 		Integer i1 = 33;
