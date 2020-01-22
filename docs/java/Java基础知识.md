@@ -161,7 +161,7 @@ JRE 是 Java运行时环境。它是运行已编译 Java 程序所需的所有�
 
 ## 9. 构造器 Constructor 是否可被 override?
 
-在讲继承的时候我们就知道父类的私有属性和构造方法并不能被继承，所以 Constructor 也就不能被 override（重写）,但是可以 overload（重载）,所以你可以看到一个类中有多个构造函数的情况。
+Constructor 不能被 override（重写）,但是可以 overload（重载）,所以你可以看到一个类中有多个构造函数的情况。
 
 ## 10. 重载和重写的区别
 
