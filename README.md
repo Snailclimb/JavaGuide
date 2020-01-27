@@ -119,6 +119,7 @@
 * [六 类加载器](docs/java/jvm/类加载器.md)
 * **[【待完成】八 最重要的 JVM 参数指南（翻译完善了一半）](docs/java/jvm/最重要的JVM参数指南.md)**
 * [九 JVM 配置常用参数和常用 GC 调优策略](docs/java/jvm/GC调优参数.md)
+* [[加餐]大白话带你认识JVM](docs/java/jvm/[加餐]大白话带你认识JVM.md)
 
 ### I/O
 
