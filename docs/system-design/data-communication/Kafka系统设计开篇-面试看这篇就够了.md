@@ -275,7 +275,3 @@ zero-copy
 增大producer数量
 ack配置
 batch
-
-如果喜欢我的文章，欢迎扫码关注
-
-![wechat](https://blog-article-resource.oss-cn-beijing.aliyuncs.com/qrcode_for_gh_2f3803598393_258.jpg)

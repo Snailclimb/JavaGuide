@@ -56,6 +56,8 @@
 
 #### 主从链(拓扑结构)
 
+
+
 ![主从](https://user-images.githubusercontent.com/26766909/67539461-d1a26c00-f714-11e9-81ae-61fa89faf156.png)
 
 ![主从](https://user-images.githubusercontent.com/26766909/67539485-e0891e80-f714-11e9-8980-d253239fcd8b.png)
@@ -83,7 +85,7 @@
 
 #### 拓扑图
 
-![image](https://user-images.githubusercontent.com/26766909/67539495-f0086780-f714-11e9-9eab-c11a163ac6c0.png)
+![哨兵机制-拓扑图](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/哨兵机制-拓扑图.png)
 
 #### 节点下线
 

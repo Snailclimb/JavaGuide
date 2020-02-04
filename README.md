@@ -17,16 +17,6 @@
   <a href="https://xiaozhuanlan.com/javainterview?rel=javaguide"><img src="https://img.shields.io/badge/Java-面试指南-important" alt="投稿"></a>
 </p>
 
-<h3 align="center">Sponsor</h3>
-<p align="center">
-<a  href="https://url.163.com/hXm">
-<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/WechatIMG1.png"width="" style="margin: 0 auto;"/>
-</a>
-<a  href="http://mp.weixin.qq.com/s?__biz=MjM5MTE1NTQ4Mg==&mid=502249586&idx=1&sn=6384cb5b150b8e2a1c71715d6e4ea777&chksm=3ea2cc0709d54511aaa36b6f6d626219ece05295f80fad2c8e5df877345698b7eb92e1f454b3#rd">
-<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/WechatIMG24.jpeg"  style=" margin: 0 auto;"/>
-</a>
-</p>
-
 推荐使用  https://snailclimb.gitee.io/javaguide 在线阅读，在线阅读内容本仓库同步一致。这种方式阅读的优势在于：阅读体验会更好。
 
 ## 目录
@@ -50,7 +40,7 @@
     - [Redis](#redis)
     - [数据库扩展](#数据库扩展)
 - [系统设计](#系统设计)
-    - [常用框架(Spring/SpringBoot、Zookeeper ... )](#常用框架)
+    - [常用框架(Spring,SpringBoot)](#常用框架)
     - [数据通信/中间件(消息队列、RPC ... )](#数据通信中间件)
     - [权限认证](#权限认证)
     - [分布式 & 微服务](#分布式--微服务)
@@ -59,6 +49,9 @@
       - [唯一 id 生成](#唯一-id-生成)
       - [服务治理：服务注册与发现、服务路由控制](#服务治理服务注册与发现服务路由控制)
     - [大型网站架构](#大型网站架构)
+      - [性能测试](#性能测试)
+      - [高并发](#高并发)
+      - [高可用](#高可用)
     - [设计模式(工厂模式、单例模式 ... )](#设计模式)
 - [面试指南](#面试指南)
     - [备战面试](#备战面试)
@@ -77,22 +70,39 @@
 
 ### 基础
 
+**基础知识系统总结：**
+
 * **[Java 基础知识回顾](docs/java/Java基础知识.md)**
 * **[Java 基础知识疑难点/易错点](docs/java/Java疑难点.md)**
 * **[一些重要的Java程序设计题](docs/java/Java程序设计题.md)**
 * [J2EE 基础知识回顾](docs/java/J2EE基础知识.md)
 
+**重要知识点详解：**
+
+- [用好Java中的枚举,真的没有那么简单!](docs/java/basis/用好Java中的枚举,真的没有那么简单!)
+- [Java 常见关键字总结：final、static、this、super!](docs/java/basis/final、static、this、super.md)
+
 ### 容器
 
+**总结：**
+
 * **[Java容器常见面试题/知识点总结](docs/java/collection/Java集合框架常见面试题.md)**
+
+**源码学习：**
+
 * [ArrayList 源码学习](docs/java/collection/ArrayList.md)  
 * [LinkedList 源码学习](docs/java/collection/LinkedList.md)   
 * [HashMap(JDK1.8)源码学习](docs/java/collection/HashMap.md)  
 
 ### 并发
 
+**面试题总结：**
+
 * **[Java 并发基础常见面试题总结](docs/java/Multithread/JavaConcurrencyBasicsCommonInterviewQuestionsSummary.md)**
 * **[Java 并发进阶常见面试题总结](docs/java/Multithread/JavaConcurrencyAdvancedCommonInterviewQuestions.md)**
+
+**必备知识点：**
+
 * [并发容器总结](docs/java/Multithread/并发容器总结.md)
 * **[Java线程池学习总结](./docs/java/Multithread/java线程池学习总结.md)**
 * [乐观锁与悲观锁](docs/essential-content-for-interview/面试必备之乐观锁与悲观锁.md)
@@ -109,6 +119,7 @@
 * [六 类加载器](docs/java/jvm/类加载器.md)
 * **[【待完成】八 最重要的 JVM 参数指南（翻译完善了一半）](docs/java/jvm/最重要的JVM参数指南.md)**
 * [九 JVM 配置常用参数和常用 GC 调优策略](docs/java/jvm/GC调优参数.md)
+* **[【加餐】大白话带你认识JVM](docs/java/jvm/[加餐]大白话带你认识JVM.md)**
 
 ### I/O
 
@@ -181,19 +192,17 @@
 
 ### 常用框架
 
-#### Spring/SpringBoot
+#### Spring
 
 - [Spring 学习与面试](docs/system-design/framework/spring/Spring.md)
 - **[Spring 常见问题总结](docs/system-design/framework/spring/SpringInterviewQuestions.md)**
-- **[SpringBoot 指南/常见面试题总结](https://github.com/Snailclimb/springboot-guide)**
-- [Spring中bean的作用域与生命周期](docs/system-design/framework/spring/SpringBean.md)
+- [Spring中 Bean 的作用域与生命周期](docs/system-design/framework/spring/SpringBean.md)
 - [SpringMVC 工作原理详解](docs/system-design/framework/spring/SpringMVC-Principle.md)
 - [Spring中都用到了那些设计模式?](docs/system-design/framework/spring/Spring-Design-Patterns.md)
 
-#### ZooKeeper
+#### SpringBoot
 
-- [ZooKeeper 相关概念总结](docs/system-design/framework/ZooKeeper.md)
-- [ZooKeeper 数据模型和常见命令](docs/system-design/framework/ZooKeeper数据模型和常见命令.md)
+- **[SpringBoot 指南/常见面试题总结](https://github.com/Snailclimb/springboot-guide)**
 
 ### 数据通信/中间件
 
@@ -235,11 +244,17 @@
 
 #### 唯一 id 生成
 
- [分布式id生成方案总结](docs/system-design/micro-service/分布式id生成方案总结.md)
+-  [分布式id生成方案总结](docs/system-design/micro-service/分布式id生成方案总结.md)
 
 #### 服务治理：服务注册与发现、服务路由控制
 
-待办......
+**ZooKeeper:**
+
+> 前两篇文章可能有内容重合部分，推荐都看一遍。
+
+- [【入门】ZooKeeper 相关概念总结](docs/system-design/framework/ZooKeeper.md)
+- [【进阶】Zookeeper 原理简单入门！](docs/system-design/framework/ZooKeeper-plus.md)
+- [【拓展】ZooKeeper 数据模型和常见命令](docs/system-design/framework/ZooKeeper数据模型和常见命令.md)
 
 ### 大型网站架构
 
@@ -252,7 +267,11 @@
 
 #### 高并发
 
+待办......
+
 #### 高可用
+
+- [如何设计一个高可用系统？要考虑哪些地方？](docs/system-design/website-architecture/如何设计一个高可用系统？要考虑哪些地方？.md)
 
 ### 设计模式
 

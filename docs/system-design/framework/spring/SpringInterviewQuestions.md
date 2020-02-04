@@ -293,6 +293,10 @@ MVC 是一种设计模式,Spring MVC 是一款很优秀的 MVC 框架。Spring M
 
 在`@Transactional`注解中如果不配置`rollbackFor`属性,那么事物只会在遇到`RuntimeException`的时候才会回滚,加上`rollbackFor=Exception.class`,可以让事物在遇到非运行时异常时也回滚。
 
+关于 `@Transactional ` 注解推荐阅读的文章：
+
+- [透彻的掌握 Spring 中@transactional 的使用](https://www.ibm.com/developerworks/cn/java/j-master-spring-transactional-use/index.html)
+
 ## 9. JPA
 
 ### 9.1 如何使用JPA在数据库中非持久化一个字段？
