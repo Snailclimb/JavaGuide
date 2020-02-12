@@ -312,6 +312,7 @@
 - [Java学习路线和方法推荐](docs/questions/java-learning-path-and-methods.md)
 - [Java培训四个月能学会吗？](docs/questions/java-training-4-month.md)
 - [新手学习Java，有哪些Java相关的博客，专栏，和技术学习网站推荐？](docs/questions/java-learning-website-blog.md)
+- [Java 还是大数据，你需要了解这些东西！](docs/questions/java-big-data)
 
 ## 工具
 
