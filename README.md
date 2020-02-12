@@ -47,7 +47,7 @@
     - [Redis](#redis)
     - [数据库扩展](#数据库扩展)
 - [系统设计](#系统设计)
-    - [常用框架(Spring,SpringBoot)](#常用框架)
+    - [常用框架(Spring,SpringBoot,MyBatis)](#常用框架)
     - [数据通信/中间件(消息队列、RPC ... )](#数据通信中间件)
     - [权限认证](#权限认证)
     - [分布式 & 微服务](#分布式--微服务)
@@ -211,6 +211,10 @@
 
 - **[SpringBoot 指南/常见面试题总结](https://github.com/Snailclimb/springboot-guide)**
 
+#### MyBatis
+
+- [MyBatis常见面试题总结](docs/system-design/framework/mybatis/mybatis-interview.md)
+
 ### 数据通信/中间件
 
 - [数据通信(RESTful、RPC、消息队列)相关知识点总结](docs/system-design/data-communication/summary.md)
@@ -238,6 +242,10 @@
 ### 分布式 & 微服务
 
 - [分布式应该学什么](docs/system-design/website-architecture/分布式.md)
+
+#### Spring Cloud
+
+- [ 大白话入门 Spring Cloud](docs/system-design/micro-service/spring-cloud.md)
 
 #### API 网关
 
@@ -313,6 +321,7 @@
 - [Java培训四个月能学会吗？](docs/questions/java-training-4-month.md)
 - [新手学习Java，有哪些Java相关的博客，专栏，和技术学习网站推荐？](docs/questions/java-learning-website-blog.md)
 - [Java 还是大数据，你需要了解这些东西！](docs/questions/java-big-data)
+- [Java 后台开发/大数据？你需要了解这些东西！](https://articles.zsxq.com/id_wto1iwd5g72o.html)（知识星球）
 
 ## 工具
 
