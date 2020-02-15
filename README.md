@@ -1,5 +1,7 @@
 点击关注[公众号](#公众号)及时获取笔主最新更新文章，并可免费领取本文档配套的《Java面试突击》以及Java工程师必备学习资源。
 
+[推荐一下：阿里云高性能服务器，1核1g最低89，不限性能。](https://www.aliyun.com/minisite/goods?userCode=hf47liqn)
+
 少部分原创文章更新在了知识星球，关于我为什么要弄知识星球，请看这里：**[犹豫了很久，还是做了一个很久没敢做的事情](https://javaguide.cn/2019/01/02/chat/%E5%81%9A%E4%BA%86%E4%B8%80%E4%B8%AA%E5%BE%88%E4%B9%85%E6%B2%A1%E6%95%A2%E5%81%9A%E7%9A%84%E4%BA%8B%E6%83%85/)** ，优惠卷地址：[https://t.zsxq.com/iIqZBUR](https://t.zsxq.com/iIqZBUR) 。
 
 <p align="center">
