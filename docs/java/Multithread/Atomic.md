@@ -66,7 +66,7 @@ Atomic 翻译成中文是原子的意思。在化学上，我们知道原子是�
 - AtomicStampedReference ：原子更新带有版本号的引用类型。该类将整数值与引用关联起来，可用于解决原子的更新数据和数据的版本号，可以解决使用 CAS 进行原子更新时可能出现的 ABA 问题。
 - AtomicMarkableReference：原子更新带有标记的引用类型。该类将 boolean 标记与引用关联起来，~~也可以解决使用 CAS 进行原子更新时可能出现的 ABA 问题。~~
 
-> 修正: **AtomicMarkableReference 不能解决ABA问题**
+> 修正: **AtomicMarkableReference 不能解决ABA问题**   **[issue#626](https://github.com/Snailclimb/JavaGuide/issues/626)**
 
 ```java
     /**
@@ -112,8 +112,6 @@ public class SolveABAByAtomicMarkableReference {
         }
     }
 ```
-
-
 
 **CAS ABA 问题**
 - 描述: 第一个线程取到了变量 x 的值 A，然后巴拉巴拉干别的事，总之就是只拿到了变量 x 的值 A。这段时间内第二个线程也取到了变量 x 的值 A，然后把变量 x 的值改为 B，然后巴拉巴拉干别的事，最后又把变量 x 的值变为 A （相当于还原了）。在这之后第一个线程终于进行了变量 x 的操作，但是此时变量 x 的值还是 A，所以 compareAndSet 操作是成功。
