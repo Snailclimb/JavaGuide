@@ -1,4 +1,4 @@
-点击关注[公众号](#公众号)及时获取笔主最新更新文章，并可免费领取本文档配套的《Java面试突击》以及Java工程师必备学习资源。
+点击关注[公众号](#公众号)及时获取笔主最新更新文章，并可免费领取本文档配套的《Java面试突击》以及Java工程师必备学习资源。Github用户如果访问速度缓慢的话，可以转移到码云查看：https://gitee.com/SnailClimb/JavaGuide 。
 
 [推荐一下：阿里云高性能服务器，1核1g最低89，不限性能。](https://www.aliyun.com/minisite/goods?userCode=hf47liqn)
 
