@@ -109,7 +109,39 @@ public class ScheduledThreadPoolExecutor
 
 1. **主线程首先要创建实现 `Runnable` 或者 `Callable` 接口的任务对象。**
 2. **把创建完成的实现 `Runnable`/`Callable`接口的 对象直接交给 `ExecutorService` 执行**: `ExecutorService.execute（Runnable command）`）或者也可以把 `Runnable` 对象或`Callable` 对象提交给 `ExecutorService` 执行（`ExecutorService.submit（Runnable task）`或 `ExecutorService.submit（Callable <T> task）`）。
-3. **如果执行 `ExecutorService.submit（…）`，`ExecutorService` 将返回一个实现`Future`接口的对象**（我们刚刚也提到过了执行 `execute()`方法和 `submit()`方法的区别，`submit()`会返回一个 `FutureTask 对象）。由于 FutureTask` 实现了 `Runnable`，我们也可以创建 `FutureTask`，然后直接交给 `ExecutorService` 执行。
+3. **如果执行 `ExecutorService.submit（…）`，`ExecutorService` 将返回一个实现`Future`接口的对象**（我们刚刚也提到过了执行 `execute()`方法和 `submit()`方法的区别，`submit()`会返回一个 `FutureTask 对象）。由于 FutureTask` 实现了 `Runnable`，我们也可以创建 `FutureTask`，然后直接交给 `ExecutorService` 执行。代码如下。
+
+```java
+    public static void main(String[] args) {
+        //新建 Callable
+        Callable<String> callable = new Callable<String>() {
+            @Override
+            public String call() throws Exception {
+                return "Hello";
+            }
+        };
+        ThreadPoolExecutor threadPool = (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
+        //封装进 FutureTask 后装入线程池运行。
+        FutureTask<String> futureTask = new FutureTask<>(callable);
+        threadPool.execute(futureTask);
+        try {
+            //可获得返回值
+            String s1 = futureTask.get();
+            System.out.println("execute 的结果：" + s1);
+            //使用线程池的 submit 的方法也可得到返回值
+            Future<String> submit = threadPool.submit(callable);
+            String s2 = submit.get();
+            System.out.println("submit 的结果：" + s2);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } finally {
+            threadPool.shutdown();
+        }
+    }
+```
+
 4. **最后，主线程可以执行 `FutureTask.get()`方法来等待任务执行完成。主线程也可以执行 `FutureTask.cancel（boolean mayInterruptIfRunning）`来取消此任务的执行。**
 
 ## 三 (重要)ThreadPoolExecutor 类简单介绍
