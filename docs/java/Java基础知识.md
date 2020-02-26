@@ -207,14 +207,20 @@ Constructor 不能被 override（重写）,但是可以 overload（重载）,所
 
 StringBuilder 与 StringBuffer 的构造方法都是调用父类构造方法也就是 AbstractStringBuilder 实现的，大家可以自行查阅源码。
 
-AbstractStringBuilder.java
+`AbstractStringBuilder.java`
 
 ```java
 abstract class AbstractStringBuilder implements Appendable, CharSequence {
+    /**
+     * The value is used for character storage.
+     */
     char[] value;
+
+    /**
+     * The count is the number of characters used.
+     */
     int count;
-    AbstractStringBuilder() {
-    }
+
     AbstractStringBuilder(int capacity) {
         value = new char[capacity];
     }
