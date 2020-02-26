@@ -113,6 +113,8 @@
 
 ### step 6:常用工具
 
+非常重要！非常重要！特别是 Git和 Docker。
+
 1. **Maven** ：建议学习常用框架之前可以提前花半天时间学习一下**Maven**的使用。（到处找 Jar 包，下载 Jar 包是真的麻烦费事，使用 Maven 可以为你省很多事情）。
 2. **Git** ：基本的 Git 技能也是必备的，试着在学习的过程中将自己的代码托管在 Github 上。（[Git 入门](https://github.com/Snailclimb/JavaGuide/blob/master/docs/tools/Git.md)）
 3. **Docker** ：学着用 Docker 安装学习中需要用到的软件比如 MySQL ,这样方便很多，可以为你节省不少时间。（[Docker 入门](https://github.com/Snailclimb/JavaGuide/blob/master/docs/tools/Docker.md)）
@@ -137,11 +139,38 @@
 
 **一定要学会拓展知识，养成自主学习的意识。** 黑马项目对这些知识点的介绍都比较蜻蜓点水。
 
-### step 9:其他
+### step 9:深入学习
 
 可以再回来看一下多线程方面的知识，还可以利用业余时间学习一下 **[NIO](https://github.com/Snailclimb/JavaGuide#io "NIO")** 和 **Netty** ，这样简历上也可以多点东西。如果想去大厂，**[JVM](https://github.com/Snailclimb/JavaGuide#jvm "JVM")** 的一些知识也是必学的（**Java 内存区域、虚拟机垃圾算法、虚拟垃圾收集器、JVM 内存管理**）推荐《深入理解 Java 虚拟机：JVM 高级特性与最佳实践（最新第二版》和《实战 Java 虚拟机》，如果嫌看书麻烦的话，你也可以看我整理的文档。
 
 另外，现在微服务特别火，很多公司在面试也明确要求需要微服务方面的知识。如果有精力的话可以去学一下 SpringCloud 生态系统微服务方面的东西。
+
+### step 10:微服务
+
+这部分太多了，选择性学习。
+
+相关技术：
+
+1. **网关** :kong,soul；
+2. **分布式调用链**： SkyWalking、Zipkin
+3. **日志系统：** Kibana
+4. ......
+
+Spring Cloud 相关：
+
+1. Eureka：服务注册与发现；
+2. Ribbon：负载均衡；
+3. Hytrix ：熔断；
+4. Zuul ：网关；
+5. Spring Cloud Config：配置中心；
+
+Spring Cloud Alibaba也是很值得学习的：
+
+1. **[Sentinel](https://github.com/alibaba/Sentinel "Sentinel")** ：A lightweight powerful flow control component enabling reliability and monitoring for microservices. (轻量级的流量控制、熔断降级 Java 库)。
+2. **[dubbo](https://github.com/apache/dubbo "dubbo")** ：Apache Dubbo 是一个基于 Java 的高性能开源 RPC 框架。
+3. **[nacos](https://github.com/alibaba/nacos "nacos")** ：Nacos 致力于帮助您发现、配置和管理微服务。Nacos 提供了一组简单易用的特性集，帮助您快速实现动态服务发现、服务配置、服务元数据及流量管理。Nacos 可以作为 Dubbo 的注册中心来使用。
+4. **[seata](https://github.com/seata/seata "seata")** : Seata 是一种易于使用，高性能，基于 Java 的开源分布式事务解决方案。
+5. **[RocketMQ](https://github.com/apache/rocketmq "RocketMQ")** ：阿里巴巴开源的一款高性能、高吞吐量的分布式消息中间件。
 
 ## 总结
 
