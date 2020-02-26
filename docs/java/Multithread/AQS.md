@@ -84,7 +84,7 @@ protected final boolean compareAndSetState(int expect, int update) {
 - 公平锁：按照线程在队列中的排队顺序，先到者先拿到锁
 - 非公平锁：当线程要获取锁时，先通过两次 CAS 操作去抢锁，如果没抢到，当前线程再加入到队列中等待唤醒。
 
-> 说明：下面这部分关于 `ReentrantLock` 源代码内容节选自：https://www.javadoop.com/post/AbstractQueuedSynchronizer-2，这是一篇很不错文章，推荐阅读。
+> 说明：下面这部分关于 `ReentrantLock` 源代码内容节选自：https://www.javadoop.com/post/AbstractQueuedSynchronizer-2 ，这是一篇很不错文章，推荐阅读。
 
 **下面来看 ReentrantLock 中相关的源代码：**
 
