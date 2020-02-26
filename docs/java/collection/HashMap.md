@@ -512,7 +512,8 @@ public class HashMapDemo {
 
         }
         /**
-         * 另外一种不常用的遍历方式
+         * 如果既要遍历key又要value，那么建议这种方式，应为如果先获取keySet然后再执行map.get(key)，map内部会执行两次遍历。
+         * 一次是在获取keySet的时候，一次是在遍历所有key的时候。
          */
         // 当我调用put(key,value)方法的时候，首先会把key和value封装到
         // Entry这个静态内部类对象中，把Entry对象再添加到数组中，所以我们想获取
