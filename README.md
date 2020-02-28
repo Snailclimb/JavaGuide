@@ -83,15 +83,15 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 
 **基础知识系统总结：**
 
-* **[Java 基础知识回顾](docs/java/Java基础知识.md)**
-* **[Java 基础知识疑难点/易错点](docs/java/Java疑难点.md)**
-* **[一些重要的Java程序设计题](docs/java/Java程序设计题.md)**
-* [J2EE 基础知识回顾](docs/java/J2EE基础知识.md)
+1. **[Java 基础知识](docs/java/Java基础知识.md)**
+2. **[Java 基础知识疑难点/易错点](docs/java/Java疑难点.md)**
+3. [【加餐】一些重要的Java程序设计题](docs/java/Java程序设计题.md)
+4. [【选看】J2EE 基础知识](docs/java/J2EE基础知识.md)
 
 **重要知识点详解：**
 
-- [用好Java中的枚举,真的没有那么简单!](docs/java/basis/用好Java中的枚举真的没有那么简单.md)
-- [Java 常见关键字总结：final、static、this、super!](docs/java/basis/final、static、this、super.md)
+1. [枚举](docs/java/basis/用好Java中的枚举真的没有那么简单.md) （很重要的一个数据结构，用好枚举真的没有那么简单！）
+2. [Java 常见关键字总结：final、static、this、super!](docs/java/basis/final、static、this、super.md)
 
 ### 容器
 
@@ -101,9 +101,7 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 
 **源码学习：**
 
-* [ArrayList 源码学习](docs/java/collection/ArrayList.md)  
-* [LinkedList 源码学习](docs/java/collection/LinkedList.md)   
-* [HashMap(JDK1.8)源码学习](docs/java/collection/HashMap.md)  
+* [ArrayList 源码](docs/java/collection/ArrayList.md)  、[LinkedList 源码](docs/java/collection/LinkedList.md)   、[HashMap(JDK1.8)源码](docs/java/collection/HashMap.md)  
 
 ### 并发
 
