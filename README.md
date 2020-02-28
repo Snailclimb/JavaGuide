@@ -16,7 +16,6 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 
 <p align="center">
   <a href="https://snailclimb.gitee.io/javaguide"><img src="https://img.shields.io/badge/阅读-read-brightgreen.svg" alt="阅读"></a>
-  <a href="#联系我"><img src="https://img.shields.io/badge/chat-微信群-blue.svg" alt="微信群"></a>
   <a href="#公众号"><img src="https://img.shields.io/badge/%E5%85%AC%E4%BC%97%E5%8F%B7-JavaGuide-lightgrey.svg" alt="公众号"></a>
   <a href="#公众号"><img src="https://img.shields.io/badge/PDF-Java面试突击-important.svg" alt="公众号"></a>
   <a href="#投稿"><img src="https://img.shields.io/badge/support-投稿-critical.svg" alt="投稿"></a>
@@ -399,8 +398,6 @@ Markdown 格式参考：[Github Markdown格式](https://guides.github.com/featur
 由于我个人能力有限，很多知识点我可能没有涉及到，所以你可以对其他知识点进行补充。大家也可以对自己的文章进行自荐，对于不错的文章不仅可以成功在本仓库展示出来更可以获得作者送出的 50 元左右的任意书籍进行奖励(当然你也可以直接折现50元)。
 
 ### 联系我
-
-添加我的微信备注“Github”,回复关键字 **“加群”** 即可入群。
 
 ![个人微信](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/wechat3.jpeg)
 
