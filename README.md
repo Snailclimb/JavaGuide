@@ -231,11 +231,21 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 #### 消息队列
 
 - [消息队列总结](docs/system-design/data-communication/message-queue.md)
+
+**RabbitMQ:**
+
 - [RabbitMQ 入门](docs/system-design/data-communication/rabbitmq.md)
+
+**RocketMQ:**
+
 - [RocketMQ 入门](docs/system-design/data-communication/RocketMQ.md)
 - [RocketMQ的几个简单问题与答案](docs/system-design/data-communication/RocketMQ-Questions.md)
-- [Kafka入门看这一篇就够了](docs/system-design/data-communication/Kafka入门看这一篇就够了.md)
+
+**Kafka:**
+
+- **[Kafka 入门+SpringBoot整合Kafka系列](https://github.com/Snailclimb/springboot-kafka)**
 - [Kafka系统设计开篇-面试看这篇就够了](docs/system-design/data-communication/Kafka系统设计开篇-面试看这篇就够了.md)
+- [【加餐】Kafka入门看这一篇就够了](docs/system-design/data-communication/Kafka入门看这一篇就够了.md)
 
 ### 权限认证
 
