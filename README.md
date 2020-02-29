@@ -36,43 +36,61 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
     - [容器](#容器)
     - [并发](#并发)
     - [JVM](#jvm)
-    - [其他(IO/Java8/编码规范)](#其他)
+    - [其他](#其他)
 - [网络](#网络)
 - [操作系统](#操作系统)
-    - [Linux相关](#linux相关)
+    - [Linux](#linux)
 - [数据结构与算法](#数据结构与算法)
     - [数据结构](#数据结构)
     - [算法](#算法)
 - [数据库](#数据库)
     - [MySQL](#mysql)
     - [Redis](#redis)
-    - [数据库扩展](#数据库扩展)
 - [系统设计](#系统设计)
-    - [常用框架(Spring,SpringBoot,MyBatis)](#常用框架)
-    - [数据通信/中间件(消息队列、RPC ... )](#数据通信中间件)
-    - [权限认证](#权限认证)
-    - [分布式 & 微服务](#分布式--微服务)
-      - [API 网关](#api-网关)
-      - [配置中心](#配置中心)
-      - [唯一 id 生成](#唯一-id-生成)
-      - [服务治理：服务注册与发现、服务路由控制](#服务治理服务注册与发现服务路由控制)
+    - [常用框架](#常用框架)
+        - [Spring](#spring)
+        - [SpringBoot](#springboot)
+        - [MyBatis](#mybatis)
+    - [认证授权(JWT、SSO)](#认证授权)
+    - [分布式](#分布式)
+        - [SSO(单点登录)](#sso单点登录)
+        - [Elasticsearch(分布式搜索引擎)](#elasticsearch分布式搜索引擎)
+        - [RPC](#rpc)
+        - [消息队列](#消息队列)
+        - [API 网关](#api-网关)
+        - [唯一 id 生成](#唯一-id-生成)
+        - [ZooKeeper](#zookeeper)
+        - [数据库扩展](#数据库扩展)
     - [大型网站架构](#大型网站架构)
-      - [性能测试](#性能测试)
-      - [高并发](#高并发)
-      - [高可用](#高可用)
-    - [设计模式(工厂模式、单例模式 ... )](#设计模式)
+        - [性能测试](#性能测试)
+        - [高并发](#高并发)
+        - [高可用](#高可用)
+    - [微服务](#微服务)
+        - [Spring Cloud](#spring-cloud)
+        - [配置中心](#配置中心)
 - [面试指南](#面试指南)
     - [备战面试](#备战面试)
+    - [真实面试经历分析](#真实面试经历分析)
     - [面经](#面经)
 - [Java学习常见问题汇总](#java学习常见问题汇总)
 - [工具](#工具)
     - [Git](#git)
-    - [Docker](#Docker)
+    - [Docker](#docker)
+    - [其他](#其他-1)
 - [资源](#资源)
     - [书单](#书单)
-    - [Github榜单](#Github榜单)
+    - [实战项目推荐](#实战项目推荐)
+    - [Github](#github)
 - [待办](#待办)
 - [说明](#说明)
+    - [JavaGuide介绍](#javaguide介绍)
+    - [作者的其他开源项目推荐](#作者的其他开源项目推荐)
+    - [关于转载](#关于转载)
+    - [如何对该开源文档进行贡献](#如何对该开源文档进行贡献)
+    - [为什么要做这个开源文档？](#为什么要做这个开源文档)
+    - [投稿](#投稿)
+    - [联系我](#联系我)
+    - [公众号](#公众号)
 
 ## Java
 
@@ -128,16 +146,19 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 1. **I/O** ：[BIO,NIO,AIO 总结 ](docs/java/BIO-NIO-AIO.md)
 2. **Java 8**  ：[Java 8 新特性总结](docs/java/What's%20New%20in%20JDK8/Java8Tutorial.md)、[Java 8 学习资源推荐](docs/java/What's%20New%20in%20JDK8/Java8教程推荐.md)、[Java8 forEach 指南](docs/java/What's%20New%20in%20JDK8/Java8foreach指南.md)
 3.  **[Java 编程规范以及优雅 Java 代码实践总结](docs/java/Java编程规范.md)**
+4. 设计模式 :[设计模式系列文章](docs/system-design/设计模式.md)
 
 ## 网络
 
-* [计算机网络常见面试题](docs/network/计算机网络.md)
-* [计算机网络基础知识总结](docs/network/干货：计算机网络知识总结.md)
-* [HTTPS中的TLS](docs/network/HTTPS中的TLS.md)
+1. [计算机网络常见面试题](docs/network/计算机网络.md)
+2. [计算机网络基础知识总结](docs/network/干货：计算机网络知识总结.md)
+3. [HTTPS中的TLS](docs/network/HTTPS中的TLS.md)
 
 ## 操作系统
 
-### Linux相关
+操作系统相关概念总结
+
+### Linux
 
 * [后端程序员必备的 Linux 基础知识](docs/operating-system/后端程序员必备的Linux基础知识.md)  
 * [Shell 编程入门](docs/operating-system/Shell.md) 
@@ -177,10 +198,6 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 * [如何做可靠的分布式锁，Redlock真的可行么](docs/database/Redis/如何做可靠的分布式锁，Redlock真的可行么.md)
 * [几种常见的 Redis 集群以及使用场景](docs/database/Redis/redis集群以及应用场景.md) 
 
-### 数据库扩展
-
-待办......
-
 ## 系统设计
 
 ### 常用框架
@@ -201,16 +218,41 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 
 - [MyBatis常见面试题总结](docs/system-design/framework/mybatis/mybatis-interview.md)
 
-### 数据通信/中间件
+### 认证授权
 
-- [数据通信(RESTful、RPC、消息队列)相关知识点总结](docs/system-design/data-communication/summary.md)
+**[认证授权基础:搞清Authentication,Authorization以及Cookie、Session、Token、OAuth 2、SSO](docs/system-design/authority-certification/basis-of-authority-certification.md)**
+
+#### JWT
+
+- **[JWT 优缺点分析以及常见问题解决方案](docs/system-design/authority-certification/JWT-advantages-and-disadvantages.md)**
+- **[适合初学者入门 Spring Security With JWT 的 Demo](https://github.com/Snailclimb/spring-security-jwt-guide)**
+
+#### SSO(单点登录)
+
+SSO(Single Sign On)即单点登录说的是用户登陆多个子系统的其中一个就有权访问与其相关的其他系统。举个例子我们在登陆了京东金融之后，我们同时也成功登陆京东的京东超市、京东家电等子系统。
+
+相关阅读：[SSO 单点登录看这篇就够了！](docs/system-design/authority-certification/sso.md)
+
+### 分布式
+
+[分布式相关概念入门](docs/system-design/website-architecture/分布式.md)
+
+#### Elasticsearch(分布式搜索引擎)
+
+提高搜索效率。常见于电商购物网站的商品搜索于分类。
+
+代办......
 
 #### RPC
+
+让调用远程服务调用像调用本地方法那样简单。
 
 - [Dubbo 总结：关于 Dubbo 的重要知识点](docs/system-design/data-communication/dubbo.md)
 - [服务之间的调用为啥不直接用 HTTP 而用 RPC？](docs/system-design/data-communication/why-use-rpc.md)
 
 #### 消息队列
+
+消息队列在分布式系统中主要是为了接耦和削峰。
 
 - [消息队列总结](docs/system-design/data-communication/message-queue.md)
 
@@ -229,43 +271,29 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 - [Kafka系统设计开篇-面试看这篇就够了](docs/system-design/data-communication/Kafka系统设计开篇-面试看这篇就够了.md)
 - [【加餐】Kafka入门看这一篇就够了](docs/system-design/data-communication/Kafka入门看这一篇就够了.md)
 
-### 权限认证
-
-- **[权限认证基础:区分Authentication,Authorization以及Cookie、Session、Token](docs/system-design/authority-certification/basis-of-authority-certification.md)**
-- **[JWT 优缺点分析以及常见问题解决方案](docs/system-design/authority-certification/JWT-advantages-and-disadvantages.md)**
-- **[适合初学者入门 Spring Security With JWT 的 Demo](https://github.com/Snailclimb/spring-security-jwt-guide)**
-
-### 分布式 & 微服务
-
-- [分布式应该学什么](docs/system-design/website-architecture/分布式.md)
-
-#### Spring Cloud
-
-- [ 大白话入门 Spring Cloud](docs/system-design/micro-service/spring-cloud.md)
-
 #### API 网关
 
 网关主要用于请求转发、安全认证、协议转换、容灾。
 
 - [浅析如何设计一个亿级网关(API Gateway)](docs/system-design/micro-service/API网关.md)
 
-#### 配置中心
-
-待办......
-
 #### 唯一 id 生成
 
 -  [分布式id生成方案总结](docs/system-design/micro-service/分布式id生成方案总结.md)
 
-#### 服务治理：服务注册与发现、服务路由控制
-
-**ZooKeeper:**
+#### ZooKeeper
 
 > 前两篇文章可能有内容重合部分，推荐都看一遍。
 
 - [【入门】ZooKeeper 相关概念总结](docs/system-design/framework/ZooKeeper.md)
 - [【进阶】Zookeeper 原理简单入门！](docs/system-design/framework/ZooKeeper-plus.md)
 - [【拓展】ZooKeeper 数据模型和常见命令](docs/system-design/framework/ZooKeeper数据模型和常见命令.md)
+
+#### 数据库扩展
+
+读写分离、分库分表。
+
+代办.....
 
 ### 大型网站架构
 
@@ -284,9 +312,15 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 
 - [如何设计一个高可用系统？要考虑哪些地方？](docs/system-design/website-architecture/如何设计一个高可用系统？要考虑哪些地方？.md)
 
-### 设计模式
+### 微服务
 
-- [设计模式系列文章](docs/system-design/设计模式.md)
+#### Spring Cloud
+
+- [ 大白话入门 Spring Cloud](docs/system-design/micro-service/spring-cloud.md)
+
+#### 配置中心
+
+待办......
 
 ## 面试指南
 
@@ -365,6 +399,8 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 
 ### JavaGuide介绍
 
+开源 JavaGuide 初始想法源于自己的个人那一段比较迷茫的学习经历。主要目的是为了通过这个开源平台来帮助一些在学习 Java 或者面试过程中遇到问题的小伙伴。
+
 *  **对于 Java 初学者来说：** 本文档倾向于给你提供一个比较详细的学习路径，让你对于Java整体的知识体系有一个初步认识。另外，本文的一些文章
 也是你学习和复习 Java 知识不错的实践；
 *  **对于非 Java 初学者来说：** 本文档更适合回顾知识，准备面试，搞清面试应该把重心放在那些问题上。要搞清楚这个道理：提前知道那些面试常见，不是为了背下来应付面试，而是为了让你可以更有针对的学习重点。
@@ -388,14 +424,6 @@ Markdown 格式参考：[Github Markdown格式](https://guides.github.com/featur
 1. 笔记内容大多是手敲，所以难免会有笔误，你可以帮我找错别字。
 2. 很多知识点我可能没有涉及到，所以你可以对其他知识点进行补充。
 3. 现有的知识点难免存在不完善或者错误，所以你可以对已有知识点进行修改/补充。
-
-### 为什么要做这个开源文档？
-
-初始想法源于自己的个人那一段比较迷茫的学习经历。主要目的是为了通过这个开源平台来帮助一些在学习 Java 或者面试过程中遇到问题的小伙伴。
-
-### 投稿
-
-由于我个人能力有限，很多知识点我可能没有涉及到，所以你可以对其他知识点进行补充。大家也可以对自己的文章进行自荐，对于不错的文章不仅可以成功在本仓库展示出来更可以获得作者送出的 50 元左右的任意书籍进行奖励(当然你也可以直接折现50元)。
 
 ### 联系我
 
@@ -465,3 +493,5 @@ Markdown 格式参考：[Github Markdown格式](https://guides.github.com/featur
 **Java工程师必备学习资源:** 一些Java工程师常用学习资源公众号后台回复关键字 **“1”** 即可免费无套路获取。 
 
 ![我的公众号](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/167598cd2e17b8ec.png)
+
+
