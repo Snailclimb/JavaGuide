@@ -182,13 +182,13 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 
 ### MySQL
 
-* **[【推荐】MySQL/数据库 知识点总结](docs/database/MySQL.md)**
-* **[阿里巴巴开发手册数据库部分的一些最佳实践](docs/database/阿里巴巴开发手册数据库部分的一些最佳实践.md)**
-* **[一千行MySQL学习笔记](docs/database/一千行MySQL命令.md)**
-* [MySQL高性能优化规范建议](docs/database/MySQL高性能优化规范建议.md)
-* [数据库索引总结](docs/database/MySQL%20Index.md)
-* [事务隔离级别(图文详解)](docs/database/事务隔离级别(图文详解).md)
-* [一条SQL语句在MySQL中如何执行的](docs/database/一条sql语句在mysql中如何执行的.md)
+1. **[【推荐】MySQL/数据库 知识点总结](docs/database/MySQL.md)**
+2. **[阿里巴巴开发手册数据库部分的一些最佳实践](docs/database/阿里巴巴开发手册数据库部分的一些最佳实践.md)**
+3. **[一千行MySQL学习笔记](docs/database/一千行MySQL命令.md)**
+4. [MySQL高性能优化规范建议](docs/database/MySQL高性能优化规范建议.md)
+5. [数据库索引总结](docs/database/MySQL%20Index.md)
+6. [事务隔离级别(图文详解)](docs/database/事务隔离级别(图文详解).md)
+7. [一条SQL语句在MySQL中如何执行的](docs/database/一条sql语句在mysql中如何执行的.md)
 
 ### Redis
 
@@ -203,11 +203,11 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 
 #### Spring
 
-- [Spring 学习与面试](docs/system-design/framework/spring/Spring.md)
-- **[Spring 常见问题总结](docs/system-design/framework/spring/SpringInterviewQuestions.md)**
-- [Spring中 Bean 的作用域与生命周期](docs/system-design/framework/spring/SpringBean.md)
-- [SpringMVC 工作原理详解](docs/system-design/framework/spring/SpringMVC-Principle.md)
-- [Spring中都用到了那些设计模式?](docs/system-design/framework/spring/Spring-Design-Patterns.md)
+1. [Spring 学习与面试](docs/system-design/framework/spring/Spring.md)
+2. **[Spring 常见问题总结](docs/system-design/framework/spring/SpringInterviewQuestions.md)**
+3. [Spring中 Bean 的作用域与生命周期](docs/system-design/framework/spring/SpringBean.md)
+4. [SpringMVC 工作原理详解](docs/system-design/framework/spring/SpringMVC-Principle.md)
+5. [Spring中都用到了那些设计模式?](docs/system-design/framework/spring/Spring-Design-Patterns.md)
 
 #### SpringBoot
 
@@ -228,9 +228,7 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 
 #### SSO(单点登录)
 
-SSO(Single Sign On)即单点登录说的是用户登陆多个子系统的其中一个就有权访问与其相关的其他系统。举个例子我们在登陆了京东金融之后，我们同时也成功登陆京东的京东超市、京东家电等子系统。
-
-相关阅读：[SSO 单点登录看这篇就够了！](docs/system-design/authority-certification/sso.md)
+SSO(Single Sign On)即单点登录说的是用户登陆多个子系统的其中一个就有权访问与其相关的其他系统。举个例子我们在登陆了京东金融之后，我们同时也成功登陆京东的京东超市、京东家电等子系统。相关阅读：**[SSO 单点登录看这篇就够了！](docs/system-design/authority-certification/sso.md)**
 
 ### 分布式
 
@@ -251,24 +249,22 @@ SSO(Single Sign On)即单点登录说的是用户登陆多个子系统的其中�
 
 #### 消息队列
 
-消息队列在分布式系统中主要是为了接耦和削峰。
-
-- [消息队列总结](docs/system-design/data-communication/message-queue.md)
+消息队列在分布式系统中主要是为了接耦和削峰。相关阅读： **[消息队列总结](docs/system-design/data-communication/message-queue.md)** 。
 
 **RabbitMQ:**
 
-- [RabbitMQ 入门](docs/system-design/data-communication/rabbitmq.md)
+1. [RabbitMQ 入门](docs/system-design/data-communication/rabbitmq.md)
 
 **RocketMQ:**
 
-- [RocketMQ 入门](docs/system-design/data-communication/RocketMQ.md)
-- [RocketMQ的几个简单问题与答案](docs/system-design/data-communication/RocketMQ-Questions.md)
+1. [RocketMQ 入门](docs/system-design/data-communication/RocketMQ.md)
+2. [RocketMQ的几个简单问题与答案](docs/system-design/data-communication/RocketMQ-Questions.md)
 
 **Kafka:**
 
-- **[Kafka 入门+SpringBoot整合Kafka系列](https://github.com/Snailclimb/springboot-kafka)**
-- [Kafka系统设计开篇-面试看这篇就够了](docs/system-design/data-communication/Kafka系统设计开篇-面试看这篇就够了.md)
-- [【加餐】Kafka入门看这一篇就够了](docs/system-design/data-communication/Kafka入门看这一篇就够了.md)
+1. **[Kafka 入门+SpringBoot整合Kafka系列](https://github.com/Snailclimb/springboot-kafka)**
+2. [Kafka系统设计开篇-面试看这篇就够了](docs/system-design/data-communication/Kafka系统设计开篇-面试看这篇就够了.md)
+3. [【加餐】Kafka入门看这一篇就够了](docs/system-design/data-communication/Kafka入门看这一篇就够了.md)
 
 #### API 网关
 
@@ -284,9 +280,9 @@ SSO(Single Sign On)即单点登录说的是用户登陆多个子系统的其中�
 
 > 前两篇文章可能有内容重合部分，推荐都看一遍。
 
-- [【入门】ZooKeeper 相关概念总结](docs/system-design/framework/ZooKeeper.md)
-- [【进阶】Zookeeper 原理简单入门！](docs/system-design/framework/ZooKeeper-plus.md)
-- [【拓展】ZooKeeper 数据模型和常见命令](docs/system-design/framework/ZooKeeper数据模型和常见命令.md)
+1. [【入门】ZooKeeper 相关概念总结](docs/system-design/framework/ZooKeeper.md)
+2. [【进阶】Zookeeper 原理简单入门！](docs/system-design/framework/ZooKeeper-plus.md)
+3. [【拓展】ZooKeeper 数据模型和常见命令](docs/system-design/framework/ZooKeeper数据模型和常见命令.md)
 
 #### 数据库扩展
 
