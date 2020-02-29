@@ -53,7 +53,6 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
         - [MyBatis](#mybatis)
     - [认证授权(JWT、SSO)](#认证授权)
     - [分布式](#分布式)
-        - [SSO(单点登录)](#sso单点登录)
         - [Elasticsearch(分布式搜索引擎)](#elasticsearch分布式搜索引擎)
         - [RPC](#rpc)
         - [消息队列](#消息队列)
