@@ -108,6 +108,10 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 2. [Java 常见关键字总结：final、static、this、super!](docs/java/basis/final、static、this、super.md)
 3. [什么是反射机制?反射机制的应用场景有哪些?](docs/java/basis/reflection.md)
 
+**其他：**
+
+1. [JAD反编译](docs/java/JAD反编译tricks.md)
+
 ### 容器
 
 1. **[Java容器常见面试题/知识点总结](docs/java/collection/Java集合框架常见面试题.md)**
