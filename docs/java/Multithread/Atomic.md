@@ -1,8 +1,28 @@
+点击关注[公众号](#公众号)及时获取笔主最新更新文章，并可免费领取本文档配套的《Java面试突击》以及Java工程师必备学习资源。
+
 > 个人觉得这一节掌握基本的使用即可！
 
-**本节思维导图:**
+<!-- TOC -->
 
-![](https://user-gold-cdn.xitu.io/2018/10/30/166c58b785368234?w=1200&h=657&f=png&s=49615)
+- [1 Atomic 原子类介绍](#1-atomic-原子类介绍)
+- [2 基本类型原子类](#2-基本类型原子类)
+    - [2.1 基本类型原子类介绍](#21-基本类型原子类介绍)
+    - [2.2 AtomicInteger 常见方法使用](#22-atomicinteger-常见方法使用)
+    - [2.3 基本数据类型原子类的优势](#23-基本数据类型原子类的优势)
+    - [2.4 AtomicInteger 线程安全原理简单分析](#24-atomicinteger-线程安全原理简单分析)
+- [3 数组类型原子类](#3-数组类型原子类)
+    - [3.1 数组类型原子类介绍](#31-数组类型原子类介绍)
+    - [3.2 AtomicIntegerArray 常见方法使用](#32-atomicintegerarray-常见方法使用)
+- [4 引用类型原子类](#4-引用类型原子类)
+    - [4.1  引用类型原子类介绍](#41--引用类型原子类介绍)
+    - [4.2 AtomicReference 类使用示例](#42-atomicreference-类使用示例)
+    - [4.3 AtomicStampedReference 类使用示例](#43-atomicstampedreference-类使用示例)
+    - [4.4 AtomicMarkableReference 类使用示例](#44-atomicmarkablereference-类使用示例)
+- [5 对象的属性修改类型原子类](#5-对象的属性修改类型原子类)
+    - [5.1 对象的属性修改类型原子类介绍](#51-对象的属性修改类型原子类介绍)
+    - [5.2 AtomicIntegerFieldUpdater 类使用示例](#52-atomicintegerfieldupdater-类使用示例)
+
+<!-- /TOC -->
 
 ### 1 Atomic 原子类介绍
 
@@ -12,7 +32,7 @@ Atomic 翻译成中文是原子的意思。在化学上，我们知道原子是�
 
 并发包 `java.util.concurrent` 的原子类都存放在`java.util.concurrent.atomic`下,如下图所示。
 
-![ JUC 原子类概览](https://user-gold-cdn.xitu.io/2018/10/30/166c4ac08d4c5547?w=317&h=367&f=png&s=13267)
+![JUC原子类概览](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/JUC原子类概览.png)
 
 根据操作的数据类型，可以将JUC包中的原子类分为4类
 
@@ -36,7 +56,7 @@ Atomic 翻译成中文是原子的意思。在化学上，我们知道原子是�
 **引用类型**
 
 - AtomicReference：引用类型原子类
-- AtomicStampedReference：原子更新引用类型里的字段原子类
+- AtomicReferenceFieldUpdater：原子更新引用类型里的字段
 - AtomicMarkableReference ：原子更新带有标记位的引用类型
 
 **对象的属性修改类型**
@@ -44,7 +64,54 @@ Atomic 翻译成中文是原子的意思。在化学上，我们知道原子是�
 - AtomicIntegerFieldUpdater:原子更新整型字段的更新器
 - AtomicLongFieldUpdater：原子更新长整型字段的更新器
 - AtomicStampedReference ：原子更新带有版本号的引用类型。该类将整数值与引用关联起来，可用于解决原子的更新数据和数据的版本号，可以解决使用 CAS 进行原子更新时可能出现的 ABA 问题。
-- AtomicMarkableReference：原子更新带有标记的引用类型。该类将 boolean 标记与引用关联起来，也可以解决使用 CAS 进行原子更新时可能出现的 ABA 问题。
+- AtomicMarkableReference：原子更新带有标记的引用类型。该类将 boolean 标记与引用关联起来，~~也可以解决使用 CAS 进行原子更新时可能出现的 ABA 问题。~~
+
+> 修正: **AtomicMarkableReference 不能解决ABA问题**   **[issue#626](https://github.com/Snailclimb/JavaGuide/issues/626)**
+
+```java
+    /**
+
+AtomicMarkableReference是将一个boolean值作是否有更改的标记，本质就是它的版本号只有两个，true和false，
+
+修改的时候在这两个版本号之间来回切换，这样做并不能解决ABA的问题，只是会降低ABA问题发生的几率而已
+
+@author : mazh
+
+@Date : 2020/1/17 14:41
+*/
+
+public class SolveABAByAtomicMarkableReference {
+       
+       private static AtomicMarkableReference atomicMarkableReference = new AtomicMarkableReference(100, false);
+
+        public static void main(String[] args) {
+
+            Thread refT1 = new Thread(() -> {
+                try {
+                    TimeUnit.SECONDS.sleep(1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                atomicMarkableReference.compareAndSet(100, 101, atomicMarkableReference.isMarked(), !atomicMarkableReference.isMarked());
+                atomicMarkableReference.compareAndSet(101, 100, atomicMarkableReference.isMarked(), !atomicMarkableReference.isMarked());
+            });
+
+            Thread refT2 = new Thread(() -> {
+                boolean marked = atomicMarkableReference.isMarked();
+                try {
+                    TimeUnit.SECONDS.sleep(2);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                boolean c3 = atomicMarkableReference.compareAndSet(100, 101, marked, !marked);
+                System.out.println(c3); // 返回true,实际应该返回false
+            });
+
+            refT1.start();
+            refT2.start();
+        }
+    }
+```
 
 **CAS ABA 问题**
 - 描述: 第一个线程取到了变量 x 的值 A，然后巴拉巴拉干别的事，总之就是只拿到了变量 x 的值 A。这段时间内第二个线程也取到了变量 x 的值 A，然后把变量 x 的值改为 B，然后巴拉巴拉干别的事，最后又把变量 x 的值变为 A （相当于还原了）。在这之后第一个线程终于进行了变量 x 的操作，但是此时变量 x 的值还是 A，所以 compareAndSet 操作是成功。
@@ -136,7 +203,7 @@ Thread-0 ------ currentValue=1, finalValue=2, compareAndSet Result=true
 上面三个类提供的方法几乎相同，所以我们这里以 AtomicInteger 为例子来介绍。
 
  **AtomicInteger 类常用方法**
- 
+
 ```java
 public final int get() //获取当前的值
 public final int getAndSet(int newValue)//获取当前的值，并设置新的值
@@ -338,7 +405,7 @@ class Person {
 
 }
 ```
-上述代码首先创建了一个 Person 对象，然后把 Person 对象设置进 AtomicReference 对象中，然后调用 compareAndSet 方法，该方法就是通过通过 CAS 操作设置 ar。如果 ar 的值为 person 的话，则将其设置为 updatePerson。实现原理与 AtomicInteger 类中的 compareAndSet 方法相同。运行上面的代码后的输出结果如下：
+上述代码首先创建了一个 Person 对象，然后把 Person 对象设置进 AtomicReference 对象中，然后调用 compareAndSet 方法，该方法就是通过 CAS 操作设置 ar。如果 ar 的值为 person 的话，则将其设置为 updatePerson。实现原理与 AtomicInteger 类中的 compareAndSet 方法相同。运行上面的代码后的输出结果如下：
 
 ```
 Daisy
@@ -525,3 +592,12 @@ class User {
 23
 ```
 
+## 公众号
+
+如果大家想要实时关注我更新的文章以及分享的干货的话，可以关注我的公众号。
+
+**《Java面试突击》:** 由本文档衍生的专为面试而生的《Java面试突击》V2.0 PDF 版本[公众号](#公众号)后台回复 **"面试突击"** 即可免费领取！
+
+**Java工程师必备学习资源:** 一些Java工程师常用学习资源公众号后台回复关键字 **“1”** 即可免费无套路获取。 
+
+![我的公众号](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/167598cd2e17b8ec.png)

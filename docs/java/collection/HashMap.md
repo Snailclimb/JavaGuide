@@ -18,7 +18,7 @@
 ## HashMap 简介
 HashMap 主要用来存放键值对，它基于哈希表的Map接口实现</font>，是常用的Java集合之一。 
 
-JDK1.8 之前 HashMap 由 数组+链表 组成的，数组是 HashMap 的主体，链表则是主要为了解决哈希冲突而存在的（“拉链法”解决冲突）.JDK1.8 以后在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为 8）时，将链表转化为红黑树，以减少搜索时间。
+JDK1.8 之前 HashMap 由 数组+链表 组成的，数组是 HashMap 的主体，链表则是主要为了解决哈希冲突而存在的（“拉链法”解决冲突）.JDK1.8 以后在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为 8）时，将链表转化为红黑树（将链表转换成红黑树前会判断，如果当前数组的长度小于 64，那么会选择先进行数组扩容，而不是转换为红黑树），以减少搜索时间，具体可以参考 `treeifyBin`方法。
 
 ## 底层数据结构分析
 ### JDK1.8之前
@@ -56,7 +56,7 @@ static int hash(int h) {
 
 所谓 **“拉链法”** 就是：将链表和数组相结合。也就是说创建一个链表数组，数组中每一格就是一个链表。若遇到哈希冲突，则将冲突的值加到链表中即可。
 
-![jdk1.8之前的内部结构](https://user-gold-cdn.xitu.io/2018/3/20/16240dbcc303d872?w=348&h=427&f=png&s=10991)
+![jdk1.8之前的内部结构](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/jdk1.8之前的内部结构.png)
 
 ### JDK1.8之后
 相比于之前的版本，jdk1.8在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为8）时，将链表转化为红黑树，以减少搜索时间。
@@ -170,7 +170,9 @@ static final class TreeNode<K,V> extends LinkedHashMap.Entry<K,V> {
 ```
 ## HashMap源码分析
 ### 构造方法
-![四个构造方法](https://user-gold-cdn.xitu.io/2018/3/20/162410d912a2e0e1?w=336&h=90&f=jpeg&s=26744)
+
+HashMap 中有四个构造方法，它们分别如下：
+
 ```java
     // 默认构造函数。
     public HashMap() {
@@ -237,9 +239,9 @@ HashMap只提供了put用于添加元素，putVal方法只是给put方法调用�
 - ①如果定位到的数组位置没有元素 就直接插入。
 - ②如果定位到的数组位置有元素就和要插入的key比较，如果key相同就直接覆盖，如果key不相同，就判断p是否是一个树节点，如果是就调用`e = ((TreeNode<K,V>)p).putTreeVal(this, tab, hash, key, value)`将元素添加进入。如果不是就遍历链表插入(插入的是链表尾部)。
 
+ps:下图有一个小问题，来自 [issue#608](https://github.com/Snailclimb/JavaGuide/issues/608)指出：直接覆盖之后应该就会 return，不会有后续操作。参考 JDK8 HashMap.java 658 行。
 
-
-![put方法](https://user-gold-cdn.xitu.io/2018/9/2/16598bf758c747e6?w=999&h=679&f=png&s=54486)
+![put方法](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/put方法.png)
 
 ```java
 public V put(K key, V value) {
@@ -510,7 +512,8 @@ public class HashMapDemo {
 
         }
         /**
-         * 另外一种不常用的遍历方式
+         * 如果既要遍历key又要value，那么建议这种方式，应为如果先获取keySet然后再执行map.get(key)，map内部会执行两次遍历。
+         * 一次是在获取keySet的时候，一次是在遍历所有key的时候。
          */
         // 当我调用put(key,value)方法的时候，首先会把key和value封装到
         // Entry这个静态内部类对象中，把Entry对象再添加到数组中，所以我们想获取
