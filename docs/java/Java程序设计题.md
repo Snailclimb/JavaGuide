@@ -73,10 +73,9 @@ public class MyStack {
 
     //TODO：返回栈顶元素并出栈
     private int pop() {
-        count--;
         if (count == -1)
             throw new IllegalArgumentException("Stack is empty.");
-
+        count--;
         return storage[count];
     }
 
