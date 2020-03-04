@@ -253,7 +253,7 @@ wget https://www.rabbitmq.com/releases/rabbitmq-server/v3.6.8/rabbitmq-server-3.
 ```
 或者直接在官网下载
 
-https://www.rabbitmq.com/install-rpm.html[enter link description here](https://www.rabbitmq.com/install-rpm.html)
+[https://www.rabbitmq.com/install-rpm.html](https://www.rabbitmq.com/install-rpm.html)
 
 **2. 安装rpm**
 
