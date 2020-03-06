@@ -56,6 +56,8 @@
 
 #### 主从链(拓扑结构)
 
+
+
 ![主从](https://user-images.githubusercontent.com/26766909/67539461-d1a26c00-f714-11e9-81ae-61fa89faf156.png)
 
 ![主从](https://user-images.githubusercontent.com/26766909/67539485-e0891e80-f714-11e9-8980-d253239fcd8b.png)
@@ -83,7 +85,7 @@
 
 #### 拓扑图
 
-![image](https://user-images.githubusercontent.com/26766909/67539495-f0086780-f714-11e9-9eab-c11a163ac6c0.png)
+![哨兵机制-拓扑图](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/哨兵机制-拓扑图.png)
 
 #### 节点下线
 
@@ -178,7 +180,7 @@
 
 存取数据优先从 Redis 操作，如果不存在再从文件（例如 MySQL）中操作，从文件操作完后将数据存储到 Redis 中并返回。同时有个定时任务后台定时扫描 Redis 的 key，根据业务规则进行淘汰，防止某些只访问一两次的数据一直存在 Redis 中。
 >例如使用 Zset 数据结构，存储 Key 的访问次数/最后访问时间作为 Score，最后做排序，来淘汰那些最少访问的 Key。  
-  
+
 如果企业级应用，可以参考：[阿里云的 Redis 混合存储版][1]
 
 ### 会话维持 Session
@@ -265,4 +267,3 @@ DECR key：给 key 的 value 值减去一
 1. 用户请求先访问本地缓存，无命中后再访问 Redis，如果本地缓存和 Redis 都没有再查数据库，并把数据添加到本地缓存和 Redis；
 2. 由于设置了限流，一段时间范围内超出的请求走降级处理(返回默认值，或给出友情提示)。
 
-[1]: https://promotion.aliyun.com/ntms/act/redishybridstorage.html?spm=5176.54432.1380373.5.41921cf20pcZrZ&aly_as=ArH4VaEb

@@ -50,7 +50,7 @@ Consumer Group：同一个Consumer Group中的Consumers，Kafka将相应Topic中
 ProducerRecord对象中如果指定了partition，就使用这个partition。否则根据key和topic的partition数目取余，如果key也没有的话就随机生成一个counter，使用这个counter来和partition数目取余。这个counter每次使用的时候递增。
 
 **2发送到batch&&唤醒Sender 线程**
-根据topic-partition获取对应的batchs（Dueue<ProducerBatch>），然后将消息append到batch中.如果有batch满了则唤醒Sender 线程。队列的操作是加锁执行，所以batch内消息时有序的。后续的Sender操作当前方法异步操作。
+根据topic-partition获取对应的batchs（Deque<ProducerBatch>），然后将消息append到batch中.如果有batch满了则唤醒Sender 线程。队列的操作是加锁执行，所以batch内消息时有序的。后续的Sender操作当前方法异步操作。
 ![send_msg](https://blog-article-resource.oss-cn-beijing.aliyuncs.com/kafka/send2Batch1.png)![send_msg2](https://blog-article-resource.oss-cn-beijing.aliyuncs.com/kafka/send2Batch2.png)
 
 
@@ -275,7 +275,3 @@ zero-copy
 增大producer数量
 ack配置
 batch
-
-如果喜欢我的文章，欢迎扫码关注
-
-![wechat](https://blog-article-resource.oss-cn-beijing.aliyuncs.com/qrcode_for_gh_2f3803598393_258.jpg)

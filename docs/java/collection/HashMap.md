@@ -239,6 +239,8 @@ HashMap只提供了put用于添加元素，putVal方法只是给put方法调用�
 - ①如果定位到的数组位置没有元素 就直接插入。
 - ②如果定位到的数组位置有元素就和要插入的key比较，如果key相同就直接覆盖，如果key不相同，就判断p是否是一个树节点，如果是就调用`e = ((TreeNode<K,V>)p).putTreeVal(this, tab, hash, key, value)`将元素添加进入。如果不是就遍历链表插入(插入的是链表尾部)。
 
+ps:下图有一个小问题，来自 [issue#608](https://github.com/Snailclimb/JavaGuide/issues/608)指出：直接覆盖之后应该就会 return，不会有后续操作。参考 JDK8 HashMap.java 658 行。
+
 ![put方法](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/put方法.png)
 
 ```java
@@ -510,7 +512,8 @@ public class HashMapDemo {
 
         }
         /**
-         * 另外一种不常用的遍历方式
+         * 如果既要遍历key又要value，那么建议这种方式，应为如果先获取keySet然后再执行map.get(key)，map内部会执行两次遍历。
+         * 一次是在获取keySet的时候，一次是在遍历所有key的时候。
          */
         // 当我调用put(key,value)方法的时候，首先会把key和value封装到
         // Entry这个静态内部类对象中，把Entry对象再添加到数组中，所以我们想获取
