@@ -159,21 +159,24 @@ public class GCTest {
 > ```c++
 > uint ageTable::compute_tenuring_threshold(size_t survivor_capacity) {
 > 	//survivor_capacity是survivor空间的大小
->   size_t desired_survivor_size = (size_t)((((double) survivor_capacity)*TargetSurvivorRatio)/100);
->   size_t total = 0;
->   uint age = 1;
->   while (age < table_size) {
->     total += sizes[age];//sizes数组是每个年龄段对象大小
->     if (total > desired_survivor_size) break;
->     age++;
->   }
->   uint result = age < MaxTenuringThreshold ? age : MaxTenuringThreshold;
+> size_t desired_survivor_size = (size_t)((((double) survivor_capacity)*TargetSurvivorRatio)/100);
+> size_t total = 0;
+> uint age = 1;
+> while (age < table_size) {
+>  total += sizes[age];//sizes数组是每个年龄段对象大小
+>  if (total > desired_survivor_size) break;
+>  age++;
+> }
+> uint result = age < MaxTenuringThreshold ? age : MaxTenuringThreshold;
 > 	...
 > }
 > 
 > ```
 >
-> 
+> 额外补充说明([issue672](https://github.com/Snailclimb/JavaGuide/issues/672))：**关于默认的晋升年龄是15，这个说法的来源大部分都是《深入理解Java虚拟机》这本书。**
+> 如果你去Oracle的官网阅读[相关的虚拟机参数](https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html)，你会发现`-XX:MaxTenuringThreshold=threshold`这里有个说明
+>
+> **Sets the maximum tenuring threshold for use in adaptive GC sizing. The largest value is 15. The default value is 15 for the parallel (throughput) collector, and 6 for the CMS collector.默认晋升年龄并不都是15，这个是要区分垃圾收集器的，CMS就是6.**
 
 
 ## 2 对象已经死亡？
