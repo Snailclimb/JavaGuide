@@ -280,6 +280,8 @@ Linux中的打包文件一般是以.tar结尾的，压缩的命令一般是以.g
 
 **`chmod u=rwx,g=rw,o=r aaa.txt`**
 
+**`chmod -R u=rwx,g=rwx,o=rwx ./log`** // 递归给log目录下的所有文件授权
+
 ![](https://user-gold-cdn.xitu.io/2018/7/5/164697447dc6ecac?w=525&h=246&f=png&s=12362)
 
 上述示例还可以使用数字表示：
