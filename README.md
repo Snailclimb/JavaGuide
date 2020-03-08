@@ -1,4 +1,7 @@
-**开始阅读之前必看** ：[完结撒花！JavaGuide面试突击版来啦！](./docs/javaguide面试突击版.md)
+**开始阅读之前必看** ：
+
+1. [完结撒花！JavaGuide面试突击版来啦！](./docs/javaguide面试突击版.md)
+2. [JavaGuide重大更新记录](./docs/update-history.md)
 
 更多原创内容和干货分享：
 
