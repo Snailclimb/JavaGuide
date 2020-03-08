@@ -17,6 +17,11 @@
   <!-- docsify-edit-on-github -->
   <script src="//unpkg.com/docsify-edit-on-github/index.js"></script>
   <script>
+    // 离线支持
+    if (typeof navigator.serviceWorker !== 'undefined') {
+      navigator.serviceWorker.register('sw.js')
+    }
+
     window.$docsify = {
       name: 'JavaGuide',
       repo: 'https://github.com/Snailclimb/JavaGuide',
@@ -50,6 +55,8 @@
   -->
   <!-- 复制到剪贴板 -->
   <script src="//unpkg.com/docsify-copy-code"></script>
+  <!-- 图片缩放 -->
+  <script src="//unpkg.com/docsify/lib/plugins/zoom-image.js"></script>
 </body>
 
 </html>
