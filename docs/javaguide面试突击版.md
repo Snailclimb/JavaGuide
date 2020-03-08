@@ -2,6 +2,12 @@
 
 ![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/javaguide-面试突击版.jpg)
 
+### 如何获取
+
+公众号后台回复：“面试突击”即可。
+
+![我的公众号](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/167598cd2e17b8ec.png)
+
 ### 关于《JavaGuide面试突击版》
 
 JavaGuide 目前已经 70k+ Star ，目前已经是所有 Java 类别项目中 Star 数量第二的开源项目了。Star虽然很多，但是价值远远比不上 Dubbo 这些开源项目，希望以后可以多出现一些这样的国产开源项目。国产开源项目！加油！奥利给！
@@ -25,8 +31,6 @@ JavaGuide 目前已经 70k+ Star ，目前已经是所有 Java 类别项目中 S
 
 **《JavaGuide面试突击版》** 预计一个月左右会有一次内容更新和完善，大家在我的公众号 **JavaGuide** 后台回复**“面试突击”** 即可获取最新版！另外，为了保证自己的辛勤劳动不被恶意盗版滥用，所以我添加了水印并且在一些内容注明版权，希望大家理解。
 
-![我的公众号](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/167598cd2e17b8ec.png)
-
 ### 如何贡献
 
 大家阅读过程中如果遇到错误的地方可以通过微信与我交流（ps:加过我微信的就不要重复添加了，这是另外一个账号，前一个已经满了）。
@@ -49,6 +53,3 @@ JavaGuide 目前已经 70k+ Star ，目前已经是所有 Java 类别项目中 S
 
 <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/Screen Shot 2020-03-07 at 7.33.50 PM.jpg" style="zoom:50%;" />
 
-### 如何获取
-
-公众号后台回复：“面试突击”，注意文档是由密码的！密码会和文档下载链接一下回复，不要忽略啦。
