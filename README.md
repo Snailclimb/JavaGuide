@@ -339,18 +339,6 @@ SSO(Single Sign On)即单点登录说的是用户登陆多个子系统的其中�
 * **[【备战面试6】美团面试常见问题总结(附详解答案)](docs/essential-content-for-interview/PreparingForInterview/美团面试常见问题总结.md)**
 * **[【备战面试7】一些刁难的面试问题总结](https://xiaozhuanlan.com/topic/9056431872)**
 
-### 真实面试经历分析
-
-- **[我和阿里面试官的一次“邂逅”(附问题详解)](docs/essential-content-for-interview/real-interview-experience-analysis/alibaba-1.md)**
-
-### 面经
-
-- [5面阿里,终获offer(2018年秋招)](docs/essential-content-for-interview/BATJrealInterviewExperience/5面阿里,终获offer.md)
-- [蚂蚁金服2019实习生面经总结(已拿口头offer)](docs/essential-content-for-interview/BATJrealInterviewExperience/蚂蚁金服实习生面经总结(已拿口头offer).md)
-- [2019年蚂蚁金服、头条、拼多多的面试总结](docs/essential-content-for-interview/BATJrealInterviewExperience/2019alipay-pinduoduo-toutiao.md)
-- [Bigo的Java面试，我挂在了第三轮技术面上.........](docs/essential-content-for-interview/BATJrealInterviewExperience/bingo-interview.md)
-- [2020 字节跳动后端面经分享！已拿 offer!](docs/essential-content-for-interview/BATJrealInterviewExperience/2020-zijietiaodong.md)
-
 ## Java学习常见问题汇总
 
 1. [Java学习路线和方法推荐](docs/questions/java-learning-path-and-methods.md)
