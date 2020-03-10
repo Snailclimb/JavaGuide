@@ -322,10 +322,6 @@ SSO(Single Sign On)即单点登录说的是用户登陆多个子系统的其中�
 
 - [ 大白话入门 Spring Cloud](docs/system-design/micro-service/spring-cloud.md)
 
-#### 配置中心
-
-待办......
-
 ## 面试指南
 
 1. **[【备战面试1】程序员的简历就该这样写](docs/essential-content-for-interview/PreparingForInterview/程序员的简历之道.md)**
