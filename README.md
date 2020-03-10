@@ -61,9 +61,11 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
         - [RPC](#rpc)
         - [消息队列](#消息队列)
         - [API 网关](#api-网关)
-        - [唯一 id 生成](#唯一-id-生成)
-        - [ZooKeeper](#zookeeper)
+        - [分布式id](#分布式id)
+        - [分布式限流](#分布式限流)
+        - [分布式接口幂等性](#分布式接口幂等性)
         - [数据库扩展](#数据库扩展)
+        - [ZooKeeper](#zookeeper)
     - [大型网站架构](#大型网站架构)
         - [性能测试](#性能测试)
         - [高并发](#高并发)
@@ -275,11 +277,18 @@ SSO(Single Sign On)即单点登录说的是用户登陆多个子系统的其中�
 
 网关主要用于请求转发、安全认证、协议转换、容灾。
 
-- [浅析如何设计一个亿级网关(API Gateway)](docs/system-design/micro-service/API网关.md)
+1. [为什么要网关？你知道有哪些常见的网关系统？](docs/system-design/micro-service/api-gateway-intro.md)
+2. [如何设计一个亿级网关(API Gateway)？](docs/system-design/micro-service/API网关.md)
 
-#### 唯一 id 生成
+#### 分布式id
 
--  [分布式id生成方案总结](docs/system-design/micro-service/分布式id生成方案总结.md)
+1. [为什么要分布式 id ？分布式 id 生成方案有哪些？](docs/system-design/micro-service/分布式id生成方案总结.md)
+
+#### 分布式限流
+
+1. [限流算法有哪些？](docs/system-design/micro-service/limit-request.md)
+
+#### 分布式接口幂等性
 
 #### ZooKeeper
 
