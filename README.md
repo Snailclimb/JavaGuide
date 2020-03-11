@@ -88,14 +88,6 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
     - [Github](#github)
 - [待办](#待办)
 - [说明](#说明)
-    - [JavaGuide介绍](#javaguide介绍)
-    - [作者的其他开源项目推荐](#作者的其他开源项目推荐)
-    - [关于转载](#关于转载)
-    - [如何对该开源文档进行贡献](#如何对该开源文档进行贡献)
-    - [为什么要做这个开源文档？](#为什么要做这个开源文档)
-    - [投稿](#投稿)
-    - [联系我](#联系我)
-    - [公众号](#公众号)
 
 ## Java
 
@@ -111,7 +103,7 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 **重要知识点详解：**
 
 1. [枚举](docs/java/basic/用好Java中的枚举真的没有那么简单.md) （很重要的一个数据结构，用好枚举真的没有那么简单！）
-2. [Java 常见关键字总结：final、static、this、super!](docs/java/basic/final、static、this、super.md)
+2. [Java 常见关键字总结：final、static、this、super!](docs/java/basic/final,static,this,super.md.md)
 3. [什么是反射机制?反射机制的应用场景有哪些?](docs/java/basic/reflection.md)
 
 **其他：**
@@ -406,12 +398,6 @@ SSO(Single Sign On)即单点登录说的是用户登陆多个子系统的其中�
 Markdown 格式参考：[Github Markdown格式](https://guides.github.com/features/mastering-markdown/)，表情素材来自：[EMOJI CHEAT SHEET](https://www.webpagefx.com/tools/emoji-cheat-sheet/)。
 
 利用 docsify 生成文档部署在 Github pages: [docsify 官网介绍](https://docsify.js.org/#/)
-
-### 作者的其他开源项目推荐
-
-1. [springboot-guide](https://github.com/Snailclimb/springboot-guide) : 适合新手入门以及有经验的开发人员查阅的 Spring Boot 教程（业余时间维护中，欢迎一起维护）。
-2. [programmer-advancement](https://github.com/Snailclimb/programmer-advancement) : 我觉得技术人员应该有的一些好习惯！
-3. [spring-security-jwt-guide](https://github.com/Snailclimb/spring-security-jwt-guide) :从零入门 ！Spring Security With JWT（含权限验证）后端部分代码。
 
 ### 关于转载
 
