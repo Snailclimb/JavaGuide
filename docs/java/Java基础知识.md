@@ -539,11 +539,11 @@ Java Io 流共涉及 40 多个类，这些类看上去很杂乱，但实际上�
 
 ## 36. 常见关键字总结:static,final,this,super
 
-详见笔主的这篇文章: <https://gitee.com/SnailClimb/JavaGuide/blob/master/docs/java/Basis/final、static、this、super.md>
+详见笔主的这篇文章:  https://snailclimb.gitee.io/javaguide/#/docs/java/basic/final,static,this,super
 
 ## 37. Collections 工具类和 Arrays 工具类常见方法总结
 
-详见笔主的这篇文章: <https://gitee.com/SnailClimb/JavaGuide/blob/master/docs/java/Basis/Arrays,CollectionsCommonMethods.md>
+详见笔主的这篇文章:  https://gitee.com/SnailClimb/JavaGuide/blob/master/docs/java/basic/Arrays,CollectionsCommonMethods.md
 
 ## 38. 深拷贝 vs 浅拷贝
 
