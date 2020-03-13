@@ -328,6 +328,8 @@ SSO(Single Sign On)即单点登录说的是用户登陆多个子系统的其中�
 
 ## 面试指南
 
+> 这部分很多内容比如大厂面经、真实面经分析被移除，详见[完结撒花！JavaGuide面试突击版来啦！](./docs/javaguide面试突击版.md)。
+
 1. **[【备战面试1】程序员的简历就该这样写](docs/essential-content-for-interview/PreparingForInterview/程序员的简历之道.md)**
 2. **[【备战面试2】初出茅庐的程序员该如何准备面试？](docs/essential-content-for-interview/PreparingForInterview/interviewPrepare.md)**
 3. **[【备战面试3】7个大部分程序员在面试前很关心的问题](docs/essential-content-for-interview/PreparingForInterview/JavaProgrammerNeedKnow.md)**
