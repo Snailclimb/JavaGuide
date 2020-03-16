@@ -265,7 +265,7 @@ SSO(Single Sign On)即单点登录说的是用户登陆多个子系统的其中�
 **Kafka:**
 
 1. **[Kafka 入门+SpringBoot整合Kafka系列](https://github.com/Snailclimb/springboot-kafka)**
-2. [Kafka系统设计开篇-面试看这篇就够了](docs/system-design/data-communication/Kafka系统设计开篇-面试看这篇就够了.md)
+2. **[Kafka 常见面试题总结](docs/system-design/data-communication/kafka-inverview.md)**
 3. [【加餐】Kafka入门看这一篇就够了](docs/system-design/data-communication/Kafka入门看这一篇就够了.md)
 
 #### API 网关
