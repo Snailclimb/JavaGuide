@@ -76,16 +76,14 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
         - [高可用](#高可用)
     - [微服务](#微服务)
         - [Spring Cloud](#spring-cloud)
-- [面试指南](#面试指南)
-- [Java学习常见问题汇总](#java学习常见问题汇总)
-- [工具](#工具)
+- [必会工具](#必会工具)
     - [Git](#git)
     - [Docker](#docker)
-    - [其他](#其他-1)
+- [面试指南](#面试指南)
+- [Java学习常见问题汇总](#java学习常见问题汇总)
 - [资源](#资源)
-    - [书单](#书单)
+    - [书单推荐](#书单推荐)
     - [实战项目推荐](#实战项目推荐)
-    - [Github](#github)
 - [待办](#待办)
 - [说明](#说明)
 
@@ -326,6 +324,21 @@ SSO(Single Sign On)即单点登录说的是用户登陆多个子系统的其中�
 
 - [ 大白话入门 Spring Cloud](docs/system-design/micro-service/spring-cloud.md)
 
+## 必会工具
+
+### Git
+
+* [Git入门](docs/tools/Git.md)
+
+### Docker
+
+1. [Docker 基本概念解读](docs/tools/Docker.md)
+2. [一文搞懂 Docker 镜像的常用操作！](docs/tools/Docker-Image.md )
+
+### 其他
+
+- [阿里云服务器使用经验](docs/tools/阿里云服务器使用经验.md)
+
 ## 面试指南
 
 > 这部分很多内容比如大厂面经、真实面经分析被移除，详见[完结撒花！JavaGuide面试突击版来啦！](./docs/javaguide面试突击版.md)。
@@ -347,36 +360,23 @@ SSO(Single Sign On)即单点登录说的是用户登陆多个子系统的其中�
 4. [Java 还是大数据，你需要了解这些东西！](docs/questions/java-big-data)
 5. [Java 后台开发/大数据？你需要了解这些东西！](https://articles.zsxq.com/id_wto1iwd5g72o.html)（知识星球）
 
-## 工具
-
-### Git
-
-* [Git入门](docs/tools/Git.md)
-
-### Docker
-
-1. [Docker 基本概念解读](docs/tools/Docker.md)
-2. [一文搞懂 Docker 镜像的常用操作！](docs/tools/Docker-Image.md )
-
-### 其他
-
-- [阿里云服务器使用经验](docs/tools/阿里云服务器使用经验.md)
-
 ## 资源
 
-### 书单
+### 书单推荐书单推荐
 
-- [Java程序员必备书单](docs/data/java-recommended-books.md)
+- [算法相关](docs/books/alogorithm.md)
+- **[Java程序员必备书单](docs/books/java.md)**
 
 ### 实战项目推荐
 
-- [Github 上热门的 Spring Boot 项目实战推荐](docs/data/spring-boot-practical-projects.md)
+- **[Java、SpringBoot实战项目推荐](https://github.com/Snailclimb/awesome-java#实战项目)**
 
 ### Github
 
+- [Github 上非常棒的 Java 开源项目集合](https://github.com/Snailclimb/awesome-java) 
 - [Github 上 Star 数最多的 10 个项目，看完之后很意外!](docs/tools/github/github-star-ranking.md)
 - [年末将至，值得你关注的16个Java 开源项目！](docs/github-trending/2019-12.md)
-- [Java 项目月榜单](docs/github-trending/JavaGithubTrending.md)
+- [Java 项目历史月榜单](docs/github-trending/JavaGithubTrending.md)
 
 ***
 
