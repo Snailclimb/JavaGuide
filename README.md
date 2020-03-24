@@ -207,6 +207,10 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 
 ## 系统设计
 
+### 必知
+
+1. **[RestFul API 最佳指南](docs/system-design/restful-api.md)**
+
 ### 常用框架
 
 #### Spring
