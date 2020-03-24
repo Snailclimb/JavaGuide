@@ -5,8 +5,8 @@ RestFul API 是每个程序员都应该了解并掌握的基本知识，我们�
 **RestFul API 可以你看到 url + http method 就知道这个 url 是干什么的，让你看到了 http 状态码（status code）就知道请求结果如何。**
 
 ```
-GET    /classs：列出所有班级
-POST   /classs：新建一个班级
+GET    /classes：列出所有班级
+POST   /classes：新建一个班级
 ```
 
 下面的内容只是介绍了我觉得关于 RestFul API 比较重要的一些东西，欢迎补充。
@@ -17,7 +17,7 @@ REST,即 **REpresentational State Transfer** 的缩写。这个词组的翻译�
 
 我们分别对上面涉及到的概念进行解读，以便加深理解，不过实际上你不需要搞懂下面这些概念，也能看懂我下一部分要介绍到的内容。不过，为了更好地能跟别人扯扯 “RestFul API”我建议你还是要好好理解一下！
 
-- **资源（Resource）** ：我们可以把真实的对象数据称为资源。一个资源既可以是一个集合，也可以是单个个体。比如我们的班级 classs 是代表一个集合形式的资源，而特定的 class 代表单个个体资源。每一种资源都有特定的 URI（统一资源定位符）与之对应，如果我们需要获取这个资源，访问这个 URI 就可以了，比如获取特定的班级：`/class/12`。另外，资源也可以包含子资源，比如 `/classs/classId/teachers`：列出某个指定班级的所有老师的信息
+- **资源（Resource）** ：我们可以把真实的对象数据称为资源。一个资源既可以是一个集合，也可以是单个个体。比如我们的班级 classes 是代表一个集合形式的资源，而特定的 class 代表单个个体资源。每一种资源都有特定的 URI（统一资源定位符）与之对应，如果我们需要获取这个资源，访问这个 URI 就可以了，比如获取特定的班级：`/class/12`。另外，资源也可以包含子资源，比如 `/classes/classId/teachers`：列出某个指定班级的所有老师的信息
 - **表现形式（Representational）**："资源"是一种信息实体，它可以有多种外在表现形式。我们把"资源"具体呈现出来的形式比如 json，xml，image,txt 等等叫做它的"表现层/表现形式"。
 - **状态转移（State Transfer）** ：大家第一眼看到这个词语一定会很懵逼？内心 BB：这尼玛是啥啊？ 大白话来说 REST 中的状态转移更多地描述的服务器端资源的状态，比如你通过增删改查（通过 HTTP 动词实现）引起资源状态的改变。ps:互联网通信协议 HTTP 协议，是一个无状态协议，所有的资源状态都保存在服务器端。
 
@@ -31,10 +31,10 @@ REST,即 **REpresentational State Transfer** 的缩写。这个词组的翻译�
 
 #### 1、动作
 
-- GET ：请求从服务器获取特定资源。举个例子：`GET /classs`（获取所有班级）
-- POST ：在服务器上创建一个新的资源。举个例子：`POST /classs`（创建班级）
-- PUT ：更新服务器上的资源（客户端提供更新后的整个资源）。举个例子：`PUT /classs/12`（更新编号为 12 的班级）
-- DELETE ：从服务器删除特定的资源。举个例子：`DELETE /classs/12`（删除编号为 12 的班级）
+- GET ：请求从服务器获取特定资源。举个例子：`GET /classes`（获取所有班级）
+- POST ：在服务器上创建一个新的资源。举个例子：`POST /classes`（创建班级）
+- PUT ：更新服务器上的资源（客户端提供更新后的整个资源）。举个例子：`PUT /classes/12`（更新编号为 12 的班级）
+- DELETE ：从服务器删除特定的资源。举个例子：`DELETE /classes/12`（删除编号为 12 的班级）
 - PATCH ：更新服务器上的资源（客户端提供更改的属性，可以看做作是部分更新），使用的比较少，这里就不举例子了。
 
 #### 2、路径（接口命名）
@@ -49,23 +49,23 @@ Talk is cheap！来举个实际的例子来说明一下吧！现在有这样一�
 **接口尽量使用名词，禁止使用动词。** 下面是一些例子：
 
 ```
-GET    /classs：列出所有班级
-POST   /classs：新建一个班级
-GET    /classs/classId：获取某个指定班级的信息
-PUT    /classs/classId：更新某个指定班级的信息（一般倾向整体更新）
-PATCH  /classs/classId：更新某个指定班级的信息（一般倾向部分更新）
-DELETE /classs/classId：删除某个班级
-GET    /classs/classId/teachers：列出某个指定班级的所有老师的信息
-GET    /classs/classId/students：列出某个指定班级的所有学生的信息
-DELETE classs/classId/teachers/ID：删除某个指定班级下的指定的老师的信息
+GET    /classes：列出所有班级
+POST   /classes：新建一个班级
+GET    /classes/classId：获取某个指定班级的信息
+PUT    /classes/classId：更新某个指定班级的信息（一般倾向整体更新）
+PATCH  /classes/classId：更新某个指定班级的信息（一般倾向部分更新）
+DELETE /classes/classId：删除某个班级
+GET    /classes/classId/teachers：列出某个指定班级的所有老师的信息
+GET    /classes/classId/students：列出某个指定班级的所有学生的信息
+DELETE classes/classId/teachers/ID：删除某个指定班级下的指定的老师的信息
 ```
 
 反例：
 
 ```
-/getAllclasss
+/getAllclasses
 /createNewclass
-/deleteAllActiveclasss
+/deleteAllActiveclasses
 ```
 
 理清资源的层次结构，比如业务针对的范围是学校，那么学校会是一级资源:`/schools`，老师: `/schools/teachers`，学生: `/schools/students` 就是二级资源。
@@ -75,13 +75,13 @@ DELETE classs/classId/teachers/ID：删除某个指定班级下的指定的老�
 如果我们在查询的时候需要添加特定条件的话，建议使用 url 参数的形式。比如我们要查询 state 状态为 active 并且 name 为 guidegege 的班级：
 
 ```
-GET    /classs?state=active&name=guidegege
+GET    /classes?state=active&name=guidegege
 ```
 
 比如我们要实现分页查询：
 
 ```
-GET    /classs?page=1&size=10 //指定第1页，每页10个数据
+GET    /classes?page=1&size=10 //指定第1页，每页10个数据
 ```
 
 #### 4、状态码（Status Codes）
@@ -107,9 +107,9 @@ GET    /classs?page=1&size=10 //指定第1页，每页10个数据
 
 ```javascript
 {"link": {
-  "rel":   "collection https://www.example.com/classs",
-  "href":  "https://api.example.com/classs",
-  "title": "List of classs",
+  "rel":   "collection https://www.example.com/classes",
+  "href":  "https://api.example.com/classes",
+  "title": "List of classes",
   "type":  "application/vnd.yourformat+json"
 }}
 ```
