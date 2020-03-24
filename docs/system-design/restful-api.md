@@ -1,21 +1,21 @@
-RestFul API 是每个程序员都应该了解并掌握的基本知识，我们在开发过程中设计 API 的时候也应该至少要满足 RestFul API 的最基本的要求（比如接口中尽量使用名词，使用 POST 请求创建资源，DELETE 请求删除资源等等，示例：`GET /notes/id`：获取某个指定 id 的笔记的信息）。
+RESTful API 是每个程序员都应该了解并掌握的基本知识，我们在开发过程中设计 API 的时候也应该至少要满足 RESTful API 的最基本的要求（比如接口中尽量使用名词，使用 POST 请求创建资源，DELETE 请求删除资源等等，示例：`GET /notes/id`：获取某个指定 id 的笔记的信息）。
 
-如果你看 RestFul API 相关的文章的话一般都比较晦涩难懂，包括我下面的文章也会提到一些概念性的东西。但是，实际上我们平时开发用到的 RestFul API 的知识非常简单也很容易概括！举个例子,如果我给你下面两个 url 你是不是立马能知道它们是干什么的！这就是 RestFul API 的强大之处！
+如果你看 RESTful API 相关的文章的话一般都比较晦涩难懂，包括我下面的文章也会提到一些概念性的东西。但是，实际上我们平时开发用到的 RESTful API 的知识非常简单也很容易概括！举个例子,如果我给你下面两个 url 你是不是立马能知道它们是干什么的！这就是 RESTful API 的强大之处！
 
-**RestFul API 可以你看到 url + http method 就知道这个 url 是干什么的，让你看到了 http 状态码（status code）就知道请求结果如何。**
+**RESTful API 可以你看到 url + http method 就知道这个 url 是干什么的，让你看到了 http 状态码（status code）就知道请求结果如何。**
 
 ```
 GET    /classes：列出所有班级
 POST   /classes：新建一个班级
 ```
 
-下面的内容只是介绍了我觉得关于 RestFul API 比较重要的一些东西，欢迎补充。
+下面的内容只是介绍了我觉得关于 RESTful API 比较重要的一些东西，欢迎补充。
 
 ### 一、重要概念
 
 REST,即 **REpresentational State Transfer** 的缩写。这个词组的翻译过来就是"表现层状态转化"。这样理解起来甚是晦涩，实际上 REST 的全称是 **Resource Representational State Transfe** ，直白地翻译过来就是 **“资源”在网络传输中以某种“表现形式”进行“状态转移”** 。如果还是不能继续理解，请继续往下看，相信下面的讲解一定能让你理解到底啥是 REST 。
 
-我们分别对上面涉及到的概念进行解读，以便加深理解，不过实际上你不需要搞懂下面这些概念，也能看懂我下一部分要介绍到的内容。不过，为了更好地能跟别人扯扯 “RestFul API”我建议你还是要好好理解一下！
+我们分别对上面涉及到的概念进行解读，以便加深理解，不过实际上你不需要搞懂下面这些概念，也能看懂我下一部分要介绍到的内容。不过，为了更好地能跟别人扯扯 “RESTful API”我建议你还是要好好理解一下！
 
 - **资源（Resource）** ：我们可以把真实的对象数据称为资源。一个资源既可以是一个集合，也可以是单个个体。比如我们的班级 classes 是代表一个集合形式的资源，而特定的 class 代表单个个体资源。每一种资源都有特定的 URI（统一资源定位符）与之对应，如果我们需要获取这个资源，访问这个 URI 就可以了，比如获取特定的班级：`/class/12`。另外，资源也可以包含子资源，比如 `/classes/classId/teachers`：列出某个指定班级的所有老师的信息
 - **表现形式（Representational）**："资源"是一种信息实体，它可以有多种外在表现形式。我们把"资源"具体呈现出来的形式比如 json，xml，image,txt 等等叫做它的"表现层/表现形式"。
@@ -99,7 +99,7 @@ GET    /classes?page=1&size=10 //指定第1页，每页10个数据
 
 ### 三 HATEOAS
 
-> **RestFul 的极致是 hateoas ，但是这个基本不会在实际项目中用到。**
+> **RESTful 的极致是 hateoas ，但是这个基本不会在实际项目中用到。**
 
 上面是 RESTful API 最基本的东西，也是我们平时开发过程中最容易实践到的。实际上，RESTful API 最好做到 Hypermedia，即返回结果中提供链接，连向其他 API 方法，使得用户不查文档，也知道下一步应该做什么。
 
@@ -120,13 +120,13 @@ GET    /classes?page=1&size=10 //指定第1页，每页10个数据
 
 ### 文章推荐
 
-**RestFul API 介绍：**
+**RESTful API 介绍：**
 
-- [RestFul API Tutorial](https://restfulapi.net/)
-- [RestFul API 最佳指南](http://www.ruanyifeng.com/blog/2014/05/restful_api.html)（阮一峰，这篇文章大部分内容来源）
+- [RESTful API Tutorial](https://RESTfulapi.net/)
+- [RESTful API 最佳指南](http://www.ruanyifeng.com/blog/2014/05/RESTful_api.html)（阮一峰，这篇文章大部分内容来源）
 - [[译] RESTful API 设计最佳实践](https://juejin.im/entry/59e460c951882542f578f2f0)
 - [那些年，我们一起误解过的 REST](https://segmentfault.com/a/1190000016313947)
-- [Testing RESTful Services in Java: Best Practices](https://phauer.com/2016/testing-restful-services-java-best-practices/)
+- [Testing RESTful Services in Java: Best Practices](https://phauer.com/2016/testing-RESTful-services-java-best-practices/)
 
 **Spring 中使用 HATEOAS：**
 
