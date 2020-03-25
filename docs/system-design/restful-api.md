@@ -42,7 +42,7 @@ REST,即 **REpresentational State Transfer** 的缩写。这个词组的翻译�
 路径又称"终点"（endpoint），表示 API 的具体网址。实际开发中常见的规范如下：
 
 1. **网址中不能有动词，只能有名词，API 中的名词也应该使用复数。** 因为 REST 中的资源往往和数据库中的表对应，而数据库中的表都是同种记录的"集合"（collection）。**如果 API 调用并不涉及资源（如计算，翻译等操作）的话，可以用动词。** 比如：`GET /calculate?param1=11&param2=33`
-2. 不用大写字母，建议不用中杠 - 不用下杠 \_ 比如邀请码写成 `invitation-code`而不是 ~~invitation_code~~
+2. 不用大写字母，建议用中杠 - 不用下杠 \_ 比如邀请码写成 `invitation-code`而不是 ~~invitation_code~~
 
 Talk is cheap！来举个实际的例子来说明一下吧！现在有这样一个 API 提供班级（class）的信息，还包括班级中的学生和教师的信息，则它的路径应该设计成下面这样。
 
