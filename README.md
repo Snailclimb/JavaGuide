@@ -155,12 +155,12 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 
 ## 操作系统
 
-操作系统相关概念总结
+[最硬核的操作系统常见面试题总结！](docs/operating-system/basis.md)
 
 ### Linux
 
-* [后端程序员必备的 Linux 基础知识](docs/operating-system/后端程序员必备的Linux基础知识.md)  
-* [Shell 编程入门](docs/operating-system/Shell.md) 
+* [后端程序员必备的 Linux 基础知识](docs/operating-system/linux.md)  
+* [Shell 编程入门](docs/operating-system/shell.md) 
 
 ## 数据结构与算法
 
