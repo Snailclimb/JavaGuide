@@ -1,3 +1,7 @@
+![bd4442aed16acafc54c7943d34abff0edadfa74c](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/bd4442aed16acafc54c7943d34abff0edadfa74c.png)
+
+大家好我是 Guide 哥！这是我的第 **210** 篇优质原创！这篇文章主要分享了后端程序员必备的 RestFul API 相关的知识。
+
 RESTful API 是每个程序员都应该了解并掌握的基本知识，我们在开发过程中设计 API 的时候也应该至少要满足 RESTful API 的最基本的要求（比如接口中尽量使用名词，使用 POST 请求创建资源，DELETE 请求删除资源等等，示例：`GET /notes/id`：获取某个指定 id 的笔记的信息）。
 
 如果你看 RESTful API 相关的文章的话一般都比较晦涩难懂，包括我下面的文章也会提到一些概念性的东西。但是，实际上我们平时开发用到的 RESTful API 的知识非常简单也很容易概括！举个例子,如果我给你下面两个 url 你是不是立马能知道它们是干什么的！这就是 RESTful API 的强大之处！
