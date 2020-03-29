@@ -155,7 +155,7 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 
 ## 操作系统
 
-[最硬核的操作系统常见面试题总结！](docs/operating-system/basis.md)
+[最硬核的操作系统常见问题总结！](docs/operating-system/basis.md)
 
 ### Linux
 
