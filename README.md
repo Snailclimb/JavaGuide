@@ -158,7 +158,7 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 ### Linux
 
 * [后端程序员必备的 Linux 基础知识](docs/operating-system/linux.md)  
-* [Shell 编程入门](docs/operating-system/shell.md) 
+* [Shell 编程入门](docs/operating-system/Shell.md) 
 
 ## 数据结构与算法
 
