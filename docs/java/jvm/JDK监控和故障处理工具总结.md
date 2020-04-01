@@ -1,3 +1,5 @@
+点击关注[公众号](#公众号)及时获取笔主最新更新文章，并可免费领取本文档配套的《Java面试突击》以及Java工程师必备学习资源。
+
 <!-- TOC -->
 
 - [JDK 监控和故障处理工具总结](#jdk-监控和故障处理工具总结)
@@ -332,4 +334,4 @@ VisualVM 提供在 Java 虚拟机 (Java Virutal Machine, JVM) 上运行的 Java 
 
 **Java工程师必备学习资源:** 一些Java工程师常用学习资源公众号后台回复关键字 **“1”** 即可免费无套路获取。 
 
-![我的公众号](https://user-gold-cdn.xitu.io/2018/11/28/167598cd2e17b8ec?w=258&h=258&f=jpeg&s=27334)
+![我的公众号](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/167598cd2e17b8ec.png)

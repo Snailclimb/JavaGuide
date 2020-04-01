@@ -1,6 +1,8 @@
+点击关注[公众号](#公众号)及时获取笔主最新更新文章，并可免费领取本文档配套的《Java面试突击》以及Java工程师必备学习资源。
+
 <!-- TOC -->
 
-- [剖析面试最常见问题之Java基础知识](#剖析面试最常见问题之java基础知识)
+- [剖析面试最常见问题之Java集合框架](#剖析面试最常见问题之java集合框架)
     - [说说List,Set,Map三者的区别？](#说说listsetmap三者的区别)
     - [Arraylist 与 LinkedList 区别?](#arraylist-与-linkedlist-区别)
         - [补充内容:RandomAccess接口](#补充内容randomaccess接口)
@@ -31,7 +33,7 @@
 
 <!-- /TOC -->
 
-# 剖析面试最常见问题之Java基础知识
+# 剖析面试最常见问题之Java集合框架
 
 ## 说说List,Set,Map三者的区别？
 
@@ -41,28 +43,28 @@
 
 ## Arraylist 与 LinkedList 区别?
 
-- **1. 是否保证线程安全：** ArrayList 和 LinkedList 都是不同步的，也就是不保证线程安全；
+- **1. 是否保证线程安全：** `ArrayList` 和 `LinkedList` 都是不同步的，也就是不保证线程安全；
 
-- **2. 底层数据结构：** Arraylist 底层使用的是Object数组；LinkedList 底层使用的是双向链表数据结构（JDK1.6之前为循环链表，JDK1.7取消了循环。注意双向链表和双向循环链表的区别，下面有介绍到！）
+- **2. 底层数据结构：** `Arraylist` 底层使用的是 **`Object` 数组**；`LinkedList` 底层使用的是 **双向链表** 数据结构（JDK1.6之前为循环链表，JDK1.7取消了循环。注意双向链表和双向循环链表的区别，下面有介绍到！）
 
-- **3. 插入和删除是否受元素位置的影响：** ① **ArrayList 采用数组存储，所以插入和删除元素的时间复杂度受元素位置的影响。** 比如：执行`add(E e) `方法的时候， ArrayList 会默认在将指定的元素追加到此列表的末尾，这种情况时间复杂度就是O(1)。但是如果要在指定位置 i 插入和删除元素的话（`add(int index, E element) `）时间复杂度就为 O(n-i)。因为在进行上述操作的时候集合中第 i 和第 i 个元素之后的(n-i)个元素都要执行向后位/向前移一位的操作。 ② **LinkedList 采用链表存储，所以插入，删除元素时间复杂度不受元素位置的影响，都是近似 O（1）而数组为近似 O（n）。**
+- **3. 插入和删除是否受元素位置的影响：** ① **`ArrayList` 采用数组存储，所以插入和删除元素的时间复杂度受元素位置的影响。** 比如：执行`add(E e) `方法的时候， `ArrayList` 会默认在将指定的元素追加到此列表的末尾，这种情况时间复杂度就是O(1)。但是如果要在指定位置 i 插入和删除元素的话（`add(int index, E element) `）时间复杂度就为 O(n-i)。因为在进行上述操作的时候集合中第 i 和第 i 个元素之后的(n-i)个元素都要执行向后位/向前移一位的操作。 ② **`LinkedList` 采用链表存储，所以对于`add(E e)`方法的插入，删除元素时间复杂度不受元素位置的影响，近似 O(1)，如果是要在指定位置`i`插入和删除元素的话（`(add(int index, E element)`） 时间复杂度近似为`o(n))`因为需要先移动到指定位置再插入。**
 
-- **4. 是否支持快速随机访问：** LinkedList 不支持高效的随机元素访问，而 ArrayList 支持。快速随机访问就是通过元素的序号快速获取元素对象(对应于`get(int index) `方法)。
+- **4. 是否支持快速随机访问：** `LinkedList` 不支持高效的随机元素访问，而 `ArrayList` 支持。快速随机访问就是通过元素的序号快速获取元素对象(对应于`get(int index) `方法)。
 
 - **5. 内存空间占用：** ArrayList的空 间浪费主要体现在在list列表的结尾会预留一定的容量空间，而LinkedList的空间花费则体现在它的每一个元素都需要消耗比ArrayList更多的空间（因为要存放直接后继和直接前驱以及数据）。
 
 ### **补充内容:RandomAccess接口**
 
-```
+```java
 public interface RandomAccess {
 }
 ```
 
-查看源码我们发现实际上 RandomAccess 接口中什么都没有定义。所以，在我看来 RandomAccess 接口不过是一个标识罢了。标识什么？ 标识实现这个接口的类具有随机访问功能。
+查看源码我们发现实际上 `RandomAccess` 接口中什么都没有定义。所以，在我看来 `RandomAccess` 接口不过是一个标识罢了。标识什么？ 标识实现这个接口的类具有随机访问功能。
 
-在binarySearch（）方法中，它要判断传入的list 是否RamdomAccess的实例，如果是，调用indexedBinarySearch（）方法，如果不是，那么调用iteratorBinarySearch（）方法
+在 `binarySearch（)` 方法中，它要判断传入的list 是否 `RamdomAccess` 的实例，如果是，调用`indexedBinarySearch()`方法，如果不是，那么调用`iteratorBinarySearch()`方法
 
-```
+```java
     public static <T>
     int binarySearch(List<? extends Comparable<? super T>> list, T key) {
         if (list instanceof RandomAccess || list.size()<BINARYSEARCH_THRESHOLD)
@@ -72,32 +74,32 @@ public interface RandomAccess {
     }
 ```
 
-ArrayList 实现了 RandomAccess 接口， 而 LinkedList 没有实现。为什么呢？我觉得还是和底层数据结构有关！ArrayList 底层是数组，而 LinkedList 底层是链表。数组天然支持随机访问，时间复杂度为 O（1），所以称为快速随机访问。链表需要遍历到特定位置才能访问特定位置的元素，时间复杂度为 O（n），所以不支持快速随机访问。，ArrayList 实现了 RandomAccess 接口，就表明了他具有快速随机访问功能。 RandomAccess 接口只是标识，并不是说 ArrayList 实现 RandomAccess 接口才具有快速随机访问功能的！
+`ArrayList` 实现了 `RandomAccess` 接口， 而 `LinkedList` 没有实现。为什么呢？我觉得还是和底层数据结构有关！`ArrayList` 底层是数组，而 `LinkedList` 底层是链表。数组天然支持随机访问，时间复杂度为 O(1)，所以称为快速随机访问。链表需要遍历到特定位置才能访问特定位置的元素，时间复杂度为 O(n)，所以不支持快速随机访问。，`ArrayList` 实现了 `RandomAccess` 接口，就表明了他具有快速随机访问功能。 `RandomAccess` 接口只是标识，并不是说 `ArrayList` 实现 `RandomAccess` 接口才具有快速随机访问功能的！
 
 **下面再总结一下 list 的遍历方式选择：**
 
-- 实现了RandomAccess接口的list，优先选择普通for循环 ，其次foreach,
-- 未实现RandomAccess接口的list，优先选择iterator遍历（foreach遍历底层也是通过iterator实现的），大size的数据，千万不要使用普通for循环
+- 实现了 `RandomAccess` 接口的list，优先选择普通 for 循环 ，其次 foreach,
+- 未实现 `RandomAccess`接口的list，优先选择iterator遍历（foreach遍历底层也是通过iterator实现的），大size的数据，千万不要使用普通for循环
 
 ### 补充内容:双向链表和双向循环链表
 
-**双向链表：** 包含两个指针，一个prev指向前一个节点，一个next指向后一个节点。 
+**双向链表：** 包含两个指针，一个prev指向前一个节点，一个next指向后一个节点。
 
-![双向链表](https://ws1.sinaimg.cn/large/006rNwoDgy1g2dp8qi5xij30fk06idgj.jpg)
+![双向链表](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/双向链表.png)
 
-**双向循环链表：** 最后一个节点的 next 指向head，而 head 的prev指向最后一个节点，构成一个环。 
+**双向循环链表：** 最后一个节点的 next 指向head，而 head 的prev指向最后一个节点，构成一个环。
 
-![双向循环链表](https://ws1.sinaimg.cn/large/006rNwoDgy1g2dp8a1hxej30eu06zgmd.jpg)
+![双向循环链表](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/双向循环链表.png)
 
 ## ArrayList 与 Vector 区别呢?为什么要用Arraylist取代Vector呢？
 
-Vector类的所有方法都是同步的。可以由两个线程安全地访问一个Vector对象、但是一个线程访问Vector的话代码要在同步操作上耗费大量的时间。
+`Vector`类的所有方法都是同步的。可以由两个线程安全地访问一个Vector对象、但是一个线程访问Vector的话代码要在同步操作上耗费大量的时间。
 
-Arraylist不是同步的，所以在不需要保证线程安全时时建议使用Arraylist。
+`Arraylist`不是同步的，所以在不需要保证线程安全时建议使用Arraylist。
 
 ## 说一说 ArrayList 的扩容机制吧
 
-详见笔主的这篇文章:[通过源码一步一步分析ArrayList 扩容机制](ArrayList-Grow.md)
+详见笔主的这篇文章:[通过源码一步一步分析ArrayList 扩容机制](https://github.com/Snailclimb/JavaGuide/blob/master/docs/java/collection/ArrayList-Grow.md)
 
 ## HashMap 和 Hashtable 的区别
 
@@ -105,9 +107,9 @@ Arraylist不是同步的，所以在不需要保证线程安全时时建议使�
 2. **效率：** 因为线程安全的问题，HashMap 要比 HashTable 效率高一点。另外，HashTable 基本被淘汰，不要在代码中使用它；
 3. **对Null key 和Null value的支持：** HashMap 中，null 可以作为键，这样的键只有一个，可以有一个或多个键所对应的值为 null。。但是在 HashTable 中 put 进的键值只要有一个 null，直接抛出 NullPointerException。
 4. **初始容量大小和每次扩充容量大小的不同 ：** ①创建时如果不指定容量初始值，Hashtable 默认的初始大小为11，之后每次扩充，容量变为原来的2n+1。HashMap 默认的初始化大小为16。之后每次扩充，容量变为原来的2倍。②创建时如果给定了容量初始值，那么 Hashtable 会直接使用你给定的大小，而 HashMap 会将其扩充为2的幂次方大小（HashMap 中的`tableSizeFor()`方法保证，下面给出了源代码）。也就是说 HashMap 总是使用2的幂作为哈希表的大小,后面会介绍到为什么是2的幂次方。
-5. **底层数据结构：** JDK1.8 以后的 HashMap 在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为8）时，将链表转化为红黑树，以减少搜索时间。Hashtable 没有这样的机制。
+5. **底层数据结构：** JDK1.8 以后的 HashMap 在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为8）（将链表转换成红黑树前会判断，如果当前数组的长度小于 64，那么会选择先进行数组扩容，而不是转换为红黑树）时，将链表转化为红黑树，以减少搜索时间。Hashtable 没有这样的机制。
 
-**HasMap 中带有初始容量的构造函数：**
+**HashMap 中带有初始容量的构造函数：**
 
 ```java
     public HashMap(int initialCapacity, float loadFactor) {
@@ -146,20 +148,20 @@ Arraylist不是同步的，所以在不需要保证线程安全时时建议使�
 
 ## HashMap 和 HashSet区别
 
-如果你看过 HashSet 源码的话就应该知道：HashSet 底层就是基于 HashMap 实现的。（HashSet 的源码非常非常少，因为除了 `clone() `、`writeObject()`、`readObject()`是 HashSet 自己不得不实现之外，其他方法都是直接调用 HashMap 中的方法。
+如果你看过 `HashSet` 源码的话就应该知道：HashSet 底层就是基于 HashMap 实现的。（HashSet 的源码非常非常少，因为除了 `clone() `、`writeObject()`、`readObject()`是 HashSet 自己不得不实现之外，其他方法都是直接调用 HashMap 中的方法。
 
 |             HashMap              |                           HashSet                            |
 | :------------------------------: | :----------------------------------------------------------: |
 |          实现了Map接口           |                         实现Set接口                          |
 |            存储键值对            |                          仅存储对象                          |
-|  调用 `put（）`向map中添加元素   |              调用 `add（）`方法向Set中添加元素               |
+|  调用 `put()`向map中添加元素   |              调用 `add()`方法向Set中添加元素               |
 | HashMap使用键（Key）计算Hashcode | HashSet使用成员对象来计算hashcode值，对于两个对象来说hashcode可能相同，所以equals()方法用来判断对象的相等性， |
 
 ## HashSet如何检查重复
 
-当你把对象加入HashSet时，HashSet会先计算对象的hashcode值来判断对象加入的位置，同时也会与其他加入的对象的hashcode值作比较，如果没有相符的hashcode，HashSet会假设对象没有重复出现。但是如果发现有相同hashcode值的对象，这时会调用equals（）方法来检查hashcode相等的对象是否真的相同。如果两者相同，HashSet就不会让加入操作成功。（摘自我的Java启蒙书《Head fist java》第二版）
+当你把对象加入`HashSet`时，HashSet会先计算对象的`hashcode`值来判断对象加入的位置，同时也会与其他加入的对象的hashcode值作比较，如果没有相符的hashcode，HashSet会假设对象没有重复出现。但是如果发现有相同hashcode值的对象，这时会调用`equals()`方法来检查hashcode相等的对象是否真的相同。如果两者相同，HashSet就不会让加入操作成功。（摘自我的Java启蒙书《Head fist java》第二版）
 
-**hashCode（）与equals（）的相关规定：**
+**hashCode()与equals()的相关规定：**
 
 1. 如果两个对象相等，则hashcode一定也是相同的
 2. 两个对象相等,对两个equals方法返回true
@@ -177,7 +179,7 @@ Arraylist不是同步的，所以在不需要保证线程安全时时建议使�
 
 ### JDK1.8之前
 
-JDK1.8 之前 HashMap 底层是 **数组和链表** 结合在一起使用也就是 **链表散列**。**HashMap 通过 key 的 hashCode 经过扰动函数处理过后得到 hash 值，然后通过 (n - 1) & hash 判断当前元素存放的位置（这里的 n 指的是数组的长度），如果当前位置存在元素的话，就判断该元素与要存入的元素的 hash 值以及 key 是否相同，如果相同的话，直接覆盖，不相同就通过拉链法解决冲突。**
+JDK1.8 之前 `HashMap` 底层是 **数组和链表** 结合在一起使用也就是 **链表散列**。**HashMap 通过 key 的 hashCode 经过扰动函数处理过后得到 hash 值，然后通过 (n - 1) & hash 判断当前元素存放的位置（这里的 n 指的是数组的长度），如果当前位置存在元素的话，就判断该元素与要存入的元素的 hash 值以及 key 是否相同，如果相同的话，直接覆盖，不相同就通过拉链法解决冲突。**
 
 **所谓扰动函数指的就是 HashMap 的 hash 方法。使用 hash 方法也就是扰动函数是为了防止一些实现比较差的 hashCode() 方法 换句话说使用扰动函数之后可以减少碰撞。**
 
@@ -185,7 +187,7 @@ JDK1.8 之前 HashMap 底层是 **数组和链表** 结合在一起使用也就�
 
 JDK 1.8 的 hash方法 相比于 JDK 1.7 hash 方法更加简化，但是原理不变。
 
-```
+```java
     static final int hash(Object key) {
       int h;
       // key.hashCode()：返回散列值也就是hashcode
@@ -197,7 +199,7 @@ JDK 1.8 的 hash方法 相比于 JDK 1.7 hash 方法更加简化，但是原理�
 
 对比一下 JDK1.7的 HashMap 的 hash 方法源码.
 
-```
+```java
 static int hash(int h) {
     // This function ensures that hashCodes that differ only by
     // constant multiples at each bit position have a bounded
@@ -212,13 +214,13 @@ static int hash(int h) {
 
 所谓 **“拉链法”** 就是：将链表和数组相结合。也就是说创建一个链表数组，数组中每一格就是一个链表。若遇到哈希冲突，则将冲突的值加到链表中即可。
 
-[![jdk1.8之前的内部结构](https://camo.githubusercontent.com/eec1c575aa5ff57906dd9c9130ec7a82e212c96a/68747470733a2f2f757365722d676f6c642d63646e2e786974752e696f2f323031382f332f32302f313632343064626363333033643837323f773d33343826683d34323726663d706e6726733d3130393931)](https://camo.githubusercontent.com/eec1c575aa5ff57906dd9c9130ec7a82e212c96a/68747470733a2f2f757365722d676f6c642d63646e2e786974752e696f2f323031382f332f32302f313632343064626363333033643837323f773d33343826683d34323726663d706e6726733d3130393931)
+![jdk1.8之前的内部结构-HashMap](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/jdk1.8之前的内部结构-HashMap.jpg)
 
 ### JDK1.8之后
 
-相比于之前的版本， JDK1.8之后在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为8）时，将链表转化为红黑树，以减少搜索时间。
+相比于之前的版本， JDK1.8之后在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为8）（将链表转换成红黑树前会判断，如果当前数组的长度小于 64，那么会选择先进行数组扩容，而不是转换为红黑树）时，将链表转化为红黑树，以减少搜索时间。
 
-[![JDK1.8之后的HashMap底层数据结构](https://camo.githubusercontent.com/20de7e465cac279842851258ec4d1ec1c4d3d7d1/687474703a2f2f6d792d626c6f672d746f2d7573652e6f73732d636e2d6265696a696e672e616c6979756e63732e636f6d2f31382d382d32322f36373233333736342e6a7067)](https://camo.githubusercontent.com/20de7e465cac279842851258ec4d1ec1c4d3d7d1/687474703a2f2f6d792d626c6f672d746f2d7573652e6f73732d636e2d6265696a696e672e616c6979756e63732e636f6d2f31382d382d32322f36373233333736342e6a7067)
+![jdk1.8之后的内部结构-HashMap](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/JDK1.8之后的HashMap底层数据结构.jpg)
 
 > TreeMap、TreeSet以及JDK1.8之后的HashMap底层都用到了红黑树。红黑树就是为了解决二叉查找树的缺陷，因为二叉查找树在某些情况下会退化成一个线性结构。
 
@@ -236,7 +238,7 @@ static int hash(int h) {
 
 ## HashMap 多线程操作导致死循环问题
 
-主要原因在于 并发下的Rehash 会造成元素之间会形成一个循环链表。不过，jdk 1.8 后解决了这个问题，但是还是不建议在多线程下使用 HashMap,因为多线程下使用 HashMap 还是会存在其他问题比如数据丢失。并发环境下推荐使用 ConcurrentHashMap 。
+主要原因在于并发下的Rehash 会造成元素之间会形成一个循环链表。不过，jdk 1.8 后解决了这个问题，但是还是不建议在多线程下使用 HashMap,因为多线程下使用 HashMap 还是会存在其他问题比如数据丢失。并发环境下推荐使用 ConcurrentHashMap 。
 
 详情请查看：<https://coolshell.cn/articles/9606.html>
 
@@ -251,7 +253,7 @@ ConcurrentHashMap 和 Hashtable 的区别主要体现在实现线程安全的方
 
 图片来源：<http://www.cnblogs.com/chengxiao/p/6842045.html>
 
-**HashTable:** 
+**HashTable:**
 
 ![HashTable全表锁](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/HashTable全表锁.png)
 
@@ -261,7 +263,7 @@ ConcurrentHashMap 和 Hashtable 的区别主要体现在实现线程安全的方
 
 **JDK1.8的ConcurrentHashMap（TreeBin: 红黑二叉树节点 Node: 链表节点）：**
 
-![JDK1.8的ConcurrentHashMap](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/JDK1.8 ConcurrentHashMap.jpg)
+![JDK1.8的ConcurrentHashMap](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/JDK1.8-ConcurrentHashMap-Structure.jpg)
 
 ## ConcurrentHashMap线程安全的具体实现方式/底层具体实现
 
@@ -273,7 +275,7 @@ ConcurrentHashMap 和 Hashtable 的区别主要体现在实现线程安全的方
 
 Segment 实现了 ReentrantLock,所以 Segment 是一种可重入锁，扮演锁的角色。HashEntry 用于存储键值对数据。
 
-```
+```java
 static class Segment<K,V> extends ReentrantLock implements Serializable {
 }
 ```
@@ -282,7 +284,7 @@ static class Segment<K,V> extends ReentrantLock implements Serializable {
 
 ### JDK1.8 （上面有示意图）
 
-ConcurrentHashMap取消了Segment分段锁，采用CAS和synchronized来保证并发安全。数据结构跟HashMap1.8的结构类似，数组+链表/红黑二叉树。Java 8在链表长度超过一定阈值（8）时将链表（寻址时间复杂度为O(N)）转换为红黑树（寻址时间复杂度为O(long(N))）
+ConcurrentHashMap取消了Segment分段锁，采用CAS和synchronized来保证并发安全。数据结构跟HashMap1.8的结构类似，数组+链表/红黑二叉树。Java 8在链表长度超过一定阈值（8）时将链表（寻址时间复杂度为O(N)）转换为红黑树（寻址时间复杂度为O(log(N))）
 
 synchronized只锁定当前链表或红黑二叉树的首节点，这样只要hash不冲突，就不会产生并发，效率又提升N倍。
 
@@ -424,17 +426,17 @@ Output：
 
 - **Arraylist：** Object数组
 - **Vector：** Object数组
-- **LinkedList：** 双向链表(JDK1.6之前为循环链表，JDK1.7取消了循环) 详细可阅读[JDK1.7-LinkedList循环链表优化](https://www.cnblogs.com/xingele0917/p/3696593.html)
+- **LinkedList：** 双向链表(JDK1.6之前为循环链表，JDK1.7取消了循环)
 
 #### 2. Set
 
 - **HashSet（无序，唯一）:** 基于 HashMap 实现的，底层采用 HashMap 来保存元素
-- **LinkedHashSet：** LinkedHashSet 继承与 HashSet，并且其内部是通过 LinkedHashMap 来实现的。有点类似于我们之前说的LinkedHashMap 其内部是基于 Hashmap 实现一样，不过还是有一点点区别的。
-- **TreeSet（有序，唯一）：** 红黑树(自平衡的排序二叉树。)
+- **LinkedHashSet：** LinkedHashSet 继承于 HashSet，并且其内部是通过 LinkedHashMap 来实现的。有点类似于我们之前说的LinkedHashMap 其内部是基于 HashMap 实现一样，不过还是有一点点区别的
+- **TreeSet（有序，唯一）：** 红黑树(自平衡的排序二叉树)
 
 ### Map
 
-- **HashMap：** JDK1.8之前HashMap由数组+链表组成的，数组是HashMap的主体，链表则是主要为了解决哈希冲突而存在的（“拉链法”解决冲突）。JDK1.8以后在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为8）时，将链表转化为红黑树，以减少搜索时间
+- **HashMap：** JDK1.8之前HashMap由数组+链表组成的，数组是HashMap的主体，链表则是主要为了解决哈希冲突而存在的（“拉链法”解决冲突）。JDK1.8以后在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为8）（将链表转换成红黑树前会判断，如果当前数组的长度小于 64，那么会选择先进行数组扩容，而不是转换为红黑树）时，将链表转化为红黑树，以减少搜索时间
 - **LinkedHashMap：** LinkedHashMap 继承自 HashMap，所以它的底层仍然是基于拉链式散列结构即由数组和链表或红黑树组成。另外，LinkedHashMap 在上面结构的基础上，增加了一条双向链表，使得上面的结构可以保持键值对的插入顺序。同时通过对链表进行相应的操作，实现了访问顺序相关逻辑。详细可以查看：[《LinkedHashMap 源码详细分析（JDK1.8）》](https://www.imooc.com/article/22931)
 - **Hashtable：** 数组+链表组成的，数组是 HashMap 的主体，链表则是主要为了解决哈希冲突而存在的
 - **TreeMap：** 红黑树（自平衡的排序二叉树）
@@ -449,6 +451,6 @@ Output：
 
 **《Java面试突击》:** 由本文档衍生的专为面试而生的《Java面试突击》V2.0 PDF 版本[公众号](#公众号)后台回复 **"Java面试突击"** 即可免费领取！
 
-**Java工程师必备学习资源:** 一些Java工程师常用学习资源公众号后台回复关键字 **“1”** 即可免费无套路获取。 
+**Java工程师必备学习资源:** 一些Java工程师常用学习资源公众号后台回复关键字 **“1”** 即可免费无套路获取。
 
-![我的公众号](https://user-gold-cdn.xitu.io/2018/11/28/167598cd2e17b8ec?w=258&h=258&f=jpeg&s=27334)
+![我的公众号](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/167598cd2e17b8ec.png)

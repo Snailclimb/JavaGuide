@@ -145,7 +145,7 @@
     }
 ```
 
-**int newCapacity = oldCapacity + (oldCapacity >> 1),所以 ArrayList 每次扩容之后容量都会变为原来的 1.5 倍！（JDK1.6版本以后）**  JDk1.6版本时，扩容之后容量为 1.5 倍+1！详情请参考源码
+**int newCapacity = oldCapacity + (oldCapacity >> 1),所以 ArrayList 每次扩容之后容量都会变为原来的 1.5 倍左右（oldCapacity为偶数就是1.5倍，否则是1.5倍左右）！**  奇偶不同，比如 ：10+10/2 = 15, 33+33/2=49。如果是奇数的话会丢掉小数.
 
 >   ">>"（移位运算符）：>>1 右移一位相当于除2，右移n位相当于除以 2 的 n 次方。这里 oldCapacity 明显右移了1位所以相当于oldCapacity /2。对于大数据的2进制运算,位移运算符比那些普通运算符的运算要快很多,因为程序仅仅移动一下而已,不去计算,这样提高了效率,节省了资源 　
 
@@ -270,7 +270,6 @@ public class ArrayscopyOfTest {
 10
 ```
 
-
 ### 3.3 两者联系和区别
 
 **联系：** 
@@ -280,8 +279,6 @@ public class ArrayscopyOfTest {
 **区别：**
 
 `arraycopy()` 需要目标数组，将原数组拷贝到你自己定义的数组里或者原数组，而且可以选择拷贝的起点和长度以及放入新数组中的位置 `copyOf()` 是系统自动在内部新建一个数组，并返回该数组。
-
-
 
 ## 四 `ensureCapacity`方法
 
@@ -324,14 +321,6 @@ public class EnsureCapacityTest {
 		long endTime = System.currentTimeMillis();
 		System.out.println("使用ensureCapacity方法前："+(endTime - startTime));
 
-		list = new ArrayList<Object>();
-		long startTime1 = System.currentTimeMillis();
-		list.ensureCapacity(N);
-		for (int i = 0; i < N; i++) {
-			list.add(i);
-		}
-		long endTime1 = System.currentTimeMillis();
-		System.out.println("使用ensureCapacity方法后："+(endTime1 - startTime1));
 	}
 }
 ```
@@ -339,9 +328,31 @@ public class EnsureCapacityTest {
 运行结果：
 
 ```
-使用ensureCapacity方法前：4637
-使用ensureCapacity方法后：241
+使用ensureCapacity方法前：2158
+```
+
+```java
+public class EnsureCapacityTest {
+    public static void main(String[] args) {
+        ArrayList<Object> list = new ArrayList<Object>();
+        final int N = 10000000;
+        list = new ArrayList<Object>();
+        long startTime1 = System.currentTimeMillis();
+        list.ensureCapacity(N);
+        for (int i = 0; i < N; i++) {
+            list.add(i);
+        }
+        long endTime1 = System.currentTimeMillis();
+        System.out.println("使用ensureCapacity方法后："+(endTime1 - startTime1));
+    }
+}
+```
+
+运行结果：
 
 ```
 
-通过运行结果，我们可以很明显的看出向 ArrayList 添加大量元素之前最好先使用`ensureCapacity` 方法，以减少增量重新分配的次数
+使用ensureCapacity方法前：1773
+```
+
+通过运行结果，我们可以看出向 ArrayList 添加大量元素之前最好先使用`ensureCapacity` 方法，以减少增量重新分配的次数。

@@ -1,4 +1,4 @@
-本文来自 Anonymous 的投稿 ，JavaGuide 对原文进行了重新排版和一点完善。
+本文来自 Anonymous 的投稿 ，Guide哥 对原文进行了重新排版和一点完善。
 
 <!-- TOC -->
 
