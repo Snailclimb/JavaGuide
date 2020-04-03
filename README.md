@@ -10,9 +10,6 @@
 更多原创内容和干货分享：
 
 1. [公众号—JavaGuide](#公众号) ： 最新原创文章+免费领取本文档配套的《Java面试突击》以及Java工程师必备学习资源）
-2. [微信](#联系我) ：如果需要和我交流的话可以加我私人微信(ps: 有问题的话也可以问，我会尽量回答大家，我很随和的，哈哈！另外，账号快加满了)
-3. [B站-Guide哥](https://space.bilibili.com/504390397)：（各种干货视频和生活向视频，来个一键三连可好！）
-4.  [知识星球—JavaGuide读者圈](https://javaguide.cn/2019/01/02/chat/%E5%81%9A%E4%BA%86%E4%B8%80%E4%B8%AA%E5%BE%88%E4%B9%85%E6%B2%A1%E6%95%A2%E5%81%9A%E7%9A%84%E4%BA%8B%E6%83%85/)
 
 Github用户如果访问速度缓慢的话，可以转移到[码云](https://gitee.com/SnailClimb/JavaGuide )查看，或者[在线阅读](https://snailclimb.gitee.io/javaguide )。
 
@@ -48,13 +45,14 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 - [网络](#网络)
 - [操作系统](#操作系统)
     - [Linux](#linux)
-- [数据结构与算法](#数据结构与算法)
+- **[数据结构与算法](#数据结构与算法)**
     - [数据结构](#数据结构)
     - [算法](#算法)
 - [数据库](#数据库)
     - [MySQL](#mysql)
     - [Redis](#redis)
 - [系统设计](#系统设计)
+    - [必知](#必知)
     - [常用框架](#常用框架)
         - [Spring](#spring)
         - [SpringBoot](#springboot)
@@ -76,16 +74,14 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
         - [高可用](#高可用)
     - [微服务](#微服务)
         - [Spring Cloud](#spring-cloud)
-- [面试指南](#面试指南)
-- [Java学习常见问题汇总](#java学习常见问题汇总)
-- [工具](#工具)
+- [必会工具](#必会工具)
     - [Git](#git)
     - [Docker](#docker)
-    - [其他](#其他-1)
+- [面试指南](#面试指南)
+- [Java学习常见问题汇总](#java学习常见问题汇总)
 - [资源](#资源)
-    - [书单](#书单)
+    - [书单推荐](#书单推荐)
     - [实战项目推荐](#实战项目推荐)
-    - [Github](#github)
 - [待办](#待办)
 - [说明](#说明)
 
@@ -146,7 +142,7 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 
 1. **I/O** ：[BIO,NIO,AIO 总结 ](docs/java/BIO-NIO-AIO.md)
 2. **Java 8**  ：[Java 8 新特性总结](docs/java/What's%20New%20in%20JDK8/Java8Tutorial.md)、[Java 8 学习资源推荐](docs/java/What's%20New%20in%20JDK8/Java8教程推荐.md)、[Java8 forEach 指南](docs/java/What's%20New%20in%20JDK8/Java8foreach指南.md)
-3.  **[Java 编程规范以及优雅 Java 代码实践总结](docs/java/Java编程规范.md)**
+3.  Java编程规范：**[Java 编程规范以及优雅 Java 代码实践总结](docs/java/Java编程规范.md)** 、[告别编码5分钟，命名2小时！史上最全的Java命名规范参考！](docs/java/java-naming-conventions.md)
 4. 设计模式 :[设计模式系列文章](docs/system-design/设计模式.md)
 
 ## 网络
@@ -157,11 +153,11 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 
 ## 操作系统
 
-操作系统相关概念总结
+[最硬核的操作系统常见问题总结！](docs/operating-system/basis.md)
 
 ### Linux
 
-* [后端程序员必备的 Linux 基础知识](docs/operating-system/后端程序员必备的Linux基础知识.md)  
+* [后端程序员必备的 Linux 基础知识](docs/operating-system/linux.md)  
 * [Shell 编程入门](docs/operating-system/Shell.md) 
 
 ## 数据结构与算法
@@ -173,12 +169,13 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 
 ### 算法
 
-- [算法学习资源推荐](docs/dataStructures-algorithms/算法学习资源推荐.md)  
-- [几道常见的字符串算法题总结 ](docs/dataStructures-algorithms/几道常见的子符串算法题.md)
-- [几道常见的链表算法题总结 ](docs/dataStructures-algorithms/几道常见的链表算法题.md)   
-- [剑指offer部分编程题](docs/dataStructures-algorithms/剑指offer部分编程题.md)
-- [公司真题](docs/dataStructures-algorithms/公司真题.md)
-- [回溯算法经典案例之N皇后问题](docs/dataStructures-algorithms/Backtracking-NQueens.md)
+- [硬核的算法学习书籍+资源推荐](docs/dataStructures-algorithms/算法学习资源推荐.md)  
+- 常见算法问题总结：
+  - [几道常见的字符串算法题总结 ](docs/dataStructures-algorithms/几道常见的子符串算法题.md)
+  - [几道常见的链表算法题总结 ](docs/dataStructures-algorithms/几道常见的链表算法题.md)   
+  - [剑指offer部分编程题](docs/dataStructures-algorithms/剑指offer部分编程题.md)
+  - [公司真题](docs/dataStructures-algorithms/公司真题.md)
+  - [回溯算法经典案例之N皇后问题](docs/dataStructures-algorithms/Backtracking-NQueens.md)
 
 ## 数据库
 
@@ -194,12 +191,24 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 
 ### Redis
 
-* [Redis 总结](docs/database/Redis/Redis.md)
-* [Redlock分布式锁](docs/database/Redis/Redlock分布式锁.md)
-* [如何做可靠的分布式锁，Redlock真的可行么](docs/database/Redis/如何做可靠的分布式锁，Redlock真的可行么.md)
-* [几种常见的 Redis 集群以及使用场景](docs/database/Redis/redis集群以及应用场景.md) 
+* [Redis 常见问题总结](docs/database/Redis/Redis.md)
+* **Redis 系列文章合集：**
+
+  1. [5种基本数据结构](docs/database/Redis/redis-collection/Redis(1)——5种基本数据结构.md)
+  2. [跳跃表](docs/database/Redis/redis-collection/Redis(2)——跳跃表.md)
+  3. [分布式锁深入探究](docs/database/Redis/redis-collection/Redis(3)——分布式锁深入探究.md) 、 [Redlock分布式锁](docs/database/Redis/Redlock分布式锁.md) 、[如何做可靠的分布式锁，Redlock真的可行么](docs/database/Redis/如何做可靠的分布式锁，Redlock真的可行么.md)
+  4. [神奇的HyperLoglog解决统计问题](docs/database/Redis/redis-collection/Reids(4)——神奇的HyperLoglog解决统计问题.md)
+  5. [亿级数据过滤和布隆过滤器](docs/database/Redis/redis-collection/Redis(5)——亿级数据过滤和布隆过滤器.md)
+  6. [GeoHash查找附近的人](docs/database/Redis/redis-collection/Redis(6)——GeoHash查找附近的人.md)
+  7. [持久化](docs/database/Redis/redis-collection/Redis(7)——持久化.md)
+  8. [发布订阅与Stream](docs/database/Redis/redis-collection/Redis(8)——发布订阅与Stream.md)
+  9. [史上最强【集群】入门实践教程](docs/database/Redis/redis-collection/Redis(9)——集群入门实践教程.md)
 
 ## 系统设计
+
+### 必知
+
+1. **[RestFul API 简明教程](docs/system-design/restful-api.md)**
 
 ### 常用框架
 
@@ -326,6 +335,21 @@ SSO(Single Sign On)即单点登录说的是用户登陆多个子系统的其中�
 
 - [ 大白话入门 Spring Cloud](docs/system-design/micro-service/spring-cloud.md)
 
+## 必会工具
+
+### Git
+
+* [Git入门](docs/tools/Git.md)
+
+### Docker
+
+1. [Docker 基本概念解读](docs/tools/Docker.md)
+2. [一文搞懂 Docker 镜像的常用操作！](docs/tools/Docker-Image.md )
+
+### 其他
+
+- [阿里云服务器使用经验](docs/tools/阿里云服务器使用经验.md)
+
 ## 面试指南
 
 > 这部分很多内容比如大厂面经、真实面经分析被移除，详见[完结撒花！JavaGuide面试突击版来啦！](./docs/javaguide面试突击版.md)。
@@ -347,36 +371,23 @@ SSO(Single Sign On)即单点登录说的是用户登陆多个子系统的其中�
 4. [Java 还是大数据，你需要了解这些东西！](docs/questions/java-big-data)
 5. [Java 后台开发/大数据？你需要了解这些东西！](https://articles.zsxq.com/id_wto1iwd5g72o.html)（知识星球）
 
-## 工具
-
-### Git
-
-* [Git入门](docs/tools/Git.md)
-
-### Docker
-
-1. [Docker 基本概念解读](docs/tools/Docker.md)
-2. [一文搞懂 Docker 镜像的常用操作！](docs/tools/Docker-Image.md )
-
-### 其他
-
-- [阿里云服务器使用经验](docs/tools/阿里云服务器使用经验.md)
-
 ## 资源
 
-### 书单
+### 书单推荐
 
-- [Java程序员必备书单](docs/data/java-recommended-books.md)
+- [算法相关](docs/books/alogorithm.md)
+- **[Java程序员必备书单](docs/books/java.md)**
 
 ### 实战项目推荐
 
-- [Github 上热门的 Spring Boot 项目实战推荐](docs/data/spring-boot-practical-projects.md)
+- **[Java、SpringBoot实战项目推荐](https://github.com/Snailclimb/awesome-java#实战项目)**
 
 ### Github
 
+- [Github 上非常棒的 Java 开源项目集合](https://github.com/Snailclimb/awesome-java) 
 - [Github 上 Star 数最多的 10 个项目，看完之后很意外!](docs/tools/github/github-star-ranking.md)
 - [年末将至，值得你关注的16个Java 开源项目！](docs/github-trending/2019-12.md)
-- [Java 项目月榜单](docs/github-trending/JavaGithubTrending.md)
+- [Java 项目历史月榜单](docs/github-trending/JavaGithubTrending.md)
 
 ***
 

@@ -56,15 +56,14 @@ Atomic 翻译成中文是原子的意思。在化学上，我们知道原子是�
 **引用类型**
 
 - AtomicReference：引用类型原子类
-- AtomicReferenceFieldUpdater：原子更新引用类型里的字段
-- AtomicMarkableReference ：原子更新带有标记位的引用类型
+- AtomicMarkableReference：原子更新带有标记的引用类型。该类将 boolean 标记与引用关联起来，~~也可以解决使用 CAS 进行原子更新时可能出现的 ABA 问题。~~
+- AtomicStampedReference ：原子更新带有版本号的引用类型。该类将整数值与引用关联起来，可用于解决原子的更新数据和数据的版本号，可以解决使用 CAS 进行原子更新时可能出现的 ABA 问题。
 
 **对象的属性修改类型**
 
 - AtomicIntegerFieldUpdater:原子更新整型字段的更新器
 - AtomicLongFieldUpdater：原子更新长整型字段的更新器
-- AtomicStampedReference ：原子更新带有版本号的引用类型。该类将整数值与引用关联起来，可用于解决原子的更新数据和数据的版本号，可以解决使用 CAS 进行原子更新时可能出现的 ABA 问题。
-- AtomicMarkableReference：原子更新带有标记的引用类型。该类将 boolean 标记与引用关联起来，~~也可以解决使用 CAS 进行原子更新时可能出现的 ABA 问题。~~
+- AtomicReferenceFieldUpdater：原子更新引用类型里的字段
 
 > 修正: **AtomicMarkableReference 不能解决ABA问题**   **[issue#626](https://github.com/Snailclimb/JavaGuide/issues/626)**
 
@@ -353,8 +352,8 @@ public class AtomicIntegerArrayTest {
 基本类型原子类只能更新一个变量，如果需要原子更新多个变量，需要使用 引用类型原子类。
 
 - AtomicReference：引用类型原子类
-- AtomicStampedReference：原子更新引用类型里的字段原子类
-- AtomicMarkableReference ：原子更新带有标记位的引用类型
+- AtomicStampedReference：原子更新带有版本号的引用类型。该类将整数值与引用关联起来，可用于解决原子的更新数据和数据的版本号，可以解决使用 CAS 进行原子更新时可能出现的 ABA 问题。
+- AtomicMarkableReference ：原子更新带有标记的引用类型。该类将 boolean 标记与引用关联起来，~~也可以解决使用 CAS 进行原子更新时可能出现的 ABA 问题。~~
 
 上面三个类提供的方法几乎相同，所以我们这里以 AtomicReference 为例子来介绍。
 
@@ -535,7 +534,7 @@ currentValue=true, currentMark=true, wCasResult=true
 
 - AtomicIntegerFieldUpdater:原子更新整形字段的更新器
 - AtomicLongFieldUpdater：原子更新长整形字段的更新器
-- AtomicStampedReference ：原子更新带有版本号的引用类型。该类将整数值与引用关联起来，可用于解决原子的更新数据和数据的版本号，可以解决使用 CAS 进行原子更新时可能出现的 ABA 问题。
+- AtomicReferenceFieldUpdater ：原子更新引用类型里的字段的更新器
 
 要想原子地更新对象的属性需要两步。第一步，因为对象的属性修改类型原子类都是抽象类，所以每次使用都必须使用静态方法 newUpdater()创建一个更新器，并且需要设置想要更新的类和属性。第二步，更新的对象属性必须使用 public volatile 修饰符。
 
@@ -591,6 +590,10 @@ class User {
 22
 23
 ```
+
+## Reference
+
+- 《Java并发编程的艺术》
 
 ## 公众号
 
