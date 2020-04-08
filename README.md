@@ -204,7 +204,7 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
   8. [持久化](docs/database/Redis/redis-collection/Redis(7)——持久化.md)
   9. [发布订阅与Stream](docs/database/Redis/redis-collection/Redis(8)——发布订阅与Stream.md)
   10. [史上最强【集群】入门实践教程](docs/database/Redis/redis-collection/Redis(9)——集群入门实践教程.md)
-  10. [Redis数据类型、编码、底层数据结构的关系看这篇](Redis(10)——Redis数据类型、编码、数据结构的关系.md)
+  10. [Redis数据类型、编码、底层数据结构的关系看这篇](docs/database/Redis/redis-collection/Redis(10)——Redis数据类型、编码、数据结构的关系.md)
 
 ## 系统设计
 
