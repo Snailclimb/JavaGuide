@@ -188,10 +188,10 @@ OK
 (nil)
 ```
 
-等价于 `SET` + `EXPIRE` 的 `SETNX` 命令：
+等价于 `SET` + `EXPIRE` 的 `SETEX` 命令：
 
 ```console
-> SETNX key value1
+> SETEX key 5 value1
 ...                # 等待 5s 后获取
 > GET key
 (nil)
@@ -210,8 +210,8 @@ OK
 
 ```console
 > SET counter 100
-> INCR count
-(interger) 101
+> INCR counter
+(integer) 101
 > INCRBY counter 50
 (integer) 151
 ```
