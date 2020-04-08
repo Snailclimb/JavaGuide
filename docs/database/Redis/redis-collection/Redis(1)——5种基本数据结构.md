@@ -35,6 +35,14 @@
 
 **Redis** 有 5 种基础数据结构，它们分别是：**string(字符串)**、**list(列表)**、**hash(字典)**、**set(集合)** 和 **zset(有序集合)**。这 5 种是 Redis 相关知识中最基础、最重要的部分，下面我们结合源码以及一些实践来给大家分别讲解一下。
 
+注意：
+
+> 每种数据结构都有自己底层的内部编码实现，而且是多种实现，这样Redis会在合适的场景选择合适的内部编码。
+>
+> 可以看到每种数据结构都有两种以上的内部编码实现，例如string数据结构就包含了raw、int和embstr三种内部编码。
+>
+> 同时，有些内部编码可以作为多种外部数据结构的内部实现，例如ziplist就是hash、list和zset共有的内部编码。
+
 ## 1）字符串 string
 
 Redis 中的字符串是一种 **动态字符串**，这意味着使用者可以修改，它的底层实现有点类似于 Java 中的 **ArrayList**，有一个字符数组，从源码的 **sds.h/sdshdr 文件** 中可以看到 Redis 底层对于字符串的定义 **SDS**，即 *Simple Dynamic String* 结构：
@@ -376,7 +384,7 @@ typedef struct dictEntry {
 
 hash 也有缺点，hash 结构的存储消耗要高于单个字符串，所以到底该使用 hash 还是字符串，需要根据实际情况再三权衡：
 
-```console
+```shell
 > HSET books java "think in java"    # 命令行的字符串如果包含空格则需要使用引号包裹
 (integer) 1
 > HSET books python "python cookbook"
@@ -402,7 +410,7 @@ Redis 的集合相当于 Java 语言中的 **HashSet**，它内部的键值对�
 
 由于该结构比较简单，我们直接来看看是如何使用的：
 
-```console
+```shell
 > SADD books java
 (integer) 1
 > SADD books java    # 重复
@@ -483,9 +491,18 @@ Redis 的集合相当于 Java 语言中的 **HashSet**，它内部的键值对�
 
 # 扩展/相关阅读
 
+### 优秀文章
+
 1. 阿里云 Redis 开发规范 - [https://www.infoq.cn/article/K7dB5AFKI9mr5Ugbs_px](https://www.infoq.cn/article/K7dB5AFKI9mr5Ugbs_px)
 2. 为什么要防止 bigkey？ - [https://mp.weixin.qq.com/s?__biz=Mzg2NTEyNzE0OA==&mid=2247483677&idx=1&sn=5c320b46f0e06ce9369a29909d62b401&chksm=ce5f9e9ef928178834021b6f9b939550ac400abae5c31e1933bafca2f16b23d028cc51813aec&scene=21#wechat_redirect](https://mp.weixin.qq.com/s?__biz=Mzg2NTEyNzE0OA==&mid=2247483677&idx=1&sn=5c320b46f0e06ce9369a29909d62b401&chksm=ce5f9e9ef928178834021b6f9b939550ac400abae5c31e1933bafca2f16b23d028cc51813aec&scene=21#wechat_redirect)
 3. Redis【入门】就这一篇！ - [https://www.wmyskxz.com/2018/05/31/redis-ru-men-jiu-zhe-yi-pian/](https://www.wmyskxz.com/2018/05/31/redis-ru-men-jiu-zhe-yi-pian/)
+
+#### Redis数据结构源码分析
+
+1. Redis 数据结构-字符串源码分析：[https://my.oschina.net/mengyuankan/blog/1926320](https://my.oschina.net/mengyuankan/blog/1926320)
+2. Redis 数据结构-字典源码分析： [https://my.oschina.net/mengyuankan/blog/1929593](https://my.oschina.net/mengyuankan/blog/1929593)
+
+
 
 # 参考资料
 
