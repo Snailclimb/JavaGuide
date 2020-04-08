@@ -217,9 +217,7 @@ __list列表,它是简单的字符串列表，你可以添加一个元素到列�
   2) "start"
   3) "hello"
   ```
-
   + lset ：替换指定下标的元素
-
   ```shell
   127.0.0.1:6379> lrange list1 0 -1
   1) "a"
@@ -230,11 +228,9 @@ __list列表,它是简单的字符串列表，你可以添加一个元素到列�
   1) "v"
   2) "b"
   ```
-
   + lrm : 删除元素，返回删除的个数
-
   ```shell
-127.0.0.1:6379> lrange list1 0 -1
+  127.0.0.1:6379> lrange list1 0 -1
   1) "b"
   2) "b"
   3) "a"
@@ -277,13 +273,13 @@ __Redis中集合SET相当于Java中的HashSet，内部的键值对是无序的�
       + 集合对象中的所有元素都是整数
       + 集合对象所有元素数量不超过512   
 
-+ 命令
++ 常用命令
 
   +  sadd 向集合中添加元素 （set不允许元素重复）
   +  smembers 查看集合中的元素
 
   ```shell
-   127.0.0.1:6379> sadd set1 aaa
+  127.0.0.1:6379> sadd set1 aaa
   (integer) 1
   127.0.0.1:6379> sadd set1 bbb
   (integer) 1
@@ -296,11 +292,12 @@ __Redis中集合SET相当于Java中的HashSet，内部的键值对是无序的�
   ```
 
   + srem 删除集合元素
-+ spop 随机返回删除的key
+  + spop 随机返回删除的key
+  
   + sdiff 返回两个集合的不同元素 （哪个集合在前就以哪个集合为标准）
   
   ```shell
-127.0.0.1:6379> smembers set1
+  127.0.0.1:6379> smembers set1
   1) "ccc"
   2) "bbb"
   127.0.0.1:6379> smembers set2
@@ -315,30 +312,30 @@ __Redis中集合SET相当于Java中的HashSet，内部的键值对是无序的�
   ```
   
   + sinter 返回两个集合的交集
-+ sinterstore 返回交集结果，存入目标集合
+  + sinterstore 返回交集结果，存入目标集合
   
   ```shell
-127.0.0.1:6379> sinterstore set3 set1 set2
+  127.0.0.1:6379> sinterstore set3 set1 set2
   (integer) 1
   127.0.0.1:6379> smembers set3
   1) "bbb"
   ```
   
   + sunion  取两个集合的并集
-+ sunionstore  取两个集合的并集，并存入目标集合
+  + sunionstore  取两个集合的并集，并存入目标集合
+  
   + smove 将一个集合中的元素移动到另一个集合中
   + scard 返回集合中的元素个数
   + sismember 判断某元素是否存在某集合中，0代表否 1代表是
   + srandmember 随机返回一个元素
   
   ```shell
-127.0.0.1:6379> srandmember set1 1
+  127.0.0.1:6379> srandmember set1 1
   1) "bbb"
   127.0.0.1:6379> srandmember set1 2
   1) "ccc"
   2) "bbb"
   ```
-  
 + 应用场景
 
   + 对于 set 数据类型，由于底层是字典实现的，查找元素特别快，另外set 数据类型不允许重复，利用这两个特性我们可以进行全局去重，比如在用户注册模块，判断用户名是否注册；微信点赞，微信抽奖小程序
