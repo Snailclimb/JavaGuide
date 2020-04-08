@@ -5,7 +5,7 @@ Redis构建了自己的类型系统，主要包括
 + redisObject对象
 + 基于redisObject对象的类型检查
 + 基于redisObject对象的显示多态函数
-+ 对redisObject进行分配、共享和销毁的机智
++ 对redisObject进行分配、共享和销毁的机制
 
 __C语言不是面向对象语言，这里将redisObject称呼为对象是为了讲述方便，让里面的内容更容易被理解，redisObject其实是一个结构体。__
 
@@ -49,7 +49,7 @@ typedef struct redisObject{
 
 ### 命令的类型检查和多态
 
-#### 命令分类
+#### Redis命令分类
 
 + 一种是只能用于对应数据类型的命令，例如LPUSH和LLEN只能用于列表键， SADD 和 SRANDMEMBER只能用于集合键。
 + 另一种是可以用于任何类型键的命令。比如TTL。
@@ -76,22 +76,25 @@ __string 是最常用的一种数据类型，普通的key/value存储都可以�
   + embstr编码
     + 保存长度小于44字节的字符串
 
- <font color="red">int用来保存整数值，raw用来保存长字符串，embstr用来保存短字符串。embstr编码是用来专门保存短字符串的一种优化编码</font>  
+ <font color="red">int用来保存整数值，raw用来保存长字符串，embstr用来保存短字符串。embstr编码是用来专门保存短字符串的一种优化编码。</font>  
 
  <font color="red">Redis中对于浮点型也是作为字符串保存的，在需要时再将其转换成浮点数类型</font> 
-<font color="red">编码的转换：1.当 int 编码保存的值不再是整数，或大小超过了long的范围时，自动转化为raw 2.对于 embstr 编码，由于 Redis 没有对其编写任何的修改程序（embstr 是只读的），在对embstr对象进行修改时，都会先转化为raw再进行修改，因此，只要是修改embstr对象，修改后的对象一定是raw的，无论是否达到了44个字节。</font>
+
++ 编码的转换
+  + 当 int 编码保存的值不再是整数，或大小超过了long的范围时，自动转化为raw 
+  + 对于 embstr 编码，由于 Redis 没有对其编写任何的修改程序（embstr 是只读的），在对embstr对象进行修改时，都会先转化为raw再进行修改，因此，只要是修改embstr对象，修改后的对象一定是raw的，无论是否达到了44个字节。
 
 + 常用命令
 
   + set/get
 
-    + set:设置key对应的值为String类型的value （多次set name会覆盖）
+    + set:设置key对应的值为string类型的value （多次set name会覆盖）
     + get:获取key对应的值
 
   + mset /mget  
 
     + mset 批量设置多个key的值，如果成功表示所有值都被设置，否则返回0表示没有任何值被设置
-    + mget批量获取多个key的值，如果可以不存在则返回null
+    + mget批量获取多个key的值，如果不存在则返回null
 
     ```shell
     127.0.0.1:6379> mset user1:name redis user1:age 22
@@ -123,7 +126,7 @@ __string 是最常用的一种数据类型，普通的key/value存储都可以�
   + setrange/getrange 
 
     + setrange从指定位置替换字符串
-  + getrange获取key对应value子字符串
+    + getrange获取key对应value子字符串
 
 + 其他命令
 
@@ -135,13 +138,13 @@ __string 是最常用的一种数据类型，普通的key/value存储都可以�
 + 应用场景
 
   + 因为string类型是二进制安全的，可以用来存放图片，视频等内容。
-  + 由于red is的高性能的读写功能，而string类型的value也可以是数字，可以用做计数器（使用INCR，DECR指令）。比如分布式环境中统计系统的在线人数，秒杀等。
+  + 由于redis的高性能的读写功能，而string类型的value也可以是数字，可以用做计数器（使用INCR，DECR指令）。比如分布式环境中统计系统的在线人数，秒杀等。
   + 除了上面提到的，还有用于SpringSession实现分布式session
   + 分布式系统全局序列号 
 
 ### list
 
-__list列表,它是简单的字符串列表，你可以添加一个元素到列表的头部，或者尾部，底层实际上是个链表结构__
+__list列表,它是简单的字符串列表，你可以添加一个元素到列表的头部，或者尾部__。
 
 + 编码
 
@@ -154,7 +157,7 @@ __list列表,它是简单的字符串列表，你可以添加一个元素到列�
 
 + 常用命令
 
-  + lpush 从头部加入元素
+  + lpush： 从头部加入元素
 
   ```shell
   127.0.0.1:6379> lpush list1 hello
@@ -166,7 +169,7 @@ __list列表,它是简单的字符串列表，你可以添加一个元素到列�
   2) "hello"
   ```
 
-  + rpush从尾部加入元素
+  + rpush：从尾部加入元素
 
   ```shell
   127.0.0.1:6379> rpush list2 world
@@ -178,7 +181,7 @@ __list列表,它是简单的字符串列表，你可以添加一个元素到列�
   2) "hello"
   ```
 
-  + lpop 从list的头部删除元素，并返回删除的元素
+  + lpop： 从list的头部删除元素，并返回删除的元素
 
   ```shell
   127.0.0.1:6379> lrange list1 0 -1
@@ -190,7 +193,7 @@ __list列表,它是简单的字符串列表，你可以添加一个元素到列�
   1) "hello"
   ```
 
-  + rpop从list的尾部删除元素，并删除指定的元素
+  + rpop：从list的尾部删除元素，并返回删除的元素
 
   ```shell
   127.0.0.1:6379> lrange list2 0 -1
@@ -240,8 +243,8 @@ __list列表,它是简单的字符串列表，你可以添加一个元素到列�
   2) "b"
   ```
   
-  + lindex 返回名称为key的list中指定位置的元素
-  + llen 返回list中的元素的个数
+  + lindex： 返回list中指定位置的元素
+  + llen： 返回list中的元素的个数
 + 实现数据结构
 
   + Stack（栈）
@@ -260,8 +263,6 @@ __list列表,它是简单的字符串列表，你可以添加一个元素到列�
 
 __集合对象set是string类型（整数也会转成string类型进行存储）的无序集合。注意集合和列表的区别：集合中的元素是无序的，因此不能通过索引来操作元素；集合中的元素不能有重复。__
 
-__Redis中集合SET相当于Java中的HashSet，内部的键值对是无序的，唯一的。内部实现相当于一个特殊的字典，字典中所有的value都是NULL。__
-
 + 编码
 
   + 集合对象的编码可以是intset或者hashtable
@@ -275,8 +276,8 @@ __Redis中集合SET相当于Java中的HashSet，内部的键值对是无序的�
 
 + 常用命令
 
-  +  sadd 向集合中添加元素 （set不允许元素重复）
-  +  smembers 查看集合中的元素
+  +  sadd： 向集合中添加元素 （set不允许元素重复）
+  +  smembers： 查看集合中的元素
 
   ```shell
   127.0.0.1:6379> sadd set1 aaa
@@ -291,10 +292,10 @@ __Redis中集合SET相当于Java中的HashSet，内部的键值对是无序的�
   3) "bbb"
   ```
 
-  + srem 删除集合元素
-  + spop 随机返回删除的key
+  + srem： 删除集合元素
+  + spop： 随机返回删除的key
   
-  + sdiff 返回两个集合的不同元素 （哪个集合在前就以哪个集合为标准）
+  + sdiff ：返回两个集合的不同元素 （哪个集合在前就以哪个集合为标准）
   
   ```shell
   127.0.0.1:6379> smembers set1
@@ -311,8 +312,8 @@ __Redis中集合SET相当于Java中的HashSet，内部的键值对是无序的�
   2) "rrr"
   ```
   
-  + sinter 返回两个集合的交集
-  + sinterstore 返回交集结果，存入目标集合
+  + sinter： 返回两个集合的交集
+  + sinterstore： 返回交集结果，存入目标集合
   
   ```shell
   127.0.0.1:6379> sinterstore set3 set1 set2
@@ -321,13 +322,13 @@ __Redis中集合SET相当于Java中的HashSet，内部的键值对是无序的�
   1) "bbb"
   ```
   
-  + sunion  取两个集合的并集
-  + sunionstore  取两个集合的并集，并存入目标集合
+  + sunion：  取两个集合的并集
+  + sunionstore：  取两个集合的并集，并存入目标集合
   
-  + smove 将一个集合中的元素移动到另一个集合中
-  + scard 返回集合中的元素个数
-  + sismember 判断某元素是否存在某集合中，0代表否 1代表是
-  + srandmember 随机返回一个元素
+  + smove： 将一个集合中的元素移动到另一个集合中
+  + scard： 返回集合中的元素个数
+  + sismember： 判断某元素是否存在某集合中，0代表否 1代表是
+  + srandmember： 随机返回一个元素
   
   ```shell
   127.0.0.1:6379> srandmember set1 1
@@ -359,21 +360,21 @@ __和集合对象相比，有序集合对象是有序的。与列表使用索引
     //字典
     dict *dice;
     }zset
-    字典的键保存元素的值，字典的值保存元素的分值，跳跃表节点的object属性保存元素的成员，跳跃表接待的score属性保存元素的分值。这两种数据结构会通过指针来共享相同元素的成员和分值，所以不会产生重复成员和分值，造成内存的浪费。编码转换
+    字典的键保存元素的值，字典的值保存元素的分值，跳跃表节点的object属性保存元素的成员，跳跃表节点的score属性保存元素的分值。这两种数据结构会通过指针来共享相同元素的成员和分值，所以不会产生重复成员和分值，造成内存的浪费。
     ```
 
   + 编码转换
 
-    + 当有序结合对象同时满足以下两个条件时，对象使用ziplist编码，否则使用skiplist
+    + 当有序结合对象同时满足以下两个条件时，对象使用ziplist编码，否则使用skiplist编码
       + 保存的元素数量小于128
       + 保存的所有元素长度都小于64字节
 
 + 常用命令 
 
-  + zrem 删除集合中名称为key的元素member
-  + zincrby 以指定值去自动递增
-  + zcard 查看元素集合的个数
-  + zcount 返回score在给定区间中的数量
+  + zrem： 删除集合中名称为key的元素member
+  + zincrby： 以指定值去自动递增
+  + zcard： 查看元素集合的个数
+  + zcount： 返回score在给定区间中的数量
 
   ```shell
   127.0.0.1:6379> zrange zset 0 -1
@@ -389,7 +390,7 @@ __和集合对象相比，有序集合对象是有序的。与列表使用索引
   (integer) 4
   ```
 
-  + zrangebyscore  找到指定区间范围的数据进行返回
+  + zrangebyscore：  找到指定区间范围的数据进行返回
 
   ```shell
   127.0.0.1:6379> zrangebyscore zset 0 4 withscores 
@@ -403,7 +404,7 @@ __和集合对象相比，有序集合对象是有序的。与列表使用索引
   8) "4"
   ```
 
-  + zremrangebyrank zset from to  删除索引
+  + zremrangebyrank zset from to：  删除索引
 
   ```shell
   127.0.0.1:6379> zrange zset 0 -1
@@ -422,7 +423,7 @@ __和集合对象相比，有序集合对象是有序的。与列表使用索引
   
   ```
 
-  + zremrangebyscore zset from to 删除指定序号
+  + zremrangebyscore zset from to： 删除指定序号
 
   ```shell
   127.0.0.1:6379> zrange zset 0 -1 withscores
@@ -439,8 +440,8 @@ __和集合对象相比，有序集合对象是有序的。与列表使用索引
   2) "1"
   ```
 
-  + zrank 返回排序索引 （升序之后再找索引）
-  + zrevrank  返回排序索引 （降序之后再找索引）
+  + zrank： 返回排序索引 （升序之后再找索引）
+  + zrevrank：  返回排序索引 （降序之后再找索引）
 
 + 应用场景
 
@@ -450,14 +451,14 @@ __和集合对象相比，有序集合对象是有序的。与列表使用索引
 
 __hash对象的键是一个字符串类型，值是一个键值对集合__
 
-+ ENCODING
++ 编码
 
   + hash对象的编码可以是ziplist或者hashtable
     + 当使用ziplist，也就是压缩列表作为底层实现时，新增的键值是保存到压缩列表的表尾。
     + hashtable 编码的hash表对象底层使用字典数据结构，哈希对象中的每个键值对都使用一个字典键值对。__Redis中的字典相当于Java里面的HashMap，内部实现也差不多类似，都是通过“数组+链表”的链地址法来解决哈希冲突的，这样的结构吸收了两种不同数据结构的优点。__
 
   + 编码转换
-    + 当同时满足下面两个条件使用ziplist，否则使用hashtable
+    + 当同时满足下面两个条件使用ziplist编码，否则使用hashtable编码
       + 列表保存元素个数小于512个
       + 每个元素长度小于64字节   
 
