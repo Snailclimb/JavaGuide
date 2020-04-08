@@ -8,11 +8,13 @@
 
 这篇文章只是对一些操作系统比较重要概念的一个概览，深入学习的话，建议大家还是老老实实地去看书。另外， 这篇文章的很多内容参考了《现代操作系统》第三版这本书，非常感谢。
 
+
+
 ## 一 操作系统基础
 
 面试官顶着蓬松的假发向我走来，只见他一手拿着厚重的 Thinkpad ，一手提着他那淡黄的长裙。
 
-<img src="http://wx4.sinaimg.cn/large/ceeb653ely1gd8wj5evc4j20i00n0dh0.jpg" height="300"></img>
+<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/ceeb653ely1gd8wj5evc4j20i00n0dh0.jpg" height="300"></img>
 
 ### 1.1 什么是操作系统？
 
@@ -36,7 +38,7 @@
 
 🙋 **我** ：介绍系统调用之前，我们先来了解一下用户态和系统态。
 
-<img src="http://ww4.sinaimg.cn/large/006r3PQBjw1fbimb5c3srj30b40b40t9.jpg" height="200" width="2"/>
+![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/006r3PQBjw1fbimb5c3srj30b40b40t9-20200404224750646.jpg)
 
 根据进程访问资源的特点，我们可以把进程在系统上的运行分为两个级别：
 
@@ -151,7 +153,7 @@
 
 🙋 **我** ：谢谢面试官！刚刚把这个给忘记了～
 
-<img src="http://ww4.sinaimg.cn/large/6af89bc8gw1f8txoxc2asj20k00k0mxv.jpg" alt="这就很尴尬了_尴尬表情" height="200" width="200"/>
+<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/6af89bc8gw1f8txoxc2asj20k00k0mxv.jpg" alt="这就很尴尬了_尴尬表情" height="200" width="200"/>
 
 ### 3.3 快表和多级页表
 
@@ -191,7 +193,7 @@
 
 🙋 **我** ：
 
-<img src="http://wx3.sinaimg.cn/large/de80a5ably1gcuslckpygg208c08cwfu.gif"  height="200" width="200"></img>
+<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/de80a5ably1gcuslckpygg208c08cwfu.gif"  height="200" width="200"></img>
 
 1. **共同点** ：
    - 分页机制和分段机制都是为了提高内存利用率，较少内存碎片。
@@ -212,7 +214,7 @@
 
 🙋 **我** ：这部分我真不清楚！
 
-<img src="http://wx2.sinaimg.cn/bmiddle/a9cf8ef6ly1fhqpdipcyfj20ce0b4wex.jpg "  height="300px" />
+<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/a9cf8ef6ly1fhqpdipcyfj20ce0b4wex.jpg .jpeg"  height="300px" />
 
 于是面试完之后我默默去查阅了相关文档！留下了没有技术的泪水。。。
 
@@ -316,10 +318,10 @@
 
 当发生缺页中断时，如果当前内存中并没有空闲的页面，操作系统就必须在内存选择一个页面将其移出内存，以便为即将调入的页面让出空间。用来选择淘汰哪一页的规则叫做页面置换算法，我们可以把页面置换算法看成是淘汰页面的规则。
 
-- **OPT 页面置换算法（最佳页面置换算法）** ：理想情况，不可能实现，一般作为衡量其他置换算法的方法。
-- **FIFO 页面置换算法（先进先出页面置换算法）** : 总是淘汰最先进入内存的页面，即选择在内存中驻留时间最久的页面进行淘汰。
-- **LRU 页面置换算法（最近未使用页面置换算法）** ：LRU（Least Currently Used）算法赋予每个页面一个访问字段，用来记录一个页面自上次被访问以来所经历的时间 T，当须淘汰一个页面时，选择现有页面中其 T 值最大的，即最近最久未使用的页面予以淘汰。
-- **LFU 页面置换算法（最少使用页面排序算法）** : LFU（Least Frequently Used）算法会让系统维护一个按最近一次访问时间排序的页面链表，链表首节点是最近刚刚使用过的页面，链表尾节点是最久未使用的页面。访问内存时，找到相应页面，并把它移到链表之首。缺页时，置换链表尾节点的页面。也就是说内存内使用越频繁的页面，被保留的时间也相对越长。
+- **OPT 页面置换算法（最佳页面置换算法）** ：最佳(Optimal, OPT)置换算法所选择的被淘汰页面将是以后永不使用的，或者是在最长时间内不再被访问的页面,这样可以保证获得最低的缺页率。但由于人们目前无法预知进程在内存下的若千页面中哪个是未来最长时间内不再被访问的，因而该算法无法实现。一般作为衡量其他置换算法的方法。
+- **FIFO（First In First Out） 页面置换算法（先进先出页面置换算法）** : 总是淘汰最先进入内存的页面，即选择在内存中驻留时间最久的页面进行淘汰。
+- **LRU （Least Currently Used）页面置换算法（最近最久未使用页面置换算法）** ：LRU算法赋予每个页面一个访问字段，用来记录一个页面自上次被访问以来所经历的时间 T，当须淘汰一个页面时，选择现有页面中其 T 值最大的，即最近最久未使用的页面予以淘汰。
+- **LFU （Least Frequently Used）页面置换算法（最少使用页面置换算法）** :  该置换算法选择在之前时期使用最少的页面作为淘汰页。
 
 ## Reference
 

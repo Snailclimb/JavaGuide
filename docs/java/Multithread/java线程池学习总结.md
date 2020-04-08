@@ -1,3 +1,4 @@
+
 <!-- TOC -->
 
 - [一 使用线程池的好处](#一-使用线程池的好处)
@@ -28,7 +29,7 @@
     - [5.2 SingleThreadExecutor 详解](#52-singlethreadexecutor-详解)
         - [5.2.1 介绍](#521-介绍)
         - [5.2.2 执行任务过程介绍](#522-执行任务过程介绍)
-        - [5.2.3 为什么不推荐使用`FixedThreadPool`？](#523-为什么不推荐使用fixedthreadpool)
+        - [5.2.3 为什么不推荐使用`SingleThreadExecutor`？](#523-为什么不推荐使用singlethreadexecutor)
     - [5.3 CachedThreadPool 详解](#53-cachedthreadpool-详解)
         - [5.3.1 介绍](#531-介绍)
         - [5.3.2 执行任务过程介绍](#532-执行任务过程介绍)
@@ -42,6 +43,7 @@
 - [九 其他推荐阅读](#九-其他推荐阅读)
 
 <!-- /TOC -->
+
 
 ## 一 使用线程池的好处
 
@@ -163,7 +165,7 @@ public class ScheduledThreadPoolExecutor
 3. **`threadFactory`** :executor 创建新线程的时候会用到。
 4. **`handler`** :饱和策略。关于饱和策略下面单独介绍一下。
 
-下面这张图可以加深你对线程池中各个参数的相互关系的理解（图片来源：《Java性能调优实战》）：
+下面这张图可以加深你对线程池中各个参数的相互关系的理解（图片来源：《Java 性能调优实战》）：
 
 ![线程池各个参数的关系](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/线程池各个参数的关系.jpg)
 
@@ -650,7 +652,7 @@ Wed Nov 13 13:40:43 CST 2019::pool-1-thread-5
 
 1. 如果当前运行的线程数少于 corePoolSize，则创建一个新的线程执行任务；
 2. 当前线程池中有一个运行的线程后，将任务加入 `LinkedBlockingQueue`
-3. 线程执行完当前的任务后，会在循环中反复从` LinkedBlockingQueue` 中获取任务来执行；
+3. 线程执行完当前的任务后，会在循环中反复从`LinkedBlockingQueue` 中获取任务来执行；
 
 #### 5.2.3 为什么不推荐使用`SingleThreadExecutor`？
 
@@ -683,7 +685,7 @@ Wed Nov 13 13:40:43 CST 2019::pool-1-thread-5
     }
 ```
 
-`CachedThreadPool` 的` corePoolSize` 被设置为空（0），`maximumPoolSize `被设置为 Integer.MAX.VALUE，即它是无界的，这也就意味着如果主线程提交任务的速度高于 `maximumPool` 中线程处理任务的速度时，`CachedThreadPool` 会不断创建新的线程。极端情况下，这样会导致耗尽 cpu 和内存资源。
+`CachedThreadPool` 的`corePoolSize` 被设置为空（0），`maximumPoolSize`被设置为 Integer.MAX.VALUE，即它是无界的，这也就意味着如果主线程提交任务的速度高于 `maximumPool` 中线程处理任务的速度时，`CachedThreadPool` 会不断创建新的线程。极端情况下，这样会导致耗尽 cpu 和内存资源。
 
 #### 5.3.2 执行任务过程介绍
 
@@ -695,13 +697,13 @@ Wed Nov 13 13:40:43 CST 2019::pool-1-thread-5
 1. 首先执行 `SynchronousQueue.offer(Runnable task)` 提交任务到任务队列。如果当前 `maximumPool` 中有闲线程正在执行 `SynchronousQueue.poll(keepAliveTime,TimeUnit.NANOSECONDS)`，那么主线程执行 offer 操作与空闲线程执行的 `poll` 操作配对成功，主线程把任务交给空闲线程执行，`execute()`方法执行完成，否则执行下面的步骤 2；
 2. 当初始 `maximumPool` 为空，或者 `maximumPool` 中没有空闲线程时，将没有线程执行 `SynchronousQueue.poll(keepAliveTime,TimeUnit.NANOSECONDS)`。这种情况下，步骤 1 将失败，此时 `CachedThreadPool` 会创建新线程执行任务，execute 方法执行完成；
 
-#### 5.3.3 为什么不推荐使用`CachedThreadPool`？ 
+#### 5.3.3 为什么不推荐使用`CachedThreadPool`？
 
 `CachedThreadPool`允许创建的线程数量为 Integer.MAX_VALUE ，可能会创建大量线程，从而导致 OOM。
 
 ## 六 ScheduledThreadPoolExecutor 详解
 
-**`ScheduledThreadPoolExecutor` 主要用来在给定的延迟后运行任务，或者定期执行任务。** 这个在实际项目中基本不会被用到，所以对这部分大家只需要简单了解一下它的思想。关于如何在Spring Boot 中 实现定时任务，可以查看这篇文章[《5分钟搞懂如何在Spring Boot中Schedule Tasks》](https://github.com/Snailclimb/springboot-guide/blob/master/docs/advanced/SpringBoot-ScheduleTasks.md)。
+**`ScheduledThreadPoolExecutor` 主要用来在给定的延迟后运行任务，或者定期执行任务。** 这个在实际项目中基本不会被用到，所以对这部分大家只需要简单了解一下它的思想。关于如何在 Spring Boot 中 实现定时任务，可以查看这篇文章[《5 分钟搞懂如何在 Spring Boot 中 Schedule Tasks》](https://github.com/Snailclimb/springboot-guide/blob/master/docs/advanced/SpringBoot-ScheduleTasks.md)。
 
 ### 6.1 简介
 
@@ -726,7 +728,7 @@ Wed Nov 13 13:40:43 CST 2019::pool-1-thread-5
 1. 当调用 `ScheduledThreadPoolExecutor` 的 **`scheduleAtFixedRate()`** 方法或者**`scheduleWirhFixedDelay()`** 方法时，会向 `ScheduledThreadPoolExecutor` 的 **`DelayQueue`** 添加一个实现了 **`RunnableScheduledFuture`** 接口的 **`ScheduledFutureTask`** 。
 2. 线程池中的线程从 `DelayQueue` 中获取 `ScheduledFutureTask`，然后执行任务。
 
-**`ScheduledThreadPoolExecutor` 为了实现周期性的执行任务，对 `ThreadPoolExecutor `做了如下修改：**
+**`ScheduledThreadPoolExecutor` 为了实现周期性的执行任务，对 `ThreadPoolExecutor`做了如下修改：**
 
 - 使用 **`DelayQueue`** 作为任务队列；
 - 获取任务的方不同
@@ -736,37 +738,39 @@ Wed Nov 13 13:40:43 CST 2019::pool-1-thread-5
 
 ![ScheduledThreadPoolExecutor执行周期任务的步骤](https://imgconvert.csdnimg.cn/aHR0cDovL215LWJsb2ctdG8tdXNlLm9zcy1jbi1iZWlqaW5nLmFsaXl1bmNzLmNvbS8xOC01LTMwLzU5OTE2Mzg5LmpwZw?x-oss-process=image/format,png)
 
-1. 线程 1 从 `DelayQueue` 中获取已到期的 `ScheduledFutureTask（DelayQueue.take()）`。到期任务是指 `ScheduledFutureTask `的 time 大于等于当前系统的时间；
+1. 线程 1 从 `DelayQueue` 中获取已到期的 `ScheduledFutureTask（DelayQueue.take()）`。到期任务是指 `ScheduledFutureTask`的 time 大于等于当前系统的时间；
 2. 线程 1 执行这个 `ScheduledFutureTask`；
 3. 线程 1 修改 `ScheduledFutureTask` 的 time 变量为下次将要被执行的时间；
 4. 线程 1 把这个修改 time 之后的 `ScheduledFutureTask` 放回 `DelayQueue` 中（`DelayQueue.add()`)。
 
 ## 七 线程池大小确定
 
-**线程池数量的确定一直是困扰着程序员的一个难题，大部分程序员在设定线程池大小的时候就是随心而定。我们并没有考虑过这样大小的配置是否会带来什么问题，我自己就是这大部分程序员中的一个代表。** 
+**线程池数量的确定一直是困扰着程序员的一个难题，大部分程序员在设定线程池大小的时候就是随心而定。**
 
-由于笔主对如何确定线程池大小也没有什么实际经验，所以，这部分内容参考了网上很多文章/书籍。
-
-**首先，可以肯定的一点是线程池大小设置过大或者过小都会有问题。合适的才是最好，貌似在 95 % 的场景下都是合适的。** 
-
-如果阅读过我的上一篇关于线程池的文章的话，你一定知道：
-
-**如果我们设置的线程池数量太小的话，如果同一时间有大量任务/请求需要处理，可能会导致大量的请求/任务在任务队列中排队等待执行，甚至会出现任务队列满了之后任务/请求无法处理的情况，或者大量任务堆积在任务队列导致 OOM。这样很明显是有问题的！ CPU 根本没有得到充分利用。**
-
-**但是，如果我们设置线程数量太大，大量线程可能会同时在争取 CPU 资源，这样会导致大量的上下文切换，从而增加线程的执行时间，影响了整体执行效率。**
+很多人甚至可能都会觉得把线程池配置过大一点比较好！我觉得这明显是有问题的。就拿我们生活中非常常见的一例子来说：**并不是人多就能把事情做好，增加了沟通交流成本。你本来一件事情只需要 3 个人做，你硬是拉来了 6 个人，会提升做事效率嘛？我想并不会。** 线程数量过多的影响也是和我们分配多少人做事情一样，对于多线程这个场景来说主要是增加了**上下文切换**成本。不清楚什么是上下文切换的话，可以看我下面的介绍。
 
 > 上下文切换：
 >
 > 多线程编程中一般线程的个数都大于 CPU 核心的个数，而一个 CPU 核心在任意时刻只能被一个线程使用，为了让这些线程都能得到有效执行，CPU 采取的策略是为每个线程分配时间片并轮转的形式。当一个线程的时间片用完的时候就会重新处于就绪状态让给其他线程使用，这个过程就属于一次上下文切换。概括来说就是：当前任务在执行完 CPU 时间片切换到另一个任务之前会先保存自己的状态，以便下次再切换回这个任务时，可以再加载这个任务的状态。**任务从保存到再加载的过程就是一次上下文切换**。
 >
-> 上下文切换通常是计算密集型的。也就是说，它需要相当可观的处理器时间，在每秒几十上百次的切换中，每次切换都需要纳秒量级的时间。所以，上下文切换对系统来说意味着消耗大量的 CPU 时间，事实上，可能是操作系统中时间消耗最大的操作。 
+> 上下文切换通常是计算密集型的。也就是说，它需要相当可观的处理器时间，在每秒几十上百次的切换中，每次切换都需要纳秒量级的时间。所以，上下文切换对系统来说意味着消耗大量的 CPU 时间，事实上，可能是操作系统中时间消耗最大的操作。
 >
 > Linux 相比与其他操作系统（包括其他类 Unix 系统）有很多的优点，其中有一项就是，其上下文切换和模式切换的时间消耗非常少。
+
+**类比于实现世界中的人类通过合作做某件事情，我们可以肯定的一点是线程池大小设置过大或者过小都会有问题，合适的才是最好。**
+
+**如果我们设置的线程池数量太小的话，如果同一时间有大量任务/请求需要处理，可能会导致大量的请求/任务在任务队列中排队等待执行，甚至会出现任务队列满了之后任务/请求无法处理的情况，或者大量任务堆积在任务队列导致 OOM。这样很明显是有问题的！ CPU 根本没有得到充分利用。**
+
+**但是，如果我们设置线程数量太大，大量线程可能会同时在争取 CPU 资源，这样会导致大量的上下文切换，从而增加线程的执行时间，影响了整体执行效率。**
 
 有一个简单并且适用面比较广的公式：
 
 - **CPU 密集型任务(N+1)：** 这种任务消耗的主要是 CPU 资源，可以将线程数设置为 N（CPU 核心数）+1，比 CPU 核心数多出来的一个线程是为了防止线程偶发的缺页中断，或者其它原因导致的任务暂停而带来的影响。一旦任务暂停，CPU 就会处于空闲状态，而在这种情况下多出来的一个线程就可以充分利用 CPU 的空闲时间。
 - **I/O 密集型任务(2N)：** 这种任务应用起来，系统会用大部分的时间来处理 I/O 交互，而线程在处理 I/O 的时间段内不会占用 CPU 来处理，这时就可以将 CPU 交出给其它线程使用。因此在 I/O 密集型任务的应用中，我们可以多配置一些线程，具体的计算方法是 2N。
+
+**如何判断是 CPU 密集任务还是 IO 密集任务？**
+
+CPU 密集型简单理解就是利用 CPU 计算能力的任务比如你在内存中对大量数据进行排序。单凡涉及到网络读取，文件读取这类都是 IO 密集型，这类任务的特点是 CPU 计算耗费时间相比于等待 IO 操作完成的时间来说很少，大部分时间都花在了等待 IO 操作完成上。
 
 ## 八 参考
 
