@@ -312,32 +312,32 @@ public class ThreadPoolExecutorDemo {
 **Output：**
 
 ```
-pool-1-thread-2 Start. Time = Tue Nov 12 20:59:44 CST 2019
-pool-1-thread-5 Start. Time = Tue Nov 12 20:59:44 CST 2019
-pool-1-thread-4 Start. Time = Tue Nov 12 20:59:44 CST 2019
-pool-1-thread-1 Start. Time = Tue Nov 12 20:59:44 CST 2019
-pool-1-thread-3 Start. Time = Tue Nov 12 20:59:44 CST 2019
-pool-1-thread-5 End. Time = Tue Nov 12 20:59:49 CST 2019
-pool-1-thread-3 End. Time = Tue Nov 12 20:59:49 CST 2019
-pool-1-thread-2 End. Time = Tue Nov 12 20:59:49 CST 2019
-pool-1-thread-4 End. Time = Tue Nov 12 20:59:49 CST 2019
-pool-1-thread-1 End. Time = Tue Nov 12 20:59:49 CST 2019
-pool-1-thread-2 Start. Time = Tue Nov 12 20:59:49 CST 2019
-pool-1-thread-1 Start. Time = Tue Nov 12 20:59:49 CST 2019
-pool-1-thread-4 Start. Time = Tue Nov 12 20:59:49 CST 2019
-pool-1-thread-3 Start. Time = Tue Nov 12 20:59:49 CST 2019
-pool-1-thread-5 Start. Time = Tue Nov 12 20:59:49 CST 2019
-pool-1-thread-2 End. Time = Tue Nov 12 20:59:54 CST 2019
-pool-1-thread-3 End. Time = Tue Nov 12 20:59:54 CST 2019
-pool-1-thread-4 End. Time = Tue Nov 12 20:59:54 CST 2019
-pool-1-thread-5 End. Time = Tue Nov 12 20:59:54 CST 2019
-pool-1-thread-1 End. Time = Tue Nov 12 20:59:54 CST 2019
+pool-1-thread-3 Start. Time = Sun Apr 12 11:14:37 CST 2020
+pool-1-thread-5 Start. Time = Sun Apr 12 11:14:37 CST 2020
+pool-1-thread-2 Start. Time = Sun Apr 12 11:14:37 CST 2020
+pool-1-thread-1 Start. Time = Sun Apr 12 11:14:37 CST 2020
+pool-1-thread-4 Start. Time = Sun Apr 12 11:14:37 CST 2020
+pool-1-thread-3 End. Time = Sun Apr 12 11:14:42 CST 2020
+pool-1-thread-4 End. Time = Sun Apr 12 11:14:42 CST 2020
+pool-1-thread-1 End. Time = Sun Apr 12 11:14:42 CST 2020
+pool-1-thread-5 End. Time = Sun Apr 12 11:14:42 CST 2020
+pool-1-thread-1 Start. Time = Sun Apr 12 11:14:42 CST 2020
+pool-1-thread-2 End. Time = Sun Apr 12 11:14:42 CST 2020
+pool-1-thread-5 Start. Time = Sun Apr 12 11:14:42 CST 2020
+pool-1-thread-4 Start. Time = Sun Apr 12 11:14:42 CST 2020
+pool-1-thread-3 Start. Time = Sun Apr 12 11:14:42 CST 2020
+pool-1-thread-2 Start. Time = Sun Apr 12 11:14:42 CST 2020
+pool-1-thread-1 End. Time = Sun Apr 12 11:14:47 CST 2020
+pool-1-thread-4 End. Time = Sun Apr 12 11:14:47 CST 2020
+pool-1-thread-5 End. Time = Sun Apr 12 11:14:47 CST 2020
+pool-1-thread-3 End. Time = Sun Apr 12 11:14:47 CST 2020
+pool-1-thread-2 End. Time = Sun Apr 12 11:14:47 CST 2020
 
 ```
 
 ### 4.2 线程池原理分析
 
-承接 4.1 节，我们通过代码输出结果可以看出：**线程池每次会同时执行 5 个任务，这 5 个任务执行完之后，剩余的 5 个任务才会被执行。** 大家可以先通过上面讲解的内容，分析一下到底是咋回事？（自己独立思考一会）
+承接 4.1 节，我们通过代码输出结果可以看出：**线程首先会先执行 5 个任务，然后这些任务有任务被执行完的话，就会去拿新的任务执行。** 大家可以先通过上面讲解的内容，分析一下到底是咋回事？（自己独立思考一会）
 
 现在，我们就分析上面的输出内容来简单分析一下线程池原理。
 
@@ -346,11 +346,11 @@ pool-1-thread-1 End. Time = Tue Nov 12 20:59:54 CST 2019
 ```java
    // 存放线程池的运行状态 (runState) 和线程池内有效线程的数量 (workerCount)
    private final AtomicInteger ctl = new AtomicInteger(ctlOf(RUNNING, 0));
-
+   
     private static int workerCountOf(int c) {
         return c & CAPACITY;
     }
-
+    //任务队列
     private final BlockingQueue<Runnable> workQueue;
 
     public void execute(Runnable command) {
@@ -390,11 +390,120 @@ pool-1-thread-1 End. Time = Tue Nov 12 20:59:54 CST 2019
 
 ![图解线程池实现原理](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/图解线程池实现原理.png)
 
+
+
+**`addWorker` 这个方法主要用来创建新的工作线程，如果返回true说明创建和启动工作线程成功，否则的话返回的就是false。**
+
+```java
+    // 全局锁，并发操作必备
+    private final ReentrantLock mainLock = new ReentrantLock();
+    // 跟踪线程池的最大大小，只有在持有全局锁mainLock的前提下才能访问此集合
+    private int largestPoolSize;
+    // 工作线程集合，存放线程池中所有的（活跃的）工作线程，只有在持有全局锁mainLock的前提下才能访问此集合
+    private final HashSet<Worker> workers = new HashSet<>();
+    //获取线程池状态
+    private static int runStateOf(int c)     { return c & ~CAPACITY; }
+    //判断线程池的状态是否为 Running
+    private static boolean isRunning(int c) {
+        return c < SHUTDOWN;
+    }
+
+
+    /**
+     * 添加新的工作线程到线程池
+     * @param firstTask 要执行
+     * @param core参数为true的话表示使用线程池的基本大小，为false使用线程池最大大小
+     * @return 添加成功就返回true否则返回false
+     */
+   private boolean addWorker(Runnable firstTask, boolean core) {
+        retry:
+        for (;;) {
+            //这两句用来获取线程池的状态
+            int c = ctl.get();
+            int rs = runStateOf(c);
+
+            // Check if queue empty only if necessary.
+            if (rs >= SHUTDOWN &&
+                ! (rs == SHUTDOWN &&
+                   firstTask == null &&
+                   ! workQueue.isEmpty()))
+                return false;
+
+            for (;;) {
+               //获取线程池中线程的数量
+                int wc = workerCountOf(c);
+                // core参数为true的话表明队列也满了，线程池大小变为 maximumPoolSize 
+                if (wc >= CAPACITY ||
+                    wc >= (core ? corePoolSize : maximumPoolSize))
+                    return false;
+               //原子操作将workcount的数量加1
+                if (compareAndIncrementWorkerCount(c))
+                    break retry;
+                // 如果线程的状态改变了就再次执行上述操作
+                c = ctl.get();  
+                if (runStateOf(c) != rs)
+                    continue retry;
+                // else CAS failed due to workerCount change; retry inner loop
+            }
+        }
+        // 标记工作线程是否启动成功
+        boolean workerStarted = false;
+        // 标记工作线程是否创建成功
+        boolean workerAdded = false;
+        Worker w = null;
+        try {
+        
+            w = new Worker(firstTask);
+            final Thread t = w.thread;
+            if (t != null) {
+              // 加锁
+                final ReentrantLock mainLock = this.mainLock;
+                mainLock.lock();
+                try {
+                   //获取线程池状态
+                    int rs = runStateOf(ctl.get());
+                   //rs < SHUTDOWN 如果线程池状态依然为RUNNING,并且线程的状态是存活的话，就会将工作线程添加到工作线程集合中
+                  //(rs=SHUTDOWN && firstTask == null)如果线程池状态小于STOP，也就是RUNNING或者SHUTDOWN状态下，同时传入的任务实例firstTask为null，则需要添加到工作线程集合和启动新的Worker
+                   // firstTask == null证明只新建线程而不执行任务
+                    if (rs < SHUTDOWN ||
+                        (rs == SHUTDOWN && firstTask == null)) {
+                        if (t.isAlive()) // precheck that t is startable
+                            throw new IllegalThreadStateException();
+                        workers.add(w);
+                       //更新当前工作线程的最大容量
+                        int s = workers.size();
+                        if (s > largestPoolSize)
+                            largestPoolSize = s;
+                      // 工作线程是否启动成功
+                        workerAdded = true;
+                    }
+                } finally {
+                    // 释放锁
+                    mainLock.unlock();
+                }
+                //// 如果成功添加工作线程，则调用Worker内部的线程实例t的Thread#start()方法启动真实的线程实例
+                if (workerAdded) {
+                    t.start();
+                  /// 标记线程启动成功
+                    workerStarted = true;
+                }
+            }
+        } finally {
+           // 线程启动失败，需要从工作线程中移除对应的Worker
+            if (! workerStarted)
+                addWorkerFailed(w);
+        }
+        return workerStarted;
+    }
+```
+
+更多关于线程池源码分析的内容推荐这篇文章：《[JUC线程池ThreadPoolExecutor源码分析](http://www.throwable.club/2019/07/15/java-concurrency-thread-pool-executor/)》
+
 现在，让我们在回到 4.1 节我们写的 Demo， 现在应该是不是很容易就可以搞懂它的原理了呢？
 
 没搞懂的话，也没关系，可以看看我的分析：
 
-> 我们在代码中模拟了 10 个任务，我们配置的核心线程数为 5 、等待队列容量为 100 ，所以每次只可能存在 5 个任务同时执行，剩下的 5 个任务会被放到等待队列中去。当前的 5 个任务执行完成后，才会执行剩下的 5 个任务。
+> 我们在代码中模拟了 10 个任务，我们配置的核心线程数为 5 、等待队列容量为 100 ，所以每次只可能存在 5 个任务同时执行，剩下的 5 个任务会被放到等待队列中去。当前的5个任务中如果有任务被执行完了，线程池就会去拿新的任务执行。
 
 ### 4.3 几个常见的对比
 
