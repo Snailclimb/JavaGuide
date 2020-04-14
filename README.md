@@ -350,7 +350,7 @@ SSO(Single Sign On)即单点登录说的是用户登陆多个子系统的其中�
 
 ### 其他
 
-- [阿里云服务器使用经验](docs/tools/阿里云服务器使用经验.md)
+- [【原创】如何使用云服务器？希望这篇文章能够对你有帮助！](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247485738&idx=1&sn=f97e91a50e444944076c30b0717b303a&chksm=cea246e1f9d5cff73faf6a778b147ea85162d1f3ed55ca90473c6ebae1e2c4d13e89282aeb24&token=406194678&lang=zh_CN#rd)
 
 ## 面试指南
 
