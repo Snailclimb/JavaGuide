@@ -812,7 +812,7 @@ Wed Nov 13 13:40:43 CST 2019::pool-1-thread-5
 
 ## 六 ScheduledThreadPoolExecutor 详解
 
-**`ScheduledThreadPoolExecutor` 主要用来在给定的延迟后运行任务，或者定期执行任务。** 这个在实际项目中基本不会被用到，所以对这部分大家只需要简单了解一下它的思想。关于如何在 Spring Boot 中 实现定时任务，可以查看这篇文章[《5 分钟搞懂如何在 Spring Boot 中 Schedule Tasks》](https://github.com/Snailclimb/springboot-guide/blob/master/docs/advanced/SpringBoot-ScheduleTasks.md)。
+**`ScheduledThreadPoolExecutor` 主要用来在给定的延迟后运行任务，或者定期执行任务。** 这个在实际项目中基本不会被用到，因为有其他方案选择比如`quartz`。大家只需要简单了解一下它的思想。关于如何在 Spring Boot 中 实现定时任务，可以查看这篇文章[《5 分钟搞懂如何在 Spring Boot 中 Schedule Tasks》](https://github.com/Snailclimb/springboot-guide/blob/master/docs/advanced/SpringBoot-ScheduleTasks.md)。
 
 ### 6.1 简介
 
