@@ -455,7 +455,10 @@ final 关键字主要用在三个地方：变量、方法、类。
 
 ### Java 异常类层次结构图
 
-![Java异常类层次结构图](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-2/Exception.png)
+![Java异常类层次结构图](./images/java-exception-handling-class-hierarchy-diagram.jpg)
+
+<p style="font-size:13px;text-align:right">图片来自：https://simplesnippets.tech/exception-handling-in-java-part-1/</p>
+
 
 在 Java 中，所有的异常都有一个共同的祖先 java.lang 包中的 **Throwable 类**。Throwable： 有两个重要的子类：**Exception（异常）** 和 **Error（错误）** ，二者都是 Java 异常处理的重要子类，各自都包含大量子类。
 
