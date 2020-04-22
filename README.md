@@ -93,7 +93,7 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 
 1. **[Java 基础知识](docs/java/Java基础知识.md)**
 2. **[Java 基础知识疑难点/易错点](docs/java/Java疑难点.md)**
-3. [【加餐】一些重要的Java程序设计题](docs/java/Java程序设计题.md)
+3. **Java常见编程题** ：[一些重要的Java程序设计题](docs/java/java-programming-problem/Java程序设计题.md)、[手把手教你实现线程安全并且可以设置过期时间的LRU缓存。安排！](docs/java/java-programming-problem/a-thread-safe-implementation-of-lru-cache.md)
 4. [【选看】J2EE 基础知识](docs/java/J2EE基础知识.md)
 
 **重要知识点详解：**
