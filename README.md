@@ -217,7 +217,7 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 
 #### Spring
 
-1. [Spring 学习与面试](docs/system-design/framework/spring/Spring.md)
+1. [Spring 学习与面试(待重构)](docs/system-design/framework/spring/Spring.md)
 2. **[Spring 常见问题总结](docs/system-design/framework/spring/SpringInterviewQuestions.md)**
 3. [Spring中 Bean 的作用域与生命周期](docs/system-design/framework/spring/SpringBean.md)
 4. [SpringMVC 工作原理详解](docs/system-design/framework/spring/SpringMVC-Principle.md)
