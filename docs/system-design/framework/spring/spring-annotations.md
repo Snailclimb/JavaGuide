@@ -1,4 +1,54 @@
-### 前言
+### 文章目录：
+
+<!-- TOC -->
+
+- [文章目录：](#%e6%96%87%e7%ab%a0%e7%9b%ae%e5%bd%95)
+- [0.前言](#0%e5%89%8d%e8%a8%80)
+- [1. `@SpringBootApplication`](#1-springbootapplication)
+- [2. Spring Bean 相关](#2-spring-bean-%e7%9b%b8%e5%85%b3)
+  - [2.1. `@Autowired`](#21-autowired)
+  - [2.2. `Component`,`@Repository`,`@Service`, `@Controller`](#22-componentrepositoryservice-controller)
+  - [2.3. `@RestController`](#23-restcontroller)
+  - [2.4. `@Scope`](#24-scope)
+  - [2.5. `Configuration`](#25-configuration)
+- [3. 处理常见的HTTP请求类型](#3-%e5%a4%84%e7%90%86%e5%b8%b8%e8%a7%81%e7%9a%84http%e8%af%b7%e6%b1%82%e7%b1%bb%e5%9e%8b)
+  - [3.1. GET请求](#31-get%e8%af%b7%e6%b1%82)
+  - [3.2. POST请求](#32-post%e8%af%b7%e6%b1%82)
+  - [3.3. PUT请求](#33-put%e8%af%b7%e6%b1%82)
+  - [3.4. **DELETE请求**](#34-delete%e8%af%b7%e6%b1%82)
+  - [3.5. **PATCH请求**](#35-patch%e8%af%b7%e6%b1%82)
+- [4. 前后端传值](#4-%e5%89%8d%e5%90%8e%e7%ab%af%e4%bc%a0%e5%80%bc)
+  - [4.1. `@PathVariable` 和 `@RequestParam`](#41-pathvariable-%e5%92%8c-requestparam)
+  - [4.2. `@RequestBody`](#42-requestbody)
+- [5. 读取配置信息](#5-%e8%af%bb%e5%8f%96%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af)
+  - [5.1. `@value`(常用)](#51-value%e5%b8%b8%e7%94%a8)
+  - [5.2. `@ConfigurationProperties`(常用)](#52-configurationproperties%e5%b8%b8%e7%94%a8)
+  - [5.3. `PropertySource`（不常用）](#53-propertysource%e4%b8%8d%e5%b8%b8%e7%94%a8)
+- [6. 参数校验](#6-%e5%8f%82%e6%95%b0%e6%a0%a1%e9%aa%8c)
+  - [6.1. 一些常用的字段验证的注解](#61-%e4%b8%80%e4%ba%9b%e5%b8%b8%e7%94%a8%e7%9a%84%e5%ad%97%e6%ae%b5%e9%aa%8c%e8%af%81%e7%9a%84%e6%b3%a8%e8%a7%a3)
+  - [6.2. 验证请求体(RequestBody)](#62-%e9%aa%8c%e8%af%81%e8%af%b7%e6%b1%82%e4%bd%93requestbody)
+  - [6.3. 验证请求参数(Path Variables 和 Request Parameters)](#63-%e9%aa%8c%e8%af%81%e8%af%b7%e6%b1%82%e5%8f%82%e6%95%b0path-variables-%e5%92%8c-request-parameters)
+- [7. 全局处理Controller层异常](#7-%e5%85%a8%e5%b1%80%e5%a4%84%e7%90%86controller%e5%b1%82%e5%bc%82%e5%b8%b8)
+- [8. JPA相关](#8-jpa%e7%9b%b8%e5%85%b3)
+  - [8.1. 创建表](#81-%e5%88%9b%e5%bb%ba%e8%a1%a8)
+  - [8.2. 创建主键](#82-%e5%88%9b%e5%bb%ba%e4%b8%bb%e9%94%ae)
+  - [8.3. 设置字段类型](#83-%e8%ae%be%e7%bd%ae%e5%ad%97%e6%ae%b5%e7%b1%bb%e5%9e%8b)
+  - [8.4. 指定不持久化特定字段](#84-%e6%8c%87%e5%ae%9a%e4%b8%8d%e6%8c%81%e4%b9%85%e5%8c%96%e7%89%b9%e5%ae%9a%e5%ad%97%e6%ae%b5)
+  - [8.5. 声明大字段](#85-%e5%a3%b0%e6%98%8e%e5%a4%a7%e5%ad%97%e6%ae%b5)
+  - [8.6. 创建枚举类型的字段](#86-%e5%88%9b%e5%bb%ba%e6%9e%9a%e4%b8%be%e7%b1%bb%e5%9e%8b%e7%9a%84%e5%ad%97%e6%ae%b5)
+  - [8.7. 增加审计功能](#87-%e5%a2%9e%e5%8a%a0%e5%ae%a1%e8%ae%a1%e5%8a%9f%e8%83%bd)
+  - [8.8. 删除/修改数据](#88-%e5%88%a0%e9%99%a4%e4%bf%ae%e6%94%b9%e6%95%b0%e6%8d%ae)
+  - [8.9. 关联关系](#89-%e5%85%b3%e8%81%94%e5%85%b3%e7%b3%bb)
+- [9. 事务 `@Transactional`](#9-%e4%ba%8b%e5%8a%a1-transactional)
+- [10. json数据处理](#10-json%e6%95%b0%e6%8d%ae%e5%a4%84%e7%90%86)
+  - [10.1. 过滤json数据](#101-%e8%bf%87%e6%bb%a4json%e6%95%b0%e6%8d%ae)
+  - [10.2. 格式化json数据](#102-%e6%a0%bc%e5%bc%8f%e5%8c%96json%e6%95%b0%e6%8d%ae)
+  - [10.3. 扁平化对象](#103-%e6%89%81%e5%b9%b3%e5%8c%96%e5%af%b9%e8%b1%a1)
+- [11. 测试相关](#11-%e6%b5%8b%e8%af%95%e7%9b%b8%e5%85%b3)
+
+<!-- /TOC -->
+
+### 0.前言
 
 *大家好，我是Guide哥！这是我的221篇优质原创文章。如需转载，请在文首注明地址，蟹蟹！* 
 
