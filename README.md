@@ -104,6 +104,7 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 **其他：**
 
 1. [JAD反编译](docs/java/JAD反编译tricks.md)
+2. [手把手教你定位常见Java性能问题](./docs/java/手把手教你定位常见Java性能问题.md)
 
 ### 容器
 
