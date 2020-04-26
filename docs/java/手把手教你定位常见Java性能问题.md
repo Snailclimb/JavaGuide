@@ -33,8 +33,6 @@ vmstat是一个指定周期和采集次数的虚拟内存检测工具，可以�
 - wa: IO等待时间百分比
 - id: 空闲时间百分比
 
-
-
  **pidstat命令**
 
 pidstat 是 Sysstat 中的一个组件，也是一款功能强大的性能监测工具，`top` 和 `vmstat` 两个命令都是监测进程的内存、CPU 以及 I/O 使用情况，而 pidstat 命令可以检测到线程级别的。`pidstat`命令线程切换字段说明如下：
@@ -95,7 +93,13 @@ jmap也是JDK工具命令，他可以查看堆内存的初始化信息以及堆�
 
  **mat内存工具**
 
-MAT(Memory Analyzer Tool)工具是eclipse的一个插件(MAT也可以单独使用)，它分析大内存的dump文件时，可以非常直观的看到各个对象在堆空间中所占用的内存大小、类实例数量、对象引用关系、利用OQL对象查询，以及可以很方便的找出对象GC Roots的相关信息。[下载地址可以点击这里](https://www.eclipse.org/mat/downloads.php)
+MAT(Memory Analyzer Tool)工具是eclipse的一个插件(MAT也可以单独使用)，它分析大内存的dump文件时，可以非常直观的看到各个对象在堆空间中所占用的内存大小、类实例数量、对象引用关系、利用OQL对象查询，以及可以很方便的找出对象GC Roots的相关信息。
+
+**idea中也有这么一个插件，就是JProfiler**。 
+
+相关阅读：
+
+1. 《性能诊断利器 JProfiler 快速入门和最佳实践》：[https://segmentfault.com/a/1190000017795841](https://segmentfault.com/a/1190000017795841)
 
 ## 模拟环境准备
 
@@ -106,7 +110,7 @@ MAT(Memory Analyzer Tool)工具是eclipse的一个插件(MAT也可以单独使�
 模拟CPU占满还是比较简单，直接写一个死循环计算消耗CPU即可。
 
 ````java
- 		/**
+ 	/**
      * 模拟CPU占满
      */
     @GetMapping("/cpu/loop")
@@ -127,15 +131,15 @@ MAT(Memory Analyzer Tool)工具是eclipse的一个插件(MAT也可以单独使�
 
 请求接口地址测试`curl localhost:8080/cpu/loop`,发现CPU立马飙升到100%
 
-![JshPzQ.png](https://s1.ax1x.com/2020/04/25/JshPzQ.png)
+![](./images/performance-tuning/java-performance1.png)
 
 通过执行`top -Hp 32805` 查看Java线程情况
 
-[![JsheoV.png](https://s1.ax1x.com/2020/04/25/JsheoV.png)](https://imgchr.com/i/JsheoV)
+![](./images/performance-tuning/java-performance2.png)
 
 执行 `printf '%x' 32826` 获取16进制的线程id，用于`dump`信息查询，结果为 `803a`。最后我们执行`jstack 32805 |grep -A 20 803a `来查看下详细的`dump`信息。
 
-![JshFMj.png](https://s1.ax1x.com/2020/04/25/JshFMj.png)
+![](./images/performance-tuning/java-performance3.png)
 
 这里`dump`信息直接定位出了问题方法以及代码行，这就定位出了CPU占满的问题。
 
@@ -168,23 +172,23 @@ java.lang.OutOfMemoryError: Java heap space
 
 我们用`jstat -gc pid` 命令来看看程序的GC情况。
 
-[![Jshkss.png](https://s1.ax1x.com/2020/04/25/Jshkss.png)](https://imgchr.com/i/Jshkss)
+![](./images/performance-tuning/java-performance4.png)
 
 很明显，内存溢出了，堆内存经过45次 Full Gc 之后都没释放出可用内存，这说明当前堆内存中的对象都是存活的，有GC Roots引用，无法回收。那是什么原因导致内存溢出呢？是不是我只要加大内存就行了呢？如果是普通的内存溢出也许扩大内存就行了，但是如果是内存泄漏的话，扩大的内存不一会就会被占满，所以我们还需要确定是不是内存泄漏。我们之前保存了堆 Dump 文件，这个时候借助我们的MAT工具来分析下。导入工具选择`Leak Suspects Report`，工具直接就会给你列出问题报告。
 
-![JshALn.png](https://s1.ax1x.com/2020/04/25/JshALn.png)
+![](./images/performance-tuning/java-performance5.png)
 
 这里已经列出了可疑的4个内存泄漏问题，我们点击其中一个查看详情。
 
-[![JshCRg.png](https://s1.ax1x.com/2020/04/25/JshCRg.png)](https://imgchr.com/i/JshCRg)
+![](./images/performance-tuning/java-performance6.png)
 
 这里已经指出了内存被线程占用了接近50M的内存，占用的对象就是ThreadLocal。如果想详细的通过手动去分析的话，可以点击`Histogram`,查看最大的对象占用是谁，然后再分析它的引用关系，即可确定是谁导致的内存溢出。
 
-![JshZd0.png](https://s1.ax1x.com/2020/04/25/JshZd0.png)
+![](./images/performance-tuning/java-performance7.png)
 
 上图发现占用内存最大的对象是一个Byte数组，我们看看它到底被那个GC Root引用导致没有被回收。按照上图红框操作指引，结果如下图：
 
-![JshniT.png](https://s1.ax1x.com/2020/04/25/JshniT.png)
+![](./images/performance-tuning/java-performance8.png)
 
 我们发现Byte数组是被线程对象引用的，图中也标明，Byte数组对像的GC Root是线程，所以它是不会被回收的，展开详细信息查看，我们发现最终的内存占用对象是被ThreadLocal对象占据了。这也和MAT工具自动帮我们分析的结果一致。
 
