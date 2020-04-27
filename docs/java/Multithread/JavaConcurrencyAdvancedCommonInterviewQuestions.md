@@ -54,7 +54,7 @@ synchronized关键字解决的是多个线程之间访问资源的同步性，sy
 **synchronized关键字最主要的三种使用方式：**
 
 - **修饰实例方法:** 作用于当前对象实例加锁，进入同步代码前要获得当前对象实例的锁
-- **修饰静态方法:** 也就是给当前类加锁，会作用于类的所有对象实例，因为静态成员不属于任何一个实例对象，是类成员（ static 表明这是该类的一个静态资源，不管new了多少个对象，只有一份）。所以如果一个线程A调用一个实例对象的非静态 synchronized 方法，而线程B需要调用这个实例对象所属类的静态 synchronized 方法，是允许的，不会发生互斥现象，**因为访问静态 synchronized 方法占用的锁是当前类的锁，而访问非静态 synchronized 方法占用的锁是当前实例对象锁**。
+- **修饰静态方法:** 也就是给当前类加锁，会作用于类的所有对象实例，因为静态成员不属于任何一个实例对象，是类成员（ static 表明这是该类的一个静态资源，不管new了多少个对象，只有一份）。所以如果一个线程 A 调用一个实例对象的非静态 synchronized 方法，而线程 B 需要调用这个实例对象所属类的静态 synchronized 方法，是允许的，不会发生互斥现象，**因为访问静态 synchronized 方法占用的锁是当前类的锁，而访问非静态 synchronized 方法占用的锁是当前实例对象锁**。
 - **修饰代码块:** 指定加锁对象，对给定对象加锁，进入同步代码库前要获得给定对象的锁。
 
 **总结：** synchronized 关键字加到 static 静态方法和 synchronized(class)代码块上都是是给 Class 类上锁。synchronized 关键字加到实例方法上是给对象实例上锁。尽量不要使用 synchronized(String a) 因为JVM中，字符串常量池具有缓存功能！
@@ -186,10 +186,15 @@ synchronized 是依赖于 JVM 实现的，前面我们也讲到了 虚拟机团�
 
 ![volatile关键字的可见性](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/volatile关键字的可见性.png)
 
+### 2.2 并发编程的三个重要特性
 
-### 2.2. 说说 synchronized 关键字和 volatile 关键字的区别
+1. **原子性** : 一个的操作或者多次操作，要么所有的操作全部都得到执行并且不会收到任何因素的干扰而中断，要么所有的操作都执行，要么都不执行。`synchronized ` 可以保证代码片段的原子性。
+2. **可见性**  ：当一个变量对共享变量进行了修改，那么另外的线程都是立即可以看到修改后的最新值。`volatile` 关键字可以保证共享变量的可见性。
+3. **有序性** ：代码在执行的过程中的先后顺序，Java 在编译器以及运行期间的优化，代码的执行顺序未必就是编写代码时候的顺序。`volatile` 关键字可以禁止指令进行重排序优化。
 
- synchronized关键字和volatile关键字比较
+### 2.3. 说说 synchronized 关键字和 volatile 关键字的区别
+
+`synchronized` 关键字和 `volatile` 关键字是两个互补的存在，而不是对立的存在：
 
 - **volatile关键字**是线程同步的**轻量级实现**，所以**volatile性能肯定比synchronized关键字要好**。但是**volatile关键字只能用于变量而synchronized关键字可以修饰方法以及代码块**。synchronized关键字在JavaSE1.6之后进行了主要包括为了减少获得锁和释放锁带来的性能消耗而引入的偏向锁和轻量级锁以及其它各种优化之后执行效率有了显著提升，**实际开发中使用 synchronized 关键字的场景还是更多一些**。
 - **多线程访问volatile关键字不会发生阻塞，而synchronized关键字可能会发生阻塞**
@@ -323,7 +328,17 @@ ThreadLocal.ThreadLocalMap inheritableThreadLocals = null;
 
 通过上面这些内容，我们足以通过猜测得出结论：**最终的变量是放在了当前线程的 `ThreadLocalMap` 中，并不是存在 `ThreadLocal` 上，`ThreadLocal` 可以理解为只是`ThreadLocalMap`的封装，传递了变量值。** `ThrealLocal` 类中可以通过`Thread.currentThread()`获取到当前线程对象后，直接通过`getMap(Thread t)`可以访问到该线程的`ThreadLocalMap`对象。
 
-**每个`Thread`中都具备一个`ThreadLocalMap`，而`ThreadLocalMap`可以存储以`ThreadLocal`为key的键值对。** 比如我们在同一个线程中声明了两个 `ThreadLocal` 对象的话，会使用 `Thread`内部都是使用仅有那个`ThreadLocalMap` 存放数据的，`ThreadLocalMap`的 key 就是 `ThreadLocal`对象，value 就是 `ThreadLocal` 对象调用`set`方法设置的值。`ThreadLocal` 是 map结构是为了让每个线程可以关联多个 `ThreadLocal`变量。这也就解释了 ThreadLocal 声明的变量为什么在每一个线程都有自己的专属本地变量。
+**每个`Thread`中都具备一个`ThreadLocalMap`，而`ThreadLocalMap`可以存储以`ThreadLocal`为key ，Object 对象为 value的键值对。** 
+
+```java
+ThreadLocalMap(ThreadLocal<?> firstKey, Object firstValue) {
+ ......
+}
+```
+
+比如我们在同一个线程中声明了两个 `ThreadLocal` 对象的话，会使用 `Thread`内部都是使用仅有那个`ThreadLocalMap` 存放数据的，`ThreadLocalMap`的 key 就是 `ThreadLocal`对象，value 就是 `ThreadLocal` 对象调用`set`方法设置的值。
+
+![ThreadLocal数据结构](https://upload-images.jianshu.io/upload_images/7432604-ad2ff581127ba8cc.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/806)
 
 `ThreadLocalMap`是`ThreadLocal`的静态内部类。
 
@@ -489,7 +504,7 @@ public interface Callable<V> {
 
 - **`corePoolSize` :** 核心线程数线程数定义了最小可以同时运行的线程数量。
 - **`maximumPoolSize` :** 当队列中存放的任务达到队列容量的时候，当前可以同时运行的线程数量变为最大线程数。
-- **`workQueue`:** 当新任务来的时候会先判断当前运行的线程数量是否达到核心线程数，如果达到的话，信任就会被存放在队列中。
+- **`workQueue`:** 当新任务来的时候会先判断当前运行的线程数量是否达到核心线程数，如果达到的话，新任务就会被存放在队列中。
 
 `ThreadPoolExecutor`其他常见参数:
 
@@ -509,7 +524,192 @@ public interface Callable<V> {
 - **`ThreadPoolExecutor.DiscardPolicy`：** 不处理新任务，直接丢弃掉。
 - **`ThreadPoolExecutor.DiscardOldestPolicy`：** 此策略将丢弃最早的未处理的任务请求。
 
-举个例子： Spring 通过 `ThreadPoolTaskExecutor` 或者我们直接通过 `ThreadPoolExecutor` 的构造函数创建线程池的时候，当我们不指定 `RejectedExecutionHandler` 饱和策略的话来配置线程池的时候默认使用的是 `ThreadPoolExecutor.AbortPolicy`。在默认情况下，`ThreadPoolExecutor` 将抛出 `RejectedExecutionException` 来拒绝新来的任务 ，这代表你将丢失对这个任务的处理。 对于可伸缩的应用程序，建议使用 `ThreadPoolExecutor.CallerRunsPolicy`。当最大池被填满时，此策略为我们提供可伸缩队列。（这个直接查看 `ThreadPoolExecutor` 的构造函数源码就可以看出，比较简单的原因，这里就不贴代码了。）
+举个例子： Spring 通过 `ThreadPoolTaskExecutor` 或者我们直接通过 `ThreadPoolExecutor` 的构造函数创建线程池的时候，当我们不指定 `RejectedExecutionHandler` 饱和策略的话来配置线程池的时候默认使用的是 `ThreadPoolExecutor.AbortPolicy`。在默认情况下，`ThreadPoolExecutor` 将抛出 `RejectedExecutionException` 来拒绝新来的任务 ，这代表你将丢失对这个任务的处理。 对于可伸缩的应用程序，建议使用 `ThreadPoolExecutor.CallerRunsPolicy`。当最大池被填满时，此策略为我们提供可伸缩队列。（这个直接查看 `ThreadPoolExecutor` 的构造函数源码就可以看出，比较简单的原因，这里就不贴代码了）
+
+### 4.6 一个简单的线程池Demo:`Runnable`+`ThreadPoolExecutor`
+
+为了让大家更清楚上面的面试题中的一些概念，我写了一个简单的线程池 Demo。
+
+首先创建一个 `Runnable` 接口的实现类（当然也可以是 `Callable` 接口，我们上面也说了两者的区别。）
+
+`MyRunnable.java`
+
+```java
+import java.util.Date;
+
+/**
+ * 这是一个简单的Runnable类，需要大约5秒钟来执行其任务。
+ * @author shuang.kou
+ */
+public class MyRunnable implements Runnable {
+
+    private String command;
+
+    public MyRunnable(String s) {
+        this.command = s;
+    }
+
+    @Override
+    public void run() {
+        System.out.println(Thread.currentThread().getName() + " Start. Time = " + new Date());
+        processCommand();
+        System.out.println(Thread.currentThread().getName() + " End. Time = " + new Date());
+    }
+
+    private void processCommand() {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public String toString() {
+        return this.command;
+    }
+}
+
+```
+
+编写测试程序，我们这里以阿里巴巴推荐的使用 `ThreadPoolExecutor` 构造函数自定义参数的方式来创建线程池。
+
+`ThreadPoolExecutorDemo.java`
+
+```java
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
+public class ThreadPoolExecutorDemo {
+
+    private static final int CORE_POOL_SIZE = 5;
+    private static final int MAX_POOL_SIZE = 10;
+    private static final int QUEUE_CAPACITY = 100;
+    private static final Long KEEP_ALIVE_TIME = 1L;
+    public static void main(String[] args) {
+
+        //使用阿里巴巴推荐的创建线程池的方式
+        //通过ThreadPoolExecutor构造函数自定义参数创建
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(
+                CORE_POOL_SIZE,
+                MAX_POOL_SIZE,
+                KEEP_ALIVE_TIME,
+                TimeUnit.SECONDS,
+                new ArrayBlockingQueue<>(QUEUE_CAPACITY),
+                new ThreadPoolExecutor.CallerRunsPolicy());
+
+        for (int i = 0; i < 10; i++) {
+            //创建WorkerThread对象（WorkerThread类实现了Runnable 接口）
+            Runnable worker = new MyRunnable("" + i);
+            //执行Runnable
+            executor.execute(worker);
+        }
+        //终止线程池
+        executor.shutdown();
+        while (!executor.isTerminated()) {
+        }
+        System.out.println("Finished all threads");
+    }
+}
+
+```
+
+可以看到我们上面的代码指定了：
+
+1. `corePoolSize`: 核心线程数为 5。
+2. `maximumPoolSize` ：最大线程数 10
+3. `keepAliveTime` : 等待时间为 1L。
+4. `unit`: 等待时间的单位为 TimeUnit.SECONDS。
+5. `workQueue`：任务队列为 `ArrayBlockingQueue`，并且容量为 100;
+6. `handler`:饱和策略为 `CallerRunsPolicy`。
+
+**Output：**
+
+```
+pool-1-thread-2 Start. Time = Tue Nov 12 20:59:44 CST 2019
+pool-1-thread-5 Start. Time = Tue Nov 12 20:59:44 CST 2019
+pool-1-thread-4 Start. Time = Tue Nov 12 20:59:44 CST 2019
+pool-1-thread-1 Start. Time = Tue Nov 12 20:59:44 CST 2019
+pool-1-thread-3 Start. Time = Tue Nov 12 20:59:44 CST 2019
+pool-1-thread-5 End. Time = Tue Nov 12 20:59:49 CST 2019
+pool-1-thread-3 End. Time = Tue Nov 12 20:59:49 CST 2019
+pool-1-thread-2 End. Time = Tue Nov 12 20:59:49 CST 2019
+pool-1-thread-4 End. Time = Tue Nov 12 20:59:49 CST 2019
+pool-1-thread-1 End. Time = Tue Nov 12 20:59:49 CST 2019
+pool-1-thread-2 Start. Time = Tue Nov 12 20:59:49 CST 2019
+pool-1-thread-1 Start. Time = Tue Nov 12 20:59:49 CST 2019
+pool-1-thread-4 Start. Time = Tue Nov 12 20:59:49 CST 2019
+pool-1-thread-3 Start. Time = Tue Nov 12 20:59:49 CST 2019
+pool-1-thread-5 Start. Time = Tue Nov 12 20:59:49 CST 2019
+pool-1-thread-2 End. Time = Tue Nov 12 20:59:54 CST 2019
+pool-1-thread-3 End. Time = Tue Nov 12 20:59:54 CST 2019
+pool-1-thread-4 End. Time = Tue Nov 12 20:59:54 CST 2019
+pool-1-thread-5 End. Time = Tue Nov 12 20:59:54 CST 2019
+pool-1-thread-1 End. Time = Tue Nov 12 20:59:54 CST 2019
+
+```
+
+### 4.7 线程池原理分析
+
+承接 4.6 节，我们通过代码输出结果可以看出：**线程池每次会同时执行 5 个任务，这 5 个任务执行完之后，剩余的 5 个任务才会被执行。** 大家可以先通过上面讲解的内容，分析一下到底是咋回事？（自己独立思考一会）
+
+现在，我们就分析上面的输出内容来简单分析一下线程池原理。
+
+**为了搞懂线程池的原理，我们需要首先分析一下 `execute`方法。**在 4.6 节中的 Demo 中我们使用 `executor.execute(worker)`来提交一个任务到线程池中去，这个方法非常重要，下面我们来看看它的源码：
+
+```java
+   // 存放线程池的运行状态 (runState) 和线程池内有效线程的数量 (workerCount)
+   private final AtomicInteger ctl = new AtomicInteger(ctlOf(RUNNING, 0));
+
+    private static int workerCountOf(int c) {
+        return c & CAPACITY;
+    }
+
+    private final BlockingQueue<Runnable> workQueue;
+
+    public void execute(Runnable command) {
+        // 如果任务为null，则抛出异常。
+        if (command == null)
+            throw new NullPointerException();
+        // ctl 中保存的线程池当前的一些状态信息
+        int c = ctl.get();
+
+        //  下面会涉及到 3 步 操作
+        // 1.首先判断当前线程池中之行的任务数量是否小于 corePoolSize
+        // 如果小于的话，通过addWorker(command, true)新建一个线程，并将任务(command)添加到该线程中；然后，启动该线程从而执行任务。
+        if (workerCountOf(c) < corePoolSize) {
+            if (addWorker(command, true))
+                return;
+            c = ctl.get();
+        }
+        // 2.如果当前之行的任务数量大于等于 corePoolSize 的时候就会走到这里
+        // 通过 isRunning 方法判断线程池状态，线程池处于 RUNNING 状态才会被并且队列可以加入任务，该任务才会被加入进去
+        if (isRunning(c) && workQueue.offer(command)) {
+            int recheck = ctl.get();
+            // 再次获取线程池状态，如果线程池状态不是 RUNNING 状态就需要从任务队列中移除任务，并尝试判断线程是否全部执行完毕。同时执行拒绝策略。
+            if (!isRunning(recheck) && remove(command))
+                reject(command);
+                // 如果当前线程池为空就新创建一个线程并执行。
+            else if (workerCountOf(recheck) == 0)
+                addWorker(null, false);
+        }
+        //3. 通过addWorker(command, false)新建一个线程，并将任务(command)添加到该线程中；然后，启动该线程从而执行任务。
+        //如果addWorker(command, false)执行失败，则通过reject()执行相应的拒绝策略的内容。
+        else if (!addWorker(command, false))
+            reject(command);
+    }
+```
+
+通过下图可以更好的对上面这 3 步做一个展示，下图是我为了省事直接从网上找到，原地址不明。
+
+![图解线程池实现原理](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/图解线程池实现原理.png)
+
+现在，让我们在回到 4.6 节我们写的 Demo， 现在应该是不是很容易就可以搞懂它的原理了呢？
+
+没搞懂的话，也没关系，可以看看我的分析：
+
+> 我们在代码中模拟了 10 个任务，我们配置的核心线程数为 5 、等待队列容量为 100 ，所以每次只可能存在 5 个任务同时执行，剩下的 5 个任务会被放到等待队列中去。当前的 5 个任务之行完成后，才会之行剩下的 5 个任务。
 
 ## 5. Atomic 原子类
 

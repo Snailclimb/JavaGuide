@@ -83,9 +83,9 @@ jstat -<option> [-t] [-h<lines>] <vmid> [<interval> [<count>]]
 - `jstat -gccapacity vmid` ：显示各个代的容量及使用情况；
 - `jstat -gcnew vmid` ：显示新生代信息；
 - `jstat -gcnewcapcacity vmid` ：显示新生代大小与使用情况；
-- `jstat -gcold vmid` ：显示老年代和永久代的信息；
+- `jstat -gcold vmid` ：显示老年代和永久代的行为统计，从jdk1.8开始,该选项仅表示老年代，因为永久代被移除了；
 - `jstat -gcoldcapacity vmid` ：显示老年代的大小；
-- `jstat -gcpermcapacity vmid` ：显示永久代大小；
+- `jstat -gcpermcapacity vmid` ：显示永久代大小，从jdk1.8开始,该选项不存在了，因为永久代被移除了；
 - `jstat -gcutil vmid` ：显示垃圾收集信息；
 
 另外，加上 `-t`参数可以在输出信息上加一个 Timestamp 列，显示程序的运行时间。
@@ -334,4 +334,4 @@ VisualVM 提供在 Java 虚拟机 (Java Virutal Machine, JVM) 上运行的 Java 
 
 **Java工程师必备学习资源:** 一些Java工程师常用学习资源公众号后台回复关键字 **“1”** 即可免费无套路获取。 
 
-![我的公众号](https://user-gold-cdn.xitu.io/2018/11/28/167598cd2e17b8ec?w=258&h=258&f=jpeg&s=27334)
+![我的公众号](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/167598cd2e17b8ec.png)

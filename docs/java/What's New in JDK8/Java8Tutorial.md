@@ -73,7 +73,7 @@ Formula 接口中除了抽象方法计算接口公式还定义了默认方法 `s
 public class Main {
 
   public static void main(String[] args) {
-    // TODO 通过匿名内部类方式访问接口
+    // 通过匿名内部类方式访问接口
     Formula formula = new Formula() {
         @Override
         public double calculate(int a) {
