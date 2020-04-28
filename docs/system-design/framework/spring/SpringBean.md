@@ -303,7 +303,7 @@ public class CustomerBeanPostProcessor implements BeanPostProcessor {
 - 如果涉及到一些属性值 利用set方法设置一些属性值。
 - 如果Bean实现了BeanNameAware接口，调用setBeanName()方法，传入Bean的名字。
 - 如果Bean实现了BeanClassLoaderAware接口，调用setBeanClassLoader()方法，传入ClassLoader对象的实例。
-- 如果Bean实现了BeanFactoryAware接口，调用setBeanClassLoader()方法，传入ClassLoader对象的实例。
+- 如果Bean实现了BeanFactoryAware接口，调用setBeanFactory()方法，传入BeanFactory对象的实例。
 - 与上面的类似，如果实现了其他*Aware接口，就调用相应的方法。
 - 如果有和加载这个Bean的Spring容器相关的BeanPostProcessor对象，执行postProcessBeforeInitialization()方法
 - 如果Bean实现了InitializingBean接口，执行afterPropertiesSet()方法。

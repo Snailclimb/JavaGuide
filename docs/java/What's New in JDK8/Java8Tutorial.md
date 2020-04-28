@@ -39,7 +39,7 @@
     - [LocalDate\(本地日期\)](#localdate本地日期)
     - [LocalDateTime\(本地日期时间\)](#localdatetime本地日期时间)
   - [Annotations\(注解\)](#annotations注解)
-  - [Whete to go from here?](#whete-to-go-from-here)
+  - [Where to go from here?](#where-to-go-from-here)
 
 <!-- /MarkdownTOC -->
 
@@ -73,7 +73,7 @@ Formula 接口中除了抽象方法计算接口公式还定义了默认方法 `s
 public class Main {
 
   public static void main(String[] args) {
-    // TODO 通过匿名内部类方式访问接口
+    // 通过匿名内部类方式访问接口
     Formula formula = new Formula() {
         @Override
         public double calculate(int a) {
