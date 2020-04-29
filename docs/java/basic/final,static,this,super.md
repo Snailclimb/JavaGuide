@@ -144,9 +144,9 @@ public class StaticBean {
     }
     @Override
     public String toString() {
-        return StaticBean{ +
-                name=' + name + ''' + age + age +
-                '}';
+        return "StaticBean{"+
+                "name=" + name + ",age=" + age +
+                "}";
     }
 }
 ```
@@ -155,14 +155,14 @@ public class StaticBean {
 public class StaticDemo {
 
     public static void main(String[] args) {
-        StaticBean staticBean = new StaticBean(1);
-        StaticBean staticBean2 = new StaticBean(2);
-        StaticBean staticBean3 = new StaticBean(3);
-        StaticBean staticBean4 = new StaticBean(4);
+        StaticBean staticBean = new StaticBean("1");
+        StaticBean staticBean2 = new StaticBean("2");
+        StaticBean staticBean3 = new StaticBean("3");
+        StaticBean staticBean4 = new StaticBean("4");
         StaticBean.age = 33;
-        StaticBean{name='1'age33} StaticBean{name='2'age33} StaticBean{name='3'age33} StaticBean{name='4'age33}
-        System.out.println(staticBean+ +staticBean2+ +staticBean3+ +staticBean4);
-        StaticBean.SayHello();Hello i am java
+        System.out.println(staticBean + " " + staticBean2 + " " + staticBean3 + " " + staticBean4);
+        //StaticBean{name=1,age=33} StaticBean{name=2,age=33} StaticBean{name=3,age=33} StaticBean{name=4,age=33}
+        StaticBean.SayHello();//Hello i am java
     }
 
 }
@@ -233,7 +233,7 @@ public class Singleton {
  //将Math中的所有静态资源导入，这时候可以直接使用里面的静态方法，而不用通过类名进行调用
  //如果只想导入单一某个静态方法，只需要将换成对应的方法名即可
  
-import static java.lang.Math.;//换成import static java.lang.Math.max;具有一样的效果
+import static java.lang.Math.*;//换成import static java.lang.Math.max;具有一样的效果
  
 public class Demo {
   public static void main(String[] args) {
@@ -262,17 +262,17 @@ class Foo {
     }
 
     public static String method1() {
-       return An example string that doesn't depend on i (an instance variable);
+       return "An example string that doesn't depend on i (an instance variable)";
        
     }
 
     public int method2() {
-       return this.i + 1;  Depends on i
+       return this.i + 1;  //Depends on i
     }
 
 }
 ```
-你可以像这样调用静态方法：`Foo.method1（）`。 如果您尝试使用这种方法调用 method2 将失败。 但这样可行：`Foo bar = new Foo（1）;bar.method2（）;`
+你可以像这样调用静态方法：`Foo.method1()`。 如果您尝试使用这种方法调用 method2 将失败。 但这样可行：`Foo bar = new Foo(1);bar.method2();`
 
 总结：
 
