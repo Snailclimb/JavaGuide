@@ -30,7 +30,7 @@
 
 8. ~~将打算加索引的列设置为 NOT NULL ，否则将导致引擎放弃使用索引而进行全表扫描。~~
 
-   订正，来自[issue758](https://github.com/Snailclimb/JavaGuide/issues/758) 。**某一列设置为default null，where是可以走索引，另外 `index` 是否设置 `NULL` 是不影响性能的。**《高性能MySQL》第四章是这样说的：And, in case you’re wondering, allowing NULL values in the index really doesn’t impact performance  。NULL 值的索引查找流程参考：https://juejin.im/post/5d5defc2518825591523a1db
+   订正，来自[issue758](https://github.com/Snailclimb/JavaGuide/issues/758) 。**将某一列设置为default null，where 是可以走索引，另外索引列是否设置 null 是不影响性能的。**《高性能MySQL》第四章是这样说的：And, in case you’re wondering, allowing NULL values in the index really doesn’t impact performance  。NULL 值的索引查找流程参考：https://juejin.im/post/5d5defc2518825591523a1db
 
 9. 删除长期未使用的索引，不用的索引的存在会造成不必要的性能损耗 MySQL 5.7 可以通过查询 sys 库的 chema_unused_indexes 视图来查询哪些索引从未被使用
 
