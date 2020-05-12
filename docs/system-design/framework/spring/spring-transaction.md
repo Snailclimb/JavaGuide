@@ -1,6 +1,6 @@
-大家好，我是Guide哥，答应读者的 **Spring 事务**分析总结终于来了。这部分内容比较重要，不论是对于工作还是面试，但是网上比较好的参考资料比较少。
+大家好，我是 Guide 哥，前段答应读者的 **Spring 事务**分析总结终于来了。这部分内容比较重要，不论是对于工作还是面试，但是网上比较好的参考资料比较少。
 
-如果本文有任何不对或者需要完善的地方，请帮忙指出！Guide哥感激不尽！本文已经同步更新到我的 JavaGuide ，地址：
+如果本文有任何不对或者需要完善的地方，请帮忙指出！Guide 哥感激不尽！
 
 ## 1. 什么是事务？
 
@@ -8,7 +8,7 @@
 
 _Guide 哥：大家应该都能背上面这句话了，下面我结合我们日常的真实开发来谈一谈。_
 
-**我们系统的每个业务方法可能包括了多个原子性的数据库操作，比如下面的 `savePerson()` 方法中就有两个原子性的数据库操作。这些原子性的数据库操作是有依赖的，它们要么都执行，要不就都不执行。**
+我们系统的每个业务方法可能包括了多个原子性的数据库操作，比如下面的 `savePerson()` 方法中就有两个原子性的数据库操作。这些原子性的数据库操作是有依赖的，它们要么都执行，要不就都不执行。
 
 ```java
 	public void savePerson() {
@@ -17,7 +17,7 @@ _Guide 哥：大家应该都能背上面这句话了，下面我结合我们日�
 	}
 ```
 
-另外，需要格外注意的是：**事务能否生效数据库引擎是否支持事务是关键。常用的 MySQL 数据库默认使用支持事务的`innodb`引擎。但是，如果把数据库引擎变为 myisam，那么程序也就不再支持事务了！**
+另外，需要格外注意的是：**事务能否生效数据库引擎是否支持事务是关键。比如常用的 MySQL 数据库默认使用支持事务的`innodb`引擎。但是，如果把数据库引擎变为 `myisam`，那么程序也就不再支持事务了！**
 
 事务最经典也经常被拿出来说例子就是转账了。假如小明要给小红转账 1000 元，这个转账会涉及到两个关键操作就是：
 
@@ -35,7 +35,8 @@ public class OrdersService {
 		this.accountDao = accountDao;
 	}
 
-  @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false, timeout = -1)
+  @Transactional(propagation = Propagation.REQUIRED,
+                isolation = Isolation.DEFAULT, readOnly = false, timeout = -1)
 	public void accountMoney() {
     //小红账户多1000
 		accountDao.addMoney(1000,xiaohong);
@@ -140,9 +141,9 @@ Spring 框架中，事务管理相关最重要的 3 个接口如下：
 - **`TransactionDefinition`**： 事务定义信息(事务隔离级别、传播行为、超时、只读、回滚规则)。
 - **`TransactionStatus`**： 事务运行状态。
 
-我们可以把 **`PlatformTransactionManager`** 接口可以被看作是事务上层的管理者，而**`TransactionDefinition`** 和**`TransactionStatus`**这两个接口可以看作是事物的描述。
+我们可以把 **`PlatformTransactionManager`** 接口可以被看作是事务上层的管理者，而 **`TransactionDefinition`** 和 **`TransactionStatus`** 这两个接口可以看作是事物的描述。
 
-**`PlatformTransactionManager`** 会根据**`TransactionDefinition`** 的定义比如事务超时时间、隔离界别、传播行为等来进行事务管理 ，而 **`TransactionStatus`**接口则提供了一些方法来获取事务相应的状态比如是否新事务、是否可以回滚等等。
+**`PlatformTransactionManager`** 会根据 **`TransactionDefinition`** 的定义比如事务超时时间、隔离界别、传播行为等来进行事务管理 ，而 **`TransactionStatus`** 接口则提供了一些方法来获取事务相应的状态比如是否新事务、是否可以回滚等等。
 
 #### 3.2.1. PlatformTransactionManager:事务管理接口
 
@@ -180,7 +181,7 @@ public interface PlatformTransactionManager {
 
 #### 3.2.2. TransactionDefinition:事务属性
 
-事务管理器接口 **`PlatformTransactionManager`** 通过 **`getTransaction(TransactionDefinition definition)`** 方法来得到一个事务，这个方法里面的参数是 **`TransactionDefinition`**类 ，这个类就定义了一些基本的事务属性。
+事务管理器接口 **`PlatformTransactionManager`** 通过 **`getTransaction(TransactionDefinition definition)`** 方法来得到一个事务，这个方法里面的参数是 **`TransactionDefinition`** 类 ，这个类就定义了一些基本的事务属性。
 
 那么什么是 **事务属性** 呢？
 
@@ -421,7 +422,7 @@ Class B {
 
 这个使用的很少，就不举例子来说了。
 
-**若是错误的配置以下3种事务传播行为，事务将不会发生回滚，这里不对照案例讲解了，使用的很少。**
+**若是错误的配置以下 3 种事务传播行为，事务将不会发生回滚，这里不对照案例讲解了，使用的很少。**
 
 - **`TransactionDefinition.PROPAGATION_SUPPORTS`**: 如果当前存在事务，则加入该事务；如果当前没有事务，则以非事务的方式继续运行。
 - **`TransactionDefinition.PROPAGATION_NOT_SUPPORTED`**: 以非事务方式运行，如果当前存在事务，则把当前事务挂起。
@@ -494,9 +495,9 @@ mysql> SELECT @@tx_isolation;
 +-----------------+
 ```
 
-这里需要注意的是：与 SQL 标准不同的地方在于 InnoDB 存储引擎在 **`REPEATABLE-READ`（可重读）**事务隔离级别下使用的是 Next-Key Lock 锁算法，因此可以避免幻读的产生，这与其他数据库系统(如 SQL Server)是不同的。所以说 InnoDB 存储引擎的默认支持的隔离级别是 **`REPEATABLE-READ`（可重读）** 已经可以完全保证事务的隔离性要求，即达到了 SQL 标准的**`SERIALIZABLE`(可串行化)**隔离级别。
+这里需要注意的是：与 SQL 标准不同的地方在于 InnoDB 存储引擎在 **`REPEATABLE-READ`（可重读）** 事务隔离级别下使用的是 Next-Key Lock 锁算法，因此可以避免幻读的产生，这与其他数据库系统(如 SQL Server)是不同的。所以说 InnoDB 存储引擎的默认支持的隔离级别是 **`REPEATABLE-READ`（可重读）** 已经可以完全保证事务的隔离性要求，即达到了 SQL 标准的 **`SERIALIZABLE`(可串行化)** 隔离级别。
 
-因为隔离级别越低，事务请求的锁越少，所以大部分数据库系统的隔离级别都是**`READ-COMMITTED`(读取提交内容)** :，但是你要知道的是 InnoDB 存储引擎默认使用 **`REPEATABLE-READ`（可重读）**并不会什么任何性能上的损失。
+因为隔离级别越低，事务请求的锁越少，所以大部分数据库系统的隔离级别都是 **`READ-COMMITTED`(读取提交内容)** :，但是你要知道的是 InnoDB 存储引擎默认使用 **`REPEATABLE-READ`（可重读）** 并不会什么任何性能上的损失。
 
 更多关于事务隔离级别的内容请看：
 
