@@ -162,6 +162,7 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 
 * [后端程序员必备的 Linux 基础知识](docs/operating-system/linux.md)  
 * [Shell 编程入门](docs/operating-system/Shell.md) 
+* [完全使用GNU_Linux学习](docs/operating-system/完全使用GNU_Linux学习.md)
 
 ## 数据结构与算法
 
@@ -224,11 +225,12 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 #### Spring/SpringBoot
 
 1. **[Spring 常见问题总结](docs/system-design/framework/spring/SpringInterviewQuestions.md)**
-2. **[Spring/Spring常用注解总结！安排！](./docs/system-design/framework/spring/spring-annotations.md)**
 3. **[SpringBoot 指南/常见面试题总结](https://github.com/Snailclimb/springboot-guide)**
-4. [Spring中 Bean 的作用域与生命周期](docs/system-design/framework/spring/SpringBean.md)
-5. [SpringMVC 工作原理详解](docs/system-design/framework/spring/SpringMVC-Principle.md)
-6. [Spring中都用到了那些设计模式?](docs/system-design/framework/spring/Spring-Design-Patterns.md)
+3. **[Spring/Spring常用注解总结！安排！](./docs/system-design/framework/spring/spring-annotations.md)**
+4. **[Spring事务总结](docs/system-design/framework/spring/spring-transaction.md)**
+5. [Spring中 Bean 的作用域与生命周期](docs/system-design/framework/spring/SpringBean.md)
+6. [SpringMVC 工作原理详解](docs/system-design/framework/spring/SpringMVC-Principle.md)
+7. [Spring中都用到了那些设计模式?](docs/system-design/framework/spring/Spring-Design-Patterns.md)
 
 #### MyBatis
 
