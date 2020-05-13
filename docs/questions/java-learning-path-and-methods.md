@@ -2,7 +2,7 @@
 
 **下面的学习路线以及方法是笔主根据个人学习经历总结改进后得出，我相信照着这条学习路线来你的学习效率会非常高。**
 
-学习某个知识点的过程中如果不知道看什么书的话，可以查看这篇文章 ：[Java 学习必备书籍推荐终极版！](https://github.com/Snailclimb/JavaGuide/blob/master/docs/data/java-recommended-books.md)。
+学习某个知识点的过程中如果不知道看什么书的话，可以查看这篇文章 ：[Java 学习必备书籍推荐终极版！](https://github.com/Snailclimb/JavaGuide/blob/master/docs/books/java.md)。
 
 另外，很重要的一点：**建议使用 Intellij IDEA 进行编码，可以单独抽点时间学习 Intellij IDEA 的使用。**
 
