@@ -73,7 +73,7 @@ public class Singleton {
     private Singleton() {
     }
 
-    public static Singleton getUniqueInstance() {
+    public synchronized static Singleton getUniqueInstance() {
        //先判断对象是否已经实例过，没有实例化过才进入加锁代码
         if (uniqueInstance == null) {
             //类对象加锁
