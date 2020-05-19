@@ -104,6 +104,13 @@ I love JavaGuide
 value is JavaGuide
 ```
 
+**注意** : 有读者提到上面代码运行会抛出 `ClassNotFoundException` 异常,具体原因是你没有下面这段代码的包名替换成自己创建的 `TargetObject` 所在的包 。
+
+```java
+Class<?> tagetClass = Class.forName("cn.javaguide.TargetObject");
+```
+
+
 ### 静态编译和动态编译
 
 - **静态编译：** 在编译时确定类型，绑定对象
