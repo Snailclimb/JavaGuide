@@ -216,6 +216,8 @@ appendfsync no        #让操作系统决定何时进行同步
 
 为了兼顾数据和写入性能，用户可以考虑 appendfsync everysec 选项 ，让 Redis 每秒同步一次 AOF 文件，Redis 性能几乎没受到任何影响。而且这样即使出现系统崩溃，用户最多只会丢失一秒之内产生的数据。当硬盘忙于执行写入操作的时候，Redis 还会优雅的放慢自己的速度以便适应硬盘的最大写入速度。
 
+[相关 Issue783：Redis的AOF 方式](https://github.com/Snailclimb/JavaGuide/issues/783)
+
 **Redis 4.0 对于持久化机制的优化**
 
 Redis 4.0 开始支持 RDB 和 AOF 的混合持久化（默认关闭，可以通过配置项 `aof-use-rdb-preamble` 开启）。
