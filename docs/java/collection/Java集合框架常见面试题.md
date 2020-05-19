@@ -386,10 +386,11 @@ public  class Person implements Comparable<Person> {
         // TODO Auto-generated method stub
         if (this.age > o.getAge()) {
             return 1;
-        } else if (this.age < o.getAge()) {
+        }
+        if (this.age < o.getAge()) {
             return -1;
         }
-        return age;
+        return 0;
     }
 }
 
