@@ -21,6 +21,7 @@
         - [1.2.4. 自增自减运算符](#124-自增自减运算符)
         - [1.2.5. Java中的几种基本数据类型是什么,对应的，各自占用多少字节呢？](#125-java中的几种基本数据类型是什么对应的各自占用多少字节呢)
         - [1.2.6. 自动装箱与拆箱](#126-自动装箱与拆箱)
+        - [1.2.7. continue、break、和return的区别是什么？](#127-continuebreak和return的区别是什么)
     - [1.3. 方法（函数）](#13-方法函数)
         - [1.3.1. 什么是方法的返回值?返回值在类的方法里的作用是什么?](#131-什么是方法的返回值返回值在类的方法里的作用是什么)
         - [1.3.2. 为什么 Java 中只有值传递？](#132-为什么-java-中只有值传递)
@@ -65,8 +66,9 @@
         - [3.1.1. Collections 工具类和 Arrays 工具类常见方法总结](#311-collections-工具类和-arrays-工具类常见方法总结)
     - [3.2. 异常](#32-异常)
         - [3.2.1. Java 异常类层次结构图](#321-java-异常类层次结构图)
-            - [3.2.1.1. Throwable 类常用方法](#3211-throwable-类常用方法)
-            - [3.2.1.2. 异常处理总结](#3212-异常处理总结)
+        - [3.2.2. Throwable 类常用方法](#322-throwable-类常用方法)
+        - [3.2.3. try-catch-finally](#323-try-catch-finally)
+        - [3.2.4.使用 `try-with-resources` 来代替`try-catch-finally`](#324使用-try-with-resources-来代替try-catch-finally)
     - [3.3. 多线程](#33-多线程)
         - [3.3.1. 简述线程、程序、进程的基本概念。以及他们之间关系是什么?](#331-简述线程程序进程的基本概念以及他们之间关系是什么)
         - [3.3.2. 线程有哪些基本状态?](#332-线程有哪些基本状态)
@@ -264,6 +266,18 @@ Java**中**有8种基本数据类型，分别为：
 - **拆箱**：将包装类型转换为基本数据类型；
 
 更多内容见：[深入剖析 Java 中的装箱和拆箱](https://www.cnblogs.com/dolphin0520/p/3780005.html)
+
+#### 1.2.7. continue、break、和return的区别是什么？
+
+在循环结构中，当循环条件不满足或者循环次数达到要求时，循环会正常结束。但是，有时候可能需要在循环的过程中，当发生了某种条件之后 ，提前终止循环，这就需要用到下面几个关键词：
+
+1. continue ：指跳出当前的这一次循环，继续下一次循环。
+2. break ：指跳出整个循环体，继续执行循环下面的语句。
+
+return 用于跳出所在方法，结束该方法的运行。return 一般有两种用法：
+
+1. `return;` ：直接使用 return 结束方法执行，用于没有返回值函数的方法
+2. `return value;` ：return 一个特定值，用于有返回值函数的方法
 
 ### 1.3. 方法（函数）
 
@@ -708,19 +722,18 @@ String s = input.readLine();
 
 **注意：异常和错误的区别：异常能被程序本身处理，错误是无法处理。**
 
-##### 3.2.1.1. Throwable 类常用方法
+#### 3.2.2. Throwable 类常用方法
 
-- **public string getMessage()**:返回异常发生时的简要描述
-- **public string toString()**:返回异常发生时的详细信息
-- **public string getLocalizedMessage()**:返回异常对象的本地化信息。使用 Throwable 的子类覆盖这个方法，可以生成本地化信息。如果子类没有覆盖该方法，则该方法返回的信息与 getMessage（）返回的结果相同
-- **public void printStackTrace()**:在控制台上打印 Throwable 对象封装的异常信息
+- **`public string getMessage()`**:返回异常发生时的简要描述
+- **`public string toString()`**:返回异常发生时的详细信息
+- **`public string getLocalizedMessage()`**:返回异常对象的本地化信息。使用 `Throwable` 的子类覆盖这个方法，可以生成本地化信息。如果子类没有覆盖该方法，则该方法返回的信息与 `getMessage（）`返回的结果相同
+- **`public void printStackTrace()`**:在控制台上打印 `Throwable` 对象封装的异常信息
 
-##### 3.2.1.2. 异常处理总结
+#### 3.2.3. try-catch-finally
 
 - **try 块：** 用于捕获异常。其后可接零个或多个 catch 块，如果没有 catch 块，则必须跟一个 finally 块。
 - **catch 块：** 用于处理 try 捕获到的异常。
-- **finally 块：** 无论是否捕获或处理异常，finally 块里的语句都会被执行。当在 try 块或 catch 块中遇到 return
-  语句时，finally 语句块将在方法返回之前被执行。
+- **finally 块：** 无论是否捕获或处理异常，finally 块里的语句都会被执行。当在 try 块或 catch 块中遇到 return 语句时，finally 语句块将在方法返回之前被执行。
 
 **在以下 4 种特殊情况下，finally 块不会被执行：**
 
@@ -748,6 +761,47 @@ public class Test {
 ```
 
 如果调用 `f(2)`，返回值将是 0，因为 finally 语句的返回值覆盖了 try 语句块的返回值。
+
+#### 3.2.4.使用 `try-with-resources` 来代替`try-catch-finally`
+
+《Effecitve Java》中明确指出：
+
+> 面对必须要关闭的资源，我们总是应该优先使用try-with-resources而不是`try-finally`。随之产生的代码更简短，更清晰，产生的异常对我们也更有用。`try-with-resources`语句让我们更容易编写必须要关闭的资源的代码，若采用`try-finally`则几乎做不到这点。
+
+Java 中类似于`InputStream`、`OutputStream` 、`Scanner` 、`PrintWriter`等的资源都需要我们调用`close()`方法来手动关闭，一般情况下我们都是通过`try-catch-finally`语句来实现这个需求，如下：
+
+```java
+        //读取文本文件的内容
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(new File("D://read.txt"));
+            while (scanner.hasNext()) {
+                System.out.println(scanner.nextLine());
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            if (scanner != null) {
+                scanner.close();
+            }
+        }
+```
+
+使用Java 7之后的 `try-with-resources` 语句改造上面的代码:
+
+```java
+try (Scanner scanner = new Scanner(new File("test.txt"))) {
+    while (scanner.hasNext()) {
+        System.out.println(scanner.nextLine());
+    }
+} catch (FileNotFoundException fnfe) {
+    fnfe.printStackTrace();
+}
+```
+
+当然多个资源需要关闭的时候，使用 `try-with-resources`  实现起来也非常简单，如果你还是用`try-catch-finally`可能会带来很多问题。
+
+通过使用分号分隔，可以在`try-with-resources`块中声明多个资源：
 
 ### 3.3. 多线程
 
