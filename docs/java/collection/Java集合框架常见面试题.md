@@ -85,6 +85,8 @@ public interface RandomAccess {
 
 **双向链表：** 包含两个指针，一个prev指向前一个节点，一个next指向后一个节点。
 
+> 另外推荐一篇把双向链表讲清楚的文章：[https://juejin.im/post/5b5d1a9af265da0f47352f14](https://juejin.im/post/5b5d1a9af265da0f47352f14)
+
 ![双向链表](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/双向链表.png)
 
 **双向循环链表：** 最后一个节点的 next 指向head，而 head 的prev指向最后一个节点，构成一个环。
