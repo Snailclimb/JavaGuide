@@ -18,18 +18,22 @@
         - [1.2.1. 字符型常量和字符串常量的区别?](#121-字符型常量和字符串常量的区别)
         - [1.2.2. 关于注释？](#122-关于注释)
         - [1.2.3. 标识符和关键字的区别是什么？](#123-标识符和关键字的区别是什么)
-        - [1.2.4. 自增自减运算符](#124-自增自减运算符)
-        - [1.2.5. Java中的几种基本数据类型是什么,对应的，各自占用多少字节呢？](#125-java中的几种基本数据类型是什么对应的各自占用多少字节呢)
-        - [1.2.6. 自动装箱与拆箱](#126-自动装箱与拆箱)
-        - [1.2.7. continue、break、和return的区别是什么？](#127-continuebreak和return的区别是什么)
-    - [1.3. 方法（函数）](#13-方法函数)
-        - [1.3.1. 什么是方法的返回值?返回值在类的方法里的作用是什么?](#131-什么是方法的返回值返回值在类的方法里的作用是什么)
-        - [1.3.2. 为什么 Java 中只有值传递？](#132-为什么-java-中只有值传递)
-        - [1.3.3. 重载和重写的区别](#133-重载和重写的区别)
-                - [1.3.3.1. 重载](#1331-重载)
-                - [1.3.3.2. 重写](#1332-重写)
-        - [1.3.4. 深拷贝 vs 浅拷贝](#134-深拷贝-vs-浅拷贝)
-        - [1.3.5. 方法的四种类型](#135-方法的四种类型)
+        - [1.2.4. Java中有哪些常见的关键字？](#124-java中有哪些常见的关键字)
+        - [1.2.5. 自增自减运算符](#125-自增自减运算符)
+        - [1.2.6. continue、break、和return的区别是什么？](#126-continuebreak和return的区别是什么)
+        - [1.2.7. Java泛型了解么？什么是类型擦除？介绍一下常用的通配符？](#127-java泛型了解么什么是类型擦除介绍一下常用的通配符)
+    - [1.3. 基本数据类型](#13-基本数据类型)
+        - [1.3.1. Java中的几种基本数据类型是什么？对应的包装类型是什么？各自占用多少字节呢？](#131-java中的几种基本数据类型是什么对应的包装类型是什么各自占用多少字节呢)
+        - [1.3.2. 自动装箱与拆箱](#132-自动装箱与拆箱)
+        - [1.3.3. 种基本类型的包装类和常量池](#133-种基本类型的包装类和常量池)
+    - [1.4. 方法（函数）](#14-方法函数)
+        - [1.4.1. 什么是方法的返回值?返回值在类的方法里的作用是什么?](#141-什么是方法的返回值返回值在类的方法里的作用是什么)
+        - [1.4.2. 为什么 Java 中只有值传递？](#142-为什么-java-中只有值传递)
+        - [1.4.3. 重载和重写的区别](#143-重载和重写的区别)
+                - [1.4.3.1. 重载](#1431-重载)
+                - [1.4.3.2. 重写](#1432-重写)
+        - [1.4.4. 深拷贝 vs 浅拷贝](#144-深拷贝-vs-浅拷贝)
+        - [1.4.5. 方法的四种类型](#145-方法的四种类型)
 - [2. Java 面向对象](#2-java-面向对象)
     - [2.1. 类和对象](#21-类和对象)
         - [2.1.1. 面向对象和面向过程的区别](#211-面向对象和面向过程的区别)
@@ -68,7 +72,7 @@
         - [3.2.1. Java 异常类层次结构图](#321-java-异常类层次结构图)
         - [3.2.2. Throwable 类常用方法](#322-throwable-类常用方法)
         - [3.2.3. try-catch-finally](#323-try-catch-finally)
-        - [3.2.4.使用 `try-with-resources` 来代替`try-catch-finally`](#324使用-try-with-resources-来代替try-catch-finally)
+        - [3.2.4. 使用 `try-with-resources` 来代替`try-catch-finally`](#324-使用-try-with-resources-来代替try-catch-finally)
     - [3.3. 多线程](#33-多线程)
         - [3.3.1. 简述线程、程序、进程的基本概念。以及他们之间关系是什么?](#331-简述线程程序进程的基本概念以及他们之间关系是什么)
         - [3.3.2. 线程有哪些基本状态?](#332-线程有哪些基本状态)
@@ -226,13 +230,150 @@ Java 中的注释有三种：
 
 在我们编写程序的时候，需要大量地为程序、类、变量、方法等取名字，于是就有了标识符，简单来说，标识符就是一个名字。但是有一些标识符，Java 语言已经赋予了其特殊的含义，只能用于特定的地方，这种特殊的标识符就是关键字。因此，关键字是被赋予特殊含义的标识符。比如，在我们的日常生活中 ，“警察局”这个名字已经被赋予了特殊的含义，所以如果你开一家店，店的名字不能叫“警察局”，“警察局”就是我们日常生活中的关键字。
 
-#### 1.2.4. 自增自减运算符
+#### 1.2.4. Java中有哪些常见的关键字？
+
+| 访问控制             | private  | protected  | public   |              |            |           |        |
+| -------------------- | -------- | ---------- | -------- | ------------ | ---------- | --------- | ------ |
+| 类，方法和变量修饰符 | abstract | class      | extends  | final        | implements | interface | native |
+|                      | new      | static     | strictfp | synchronized | transient  | volatile  |        |
+| 程序控制             | break    | continue   | return   | do           | while      | if        | else   |
+|                      | for      | instanceof | switch   | case         | default    |           |        |
+| 错误处理             | try      | catch      | throw    | throws       | finally    |           |        |
+| 包相关               | import   | package    |          |              |            |           |        |
+| 基本类型             | boolean  | byte       | char     | double       | float      | int       | long   |
+|                      | short    | null       | true     | false        |            |           |        |
+| 变量引用             | super    | this       | void     |              |            |           |        |
+| 保留字               | goto     | const      |          |              |            |           |        |
+
+#### 1.2.5. 自增自减运算符
 
 在写代码的过程中，常见的一种情况是需要某个整数类型变量增加 1 或减少 1，Java 提供了一种特殊的运算符，用于这种表达式，叫做自增运算符（++)和自减运算符（--）。
 
 ++和--运算符可以放在操作数之前，也可以放在操作数之后，当运算符放在操作数之前时，先自增/减，再赋值；当运算符放在操作数之后时，先赋值，再自增/减。例如，当“b=++a”时，先自增（自己增加 1），再赋值（赋值给 b）；当“b=a++”时，先赋值(赋值给 b)，再自增（自己增加 1）。也就是，++a 输出的是 a+1 的值，a++输出的是 a 值。用一句口诀就是：“符号在前就先加/减，符号在后就后加/减”。
 
-#### 1.2.5. Java中的几种基本数据类型是什么,对应的，各自占用多少字节呢？
+#### 1.2.6. continue、break、和return的区别是什么？
+
+在循环结构中，当循环条件不满足或者循环次数达到要求时，循环会正常结束。但是，有时候可能需要在循环的过程中，当发生了某种条件之后 ，提前终止循环，这就需要用到下面几个关键词：
+
+1. continue ：指跳出当前的这一次循环，继续下一次循环。
+2. break ：指跳出整个循环体，继续执行循环下面的语句。
+
+return 用于跳出所在方法，结束该方法的运行。return 一般有两种用法：
+
+1. `return;` ：直接使用 return 结束方法执行，用于没有返回值函数的方法
+2. `return value;` ：return 一个特定值，用于有返回值函数的方法
+
+#### 1.2.7. Java泛型了解么？什么是类型擦除？介绍一下常用的通配符？
+
+Java 泛型（generics）是 JDK 5 中引入的一个新特性, 泛型提供了编译时类型安全检测机制，该机制允许程序员在编译时检测到非法的类型。泛型的本质是参数化类型，也就是说所操作的数据类型被指定为一个参数。
+
+**Java的泛型是伪泛型，这是因为Java在编译期间，所有的泛型信息都会被擦掉，这也就是通常所说类型擦除 。** 更多关于类型擦除的问题，可以查看这篇文章：[《Java泛型类型擦除以及类型擦除带来的问题》](https://www.cnblogs.com/wuqinglong/p/9456193.html) 。
+
+```java
+List<Integer> list = new ArrayList<>();
+
+list.add(12);
+//这里直接添加会报错
+list.add("a");
+Class<? extends List> clazz = list.getClass();
+Method add = clazz.getDeclaredMethod("add", Object.class);
+//但是通过反射添加，是可以的
+add.invoke(list, "kl");
+
+System.out.println(list)
+```
+
+泛型一般有三种使用方式:泛型类、泛型接口、泛型方法。
+
+**1.泛型类**：
+
+```java
+//此处T可以随便写为任意标识，常见的如T、E、K、V等形式的参数常用于表示泛型
+//在实例化泛型类时，必须指定T的具体类型
+public class Generic<T>{ 
+   
+    private T key;
+
+    public Generic(T key) { 
+        this.key = key;
+    }
+
+    public T getKey(){ 
+        return key;
+    }
+}
+```
+
+如何实例化泛型类：
+
+```java
+Generic<Integer> genericInteger = new Generic<Integer>(123456);
+```
+
+**2.泛型接口** ：
+
+```java
+public interface Generator<T> {
+    public T method();
+}
+```
+
+实现泛型接口，不指定类型：
+
+```java
+class GeneratorImpl<T> implements Generator<T>{
+    @Override
+    public T method() {
+        return null;
+    }
+}
+```
+
+实现泛型接口，指定类型：
+
+```java
+class GeneratorImpl<T> implements Generator<String>{
+    @Override
+    public String method() {
+        return "hello";
+    }
+}
+```
+
+**3.泛型方法** ：
+
+```java
+   public static < E > void printArray( E[] inputArray )
+   {         
+         for ( E element : inputArray ){        
+            System.out.printf( "%s ", element );
+         }
+         System.out.println();
+    }
+```
+
+使用：
+
+```java
+// 创建不同类型数组： Integer, Double 和 Character
+Integer[] intArray = { 1, 2, 3 };
+String[] stringArray = { "Hello", "World" };
+printArray( intArray  ); 
+printArray( stringArray  ); 
+```
+
+**常用的通配符为： T，E，K，V，？**
+
+- ？ 表示不确定的 java 类型
+- T (type) 表示具体的一个java类型
+- K V (key value) 分别代表java键值中的Key Value
+- E (element) 代表Element
+
+更多关于Java 泛型中的通配符可以查看这篇文章：[《聊一聊-JAVA 泛型中的通配符 T，E，K，V，？》](https://juejin.im/post/5d5789d26fb9a06ad0056bd9)
+
+### 1.3. 基本数据类型
+
+#### 1.3.1. Java中的几种基本数据类型是什么？对应的包装类型是什么？各自占用多少字节呢？
 
 Java**中**有8种基本数据类型，分别为：
 
@@ -249,8 +390,8 @@ Java**中**有8种基本数据类型，分别为：
 | long     | 64   | 8    | 0L      |
 | byte     | 8    | 1    | 0       |
 | char     | 16   | 2    | 'u0000' |
-| float    | 32   | 4    | 0f    |
-| double   | 64   | 8    | 0d    |
+| float    | 32   | 4    | 0f      |
+| double   | 64   | 8    | 0d      |
 | boolean  | 1    |      | false   |
 
 对于boolean，官方文档未明确定义，它依赖于 JVM 厂商的具体实现。逻辑上理解是占用 1位，但是实际中会考虑计算机高效存储因素。
@@ -260,42 +401,122 @@ Java**中**有8种基本数据类型，分别为：
 1. Java 里使用 long 类型的数据一定要在数值后面加上 **L**，否则将作为整型解析：
 2. `char a = 'h'`char :单引号，`String a = "hello"` :双引号
 
-#### 1.2.6. 自动装箱与拆箱
+#### 1.3.2. 自动装箱与拆箱
 
 - **装箱**：将基本类型用它们对应的引用类型包装起来；
 - **拆箱**：将包装类型转换为基本数据类型；
 
 更多内容见：[深入剖析 Java 中的装箱和拆箱](https://www.cnblogs.com/dolphin0520/p/3780005.html)
 
-#### 1.2.7. continue、break、和return的区别是什么？
+#### 1.3.3. 种基本类型的包装类和常量池
 
-在循环结构中，当循环条件不满足或者循环次数达到要求时，循环会正常结束。但是，有时候可能需要在循环的过程中，当发生了某种条件之后 ，提前终止循环，这就需要用到下面几个关键词：
+**Java 基本类型的包装类的大部分都实现了常量池技术，即 Byte,Short,Integer,Long,Character,Boolean；前面 4 种包装类默认创建了数值[-128，127] 的相应类型的缓存数据，Character创建了数值在[0,127]范围的缓存数据，Boolean 直接返回True Or False。如果超出对应范围仍然会去创建新的对象。** 为啥把缓存设置为[-128，127]区间？（[参见issue/461](https://github.com/Snailclimb/JavaGuide/issues/461)）性能和资源之间的权衡。
 
-1. continue ：指跳出当前的这一次循环，继续下一次循环。
-2. break ：指跳出整个循环体，继续执行循环下面的语句。
+```java
+public static Boolean valueOf(boolean b) {
+    return (b ? TRUE : FALSE);
+}
+```
 
-return 用于跳出所在方法，结束该方法的运行。return 一般有两种用法：
+```java
+private static class CharacterCache {         
+    private CharacterCache(){}
+          
+    static final Character cache[] = new Character[127 + 1];          
+    static {             
+        for (int i = 0; i < cache.length; i++)                 
+            cache[i] = new Character((char)i);         
+    }   
+}
+```
 
-1. `return;` ：直接使用 return 结束方法执行，用于没有返回值函数的方法
-2. `return value;` ：return 一个特定值，用于有返回值函数的方法
+两种浮点数类型的包装类 Float,Double 并没有实现常量池技术。**
 
-### 1.3. 方法（函数）
+```java
+		Integer i1 = 33;
+		Integer i2 = 33;
+		System.out.println(i1 == i2);// 输出 true
+		Integer i11 = 333;
+		Integer i22 = 333;
+		System.out.println(i11 == i22);// 输出 false
+		Double i3 = 1.2;
+		Double i4 = 1.2;
+		System.out.println(i3 == i4);// 输出 false
+```
 
-#### 1.3.1. 什么是方法的返回值?返回值在类的方法里的作用是什么?
+**Integer 缓存源代码：** 
+
+```java
+/**
+*此方法将始终缓存-128 到 127（包括端点）范围内的值，并可以缓存此范围之外的其他值。
+*/
+    public static Integer valueOf(int i) {
+        if (i >= IntegerCache.low && i <= IntegerCache.high)
+            return IntegerCache.cache[i + (-IntegerCache.low)];
+        return new Integer(i);
+    }
+
+```
+
+**应用场景：**
+1. Integer i1=40；Java 在编译的时候会直接将代码封装成 Integer i1=Integer.valueOf(40);，从而使用常量池中的对象。
+2.  Integer i1 = new Integer(40);这种情况下会创建新的对象。
+
+```java
+  Integer i1 = 40;
+  Integer i2 = new Integer(40);
+  System.out.println(i1==i2);//输出 false
+```
+**Integer 比较更丰富的一个例子:**
+
+```java
+  Integer i1 = 40;
+  Integer i2 = 40;
+  Integer i3 = 0;
+  Integer i4 = new Integer(40);
+  Integer i5 = new Integer(40);
+  Integer i6 = new Integer(0);
+  
+  System.out.println("i1=i2   " + (i1 == i2));
+  System.out.println("i1=i2+i3   " + (i1 == i2 + i3));
+  System.out.println("i1=i4   " + (i1 == i4));
+  System.out.println("i4=i5   " + (i4 == i5));
+  System.out.println("i4=i5+i6   " + (i4 == i5 + i6));   
+  System.out.println("40=i5+i6   " + (40 == i5 + i6));     
+```
+
+结果：
+
+```
+i1=i2   true
+i1=i2+i3   true
+i1=i4   false
+i4=i5   false
+i4=i5+i6   true
+40=i5+i6   true
+```
+
+解释：
+
+语句 i4 == i5 + i6，因为+这个操作符不适用于 Integer 对象，首先 i5 和 i6 进行自动拆箱操作，进行数值相加，即 i4 == 40。然后 Integer 对象无法与数值进行直接比较，所以 i4 自动拆箱转为 int 值 40，最终这条语句转为 40 == 40 进行数值比较。
+
+### 1.4. 方法（函数）
+
+#### 1.4.1. 什么是方法的返回值?返回值在类的方法里的作用是什么?
 
 方法的返回值是指我们获取到的某个方法体中的代码执行后产生的结果！（前提是该方法可能产生结果）。返回值的作用是接收出结果，使得它可以用于其他的操作！
 
-#### 1.3.2. 为什么 Java 中只有值传递？
+#### 1.4.2. 为什么 Java 中只有值传递？
 
 [为什么 Java 中只有值传递？](https://juejin.im/post/5e18879e6fb9a02fc63602e2)
 
-#### 1.3.3. 重载和重写的区别
+#### 1.4.3. 重载和重写的区别
 
 > 重载就是同样的一个方法能够根据输入数据的不同，做出不同的处理
 >
 > 重写就是当子类继承自父类的相同方法，输入数据一样，但要做出有别于父类的响应时，你就要覆盖父类方法
 
-###### 1.3.3.1. 重载
+###### 1.4.3.1. 重载
 
 发生在同一个类中，方法名必须相同，参数类型不同、个数不同、顺序不同，方法返回值和访问修饰符可以不同。
 
@@ -305,7 +526,7 @@ return 用于跳出所在方法，结束该方法的运行。return 一般有两
 
 **综上：重载就是同一个类中多个同名方法根据不同的传参来执行不同的逻辑处理。**
 
-###### 1.3.3.2. 重写
+###### 1.4.3.2. 重写
 
 重写发生在运行期，是子类对父类的允许访问的方法的实现过程进行重新编写。
 
@@ -326,14 +547,14 @@ return 用于跳出所在方法，结束该方法的运行。return 一般有两
 | 访问修饰符 | 可修改   | 一定不能做更严格的限制（可以降低限制）         |
 | 发生阶段   | 编译期   | 运行期                                         |
 
-#### 1.3.4. 深拷贝 vs 浅拷贝
+#### 1.4.4. 深拷贝 vs 浅拷贝
 
 1. **浅拷贝**：对基本数据类型进行值传递，对引用数据类型进行引用传递般的拷贝，此为浅拷贝。
 2. **深拷贝**：对基本数据类型进行值传递，对引用数据类型，创建一个新的对象，并复制其内容，此为深拷贝。
 
 ![deep and shallow copy](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/java-deep-and-shallow-copy.jpg)
 
-#### 1.3.5. 方法的四种类型
+#### 1.4.5. 方法的四种类型
 
 1、无参数无返回值的方法
 
@@ -704,11 +925,13 @@ String s = input.readLine();
 
 #### 3.2.1. Java 异常类层次结构图
 
-![Java异常类层次结构图](./images/java-exception-handling-class-hierarchy-diagram.jpg)
+![](https://imgkr.cn-bj.ufileos.com/199703ce-a1b6-4968-9eb0-161a8217507e.png)
+
 
 <p style="font-size:13px;text-align:right">图片来自：https://simplesnippets.tech/exception-handling-in-java-part-1/</p>
 
-![Java异常类层次结构图](./images/exception-architechture-java.png)
+![](https://imgkr.cn-bj.ufileos.com/3c45529f-8915-448b-816a-360f8cb73fc7.png)
+
 
 <p style="font-size:13px;text-align:right">图片来自：https://chercher.tech/java-programming/exceptions-java</p>
 
@@ -762,7 +985,7 @@ public class Test {
 
 如果调用 `f(2)`，返回值将是 0，因为 finally 语句的返回值覆盖了 try 语句块的返回值。
 
-#### 3.2.4.使用 `try-with-resources` 来代替`try-catch-finally`
+#### 3.2.4. 使用 `try-with-resources` 来代替`try-catch-finally`
 
 《Effecitve Java》中明确指出：
 
