@@ -7,6 +7,7 @@
 		* [Collection](#Collection)
 		* [Map](#Map)
 	* [1.1.3 如何选用集合?](#-1)
+	* [1.1.4 为什么要使用集合?](#-1)
 *  [1.2 Iterator迭代器接口](#Iterator)
 *  [1.3 Collection子接口之List](#CollectionList)
 	* [ 1.3.1  Arraylist 与 LinkedList 区别?](#ArraylistLinkedList)
@@ -71,6 +72,13 @@
 ###  1.1.3如何选用集合?
 
 主要根据集合的特点来选用，比如我们需要根据键值获取到元素值时就选用Map接口下的集合，需要排序时选择TreeMap,不需要排序时就选择HashMap,需要保证线程安全就选用ConcurrentHashMap.当我们只需要存放元素值时，就选择实现Collection接口的集合，需要保证元素唯一时选择实现Set接口的集合比如TreeSet或HashSet，不需要就选择实现List接口的比如ArrayList或LinkedList，然后再根据实现这些接口的集合的特点来选用。
+
+### 1.1.4 为什么要使用集合？
+当我们需要保存一组类型相同的数据的时候，我们应该是用一个容器来保存，这个容器就是数组，但是，使用数组存储对象具有一定的弊端，
+因为我们在实际开发中，存储的数据的类型是多种多样的，于是，就出现了“集合”，集合同样也是用来存储多个数据的。
+
+数组的缺点是一旦声明之后，长度就不可变了；同时，声明数组时的数据类型也决定了该数组存储的数据的类型；而且，数组存储的数据是有序的、可重复的，特点单一。
+但是集合提高了数据存储的灵活性，Java集合不仅可以用来存储不同类型不同数量的对象，还可以保存具有映射关系的数据
 
 ##  1.2 Iterator迭代器接口
 
@@ -459,6 +467,7 @@ synchronized只锁定当前链表或红黑二叉树的首节点，这样只要ha
 
 ##  1.6 Collections工具类
 
+详见笔主的这篇文章: https://gitee.com/SnailClimb/JavaGuide/blob/master/docs/java/basic/Arrays,CollectionsCommonMethods.md
 
 
 ##  公众号
