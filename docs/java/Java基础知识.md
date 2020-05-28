@@ -219,7 +219,7 @@ Java 中的注释有三种：
 >
 > ```java
 > // check to see if the employee is eligible for full benefits
-> if ((employee.falgs & HOURLY_FLAG) && (employee.age > 65))
+> if ((employee.flags & HOURLY_FLAG) && (employee.age > 65))
 > ```
 >
 > 应替换为
