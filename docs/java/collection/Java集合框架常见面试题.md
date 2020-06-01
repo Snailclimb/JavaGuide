@@ -42,9 +42,9 @@
 ##  1.1 集合概述
 ### 1.1.1 说说List,Set,Map三者的区别？
 
-- **List(对付顺序的好帮手)：** List接口存储一组不唯一（可以有多个元素引用相同的对象），有序的对象
-- **Set(注重独一无二的性质):** 不允许重复的集合。不会有多个元素引用相同的对象。
-- **Map(用Key来搜索的专家):** 使用键值对存储。Map会维护与Key有关联的值。两个Key可以引用相同的对象，但Key不能重复，典型的Key是String类型，但也可以是任何对象。
+- **List(对付顺序的好帮手)：** 存储的元素是有序的、可重复的。
+- **Set(注重独一无二的性质):** 存储的元素是无序的、不可重复的。
+- **Map(用Key来搜索的专家):** 使用键值对（kye-value）存储，类似于数学上的函数y=f(x)，“x”代表key，"y"代表value，Key是无序的、不可重复的，value是无序的、可重复的，每个键最多映射到一个值。
 
 ###  1.1.2 集合框架底层数据结构总结
 
@@ -93,7 +93,7 @@
 
 - **4. 是否支持快速随机访问：** `LinkedList` 不支持高效的随机元素访问，而 `ArrayList` 支持。快速随机访问就是通过元素的序号快速获取元素对象(对应于`get(int index) `方法)。
 
-- **5. 内存空间占用：** ArrayList的空 间浪费主要体现在在list列表的结尾会预留一定的容量空间，而LinkedList的空间花费则体现在它的每一个元素都需要消耗比ArrayList更多的空间（因为要存放直接后继和直接前驱以及数据）。
+- **5. 内存空间占用：** ArrayList的空间浪费主要体现在在list列表的结尾会预留一定的容量空间，而LinkedList的空间花费则体现在它的每一个元素都需要消耗比ArrayList更多的空间（因为要存放直接后继和直接前驱以及数据）。
 
 ####  **补充内容:RandomAccess接口**
 
@@ -280,9 +280,9 @@ Output：
 ##  1.5 Map接口
 ###  1.5.1 HashMap 和 Hashtable 的区别
 
-1. **线程是否安全：** HashMap 是非线程安全的，HashTable 是线程安全的；HashTable 内部的方法基本都经过`synchronized` 修饰。（如果你要保证线程安全的话就使用 ConcurrentHashMap 吧！）；
+1. **线程是否安全：** HashMap 是非线程安全的，HashTable 是线程安全的,因为HashTable 内部的方法基本都经过`synchronized` 修饰。（如果你要保证线程安全的话就使用 ConcurrentHashMap 吧！）；
 2. **效率：** 因为线程安全的问题，HashMap 要比 HashTable 效率高一点。另外，HashTable 基本被淘汰，不要在代码中使用它；
-3. **对Null key 和Null value的支持：** HashMap 中，null 可以作为键，这样的键只有一个，可以有一个或多个键所对应的值为 null。。但是在 HashTable 中 put 进的键值只要有一个 null，直接抛出 NullPointerException。
+3. **对Null key 和Null value的支持：** HashMap可以存储null的key和value，但null 作为键只能有一个，null作为值可以有多个；HashTable不允许有null键和null值，否则会抛出 NullPointerException。
 4. **初始容量大小和每次扩充容量大小的不同 ：** ①创建时如果不指定容量初始值，Hashtable 默认的初始大小为11，之后每次扩充，容量变为原来的2n+1。HashMap 默认的初始化大小为16。之后每次扩充，容量变为原来的2倍。②创建时如果给定了容量初始值，那么 Hashtable 会直接使用你给定的大小，而 HashMap 会将其扩充为2的幂次方大小（HashMap 中的`tableSizeFor()`方法保证，下面给出了源代码）。也就是说 HashMap 总是使用2的幂作为哈希表的大小,后面会介绍到为什么是2的幂次方。
 5. **底层数据结构：** JDK1.8 以后的 HashMap 在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为8）（将链表转换成红黑树前会判断，如果当前数组的长度小于 64，那么会选择先进行数组扩容，而不是转换为红黑树）时，将链表转化为红黑树，以减少搜索时间。Hashtable 没有这样的机制。
 
