@@ -34,6 +34,13 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 </a >
 </p>
 
+### 
+<p align="center">
+<a  href="https://github.com/yaonphy/Job-Hunt/blob/master/README.md" target="_blank">
+<img src="https://6a6f-job-hunt-bvzy1-1259590017.tcb.qcloud.la/adForGithub/jobhunt-javaguide400.png" style="margin: 0 auto;width:400px"/>
+</a >
+</p>
+
 ## 目录
 
 - [Java](#java)
