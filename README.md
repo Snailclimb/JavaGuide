@@ -231,6 +231,7 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 ### 必知
 
 1. **[RestFul API 简明教程](docs/system-design/restful-api.md)**
+2. **[因为命名被diss无数次。Guide简单聊聊编程最头疼的事情之一:命名](docs/system-design/naming.md)**
 
 ### 常用框架
 
