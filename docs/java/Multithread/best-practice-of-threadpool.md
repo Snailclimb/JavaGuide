@@ -145,7 +145,7 @@ Finished all threads
 
 你可以通过一些手段来检测线程池的运行状态比如 SpringBoot 中的 Actuator 组件。
 
-除此之外，我们还可以利用 `ThreadPoolExecutor` 的相关 API做一个简陋的监控。从下图可以看出， `ThreadPoolExecutor`提供了线程池当前的线程数和活跃线程数、已经执行完成的任务数、正在排队中的任务数等等。
+除此之外，我们还可以利用 `ThreadPoolExecutor` 的相关 API做一个简陋的监控。从下图可以看出， `ThreadPoolExecutor`提供了获取线程池当前的线程数和活跃线程数、已经执行完成的任务数、正在排队中的任务数等等。
 
 ![](https://imgkr.cn-bj.ufileos.com/ddf22709-bff5-45b4-acb7-a3f2e6798608.png)
 
@@ -271,7 +271,7 @@ public final class NamingThreadFactory implements ThreadFactory {
 
 **如何判断是 CPU 密集任务还是 IO 密集任务？**
 
-CPU 密集型简单理解就是利用 CPU 计算能力的任务比如你在内存中对大量数据进行排序。单凡涉及到网络读取，文件读取这类都是 IO 密集型，这类任务的特点是 CPU 计算耗费时间相比于等待 IO 操作完成的时间来说很少，大部分时间都花在了等待 IO 操作完成上。
+CPU 密集型简单理解就是利用 CPU 计算能力的任务比如你在内存中对大量数据进行排序。但凡涉及到网络读取，文件读取这类都是 IO 密集型，这类任务的特点是 CPU 计算耗费时间相比于等待 IO 操作完成的时间来说很少，大部分时间都花在了等待 IO 操作完成上。
 
 #### 美团的骚操作
 

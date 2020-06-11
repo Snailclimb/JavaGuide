@@ -135,7 +135,7 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 **必备知识点：**
 
 1. [并发容器总结](docs/java/Multithread/并发容器总结.md)
-2. **[Java线程池学习总结](./docs/java/Multithread/java线程池学习总结.md)**
+2. **线程池**：[Java线程池学习总结](./docs/java/Multithread/java线程池学习总结.md)、[拿来即用的线程池最佳实践](./docs/java/Multithread/best-practice-of-threadpool.md)
 3. [乐观锁与悲观锁](docs/essential-content-for-interview/面试必备之乐观锁与悲观锁.md)
 4. [JUC 中的 Atomic 原子类总结](docs/java/Multithread/Atomic.md)
 5. [AQS 原理以及 AQS 同步组件总结](docs/java/Multithread/AQS.md)
