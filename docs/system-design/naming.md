@@ -115,7 +115,7 @@ void shouldGet200StatusCodoWhenRequestIsValid() {
 
 **1.类名需要使用大驼峰命名法（UpperCamelCase）风格。方法名、参数名、成员变量、局部变量需要使用小驼峰命名法（lowerCamelCase）。**
 
-**2.测试方法名、常量、枚举名称需要使用蛇形命名法（snake_case） **，比如`should_get_200_status_code_when_request_is_valid`、`CLIENT_CONNECT_SERVER_FAILURE`。并且，**测试方法名称要求全部小写，常量以及枚举名称需要全部大写。**
+**2.测试方法名、常量、枚举名称需要使用蛇形命名法（snake_case）**，比如`should_get_200_status_code_when_request_is_valid`、`CLIENT_CONNECT_SERVER_FAILURE`。并且，**测试方法名称要求全部小写，常量以及枚举名称需要全部大写。**
 
 **3.项目文件夹名称使用串式命名法（kebab-case），比如`dubbo-registry`。**
 
@@ -209,3 +209,5 @@ Guide 制作了一个涵盖上面所有重要内容的思维导图，便于小�
 1. 《阿里巴巴 Java 开发手册》
 2. 《Clean Code》
 3. Google Java 代码指南：https://google.github.io/styleguide/javaguide.html#s5.1-identifier-name
+
+
