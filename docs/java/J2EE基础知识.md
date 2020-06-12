@@ -193,7 +193,7 @@ JSP有9个内置对象：
 
 `getParameter()`用于客户端重定向时，即点击了链接或提交按扭时传值用，即用于在用表单或url重定向传值时接收数据用。
 
-`getAttribute()` 用于服务器端重定向时，即在 sevlet 中使用了 forward 函数,或 struts 中使用了
+`getAttribute()` 用于服务器端重定向时，即在 sevlet 中使用了 redirect 函数,或 struts 中使用了
 mapping.findForward。 getAttribute 只能收到程序用 setAttribute 传过来的值。
 
 另外，可以用 `setAttribute()`,`getAttribute()` 发送接收对象.而 `getParameter()` 显然只能传字符串。
