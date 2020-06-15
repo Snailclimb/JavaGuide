@@ -145,7 +145,7 @@ ThreadLocal.ThreadLocalMap inheritableThreadLocals = null;
 
 `ThreadLocalMap`是`ThreadLocal`的静态内部类。
 
-![ThreadLocal内部类](https://ws1.sinaimg.cn/large/006rNwoDgy1g2f47u9li2j30ka08cq43.jpg)
+
 
 ### ThreadLocal 内存泄露问题
 
