@@ -39,12 +39,16 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
       <td align="center" valign="middle">
         <a href="https://github.com/yaonphy/Job-Hunt/blob/master/README.md" target="_blank">
           <img src="https://6a6f-job-hunt-bvzy1-1259590017.tcb.qcloud.la/adForGithub/jobhunt-javaguide400.png" style="margin: 0 auto;width:400px" /></a>
-      </td>
+      </td>     
     </tr>
+    <tr>
+      <td align="center" valign="middle">
+        <a href="https://wx.kaikeba.com/vip_course/ijd2ajz1k9/09vvaf10hf?tenant=wx5046bc7413796142" target="_blank">
+          <img src="https://imgkr.cn-bj.ufileos.com/75fef802-16f0-4e0b-9d6f-a9173f24a40f.png" style="margin: 0 auto;width:400px" /></a>
+      </td>     
+    </tr>    
   </tbody>
 </table>
-
-
 
 ## 目录
 
