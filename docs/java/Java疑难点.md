@@ -1,23 +1,23 @@
 <!-- TOC -->
 
-- [1. 基础](#1-基础)
-    - [1.1. 正确使用 equals 方法](#11-正确使用-equals-方法)
-    - [1.2. 整形包装类值的比较](#12-整形包装类值的比较)
-    - [1.3. BigDecimal](#13-bigdecimal)
-        - [1.3.1. BigDecimal 的用处](#131-bigdecimal-的用处)
-        - [1.3.2. BigDecimal 的大小比较](#132-bigdecimal-的大小比较)
-        - [1.3.3. BigDecimal 保留几位小数](#133-bigdecimal-保留几位小数)
-        - [1.3.4. BigDecimal 的使用注意事项](#134-bigdecimal-的使用注意事项)
-        - [1.3.5. 总结](#135-总结)
-    - [1.4. 基本数据类型与包装数据类型的使用标准](#14-基本数据类型与包装数据类型的使用标准)
-- [2. 集合](#2-集合)
-    - [2.1. Arrays.asList()使用指南](#21-arraysaslist使用指南)
-        - [2.1.1. 简介](#211-简介)
-        - [2.1.2. 《阿里巴巴Java 开发手册》对其的描述](#212-阿里巴巴java-开发手册对其的描述)
-        - [2.1.3. 使用时的注意事项总结](#213-使用时的注意事项总结)
-        - [2.1.4. 如何正确的将数组转换为ArrayList?](#214-如何正确的将数组转换为arraylist)
-    - [2.2. Collection.toArray()方法使用的坑&如何反转数组](#22-collectiontoarray方法使用的坑如何反转数组)
-    - [2.3. 不要在 foreach 循环里进行元素的 remove/add 操作](#23-不要在-foreach-循环里进行元素的-removeadd-操作)
+- [1. 基础](#_1-基础)
+    - [1.1. 正确使用 equals 方法](#_11-正确使用-equals-方法)
+    - [1.2. 整型包装类值的比较](#_12-整型包装类值的比较)
+    - [1.3. BigDecimal](#_13-bigdecimal)
+        - [1.3.1. BigDecimal 的用处](#_131-bigdecimal-的用处)
+        - [1.3.2. BigDecimal 的大小比较](#_132-bigdecimal-的大小比较)
+        - [1.3.3. BigDecimal 保留几位小数](#_133-bigdecimal-保留几位小数)
+        - [1.3.4. BigDecimal 的使用注意事项](#_134-bigdecimal-的使用注意事项)
+        - [1.3.5. 总结](#_135-总结)
+    - [1.4. 基本数据类型与包装数据类型的使用标准](#_14-基本数据类型与包装数据类型的使用标准)
+- [2. 集合](#_2-集合)
+    - [2.1. Arrays.asList()使用指南](#_21-arraysaslist使用指南)
+        - [2.1.1. 简介](#_211-简介)
+        - [2.1.2. 《阿里巴巴Java 开发手册》对其的描述](#_212-阿里巴巴java-开发手册对其的描述)
+        - [2.1.3. 使用时的注意事项总结](#_213-使用时的注意事项总结)
+        - [2.1.4. 如何正确的将数组转换为ArrayList?](#_214-如何正确的将数组转换为arraylist)
+    - [2.2. Collection.toArray()方法使用的坑&如何反转数组](#_22-collectiontoarray方法使用的坑如何反转数组)
+    - [2.3. 不要在 foreach 循环里进行元素的 remove/add 操作](#_23-不要在-foreach-循环里进行元素的-removeadd-操作)
 
 <!-- /TOC -->
 
@@ -62,12 +62,12 @@ public static boolean equals(Object a, Object b) {
 Reference:[Java中equals方法造成空指针异常的原因及解决方案](https://blog.csdn.net/tick_tock97/article/details/72824894)
 
 - 每种原始类型都有默认值一样，如int默认值为 0，boolean 的默认值为 false，null 是任何引用类型的默认值，不严格的说是所有 Object 类型的默认值。
-- 可以使用==或者!=操作来比较null值，但是不能使用其他算法或者逻辑操作。在Java中`null==null`将返回true。
+- 可以使用 == 或者 != 操作来比较null值，但是不能使用其他算法或者逻辑操作。在Java中`null == null`将返回true。
 - 不能使用一个值为null的引用类型变量来调用非静态方法，否则会抛出异常
 
-## 1.2. 整形包装类值的比较
+## 1.2. 整型包装类值的比较
 
-所有整形包装类对象值得比较必须使用equals方法。
+所有整型包装类对象值的比较必须使用equals方法。
 
 先看下面这个例子：
 
@@ -150,8 +150,7 @@ Reference:《阿里巴巴Java开发手册》
 
 比如我们如果自定义了一个Student类,其中有一个属性是成绩score,如果用Integer而不用int定义,一次考试,学生可能没考,值是null,也可能考了,但考了0分,值是0,这两个表达的状态明显不一样.
 
-**说明** :POJO 类属性没有初值是提醒使用者在需要使用时，必须自己显式地进行赋值，任何 NPE 问题，或
-者入库检查，都由使用者来保证。
+**说明** :POJO 类属性没有初值是提醒使用者在需要使用时，必须自己显式地进行赋值，任何 NPE 问题，或者入库检查，都由使用者来保证。
 
 **正例** : 数据库的查询结果可能是 null，因为自动拆箱，用基本数据类型接收有 NPE 风险。
 
@@ -161,7 +160,7 @@ Reference:《阿里巴巴Java开发手册》
 
 ## 2.1. Arrays.asList()使用指南
 
-最近使用`Arrays.asList()`遇到了一些坑，然后在网上看到这篇文章：[Java Array to List Examples](http://javadevnotes.com/java-array-to-list-examples) 感觉挺不错的，但是还是特别全面。所以，自己对于这块小知识点进行了简单的总结。
+最近使用`Arrays.asList()`遇到了一些坑，然后在网上看到这篇文章：[Java Array to List Examples](http://javadevnotes.com/java-array-to-list-examples) 感觉挺不错的，但是还不是特别全面。所以，自己对于这块小知识点进行了简单的总结。
 
 ### 2.1.1. 简介
 
