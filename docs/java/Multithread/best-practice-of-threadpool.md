@@ -26,7 +26,7 @@
 
 注意：**下面三个任务可能做的是同一件事情，也可能是不一样的事情。** 
 
-![使用线程池前后对比](https://imgkr.cn-bj.ufileos.com/1bc44c67-26ba-42ab-bcb8-4e29e6fd99b9.png)
+![使用线程池前后对比](./thread-pool/1bc44c67-26ba-42ab-bcb8-4e29e6fd99b9.png)
 
 ### 如何使用线程池？
 
@@ -147,7 +147,7 @@ Finished all threads
 
 除此之外，我们还可以利用 `ThreadPoolExecutor` 的相关 API做一个简陋的监控。从下图可以看出， `ThreadPoolExecutor`提供了获取线程池当前的线程数和活跃线程数、已经执行完成的任务数、正在排队中的任务数等等。
 
-![](https://imgkr.cn-bj.ufileos.com/ddf22709-bff5-45b4-acb7-a3f2e6798608.png)
+![](./thread-pool/ddf22709-bff5-45b4-acb7-a3f2e6798608.png)
 
 下面是一个简单的 Demo。`printThreadPoolStatus()`会每隔一秒打印出线程池的线程数、活跃线程数、完成的任务数、以及队列中的任务数。
 
@@ -178,7 +178,7 @@ Finished all threads
 
 **我们再来看一个真实的事故案例！** (本案例来源自：[《线程池运用不当的一次线上事故》](https://club.perfma.com/article/646639) ，很精彩的一个案例)
 
-![案例代码概览](https://imgkr.cn-bj.ufileos.com/5b9b814d-722a-4116-b066-43dc80fc1dc4.png)
+![案例代码概览](./thread-pool/5b9b814d-722a-4116-b066-43dc80fc1dc4.png)
 
 上面的代码可能会存在死锁的情况，为什么呢？画个图给大家捋一捋。
 
@@ -289,7 +289,7 @@ CPU 密集型简单理解就是利用 CPU 计算能力的任务比如你在内�
 
 **如何支持参数动态配置？** 且看 `ThreadPoolExecutor` 提供的下面这些方法。
 
-![](https://imgkr.cn-bj.ufileos.com/b6fd95a7-4c9d-4fc6-ad26-890adb3f6c4c.png)
+![](./thread-pool/b6fd95a7-4c9d-4fc6-ad26-890adb3f6c4c.png)
 
 格外需要注意的是`corePoolSize`，   程序运行期间的时候，我们调用 `setCorePoolSize（） `这个方法的话，线程池会首先判断当前工作线程数是否大于`corePoolSize`，如果大于的话就会回收工作线程。
 
@@ -297,7 +297,7 @@ CPU 密集型简单理解就是利用 CPU 计算能力的任务比如你在内�
 
 最终实现的可动态修改线程池参数效果如下。👏👏👏
 
-![动态配置线程池参数最终效果](https://imgkr.cn-bj.ufileos.com/19a0255a-6ef3-4835-98d1-a839d1983332.png)
+![动态配置线程池参数最终效果](./thread-pool/19a0255a-6ef3-4835-98d1-a839d1983332.png)
 
 还没看够？推荐 why神的[《如何设置线程池参数？美团给出了一个让面试官虎躯一震的回答。》](https://mp.weixin.qq.com/s/9HLuPcoWmTqAeFKa1kj-_A)这篇文章，深度剖析，很不错哦！
 
