@@ -1,3 +1,5 @@
+如果 Github 访问速度比较慢或者图片无法刷新出来的话，可以转移到[码云](https://gitee.com/SnailClimb/JavaGuide )查看，或者[在线阅读](https://snailclimb.gitee.io/javaguide )。**如果你要提交 issue 或者 pr 的话请到 [Github](https://github.com/Snailclimb/JavaGuide) 提交。**
+
 > JavaGuide 的Star数量虽然比较多，但是它的价值和含金量一定是不能和 Dubbo、Nacos这些优秀的国产开源项目比的。希望国内可以出更多优秀的开源项目！
 >
 > 另外，希望大家对面试不要抱有侥幸的心理，打铁还需自身硬！  我希望这个文档是为你学习  Java 指明方向，而不是用来应付面试用的。加油！奥利给！
@@ -10,8 +12,6 @@
 更多原创内容和干货分享：
 
 1. [公众号—JavaGuide](#公众号) ： 最新原创文章+免费领取本文档配套的《Java面试突击》以及Java工程师必备学习资源）
-
-Github用户如果访问速度缓慢的话，可以转移到[码云](https://gitee.com/SnailClimb/JavaGuide )查看，或者[在线阅读](https://snailclimb.gitee.io/javaguide )。
 
 <p align="center">
 <a href="https://github.com/Snailclimb/JavaGuide" target="_blank">
