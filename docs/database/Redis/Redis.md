@@ -1,32 +1,34 @@
 点击关注[公众号](#公众号)及时获取笔主最新更新文章，并可免费领取本文档配套的《Java 面试突击》以及 Java 工程师必备学习资源。
 
-<!-- TOC -->
+### 目录
 
-- [redis 简介](#redis-简介)
-- [为什么要用 redis/为什么要用缓存](#为什么要用-redis为什么要用缓存)
-- [为什么要用 redis 而不用 map/guava 做缓存?](#为什么要用-redis-而不用-mapguava-做缓存)
-- [redis 和 memcached 的区别](#redis-和-memcached-的区别)
-- [redis 常见数据结构以及使用场景分析](#redis-常见数据结构以及使用场景分析)
-  - [1.String](#1string)
-  - [2.Hash](#2hash)
-  - [3.List](#3list)
-  - [4.Set](#4set)
-  - [5.Sorted Set](#5sorted-set)
-- [redis 设置过期时间](#redis-设置过期时间)
-- [redis 内存淘汰机制(MySQL 里有 2000w 数据，Redis 中只存 20w 的数据，如何保证 Redis 中的数据都是热点数据?)](#redis-内存淘汰机制mysql里有2000w数据redis中只存20w的数据如何保证redis中的数据都是热点数据)
-- [redis 持久化机制(怎么保证 redis 挂掉之后再重启数据可以进行恢复)](#redis-持久化机制怎么保证-redis-挂掉之后再重启数据可以进行恢复)
-- [redis 事务](#redis-事务)
+- [Redis 简介](#redis-简介)
+- [为什么要用 Redis/为什么要用缓存](#为什么要用-redis为什么要用缓存)
+- [为什么要用 Redis 而不用 map/guava 做缓存?](#为什么要用-redis-而不用-mapguava-做缓存)
+- [Redis 的线程模型](#redis-的线程模型)
+- [Redis 和 Memcached 的区别和共同点](#redis-和-memcached-的区别和共同点)
+- [Redis 常见数据结构以及使用场景分析](#redis-常见数据结构以及使用场景分析)
+    - [1.String](#1string)
+    - [2.Hash](#2hash)
+    - [3.List](#3list)
+    - [4.Set](#4set)
+    - [5.Sorted Set](#5sorted-set)
+- [Redis 设置过期时间](#redis-设置过期时间)
+- [Redis 内存淘汰机制(MySQL 里有 2000w 数据，Redis 中只存 20w 的数据，如何保证 Redis 中的数据都是热点数据?)](#redis-内存淘汰机制mysql-里有-2000w-数据redis-中只存-20w-的数据如何保证-redis-中的数据都是热点数据)
+- [Redis 持久化机制(怎么保证 Redis 挂掉之后再重启数据可以进行恢复)](#redis-持久化机制怎么保证-redis-挂掉之后再重启数据可以进行恢复)
+- [Redis 事务](#redis-事务)
 - [缓存雪崩和缓存穿透问题解决方案](#缓存雪崩和缓存穿透问题解决方案)
+    - [**缓存雪崩**](#缓存雪崩)
+    - [**缓存穿透**](#缓存穿透)
 - [如何解决 Redis 的并发竞争 Key 问题](#如何解决-redis-的并发竞争-key-问题)
 - [如何保证缓存与数据库双写时的数据一致性?](#如何保证缓存与数据库双写时的数据一致性)
+- [参考](#参考)
 
-<!-- /TOC -->
+### Redis 简介
 
-### redis 简介
+简单来说 Redis 就是一个数据库，不过与传统数据库不同的是 Redis 的数据是存在内存中的，所以读写速度非常快，因此 Redis 被广泛应用于缓存方向。另外，Redis 也经常用来做分布式锁。Redis 提供了多种数据类型来支持不同的业务场景。除此之外，Redis 支持事务 、持久化、LUA 脚本、LRU 驱动事件、多种集群方案。
 
-简单来说 redis 就是一个数据库，不过与传统数据库不同的是 redis 的数据是存在内存中的，所以读写速度非常快，因此 redis 被广泛应用于缓存方向。另外，redis 也经常用来做分布式锁。redis 提供了多种数据类型来支持不同的业务场景。除此之外，redis 支持事务 、持久化、LUA 脚本、LRU 驱动事件、多种集群方案。
-
-### 为什么要用 redis/为什么要用缓存
+### 为什么要用 Redis/为什么要用缓存
 
 主要从“高性能”和“高并发”这两点来看待这个问题。
 
@@ -42,19 +44,19 @@
 
 ![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-24/85146760.jpg)
 
-### 为什么要用 redis 而不用 map/guava 做缓存?
+### 为什么要用 Redis 而不用 map/guava 做缓存?
 
 > 下面的内容来自 segmentfault 一位网友的提问，地址：https://segmentfault.com/q/1010000009106416
 
 缓存分为本地缓存和分布式缓存。以 Java 为例，使用自带的 map 或者 guava 实现的是本地缓存，最主要的特点是轻量以及快速，生命周期随着 jvm 的销毁而结束，并且在多实例的情况下，每个实例都需要各自保存一份缓存，缓存不具有一致性。
 
-使用 redis 或 memcached 之类的称为分布式缓存，在多实例的情况下，各实例共用一份缓存数据，缓存具有一致性。缺点是需要保持 redis 或 memcached 服务的高可用，整个程序架构上较为复杂。
+使用 Redis 或 Memcached 之类的称为分布式缓存，在多实例的情况下，各实例共用一份缓存数据，缓存具有一致性。缺点是需要保持 Redis 或 Memcached 服务的高可用，整个程序架构上较为复杂。
 
-### redis 的线程模型
+### Redis 的线程模型
 
 > 参考地址:https://www.javazhiyin.com/22943.html
 
-redis 内部使用文件事件处理器 `file event handler`，这个文件事件处理器是单线程的，所以 redis 才叫做单线程的模型。它采用 IO 多路复用机制同时监听多个 socket，根据 socket 上的事件来选择对应的事件处理器进行处理。
+Redis 内部使用文件事件处理器 `file event handler`，这个文件事件处理器是单线程的，所以 Redis 才叫做单线程的模型。它采用 IO 多路复用机制同时监听多个 socket，根据 socket 上的事件来选择对应的事件处理器进行处理。
 
 文件事件处理器的结构包含 4 个部分：
 
@@ -65,9 +67,9 @@ redis 内部使用文件事件处理器 `file event handler`，这个文件事�
 
 多个 socket 可能会并发产生不同的操作，每个操作对应不同的文件事件，但是 IO 多路复用程序会监听多个 socket，会将 socket 产生的事件放入队列中排队，事件分派器每次从队列中取出一个事件，把该事件交给对应的事件处理器进行处理。
 
-### redis 和 memcached 的区别和共同点
+### Redis 和 Memcached 的区别和共同点
 
-现在公司一般都是用 redis 来实现缓存，而且 redis 自身也越来越强大了！了解redis 和 memcached 的区别和共同点，有助于我们在做相应的技术选型的时候，能够做到有理有据！
+现在公司一般都是用 Redis 来实现缓存，而且 Redis 自身也越来越强大了！了解 Redis 和 Memcached 的区别和共同点，有助于我们在做相应的技术选型的时候，能够做到有理有据！
 
 **共同点：**
 
@@ -77,7 +79,7 @@ redis 内部使用文件事件处理器 `file event handler`，这个文件事�
 
 **区别：**
 
-1. **Redis 支持更丰富的数据类型（支持更复杂的应用场景）**。Redis 不仅仅支持简单的 k/v 类型的数据，同时还提供 list，set，zset，hash 等数据结构的存储。Memcached 只支持最简单的k/v数据类型。
+1. **Redis 支持更丰富的数据类型（支持更复杂的应用场景）**。Redis 不仅仅支持简单的 k/v 类型的数据，同时还提供 list，set，zset，hash 等数据结构的存储。Memcached 只支持最简单的 k/v 数据类型。
 2. **Redis 支持数据的持久化，可以将内存中的数据保持在磁盘中，重启的时候可以再次加载进行使用,而 Memecache 把数据全部存在内存之中。**
 3. **Redis 有灾难恢复机制。** 因为可以把缓存中的数据持久化到磁盘上。
 4. **Redis 在服务器内存使用完之后，可以将不用的数据放到磁盘上。但是，Memcached 在服务器内存使用完之后，就会直接报异常。**
@@ -86,9 +88,9 @@ redis 内部使用文件事件处理器 `file event handler`，这个文件事�
 
 > 来自网络上的一张图，这里分享给大家！
 
-![redis 和 memcached 的区别](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-24/61603179.jpg)
+![Redis 和 Memcached 的区别](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-24/61603179.jpg)
 
-### redis 常见数据结构以及使用场景分析
+### Redis 常见数据结构以及使用场景分析
 
 #### 1.String
 
@@ -123,7 +125,7 @@ list 就是链表，Redis list 的应用场景非常多，也是 Redis 最重要
 
 Redis list 的实现为一个双向链表，即可以支持反向查找和遍历，更方便操作，不过带来了部分额外的内存开销。
 
-另外可以通过 lrange 命令，就是从某个元素开始读取多少个元素，可以基于 list 实现分页查询，这个很棒的一个功能，基于 redis 实现简单的高性能分页，可以做类似微博那种下拉不断分页的东西（一页一页的往下走），性能高。
+另外可以通过 lrange 命令，就是从某个元素开始读取多少个元素，可以基于 list 实现分页查询，这个很棒的一个功能，基于 Redis 实现简单的高性能分页，可以做类似微博那种下拉不断分页的东西（一页一页的往下走），性能高。
 
 #### 4.Set
 
@@ -148,28 +150,28 @@ sinterstore key1 key2 key3     将交集存在key1内
 
 **举例：** 在直播系统中，实时排行信息包含直播间在线用户列表，各种礼物排行榜，弹幕消息（可以理解为按消息维度的消息排行榜）等信息，适合使用 Redis 中的 Sorted Set 结构进行存储。
 
-### redis 设置过期时间
+### Redis 设置过期时间
 
-Redis 中有个设置时间过期的功能，即对存储在 redis 数据库中的值可以设置一个过期时间。作为一个缓存数据库，这是非常实用的。如我们一般项目中的 token 或者一些登录信息，尤其是短信验证码都是有时间限制的，按照传统的数据库处理方式，一般都是自己判断过期，这样无疑会严重影响项目性能。
+Redis 中有个设置时间过期的功能，即对存储在 Redis 数据库中的值可以设置一个过期时间。作为一个缓存数据库，这是非常实用的。如我们一般项目中的 token 或者一些登录信息，尤其是短信验证码都是有时间限制的，按照传统的数据库处理方式，一般都是自己判断过期，这样无疑会严重影响项目性能。
 
 我们 set key 的时候，都可以给一个 expire time，就是过期时间，通过过期时间我们可以指定这个 key 可以存活的时间。
 
-如果假设你设置了一批 key 只能存活 1 个小时，那么接下来 1 小时后，redis 是怎么对这批 key 进行删除的？
+如果假设你设置了一批 key 只能存活 1 个小时，那么接下来 1 小时后，Redis 是怎么对这批 key 进行删除的？
 
 **定期删除+惰性删除。**
 
 通过名字大概就能猜出这两个删除方式的意思了。
 
-- **定期删除**：redis 默认是每隔 100ms 就**随机抽取**一些设置了过期时间的 key，检查其是否过期，如果过期就删除。注意这里是随机抽取的。为什么要随机呢？你想一想假如 redis 存了几十万个 key ，每隔 100ms 就遍历所有的设置过期时间的 key 的话，就会给 CPU 带来很大的负载！
-- **惰性删除** ：定期删除可能会导致很多过期 key 到了时间并没有被删除掉。所以就有了惰性删除。假如你的过期 key，靠定期删除没有被删除掉，还停留在内存里，除非你的系统去查一下那个 key，才会被 redis 给删除掉。这就是所谓的惰性删除，也是够懒的哈！
+- **定期删除**：Redis 默认是每隔 100ms 就**随机抽取**一些设置了过期时间的 key，检查其是否过期，如果过期就删除。注意这里是随机抽取的。为什么要随机呢？你想一想假如 Redis 存了几十万个 key ，每隔 100ms 就遍历所有的设置过期时间的 key 的话，就会给 CPU 带来很大的负载！
+- **惰性删除** ：定期删除可能会导致很多过期 key 到了时间并没有被删除掉。所以就有了惰性删除。假如你的过期 key，靠定期删除没有被删除掉，还停留在内存里，除非你的系统去查一下那个 key，才会被 Redis 给删除掉。这就是所谓的惰性删除，也是够懒的哈！
 
-但是仅仅通过设置过期时间还是有问题的。我们想一下：如果定期删除漏掉了很多过期 key，然后你也没及时去查，也就没走惰性删除，此时会怎么样？如果大量过期 key 堆积在内存里，导致 redis 内存块耗尽了。怎么解决这个问题呢？ **redis 内存淘汰机制。**
+但是仅仅通过设置过期时间还是有问题的。我们想一下：如果定期删除漏掉了很多过期 key，然后你也没及时去查，也就没走惰性删除，此时会怎么样？如果大量过期 key 堆积在内存里，导致 Redis 内存块耗尽了。怎么解决这个问题呢？ **Redis 内存淘汰机制。**
 
-### redis 内存淘汰机制(MySQL 里有 2000w 数据，Redis 中只存 20w 的数据，如何保证 Redis 中的数据都是热点数据?)
+### Redis 内存淘汰机制(MySQL 里有 2000w 数据，Redis 中只存 20w 的数据，如何保证 Redis 中的数据都是热点数据?)
 
-redis 配置文件 redis.conf 中有相关注释，我这里就不贴了，大家可以自行查阅或者通过这个网址查看： [http://download.redis.io/redis-stable/redis.conf](http://download.redis.io/redis-stable/redis.conf)
+Redis 配置文件 Redis.conf 中有相关注释，我这里就不贴了，大家可以自行查阅或者通过这个网址查看： [http://download.Redis.io/Redis-stable/Redis.conf](http://download.Redis.io/Redis-stable/Redis.conf)
 
-**redis 提供 6 种数据淘汰策略：**
+**Redis 提供 6 种数据淘汰策略：**
 
 1. **volatile-lru**：从已设置过期时间的数据集（server.db[i].expires）中挑选最近最少使用的数据淘汰
 2. **volatile-ttl**：从已设置过期时间的数据集（server.db[i].expires）中挑选将要过期的数据淘汰
@@ -183,9 +185,9 @@ redis 配置文件 redis.conf 中有相关注释，我这里就不贴了，大�
 7. **volatile-lfu**：从已设置过期时间的数据集(server.db[i].expires)中挑选最不经常使用的数据淘汰
 8. **allkeys-lfu**：当内存不足以容纳新写入数据时，在键空间中，移除最不经常使用的 key
 
-**备注： 关于 redis 设置过期时间以及内存淘汰机制，我这里只是简单的总结一下，后面会专门写一篇文章来总结！**
+**备注： 关于 Redis 设置过期时间以及内存淘汰机制，我这里只是简单的总结一下，后面会专门写一篇文章来总结！**
 
-### redis 持久化机制(怎么保证 redis 挂掉之后再重启数据可以进行恢复)
+### Redis 持久化机制(怎么保证 Redis 挂掉之后再重启数据可以进行恢复)
 
 很多时候我们需要持久化数据也就是将内存中的数据写入到硬盘里面，大部分原因是为了之后重用数据（比如重启机器、机器故障之后恢复数据），或者是为了防止系统故障而将数据备份到一个远程位置。
 
@@ -195,7 +197,7 @@ Redis 不同于 Memcached 的很重一点就是，Redis 支持持久化，而且
 
 Redis 可以通过创建快照来获得存储在内存里面的数据在某个时间点上的副本。Redis 创建快照之后，可以对快照进行备份，可以将快照复制到其他服务器从而创建具有相同数据的服务器副本（Redis 主从结构，主要用来提高 Redis 性能），还可以将快照留在原地以便重启服务器的时候使用。
 
-快照持久化是 Redis 默认采用的持久化方式，在 redis.conf 配置文件中默认有此下配置：
+快照持久化是 Redis 默认采用的持久化方式，在 Redis.conf 配置文件中默认有此下配置：
 
 ```conf
 
@@ -226,7 +228,7 @@ appendfsync no        #让操作系统决定何时进行同步
 
 为了兼顾数据和写入性能，用户可以考虑 appendfsync everysec 选项 ，让 Redis 每秒同步一次 AOF 文件，Redis 性能几乎没受到任何影响。而且这样即使出现系统崩溃，用户最多只会丢失一秒之内产生的数据。当硬盘忙于执行写入操作的时候，Redis 还会优雅的放慢自己的速度以便适应硬盘的最大写入速度。
 
-[相关 Issue783：Redis的AOF 方式](https://github.com/Snailclimb/JavaGuide/issues/783)
+[相关 Issue783：Redis 的 AOF 方式](https://github.com/Snailclimb/JavaGuide/issues/783)
 
 **Redis 4.0 对于持久化机制的优化**
 
@@ -246,7 +248,7 @@ AOF 重写是一个有歧义的名字，该功能是通过读取数据库中的�
 
 - [Redis 持久化](Redis持久化.md)
 
-### redis 事务
+### Redis 事务
 
 Redis 通过 MULTI、EXEC、WATCH 等命令来实现事务(transaction)功能。事务提供了一种将多个命令请求打包，然后一次性、按顺序地执行多个命令的机制，并且在事务执行期间，服务器不会中断事务而改去执行其他客户端的命令请求，它会将事务中的所有命令都执行完毕，然后才去处理其他客户端的命令请求。
 
@@ -254,7 +256,7 @@ Redis 通过 MULTI、EXEC、WATCH 等命令来实现事务(transaction)功能。
 
 补充内容：
 
-> 1. redis 同一个事务中如果有一条命令执行失败，其后的命令仍然会被执行，没有回滚。（来自[issue:关于 Redis 事务不是原子性问题](https://github.com/Snailclimb/JavaGuide/issues/452) ）
+> 1. Redis 同一个事务中如果有一条命令执行失败，其后的命令仍然会被执行，没有回滚。（来自[issue:关于 Redis 事务不是原子性问题](https://github.com/Snailclimb/JavaGuide/issues/452) ）
 
 ### 缓存雪崩和缓存穿透问题解决方案
 
@@ -268,9 +270,9 @@ Redis 通过 MULTI、EXEC、WATCH 等命令来实现事务(transaction)功能。
 
 （中华石杉老师在他的视频中提到过，视频地址在最后一个问题中有提到）：
 
-- 事前：尽量保证整个 redis 集群的高可用性，发现机器宕机尽快补上。选择合适的内存淘汰策略。
+- 事前：尽量保证整个 Redis 集群的高可用性，发现机器宕机尽快补上。选择合适的内存淘汰策略。
 - 事中：本地 ehcache 缓存 + hystrix 限流&降级，避免 MySQL 崩掉
-- 事后：利用 redis 持久化机制保存的数据尽快恢复缓存
+- 事后：利用 Redis 持久化机制保存的数据尽快恢复缓存
 
 ![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-25/6078367.jpg)
 
@@ -282,11 +284,11 @@ Redis 通过 MULTI、EXEC、WATCH 等命令来实现事务(transaction)功能。
 
 **正常缓存处理流程：**
 
-<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/正常缓存处理流程-redis.png" style="zoom:50%;" />
+<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/正常缓存处理流程-Redis.png" style="zoom:50%;" />
 
 **缓存穿透情况处理流程：**
 
-<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/缓存穿透处理流程-redis.png" style="zoom:50%;" />
+<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/缓存穿透处理流程-Redis.png" style="zoom:50%;" />
 
 一般 MySQL 默认的最大连接数在 150 左右，这个可以通过 `show variables like '%max_connections%';`命令来查看。最大连接数一个还只是一个指标，cpu，内存，磁盘，网络等无力条件都是其运行指标，这些指标都会限制其并发能力！所以，一般 3000 个并发请求就能打死大部分数据库了。
 
@@ -294,7 +296,7 @@ Redis 通过 MULTI、EXEC、WATCH 等命令来实现事务(transaction)功能。
 
 最基本的就是首先做好参数校验，一些不合法的参数请求直接抛出异常信息返回给客户端。比如查询的数据库 id 不能小于 0、传入的邮箱格式不对的时候直接返回错误消息给客户端等等。
 
-**1）缓存无效 key** : 如果缓存和数据库都查不到某个 key 的数据就写一个到 redis 中去并设置过期时间，具体命令如下：`SET key value EX 10086`。这种方式可以解决请求的 key 变化不频繁的情况，如果黑客恶意攻击，每次构建不同的请求 key，会导致 redis 中缓存大量无效的 key 。很明显，这种方案并不能从根本上解决此问题。如果非要用这种方式来解决穿透问题的话，尽量将无效的 key 的过期时间设置短一点比如 1 分钟。
+**1）缓存无效 key** : 如果缓存和数据库都查不到某个 key 的数据就写一个到 Redis 中去并设置过期时间，具体命令如下：`SET key value EX 10086`。这种方式可以解决请求的 key 变化不频繁的情况，如果黑客恶意攻击，每次构建不同的请求 key，会导致 Redis 中缓存大量无效的 key 。很明显，这种方案并不能从根本上解决此问题。如果非要用这种方式来解决穿透问题的话，尽量将无效的 key 的过期时间设置短一点比如 1 分钟。
 
 另外，这里多说一嘴，一般情况下我们是这样设计 key 的： `表名:列名:主键名:主键值`。
 
@@ -323,7 +325,7 @@ public Object getObjectInclNullById(Integer id) {
 
 **2）布隆过滤器：**布隆过滤器是一个非常神奇的数据结构，通过它我们可以非常方便地判断一个给定数据是否存在于海量数据中。我们需要的就是判断 key 是否合法，有没有感觉布隆过滤器就是我们想要找的那个“人”。具体是这样做的：把所有可能存在的请求的值都存放在布隆过滤器中，当用户请求过来，我会先判断用户发来的请求的值是否存在于布隆过滤器中。不存在的话，直接返回请求参数错误信息给客户端，存在的话才会走下面的流程。总结一下就是下面这张图(这张图片不是我画的，为了省事直接在网上找的)：
 
-<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/布隆过滤器-缓存穿透-redis.png" style="zoom:50%;" />
+<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/布隆过滤器-缓存穿透-Redis.png" style="zoom:50%;" />
 
 更多关于布隆过滤器的内容可以看我的这篇原创：[《不了解布隆过滤器？一文给你整的明明白白！》](https://github.com/Snailclimb/JavaGuide/blob/master/docs/dataStructures-algorithms/data-structure/bloom-filter.md) ，强烈推荐，个人感觉网上应该找不到总结的这么明明白白的文章了。
 
@@ -331,7 +333,7 @@ public Object getObjectInclNullById(Integer id) {
 
 所谓 Redis 的并发竞争 Key 的问题也就是多个系统同时对一个 key 进行操作，但是最后执行的顺序和我们期望的顺序不同，这样也就导致了结果的不同！
 
-推荐一种方案：分布式锁（zookeeper 和 redis 都可以实现分布式锁）。（如果不存在 Redis 的并发竞争 Key 问题，不要使用分布式锁，这样会影响性能）
+推荐一种方案：分布式锁（zookeeper 和 Redis 都可以实现分布式锁）。（如果不存在 Redis 的并发竞争 Key 问题，不要使用分布式锁，这样会影响性能）
 
 基于 zookeeper 临时有序节点可以实现的分布式锁。大致思想为：每个客户端对某个方法加锁时，在 zookeeper 上的与该方法对应的指定节点的目录下，生成一个唯一的瞬时有序节点。 判断是否获取锁的方式很简单，只需要判断有序节点中序号最小的一个。 当释放锁的时候，只需将这个瞬时节点删除即可。同时，其可以避免服务宕机导致的锁无法释放，而产生的死锁问题。完成业务流程后，删除对应的子节点释放锁。
 
@@ -351,14 +353,14 @@ public Object getObjectInclNullById(Integer id) {
 
 串行化之后，就会导致系统的吞吐量会大幅度的降低，用比正常情况下多几倍的机器去支撑线上的一个请求。
 
-更多内容可以查看：https://github.com/doocs/advanced-java/blob/master/docs/high-concurrency/redis-consistence.md
+更多内容可以查看：https://github.com/doocs/advanced-java/blob/master/docs/high-concurrency/Redis-consistence.md
 
 **参考：** Java 工程师面试突击第 1 季（可能是史上最好的 Java 面试突击课程）-中华石杉老师！公众号后台回复关键字“1”即可获取该视频内容。
 
 ### 参考
 
 - 《Redis 开发与运维》
-- Redis 命令总结：http://redisdoc.com/string/set.html
+- Redis 命令总结：http://Redisdoc.com/string/set.html
 
 ## 公众号
 
