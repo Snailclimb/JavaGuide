@@ -1,3 +1,4 @@
+-pull request
 如果 Github 访问速度比较慢或者图片无法刷新出来的话，可以转移到[码云](https://gitee.com/SnailClimb/JavaGuide )查看，或者[在线阅读](https://snailclimb.gitee.io/javaguide )。**如果你要提交 issue 或者 pr 的话请到 [Github](https://github.com/Snailclimb/JavaGuide) 提交。**
 
 > JavaGuide 的Star数量虽然比较多，但是它的价值和含金量一定是不能和 Dubbo、Nacos这些优秀的国产开源项目比的。希望国内可以出更多优秀的开源项目！
