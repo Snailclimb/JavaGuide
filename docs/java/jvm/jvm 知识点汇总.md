@@ -10,4 +10,4 @@
 
 掌握JVM，是深入Java技术栈的必经之路。
 
-![jv.png](https://i.loli.net/2019/09/10/HsJXU8S4oVtCTM7.png)
+![jv.png](./pictures/HsJXU8S4oVtCTM7.png)

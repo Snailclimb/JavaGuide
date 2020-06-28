@@ -1,19 +1,24 @@
 > 原文地址： https://juejin.im/post/5c94a123f265da610916081f。
 
-## JVM 配置常用参数 
+## JVM 配置常用参数
 
-1. 堆参数；
-2. 回收器参数；
-3. 项目中常用配置；
-4. 常用组合；
+1. Java内存区域常见配置参数概览
+2. 堆参数；
+3. 回收器参数；
+4. 项目中常用配置；
+5. 常用组合；
+
+### Java内存区域常见配置参数概览
+
+![](https://imgkr.cn-bj.ufileos.com/99109d10-f638-4922-aeb6-0a353c3d1e86.png)
 
 ### 堆参数
 
-![img](https://ask.qcloudimg.com/http-save/yehe-1130324/975rk4d0wx.jpeg?imageView2/2/w/1620)
+![堆参数][1]
 
 ### 回收器参数
 
-![img](https://ask.qcloudimg.com/http-save/yehe-1130324/34nzellt71.jpeg?imageView2/2/w/1620)
+![垃圾回收器参数][2]
 
 如上表所示，目前**主要有串行、并行和并发三种**，对于大内存的应用而言，串行的性能太低，因此使用到的主要是并行和并发两种。并行和并发 GC 的策略通过 `UseParallelGC `和` UseConcMarkSweepGC` 来指定，还有一些细节的配置参数用来配置策略的执行方式。例如：`XX:ParallelGCThreads`， `XX:CMSInitiatingOccupancyFraction` 等。 通常：Young 区对象回收只可选择并行（耗时间），Old 区选择并发（耗 CPU）。
 
@@ -21,11 +26,11 @@
 
 > 备注：在Java8中永久代的参数`-XX:PermSize` 和`-XX：MaxPermSize`已经失效。
 
-![img](https://ask.qcloudimg.com/http-save/yehe-1130324/urw285pczz.jpeg?imageView2/2/w/1620)
+![项目中垃圾回收器常用配置][3]
 
 ### 常用组合
 
-![img](https://ask.qcloudimg.com/http-save/yehe-1130324/ff8ues5crb.jpeg?imageView2/2/w/1620)
+![垃圾回收器常用组合][4]
 
 ## 常用 GC 调优策略
 
@@ -56,3 +61,8 @@
 **策略5：**注意： 如果满足下面的指标，**则一般不需要进行 GC 优化：**
 
 > MinorGC 执行时间不到50ms； Minor GC 执行不频繁，约10秒一次； Full GC 执行时间不到1s； Full GC 执行频率不算频繁，不低于10分钟1次。
+
+[1]: ./../../../media/pictures/jvm/java_jvm_heap_parameters.png
+[2]: ./../../../media/pictures/jvm/java_jvm_garbage_collector_parameters.png
+[3]: ./../../../media/pictures/jvm/java_jvm_suggest_parameters.png
+[4]: ./../../../media/pictures/jvm/java_jvm_compose_garbage_collector.png

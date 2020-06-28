@@ -87,6 +87,8 @@
 - **阻塞状态(waiting)** ：又称为等待状态，进程正在等待某一事件而暂停运行如等待某资源为可用或等待 IO 操作完成。即使处理器空闲，该进程也不能运行。
 - **结束状态(terminated)** ：进程正在从系统中消失。可能是进程正常结束或其他原因中断退出运行。
 
+> 订正：下图中 running 状态被 interrupt 向 ready 状态转换的箭头方向反了。
+
 ![process-state](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/d38202593012b457debbcd74994c6292.png)
 
 ### 2.3 进程间的通信方式
