@@ -223,7 +223,7 @@ public class ArraycopyTest {
 		System.arraycopy(a, 2, a, 3, 3);
 		a[2]=99;
 		for (int i = 0; i < a.length; i++) {
-			System.out.println(a[i]);
+			System.out.print(a[i] + " ");
 		}
 	}
 
