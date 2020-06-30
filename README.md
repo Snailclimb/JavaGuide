@@ -219,7 +219,7 @@
 
 ### Redis
 
-* [Redis 常见问题总结](docs/database/Redis/redis.md)
+* [Redis 常见问题总结](docs/database/Redis/redis-all.md)
 * **Redis 系列文章合集：**
   1. [5种基本数据结构](docs/database/Redis/redis-collection/Redis(1)——5种基本数据结构.md)
   2. [跳跃表](docs/database/Redis/redis-collection/Redis(2)——跳跃表.md)
