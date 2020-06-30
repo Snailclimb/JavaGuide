@@ -1,3 +1,5 @@
+如果 Github 访问速度比较慢或者图片无法刷新出来的话，可以转移到[码云](https://gitee.com/SnailClimb/JavaGuide )查看，或者[在线阅读](https://snailclimb.gitee.io/javaguide )。**如果你要提交 issue 或者 pr 的话请到 [Github](https://github.com/Snailclimb/JavaGuide) 提交。**
+
 > JavaGuide 的Star数量虽然比较多，但是它的价值和含金量一定是不能和 Dubbo、Nacos这些优秀的国产开源项目比的。希望国内可以出更多优秀的开源项目！
 >
 > 另外，希望大家对面试不要抱有侥幸的心理，打铁还需自身硬！  我希望这个文档是为你学习  Java 指明方向，而不是用来应付面试用的。加油！奥利给！
@@ -10,8 +12,6 @@
 更多原创内容和干货分享：
 
 1. [公众号—JavaGuide](#公众号) ： 最新原创文章+免费领取本文档配套的《Java面试突击》以及Java工程师必备学习资源）
-
-Github用户如果访问速度缓慢的话，可以转移到[码云](https://gitee.com/SnailClimb/JavaGuide )查看，或者[在线阅读](https://snailclimb.gitee.io/javaguide )。
 
 <p align="center">
 <a href="https://github.com/Snailclimb/JavaGuide" target="_blank">
@@ -28,11 +28,28 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 </p>
 
 <h3 align="center">Sponsor</h3>
-<p align="center">
-<a  href="https://mp.weixin.qq.com/s/li9_YXNVxan6Qgt3Q9FYqA">
-<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/WechatIMG1.png" style="margin: 0 auto;width:400px"/>
-</a >
-</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="middle">
+        <a href="https://mp.weixin.qq.com/s/li9_YXNVxan6Qgt3Q9FYqA">
+          <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/WechatIMG1.png" style="margin: 0 auto;width:400px" /></a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="https://github.com/yaonphy/Job-Hunt/blob/master/README.md" target="_blank">
+          <img src="https://6a6f-job-hunt-bvzy1-1259590017.tcb.qcloud.la/adForGithub/jobhunt-javaguide400.png" style="margin: 0 auto;width:400px" /></a>
+      </td>     
+    </tr>
+    <tr>
+      <td align="center" valign="middle">
+        <a href="https://mp.weixin.qq.com/s/uXgGt66Df3JC4GM7d0LlZg" target="_blank">
+          <img src="https://imgkr.cn-bj.ufileos.com/75fef802-16f0-4e0b-9d6f-a9173f24a40f.png" style="margin: 0 auto;width:400px" /></a>
+      </td>     
+    </tr>    
+  </tbody>
+</table>
+
 
 ## 目录
 
@@ -80,7 +97,7 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 - [面试指南](#面试指南)
 - [Java学习常见问题汇总](#java学习常见问题汇总)
 - [资源](#资源)
-    - [书单推荐](#书单推荐)
+    - [Java程序员必备书单](#java程序员必备书单)
     - [实战项目推荐](#实战项目推荐)
 - [待办](#待办)
 - [说明](#说明)
@@ -109,7 +126,7 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 ### 容器
 
 1. **[Java容器常见面试题/知识点总结](docs/java/collection/Java集合框架常见面试题.md)**
-2. [ArrayList 源码](docs/java/collection/ArrayList.md)  、[LinkedList 源码](docs/java/collection/LinkedList.md)   、[HashMap(JDK1.8)源码](docs/java/collection/HashMap.md)  
+2. 源码分析：[ArrayList 源码](docs/java/collection/ArrayList.md)  、[LinkedList 源码](docs/java/collection/LinkedList.md)   、[HashMap(JDK1.8)源码](docs/java/collection/HashMap.md)  、[ConcurrentHashMap源码](docs/java/collection/ConcurrentHashMap.md)  
 
 ### 并发
 
@@ -123,10 +140,11 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 **必备知识点：**
 
 1. [并发容器总结](docs/java/Multithread/并发容器总结.md)
-2. **[Java线程池学习总结](./docs/java/Multithread/java线程池学习总结.md)**
+2. **线程池**：[Java线程池学习总结](./docs/java/Multithread/java线程池学习总结.md)、[拿来即用的线程池最佳实践](./docs/java/Multithread/best-practice-of-threadpool.md)
 3. [乐观锁与悲观锁](docs/essential-content-for-interview/面试必备之乐观锁与悲观锁.md)
-4. [JUC 中的 Atomic 原子类总结](docs/java/Multithread/Atomic.md)
-5. [AQS 原理以及 AQS 同步组件总结](docs/java/Multithread/AQS.md)
+4. [万字图文深度解析ThreadLocal](docs/java/Multithread/ThreadLocal.md)
+5. [JUC 中的 Atomic 原子类总结](docs/java/Multithread/Atomic.md)
+6. [AQS 原理以及 AQS 同步组件总结](docs/java/Multithread/AQS.md)
 
 ### JVM
 
@@ -152,7 +170,6 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 
 1. [计算机网络常见面试题](docs/network/计算机网络.md)
 2. [计算机网络基础知识总结](docs/network/干货：计算机网络知识总结.md)
-3. [HTTPS中的TLS](docs/network/HTTPS中的TLS.md)
 
 ## 操作系统
 
@@ -163,6 +180,7 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 * [后端程序员必备的 Linux 基础知识](docs/operating-system/linux.md)  
 * [Shell 编程入门](docs/operating-system/Shell.md) 
 * [完全使用GNU_Linux学习](docs/operating-system/完全使用GNU_Linux学习.md)
+* [Linux 性能分析工具合集](docs/operating-system/Linux性能分析工具合集.md)
 
 ## 数据结构与算法
 
@@ -201,7 +219,7 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 
 ### Redis
 
-* [Redis 常见问题总结](docs/database/Redis/Redis.md)
+* [Redis 常见问题总结](docs/database/Redis/redis.md)
 * **Redis 系列文章合集：**
   1. [5种基本数据结构](docs/database/Redis/redis-collection/Redis(1)——5种基本数据结构.md)
   2. [跳跃表](docs/database/Redis/redis-collection/Redis(2)——跳跃表.md)
@@ -219,6 +237,7 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 ### 必知
 
 1. **[RestFul API 简明教程](docs/system-design/restful-api.md)**
+2. **[因为命名被diss无数次。Guide简单聊聊编程最头疼的事情之一:命名](docs/system-design/naming.md)**
 
 ### 常用框架
 
@@ -381,9 +400,9 @@ SSO(Single Sign On)即单点登录说的是用户登陆多个子系统的其中�
 
 ## 资源
 
-### 书单推荐
+### Java程序员必备书单
 
-- **[Java程序员必备书单](docs/books/java.md)**
+1. [「基础篇」Guide的Java后端书架来啦！都是Java程序员必看的书籍？](./docs/books/java基础篇.md)
 
 ### 实战项目推荐
 
@@ -419,6 +438,8 @@ Markdown 格式参考：[Github Markdown格式](https://guides.github.com/featur
 
 利用 docsify 生成文档部署在 Github pages: [docsify 官网介绍](https://docsify.js.org/#/) ，另见[《Guide哥手把手教你搭建一个文档类型的网站!免费且高速！》](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247486555&idx=2&sn=8486026ee9f9ba645ff0363df6036184&chksm=cea24390f9d5ca86ff4177c0aca5e719de17dc89e918212513ee661dd56f17ca8269f4a6e303&token=298703358&lang=zh_CN#rd) 。
 
+Logo下的小图标是使用[Shields.IO](https://shields.io/) 生成的。
+
 ### 关于转载
 
 如果你需要转载本仓库的一些文章到自己的博客的话，记得注明原文地址就可以了。
@@ -437,11 +458,11 @@ Markdown 格式参考：[Github Markdown格式](https://guides.github.com/featur
 
 下面是笔主收集的一些对本仓库提过有价值的pr或者issue的朋友，人数较多，如果你也对本仓库提过不错的pr或者issue的话，你可以加我的微信与我联系。下面的排名不分先后！
 
-<a href="https://github.com/fanofxiaofeng">
-    <img src="https://avatars0.githubusercontent.com/u/3983683?s=460&v=4" width="45px">
-</a>
 <a href="https://github.com/LiWenGu">
     <img src="https://avatars0.githubusercontent.com/u/15909210?s=460&v=4" width="45px">
+</a>
+<a href="https://github.com/fanofxiaofeng">
+    <img src="https://avatars0.githubusercontent.com/u/3983683?s=460&v=4" width="45px">
 </a>
 <a href="https://github.com/fanchenggang">  
     <img src="https://avatars2.githubusercontent.com/u/8225921?s=460&v=4" width="45px">
