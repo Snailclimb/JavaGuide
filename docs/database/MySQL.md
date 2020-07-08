@@ -199,7 +199,7 @@ select sql_no_cache count(*) from usr;
 | REPEATABLE-READ  |  ×   |     ×      |   √    |
 |   SERIALIZABLE   |  ×   |     ×      |   ×    |
 
-MySQL InnoDB 存储引擎的默认支持的隔离级别是 **REPEATABLE-READ（可重读）**。我们可以通过`SELECT @@tx_isolation;`命令来查看
+MySQL InnoDB 存储引擎的默认支持的隔离级别是 **REPEATABLE-READ（可重读）**。我们可以通过`SELECT @@tx_isolation;`命令来查看，MySQL 8.0 该命令改为`SELECT @@transaction_isolation;`
 
 ```sql
 mysql> SELECT @@tx_isolation;
