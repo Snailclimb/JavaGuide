@@ -37,16 +37,10 @@
           <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/WechatIMG1.png" style="margin: 0 auto;width:400px" /></a>
       </td>
       <td align="center" valign="middle">
-        <a href="https://github.com/yaonphy/Job-Hunt/blob/master/README.md" target="_blank">
-          <img src="https://6a6f-job-hunt-bvzy1-1259590017.tcb.qcloud.la/adForGithub/jobhunt-javaguide400.png" style="margin: 0 auto;width:400px" /></a>
-      </td>     
-    </tr>
-    <tr>
-      <td align="center" valign="middle">
         <a href="https://mp.weixin.qq.com/s/uXgGt66Df3JC4GM7d0LlZg" target="_blank">
           <img src="https://imgkr.cn-bj.ufileos.com/75fef802-16f0-4e0b-9d6f-a9173f24a40f.png" style="margin: 0 auto;width:400px" /></a>
-      </td>     
-    </tr>    
+      </td>        
+    </tr>
   </tbody>
 </table>
 
