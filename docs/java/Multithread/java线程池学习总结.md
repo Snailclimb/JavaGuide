@@ -1,3 +1,4 @@
+
 <!-- TOC -->
 
 - [一 使用线程池的好处](#一-使用线程池的好处)
@@ -28,7 +29,7 @@
     - [5.2 SingleThreadExecutor 详解](#52-singlethreadexecutor-详解)
         - [5.2.1 介绍](#521-介绍)
         - [5.2.2 执行任务过程介绍](#522-执行任务过程介绍)
-        - [5.2.3 为什么不推荐使用`FixedThreadPool`？](#523-为什么不推荐使用fixedthreadpool)
+        - [5.2.3 为什么不推荐使用`SingleThreadExecutor`？](#523-为什么不推荐使用singlethreadexecutor)
     - [5.3 CachedThreadPool 详解](#53-cachedthreadpool-详解)
         - [5.3.1 介绍](#531-介绍)
         - [5.3.2 执行任务过程介绍](#532-执行任务过程介绍)
@@ -42,6 +43,7 @@
 - [九 其他推荐阅读](#九-其他推荐阅读)
 
 <!-- /TOC -->
+
 
 ## 一 使用线程池的好处
 
@@ -163,7 +165,7 @@ public class ScheduledThreadPoolExecutor
 3. **`threadFactory`** :executor 创建新线程的时候会用到。
 4. **`handler`** :饱和策略。关于饱和策略下面单独介绍一下。
 
-下面这张图可以加深你对线程池中各个参数的相互关系的理解（图片来源：《Java性能调优实战》）：
+下面这张图可以加深你对线程池中各个参数的相互关系的理解（图片来源：《Java 性能调优实战》）：
 
 ![线程池各个参数的关系](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/线程池各个参数的关系.jpg)
 
@@ -172,7 +174,7 @@ public class ScheduledThreadPoolExecutor
 如果当前同时运行的线程数量达到最大线程数量并且队列也已经被放满了任时，`ThreadPoolTaskExecutor` 定义一些策略:
 
 - **`ThreadPoolExecutor.AbortPolicy`**：抛出 `RejectedExecutionException`来拒绝新任务的处理。
-- **`ThreadPoolExecutor.CallerRunsPolicy`**：调用执行自己的线程运行任务，也就是直接在调用`execute`方法的线程中运行(`run`)被拒绝的任务，如果执行程序已关闭，则会丢弃该任务。因此这种策略会降低对于新任务提交速度，影响程序的整体性能。另外，这个策略喜欢增加队列容量。如果您的应用程序可以承受此延迟并且你不能任务丢弃任何一个任务请求的话，你可以选择这个策略。
+- **`ThreadPoolExecutor.CallerRunsPolicy`**：调用执行自己的线程运行任务，也就是直接在调用`execute`方法的线程中运行(`run`)被拒绝的任务，如果执行程序已关闭，则会丢弃该任务。因此这种策略会降低对于新任务提交速度，影响程序的整体性能。如果您的应用程序可以承受此延迟并且你要求任何一个任务请求都要被执行的话，你可以选择这个策略。
 - **`ThreadPoolExecutor.DiscardPolicy`：** 不处理新任务，直接丢弃掉。
 - **`ThreadPoolExecutor.DiscardOldestPolicy`：** 此策略将丢弃最早的未处理的任务请求。
 
@@ -205,7 +207,7 @@ public class ScheduledThreadPoolExecutor
 - **CachedThreadPool**
 
 对应 Executors 工具类中的方法如图所示：
-![通过Executor 框架的工具类Executors来实现](https://imgconvert.csdnimg.cn/aHR0cDovL215LWJsb2ctdG8tdXNlLm9zcy1jbi1iZWlqaW5nLmFsaXl1bmNzLmNvbS8xOC00LTE2LzEzMjk2OTAxLmpwZw?x-oss-process=image/format,png)
+![通过Executor 框架的工具类Executors来实现](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/format,png.jpeg)
 
 ## 四 (重要)ThreadPoolExecutor 使用示例
 
@@ -310,32 +312,32 @@ public class ThreadPoolExecutorDemo {
 **Output：**
 
 ```
-pool-1-thread-2 Start. Time = Tue Nov 12 20:59:44 CST 2019
-pool-1-thread-5 Start. Time = Tue Nov 12 20:59:44 CST 2019
-pool-1-thread-4 Start. Time = Tue Nov 12 20:59:44 CST 2019
-pool-1-thread-1 Start. Time = Tue Nov 12 20:59:44 CST 2019
-pool-1-thread-3 Start. Time = Tue Nov 12 20:59:44 CST 2019
-pool-1-thread-5 End. Time = Tue Nov 12 20:59:49 CST 2019
-pool-1-thread-3 End. Time = Tue Nov 12 20:59:49 CST 2019
-pool-1-thread-2 End. Time = Tue Nov 12 20:59:49 CST 2019
-pool-1-thread-4 End. Time = Tue Nov 12 20:59:49 CST 2019
-pool-1-thread-1 End. Time = Tue Nov 12 20:59:49 CST 2019
-pool-1-thread-2 Start. Time = Tue Nov 12 20:59:49 CST 2019
-pool-1-thread-1 Start. Time = Tue Nov 12 20:59:49 CST 2019
-pool-1-thread-4 Start. Time = Tue Nov 12 20:59:49 CST 2019
-pool-1-thread-3 Start. Time = Tue Nov 12 20:59:49 CST 2019
-pool-1-thread-5 Start. Time = Tue Nov 12 20:59:49 CST 2019
-pool-1-thread-2 End. Time = Tue Nov 12 20:59:54 CST 2019
-pool-1-thread-3 End. Time = Tue Nov 12 20:59:54 CST 2019
-pool-1-thread-4 End. Time = Tue Nov 12 20:59:54 CST 2019
-pool-1-thread-5 End. Time = Tue Nov 12 20:59:54 CST 2019
-pool-1-thread-1 End. Time = Tue Nov 12 20:59:54 CST 2019
+pool-1-thread-3 Start. Time = Sun Apr 12 11:14:37 CST 2020
+pool-1-thread-5 Start. Time = Sun Apr 12 11:14:37 CST 2020
+pool-1-thread-2 Start. Time = Sun Apr 12 11:14:37 CST 2020
+pool-1-thread-1 Start. Time = Sun Apr 12 11:14:37 CST 2020
+pool-1-thread-4 Start. Time = Sun Apr 12 11:14:37 CST 2020
+pool-1-thread-3 End. Time = Sun Apr 12 11:14:42 CST 2020
+pool-1-thread-4 End. Time = Sun Apr 12 11:14:42 CST 2020
+pool-1-thread-1 End. Time = Sun Apr 12 11:14:42 CST 2020
+pool-1-thread-5 End. Time = Sun Apr 12 11:14:42 CST 2020
+pool-1-thread-1 Start. Time = Sun Apr 12 11:14:42 CST 2020
+pool-1-thread-2 End. Time = Sun Apr 12 11:14:42 CST 2020
+pool-1-thread-5 Start. Time = Sun Apr 12 11:14:42 CST 2020
+pool-1-thread-4 Start. Time = Sun Apr 12 11:14:42 CST 2020
+pool-1-thread-3 Start. Time = Sun Apr 12 11:14:42 CST 2020
+pool-1-thread-2 Start. Time = Sun Apr 12 11:14:42 CST 2020
+pool-1-thread-1 End. Time = Sun Apr 12 11:14:47 CST 2020
+pool-1-thread-4 End. Time = Sun Apr 12 11:14:47 CST 2020
+pool-1-thread-5 End. Time = Sun Apr 12 11:14:47 CST 2020
+pool-1-thread-3 End. Time = Sun Apr 12 11:14:47 CST 2020
+pool-1-thread-2 End. Time = Sun Apr 12 11:14:47 CST 2020
 
 ```
 
 ### 4.2 线程池原理分析
 
-承接 4.1 节，我们通过代码输出结果可以看出：**线程池每次会同时执行 5 个任务，这 5 个任务执行完之后，剩余的 5 个任务才会被执行。** 大家可以先通过上面讲解的内容，分析一下到底是咋回事？（自己独立思考一会）
+承接 4.1 节，我们通过代码输出结果可以看出：**线程首先会先执行 5 个任务，然后这些任务有任务被执行完的话，就会去拿新的任务执行。** 大家可以先通过上面讲解的内容，分析一下到底是咋回事？（自己独立思考一会）
 
 现在，我们就分析上面的输出内容来简单分析一下线程池原理。
 
@@ -344,11 +346,11 @@ pool-1-thread-1 End. Time = Tue Nov 12 20:59:54 CST 2019
 ```java
    // 存放线程池的运行状态 (runState) 和线程池内有效线程的数量 (workerCount)
    private final AtomicInteger ctl = new AtomicInteger(ctlOf(RUNNING, 0));
-
+   
     private static int workerCountOf(int c) {
         return c & CAPACITY;
     }
-
+    //任务队列
     private final BlockingQueue<Runnable> workQueue;
 
     public void execute(Runnable command) {
@@ -388,11 +390,120 @@ pool-1-thread-1 End. Time = Tue Nov 12 20:59:54 CST 2019
 
 ![图解线程池实现原理](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/图解线程池实现原理.png)
 
+
+
+**`addWorker` 这个方法主要用来创建新的工作线程，如果返回true说明创建和启动工作线程成功，否则的话返回的就是false。**
+
+```java
+    // 全局锁，并发操作必备
+    private final ReentrantLock mainLock = new ReentrantLock();
+    // 跟踪线程池的最大大小，只有在持有全局锁mainLock的前提下才能访问此集合
+    private int largestPoolSize;
+    // 工作线程集合，存放线程池中所有的（活跃的）工作线程，只有在持有全局锁mainLock的前提下才能访问此集合
+    private final HashSet<Worker> workers = new HashSet<>();
+    //获取线程池状态
+    private static int runStateOf(int c)     { return c & ~CAPACITY; }
+    //判断线程池的状态是否为 Running
+    private static boolean isRunning(int c) {
+        return c < SHUTDOWN;
+    }
+
+
+    /**
+     * 添加新的工作线程到线程池
+     * @param firstTask 要执行
+     * @param core参数为true的话表示使用线程池的基本大小，为false使用线程池最大大小
+     * @return 添加成功就返回true否则返回false
+     */
+   private boolean addWorker(Runnable firstTask, boolean core) {
+        retry:
+        for (;;) {
+            //这两句用来获取线程池的状态
+            int c = ctl.get();
+            int rs = runStateOf(c);
+
+            // Check if queue empty only if necessary.
+            if (rs >= SHUTDOWN &&
+                ! (rs == SHUTDOWN &&
+                   firstTask == null &&
+                   ! workQueue.isEmpty()))
+                return false;
+
+            for (;;) {
+               //获取线程池中线程的数量
+                int wc = workerCountOf(c);
+                // core参数为true的话表明队列也满了，线程池大小变为 maximumPoolSize 
+                if (wc >= CAPACITY ||
+                    wc >= (core ? corePoolSize : maximumPoolSize))
+                    return false;
+               //原子操作将workcount的数量加1
+                if (compareAndIncrementWorkerCount(c))
+                    break retry;
+                // 如果线程的状态改变了就再次执行上述操作
+                c = ctl.get();  
+                if (runStateOf(c) != rs)
+                    continue retry;
+                // else CAS failed due to workerCount change; retry inner loop
+            }
+        }
+        // 标记工作线程是否启动成功
+        boolean workerStarted = false;
+        // 标记工作线程是否创建成功
+        boolean workerAdded = false;
+        Worker w = null;
+        try {
+        
+            w = new Worker(firstTask);
+            final Thread t = w.thread;
+            if (t != null) {
+              // 加锁
+                final ReentrantLock mainLock = this.mainLock;
+                mainLock.lock();
+                try {
+                   //获取线程池状态
+                    int rs = runStateOf(ctl.get());
+                   //rs < SHUTDOWN 如果线程池状态依然为RUNNING,并且线程的状态是存活的话，就会将工作线程添加到工作线程集合中
+                  //(rs=SHUTDOWN && firstTask == null)如果线程池状态小于STOP，也就是RUNNING或者SHUTDOWN状态下，同时传入的任务实例firstTask为null，则需要添加到工作线程集合和启动新的Worker
+                   // firstTask == null证明只新建线程而不执行任务
+                    if (rs < SHUTDOWN ||
+                        (rs == SHUTDOWN && firstTask == null)) {
+                        if (t.isAlive()) // precheck that t is startable
+                            throw new IllegalThreadStateException();
+                        workers.add(w);
+                       //更新当前工作线程的最大容量
+                        int s = workers.size();
+                        if (s > largestPoolSize)
+                            largestPoolSize = s;
+                      // 工作线程是否启动成功
+                        workerAdded = true;
+                    }
+                } finally {
+                    // 释放锁
+                    mainLock.unlock();
+                }
+                //// 如果成功添加工作线程，则调用Worker内部的线程实例t的Thread#start()方法启动真实的线程实例
+                if (workerAdded) {
+                    t.start();
+                  /// 标记线程启动成功
+                    workerStarted = true;
+                }
+            }
+        } finally {
+           // 线程启动失败，需要从工作线程中移除对应的Worker
+            if (! workerStarted)
+                addWorkerFailed(w);
+        }
+        return workerStarted;
+    }
+```
+
+更多关于线程池源码分析的内容推荐这篇文章：《[JUC线程池ThreadPoolExecutor源码分析](http://www.throwable.club/2019/07/15/java-concurrency-thread-pool-executor/)》
+
 现在，让我们在回到 4.1 节我们写的 Demo， 现在应该是不是很容易就可以搞懂它的原理了呢？
 
 没搞懂的话，也没关系，可以看看我的分析：
 
-> 我们在代码中模拟了 10 个任务，我们配置的核心线程数为 5 、等待队列容量为 100 ，所以每次只可能存在 5 个任务同时执行，剩下的 5 个任务会被放到等待队列中去。当前的 5 个任务之行完成后，才会之行剩下的 5 个任务。
+> 我们在代码中模拟了 10 个任务，我们配置的核心线程数为 5 、等待队列容量为 100 ，所以每次只可能存在 5 个任务同时执行，剩下的 5 个任务会被放到等待队列中去。当前的5个任务中如果有任务被执行完了，线程池就会去拿新的任务执行。
 
 ### 4.3 几个常见的对比
 
@@ -650,7 +761,7 @@ Wed Nov 13 13:40:43 CST 2019::pool-1-thread-5
 
 1. 如果当前运行的线程数少于 corePoolSize，则创建一个新的线程执行任务；
 2. 当前线程池中有一个运行的线程后，将任务加入 `LinkedBlockingQueue`
-3. 线程执行完当前的任务后，会在循环中反复从` LinkedBlockingQueue` 中获取任务来执行；
+3. 线程执行完当前的任务后，会在循环中反复从`LinkedBlockingQueue` 中获取任务来执行；
 
 #### 5.2.3 为什么不推荐使用`SingleThreadExecutor`？
 
@@ -683,7 +794,7 @@ Wed Nov 13 13:40:43 CST 2019::pool-1-thread-5
     }
 ```
 
-`CachedThreadPool` 的` corePoolSize` 被设置为空（0），`maximumPoolSize `被设置为 Integer.MAX.VALUE，即它是无界的，这也就意味着如果主线程提交任务的速度高于 `maximumPool` 中线程处理任务的速度时，`CachedThreadPool` 会不断创建新的线程。极端情况下，这样会导致耗尽 cpu 和内存资源。
+`CachedThreadPool` 的`corePoolSize` 被设置为空（0），`maximumPoolSize`被设置为 Integer.MAX.VALUE，即它是无界的，这也就意味着如果主线程提交任务的速度高于 `maximumPool` 中线程处理任务的速度时，`CachedThreadPool` 会不断创建新的线程。极端情况下，这样会导致耗尽 cpu 和内存资源。
 
 #### 5.3.2 执行任务过程介绍
 
@@ -695,13 +806,13 @@ Wed Nov 13 13:40:43 CST 2019::pool-1-thread-5
 1. 首先执行 `SynchronousQueue.offer(Runnable task)` 提交任务到任务队列。如果当前 `maximumPool` 中有闲线程正在执行 `SynchronousQueue.poll(keepAliveTime,TimeUnit.NANOSECONDS)`，那么主线程执行 offer 操作与空闲线程执行的 `poll` 操作配对成功，主线程把任务交给空闲线程执行，`execute()`方法执行完成，否则执行下面的步骤 2；
 2. 当初始 `maximumPool` 为空，或者 `maximumPool` 中没有空闲线程时，将没有线程执行 `SynchronousQueue.poll(keepAliveTime,TimeUnit.NANOSECONDS)`。这种情况下，步骤 1 将失败，此时 `CachedThreadPool` 会创建新线程执行任务，execute 方法执行完成；
 
-#### 5.3.3 为什么不推荐使用`CachedThreadPool`？ 
+#### 5.3.3 为什么不推荐使用`CachedThreadPool`？
 
 `CachedThreadPool`允许创建的线程数量为 Integer.MAX_VALUE ，可能会创建大量线程，从而导致 OOM。
 
 ## 六 ScheduledThreadPoolExecutor 详解
 
-**`ScheduledThreadPoolExecutor` 主要用来在给定的延迟后运行任务，或者定期执行任务。** 这个在实际项目中基本不会被用到，所以对这部分大家只需要简单了解一下它的思想。关于如何在Spring Boot 中 实现定时任务，可以查看这篇文章[《5分钟搞懂如何在Spring Boot中Schedule Tasks》](https://github.com/Snailclimb/springboot-guide/blob/master/docs/advanced/SpringBoot-ScheduleTasks.md)。
+**`ScheduledThreadPoolExecutor` 主要用来在给定的延迟后运行任务，或者定期执行任务。** 这个在实际项目中基本不会被用到，因为有其他方案选择比如`quartz`。大家只需要简单了解一下它的思想。关于如何在 Spring Boot 中 实现定时任务，可以查看这篇文章[《5 分钟搞懂如何在 Spring Boot 中 Schedule Tasks》](https://github.com/Snailclimb/springboot-guide/blob/master/docs/advanced/SpringBoot-ScheduleTasks.md)。
 
 ### 6.1 简介
 
@@ -726,7 +837,7 @@ Wed Nov 13 13:40:43 CST 2019::pool-1-thread-5
 1. 当调用 `ScheduledThreadPoolExecutor` 的 **`scheduleAtFixedRate()`** 方法或者**`scheduleWirhFixedDelay()`** 方法时，会向 `ScheduledThreadPoolExecutor` 的 **`DelayQueue`** 添加一个实现了 **`RunnableScheduledFuture`** 接口的 **`ScheduledFutureTask`** 。
 2. 线程池中的线程从 `DelayQueue` 中获取 `ScheduledFutureTask`，然后执行任务。
 
-**`ScheduledThreadPoolExecutor` 为了实现周期性的执行任务，对 `ThreadPoolExecutor `做了如下修改：**
+**`ScheduledThreadPoolExecutor` 为了实现周期性的执行任务，对 `ThreadPoolExecutor`做了如下修改：**
 
 - 使用 **`DelayQueue`** 作为任务队列；
 - 获取任务的方不同
@@ -736,37 +847,39 @@ Wed Nov 13 13:40:43 CST 2019::pool-1-thread-5
 
 ![ScheduledThreadPoolExecutor执行周期任务的步骤](https://imgconvert.csdnimg.cn/aHR0cDovL215LWJsb2ctdG8tdXNlLm9zcy1jbi1iZWlqaW5nLmFsaXl1bmNzLmNvbS8xOC01LTMwLzU5OTE2Mzg5LmpwZw?x-oss-process=image/format,png)
 
-1. 线程 1 从 `DelayQueue` 中获取已到期的 `ScheduledFutureTask（DelayQueue.take()）`。到期任务是指 `ScheduledFutureTask `的 time 大于等于当前系统的时间；
+1. 线程 1 从 `DelayQueue` 中获取已到期的 `ScheduledFutureTask（DelayQueue.take()）`。到期任务是指 `ScheduledFutureTask`的 time 大于等于当前系统的时间；
 2. 线程 1 执行这个 `ScheduledFutureTask`；
 3. 线程 1 修改 `ScheduledFutureTask` 的 time 变量为下次将要被执行的时间；
 4. 线程 1 把这个修改 time 之后的 `ScheduledFutureTask` 放回 `DelayQueue` 中（`DelayQueue.add()`)。
 
 ## 七 线程池大小确定
 
-**线程池数量的确定一直是困扰着程序员的一个难题，大部分程序员在设定线程池大小的时候就是随心而定。我们并没有考虑过这样大小的配置是否会带来什么问题，我自己就是这大部分程序员中的一个代表。** 
+**线程池数量的确定一直是困扰着程序员的一个难题，大部分程序员在设定线程池大小的时候就是随心而定。**
 
-由于笔主对如何确定线程池大小也没有什么实际经验，所以，这部分内容参考了网上很多文章/书籍。
-
-**首先，可以肯定的一点是线程池大小设置过大或者过小都会有问题。合适的才是最好，貌似在 95 % 的场景下都是合适的。** 
-
-如果阅读过我的上一篇关于线程池的文章的话，你一定知道：
-
-**如果我们设置的线程池数量太小的话，如果同一时间有大量任务/请求需要处理，可能会导致大量的请求/任务在任务队列中排队等待执行，甚至会出现任务队列满了之后任务/请求无法处理的情况，或者大量任务堆积在任务队列导致 OOM。这样很明显是有问题的！ CPU 根本没有得到充分利用。**
-
-**但是，如果我们设置线程数量太大，大量线程可能会同时在争取 CPU 资源，这样会导致大量的上下文切换，从而增加线程的执行时间，影响了整体执行效率。**
+很多人甚至可能都会觉得把线程池配置过大一点比较好！我觉得这明显是有问题的。就拿我们生活中非常常见的一例子来说：**并不是人多就能把事情做好，增加了沟通交流成本。你本来一件事情只需要 3 个人做，你硬是拉来了 6 个人，会提升做事效率嘛？我想并不会。** 线程数量过多的影响也是和我们分配多少人做事情一样，对于多线程这个场景来说主要是增加了**上下文切换**成本。不清楚什么是上下文切换的话，可以看我下面的介绍。
 
 > 上下文切换：
 >
 > 多线程编程中一般线程的个数都大于 CPU 核心的个数，而一个 CPU 核心在任意时刻只能被一个线程使用，为了让这些线程都能得到有效执行，CPU 采取的策略是为每个线程分配时间片并轮转的形式。当一个线程的时间片用完的时候就会重新处于就绪状态让给其他线程使用，这个过程就属于一次上下文切换。概括来说就是：当前任务在执行完 CPU 时间片切换到另一个任务之前会先保存自己的状态，以便下次再切换回这个任务时，可以再加载这个任务的状态。**任务从保存到再加载的过程就是一次上下文切换**。
 >
-> 上下文切换通常是计算密集型的。也就是说，它需要相当可观的处理器时间，在每秒几十上百次的切换中，每次切换都需要纳秒量级的时间。所以，上下文切换对系统来说意味着消耗大量的 CPU 时间，事实上，可能是操作系统中时间消耗最大的操作。 
+> 上下文切换通常是计算密集型的。也就是说，它需要相当可观的处理器时间，在每秒几十上百次的切换中，每次切换都需要纳秒量级的时间。所以，上下文切换对系统来说意味着消耗大量的 CPU 时间，事实上，可能是操作系统中时间消耗最大的操作。
 >
 > Linux 相比与其他操作系统（包括其他类 Unix 系统）有很多的优点，其中有一项就是，其上下文切换和模式切换的时间消耗非常少。
+
+**类比于实现世界中的人类通过合作做某件事情，我们可以肯定的一点是线程池大小设置过大或者过小都会有问题，合适的才是最好。**
+
+**如果我们设置的线程池数量太小的话，如果同一时间有大量任务/请求需要处理，可能会导致大量的请求/任务在任务队列中排队等待执行，甚至会出现任务队列满了之后任务/请求无法处理的情况，或者大量任务堆积在任务队列导致 OOM。这样很明显是有问题的！ CPU 根本没有得到充分利用。**
+
+**但是，如果我们设置线程数量太大，大量线程可能会同时在争取 CPU 资源，这样会导致大量的上下文切换，从而增加线程的执行时间，影响了整体执行效率。**
 
 有一个简单并且适用面比较广的公式：
 
 - **CPU 密集型任务(N+1)：** 这种任务消耗的主要是 CPU 资源，可以将线程数设置为 N（CPU 核心数）+1，比 CPU 核心数多出来的一个线程是为了防止线程偶发的缺页中断，或者其它原因导致的任务暂停而带来的影响。一旦任务暂停，CPU 就会处于空闲状态，而在这种情况下多出来的一个线程就可以充分利用 CPU 的空闲时间。
 - **I/O 密集型任务(2N)：** 这种任务应用起来，系统会用大部分的时间来处理 I/O 交互，而线程在处理 I/O 的时间段内不会占用 CPU 来处理，这时就可以将 CPU 交出给其它线程使用。因此在 I/O 密集型任务的应用中，我们可以多配置一些线程，具体的计算方法是 2N。
+
+**如何判断是 CPU 密集任务还是 IO 密集任务？**
+
+CPU 密集型简单理解就是利用 CPU 计算能力的任务比如你在内存中对大量数据进行排序。单凡涉及到网络读取，文件读取这类都是 IO 密集型，这类任务的特点是 CPU 计算耗费时间相比于等待 IO 操作完成的时间来说很少，大部分时间都花在了等待 IO 操作完成上。
 
 ## 八 参考
 

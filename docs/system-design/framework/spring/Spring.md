@@ -52,13 +52,11 @@ AOP思想的实现一般都是基于 **代理模式** ，在JAVA中一般采用J
 
 ### IOC
 
-Spring IOC的初始化过程：
-![Spring IOC的初始化过程](https://user-gold-cdn.xitu.io/2018/5/22/16387903ee72c831?w=709&h=56&f=png&s=4673)
-
 - [[Spring框架]Spring IOC的原理及详解。](https://www.cnblogs.com/wang-meng/p/5597490.html)
-
 - [Spring IOC核心源码学习](https://yikun.github.io/2015/05/29/Spring-IOC核心源码学习/) :比较简短，推荐阅读。
 - [Spring IOC 容器源码分析](https://javadoop.com/post/spring-ioc) :强烈推荐，内容详尽，而且便于阅读。
+- [Bean初始化过程](https://www.qzztf.com/2019/08/21/Bean%E5%88%9D%E5%A7%8B%E5%8C%96/#Bean-%E5%AE%9E%E4%BE%8B%E5%8C%96)
+
 
 ## Spring事务管理
 
