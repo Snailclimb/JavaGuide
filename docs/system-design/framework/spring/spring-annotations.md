@@ -532,7 +532,7 @@ public class GlobalExceptionHandler {
 
 `@Entity`声明一个类对应一个数据库实体。
 
-`@Table` 设置表明
+`@Table` 设置表名
 
 ```java
 @Entity

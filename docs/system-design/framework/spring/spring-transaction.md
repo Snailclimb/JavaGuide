@@ -484,7 +484,7 @@ public enum Isolation {
 
 因为平时使用 MySQL 数据库比较多，这里再多提一嘴！
 
-MySQL InnoDB 存储引擎的默认支持的隔离级别是 **`REPEATABLE-READ`（可重读）**。我们可以通过`SELECT @@tx_isolation;`命令来查看，如下：
+MySQL InnoDB 存储引擎的默认支持的隔离级别是 **`REPEATABLE-READ`（可重读）**。我们可以通过`SELECT @@tx_isolation;`命令来查看，MySQL 8.0 该命令改为`SELECT @@transaction_isolation;`：
 
 ```
 mysql> SELECT @@tx_isolation;

@@ -1,5 +1,9 @@
 如果 Github 访问速度比较慢或者图片无法刷新出来的话，可以转移到[码云](https://gitee.com/SnailClimb/JavaGuide )查看，或者[在线阅读](https://snailclimb.gitee.io/javaguide )。**如果你要提交 issue 或者 pr 的话请到 [Github](https://github.com/Snailclimb/JavaGuide) 提交。**
 
+《JavaGuide面试突击版》PDF版本+3本PDF Java 学习手册，在[公众号JavaGuide](#公众号)后台回复“面试突击”即可获取。
+
+如要进群或者请教问题，请[联系我](#联系我) （备注来自Github。请直入问题，工作时间不回复）。
+
 > JavaGuide 的Star数量虽然比较多，但是它的价值和含金量一定是不能和 Dubbo、Nacos这些优秀的国产开源项目比的。希望国内可以出更多优秀的开源项目！
 >
 > 另外，希望大家对面试不要抱有侥幸的心理，打铁还需自身硬！  我希望这个文档是为你学习  Java 指明方向，而不是用来应付面试用的。加油！奥利给！
@@ -8,10 +12,6 @@
 
 1. [完结撒花！JavaGuide面试突击版来啦！](./docs/javaguide面试突击版.md)
 2. [JavaGuide重大更新记录](./docs/update-history.md)
-
-更多原创内容和干货分享：
-
-1. [公众号—JavaGuide](#公众号) ： 最新原创文章+免费领取本文档配套的《Java面试突击》以及Java工程师必备学习资源）
 
 <p align="center">
 <a href="https://github.com/Snailclimb/JavaGuide" target="_blank">
@@ -37,16 +37,10 @@
           <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/WechatIMG1.png" style="margin: 0 auto;width:400px" /></a>
       </td>
       <td align="center" valign="middle">
-        <a href="https://github.com/yaonphy/Job-Hunt/blob/master/README.md" target="_blank">
-          <img src="https://6a6f-job-hunt-bvzy1-1259590017.tcb.qcloud.la/adForGithub/jobhunt-javaguide400.png" style="margin: 0 auto;width:400px" /></a>
-      </td>     
-    </tr>
-    <tr>
-      <td align="center" valign="middle">
         <a href="https://mp.weixin.qq.com/s/uXgGt66Df3JC4GM7d0LlZg" target="_blank">
           <img src="https://imgkr.cn-bj.ufileos.com/75fef802-16f0-4e0b-9d6f-a9173f24a40f.png" style="margin: 0 auto;width:400px" /></a>
-      </td>     
-    </tr>    
+      </td>        
+    </tr>
   </tbody>
 </table>
 
@@ -219,7 +213,7 @@
 
 ### Redis
 
-* [Redis 常见问题总结](docs/database/Redis/redis.md)
+* [Redis 常见问题总结](docs/database/Redis/redis-all.md)
 * **Redis 系列文章合集：**
   1. [5种基本数据结构](docs/database/Redis/redis-collection/Redis(1)——5种基本数据结构.md)
   2. [跳跃表](docs/database/Redis/redis-collection/Redis(2)——跳跃表.md)
@@ -419,7 +413,7 @@ SSO(Single Sign On)即单点登录说的是用户登陆多个子系统的其中�
 
 ## 待办
 
-- [ ] Netty 总结(---正在进行中---)
+- [x] Netty 总结
 - [ ] 数据结构总结重构(---正在进行中---)
 
 ## 说明
