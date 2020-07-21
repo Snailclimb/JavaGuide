@@ -54,7 +54,7 @@
 
 ### 本文导火索
 
-![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-26/29176325.jpg)
+![](./pictures/jvm垃圾回收/29176325.png)
 
 当需要排查各种内存溢出问题、当垃圾收集成为系统达到更高并发的瓶颈时，我们就需要对这些“自动化”的技术实施必要的监控和调节。
 
@@ -66,7 +66,7 @@ Java 堆是垃圾收集器管理的主要区域，因此也被称作**GC 堆（G
 
 **堆空间的基本结构：**
 
-![](https://imgkr.cn-bj.ufileos.com/01d330d8-2710-4fad-a91c-7bbbfaaefc0e.png)
+![](./pictures/jvm垃圾回收/01d330d8-2710-4fad-a91c-7bbbfaaefc0e.png)
 
 上图所示的 Eden 区、From Survivor0("From") 区、To Survivor1("To") 区都属于新生代，Old Memory 区属于老年代。
 
@@ -97,7 +97,7 @@ Java 堆是垃圾收集器管理的主要区域，因此也被称作**GC 堆（G
 
 经过这次GC后，Eden区和"From"区已经被清空。这个时候，"From"和"To"会交换他们的角色，也就是新的"To"就是上次GC前的“From”，新的"From"就是上次GC前的"To"。不管怎样，都会保证名为To的Survivor区域是空的。Minor GC会一直重复这样的过程，直到“To”区被填满，"To"区被填满之后，会将所有对象移动到老年代中。
 
-![堆内存常见分配策略 ](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/堆内存.jpg)
+![堆内存常见分配策略 ](./pictures/jvm垃圾回收/堆内存.png)
 
 ### 1.1 对象优先在 eden 区分配
 
@@ -125,10 +125,10 @@ public class GCTest {
 }
 ```
 通过以下方式运行：
-![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-26/25178350.jpg)
+![](./pictures/jvm垃圾回收/25178350.png)
 
 添加的参数：`-XX:+PrintGCDetails`
-![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-26/10317146.jpg)
+![](./pictures/jvm垃圾回收/10317146.png)
 
 运行结果 (红色字体描述有误，应该是对应于 JDK1.7 的永久代)：
 
@@ -207,7 +207,7 @@ public class GCTest {
 
 堆中几乎放着所有的对象实例，对堆垃圾回收前的第一步就是要判断那些对象已经死亡（即不能再被任何途径使用的对象）。
 
-![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-27/11034259.jpg)
+![](./pictures/jvm垃圾回收/11034259.png)
 
 ### 2.1 引用计数法
 
@@ -236,8 +236,13 @@ public class ReferenceCountingGc {
 
 这个算法的基本思想就是通过一系列的称为 **“GC Roots”** 的对象作为起点，从这些节点开始向下搜索，节点所走过的路径称为引用链，当一个对象到 GC Roots 没有任何引用链相连的话，则证明此对象是不可用的。
 
-![可达性分析算法 ](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-27/72762049.jpg)
+![可达性分析算法 ](./pictures/jvm垃圾回收/72762049.png)
 
+可作为GC Roots的对象包括下面几种:
+* 虚拟机栈(栈帧中的本地变量表)中引用的对象
+* 本地方法栈(Native方法)中引用的对象
+* 方法区中类静态属性引用的对象
+* 方法区中常量引用的对象
 
 ### 2.3 再谈引用
 
@@ -279,13 +284,11 @@ JDK1.2 以后，Java 对引用的概念进行了扩充，将引用分为强引�
 
 被判定为需要执行的对象将会被放在一个队列中进行第二次标记，除非这个对象与引用链上的任何一个对象建立关联，否则就会被真的回收。
 
-### 2.5 如何判断一个常量是废弃常量
+### 2.5 如何判断一个常量是废弃常量？
 
 运行时常量池主要回收的是废弃的常量。那么，我们如何判断一个常量是废弃常量呢？
 
 假如在常量池中存在字符串 "abc"，如果当前没有任何 String 对象引用该字符串常量的话，就说明常量 "abc" 就是废弃常量，如果这时发生内存回收的话而且有必要的话，"abc" 就会被系统清理出常量池。
-
-注意：我们在 [可能是把 Java 内存区域讲的最清楚的一篇文章 ](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247484303&idx=1&sn=af0fd436cef755463f59ee4dd0720cbd&chksm=fd9855eecaefdcf8d94ac581cfda4e16c8a730bda60c3b50bc55c124b92f23b6217f7f8e58d5&token=506869459&lang=zh_CN#rd) 也讲了 JDK1.7 及之后版本的 JVM 已经将运行时常量池从方法区中移了出来，在 Java 堆（Heap）中开辟了一块区域存放运行时常量池。
 
 ### 2.6 如何判断一个类是无用的类
 
@@ -302,7 +305,7 @@ JDK1.2 以后，Java 对引用的概念进行了扩充，将引用分为强引�
 
 ## 3 垃圾收集算法
 
-![垃圾收集算法分类](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/垃圾收集算法.jpg)
+![垃圾收集算法分类](./pictures/jvm垃圾回收/垃圾收集算法.png)
 
 ### 3.1 标记-清除算法
 
@@ -311,18 +314,18 @@ JDK1.2 以后，Java 对引用的概念进行了扩充，将引用分为强引�
 1. **效率问题**
 2. **空间问题（标记清除后会产生大量不连续的碎片）**
 
-<img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-27/63707281.jpg" alt="公众号" width="500px">
+![](./pictures/jvm垃圾回收/标记-清除算法.jpeg)
 
 ### 3.2 复制算法
 
 为了解决效率问题，“复制”收集算法出现了。它可以将内存分为大小相同的两块，每次使用其中的一块。当这一块的内存使用完后，就将还存活的对象复制到另一块去，然后再把使用的空间一次清理掉。这样就使每次的内存回收都是对内存区间的一半进行回收。
 
-<img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-27/90984624.jpg" alt="公众号" width="500px">
+<img src="./pictures/jvm垃圾回收/90984624.png" alt="公众号" width="500px">
 
 ### 3.3 标记-整理算法
 根据老年代的特点提出的一种标记算法，标记过程仍然与“标记-清除”算法一样，但后续步骤不是直接对可回收对象回收，而是让所有存活的对象向一端移动，然后直接清理掉端边界以外的内存。
 
-![标记-整理算法 ](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-27/94057049.jpg)
+![标记-整理算法 ](./pictures/jvm垃圾回收/94057049.png)
 
 ### 3.4 分代收集算法
 
@@ -336,7 +339,7 @@ JDK1.2 以后，Java 对引用的概念进行了扩充，将引用分为强引�
 
 ## 4 垃圾收集器
 
-![垃圾收集器分类](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/垃圾收集器.jpg)
+![垃圾收集器分类](./pictures/jvm垃圾回收/垃圾收集器.png)
 
 **如果说收集算法是内存回收的方法论，那么垃圾收集器就是内存回收的具体实现。**
 
@@ -347,7 +350,7 @@ JDK1.2 以后，Java 对引用的概念进行了扩充，将引用分为强引�
 Serial（串行）收集器收集器是最基本、历史最悠久的垃圾收集器了。大家看名字就知道这个收集器是一个单线程收集器了。它的 **“单线程”** 的意义不仅仅意味着它只会使用一条垃圾收集线程去完成垃圾收集工作，更重要的是它在进行垃圾收集工作的时候必须暂停其他所有的工作线程（ **"Stop The World"** ），直到它收集结束。
 
  **新生代采用复制算法，老年代采用标记-整理算法。**
-![ Serial 收集器 ](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-27/46873026.jpg)
+![ Serial 收集器 ](./pictures/jvm垃圾回收/46873026.png)
 
 虚拟机的设计者们当然知道 Stop The World 带来的不良用户体验，所以在后续的垃圾收集器设计中停顿时间在不断缩短（仍然还有停顿，寻找最优秀的垃圾收集器的过程仍然在继续）。
 
@@ -357,7 +360,7 @@ Serial（串行）收集器收集器是最基本、历史最悠久的垃圾收�
 **ParNew 收集器其实就是 Serial 收集器的多线程版本，除了使用多线程进行垃圾收集外，其余行为（控制参数、收集算法、回收策略等等）和 Serial 收集器完全一样。**
 
  **新生代采用复制算法，老年代采用标记-整理算法。**
-![ParNew 收集器 ](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-27/22018368.jpg)
+![ParNew 收集器 ](./pictures/jvm垃圾回收/22018368.png)
 
 它是许多运行在 Server 模式下的虚拟机的首要选择，除了 Serial 收集器外，只有它能与 CMS 收集器（真正意义上的并发收集器，后面会介绍到）配合工作。
 
@@ -386,7 +389,7 @@ Parallel Scavenge 收集器也是使用复制算法的多线程收集器，它�
 **Parallel Scavenge 收集器关注点是吞吐量（高效率的利用 CPU）。CMS 等垃圾收集器的关注点更多的是用户线程的停顿时间（提高用户体验）。所谓吞吐量就是 CPU 中用于运行用户代码的时间与 CPU 总消耗时间的比值。** Parallel Scavenge 收集器提供了很多参数供用户找到最合适的停顿时间或最大吞吐量，如果对于收集器运作不太了解的话，手工优化存在困难的话可以选择把内存管理优化交给虚拟机去完成也是一个不错的选择。
 
  **新生代采用复制算法，老年代采用标记-整理算法。**
-![Parallel Scavenge 收集器 ](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-27/22018368.jpg)
+![Parallel Scavenge 收集器 ](./pictures/jvm垃圾回收/parllel-scavenge收集器.png)
 
 
 ### 4.4.Serial Old 收集器
@@ -408,7 +411,7 @@ Parallel Scavenge 收集器也是使用复制算法的多线程收集器，它�
 - **重新标记：** 重新标记阶段就是为了修正并发标记期间因为用户程序继续运行而导致标记产生变动的那一部分对象的标记记录，这个阶段的停顿时间一般会比初始标记阶段的时间稍长，远远比并发标记阶段时间短
 - **并发清除：** 开启用户线程，同时 GC 线程开始对未标记的区域做清扫。
 
-![CMS 垃圾收集器 ](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-27/82825079.jpg)
+![CMS 垃圾收集器 ](./pictures/jvm垃圾回收/CMS收集器.png)
 
 从它的名字就可以看出它是一款优秀的垃圾收集器，主要优点：**并发收集、低停顿**。但是它有下面三个明显的缺点：
 
