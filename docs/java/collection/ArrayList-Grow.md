@@ -74,6 +74,9 @@
         return true;
     }
 ```
+
+> **注意** ：JDK11 移除了 `ensureCapacityInternal()` 和 `ensureExplicitCapacity()` 方法 
+
 ### 2. 再来看看 `ensureCapacityInternal()` 方法
 
 可以看到 `add` 方法 首先调用了`ensureCapacityInternal(size + 1)`
