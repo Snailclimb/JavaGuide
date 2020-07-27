@@ -132,24 +132,15 @@ Memcached 是分布式缓存最开始兴起的那会，比较常用的。后来�
 
 所以，直接操作缓存能够承受的数据库请求数量是远远大于直接访问数据库的，所以我们可以考虑把数据库中的部分数据转移到缓存中去，这样用户的一部分请求会直接到缓存这里而不用经过数据库。进而，我们也就提高的系统整体的并发。
 
-### Redis 的线程模型
-
-Redis 内部使用文件事件处理器 `file event handler`，这个文件事件处理器是单线程的，所以 Redis 才叫做单线程的模型。它采用 IO 多路复用机制同时监听多个 socket，根据 socket 上的事件来选择对应的事件处理器进行处理。
-
-文件事件处理器的结构包含 4 个部分：
-
-- 多个 socket
-- IO 多路复用程序
-- 文件事件分派器
-- 事件处理器（连接应答处理器、命令请求处理器、命令回复处理器）
-
-多个 socket 可能会并发产生不同的操作，每个操作对应不同的文件事件，但是 IO 多路复用程序会监听多个 socket，会将 socket 产生的事件放入队列中排队，事件分派器每次从队列中取出一个事件，把该事件交给对应的事件处理器进行处理。
-
 ### Redis 常见数据结构以及使用场景分析
 
-#### String
+你可以自己本机安装 redis 或者通过 redis 官网提供的[在线 redis 环境](https://try.redis.io/)。
 
-1. **介绍** ：String 数据结构是简单的 key-value 类型。虽然Redis是用C语言写的，但是Redis并没有使用C的字符串表示，而是自己构建了一种 **简单动态字符串**（simple dynamic string，**SDS**）。相比于C的原生字符串，Redis的SDS不光可以保存文本数据还可以保存二进制数据，并且获取字符串长度复杂度为O(1)（C字符串为O(N)）,除此之外,Redis的SDS API是安全的，不会造成缓冲区溢出。
+![try-redis](./images/redis/try-redis.png)
+
+#### string
+
+1. **介绍** ：string 数据结构是简单的 key-value 类型。虽然Redis是用C语言写的，但是Redis并没有使用C的字符串表示，而是自己构建了一种 **简单动态字符串**（simple dynamic string，**SDS**）。相比于C的原生字符串，Redis的SDS不光可以保存文本数据还可以保存二进制数据，并且获取字符串长度复杂度为O(1)（C字符串为O(N)）,除此之外,Redis的SDS API是安全的，不会造成缓冲区溢出。
 2. **常用命令:**  `set,get,strlen,exists,dect,incr,setex` 等等。
 3. **应用场景** ：一般常用在需要计数的场景，比如用户的访问次数、热点文章的点赞转发数量等等。
 
@@ -209,11 +200,11 @@ OK
 (integer) 56
 ```
 
-#### List
+#### list
 
-1. **介绍** ：**List** 即是 **链表**。链表是一种非常常见的数据结构，特点是易于数据元素的插入和删除并且且可以灵活调整链表长度，但是链表的随机访问困难。许多高级编程语言都内置了链表的实现比如 Java 中的 **LinkedList**，但是C语言并没有实现链表，所以Redis实现了自己的链表数据结构。Redis 的 List 的实现为一个 **双向链表**，即可以支持反向查找和遍历，更方便操作，不过带来了部分额外的内存开销。
+1. **介绍** ：**list** 即是 **链表**。链表是一种非常常见的数据结构，特点是易于数据元素的插入和删除并且且可以灵活调整链表长度，但是链表的随机访问困难。许多高级编程语言都内置了链表的实现比如 Java 中的 **LinkedList**，但是C语言并没有实现链表，所以Redis实现了自己的链表数据结构。Redis 的 list 的实现为一个 **双向链表**，即可以支持反向查找和遍历，更方便操作，不过带来了部分额外的内存开销。
 2. **常用命令:** `rpush,lpop,lpush,rpop,lrange、llen` 等。
-3. **应用场景:**  发布与订阅或者说消息队列、慢查询
+3. **应用场景:**  发布与订阅或者说消息队列、慢查询。
 
 下面我们简单看看它的使用！
 
@@ -226,7 +217,7 @@ OK
 (integer) 3
 127.0.0.1:6379> lpop myList # 将 list的尾部(最左边)元素取出
 "value1"
-127.0.0.1:6379> lrange myList 0 1 # 查看对应下标的List列表， 0 为 start,1为 end
+127.0.0.1:6379> lrange myList 0 1 # 查看对应下标的list列表， 0 为 start,1为 end
 1) "value2"
 2) "value3"
 127.0.0.1:6379> lrange myList 0 -1 # 查看列表中的所有元素，-1表示倒数第一
@@ -252,7 +243,7 @@ OK
 ```bash
 127.0.0.1:6379> rpush myList value1 value2 value3
 (integer) 3
-127.0.0.1:6379> lrange myList 0 1 # 查看对应下标的List列表， 0 为 start,1为 end
+127.0.0.1:6379> lrange myList 0 1 # 查看对应下标的list列表， 0 为 start,1为 end
 1) "value1"
 2) "value2"
 127.0.0.1:6379> lrange myList 0 -1 # 查看列表中的所有元素，-1表示倒数第一
@@ -270,9 +261,9 @@ OK
 (integer) 3
 ```
 
-#### Hash
+#### hash
 
-1. **介绍** ：Hash 类似于 JDK1.8 前的 HashMap，内部实现也差不多(数组 + 链表)。不过，Redis 的 Hash 做了更多优化。另外，Hash 是一个 string 类型的 field 和 value 的映射表，**特别适合用于存储对象**，后续操作的时候，你可以直接仅仅修改这个对象中的某个字段的值。 比如我们可以 hash 数据结构来存储用户信息，商品信息等等。
+1. **介绍** ：hash 类似于 JDK1.8 前的 HashMap，内部实现也差不多(数组 + 链表)。不过，Redis 的 hash 做了更多优化。另外，hash 是一个 string 类型的 field 和 value 的映射表，**特别适合用于存储对象**，后续操作的时候，你可以直接仅仅修改这个对象中的某个字段的值。 比如我们可以 hash 数据结构来存储用户信息，商品信息等等。
 2. **常用命令：** `hset,hmset,hexists,hget,hgetall,hkeys,hvals` 等。
 3. **应用场景:** 系统中对象数据的存储。
 
@@ -307,9 +298,9 @@ OK
 "GuideGeGe"
 ```
 
-#### Set
+#### set
 
-1. **介绍 ：** Set 类似于 Java 中的 `HashSet`。Redis 中的 set 类型是一种无序集合，集合中的元素没有先后顺序。当你需要存储一个列表数据，又不希望出现重复数据时，set 是一个很好的选择，并且 set 提供了判断某个成员是否在一个 set 集合内的重要接口，这个也是 list 所不能提供的。可以基于 set 轻易实现交集、并集、差集的操作。比如：你可以将一个用户所有的关注人存在一个集合中，将其所有粉丝存在一个集合。Redis 可以非常方便的实现如共同关注、共同粉丝、共同喜好等功能。这个过程也就是求交集的过程。
+1. **介绍 ：** set 类似于 Java 中的 `HashSet`。Redis 中的 set 类型是一种无序集合，集合中的元素没有先后顺序。当你需要存储一个列表数据，又不希望出现重复数据时，set 是一个很好的选择，并且 set 提供了判断某个成员是否在一个 set 集合内的重要接口，这个也是 list 所不能提供的。可以基于 set 轻易实现交集、并集、差集的操作。比如：你可以将一个用户所有的关注人存在一个集合中，将其所有粉丝存在一个集合。Redis 可以非常方便的实现如共同关注、共同粉丝、共同喜好等功能。这个过程也就是求交集的过程。
 2. **常用命令：** `sadd,spop,smembers,sismember,scard,sinterstore,sunion` 等。
 3. **应用场景:**  需要存放的数据不能重复以及需要获取多个数据源交集和并集等场景
 
@@ -335,10 +326,10 @@ OK
 1) "value2"
 ```
 
-#### Sorted Set
+#### sorted set
 
 1. **介绍：** 和 set 相比，sorted set 增加了一个权重参数 score，使得集合中的元素能够按 score 进行有序排列，还可以通过score的范围来获取元素的列表。有点像是Java中 HashMap和 TreeSet 的结合体。
-2. **常用命令：** `zadd,zrange,zrem,zcard` 等
+2. **常用命令：** `zadd,zcard,zscore,zrange,zrevrange,zrem` 等。
 3. **应用场景：**  需要对数据根据某个权重进行排序的场景。比如在直播系统中，实时排行信息包含直播间在线用户列表，各种礼物排行榜，弹幕消息（可以理解为按消息维度的消息排行榜）等信息。
 
 ```bash
@@ -361,6 +352,80 @@ OK
 1) "value1"
 2) "value2"
 ```
+
+###  Redis单线程模型详解
+
+**Redis 基于 Reactor 模式来设计开发了自己的一套高效的事件处理模型** （Netty 的线程模型也基于Reactor 模式，Reactor 模式不愧是高性能IO的基石），这套事件处理模型对应的是Redis中的文件事件处理器（file event handler）。由于文件事件处理器（file event handler）是单线程方式运行的，所以我们一般都说 Redis 是单线程模型。
+
+**既然是单线程，那怎么监听大量的客户端连接呢？**
+
+Redis 通过**IO多路复用程序** 来监听来自客户端的大量连接（或者说是监听多个 socket），它会将感兴趣的事件及类型(读、写）注册到内核中并监听每个事件是否发生。
+
+这样的好处非常明显： **I/O 多路复用技术的使用让Redis不需要额外创建多余的线程来监听客户端的大量连接，降低了资源的消耗**（和NIO中的 `Selector` 组件很像）。
+
+另外， **Redis服务器是一个事件驱动程序，服务器需要处理两类事件： 1.文件事件;2.时间事件。**
+
+时间事件不需要多花时间了解，我们接触最多的还是文件事件（客户端进行读取写入等操作，涉及一系列网络通信，涉及一系列网络通信）。
+
+《Redis设计与实现》有一段话是如是介绍文件事件的，我觉得写得挺不错。
+
+> Redis基于Reactor模式开发了自己的网络事件处理器：这个处理器被称为文件事件处理 器（file event handler）。文件事件处理器使用I/O多路复用（multiplexing）程序来同时监听多个套接字，并根据 套接字目前执行的任务来为套接字关联不同的事件处理器。 
+>
+> 当被监听的套接字准备好执行连接应答（accept）、读取（read）、写入（write）、关 闭（close）等操作时，与操作相对应的文件事件就会产生，这时文件事件处理器就会调用套接字之前关联好的事件处理器来处理这些事件。 
+>
+> **虽然文件事件处理器以单线程方式运行，但通过使用I/O多路复用程序来监听多个套接字**，文件事件处理器既实现了高性能的网络通信模型，又可以很好地与Redis服务器中其他同样以单线程方式运行的模块进行对接，这保持了Redis内部单线程设计的简单性。 
+
+可以看出，文件事件处理器（file event handler）主要是包含 4 个部分：
+
+- 多个 socket（客户端连接）
+- IO 多路复用程序（支持多个客户端连接的关键）
+- 文件事件分派器（将socket关联到相应的事件处理器）
+- 事件处理器（连接应答处理器、命令请求处理器、命令回复处理器）
+
+![](images/redis/redis事件处理器.png)
+
+<p style="text-align:right;font-size:14px;color:gray">《Redis设计与实现：12章》</p>
+
+### Redis 没有使用多线程？为什么不使用多线程？
+
+虽然说 Redis 是单线程模型，但是， 实际上，**Redis 在 4.0 之后的版本中就已经加入了对多线程的支持。**
+
+![redis4.0 more thread](images/redis/redis4.0-more-thread.png)
+
+不过，Redis 4.0 增加的多线程主要是针对一些大键值对的删除操作的命令，使用这些命令就会使用主处理之外的其他线程来“异步处理”。
+
+大体上来说，**Redis 6.0 之前主要还是单线程处理。**
+
+**那，Redis6.0之前  为什么不使用多线程？**
+
+我觉得主要原因有下面 3 个：
+
+1. 单线程编程容易并且更容易维护；
+2. Redis 的性能瓶颈不再CPU ，主要在内存和网络；
+3. 多线程就会存在死锁、线程上下文切换等问题，甚至会影响性能。
+
+### Redis6.0之后为何引入了多线程？
+
+**Redis6.0 引入多线程主要是为了提高网络 IO 读写性能**，因为这个算是 Redis 中的一个性能瓶颈（Redis 的瓶颈主要受限于内存和网络）。
+
+虽然，Redis6.0 引入了多线程模型，但是 Redis 的多线程只是在网络数据的读写这类耗时操作上使用了， 执行命令仍然是单线程顺序执行。因此，你也不需要担心线程安全问题。
+
+ Redis6.0的多线程默认是禁用的，只使用主线程。如需开启需要修改redis.conf配置文件：
+
+```bash
+io-threads-do-reads yes
+```
+
+ 开启多线程后，还需要设置线程数，否则是不生效的。同样修改redis.conf配置文件:
+
+```bash
+io-threads 4 #官网建议4核的机器建议设置为2或3个线程，8核的建议设置为6个线程
+```
+
+推荐阅读：
+
+1. [Redis 6.0 新特性-多线程连环13问！](https://mp.weixin.qq.com/s/FZu3acwK6zrCBZQ_3HoUgw)
+2. [为什么 Redis 选择单线程模型](https://draveness.me/whys-the-design-redis-single-thread/)
 
 ### Redis 设置过期时间
 
@@ -604,6 +669,8 @@ public Object getObjectInclNullById(Integer id) {
 - 《Redis 开发与运维》
 - 《Redis设计与实现》
 - Redis 命令总结：http://Redisdoc.com/string/set.html
+- 通俗易懂的Redis数据结构基础教程：[https://juejin.im/post/5b53ee7e5188251aaa2d2e16](https://juejin.im/post/5b53ee7e5188251aaa2d2e16)
+- WHY Redis choose single thread (vs multi threads): [https://medium.com/@jychen7/sharing-redis-single-thread-vs-multi-threads-5870bd44d153](https://medium.com/@jychen7/sharing-redis-single-thread-vs-multi-threads-5870bd44d153)
 
 ## 公众号
 
