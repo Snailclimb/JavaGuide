@@ -1,6 +1,12 @@
-## 泛型的实际应用
+<!-- TOC -->
 
-### 实现最小值函数
+- [0.0.1. 泛型的实际应用:实现最小值函数](#001-%e6%b3%9b%e5%9e%8b%e7%9a%84%e5%ae%9e%e9%99%85%e5%ba%94%e7%94%a8%e5%ae%9e%e7%8e%b0%e6%9c%80%e5%b0%8f%e5%80%bc%e5%87%bd%e6%95%b0)
+- [0.0.2. 使用数组实现栈](#002-%e4%bd%bf%e7%94%a8%e6%95%b0%e7%bb%84%e5%ae%9e%e7%8e%b0%e6%a0%88)
+- [0.0.3. 实现线程安全的 LRU 缓存](#003-%e5%ae%9e%e7%8e%b0%e7%ba%bf%e7%a8%8b%e5%ae%89%e5%85%a8%e7%9a%84-lru-%e7%bc%93%e5%ad%98)
+
+<!-- /TOC -->
+
+### 0.0.1. 泛型的实际应用:实现最小值函数
 
 自己设计一个泛型的获取数组最小值的函数.并且这个方法只能接受Number的子类并且实现了Comparable接口。
 
@@ -23,10 +29,7 @@ int minInteger = min(new Integer[]{1, 2, 3});//result:1
 double minDouble = min(new Double[]{1.2, 2.2, -1d});//result:-1d
 String typeError = min(new String[]{"1","3"});//报错
 ```
-
-## 数据结构
-
-### 使用数组实现栈
+### 0.0.2. 使用数组实现栈
 
 **自己实现一个栈，要求这个栈具有`push()`、`pop()`（返回栈顶元素并出栈）、`peek()` （返回栈顶元素不出栈）、`isEmpty()`、`size()`这些基本的方法。**
 
@@ -39,14 +42,14 @@ public class MyStack {
     private int count;//栈中元素数量
     private static final int GROW_FACTOR = 2;
 
-    //TODO：不带初始容量的构造方法。默认容量为8
+    //不带初始容量的构造方法。默认容量为8
     public MyStack() {
         this.capacity = 8;
         this.storage=new int[8];
         this.count = 0;
     }
 
-    //TODO：带初始容量的构造方法
+    //带初始容量的构造方法
     public MyStack(int initialCapacity) {
         if (initialCapacity < 1)
             throw new IllegalArgumentException("Capacity too small.");
@@ -56,7 +59,7 @@ public class MyStack {
         this.count = 0;
     }
 
-    //TODO：入栈
+    //入栈
     public void push(int value) {
         if (count == capacity) {
             ensureCapacity();
@@ -64,14 +67,14 @@ public class MyStack {
         storage[count++] = value;
     }
 
-    //TODO：确保容量大小
+    //确保容量大小
     private void ensureCapacity() {
         int newCapacity = capacity * GROW_FACTOR;
         storage = Arrays.copyOf(storage, newCapacity);
         capacity = newCapacity;
     }
 
-    //TODO：返回栈顶元素并出栈
+    //返回栈顶元素并出栈
     private int pop() {
         if (count == 0)
             throw new IllegalArgumentException("Stack is empty.");
@@ -79,7 +82,7 @@ public class MyStack {
         return storage[count];
     }
 
-    //TODO：返回栈顶元素不出栈
+    //返回栈顶元素不出栈
     private int peek() {
         if (count == 0){
             throw new IllegalArgumentException("Stack is empty.");
@@ -88,12 +91,12 @@ public class MyStack {
         }
     }
 
-    //TODO：判断栈是否为空
+    //判断栈是否为空
     private boolean isEmpty() {
         return count == 0;
     }
 
-    //TODO：返回栈中元素的个数
+    //返回栈中元素的个数
     private int size() {
         return count;
     }
@@ -122,3 +125,6 @@ for (int i = 0; i < 8; i++) {
 System.out.println(myStack.isEmpty());//true
 myStack.pop();//报错：java.lang.IllegalArgumentException: Stack is empty.
 ```
+
+
+

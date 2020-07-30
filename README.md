@@ -1,3 +1,9 @@
+如果 Github 访问速度比较慢或者图片无法刷新出来的话，可以转移到[码云](https://gitee.com/SnailClimb/JavaGuide )查看，或者[在线阅读](https://snailclimb.gitee.io/javaguide )。**如果你要提交 issue 或者 pr 的话请到 [Github](https://github.com/Snailclimb/JavaGuide) 提交。**
+
+《JavaGuide面试突击版》PDF版本+3本PDF Java 学习手册，在[公众号JavaGuide](#公众号)后台回复“面试突击”即可获取。
+
+如要进群或者请教问题，请[联系我](#联系我) （备注来自Github。请直入问题，工作时间不回复）。
+
 > JavaGuide 的Star数量虽然比较多，但是它的价值和含金量一定是不能和 Dubbo、Nacos这些优秀的国产开源项目比的。希望国内可以出更多优秀的开源项目！
 >
 > 另外，希望大家对面试不要抱有侥幸的心理，打铁还需自身硬！  我希望这个文档是为你学习  Java 指明方向，而不是用来应付面试用的。加油！奥利给！
@@ -6,12 +12,6 @@
 
 1. [完结撒花！JavaGuide面试突击版来啦！](./docs/javaguide面试突击版.md)
 2. [JavaGuide重大更新记录](./docs/update-history.md)
-
-更多原创内容和干货分享：
-
-1. [公众号—JavaGuide](#公众号) ： 最新原创文章+免费领取本文档配套的《Java面试突击》以及Java工程师必备学习资源）
-
-Github用户如果访问速度缓慢的话，可以转移到[码云](https://gitee.com/SnailClimb/JavaGuide )查看，或者[在线阅读](https://snailclimb.gitee.io/javaguide )。
 
 <p align="center">
 <a href="https://github.com/Snailclimb/JavaGuide" target="_blank">
@@ -28,11 +28,22 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 </p>
 
 <h3 align="center">Sponsor</h3>
-<p align="center">
-<a  href="https://mp.weixin.qq.com/s/li9_YXNVxan6Qgt3Q9FYqA">
-<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/WechatIMG1.png" style="margin: 0 auto;width:400px"/>
-</a >
-</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="middle">
+        <a href="https://mp.weixin.qq.com/s/li9_YXNVxan6Qgt3Q9FYqA">
+          <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/WechatIMG1.png" style="margin: 0 auto;width:400px" /></a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="https://mp.weixin.qq.com/s/uXgGt66Df3JC4GM7d0LlZg" target="_blank">
+          <img src="https://imgkr.cn-bj.ufileos.com/75fef802-16f0-4e0b-9d6f-a9173f24a40f.png" style="margin: 0 auto;width:400px" /></a>
+      </td>        
+    </tr>
+  </tbody>
+</table>
+
 
 ## 目录
 
@@ -54,7 +65,7 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 - [系统设计](#系统设计)
     - [必知](#必知)
     - [常用框架](#常用框架)
-        - [Spring](#spring)
+        - [Spring](#springspringboot)
         - [SpringBoot](#springboot)
         - [MyBatis](#mybatis)
     - [认证授权(JWT、SSO)](#认证授权)
@@ -80,7 +91,7 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 - [面试指南](#面试指南)
 - [Java学习常见问题汇总](#java学习常见问题汇总)
 - [资源](#资源)
-    - [书单推荐](#书单推荐)
+    - [Java程序员必备书单](#java程序员必备书单)
     - [实战项目推荐](#实战项目推荐)
 - [待办](#待办)
 - [说明](#说明)
@@ -93,8 +104,7 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 
 1. **[Java 基础知识](docs/java/Java基础知识.md)**
 2. **[Java 基础知识疑难点/易错点](docs/java/Java疑难点.md)**
-3. [【加餐】一些重要的Java程序设计题](docs/java/Java程序设计题.md)
-4. [【选看】J2EE 基础知识](docs/java/J2EE基础知识.md)
+3. [【选看】J2EE 基础知识](docs/java/J2EE基础知识.md)
 
 **重要知识点详解：**
 
@@ -105,11 +115,12 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 **其他：**
 
 1. [JAD反编译](docs/java/JAD反编译tricks.md)
+2. [手把手教你定位常见Java性能问题](./docs/java/手把手教你定位常见Java性能问题.md)
 
 ### 容器
 
 1. **[Java容器常见面试题/知识点总结](docs/java/collection/Java集合框架常见面试题.md)**
-2. [ArrayList 源码](docs/java/collection/ArrayList.md)  、[LinkedList 源码](docs/java/collection/LinkedList.md)   、[HashMap(JDK1.8)源码](docs/java/collection/HashMap.md)  
+2. 源码分析：[ArrayList 源码](docs/java/collection/ArrayList.md)  、[LinkedList 源码](docs/java/collection/LinkedList.md)   、[HashMap(JDK1.8)源码](docs/java/collection/HashMap.md)  、[ConcurrentHashMap源码](docs/java/collection/ConcurrentHashMap.md)  
 
 ### 并发
 
@@ -120,13 +131,14 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 1. **[Java 并发基础常见面试题总结](docs/java/Multithread/JavaConcurrencyBasicsCommonInterviewQuestionsSummary.md)**
 2. **[Java 并发进阶常见面试题总结](docs/java/Multithread/JavaConcurrencyAdvancedCommonInterviewQuestions.md)**
 
-**必备知识点：**
+**面试常问知识点：**
 
 1. [并发容器总结](docs/java/Multithread/并发容器总结.md)
-2. **[Java线程池学习总结](./docs/java/Multithread/java线程池学习总结.md)**
+2. **线程池**：[Java线程池学习总结](./docs/java/Multithread/java线程池学习总结.md)、[拿来即用的线程池最佳实践](./docs/java/Multithread/best-practice-of-threadpool.md)
 3. [乐观锁与悲观锁](docs/essential-content-for-interview/面试必备之乐观锁与悲观锁.md)
-4. [JUC 中的 Atomic 原子类总结](docs/java/Multithread/Atomic.md)
-5. [AQS 原理以及 AQS 同步组件总结](docs/java/Multithread/AQS.md)
+4. [万字图文深度解析 ThreadLocal](docs/java/Multithread/ThreadLocal.md)
+5. [JUC 中的 Atomic 原子类总结](docs/java/Multithread/Atomic.md)
+6. [AQS 原理以及 AQS 同步组件总结](docs/java/Multithread/AQS.md)
 
 ### JVM
 
@@ -144,14 +156,14 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 
 1. **I/O** ：[BIO,NIO,AIO 总结 ](docs/java/BIO-NIO-AIO.md)
 2. **Java 8**  ：[Java 8 新特性总结](docs/java/What's%20New%20in%20JDK8/Java8Tutorial.md)、[Java 8 学习资源推荐](docs/java/What's%20New%20in%20JDK8/Java8教程推荐.md)、[Java8 forEach 指南](docs/java/What's%20New%20in%20JDK8/Java8foreach指南.md)
-3.  Java编程规范：**[Java 编程规范以及优雅 Java 代码实践总结](docs/java/Java编程规范.md)** 、[告别编码5分钟，命名2小时！史上最全的Java命名规范参考！](docs/java/java-naming-conventions.md)
-4. 设计模式 :[设计模式系列文章](docs/system-design/设计模式.md)
+3. **Java9~Java14** : [一文带你看遍JDK9~14的重要新特性！](./docs/java/jdk-new-features/new-features-from-jdk8-to-jdk14.md)
+4. Java编程规范：**[Java 编程规范以及优雅 Java 代码实践总结](docs/java/Java编程规范.md)** 、[告别编码5分钟，命名2小时！史上最全的Java命名规范参考！](docs/java/java-naming-conventions.md)
+5. 设计模式 :[设计模式系列文章](docs/system-design/设计模式.md)
 
 ## 网络
 
 1. [计算机网络常见面试题](docs/network/计算机网络.md)
 2. [计算机网络基础知识总结](docs/network/干货：计算机网络知识总结.md)
-3. [HTTPS中的TLS](docs/network/HTTPS中的TLS.md)
 
 ## 操作系统
 
@@ -161,6 +173,8 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 
 * [后端程序员必备的 Linux 基础知识](docs/operating-system/linux.md)  
 * [Shell 编程入门](docs/operating-system/Shell.md) 
+* [完全使用GNU_Linux学习](docs/operating-system/完全使用GNU_Linux学习.md)
+* [Linux 性能分析工具合集](docs/operating-system/Linux性能分析工具合集.md)
 
 ## 数据结构与算法
 
@@ -183,48 +197,50 @@ Github用户如果访问速度缓慢的话，可以转移到[码云](https://git
 
 ### MySQL
 
+**总结：**
+
 1. **[【推荐】MySQL/数据库 知识点总结](docs/database/MySQL.md)**
 2. **[阿里巴巴开发手册数据库部分的一些最佳实践](docs/database/阿里巴巴开发手册数据库部分的一些最佳实践.md)**
 3. **[一千行MySQL学习笔记](docs/database/一千行MySQL命令.md)**
 4. [MySQL高性能优化规范建议](docs/database/MySQL高性能优化规范建议.md)
-5. [数据库索引总结1](docs/database/MySQL%20Index.md)、[数据库索引总结2](docs/database/数据库索引.md)
-6. [事务隔离级别(图文详解)](docs/database/事务隔离级别(图文详解).md)
-7. [一条SQL语句在MySQL中如何执行的](docs/database/一条sql语句在mysql中如何执行的.md)
+
+**重要知识点：**
+
+1. [数据库索引总结1](docs/database/MySQL%20Index.md)、[数据库索引总结2](docs/database/数据库索引.md)
+2. [事务隔离级别(图文详解)](docs/database/事务隔离级别(图文详解).md)
+3. [一条SQL语句在MySQL中如何执行的](docs/database/一条sql语句在mysql中如何执行的.md)
+4. **[关于数据库中如何存储时间的一点思考](docs/database/关于数据库存储时间的一点思考.md)**
 
 ### Redis
 
-* [Redis 常见问题总结](docs/database/Redis/Redis.md)
+* [Redis 常见问题总结](docs/database/Redis/redis-all.md)
 * **Redis 系列文章合集：**
-
-  1. [5种基本数据结构](docs/database/Redis/redis-collection/Redis(1)——5种基本数据结构.md)
-  2. [跳跃表](docs/database/Redis/redis-collection/Redis(2)——跳跃表.md)
-  3. [分布式锁深入探究](docs/database/Redis/redis-collection/Redis(3)——分布式锁深入探究.md) 、 [Redlock分布式锁](docs/database/Redis/Redlock分布式锁.md) 、[如何做可靠的分布式锁，Redlock真的可行么](docs/database/Redis/如何做可靠的分布式锁，Redlock真的可行么.md)
-  4. [神奇的HyperLoglog解决统计问题](docs/database/Redis/redis-collection/Reids(4)——神奇的HyperLoglog解决统计问题.md)
-  5. [亿级数据过滤和布隆过滤器](docs/database/Redis/redis-collection/Redis(5)——亿级数据过滤和布隆过滤器.md)
-  6. [GeoHash查找附近的人](docs/database/Redis/redis-collection/Redis(6)——GeoHash查找附近的人.md)
+  1. 数据结构和算法 ：[5种基本数据结构](docs/database/Redis/redis-collection/Redis(1)——5种基本数据结构.md)、[跳跃表](docs/database/Redis/redis-collection/Redis(2)——跳跃表.md)、[神奇的HyperLoglog解决统计问题](docs/database/Redis/redis-collection/Reids(4)——神奇的HyperLoglog解决统计问题.md)、[亿级数据过滤和布隆过滤器](docs/database/Redis/redis-collection/Redis(5)——亿级数据过滤和布隆过滤器.md)、[GeoHash查找附近的人](docs/database/Redis/redis-collection/Redis(6)——GeoHash查找附近的人.md)
+  3. Redis锁：[分布式锁深入探究](docs/database/Redis/redis-collection/Redis(3)——分布式锁深入探究.md) 、 [Redlock分布式锁](docs/database/Redis/Redlock分布式锁.md) 、[如何做可靠的分布式锁，Redlock真的可行么](docs/database/Redis/如何做可靠的分布式锁，Redlock真的可行么.md)
   7. [持久化](docs/database/Redis/redis-collection/Redis(7)——持久化.md)
   8. [发布订阅与Stream](docs/database/Redis/redis-collection/Redis(8)——发布订阅与Stream.md)
   9. [史上最强【集群】入门实践教程](docs/database/Redis/redis-collection/Redis(9)——集群入门实践教程.md)
+  10. [Redis数据类型、编码、底层数据结构的关系看这篇](docs/database/Redis/redis-collection/Redis(10)——Redis数据类型、编码、数据结构的关系.md)
 
 ## 系统设计
 
 ### 必知
 
 1. **[RestFul API 简明教程](docs/system-design/restful-api.md)**
+2. **[因为命名被diss无数次。Guide简单聊聊编程最头疼的事情之一:命名](docs/system-design/naming.md)**
 
 ### 常用框架
 
-#### Spring
+#### Spring/SpringBoot
 
-1. [Spring 学习与面试](docs/system-design/framework/spring/Spring.md)
-2. **[Spring 常见问题总结](docs/system-design/framework/spring/SpringInterviewQuestions.md)**
-3. [Spring中 Bean 的作用域与生命周期](docs/system-design/framework/spring/SpringBean.md)
-4. [SpringMVC 工作原理详解](docs/system-design/framework/spring/SpringMVC-Principle.md)
-5. [Spring中都用到了那些设计模式?](docs/system-design/framework/spring/Spring-Design-Patterns.md)
-
-#### SpringBoot
-
-- **[SpringBoot 指南/常见面试题总结](https://github.com/Snailclimb/springboot-guide)**
+1. **[Spring 常见问题总结](docs/system-design/framework/spring/SpringInterviewQuestions.md)**
+3. **[SpringBoot 指南/常见面试题总结](https://github.com/Snailclimb/springboot-guide)**
+3. **[Spring/Spring常用注解总结！安排！](./docs/system-design/framework/spring/spring-annotations.md)**
+4. **[Spring事务总结](docs/system-design/framework/spring/spring-transaction.md)**
+5. [Spring IoC 和 AOP详解](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247486938&idx=1&sn=c99ef0233f39a5ffc1b98c81e02dfcd4&chksm=cea24211f9d5cb07fa901183ba4d96187820713a72387788408040822ffb2ed575d28e953ce7&token=1666190828&lang=zh_CN#rd)
+6. [Spring中 Bean 的作用域与生命周期](docs/system-design/framework/spring/SpringBean.md)
+7. [SpringMVC 工作原理详解](docs/system-design/framework/spring/SpringMVC-Principle.md)
+8. [Spring中都用到了那些设计模式?](docs/system-design/framework/spring/Spring-Design-Patterns.md)
 
 #### MyBatis
 
@@ -350,7 +366,7 @@ SSO(Single Sign On)即单点登录说的是用户登陆多个子系统的其中�
 
 ### 其他
 
-- [阿里云服务器使用经验](docs/tools/阿里云服务器使用经验.md)
+- [【原创】如何使用云服务器？希望这篇文章能够对你有帮助！](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247485738&idx=1&sn=f97e91a50e444944076c30b0717b303a&chksm=cea246e1f9d5cff73faf6a778b147ea85162d1f3ed55ca90473c6ebae1e2c4d13e89282aeb24&token=406194678&lang=zh_CN#rd)
 
 ## 面试指南
 
@@ -374,10 +390,9 @@ SSO(Single Sign On)即单点登录说的是用户登陆多个子系统的其中�
 
 ## 资源
 
-### 书单推荐
+### Java程序员必备书单
 
-- [算法相关](docs/books/alogorithm.md)
-- **[Java程序员必备书单](docs/books/java.md)**
+1. [「基础篇」Guide的Java后端书架来啦！都是Java程序员必看的书籍？](./docs/books/java基础篇.md)
 
 ### 实战项目推荐
 
@@ -394,7 +409,7 @@ SSO(Single Sign On)即单点登录说的是用户登陆多个子系统的其中�
 
 ## 待办
 
-- [ ] Netty 总结(---正在进行中---)
+- [x] Netty 总结
 - [ ] 数据结构总结重构(---正在进行中---)
 
 ## 说明
@@ -411,7 +426,9 @@ SSO(Single Sign On)即单点登录说的是用户登陆多个子系统的其中�
 
 Markdown 格式参考：[Github Markdown格式](https://guides.github.com/features/mastering-markdown/)，表情素材来自：[EMOJI CHEAT SHEET](https://www.webpagefx.com/tools/emoji-cheat-sheet/)。
 
-利用 docsify 生成文档部署在 Github pages: [docsify 官网介绍](https://docsify.js.org/#/)
+利用 docsify 生成文档部署在 Github pages: [docsify 官网介绍](https://docsify.js.org/#/) ，另见[《Guide哥手把手教你搭建一个文档类型的网站!免费且高速！》](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247486555&idx=2&sn=8486026ee9f9ba645ff0363df6036184&chksm=cea24390f9d5ca86ff4177c0aca5e719de17dc89e918212513ee661dd56f17ca8269f4a6e303&token=298703358&lang=zh_CN#rd) 。
+
+Logo下的小图标是使用[Shields.IO](https://shields.io/) 生成的。
 
 ### 关于转载
 
@@ -431,11 +448,11 @@ Markdown 格式参考：[Github Markdown格式](https://guides.github.com/featur
 
 下面是笔主收集的一些对本仓库提过有价值的pr或者issue的朋友，人数较多，如果你也对本仓库提过不错的pr或者issue的话，你可以加我的微信与我联系。下面的排名不分先后！
 
-<a href="https://github.com/fanofxiaofeng">
-    <img src="https://avatars0.githubusercontent.com/u/3983683?s=460&v=4" width="45px">
-</a>
 <a href="https://github.com/LiWenGu">
     <img src="https://avatars0.githubusercontent.com/u/15909210?s=460&v=4" width="45px">
+</a>
+<a href="https://github.com/fanofxiaofeng">
+    <img src="https://avatars0.githubusercontent.com/u/3983683?s=460&v=4" width="45px">
 </a>
 <a href="https://github.com/fanchenggang">  
     <img src="https://avatars2.githubusercontent.com/u/8225921?s=460&v=4" width="45px">

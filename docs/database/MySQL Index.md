@@ -15,14 +15,27 @@
 ## 使用索引的注意事项？
 
 1. 在经常需要搜索的列上，可以加快搜索的速度； 
+
 2. 在经常使用在WHERE子句中的列上面创建索引，加快条件的判断速度。 
+
 3. 在经常需要排序的列上创 建索引，因为索引已经排序，这样查询可以利用索引的排序，加快排序查询时间； 
+
 4. 对于中到大型表索引都是非常有效的，但是特大型表的话维护开销会很大，不适合建索引
+
 5. 在经常用在连接的列上，这 些列主要是一些外键，可以加快连接的速度； 
+
 6. 避免 where 子句中对宇段施加函数，这会造成无法命中索引。
+
 7. 在使用InnoDB时使用与业务无关的自增主键作为主键，即使用逻辑主键，而不要使用业务主键。
-8. 将打算加索引的列设置为 NOT NULL ，否则将导致引擎放弃使用索引而进行全表扫描
+
+8. ~~将打算加索引的列设置为 NOT NULL ，否则将导致引擎放弃使用索引而进行全表扫描。~~ 
+
+   订正，来自[issue758](https://github.com/Snailclimb/JavaGuide/issues/758) 。**将某一列设置为default null，where 是可以走索引，另外索引列是否设置 null 是不影响性能的。** 但是，还是不建议列上允许为空。最好限制not null，因为null需要更多的存储空间并且null值无法参与某些运算。
+
+   《高性能MySQL》第四章如是说：And, in case you’re wondering, allowing NULL values in the index really doesn’t impact performance  。NULL 值的索引查找流程参考：https://juejin.im/post/5d5defc2518825591523a1db ,相关阅读：[MySQL中IS NULL、IS NOT NULL、!=不能用索引？胡扯！](https://juejin.im/post/5d5defc2518825591523a1db) 。
+
 9. 删除长期未使用的索引，不用的索引的存在会造成不必要的性能损耗 MySQL 5.7 可以通过查询 sys 库的 chema_unused_indexes 视图来查询哪些索引从未被使用
+
 10. 在使用 limit offset 查询缓慢时，可以借助索引来提高性能
 
 ## Mysql索引主要使用的两种数据结构
