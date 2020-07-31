@@ -43,8 +43,8 @@
     </tr>
     <tr>
       <td align="center" valign="middle">
-        <a href="https://faxian.lagou.com/discover/05a25f7c41404735b01b7f2a61bcf833.html?ver=2">
-          <img src="https://imgkr2.cn-bj.ufileos.com/46974d4c-3f5c-415b-a59c-c11475bd502a.png?UCloudPublicKey=TOKEN_8d8b72be-579a-4e83-bfd0-5f6ce1546f13&Signature=iFLlYkAWJPv7MOAO2sLADT4vRbM%253D&Expires=1596273069" style="margin: 0 auto;width:450px" /></a>    
+        <a href="https://faxian.lagou.com/discover/05a25f7c41404735b01b7f2a61bcf833.html?ver=2&utm_campaign=gongzhonghaolyw&utm_medium=javaguidegithub&utm_source=weixinlyw">
+          <img src="./media/sponsor/lagou.jpeg" style="margin: 0 auto;width:450px" /></a>    
     </tr>
   </tbody>
 </table>
