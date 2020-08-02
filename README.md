@@ -282,7 +282,7 @@ SSO(Single Sign On)即单点登录说的是用户登陆多个子系统的其中�
 
 #### 消息队列
 
-消息队列在分布式系统中主要是为了接耦和削峰。相关阅读： **[消息队列总结](docs/system-design/data-communication/message-queue.md)** 。
+消息队列在分布式系统中主要是为了解耦和削峰。相关阅读： **[消息队列总结](docs/system-design/data-communication/message-queue.md)** 。
 
 **RabbitMQ:**
 
