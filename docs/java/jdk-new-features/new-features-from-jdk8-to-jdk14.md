@@ -109,7 +109,7 @@ Java 10 在现有的 CDS 功能基础上再次拓展，以允许应用类放置�
 
 Java11 于 2018 年 9 月 25 日正式发布，这是很重要的一个版本！Java 11 和 2017 年 9 月份发布的 Java 9 以及 2018 年 3 月份发布的 Java 10 相比，其最大的区别就是：在长期支持(Long-Term-Support)方面，**Oracle 表示会对 Java 11 提供大力支持，这一支持将会持续至 2026 年 9 月。这是据 Java 8 以后支持的首个长期版本。**
 
-![](https://imgkr.cn-bj.ufileos.com/fc66979f-7974-40e8-88ae-6dbff15ac9ef.png)
+![](images/fc66979f-7974-40e8-88ae-6dbff15ac9ef.png)
 
 ### 字符串加强
 

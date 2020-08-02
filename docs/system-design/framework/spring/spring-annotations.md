@@ -316,7 +316,7 @@ public class UserRegisterRequest {
 
 这样我们的后端就可以直接把 json 格式的数据映射到我们的 `UserRegisterRequest` 类上。
 
-![](https://imgkr.cn-bj.ufileos.com/663d1ec1-7ebc-41ab-8431-159dc1ec6589.png)
+![](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images/2020-08/663d1ec1-7ebc-41ab-8431-159dc1ec6589.png)
 
 👉 需要注意的是：**一个请求方法只可以有一个`@RequestBody`，但是可以有多个`@RequestParam`和`@PathVariable`**。 如果你的方法必须要用两个 `@RequestBody`来接受数据的话，大概率是你的数据库设计或者系统设计出问题了！
 
@@ -410,7 +410,7 @@ class WebSite {
 
 SpringBoot 项目的 spring-boot-starter-web 依赖中已经有 hibernate-validator 包，不需要引用相关依赖。如下图所示（通过 idea 插件—Maven Helper 生成）：
 
-![](https://imgkr.cn-bj.ufileos.com/c7bacd12-1c1a-4e41-aaaf-4cad840fc073.png)
+![](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images/2020-08/c7bacd12-1c1a-4e41-aaaf-4cad840fc073.png)
 
 非 SpringBoot 项目需要自行引入相关依赖包，这里不多做讲解，具体可以查看我的这篇文章：《[如何在 Spring/Spring Boot 中做参数校验？你需要了解的都在这里！](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247485783&idx=1&sn=a407f3b75efa17c643407daa7fb2acd6&chksm=cea2469cf9d5cf8afbcd0a8a1c9cc4294d6805b8e01bee6f76bb2884c5bc15478e91459def49&token=292197051&lang=zh_CN#rd)》。
 
