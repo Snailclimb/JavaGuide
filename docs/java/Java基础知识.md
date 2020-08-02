@@ -1,3 +1,5 @@
+
+
 点击关注[公众号](#公众号)及时获取笔主最新更新文章，并可免费领取本文档配套的《Java 面试突击》以及 Java 工程师必备学习资源。
 
 <!-- TOC -->
@@ -1177,12 +1179,12 @@ String s = input.readLine();
 
 #### 3.2.1. Java 异常类层次结构图
 
-![](https://imgkr.cn-bj.ufileos.com/199703ce-a1b6-4968-9eb0-161a8217507e.png)
+![](images/Java异常类层次结构图.png)
 
 
 <p style="font-size:13px;text-align:right">图片来自：https://simplesnippets.tech/exception-handling-in-java-part-1/</p>
 
-![](https://imgkr.cn-bj.ufileos.com/3c45529f-8915-448b-816a-360f8cb73fc7.png)
+![](images/Java异常类层次结构图2.png)
 
 
 <p style="font-size:13px;text-align:right">图片来自：https://chercher.tech/java-programming/exceptions-java</p>

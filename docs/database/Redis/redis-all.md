@@ -136,7 +136,7 @@ Memcached 是分布式缓存最开始兴起的那会，比较常用的。后来�
 
 作为暖男一号，我给大家画了一个草图。
 
-![正常缓存处理流程](https://static01.imgkr.com/temp/bc0cfbc9911148eeb0542d84a049d9f2.png)
+![正常缓存处理流程](images/redis/缓存的处理流程.png)
 
 简单来说就是:
 
@@ -694,7 +694,7 @@ public Object getObjectInclNullById(Integer id) {
 
 加入布隆过滤器之后的缓存处理流程图如下。
 
-![image](https://static01.imgkr.com/temp/e384cec584314b019de6e3a39ee56425.png)
+![image](images/redis/加入布隆过滤器后的缓存处理流程.png)
 
 但是，需要注意的是布隆过滤器可能会存在误判的情况。总结来说就是： **布隆过滤器说某个元素存在，小概率会误判。布隆过滤器说某个元素不在，那么这个元素一定不在。**
 
