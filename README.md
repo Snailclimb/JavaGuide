@@ -77,7 +77,7 @@
         - [MyBatis](#mybatis)
     - [认证授权(JWT、SSO)](#认证授权)
     - [分布式](#分布式)
-        - [Elasticsearch(分布式搜索引擎)](#elasticsearch分布式搜索引擎)
+        - [分布式搜索引擎](#分布式搜索引擎)
         - [RPC](#rpc)
         - [消息队列](#消息队列)
         - [API 网关](#api-网关)
@@ -220,6 +220,7 @@
 
 ### Redis
 
+* [Redis前置菜-关于缓存的一些概念](docs/database/Redis/some-concepts-of-caching.md)
 * [Redis 常见问题总结](docs/database/Redis/redis-all.md)
 * **Redis 系列文章合集：**
   1. 数据结构和算法 ：[5种基本数据结构](docs/database/Redis/redis-collection/Redis(1)——5种基本数据结构.md)、[跳跃表](docs/database/Redis/redis-collection/Redis(2)——跳跃表.md)、[神奇的HyperLoglog解决统计问题](docs/database/Redis/redis-collection/Reids(4)——神奇的HyperLoglog解决统计问题.md)、[亿级数据过滤和布隆过滤器](docs/database/Redis/redis-collection/Redis(5)——亿级数据过滤和布隆过滤器.md)、[GeoHash查找附近的人](docs/database/Redis/redis-collection/Redis(6)——GeoHash查找附近的人.md)
@@ -270,11 +271,13 @@ SSO(Single Sign On)即单点登录说的是用户登陆多个子系统的其中�
 
 [分布式相关概念入门](docs/system-design/website-architecture/分布式.md)
 
-#### Elasticsearch(分布式搜索引擎)
+#### 分布式搜索引擎
 
 提高搜索效率。常见于电商购物网站的商品搜索于分类。
 
-代办......
+比较常用的是 Elasticsearch 和 Solr。
+
+代办。
 
 #### RPC
 
