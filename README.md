@@ -37,14 +37,9 @@
           <img src="./media/sponsor/wangyi.png" style="margin: 0 auto;width:450px" /></a>
       </td>
       <td align="center" valign="middle">
-        <a href="https://mp.weixin.qq.com/s/uXgGt66Df3JC4GM7d0LlZg" target="_blank">
-          <img src="./media/sponsor/kaikeba.png" style="margin: 0 auto;width:450px" /></a>
-      </td>        
-    </tr>
-    <tr>
-      <td align="center" valign="middle">
         <a href="https://faxian.lagou.com/discover/05a25f7c41404735b01b7f2a61bcf833.html?ver=2&utm_campaign=gongzhonghaolyw&utm_medium=javaguidegithub&utm_source=weixinlyw">
-          <img src="./media/sponsor/lagou.jpeg" style="margin: 0 auto;width:450px" /></a>    
+          <img src="./media/sponsor/lagou.jpeg" style="margin: 0 auto;width:450px" /></a>   
+      </td>        
     </tr>
   </tbody>
 </table>
