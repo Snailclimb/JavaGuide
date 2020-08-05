@@ -50,6 +50,8 @@
 
 另外，本文不光会涉及到 ZooKeeper 的一些概念，后面的文章会介绍到 ZooKeeper 常见命令的使用以及使用 Apache Curator 作为 ZooKeeper 的客户端。
 
+*如果文章有任何需要改善和完善的地方，欢迎在评论区指出，共同进步！*
+
 ## 2. ZooKeeper 介绍
 
 ### 2.1. ZooKeeper 由来
