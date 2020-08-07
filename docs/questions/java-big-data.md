@@ -1,9 +1,3 @@
-写这篇文章主要是为了回答球友的一个提问，提问如下：
-
-<img src="https://images.zsxq.com/FnQni8YSJnmf0pggEU2v97la8asf?imageMogr2/auto-orient/thumbnail/800x/format/jpg/blur/1x0/quality/75&amp;e=1585670399&amp;token=kIxbL07-8jAj8w1n4s9zv64FuZZNEATmlU_Vm6zD:eWVfRnoHs3OVvuAjN8Ysv29oues=" style="zoom:50%;" />
-
-刚好自己对这方面有一丁点的见解，所以回答一下这位老哥的问题，如果能够解决他的问题，我也会很高兴。下面仅仅代表个人一件，环境大家批评指正与完善！
-
 先说一下自己的经历，大学的时候我从大二开始学习 Java ，然后学了大半年多的安卓。之后就开始学习 Java 后台，学习完 Java 后台一些常用的知识比如 Java基础、Spring、MyBatis等等之后。因为感觉大数据领域发展也挺不错的，所以就接触了一些大数据方面的知识比如当时大数据领域的霸主 Hadoop 。
 
 > 我当时学习了很多比较古老的技术比如现在基本不会用的 JSP、Struts2等等。另外，我
