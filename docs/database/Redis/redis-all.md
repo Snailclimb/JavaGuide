@@ -151,7 +151,7 @@ OK
 **批量设置** :
 
 ``` bash
-127.0.0.1:6379> mest key1 value1 key2 value2 # 批量设置 key-value 类型的值
+127.0.0.1:6379> mset key1 value1 key2 value2 # 批量设置 key-value 类型的值
 OK
 127.0.0.1:6379> mget key1 key2 # 批量获取多个 key 对应的 value
 1) "value1"
