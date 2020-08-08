@@ -188,6 +188,7 @@
 ### 算法
 
 - [硬核的算法学习书籍+资源推荐](docs/dataStructures-algorithms/算法学习资源推荐.md)  
+- [算法学习路线和资料总结](https://github.com/Xunzhuo/OI_Sharing)
 - 常见算法问题总结：
   - [几道常见的字符串算法题总结 ](docs/dataStructures-algorithms/几道常见的子符串算法题.md)
   - [几道常见的链表算法题总结 ](docs/dataStructures-algorithms/几道常见的链表算法题.md)   
