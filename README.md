@@ -37,12 +37,13 @@
           <img src="./media/sponsor/wangyi.png" style="margin: 0 auto;width:450px" /></a>
       </td>
       <td align="center" valign="middle">
-        <a href="https://faxian.lagou.com/discover/05a25f7c41404735b01b7f2a61bcf833.html?ver=2&utm_campaign=gongzhonghaolyw&utm_medium=javaguidegithub&utm_source=weixinlyw">
+        <a href="https://kaiwu.lagou.com/course/courseInfo.htm?courseId=374&decorateId=82d9388505f147cbae5de546aeb0466e&utm_campaign=gongzhonghaolyw&utm_medium=koushuang&utm_source=weixinlyw#/content">
           <img src="./media/sponsor/lagou.jpeg" style="margin: 0 auto;width:450px" /></a>   
       </td>        
     </tr>
   </tbody>
 </table>
+
 
 
 
@@ -215,7 +216,7 @@
 
 ### Redis
 
-* [Redis前置菜-关于缓存的一些概念](docs/database/Redis/some-concepts-of-caching.md)
+* [关于缓存的一些重要概念(Redis前置菜)](docs/database/Redis/some-concepts-of-caching.md)
 * [Redis 常见问题总结](docs/database/Redis/redis-all.md)
 * **Redis 系列文章合集：**
   1. 数据结构和算法 ：[5种基本数据结构](docs/database/Redis/redis-collection/Redis(1)——5种基本数据结构.md)、[跳跃表](docs/database/Redis/redis-collection/Redis(2)——跳跃表.md)、[神奇的HyperLoglog解决统计问题](docs/database/Redis/redis-collection/Reids(4)——神奇的HyperLoglog解决统计问题.md)、[亿级数据过滤和布隆过滤器](docs/database/Redis/redis-collection/Redis(5)——亿级数据过滤和布隆过滤器.md)、[GeoHash查找附近的人](docs/database/Redis/redis-collection/Redis(6)——GeoHash查找附近的人.md)
