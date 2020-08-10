@@ -114,6 +114,7 @@
 1. [枚举](docs/java/basic/用好Java中的枚举真的没有那么简单.md) （很重要的一个数据结构，用好枚举真的没有那么简单！）
 2. [Java 常见关键字总结：final、static、this、super!](docs/java/basic/final,static,this,super.md)
 3. [什么是反射机制?反射机制的应用场景有哪些?](docs/java/basic/reflection.md)
+4. [代理模式详解：静态代理+JDK/CGLIB 动态代理实战（动态代理和静态代理的区别？JDK动态代理 和 CGLIB 动态代理的区别？）](docs/java/basic/java-proxy.md)
 
 **其他：**
 
