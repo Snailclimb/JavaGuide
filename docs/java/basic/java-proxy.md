@@ -19,6 +19,7 @@
     - [3.2.3. 代码示例](#323-代码示例)
   - [3.3. JDK 动态代理和 CGLIB 动态代理对比](#33-jdk-动态代理和-cglib-动态代理对比)
 - [4. 静态代理和动态代理的对比](#4-静态代理和动态代理的对比)
+- [5. 总结](#5-总结)
 
 <!-- /code_chunk_output -->
 
@@ -405,8 +406,6 @@ send message:java
 after method send
 ```
 
-> 源码地址：[https://github.com/Snailclimb/guide-rpc-framework-learning/tree/master/src/main/java/github/javaguide/dynamicProxy](https://github.com/Snailclimb/guide-rpc-framework-learning/tree/master/src/main/java/github/javaguide/dynamicProxy) 。
-
 ### 3.3. JDK 动态代理和 CGLIB 动态代理对比
 
 1. **JDK 动态代理只能只能代理实现了接口的类，而 CGLIB 可以代理未实现任何接口的类。** 另外， CGLIB 动态代理是通过生成一个被代理类的子类来拦截被代理类的方法调用，因此不能代理声明为 final 类型的类和方法。
@@ -416,3 +415,9 @@ after method send
 
 1. **灵活性** ：动态代理更加灵活，不需要必须实现接口，可以直接代理实现类，并且可以不需要针对每个目标类都创建一个代理类。另外，静态代理中，接口一旦新增加方法，目标对象和代理对象都要进行修改，这是非常麻烦的！
 2. **JVM 层面** ：静态代理在编译时就将接口、实现类、代理类这些都变成了一个个实际的 class 文件。而动态代理是在运行时动态生成类字节码，并加载到 JVM 中的。
+
+## 5. 总结
+
+这篇文章中主要介绍了代理模式的两种实现：静态代理以及动态代理。涵盖了静态代理和动态代理实战、静态代理和动态代理的区别、JDK 动态代理和 Cglib 动态代理区别等内容。
+
+文中涉及到的所有源码，你可以在这里找到：[https://github.com/Snailclimb/guide-rpc-framework-learning/tree/master/src/main/java/github/javaguide/proxy](https://github.com/Snailclimb/guide-rpc-framework-learning/tree/master/src/main/java/github/javaguide/proxy) 。

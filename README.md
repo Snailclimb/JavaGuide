@@ -34,11 +34,11 @@
     <tr>
       <td align="center" valign="middle">
         <a href="https://mp.weixin.qq.com/s/li9_YXNVxan6Qgt3Q9FYqA">
-          <img src="./media/sponsor/wangyi.png" style="margin: 0 auto;width:450px" /></a>
+          <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-8/wangyi.png" style="margin: 0 auto;width:450px" /></a>
       </td>
       <td align="center" valign="middle">
         <a href="https://kaiwu.lagou.com/course/courseInfo.htm?courseId=374&decorateId=82d9388505f147cbae5de546aeb0466e&utm_campaign=gongzhonghaolyw&utm_medium=koushuang&utm_source=weixinlyw#/content">
-          <img src="./media/sponsor/lagou.jpeg" style="margin: 0 auto;width:450px" /></a>   
+          <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-8/lagou.jpeg" style="margin: 0 auto;width:450px" /></a>   
       </td>        
     </tr>
   </tbody>
