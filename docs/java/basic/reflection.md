@@ -4,7 +4,7 @@ JAVA 反射机制是在运行状态中，对于任意一个类，都能够知道
 
 ### 获取 Class 对象的两种方式
 
-如果我们动态获取到这些信息，我们需要依靠 Class 对象。Class 类对象将一个类的方法、变量等信息告诉运行的程序。Java 提供了两种方式获取 Class 对象:
+如果我们动态获取到这些信息，我们需要依靠 Class 对象。Class 类对象将一个类的方法、变量等信息告诉运行的程序。Java 提供了三种方式获取 Class 对象:
 
 1.知道具体类的情况下可以使用：
 
@@ -18,6 +18,11 @@ Class alunbarClass = TargetObject.class;
 
 ```java
 Class alunbarClass1 = Class.forName("cn.javaguide.TargetObject");
+```
+3.通过对象实例`instance.getClass()`获取：
+```
+Employee e;
+Class alunbarClass2 = e.getClass();
 ```
 
 ### 代码实例
