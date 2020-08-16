@@ -38,7 +38,7 @@
       </td>
       <td align="center" valign="middle">
         <a href="https://faxian.lagou.com/discover/05a25f7c41404735b01b7f2a61bcf833.html?ver=2&utm_campaign=gongzhonghaolyw&utm_medium=koushuang&utm_source=weixinlyw">
-          <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-8/lagou.jpeg" style="margin: 0 auto;width:450px" /></a>   
+          <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-8/lagou-new.jpeg" style="margin: 0 auto;width:450px" /></a>   
       </td>        
     </tr>
   </tbody>
