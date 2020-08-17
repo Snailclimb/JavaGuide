@@ -41,11 +41,14 @@
           <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-8/lagou-new.jpeg" style="margin: 0 auto;width:450px" /></a>   
       </td>        
     </tr>
+    <tr>
+      <td align="center" valign="middle">
+        <a href="https://t.1yb.co/3tWM">
+          <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-8/image-20200817202119215.png" style="margin: 0 auto;width:450px" /></a>
+      </td>       
+    </tr>
   </tbody>
 </table>
-
-
-
 
 
 ## 目录
