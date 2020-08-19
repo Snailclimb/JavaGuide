@@ -177,7 +177,7 @@ public class GiraffeService {
 </bean>
 ```
 
-需要注意的是自定义的init-method和post-method方法可以抛异常但是不能有参数。
+需要注意的是自定义的init-method和destroy-method方法可以抛异常但是不能有参数。
 
 这种方式比较推荐，因为可以自己创建方法，无需将Bean的实现直接依赖于spring的框架。
 
