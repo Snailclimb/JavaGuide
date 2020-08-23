@@ -105,13 +105,6 @@ Java 堆是垃圾收集器管理的主要区域，因此也被称作**GC 堆（G
 
 大多数情况下，对象在新生代中 eden 区分配。当 eden 区没有足够空间进行分配时，虚拟机将发起一次 Minor GC.下面我们来进行实际测试以下。
 
-在测试之前我们先来看看 **Minor GC 和 Full GC 有什么不同呢？**
-
-- **新生代 GC（Minor GC）**:指发生新生代的的垃圾收集动作，Minor GC 非常频繁，回收速度一般也比较快。
-- **老年代 GC（Major GC/Full GC）**:指发生在老年代的 GC，出现了 Major GC 经常会伴随至少一次的 Minor GC（并非绝对），Major GC 的速度一般会比 Minor GC 的慢 10 倍以上。
-
-> [issue#664 ](https://github.com/Snailclimb/JavaGuide/issues/664) :**[guang19](https://github.com/guang19)** 补充：个人在网上查阅相关资料的时候发现如题所说的观点。有的文章说 Major GC 与 Full GC 一样是属于对老年代的GC，也有的文章说 Major GC 是对整个堆区的GC，所以这点需要各位同学自行分辨 Major GC 语义。见: [知乎讨论](https://www.zhihu.com/question/41922036)
-
 **测试：**
 
 ```java
@@ -202,6 +195,27 @@ public class GCTest {
 >
 > **Sets the maximum tenuring threshold for use in adaptive GC sizing. The largest value is 15. The default value is 15 for the parallel (throughput) collector, and 6 for the CMS collector.默认晋升年龄并不都是15，这个是要区分垃圾收集器的，CMS就是6.**
 
+### 1.5主要进行 gc 的区域 
+
+周志明先生在《深入理解Java虚拟机》第二版中P92如是写道：
+
+> ~~*“老年代GC（Major GC/Full GC），指发生在老年代的GC……”*~~
+
+上面的说法已经在《深入理解Java虚拟机》第三版中被改正过来了。感谢R大的回答：
+
+![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2020-8/b48228c2-ac00-4668-a78f-6f221f8563b5.png)
+
+**总结：**
+
+针对HotSpot VM的实现，它里面的GC其实准确分类只有两大种：
+
+部分收集 (Partial GC)：
+
+- 新生代收集（Minor GC / Young GC）：只对新生代进行垃圾收集；
+- 老年代收集（Major GC / Old GC）：只对老年代进行垃圾收集。需要注意的是 Major GC 在有的语境中也用于指代整堆收集；
+- 混合收集（Mixed GC）：对整个新生代和部分老年代进行垃圾收集。
+
+整堆收集 (Full GC)：收集整个 Java 堆和方法区。
 
 ## 2 对象已经死亡？
 
@@ -394,7 +408,7 @@ Parallel Scavenge 收集器也是使用复制算法的多线程收集器，它�
 
 **是JDK1.8默认收集器**  
  使用java -XX:+PrintCommandLineFlags -version命令查看
- 
+
 ```
 -XX:InitialHeapSize=262921408 -XX:MaxHeapSize=4206742528 -XX:+PrintCommandLineFlags -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:+UseParallelGC 
 java version "1.8.0_211"
