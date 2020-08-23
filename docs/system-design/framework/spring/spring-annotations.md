@@ -7,10 +7,10 @@
 - [1. `@SpringBootApplication`](#1-springbootapplication)
 - [2. Spring Bean 相关](#2-spring-bean-%e7%9b%b8%e5%85%b3)
   - [2.1. `@Autowired`](#21-autowired)
-  - [2.2. `Component`,`@Repository`,`@Service`, `@Controller`](#22-componentrepositoryservice-controller)
+  - [2.2. `@Component`,`@Repository`,`@Service`, `@Controller`](#22-componentrepositoryservice-controller)
   - [2.3. `@RestController`](#23-restcontroller)
   - [2.4. `@Scope`](#24-scope)
-  - [2.5. `Configuration`](#25-configuration)
+  - [2.5. `@Configuration`](#25-configuration)
 - [3. 处理常见的 HTTP 请求类型](#3-%e5%a4%84%e7%90%86%e5%b8%b8%e8%a7%81%e7%9a%84-http-%e8%af%b7%e6%b1%82%e7%b1%bb%e5%9e%8b)
   - [3.1. GET 请求](#31-get-%e8%af%b7%e6%b1%82)
   - [3.2. POST 请求](#32-post-%e8%af%b7%e6%b1%82)
@@ -130,14 +130,14 @@ public class UserController {
 }
 ```
 
-#### 2.2. `Component`,`@Repository`,`@Service`, `@Controller`
+#### 2.2. `@Component`,`@Repository`,`@Service`, `@Controller`
 
 我们一般使用 `@Autowired` 注解让 Spring 容器帮我们自动装配 bean。要想把类标识成可用于 `@Autowired` 注解自动装配的 bean 的类,可以采用以下注解实现：
 
 - `@Component` ：通用的注解，可标注任意类为 `Spring` 组件。如果一个 Bean 不知道属于哪个层，可以使用`@Component` 注解标注。
 - `@Repository` : 对应持久层即 Dao 层，主要用于数据库相关操作。
 - `@Service` : 对应服务层，主要涉及一些复杂的逻辑，需要用到 Dao 层。
-- `@Controller` : 对应 Spring MVC 控制层，主要用户接受用户请求并调用 Service 层返回数据给前端页面。
+- `@Controller` : 对应 Spring MVC 控制层，主要用于接受用户请求并调用 Service 层返回数据给前端页面。
 
 #### 2.3. `@RestController`
 
@@ -168,9 +168,9 @@ public Person personSingleton() {
 - request : 每一次 HTTP 请求都会产生一个新的 bean，该 bean 仅在当前 HTTP request 内有效。
 - session : 每一次 HTTP 请求都会产生一个新的 bean，该 bean 仅在当前 HTTP session 内有效。
 
-#### 2.5. `Configuration`
+#### 2.5. `@Configuration`
 
-一般用来声明配置类，可以使用 `@Component`注解替代，不过使用`Configuration`注解声明配置类更加语义化。
+一般用来声明配置类，可以使用 `@Component`注解替代，不过使用`@Configuration`注解声明配置类更加语义化。
 
 ```java
 @Configuration
@@ -302,7 +302,6 @@ public class UserRegisterRequest {
     private String userName;
     @NotBlank
     private String password;
-    @FullName
     @NotBlank
     private String fullName;
 }
