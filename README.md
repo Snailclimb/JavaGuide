@@ -8,10 +8,9 @@
 >
 > 另外，希望大家对面试不要抱有侥幸的心理，打铁还需自身硬！  我希望这个文档是为你学习  Java 指明方向，而不是用来应付面试用的。加油！奥利给！
 
-**开始阅读之前必看** ：
+**开始阅读之前必看** ：[完结撒花！JavaGuide面试突击版来啦！](./docs/javaguide面试突击版.md) 。
 
-1. [完结撒花！JavaGuide面试突击版来啦！](./docs/javaguide面试突击版.md)
-2. [JavaGuide重大更新记录](./docs/update-history.md)
+
 
 <p align="center">
 <a href="https://github.com/Snailclimb/JavaGuide" target="_blank">
