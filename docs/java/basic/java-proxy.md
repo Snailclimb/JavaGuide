@@ -261,8 +261,7 @@ public class JdkProxyFactory {
 **5.实际使用**
 
 ```java
-DebugProxy debugProxy = new DebugProxy(new SmsServiceImpl());
-SmsService smsService = debugProxy.getProxy(SmsService.class);
+SmsService smsService = (SmsService) JdkProxyFactory.getProxy(new SmsServiceImpl());
 smsService.send("java");
 ```
 
