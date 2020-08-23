@@ -257,22 +257,17 @@ EnumMap<Pizza.PizzaStatus, Pizza> map;
 让我们快速看一个真实的示例，该示例演示如何在实践中使用它：
 
 ```java
-public static EnumMap<PizzaStatus, List<Pizza>> 
-  groupPizzaByStatus(List<Pizza> pizzaList) {
-    EnumMap<PizzaStatus, List<Pizza>> pzByStatus = 
-      new EnumMap<PizzaStatus, List<Pizza>>(PizzaStatus.class);
-     
-    for (Pizza pz : pizzaList) {
-        PizzaStatus status = pz.getStatus();
-        if (pzByStatus.containsKey(status)) {
-            pzByStatus.get(status).add(pz);
-        } else {
-            List<Pizza> newPzList = new ArrayList<Pizza>();
-            newPzList.add(pz);
-            pzByStatus.put(status, newPzList);
-        }
+Iterator<Pizza> iterator = pizzaList.iterator();
+while (iterator.hasNext()) {
+    Pizza pz = iterator.next();
+    PizzaStatus status = pz.getStatus();
+    if (pzByStatus.containsKey(status)) {
+      pzByStatus.get(status).add(pz);
+    } else {
+      List<Pizza> newPzList = new ArrayList<>();
+      newPzList.add(pz);
+      pzByStatus.put(status, newPzList);
     }
-    return pzByStatus;
 }
 ```
 
