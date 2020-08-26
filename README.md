@@ -331,7 +331,7 @@ SSO(Single Sign On)即单点登录说的是用户登陆多个子系统的其中�
 
 > 前两篇文章可能有内容重合部分，推荐都看一遍。
 
-1. [【入门】ZooKeeper 相关概念总结 01](docs/system-design/framework/zoozookeeper-intro.md)
+1. [【入门】ZooKeeper 相关概念总结 01](docs/system-design/framework/zookeeper/zookeeper-intro.md)
 2. [【进阶】ZooKeeper 相关概念总结 02](docs/system-design/framework/zookeeper/zookeeper-plus.md)
 3. [【实战】ZooKeeper 实战](docs/system-design/framework/zookeeper/zookeeper-in-action.md)
 
