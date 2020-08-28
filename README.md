@@ -53,54 +53,62 @@
 
 ## 目录
 
-- [Java](#java)
-    - [基础](#基础)
-    - [容器](#容器)
-    - [并发](#并发)
-    - [JVM](#jvm)
-    - [其他](#其他)
-- [网络](#网络)
-- [操作系统](#操作系统)
-    - [Linux](#linux)
-- **[数据结构与算法](#数据结构与算法)**
-    - [数据结构](#数据结构)
-    - [算法](#算法)
-- [数据库](#数据库)
-    - [MySQL](#mysql)
-    - [Redis](#redis)
-- [系统设计](#系统设计)
-    - [必知](#必知)
-    - [常用框架](#常用框架)
-        - [Spring](#springspringboot)
-        - [SpringBoot](#springboot)
-        - [MyBatis](#mybatis)
-    - [认证授权(JWT、SSO)](#认证授权)
-    - [分布式](#分布式)
-        - [分布式搜索引擎](#分布式搜索引擎)
-        - [RPC](#rpc)
-        - [消息队列](#消息队列)
-        - [API 网关](#api-网关)
-        - [分布式id](#分布式id)
-        - [分布式限流](#分布式限流)
-        - [分布式接口幂等性](#分布式接口幂等性)
-        - [数据库扩展](#数据库扩展)
-        - [ZooKeeper](#zookeeper)
-    - [大型网站架构](#大型网站架构)
-        - [性能测试](#性能测试)
-        - [高并发](#高并发)
-        - [高可用](#高可用)
-    - [微服务](#微服务)
-        - [Spring Cloud](#spring-cloud)
-- [必会工具](#必会工具)
-    - [Git](#git)
-    - [Docker](#docker)
-- [面试指南](#面试指南)
-- [Java学习常见问题汇总](#java学习常见问题汇总)
-- [资源](#资源)
-    - [Java程序员必备书单](#java程序员必备书单)
-    - [实战项目推荐](#实战项目推荐)
-- [待办](#待办)
-- [说明](#说明)
+ * [目录](#目录)
+ * [Java](#java)
+    * [基础](#基础)
+    * [容器](#容器)
+    * [并发](#并发)
+    * [JVM](#jvm)
+    * [其他](#其他)
+ * [网络](#网络)
+ * [Netty](#netty)
+ * [操作系统](#操作系统)
+    * [Linux](#linux)
+ * [数据结构与算法](#数据结构与算法)
+    * [数据结构](#数据结构)
+    * [算法](#算法)
+ * [数据库](#数据库)
+    * [MySQL](#mysql)
+    * [Redis](#redis)
+ * [系统设计](#系统设计)
+    * [必知](#必知)
+    * [常用框架](#常用框架)
+       * [Spring/SpringBoot](#springspringboot)
+       * [MyBatis](#mybatis)
+       * [Netty](#netty-1)
+    * [认证授权](#认证授权)
+       * [JWT](#jwt)
+       * [SSO(单点登录)](#sso单点登录)
+    * [分布式](#分布式)
+       * [分布式搜索引擎](#分布式搜索引擎)
+       * [RPC](#rpc)
+       * [消息队列](#消息队列)
+       * [API 网关](#api-网关)
+       * [分布式id](#分布式id)
+       * [分布式限流](#分布式限流)
+       * [分布式接口幂等性](#分布式接口幂等性)
+       * [ZooKeeper](#zookeeper)
+       * [其他](#其他-1)
+       * [数据库扩展](#数据库扩展)
+    * [大型网站架构](#大型网站架构)
+       * [性能测试](#性能测试)
+       * [高并发](#高并发)
+       * [高可用](#高可用)
+    * [微服务](#微服务)
+       * [Spring Cloud](#spring-cloud)
+ * [必会工具](#必会工具)
+    * [Git](#git)
+    * [Docker](#docker)
+    * [其他](#其他-2)
+ * [面试指南](#面试指南)
+ * [Java学习常见问题汇总](#java学习常见问题汇总)
+ * [资源](#资源)
+    * [Java程序员必备书单](#java程序员必备书单)
+    * [实战项目推荐](#实战项目推荐)
+    * [Github](#github)
+ * [待办](#待办)
+ * [说明](#说明)
+
 
 ## Java
 
@@ -161,16 +169,38 @@
 
 ### 其他
 
-1. **I/O** ：[BIO,NIO,AIO 总结 ](docs/java/BIO-NIO-AIO.md)
-2. **Java 8**  ：[Java 8 新特性总结](docs/java/What's%20New%20in%20JDK8/Java8Tutorial.md)、[Java 8 学习资源推荐](docs/java/What's%20New%20in%20JDK8/Java8教程推荐.md)、[Java8 forEach 指南](docs/java/What's%20New%20in%20JDK8/Java8foreach指南.md)
-3. **Java9~Java14** : [一文带你看遍JDK9~14的重要新特性！](./docs/java/jdk-new-features/new-features-from-jdk8-to-jdk14.md)
-4. Java编程规范：**[Java 编程规范以及优雅 Java 代码实践总结](docs/java/Java编程规范.md)** 、[告别编码5分钟，命名2小时！史上最全的Java命名规范参考！](docs/java/java-naming-conventions.md)
-5. 设计模式 :[设计模式系列文章](docs/system-design/设计模式.md)
+1  **Linux IO模型** ： [Linux IO](docs/java/Linux_IO模型.md)
+2. **I/O** ：[BIO,NIO,AIO 总结 ](docs/java/BIO-NIO-AIO.md)
+3. **Java 8**  ：[Java 8 新特性总结](docs/java/What's%20New%20in%20JDK8/Java8Tutorial.md)、[Java 8 学习资源推荐](docs/java/What's%20New%20in%20JDK8/Java8教程推荐.md)、[Java8 forEach 指南](docs/java/What's%20New%20in%20JDK8/Java8foreach指南.md)
+4. **Java9~Java14** : [一文带你看遍JDK9~14的重要新特性！](./docs/java/jdk-new-features/new-features-from-jdk8-to-jdk14.md)
+5. Java编程规范：**[Java 编程规范以及优雅 Java 代码实践总结](docs/java/Java编程规范.md)** 、[告别编码5分钟，命名2小时！史上最全的Java命名规范参考！](docs/java/java-naming-conventions.md)
+6. 设计模式 :[设计模式系列文章](docs/system-design/设计模式.md)
 
 ## 网络
 
 1. [计算机网络常见面试题](docs/network/计算机网络.md)
 2. [计算机网络基础知识总结](docs/network/干货：计算机网络知识总结.md)
+
+## Netty
+
+- [Netty简介](docs/netty/Netty简介.md)
+
+  - [Netty特性](docs/netty/Netty特性.md)
+
+  - [Netty组件](docs/netty/Netty组件.md)
+
+    - [Transport传输](docs/netty/Transport传输.md)
+  
+    - [ByteBuf容器](docs/netty/ByteBuf容器.md)
+    
+    - [ChannelHandler和ChannelPipeline](docs/netty/ChannelHandler和ChannelPipeline.md)
+  
+    - [Netty线程模型和EventLoop事件循环](docs/netty/Netty线程模型和EventLoop.md)
+    
+    - [Bootstrap引导](docs/netty/Bootstrap引导.md)
+    
+    - [Codec编码与解码](docs/netty/Codec编码与解码.md)
+
 
 ## 操作系统
 
@@ -524,5 +554,3 @@ Logo下的小图标是使用[Shields.IO](https://shields.io/) 生成的。
 **Java工程师必备学习资源:** 一些Java工程师常用学习资源公众号后台回复关键字 **“1”** 即可免费无套路获取。 
 
 ![我的公众号](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images/2020-08/167598cd2e17b8ec.png)
-
-
