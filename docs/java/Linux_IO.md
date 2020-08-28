@@ -1,6 +1,6 @@
 <!-- TOC -->
 
-   * [Linux IO模型](#Linux IO模型)
+   * [Linux IO](#Linux IO)
       * [操作系统的内核](#操作系统的内核)
          * [操作系统的用户态与内核态](#操作系统的用户态与内核态)
          * [为什么要有用户态与内核态?](#为什么要有用户态与内核态)
@@ -16,7 +16,7 @@
 
 <!-- /TOC -->
 
-# Linux IO模型
+# Linux IO
 
 **图源:
 [简书](https://www.jianshu.com/p/85e931636f27) (如有侵权,请联系俺,俺会立刻删除)**
@@ -33,7 +33,7 @@
 unix与linux的体系架构：分为用户态与内核态。
 用户态与内核态与内核态是操作系统对执行权限进行分级后的不同的运行模式。
 
-![用户态与内核态](../../media/pictures/java/linux_io模型/用户态与内核态.png)
+![用户态与内核态](../../media/pictures/java/linux_io/用户态与内核态.png)
 
 
 #### 为什么要有用户态与内核态?
@@ -100,7 +100,7 @@ Linux下共有5种IO模型:
 那么用户应用进程(线程)就阻塞，直到内核准备好数据并把数据从
 内核复制到用户应用进程，** 最后应用程序再处理数据。
 
-![BIO原理](../../media/pictures/java/linux_io模型/BIO原理.png)
+![BIO原理](../../media/pictures/java/linux_io/BIO原理.png)
 
 **阻塞IO是同步阻塞的。**
 
@@ -127,7 +127,7 @@ Linux下共有5种IO模型:
 这个过程就叫轮询。** 轮询直到内核准备好数据，然后内核把数据拷贝到用户应用进程，
 再进行数据处理。
 
-![NIO原理](../../media/pictures/java/linux_io模型/NIO原理.png)
+![NIO原理](../../media/pictures/java/linux_io/NIO原理.png)
 
 非阻塞IO的非阻塞体现在: **用户应用进程不用阻塞在对内核的系统调用上**
 
@@ -146,7 +146,7 @@ Linux下共有5种IO模型:
 当select/poll/epoll函数返回后，即某个socket有事件发生了，用户应用进程就会
 发起系统调用，处理事件，将socket数据复制到用户进程内，然后进行数据处理。
 
-![IO多路复用原理](../../media/pictures/java/linux_io模型/IO多路复用原理.png)
+![IO多路复用原理](../../media/pictures/java/linux_io/IO多路复用原理.png)
 
 **IO多路复用模型是同步阻塞的**
 
@@ -177,7 +177,7 @@ select/poll/epoll函数是IO多路复用模型的基础，所以如果想
 发送SIGIO信号，应用进程收到信号后，发起系统调用，
 将数据从内核拷贝到用户进程，** 然后进行数据处理。
 
-![信号驱动IO原理](../../media/pictures/java/linux_io模型/信号驱动IO原理.png)
+![信号驱动IO原理](../../media/pictures/java/linux_io/信号驱动IO原理.png)
 
 个人感觉在内核收到系统调用就立刻返回这一点很像异步IO的方式了，不过
 与异步IO仍有很大差别。
@@ -188,7 +188,7 @@ select/poll/epoll函数是IO多路复用模型的基础，所以如果想
 都会立即返回。用户应用进程不会阻塞,可以继续执行其他任务。当内核准备好数据,
 会直接把数据复制到用户应用进程。最后内核会通知用户应用进程IO完成。**
 
-![异步IO原理](../../media/pictures/java/linux_io模型/异步IO原理.png)
+![异步IO原理](../../media/pictures/java/linux_io/异步IO原理.png)
 
 **异步IO的异步体现在:内核不用等待数据准备好就立刻返回，
 所以内核肯定需要在IO完成后通知用户应用进程。**
