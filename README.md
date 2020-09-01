@@ -189,7 +189,8 @@
 
 * [后端程序员必备的 Linux 基础知识](docs/operating-system/linux.md)  
 * [Shell 编程入门](docs/operating-system/Shell.md) 
-* [完全使用GNU_Linux学习](docs/operating-system/完全使用GNU_Linux学习.md)
+* [我为什么从Windows转到Linux？](docs/operating-system/完全使用GNU_Linux学习.md)
+* [Linux IO模型](docs/operating-system/Linux_IO.md)
 * [Linux 性能分析工具合集](docs/operating-system/Linux性能分析工具合集.md)
 
 ## 数据结构与算法
