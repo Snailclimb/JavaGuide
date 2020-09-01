@@ -75,7 +75,6 @@
     * [常用框架](#常用框架)
        * [Spring/SpringBoot](#springspringboot)
        * [MyBatis](#mybatis)
-       * [Netty](#netty-1)
     * [认证授权](#认证授权)
        * [JWT](#jwt)
        * [SSO(单点登录)](#sso单点登录)
@@ -180,26 +179,6 @@
 
 1. [计算机网络常见面试题](docs/network/计算机网络.md)
 2. [计算机网络基础知识总结](docs/network/干货：计算机网络知识总结.md)
-
-## Netty
-
-- [Netty简介](docs/netty/Netty简介.md)
-
-  - [Netty特性](docs/netty/Netty特性.md)
-
-  - [Netty组件](docs/netty/Netty组件.md)
-
-    - [Transport传输](docs/netty/Transport传输.md)
-  
-    - [ByteBuf容器](docs/netty/ByteBuf容器.md)
-    
-    - [ChannelHandler和ChannelPipeline](docs/netty/ChannelHandler和ChannelPipeline.md)
-  
-    - [Netty线程模型和EventLoop事件循环](docs/netty/Netty线程模型和EventLoop.md)
-    
-    - [Bootstrap引导](docs/netty/Bootstrap引导.md)
-    
-    - [Codec编码与解码](docs/netty/Codec编码与解码.md)
 
 
 ## 操作系统
