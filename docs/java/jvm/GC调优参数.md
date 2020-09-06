@@ -10,7 +10,7 @@
 
 ### Java内存区域常见配置参数概览
 
-![](https://imgkr.cn-bj.ufileos.com/99109d10-f638-4922-aeb6-0a353c3d1e86.png)
+![](pictures/内存区域常见配置参数.png)
 
 ### 堆参数
 

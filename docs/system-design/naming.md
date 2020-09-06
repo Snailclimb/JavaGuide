@@ -1,6 +1,6 @@
 编程过程中，有太多太多让我们头疼的事情了，比如命名、维护其他人的代码、写测试、与其他人沟通交流等等。就连世界级软件大师 **Martin Fowler** 大神都说过 CS 领域有两大最难的事情，一是**缓存失效**，一是**程序命名**（@ [https://martinfowler.com/bliki/TwoHardThings.html](https://martinfowler.com/bliki/TwoHardThings.html)）。
 
-![](https://imgkr.cn-bj.ufileos.com/a3d6ff24-9304-4160-8f27-e9c4fc83f2d8.png)
+![](pictures/marting-naming.png)
 
 今天 Guide 就单独拎出 “**命名**” 来聊聊，据说之前在 Quora 网站，由接近 5000 名程序员票选出来的最难的事情就是“命名”。
 
@@ -192,17 +192,17 @@ Codelf 提供了在线网站版本，网址：[https://unbug.github.io/codelf/](
 
 我选择了 Java 编程语言，然后搜索了“序列化”这个关键词，然后它就返回了很多关于序列化的命名。
 
-![](https://imgkr.cn-bj.ufileos.com/4486c586-f4ae-4e3c-b27a-6e92251c35da.png)
+![](pictures/Codelf.png)
 
 并且，Codelf 还提供了 VS code 插件，看这个评价，看来大家还是很喜欢这款命名工具的。
 
-![](https://imgkr.cn-bj.ufileos.com/7a454e7f-9f57-48f8-8fcc-a28a19faa370.png)
+![](pictures/vscode-codelf.png)
 
 ## 总结
 
 Guide 制作了一个涵盖上面所有重要内容的思维导图，便于小伙伴们日后查阅。
 
-![](https://imgkr.cn-bj.ufileos.com/dc253190-57b1-4bc6-baf8-304957079e82.png)
+![](pictures/naming-mindmap.png)
 
 ## 其他推荐阅读
 

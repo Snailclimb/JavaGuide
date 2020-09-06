@@ -6,11 +6,11 @@
 
 **认证 (Authentication)：**  你是谁。
 
-<img src="https://imgkr.cn-bj.ufileos.com/96086534-9525-4464-97d6-e6fe94b8263f.png" style="zoom:80%;" />
+<img src="../pictures/authentication.png" style="zoom:80%;" />
 
 **授权 (Authorization)：** 你有权限干什么。
 
-<img src="https://imgkr.cn-bj.ufileos.com/d205bc73-9b3c-421d-ac92-b45a911df098.png" style="zoom:60%;" />
+<img src="../pictures/authorization.png" style="zoom:60%;" />
 
 稍微正式点（啰嗦点）的说法就是：
 
@@ -21,7 +21,7 @@
 
 ## 2. 什么是Cookie ? Cookie的作用是什么?如何在服务端使用 Cookie ?
 
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/cookie-sessionId.png)
+![](../pictures/cookie-sessionId.png)
 
 ### 2.1 什么是Cookie ? Cookie的作用是什么?
 
@@ -90,7 +90,7 @@ public String readAllCookies(HttpServletRequest request) {
 
 很多时候我们都是通过 SessionID 来实现特定的用户，SessionID 一般会选择存放在 Redis 中。举个例子：用户成功登陆系统，然后返回给客户端具有 SessionID 的 Cookie，当用户向后端发起请求的时候会把 SessionID 带上，这样后端就知道你的身份状态了。关于这种认证方式更详细的过程如下：
 
-![Session Based Authentication flow](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/Session-Based-Authentication-flow.png)
+![Session Based Authentication flow](../pictures/Session-Based-Authentication-flow.png)
 
 1. 用户向服务器发送用户名和密码用于登陆系统。
 2. 服务器验证通过后，服务器为用户创建一个 Session，并将 Session信息存储 起来。
@@ -105,7 +105,7 @@ public String readAllCookies(HttpServletRequest request) {
 
 花了个图简单总结了一下Session认证涉及的一些东西。
 
-<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/session-cookie-intro.jpg" style="zoom:50%;" />
+<img src="../pictures/session-cookie-intro.png" style="zoom:50%;" />
 
 另外，Spring Session提供了一种跨多个应用程序或实例管理用户会话信息的机制。如果想详细了解可以查看下面几篇很不错的文章：
 
@@ -167,7 +167,7 @@ JWT 由 3 部分构成:
 
 在基于 Token 进行身份验证的的应用程序中，服务器通过`Payload`、`Header`和一个密钥(`secret`)创建令牌（`Token`）并将 `Token` 发送给客户端，客户端将 `Token` 保存在 Cookie 或者 localStorage 里面，以后客户端发出的所有请求都会携带这个令牌。你可以把它放在 Cookie 里面自动发送，但是这样不能跨域，所以更好的做法是放在 HTTP  Header 的 Authorization字段中：` Authorization: Bearer Token`。
 
-![Token Based Authentication flow](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/Token-Based-Authentication.png)
+![Token Based Authentication flow](../pictures/Token-Based-Authentication.png)
 
 1. 用户向服务器发送用户名和密码用于登陆系统。
 2. 身份验证服务响应并返回了签名的 JWT，上面包含了用户是谁的内容。
@@ -194,7 +194,7 @@ OAuth 2.0 比较常用的场景就是第三方登录，当你的网站接入了�
 
 微信支付账户相关参数：
 
-<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/微信支付-fnglfdlgdfj.jpg" style="zoom:50%;" />
+<img src="../pictures/微信支付-fnglfdlgdfj.png" style="zoom:50%;" />
 
 **推荐阅读：**
 

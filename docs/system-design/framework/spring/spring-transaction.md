@@ -53,12 +53,14 @@ public class OrdersService {
 
 ## 2. 事物的特性（ACID）了解么?
 
-![](https://imgkr.cn-bj.ufileos.com/bda7231b-ab05-4e23-95ee-89ac90ac7fcf.png)
+![](images/spring-transaction/bda7231b-ab05-4e23-95ee-89ac90ac7fcf.png)
 
-- **原子性：** 事务是最小的执行单位，不允许分割。事务的原子性确保动作要么全部完成，要么完全不起作用；
-- **一致性：** 执行事务前后，数据保持一致；
-- **隔离性：** 并发访问数据库时，一个用户的事物不被其他事务所干扰也就是说多个事务并发执行时，一个事务的执行不应影响其他事务的执行；
-- **持久性:** 一个事务被提交之后。它对数据库中数据的改变是持久的，即使数据库发生故障也不应该对其有任何影响。
+- **原子性（Atomicity）：** 一个事务（transaction）中的所有操作，或者全部完成，或者全部不完成，不会结束在中间某个环节。事务在执行过程中发生错误，会被回滚（Rollback）到事务开始前的状态，就像这个事务从来没有执行过一样。即，事务不可分割、不可约简。
+- **一致性（Consistency）：** 在事务开始之前和事务结束以后，数据库的完整性没有被破坏。这表示写入的资料必须完全符合所有的预设约束、触发器、级联回滚等。
+- **隔离性（Isolation）：** 数据库允许多个并发事务同时对其数据进行读写和修改的能力，隔离性可以防止多个事务并发执行时由于交叉执行而导致数据的不一致。事务隔离分为不同级别，包括未提交读（Read uncommitted）、提交读（read committed）、可重复读（repeatable read）和串行化（Serializable）。
+- **持久性（Durability）:** 事务处理结束后，对数据的修改就是永久的，即便系统故障也不会丢失。
+
+[参考]https://zh.wikipedia.org/wiki/ACID
 
 ## 3. 详谈 Spring 对事务的支持
 
@@ -143,7 +145,7 @@ Spring 框架中，事务管理相关最重要的 3 个接口如下：
 
 我们可以把 **`PlatformTransactionManager`** 接口可以被看作是事务上层的管理者，而 **`TransactionDefinition`** 和 **`TransactionStatus`** 这两个接口可以看作是事物的描述。
 
-**`PlatformTransactionManager`** 会根据 **`TransactionDefinition`** 的定义比如事务超时时间、隔离界别、传播行为等来进行事务管理 ，而 **`TransactionStatus`** 接口则提供了一些方法来获取事务相应的状态比如是否新事务、是否可以回滚等等。
+**`PlatformTransactionManager`** 会根据 **`TransactionDefinition`** 的定义比如事务超时时间、隔离级别、传播行为等来进行事务管理 ，而 **`TransactionStatus`** 接口则提供了一些方法来获取事务相应的状态比如是否新事务、是否可以回滚等等。
 
 #### 3.2.1. PlatformTransactionManager:事务管理接口
 
@@ -153,7 +155,7 @@ Spring 框架中，事务管理相关最重要的 3 个接口如下：
 
 **`PlatformTransactionManager` 接口的具体实现如下:**
 
-![](https://imgkr.cn-bj.ufileos.com/ae964c2c-7289-441c-bddd-511161f51ee1.png)
+![](images/spring-transaction/ae964c2c-7289-441c-bddd-511161f51ee1.png)
 
 `PlatformTransactionManager`接口中定义了三个方法：
 
@@ -177,7 +179,7 @@ public interface PlatformTransactionManager {
 
 主要是因为要将事务管理行为抽象出来，然后不同的平台去实现它，这样我们可以保证提供给外部的行为不变，方便我们扩展。我前段时间分享过：**“为什么我们要用接口？”**
 
-<img src="https://imgkr.cn-bj.ufileos.com/ed279f05-f5ad-443e-84e9-513a9e777139.png" style="zoom:50%;" />
+<img src="images/spring-transaction/ed279f05-f5ad-443e-84e9-513a9e777139.png" style="zoom:50%;" />
 
 #### 3.2.2. TransactionDefinition:事务属性
 
@@ -189,7 +191,7 @@ public interface PlatformTransactionManager {
 
 事务属性包含了 5 个方面：
 
-![](https://imgkr.cn-bj.ufileos.com/a616b84d-9eea-4ad1-b4fc-461ff05e951d.png)
+![](images/spring-transaction/a616b84d-9eea-4ad1-b4fc-461ff05e951d.png)
 
 `TransactionDefinition` 接口中定义了 5 个方法以及一些表示事务属性的常量比如隔离级别、传播行为等等。
 
@@ -544,7 +546,7 @@ public interface TransactionDefinition {
 
 这些规则定义了哪些异常会导致事务回滚而哪些不会。默认情况下，事务只有遇到运行期异常（RuntimeException 的子类）时才会回滚，Error 也会导致事务回滚，但是，在遇到检查型（Checked）异常时不会回滚。
 
-![](https://imgkr.cn-bj.ufileos.com/f6c6f0aa-0f26-49e1-84b3-7f838c7379d1.png)
+![](images/spring-transaction/f6c6f0aa-0f26-49e1-84b3-7f838c7379d1.png)
 
 如果你想要回滚你定义的特定的异常类型的话，可以这样：
 

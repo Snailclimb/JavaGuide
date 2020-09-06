@@ -549,13 +549,13 @@ static int hash(int h) {
 
 所谓 **“拉链法”** 就是：将链表和数组相结合。也就是说创建一个链表数组，数组中每一格就是一个链表。若遇到哈希冲突，则将冲突的值加到链表中即可。
 
-![jdk1.8之前的内部结构-HashMap](https://static01.imgkr.com/temp/77c95eb733284dbd8ce4e85c9cb6b042.png)
+![jdk1.8之前的内部结构-HashMap](images/jdk1.8之前的内部结构-HashMap.png)
 
 #### 1.4.5.2. JDK1.8 之后
 
 相比于之前的版本， JDK1.8 之后在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为 8）（将链表转换成红黑树前会判断，如果当前数组的长度小于 64，那么会选择先进行数组扩容，而不是转换为红黑树）时，将链表转化为红黑树，以减少搜索时间。
 
-![jdk1.8之后的内部结构-HashMap](https://static01.imgkr.com/temp/19f97c2ad53b4ff2948ee4b4792ebe1a.png)
+![jdk1.8之后的内部结构-HashMap](images/jdk1.8之后的内部结构-HashMap.png)
 
 > TreeMap、TreeSet 以及 JDK1.8 之后的 HashMap 底层都用到了红黑树。红黑树就是为了解决二叉查找树的缺陷，因为二叉查找树在某些情况下会退化成一个线性结构。
 
@@ -600,7 +600,7 @@ ConcurrentHashMap 和 Hashtable 的区别主要体现在实现线程安全的方
 
 **JDK1.8 的 ConcurrentHashMap：**
 
-![JDK1.8 的 ConcurrentHashMap](https://static01.imgkr.com/temp/26fca75ccc874c8fbbeb4fbcd4dec4aa.png)
+![Java8 ConcurrentHashMap 存储结构（图片来自 javadoop）](./images/java8_concurrenthashmap.png)
 
 JDK1.8 的 `ConcurrentHashMap` 不在是 **Segment 数组 + HashEntry 数组 + 链表**，而是 **Node 数组 + 链表 / 红黑树**。不过，Node 只能用于链表的情况，红黑树的情况需要使用 **`TreeNode`**。当冲突链表达到一定长度时，链表会转换成红黑树。
 
@@ -704,7 +704,7 @@ final void checkForComodification() {
 
 我们再来趁热打铁，看一个阿里巴巴手册相关的规定：
 
-![](https://imgkr.cn-bj.ufileos.com/ad28e3ba-e419-4724-869c-73879e604da1.png)
+![](images/ad28e3ba-e419-4724-869c-73879e604da1.png)
 
 有了前面讲的基础，我们应该知道：使用 `Iterator` 提供的 `remove` 方法，可以修改到 `expectedModCount` 的值。所以，才不会再抛出`ConcurrentModificationException` 异常。
 

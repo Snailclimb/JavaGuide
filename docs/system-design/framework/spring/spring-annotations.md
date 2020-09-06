@@ -7,10 +7,10 @@
 - [1. `@SpringBootApplication`](#1-springbootapplication)
 - [2. Spring Bean 相关](#2-spring-bean-%e7%9b%b8%e5%85%b3)
   - [2.1. `@Autowired`](#21-autowired)
-  - [2.2. `Component`,`@Repository`,`@Service`, `@Controller`](#22-componentrepositoryservice-controller)
+  - [2.2. `@Component`,`@Repository`,`@Service`, `@Controller`](#22-componentrepositoryservice-controller)
   - [2.3. `@RestController`](#23-restcontroller)
   - [2.4. `@Scope`](#24-scope)
-  - [2.5. `Configuration`](#25-configuration)
+  - [2.5. `@Configuration`](#25-configuration)
 - [3. 处理常见的 HTTP 请求类型](#3-%e5%a4%84%e7%90%86%e5%b8%b8%e8%a7%81%e7%9a%84-http-%e8%af%b7%e6%b1%82%e7%b1%bb%e5%9e%8b)
   - [3.1. GET 请求](#31-get-%e8%af%b7%e6%b1%82)
   - [3.2. POST 请求](#32-post-%e8%af%b7%e6%b1%82)
@@ -130,14 +130,14 @@ public class UserController {
 }
 ```
 
-#### 2.2. `Component`,`@Repository`,`@Service`, `@Controller`
+#### 2.2. `@Component`,`@Repository`,`@Service`, `@Controller`
 
 我们一般使用 `@Autowired` 注解让 Spring 容器帮我们自动装配 bean。要想把类标识成可用于 `@Autowired` 注解自动装配的 bean 的类,可以采用以下注解实现：
 
 - `@Component` ：通用的注解，可标注任意类为 `Spring` 组件。如果一个 Bean 不知道属于哪个层，可以使用`@Component` 注解标注。
 - `@Repository` : 对应持久层即 Dao 层，主要用于数据库相关操作。
 - `@Service` : 对应服务层，主要涉及一些复杂的逻辑，需要用到 Dao 层。
-- `@Controller` : 对应 Spring MVC 控制层，主要用户接受用户请求并调用 Service 层返回数据给前端页面。
+- `@Controller` : 对应 Spring MVC 控制层，主要用于接受用户请求并调用 Service 层返回数据给前端页面。
 
 #### 2.3. `@RestController`
 
@@ -168,9 +168,9 @@ public Person personSingleton() {
 - request : 每一次 HTTP 请求都会产生一个新的 bean，该 bean 仅在当前 HTTP request 内有效。
 - session : 每一次 HTTP 请求都会产生一个新的 bean，该 bean 仅在当前 HTTP session 内有效。
 
-#### 2.5. `Configuration`
+#### 2.5. `@Configuration`
 
-一般用来声明配置类，可以使用 `@Component`注解替代，不过使用`Configuration`注解声明配置类更加语义化。
+一般用来声明配置类，可以使用 `@Component`注解替代，不过使用`@Configuration`注解声明配置类更加语义化。
 
 ```java
 @Configuration
@@ -302,7 +302,6 @@ public class UserRegisterRequest {
     private String userName;
     @NotBlank
     private String password;
-    @FullName
     @NotBlank
     private String fullName;
 }
@@ -316,7 +315,7 @@ public class UserRegisterRequest {
 
 这样我们的后端就可以直接把 json 格式的数据映射到我们的 `UserRegisterRequest` 类上。
 
-![](https://imgkr.cn-bj.ufileos.com/663d1ec1-7ebc-41ab-8431-159dc1ec6589.png)
+![](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images/2020-08/663d1ec1-7ebc-41ab-8431-159dc1ec6589.png)
 
 👉 需要注意的是：**一个请求方法只可以有一个`@RequestBody`，但是可以有多个`@RequestParam`和`@PathVariable`**。 如果你的方法必须要用两个 `@RequestBody`来接受数据的话，大概率是你的数据库设计或者系统设计出问题了！
 
@@ -410,7 +409,7 @@ class WebSite {
 
 SpringBoot 项目的 spring-boot-starter-web 依赖中已经有 hibernate-validator 包，不需要引用相关依赖。如下图所示（通过 idea 插件—Maven Helper 生成）：
 
-![](https://imgkr.cn-bj.ufileos.com/c7bacd12-1c1a-4e41-aaaf-4cad840fc073.png)
+![](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images/2020-08/c7bacd12-1c1a-4e41-aaaf-4cad840fc073.png)
 
 非 SpringBoot 项目需要自行引入相关依赖包，这里不多做讲解，具体可以查看我的这篇文章：《[如何在 Spring/Spring Boot 中做参数校验？你需要了解的都在这里！](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247485783&idx=1&sn=a407f3b75efa17c643407daa7fb2acd6&chksm=cea2469cf9d5cf8afbcd0a8a1c9cc4294d6805b8e01bee6f76bb2884c5bc15478e91459def49&token=292197051&lang=zh_CN#rd)》。
 

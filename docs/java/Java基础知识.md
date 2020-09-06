@@ -1,3 +1,5 @@
+
+
 点击关注[公众号](#公众号)及时获取笔主最新更新文章，并可免费领取本文档配套的《Java 面试突击》以及 Java 工程师必备学习资源。
 
 <!-- TOC -->
@@ -33,7 +35,7 @@
         - [1.4.2. 为什么 Java 中只有值传递？](#142-为什么-java-中只有值传递)
         - [1.4.3. 重载和重写的区别](#143-重载和重写的区别)
                 - [1.4.3.1. 重载](#1431-重载)
-                - [1.4.3.2. 重写](#1432-重写)
+                    - [1.4.3.2. 重写](#1432-重写)
         - [1.4.4. 深拷贝 vs 浅拷贝](#144-深拷贝-vs-浅拷贝)
         - [1.4.5. 方法的四种类型](#145-方法的四种类型)
 - [2. Java 面向对象](#2-java-面向对象)
@@ -465,7 +467,7 @@ public native int hashCode();
 
 我们以“`HashSet` 如何检查重复”为例子来说明为什么要有 hashCode？
 
-当你把对象加入 `HashSet` 时，`HashSet` 会先计算对象的 hashcode 值来判断对象加入的位置，同时也会与其他已经加入的对象的 hashcode 值作比较，如果没有相符的 hashcode，`HashSet` 会假设对象没有重复出现。但是如果发现有相同 hashcode 值的对象，这时会调用 equals（）方法来检查 hashcode 相等的对象是否真的相同。如果两者相同，`HashSet` 就不会让其加入操作成功。如果不同的话，就会重新散列到其他位置。（摘自我的 Java 启蒙书《Head fist java》第二版）。这样我们就大大减少了 equals 的次数，相应就大大提高了执行速度。
+当你把对象加入 `HashSet` 时，`HashSet` 会先计算对象的 hashcode 值来判断对象加入的位置，同时也会与其他已经加入的对象的 hashcode 值作比较，如果没有相符的 hashcode，`HashSet` 会假设对象没有重复出现。但是如果发现有相同 hashcode 值的对象，这时会调用 `equals()` 方法来检查 hashcode 相等的对象是否真的相同。如果两者相同，`HashSet` 就不会让其加入操作成功。如果不同的话，就会重新散列到其他位置。（摘自我的 Java 启蒙书《Head First Java》第二版）。这样我们就大大减少了 equals 的次数，相应就大大提高了执行速度。
 
 **3)为什么重写 `equals` 时必须重写 `hashCode` 方法？**
 
@@ -494,7 +496,7 @@ Java**中**有8种基本数据类型，分别为：
 
 1. 6种数字类型 ：byte、short、int、long、float、double
 2. 1种字符类型：char
-3. 1中布尔型：boolean。 
+3. 1种布尔型：boolean。 
 
 这八种基本类型都有对应的包装类分别为：Byte、Short、Integer、Long、Float、Double、Character、Boolean
 
@@ -783,21 +785,29 @@ Java 程序设计语言对对象采用的不是引用调用，实际上，对象
 重写发生在运行期，是子类对父类的允许访问的方法的实现过程进行重新编写。
 
 1. 返回值类型、方法名、参数列表必须相同，抛出的异常范围小于等于父类，访问修饰符范围大于等于父类。
-2. 如果父类方法访问修饰符为 private/final/static 则子类就不能重写该方法，但是被 static 修饰的方法能够被再次声明。
+2. 如果父类方法访问修饰符为 `private/final/static` 则子类就不能重写该方法，但是被 static 修饰的方法能够被再次声明。
 3. 构造方法无法被重写
 
 **综上：重写就是子类对父类方法的重新改造，外部样子不能改变，内部逻辑可以改变**
 
-**暖心的 Guide 哥最后再来个图标总结一下！**
+**暖心的 Guide 哥最后再来个图表总结一下！**
 
-| 区别点     | 重载方法 | 重写方法                                       |
-| :--------- | :------- | :--------------------------------------------- |
-| 发生范围   | 同一个类 | 子类 中                                        |
-| 参数列表   | 必须修改 | 一定不能修改                                   |
-| 返回类型   | 可修改   | 一定不能修改                                   |
-| 异常       | 可修改   | 可以减少或删除，一定不能抛出新的或者更广的异常 |
-| 访问修饰符 | 可修改   | 一定不能做更严格的限制（可以降低限制）         |
-| 发生阶段   | 编译期   | 运行期                                         |
+| 区别点     | 重载方法 | 重写方法                                                     |
+| :--------- | :------- | :----------------------------------------------------------- |
+| 发生范围   | 同一个类 | 子类                                                         |
+| 参数列表   | 必须修改 | 一定不能修改                                                 |
+| 返回类型   | 可修改   | 子类方法返回值类型应比父类方法返回值类型更小或相等           |
+| 异常       | 可修改   | 子类方法声明抛出的异常类应比父类方法声明抛出的异常类更小或相等； |
+| 访问修饰符 | 可修改   | 一定不能做更严格的限制（可以降低限制）                       |
+| 发生阶段   | 编译期   | 运行期                                                       |
+
+
+
+**方法的重写要遵循“两同两小一大”**（以下内容摘录自《疯狂 Java 讲义》,[issue#892](https://github.com/Snailclimb/JavaGuide/issues/892) ）：
+
+- “两同”即方法名相同、形参列表相同；
+- “两小”指的是子类方法返回值类型应比父类方法返回值类型更小或相等，子类方法声明抛出的异常类应比父类方法声明抛出的异常类更小或相等；
+- “一大”指的是子类方法的访问权限应比父类方法的访问权限更大或相等。
 
 #### 1.4.4. 深拷贝 vs 浅拷贝
 
@@ -1177,12 +1187,12 @@ String s = input.readLine();
 
 #### 3.2.1. Java 异常类层次结构图
 
-![](https://imgkr.cn-bj.ufileos.com/199703ce-a1b6-4968-9eb0-161a8217507e.png)
+![](images/Java异常类层次结构图.png)
 
 
 <p style="font-size:13px;text-align:right">图片来自：https://simplesnippets.tech/exception-handling-in-java-part-1/</p>
 
-![](https://imgkr.cn-bj.ufileos.com/3c45529f-8915-448b-816a-360f8cb73fc7.png)
+![](images/Java异常类层次结构图2.png)
 
 
 <p style="font-size:13px;text-align:right">图片来自：https://chercher.tech/java-programming/exceptions-java</p>
@@ -1239,9 +1249,12 @@ public class Test {
 
 #### 3.2.4. 使用 `try-with-resources` 来代替`try-catch-finally`
 
+1. **适用范围（资源的定义）：** 任何实现 `java.lang.AutoCloseable`或者``java.io.Closeable` 的对象
+2. **关闭资源和final的执行顺序：** 在 `try-with-resources` 语句中，任何 catch 或 finally 块在声明的资源关闭后运行
+
 《Effecitve Java》中明确指出：
 
-> 面对必须要关闭的资源，我们总是应该优先使用try-with-resources而不是`try-finally`。随之产生的代码更简短，更清晰，产生的异常对我们也更有用。`try-with-resources`语句让我们更容易编写必须要关闭的资源的代码，若采用`try-finally`则几乎做不到这点。
+> 面对必须要关闭的资源，我们总是应该优先使用 `try-with-resources` 而不是`try-finally`。随之产生的代码更简短，更清晰，产生的异常对我们也更有用。`try-with-resources`语句让我们更容易编写必须要关闭的资源的代码，若采用`try-finally`则几乎做不到这点。
 
 Java 中类似于`InputStream`、`OutputStream` 、`Scanner` 、`PrintWriter`等的资源都需要我们调用`close()`方法来手动关闭，一般情况下我们都是通过`try-catch-finally`语句来实现这个需求，如下：
 
@@ -1276,7 +1289,20 @@ try (Scanner scanner = new Scanner(new File("test.txt"))) {
 
 当然多个资源需要关闭的时候，使用 `try-with-resources`  实现起来也非常简单，如果你还是用`try-catch-finally`可能会带来很多问题。
 
-通过使用分号分隔，可以在`try-with-resources`块中声明多个资源：
+通过使用分号分隔，可以在`try-with-resources`块中声明多个资源。
+
+```java
+try (BufferedInputStream bin = new BufferedInputStream(new FileInputStream(new File("test.txt")));
+             BufferedOutputStream bout = new BufferedOutputStream(new FileOutputStream(new File("out.txt")))) {
+            int b;
+            while ((b = bin.read()) != -1) {
+                bout.write(b);
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+```
 
 ### 3.3. 多线程
 
