@@ -40,9 +40,14 @@
           <img src="./media/sponsor/xiangxue.png" style="margin: 0 auto;width:450px" /></a>
       </td>          
     </tr>
+    <tr>
+      <td align="center" valign="middle">
+        <a href="https://w.url.cn/s/AS6JeXA">
+          <img src="http://javaguide.cn/991599477417_.pic_hd.jpg" style="margin: 0 auto;width:450px" /></a>
+      </td>        
+    </tr>
   </tbody>
 </table>
-
 
 
 
