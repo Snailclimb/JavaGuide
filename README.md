@@ -1,10 +1,10 @@
 如果 Github 访问速度比较慢或者图片无法刷新出来的话，可以转移到[码云](https://gitee.com/SnailClimb/JavaGuide )查看，或者[在线阅读](https://snailclimb.gitee.io/javaguide )。**如果你要提交 issue 或者 pr 的话请到 [Github](https://github.com/Snailclimb/JavaGuide) 提交。**
 
-《JavaGuide面试突击版》PDF版本+3本PDF Java 学习手册，在[公众号JavaGuide](#公众号)后台回复“面试突击”即可获取。
+《JavaGuide面试突击版》PDF版本+3本PDF Java 学习手册，在公众号 **[JavaGuide](#公众号)** 后台回复“**面试突击**”即可获取。
 
 如要进群或者请教问题，请[联系我](#联系我) （备注来自Github。请直入问题，工作时间不回复）。
 
-> JavaGuide 的Star数量虽然比较多，但是它的价值和含金量一定是不能和 Dubbo、Nacos这些优秀的国产开源项目比的。希望国内可以出更多优秀的开源项目！
+> JavaGuide 的 Star数量虽然比较多，但是它的价值和含金量一定是不能和 Dubbo、Nacos这些优秀的国产开源项目比的。希望国内可以出更多优秀的开源项目！
 >
 > 另外，希望大家对面试不要抱有侥幸的心理，打铁还需自身硬！  我希望这个文档是为你学习  Java 指明方向，而不是用来应付面试用的。加油！奥利给！
 
@@ -107,6 +107,8 @@
     * [Github](#github)
  * [待办](#待办)
  * [说明](#说明)
+
+准备面试的小伙伴可以考虑面试专版：[《Java面试进阶指南》](https://xiaozhuanlan.com/javainterview?rel=javaguide)  ，欢迎加入[我的星球](https://wx.zsxq.com/dweb2/index/group/48418884588288)获取更多实用干货。
 
 
 ## Java
