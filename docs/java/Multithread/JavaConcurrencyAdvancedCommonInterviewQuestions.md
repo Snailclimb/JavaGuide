@@ -1,65 +1,61 @@
 点击关注[公众号](#公众号)及时获取笔主最新更新文章，并可免费领取本文档配套的《Java面试突击》以及Java工程师必备学习资源。
 
-<!-- TOC -->
-
-- [Java 并发进阶常见面试题总结](#java-并发进阶常见面试题总结)
-    - [1. synchronized 关键字](#1-synchronized-关键字)
-        - [1.1. 说一说自己对于 synchronized 关键字的了解](#11-说一说自己对于-synchronized-关键字的了解)
-        - [1.2. 说说自己是怎么使用 synchronized 关键字，在项目中用到了吗](#12-说说自己是怎么使用-synchronized-关键字在项目中用到了吗)
-        - [1.3. 讲一下 synchronized 关键字的底层原理](#13-讲一下-synchronized-关键字的底层原理)
-        - [1.4. 说说 JDK1.6 之后的synchronized 关键字底层做了哪些优化，可以详细介绍一下这些优化吗](#14-说说-jdk16-之后的synchronized-关键字底层做了哪些优化可以详细介绍一下这些优化吗)
-        - [1.5. 谈谈 synchronized和ReentrantLock 的区别](#15-谈谈-synchronized和reentrantlock-的区别)
-    - [2. volatile关键字](#2-volatile关键字)
-        - [2.1. 讲一下Java内存模型](#21-讲一下java内存模型)
-        - [2.2. 说说 synchronized 关键字和 volatile 关键字的区别](#22-说说-synchronized-关键字和-volatile-关键字的区别)
-    - [3. ThreadLocal](#3-threadlocal)
-        - [3.1. ThreadLocal简介](#31-threadlocal简介)
-        - [3.2. ThreadLocal示例](#32-threadlocal示例)
-        - [3.3. ThreadLocal原理](#33-threadlocal原理)
-        - [3.4. ThreadLocal 内存泄露问题](#34-threadlocal-内存泄露问题)
-    - [4. 线程池](#4-线程池)
-        - [4.1. 为什么要用线程池？](#41-为什么要用线程池)
-        - [4.2. 实现Runnable接口和Callable接口的区别](#42-实现runnable接口和callable接口的区别)
-        - [4.3. 执行execute()方法和submit()方法的区别是什么呢？](#43-执行execute方法和submit方法的区别是什么呢)
-        - [4.4. 如何创建线程池](#44-如何创建线程池)
-    - [5. Atomic 原子类](#5-atomic-原子类)
-        - [5.1. 介绍一下Atomic 原子类](#51-介绍一下atomic-原子类)
-        - [5.2. JUC 包中的原子类是哪4类?](#52-juc-包中的原子类是哪4类)
-        - [5.3. 讲讲 AtomicInteger 的使用](#53-讲讲-atomicinteger-的使用)
-        - [5.4. 能不能给我简单介绍一下 AtomicInteger 类的原理](#54-能不能给我简单介绍一下-atomicinteger-类的原理)
-    - [6. AQS](#6-aqs)
-        - [6.1. AQS 介绍](#61-aqs-介绍)
-        - [6.2. AQS 原理分析](#62-aqs-原理分析)
-            - [6.2.1. AQS 原理概览](#621-aqs-原理概览)
-            - [6.2.2. AQS 对资源的共享方式](#622-aqs-对资源的共享方式)
-            - [6.2.3. AQS底层使用了模板方法模式](#623-aqs底层使用了模板方法模式)
-        - [6.3. AQS 组件总结](#63-aqs-组件总结)
-    - [7 Reference](#7-reference)
-
-<!-- /TOC -->
-
 # Java 并发进阶常见面试题总结
 
-## 1. synchronized 关键字
+## 1.synchronized 关键字
 
-### 1.1. 说一说自己对于 synchronized 关键字的了解
+![](images/interview-questions/synchronized关键字.png)
 
-synchronized关键字解决的是多个线程之间访问资源的同步性，synchronized关键字可以保证被它修饰的方法或者代码块在任意时刻只能有一个线程执行。
+### 1.1.说一说自己对于 synchronized 关键字的了解
 
-另外，在 Java 早期版本中，synchronized属于重量级锁，效率低下，因为监视器锁（monitor）是依赖于底层的操作系统的 Mutex Lock 来实现的，Java 的线程是映射到操作系统的原生线程之上的。如果要挂起或者唤醒一个线程，都需要操作系统帮忙完成，而操作系统实现线程之间的切换时需要从用户态转换到内核态，这个状态之间的转换需要相对比较长的时间，时间成本相对较高，这也是为什么早期的 synchronized 效率低的原因。庆幸的是在 Java 6 之后 Java 官方对从 JVM 层面对synchronized 较大优化，所以现在的 synchronized 锁效率也优化得很不错了。JDK1.6对锁的实现引入了大量的优化，如自旋锁、适应性自旋锁、锁消除、锁粗化、偏向锁、轻量级锁等技术来减少锁操作的开销。
+**`synchronized` 关键字解决的是多个线程之间访问资源的同步性，`synchronized`关键字可以保证被它修饰的方法或者代码块在任意时刻只能有一个线程执行。**
+
+另外，在 Java 早期版本中，`synchronized` 属于 **重量级锁**，效率低下。
+
+**为什么呢？**
+
+因为监视器锁（monitor）是依赖于底层的操作系统的 `Mutex Lock` 来实现的，Java 的线程是映射到操作系统的原生线程之上的。如果要挂起或者唤醒一个线程，都需要操作系统帮忙完成，而操作系统实现线程之间的切换时需要从用户态转换到内核态，这个状态之间的转换需要相对比较长的时间，时间成本相对较高。
+
+庆幸的是在 Java 6 之后 Java 官方对从 JVM 层面对synchronized 较大优化，所以现在的 synchronized 锁效率也优化得很不错了。JDK1.6对锁的实现引入了大量的优化，如自旋锁、适应性自旋锁、锁消除、锁粗化、偏向锁、轻量级锁等技术来减少锁操作的开销。
+
+所以，你会发现目前的话，不论是各种开源框架还是JDK源码都大量使用了 synchronized 关键字。
 
 
-### 1.2. 说说自己是怎么使用 synchronized 关键字，在项目中用到了吗
+### 1.2. 说说自己是怎么使用 synchronized 关键字
 
 **synchronized关键字最主要的三种使用方式：**
 
-- **修饰实例方法:** 作用于当前对象实例加锁，进入同步代码前要获得当前对象实例的锁
-- **修饰静态方法:** 也就是给当前类加锁，会作用于类的所有对象实例，因为静态成员不属于任何一个实例对象，是类成员（ static 表明这是该类的一个静态资源，不管new了多少个对象，只有一份）。所以如果一个线程 A 调用一个实例对象的非静态 synchronized 方法，而线程 B 需要调用这个实例对象所属类的静态 synchronized 方法，是允许的，不会发生互斥现象，**因为访问静态 synchronized 方法占用的锁是当前类的锁，而访问非静态 synchronized 方法占用的锁是当前实例对象锁**。
-- **修饰代码块:** 指定加锁对象，对给定对象加锁，进入同步代码库前要获得给定对象的锁。
+**1.修饰实例方法:** 作用于当前对象实例加锁，进入同步代码前要获得 **当前对象实例的锁**
 
-**总结：** synchronized 关键字加到 static 静态方法和 synchronized(class)代码块上都是是给 Class 类上锁。synchronized 关键字加到实例方法上是给对象实例上锁。尽量不要使用 synchronized(String a) 因为JVM中，字符串常量池具有缓存功能！
+```java
+synchronized void method() {
+  //业务代码
+}
+```
 
-下面我以一个常见的面试题为例讲解一下 synchronized 关键字的具体使用。
+**2.修饰静态方法:** 也就是给当前类加锁，会作用于类的所有对象实例 ，进入同步代码前要获得 **当前 class 的锁**。因为静态成员不属于任何一个实例对象，是类成员（ *static 表明这是该类的一个静态资源，不管new了多少个对象，只有一份*）。所以，如果一个线程 A 调用一个实例对象的非静态 `synchronized` 方法，而线程 B 需要调用这个实例对象所属类的静态 `synchronized` 方法，是允许的，不会发生互斥现象，**因为访问静态 `synchronized` 方法占用的锁是当前类的锁，而访问非静态 `synchronized` 方法占用的锁是当前实例对象锁**。
+
+```java
+synchronized void staic method() {
+  //业务代码
+}
+```
+
+**3.修饰代码块** ：指定加锁对象，对给定对象/类加锁。`synchronized(this|object)` 表示进入同步代码库前要获得**给定对象的锁**。`synchronized(类.class)` 表示进入同步代码前要获得 **当前 class 的锁**
+
+```java
+synchronized(this) {
+  //业务代码
+}
+```
+
+**总结：**
+
+-  `synchronized` 关键字加到 `static` 静态方法和 `synchronized(class)` 代码块上都是是给 Class 类上锁。
+- `synchronized` 关键字加到实例方法上是给对象实例上锁。
+- 尽量不要使用 `synchronized(String a) ` 因为JVM中，字符串常量池具有缓存功能！
+
+下面我以一个常见的面试题为例讲解一下 `synchronized` 关键字的具体使用。
 
 面试中面试官经常会说：“单例模式了解吗？来给我手写一下！给我解释一下双重检验锁方式实现单例模式的原理呗！”
 
@@ -87,17 +83,23 @@ public class Singleton {
     }
 }
 ```
-另外，需要注意 uniqueInstance 采用 volatile 关键字修饰也是很有必要。
+另外，需要注意 `uniqueInstance` 采用 `volatile` 关键字修饰也是很有必要。
 
-uniqueInstance 采用 volatile 关键字修饰也是很有必要的， uniqueInstance = new Singleton(); 这段代码其实是分为三步执行：
+`uniqueInstance` 采用 `volatile` 关键字修饰也是很有必要的， `uniqueInstance = new Singleton();` 这段代码其实是分为三步执行：
 
-1. 为 uniqueInstance 分配内存空间
-2. 初始化 uniqueInstance
-3. 将 uniqueInstance 指向分配的内存地址
+1. 为 `uniqueInstance` 分配内存空间
+2. 初始化 `uniqueInstance`
+3. 将 `uniqueInstance` 指向分配的内存地址
 
-但是由于 JVM 具有指令重排的特性，执行顺序有可能变成 1->3->2。指令重排在单线程环境下不会出现问题，但是在多线程环境下会导致一个线程获得还没有初始化的实例。例如，线程 T1 执行了 1 和 3，此时 T2 调用 getUniqueInstance() 后发现 uniqueInstance 不为空，因此返回 uniqueInstance，但此时 uniqueInstance 还未被初始化。
+但是由于 JVM 具有指令重排的特性，执行顺序有可能变成 1->3->2。指令重排在单线程环境下不会出现问题，但是在多线程环境下会导致一个线程获得还没有初始化的实例。例如，线程 T1 执行了 1 和 3，此时 T2 调用 `getUniqueInstance`() 后发现 `uniqueInstance` 不为空，因此返回 `uniqueInstance`，但此时 `uniqueInstance` 还未被初始化。
 
-使用 volatile 可以禁止 JVM 的指令重排，保证在多线程环境下也能正常运行。
+使用 `volatile` 可以禁止 JVM 的指令重排，保证在多线程环境下也能正常运行。
+
+### 1.3. 构造方法可以使用 synchronized 关键字修饰么？
+
+先说结论：**构造方法不能使用 synchronized 关键字修饰。**
+
+构造方法本身就属于线程安全的，不存在同步的构造方法一说。
 
 ### 1.3. 讲一下 synchronized 关键字的底层原理
 
@@ -116,13 +118,15 @@ public class SynchronizedDemo {
 
 ```
 
-通过 JDK 自带的 javap 命令查看 SynchronizedDemo 类的相关字节码信息：首先切换到类的对应目录执行 `javac SynchronizedDemo.java` 命令生成编译后的 .class 文件，然后执行`javap -c -s -v -l SynchronizedDemo.class`。
+通过 JDK 自带的 `javap` 命令查看 `SynchronizedDemo` 类的相关字节码信息：首先切换到类的对应目录执行 `javac SynchronizedDemo.java` 命令生成编译后的 .class 文件，然后执行`javap -c -s -v -l SynchronizedDemo.class`。
 
 ![synchronized关键字原理](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/synchronized关键字原理.png)
 
 从上面我们可以看出：
 
-**synchronized 同步语句块的实现使用的是 monitorenter 和 monitorexit 指令，其中 monitorenter 指令指向同步代码块的开始位置，monitorexit 指令则指明同步代码块的结束位置。** 当执行 monitorenter 指令时，线程试图获取锁也就是获取 monitor(monitor对象存在于每个Java对象的对象头中，synchronized 锁便是通过这种方式获取锁的，也是为什么Java中任意对象可以作为锁的原因) 的持有权。当计数器为0则可以成功获取，获取后将锁计数器设为1也就是加1。相应的在执行 monitorexit 指令后，将锁计数器设为0，表明锁被释放。如果获取对象锁失败，那当前线程就要阻塞等待，直到锁被另外一个线程释放为止。
+**`synchronized` 同步语句块的实现使用的是 `monitorenter` 和 `monitorexit` 指令，其中 `monitorenter` 指令指向同步代码块的开始位置，`monitorexit` 指令则指明同步代码块的结束位置。** 
+
+当执行 `monitorenter` 指令时，线程试图获取锁也就是获取 monitor(monitor对象存在于每个Java对象的对象头中，synchronized 锁便是通过这种方式获取锁的，也是为什么Java中任意对象可以作为锁的原因) 的持有权。当计数器为0则可以成功获取，获取后将锁计数器设为1也就是加1。相应的在执行 monitorexit 指令后，将锁计数器设为0，表明锁被释放。如果获取对象锁失败，那当前线程就要阻塞等待，直到锁被另外一个线程释放为止。
 
 **② synchronized 修饰方法的的情况**
 
@@ -173,33 +177,53 @@ synchronized 是依赖于 JVM 实现的，前面我们也讲到了 虚拟机团�
 
 ## 2. volatile关键字
 
-### 2.1. 讲一下Java内存模型
+我们先要从 **CPU缓存模型** 说起！
 
+### 2.1. CPU缓存模型
 
-在 JDK1.2 之前，Java的内存模型实现总是从**主存**（即共享内存）读取变量，是不需要进行特别的注意的。而在当前的 Java 内存模型下，线程可以把变量保存**本地内存**（比如机器的寄存器）中，而不是直接在主存中进行读写。这就可能造成一个线程在主存中修改了一个变量的值，而另外一个线程还继续使用它在寄存器中的变量值的拷贝，造成**数据的不一致**。
+**为什么要弄一个CPU高速缓存呢？** 
 
-![数据不一致](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/数据不一致.png)
+类比我们开发网站后台系统使用的缓存（比如 Redis）是为了解决程序处理速度和访问常规关系型数据库速度不对等的问题。 **CPU缓存则是为了解决CPU处理速度和内存处理速度不对等的问题。** 
 
-要解决这个问题，就需要把变量声明为**volatile**，这就指示 JVM，这个变量是不稳定的，每次使用它都到主存中进行读取。
+我们甚至可以把 **内存可以看作外存的高速缓存**，程序运行的时候我们把外存的数据复制到内存，由于内存的处理速度远远高于外存，这样提高了处理速度。
 
-说白了， **volatile** 关键字的主要作用就是保证变量的可见性然后还有一个作用是防止指令重排序。
+总结：**CPU Cache 缓存的是内存数据用于解决CPU处理速度和内存不匹配的问题，内存缓存的是硬盘数据用于解决硬盘访问速度过慢的问题。** 
 
-![volatile关键字的可见性](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/volatile关键字的可见性.png)
+为了更好地理解，我画了一个简单的CPU Cache示意图如下（实际上，现代的CPU Cache通常分为三层，分别叫L1,L2,L3 Cache）:
 
-### 2.2 并发编程的三个重要特性
+![CPU Cache](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-8/303a300f-70dd-4ee1-9974-3f33affc6574.png)
+
+**CPU Cache的工作方式：**
+
+先复制一份数据到 CPU Cache中，当CPU需要用到的时候就可以直接从CPU Cache中读取数据，当运算完成后，再将运算得到的数据写回Main Memory 中。但是，这样存在 **内存缓存不一致性的问题** ！比如我执行一个 i++操作的话，如果两个线程同时执行的话，假设两个线程从CPU Cache中读取的i=1，两个线程做了1++运算完之后再写回 Main Memory之后 i=2，而正确结果应该是 i=3。
+
+**CPU 为了解决内存缓存不一致性问题可以通过制定缓存一致协议或者其他手段来解决。**
+
+### 2.2. 讲一下JMM(Java内存模型)
+
+在 JDK1.2 之前，Java 的内存模型实现总是从**主存**（即共享内存）读取变量，是不需要进行特别的注意的。而在当前的 Java 内存模型下，线程可以把变量保存**本地内存**（比如机器的寄存器）中，而不是直接在主存中进行读写。这就可能造成一个线程在主存中修改了一个变量的值，而另外一个线程还继续使用它在寄存器中的变量值的拷贝，造成**数据的不一致**。
+
+![JMM(Java内存模型)](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-8/0ac7e663-7db8-4b95-8d8e-7d2b179f67e8.png)
+
+要解决这个问题，就需要把变量声明为**volatile**，这就指示 JVM，这个变量是共享且不稳定的，每次使用它都到主存中进行读取。
+
+所以，**volatile 关键字 除了防止 JVM 的指令重排 ，还有一个重要的作用就是保证变量的可见性。**
+
+![volatile关键字的可见性](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-8/d49c5557-140b-4abf-adad-8aac3c9036cf.png)
+
+### 2.3. 并发编程的三个重要特性
 
 1. **原子性** : 一个的操作或者多次操作，要么所有的操作全部都得到执行并且不会收到任何因素的干扰而中断，要么所有的操作都执行，要么都不执行。`synchronized ` 可以保证代码片段的原子性。
 2. **可见性**  ：当一个变量对共享变量进行了修改，那么另外的线程都是立即可以看到修改后的最新值。`volatile` 关键字可以保证共享变量的可见性。
 3. **有序性** ：代码在执行的过程中的先后顺序，Java 在编译器以及运行期间的优化，代码的执行顺序未必就是编写代码时候的顺序。`volatile` 关键字可以禁止指令进行重排序优化。
 
-### 2.3. 说说 synchronized 关键字和 volatile 关键字的区别
+### 2.4. 说说 synchronized 关键字和 volatile 关键字的区别
 
-`synchronized` 关键字和 `volatile` 关键字是两个互补的存在，而不是对立的存在：
+`synchronized` 关键字和 `volatile` 关键字是两个互补的存在，而不是对立的存在！
 
-- **volatile关键字**是线程同步的**轻量级实现**，所以**volatile性能肯定比synchronized关键字要好**。但是**volatile关键字只能用于变量而synchronized关键字可以修饰方法以及代码块**。synchronized关键字在JavaSE1.6之后进行了主要包括为了减少获得锁和释放锁带来的性能消耗而引入的偏向锁和轻量级锁以及其它各种优化之后执行效率有了显著提升，**实际开发中使用 synchronized 关键字的场景还是更多一些**。
-- **多线程访问volatile关键字不会发生阻塞，而synchronized关键字可能会发生阻塞**
-- **volatile关键字能保证数据的可见性，但不能保证数据的原子性。synchronized关键字两者都能保证。**
-- **volatile关键字主要用于解决变量在多个线程之间的可见性，而 synchronized关键字解决的是多个线程之间访问资源的同步性。**
+- **volatile 关键字**是线程同步的**轻量级实现**，所以**volatile 性能肯定比 synchronized 关键字要好**。但是**volatile 关键字只能用于变量而 synchronized 关键字可以修饰方法以及代码块**。
+- **volatile 关键字能保证数据的可见性，但不能保证数据的原子性。synchronized 关键字两者都能保证。**
+- **volatile 关键字主要用于解决变量在多个线程之间的可见性，而 synchronized 关键字解决的是多个线程之间访问资源的同步性。**
 
 ## 3. ThreadLocal
 
@@ -526,7 +550,7 @@ public interface Callable<V> {
 
 举个例子： Spring 通过 `ThreadPoolTaskExecutor` 或者我们直接通过 `ThreadPoolExecutor` 的构造函数创建线程池的时候，当我们不指定 `RejectedExecutionHandler` 饱和策略的话来配置线程池的时候默认使用的是 `ThreadPoolExecutor.AbortPolicy`。在默认情况下，`ThreadPoolExecutor` 将抛出 `RejectedExecutionException` 来拒绝新来的任务 ，这代表你将丢失对这个任务的处理。 对于可伸缩的应用程序，建议使用 `ThreadPoolExecutor.CallerRunsPolicy`。当最大池被填满时，此策略为我们提供可伸缩队列。（这个直接查看 `ThreadPoolExecutor` 的构造函数源码就可以看出，比较简单的原因，这里就不贴代码了）
 
-### 4.6 一个简单的线程池Demo:`Runnable`+`ThreadPoolExecutor`
+### 4.6 一个简单的线程池Demo
 
 为了让大家更清楚上面的面试题中的一些概念，我写了一个简单的线程池 Demo。
 
@@ -919,6 +943,97 @@ tryReleaseShared(int)//共享方式。尝试释放资源，成功则返回true�
 - **Semaphore(信号量)-允许多个线程同时访问：** synchronized 和 ReentrantLock 都是一次只允许一个线程访问某个资源，Semaphore(信号量)可以指定多个线程同时访问某个资源。
 - **CountDownLatch （倒计时器）：** CountDownLatch是一个同步工具类，用来协调多个线程之间的同步。这个工具通常用来控制线程等待，它可以让某一个线程等待直到倒计时结束，再开始执行。
 - **CyclicBarrier(循环栅栏)：** CyclicBarrier 和 CountDownLatch 非常类似，它也可以实现线程间的技术等待，但是它的功能比 CountDownLatch 更加复杂和强大。主要应用场景和 CountDownLatch 类似。CyclicBarrier 的字面意思是可循环使用（Cyclic）的屏障（Barrier）。它要做的事情是，让一组线程到达一个屏障（也可以叫同步点）时被阻塞，直到最后一个线程到达屏障时，屏障才会开门，所有被屏障拦截的线程才会继续干活。CyclicBarrier默认的构造方法是 CyclicBarrier(int parties)，其参数表示屏障拦截的线程数量，每个线程调用await()方法告诉 CyclicBarrier 我已经到达了屏障，然后当前线程被阻塞。
+
+### 6.4. 用过 CountDownLatch 么？什么场景下用的？
+
+👨‍💻**面试官** ：用过 CountDownLatch 么？什么场景下用的？
+
+🙋 **我** ： `CountDownLatch` 的作用就是 允许 count 个线程阻塞在一个地方，直至所有线程的任务都执行完毕。之前在项目中，有一个使用多线程读取多个文件处理的场景，我用到了 `CountDownLatch ` 。具体场景是下面这样的：
+
+我们要读取处理6个文件，这6个任务都是没有执行顺序依赖的任务，但是我们需要返回给用户的时候将这几个文件的处理的结果进行统计整理。
+
+ 为此我们定义了一个线程池和count为6的`CountDownLatch`对象 。使用线程池处理读取任务，每一个线程处理完之后就将count-1，调用`CountDownLatch`对象的 `await()`方法，直到所有文件读取完之后，才会接着执行后面的逻辑。
+
+伪代码是下面这样的：
+
+```java
+public class CountDownLatchExample1 {
+  // 处理文件的数量
+  private static final int threadCount = 6;
+
+  public static void main(String[] args) throws InterruptedException {
+    // 创建一个具有固定线程数量的线程池对象（推荐使用构造方法创建）
+    ExecutorService threadPool = Executors.newFixedThreadPool(10);
+    final CountDownLatch countDownLatch = new CountDownLatch(threadCount);
+    for (int i = 0; i < threadCount; i++) {
+      final int threadnum = i;
+      threadPool.execute(() -> {
+        try {
+          //处理文件的业务操作
+          ......
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        } finally {
+          //表示一个文件已经被完成
+          countDownLatch.countDown();
+        }
+
+      });
+    }
+    countDownLatch.await();
+    threadPool.shutdown();
+    System.out.println("finish");
+  }
+
+}
+```
+
+👨‍💻**面试官** ：有没有可以改进的地方呢？
+
+🙋 **我** ：可以提示一下具体的改进方向不？
+
+👨‍💻**面试官** ：Java 8 的新增加的一个多线程处理的类。
+
+🙋 **我** ：是 `CompletableFuture` 吧！这个确实可以通过这个类来改进。Java8 的 `CompletableFuture` 提供了很多对多线程友好的方法，使用它可以很方便地为我们编写多线程程序，什么异步、串行、并行或者等待所有线程执行完任务什么的都非常方便。
+
+```java
+CompletableFuture<Void> task1 =
+  CompletableFuture.supplyAsync(()->{
+    //自定义业务操作
+  });
+......
+CompletableFuture<Void> task6 =
+  CompletableFuture.supplyAsync(()->{
+    //自定义业务操作
+  });
+......
+ CompletableFuture<Void> headerFuture=CompletableFuture.allOf(task1,.....,task6);
+
+  try {
+    headerFuture.join();
+  } catch (Exception ex) {
+    ......
+  }
+System.out.println("all done. ");
+```
+
+👨‍💻**面试官** ：嗯嗯！大概意思说清楚了，不过代码还可以接续优化，当任务过多的时候，把每一个 task 都列出来不太现实，可以考虑通过循环来添加任务。
+
+```java
+//文件夹位置
+List<String> filePaths = Arrays.asList(...)	
+// 异步处理所有文件
+List<CompletableFuture<String>> fileFutures = filePaths.stream()
+        .map(filePath -> doSomeThing(filePath))
+        .collect(Collectors.toList());
+// 将他们合并起来
+CompletableFuture<Void> allFutures = CompletableFuture.allOf(
+        fileFutures.toArray(new CompletableFuture[fileFutures.size()])
+);
+
+```
+
+
 
 ## 7 Reference
 
