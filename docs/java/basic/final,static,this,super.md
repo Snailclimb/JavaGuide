@@ -92,7 +92,7 @@ public class Sub extends Super {
 
 **使用 this 和 super 要注意的问题：**
 
-- 在构造器中使用 `super（）` 调用父类中的其他构造方法时，该语句必须处于构造器的首行，否则编译器会报错。另外，this 调用本类中的其他构造方法时，也要放在首行。
+- 在构造器中使用 `super()` 调用父类中的其他构造方法时，该语句必须处于构造器的首行，否则编译器会报错。另外，this 调用本类中的其他构造方法时，也要放在首行。
 - this、super不能用在static方法中。
 
 **简单解释一下：**
@@ -141,7 +141,7 @@ public class StaticBean {
         this.name = name;
     }
     //静态方法
-    static void SayHello() {
+    static void sayHello() {
         System.out.println("Hello i am java");
     }
     @Override
@@ -164,7 +164,7 @@ public class StaticDemo {
         StaticBean.age = 33;
         System.out.println(staticBean + " " + staticBean2 + " " + staticBean3 + " " + staticBean4);
         //StaticBean{name=1,age=33} StaticBean{name=2,age=33} StaticBean{name=3,age=33} StaticBean{name=4,age=33}
-        StaticBean.SayHello();//Hello i am java
+        StaticBean.sayHello();//Hello i am java
     }
 
 }
@@ -173,7 +173,7 @@ public class StaticDemo {
 
 ### 静态代码块
 
-静态代码块定义在类中方法外, 静态代码块在非静态代码块之前执行(静态代码块—非静态代码块—构造方法)。 该类不管创建多少对象，静态代码块只执行一次.
+静态代码块定义在类中方法外, 静态代码块在非静态代码块之前执行(静态代码块 —> 非静态代码块 —> 构造方法)。 该类不管创建多少对象，静态代码块只执行一次.
 
 静态代码块的格式是 
 
@@ -274,7 +274,11 @@ class Foo {
 
 }
 ```
-你可以像这样调用静态方法：`Foo.method1()`。 如果您尝试使用这种方法调用 method2 将失败。 但这样可行：`Foo bar = new Foo(1);bar.method2();`
+你可以像这样调用静态方法：`Foo.method1()`。 如果您尝试使用这种方法调用 method2 将失败。 但这样可行
+``` java
+Foo bar = new Foo(1);
+bar.method2();
+```
 
 总结：
 
@@ -285,7 +289,7 @@ class Foo {
 
 相同点： 都是在JVM加载类时且在构造方法执行之前执行，在类中都可以定义多个，定义多个时按定义的顺序执行，一般在代码块中对一些static变量进行赋值。 
 
-不同点： 静态代码块在非静态代码块之前执行(静态代码块—非静态代码块—构造方法)。静态代码块只在第一次new执行一次，之后不再执行，而非静态代码块在每new一次就执行一次。 非静态代码块可在普通方法中定义(不过作用不大)；而静态代码块不行。 
+不同点： 静态代码块在非静态代码块之前执行(静态代码块 -> 非静态代码块 -> 构造方法)。静态代码块只在第一次new执行一次，之后不再执行，而非静态代码块在每new一次就执行一次。 非静态代码块可在普通方法中定义(不过作用不大)；而静态代码块不行。
 
 > 修正 [issue #677](https://github.com/Snailclimb/JavaGuide/issues/677)：静态代码块可能在第一次new的时候执行，但不一定只在第一次new的时候执行。比如通过 `Class.forName("ClassDemo")`创建 Class 对象的时候也会执行。
 
@@ -347,6 +351,6 @@ public class Test {
 
 ### 参考
 
-- httpsblog.csdn.netchen13579867831articledetails78995480
-- httpwww.cnblogs.comchenssyp3388487.html
-- httpwww.cnblogs.comQian123p5713440.html
+- https://blog.csdn.net/chen13579867831/article/details/78995480
+- https://www.cnblogs.com/chenssy/p/3388487.html
+- https://www.cnblogs.com/Qian123/p/5713440.html
