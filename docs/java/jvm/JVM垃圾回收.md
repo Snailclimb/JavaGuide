@@ -48,15 +48,15 @@
 - 如何判断一个类是无用的类
 - 垃圾收集有哪些算法，各自的特点？
 - HotSpot 为什么要分为新生代和老年代？
-- 常见的垃圾回收器有那些？
+- 常见的垃圾回收器有哪些？
 - 介绍一下 CMS,G1 收集器。
 - Minor Gc 和 Full GC 有什么不同呢？
 
 ### 本文导火索
 
-![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-26/29176325.jpg)
+![](./pictures/jvm垃圾回收/29176325.png)
 
-当需要排查各种 内存溢出问题、当垃圾收集成为系统达到更高并发的瓶颈时，我们就需要对这些“自动化”的技术实施必要的监控和调节。
+当需要排查各种内存溢出问题、当垃圾收集成为系统达到更高并发的瓶颈时，我们就需要对这些“自动化”的技术实施必要的监控和调节。
 
 ## 1  揭开 JVM 内存分配与回收的神秘面纱
 
@@ -66,25 +66,44 @@ Java 堆是垃圾收集器管理的主要区域，因此也被称作**GC 堆（G
 
 **堆空间的基本结构：**
 
-<div align="center">  
-<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3堆结构.png" width="400px"/>
-</div>
+![](./pictures/jvm垃圾回收/01d330d8-2710-4fad-a91c-7bbbfaaefc0e.png)
 
+上图所示的 Eden 区、From Survivor0("From") 区、To Survivor1("To") 区都属于新生代，Old Memory 区属于老年代。
 
-上图所示的 eden 区、s0("From") 区、s1("To") 区都属于新生代，tentired 区属于老年代。大部分情况，对象都会首先在 Eden 区域分配，在一次新生代垃圾回收后，如果对象还存活，则会进入 s1("To")，并且对象的年龄还会加 1(Eden 区->Survivor 区后对象的初始年龄变为 1)，当它的年龄增加到一定程度（默认为 15 岁），就会被晋升到老年代中。对象晋升到老年代的年龄阈值，可以通过参数 `-XX:MaxTenuringThreshold` 来设置。经过这次GC后，Eden区和"From"区已经被清空。这个时候，"From"和"To"会交换他们的角色，也就是新的"To"就是上次GC前的“From”，新的"From"就是上次GC前的"To"。不管怎样，都会保证名为To的Survivor区域是空的。Minor GC会一直重复这样的过程，直到“To”区被填满，"To"区被填满之后，会将所有对象移动到年老代中。
+大部分情况，对象都会首先在 Eden 区域分配，在一次新生代垃圾回收后，如果对象还存活，则会进入 s0 或者 s1，并且对象的年龄还会加  1(Eden 区->Survivor 区后对象的初始年龄变为 1)，当它的年龄增加到一定程度（默认为 15 岁），就会被晋升到老年代中。对象晋升到老年代的年龄阈值，可以通过参数 `-XX:MaxTenuringThreshold` 来设置。
 
-![堆内存常见分配策略 ](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/堆内存.jpg)
+> 修正（[issue552](https://github.com/Snailclimb/JavaGuide/issues/552)）：“Hotspot遍历所有对象时，按照年龄从小到大对其所占用的大小进行累积，当累积的某个年龄大小超过了survivor区的一半时，取这个年龄和MaxTenuringThreshold中更小的一个值，作为新的晋升年龄阈值”。
+>
+> **动态年龄计算的代码如下**
+>
+> ```c++
+> uint ageTable::compute_tenuring_threshold(size_t survivor_capacity) {
+> 	//survivor_capacity是survivor空间的大小
+> size_t desired_survivor_size = (size_t)((((double) survivor_capacity)*TargetSurvivorRatio)/100);
+> size_t total = 0;
+> uint age = 1;
+> while (age < table_size) {
+>  total += sizes[age];//sizes数组是每个年龄段对象大小
+>  if (total > desired_survivor_size) break;
+>  age++;
+> }
+> uint result = age < MaxTenuringThreshold ? age : MaxTenuringThreshold;
+> 	...
+> }
+> 
+> ```
+>
+> 
+
+经过这次GC后，Eden区和"From"区已经被清空。这个时候，"From"和"To"会交换他们的角色，也就是新的"To"就是上次GC前的“From”，新的"From"就是上次GC前的"To"。不管怎样，都会保证名为To的Survivor区域是空的。Minor GC会一直重复这样的过程，直到“To”区被填满，"To"区被填满之后，会将所有对象移动到老年代中。
+
+![堆内存常见分配策略 ](./pictures/jvm垃圾回收/堆内存.png)
 
 ### 1.1 对象优先在 eden 区分配
 
 目前主流的垃圾收集器都会采用分代回收算法，因此需要将堆内存分为新生代和老年代，这样我们就可以根据各个年代的特点选择合适的垃圾收集算法。
 
 大多数情况下，对象在新生代中 eden 区分配。当 eden 区没有足够空间进行分配时，虚拟机将发起一次 Minor GC.下面我们来进行实际测试以下。
-
-在测试之前我们先来看看 **Minor GC 和 Full GC 有什么不同呢？**
-
-- **新生代 GC（Minor GC）**:指发生新生代的的垃圾收集动作，Minor GC 非常频繁，回收速度一般也比较快。
-- **老年代 GC（Major GC/Full GC）**:指发生在老年代的 GC，出现了 Major GC 经常会伴随至少一次的 Minor GC（并非绝对），Major GC 的速度一般会比 Minor GC 的慢 10 倍以上。
 
 **测试：**
 
@@ -99,10 +118,10 @@ public class GCTest {
 }
 ```
 通过以下方式运行：
-![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-26/25178350.jpg)
+![](./pictures/jvm垃圾回收/25178350.png)
 
 添加的参数：`-XX:+PrintGCDetails`
-![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-26/10317146.jpg)
+![](./pictures/jvm垃圾回收/10317146.png)
 
 运行结果 (红色字体描述有误，应该是对应于 JDK1.7 的永久代)：
 
@@ -147,14 +166,62 @@ public class GCTest {
 
 ### 1.4 动态对象年龄判定
 
-为了更好的适应不同程序的内存情况，虚拟机不是永远要求对象年龄必须达到了某个值才能进入老年代，如果 Survivor 空间中相同年龄所有对象大小的总和大于 Survivor 空间的一半，年龄大于或等于该年龄的对象就可以直接进入老年代，无需达到要求的年龄。
 
+大部分情况，对象都会首先在 Eden 区域分配，在一次新生代垃圾回收后，如果对象还存活，则会进入 s0 或者 s1，并且对象的年龄还会加  1(Eden 区->Survivor 区后对象的初始年龄变为 1)，当它的年龄增加到一定程度（默认为 15 岁），就会被晋升到老年代中。对象晋升到老年代的年龄阈值，可以通过参数 `-XX:MaxTenuringThreshold` 来设置。
+
+> 修正（[issue552](https://github.com/Snailclimb/JavaGuide/issues/552)）：“Hotspot遍历所有对象时，按照年龄从小到大对其所占用的大小进行累积，当累积的某个年龄大小超过了survivor区的一半时，取这个年龄和MaxTenuringThreshold中更小的一个值，作为新的晋升年龄阈值”。
+>
+> **动态年龄计算的代码如下**
+>
+> ```c++
+> uint ageTable::compute_tenuring_threshold(size_t survivor_capacity) {
+> 	//survivor_capacity是survivor空间的大小
+> size_t desired_survivor_size = (size_t)((((double) survivor_capacity)*TargetSurvivorRatio)/100);
+> size_t total = 0;
+> uint age = 1;
+> while (age < table_size) {
+>  total += sizes[age];//sizes数组是每个年龄段对象大小
+>  if (total > desired_survivor_size) break;
+>  age++;
+> }
+> uint result = age < MaxTenuringThreshold ? age : MaxTenuringThreshold;
+> 	...
+> }
+> 
+> ```
+>
+> 额外补充说明([issue672](https://github.com/Snailclimb/JavaGuide/issues/672))：**关于默认的晋升年龄是15，这个说法的来源大部分都是《深入理解Java虚拟机》这本书。**
+> 如果你去Oracle的官网阅读[相关的虚拟机参数](https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html)，你会发现`-XX:MaxTenuringThreshold=threshold`这里有个说明
+>
+> **Sets the maximum tenuring threshold for use in adaptive GC sizing. The largest value is 15. The default value is 15 for the parallel (throughput) collector, and 6 for the CMS collector.默认晋升年龄并不都是15，这个是要区分垃圾收集器的，CMS就是6.**
+
+### 1.5主要进行 gc 的区域 
+
+周志明先生在《深入理解Java虚拟机》第二版中P92如是写道：
+
+> ~~*“老年代GC（Major GC/Full GC），指发生在老年代的GC……”*~~
+
+上面的说法已经在《深入理解Java虚拟机》第三版中被改正过来了。感谢R大的回答：
+
+![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2020-8/b48228c2-ac00-4668-a78f-6f221f8563b5.png)
+
+**总结：**
+
+针对HotSpot VM的实现，它里面的GC其实准确分类只有两大种：
+
+部分收集 (Partial GC)：
+
+- 新生代收集（Minor GC / Young GC）：只对新生代进行垃圾收集；
+- 老年代收集（Major GC / Old GC）：只对老年代进行垃圾收集。需要注意的是 Major GC 在有的语境中也用于指代整堆收集；
+- 混合收集（Mixed GC）：对整个新生代和部分老年代进行垃圾收集。
+
+整堆收集 (Full GC)：收集整个 Java 堆和方法区。
 
 ## 2 对象已经死亡？
 
 堆中几乎放着所有的对象实例，对堆垃圾回收前的第一步就是要判断那些对象已经死亡（即不能再被任何途径使用的对象）。
 
-![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-27/11034259.jpg)
+![](./pictures/jvm垃圾回收/11034259.png)
 
 ### 2.1 引用计数法
 
@@ -183,8 +250,13 @@ public class ReferenceCountingGc {
 
 这个算法的基本思想就是通过一系列的称为 **“GC Roots”** 的对象作为起点，从这些节点开始向下搜索，节点所走过的路径称为引用链，当一个对象到 GC Roots 没有任何引用链相连的话，则证明此对象是不可用的。
 
-![可达性分析算法 ](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-27/72762049.jpg)
+![可达性分析算法 ](./pictures/jvm垃圾回收/72762049.png)
 
+可作为GC Roots的对象包括下面几种:
+* 虚拟机栈(栈帧中的本地变量表)中引用的对象
+* 本地方法栈(Native方法)中引用的对象
+* 方法区中类静态属性引用的对象
+* 方法区中常量引用的对象
 
 ### 2.3 再谈引用
 
@@ -194,9 +266,9 @@ JDK1.2 之前，Java 中引用的定义很传统：如果 reference 类型的数
 
 JDK1.2 以后，Java 对引用的概念进行了扩充，将引用分为强引用、软引用、弱引用、虚引用四种（引用强度逐渐减弱）
 
-**1．强引用**
+**1．强引用（StrongReference）**
 
-以前我们使用的大部分引用实际上都是强引用，这是使用最普遍的引用。如果一个对象具有强引用，那就类似于**必不可少的生活用品**，垃圾回收器绝不会回收它。当内存空 间不足，Java 虚拟机宁愿抛出 OutOfMemoryError 错误，使程序异常终止，也不会靠随意回收具有强引用的对象来解决内存不足问题。
+以前我们使用的大部分引用实际上都是强引用，这是使用最普遍的引用。如果一个对象具有强引用，那就类似于**必不可少的生活用品**，垃圾回收器绝不会回收它。当内存空间不足，Java 虚拟机宁愿抛出 OutOfMemoryError 错误，使程序异常终止，也不会靠随意回收具有强引用的对象来解决内存不足问题。
 
 **2．软引用（SoftReference）**
 
@@ -206,7 +278,7 @@ JDK1.2 以后，Java 对引用的概念进行了扩充，将引用分为强引�
 
 **3．弱引用（WeakReference）**
 
-如果一个对象只具有弱引用，那就类似于**可有可无的生活用品**。弱引用与软引用的区别在于：只具有弱引用的对象拥有更短暂的生命周期。在垃圾回收器线程扫描它 所管辖的内存区域的过程中，一旦发现了只具有弱引用的对象，不管当前内存空间足够与否，都会回收它的内存。不过，由于垃圾回收器是一个优先级很低的线程， 因此不一定会很快发现那些只具有弱引用的对象。 
+如果一个对象只具有弱引用，那就类似于**可有可无的生活用品**。弱引用与软引用的区别在于：只具有弱引用的对象拥有更短暂的生命周期。在垃圾回收器线程扫描它所管辖的内存区域的过程中，一旦发现了只具有弱引用的对象，不管当前内存空间足够与否，都会回收它的内存。不过，由于垃圾回收器是一个优先级很低的线程， 因此不一定会很快发现那些只具有弱引用的对象。 
 
 弱引用可以和一个引用队列（ReferenceQueue）联合使用，如果弱引用所引用的对象被垃圾回收，Java 虚拟机就会把这个弱引用加入到与之关联的引用队列中。
 
@@ -216,7 +288,7 @@ JDK1.2 以后，Java 对引用的概念进行了扩充，将引用分为强引�
 
 **虚引用主要用来跟踪对象被垃圾回收的活动**。
 
-**虚引用与软引用和弱引用的一个区别在于：** 虚引用必须和引用队列（ReferenceQueue）联合使用。当垃 圾回收器准备回收一个对象时，如果发现它还有虚引用，就会在回收对象的内存之前，把这个虚引用加入到与之关联的引用队列中。程序可以通过判断引用队列中是 否已经加入了虚引用，来了解被引用的对象是否将要被垃圾回收。程序如果发现某个虚引用已经被加入到引用队列，那么就可以在所引用的对象的内存被回收之前采取必要的行动。 
+**虚引用与软引用和弱引用的一个区别在于：** 虚引用必须和引用队列（ReferenceQueue）联合使用。当垃圾回收器准备回收一个对象时，如果发现它还有虚引用，就会在回收对象的内存之前，把这个虚引用加入到与之关联的引用队列中。程序可以通过判断引用队列中是否已经加入了虚引用，来了解被引用的对象是否将要被垃圾回收。程序如果发现某个虚引用已经被加入到引用队列，那么就可以在所引用的对象的内存被回收之前采取必要的行动。 
 
 特别注意，在程序设计中一般很少使用弱引用与虚引用，使用软引用的情况较多，这是因为**软引用可以加速 JVM 对垃圾内存的回收速度，可以维护系统的运行安全，防止内存溢出（OutOfMemory）等问题的产生**。
 
@@ -226,13 +298,11 @@ JDK1.2 以后，Java 对引用的概念进行了扩充，将引用分为强引�
 
 被判定为需要执行的对象将会被放在一个队列中进行第二次标记，除非这个对象与引用链上的任何一个对象建立关联，否则就会被真的回收。
 
-### 2.5 如何判断一个常量是废弃常量
+### 2.5 如何判断一个常量是废弃常量？
 
 运行时常量池主要回收的是废弃的常量。那么，我们如何判断一个常量是废弃常量呢？
 
 假如在常量池中存在字符串 "abc"，如果当前没有任何 String 对象引用该字符串常量的话，就说明常量 "abc" 就是废弃常量，如果这时发生内存回收的话而且有必要的话，"abc" 就会被系统清理出常量池。
-
-注意：我们在 [可能是把 Java 内存区域讲的最清楚的一篇文章 ](https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247484303&idx=1&sn=af0fd436cef755463f59ee4dd0720cbd&chksm=fd9855eecaefdcf8d94ac581cfda4e16c8a730bda60c3b50bc55c124b92f23b6217f7f8e58d5&token=506869459&lang=zh_CN#rd) 也讲了 JDK1.7 及之后版本的 JVM 已经将运行时常量池从方法区中移了出来，在 Java 堆（Heap）中开辟了一块区域存放运行时常量池。
 
 ### 2.6 如何判断一个类是无用的类
 
@@ -249,27 +319,28 @@ JDK1.2 以后，Java 对引用的概念进行了扩充，将引用分为强引�
 
 ## 3 垃圾收集算法
 
-![垃圾收集算法分类](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/垃圾收集算法.jpg)
+![垃圾收集算法分类](./pictures/jvm垃圾回收/垃圾收集算法.png)
 
 ### 3.1 标记-清除算法
 
-该算法分为“标记”和“清除”阶段：首先标记出所有需要回收的对象，在标记完成后统一回收所有被标记的对象。它是最基础的收集算法，后续的算法都是对其不足进行改进得到。这种垃圾收集算法会带来两个明显的问题：
+该算法分为“标记”和“清除”阶段：首先标记出所有不需要回收的对象，在标记完成后统一回收掉所有没有被标记的对象。它是最基础的收集算法，后续的算法都是对其不足进行改进得到。这种垃圾收集算法会带来两个明显的问题：
 
 1. **效率问题**
 2. **空间问题（标记清除后会产生大量不连续的碎片）**
 
-<img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-27/63707281.jpg" alt="公众号" width="500px">
+![](./pictures/jvm垃圾回收/标记-清除算法.jpeg)
 
 ### 3.2 复制算法
 
 为了解决效率问题，“复制”收集算法出现了。它可以将内存分为大小相同的两块，每次使用其中的一块。当这一块的内存使用完后，就将还存活的对象复制到另一块去，然后再把使用的空间一次清理掉。这样就使每次的内存回收都是对内存区间的一半进行回收。
 
-<img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-27/90984624.jpg" alt="公众号" width="500px">
+<img src="./pictures/jvm垃圾回收/90984624.png" alt="公众号" width="500px">
 
 ### 3.3 标记-整理算法
-根据老年代的特点特出的一种标记算法，标记过程仍然与“标记-清除”算法一样，但后续步骤不是直接对可回收对象回收，而是让所有存活的对象向一端移动，然后直接清理掉端边界以外的内存。
 
-![标记-整理算法 ](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-27/94057049.jpg)
+根据老年代的特点提出的一种标记算法，标记过程仍然与“标记-清除”算法一样，但后续步骤不是直接对可回收对象回收，而是让所有存活的对象向一端移动，然后直接清理掉端边界以外的内存。
+
+![标记-整理算法 ](./pictures/jvm垃圾回收/94057049.png)
 
 ### 3.4 分代收集算法
 
@@ -283,18 +354,18 @@ JDK1.2 以后，Java 对引用的概念进行了扩充，将引用分为强引�
 
 ## 4 垃圾收集器
 
-![垃圾收集器分类](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/垃圾收集器.jpg)
+![垃圾收集器分类](./pictures/jvm垃圾回收/垃圾收集器.png)
 
 **如果说收集算法是内存回收的方法论，那么垃圾收集器就是内存回收的具体实现。**
 
-虽然我们对各个收集器进行比较，但并非要挑选出一个最好的收集器。因为知道现在为止还没有最好的垃圾收集器出现，更加没有万能的垃圾收集器，**我们能做的就是根据具体应用场景选择适合自己的垃圾收集器**。试想一下：如果有一种四海之内、任何场景下都适用的完美收集器存在，那么我们的 HotSpot 虚拟机就不会实现那么多不同的垃圾收集器了。
+虽然我们对各个收集器进行比较，但并非要挑选出一个最好的收集器。因为直到现在为止还没有最好的垃圾收集器出现，更加没有万能的垃圾收集器，**我们能做的就是根据具体应用场景选择适合自己的垃圾收集器**。试想一下：如果有一种四海之内、任何场景下都适用的完美收集器存在，那么我们的 HotSpot 虚拟机就不会实现那么多不同的垃圾收集器了。
 
 
 ### 4.1 Serial 收集器
 Serial（串行）收集器收集器是最基本、历史最悠久的垃圾收集器了。大家看名字就知道这个收集器是一个单线程收集器了。它的 **“单线程”** 的意义不仅仅意味着它只会使用一条垃圾收集线程去完成垃圾收集工作，更重要的是它在进行垃圾收集工作的时候必须暂停其他所有的工作线程（ **"Stop The World"** ），直到它收集结束。
 
  **新生代采用复制算法，老年代采用标记-整理算法。**
-![ Serial 收集器 ](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-27/46873026.jpg)
+![ Serial 收集器 ](./pictures/jvm垃圾回收/46873026.png)
 
 虚拟机的设计者们当然知道 Stop The World 带来的不良用户体验，所以在后续的垃圾收集器设计中停顿时间在不断缩短（仍然还有停顿，寻找最优秀的垃圾收集器的过程仍然在继续）。
 
@@ -304,7 +375,7 @@ Serial（串行）收集器收集器是最基本、历史最悠久的垃圾收�
 **ParNew 收集器其实就是 Serial 收集器的多线程版本，除了使用多线程进行垃圾收集外，其余行为（控制参数、收集算法、回收策略等等）和 Serial 收集器完全一样。**
 
  **新生代采用复制算法，老年代采用标记-整理算法。**
-![ParNew 收集器 ](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-27/22018368.jpg)
+![ParNew 收集器 ](./pictures/jvm垃圾回收/22018368.png)
 
 它是许多运行在 Server 模式下的虚拟机的首要选择，除了 Serial 收集器外，只有它能与 CMS 收集器（真正意义上的并发收集器，后面会介绍到）配合工作。
 
@@ -330,11 +401,21 @@ Parallel Scavenge 收集器也是使用复制算法的多线程收集器，它�
 
 ```
 
-**Parallel Scavenge 收集器关注点是吞吐量（高效率的利用 CPU）。CMS 等垃圾收集器的关注点更多的是用户线程的停顿时间（提高用户体验）。所谓吞吐量就是 CPU 中用于运行用户代码的时间与 CPU 总消耗时间的比值。** Parallel Scavenge 收集器提供了很多参数供用户找到最合适的停顿时间或最大吞吐量，如果对于收集器运作不太了解的话，手工优化存在的话可以选择把内存管理优化交给虚拟机去完成也是一个不错的选择。
+**Parallel Scavenge 收集器关注点是吞吐量（高效率的利用 CPU）。CMS 等垃圾收集器的关注点更多的是用户线程的停顿时间（提高用户体验）。所谓吞吐量就是 CPU 中用于运行用户代码的时间与 CPU 总消耗时间的比值。** Parallel Scavenge 收集器提供了很多参数供用户找到最合适的停顿时间或最大吞吐量，如果对于收集器运作不太了解的话，手工优化存在困难的话可以选择把内存管理优化交给虚拟机去完成也是一个不错的选择。
 
  **新生代采用复制算法，老年代采用标记-整理算法。**
-![Parallel Scavenge 收集器 ](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-27/22018368.jpg)
+![Parallel Scavenge 收集器 ](./pictures/jvm垃圾回收/parllel-scavenge收集器.png)
 
+**是JDK1.8默认收集器**  
+ 使用java -XX:+PrintCommandLineFlags -version命令查看
+
+```
+-XX:InitialHeapSize=262921408 -XX:MaxHeapSize=4206742528 -XX:+PrintCommandLineFlags -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:+UseParallelGC 
+java version "1.8.0_211"
+Java(TM) SE Runtime Environment (build 1.8.0_211-b12)
+Java HotSpot(TM) 64-Bit Server VM (build 25.211-b12, mixed mode)
+```
+JDK1.8默认使用的是Parallel Scavenge + Parallel Old，如果指定了-XX:+UseParallelGC参数，则默认指定了-XX:+UseParallelOldGC，可以使用-XX:-UseParallelOldGC来禁用该功能
 
 ### 4.4.Serial Old 收集器
 **Serial 收集器的老年代版本**，它同样是一个单线程收集器。它主要有两大用途：一种用途是在 JDK1.5 以及以前的版本中与 Parallel Scavenge 收集器搭配使用，另一种用途是作为 CMS 收集器的后备方案。
@@ -344,7 +425,7 @@ Parallel Scavenge 收集器也是使用复制算法的多线程收集器，它�
 
 ### 4.6 CMS 收集器
 
-**CMS（Concurrent Mark Sweep）收集器是一种以获取最短回收停顿时间为目标的收集器。它而非常符合在注重用户体验的应用上使用。**
+**CMS（Concurrent Mark Sweep）收集器是一种以获取最短回收停顿时间为目标的收集器。它非常符合在注重用户体验的应用上使用。**
 
 **CMS（Concurrent Mark Sweep）收集器是 HotSpot 虚拟机第一款真正意义上的并发收集器，它第一次实现了让垃圾收集线程与用户线程（基本上）同时工作。**
 
@@ -353,9 +434,9 @@ Parallel Scavenge 收集器也是使用复制算法的多线程收集器，它�
 - **初始标记：** 暂停所有的其他线程，并记录下直接与 root 相连的对象，速度很快 ；
 - **并发标记：** 同时开启 GC 和用户线程，用一个闭包结构去记录可达对象。但在这个阶段结束，这个闭包结构并不能保证包含当前所有的可达对象。因为用户线程可能会不断的更新引用域，所以 GC 线程无法保证可达性分析的实时性。所以这个算法里会跟踪记录这些发生引用更新的地方。
 - **重新标记：** 重新标记阶段就是为了修正并发标记期间因为用户程序继续运行而导致标记产生变动的那一部分对象的标记记录，这个阶段的停顿时间一般会比初始标记阶段的时间稍长，远远比并发标记阶段时间短
-- **并发清除：** 开启用户线程，同时 GC 线程开始对为标记的区域做清扫。
+- **并发清除：** 开启用户线程，同时 GC 线程开始对未标记的区域做清扫。
 
-![CMS 垃圾收集器 ](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-27/82825079.jpg)
+![CMS 垃圾收集器 ](./pictures/jvm垃圾回收/CMS收集器.png)
 
 从它的名字就可以看出它是一款优秀的垃圾收集器，主要优点：**并发收集、低停顿**。但是它有下面三个明显的缺点：
 
@@ -384,7 +465,7 @@ G1 收集器的运作大致分为以下几个步骤：
 - **筛选回收**
 
 
-**G1 收集器在后台维护了一个优先列表，每次根据允许的收集时间，优先选择回收价值最大的 Region(这也就是它的名字 Garbage-First 的由来)**。这种使用 Region 划分内存空间以及有优先级的区域回收方式，保证了 GF 收集器在有限时间内可以尽可能高的收集效率（把内存化整为零）。
+**G1 收集器在后台维护了一个优先列表，每次根据允许的收集时间，优先选择回收价值最大的 Region(这也就是它的名字 Garbage-First 的由来)**。这种使用 Region 划分内存空间以及有优先级的区域回收方式，保证了 G1 收集器在有限时间内可以尽可能高的收集效率（把内存化整为零）。
 
 ## 参考
 
@@ -400,7 +481,7 @@ G1 收集器的运作大致分为以下几个步骤：
 
 **Java工程师必备学习资源:** 一些Java工程师常用学习资源[公众号](#公众号)后台回复关键字 **“1”** 即可免费无套路获取。 
 
-![我的公众号](https://user-gold-cdn.xitu.io/2018/11/28/167598cd2e17b8ec?w=258&h=258&f=jpeg&s=27334)
+![我的公众号](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/167598cd2e17b8ec.png)
 
 
 
