@@ -38,7 +38,7 @@
           <img src="./media/sponsor/wangyi.png" style="margin: 0 auto;width:450px" /></a>
       </td>
       <td align="center" valign="middle">
-        <a href="https://t.1yb.co/3tWM">
+        <a href="https://t.1yb.co/5p8J">
           <img src="./media/sponsor/xiangxue.png" style="margin: 0 auto;width:450px" /></a>
       </td>          
     </tr>
