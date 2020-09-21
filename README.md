@@ -45,11 +45,12 @@
     <tr>
       <td align="center" valign="middle">
         <a href="https://w.url.cn/s/AS6JeXA">
-          <img src="https://img-service.csdnimg.cn/img_convert/3556d24d84c4880abaf280ed833faccc.png#pic_center" style="margin: 0 auto;width:450px" /></a>
+          <img src="./media/sponsor/kaikeba.png" style="margin: 0 auto;width:450px" /></a>
       </td>        
     </tr>
   </tbody>
 </table>
+
 
 
 
