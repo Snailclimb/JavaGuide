@@ -23,13 +23,15 @@
 
 ## final 关键字
 
-**final关键字主要用在三个地方：变量、方法、类。**
+**final关键字，意思是最终的、不可修改的，最见不得变化 ，用来修饰类、方法和变量，具有以下特点：**
 
-1. **对于一个final变量，如果是基本数据类型的变量，则其数值一旦在初始化之后便不能更改；如果是引用类型的变量，则在对其初始化之后便不能再让其指向另一个对象。**
+1. **final修饰的类不能被继承，final类中的所有成员方法都会被隐式的指定为final方法；**
 
-2. **当用final修饰一个类时，表明这个类不能被继承。final类中的所有成员方法都会被隐式地指定为final方法。**
+2. **final修饰的方法不能被重写；**
 
-3. 使用final方法的原因有两个。第一个原因是把方法锁定，以防任何继承类修改它的含义；第二个原因是效率。在早期的Java实现版本中，会将final方法转为内嵌调用。但是如果方法过于庞大，可能看不到内嵌调用带来的任何性能提升（现在的Java版本已经不需要使用final方法进行这些优化了）。类中所有的private方法都隐式地指定为final。
+3. **final修饰的变量是常量，如果是基本数据类型的变量，则其数值一旦在初始化之后便不能更改；如果是引用类型的变量，则在对其初始化之后便不能让其指向另一个对象。**
+
+说明：使用final方法的原因有两个。第一个原因是把方法锁定，以防任何继承类修改它的含义；第二个原因是效率。在早期的Java实现版本中，会将final方法转为内嵌调用。但是如果方法过于庞大，可能看不到内嵌调用带来的任何性能提升（现在的Java版本已经不需要使用final方法进行这些优化了）。类中所有的private方法都隐式地指定为final。
 
 ## static 关键字
 
@@ -90,7 +92,7 @@ public class Sub extends Super {
 
 **使用 this 和 super 要注意的问题：**
 
-- 在构造器中使用 `super（）` 调用父类中的其他构造方法时，该语句必须处于构造器的首行，否则编译器会报错。另外，this 调用本类中的其他构造方法时，也要放在首行。
+- 在构造器中使用 `super()` 调用父类中的其他构造方法时，该语句必须处于构造器的首行，否则编译器会报错。另外，this 调用本类中的其他构造方法时，也要放在首行。
 - this、super不能用在static方法中。
 
 **简单解释一下：**
@@ -139,14 +141,14 @@ public class StaticBean {
         this.name = name;
     }
     //静态方法
-    static void SayHello() {
+    static void sayHello() {
         System.out.println("Hello i am java");
     }
     @Override
     public String toString() {
-        return StaticBean{ +
-                name=' + name + ''' + age + age +
-                '}';
+        return "StaticBean{"+
+                "name=" + name + ",age=" + age +
+                "}";
     }
 }
 ```
@@ -155,14 +157,14 @@ public class StaticBean {
 public class StaticDemo {
 
     public static void main(String[] args) {
-        StaticBean staticBean = new StaticBean(1);
-        StaticBean staticBean2 = new StaticBean(2);
-        StaticBean staticBean3 = new StaticBean(3);
-        StaticBean staticBean4 = new StaticBean(4);
+        StaticBean staticBean = new StaticBean("1");
+        StaticBean staticBean2 = new StaticBean("2");
+        StaticBean staticBean3 = new StaticBean("3");
+        StaticBean staticBean4 = new StaticBean("4");
         StaticBean.age = 33;
-        StaticBean{name='1'age33} StaticBean{name='2'age33} StaticBean{name='3'age33} StaticBean{name='4'age33}
-        System.out.println(staticBean+ +staticBean2+ +staticBean3+ +staticBean4);
-        StaticBean.SayHello();Hello i am java
+        System.out.println(staticBean + " " + staticBean2 + " " + staticBean3 + " " + staticBean4);
+        //StaticBean{name=1,age=33} StaticBean{name=2,age=33} StaticBean{name=3,age=33} StaticBean{name=4,age=33}
+        StaticBean.sayHello();//Hello i am java
     }
 
 }
@@ -171,7 +173,7 @@ public class StaticDemo {
 
 ### 静态代码块
 
-静态代码块定义在类中方法外, 静态代码块在非静态代码块之前执行(静态代码块—非静态代码块—构造方法)。 该类不管创建多少对象，静态代码块只执行一次.
+静态代码块定义在类中方法外, 静态代码块在非静态代码块之前执行(静态代码块 —> 非静态代码块 —> 构造方法)。 该类不管创建多少对象，静态代码块只执行一次.
 
 静态代码块的格式是 
 
@@ -233,7 +235,7 @@ public class Singleton {
  //将Math中的所有静态资源导入，这时候可以直接使用里面的静态方法，而不用通过类名进行调用
  //如果只想导入单一某个静态方法，只需要将换成对应的方法名即可
  
-import static java.lang.Math.;//换成import static java.lang.Math.max;具有一样的效果
+import static java.lang.Math.*;//换成import static java.lang.Math.max;具有一样的效果
  
 public class Demo {
   public static void main(String[] args) {
@@ -262,17 +264,21 @@ class Foo {
     }
 
     public static String method1() {
-       return An example string that doesn't depend on i (an instance variable);
+       return "An example string that doesn't depend on i (an instance variable)";
        
     }
 
     public int method2() {
-       return this.i + 1;  Depends on i
+       return this.i + 1;  //Depends on i
     }
 
 }
 ```
-你可以像这样调用静态方法：`Foo.method1（）`。 如果您尝试使用这种方法调用 method2 将失败。 但这样可行：`Foo bar = new Foo（1）;bar.method2（）;`
+你可以像这样调用静态方法：`Foo.method1()`。 如果您尝试使用这种方法调用 method2 将失败。 但这样可行
+``` java
+Foo bar = new Foo(1);
+bar.method2();
+```
 
 总结：
 
@@ -283,7 +289,7 @@ class Foo {
 
 相同点： 都是在JVM加载类时且在构造方法执行之前执行，在类中都可以定义多个，定义多个时按定义的顺序执行，一般在代码块中对一些static变量进行赋值。 
 
-不同点： 静态代码块在非静态代码块之前执行(静态代码块—非静态代码块—构造方法)。静态代码块只在第一次new执行一次，之后不再执行，而非静态代码块在每new一次就执行一次。 非静态代码块可在普通方法中定义(不过作用不大)；而静态代码块不行。 
+不同点： 静态代码块在非静态代码块之前执行(静态代码块 -> 非静态代码块 -> 构造方法)。静态代码块只在第一次new执行一次，之后不再执行，而非静态代码块在每new一次就执行一次。 非静态代码块可在普通方法中定义(不过作用不大)；而静态代码块不行。
 
 > 修正 [issue #677](https://github.com/Snailclimb/JavaGuide/issues/677)：静态代码块可能在第一次new的时候执行，但不一定只在第一次new的时候执行。比如通过 `Class.forName("ClassDemo")`创建 Class 对象的时候也会执行。
 
@@ -345,6 +351,6 @@ public class Test {
 
 ### 参考
 
-- httpsblog.csdn.netchen13579867831articledetails78995480
-- httpwww.cnblogs.comchenssyp3388487.html
-- httpwww.cnblogs.comQian123p5713440.html
+- https://blog.csdn.net/chen13579867831/article/details/78995480
+- https://www.cnblogs.com/chenssy/p/3388487.html
+- https://www.cnblogs.com/Qian123/p/5713440.html
