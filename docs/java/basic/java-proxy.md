@@ -1,7 +1,5 @@
 > 本文首更于[《从零开始手把手教你实现一个简单的RPC框架》](https://t.zsxq.com/iIUv7Mn)  。
 
-
-
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 
 <!-- code_chunk_output -->
