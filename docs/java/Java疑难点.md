@@ -1,23 +1,23 @@
 <!-- TOC -->
 
-- [1. 基础](#1-基础)
-    - [1.1. 正确使用 equals 方法](#11-正确使用-equals-方法)
-    - [1.2. 整型包装类值的比较](#12-整型包装类值的比较)
-    - [1.3. BigDecimal](#13-bigdecimal)
-        - [1.3.1. BigDecimal 的用处](#131-bigdecimal-的用处)
-        - [1.3.2. BigDecimal 的大小比较](#132-bigdecimal-的大小比较)
-        - [1.3.3. BigDecimal 保留几位小数](#133-bigdecimal-保留几位小数)
-        - [1.3.4. BigDecimal 的使用注意事项](#134-bigdecimal-的使用注意事项)
-        - [1.3.5. 总结](#135-总结)
-    - [1.4. 基本数据类型与包装数据类型的使用标准](#14-基本数据类型与包装数据类型的使用标准)
-- [2. 集合](#2-集合)
-    - [2.1. Arrays.asList()使用指南](#21-arraysaslist使用指南)
-        - [2.1.1. 简介](#211-简介)
-        - [2.1.2. 《阿里巴巴Java 开发手册》对其的描述](#212-阿里巴巴java-开发手册对其的描述)
-        - [2.1.3. 使用时的注意事项总结](#213-使用时的注意事项总结)
-        - [2.1.4. 如何正确的将数组转换为ArrayList?](#214-如何正确的将数组转换为arraylist)
-    - [2.2. Collection.toArray()方法使用的坑&如何反转数组](#22-collectiontoarray方法使用的坑如何反转数组)
-    - [2.3. 不要在 foreach 循环里进行元素的 remove/add 操作](#23-不要在-foreach-循环里进行元素的-removeadd-操作)
+- [1. 基础](#_1-基础)
+    - [1.1. 正确使用 equals 方法](#_11-正确使用-equals-方法)
+    - [1.2. 整型包装类值的比较](#_12-整型包装类值的比较)
+    - [1.3. BigDecimal](#_13-bigdecimal)
+        - [1.3.1. BigDecimal 的用处](#_131-bigdecimal-的用处)
+        - [1.3.2. BigDecimal 的大小比较](#_132-bigdecimal-的大小比较)
+        - [1.3.3. BigDecimal 保留几位小数](#_133-bigdecimal-保留几位小数)
+        - [1.3.4. BigDecimal 的使用注意事项](#_134-bigdecimal-的使用注意事项)
+        - [1.3.5. 总结](#_135-总结)
+    - [1.4. 基本数据类型与包装数据类型的使用标准](#_14-基本数据类型与包装数据类型的使用标准)
+- [2. 集合](#_2-集合)
+    - [2.1. Arrays.asList()使用指南](#_21-arraysaslist使用指南)
+        - [2.1.1. 简介](#_211-简介)
+        - [2.1.2. 《阿里巴巴Java 开发手册》对其的描述](#_212-阿里巴巴java-开发手册对其的描述)
+        - [2.1.3. 使用时的注意事项总结](#_213-使用时的注意事项总结)
+        - [2.1.4. 如何正确的将数组转换为ArrayList?](#_214-如何正确的将数组转换为arraylist)
+    - [2.2. Collection.toArray()方法使用的坑&如何反转数组](#_22-collectiontoarray方法使用的坑如何反转数组)
+    - [2.3. 不要在 foreach 循环里进行元素的 remove/add 操作](#_23-不要在-foreach-循环里进行元素的-removeadd-操作)
 
 <!-- /TOC -->
 
@@ -52,9 +52,9 @@ Objects.equals(null,"SnailClimb");// false
 我们看一下`java.util.Objects#equals`的源码就知道原因了。
 ```java
 public static boolean equals(Object a, Object b) {
-        // 可以避免空指针异常。如果a==null的话此时a.equals(b)就不会得到执行，避免出现空指针异常。
-        return (a == b) || (a != null && a.equals(b));
-    }
+    // 可以避免空指针异常。如果a==null的话此时a.equals(b)就不会得到执行，避免出现空指针异常。
+    return (a == b) || (a != null && a.equals(b));
+}
 ```
 
 **注意：**
@@ -104,14 +104,18 @@ System.out.println(a == b);// false
 BigDecimal a = new BigDecimal("1.0");
 BigDecimal b = new BigDecimal("0.9");
 BigDecimal c = new BigDecimal("0.8");
-BigDecimal x = a.subtract(b);// 0.1
-BigDecimal y = b.subtract(c);// 0.1
-System.out.println(x.equals(y));// true 
+
+BigDecimal x = a.subtract(b); 
+BigDecimal y = b.subtract(c); 
+
+System.out.println(x); /* 0.1 */
+System.out.println(y); /* 0.1 */
+System.out.println(Objects.equals(x, y)); /* true */
 ```
 
 ### 1.3.2. BigDecimal 的大小比较
 
-`a.compareTo(b)` : 返回 -1 表示小于，0 表示 等于， 1表示 大于。
+`a.compareTo(b)` : 返回 -1 表示 `a` 小于 `b`，0 表示 `a` 等于 `b` ， 1表示 `a` 大于 `b`。
 
 ```java
 BigDecimal a = new BigDecimal("1.0");
@@ -167,7 +171,7 @@ Reference:《阿里巴巴Java开发手册》
 `Arrays.asList()`在平时开发中还是比较常见的，我们可以使用它将一个数组转换为一个List集合。
 
 ```java
-String[] myArray = { "Apple", "Banana", "Orange" }； 
+String[] myArray = {"Apple", "Banana", "Orange"};
 List<String> myList = Arrays.asList(myArray);
 //上面两个语句等价于下面一条语句
 List<String> myList = Arrays.asList("Apple","Banana", "Orange");
@@ -177,8 +181,9 @@ JDK 源码对于这个方法的说明：
 
 ```java
 /**
- *返回由指定数组支持的固定大小的列表。此方法作为基于数组和基于集合的API之间的桥梁，与           Collection.toArray()结合使用。返回的List是可序列化并实现RandomAccess接口。
- */ 
+  *返回由指定数组支持的固定大小的列表。此方法作为基于数组和基于集合的API之间的桥梁，
+  * 与 Collection.toArray()结合使用。返回的List是可序列化并实现RandomAccess接口。
+  */
 public static <T> List<T> asList(T... a) {
     return new ArrayList<>(a);
 }
@@ -197,12 +202,12 @@ public static <T> List<T> asList(T... a) {
 `Arrays.asList()`是泛型方法，传入的对象必须是对象数组。
 
 ```java
-int[] myArray = { 1, 2, 3 };
+int[] myArray = {1, 2, 3};
 List myList = Arrays.asList(myArray);
 System.out.println(myList.size());//1
 System.out.println(myList.get(0));//数组地址值
 System.out.println(myList.get(1));//报错：ArrayIndexOutOfBoundsException
-int [] array=(int[]) myList.get(0);
+int[] array = (int[]) myList.get(0);
 System.out.println(array[0]);//1
 ```
 当传入一个原生数据类型数组时，`Arrays.asList()` 的真正得到的参数就不是数组中的元素，而是数组对象本身！此时List 的唯一元素就是这个数组，这也就解释了上面的代码。
@@ -210,7 +215,7 @@ System.out.println(array[0]);//1
 我们使用包装类型数组就可以解决这个问题。
 
 ```java
-Integer[] myArray = { 1, 2, 3 };
+Integer[] myArray = {1, 2, 3};
 ```
 
 **使用集合的修改方法:`add()`、`remove()`、`clear()`会抛出异常。**
@@ -296,7 +301,7 @@ static <T> List<T> arrayToList(final T[] array) {
   for (final T s : array) {
     l.add(s);
   }
-  return (l);
+  return l;
 }
 ```
 
@@ -344,6 +349,14 @@ List<String> list = new ArrayList<String>();
 CollectionUtils.addAll(list, str);
 ```
 
+**6. 使用 Java9 的 `List.of()`方法**
+``` java
+Integer[] array = {1, 2, 3};
+List<Integer> list = List.of(array);
+System.out.println(list); /* [1, 2, 3] */
+/* 不支持基本数据类型 */
+```
+
 ## 2.2. Collection.toArray()方法使用的坑&如何反转数组
 
 该方法是一个泛型方法：`<T> T[] toArray(T[] a);` 如果`toArray`方法中没有传递任何参数的话返回的是`Object`类型数组。
@@ -364,6 +377,16 @@ s=list.toArray(new String[0]);//没有指定类型的话会报错
 如果要进行`remove`操作，可以调用迭代器的 `remove `方法而不是集合类的 remove 方法。因为如果列表在任何时间从结构上修改创建迭代器之后，以任何方式除非通过迭代器自身`remove/add`方法，迭代器都将抛出一个`ConcurrentModificationException`,这就是单线程状态下产生的 **fail-fast 机制**。
 
 > **fail-fast 机制** ：多个线程对 fail-fast 集合进行修改的时，可能会抛出ConcurrentModificationException，单线程下也会出现这种情况，上面已经提到过。
+
+Java8开始，可以使用`Collection#removeIf()`方法删除满足特定条件的元素,如
+``` java
+List<Integer> list = new ArrayList<>();
+for (int i = 1; i <= 10; ++i) {
+    list.add(i);
+}
+list.removeIf(filter -> filter % 2 == 0); /* 删除list中的所有偶数 */
+System.out.println(list); /* [1, 3, 5, 7, 9] */
+```
 
 `java.util`包下面的所有的集合类都是fail-fast的，而`java.util.concurrent`包下面的所有的类都是fail-safe的。
 

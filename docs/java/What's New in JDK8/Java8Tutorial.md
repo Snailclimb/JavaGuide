@@ -15,12 +15,12 @@
       - [访问字段和静态变量](#访问字段和静态变量)
       - [访问默认接口方法](#访问默认接口方法)
     - [内置函数式接口\(Built-in Functional Interfaces\)](#内置函数式接口built-in-functional-interfaces)
-      - [Predicates](#predicates)
-      - [Functions](#functions)
-      - [Suppliers](#suppliers)
-      - [Consumers](#consumers)
-      - [Comparators](#comparators)
-  - [Optionals](#optionals)
+      - [Predicate](#predicate)
+      - [Function](#function)
+      - [Supplier](#supplier)
+      - [Consumer](#consumer)
+      - [Comparator](#comparator)
+  - [Optional](#optional)
   - [Streams\(流\)](#streams流)
     - [Filter\(过滤\)](#filter过滤)
     - [Sorted\(排序\)](#sorted排序)
@@ -73,7 +73,7 @@ Formula 接口中除了抽象方法计算接口公式还定义了默认方法 `s
 public class Main {
 
   public static void main(String[] args) {
-    // TODO 通过匿名内部类方式访问接口
+    // 通过匿名内部类方式访问接口
     Formula formula = new Formula() {
         @Override
         public double calculate(int a) {
@@ -287,7 +287,7 @@ JDK 1.8 API包含许多内置函数式接口。 其中一些借口在老版本�
 
 但是 Java 8 API 同样还提供了很多全新的函数式接口来让你的编程工作更加方便，有一些接口是来自 [Google Guava](https://code.google.com/p/guava-libraries/) 库里的，即便你对这些很熟悉了，还是有必要看看这些是如何扩展到lambda上使用的。
 
-#### Predicates
+#### Predicate
 
 Predicate 接口是只有一个参数的返回布尔类型值的 **断言型** 接口。该接口包含多种默认方法来将 Predicate 组合成其他复杂的逻辑（比如：与，或，非）：
 
@@ -340,7 +340,7 @@ Predicate<String> isEmpty = String::isEmpty;
 Predicate<String> isNotEmpty = isEmpty.negate();
 ```
 
-#### Functions
+#### Function
 
 Function 接口接受一个参数并生成结果。默认方法可用于将多个函数链接在一起（compose, andThen）：
 
@@ -382,7 +382,7 @@ Function<String, String> backToString = toInteger.andThen(String::valueOf);
 backToString.apply("123");     // "123"
 ```
 
-#### Suppliers
+#### Supplier
 
 Supplier 接口产生给定泛型类型的结果。 与 Function 接口不同，Supplier 接口不接受参数。
 
@@ -391,7 +391,7 @@ Supplier<Person> personSupplier = Person::new;
 personSupplier.get();   // new Person
 ```
 
-#### Consumers
+#### Consumer
 
 Consumer 接口表示要对单个输入参数执行的操作。
 
@@ -400,7 +400,7 @@ Consumer<Person> greeter = (p) -> System.out.println("Hello, " + p.firstName);
 greeter.accept(new Person("Luke", "Skywalker"));
 ```
 
-#### Comparators
+#### Comparator
 
 Comparator 是老Java中的经典接口， Java 8在此之上添加了多种默认方法：
 
@@ -414,9 +414,9 @@ comparator.compare(p1, p2);             // > 0
 comparator.reversed().compare(p1, p2);  // < 0
 ```
 
-## Optionals
+## Optional
 
-Optionals不是函数式接口，而是用于防止 NullPointerException 的漂亮工具。这是下一节的一个重要概念，让我们快速了解一下Optionals的工作原理。
+Optional不是函数式接口，而是用于防止 NullPointerException 的漂亮工具。这是下一节的一个重要概念，让我们快速了解一下Optional的工作原理。
 
 Optional 是一个简单的容器，其值可能是null或者不是null。在Java 8之前一般某个函数应该返回非空对象但是有时却什么也没有返回，而在Java 8中，你应该返回 Optional 而不是 null。
 

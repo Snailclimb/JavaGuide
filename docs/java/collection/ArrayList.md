@@ -68,23 +68,25 @@ public class ArrayList<E> extends AbstractList<E>
     private int size;
 
     /**
-     * 带初始容量参数的构造函数。（用户自己指定容量）
+     * 带初始容量参数的构造函数（用户可以在创建ArrayList对象时自己指定集合的初始大小）
      */
     public ArrayList(int initialCapacity) {
         if (initialCapacity > 0) {
-            //创建initialCapacity大小的数组
+            //如果传入的参数大于0，创建initialCapacity大小的数组
             this.elementData = new Object[initialCapacity];
         } else if (initialCapacity == 0) {
-            //创建空数组
+            //如果传入的参数等于0，创建空数组
             this.elementData = EMPTY_ELEMENTDATA;
         } else {
+            //其他情况，抛出异常
             throw new IllegalArgumentException("Illegal Capacity: "+
                                                initialCapacity);
         }
     }
 
     /**
-     *默认构造函数，DEFAULTCAPACITY_EMPTY_ELEMENTDATA 为0.初始化为10，也就是说初始其实是空数组 当添加第一个元素的时候数组容量才变成10
+     *默认无参构造函数
+     *DEFAULTCAPACITY_EMPTY_ELEMENTDATA 为0.初始化为10，也就是说初始其实是空数组 当添加第一个元素的时候数组容量才变成10
      */
     public ArrayList() {
         this.elementData = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;
@@ -94,16 +96,16 @@ public class ArrayList<E> extends AbstractList<E>
      * 构造一个包含指定集合的元素的列表，按照它们由集合的迭代器返回的顺序。
      */
     public ArrayList(Collection<? extends E> c) {
-        //
+        //将指定集合转换为数组
         elementData = c.toArray();
-        //如果指定集合元素个数不为0
+        //如果elementData数组的长度不为0
         if ((size = elementData.length) != 0) {
-            // c.toArray 可能返回的不是Object类型的数组所以加上下面的语句用于判断，
-            //这里用到了反射里面的getClass()方法
+            // 如果elementData不是Object类型数据（c.toArray可能返回的不是Object类型的数组所以加上下面的语句用于判断）      
             if (elementData.getClass() != Object[].class)
+                //将原来不是Object类型的elementData数组的内容，赋值给新的Object类型的elementData数组
                 elementData = Arrays.copyOf(elementData, size, Object[].class);
         } else {
-            // 用空数组代替
+            // 其他情况，用空数组代替
             this.elementData = EMPTY_ELEMENTDATA;
         }
     }
@@ -127,13 +129,14 @@ public class ArrayList<E> extends AbstractList<E>
      * @param   minCapacity   所需的最小容量
      */
     public void ensureCapacity(int minCapacity) {
+        //如果是true，minExpand的值为0，如果是false,minExpand的值为10
         int minExpand = (elementData != DEFAULTCAPACITY_EMPTY_ELEMENTDATA)
             // any size if not default element table
             ? 0
             // larger than default for default empty table. It's already
             // supposed to be at default size.
             : DEFAULT_CAPACITY;
-
+        //如果最小容量大于已有的最大容量
         if (minCapacity > minExpand) {
             ensureExplicitCapacity(minCapacity);
         }
@@ -141,7 +144,7 @@ public class ArrayList<E> extends AbstractList<E>
    //得到最小扩容量
     private void ensureCapacityInternal(int minCapacity) {
         if (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) {
-              // 获取默认的容量和传入参数的较大值
+              // 获取“默认的容量”和“传入参数”两者之间的最大值
             minCapacity = Math.max(DEFAULT_CAPACITY, minCapacity);
         }
 

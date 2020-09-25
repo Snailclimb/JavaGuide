@@ -74,6 +74,9 @@
         return true;
     }
 ```
+
+> **注意** ：JDK11 移除了 `ensureCapacityInternal()` 和 `ensureExplicitCapacity()` 方法 
+
 ### 2. 再来看看 `ensureCapacityInternal()` 方法
 
 可以看到 `add` 方法 首先调用了`ensureCapacityInternal(size + 1)`
@@ -145,7 +148,7 @@
     }
 ```
 
-**int newCapacity = oldCapacity + (oldCapacity >> 1),所以 ArrayList 每次扩容之后容量都会变为原来的 1.5 倍！（JDK1.6版本以后）**  JDk1.6版本时，扩容之后容量为 1.5 倍+1！详情请参考源码
+**int newCapacity = oldCapacity + (oldCapacity >> 1),所以 ArrayList 每次扩容之后容量都会变为原来的 1.5 倍左右（oldCapacity为偶数就是1.5倍，否则是1.5倍左右）！**  奇偶不同，比如 ：10+10/2 = 15, 33+33/2=49。如果是奇数的话会丢掉小数.
 
 >   ">>"（移位运算符）：>>1 右移一位相当于除2，右移n位相当于除以 2 的 n 次方。这里 oldCapacity 明显右移了1位所以相当于oldCapacity /2。对于大数据的2进制运算,位移运算符比那些普通运算符的运算要快很多,因为程序仅仅移动一下而已,不去计算,这样提高了效率,节省了资源 　
 
@@ -223,7 +226,7 @@ public class ArraycopyTest {
 		System.arraycopy(a, 2, a, 3, 3);
 		a[2]=99;
 		for (int i = 0; i < a.length; i++) {
-			System.out.println(a[i]);
+			System.out.print(a[i] + " ");
 		}
 	}
 
