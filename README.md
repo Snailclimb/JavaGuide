@@ -6,9 +6,9 @@
 >
 > 项目的发展离不开你的支持，如果 JavaGuide 帮助到了你找到自己满意的 offer，那就[请作者喝杯咖啡吧](https://www.yuque.com/snailclimb/dr6cvl/mr44yt#vu3ok)☕！我会继续将项目完善下去！加油！
 
-如果 Github 访问速度比较慢或者图片无法刷新出来的话，可以转移到[码云](https://gitee.com/SnailClimb/JavaGuide)查看，或者[在线阅读](https://snailclimb.gitee.io/javaguide)。**如果你要提交 issue 或者 pr 的话请到 [Github](https://github.com/Snailclimb/JavaGuide) 提交。**
-
 《JavaGuide 面试突击版》PDF 版本+3 本 PDF Java 学习手册，在公众号 **[JavaGuide](#公众号)** 后台回复“**面试突击**”即可获取。
+
+如果 Github 访问速度比较慢或者图片无法刷新出来的话，可以转移到[码云](https://gitee.com/SnailClimb/JavaGuide)查看，或者[在线阅读](https://snailclimb.gitee.io/javaguide)。**如果你要提交 issue 或者 pr 的话请到 [Github](https://github.com/Snailclimb/JavaGuide) 提交。**
 
 如要进群或者请教问题，请[联系我](#联系我) （备注来自 Github。请直入问题，工作时间不回复）。
 
@@ -34,22 +34,17 @@
   <tbody>
     <tr>
       <td align="center" valign="middle">
-        <a href="https://mp.weixin.qq.com/s/li9_YXNVxan6Qgt3Q9FYqA">
-          <img src="./media/sponsor/wangyi.png" style="margin: 0 auto;width:450px" /></a>
-      </td>
-      <td align="center" valign="middle">
         <a href="https://t.1yb.co/5p8J">
           <img src="./media/sponsor/xiangxue.png" style="margin: 0 auto;width:450px" /></a>
-      </td>          
-    </tr>
-    <tr>
-      <td align="center" valign="middle">
+      </td>  
+       <td align="center" valign="middle">
         <a href="https://w.url.cn/s/AS6JeXA">
           <img src="./media/sponsor/kaikeba.png" style="margin: 0 auto;width:450px" /></a>
-      </td>        
+      </td>       
     </tr>
   </tbody>
 </table>
+
 
 ## 目录
 
