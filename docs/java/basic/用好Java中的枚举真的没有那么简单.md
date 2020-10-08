@@ -69,7 +69,7 @@ if(testPz.getStatus().equals(Pizza.PizzaStatus.DELIVERED));
 if(testPz.getStatus() == Pizza.PizzaStatus.DELIVERED); 
 ```
 
-对于编译时安全性，我们看另一个示例，两个不同枚举类型进行比较，使用equal方法比较结果确定为true，因为getStatus方法的枚举值与另一个类型枚举值一致，但逻辑上应该为false。这个问题可以使用==操作符避免。因为编译器会表示类型不兼容错误：
+对于编译时安全性，我们看另一个示例，两个不同枚举类型进行比较，使用equal方法比较结果确定为true，因为`getStatus`方法的枚举值与另一个类型枚举值一致，但逻辑上应该为false。这个问题可以使用==操作符避免。因为编译器会表示类型不兼容错误：
 
 ```java
 if(testPz.getStatus().equals(TestColor.GREEN));
