@@ -36,7 +36,7 @@
    - [设计模式系列文章](https://github.com/Snailclimb/Java_Guide/blob/master/Java相关/设计模式.md)
 
 ## :open_file_folder: 数据结构与算法
-   
+
 -  ### 数据结构
    - [数据结构知识学习与面试](https://github.com/Snailclimb/Java_Guide/blob/master/数据结构与算法/数据结构.md)
 
@@ -107,7 +107,6 @@
     
 - ### 2018 年秋招简单回顾
     - [结束了我短暂的秋招，说点自己的感受](https://github.com/Snailclimb/JavaGuide/blob/master/%E5%85%B6%E4%BB%96/2018%20%E7%A7%8B%E6%8B%9B.md) 
- 
 
 ***
 
@@ -133,22 +132,4 @@
 
 本人会利用业余时间一直更新下去，目前还有很多地方不完善，一些知识点我会原创总结，还有一些知识点如果说网上有比较好的文章了，我会把这些文章加入进去。您也可以关注我的微信公众号：“Java面试通关手册”，我会在这里分享一些自己的原创文章。 另外该文档格式参考：[Github Markdown格式](https://guides.github.com/features/mastering-markdown/)，表情素材来自：[EMOJI CHEAT SHEET](https://www.webpagefx.com/tools/emoji-cheat-sheet/)。
 
-## 几句话解析一下阿里云双11活动
 
-①阿里云新人不要错过一折购买服务器！②新老用户可以通过自己的链接拉人，红包和25％的返现都到你的账户。③这是团队游戏，我只是作为团长。你们获得利益与我无关，只是决定了后续我们战队能不能进去百团大战划分百万现金！④如果参与瓜分百万红包，你获得多少是根据你拉的新人来算的！
-
-大家不要重新开个团，可以到我的战队来，我的战队目前300多新人，可以排进前100瓜分百万红包！我的战队地址：https://m.aliyun.com/act/team1111/#/share?params=N.FF7yxCciiM.hf47liqn
-
-
-> 阿里云技术有保障，在云服务技术上远远领先于国内其他云服务提供商。大家或者公司如果需要用到云服务器的话，推荐阿里云服务器，下面是阿里云目前正在做的一些活动，错过这波，后续可能多花很多钱：
-
-1. [全民云计算：ECS云服务器2折起,1核1G仅需293元/年](https://promotion.aliyun.com/ntms/act/qwbk.html?userCode=hf47liqn)
-2. [高性能企业级性能云服务器限时2折起,2核4G仅需720元/年](https://promotion.aliyun.com/ntms/act/enterprise-discount.html?userCode=hf47liqn)
-3. [拉1人拼团，立享云服务器￥234/年](https://promotion.aliyun.com/ntms/act/vmpt/aliyun-group/home.html?spm=5176.8849694.home.4.27a24b70kENhtV&userCode=hf47liqn)
-4. [最高￥1888云产品通用代金券](https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=hf47liqn) 
-5. [阿里云建站服务](https://promotion.aliyun.com/ntms/act/jianzhanquan.html?userCode=hf47liqn)（企业官网、电商网站，多种可供选择模板，代金券免费领取）
-
-
-**你若盛开，清风自来。 欢迎关注我的微信公众号：“Java面试通关手册”，一个有温度的微信公众号。公众号有大量资料，回复关键字“1”你可能看到想要的东西哦！：**
-
-![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-17/29079091.jpg)
