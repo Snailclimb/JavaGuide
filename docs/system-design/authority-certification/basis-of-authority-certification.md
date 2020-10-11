@@ -6,11 +6,11 @@
 
 **认证 (Authentication)：**  你是谁。
 
-<img src="../pictures/authentication.png" style="zoom:80%;" />
+![](../pictures/authentication.png)
 
 **授权 (Authorization)：** 你有权限干什么。
 
-<img src="../pictures/authorization.png" style="zoom:60%;" />
+![](../pictures/authorization.png)
 
 稍微正式点（啰嗦点）的说法就是：
 
