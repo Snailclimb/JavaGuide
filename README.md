@@ -1,10 +1,9 @@
-> 关于 JavaGuide 的相关介绍请看：[《从编程小白到做了一个接近 90k 点赞的一个国产 Java 开源项目》](https://www.yuque.com/snailclimb/dr6cvl/mr44yt#vu3ok)
+> 关于 JavaGuide 的相关介绍请看：[关于 JavaGuide 的一些说明](https://www.yuque.com/snailclimb/dr6cvl/mr44yt#vu3ok)
 >
 > 准备面试的小伙伴可以考虑面试专版：[《Java 面试进阶指南》](https://xiaozhuanlan.com/javainterview?rel=javaguide) ，欢迎加入[我的星球](https://wx.zsxq.com/dweb2/index/group/48418884588288)获取更多实用干货。
 >
 > 阿里云最近在做活动，服务器不到 10 元/月，小伙伴们搭建一个网站提高简历质量。支持国内开源做的比较好的公司！[点击此链接直达活动首页。](https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=hf47liqn)
 >
-> 项目的发展离不开你的支持，如果 JavaGuide 帮助到了你找到自己满意的 offer，那就[请作者喝杯咖啡吧](https://www.yuque.com/snailclimb/dr6cvl/mr44yt#vu3ok)☕！我会继续将项目完善下去！加油！
 
 《JavaGuide 面试突击版》PDF 版本+3 本 PDF Java 学习手册，在公众号 **[JavaGuide](#公众号)** 后台回复“**面试突击**”即可获取。
 
@@ -126,12 +125,11 @@
 
 算法这部分内容非常重要，如果你不知道如何学习算法的话，可以看下我写的：[《硬核的算法学习书籍+资源推荐》](docs/dataStructures-algorithms/算法学习资源推荐.md) 。
 
-- 常见算法问题总结：
-  - [几道常见的字符串算法题总结 ](docs/dataStructures-algorithms/几道常见的子符串算法题.md)
-  - [几道常见的链表算法题总结 ](docs/dataStructures-algorithms/几道常见的链表算法题.md)
-  - [剑指 offer 部分编程题](docs/dataStructures-algorithms/剑指offer部分编程题.md)
-  - [公司真题](docs/dataStructures-algorithms/公司真题.md)
-  - [回溯算法经典案例之 N 皇后问题](docs/dataStructures-algorithms/Backtracking-NQueens.md)
+**常见算法问题总结：**
+
+- [几道常见的字符串算法题总结 ](docs/dataStructures-algorithms/几道常见的子符串算法题.md)
+- [几道常见的链表算法题总结 ](docs/dataStructures-algorithms/几道常见的链表算法题.md)
+- [剑指 offer 部分编程题](docs/dataStructures-algorithms/剑指offer部分编程题.md)
 
 ## 数据库
 
@@ -153,8 +151,8 @@
 
 ### Redis
 
-- [关于缓存的一些重要概念(Redis 前置菜)](docs/database/Redis/some-concepts-of-caching.md)
-- [Redis 常见问题总结](docs/database/Redis/redis-all.md)
+1. [关于缓存的一些重要概念(Redis 前置菜)](docs/database/Redis/some-concepts-of-caching.md)
+2. [Redis 常见问题总结](docs/database/Redis/redis-all.md)
 
 ## 系统设计
 
@@ -199,8 +197,8 @@
 
 #### JWT
 
-- **[JWT 优缺点分析以及常见问题解决方案](docs/system-design/authority-certification/JWT-advantages-and-disadvantages.md)**
-- **[适合初学者入门 Spring Security With JWT 的 Demo](https://github.com/Snailclimb/spring-security-jwt-guide)**
+1. [JWT 优缺点分析以及常见问题解决方案](docs/system-design/authority-certification/JWT-advantages-and-disadvantages.md)
+2. [适合初学者入门 Spring Security With JWT 的 Demo](https://github.com/Snailclimb/spring-security-jwt-guide)
 
 #### SSO(单点登录)
 
@@ -334,32 +332,24 @@ CAP 也就是 Consistency（一致性）、Availability（可用性）、Partiti
 
 ---
 
-## 待办
+## 其他
+
+### 待办
 
 - [x] Netty 总结
 - [ ] 数据结构总结重构(---正在进行中---)
 
-## 说明
-
-开源项目在于大家的参与，这才使得它的价值得到提升。感谢 🙏 有你！
-
-项目的 Markdown 格式参考：[Github Markdown 格式](https://guides.github.com/features/mastering-markdown/)，表情素材来自：[EMOJI CHEAT SHEET](https://www.webpagefx.com/tools/emoji-cheat-sheet/)。
-
-利用 docsify 生成文档部署在 Github pages: [docsify 官网介绍](https://docsify.js.org/#/) ，另见[《Guide 哥手把手教你搭建一个文档类型的网站!免费且高速！》](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247486555&idx=2&sn=8486026ee9f9ba645ff0363df6036184&chksm=cea24390f9d5ca86ff4177c0aca5e719de17dc89e918212513ee661dd56f17ca8269f4a6e303&token=298703358&lang=zh_CN#rd) 。
-
-Logo 下的小图标是使用[Shields.IO](https://shields.io/) 生成的。
-
-## 联系我
+### 联系我
 
 ![个人微信](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images/2020-08/wechat3.jpeg)
 
-## 捐赠支持
+### 捐赠支持
 
 项目的发展离不开你的支持，如果 JavaGuide 帮助到了你找到自己满意的 offer，请作者喝杯咖啡吧 ☕ 后续会继续完善更新！加油！
 
 [点击捐赠支持作者](https://www.yuque.com/snailclimb/dr6cvl/mr44yt#vu3ok)
 
-## Contributor
+### Contributor
 
 下面是笔主收集的一些对本仓库提过有价值的 pr 或者 issue 的朋友，人数较多，如果你也对本仓库提过不错的 pr 或者 issue 的话，你可以加我的微信与我联系。下面的排名不分先后！
 
@@ -414,7 +404,7 @@ Logo 下的小图标是使用[Shields.IO](https://shields.io/) 生成的。
     <img src="https://avatars0.githubusercontent.com/u/20358122?s=460&v=4" width="45px">
 </a>
 
-## 公众号
+### 公众号
 
 如果大家想要实时关注我更新的文章以及分享的干货的话，可以关注我的公众号。
 
