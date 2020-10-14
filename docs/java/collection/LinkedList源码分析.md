@@ -23,8 +23,10 @@ List list=Collections.synchronizedList(new LinkedList(...));
 ```
 ## <font face="楷体" id="2">内部结构分析</font>
 **如下图所示：**
-![LinkedList内部结构](https://user-gold-cdn.xitu.io/2018/3/19/1623e363fe0450b0?w=600&h=481&f=jpeg&s=18502)
+
+![LinkedList内部结构](images/linkedlist/LinkedList内部结构.png)
 看完了图之后，我们再看LinkedList类中的一个<font color="red">**内部私有类Node**</font>就很好理解了：
+
 ```java
 private static class Node<E> {
         E item;//节点值

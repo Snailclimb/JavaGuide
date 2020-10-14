@@ -46,107 +46,45 @@
 </table>
 
 
-## 目录
-
-- [目录](#目录)
-- [Java](#java)
-  - [基础](#基础)
-  - [容器](#容器)
-  - [并发](#并发)
-  - [JVM](#jvm)
-  - [其他](#其他)
-- [网络](#网络)
-- [操作系统](#操作系统)
-  - [Linux](#linux)
-- [数据结构与算法](#数据结构与算法)
-  - [数据结构](#数据结构)
-  - [算法](#算法)
-- [数据库](#数据库)
-  - [MySQL](#mysql)
-  - [Redis](#redis)
-- [系统设计](#系统设计)
-  - [必知](#必知)
-  - [常用框架](#常用框架)
-    - [Spring/SpringBoot](#springspringboot)
-    - [MyBatis](#mybatis)
-    - [Netty](#netty)
-  - [认证授权](#认证授权)
-    - [JWT](#jwt)
-    - [SSO(单点登录)](#sso单点登录)
-  - [分布式](#分布式)
-    - [分布式搜索引擎](#分布式搜索引擎)
-    - [RPC](#rpc)
-    - [消息队列](#消息队列)
-    - [API 网关](#api-网关)
-    - [分布式 id](#分布式id)
-    - [分布式限流](#分布式限流)
-    - [分布式接口幂等性](#分布式接口幂等性)
-    - [ZooKeeper](#zookeeper)
-    - [其他](#其他-1)
-    - [数据库扩展](#数据库扩展)
-  - [大型网站架构](#大型网站架构)
-    - [性能测试](#性能测试)
-    - [高并发](#高并发)
-    - [高可用](#高可用)
-  - [微服务](#微服务)
-    - [Spring Cloud](#spring-cloud)
-- [必会工具](#必会工具)
-  - [Git](#git)
-  - [Docker](#docker)
-  - [其他](#其他-2)
-- [面试指南](#面试指南)
-- [Java 学习常见问题汇总](#java学习常见问题汇总)
-- [资源](#资源)
-  - [Java 程序员必备书单](#java程序员必备书单)
-  - [实战项目推荐](#实战项目推荐)
-  - [Github](#github)
-- [待办](#待办)
-- [说明](#说明)
-
 ## Java
 
 ### 基础
 
-**基础知识系统总结：**
+**知识点/面试题:**
 
-1. **[Java 基础知识](docs/java/Java基础知识.md)**
-2. **[Java 基础知识疑难点/易错点](docs/java/Java疑难点.md)**
-3. [【选看】J2EE 基础知识](docs/java/J2EE基础知识.md)
+1. **[Java 基础知识](docs/java/basis/Java基础知识.md)**
+2. **[Java 基础知识疑难点/易错点](docs/java/basis/Java基础知识疑难点.md)**
 
 **重要知识点详解：**
 
-1. [枚举](docs/java/basic/用好Java中的枚举真的没有那么简单.md) （很重要的一个数据结构，用好枚举真的没有那么简单！）
-2. [Java 常见关键字总结：final、static、this、super!](docs/java/basic/final,static,this,super.md)
-3. [什么是反射机制?反射机制的应用场景有哪些?](docs/java/basic/reflection.md)
-4. [代理模式详解：静态代理+JDK/CGLIB 动态代理实战（动态代理和静态代理的区别？JDK 动态代理 和 CGLIB 动态代理的区别？）](docs/java/basic/java-proxy.md)
-
-**其他：**
-
-1. [JAD 反编译](docs/java/JAD反编译tricks.md)
-2. [手把手教你定位常见 Java 性能问题](./docs/java/手把手教你定位常见Java性能问题.md)
+1. [枚举](docs/java/basis/用好Java中的枚举真的没有那么简单.md) （很重要的一个数据结构，用好枚举真的没有那么简单！）
+2. [Java 常见关键字总结：final、static、this、super!](docs/java/basis/Java常见关键字总结:final,static,this,super.md)
+3. [什么是反射机制?反射机制的应用场景有哪些?](docs/java/basis/什么是反射机制?反射机制的应用场景有哪些?.md)
+4. [代理模式详解：静态代理+JDK/CGLIB 动态代理实战](docs/java/basis/静态代理+JDK,CGLIB动态代理实战.md)
+5. [BIO,NIO,AIO 总结 ](docs/java/basis/BIO,NIO,AIO总结.md)
 
 ### 容器
 
-1. **[Java 容器常见面试题/知识点总结](docs/java/collection/Java集合框架常见面试题.md)**
-2. 源码分析：[ArrayList 源码](docs/java/collection/ArrayList.md) 、[LinkedList 源码](docs/java/collection/LinkedList.md) 、[HashMap(JDK1.8)源码](docs/java/collection/HashMap.md) 、[ConcurrentHashMap 源码](docs/java/collection/ConcurrentHashMap.md)
+1. **[Java 容器常见面试题/知识点总结](docs/java/collection/Java集合框架常见面试题.md)（推荐！）**
+2. **源码分析** ：[ArrayList源码+扩容机制分析](docs/java/collection/ArrayList源码+扩容机制分析.md) 、[LinkedList 源码](docs/java/collection/LinkedList源码分析.md) 、[HashMap(JDK1.8)源码+底层数据结构分析](docs/java/collection/HashMap(JDK1.8)源码+底层数据结构分析.md) 、[ConcurrentHashMap 源码+底层数据结构分析](docs/java/collection/ConcurrentHashMap 源码+底层数据结构分析.md)
 
 ### 并发
 
-**[多线程学习指南](./docs/java/Multithread/多线程学习指南.md)**
+并发这部分内容非常重要，还是面试中的重点中的重点！但是，学习起来难度较大，因此我写了：**[多线程学习指南](./docs/java/multi-thread/多线程学习指南.md)** 帮助你学习。
 
-**面试题总结：**
+**知识点/面试题:**
 
-1. **[Java 并发基础常见面试题总结](docs/java/Multithread/JavaConcurrencyBasicsCommonInterviewQuestionsSummary.md)**
-2. **[Java 并发进阶常见面试题总结](docs/java/Multithread/JavaConcurrencyAdvancedCommonInterviewQuestions.md)**
+1. **[Java 并发基础常见面试题总结](docs/java/multi-thread/2020最新Java并发基础常见面试题总结.md)**
+2. **[Java 并发进阶常见面试题总结](docs/java/multi-thread/2020最新Java并发进阶常见面试题总结.md)**
 
-**面试常问知识点：**
+**重要知识点详解：**
 
-1. [并发容器总结](docs/java/Multithread/并发容器总结.md)
-2. **线程池**：[Java 线程池学习总结](./docs/java/Multithread/java线程池学习总结.md)、[拿来即用的线程池最佳实践](./docs/java/Multithread/best-practice-of-threadpool.md)
+2. **线程池**：[Java 线程池学习总结](./docs/java/multi-thread/java线程池学习总结.md)、[拿来即用的线程池最佳实践](./docs/java/multi-thread/拿来即用的线程池最佳实践.md)
 3. [乐观锁与悲观锁](docs/essential-content-for-interview/面试必备之乐观锁与悲观锁.md)
-4. [万字图文深度解析 ThreadLocal](docs/java/Multithread/ThreadLocal.md)
-5. [JUC 中的 Atomic 原子类总结](docs/java/Multithread/Atomic.md)
-6. [AQS 原理以及 AQS 同步组件总结](docs/java/Multithread/AQS.md)
+4. [ ThreadLocal 关键字解析](docs/java/multi-thread/万字详解ThreadLocal关键字.md)
+4. [并发容器总结](docs/java/multi-thread/并发容器总结.md)
+5. [JUC 中的 Atomic 原子类总结](docs/java/multi-thread/Atomic原子类总结.md)
+6. [AQS 原理以及 AQS 同步组件总结](docs/java/multi-thread/AQS原理以及AQS同步组件总结.md)
 
 ### JVM
 
@@ -160,14 +98,10 @@
 8. [JVM 配置常用参数和常用 GC 调优策略](docs/java/jvm/GC调优参数.md)
 9. **[【加餐】大白话带你认识 JVM](docs/java/jvm/[加餐]大白话带你认识JVM.md)**
 
-### 其他
+### 新特性
 
-1.  **Linux IO** ： [Linux IO](docs/java/Linux_IO.md)
-2.  **I/O** ：[BIO,NIO,AIO 总结 ](docs/java/BIO-NIO-AIO.md)
-3.  **Java 8** ：[Java 8 新特性总结](docs/java/What's%20New%20in%20JDK8/Java8Tutorial.md)、[Java 8 学习资源推荐](docs/java/What's%20New%20in%20JDK8/Java8教程推荐.md)、[Java8 forEach 指南](docs/java/What's%20New%20in%20JDK8/Java8foreach指南.md)
-4.  **Java9~Java14** : [一文带你看遍 JDK9~14 的重要新特性！](./docs/java/jdk-new-features/new-features-from-jdk8-to-jdk14.md)
-5.  Java 编程规范：**[Java 编程规范以及优雅 Java 代码实践总结](docs/java/Java编程规范.md)** 、[告别编码 5 分钟，命名 2 小时！史上最全的 Java 命名规范参考！](docs/java/java-naming-conventions.md)
-6.  设计模式 :[设计模式系列文章](docs/system-design/设计模式.md)
+1.  **Java 8** ：[Java 8 新特性总结](docs/java/What's%20New%20in%20JDK8/Java8Tutorial.md)、[Java 8 学习资源推荐](docs/java/What's%20New%20in%20JDK8/Java8教程推荐.md)、[Java8 forEach 指南](docs/java/What's%20New%20in%20JDK8/Java8foreach指南.md)
+2.  **Java9~Java14** : [一文带你看遍 JDK9~14 的重要新特性！](./docs/java/jdk-new-features/new-features-from-jdk8-to-jdk14.md)
 
 ## 网络
 
@@ -176,26 +110,22 @@
 
 ## 操作系统
 
-[最硬核的操作系统常见问题总结！](docs/operating-system/basis.md)
-
-### Linux
-
-- [后端程序员必备的 Linux 基础知识](docs/operating-system/linux.md)
-- [Shell 编程入门](docs/operating-system/Shell.md)
-- [我为什么从 Windows 转到 Linux？](docs/operating-system/完全使用GNU_Linux学习.md)
-- [Linux IO 模型](docs/operating-system/Linux_IO.md)
-- [Linux 性能分析工具合集](docs/operating-system/Linux性能分析工具合集.md)
+1. [操作系统常见问题总结！](docs/operating-system/basis.md)
+2. [后端程序员必备的 Linux 基础知识](docs/operating-system/linux.md)
+3. [Shell 编程入门](docs/operating-system/Shell.md) 
+4. [Linux 性能分析工具合集](docs/operating-system/Linux性能分析工具合集.md)
 
 ## 数据结构与算法
 
 ### 数据结构
 
-- [不了解布隆过滤器？一文给你整的明明白白！](docs/dataStructures-algorithms/data-structure/bloom-filter.md)
-- [数据结构知识学习与面试](docs/dataStructures-algorithms/数据结构.md)
+1. [不了解布隆过滤器？一文给你整的明明白白！](docs/dataStructures-algorithms/data-structure/bloom-filter.md)
+2. [数据结构知识学习与面试](docs/dataStructures-algorithms/数据结构.md)
 
 ### 算法
 
-- [硬核的算法学习书籍+资源推荐](docs/dataStructures-algorithms/算法学习资源推荐.md)
+算法这部分内容非常重要，如果你不知道如何学习算法的话，可以看下我写的：[《硬核的算法学习书籍+资源推荐》](docs/dataStructures-algorithms/算法学习资源推荐.md) 。
+
 - 常见算法问题总结：
   - [几道常见的字符串算法题总结 ](docs/dataStructures-algorithms/几道常见的子符串算法题.md)
   - [几道常见的链表算法题总结 ](docs/dataStructures-algorithms/几道常见的链表算法题.md)
@@ -228,23 +158,31 @@
 
 ## 系统设计
 
-### 必知
+### 编码规范
 
-1. **[RestFul API 简明教程](docs/system-design/restful-api.md)**
-2. **[因为命名被 diss 无数次。Guide 简单聊聊编程最头疼的事情之一:命名](docs/system-design/naming.md)**
+1. [RestFul API 简明教程](docs/system-design/restful-api.md)
+2. [Java 编程规范以及优雅 Java 代码实践总结](docs/java/Java编程规范.md)
+3. [Java 命名之道](docs/system-design/naming.md)
+4. [设计模式系列文章](docs/system-design/设计模式.md)
 
 ### 常用框架
 
+如果你没有接触过 Java Web 开发的话，可以先看一下我总结的 [《J2EE 基础知识》](docs/java/J2EE基础知识.md) 。虽然，这篇文章中的很多内容已经淘汰，但是可以让你对Java 后台技术发展有更深的认识。
+
 #### Spring/SpringBoot
+
+**知识点/面试题:**
 
 1. **[Spring 常见问题总结](docs/system-design/framework/spring/SpringInterviewQuestions.md)**
 2. **[SpringBoot 指南/常见面试题总结](https://github.com/Snailclimb/springboot-guide)**
-3. **[Spring/Spring 常用注解总结！安排！](./docs/system-design/framework/spring/spring-annotations.md)**
-4. **[Spring 事务总结](docs/system-design/framework/spring/spring-transaction.md)**
-5. [Spring IoC 和 AOP 详解](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247486938&idx=1&sn=c99ef0233f39a5ffc1b98c81e02dfcd4&chksm=cea24211f9d5cb07fa901183ba4d96187820713a72387788408040822ffb2ed575d28e953ce7&token=1666190828&lang=zh_CN#rd)
-6. [Spring 中 Bean 的作用域与生命周期](docs/system-design/framework/spring/SpringBean.md)
-7. [SpringMVC 工作原理详解](docs/system-design/framework/spring/SpringMVC-Principle.md)
-8. [Spring 中都用到了那些设计模式?](docs/system-design/framework/spring/Spring-Design-Patterns.md)
+
+**重要知识点详解：**
+
+1. **[Spring/Spring 常用注解总结！安排！](./docs/system-design/framework/spring/spring-annotations.md)**
+2. **[Spring 事务总结](docs/system-design/framework/spring/spring-transaction.md)**
+3. [Spring 中都用到了那些设计模式?](docs/system-design/framework/spring/Spring-Design-Patterns.md)
+4. [Spring 中 Bean 的作用域与生命周期](docs/system-design/framework/spring/SpringBean.md)
+5. [SpringMVC 工作原理详解](docs/system-design/framework/spring/SpringMVC-Principle.md)
 
 #### MyBatis
 
@@ -272,39 +210,16 @@ SSO(Single Sign On)即单点登录说的是用户登陆多个子系统的其中�
 
 [分布式相关概念入门](docs/system-design/website-architecture/分布式.md)
 
-#### 分布式搜索引擎
+#### 搜索引擎
 
-提高搜索效率。常见于电商购物网站的商品搜索于分类。
-
-比较常用的是 Elasticsearch 和 Solr。
-
-代办。
+用于提高搜索效率，功能和浏览器搜索引擎类似。比较常见的搜索引擎是 Elasticsearch（推荐） 和 Solr。
 
 #### RPC
 
 让调用远程服务调用像调用本地方法那样简单。
 
-- [Dubbo 总结：关于 Dubbo 的重要知识点](docs/system-design/data-communication/dubbo.md)
-- [服务之间的调用为啥不直接用 HTTP 而用 RPC？](docs/system-design/data-communication/why-use-rpc.md)
-
-#### 消息队列
-
-消息队列在分布式系统中主要是为了解耦和削峰。相关阅读： **[消息队列总结](docs/system-design/data-communication/message-queue.md)** 。
-
-**RabbitMQ:**
-
-1. [RabbitMQ 入门](docs/system-design/data-communication/rabbitmq.md)
-
-**RocketMQ:**
-
-1. [RocketMQ 入门](docs/system-design/data-communication/RocketMQ.md)
-2. [RocketMQ 的几个简单问题与答案](docs/system-design/data-communication/RocketMQ-Questions.md)
-
-**Kafka:**
-
-1. **[Kafka 入门+SpringBoot 整合 Kafka 系列](https://github.com/Snailclimb/springboot-kafka)**
-2. **[Kafka 常见面试题总结](docs/system-design/data-communication/kafka-inverview.md)**
-3. [【加餐】Kafka 入门看这一篇就够了](docs/system-design/data-communication/Kafka入门看这一篇就够了.md)
+1. [Dubbo 总结：关于 Dubbo 的重要知识点](docs/system-design/data-communication/dubbo.md)
+2. [服务之间的调用为啥不直接用 HTTP 而用 RPC？](docs/system-design/data-communication/why-use-rpc.md)
 
 #### API 网关
 
@@ -315,69 +230,84 @@ SSO(Single Sign On)即单点登录说的是用户登陆多个子系统的其中�
 
 #### 分布式 id
 
-1. [为什么要分布式 id ？分布式 id 生成方案有哪些？](docs/system-design/micro-service/分布式id生成方案总结.md)
-
-#### 分布式限流
-
-1. [限流算法有哪些？](docs/system-design/micro-service/limit-request.md)
-
-#### 分布式接口幂等性
+在复杂分布式系统中，往往需要对大量的数据和消息进行唯一标识。比如数据量太大之后，往往需要对进行对数据进行分库分表，分库分表后需要有一个唯一ID来标识一条数据或消息，数据库的自增ID显然不能满足需求。相关阅读：[为什么要分布式 id ？分布式 id 生成方案有哪些？](docs/system-design/micro-service/分布式id生成方案总结.md)
 
 #### ZooKeeper
 
 > 前两篇文章可能有内容重合部分，推荐都看一遍。
 
-1. [【入门】ZooKeeper 相关概念总结 01](docs/system-design/framework/zookeeper/zookeeper-intro.md)
-2. [【进阶】ZooKeeper 相关概念总结 02](docs/system-design/framework/zookeeper/zookeeper-plus.md)
+1. [【入门】ZooKeeper 相关概念总结](docs/system-design/framework/zookeeper/zookeeper-intro.md)
+2. [【进阶】ZooKeeper 相关概念总结](docs/system-design/framework/zookeeper/zookeeper-plus.md)
 3. [【实战】ZooKeeper 实战](docs/system-design/framework/zookeeper/zookeeper-in-action.md)
 
-#### 其他
+### 微服务
 
-- 接口幂等性（代办）：分布式系统必须要考虑接口的幂等性。
+1. [ 大白话入门 Spring Cloud](docs/system-design/micro-service/spring-cloud.md)
 
-#### 数据库扩展
+### 高并发
 
-读写分离、分库分表。
+#### 消息队列
 
-代办.....
+消息队列在分布式系统中主要是为了解耦和削峰。相关阅读： **[消息队列总结](docs/system-design/data-communication/message-queue.md)** 。
+
+1. **RabbitMQ** : [RabbitMQ 入门](docs/system-design/data-communication/rabbitmq.md)
+2. **RocketMQ** : [RocketMQ 入门](docs/system-design/data-communication/RocketMQ.md)、[RocketMQ 的几个简单问题与答案](docs/system-design/data-communication/RocketMQ-Questions.md)
+3. **Kafka** ：**[Kafka 常见面试题总结](docs/system-design/data-communication/kafka-inverview.md)** 
+
+#### 读写分离
+
+读写分离主要是为了将数据库的读和写操作分不到不同的数据库节点上。主服务器负责写，从服务器负责读。另外，一主一从或者一主多从都可以。
+
+**读写分离可以大幅提高读性能，小幅提高写的性能。因此，读写分离更适合单机并发读请求比较多的场景。**
+
+#### 分库分表
+
+**分库分表是为了解决由于库、表数据量过大，而导致数据库性能持续下降的问题。** 常见的分库分表工具有：`sharding-jdbc`（当当）、`TSharding`（蘑菇街）、`MyCAT`（基于Cobar）、`Cobar`（阿里巴巴）...。
+
+**推荐使用 `sharding-jdbc`** 。 因为，`sharding-jdbc` 是一款轻量级 `Java` 框架，以 `jar` 包形式提供服务，不要我们做额外的运维工作，并且兼容性也很好。
+
+#### 负载均衡
+
+### 高可用
+
+高可用描述的是一个系统在大部分时间都是可用的，可以为我们提供服务的。高可用代表系统即使在发生硬件故障或者系统升级的时候，服务仍然是可用的 。相关阅读： **《[如何设计一个高可用系统？要考虑哪些地方？](docs/system-design/website-architecture/如何设计一个高可用系统？要考虑哪些地方？.md)》** 。
+
+#### CAP理论
+
+CAP 也就是 Consistency（一致性）、Availability（可用性）、Partition Tolerance（分区容错性） 这三个单词首字母组合。
+
+#### BASE理论
+
+**BASE** 是 **Basically Available（基本可用）** 、**Soft-state（软状态）** 和 **Eventually Consistent（最终一致性）** 三个短语的缩写。BASE理论是对CAP中一致性和可用性权衡的结果，其来源于对大规模互联网系统分布式实践的总结，是基于CAP定理逐步演化而来的，它大大降低了我们对系统的要求。
+
+#### 限流 
+
+限流为了对服务端的接口接受请求的频率进行限制，防止服务挂掉。比如某一接口的请求限制为 100 个每秒, 对超过限制的请求放弃处理或者放到队列中等待处理。限流可以有效应对突发请求过多。相关阅读：[限流算法有哪些？](docs/system-design/high-availability/limit-request.md)
+
+#### 降级
+
+限流是从用户访问压力的角度来考虑如何应对故障，降级是从系统功能优先级的角度考虑如何应对故障
+
+服务降级指的是当服务器压力剧增的情况下，根据当前业务情况及流量对一些服务和页面有策略的降级，以此释放服务器资源以保证核心任务的正常运行。降级往往会指定不同的级别，面临不同的异常等级执行不同的处理。根据服务方式：可以拒接服务，可以延迟服务，也有时候可以随机服务。根据服务范围：可以砍掉某个功能，也可以砍掉某些模块。总之服务降级需要根据不同的业务需求采用不同的降级策略。主要的目的就是服务虽然有损但是总比没有好。
+
+#### 熔断
+
+熔断和降级是两个比较容易混淆的概念，因为单纯从名字上看好像都有禁止某个功能的意思，但其实内在含义是不同的，原因在于降级的目的是应对系统自身的故障，而熔断的目的是应对依赖的外部系统故障的情况。
+
+#### 排队
+
+另类的一种限流，类比于现实世界的排队。玩过英雄联盟的小伙伴应该有体会，每次一有活动，就要经历一波排队才能进入游戏。
 
 ### 大型网站架构
 
 - [8 张图读懂大型网站技术架构](docs/system-design/website-architecture/8%20张图读懂大型网站技术架构.md)
 - [关于大型网站系统架构你不得不懂的 10 个问题](docs/system-design/website-architecture/关于大型网站系统架构你不得不懂的10个问题.md)
 
-#### 性能测试
+## 工具
 
-- [后端程序员也要懂的性能测试知识](https://articles.zsxq.com/id_lwl39teglv3d.html) （知识星球）
-
-#### 高并发
-
-待办......
-
-#### 高可用
-
-高可用描述的是一个系统在大部分时间都是可用的，可以为我们提供服务的。高可用代表系统即使在发生硬件故障或者系统升级的时候，服务仍然是可用的 。相关阅读： **《[如何设计一个高可用系统？要考虑哪些地方？](docs/system-design/website-architecture/如何设计一个高可用系统？要考虑哪些地方？.md)》** 。
-
-### 微服务
-
-#### Spring Cloud
-
-- [ 大白话入门 Spring Cloud](docs/system-design/micro-service/spring-cloud.md)
-
-## 必会工具
-
-### Git
-
-- [Git 入门](docs/tools/Git.md)
-
-### Docker
-
-1. [Docker 基本概念解读](docs/tools/Docker.md)
-2. [一文搞懂 Docker 镜像的常用操作！](docs/tools/Docker-Image.md)
-
-### 其他
-
-- [【原创】如何使用云服务器？希望这篇文章能够对你有帮助！](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247485738&idx=1&sn=f97e91a50e444944076c30b0717b303a&chksm=cea246e1f9d5cff73faf6a778b147ea85162d1f3ed55ca90473c6ebae1e2c4d13e89282aeb24&token=406194678&lang=zh_CN#rd)
+1. **Java** ：[JAD 反编译](docs/java/JAD反编译tricks.md)、[手把手教你定位常见 Java 性能问题](./docs/java/手把手教你定位常见Java性能问题.md)
+2. **Git** ：[Git 入门](docs/tools/Git.md)
+3. **Docker** : [Docker 基本概念解读](docs/tools/Docker.md) 、[一文搞懂 Docker 镜像的常用操作！](docs/tools/Docker-Image.md)
 
 ## 面试指南
 
@@ -398,22 +328,9 @@ SSO(Single Sign On)即单点登录说的是用户登陆多个子系统的其中�
 3. [新手学习 Java，有哪些 Java 相关的博客，专栏，和技术学习网站推荐？](docs/questions/java-learning-website-blog.md)
 4. [Java 还是大数据，你需要了解这些东西！](docs/questions/java-big-data.md)
 
-## 资源
+## 书单
 
-### Java 程序员必备书单
-
-1. [「基础篇」Guide 的 Java 后端书架来啦！都是 Java 程序员必看的书籍？](./docs/books/java基础篇.md)
-
-### 实战项目推荐
-
-- **[Java、SpringBoot 实战项目推荐](https://github.com/Snailclimb/awesome-java#实战项目)**
-
-### Github
-
-- [Github 上非常棒的 Java 开源项目集合](https://github.com/Snailclimb/awesome-java)
-- [Github 上 Star 数最多的 10 个项目，看完之后很意外!](docs/tools/github/github-star-ranking.md)
-- [年末将至，值得你关注的 16 个 Java 开源项目！](docs/github-trending/2019-12.md)
-- [Java 项目历史月榜单](docs/github-trending/JavaGithubTrending.md)
+1. [「基础篇」Java书单](./docs/books/java基础篇.md)
 
 ---
 
