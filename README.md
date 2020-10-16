@@ -100,7 +100,7 @@
 ### 新特性
 
 1.  **Java 8** ：[Java 8 新特性总结](docs/java/new-features/Java8新特性总结.md)、[Java 8 学习资源推荐](docs/java/new-features/Java8教程推荐.md)、[Java8 forEach 指南](docs/java/new-features/Java8foreach指南.md)
-2.  **Java9~Java14** : [一文带你看遍 JDK9~14 的重要新特性！](./docs/java/new-features/一文带你看遍JDK9~14 的重要新特性！.md)
+2.  **Java9~Java14** : [一文带你看遍 JDK9~14 的重要新特性！](./docs/java/new-features/一文带你看遍JDK9到14的重要新特性.md)
 
 ## 网络
 
