@@ -1,17 +1,14 @@
-> 关于 JavaGuide 的相关介绍请看：[关于 JavaGuide 的一些说明](https://www.yuque.com/snailclimb/dr6cvl/mr44yt#vu3ok) 。
+👍《JavaGuide 面试突击版》PDF 版本+3 本 PDF Java 学习手册，在公众号 **[JavaGuide](#公众号)** 后台回复“**面试突击**”即可获取。
+
+👍 图解操作系统+HTTP+计算机网络的 PDF 资料下载地址，[点此链接即可下载](https://cowtransfer.com/s/fbed14f0c22a4d)：
+
+> 一些闲话：
 >
-> 准备面试的小伙伴可以考虑面试专版：[《Java 面试进阶指南》](https://xiaozhuanlan.com/javainterview?rel=javaguide) ，欢迎加入[我的星球](https://wx.zsxq.com/dweb2/index/group/48418884588288)获取更多实用干货。
->
-> 阿里云最近在做活动，服务器不到 10 元/月，小伙伴们搭建一个网站提高简历质量。支持国内开源做的比较好的公司！[点击此链接直达活动首页。](https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=hf47liqn)
->
-
-《JavaGuide 面试突击版》PDF 版本+3 本 PDF Java 学习手册，在公众号 **[JavaGuide](#公众号)** 后台回复“**面试突击**”即可获取。
-
-如果 Github 访问速度比较慢或者图片无法刷新出来的话，可以转移到[码云](https://gitee.com/SnailClimb/JavaGuide)查看，或者[在线阅读](https://snailclimb.gitee.io/javaguide)。**如果你要提交 issue 或者 pr 的话请到 [Github](https://github.com/Snailclimb/JavaGuide) 提交。**
-
-如要进群或者请教问题，请[联系我](#联系我) （备注来自 Github。请直入问题，工作时间不回复）。
-
-**开始阅读之前必看** ：[完结撒花！JavaGuide 面试突击版来啦！](./docs/javaguide面试突击版.md) 。
+> 1. **JavaGuide 介绍**：关于 JavaGuide 的相关介绍请看：[关于 JavaGuide 的一些说明](https://www.yuque.com/snailclimb/dr6cvl/mr44yt#vu3ok) 。PDF 版本请看：[完结撒花！JavaGuide 面试突击版来啦！](./docs/javaguide面试突击版.md) 。
+> 2. **在线阅读** ：如果 Github 访问速度比较慢或者图片无法刷新出来的话，可以转移到[码云](https://gitee.com/SnailClimb/JavaGuide)查看或者[在线阅读](https://snailclimb.gitee.io/javaguide)。如果你要提交 issue 或者 pr 的话建议到 [Github](https://github.com/Snailclimb/JavaGuide) 提交。
+> 3. **面试专版** ：准备面试的小伙伴可以考虑面试专版：[《Java 面试进阶指南》](https://xiaozhuanlan.com/javainterview?rel=javaguide) ，欢迎加入[我的星球](https://wx.zsxq.com/dweb2/index/group/48418884588288)获取更多实用干货。
+> 4. **阿里云活动** ：阿里云最近在做活动，服务器不到 10 元/月，小伙伴们搭建一个网站提高简历质量。支持国内开源做的比较好的公司！[点击此链接直达活动首页。](https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=hf47liqn)
+> 5. **联系我** ：如要进群或者请教问题，请[联系我](#联系我) （备注来自 Github。请直入问题，工作时间不回复）。
 
 <p align="center">
 <a href="https://github.com/Snailclimb/JavaGuide" target="_blank">
@@ -44,7 +41,6 @@
   </tbody>
 </table>
 
-
 ## Java
 
 ### 基础
@@ -65,7 +61,7 @@
 ### 容器
 
 1. **[Java 容器常见面试题/知识点总结](docs/java/collection/Java集合框架常见面试题.md)** (必看 :+1:)
-2. **源码分析** ：[ArrayList源码+扩容机制分析](docs/java/collection/ArrayList源码+扩容机制分析.md) 、[LinkedList 源码](docs/java/collection/LinkedList源码分析.md) 、[HashMap(JDK1.8)源码+底层数据结构分析](docs/java/collection/HashMap(JDK1.8)源码+底层数据结构分析.md) 、[ConcurrentHashMap 源码+底层数据结构分析](docs/java/collection/ConcurrentHashMap源码+底层数据结构分析.md)
+2. **源码分析** ：[ArrayList 源码+扩容机制分析](docs/java/collection/ArrayList源码+扩容机制分析.md) 、[LinkedList 源码](docs/java/collection/LinkedList源码分析.md) 、[HashMap(JDK1.8)源码+底层数据结构分析](<docs/java/collection/HashMap(JDK1.8)源码+底层数据结构分析.md>) 、[ConcurrentHashMap 源码+底层数据结构分析](docs/java/collection/ConcurrentHashMap源码+底层数据结构分析.md)
 
 ### 并发
 
@@ -81,9 +77,9 @@
 2. **线程池**：[Java 线程池学习总结](./docs/java/multi-thread/java线程池学习总结.md)、[拿来即用的线程池最佳实践](./docs/java/multi-thread/拿来即用的线程池最佳实践.md)
 3. [乐观锁与悲观锁](docs/essential-content-for-interview/面试必备之乐观锁与悲观锁.md)
 4. [ ThreadLocal 关键字解析](docs/java/multi-thread/万字详解ThreadLocal关键字.md)
-4. [并发容器总结](docs/java/multi-thread/并发容器总结.md)
-5. [JUC 中的 Atomic 原子类总结](docs/java/multi-thread/Atomic原子类总结.md)
-6. [AQS 原理以及 AQS 同步组件总结](docs/java/multi-thread/AQS原理以及AQS同步组件总结.md)
+5. [并发容器总结](docs/java/multi-thread/并发容器总结.md)
+6. [JUC 中的 Atomic 原子类总结](docs/java/multi-thread/Atomic原子类总结.md)
+7. [AQS 原理以及 AQS 同步组件总结](docs/java/multi-thread/AQS原理以及AQS同步组件总结.md)
 
 ### JVM (必看 :+1:)
 
@@ -111,7 +107,7 @@
 
 1. [操作系统常见问题总结！](docs/operating-system/basis.md)
 2. [后端程序员必备的 Linux 基础知识](docs/operating-system/linux.md)
-3. [Shell 编程入门](docs/operating-system/Shell.md) 
+3. [Shell 编程入门](docs/operating-system/Shell.md)
 4. [Linux 性能分析工具合集](docs/operating-system/Linux性能分析工具合集.md)
 
 ## 数据结构与算法
@@ -164,11 +160,11 @@
 
 ### 常用框架
 
-如果你没有接触过 Java Web 开发的话，可以先看一下我总结的 [《J2EE 基础知识》](docs/java/J2EE基础知识.md) 。虽然，这篇文章中的很多内容已经淘汰，但是可以让你对Java 后台技术发展有更深的认识。
+如果你没有接触过 Java Web 开发的话，可以先看一下我总结的 [《J2EE 基础知识》](docs/java/J2EE基础知识.md) 。虽然，这篇文章中的很多内容已经淘汰，但是可以让你对 Java 后台技术发展有更深的认识。
 
 #### Spring/SpringBoot
 
-**知识点/面试题:**  (必看 :+1:)
+**知识点/面试题:** (必看 :+1:)
 
 1. **[Spring 常见问题总结](docs/system-design/framework/spring/SpringInterviewQuestions.md)**
 2. **[SpringBoot 指南/常见面试题总结](https://github.com/Snailclimb/springboot-guide)**
@@ -225,7 +221,7 @@ RPC 让调用远程服务调用像调用本地方法那样简单。
 
 #### 分布式 id
 
-在复杂分布式系统中，往往需要对大量的数据和消息进行唯一标识。比如数据量太大之后，往往需要对进行对数据进行分库分表，分库分表后需要有一个唯一ID来标识一条数据或消息，数据库的自增ID显然不能满足需求。相关阅读：[为什么要分布式 id ？分布式 id 生成方案有哪些？](docs/system-design/micro-service/分布式id生成方案总结.md)
+在复杂分布式系统中，往往需要对大量的数据和消息进行唯一标识。比如数据量太大之后，往往需要对进行对数据进行分库分表，分库分表后需要有一个唯一 ID 来标识一条数据或消息，数据库的自增 ID 显然不能满足需求。相关阅读：[为什么要分布式 id ？分布式 id 生成方案有哪些？](docs/system-design/micro-service/分布式id生成方案总结.md)
 
 #### ZooKeeper
 
@@ -248,7 +244,7 @@ RPC 让调用远程服务调用像调用本地方法那样简单。
 
 1. **RabbitMQ** : [RabbitMQ 入门](docs/system-design/distributed-system/message-queue/RabbitMQ入门看这一篇就够了.md)
 2. **RocketMQ** : [RocketMQ 入门](docs/system-design/distributed-system/message-queue/RocketMQ.md)、[RocketMQ 的几个简单问题与答案](docs/system-design/distributed-system/message-queue/RocketMQ-Questions.md)
-3. **Kafka** ：**[Kafka 常见面试题总结](docs/system-design/distributed-system/message-queue/Kafka常见面试题总结.md)** 
+3. **Kafka** ：**[Kafka 常见面试题总结](docs/system-design/distributed-system/message-queue/Kafka常见面试题总结.md)**
 
 #### 读写分离
 
@@ -258,7 +254,7 @@ RPC 让调用远程服务调用像调用本地方法那样简单。
 
 #### 分库分表
 
-**分库分表是为了解决由于库、表数据量过大，而导致数据库性能持续下降的问题。** 常见的分库分表工具有：`sharding-jdbc`（当当）、`TSharding`（蘑菇街）、`MyCAT`（基于Cobar）、`Cobar`（阿里巴巴）...。
+**分库分表是为了解决由于库、表数据量过大，而导致数据库性能持续下降的问题。** 常见的分库分表工具有：`sharding-jdbc`（当当）、`TSharding`（蘑菇街）、`MyCAT`（基于 Cobar）、`Cobar`（阿里巴巴）...。
 
 **推荐使用 `sharding-jdbc`** 。 因为，`sharding-jdbc` 是一款轻量级 `Java` 框架，以 `jar` 包形式提供服务，不要我们做额外的运维工作，并且兼容性也很好。
 
@@ -269,22 +265,22 @@ RPC 让调用远程服务调用像调用本地方法那样简单。
 常见的负载均衡系统包括 3 种：
 
 1. **DNS 负载均衡** ：一般用来实现地理级别的均衡。
-2. **硬件负载均衡**  ： 通过单独的硬件设备比如F5来实现负载均衡功能（硬件的价格一般很贵）。
-3. **软件负载均衡** ：通过负载均衡软件比如Nginx来实现负载均衡功能。
+2. **硬件负载均衡** ： 通过单独的硬件设备比如 F5 来实现负载均衡功能（硬件的价格一般很贵）。
+3. **软件负载均衡** ：通过负载均衡软件比如 Nginx 来实现负载均衡功能。
 
 ### 高可用
 
 高可用描述的是一个系统在大部分时间都是可用的，可以为我们提供服务的。高可用代表系统即使在发生硬件故障或者系统升级的时候，服务仍然是可用的 。相关阅读： **《[如何设计一个高可用系统？要考虑哪些地方？](docs/system-design/website-architecture/如何设计一个高可用系统？要考虑哪些地方？.md)》** 。
 
-#### CAP理论
+#### CAP 理论
 
 CAP 也就是 Consistency（一致性）、Availability（可用性）、Partition Tolerance（分区容错性） 这三个单词首字母组合。
 
-#### BASE理论
+#### BASE 理论
 
-**BASE** 是 **Basically Available（基本可用）** 、**Soft-state（软状态）** 和 **Eventually Consistent（最终一致性）** 三个短语的缩写。BASE理论是对CAP中一致性和可用性权衡的结果，其来源于对大规模互联网系统分布式实践的总结，是基于CAP定理逐步演化而来的，它大大降低了我们对系统的要求。
+**BASE** 是 **Basically Available（基本可用）** 、**Soft-state（软状态）** 和 **Eventually Consistent（最终一致性）** 三个短语的缩写。BASE 理论是对 CAP 中一致性和可用性权衡的结果，其来源于对大规模互联网系统分布式实践的总结，是基于 CAP 定理逐步演化而来的，它大大降低了我们对系统的要求。
 
-#### 限流 
+#### 限流
 
 限流为了对服务端的接口接受请求的频率进行限制，防止服务挂掉。比如某一接口的请求限制为 100 个每秒, 对超过限制的请求放弃处理或者放到队列中等待处理。限流可以有效应对突发请求过多。相关阅读：[限流算法有哪些？](docs/system-design/high-availability/limit-request.md)
 
@@ -334,7 +330,7 @@ CAP 也就是 Consistency（一致性）、Availability（可用性）、Partiti
 
 ## 书单
 
-1. [「基础篇」Java书单](./docs/books/java基础篇.md)
+1. [「基础篇」Java 书单](./docs/books/java基础篇.md)
 
 ---
 
@@ -343,7 +339,8 @@ CAP 也就是 Consistency（一致性）、Availability（可用性）、Partiti
 ### 待办
 
 - [x] Netty 总结
-- [ ] 数据结构总结重构(---正在进行中---)
+- [ ] 数据结构总结重构
+- [ ] 将 JavaGuide 的基础知识部分抽出来单独弄一个 CS-Guide
 
 ### 联系我
 
