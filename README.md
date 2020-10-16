@@ -45,7 +45,7 @@
 </table>
 
 
-## Java
+## Java(必看:+1: )
 
 ### 基础
 
@@ -156,12 +156,11 @@
 
 ## 系统设计
 
-### 编码规范
+### 编码之道(必看 :+1:)
 
-1. [RestFul API 简明教程](docs/system-design/restful-api.md)
+1. [RestFul API 简明教程](docs/system-design/coding-way/RESTfulAPI简明教程.md)
 2. [Java 编程规范以及优雅 Java 代码实践总结](docs/java/Java编程规范.md)
 3. [Java 命名之道](docs/system-design/naming.md)
-4. [设计模式系列文章](docs/system-design/设计模式.md)
 
 ### 常用框架
 
@@ -176,11 +175,9 @@
 
 **重要知识点详解：**
 
-1. **[Spring/Spring 常用注解总结！安排！](./docs/system-design/framework/spring/spring-annotations.md)**
-2. **[Spring 事务总结](docs/system-design/framework/spring/spring-transaction.md)**
+1. **[Spring/Spring 常用注解总结！安排！](./docs/system-design/framework/spring/SpringBoot+Spring常用注解总结.md)** (必看 :+1:)
+2. **[Spring 事务总结](docs/system-design/framework/spring/spring-transaction.md)** (必看 :+1:)
 3. [Spring 中都用到了那些设计模式?](docs/system-design/framework/spring/Spring-Design-Patterns.md)
-4. [Spring 中 Bean 的作用域与生命周期](docs/system-design/framework/spring/SpringBean.md)
-5. [SpringMVC 工作原理详解](docs/system-design/framework/spring/SpringMVC-Principle.md)
 
 #### MyBatis
 
