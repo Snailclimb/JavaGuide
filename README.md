@@ -194,16 +194,16 @@
 
 #### JWT
 
-1. [JWT 优缺点分析以及常见问题解决方案](docs/system-design/authority-certification/JWT-advantages-and-disadvantages.md)
+1. [JWT 优缺点分析以及常见问题解决方案](docs/system-design/authority-certification/JWT优缺点分析以及常见问题解决方案.md)
 2. [适合初学者入门 Spring Security With JWT 的 Demo](https://github.com/Snailclimb/spring-security-jwt-guide)
 
 #### SSO(单点登录)
 
-SSO(Single Sign On)即单点登录说的是用户登陆多个子系统的其中一个就有权访问与其相关的其他系统。举个例子我们在登陆了京东金融之后，我们同时也成功登陆京东的京东超市、京东家电等子系统。相关阅读：**[SSO 单点登录看这篇就够了！](docs/system-design/authority-certification/sso.md)**
+**SSO(Single Sign On)** 即单点登录说的是用户登陆多个子系统的其中一个就有权访问与其相关的其他系统。举个例子我们在登陆了京东金融之后，我们同时也成功登陆京东的京东超市、京东家电等子系统。相关阅读：**[SSO 单点登录看这篇就够了！](docs/system-design/authority-certification/SSO单点登录看这一篇就够了.md)**
 
 ### 分布式
 
-[分布式相关概念入门](docs/system-design/website-architecture/分布式.md)
+[分布式相关概念入门](docs/system-design/distributed-system/分布式.md)
 
 #### 搜索引擎
 
@@ -238,6 +238,7 @@ SSO(Single Sign On)即单点登录说的是用户登陆多个子系统的其中�
 ### 微服务
 
 1. [ 大白话入门 Spring Cloud](docs/system-design/micro-service/spring-cloud.md)
+2. [微服务/分布式大厂真实面试问题解答](https://xiaozhuanlan.com/topic/2895047136)
 
 ### 高并发
 
@@ -270,6 +271,8 @@ SSO(Single Sign On)即单点登录说的是用户登陆多个子系统的其中�
 #### CAP理论
 
 CAP 也就是 Consistency（一致性）、Availability（可用性）、Partition Tolerance（分区容错性） 这三个单词首字母组合。
+
+
 
 #### BASE理论
 
