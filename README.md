@@ -45,11 +45,11 @@
 </table>
 
 
-## Java(必看:+1: )
+## Java
 
 ### 基础
 
-**知识点/面试题:**
+**知识点/面试题:**(必看:+1: )
 
 1. **[Java 基础知识](docs/java/basis/Java基础知识.md)**
 2. **[Java 基础知识疑难点/易错点](docs/java/basis/Java基础知识疑难点.md)**
@@ -64,14 +64,14 @@
 
 ### 容器
 
-1. **[Java 容器常见面试题/知识点总结](docs/java/collection/Java集合框架常见面试题.md)（推荐！）**
+1. **[Java 容器常见面试题/知识点总结](docs/java/collection/Java集合框架常见面试题.md)** (必看 :+1:)
 2. **源码分析** ：[ArrayList源码+扩容机制分析](docs/java/collection/ArrayList源码+扩容机制分析.md) 、[LinkedList 源码](docs/java/collection/LinkedList源码分析.md) 、[HashMap(JDK1.8)源码+底层数据结构分析](docs/java/collection/HashMap(JDK1.8)源码+底层数据结构分析.md) 、[ConcurrentHashMap 源码+底层数据结构分析](docs/java/collection/ConcurrentHashMap源码+底层数据结构分析.md)
 
 ### 并发
 
 并发这部分内容非常重要，还是面试中的重点中的重点！但是，学习起来难度较大，因此我写了：**[多线程学习指南](./docs/java/multi-thread/多线程学习指南.md)** 帮助你学习。
 
-**知识点/面试题:**
+**知识点/面试题:** (必看 :+1:)
 
 1. **[Java 并发基础常见面试题总结](docs/java/multi-thread/2020最新Java并发基础常见面试题总结.md)**
 2. **[Java 并发进阶常见面试题总结](docs/java/multi-thread/2020最新Java并发进阶常见面试题总结.md)**
@@ -85,7 +85,7 @@
 5. [JUC 中的 Atomic 原子类总结](docs/java/multi-thread/Atomic原子类总结.md)
 6. [AQS 原理以及 AQS 同步组件总结](docs/java/multi-thread/AQS原理以及AQS同步组件总结.md)
 
-### JVM
+### JVM (必看 :+1:)
 
 1. **[Java 内存区域](docs/java/jvm/Java内存区域.md)**
 2. **[JVM 垃圾回收](docs/java/jvm/JVM垃圾回收.md)**
@@ -168,7 +168,7 @@
 
 #### Spring/SpringBoot
 
-**知识点/面试题:**
+**知识点/面试题:**  (必看 :+1:)
 
 1. **[Spring 常见问题总结](docs/system-design/framework/spring/SpringInterviewQuestions.md)**
 2. **[SpringBoot 指南/常见面试题总结](https://github.com/Snailclimb/springboot-guide)**
@@ -183,7 +183,7 @@
 
 - [MyBatis 常见面试题总结](docs/system-design/framework/mybatis/mybatis-interview.md)
 
-#### Netty
+#### Netty (必看 :+1:)
 
 1. [剖析面试最常见问题之 Netty（上）](https://xiaozhuanlan.com/topic/4028536971)
 2. [剖析面试最常见问题之 Netty（下）](https://xiaozhuanlan.com/topic/3985146207)
@@ -246,9 +246,9 @@ RPC 让调用远程服务调用像调用本地方法那样简单。
 
 消息队列在分布式系统中主要是为了解耦和削峰。相关阅读： **[消息队列总结](docs/system-design/data-communication/message-queue.md)** 。
 
-1. **RabbitMQ** : [RabbitMQ 入门](docs/system-design/distributed-system/message-queue/rabbitmq.md)
+1. **RabbitMQ** : [RabbitMQ 入门](docs/system-design/distributed-system/message-queue/RabbitMQ入门看这一篇就够了.md)
 2. **RocketMQ** : [RocketMQ 入门](docs/system-design/distributed-system/message-queue/RocketMQ.md)、[RocketMQ 的几个简单问题与答案](docs/system-design/distributed-system/message-queue/RocketMQ-Questions.md)
-3. **Kafka** ：**[Kafka 常见面试题总结](docs/system-design/distributed-system/message-queue/kafka-inverview.md)** 
+3. **Kafka** ：**[Kafka 常见面试题总结](docs/system-design/distributed-system/message-queue/Kafka常见面试题总结.md)** 
 
 #### 读写分离
 
