@@ -211,10 +211,10 @@
 
 #### RPC
 
-让调用远程服务调用像调用本地方法那样简单。
+RPC 让调用远程服务调用像调用本地方法那样简单。
 
-1. [Dubbo 总结：关于 Dubbo 的重要知识点](docs/system-design/data-communication/dubbo.md)
-2. [服务之间的调用为啥不直接用 HTTP 而用 RPC？](docs/system-design/data-communication/why-use-rpc.md)
+1. [Dubbo 总结：关于 Dubbo 的重要知识点](docs/system-design/distributed-system/rpc/关于Dubbo的重要知识点.md)
+2. [服务之间的调用为啥不直接用 HTTP 而用 RPC？](docs/system-design/distributed-system/rpc/服务之间的调用为啥不直接用HTTP而用RPC.md)
 
 #### API 网关
 
@@ -246,9 +246,9 @@
 
 消息队列在分布式系统中主要是为了解耦和削峰。相关阅读： **[消息队列总结](docs/system-design/data-communication/message-queue.md)** 。
 
-1. **RabbitMQ** : [RabbitMQ 入门](docs/system-design/data-communication/rabbitmq.md)
-2. **RocketMQ** : [RocketMQ 入门](docs/system-design/data-communication/RocketMQ.md)、[RocketMQ 的几个简单问题与答案](docs/system-design/data-communication/RocketMQ-Questions.md)
-3. **Kafka** ：**[Kafka 常见面试题总结](docs/system-design/data-communication/kafka-inverview.md)** 
+1. **RabbitMQ** : [RabbitMQ 入门](docs/system-design/distributed-system/message-queue/rabbitmq.md)
+2. **RocketMQ** : [RocketMQ 入门](docs/system-design/distributed-system/message-queue/RocketMQ.md)、[RocketMQ 的几个简单问题与答案](docs/system-design/distributed-system/message-queue/RocketMQ-Questions.md)
+3. **Kafka** ：**[Kafka 常见面试题总结](docs/system-design/distributed-system/message-queue/kafka-inverview.md)** 
 
 #### 读写分离
 
