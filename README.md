@@ -224,17 +224,17 @@
 
 如果你没有接触过 Java Web 开发的话，可以先看一下我总结的 [《J2EE 基础知识》](docs/java/J2EE基础知识.md) 。虽然，这篇文章中的很多内容已经淘汰，但是可以让你对 Java 后台技术发展有更深的认识。
 
-#### Spring/SpringBoot
+#### Spring/SpringBoot (必看 :+1:)
 
-**知识点/面试题:** (必看 :+1:)
+**知识点/面试题:** 
 
 1. **[Spring 常见问题总结](docs/system-design/framework/spring/SpringInterviewQuestions.md)**
 2. **[SpringBoot 指南/常见面试题总结](https://github.com/Snailclimb/springboot-guide)**
 
 **重要知识点详解：**
 
-1. **[Spring/Spring 常用注解总结！安排！](./docs/system-design/framework/spring/SpringBoot+Spring常用注解总结.md)** (必看 :+1:)
-2. **[Spring 事务总结](docs/system-design/framework/spring/spring-transaction.md)** (必看 :+1:)
+1. **[Spring/Spring 常用注解总结！安排！](./docs/system-design/framework/spring/SpringBoot+Spring常用注解总结.md)** 
+2. **[Spring 事务总结](docs/system-design/framework/spring/spring-transaction.md)** 
 3. [Spring 中都用到了那些设计模式?](docs/system-design/framework/spring/Spring-Design-Patterns.md)
 
 #### MyBatis
@@ -332,11 +332,15 @@ RPC 让调用远程服务调用像调用本地方法那样简单。
 
 ### 高可用
 
-高可用描述的是一个系统在大部分时间都是可用的，可以为我们提供服务的。高可用代表系统即使在发生硬件故障或者系统升级的时候，服务仍然是可用的 。相关阅读： **《[如何设计一个高可用系统？要考虑哪些地方？](docs/system-design/website-architecture/如何设计一个高可用系统？要考虑哪些地方？.md)》** 。
+高可用描述的是一个系统在大部分时间都是可用的，可以为我们提供服务的。高可用代表系统即使在发生硬件故障或者系统升级的时候，服务仍然是可用的 。
+
+相关阅读： **《[如何设计一个高可用系统？要考虑哪些地方？](docs/system-design/high-availability/如何设计一个高可用系统？要考虑哪些地方？.md)》** 。
 
 #### CAP 理论
 
 CAP 也就是 Consistency（一致性）、Availability（可用性）、Partition Tolerance（分区容错性） 这三个单词首字母组合。
+
+关于 CAP 的详细解读请看：[《CAP理论解读》](docs/system-design/high-availability/CAP理论.md)。
 
 #### BASE 理论
 
