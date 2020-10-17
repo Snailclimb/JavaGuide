@@ -105,7 +105,7 @@ public String readAllCookies(HttpServletRequest request) {
 
 花了个图简单总结了一下Session认证涉及的一些东西。
 
-<img src="./images/basis-of-authority-certification/session-cookie-intro.png" style="zoom:50%;" />
+![](./images/basis-of-authority-certification/session-cookie-intro.jpeg)
 
 另外，Spring Session提供了一种跨多个应用程序或实例管理用户会话信息的机制。如果想详细了解可以查看下面几篇很不错的文章：
 
@@ -192,7 +192,7 @@ OAuth 2.0 比较常用的场景就是第三方登录，当你的网站接入了�
 
 微信支付账户相关参数：
 
-<img src="./images/basis-of-authority-certification/微信支付-fnglfdlgdfj.png" style="zoom:50%;" />
+![](./images/basis-of-authority-certification/微信支付-fnglfdlgdfj.png)
 
 **推荐阅读：**
 

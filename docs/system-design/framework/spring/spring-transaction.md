@@ -179,7 +179,7 @@ public interface PlatformTransactionManager {
 
 主要是因为要将事务管理行为抽象出来，然后不同的平台去实现它，这样我们可以保证提供给外部的行为不变，方便我们扩展。我前段时间分享过：**“为什么我们要用接口？”**
 
-<img src="images/spring-transaction/ed279f05-f5ad-443e-84e9-513a9e777139.png" style="zoom:50%;" />
+![](images/spring-transaction/接口使用原因.png)
 
 #### 3.2.2. TransactionDefinition:事务属性
 

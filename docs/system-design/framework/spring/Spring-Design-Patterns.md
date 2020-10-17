@@ -154,8 +154,6 @@ AOP(Aspect-Oriented Programming:面向切面编程)能够将那些与业务无�
 
 模板方法模式是一种行为设计模式，它定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。 模板方法使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤的实现方式。
 
-![模板方法UML图](https://ws1.sinaimg.cn/large/006rNwoDgy1g3a73vdbojj30vo0iwdgc.jpg)
-
 ```java
 public abstract class Template {
     //这是我们的模板方法
