@@ -228,13 +228,13 @@
 
 **知识点/面试题:** 
 
-1. **[Spring 常见问题总结](docs/system-design/framework/spring/SpringInterviewQuestions.md)**
+1. **[Spring 常见问题总结](docs/system-design/framework/spring/Spring常见问题总结.md)**
 2. **[SpringBoot 指南/常见面试题总结](https://github.com/Snailclimb/springboot-guide)**
 
 **重要知识点详解：**
 
 1. **[Spring/Spring 常用注解总结！安排！](./docs/system-design/framework/spring/SpringBoot+Spring常用注解总结.md)** 
-2. **[Spring 事务总结](docs/system-design/framework/spring/spring-transaction.md)** 
+2. **[Spring 事务总结](docs/system-design/framework/spring/Spring事务总结.md)** 
 3. [Spring 中都用到了那些设计模式?](docs/system-design/framework/spring/Spring-Design-Patterns.md)
 
 #### MyBatis
@@ -278,8 +278,8 @@ RPC 让调用远程服务调用像调用本地方法那样简单。
 
 网关主要用于请求转发、安全认证、协议转换、容灾。
 
-1. [为什么要网关？你知道有哪些常见的网关系统？](docs/system-design/micro-service/api-gateway-intro.md)
-2. [如何设计一个亿级网关(API Gateway)？](docs/system-design/micro-service/API网关.md)
+1. [为什么要网关？你知道有哪些常见的网关系统？](docs/system-design/distributed-system/api-gateway/为什么要网站有哪些常见的网站系统.md)
+2. [如何设计一个亿级网关(API Gateway)？](docs/system-design/distributed-system/api-gateway/如何设计一个亿级网关.md)
 
 #### 分布式 id
 
@@ -289,9 +289,9 @@ RPC 让调用远程服务调用像调用本地方法那样简单。
 
 > 前两篇文章可能有内容重合部分，推荐都看一遍。
 
-1. [【入门】ZooKeeper 相关概念总结](docs/system-design/framework/zookeeper/zookeeper-intro.md)
-2. [【进阶】ZooKeeper 相关概念总结](docs/system-design/framework/zookeeper/zookeeper-plus.md)
-3. [【实战】ZooKeeper 实战](docs/system-design/framework/zookeeper/zookeeper-in-action.md)
+1. [【入门】ZooKeeper 相关概念总结](docs/system-design/distributed-system/zookeeper/zookeeper-intro.md)
+2. [【进阶】ZooKeeper 相关概念总结](docs/system-design/distributed-system/zookeeper/zookeeper-plus.md)
+3. [【实战】ZooKeeper 实战](docs/system-design/distributed-system/zookeeper/zookeeper-in-action.md)
 
 ### 微服务
 
@@ -334,7 +334,7 @@ RPC 让调用远程服务调用像调用本地方法那样简单。
 
 高可用描述的是一个系统在大部分时间都是可用的，可以为我们提供服务的。高可用代表系统即使在发生硬件故障或者系统升级的时候，服务仍然是可用的 。
 
-相关阅读： **《[如何设计一个高可用系统？要考虑哪些地方？](docs/system-design/high-availability/如何设计一个高可用系统？要考虑哪些地方？.md)》** 。
+相关阅读： **《[如何设计一个高可用系统？要考虑哪些地方？](docs/system-design/high-availability/如何设计一个高可用系统要考虑哪些地方.md)》** 。
 
 #### CAP 理论
 
@@ -350,21 +350,35 @@ CAP 也就是 Consistency（一致性）、Availability（可用性）、Partiti
 
 #### 限流
 
+限流是从用户访问压力的角度来考虑如何应对系统故障。
+
 限流为了对服务端的接口接受请求的频率进行限制，防止服务挂掉。比如某一接口的请求限制为 100 个每秒, 对超过限制的请求放弃处理或者放到队列中等待处理。限流可以有效应对突发请求过多。相关阅读：[限流算法有哪些？](docs/system-design/high-availability/limit-request.md)
 
 #### 降级
 
-限流是从用户访问压力的角度来考虑如何应对故障，降级是从系统功能优先级的角度考虑如何应对故障
+降级是从系统功能优先级的角度考虑如何应对系统故障。
 
-服务降级指的是当服务器压力剧增的情况下，根据当前业务情况及流量对一些服务和页面有策略的降级，以此释放服务器资源以保证核心任务的正常运行。降级往往会指定不同的级别，面临不同的异常等级执行不同的处理。根据服务方式：可以拒接服务，可以延迟服务，也有时候可以随机服务。根据服务范围：可以砍掉某个功能，也可以砍掉某些模块。总之服务降级需要根据不同的业务需求采用不同的降级策略。主要的目的就是服务虽然有损但是总比没有好。
+服务降级指的是当服务器压力剧增的情况下，根据当前业务情况及流量对一些服务和页面有策略的降级，以此释放服务器资源以保证核心任务的正常运行。
 
 #### 熔断
 
-熔断和降级是两个比较容易混淆的概念，因为单纯从名字上看好像都有禁止某个功能的意思，但其实内在含义是不同的，原因在于降级的目的是应对系统自身的故障，而熔断的目的是应对依赖的外部系统故障的情况。
+熔断和降级是两个比较容易混淆的概念，两者的含义并不相同。
+
+降级的目的在于应对系统自身的故障，而熔断的目的在于应对当前系统依赖的外部系统或者第三方系统的故障。
 
 #### 排队
 
 另类的一种限流，类比于现实世界的排队。玩过英雄联盟的小伙伴应该有体会，每次一有活动，就要经历一波排队才能进入游戏。
+
+#### 集群
+
+相同的服务部署多份，避免单点故障。
+
+#### 超时和重试机制
+
+**一旦用户的请求超过某个时间得不到响应就结束此次请求并抛出异常。** 如果不进行超时设置可能会导致请求响应速度慢，甚至导致请求堆积进而让系统无法在处理请求。
+
+另外，重试的次数一般设为 3 次，再多次的重试没有好处，反而会加重服务器压力（部分场景使用失败重试机制会不太适合）。
 
 ### 大型网站架构
 
