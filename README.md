@@ -418,6 +418,12 @@ CAP 也就是 Consistency（一致性）、Availability（可用性）、Partiti
 
 ## 其他
 
+### 贡献者
+
+[你可以点此链接查看JavaGuide的所有贡献者。](https://github.com/Snailclimb/JavaGuide/graphs/contributors) 感谢你们让 JavaGuide 变得更好！如果你们来到武汉一定要找我，我请你们吃饭玩耍。
+
+*悄悄话：JavaGuide 会不定时为贡献者们送福利。*
+
 ### 待办
 
 - [x] Netty 总结
@@ -434,60 +440,6 @@ CAP 也就是 Consistency（一致性）、Availability（可用性）、Partiti
 
 [点击捐赠支持作者](https://www.yuque.com/snailclimb/dr6cvl/mr44yt#vu3ok)
 
-### Contributor
-
-下面是笔主收集的一些对本仓库提过有价值的 pr 或者 issue 的朋友，人数较多，如果你也对本仓库提过不错的 pr 或者 issue 的话，你可以加我的微信与我联系。下面的排名不分先后！
-
-<a href="https://github.com/LiWenGu">
-    <img src="https://avatars0.githubusercontent.com/u/15909210?s=460&v=4" width="45px">
-</a>
-<a href="https://github.com/fanofxiaofeng">
-    <img src="https://avatars0.githubusercontent.com/u/3983683?s=460&v=4" width="45px">
-</a>
-<a href="https://github.com/fanchenggang">  
-    <img src="https://avatars2.githubusercontent.com/u/8225921?s=460&v=4" width="45px">
-</a>
-<a href="https://github.com/Rustin-Liu">  
-    <img src="https://avatars2.githubusercontent.com/u/29879298?s=400&v=4" width="45px">
-</a>
-
-<a href="https://github.com/ipofss">
-    <img src="https://avatars1.githubusercontent.com/u/5917359?s=460&v=4" width="45px"></a>
-<a href="https://github.com/Gene1994">
-    <img src="https://avatars3.githubusercontent.com/u/24930369?s=460&v=4" width="45px">
-</a>
-<a href="https://github.com/spikesp">
-    <img src="https://avatars0.githubusercontent.com/u/12581996?s=460&v=4" width="45px"></a>
-<a href="https://github.com/illusorycloud">
-    <img src="https://avatars3.githubusercontent.com/u/31980412?s=460&v=4" width="45px">
-</a>
-<a href="https://github.com/kinglaw1204">
-    <img src="https://avatars1.githubusercontent.com/u/20039931?s=460&v=4" width="45px">
-</a>
-<a href="https://github.com/jun1st">
-    <img src="https://avatars2.githubusercontent.com/u/14312378?s=460&v=4" width="45px">
-</a>"
-<a href="https://github.com/fantasygg">  
-    <img src="https://avatars3.githubusercontent.com/u/13445354?s=460&v=4" width="45px">
-</a>
-<a href="https://github.com/debugjoker">  
-    <img src="https://avatars3.githubusercontent.com/u/26218005?s=460&v=4" width="45px">
-</a>
-<a href="https://github.com/zhyank">  
-    <img src="https://avatars0.githubusercontent.com/u/17696240?s=460&v=4" width="45px">
-</a>
-<a href="https://github.com/Goose9527">  
-    <img src="https://avatars2.githubusercontent.com/u/43314997?s=460&v=4" width="45px">
-</a>
-<a href="https://github.com/yuechuanx">  
-    <img src="https://avatars3.githubusercontent.com/u/19339293?s=460&v=4" width="45px">
-</a>
-<a href="https://github.com/cnLGMing">  
-    <img src="https://avatars2.githubusercontent.com/u/15910705?s=460&v=4" width="45px">
-</a>
-<a href="https://github.com/fanchenggang">  
-    <img src="https://avatars0.githubusercontent.com/u/20358122?s=460&v=4" width="45px">
-</a>
 
 ### 公众号
 
