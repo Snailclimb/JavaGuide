@@ -637,7 +637,7 @@ public class ArrayList<E> extends AbstractList<E>
 
 #### 3.2.3. `ensureExplicitCapacity()` 方法
 
-如果调用 `ensureCapacityInternal()` 方法就一定会进过（执行）这个方法，下面我们来研究一下这个方法的源码！
+如果调用 `ensureCapacityInternal()` 方法就一定会进入（执行）这个方法，下面我们来研究一下这个方法的源码！
 
 ```java
   //判断是否需要扩容
