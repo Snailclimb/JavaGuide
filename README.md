@@ -450,3 +450,4 @@ CAP 也就是 Consistency（一致性）、Availability（可用性）、Partiti
 **Java 工程师必备学习资源:** 一些 Java 工程师常用学习资源公众号后台回复关键字 **“1”** 即可免费无套路获取。
 
 ![我的公众号](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images/2020-08/167598cd2e17b8ec.png)
+
