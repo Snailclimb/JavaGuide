@@ -1,11 +1,11 @@
-👍《JavaGuide 面试突击版》PDF 版本+3 本 PDF Java 学习手册，在公众号 **[JavaGuide](#公众号)** 后台回复“**面试突击**”即可获取。
+👍推荐 [在线阅读](https://snailclimb.gitee.io/javaguide)  (Github 访问速度比较慢可能会导致部分图片无法刷新出来) 
 
 👍 图解操作系统+HTTP+计算机网络的 PDF 资料[点此链接即可下载](https://cowtransfer.com/s/fbed14f0c22a4d)。
 
-> 一些闲话：
->
-> 1. **JavaGuide 介绍**：关于 JavaGuide 的相关介绍请看：[关于 JavaGuide 的一些说明](https://www.yuque.com/snailclimb/dr6cvl/mr44yt#vu3ok) 。PDF 版本请看：[完结撒花！JavaGuide 面试突击版来啦！](./docs/javaguide面试突击版.md) 。
-> 2. **在线阅读** ：如果 Github 访问速度比较慢或者图片无法刷新出来的话，可以转移到[码云](https://gitee.com/SnailClimb/JavaGuide)查看或者[在线阅读](https://snailclimb.gitee.io/javaguide)。如果你要提交 issue 或者 pr 的话建议到 [Github](https://github.com/Snailclimb/JavaGuide) 提交。
+## 一些闲话：
+
+> 1. **介绍**：关于 JavaGuide 的相关介绍请看：[关于 JavaGuide 的一些说明](https://www.yuque.com/snailclimb/dr6cvl/mr44yt#vu3ok) 。PDF 版本请看：[完结撒花！JavaGuide 面试突击版来啦！](./docs/javaguide面试突击版.md) 。
+>2. **PDF版本** ： [《JavaGuide 面试突击版》PDF 版本](#公众号) 。
 > 3. **面试专版** ：准备面试的小伙伴可以考虑面试专版：[《Java 面试进阶指南》](https://xiaozhuanlan.com/javainterview?rel=javaguide) ，欢迎加入[我的星球](https://wx.zsxq.com/dweb2/index/group/48418884588288)获取更多实用干货。
 > 4. **阿里云活动** ：阿里云最近在做活动，服务器不到 10 元/月，小伙伴们搭建一个网站提高简历质量。支持国内开源做的比较好的公司！[点击此链接直达活动首页。](https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=hf47liqn)
 > 5. **联系我** ：如要进群或者请教问题，请[联系我](#联系我) （备注来自 Github。请直入问题，工作时间不回复）。
@@ -445,9 +445,7 @@ CAP 也就是 Consistency（一致性）、Availability（可用性）、Partiti
 
 如果大家想要实时关注我更新的文章以及分享的干货的话，可以关注我的公众号。
 
-**《Java 面试突击》:** 由本文档衍生的专为面试而生的《Java 面试突击》V2.0 PDF 版本[公众号](#公众号)后台回复 **"Java 面试突击"** 即可免费领取！
-
-**Java 工程师必备学习资源:** 一些 Java 工程师常用学习资源公众号后台回复关键字 **“1”** 即可免费无套路获取。
+**《Java 面试突击》:** 由本文档衍生的专为面试而生的《Java 面试突击》V3.0 PDF 版本[公众号](#公众号)后台回复 **"面试突击"** 即可免费领取！
 
 ![我的公众号](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images/2020-08/167598cd2e17b8ec.png)
 
