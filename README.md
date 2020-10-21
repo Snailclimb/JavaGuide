@@ -117,8 +117,8 @@
 
 1. [枚举](docs/java/basis/用好Java中的枚举真的没有那么简单.md) （很重要的一个数据结构，用好枚举真的没有那么简单！）
 2. [Java 常见关键字总结：final、static、this、super!](docs/java/basis/Java常见关键字总结.md)
-3. [什么是反射机制?反射机制的应用场景有哪些?](docs/java/basis/什么是反射机制?反射机制的应用场景有哪些?.md)
-4. [代理模式详解：静态代理+JDK/CGLIB 动态代理实战](docs/java/basis/静态代理+JDK,CGLIB动态代理实战.md)
+3. [什么是反射机制?反射机制的应用场景有哪些?](docs/java/basis/反射机制.md)
+4. [代理模式详解：静态代理+JDK/CGLIB 动态代理实战](docs/java/basis/代理模式详解.md)
 5. [BIO,NIO,AIO 总结 ](docs/java/basis/BIO,NIO,AIO总结.md)
 
 ### 容器
