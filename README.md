@@ -1,6 +1,6 @@
 👍推荐 [在线阅读](https://snailclimb.gitee.io/javaguide)  (Github 访问速度比较慢可能会导致部分图片无法刷新出来) 
 
-👍 [图解Java+操作系统+HTTP+计算机网络的 PDF 资料](#优质原创PDF资源)。
+👍 [点此链接即可下载：图解Java+操作系统+HTTP+计算机网络的 PDF 资料](#优质原创PDF资源)。
 
 ## 一些闲话：
 
