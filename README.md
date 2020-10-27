@@ -181,7 +181,10 @@
 
 ### 算法
 
-算法这部分内容非常重要，如果你不知道如何学习算法的话，可以看下我写的：[《硬核的算法学习书籍+资源推荐》](docs/dataStructures-algorithms/算法学习资源推荐.md) 。
+算法这部分内容非常重要，如果你不知道如何学习算法的话，可以看下我写的：
+
+- [《硬核的算法学习书籍+资源推荐》](docs/dataStructures-algorithms/算法学习资源推荐.md) 。
+- [如何刷Leetcode?](https://www.zhihu.com/question/31092580/answer/1534887374)
 
 **常见算法问题总结：**
 
