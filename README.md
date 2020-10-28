@@ -98,7 +98,7 @@
   - [待办](#待办)
   - [联系我](#联系我)
   - [捐赠支持](#捐赠支持)
-  - [Contributor](#contributor)
+  - [Contributor](#贡献者)
   - [公众号](#公众号)
 
 <!-- /code_chunk_output -->
