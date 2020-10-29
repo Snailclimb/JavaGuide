@@ -431,7 +431,6 @@ CAP 也就是 Consistency（一致性）、Availability（可用性）、Partiti
 
 - [x] Netty 总结
 - [ ] 数据结构总结重构
-- [ ] 将 JavaGuide 的基础知识部分抽出来单独弄一个 CS-Guide
 
 ### 优质原创PDF资源
 
@@ -441,7 +440,7 @@ CAP 也就是 Consistency（一致性）、Availability（可用性）、Partiti
 
 ### 联系我
 
-![个人微信](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images/2020-08/wechat3.jpeg)
+![](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images-3@main/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/31603935587_.pic_hd.jpg)
 
 ### 捐赠支持
 
