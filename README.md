@@ -434,13 +434,11 @@ CAP 也就是 Consistency（一致性）、Availability（可用性）、Partiti
 
 ### 优质原创PDF资源
 
-一些计算机基础+Java的原创PDF下载地址: https://pan.baidu.com/s/1H-tR39b9UYHPWRGm1V0-1Q  密码: 8djk
-
 ![](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images-2@main/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%93%E4%B8%9A/image-20201027160348395.png)
 
-### 联系我
+为了避免恶意传播，微信搜“**Github掘金计划**”后台回复**“006”**即可获取。
 
-![](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images-3@main/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/31603935587_.pic_hd.jpg)
+<img src="https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images-2@main/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/qrcode_for_gh_8b9b6034ac19_258.jpg" style="text-align:right"/>
 
 ### 捐赠支持
 
@@ -448,10 +446,14 @@ CAP 也就是 Consistency（一致性）、Availability（可用性）、Partiti
 
 [点击捐赠支持作者](https://www.yuque.com/snailclimb/dr6cvl/mr44yt#vu3ok)
 
+### 联系我
+
+<img src="https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images-3@main/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/31603935587_.pic_hd.jpg" style="zoom:67%;" />
+
 
 ### 公众号
 
-如果大家想要实时关注我更新的文章以及分享的干货的话，可以关注我的公众号。
+如果大家想要实时关注我更新的文章以及分享的干货的话，可以关注我的公众号“**JavaGuide**”。
 
 **《Java 面试突击》:** 由本文档衍生的专为面试而生的《Java 面试突击》V3.0 PDF 版本[公众号](#公众号)后台回复 **"面试突击"** 即可免费领取！
 
