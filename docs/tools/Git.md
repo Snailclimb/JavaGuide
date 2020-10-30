@@ -152,7 +152,7 @@ Git 有三种状态，你的文件可能处于其中之一：
     主体部分可以是很少的几行，来加入更多的细节来解释提交，最好是能给出一些相关的背景或者解释这个提交能修复和解决什么问题。
     
     主体部分当然也可以有几段，但是一定要注意换行和句子不要太长。因为这样在使用 "git log" 的时候会有缩进比较好看。
-    
+
 提交的标题行描述应该尽量的清晰和尽量的一句话概括。这样就方便相关的 Git 日志查看工具显示和其他人的阅读。
     
 ### 推送改动到远程仓库
@@ -260,9 +260,13 @@ git branch -d feature_x
 git push origin 
 ```
 
+## 推荐
 
+**在线演示学习工具：**
 
-## 推荐阅读
+「补充，来自[issue729](https://github.com/Snailclimb/JavaGuide/issues/729)」Learn Git Branching https://oschina.gitee.io/learn-git-branching/   。该网站可以方便的演示基本的git操作，讲解得明明白白。每一个基本命令的作用和结果。
+
+**推荐阅读：**
 
 - [Git - 简明指南](http://rogerdudler.github.io/git-guide/index.zh.html)
 - [图解Git](http://marklodato.github.io/visual-git-guide/index-zh-cn.html)

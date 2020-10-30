@@ -48,15 +48,6 @@ n<=39
 		}
 ```
 
-#### **运行时间对比：**
-
-假设n为40我们分别使用迭代法和递归法计算，计算结果如下：
-
-1. 迭代法
-   ![迭代法](https://ws1.sinaimg.cn/large/006rNwoDgy1fpydt5as85j308a025dfl.jpg)
-2. 递归法
-   ![递归法](https://ws1.sinaimg.cn/large/006rNwoDgy1fpydt2d1k3j30ed02kt8i.jpg)
-
 ### 二 跳台阶问题
 
 #### **题目描述：**
