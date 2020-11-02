@@ -1,8 +1,8 @@
-👍[阿里云双11活动，1核2G 84元即可薅1年，力度很大，推荐3年（新用户优惠更大，可用亲人身份证购买）](https://www.aliyun.com/1111/pintuan-share?ptCode=MTUyNTA5NzQ1MTc4MDE0OHx8MTE0fDE%3D&userCode=hf47liqn)
+👍推荐 [0.73折购买阿里云服务器！1核2G 84元即可薅1年，力度很大，推荐3年（新用户优惠更大，非新人的话可用朋友/亲人的身份证购买）](https://www.aliyun.com/1111/pintuan-share?ptCode=MTUyNTA5NzQ1MTc4MDE0OHx8MTE0fDE%3D&userCode=hf47liqn)
 
 👍推荐 [在线阅读](https://snailclimb.gitee.io/javaguide)  (Github 访问速度比较慢可能会导致部分图片无法刷新出来) 
 
-👍 [图解Java+操作系统+HTTP+计算机网络的 PDF 资料](#优质原创PDF资源)
+👍推荐 [图解Java+操作系统+HTTP+计算机网络的 PDF 资料](#优质原创PDF资源)
 
 ## 一些闲话：
 
