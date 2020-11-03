@@ -64,7 +64,7 @@
 
 🙋 **我：** 好的！ 下图是 Java 内存区域，我们从 JVM 的角度来说一下线程和进程之间的关系吧！
 
-> 如果你对 Java 内存区域 (运行时数据区) 这部分知识不太了解的话可以阅读一下这篇文章：[《可能是把 Java 内存区域讲的最清楚的一篇文章》](<[https://snailclimb.gitee.io/javaguide/#/docs/java/jvm/Java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F](https://snailclimb.gitee.io/javaguide/#/docs/java/jvm/Java内存区域)>)
+> 如果你对 Java 内存区域 (运行时数据区) 这部分知识不太了解的话可以阅读一下这篇文章：[《可能是把 Java 内存区域讲的最清楚的一篇文章》](https://snailclimb.gitee.io/javaguide/#/docs/java/jvm/Java内存区域)
 
 ![jvm运行时数据区域](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/ff96fed0e2a354bb16bbc84dcedf503a.png)
 

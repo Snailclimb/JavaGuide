@@ -1,13 +1,14 @@
-👍《JavaGuide 面试突击版》PDF 版本+3 本 PDF Java 学习手册，在公众号 **[JavaGuide](#公众号)** 后台回复“**面试突击**”即可获取。
+👍推荐 [0.73折购买阿里云服务器！1核2G 84元即可薅1年，力度很大，推荐3年（新用户优惠更大，非新人的话可用朋友/亲人的身份证购买）](https://www.aliyun.com/1111/pintuan-share?ptCode=MTUyNTA5NzQ1MTc4MDE0OHx8MTE0fDE%3D&userCode=hf47liqn)
 
-👍 图解操作系统+HTTP+计算机网络的 PDF 资料[点此链接即可下载](https://cowtransfer.com/s/fbed14f0c22a4d)。
+👍推荐 [在线阅读](https://snailclimb.gitee.io/javaguide)  (Github 访问速度比较慢可能会导致部分图片无法刷新出来) 
 
-> 一些闲话：
->
-> 1. **JavaGuide 介绍**：关于 JavaGuide 的相关介绍请看：[关于 JavaGuide 的一些说明](https://www.yuque.com/snailclimb/dr6cvl/mr44yt#vu3ok) 。PDF 版本请看：[完结撒花！JavaGuide 面试突击版来啦！](./docs/javaguide面试突击版.md) 。
-> 2. **在线阅读** ：如果 Github 访问速度比较慢或者图片无法刷新出来的话，可以转移到[码云](https://gitee.com/SnailClimb/JavaGuide)查看或者[在线阅读](https://snailclimb.gitee.io/javaguide)。如果你要提交 issue 或者 pr 的话建议到 [Github](https://github.com/Snailclimb/JavaGuide) 提交。
+👍推荐 [图解Java+操作系统+HTTP+计算机网络的 PDF 资料](#优质原创PDF资源)
+
+## 一些闲话：
+
+> 1. **介绍**：关于 JavaGuide 的相关介绍请看：[关于 JavaGuide 的一些说明](https://www.yuque.com/snailclimb/dr6cvl/mr44yt#vu3ok) 。PDF 版本请看：[完结撒花！JavaGuide 面试突击版来啦！](./docs/javaguide面试突击版.md) 。
+>2. **PDF版本** ： [《JavaGuide 面试突击版》PDF 版本](#公众号) 。
 > 3. **面试专版** ：准备面试的小伙伴可以考虑面试专版：[《Java 面试进阶指南》](https://xiaozhuanlan.com/javainterview?rel=javaguide) ，欢迎加入[我的星球](https://wx.zsxq.com/dweb2/index/group/48418884588288)获取更多实用干货。
-> 4. **阿里云活动** ：阿里云最近在做活动，服务器不到 10 元/月，小伙伴们搭建一个网站提高简历质量。支持国内开源做的比较好的公司！[点击此链接直达活动首页。](https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=hf47liqn)
 > 5. **联系我** ：如要进群或者请教问题，请[联系我](#联系我) （备注来自 Github。请直入问题，工作时间不回复）。
 > 6. **转载须知** ：以下所有文章如非文首说明皆为我（Guide哥）的原创，转载在文首注明出处，如发现恶意抄袭/搬运，会动用法律武器维护自己的权益。让我们一起维护一个良好的技术创作环境！⛽️
 
@@ -98,7 +99,7 @@
   - [待办](#待办)
   - [联系我](#联系我)
   - [捐赠支持](#捐赠支持)
-  - [Contributor](#contributor)
+  - [Contributor](#贡献者)
   - [公众号](#公众号)
 
 <!-- /code_chunk_output -->
@@ -116,9 +117,9 @@
 **重要知识点详解：**
 
 1. [枚举](docs/java/basis/用好Java中的枚举真的没有那么简单.md) （很重要的一个数据结构，用好枚举真的没有那么简单！）
-2. [Java 常见关键字总结：final、static、this、super!](docs/java/basis/Java常见关键字总结:final,static,this,super.md)
-3. [什么是反射机制?反射机制的应用场景有哪些?](docs/java/basis/什么是反射机制?反射机制的应用场景有哪些?.md)
-4. [代理模式详解：静态代理+JDK/CGLIB 动态代理实战](docs/java/basis/静态代理+JDK,CGLIB动态代理实战.md)
+2. [Java 常见关键字总结：final、static、this、super!](docs/java/basis/Java常见关键字总结.md)
+3. [什么是反射机制?反射机制的应用场景有哪些?](docs/java/basis/反射机制.md)
+4. [代理模式详解：静态代理+JDK/CGLIB 动态代理实战](docs/java/basis/代理模式详解.md)
 5. [BIO,NIO,AIO 总结 ](docs/java/basis/BIO,NIO,AIO总结.md)
 
 ### 容器
@@ -181,7 +182,10 @@
 
 ### 算法
 
-算法这部分内容非常重要，如果你不知道如何学习算法的话，可以看下我写的：[《硬核的算法学习书籍+资源推荐》](docs/dataStructures-algorithms/算法学习资源推荐.md) 。
+算法这部分内容非常重要，如果你不知道如何学习算法的话，可以看下我写的：
+
+- [算法学习书籍+资源推荐](https://www.zhihu.com/question/323359308/answer/1545320858) 。
+- [如何刷Leetcode?](https://www.zhihu.com/question/31092580/answer/1534887374) 
 
 **常见算法问题总结：**
 
@@ -418,15 +422,24 @@ CAP 也就是 Consistency（一致性）、Availability（可用性）、Partiti
 
 ## 其他
 
+### 贡献者
+
+[你可以点此链接查看JavaGuide的所有贡献者。](https://github.com/Snailclimb/JavaGuide/graphs/contributors) 感谢你们让 JavaGuide 变得更好！如果你们来到武汉一定要找我，我请你们吃饭玩耍。
+
+*悄悄话：JavaGuide 会不定时为贡献者们送福利。*
+
 ### 待办
 
 - [x] Netty 总结
 - [ ] 数据结构总结重构
-- [ ] 将 JavaGuide 的基础知识部分抽出来单独弄一个 CS-Guide
 
-### 联系我
+### 优质原创PDF资源
 
-![个人微信](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images/2020-08/wechat3.jpeg)
+![](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images-2@main/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%93%E4%B8%9A/image-20201027160348395.png)
+
+为了避免恶意传播，微信搜“**Github掘金计划**”后台回复**“006”**即可获取。
+
+<img src="https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images-2@main/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/qrcode_for_gh_8b9b6034ac19_258.jpg" style="text-align:right"/>
 
 ### 捐赠支持
 
@@ -434,67 +447,16 @@ CAP 也就是 Consistency（一致性）、Availability（可用性）、Partiti
 
 [点击捐赠支持作者](https://www.yuque.com/snailclimb/dr6cvl/mr44yt#vu3ok)
 
-### Contributor
+### 联系我
 
-下面是笔主收集的一些对本仓库提过有价值的 pr 或者 issue 的朋友，人数较多，如果你也对本仓库提过不错的 pr 或者 issue 的话，你可以加我的微信与我联系。下面的排名不分先后！
+<img src="https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images-3@main/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/31603935587_.pic_hd.jpg" style="zoom:67%;" />
 
-<a href="https://github.com/LiWenGu">
-    <img src="https://avatars0.githubusercontent.com/u/15909210?s=460&v=4" width="45px">
-</a>
-<a href="https://github.com/fanofxiaofeng">
-    <img src="https://avatars0.githubusercontent.com/u/3983683?s=460&v=4" width="45px">
-</a>
-<a href="https://github.com/fanchenggang">  
-    <img src="https://avatars2.githubusercontent.com/u/8225921?s=460&v=4" width="45px">
-</a>
-<a href="https://github.com/Rustin-Liu">  
-    <img src="https://avatars2.githubusercontent.com/u/29879298?s=400&v=4" width="45px">
-</a>
-
-<a href="https://github.com/ipofss">
-    <img src="https://avatars1.githubusercontent.com/u/5917359?s=460&v=4" width="45px"></a>
-<a href="https://github.com/Gene1994">
-    <img src="https://avatars3.githubusercontent.com/u/24930369?s=460&v=4" width="45px">
-</a>
-<a href="https://github.com/spikesp">
-    <img src="https://avatars0.githubusercontent.com/u/12581996?s=460&v=4" width="45px"></a>
-<a href="https://github.com/illusorycloud">
-    <img src="https://avatars3.githubusercontent.com/u/31980412?s=460&v=4" width="45px">
-</a>
-<a href="https://github.com/kinglaw1204">
-    <img src="https://avatars1.githubusercontent.com/u/20039931?s=460&v=4" width="45px">
-</a>
-<a href="https://github.com/jun1st">
-    <img src="https://avatars2.githubusercontent.com/u/14312378?s=460&v=4" width="45px">
-</a>"
-<a href="https://github.com/fantasygg">  
-    <img src="https://avatars3.githubusercontent.com/u/13445354?s=460&v=4" width="45px">
-</a>
-<a href="https://github.com/debugjoker">  
-    <img src="https://avatars3.githubusercontent.com/u/26218005?s=460&v=4" width="45px">
-</a>
-<a href="https://github.com/zhyank">  
-    <img src="https://avatars0.githubusercontent.com/u/17696240?s=460&v=4" width="45px">
-</a>
-<a href="https://github.com/Goose9527">  
-    <img src="https://avatars2.githubusercontent.com/u/43314997?s=460&v=4" width="45px">
-</a>
-<a href="https://github.com/yuechuanx">  
-    <img src="https://avatars3.githubusercontent.com/u/19339293?s=460&v=4" width="45px">
-</a>
-<a href="https://github.com/cnLGMing">  
-    <img src="https://avatars2.githubusercontent.com/u/15910705?s=460&v=4" width="45px">
-</a>
-<a href="https://github.com/fanchenggang">  
-    <img src="https://avatars0.githubusercontent.com/u/20358122?s=460&v=4" width="45px">
-</a>
 
 ### 公众号
 
-如果大家想要实时关注我更新的文章以及分享的干货的话，可以关注我的公众号。
+如果大家想要实时关注我更新的文章以及分享的干货的话，可以关注我的公众号“**JavaGuide**”。
 
-**《Java 面试突击》:** 由本文档衍生的专为面试而生的《Java 面试突击》V2.0 PDF 版本[公众号](#公众号)后台回复 **"Java 面试突击"** 即可免费领取！
-
-**Java 工程师必备学习资源:** 一些 Java 工程师常用学习资源公众号后台回复关键字 **“1”** 即可免费无套路获取。
+**《Java 面试突击》:** 由本文档衍生的专为面试而生的《Java 面试突击》V3.0 PDF 版本[公众号](#公众号)后台回复 **"面试突击"** 即可免费领取！
 
 ![我的公众号](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images/2020-08/167598cd2e17b8ec.png)
+

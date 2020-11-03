@@ -91,7 +91,7 @@ public class ThreadPoolExecutor extends AbstractExecutorService
 **`ScheduledThreadPoolExecutor` 类描述:**
 
 ```java
-//ScheduledExecutorService实现了ExecutorService接口
+//ScheduledExecutorService继承ExecutorService接口
 public class ScheduledThreadPoolExecutor
         extends ThreadPoolExecutor
         implements ScheduledExecutorService
