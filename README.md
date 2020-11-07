@@ -17,24 +17,21 @@
 	<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/logo - 副本.png" width=""/>
 </a>
 </p>
-
 <p align="center">
   <a href="https://snailclimb.gitee.io/javaguide"><img src="https://img.shields.io/badge/阅读-read-brightgreen.svg" alt="阅读"></a>
   <a href="#公众号"><img src="https://img.shields.io/badge/%E5%85%AC%E4%BC%97%E5%8F%B7-JavaGuide-lightgrey.svg" alt="公众号"></a>
   <a href="#公众号"><img src="https://img.shields.io/badge/PDF-Java面试突击-important.svg" alt="公众号"></a>
   <a href="#投稿"><img src="https://img.shields.io/badge/support-投稿-critical.svg" alt="投稿"></a>
+  <img src="https://img.shields.io/github/stars/Snailclimb/JavaGuide" alt="投稿">
   <a href="https://xiaozhuanlan.com/javainterview?rel=javaguide"><img src="https://img.shields.io/badge/Java-面试指南-important" alt="投稿"></a>
 </p>
+
 
 <h3 align="center">Sponsor</h3>
 
 <table>
   <tbody>
     <tr>
-      <td align="center" valign="middle">
-        <a href="https://t.1yb.co/5p8J">
-          <img src="./media/sponsor/xiangxue.png" style="margin: 0 auto;width:450px" /></a>
-      </td>  
        <td align="center" valign="middle">
         <a href="https://w.url.cn/s/AS6JeXA">
           <img src="./media/sponsor/kaikeba.png" style="margin: 0 auto;width:450px" /></a>
@@ -42,6 +39,7 @@
     </tr>
   </tbody>
 </table>
+
 
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
