@@ -14,7 +14,7 @@ public class ArrayList<E> extends AbstractList<E>
 
 - `RandomAccess` 是一个标志接口，表明实现这个这个接口的 List 集合是支持**快速随机访问**的。在 `ArrayList` 中，我们即可以通过元素的序号快速获取元素对象，这就是快速随机访问。
 - `ArrayList` 实现了 **`Cloneable` 接口** ，即覆盖了函数`clone()`，能被克隆。
-- `ArrayList` 实现了 java.io.Serializable `接口，这意味着`ArrayList`支持序列化，能通过序列化去传输。
+- `ArrayList` 实现了 `java.io.Serializable `接口，这意味着`ArrayList`支持序列化，能通过序列化去传输。
 
 ### 1.1. Arraylist 和 Vector 的区别?
 
