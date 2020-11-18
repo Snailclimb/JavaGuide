@@ -1,4 +1,4 @@
-👍推荐 [0.73折购买阿里云服务器！1核2G 84元即可薅1年，力度很大，推荐3年（新用户优惠更大，非新人的话可用朋友/亲人的身份证购买）](https://www.aliyun.com/1111/pintuan-share?ptCode=MTUyNTA5NzQ1MTc4MDE0OHx8MTE0fDE%3D&userCode=hf47liqn)
+👍推荐 [送你一个 0.73折购买阿里云服务器的机会](https://www.aliyun.com/1111/pintuan-share?ptCode=MTUyNTA5NzQ1MTc4MDE0OHx8MTE0fDE%3D&userCode=hf47liqn)  。1核2G 84元即可薅1年，力度很大，推荐3年（不建议非人新购买，非人新可以注关一下其他云厂商活动或者用朋友/人亲的身份证购买）
 
 👍推荐 [在线阅读](https://snailclimb.gitee.io/javaguide)  (Github 访问速度比较慢可能会导致部分图片无法刷新出来) 
 
@@ -17,24 +17,21 @@
 	<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/logo - 副本.png" width=""/>
 </a>
 </p>
-
 <p align="center">
   <a href="https://snailclimb.gitee.io/javaguide"><img src="https://img.shields.io/badge/阅读-read-brightgreen.svg" alt="阅读"></a>
   <a href="#公众号"><img src="https://img.shields.io/badge/%E5%85%AC%E4%BC%97%E5%8F%B7-JavaGuide-lightgrey.svg" alt="公众号"></a>
   <a href="#公众号"><img src="https://img.shields.io/badge/PDF-Java面试突击-important.svg" alt="公众号"></a>
   <a href="#投稿"><img src="https://img.shields.io/badge/support-投稿-critical.svg" alt="投稿"></a>
+  <img src="https://img.shields.io/github/stars/Snailclimb/JavaGuide" alt="投稿">
   <a href="https://xiaozhuanlan.com/javainterview?rel=javaguide"><img src="https://img.shields.io/badge/Java-面试指南-important" alt="投稿"></a>
 </p>
+
 
 <h3 align="center">Sponsor</h3>
 
 <table>
   <tbody>
     <tr>
-      <td align="center" valign="middle">
-        <a href="https://t.1yb.co/5p8J">
-          <img src="./media/sponsor/xiangxue.png" style="margin: 0 auto;width:450px" /></a>
-      </td>  
        <td align="center" valign="middle">
         <a href="https://w.url.cn/s/AS6JeXA">
           <img src="./media/sponsor/kaikeba.png" style="margin: 0 auto;width:450px" /></a>
@@ -42,6 +39,7 @@
     </tr>
   </tbody>
 </table>
+
 
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
@@ -178,7 +176,7 @@
 ### 数据结构
 
 1. [不了解布隆过滤器？一文给你整的明明白白！](docs/dataStructures-algorithms/data-structure/bloom-filter.md)
-2. [数据结构知识学习与面试](docs/dataStructures-algorithms/数据结构.md)
+2. 常见数据结构总结（正在路上）
 
 ### 算法
 
@@ -393,7 +391,8 @@ CAP 也就是 Consistency（一致性）、Availability（可用性）、Partiti
 
 1. **Java** ：[JAD 反编译](docs/java/JAD反编译tricks.md)、[手把手教你定位常见 Java 性能问题](./docs/java/手把手教你定位常见Java性能问题.md)
 2. **Git** ：[Git 入门](docs/tools/Git.md)
-3. **Docker** : [Docker 基本概念解读](docs/tools/Docker.md) 、[一文搞懂 Docker 镜像的常用操作！](docs/tools/Docker-Image.md)
+3. **Github** ： [我使用Github 5 年总结了这些骚操作](docs/tools/Github技巧.md)
+4. **Docker** : [Docker 基本概念解读](docs/tools/Docker.md) 、[一文搞懂 Docker 镜像的常用操作！](docs/tools/Docker-Image.md)
 
 ## 面试指南
 
