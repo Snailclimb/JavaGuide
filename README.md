@@ -436,7 +436,7 @@ CAP 也就是 Consistency（一致性）、Availability（可用性）、Partiti
 
 ![](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images-2@main/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%93%E4%B8%9A/image-20201027160348395.png)
 
-为了避免恶意传播，微信搜“**Github掘金计划**”后台回复**“006”**即可获取。
+为了避免恶意传播，微信搜“**Github掘金计划**”后台回复 **“006”** 即可获取。
 
 <img src="https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images-2@main/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/qrcode_for_gh_8b9b6034ac19_258.jpg" style="text-align:right"/>
 
