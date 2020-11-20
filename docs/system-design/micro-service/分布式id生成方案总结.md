@@ -99,7 +99,7 @@ update id_generator set current_max_id=#{newMaxId}, version=version+1 where vers
 
 因为newMaxId是DistributIdService中根据oldMaxId+步长算出来的，只要上面的update更新成功了就表示号段获取成功了。
 
-为了提供数据库层的高可用，需要对数据库使用多主模式进行部署，对于每个数据库来说要保证生成的号段不重复，这就需要利用最开始的思路，再在刚刚的数据库表中增加起始值和步长，比如如果现在是两台Mysql，那么 mysql1将生成号段（1,1001]，自增的时候序列为1，3，4，5，7.... mysql1将生成号段（2,1002]，自增的时候序列为2，4，6，8，10...
+为了提供数据库层的高可用，需要对数据库使用多主模式进行部署，对于每个数据库来说要保证生成的号段不重复，这就需要利用最开始的思路，再在刚刚的数据库表中增加起始值和步长，比如如果现在是两台Mysql，那么 mysql1将生成号段（1,1001]，自增的时候序列为1，3，5，7.... mysql1将生成号段（2,1002]，自增的时候序列为2，4，6，8，10...
 
 更详细的可以参考滴滴开源的TinyId：[github.com/didi/tinyid…](https://github.com/didi/tinyid/wiki/tinyid原理介绍)
 
