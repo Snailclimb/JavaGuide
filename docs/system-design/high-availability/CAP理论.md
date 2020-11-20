@@ -1,4 +1,4 @@
-![](images/cap/cap.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-11/cap.png)
 
 ## 简介
 
@@ -44,7 +44,7 @@ CAP 仅适用于原子读写的 NOSQL 场景中，并不适合数据库系统。
 
 注册中心负责服务地址的注册与查找，相当于目录服务，服务提供者和消费者只在启动时与注册中心交互，注册中心不转发请求，压力较小。
 
-![](images/cap/dubbo-architecture.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-11/dubbo-architecture.png)
 
 常见的可以作为注册中心的组件有：ZooKeeper、Eureka、Nacos...。
 
