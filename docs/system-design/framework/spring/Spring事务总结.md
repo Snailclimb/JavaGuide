@@ -51,7 +51,7 @@ public class OrdersService {
 
 另外，数据库事务的 ACID 四大特性是事务的基础，下面简单来了解一下。
 
-## 2. 事物的特性（ACID）了解么?
+## 2. 事务的特性（ACID）了解么?
 
 ![](images/spring-transaction/bda7231b-ab05-4e23-95ee-89ac90ac7fcf.png)
 
@@ -143,7 +143,7 @@ Spring 框架中，事务管理相关最重要的 3 个接口如下：
 - **`TransactionDefinition`**： 事务定义信息(事务隔离级别、传播行为、超时、只读、回滚规则)。
 - **`TransactionStatus`**： 事务运行状态。
 
-我们可以把 **`PlatformTransactionManager`** 接口可以被看作是事务上层的管理者，而 **`TransactionDefinition`** 和 **`TransactionStatus`** 这两个接口可以看作是事物的描述。
+我们可以把 **`PlatformTransactionManager`** 接口可以被看作是事务上层的管理者，而 **`TransactionDefinition`** 和 **`TransactionStatus`** 这两个接口可以看作是事务的描述。
 
 **`PlatformTransactionManager`** 会根据 **`TransactionDefinition`** 的定义比如事务超时时间、隔离级别、传播行为等来进行事务管理 ，而 **`TransactionStatus`** 接口则提供了一些方法来获取事务相应的状态比如是否新事务、是否可以回滚等等。
 
@@ -238,7 +238,7 @@ public interface TransactionDefinition {
 
 ```java
 public interface TransactionStatus{
-    boolean isNewTransaction(); // 是否是新的事物
+    boolean isNewTransaction(); // 是否是新的事务
     boolean hasSavepoint(); // 是否有恢复点
     void setRollbackOnly();  // 设置为只回滚
     boolean isRollbackOnly(); // 是否为只回滚
