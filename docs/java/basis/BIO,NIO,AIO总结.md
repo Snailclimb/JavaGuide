@@ -11,7 +11,7 @@
   - [2. NIO \(New I/O\)](#2-nio-new-io)
     - [2.1 NIO 简介](#21-nio-简介)
     - [2.2 NIO的特性/NIO与IO区别](#22-nio的特性nio与io区别)
-      - [1)Non-blocking IO（非阻塞IO）](#1non-blocking-io（非阻塞io）)
+      - [1)Non-blocking IO（非阻塞IO）](#1non-blocking-io非阻塞io)
       - [2)Buffer\(缓冲区\)](#2buffer缓冲区)
       - [3)Channel \(通道\)](#3channel-通道)
       - [4)Selectors\(选择器\)](#4selectors选择器)
