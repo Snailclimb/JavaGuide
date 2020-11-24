@@ -66,6 +66,7 @@
     - [Spring/SpringBoot](#springspringboot)
     - [MyBatis](#mybatis)
     - [Netty (必看 :+1:)](#netty-必看-1)
+    - [ZooKeeper](#zookeeper)
   - [认证授权](#认证授权)
     - [JWT](#jwt)
     - [SSO(单点登录)](#sso单点登录)
@@ -77,7 +78,6 @@
     - [RPC](#rpc)
     - [API 网关](#api-网关)
     - [分布式 id](#分布式-id)
-    - [ZooKeeper](#zookeeper)
   - [微服务](#微服务)
   - [高并发](#高并发)
     - [消息队列](#消息队列)
@@ -249,6 +249,14 @@
 1. [剖析面试最常见问题之 Netty（上）](https://xiaozhuanlan.com/topic/4028536971)
 2. [剖析面试最常见问题之 Netty（下）](https://xiaozhuanlan.com/topic/3985146207)
 
+#### ZooKeeper
+
+> 前两篇文章可能有内容重合部分，推荐都看一遍。
+
+1. [【入门】ZooKeeper 相关概念总结](docs/system-design/distributed-system/zookeeper/zookeeper-intro.md)
+2. [【进阶】ZooKeeper 相关概念总结](docs/system-design/distributed-system/zookeeper/zookeeper-plus.md)
+3. [【实战】ZooKeeper 实战](docs/system-design/distributed-system/zookeeper/zookeeper-in-action.md)
+
 ### 认证授权
 
 **[《认证授权基础》](docs/system-design/authority-certification/basis-of-authority-certification.md)** 这篇文章中我会介绍认证授权常见概念： **Authentication**,**Authorization** 以及 **Cookie**、**Session**、Token、**OAuth 2**、**SSO** 。如果你不清楚这些概念的话，建议好好阅读一下这篇文章。
@@ -308,14 +316,6 @@ RPC 让调用远程服务调用像调用本地方法那样简单。
 **分布式事务就是指事务的参与者、支持事务的服务器、资源服务器以及事务管理器分别位于不同的分布式系统的不同节点之上。**
 
 简单的说，就是一次大的操作由不同的小操作组成，这些小的操作分布在不同的服务器上，且属于不同的应用，分布式事务需要保证这些小操作要么全部成功，要么全部失败。本质上来说，分布式事务就是为了保证不同数据库的数据一致性。
-
-#### ZooKeeper
-
-> 前两篇文章可能有内容重合部分，推荐都看一遍。
-
-1. [【入门】ZooKeeper 相关概念总结](docs/system-design/distributed-system/zookeeper/zookeeper-intro.md)
-2. [【进阶】ZooKeeper 相关概念总结](docs/system-design/distributed-system/zookeeper/zookeeper-plus.md)
-3. [【实战】ZooKeeper 实战](docs/system-design/distributed-system/zookeeper/zookeeper-in-action.md)
 
 ### 微服务
 
