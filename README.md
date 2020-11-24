@@ -290,6 +290,7 @@ RPC 让调用远程服务调用像调用本地方法那样简单。
 
 1. [Dubbo 总结：关于 Dubbo 的重要知识点](docs/system-design/distributed-system/rpc/关于Dubbo的重要知识点.md)
 2. [服务之间的调用为啥不直接用 HTTP 而用 RPC？](docs/system-design/distributed-system/rpc/服务之间的调用为啥不直接用HTTP而用RPC.md)
+3. [一款基于 Netty+Kyro+Zookeeper 实现的自定义 RPC 框架](https://github.com/Snailclimb/guide-rpc-framework)
 
 #### API 网关
 
