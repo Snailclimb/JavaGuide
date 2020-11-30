@@ -66,15 +66,18 @@
     - [Spring/SpringBoot](#springspringboot)
     - [MyBatis](#mybatis)
     - [Netty (必看 :+1:)](#netty-必看-1)
+    - [ZooKeeper](#zookeeper)
   - [认证授权](#认证授权)
     - [JWT](#jwt)
     - [SSO(单点登录)](#sso单点登录)
   - [分布式](#分布式)
+    - [CAP 理论](#cap-理论)
+    - [BASE 理论](#base-理论)
+    - [Paxos 算法和 Raft 算法](#paxos-算法和-raft-算法)
     - [搜索引擎](#搜索引擎)
     - [RPC](#rpc)
     - [API 网关](#api-网关)
     - [分布式 id](#分布式-id)
-    - [ZooKeeper](#zookeeper)
   - [微服务](#微服务)
   - [高并发](#高并发)
     - [消息队列](#消息队列)
@@ -82,8 +85,6 @@
     - [分库分表](#分库分表)
     - [负载均衡](#负载均衡)
   - [高可用](#高可用)
-    - [CAP 理论](#cap-理论)
-    - [BASE 理论](#base-理论)
     - [限流](#限流)
     - [降级](#降级)
     - [熔断](#熔断)
@@ -211,7 +212,6 @@
 
 ### Redis
 
-1. [关于缓存的一些重要概念(Redis 前置菜)](docs/database/Redis/some-concepts-of-caching.md)
 2. [Redis 常见问题总结](docs/database/Redis/redis-all.md)
 
 ## 系统设计
@@ -248,6 +248,14 @@
 1. [剖析面试最常见问题之 Netty（上）](https://xiaozhuanlan.com/topic/4028536971)
 2. [剖析面试最常见问题之 Netty（下）](https://xiaozhuanlan.com/topic/3985146207)
 
+#### ZooKeeper
+
+> 前两篇文章可能有内容重合部分，推荐都看一遍。
+
+1. [【入门】ZooKeeper 相关概念总结](docs/system-design/distributed-system/zookeeper/zookeeper-intro.md)
+2. [【进阶】ZooKeeper 相关概念总结](docs/system-design/distributed-system/zookeeper/zookeeper-plus.md)
+3. [【实战】ZooKeeper 实战](docs/system-design/distributed-system/zookeeper/zookeeper-in-action.md)
+
 ### 认证授权
 
 **[《认证授权基础》](docs/system-design/authority-certification/basis-of-authority-certification.md)** 这篇文章中我会介绍认证授权常见概念： **Authentication**,**Authorization** 以及 **Cookie**、**Session**、Token、**OAuth 2**、**SSO** 。如果你不清楚这些概念的话，建议好好阅读一下这篇文章。
@@ -263,7 +271,21 @@
 
 ### 分布式
 
-[分布式相关概念入门](docs/system-design/distributed-system/分布式.md)
+#### CAP 理论
+
+CAP 也就是 Consistency（一致性）、Availability（可用性）、Partition Tolerance（分区容错性） 这三个单词首字母组合。
+
+关于 CAP 的详细解读请看：[《CAP理论解读》](docs/system-design/distributed-system/CAP理论.md)。
+
+#### BASE 理论
+
+**BASE** 是 **Basically Available（基本可用）** 、**Soft-state（软状态）** 和 **Eventually Consistent（最终一致性）** 三个短语的缩写。BASE 理论是对 CAP 中一致性和可用性权衡的结果，其来源于对大规模互联网系统分布式实践的总结，是基于 CAP 定理逐步演化而来的，它大大降低了我们对系统的要求。
+
+关于 CAP 的详细解读请看：[《BASE理论解读》](docs/system-design/distributed-system/BASE理论.md)。
+
+#### Paxos 算法和 Raft 算法
+
+**Paxos 算法**诞生于 1900 年，这是一种解决分布式系统一致性的经典算法 。但是，由于 Paxos 算法非常难以理解和实现，不断有人尝试简化这一算法。到了2013 年才诞生了一个比 Paxos 算法更易理解和实现的分布式一致性算法—**Raft 算法**。
 
 #### 搜索引擎
 
@@ -275,6 +297,7 @@ RPC 让调用远程服务调用像调用本地方法那样简单。
 
 1. [Dubbo 总结：关于 Dubbo 的重要知识点](docs/system-design/distributed-system/rpc/关于Dubbo的重要知识点.md)
 2. [服务之间的调用为啥不直接用 HTTP 而用 RPC？](docs/system-design/distributed-system/rpc/服务之间的调用为啥不直接用HTTP而用RPC.md)
+3. [一款基于 Netty+Kyro+Zookeeper 实现的自定义 RPC 框架](https://github.com/Snailclimb/guide-rpc-framework)
 
 #### API 网关
 
@@ -287,13 +310,11 @@ RPC 让调用远程服务调用像调用本地方法那样简单。
 
 在复杂分布式系统中，往往需要对大量的数据和消息进行唯一标识。比如数据量太大之后，往往需要对进行对数据进行分库分表，分库分表后需要有一个唯一 ID 来标识一条数据或消息，数据库的自增 ID 显然不能满足需求。相关阅读：[为什么要分布式 id ？分布式 id 生成方案有哪些？](docs/system-design/micro-service/分布式id生成方案总结.md)
 
-#### ZooKeeper
+#### 分布式事务
 
-> 前两篇文章可能有内容重合部分，推荐都看一遍。
+**分布式事务就是指事务的参与者、支持事务的服务器、资源服务器以及事务管理器分别位于不同的分布式系统的不同节点之上。**
 
-1. [【入门】ZooKeeper 相关概念总结](docs/system-design/distributed-system/zookeeper/zookeeper-intro.md)
-2. [【进阶】ZooKeeper 相关概念总结](docs/system-design/distributed-system/zookeeper/zookeeper-plus.md)
-3. [【实战】ZooKeeper 实战](docs/system-design/distributed-system/zookeeper/zookeeper-in-action.md)
+简单的说，就是一次大的操作由不同的小操作组成，这些小的操作分布在不同的服务器上，且属于不同的应用，分布式事务需要保证这些小操作要么全部成功，要么全部失败。本质上来说，分布式事务就是为了保证不同数据库的数据一致性。
 
 ### 微服务
 
@@ -337,18 +358,6 @@ RPC 让调用远程服务调用像调用本地方法那样简单。
 高可用描述的是一个系统在大部分时间都是可用的，可以为我们提供服务的。高可用代表系统即使在发生硬件故障或者系统升级的时候，服务仍然是可用的 。
 
 相关阅读： **《[如何设计一个高可用系统？要考虑哪些地方？](docs/system-design/high-availability/如何设计一个高可用系统要考虑哪些地方.md)》** 。
-
-#### CAP 理论
-
-CAP 也就是 Consistency（一致性）、Availability（可用性）、Partition Tolerance（分区容错性） 这三个单词首字母组合。
-
-关于 CAP 的详细解读请看：[《CAP理论解读》](docs/system-design/high-availability/CAP理论.md)。
-
-#### BASE 理论
-
-**BASE** 是 **Basically Available（基本可用）** 、**Soft-state（软状态）** 和 **Eventually Consistent（最终一致性）** 三个短语的缩写。BASE 理论是对 CAP 中一致性和可用性权衡的结果，其来源于对大规模互联网系统分布式实践的总结，是基于 CAP 定理逐步演化而来的，它大大降低了我们对系统的要求。
-
-关于 CAP 的详细解读请看：[《BASE理论解读》](docs/system-design/high-availability/BASE理论.md)。
 
 #### 限流
 
