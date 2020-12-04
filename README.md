@@ -7,8 +7,9 @@
 ## 一些闲话：
 
 > 1. **介绍**：关于 JavaGuide 的相关介绍请看：[关于 JavaGuide 的一些说明](https://www.yuque.com/snailclimb/dr6cvl/mr44yt) 。PDF 版本请看：[完结撒花！JavaGuide 面试突击版来啦！](./docs/javaguide面试突击版.md) 。
->2. **PDF版本** ： [《JavaGuide 面试突击版》PDF 版本](#公众号) 。
-> 3. **面试专版** ：准备面试的小伙伴可以考虑面试专版：[《Java 面试进阶指南》](https://xiaozhuanlan.com/javainterview?rel=javaguide) ，欢迎加入[我的星球](https://wx.zsxq.com/dweb2/index/group/48418884588288)获取更多实用干货。
+> 2. **PDF版本** ： [《JavaGuide 面试突击版》PDF 版本](#公众号) 。
+> 3. **面试专版** ：准备面试的小伙伴可以考虑面试专版：[《Java 面试进阶指南》](https://xiaozhuanlan.com/javainterview?rel=javaguide) ，
+> 4. **知识星球** : 简历指导/Java学习/面试指导/offer选择。欢迎加入[我的知识星球](https://wx.zsxq.com/dweb2/index/group/48418884588288)。
 > 5. **联系我** ：如要进群或者请教问题，请[联系我](#联系我) （备注来自 Github。请直入问题，工作时间不回复）。
 > 6. **转载须知** ：以下所有文章如非文首说明皆为我（Guide哥）的原创，转载在文首注明出处，如发现恶意抄袭/搬运，会动用法律武器维护自己的权益。让我们一起维护一个良好的技术创作环境！⛽️
 
