@@ -1,5 +1,4 @@
 
-
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 
 <!-- code_chunk_output -->
@@ -19,16 +18,16 @@
     - [1.2.1. 字符型常量和字符串常量的区别?](#121-字符型常量和字符串常量的区别)
     - [1.2.2. 关于注释？](#122-关于注释)
     - [1.2.3. 标识符和关键字的区别是什么？](#123-标识符和关键字的区别是什么)
-    - [1.2.4. Java中有哪些常见的关键字？](#124-java中有哪些常见的关键字)
+    - [1.2.4. Java 中有哪些常见的关键字？](#124-java-中有哪些常见的关键字)
     - [1.2.5. 自增自减运算符](#125-自增自减运算符)
-    - [1.2.6. continue、break、和return的区别是什么？](#126-continue-break-和return的区别是什么)
-    - [1.2.7. Java泛型了解么？什么是类型擦除？介绍一下常用的通配符？](#127-java泛型了解么什么是类型擦除介绍一下常用的通配符)
-    - [1.2.8. ==和equals的区别](#128-和equals的区别)
+    - [1.2.6. continue、break、和 return 的区别是什么？](#126-continue-break-和-return-的区别是什么)
+    - [1.2.7. Java 泛型了解么？什么是类型擦除？介绍一下常用的通配符？](#127-java-泛型了解么什么是类型擦除介绍一下常用的通配符)
+    - [1.2.8. ==和 equals 的区别](#128-和-equals-的区别)
     - [1.2.9. hashCode()与 equals()](#129-hashcode与-equals)
   - [1.3. 基本数据类型](#13-基本数据类型)
-    - [1.3.1. Java中的几种基本数据类型是什么？对应的包装类型是什么？各自占用多少字节呢？](#131-java中的几种基本数据类型是什么对应的包装类型是什么各自占用多少字节呢)
+    - [1.3.1. Java 中的几种基本数据类型是什么？对应的包装类型是什么？各自占用多少字节呢？](#131-java-中的几种基本数据类型是什么对应的包装类型是什么各自占用多少字节呢)
     - [1.3.2. 自动装箱与拆箱](#132-自动装箱与拆箱)
-    - [1.3.3. 8种基本类型的包装类和常量池](#133-8种基本类型的包装类和常量池)
+    - [1.3.3. 8 种基本类型的包装类和常量池](#133-8-种基本类型的包装类和常量池)
   - [1.4. 方法（函数）](#14-方法函数)
     - [1.4.1. 什么是方法的返回值?返回值在类的方法里的作用是什么?](#141-什么是方法的返回值返回值在类的方法里的作用是什么)
     - [1.4.2. 为什么 Java 中只有值传递？](#142-为什么-java-中只有值传递)
@@ -83,7 +82,6 @@
 - [4. 参考](#4-参考)
 
 <!-- /code_chunk_output -->
-
 
 
 ## 1. Java 基本功
@@ -183,10 +181,11 @@ Java 语言既具有编译型语言的特征，也具有解释型语言的特征
 
 #### 1.2.1. 字符型常量和字符串常量的区别?
 
-1. 形式上: 字符常量是单引号引起的一个字符; 字符串常量是双引号引起的0个或若干个字符
+1. 形式上: 字符常量是单引号引起的一个字符; 字符串常量是双引号引起的 0 个或若干个字符
 2. 含义上: 字符常量相当于一个整型值( ASCII 值),可以参加表达式运算; 字符串常量代表一个地址值(该字符串在内存中存放位置)
 3. 占内存大小 字符常量只占 2 个字节; 字符串常量占若干个字节 (**注意： char 在 Java 中占两个字节**),
-> 字符封装类 `Character` 有一个成员常量 `Character.SIZE` 值为16,单位是`bits`,该值除以8(`1byte=8bits`)后就可以得到2个字节
+   
+   > 字符封装类 `Character` 有一个成员常量 `Character.SIZE` 值为 16,单位是`bits`,该值除以 8(`1byte=8bits`)后就可以得到 2 个字节
 
 > java 编程思想第四版：2.2.2 节
 > ![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-15/86735519.jpg)
@@ -228,7 +227,7 @@ Java 中的注释有三种：
 
 在我们编写程序的时候，需要大量地为程序、类、变量、方法等取名字，于是就有了标识符，简单来说，标识符就是一个名字。但是有一些标识符，Java 语言已经赋予了其特殊的含义，只能用于特定的地方，这种特殊的标识符就是关键字。因此，关键字是被赋予特殊含义的标识符。比如，在我们的日常生活中 ，“警察局”这个名字已经被赋予了特殊的含义，所以如果你开一家店，店的名字不能叫“警察局”，“警察局”就是我们日常生活中的关键字。
 
-#### 1.2.4. Java中有哪些常见的关键字？
+#### 1.2.4. Java 中有哪些常见的关键字？
 
 | 访问控制             | private  | protected  | public   |              |            |           |        |
 | -------------------- | -------- | ---------- | -------- | ------------ | ---------- | --------- | ------ |
@@ -249,7 +248,7 @@ Java 中的注释有三种：
 
 ++和--运算符可以放在变量之前，也可以放在变量之后，当运算符放在变量之前时(前缀)，先自增/减，再赋值；当运算符放在变量之后时(后缀)，先赋值，再自增/减。例如，当 `b = ++a` 时，先自增（自己增加 1），再赋值（赋值给 b）；当 `b = a++` 时，先赋值(赋值给 b)，再自增（自己增加 1）。也就是，++a 输出的是 a+1 的值，a++输出的是 a 值。用一句口诀就是：“符号在前就先加/减，符号在后就后加/减”。
 
-#### 1.2.6. continue、break、和return的区别是什么？
+#### 1.2.6. continue、break、和 return 的区别是什么？
 
 在循环结构中，当循环条件不满足或者循环次数达到要求时，循环会正常结束。但是，有时候可能需要在循环的过程中，当发生了某种条件之后 ，提前终止循环，这就需要用到下面几个关键词：
 
@@ -261,11 +260,11 @@ return 用于跳出所在方法，结束该方法的运行。return 一般有两
 1. `return;` ：直接使用 return 结束方法执行，用于没有返回值函数的方法
 2. `return value;` ：return 一个特定值，用于有返回值函数的方法
 
-#### 1.2.7. Java泛型了解么？什么是类型擦除？介绍一下常用的通配符？
+#### 1.2.7. Java 泛型了解么？什么是类型擦除？介绍一下常用的通配符？
 
 Java 泛型（generics）是 JDK 5 中引入的一个新特性, 泛型提供了编译时类型安全检测机制，该机制允许程序员在编译时检测到非法的类型。泛型的本质是参数化类型，也就是说所操作的数据类型被指定为一个参数。
 
-**Java的泛型是伪泛型，这是因为Java在编译期间，所有的泛型信息都会被擦掉，这也就是通常所说类型擦除 。** 更多关于类型擦除的问题，可以查看这篇文章：[《Java泛型类型擦除以及类型擦除带来的问题》](https://www.cnblogs.com/wuqinglong/p/9456193.html) 。
+**Java 的泛型是伪泛型，这是因为 Java 在编译期间，所有的泛型信息都会被擦掉，这也就是通常所说类型擦除 。** 更多关于类型擦除的问题，可以查看这篇文章：[《Java 泛型类型擦除以及类型擦除带来的问题》](https://www.cnblogs.com/wuqinglong/p/9456193.html) 。
 
 ```java
 List<Integer> list = new ArrayList<>();
@@ -288,15 +287,15 @@ System.out.println(list)
 ```java
 //此处T可以随便写为任意标识，常见的如T、E、K、V等形式的参数常用于表示泛型
 //在实例化泛型类时，必须指定T的具体类型
-public class Generic<T>{ 
-   
+public class Generic<T>{
+
     private T key;
 
-    public Generic(T key) { 
+    public Generic(T key) {
         this.key = key;
     }
 
-    public T getKey(){ 
+    public T getKey(){
         return key;
     }
 }
@@ -342,8 +341,8 @@ class GeneratorImpl<T> implements Generator<String>{
 
 ```java
    public static < E > void printArray( E[] inputArray )
-   {         
-         for ( E element : inputArray ){        
+   {
+         for ( E element : inputArray ){
             System.out.printf( "%s ", element );
          }
          System.out.println();
@@ -356,24 +355,24 @@ class GeneratorImpl<T> implements Generator<String>{
 // 创建不同类型数组： Integer, Double 和 Character
 Integer[] intArray = { 1, 2, 3 };
 String[] stringArray = { "Hello", "World" };
-printArray( intArray  ); 
-printArray( stringArray  ); 
+printArray( intArray  );
+printArray( stringArray  );
 ```
 
 **常用的通配符为： T，E，K，V，？**
 
 - ？ 表示不确定的 java 类型
-- T (type) 表示具体的一个java类型
-- K V (key value) 分别代表java键值中的Key Value
-- E (element) 代表Element
+- T (type) 表示具体的一个 java 类型
+- K V (key value) 分别代表 java 键值中的 Key Value
+- E (element) 代表 Element
 
-更多关于Java 泛型中的通配符可以查看这篇文章：[《聊一聊-JAVA 泛型中的通配符 T，E，K，V，？》](https://juejin.im/post/5d5789d26fb9a06ad0056bd9)
+更多关于 Java 泛型中的通配符可以查看这篇文章：[《聊一聊-JAVA 泛型中的通配符 T，E，K，V，？》](https://juejin.im/post/5d5789d26fb9a06ad0056bd9)
 
-#### 1.2.8. ==和equals的区别
+#### 1.2.8. ==和 equals 的区别
 
 **`==`** : 它的作用是判断两个对象的地址是不是相等。即判断两个对象是不是同一个对象。(**基本数据类型==比较的是值，引用数据类型==比较的是内存地址**)
 
-> 因为 Java 只有值传递，所以，对于 ==  来说，不管是比较基本数据类型，还是引用数据类型的变量，其本质比较的都是值，只是引用类型变量存的值是对象的地址。
+> 因为 Java 只有值传递，所以，对于 == 来说，不管是比较基本数据类型，还是引用数据类型的变量，其本质比较的都是值，只是引用类型变量存的值是对象的地址。
 
 **`equals()`** : 它的作用也是判断两个对象是否相等，它不能用于比较基本数据类型的变量。`equals()`方法存在于`Object`类中，而`Object`类是所有类的直接或间接父类。
 
@@ -387,7 +386,7 @@ public boolean equals(Object obj) {
 
 `equals()` 方法存在两种使用情况：
 
-- 情况 1：类没有覆盖 `equals()`方法。则通过` equals()`比较该类的两个对象时，等价于通过“==”比较这两个对象。使用的默认是 `Object`类`equals()`方法。
+- 情况 1：类没有覆盖 `equals()`方法。则通过`equals()`比较该类的两个对象时，等价于通过“==”比较这两个对象。使用的默认是 `Object`类`equals()`方法。
 - 情况 2：类覆盖了 `equals()`方法。一般，我们都覆盖 `equals()`方法来两个对象的内容相等；若它们的内容相等，则返回 true(即，认为这两个对象相等)。
 
 **举个例子：**
@@ -445,11 +444,11 @@ public boolean equals(Object anObject) {
 
 #### 1.2.9. hashCode()与 equals()
 
-面试官可能会问你：“你重写过 `hashcode` 和 `equals `么，为什么重写 `equals` 时必须重写 `hashCode` 方法？”
+面试官可能会问你：“你重写过 `hashcode` 和 `equals`么，为什么重写 `equals` 时必须重写 `hashCode` 方法？”
 
 **1)hashCode()介绍:**
 
-`hashCode()` 的作用是获取哈希码，也称为散列码；它实际上是返回一个 int 整数。这个哈希码的作用是确定该对象在哈希表中的索引位置。`hashCode() `定义在 JDK 的 `Object` 类中，这就意味着 Java 中的任何类都包含有 `hashCode()` 函数。另外需要注意的是： `Object` 的 hashcode 方法是本地方法，也就是用 c 语言或 c++ 实现的，该方法通常用来将对象的 内存地址 转换为整数之后返回。
+`hashCode()` 的作用是获取哈希码，也称为散列码；它实际上是返回一个 int 整数。这个哈希码的作用是确定该对象在哈希表中的索引位置。`hashCode()`定义在 JDK 的 `Object` 类中，这就意味着 Java 中的任何类都包含有 `hashCode()` 函数。另外需要注意的是： `Object` 的 hashcode 方法是本地方法，也就是用 c 语言或 c++ 实现的，该方法通常用来将对象的 内存地址 转换为整数之后返回。
 
 ```java
 public native int hashCode();
@@ -467,7 +466,7 @@ public native int hashCode();
 
 如果两个对象相等，则 hashcode 一定也是相同的。两个对象相等,对两个对象分别调用 equals 方法都返回 true。但是，两个对象有相同的 hashcode 值，它们也不一定是相等的 。**因此，equals 方法被覆盖过，则 `hashCode` 方法也必须被覆盖。**
 
->  `hashCode()`的默认行为是对堆上的对象产生独特值。如果没有重写 `hashCode()`，则该 class 的两个对象无论如何都不会相等（即使这两个对象指向相同的数据）
+> `hashCode()`的默认行为是对堆上的对象产生独特值。如果没有重写 `hashCode()`，则该 class 的两个对象无论如何都不会相等（即使这两个对象指向相同的数据）
 
 **4)为什么两个对象有相同的 hashcode 值，它们也不一定是相等的？**
 
@@ -477,20 +476,17 @@ public native int hashCode();
 
 我们刚刚也提到了 `HashSet`,如果 `HashSet` 在对比的时候，同样的 hashcode 有多个对象，它会使用 `equals()` 来判断是否真的相同。也就是说 `hashcode` 只是用来缩小查找成本。
 
-
-
-
 更多关于 `hashcode()` 和 `equals()` 的内容可以查看：[Java hashCode() 和 equals()的若干问题解答](https://www.cnblogs.com/skywang12345/p/3324958.html)
 
 ### 1.3. 基本数据类型
 
-#### 1.3.1. Java中的几种基本数据类型是什么？对应的包装类型是什么？各自占用多少字节呢？
+#### 1.3.1. Java 中的几种基本数据类型是什么？对应的包装类型是什么？各自占用多少字节呢？
 
-Java**中**有8种基本数据类型，分别为：
+Java**中**有 8 种基本数据类型，分别为：
 
-1. 6种数字类型 ：byte、short、int、long、float、double
-2. 1种字符类型：char
-3. 1种布尔型：boolean。 
+1. 6 种数字类型 ：byte、short、int、long、float、double
+2. 1 种字符类型：char
+3. 1 种布尔型：boolean。
 
 这八种基本类型都有对应的包装类分别为：Byte、Short、Integer、Long、Float、Double、Character、Boolean
 
@@ -505,7 +501,7 @@ Java**中**有8种基本数据类型，分别为：
 | double   | 64   | 8    | 0d      |
 | boolean  | 1    |      | false   |
 
-对于boolean，官方文档未明确定义，它依赖于 JVM 厂商的具体实现。逻辑上理解是占用 1位，但是实际中会考虑计算机高效存储因素。
+对于 boolean，官方文档未明确定义，它依赖于 JVM 厂商的具体实现。逻辑上理解是占用 1 位，但是实际中会考虑计算机高效存储因素。
 
 注意：
 
@@ -519,9 +515,9 @@ Java**中**有8种基本数据类型，分别为：
 
 更多内容见：[深入剖析 Java 中的装箱和拆箱](https://www.cnblogs.com/dolphin0520/p/3780005.html)
 
-#### 1.3.3. 8种基本类型的包装类和常量池
+#### 1.3.3. 8 种基本类型的包装类和常量池
 
-**Java 基本类型的包装类的大部分都实现了常量池技术，即 Byte,Short,Integer,Long,Character,Boolean；前面 4 种包装类默认创建了数值[-128，127] 的相应类型的缓存数据，Character创建了数值在[0,127]范围的缓存数据，Boolean 直接返回True Or False。如果超出对应范围仍然会去创建新的对象。** 为啥把缓存设置为[-128，127]区间？（[参见issue/461](https://github.com/Snailclimb/JavaGuide/issues/461)）性能和资源之间的权衡。
+**Java 基本类型的包装类的大部分都实现了常量池技术，即 Byte,Short,Integer,Long,Character,Boolean；前面 4 种包装类默认创建了数值[-128，127] 的相应类型的缓存数据，Character 创建了数值在[0,127]范围的缓存数据，Boolean 直接返回 True Or False。如果超出对应范围仍然会去创建新的对象。** 为啥把缓存设置为[-128，127]区间？（[参见 issue/461](https://github.com/Snailclimb/JavaGuide/issues/461)）性能和资源之间的权衡。
 
 ```java
 public static Boolean valueOf(boolean b) {
@@ -530,18 +526,18 @@ public static Boolean valueOf(boolean b) {
 ```
 
 ```java
-private static class CharacterCache {         
+private static class CharacterCache {
     private CharacterCache(){}
-          
-    static final Character cache[] = new Character[127 + 1];          
-    static {             
-        for (int i = 0; i < cache.length; i++)                 
-            cache[i] = new Character((char)i);         
-    }   
+
+    static final Character cache[] = new Character[127 + 1];
+    static {
+        for (int i = 0; i < cache.length; i++)
+            cache[i] = new Character((char)i);
+    }
 }
 ```
 
-两种浮点数类型的包装类 Float,Double 并没有实现常量池技术。**
+两种浮点数类型的包装类 Float,Double 并没有实现常量池技术。\*\*
 
 ```java
 		Integer i1 = 33;
@@ -555,7 +551,7 @@ private static class CharacterCache {
 		System.out.println(i3 == i4);// 输出 false
 ```
 
-**Integer 缓存源代码：** 
+**Integer 缓存源代码：**
 
 ```java
 /**
@@ -570,14 +566,16 @@ private static class CharacterCache {
 ```
 
 **应用场景：**
+
 1. Integer i1=40；Java 在编译的时候会直接将代码封装成 Integer i1=Integer.valueOf(40);，从而使用常量池中的对象。
-2.  Integer i1 = new Integer(40);这种情况下会创建新的对象。
+2. Integer i1 = new Integer(40);这种情况下会创建新的对象。
 
 ```java
   Integer i1 = 40;
   Integer i2 = new Integer(40);
   System.out.println(i1 == i2);//输出 false
 ```
+
 **Integer 比较更丰富的一个例子:**
 
 ```java
@@ -587,13 +585,13 @@ private static class CharacterCache {
   Integer i4 = new Integer(40);
   Integer i5 = new Integer(40);
   Integer i6 = new Integer(0);
-  
+
   System.out.println("i1=i2   " + (i1 == i2));
   System.out.println("i1=i2+i3   " + (i1 == i2 + i3));
   System.out.println("i1=i4   " + (i1 == i4));
   System.out.println("i4=i5   " + (i4 == i5));
-  System.out.println("i4=i5+i6   " + (i4 == i5 + i6));   
-  System.out.println("40=i5+i6   " + (40 == i5 + i6));     
+  System.out.println("i4=i5+i6   " + (i4 == i5 + i6));
+  System.out.println("40=i5+i6   " + (40 == i5 + i6));
 ```
 
 结果：
@@ -786,15 +784,14 @@ Java 程序设计语言对对象采用的不是引用调用，实际上，对象
 
 暖心的 Guide 哥最后再来个图表总结一下！
 
-| 区别点     | 重载方法 | 重写方法                                                     |
-| :--------- | :------- | :----------------------------------------------------------- |
-| 发生范围   | 同一个类 | 子类                                                         |
-| 参数列表   | 必须修改 | 一定不能修改                                                 |
-| 返回类型   | 可修改   | 子类方法返回值类型应比父类方法返回值类型更小或相等           |
+| 区别点     | 重载方法 | 重写方法                                                         |
+| :--------- | :------- | :--------------------------------------------------------------- |
+| 发生范围   | 同一个类 | 子类                                                             |
+| 参数列表   | 必须修改 | 一定不能修改                                                     |
+| 返回类型   | 可修改   | 子类方法返回值类型应比父类方法返回值类型更小或相等               |
 | 异常       | 可修改   | 子类方法声明抛出的异常类应比父类方法声明抛出的异常类更小或相等； |
-| 访问修饰符 | 可修改   | 一定不能做更严格的限制（可以降低限制）                       |
-| 发生阶段   | 编译期   | 运行期                                                       |
-
+| 访问修饰符 | 可修改   | 一定不能做更严格的限制（可以降低限制）                           |
+| 发生阶段   | 编译期   | 运行期                                                           |
 
 **方法的重写要遵循“两同两小一大”**（以下内容摘录自《疯狂 Java 讲义》,[issue#892](https://github.com/Snailclimb/JavaGuide/issues/892) ）：
 
@@ -985,7 +982,7 @@ public class Student {
 
 #### 2.5.1. String StringBuffer 和 StringBuilder 的区别是什么? String 为什么是不可变的?
 
-简单的来说：`String` 类中使用 final 关键字修饰字符数组来保存字符串，`private final char value[]`，所以` String` 对象是不可变的。
+简单的来说：`String` 类中使用 final 关键字修饰字符数组来保存字符串，`private final char value[]`，所以`String` 对象是不可变的。
 
 > 补充（来自[issue 675](https://github.com/Snailclimb/JavaGuide/issues/675)）：在 Java 9 之后，String 类的实现改用 byte 数组存储字符串 `private final byte[] value`;
 
@@ -1091,7 +1088,6 @@ public class test1 {
 - String 中的 equals 方法是被重写过的，因为 object 的 equals 方法是比较的对象的内存地址，而 String 的 equals 方法比较的是对象的值。
 - 当创建 String 类型的对象时，虚拟机会在常量池中查找有没有已经存在的值和要创建的值相同的对象，如果有就把它赋给当前引用。如果没有就在常量池中重新创建一个 String 对象。
 
-
 #### 2.5.4. hashCode 与 equals (重要)
 
 面试官可能会问你：“你重写过 hashcode 和 equals 么，为什么重写 equals 时必须重写 hashCode 方法？”
@@ -1176,23 +1172,32 @@ JAVA 反射机制是在运行状态中，对于任意一个类，都能够知道
 
 ![](images/Java异常类层次结构图.png)
 
-
 <p style="font-size:13px;text-align:right">图片来自：https://simplesnippets.tech/exception-handling-in-java-part-1/</p>
 
 ![](images/Java异常类层次结构图2.png)
 
-
 <p style="font-size:13px;text-align:right">图片来自：https://chercher.tech/java-programming/exceptions-java</p>
 
-在 Java 中，所有的异常都有一个共同的祖先 java.lang 包中的 **Throwable 类**。Throwable： 有两个重要的子类：**Exception（异常）** 和 **Error（错误）** ，二者都是 Java 异常处理的重要子类，各自都包含大量子类。
+在 Java 中，所有的异常都有一个共同的祖先 `java.lang` 包中的 `Throwable` 类。`Throwable` 类有两个重要的子类 `Exception`（异常）和 `Error`（错误）。`Exception` 能被程序本身处理(`try-catch`)， `Error` 是无法处理的(只能尽量避免)。
 
-**Error（错误）:是程序无法处理的错误**，表示运行应用程序中较严重问题。大多数错误与代码编写者执行的操作无关，而表示代码运行时 JVM（Java 虚拟机）出现的问题。例如，Java 虚拟机运行错误（Virtual MachineError），当 JVM 不再有继续执行操作所需的内存资源时，将出现 OutOfMemoryError。这些异常发生时，Java 虚拟机（JVM）一般会选择线程终止。
+`Exception` 和 `Error` 二者都是 Java 异常处理的重要子类，各自都包含大量子类。
 
-这些错误表示故障发生于虚拟机自身、或者发生在虚拟机试图执行应用时，如 Java 虚拟机运行错误（Virtual MachineError）、类定义错误（NoClassDefFoundError）等。这些错误是不可查的，因为它们在应用程序的控制和处理能力之 外，而且绝大多数是程序运行时不允许出现的状况。对于设计合理的应用程序来说，即使确实发生了错误，本质上也不应该试图去处理它所引起的异常状况。在 Java 中，错误通过 Error 的子类描述。
+- **`Exception`** :程序本身可以处理的异常，可以通过 `catch` 来进行捕获。`Exception` 又可以分为 受检查异常(必须处理) 和 不受检查异常(可以不处理)。
+- **`Error`** ：`Error` 属于程序无法处理的错误 ，我们没办法通过 `catch` 来进行捕获 。例如，Java 虚拟机运行错误（`Virtual MachineError`）、虚拟机内存不够错误(`OutOfMemoryError`)、类定义错误（`NoClassDefFoundError`）等 。这些异常发生时，Java 虚拟机（JVM）一般会选择线程终止。
 
-**Exception（异常）:是程序本身可以处理的异常**。</font>Exception 类有一个重要的子类 **RuntimeException**。RuntimeException 异常由 Java 虚拟机抛出。**NullPointerException**（要访问的变量没有引用任何对象时，抛出该异常）、**ArithmeticException**（算术运算异常，一个整数除以 0 时，抛出该异常）和 **ArrayIndexOutOfBoundsException** （下标越界异常）。
+**受检查异常**
 
-**注意：异常和错误的区别：异常能被程序本身处理，错误是无法处理。**
+Java 代码在编译过程中，如果受检查异常没有被 `catch`/`throw` 处理的话，就没办法通过编译 。比如下面这段 IO 操作的代码。
+
+![check-exception](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-12/check-exception.png)
+
+除了`RuntimeException`及其子类以外，其他的`Exception`类及其子类都属于检查异常 。常见的受检查异常有： IO 相关的异常、`ClassNotFoundException` 、`SQLException`...。
+
+**不受检查异常**
+
+Java 代码在编译过程中 ，我们即使不处理不受检查异常也可以正常通过编译。
+
+`RuntimeException` 及其子类都统称为非受检查异常，例如：`NullPointExecrption`、`NumberFormatException`（字符串转换为数字）、`ArrayIndexOutOfBoundsException`（数组越界）、`ClassCastException`（类型转换错误）、`ArithmeticException`（算术错误）等。
 
 #### 3.2.2. Throwable 类常用方法
 
@@ -1203,14 +1208,14 @@ JAVA 反射机制是在运行状态中，对于任意一个类，都能够知道
 
 #### 3.2.3. try-catch-finally
 
-- **try 块：** 用于捕获异常。其后可接零个或多个 catch 块，如果没有 catch 块，则必须跟一个 finally 块。
-- **catch 块：** 用于处理 try 捕获到的异常。
-- **finally 块：** 无论是否捕获或处理异常，finally 块里的语句都会被执行。当在 try 块或 catch 块中遇到 return 语句时，finally 语句块将在方法返回之前被执行。
+- **`try`块：** 用于捕获异常。其后可接零个或多个 `catch` 块，如果没有 `catch` 块，则必须跟一个 `finally` 块。
+- **`catch`块：** 用于处理 try 捕获到的异常。
+- **`finally` 块：** 无论是否捕获或处理异常，`finally` 块里的语句都会被执行。当在 `try` 块或 `catch` 块中遇到 `return` 语句时，`finally` 语句块将在方法返回之前被执行。
 
-**在以下 4 种特殊情况下，finally 块不会被执行：**
+**在以下 4 种特殊情况下，`finally` 块不会被执行：**
 
-1. 在 finally 语句块第一行发生了异常。 因为在其他行，finally 块还是会得到执行
-2. 在前面的代码中用了 System.exit(int)已退出程序。 exit 是带参函数 ；若该语句在异常语句之后，finally 会执行
+1. 在 `finally` 语句块第一行发生了异常。 因为在其他行，`finally` 块还是会得到执行
+2. 在前面的代码中用了 `System.exit(int)`已退出程序。 exit 是带参函数 ；若该语句在异常语句之后，finally 会执行
 3. 程序所在的线程死亡。
 4. 关闭 CPU。
 
@@ -1237,7 +1242,7 @@ public class Test {
 #### 3.2.4. 使用 `try-with-resources` 来代替`try-catch-finally`
 
 1. **适用范围（资源的定义）：** 任何实现 `java.lang.AutoCloseable`或者``java.io.Closeable` 的对象
-2. **关闭资源和final的执行顺序：** 在 `try-with-resources` 语句中，任何 catch 或 finally 块在声明的资源关闭后运行
+2. **关闭资源和 final 的执行顺序：** 在 `try-with-resources` 语句中，任何 catch 或 finally 块在声明的资源关闭后运行
 
 《Effecitve Java》中明确指出：
 
@@ -1262,7 +1267,7 @@ Java 中类似于`InputStream`、`OutputStream` 、`Scanner` 、`PrintWriter`等
         }
 ```
 
-使用Java 7之后的 `try-with-resources` 语句改造上面的代码:
+使用 Java 7 之后的 `try-with-resources` 语句改造上面的代码:
 
 ```java
 try (Scanner scanner = new Scanner(new File("test.txt"))) {
@@ -1274,7 +1279,7 @@ try (Scanner scanner = new Scanner(new File("test.txt"))) {
 }
 ```
 
-当然多个资源需要关闭的时候，使用 `try-with-resources`  实现起来也非常简单，如果你还是用`try-catch-finally`可能会带来很多问题。
+当然多个资源需要关闭的时候，使用 `try-with-resources` 实现起来也非常简单，如果你还是用`try-catch-finally`可能会带来很多问题。
 
 通过使用分号分隔，可以在`try-with-resources`块中声明多个资源。
 
