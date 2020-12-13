@@ -341,7 +341,7 @@ pool-1-thread-2 End. Time = Sun Apr 12 11:14:47 CST 2020
 
 现在，我们就分析上面的输出内容来简单分析一下线程池原理。
 
-**为了搞懂线程池的原理，我们需要首先分析一下 `execute`方法。**在 4.1 节中的 Demo 中我们使用 `executor.execute(worker)`来提交一个任务到线程池中去，这个方法非常重要，下面我们来看看它的源码：
+**为了搞懂线程池的原理，我们需要首先分析一下 `execute`方法。** 在 4.1 节中的 Demo 中我们使用 `executor.execute(worker)`来提交一个任务到线程池中去，这个方法非常重要，下面我们来看看它的源码：
 
 ```java
    // 存放线程池的运行状态 (runState) 和线程池内有效线程的数量 (workerCount)
