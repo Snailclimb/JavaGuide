@@ -35,7 +35,7 @@
 public class ThreadLocalTest {
     private List<String> messages = Lists.newArrayList();
 
-    public static final `ThreadLocal`<ThreadLocalTest> holder = `ThreadLocal`.withInitial(ThreadLocalTest::new);
+    public static final ThreadLocal<ThreadLocalTest> holder = ThreadLocal.withInitial(ThreadLocalTest::new);
 
     public static void add(String message) {
         holder.get().messages.add(message);
@@ -70,8 +70,7 @@ size: 0
 
 ![](./images/thread-local/2.png)
 
-
-`Thread`类有一个类型为``ThreadLocal`.`ThreadLocalMap``的实例变量`threadLocals`，也就是说每个线程有一个自己的`ThreadLocalMap`。
+`Thread`类有一个类型为`ThreadLocal.ThreadLocalMap`的实例变量`threadLocals`，也就是说每个线程有一个自己的`ThreadLocalMap`。
 
 `ThreadLocalMap`有自己的独立实现，可以简单地将它的`key`视作`ThreadLocal`，`value`为代码中放入的值（实际上`key`并不是`ThreadLocal`本身，而是它的一个**弱引用**）。
 
@@ -79,11 +78,11 @@ size: 0
 
 `ThreadLocalMap`有点类似`HashMap`的结构，只是`HashMap`是由**数组+链表**实现的，而`ThreadLocalMap`中并没有**链表**结构。
 
-我们还要注意`Entry`， 它的`key`是``ThreadLocal`<?> k` ，继承自`WeakReference， 也就是我们常说的弱引用类型。
+我们还要注意`Entry`， 它的`key`是`ThreadLocal<?> k` ，继承自`WeakReference`， 也就是我们常说的弱引用类型。
 
 ###  GC 之后key是否为null？
 
-回应开头的那个问题， `ThreadLocal` 的`key`是弱引用，那么在` `ThreadLocal`.get()`的时候,发生`GC`之后，`key`是否是`null`？
+回应开头的那个问题， `ThreadLocal` 的`key`是弱引用，那么在`ThreadLocal.get()`的时候,发生`GC`之后，`key`是否是`null`？
 
 为了搞清楚这个问题，我们需要搞清楚`Java`的**四种引用类型**：
 
@@ -110,7 +109,7 @@ public class ThreadLocalDemo {
 
     private static void test(String s,boolean isGC)  {
         try {
-            new `ThreadLocal`<>().set(s);
+            new ThreadLocal<>().set(s);
             if (isGC) {
                 System.gc();
             }
@@ -118,11 +117,11 @@ public class ThreadLocalDemo {
             Class<? extends Thread> clz = t.getClass();
             Field field = clz.getDeclaredField("threadLocals");
             field.setAccessible(true);
-            Object `ThreadLocalMap` = field.get(t);
-            Class<?> tlmClass = `ThreadLocalMap`.getClass();
+            Object ThreadLocalMap = field.get(t);
+            Class<?> tlmClass = ThreadLocalMap.getClass();
             Field tableField = tlmClass.getDeclaredField("table");
             tableField.setAccessible(true);
-            Object[] arr = (Object[]) tableField.get(`ThreadLocalMap`);
+            Object[] arr = (Object[]) tableField.get(ThreadLocalMap);
             for (Object o : arr) {
                 if (o != null) {
                     Class<?> entryClass = o.getClass();
@@ -142,8 +141,8 @@ public class ThreadLocalDemo {
 
 结果如下：
 ```java
-弱引用key:java.lang.`ThreadLocal`@433619b6,值:abc
-弱引用key:java.lang.`ThreadLocal`@418a15e3,值:java.lang.ref.SoftReference@bf97a12
+弱引用key:java.lang.ThreadLocal@433619b6,值:abc
+弱引用key:java.lang.ThreadLocal@418a15e3,值:java.lang.ref.SoftReference@bf97a12
 --gc后--
 弱引用key:null,值:def
 ```
@@ -162,7 +161,7 @@ new ThreadLocal<>().set(s);
 
 这个问题刚开始看，如果没有过多思考，**弱引用**，还有**垃圾回收**，那么肯定会觉得是`null`。
 
-其实是不对的，因为题目说的是在做 ``ThreadLocal`.get()` 操作，证明其实还是有**强引用**存在的，所以 `key` 并不为 `null`，如下图所示，`ThreadLocal`的**强引用**仍然是存在的。
+其实是不对的，因为题目说的是在做 `ThreadLocal.get()` 操作，证明其实还是有**强引用**存在的，所以 `key` 并不为 `null`，如下图所示，`ThreadLocal`的**强引用**仍然是存在的。
 
 ![image.png](./images/thread-local/5.png)
 
@@ -217,8 +216,8 @@ public class ThreadLocal<T> {
         return nextHashCode.getAndAdd(HASH_INCREMENT);
     }
     
-    static class `ThreadLocalMap` {
-        `ThreadLocalMap`(`ThreadLocal`<?> firstKey, Object firstValue) {
+    static class ThreadLocalMap {
+        ThreadLocalMap(ThreadLocal<?> firstKey, Object firstValue) {
             table = new Entry[INITIAL_CAPACITY];
             int i = firstKey.threadLocalHashCode & (INITIAL_CAPACITY - 1);
 
@@ -230,7 +229,7 @@ public class ThreadLocal<T> {
 }
 ```
 
-每当创建一个`ThreadLocal`对象，这个``ThreadLocal`.nextHashCode` 这个值就会增长 `0x61c88647` 。
+每当创建一个`ThreadLocal`对象，这个`ThreadLocal.nextHashCode` 这个值就会增长 `0x61c88647` 。
 
 这个值很特殊，它是**斐波那契数**  也叫 **黄金分割数**。`hash`增量为 这个数字，带来的好处就是 `hash` **分布非常均匀**。
 
@@ -244,7 +243,7 @@ public class ThreadLocal<T> {
 
 > **注明：** 下面所有示例图中，**绿色块**`Entry`代表**正常数据**，**灰色块**代表`Entry`的`key`值为`null`，**已被垃圾回收**。**白色块**表示`Entry`为`null`。
 
-虽然`ThreadLocalMap`中使用了**黄金分隔数来**作为`hash`计算因子，大大减少了`Hash`冲突的概率，但是仍然会存在冲突。
+虽然`ThreadLocalMap`中使用了**黄金分割数来**作为`hash`计算因子，大大减少了`Hash`冲突的概率，但是仍然会存在冲突。
 
 `HashMap`中解决冲突的方法是在数组上构造一个**链表**结构，冲突的数据挂载到链表上，如果链表长度超过一定数量则会转化成**红黑树**。
 
@@ -403,7 +402,7 @@ private static int prevIndex(int i, int len) {
 `java.lang.ThreadLocal.ThreadLocalMap.replaceStaleEntry()`:
 
 ```java
-private void replaceStaleEntry(`ThreadLocal`<?> key, Object value,
+private void replaceStaleEntry(ThreadLocal<?> key, Object value,
                                        int staleSlot) {
     Entry[] tab = table;
     int len = tab.length;
@@ -687,7 +686,7 @@ private void resize() {
 
 ![](./images/thread-local/27.png)
 
-我们以`get(ThreadLocal1)`为例，通过`hash`计算后，正确的`slot`位置应该是4，而`index=4`的槽位已经有了数据，且`key`值不等于``ThreadLocal`1`，所以需要继续往后迭代查找。
+我们以`get(ThreadLocal1)`为例，通过`hash`计算后，正确的`slot`位置应该是4，而`index=4`的槽位已经有了数据，且`key`值不等于`ThreadLocal1`，所以需要继续往后迭代查找。
 
 迭代到`index=5`的数据时，此时`Entry.key=null`，触发一次探测式数据回收操作，执行`expungeStaleEntry()`方法，执行完后，`index 5,8`的数据都会被回收，而`index 6,7`的数据都会前移，此时继续往后迭代，到`index = 6`的时候即找到了`key`值相等的`Entry`数据，如下图所示：
 
@@ -698,7 +697,7 @@ private void resize() {
 `java.lang.ThreadLocal.ThreadLocalMap.getEntry()`:
 
 ```java
-private Entry getEntry(`ThreadLocal`<?> key) {
+private Entry getEntry(ThreadLocal<?> key) {
     int i = key.threadLocalHashCode & (table.length - 1);
     Entry e = table[i];
     if (e != null && e.get() == key)
@@ -707,7 +706,7 @@ private Entry getEntry(`ThreadLocal`<?> key) {
         return getEntryAfterMiss(key, i, e);
 }
 
-private Entry getEntryAfterMiss(`ThreadLocal`<?> key, int i, Entry e) {
+private Entry getEntryAfterMiss(ThreadLocal<?> key, int i, Entry e) {
     Entry[] tab = table;
     int len = tab.length;
 
