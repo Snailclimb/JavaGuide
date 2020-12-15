@@ -537,7 +537,7 @@ private static class CharacterCache {
 }
 ```
 
-两种浮点数类型的包装类 Float,Double 并没有实现常量池技术。\*\*
+**两种浮点数类型的包装类 Float,Double 并没有实现常量池技术。**
 
 ```java
 		Integer i1 = 33;
