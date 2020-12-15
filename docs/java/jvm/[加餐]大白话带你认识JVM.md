@@ -101,7 +101,7 @@ GC将无用对象从内存中卸载
 加载一个Class类的顺序也是有优先级的，类加载器从最底层开始往上的顺序是这样的
 
 1.  BootStrap ClassLoader：rt.jar
-2.  Extention ClassLoader: 加载扩展的jar包
+2.  Extension ClassLoader: 加载扩展的jar包
 3.  App ClassLoader：指定的classpath下面的jar包
 4.  Custom ClassLoader：自定义的类加载器
 
