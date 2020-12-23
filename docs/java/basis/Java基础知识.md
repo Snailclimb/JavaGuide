@@ -1212,10 +1212,9 @@ Java 代码在编译过程中 ，我们即使不处理不受检查异常也可�
 - **`catch`块：** 用于处理 try 捕获到的异常。
 - **`finally` 块：** 无论是否捕获或处理异常，`finally` 块里的语句都会被执行。当在 `try` 块或 `catch` 块中遇到 `return` 语句时，`finally` 语句块将在方法返回之前被执行。
 
-**在以下 4 种特殊情况下，`finally` 块不会被执行：**
+**在以下 3 种特殊情况下，`finally` 块不会被执行：**
 
-1. 在 `finally` 语句块第一行发生了异常。 因为在其他行，`finally` 块还是会得到执行
-2. 在前面的代码中用了 `System.exit(int)`已退出程序。 exit 是带参函数 ；若该语句在异常语句之后，finally 会执行
+2. 在 `try` 或 `finally `块中用了 `System.exit(int)`退出程序。但是，如果 `System.exit(int)` 在异常语句之后，`finally` 还是会被执行
 3. 程序所在的线程死亡。
 4. 关闭 CPU。
 
