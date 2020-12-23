@@ -1,4 +1,4 @@
-👍推荐 [送你一个 0.73折购买阿里云服务器的机会](https://www.aliyun.com/minisite/goods?taskCode=pintuan20201212&recordId=311803&userCode=hf47liqn)  。1核2G 84元即可薅1年，力度很大，推荐3年（不建议非人新购买，非人新可以注关一下其他云厂商活动或者用朋友/人亲的身份证购买）
+👍推荐 [送你一个 0.73折购买阿里云服务器的机会](https://www.aliyun.com/minisite/goods?taskCode=pintuan20201212&recordId=311803&userCode=hf47liqn)  。  1核2G 84元即可薅1年，力度很大，推荐3年（不建议非人新购买，非人新可以注关一下其他云厂商活动或者用朋友/人亲的身份证购买）
 
 👍推荐 [在线阅读](https://snailclimb.gitee.io/javaguide)  (Github 访问速度比较慢可能会导致部分图片无法刷新出来) 
 
