@@ -799,6 +799,36 @@ Java 程序设计语言对对象采用的不是引用调用，实际上，对象
 - “两小”指的是子类方法返回值类型应比父类方法返回值类型更小或相等，子类方法声明抛出的异常类应比父类方法声明抛出的异常类更小或相等；
 - “一大”指的是子类方法的访问权限应比父类方法的访问权限更大或相等。
 
+⭐️ 关于 **重写的返回值类**型 这里需要额外多说明一下，上面的表述不太清晰准确：如果方法的返回类型是void和基本数据类型，则返回值重写时不可修改。但是如果方法的返回值是引用类型，重写时是可以返回该引用类型的子类的。
+
+```java
+public class Hero {
+    public String name() {
+        return "超级英雄";
+    }
+}
+public class SuperMan extends Hero{
+    @Override
+    public String name() {
+        return "超人";
+    }
+    public Hero hero() {
+        return new Hero();
+    }
+}
+
+public class SuperSuperMan extends SuperMan {
+    public String name() {
+        return "超级超级英雄";
+    }
+
+    @Override
+    public SuperMan hero() {
+        return new SuperMan();
+    }
+}
+```
+
 #### 1.4.4. 深拷贝 vs 浅拷贝
 
 1. **浅拷贝**：对基本数据类型进行值传递，对引用数据类型进行引用传递般的拷贝，此为浅拷贝。
