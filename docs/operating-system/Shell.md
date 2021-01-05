@@ -78,7 +78,7 @@ echo  "helloworld!"
 shell中 # 符号表示注释。**shell 的第一行比较特殊，一般都会以#!开始来指定使用的 shell 类型。在linux中，除了bash shell以外，还有很多版本的shell， 例如zsh、dash等等...不过bash shell还是我们使用最多的。**
 
 
-(4) 运行脚本:`./helloworld.sh` 。（注意，一定要写成 `./helloworld.sh` ，而不是 `helloworld.sh` ，运行其它二进制的程序也一样，直接写 `helloworld.sh` ，linux 系统会去 PATH 里寻找有没有叫 test.sh 的，而只有 /bin, /sbin, /usr/bin，/usr/sbin 等在 PATH 里，你的当前目录通常不在 PATH 里，所以写成 `helloworld.sh` 是会找不到命令的，要用`./helloworld.sh` 告诉系统说，就在当前目录找。）
+(4) 运行脚本:`./helloworld.sh` 。（注意，一定要写成 `./helloworld.sh` ，而不是 `helloworld.sh` ，运行其它二进制的程序也一样，直接写 `helloworld.sh` ，linux 系统会去 PATH 里寻找有没有叫 helloworld.sh 的，而只有 /bin, /sbin, /usr/bin，/usr/sbin 等在 PATH 里，你的当前目录通常不在 PATH 里，所以写成 `helloworld.sh` 是会找不到命令的，要用`./helloworld.sh` 告诉系统说，就在当前目录找。）
 
 ![shell 编程Hello World](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-16/55296212.jpg)
 
@@ -260,9 +260,9 @@ echo $length #输出：5
 echo $length2 #输出：5
 # 输出数组第三个元素
 echo ${array[2]} #输出：3
-unset array[1]# 删除下表为1的元素也就是删除第二个元素
+unset array[1]# 删除下标为1的元素也就是删除第二个元素
 for i in ${array[@]};do echo $i ;done # 遍历数组，输出： 1 3 4 5 
-unset arr_number; # 删除数组中的所有元素
+unset array; # 删除数组中的所有元素
 for i in ${array[@]};do echo $i ;done # 遍历数组，数组元素为空，没有任何输出内容
 ```
 
@@ -283,14 +283,14 @@ for i in ${array[@]};do echo $i ;done # 遍历数组，数组元素为空，没�
 
 ![算数运算符](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-22/4937342.jpg)
 
-我以加法运算符做一个简单的示例：
+我以加法运算符做一个简单的示例（注意：不是单引号，是反引号）：
 
 ```shell
 #!/bin/bash
 a=3;b=3;
 val=`expr $a + $b`
 #输出：Total value : 6
-echo "Total value : $val
+echo "Total value : $val"
 ```
 
 
@@ -467,7 +467,7 @@ done
 是的！变形金刚 是一个好电影
 ```
 
-**无线循环：**
+**无限循环：**
 
 ```shell
 while true

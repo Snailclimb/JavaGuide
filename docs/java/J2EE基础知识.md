@@ -59,7 +59,7 @@ Servlet接口定义了5个方法，其中**前三个方法与Servlet生命周期
 
 - `void init(ServletConfig config) throws ServletException`
 - `void service(ServletRequest req, ServletResponse resp) throws ServletException, java.io.IOException`
-- `void destory()`
+- `void destroy()`
 - `java.lang.String getServletInfo()`
 - `ServletConfig getServletConfig()`
 
@@ -69,21 +69,11 @@ Servlet接口定义了5个方法，其中**前三个方法与Servlet生命周期
 
 ## get和post请求的区别
 
-> 网上也有文章说：get和post请求实际上是没有区别，大家可以自行查询相关文章（参考文章：[https://www.cnblogs.com/logsharing/p/8448446.html](https://www.cnblogs.com/logsharing/p/8448446.html)，知乎对应的问题链接：[get和post区别？](https://www.zhihu.com/question/28586791)）！我下面给出的只是一种常见的答案。
+get和post请求实际上是没有区别，大家可以自行查询相关文章（参考文章：[https://www.cnblogs.com/logsharing/p/8448446.html](https://www.cnblogs.com/logsharing/p/8448446.html)，知乎对应的问题链接：[get和post区别？](https://www.zhihu.com/question/28586791)）！
 
-①get请求用来从服务器上获得资源，而post是用来向服务器提交数据；
+可以把 get 和 post 当作两个不同的行为，两者并没有什么本质区别，底层都是 TCP 连接。 get请求用来从服务器上获得资源，而post是用来向服务器提交数据。比如你要获取人员列表可以用 get 请求，你需要创建一个人员可以用 post 。这也是 Restful  API 最基本的一个要求。
 
-②get将表单中数据按照name=value的形式，添加到action 所指向的URL 后面，并且两者使用"?"连接，而各个变量之间使用"&"连接；post是将表单中的数据放在HTTP协议的请求头或消息体中，传递到action所指向URL；
-
-③get传输的数据要受到URL长度限制（最大长度是 2048 个字符）；而post可以传输大量的数据，上传文件通常要使用post方式；
-
-④使用get时参数会显示在地址栏上，如果这些数据不是敏感数据，那么可以使用get；对于敏感数据还是应用使用post；
-
-⑤get使用MIME类型application/x-www-form-urlencoded的URL编码（也叫百分号编码）文本的格式传递参数，保证被传送的参数由遵循规范的文本组成，例如一个空格的编码是"%20"。
-
-补充：GET方式提交表单的典型应用是搜索引擎。GET方式就是被设计为查询用的。
-
-还有另外一种回答。推荐大家看一下：
+推荐阅读：
 
 - https://www.zhihu.com/question/28586791
 - https://mp.weixin.qq.com/s?__biz=MzI3NzIzMzg3Mw==&mid=100000054&idx=1&sn=71f6c214f3833d9ca20b9f7dcd9d33e4#rd
@@ -234,7 +224,7 @@ JSP中的四种作用域包括page、request、session和application，具体来
 
 ## 如何实现JSP或Servlet的单线程模式
 对于JSP页面，可以通过page指令进行设置。
-`<%@page isThreadSafe=”false”%>`
+`<%@page isThreadSafe="false"%>`
 
 对于Servlet，可以让自定义的Servlet实现SingleThreadModel标识接口。
 

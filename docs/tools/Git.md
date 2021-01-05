@@ -13,6 +13,7 @@
 - [Git 使用快速入门](#git-使用快速入门)
     - [获取 Git 仓库](#获取-git-仓库)
     - [记录每次更新到仓库](#记录每次更新到仓库)
+    - [一个好的 Git 提交消息](#一个好的-Git-提交消息)
     - [推送改动到远程仓库](#推送改动到远程仓库)
     - [远程仓库的移除与重命名](#远程仓库的移除与重命名)
     - [查看提交历史](#查看提交历史)
@@ -112,7 +113,7 @@ Git 有三种状态，你的文件可能处于其中之一：
 2. **已修改（modified）**：已修改表示修改了文件，但还没保存到数据库中。
 3. **已暂存（staged）**：表示对一个已修改文件的当前版本做了标记，使之包含在下次提交的快照中。
 
-由此引入 Git 项目的三个工作区域的概念：**Git 仓库(.git directoty) **、**工作目录(Working Directory)** 以及 **暂存区域(Staging Area)** 。
+由此引入 Git 项目的三个工作区域的概念：**Git 仓库(.git directoty)**、**工作目录(Working Directory)** 以及 **暂存区域(Staging Area)** 。
 
 <div align="center">  
 <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3areas.png" width="500px"/>
@@ -143,6 +144,17 @@ Git 有三种状态，你的文件可能处于其中之一：
 6. **移除文件** ：`git rm filename`  （从暂存区域移除，然后提交。）
 7. **对文件重命名** ：`git mv README.md README`(这个命令相当于`mv README.md README`、`git rm README.md`、`git add README` 这三条命令的集合)
 
+### 一个好的 Git 提交消息
+一个好的 Git 提交消息如下：
+
+    标题行：用这一行来描述和解释你的这次提交
+    
+    主体部分可以是很少的几行，来加入更多的细节来解释提交，最好是能给出一些相关的背景或者解释这个提交能修复和解决什么问题。
+    
+    主体部分当然也可以有几段，但是一定要注意换行和句子不要太长。因为这样在使用 "git log" 的时候会有缩进比较好看。
+
+提交的标题行描述应该尽量的清晰和尽量的一句话概括。这样就方便相关的 Git 日志查看工具显示和其他人的阅读。
+    
 ### 推送改动到远程仓库
 
 - 如果你还没有克隆现有仓库，并欲将你的仓库连接到某个远程服务器，你可以使用如下命令添加：·`git remote add origin <server>` ,比如我们要让本地的一个仓库和 Github 上创建的一个仓库关联可以这样`git remote add origin https://github.com/Snailclimb/test.git` 
@@ -248,11 +260,17 @@ git branch -d feature_x
 git push origin 
 ```
 
+## 推荐
 
+**在线演示学习工具：**
 
-## 推荐阅读
+「补充，来自[issue729](https://github.com/Snailclimb/JavaGuide/issues/729)」Learn Git Branching https://oschina.gitee.io/learn-git-branching/   。该网站可以方便的演示基本的git操作，讲解得明明白白。每一个基本命令的作用和结果。
+
+**推荐阅读：**
 
 - [Git - 简明指南](http://rogerdudler.github.io/git-guide/index.zh.html)
 - [图解Git](http://marklodato.github.io/visual-git-guide/index-zh-cn.html)
 - [猴子都能懂得Git入门](https://backlog.com/git-tutorial/cn/intro/intro1_1.html)
 - https://git-scm.com/book/en/v2
+- [Generating a new SSH key and adding it to the ssh-agent](https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+- [一个好的 Git 提交消息，出自 Linus 之手](https://github.com/torvalds/subsurface-for-dirk/blob/a48494d2fbed58c751e9b7e8fbff88582f9b2d02/README#L88)
