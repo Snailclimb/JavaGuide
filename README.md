@@ -35,7 +35,7 @@
     <tr>
        <td align="center" valign="middle">
         <a href="https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247497451&idx=1&sn=ea566dd64662ff8d5260f079c11c2268&chksm=cea1b920f9d630367eb80666da7b599bb610b9d61c6f956add1ee0a607ddcd61372931808877&token=804689790&lang=zh_CN#rd">
-          <img src="./media/sponsor/知识星球.png" style="margin: 0 auto;width:450px" /></a>
+         <img src="./media/sponsor/知识星球.png" style="margin: 0 auto;width:450px" /></a>
       </td>       
     </tr>
   </tbody>
