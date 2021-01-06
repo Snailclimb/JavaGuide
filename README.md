@@ -2,7 +2,7 @@
 
 👍推荐 [图解Java+操作系统+HTTP+计算机网络的 PDF 资料](#优质原创PDF资源)
 
-👍推荐 [一个纯粹的 Java 交流社区：简历修改、提问、原创面试小册、手写RPC框架......](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247497451&idx=1&sn=ea566dd64662ff8d5260f079c11c2268&chksm=cea1b920f9d630367eb80666da7b599bb610b9d61c6f956add1ee0a607ddcd61372931808877&token=804689790&lang=zh_CN#rd)
+👍推荐 [一个纯粹的 Java 交流社区：简历修改、提问、原创面试小册、手写RPC框架......](https://sourl.cn/U7rukQ)
 
 ## 一些闲话：
 
