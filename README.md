@@ -217,6 +217,7 @@
 ### Redis
 
 2. [Redis 常见问题总结](docs/database/Redis/redis-all.md)
+3. [面试/工作必备！3种常用的缓存读写策略！](docs/database/Redis/3种常用的缓存读写策略.md)
 
 ## 系统设计
 
