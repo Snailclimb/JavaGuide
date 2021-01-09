@@ -55,7 +55,9 @@
 
 并且，以 `Map` 结尾的类都实现了 `Map` 接口。
 
-![](./images/Java-Collections.jpeg)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/source-code/dubbo/java-collection-hierarchy.png)
+
+<p style="text-align:center;font-size:13px;color:gray">https://www.javatpoint.com/collections-in-java</p>
 
 ### 1.1.2. 说说 List,Set,Map 三者的区别？
 
