@@ -214,7 +214,7 @@ docker search mysql
 
 ### 3.2 search 子命令
 
-命令行输入 `docker search--help`, 输出如下：
+命令行输入 `docker search --help`, 输出如下：
 
 ```
 Usage:  docker search [OPTIONS] TERM

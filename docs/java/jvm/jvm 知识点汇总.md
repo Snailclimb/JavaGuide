@@ -1,4 +1,3 @@
-
 无论什么级别的Java从业者，JVM都是进阶时必须迈过的坎。不管是工作还是面试中，JVM都是必考题。如果不懂JVM的话，薪酬会非常吃亏（近70%的面试者挂在JVM上了）。
 
 
@@ -10,4 +9,4 @@
 
 掌握JVM，是深入Java技术栈的必经之路。
 
-![jv.png](https://i.loli.net/2019/09/10/HsJXU8S4oVtCTM7.png)
+![jv.png](./pictures/HsJXU8S4oVtCTM7.png)
