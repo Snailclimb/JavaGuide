@@ -8,11 +8,16 @@
   <meta name="description" content="Description">
   <meta name="viewport"
     content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
   <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/prism.css">
+  <!--主题-->
+  <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
 </head>
 
 <body>
+  <nav>
+    <a href="https://cowtransfer.com/s/fbed14f0c22a4d">图解计算机基础</a>
+    <a href="https://wx.zsxq.com/dweb2/index/group/48418884588288">知识星球</a>
+  </nav>
   <div id="app"></div>
   <!-- docsify-edit-on-github -->
   <script src="//unpkg.com/docsify-edit-on-github/index.js"></script>
@@ -21,12 +26,12 @@
     if (typeof navigator.serviceWorker !== 'undefined') {
       navigator.serviceWorker.register('sw.js')
     }
-
     window.$docsify = {
       name: 'JavaGuide',
       repo: 'https://github.com/Snailclimb/JavaGuide',
-      maxLevel: 3,//最大支持渲染的标题层级
-      coverpage: true,//封面,_coverpage.md
+      maxLevel: 4,//最大支持渲染的标题层级
+      //封面,_coverpage.md
+      //coverpage: true,
       auto2top: true,//切换页面后是否自动跳转到页面顶部
       //ga: 'UA-138586553-1',
       //logo: 'https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3logo-透明.png' ,
@@ -38,10 +43,16 @@
         // 搜索标题的最大程级, 1 - 6
         depth: 3,
       },
+      // 字数统计
+      count: {
+        countable: true,
+        fontsize: '0.9em',
+        color: 'rgb(90,90,90)',
+        language: 'chinese'
+      },
       plugins: [
         EditOnGithubPlugin.create('https://github.com/Snailclimb/JavaGuide/blob/master/')
       ],
-
     }
   </script>
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
@@ -57,6 +68,10 @@
   <script src="//unpkg.com/docsify-copy-code"></script>
   <!-- 图片缩放 -->
   <script src="//unpkg.com/docsify/lib/plugins/zoom-image.js"></script>
+  <!-- 表情 -->
+  <script src="//unpkg.com/docsify/lib/plugins/emoji.js"></script>
+  <!-- 字数统计 -->
+  <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
 </body>
 
 </html>

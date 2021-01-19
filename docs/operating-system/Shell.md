@@ -262,7 +262,7 @@ echo $length2 #输出：5
 echo ${array[2]} #输出：3
 unset array[1]# 删除下标为1的元素也就是删除第二个元素
 for i in ${array[@]};do echo $i ;done # 遍历数组，输出： 1 3 4 5 
-unset arr_number; # 删除数组中的所有元素
+unset array; # 删除数组中的所有元素
 for i in ${array[@]};do echo $i ;done # 遍历数组，数组元素为空，没有任何输出内容
 ```
 
