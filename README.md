@@ -243,6 +243,7 @@
 1. **[Spring/Spring Boot 常用注解总结！安排！](./docs/system-design/framework/spring/SpringBoot+Spring常用注解总结.md)** 
 2. **[Spring 事务总结](docs/system-design/framework/spring/Spring事务总结.md)** 
 3. [Spring 中都用到了那些设计模式?](docs/system-design/framework/spring/Spring-Design-Patterns.md)
+4. [面试常问：“讲述一下 SpringBoot 自动装配原理？”](https://www.cnblogs.com/javaguide/p/springboot-auto-config.html)
 
 #### MyBatis
 
