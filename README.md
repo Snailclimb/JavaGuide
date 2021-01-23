@@ -1,8 +1,8 @@
+👍推荐 我正在参加[掘金2020创作者计划](https://rank.juejin.cn?t=user&u=JavaGuide&utm_campaign=annual_2020&utm_medium=self_web_share&utm_source=JavaGuide)，如果我的文章对你有帮助的话，欢迎投我一票！原创不易，感恩同行~
+
 👍推荐 [在线阅读](https://snailclimb.gitee.io/javaguide)  (Github 访问速度比较慢可能会导致部分图片无法刷新出来) 
 
 👍推荐 [图解Java+操作系统+HTTP+计算机网络的 PDF 资料](#优质原创PDF资源)
-
-👍推荐 [一个纯粹的 Java 交流社区：简历修改、提问、原创面试小册、手写RPC框架......](https://sourl.cn/U7rukQ)
 
 ## 一些闲话：
 
@@ -35,11 +35,12 @@
     <tr>
        <td align="center" valign="middle">
         <a href="https://sourl.cn/U7rukQ">
-         <img src="./media/sponsor/知识星球.png" style="margin: 0 auto;width:450px" /></a>
+         <img src="./media/sponsor/知识星球.png" style="margin: 0 auto;width:850px" /></a>
       </td>       
     </tr>
   </tbody>
 </table>
+
 
 
 
