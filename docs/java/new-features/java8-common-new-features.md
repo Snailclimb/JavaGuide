@@ -1,19 +1,21 @@
-# 作为一个老程序员，我从来不用 Java 8 新特征
+# 作为一个老程序员，我从来不用 Java 8 新特性
 
-Oracle 于 2014 发布了 Java8（jdk1.8），诸多原因使它成为目前市场上使用最多的 jdk 版本。虽然发布距今已将近 7 年，但很多程序员对其新特征还是不够了解，尤其是用惯了 java8 之前版本的老程序员，比如我。
+Oracle 于 2014 发布了 Java8（jdk1.8），诸多原因使它成为目前市场上使用最多的 jdk 版本。虽然发布距今已将近 7 年，但很多程序员对其新特性还是不够了解，尤其是用惯了 java8 之前版本的老程序员，比如我。
 
-为了不脱离队伍太远，还是有必要对这些新特征做一些总结梳理。它较 jdk.7 有很多变化或者说是优化，比如 interface 里可以有静态方法，并且可以有方法体，这一点就颠覆了之前的认知；`java.util.HashMap`数据结构里增加了红黑树；还有众所周知的 Lambda 表达式等等。本文不能把所有的新特征都给大家一一分享，只列出比较常用的新特征给大家做详细讲解。[更多的新特征看官网](https://www.oracle.com/java/technologies/javase/8-whats-new.html)
+为了不脱离队伍太远，还是有必要对这些新特性做一些总结梳理。它较 jdk.7 有很多变化或者说是优化，比如 interface 里可以有静态方法，并且可以有方法体，这一点就颠覆了之前的认知；`java.util.HashMap` 数据结构里增加了红黑树；还有众所周知的 Lambda 表达式等等。本文不能把所有的新特性都给大家一一分享，只列出比较常用的新特性给大家做详细讲解。更多相关内容请看[官网关于 Java8 的新特性的介绍](https://www.oracle.com/java/technologies/javase/8-whats-new.html)。
 
 ## Interface
 
-interface 的设计初衷是面向抽象，提高扩展性。这也留有一点遗憾，Interface 修改的时候，实现它的类也必须跟着改。为了解决接口的修改与现有的实现不兼容的问题。新 interface 的方法可以用`default` 或 `static`修饰，这样就可以有方法体，实现类也不必重写此方法。
+interface 的设计初衷是面向抽象，提高扩展性。这也留有一点遗憾，Interface 修改的时候，实现它的类也必须跟着改。
+
+为了解决接口的修改与现有的实现不兼容的问题。新 interface 的方法可以用`default` 或 `static`修饰，这样就可以有方法体，实现类也不必重写此方法。
 
 一个 interface 中可以有多个方法被它们修饰，这 2 个修饰符的区别主要也是普通方法和静态方法的区别。
 
 1. `default`修饰的方法，是普通实例方法，可以用`this`调用，可以被子类继承、重写。
 2. `static`修饰的方法，使用上和一般类静态方法一样。但它不能被子类继承，只能用`Interface`调用。
 
-看一个接口代码实例
+我们来看一个实际的例子。
 
 ```java
 public interface InterfaceNew {
@@ -41,7 +43,7 @@ public interface InterfaceNew1 {
 }
 ```
 
-如果有一个类既实现了 InterfaceNew 又实现了 InterfaceNew1，它们都有`def()`，这时就必须重写`def()`。
+如果有一个类既实现了 `InterfaceNew` 接口又实现了 `InterfaceNew1`接口，它们都有`def()`，并且 `InterfaceNew` 接口和 `InterfaceNew1`接口没有继承关系的话，这时就必须重写`def()`。不然的话，编译的时候就会报错。
 
 ```java
 public class InterfaceNewImpl implements InterfaceNew , InterfaceNew1{
@@ -61,9 +63,13 @@ public class InterfaceNewImpl implements InterfaceNew , InterfaceNew1{
 }
 ```
 
-### interface & abstract class 区别
+但是，如果 `InterfaceNew1` 接口实现了`InterfaceNew` 接口的话，就不需要重写 `def()`。
 
-既然 interface 也可以有自己的方法实现，似乎和 abstract class 没多大区别了。其实它们还是有区别的
+**在 Java 8 ，接口和抽象类有什么区别的？**
+
+很多小伙伴认为：“既然 interface 也可以有自己的方法实现，似乎和 abstract class 没多大区别了。”
+
+其实它们还是有区别的
 
 1. interface 和 class 的区别，好像是废话，主要有
 
@@ -72,7 +78,7 @@ public class InterfaceNewImpl implements InterfaceNew , InterfaceNew1{
 
 2. interface 的方法是更像是一个扩展插件。而 abstract class 的方法是要继承的。
 
-开始我们也提到，interface 新增`default`，和`static`修饰的方法，为了解决接口的修改与现有的实现不兼容的问题，并不是为了要替代`abstract class`。在使用上，该用 abstract class 的地方还是要用 abstract class，不要因为 interface 的新特征而降之替换。
+开始我们也提到，interface 新增`default`，和`static`修饰的方法，为了解决接口的修改与现有的实现不兼容的问题，并不是为了要替代`abstract class`。在使用上，该用 abstract class 的地方还是要用 abstract class，不要因为 interface 的新特性而降之替换。
 
 **记住接口永远和类不一样。**
 
@@ -80,11 +86,11 @@ public class InterfaceNewImpl implements InterfaceNew , InterfaceNew1{
 
 **定义**：也称 SAM 接口，即 Single Abstract Method interfaces，有且只有一个抽象方法，但可以有多个非抽象方法的接口。
 
-在 java 8 中专门有一个包放函数式接口`java.util.function`，该包下的所有接口都有*@FunctionalInterface*注解，提供函数式编程。
+在 java 8 中专门有一个包放函数式接口`java.util.function`，该包下的所有接口都有 `@FunctionalInterface` 注解，提供函数式编程。
 
-在其他包中也有函数式接口，其中一些没有@FunctionalInterface 注解，但是只要符合函数式接口的定义就是函数式接口，与是否有
+在其他包中也有函数式接口，其中一些没有`@FunctionalInterface` 注解，但是只要符合函数式接口的定义就是函数式接口，与是否有
 
-@FunctionalInterface 注解无关，注解只是在编译时起到强制规范定义的作用。其在 Lambda 表达式中有广泛的应用。
+`@FunctionalInterface`注解无关，注解只是在编译时起到强制规范定义的作用。其在 Lambda 表达式中有广泛的应用。
 
 ## Lambda 表达式
 
@@ -109,7 +115,7 @@ public class InterfaceNewImpl implements InterfaceNew , InterfaceNew1{
 
 过去给方法传动态参数的唯一方法是使用内部类。比如
 
-1. Runnable 接口
+**1.`Runnable` 接口**
 
 ```java
 new Thread(new Runnable() {
@@ -122,7 +128,7 @@ new Thread(new Runnable() {
 new Thread(() -> System.out.println("It's a lambda function!")).start();
 ```
 
-2. Comperator 接口
+**2.`Comperator` 接口**
 
 ```java
 List<Integer> strings = Arrays.asList(1, 2, 3);
@@ -140,7 +146,7 @@ Comparator<Integer> comperator = (Integer o1, Integer o2) -> o1 - o2;
 Collections.sort(strings, comperator);
 ```
 
-3. Listener 接口
+**3.`Listener` 接口**
 
 ```java
 JButton button = new JButton();
@@ -154,36 +160,36 @@ public void itemStateChanged(ItemEvent e) {
 button.addItemListener(e -> e.getItem());
 ```
 
-4. 自定义接口
+**4.自定义接口**
 
-   上面的 3 个例子是我们在开发过程中最常见的，从中也能体会到 Lambda 带来的便捷与清爽。它只保留实际用到的代码，把无用代码全部省略。那它对接口有没有要求呢？我们发现这些匿名内部类只重写了接口的一个方法，当然也只有一个方法须要重写。这就是我们上文提到的**函数式接口**，也就是说只要方法的参数是函数式接口都可以用 Lambda 表达式。
+上面的 3 个例子是我们在开发过程中最常见的，从中也能体会到 Lambda 带来的便捷与清爽。它只保留实际用到的代码，把无用代码全部省略。那它对接口有没有要求呢？我们发现这些匿名内部类只重写了接口的一个方法，当然也只有一个方法须要重写。这就是我们上文提到的**函数式接口**，也就是说只要方法的参数是函数式接口都可以用 Lambda 表达式。
 
-   ```java
-   @FunctionalInterface
-   public interface Comparator<T>{}
+```java
+@FunctionalInterface
+public interface Comparator<T>{}
 
-   @FunctionalInterface
-   public interface Runnable{}
-   ```
+@FunctionalInterface
+public interface Runnable{}
+```
 
-   我们自定义一个函数式接口
+我们自定义一个函数式接口
 
-   ```java
-   @FunctionalInterface
-   public interface LambdaFunctionalInterface {
-    void f();
-   }
-   //使用
-   public class LambdaClass {
-       public static void forEg() {
-           lambdaInterfaceDemo(()-> System.out.println("自定义函数式接口"));
-       }
-       //函数式接口参数
-       static void lambdaInterfaceDemo(LambdaInterface i){
-           System.out.println(i);
-       }
-   }
-   ```
+```java
+@FunctionalInterface
+public interface LambdaFunctionalInterface {
+ void f();
+}
+//使用
+public class LambdaClass {
+    public static void forEg() {
+        lambdaInterfaceDemo(()-> System.out.println("自定义函数式接口"));
+    }
+    //函数式接口参数
+    static void lambdaInterfaceDemo(LambdaInterface i){
+        System.out.println(i);
+    }
+}
+```
 
 #### 集合迭代
 
@@ -252,11 +258,11 @@ lambda 表达式可以引用外边变量，但是该变量默认拥有 final 属
 
 ## Stream
 
-java 新增了 java.util.stream 包，它和之前的流大同小异。之前接触最多的是资源流，比如`java.io.FileInputStream`，通过流把文件从一个地方输入到另一个地方，它只是内容搬运工，对文件内容不做任何*CRUD*。
+java 新增了 `java.util.stream` 包，它和之前的流大同小异。之前接触最多的是资源流，比如`java.io.FileInputStream`，通过流把文件从一个地方输入到另一个地方，它只是内容搬运工，对文件内容不做任何*CRUD*。
 
 `Stream`依然不存储数据，不同的是它可以检索(Retrieve)和逻辑处理集合数据、包括筛选、排序、统计、计数等。可以想象成是 Sql 语句。
 
-它的源数据可以是 Collection、Array 等。由于它的方法参数都是函数式接口类型，所以一般和 Lambda 配合使用。
+它的源数据可以是 `Collection`、`Array` 等。由于它的方法参数都是函数式接口类型，所以一般和 Lambda 配合使用。
 
 ### 流类型
 
@@ -454,9 +460,9 @@ Predicate.test 执行
 Predicate.test 执行
 ```
 
-按执行顺序应该是先打印 4 次「Predicate.test 执行」，再打印「count 执行」。实际结果恰恰相反。说明 filter 中的方法并没有立刻执行，而是等调用`count()`方法后才执行。
+按执行顺序应该是先打印 4 次「`Predicate.test` 执行」，再打印「`count` 执行」。实际结果恰恰相反。说明 filter 中的方法并没有立刻执行，而是等调用`count()`方法后才执行。
 
-上面都是串行 Stream 的实例。并行 parallelStream 在使用方法上和串行一样。主要区别是 parallelStream 可多线程执行，是基于 ForkJoin 框架实现的，有时间大家可以了解一下 ForkJoin 框架和 ForkJoinPool。这里可以简单的理解它是通过线程池来实现的，这样就会涉及到线程安全，线程消耗等问题。下面我们通过代码来体验一下串行流的多线程执行。
+上面都是串行 Stream 的实例。并行 parallelStream 在使用方法上和串行一样。主要区别是 parallelStream 可多线程执行，是基于 ForkJoin 框架实现的，有时间大家可以了解一下 `ForkJoin` 框架和 `ForkJoinPool`。这里可以简单的理解它是通过线程池来实现的，这样就会涉及到线程安全，线程消耗等问题。下面我们通过代码来体验一下串行流的多线程执行。
 
 ```java
 @Test
@@ -484,7 +490,7 @@ ForkJoinPool.commonPool-worker-9>>2
 
 ## Optional
 
-在[阿里巴巴开发手册](https://share.weiyun.com/ThuqEbD5)中这样写到：
+在[阿里巴巴开发手册关于 Optional 的介绍](https://share.weiyun.com/ThuqEbD5)中这样写到：
 
 > 防止 NPE，是程序员的基本修养，注意 NPE 产生的场景：
 >
@@ -504,9 +510,9 @@ ForkJoinPool.commonPool-worker-9>>2
 >
 > 正例：使用 JDK8 的 Optional 类来防止 NPE 问题。
 
-他建议使用 Optional 解决 NPE（java.lang.NumberFormatException）问题，它就是为 NPE 而生的，其中可以包含空值或非空值。下面我们通过源码逐步揭开 Optional 的红盖头。
+他建议使用 `Optional` 解决 NPE（`java.lang.NumberFormatException`）问题，它就是为 NPE 而生的，其中可以包含空值或非空值。下面我们通过源码逐步揭开 `Optional` 的红盖头。
 
-假设有一个 Zoo 类，里面有个属性 Dog，需求要获取 Dog 的 age。
+假设有一个 `Zoo` 类，里面有个属性 `Dog`，需求要获取 `Dog` 的 `age`。
 
 ```java
 class Zoo {
@@ -533,7 +539,7 @@ if(zoo != null){
 
 层层判断对象分空，有人说这种方式很丑陋不优雅，我并不这么认为。反而觉得很整洁，易读，易懂。你们觉得呢？
 
-Optional 是这样的实现的
+`Optional` 是这样的实现的：
 
 ```java
 Optional.ofNullable(zoo).map(o -> o.getDog()).map(d -> d.getAge()).ifPresent(age ->
@@ -593,9 +599,9 @@ public static <T> T requireNonNull(T obj) {
 }
 ```
 
-*ofNullable*方法和*of*方法唯一区别就是当 value 为 null 时，*ofNullable*返回的是`EMPTY`，of 会抛出*NullPointerException*异常。如果需要把*NullPointerException*暴漏出来就用*of*，否则就用*ofNullable*。
+`ofNullable` 方法和`of`方法唯一区别就是当 value 为 null 时，`ofNullable` 返回的是`EMPTY`，of 会抛出 `NullPointerException` 异常。如果需要把 `NullPointerException` 暴漏出来就用 `of`，否则就用 `ofNullable`。
 
-### *map()*相关方法。
+### `map()`相关方法。
 
 ```java
 /**
@@ -622,33 +628,33 @@ public<U> Optional<U> flatMap(Function<? super T, Optional<U>> mapper) {
 }
 ```
 
-*map()*和*flatMap()*的区别是
+**`map()` 和 `flatMap()` 有什么区别的？**
 
-1. 参数不一样，map 的参数上面看到过，flatMap 的参数是这样
+**1.参数不一样，`map` 的参数上面看到过，`flatMap` 的参数是这样**
 
-   ```java
-   class ZooFlat {
-           private DogFlat dog = new DogFlat();
+```java
+class ZooFlat {
+        private DogFlat dog = new DogFlat();
 
-           public DogFlat getDog() {
-               return dog;
-           }
-       }
+        public DogFlat getDog() {
+            return dog;
+        }
+    }
 
-   class DogFlat {
-           private int age = 1;
-           public Optional<Integer> getAge() {
-               return Optional.ofNullable(age);
-           }
-   }
+class DogFlat {
+        private int age = 1;
+        public Optional<Integer> getAge() {
+            return Optional.ofNullable(age);
+        }
+}
 
-   ZooFlat zooFlat = new ZooFlat();
-   Optional.ofNullable(zooFlat).map(o -> o.getDog()).flatMap(d -> d.getAge()).ifPresent(age ->
-       System.out.println(age)
-   );
-   ```
+ZooFlat zooFlat = new ZooFlat();
+Optional.ofNullable(zooFlat).map(o -> o.getDog()).flatMap(d -> d.getAge()).ifPresent(age ->
+    System.out.println(age)
+);
+```
 
-2. _flatMap()_ 参数返回值如果是 null 会抛 NullPointerException，而*map()*返回`EMPTY`。
+**2.`flatMap()` 参数返回值如果是 null 会抛 `NullPointerException`，而 `map()` 返回`EMPTY`。**
 
 ### 判断 value 是否为 null
 
@@ -726,7 +732,7 @@ public Optional<T> filter(Predicate<? super T> predicate) {
 
 ### 小结
 
-看完 Optional 源码，Optional 的方法真的非常简单，值得注意的是如果坚决不想看见 NPE，就不要用*of(.)* 、_get()_、flatMap(..)\*。最后再综合用一下 Optional 的高频方法。
+看完 `Optional` 源码，`Optional` 的方法真的非常简单，值得注意的是如果坚决不想看见 `NPE`，就不要用 `of() `、 `get()` 、`flatMap(..)`\。最后再综合用一下 `Optional` 的高频方法。
 
 ```java
 Optional.ofNullable(zoo).map(o -> o.getDog()).map(d -> d.getAge()).filter(v->v==1).orElse(3);
@@ -745,7 +751,7 @@ Optional.ofNullable(zoo).map(o -> o.getDog()).map(d -> d.getAge()).filter(v->v==
 
 ### java.time 主要类
 
-_java.util.Date_ 既包含日期又包含时间，而 _java.time_ 把它们进行了分离
+`java.util.Date` 既包含日期又包含时间，而  `java.time` 把它们进行了分离
 
 ```java
 LocalDateTime.class //日期+时间 format: yyyy-MM-ddTHH:mm:ss.SSS
@@ -755,7 +761,7 @@ LocalTime.class //时间 format: HH:mm:ss
 
 ### 格式化
 
-- 老 Date
+**Java 8 之前:**
 
 ```java
 public void oldFormat(){
@@ -777,7 +783,7 @@ public void oldFormat(){
 }
 ```
 
-- 新特征
+**Java 8 之后:**
 
 ```java
 public void newFormat(){
@@ -798,7 +804,7 @@ public void newFormat(){
 
 ### 字符串转日期格式
 
-- 老 Date
+**Java 8 之前:**
 
 ```java
 //已弃用
@@ -808,7 +814,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 Date date1 = sdf.parse("2021-01-26");
 ```
 
-- 新特征
+**Java 8 之后:**
 
 ```java
 LocalDate date = LocalDate.of(2021, 1, 26);
@@ -821,72 +827,70 @@ LocalTime time = LocalTime.of(12, 12, 22);
 LocalTime.parse("12:12:22");
 ```
 
-老 Date 转换都需要借助 format 类，而新特征只需要*LocalDate、LocalTime、LocalDateTime*的 _of_ 或 *parse*方法。
+**Java 8 之前** 转换都需要借助 `SimpleDateFormat` 类，而**Java 8 之后**只需要 `LocalDate`、`LocalTime`、`LocalDateTime`的  `of` 或 `parse` 方法。
 
 ### 日期计算
 
-- 一周后日期
+下面仅以**一周后日期**为例，其他单位（年、月、日、1/2 日、时等等）大同小异。另外，这些单位都在 _java.time.temporal.ChronoUnit_ 枚举中定义。
 
-  当然还有以年、月、日、1/2 日、时、分、秒、毫秒、微妙、纳秒，甚至还有十年、百年、千年、世纪、永恒来计算的。这些单位都在 _java.time.temporal.ChronoUnit_ 枚举中定义，除了加运算当然还有减运算，下面仅以**一周后日期**为例，其他单位大同小异。
+**Java 8 之前:**
 
-  - 老 Date
+```java
+public void afterDay(){
+     //一周后的日期
+     SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
+     Calendar ca = Calendar.getInstance();
+     ca.add(Calendar.DATE, 7);
+     Date d = ca.getTime();
+     String after = formatDate.format(d);
+     System.out.println("一周后日期：" + after);
 
-  ```java
-  public void afterDay(){
-       //一周后的日期
-       SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
-       Calendar ca = Calendar.getInstance();
-       ca.add(Calendar.DATE, 7);
-       Date d = ca.getTime();
-       String after = formatDate.format(d);
-       System.out.println("一周后日期：" + after);
+   //算两个日期间隔多少天，计算间隔多少年，多少月方法类似
+     String dates1 = "2021-12-23";
+   String dates2 = "2021-02-26";
+     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+     Date date1 = format.parse(dates1);
+     Date date2 = format.parse(dates2);
+     int day = (int) ((date1.getTime() - date2.getTime()) / (1000 * 3600 * 24));
+     System.out.println(dates2 + "和" + dates2 + "相差" + day + "天");
+     //结果：2021-12-23和2021-12-23相差300天
+}
+```
 
-     //算两个日期间隔多少天，计算间隔多少年，多少月方法类似
-       String dates1 = "2021-12-23";
-     String dates2 = "2021-02-26";
-       SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-       Date date1 = format.parse(dates1);
-       Date date2 = format.parse(dates2);
-       int day = (int) ((date1.getTime() - date2.getTime()) / (1000 * 3600 * 24));
-       System.out.println(dates2 + "和" + dates2 + "相差" + day + "天");
-       //结果：2021-12-23和2021-12-23相差300天
-  }
-  ```
+**Java 8 之后:**
 
-  - 新特征
+```java
+public void pushWeek(){
+     //一周后的日期
+     LocalDate localDate = LocalDate.now();
+     //方法1
+     LocalDate after = localDate.plus(1, ChronoUnit.WEEKS);
+     //方法2
+     LocalDate after2 = localDate.plusWeeks(1);
+     System.out.println("一周后日期：" + after);
 
-  ```java
-  public void pushWeek(){
-       //一周后的日期
-       LocalDate localDate = LocalDate.now();
-       //方法1
-       LocalDate after = localDate.plus(1, ChronoUnit.WEEKS);
-       //方法2
-       LocalDate after2 = localDate.plusWeeks(1);
-       System.out.println("一周后日期：" + after);
-
-       //算两个日期间隔多少天，计算间隔多少年，多少月
-       LocalDate date1 = LocalDate.parse("2021-02-26");
-       LocalDate date2 = LocalDate.parse("2021-12-23");
-       Period period = Period.between(date1, date2);
-       System.out.println("date1 到 date2 相隔："
-                  + period.getYears() + "年"
-                  + period.getMonths() + "月"
-                  + period.getDays() + "天");
-  		 //打印结果是 “date1 到 date2 相隔：0年9月27天”
-       //这里period.getDays()得到的天是抛去年月以外的天数，并不是总天数
-       //如果要获取纯粹的总天数应该用下面的方法
-       long day = date2.toEpochDay() - date1.toEpochDay();
-       System.out.println(date2 + "和" + date2 + "相差" + day + "天");
-       //打印结果：2021-12-23和2021-12-23相差300天
-  }
-  ```
+     //算两个日期间隔多少天，计算间隔多少年，多少月
+     LocalDate date1 = LocalDate.parse("2021-02-26");
+     LocalDate date2 = LocalDate.parse("2021-12-23");
+     Period period = Period.between(date1, date2);
+     System.out.println("date1 到 date2 相隔："
+                + period.getYears() + "年"
+                + period.getMonths() + "月"
+                + period.getDays() + "天");
+		 //打印结果是 “date1 到 date2 相隔：0年9月27天”
+     //这里period.getDays()得到的天是抛去年月以外的天数，并不是总天数
+     //如果要获取纯粹的总天数应该用下面的方法
+     long day = date2.toEpochDay() - date1.toEpochDay();
+     System.out.println(date2 + "和" + date2 + "相差" + day + "天");
+     //打印结果：2021-12-23和2021-12-23相差300天
+}
+```
 
 ### 获取指定日期
 
 除了日期计算繁琐，获取特定一个日期也很麻烦，比如获取本月最后一天，第一天。
 
-- 老 Date
+**Java 8 之前:**
 
 ```java
 public void getDay() {
@@ -916,7 +920,7 @@ public void getDay() {
 }
 ```
 
-- 新特征
+**Java 8 之后:**
 
 ```java
 public void getDayNew() {
@@ -934,23 +938,23 @@ public void getDayNew() {
 }
 ```
 
-_java.time.temporal.TemporalAdjusters_ 里面还有很多便捷的算法，这里就不带大家看 Api 了，都很简单，看了秒懂。
+`java.time.temporal.TemporalAdjusters` 里面还有很多便捷的算法，这里就不带大家看 Api 了，都很简单，看了秒懂。
 
 ### JDBC 和 java8
 
 现在 jdbc 时间类型和 java8 时间类型对应关系是
 
-1. date ---> LocalDate
-2. Time ---> LocalTime
-3. timestamp ---> LocalDateTime
+1. `Date` ---> `LocalDate`
+2. `Time` ---> `LocalTime`
+3. `TimesSamp` ---> `LocalDateTime`
 
-而之前统统对应 Date，也只有 Date。
+而之前统统对应 `Date`，也只有 `Date`。
 
 ### 时区
 
 > 时区：正式的时区划分为每隔经度 15° 划分一个时区，全球共 24 个时区，每个时区相差 1 小时。但为了行政上的方便，常将 1 个国家或 1 个省份划在一起，比如我国幅员宽广，大概横跨 5 个时区，实际上只用东八时区的标准时即北京时间为准。
 
-java.util.Date 对象实质上存的是 1970 年 1 月 1 日 0 点（ GMT）至 Date 对象所表示时刻所经过的毫秒数。也就是说不管在哪个时区 new Date，它记录的毫秒数都一样，和时区无关。但在使用上应该把它转换成当地时间，这就涉及到了时间的国际化。java.util.Date 本身并不支持国际化，需要借助 TimeZone。
+`java.util.Date` 对象实质上存的是 1970 年 1 月 1 日 0 点（ GMT）至 Date 对象所表示时刻所经过的毫秒数。也就是说不管在哪个时区 new Date，它记录的毫秒数都一样，和时区无关。但在使用上应该把它转换成当地时间，这就涉及到了时间的国际化。`java.util.Date` 本身并不支持国际化，需要借助 `TimeZone`。
 
 ```java
 //北京时间：Wed Jan 27 14:05:29 CST 2021
@@ -971,7 +975,7 @@ System.out.println(date);
 //Wed Jan 27 14:05:29 CST 2021
 ```
 
-在新特征中引入了 _java.time.ZonedDateTime_ 来表示带时区的时间。它可以看成是*LocalDateTime + ZoneId*。
+在新特性中引入了  `java.time.ZonedDateTime ` 来表示带时区的时间。它可以看成是 `LocalDateTime + ZoneId`。
 
 ```java
 //当前时区时间
@@ -1000,11 +1004,11 @@ System.out.println("本地时区时间: " + localZoned);
 
 ### 小结
 
-通过上面比较新老 Date 的不同，当然只列出部分功能上的区别，更多功能还得自己去挖掘。总之 date-time-api 给日期操作带来了福利。在日常工作中遇到 date 类型的操作，第一考虑的是 date-time-api，实在解决不了再考虑老的 Date。
+通过上面比较新老 `Date` 的不同，当然只列出部分功能上的区别，更多功能还得自己去挖掘。总之 date-time-api 给日期操作带来了福利。在日常工作中遇到 date 类型的操作，第一考虑的是 date-time-api，实在解决不了再考虑老的 Date。
 
 ## 总结
 
-我们梳理总结的 java 8 新特征有
+我们梳理总结的 java 8 新特性有
 
 - Interface & functional Interface
 - Lambda
@@ -1012,4 +1016,4 @@ System.out.println("本地时区时间: " + localZoned);
 - Optional
 - Date time-api
 
-这些都是开发当中比较常用的特征。梳理下来发现它们真香，而我却没有更早的应用。总觉得学习 java 8 新特征比较麻烦，一致使用老的实现方式。其实这些新特征几天就可以掌握，一但掌握，效率会有很大的提高。其实我们涨工资也是涨的学习的钱，不学习终究会被淘汰，35 岁危机会提前来临。
+这些都是开发当中比较常用的特征。梳理下来发现它们真香，而我却没有更早的应用。总觉得学习 java 8 新特性比较麻烦，一致使用老的实现方式。其实这些新特性几天就可以掌握，一但掌握，效率会有很大的提高。其实我们涨工资也是涨的学习的钱，不学习终究会被淘汰，35 岁危机会提前来临。
