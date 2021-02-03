@@ -2,8 +2,6 @@
 
 👍推荐 [图解Java+操作系统+HTTP+计算机网络的 PDF 资料](#优质原创PDF资源)
 
-👍推荐 [一个纯粹的 Java 交流社区：简历修改、提问、原创面试小册、手写RPC框架......](https://sourl.cn/U7rukQ)
-
 ## 一些闲话：
 
 > 1. **介绍**：关于 JavaGuide 的相关介绍请看：[关于 JavaGuide 的一些说明](https://www.yuque.com/snailclimb/dr6cvl/mr44yt) 。PDF 版本请看：[完结撒花！JavaGuide 面试突击版来啦！](./docs/javaguide面试突击版.md) 。
@@ -35,11 +33,12 @@
     <tr>
        <td align="center" valign="middle">
         <a href="https://sourl.cn/U7rukQ">
-         <img src="./media/sponsor/知识星球.png" style="margin: 0 auto;width:450px" /></a>
+         <img src="./media/sponsor/知识星球.png" style="margin: 0 auto;width:850px" /></a>
       </td>       
     </tr>
   </tbody>
 </table>
+
 
 
 
@@ -160,7 +159,7 @@
 
 ### 新特性
 
-1.  **Java 8** ：[Java 8 新特性总结](docs/java/new-features/Java8新特性总结.md)、[Java 8 学习资源推荐](docs/java/new-features/Java8教程推荐.md)、[Java8 forEach 指南](docs/java/new-features/Java8foreach指南.md)
+1.  **Java 8** ：[Java 8 新特性总结](docs/java/new-features/Java8新特性总结.md)、[Java 8 学习资源推荐](docs/java/new-features/Java8教程推荐.md)、[Java8 forEach 指南](docs/java/new-features/Java8foreach指南.md)、[Java8常用新特性总结](docs/java/new-features/java8-common-new-features.md)
 2.  **Java9~Java14** : [一文带你看遍 JDK9~14 的重要新特性！](./docs/java/new-features/一文带你看遍JDK9到14的重要新特性.md)
 
 ## 网络
@@ -240,9 +239,10 @@
 
 **重要知识点详解：**
 
-1. **[Spring/Spring 常用注解总结！安排！](./docs/system-design/framework/spring/SpringBoot+Spring常用注解总结.md)** 
+1. **[Spring/Spring Boot 常用注解总结！安排！](./docs/system-design/framework/spring/SpringBoot+Spring常用注解总结.md)** 
 2. **[Spring 事务总结](docs/system-design/framework/spring/Spring事务总结.md)** 
 3. [Spring 中都用到了那些设计模式?](docs/system-design/framework/spring/Spring-Design-Patterns.md)
+4. [面试常问：“讲述一下 SpringBoot 自动装配原理？”](https://www.cnblogs.com/javaguide/p/springboot-auto-config.html)
 
 #### MyBatis
 
