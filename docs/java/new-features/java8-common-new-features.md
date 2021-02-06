@@ -1,4 +1,4 @@
-# 作为一个老程序员，我从来不用 Java 8 新特性
+# 我，一个老程序员，最近才开始用 Java 8 新特性
 
 Oracle 于 2014 发布了 Java8（jdk1.8），诸多原因使它成为目前市场上使用最多的 jdk 版本。虽然发布距今已将近 7 年，但很多程序员对其新特性还是不够了解，尤其是用惯了 java8 之前版本的老程序员，比如我。
 
@@ -63,15 +63,13 @@ public class InterfaceNewImpl implements InterfaceNew , InterfaceNew1{
 }
 ```
 
-但是，如果 `InterfaceNew1` 接口实现了`InterfaceNew` 接口的话，就不需要重写 `def()`。
-
 **在 Java 8 ，接口和抽象类有什么区别的？**
 
 很多小伙伴认为：“既然 interface 也可以有自己的方法实现，似乎和 abstract class 没多大区别了。”
 
 其实它们还是有区别的
 
-1. interface 和 class 的区别，好像是废话，主要有
+1. interface 和 class 的区别，好像是废话，主要有：
 
    - 接口多实现，类单继承
    - 接口的方法是 public abstract 修饰，变量是 public static final 修饰。 abstract class 可以用其他修饰符
@@ -94,7 +92,7 @@ public class InterfaceNewImpl implements InterfaceNew , InterfaceNew1{
 
 ## Lambda 表达式
 
-接下来谈众所周知的 Lambda 表达式。它是推动 Java 8 发布的最重要新特性。是继泛型(Generics)和注解(annotation)以来最大的变化。
+接下来谈众所周知的 Lambda 表达式。它是推动 Java 8 发布的最重要新特性。是继泛型(`Generics`)和注解(`Annotation`)以来最大的变化。
 
 使用 Lambda 表达式可以使代码变的更加简洁紧凑。让 java 也能支持简单的*函数式编程*。
 
@@ -375,7 +373,7 @@ public static <T> Stream<T> concat(Stream<? extends T> a, Stream<? extends T> b)
 
 ### 实战
 
-本文列出 Stream 具有代表性的方法之使用，更多的使用方法还是要看 Api。
+本文列出 `Stream` 具有代表性的方法之使用，更多的使用方法还是要看 Api。
 
 ```java
 @Test
@@ -433,9 +431,9 @@ public void test() {
 
 ### 延迟执行
 
-在执行返回 Stream 的方法时，并不立刻执行，而是等返回一个非 Stream 的方法后才执行。因为拿到 Stream 并不能直接用，而是需要处理成一个常规类型。这里的 Stream 可以想象成是二进制流（2 个完全不一样的东东），拿到也看不懂。
+在执行返回 `Stream` 的方法时，并不立刻执行，而是等返回一个非 `Stream` 的方法后才执行。因为拿到 `Stream` 并不能直接用，而是需要处理成一个常规类型。这里的 `Stream` 可以想象成是二进制流（2 个完全不一样的东东），拿到也看不懂。
 
-我们下面分解一下 filter 方法。
+我们下面分解一下 `filter` 方法。
 
 ```java
 @Test
@@ -462,7 +460,7 @@ Predicate.test 执行
 
 按执行顺序应该是先打印 4 次「`Predicate.test` 执行」，再打印「`count` 执行」。实际结果恰恰相反。说明 filter 中的方法并没有立刻执行，而是等调用`count()`方法后才执行。
 
-上面都是串行 Stream 的实例。并行 parallelStream 在使用方法上和串行一样。主要区别是 parallelStream 可多线程执行，是基于 ForkJoin 框架实现的，有时间大家可以了解一下 `ForkJoin` 框架和 `ForkJoinPool`。这里可以简单的理解它是通过线程池来实现的，这样就会涉及到线程安全，线程消耗等问题。下面我们通过代码来体验一下串行流的多线程执行。
+上面都是串行 `Stream` 的实例。并行 `parallelStream` 在使用方法上和串行一样。主要区别是 `parallelStream` 可多线程执行，是基于 ForkJoin 框架实现的，有时间大家可以了解一下 `ForkJoin` 框架和 `ForkJoinPool`。这里可以简单的理解它是通过线程池来实现的，这样就会涉及到线程安全，线程消耗等问题。下面我们通过代码来体验一下串行流的多线程执行。
 
 ```java
 @Test
