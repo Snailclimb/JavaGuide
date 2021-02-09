@@ -34,6 +34,12 @@ JavaGuide 目前已经 70k+ Star ，目前已经是所有 Java 类别项目中 S
 ### 如何贡献
 
 大家阅读过程中如果遇到错误的地方可以通过微信与我交流（ps:加过我微信的就不要重复添加了，这是另外一个账号，前一个已经满了）。
+asdfas dfa sdf asdf asdfuijwaleh uialwhnf a
+sd uliawfh liauhdf 
+af hulasdh liufahd 
+aewf iauweh fluiaweli ufhawleiuh flaiuwhf lasd 
+aiwiehflawieghlfyaldf a
+f fhualuwieh liuawhfl iua
 
 ![我的微信](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/JavaGuide2.jpeg)
 
