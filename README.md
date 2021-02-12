@@ -267,7 +267,7 @@
 
 **[《认证授权基础》](docs/system-design/authority-certification/basis-of-authority-certification.md)** 这篇文章中我会介绍认证授权常见概念： **Authentication**,**Authorization** 以及 **Cookie**、**Session**、Token、**OAuth 2**、**SSO** 。如果你不清楚这些概念的话，建议好好阅读一下这篇文章。
 
-- **JWT ** ：JWT（JSON Web Token）是一种身份认证的方式，JWT 本质上就一段签名的 JSON 格式的数据。由于它是带有签名的，因此接收者便可以验证它的真实性。相关阅读：
+- **JWT** ：JWT（JSON Web Token）是一种身份认证的方式，JWT 本质上就一段签名的 JSON 格式的数据。由于它是带有签名的，因此接收者便可以验证它的真实性。相关阅读：
   - [JWT 优缺点分析以及常见问题解决方案](docs/system-design/authority-certification/JWT优缺点分析以及常见问题解决方案.md)
   - [适合初学者入门 Spring Security With JWT 的 Demo](https://github.com/Snailclimb/spring-security-jwt-guide)
 
