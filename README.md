@@ -48,7 +48,7 @@
 <!-- code_chunk_output -->
 
 - [Java](#java)
-  - [基础](#基础)
+  - [基础 (必看 :+1:)](#基础)
   - [容器](#容器)
   - [并发](#并发)
   - [JVM (必看 :+1:)](#jvm-必看-1)
@@ -92,7 +92,6 @@
     - [排队](#排队)
   - [大型网站架构](#大型网站架构)
 - [工具](#工具)
-- [面试指南](#面试指南)
 - [Java 学习常见问题汇总](#java-学习常见问题汇总)
 - [书单](#书单)
 - [其他](#其他)
@@ -118,9 +117,9 @@
 
 1. [枚举](docs/java/basis/用好Java中的枚举真的没有那么简单.md) （很重要的一个数据结构，用好枚举真的没有那么简单！）
 2. [Java 常见关键字总结：final、static、this、super!](docs/java/basis/Java常见关键字总结.md)
-3. [什么是反射机制?反射机制的应用场景有哪些?](docs/java/basis/反射机制.md)
+3. [什么是反射机制？反射机制的应用场景有哪些？](docs/java/basis/反射机制.md)
 4. [代理模式详解：静态代理+JDK/CGLIB 动态代理实战](docs/java/basis/代理模式详解.md)
-5. [BIO,NIO,AIO 总结 ](docs/java/basis/BIO,NIO,AIO总结.md)
+5. [常见的 IO 模型有哪些？Java 中的 BIO、NIO、AIO 有啥区别?](https://www.cnblogs.com/javaguide/p/io.html)
 
 ### 容器
 
@@ -139,7 +138,6 @@
 **重要知识点详解：**
 
 2. **线程池**：[Java 线程池学习总结](./docs/java/multi-thread/java线程池学习总结.md)、[拿来即用的线程池最佳实践](./docs/java/multi-thread/拿来即用的线程池最佳实践.md)
-3. [乐观锁与悲观锁](docs/essential-content-for-interview/面试必备之乐观锁与悲观锁.md)
 4. [ ThreadLocal 关键字解析](docs/java/multi-thread/万字详解ThreadLocal关键字.md)
 5. [并发容器总结](docs/java/multi-thread/并发容器总结.md)
 6. [JUC 中的 Atomic 原子类总结](docs/java/multi-thread/Atomic原子类总结.md)
@@ -154,7 +152,6 @@
 5. **[类加载过程](docs/java/jvm/类加载过程.md)**
 6. [类加载器](docs/java/jvm/类加载器.md)
 7. **[【待完成】最重要的 JVM 参数指南（翻译完善了一半）](docs/java/jvm/最重要的JVM参数指南.md)**
-8. [JVM 配置常用参数和常用 GC 调优策略](docs/java/jvm/GC调优参数.md)
 9. **[【加餐】大白话带你认识 JVM](docs/java/jvm/[加餐]大白话带你认识JVM.md)**
 
 ### 新特性
@@ -211,7 +208,7 @@
 1. [数据库索引总结 1](docs/database/MySQL%20Index.md)、[数据库索引总结 2](docs/database/数据库索引.md)
 2. [事务隔离级别(图文详解)](<docs/database/事务隔离级别(图文详解).md>)
 3. [一条 SQL 语句在 MySQL 中如何执行的](docs/database/一条sql语句在mysql中如何执行的.md)
-4. **[关于数据库中如何存储时间的一点思考](docs/database/关于数据库存储时间的一点思考.md)**
+4. [关于数据库中如何存储时间的一点思考](docs/database/关于数据库存储时间的一点思考.md)
 
 ### Redis
 
@@ -413,18 +410,6 @@ RPC 让调用远程服务调用像调用本地方法那样简单。
 2. **Git** ：[Git 入门](docs/tools/Git.md)
 3. **Github** ： [我使用Github 5 年总结了这些骚操作](docs/tools/Github技巧.md)
 4. **Docker** : [Docker 基本概念解读](docs/tools/Docker.md) 、[一文搞懂 Docker 镜像的常用操作！](docs/tools/Docker-Image.md)
-
-## 面试指南
-
-> 这部分很多内容比如大厂面经、真实面经分析被移除，详见[完结撒花！JavaGuide 面试突击版来啦！](./docs/javaguide面试突击版.md)。
-
-1. **[【备战面试 1】程序员的简历就该这样写](docs/essential-content-for-interview/PreparingForInterview/程序员的简历之道.md)**
-2. **[【备战面试 2】初出茅庐的程序员该如何准备面试？](docs/essential-content-for-interview/PreparingForInterview/interviewPrepare.md)**
-3. **[【备战面试 3】7 个大部分程序员在面试前很关心的问题](docs/essential-content-for-interview/PreparingForInterview/JavaProgrammerNeedKnow.md)**
-4. **[【备战面试 4】Github 上开源的 Java 面试/学习相关的仓库推荐](docs/essential-content-for-interview/PreparingForInterview/JavaInterviewLibrary.md)**
-5. **[【备战面试 5】如果面试官问你“你有什么问题问我吗？”时，你该如何回答](docs/essential-content-for-interview/PreparingForInterview/面试官-你有什么问题要问我.md)**
-6. [【备战面试 6】应届生面试最爱问的几道 Java 基础问题](docs/essential-content-for-interview/PreparingForInterview/应届生面试最爱问的几道Java基础问题.md)
-7. **[【备战面试 6】美团面试常见问题总结(附详解答案)](docs/essential-content-for-interview/PreparingForInterview/美团面试常见问题总结.md)**
 
 ## Java 学习常见问题汇总
 
