@@ -111,13 +111,14 @@ AOP(Aspect-Oriented Programming:面向切面编程)能够将那些与业务无�
 
 ### 5.2 Spring 中的单例 bean 的线程安全问题了解吗？
 
-大部分时候我们并没有在系统中使用多线程，所以很少有人会关注这个问题。单例 bean 存在线程问题，主要是因为当多个线程操作同一个对象的时候，对这个对象的非静态成员变量的写操作会存在线程安全问题。
+的确是存在安全问题的。因为，当多个线程操作同一个对象的时候，对这个对象的成员变量的写操作会存在线程安全问题。
 
-常见的有两种解决办法：
+但是，一般情况下，我们常用的 `Controller`、`Service`、`Dao` 这些 Bean 是无状态的。无状态的 Bean 不能保存数据，因此是线程安全的。
 
-1. 在Bean对象中尽量避免定义可变的成员变量（不太现实）。
+常见的有 2 种解决办法：
 
-2. 在类中定义一个ThreadLocal成员变量，将需要的可变成员变量保存在 ThreadLocal 中（推荐的一种方式）。
+2. 在类中定义一个 `ThreadLocal` 成员变量，将需要的可变成员变量保存在  `ThreadLocal`  中（推荐的一种方式）。
+2. 改变 Bean 的作用域为 “prototype”：每次请求都会创建一个新的 bean 实例，自然不会存在线程安全问题。
 
 
 ### 5.3 @Component 和 @Bean 的区别是什么？
@@ -346,6 +347,7 @@ String transient4; // not persistent because of @Transient
 - <https://howtodoinjava.com/interview-questions/top-spring-interview-questions-with-answers/>
 - <http://www.tomaszezula.com/2014/02/09/spring-series-part-5-component-vs-bean/>
 - <https://stackoverflow.com/questions/34172888/difference-between-bean-and-autowired>
+- <https://www.interviewbit.com/spring-interview-questions/>
 
 ## 公众号
 

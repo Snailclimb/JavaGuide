@@ -65,15 +65,16 @@ public class Pizza {
 首先，让我们看一下以下代码段中的运行时安全性，其中 `==` 运算符用于比较状态，并且如果两个值均为null 都不会引发 NullPointerException。相反，如果使用equals方法，将抛出 NullPointerException：
 
 ```java
-if(testPz.getStatus().equals(Pizza.PizzaStatus.DELIVERED)); 
-if(testPz.getStatus() == Pizza.PizzaStatus.DELIVERED); 
+Pizza.PizzaStatus pizza = null;
+System.out.println(pizza.equals(Pizza.PizzaStatus.DELIVERED));//空指针异常
+System.out.println(pizza == Pizza.PizzaStatus.DELIVERED);//正常运行
 ```
 
-对于编译时安全性，我们看另一个示例，两个不同枚举类型进行比较，使用equal方法比较结果确定为true，因为`getStatus`方法的枚举值与另一个类型枚举值一致，但逻辑上应该为false。这个问题可以使用==操作符避免。因为编译器会表示类型不兼容错误：
+对于编译时安全性，我们看另一个示例，两个不同枚举类型进行比较：
 
 ```java
-if(testPz.getStatus().equals(TestColor.GREEN));
-if(testPz.getStatus() == TestColor.GREEN);
+if (Pizza.PizzaStatus.DELIVERED.equals(TestColor.GREEN)); // 编译正常
+if (Pizza.PizzaStatus.DELIVERED == TestColor.GREEN);      // 编译失败，类型不匹配
 ```
 
 ## 4.在 switch 语句中使用枚举类型

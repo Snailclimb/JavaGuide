@@ -90,7 +90,8 @@ JVM 是 Java Virtual Machine 的缩写，它是一个虚构出来的计算机，
 
 #### 2.1.3 初始化
 
-初始化其实就是一个赋值的操作，它会执行一个类构造器的<<clinit>clinit>()方法。由编译器自动收集类中所有变量的赋值动作，此时准备阶段时的那个 static int a = 3 的例子，在这个时候就正式赋值为3
+初始化其实就是执行类构造器方法的`<clinit>()`的过程，而且要保证执行前父类的`<clinit>()`方法执行完毕。这个方法由编译器收集，顺序执行所有类变量（static修饰的成员变量）显式初始化和静态代码块中语句。此时准备阶段时的那个 `static int a` 由默认初始化的0变成了显式初始化的3. 由于执行顺序缘故，初始化阶段类变量如果在静态代码块中又进行了更改，会覆盖类变量的显式初始化，最终值会为静态代码块中的赋值。
+>注意：字节码文件中初始化方法有两种，非静态资源初始化的`<init>`和静态资源初始化的`<clinit>`，类构造器方法`<clinit>()`不同于类的构造器，这些方法都是字节码文件中只能给JVM识别的特殊方法。
 
 #### 2.1.4 卸载
 
@@ -113,9 +114,11 @@ GC将无用对象从内存中卸载
 
 其实这个也是一个隔离的作用，避免了我们的代码影响了JDK的代码，比如我现在要来一个
 
-    public class String(){
-        public static void main(){sout;}
-    }
+```java
+public class String(){
+    public static void main(){sout;}
+}
+```
 
 这种时候，我们的代码肯定会报错，因为在加载的时候其实是找到了rt.jar中的String.class，然后发现这也没有main方法
 
@@ -142,13 +145,15 @@ GC将无用对象从内存中卸载
 
 它是Java方法执行的内存模型。里面会对局部变量，动态链表，方法出口，栈的操作（入栈和出栈）进行存储，且线程独享。同时如果我们听到局部变量表，那也是在说虚拟机栈
 
-    public class Person{
-        int a = 1;
-        
-        public void doSomething(){
-            int b = 2;
-        }
+```java
+public class Person{
+    int a = 1;
+    
+    public void doSomething(){
+        int b = 2;
     }
+}
+```
 
 
 #### 3.3.2 虚拟机栈存在的异常
@@ -323,9 +328,11 @@ JVM的参数非常之多，这里只列举比较重要的几个，通过各种�
 
 我们执行下面的代码
 
-    System.out.println("Xmx=" + Runtime.getRuntime().maxMemory() / 1024.0 / 1024 + "M");    //系统的最大空间
-    System.out.println("free mem=" + Runtime.getRuntime().freeMemory() / 1024.0 / 1024 + "M");  //系统的空闲空间
-    System.out.println("total mem=" + Runtime.getRuntime().totalMemory() / 1024.0 / 1024 + "M");  //当前可用的总空间
+```java
+System.out.println("Xmx=" + Runtime.getRuntime().maxMemory() / 1024.0 / 1024 + "M");    //系统的最大空间
+System.out.println("free mem=" + Runtime.getRuntime().freeMemory() / 1024.0 / 1024 + "M");  //系统的空闲空间
+System.out.println("total mem=" + Runtime.getRuntime().totalMemory() / 1024.0 / 1024 + "M");  //当前可用的总空间
+```
 
 注意：此处设置的是Java堆大小，也就是新生代大小 + 老年代大小
 ![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/5e7b352c16d74c789c665af46d3a2509-new-imagedd645dae-307d-4572-b6e2-b5a9925a46cd.png)
@@ -345,11 +352,13 @@ JVM的参数非常之多，这里只列举比较重要的几个，通过各种�
 
 我们此时创建一个字节数组看看，执行下面的代码
 
-    byte[] b = new byte[1 * 1024 * 1024];
-    System.out.println("分配了1M空间给数组");
-    System.out.println("Xmx=" + Runtime.getRuntime().maxMemory() / 1024.0 / 1024 + "M");  //系统的最大空间
-    System.out.println("free mem=" + Runtime.getRuntime().freeMemory() / 1024.0 / 1024 + "M");  //系统的空闲空间
-    System.out.println("total mem=" + Runtime.getRuntime().totalMemory() / 1024.0 / 1024 + "M");
+```java
+byte[] b = new byte[1 * 1024 * 1024];
+System.out.println("分配了1M空间给数组");
+System.out.println("Xmx=" + Runtime.getRuntime().maxMemory() / 1024.0 / 1024 + "M");  //系统的最大空间
+System.out.println("free mem=" + Runtime.getRuntime().freeMemory() / 1024.0 / 1024 + "M");  //系统的空闲空间
+System.out.println("total mem=" + Runtime.getRuntime().totalMemory() / 1024.0 / 1024 + "M");
+```
 
 
 ![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/bdd717d0a3394be7a733760052773374-new-image371b5d59-0020-4091-9874-603c0ab0073d.png)
@@ -369,11 +378,12 @@ JVM的参数非常之多，这里只列举比较重要的几个，通过各种�
 
 此时我们再跑一下这个代码
 
-    System.gc();
-    System.out.println("Xmx=" + Runtime.getRuntime().maxMemory() / 1024.0 / 1024 + "M");    //系统的最大空间
-    System.out.println("free mem=" + Runtime.getRuntime().freeMemory() / 1024.0 / 1024 + "M");  //系统的空闲空间
-    System.out.println("total mem=" + Runtime.getRuntime().totalMemory() / 1024.0 / 1024 + "M");  //当前可用的总空间
-
+```java
+System.gc();
+System.out.println("Xmx=" + Runtime.getRuntime().maxMemory() / 1024.0 / 1024 + "M");    //系统的最大空间
+System.out.println("free mem=" + Runtime.getRuntime().freeMemory() / 1024.0 / 1024 + "M");  //系统的空闲空间
+System.out.println("total mem=" + Runtime.getRuntime().totalMemory() / 1024.0 / 1024 + "M");  //当前可用的总空间
+```
 
 ![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/4cc44b5d5d1c40c48640ece6a296b1ac-new-image4b57baf6-085b-4150-9c60-ac51b0f815d7.png)
     

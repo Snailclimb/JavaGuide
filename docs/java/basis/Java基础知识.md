@@ -11,9 +11,8 @@
       - [1.1.2.2. JDK 和 JRE](#1122-jdk-和-jre)
     - [1.1.3. Oracle JDK 和 OpenJDK 的对比](#113-oracle-jdk-和-openjdk-的对比)
     - [1.1.4. Java 和 C++的区别?](#114-java-和-c的区别)
-    - [1.1.5. 什么是 Java 程序的主类 应用程序和小程序的主类有何不同?](#115-什么是-java-程序的主类-应用程序和小程序的主类有何不同)
-    - [1.1.6. import java 和 javax 有什么区别？](#116-import-java-和-javax-有什么区别)
-    - [1.1.7. 为什么说 Java 语言“编译与解释并存”？](#117-为什么说-java-语言编译与解释并存)
+    - [1.1.5. import java 和 javax 有什么区别？](#115-import-java-和-javax-有什么区别)
+    - [1.1.6. 为什么说 Java 语言“编译与解释并存”？](#116-为什么说-java-语言编译与解释并存)
   - [1.2. Java 语法](#12-java-语法)
     - [1.2.1. 字符型常量和字符串常量的区别?](#121-字符型常量和字符串常量的区别)
     - [1.2.2. 关于注释？](#122-关于注释)
@@ -52,16 +51,16 @@
   - [2.3. 修饰符](#23-修饰符)
     - [2.3.1. 在一个静态方法内调用一个非静态成员为什么是非法的?](#231-在一个静态方法内调用一个非静态成员为什么是非法的)
     - [2.3.2. 静态方法和实例方法有何不同](#232-静态方法和实例方法有何不同)
-  - [2.5. 其它重要知识点](#25-其它重要知识点)
-    - [2.5.1. String StringBuffer 和 StringBuilder 的区别是什么? String 为什么是不可变的?](#251-string-stringbuffer-和-stringbuilder-的区别是什么-string-为什么是不可变的)
-    - [2.5.2. Object 类的常见方法总结](#252-object-类的常见方法总结)
-    - [2.5.3. == 与 equals(重要)](#253-与-equals重要)
-    - [2.5.4. hashCode 与 equals (重要)](#254-hashcode-与-equals-重要)
-      - [2.5.4.1. hashCode（）介绍](#2541-hashcode介绍)
-      - [2.5.4.2. 为什么要有 hashCode](#2542-为什么要有-hashcode)
-      - [2.5.4.3. hashCode（）与 equals（）的相关规定](#2543-hashcode与-equals的相关规定)
-    - [2.5.5. Java 序列化中如果有些字段不想进行序列化，怎么办？](#255-java-序列化中如果有些字段不想进行序列化怎么办)
-    - [2.5.6. 获取用键盘输入常用的两种方法](#256-获取用键盘输入常用的两种方法)
+  - [2.4. 其它重要知识点](#24-其它重要知识点)
+    - [2.4.1. String StringBuffer 和 StringBuilder 的区别是什么? String 为什么是不可变的?](#241-string-stringbuffer-和-stringbuilder-的区别是什么-string-为什么是不可变的)
+    - [2.4.2. Object 类的常见方法总结](#242-object-类的常见方法总结)
+    - [2.4.3. == 与 equals(重要)](#243-与-equals重要)
+    - [2.4.4. hashCode 与 equals (重要)](#244-hashcode-与-equals-重要)
+      - [2.4.4.1. hashCode（）介绍](#2441-hashcode介绍)
+      - [2.4.4.2. 为什么要有 hashCode](#2442-为什么要有-hashcode)
+      - [2.4.4.3. hashCode（）与 equals（）的相关规定](#2443-hashcode与-equals的相关规定)
+    - [2.4.5. Java 序列化中如果有些字段不想进行序列化，怎么办？](#245-java-序列化中如果有些字段不想进行序列化怎么办)
+    - [2.4.6. 获取用键盘输入常用的两种方法](#246-获取用键盘输入常用的两种方法)
 - [3. Java 核心技术](#3-java-核心技术)
   - [3.1. 反射机制](#31-反射机制)
     - [3.1.1.静态编译和动态编译](#311静态编译和动态编译)
@@ -82,6 +81,7 @@
 - [4. 参考](#4-参考)
 
 <!-- /code_chunk_output -->
+
 
 
 ## 1. Java 基本功
@@ -160,17 +160,13 @@ JRE 是 Java 运行时环境。它是运行已编译 Java 程序所需的所有�
 - Java 有自动内存管理垃圾回收机制(GC)，不需要程序员手动释放无用内存
 - **在 C 语言中，字符串或字符数组最后都会有一个额外的字符`'\0'`来表示结束。但是，Java 语言中没有结束符这一概念。** 这是一个值得深度思考的问题，具体原因推荐看这篇文章： [https://blog.csdn.net/sszgg2006/article/details/49148189](https://blog.csdn.net/sszgg2006/article/details/49148189)
 
-#### 1.1.5. 什么是 Java 程序的主类 应用程序和小程序的主类有何不同?
-
-一个程序中可以有多个类，但只能有一个类是主类。在 Java 应用程序中，这个主类是指包含 `main()` 方法的类。而在 Java 小程序中，这个主类是一个继承自系统类 JApplet 或 Applet 的子类。应用程序的主类不一定要求是 public 类，但小程序的主类要求必须是 public 类。主类是 Java 程序执行的入口点。
-
-#### 1.1.6. import java 和 javax 有什么区别？
+#### 1.1.5. import java 和 javax 有什么区别？
 
 刚开始的时候 JavaAPI 所必需的包是 java 开头的包，javax 当时只是扩展 API 包来使用。然而随着时间的推移，javax 逐渐地扩展成为 Java API 的组成部分。但是，将扩展从 javax 包移动到 java 包确实太麻烦了，最终会破坏一堆现有的代码。因此，最终决定 javax 包将成为标准 API 的一部分。
 
 所以，实际上 java 和 javax 没有区别。这都是一个名字。
 
-#### 1.1.7. 为什么说 Java 语言“编译与解释并存”？
+#### 1.1.6. 为什么说 Java 语言“编译与解释并存”？
 
 高级编程语言按照程序的执行方式分为编译型和解释型两种。简单来说，编译型语言是指编译器针对特定的操作系统将源代码一次性翻译成可被该平台执行的机器码；解释型语言是指解释器对源程序逐行解释成特定平台的机器码并立即执行。比如，你想阅读一本英文名著，你可以找一个英文翻译人员帮助你阅读，
 有两种选择方式，你可以先等翻译人员将全本的英文名著（也就是源码）都翻译成汉语，再去阅读，也可以让翻译人员翻译一段，你在旁边阅读一段，慢慢把书读完。
@@ -764,7 +760,7 @@ Java 程序设计语言对对象采用的不是引用调用，实际上，对象
 
 **重载：**
 
-发生在同一个类中，方法名必须相同，参数类型不同、个数不同、顺序不同，方法返回值和访问修饰符可以不同。
+发生在同一个类中（或者父类和子类之间），方法名必须相同，参数类型不同、个数不同、顺序不同，方法返回值和访问修饰符可以不同。
 
 下面是《Java 核心技术》对重载这个概念的介绍：
 
@@ -798,6 +794,36 @@ Java 程序设计语言对对象采用的不是引用调用，实际上，对象
 - “两同”即方法名相同、形参列表相同；
 - “两小”指的是子类方法返回值类型应比父类方法返回值类型更小或相等，子类方法声明抛出的异常类应比父类方法声明抛出的异常类更小或相等；
 - “一大”指的是子类方法的访问权限应比父类方法的访问权限更大或相等。
+
+⭐️ 关于 **重写的返回值类**型 这里需要额外多说明一下，上面的表述不太清晰准确：如果方法的返回类型是void和基本数据类型，则返回值重写时不可修改。但是如果方法的返回值是引用类型，重写时是可以返回该引用类型的子类的。
+
+```java
+public class Hero {
+    public String name() {
+        return "超级英雄";
+    }
+}
+public class SuperMan extends Hero{
+    @Override
+    public String name() {
+        return "超人";
+    }
+    public Hero hero() {
+        return new Hero();
+    }
+}
+
+public class SuperSuperMan extends SuperMan {
+    public String name() {
+        return "超级超级英雄";
+    }
+
+    @Override
+    public SuperMan hero() {
+        return new SuperMan();
+    }
+}
+```
 
 #### 1.4.4. 深拷贝 vs 浅拷贝
 
@@ -978,13 +1004,15 @@ public class Student {
 
 2. 静态方法在访问本类的成员时，只允许访问静态成员（即静态成员变量和静态方法），而不允许访问实例成员变量和实例方法；实例方法则无此限制。
 
-### 2.5. 其它重要知识点
+### 2.4. 其它重要知识点
 
-#### 2.5.1. String StringBuffer 和 StringBuilder 的区别是什么? String 为什么是不可变的?
+#### 2.4.1. String StringBuffer 和 StringBuilder 的区别是什么? String 为什么是不可变的?
+
+**可变性**
 
 简单的来说：`String` 类中使用 final 关键字修饰字符数组来保存字符串，`private final char value[]`，所以`String` 对象是不可变的。
 
-> 补充（来自[issue 675](https://github.com/Snailclimb/JavaGuide/issues/675)）：在 Java 9 之后，String 类的实现改用 byte 数组存储字符串 `private final byte[] value`;
+> 补充（来自[issue 675](https://github.com/Snailclimb/JavaGuide/issues/675)）：在 Java 9 之后，String 、`StringBuilder` 与 `StringBuffer` 的实现改用 byte 数组存储字符串 `private final byte[] value`
 
 而 `StringBuilder` 与 `StringBuffer` 都继承自 `AbstractStringBuilder` 类，在 `AbstractStringBuilder` 中也是使用字符数组保存字符串`char[]value` 但是没有用 `final` 关键字修饰，所以这两种对象都是可变的。
 
@@ -1023,7 +1051,7 @@ abstract class AbstractStringBuilder implements Appendable, CharSequence {
 2. 单线程操作字符串缓冲区下操作大量数据: 适用 `StringBuilder`
 3. 多线程操作字符串缓冲区下操作大量数据: 适用 `StringBuffer`
 
-#### 2.5.2. Object 类的常见方法总结
+#### 2.4.2. Object 类的常见方法总结
 
 Object 类是一个特殊的类，是所有类的父类。它主要提供了以下 11 个方法：
 
@@ -1052,7 +1080,7 @@ protected void finalize() throws Throwable { }//实例被垃圾回收器回收�
 
 ```
 
-#### 2.5.3. == 与 equals(重要)
+#### 2.4.3. == 与 equals(重要)
 
 **==** : 它的作用是判断两个对象的地址是不是相等。即，判断两个对象是不是同一个对象(基本数据类型==比较的是值，引用数据类型==比较的是内存地址)。
 
@@ -1088,23 +1116,23 @@ public class test1 {
 - String 中的 equals 方法是被重写过的，因为 object 的 equals 方法是比较的对象的内存地址，而 String 的 equals 方法比较的是对象的值。
 - 当创建 String 类型的对象时，虚拟机会在常量池中查找有没有已经存在的值和要创建的值相同的对象，如果有就把它赋给当前引用。如果没有就在常量池中重新创建一个 String 对象。
 
-#### 2.5.4. hashCode 与 equals (重要)
+#### 2.4.4. hashCode 与 equals (重要)
 
 面试官可能会问你：“你重写过 hashcode 和 equals 么，为什么重写 equals 时必须重写 hashCode 方法？”
 
-##### 2.5.4.1. hashCode（）介绍
+##### 2.4.4.1. hashCode（）介绍
 
 hashCode() 的作用是获取哈希码，也称为散列码；它实际上是返回一个 int 整数。这个哈希码的作用是确定该对象在哈希表中的索引位置。hashCode() 定义在 JDK 的 Object.java 中，这就意味着 Java 中的任何类都包含有 hashCode() 函数。
 
 散列表存储的是键值对(key-value)，它的特点是：能根据“键”快速的检索出对应的“值”。这其中就利用到了散列码！（可以快速找到所需要的对象）
 
-##### 2.5.4.2. 为什么要有 hashCode
+##### 2.4.4.2. 为什么要有 hashCode
 
 **我们先以“HashSet 如何检查重复”为例子来说明为什么要有 hashCode：** 当你把对象加入 HashSet 时，HashSet 会先计算对象的 hashcode 值来判断对象加入的位置，同时也会与该位置其他已经加入的对象的 hashcode 值作比较，如果没有相符的 hashcode，HashSet 会假设对象没有重复出现。但是如果发现有相同 hashcode 值的对象，这时会调用 `equals()`方法来检查 hashcode 相等的对象是否真的相同。如果两者相同，HashSet 就不会让其加入操作成功。如果不同的话，就会重新散列到其他位置。（摘自我的 Java 启蒙书《Head first java》第二版）。这样我们就大大减少了 equals 的次数，相应就大大提高了执行速度。
 
 通过我们可以看出：`hashCode()` 的作用就是**获取哈希码**，也称为散列码；它实际上是返回一个 int 整数。这个**哈希码的作用**是确定该对象在哈希表中的索引位置。**`hashCode()`在散列表中才有用，在其它情况下没用**。在散列表中 hashCode() 的作用是获取对象的散列码，进而确定该对象在散列表中的位置。
 
-##### 2.5.4.3. hashCode（）与 equals（）的相关规定
+##### 2.4.4.3. hashCode（）与 equals（）的相关规定
 
 1. 如果两个对象相等，则 hashcode 一定也是相同的
 2. 两个对象相等,对两个对象分别调用 equals 方法都返回 true
@@ -1114,13 +1142,13 @@ hashCode() 的作用是获取哈希码，也称为散列码；它实际上是返
 
 推荐阅读：[Java hashCode() 和 equals()的若干问题解答](https://www.cnblogs.com/skywang12345/p/3324958.html)
 
-#### 2.5.5. Java 序列化中如果有些字段不想进行序列化，怎么办？
+#### 2.4.5. Java 序列化中如果有些字段不想进行序列化，怎么办？
 
 对于不想进行序列化的变量，使用 transient 关键字修饰。
 
 transient 关键字的作用是：阻止实例中那些用此关键字修饰的的变量序列化；当对象被反序列化时，被 transient 修饰的变量值不会被持久化和恢复。transient 只能修饰变量，不能修饰类和方法。
 
-#### 2.5.6. 获取用键盘输入常用的两种方法
+#### 2.4.6. 获取用键盘输入常用的两种方法
 
 方法 1：通过 Scanner
 
@@ -1191,13 +1219,13 @@ Java 代码在编译过程中，如果受检查异常没有被 `catch`/`throw` �
 
 ![check-exception](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-12/check-exception.png)
 
-除了`RuntimeException`及其子类以外，其他的`Exception`类及其子类都属于检查异常 。常见的受检查异常有： IO 相关的异常、`ClassNotFoundException` 、`SQLException`...。
+除了`RuntimeException`及其子类以外，其他的`Exception`类及其子类都属于受检查异常 。常见的受检查异常有： IO 相关的异常、`ClassNotFoundException` 、`SQLException`...。
 
 **不受检查异常**
 
 Java 代码在编译过程中 ，我们即使不处理不受检查异常也可以正常通过编译。
 
-`RuntimeException` 及其子类都统称为非受检查异常，例如：`NullPointExecrption`、`NumberFormatException`（字符串转换为数字）、`ArrayIndexOutOfBoundsException`（数组越界）、`ClassCastException`（类型转换错误）、`ArithmeticException`（算术错误）等。
+`RuntimeException` 及其子类都统称为非受检查异常，例如：`NullPointException`、`NumberFormatException`（字符串转换为数字）、`ArrayIndexOutOfBoundsException`（数组越界）、`ClassCastException`（类型转换错误）、`ArithmeticException`（算术错误）等。
 
 #### 3.2.2. Throwable 类常用方法
 
@@ -1212,10 +1240,9 @@ Java 代码在编译过程中 ，我们即使不处理不受检查异常也可�
 - **`catch`块：** 用于处理 try 捕获到的异常。
 - **`finally` 块：** 无论是否捕获或处理异常，`finally` 块里的语句都会被执行。当在 `try` 块或 `catch` 块中遇到 `return` 语句时，`finally` 语句块将在方法返回之前被执行。
 
-**在以下 4 种特殊情况下，`finally` 块不会被执行：**
+**在以下 3 种特殊情况下，`finally` 块不会被执行：**
 
-1. 在 `finally` 语句块第一行发生了异常。 因为在其他行，`finally` 块还是会得到执行
-2. 在前面的代码中用了 `System.exit(int)`已退出程序。 exit 是带参函数 ；若该语句在异常语句之后，finally 会执行
+2. 在 `try` 或 `finally `块中用了 `System.exit(int)`退出程序。但是，如果 `System.exit(int)` 在异常语句之后，`finally` 还是会被执行
 3. 程序所在的线程死亡。
 4. 关闭 CPU。
 
@@ -1241,7 +1268,7 @@ public class Test {
 
 #### 3.2.4. 使用 `try-with-resources` 来代替`try-catch-finally`
 
-1. **适用范围（资源的定义）：** 任何实现 `java.lang.AutoCloseable`或者``java.io.Closeable` 的对象
+1. **适用范围（资源的定义）：** 任何实现 `java.lang.AutoCloseable`或者 `java.io.Closeable` 的对象
 2. **关闭资源和 final 的执行顺序：** 在 `try-with-resources` 语句中，任何 catch 或 finally 块在声明的资源关闭后运行
 
 《Effecitve Java》中明确指出：
