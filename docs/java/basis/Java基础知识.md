@@ -1225,7 +1225,7 @@ Java 代码在编译过程中，如果受检查异常没有被 `catch`/`throw` �
 
 Java 代码在编译过程中 ，我们即使不处理不受检查异常也可以正常通过编译。
 
-`RuntimeException` 及其子类都统称为非受检查异常，例如：`NullPointException`、`NumberFormatException`（字符串转换为数字）、`ArrayIndexOutOfBoundsException`（数组越界）、`ClassCastException`（类型转换错误）、`ArithmeticException`（算术错误）等。
+`RuntimeException` 及其子类都统称为非受检查异常，例如：`NullPoin​terException`、`NumberFormatException`（字符串转换为数字）、`ArrayIndexOutOfBoundsException`（数组越界）、`ClassCastException`（类型转换错误）、`ArithmeticException`（算术错误）等。
 
 #### 3.2.2. Throwable 类常用方法
 
