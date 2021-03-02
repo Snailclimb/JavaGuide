@@ -233,7 +233,7 @@
 **知识点/面试题:** 
 
 1. **[Spring 常见问题总结](docs/system-design/framework/spring/Spring常见问题总结.md)**
-2. **[SpringBoot 指南/常见面试题总结](https://github.com/Snailclimb/springboot-guide)**
+2. **[SpringBoot 入门指南](https://github.com/Snailclimb/springboot-guide)**
 3. **[面试常问：“讲述一下 SpringBoot 自动装配原理？”](https://www.cnblogs.com/javaguide/p/springboot-auto-config.html)**
 
 **重要知识点详解：**
