@@ -347,6 +347,7 @@ String transient4; // not persistent because of @Transient
 - <https://howtodoinjava.com/interview-questions/top-spring-interview-questions-with-answers/>
 - <http://www.tomaszezula.com/2014/02/09/spring-series-part-5-component-vs-bean/>
 - <https://stackoverflow.com/questions/34172888/difference-between-bean-and-autowired>
+- <https://www.interviewbit.com/spring-interview-questions/>
 
 ## 公众号
 

@@ -760,7 +760,7 @@ Java 程序设计语言对对象采用的不是引用调用，实际上，对象
 
 **重载：**
 
-发生在同一个类中，方法名必须相同，参数类型不同、个数不同、顺序不同，方法返回值和访问修饰符可以不同。
+发生在同一个类中（或者父类和子类之间），方法名必须相同，参数类型不同、个数不同、顺序不同，方法返回值和访问修饰符可以不同。
 
 下面是《Java 核心技术》对重载这个概念的介绍：
 
@@ -1225,7 +1225,7 @@ Java 代码在编译过程中，如果受检查异常没有被 `catch`/`throw` �
 
 Java 代码在编译过程中 ，我们即使不处理不受检查异常也可以正常通过编译。
 
-`RuntimeException` 及其子类都统称为非受检查异常，例如：`NullPointExecrption`、`NumberFormatException`（字符串转换为数字）、`ArrayIndexOutOfBoundsException`（数组越界）、`ClassCastException`（类型转换错误）、`ArithmeticException`（算术错误）等。
+`RuntimeException` 及其子类都统称为非受检查异常，例如：`NullPoin​terException`、`NumberFormatException`（字符串转换为数字）、`ArrayIndexOutOfBoundsException`（数组越界）、`ClassCastException`（类型转换错误）、`ArithmeticException`（算术错误）等。
 
 #### 3.2.2. Throwable 类常用方法
 
