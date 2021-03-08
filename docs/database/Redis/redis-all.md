@@ -16,11 +16,12 @@
   - [6.3. hash](#63-hash)
   - [6.4. set](#64-set)
   - [6.5. sorted set](#65-sorted-set)
+  - [6.6 bitmap](#66-bitmap)
 - [7. Redis 单线程模型详解](#7-redis-单线程模型详解)
 - [8. Redis 没有使用多线程？为什么不使用多线程？](#8-redis-没有使用多线程为什么不使用多线程)
 - [9. Redis6.0 之后为何引入了多线程？](#9-redis60-之后为何引入了多线程)
 - [10. Redis 给缓存数据设置过期时间有啥用？](#10-redis-给缓存数据设置过期时间有啥用)
-- [11. Redis是如何判断数据是否过期的呢？](#11-redis是如何判断数据是否过期的呢)
+- [11. Redis 是如何判断数据是否过期的呢？](#11-redis-是如何判断数据是否过期的呢)
 - [12. 过期的数据的删除策略了解么？](#12-过期的数据的删除策略了解么)
 - [13. Redis 内存淘汰机制了解么？](#13-redis-内存淘汰机制了解么)
 - [14. Redis 持久化机制(怎么保证 Redis 挂掉之后再重启数据可以进行恢复)](#14-redis-持久化机制怎么保证-redis-挂掉之后再重启数据可以进行恢复)
@@ -32,11 +33,12 @@
 - [17. 缓存雪崩](#17-缓存雪崩)
   - [17.1. 什么是缓存雪崩？](#171-什么是缓存雪崩)
   - [17.2. 有哪些解决办法？](#172-有哪些解决办法)
-- [18. 如何保证缓存与数据库双写时的数据一致性?](#18-如何保证缓存与数据库双写时的数据一致性)
+- [18. 如何保证缓存和数据库数据的一致性？](#18-如何保证缓存和数据库数据的一致性)
 - [19. 参考](#19-参考)
 - [20. 公众号](#20-公众号)
 
 <!-- /code_chunk_output -->
+
 
 
 ### 1. 简单介绍一下 Redis 呗!
@@ -74,7 +76,7 @@ Memcached 是分布式缓存最开始兴起的那会，比较常用的。后来�
 5. **Memcached 没有原生的集群模式，需要依靠客户端来实现往集群中分片写入数据；但是 Redis 目前是原生支持 cluster 模式的.**
 6. **Memcached 是多线程，非阻塞 IO 复用的网络模型；Redis 使用单线程的多路 IO 复用模型。** （Redis 6.0 引入了多线程 IO ）
 7. **Redis 支持发布订阅模型、Lua 脚本、事务等功能，而 Memcached 不支持。并且，Redis 支持更多的编程语言。**
-8. **Memcached过期数据的删除策略只用了惰性删除，而 Redis 同时使用了惰性删除与定期删除。**
+8. **Memcached 过期数据的删除策略只用了惰性删除，而 Redis 同时使用了惰性删除与定期删除。**
 
 相信看了上面的对比之后，我们已经没有什么理由可以选择使用 Memcached 来作为自己项目的分布式缓存了。
 
@@ -133,7 +135,7 @@ _简单，来说使用缓存主要是为了提升用户体验以及应对更多�
 
 **普通字符串的基本操作：**
 
-``` bash
+```bash
 127.0.0.1:6379> set key value #设置 key-value 类型的值
 OK
 127.0.0.1:6379> get key # 根据 key 获得对应的 value
@@ -150,7 +152,7 @@ OK
 
 **批量设置** :
 
-``` bash
+```bash
 127.0.0.1:6379> mset key1 value1 key2 value2 # 批量设置 key-value 类型的值
 OK
 127.0.0.1:6379> mget key1 key2 # 批量获取多个 key 对应的 value
@@ -160,7 +162,7 @@ OK
 
 **计数器（字符串的内容为整数的时候可以使用）：**
 
-``` bash
+```bash
 
 127.0.0.1:6379> set number 1
 OK
@@ -176,7 +178,7 @@ OK
 
 **过期**：
 
-``` bash
+```bash
 127.0.0.1:6379> expire key  60 # 数据在 60s 后过期
 (integer) 1
 127.0.0.1:6379> setex key 60 value # 数据在 60s 后过期 (setex:[set] + [ex]pire)
@@ -195,7 +197,7 @@ OK
 
 **通过 `rpush/lpop` 实现队列：**
 
-``` bash
+```bash
 127.0.0.1:6379> rpush myList value1 # 向 list 的头部（右边）添加元素
 (integer) 1
 127.0.0.1:6379> rpush myList value2 value3 # 向list的头部（最右边）添加多个元素
@@ -212,7 +214,7 @@ OK
 
 **通过 `rpush/rpop` 实现栈：**
 
-``` bash
+```bash
 127.0.0.1:6379> rpush myList2 value1 value2 value3
 (integer) 3
 127.0.0.1:6379> rpop myList2 # 将 list的头部(最右边)元素取出
@@ -225,7 +227,7 @@ OK
 
 **通过 `lrange` 查看对应下标范围的列表元素：**
 
-``` bash
+```bash
 127.0.0.1:6379> rpush myList value1 value2 value3
 (integer) 3
 127.0.0.1:6379> lrange myList 0 1 # 查看对应下标的list列表， 0 为 start,1为 end
@@ -241,7 +243,7 @@ OK
 
 **通过 `llen` 查看链表长度：**
 
-``` bash
+```bash
 127.0.0.1:6379> llen myList
 (integer) 3
 ```
@@ -254,7 +256,7 @@ OK
 
 下面我们简单看看它的使用！
 
-``` bash
+```bash
 127.0.0.1:6379> hset userInfoKey name "guide" description "dev" age "24"
 OK
 127.0.0.1:6379> hexists userInfoKey name # 查看 key 对应的 value中指定的字段是否存在。
@@ -291,7 +293,7 @@ OK
 
 下面我们简单看看它的使用！
 
-``` bash
+```bash
 127.0.0.1:6379> sadd mySet value1 value2 # 添加元素进去
 (integer) 2
 127.0.0.1:6379> sadd mySet value1 # 不允许有重复元素
@@ -311,14 +313,13 @@ OK
 1) "value2"
 ```
 
-
 #### 6.5. sorted set
 
 1. **介绍：** 和 set 相比，sorted set 增加了一个权重参数 score，使得集合中的元素能够按 score 进行有序排列，还可以通过 score 的范围来获取元素的列表。有点像是 Java 中 HashMap 和 TreeSet 的结合体。
 2. **常用命令：** `zadd,zcard,zscore,zrange,zrevrange,zrem` 等。
 3. **应用场景：** 需要对数据根据某个权重进行排序的场景。比如在直播系统中，实时排行信息包含直播间在线用户列表，各种礼物排行榜，弹幕消息（可以理解为按消息维度的消息排行榜）等信息。
 
-``` bash
+```bash
 127.0.0.1:6379> zadd myZset 3.0 value1 # 添加元素到 sorted set 中 3.0 为权重
 (integer) 1
 127.0.0.1:6379> zadd myZset 2.0 value2 1.0 value3 # 一次添加多个元素
@@ -339,67 +340,85 @@ OK
 2) "value2"
 ```
 
-#### 6.6 bitMap
+#### 6.6 bitmap
 
-**1、BitMap是什么**
-就是通过一个bit位来表示某个元素对应的值或者状态,其中的key就是对应元素本身。我们知道8个bit可以组成一个Byte，所以bitmap本身会极大的节省储存空间。
-**2、Redis中的BitMap**
-Redis从2.2.0版本开始新增了setbit,getbit,bitcount等几个bitmap相关命令。虽然是新命令，但是并没有新增新的数据类型，因为setbit等命令只不过是在set上的扩展。
-**3、setbit命令介绍**
-指令 SETBIT key offset value
-设置或者清空key的value(字符串)在offset处的bit值(只能只0或者1)。
+1. **介绍 ：** bitmap 存储的是连续的二进制数字（0 和 1），通过 bitmap, 只需要一个 bit 位来表示某个元素对应的值或者状态，key 就是对应元素本身 。我们知道 8 个 bit 可以组成一个 byte，所以 bitmap 本身会极大的节省储存空间。
+2. **常用命令：** `setbit` 、`getbit` 、`bitcount`、`bitop`
+3. **应用场景:** 适合需要保存状态信息（比如是否签到、是否登录...）并需要进一步对这些信息进行分析的场景。比如用户签到情况、活跃用户情况、用户行为统计（比如是否点赞过某个视频）。
 
-**4、使用场景一：用户签到**
-很多网站都提供了签到功能(这里不考虑数据落地事宜)，并且需要展示最近一个月的签到情况，如果使用bitmap我们怎么做？
-根据日期 offset =hash % 365  ； key = 年份#用户id
-
-``` bash
-127.0.0.1:6379> setbit 2021#codinglemon 1 1
+```bash
+# SETBIT 会返回之前位的值（默认是 0）这里会生成 7 个位
+127.0.0.1:6379> setbit mykey 7 1
 (integer) 0
-127.0.0.1:6379> setbit 2021#codinglemon 2 1
+127.0.0.1:6379> setbit mykey 7 0
+(integer) 1
+127.0.0.1:6379> getbit mykey 7
 (integer) 0
-127.0.0.1:6379> bitcount 2021#codinglemon
+127.0.0.1:6379> setbit mykey 6 1
+(integer) 0
+127.0.0.1:6379> setbit mykey 8 1
+(integer) 0
+# 通过 bitcount 统计被被设置为 1 的位的数量。
+127.0.0.1:6379> bitcount mykey
 (integer) 2
 ```
 
-**5、使用场景二：统计活跃用户**
-使用时间作为cacheKey，然后用户ID为offset，如果当日活跃过就设置为1
-那么我该如果计算某几天/月/年的活跃用户呢(暂且约定，统计时间内只有有一天在线就称为活跃)，有请下一个redis的命令
-命令 BITOP operation destkey key [key ...]
-说明：对一个或多个保存二进制位的字符串 key 进行位元操作，并将结果保存到 destkey 上。
-说明：BITOP 命令支持 AND 、 OR 、 NOT 、 XOR 这四种操作中的任意一种参数
+针对上面提到的一些场景，这里进行进一步说明。
 
-20210308 活跃用户 【1，2】
-20210309 活跃用户 【1】
-统计20210308~20210309 总活跃用户数: 1
+**使用场景一：用户行为分析**
+很多网站为了分析你的喜好，需要研究你点赞过的内容。
 
-``` bash
+```bash
+# 记录你喜欢过 001 号小姐姐
+127.0.0.1:6379> setbit beauty_girl_001 uid 1
+```
+
+**使用场景二：统计活跃用户**
+
+使用时间作为 key，然后用户 ID 为 offset，如果当日活跃过就设置为 1
+
+那么我该如果计算某几天/月/年的活跃用户呢(暂且约定，统计时间内只有有一天在线就称为活跃)，有请下一个 redis 的命令
+
+```bash
+# 对一个或多个保存二进制位的字符串 key 进行位元操作，并将结果保存到 destkey 上。
+# BITOP 命令支持 AND 、 OR 、 NOT 、 XOR 这四种操作中的任意一种参数
+BITOP operation destkey key [key ...]
+```
+
+初始化数据：
+
+```bash
 127.0.0.1:6379> setbit 20210308 1 1
 (integer) 0
 127.0.0.1:6379> setbit 20210308 2 1
 (integer) 0
 127.0.0.1:6379> setbit 20210309 1 1
 (integer) 0
+```
+
+统计 20210308~20210309 总活跃用户数: 1
+
+```bash
 127.0.0.1:6379> bitop and desk1 20210308 20210309
 (integer) 1
 127.0.0.1:6379> bitcount desk1
 (integer) 1
 ```
 
-统计20210308~20210309 在线活跃用户数: 2
+统计 20210308~20210309 在线活跃用户数: 2
 
-``` bash
+```bash
 127.0.0.1:6379> bitop or desk2 20210308 20210309
 (integer) 1
 127.0.0.1:6379> bitcount desk2
 (integer) 2
 ```
 
-**6、使用场景三：用户在线状态**
-对于获取或者统计用户在线状态，
-使用bitmap是一个节约空间效率又高的一种方法，只需要一个key，然后用户ID为offset，如果在线就设置为1，
-不在线就设置为0，和上面的场景一样，5000W用户只需要6MB的空间。
+**使用场景三：用户在线状态**
 
+对于获取或者统计用户在线状态，使用 bitmap 是一个节约空间效率又高的一种方法。
+
+只需要一个 key，然后用户 ID 为 offset，如果在线就设置为 1，不在线就设置为 0。
 
 ### 7. Redis 单线程模型详解
 
@@ -425,10 +444,10 @@ Redis 通过**IO 多路复用程序** 来监听来自客户端的大量连接（
 
 可以看出，文件事件处理器（file event handler）主要是包含 4 个部分：
 
-* 多个 socket（客户端连接）
-* IO 多路复用程序（支持多个客户端连接的关键）
-* 文件事件分派器（将 socket 关联到相应的事件处理器）
-* 事件处理器（连接应答处理器、命令请求处理器、命令回复处理器）
+- 多个 socket（客户端连接）
+- IO 多路复用程序（支持多个客户端连接的关键）
+- 文件事件分派器（将 socket 关联到相应的事件处理器）
+- 事件处理器（连接应答处理器、命令请求处理器、命令回复处理器）
 
 ![](images/redis-all/redis事件处理器.png)
 
@@ -460,13 +479,13 @@ Redis 通过**IO 多路复用程序** 来监听来自客户端的大量连接（
 
 Redis6.0 的多线程默认是禁用的，只使用主线程。如需开启需要修改 redis 配置文件 `redis.conf` ：
 
-``` bash
+```bash
 io-threads-do-reads yes
 ```
 
 开启多线程后，还需要设置线程数，否则是不生效的。同样需要修改 redis 配置文件 `redis.conf` :
 
-``` bash
+```bash
 io-threads 4 #官网建议4核的机器建议设置为2或3个线程，8核的建议设置为6个线程
 ```
 
@@ -479,11 +498,11 @@ io-threads 4 #官网建议4核的机器建议设置为2或3个线程，8核的�
 
 一般情况下，我们设置保存的缓存数据的时候都会设置一个过期时间。为什么呢？
 
-因为内存是有限的，如果缓存中的所有数据都是一直保存的话，分分钟直接Out of memory。
+因为内存是有限的，如果缓存中的所有数据都是一直保存的话，分分钟直接 Out of memory。
 
 Redis 自带了给缓存数据设置过期时间的功能，比如：
 
-``` bash
+```bash
 127.0.0.1:6379> exp key  60 # 数据在 60s 后过期
 (integer) 1
 127.0.0.1:6379> setex key 60 value # 数据在 60s 后过期 (setex:[set] + [ex]pire)
@@ -492,26 +511,26 @@ OK
 (integer) 56
 ```
 
-注意：**Redis中除了字符串类型有自己独有设置过期时间的命令 `setex` 外，其他方法都需要依靠 `expire` 命令来设置过期时间 。另外， `persist` 命令可以移除一个键的过期时间： **
+注意：**Redis 中除了字符串类型有自己独有设置过期时间的命令 `setex` 外，其他方法都需要依靠 `expire` 命令来设置过期时间 。另外， `persist` 命令可以移除一个键的过期时间： **
 
 **过期时间除了有助于缓解内存的消耗，还有什么其他用么？**
 
-很多时候，我们的业务场景就是需要某个数据只在某一时间段内存在，比如我们的短信验证码可能只在1分钟内有效，用户登录的 token 可能只在 1 天内有效。
+很多时候，我们的业务场景就是需要某个数据只在某一时间段内存在，比如我们的短信验证码可能只在 1 分钟内有效，用户登录的 token 可能只在 1 天内有效。
 
 如果使用传统的数据库来处理的话，一般都是自己判断过期，这样更麻烦并且性能要差很多。
 
-### 11. Redis是如何判断数据是否过期的呢？
+### 11. Redis 是如何判断数据是否过期的呢？
 
-Redis 通过一个叫做过期字典（可以看作是hash表）来保存数据过期的时间。过期字典的键指向Redis数据库中的某个key(键)，过期字典的值是一个long long类型的整数，这个整数保存了key所指向的数据库键的过期时间（毫秒精度的UNIX时间戳）。 
+Redis 通过一个叫做过期字典（可以看作是 hash 表）来保存数据过期的时间。过期字典的键指向 Redis 数据库中的某个 key(键)，过期字典的值是一个 long long 类型的整数，这个整数保存了 key 所指向的数据库键的过期时间（毫秒精度的 UNIX 时间戳）。
 
 ![redis过期字典](images/redis-all/redis过期时间.png)
 
-过期字典是存储在redisDb这个结构里的：
+过期字典是存储在 redisDb 这个结构里的：
 
-``` c
+```c
 typedef struct redisDb {
     ...
-    
+
     dict *dict;     //数据库键空间,保存着数据库中所有键值对
     dict *expires   // 过期字典,保存着键的过期时间
     ...
@@ -524,12 +543,12 @@ typedef struct redisDb {
 
 常用的过期数据的删除策略就两个（重要！自己造缓存轮子的时候需要格外考虑的东西）：
 
-1. **惰性删除** ：只会在取出key的时候才对数据进行过期检查。这样对CPU最友好，但是可能会造成太多过期 key 没有被删除。
-2. **定期删除** ： 每隔一段时间抽取一批 key 执行删除过期key操作。并且，Redis 底层会通过限制删除操作执行的时长和频率来减少删除操作对CPU时间的影响。
+1. **惰性删除** ：只会在取出 key 的时候才对数据进行过期检查。这样对 CPU 最友好，但是可能会造成太多过期 key 没有被删除。
+2. **定期删除** ： 每隔一段时间抽取一批 key 执行删除过期 key 操作。并且，Redis 底层会通过限制删除操作执行的时长和频率来减少删除操作对 CPU 时间的影响。
 
-定期删除对内存更加友好，惰性删除对CPU更加友好。两者各有千秋，所以Redis 采用的是 **定期删除+惰性/懒汉式删除** 。
+定期删除对内存更加友好，惰性删除对 CPU 更加友好。两者各有千秋，所以 Redis 采用的是 **定期删除+惰性/懒汉式删除** 。
 
-但是，仅仅通过给 key 设置过期时间还是有问题的。因为还是可能存在定期删除和惰性删除漏掉了很多过期  key 的情况。这样就导致大量过期 key 堆积在内存里，然后就Out of memory了。
+但是，仅仅通过给 key 设置过期时间还是有问题的。因为还是可能存在定期删除和惰性删除漏掉了很多过期 key 的情况。这样就导致大量过期 key 堆积在内存里，然后就 Out of memory 了。
 
 怎么解决这个问题呢？答案就是： **Redis 内存淘汰机制。**
 
@@ -563,7 +582,7 @@ Redis 可以通过创建快照来获得存储在内存里面的数据在某个�
 
 快照持久化是 Redis 默认采用的持久化方式，在 Redis.conf 配置文件中默认有此下配置：
 
-``` conf
+```conf
 save 900 1           #在900秒(15分钟)之后，如果至少有1个key发生变化，Redis就会自动触发BGSAVE命令创建快照。
 
 save 300 10          #在300秒(5分钟)之后，如果至少有10个key发生变化，Redis就会自动触发BGSAVE命令创建快照。
@@ -575,7 +594,7 @@ save 60 10000        #在60秒(1分钟)之后，如果至少有10000个key发生
 
 与快照持久化相比，AOF 持久化 的实时性更好，因此已成为主流的持久化方案。默认情况下 Redis 没有开启 AOF（append only file）方式的持久化，可以通过 appendonly 参数开启：
 
-``` conf
+```conf
 appendonly yes
 ```
 
@@ -583,7 +602,7 @@ appendonly yes
 
 在 Redis 的配置文件中存在三种不同的 AOF 持久化方式，它们分别是：
 
-``` conf
+```conf
 appendfsync always    #每次有数据修改发生时都会写入AOF文件,这样会严重降低Redis的速度
 appendfsync everysec  #每秒钟同步一次，显示地将多个写命令同步到硬盘
 appendfsync no        #让操作系统决定何时进行同步
@@ -609,9 +628,9 @@ AOF 重写是一个有歧义的名字，该功能是通过读取数据库中的�
 
 ### 15. Redis 事务
 
-Redis 可以通过 **MULTI，EXEC，DISCARD 和 WATCH**  等命令来实现事务(transaction)功能。
+Redis 可以通过 **MULTI，EXEC，DISCARD 和 WATCH** 等命令来实现事务(transaction)功能。
 
-``` bash
+```bash
 > MULTI
 OK
 > INCR foo
@@ -623,9 +642,9 @@ QUEUED
 2) (integer) 1
 ```
 
-使用 [MULTI](https://redis.io/commands/multi)命令后可以输入多个命令。Redis不会立即执行这些命令，而是将它们放到队列，当调用了[EXEC](https://redis.io/commands/exec)命令将执行所有命令。
+使用 [MULTI](https://redis.io/commands/multi)命令后可以输入多个命令。Redis 不会立即执行这些命令，而是将它们放到队列，当调用了[EXEC](https://redis.io/commands/exec)命令将执行所有命令。
 
-Redis官网相关介绍 [https://redis.io/topics/transactions](https://redis.io/topics/transactions) 如下：
+Redis 官网相关介绍 [https://redis.io/topics/transactions](https://redis.io/topics/transactions) 如下：
 
 ![redis事务](images/redis-all/redis事务.png)
 
@@ -638,13 +657,13 @@ Redis官网相关介绍 [https://redis.io/topics/transactions](https://redis.io/
 
 **Redis 是不支持 roll back 的，因而不满足原子性的（而且不满足持久性）。**
 
-Redis官网也解释了自己为啥不支持回滚。简单来说就是Redis开发者们觉得没必要支持回滚，这样更简单便捷并且性能更好。Redis开发者觉得即使命令执行错误也应该在开发过程中就被发现而不是生产过程中。
+Redis 官网也解释了自己为啥不支持回滚。简单来说就是 Redis 开发者们觉得没必要支持回滚，这样更简单便捷并且性能更好。Redis 开发者觉得即使命令执行错误也应该在开发过程中就被发现而不是生产过程中。
 
 ![redis roll back](images/redis-all/redis-rollBack.png)
 
-你可以将Redis中的事务就理解为 ：**Redis事务提供了一种将多个命令请求打包的功能。然后，再按顺序执行打包的所有命令，并且不会被中途打断。**
+你可以将 Redis 中的事务就理解为 ：**Redis 事务提供了一种将多个命令请求打包的功能。然后，再按顺序执行打包的所有命令，并且不会被中途打断。**
 
-**相关issue** :[issue452: 关于 Redis 事务不满足原子性的问题](https://github.com/Snailclimb/JavaGuide/issues/452) ，推荐阅读：[https://zhuanlan.zhihu.com/p/43897838](https://zhuanlan.zhihu.com/p/43897838) 。
+**相关 issue** :[issue452: 关于 Redis 事务不满足原子性的问题](https://github.com/Snailclimb/JavaGuide/issues/452) ，推荐阅读：[https://zhuanlan.zhihu.com/p/43897838](https://zhuanlan.zhihu.com/p/43897838) 。
 
 ### 16. 缓存穿透
 
@@ -670,7 +689,7 @@ Redis官网也解释了自己为啥不支持回滚。简单来说就是Redis开�
 
 如果用 Java 代码展示的话，差不多是下面这样的：
 
-``` java
+```java
 public Object getObjectInclNullById(Integer id) {
     // 从缓存中获取数据
     Object cacheValue = cache.get(id);
@@ -747,24 +766,24 @@ _为什么会出现误判的情况呢? 我们还要从布隆过滤器的原理�
 
 ### 18. 如何保证缓存和数据库数据的一致性？
 
-细说的话可以扯很多，但是我觉得其实没太大必要（小声BB：很多解决方案我也没太弄明白）。我个人觉得引入缓存之后，如果为了短时间的不一致性问题，选择让系统设计变得更加复杂的话，完全没必要。
+细说的话可以扯很多，但是我觉得其实没太大必要（小声 BB：很多解决方案我也没太弄明白）。我个人觉得引入缓存之后，如果为了短时间的不一致性问题，选择让系统设计变得更加复杂的话，完全没必要。
 
-下面单独对  **Cache Aside Pattern（旁路缓存模式）** 来聊聊。
+下面单独对 **Cache Aside Pattern（旁路缓存模式）** 来聊聊。
 
 Cache Aside Pattern 中遇到写请求是这样的：更新 DB，然后直接删除 cache 。
 
 如果更新数据库成功，而删除缓存这一步失败的情况的话，简单说两个解决方案：
 
 1. **缓存失效时间变短（不推荐，治标不治本）** ：我们让缓存数据的过期时间变短，这样的话缓存就会从数据库中加载数据。另外，这种解决办法对于先操作缓存后操作数据库的场景不适用。
-2. **增加cache更新重试机制（常用）**： 如果 cache 服务当前不可用导致缓存删除失败的话，我们就隔一段时间进行重试，重试次数可以自己定。如果多次重试还是失败的话，我们可以把当前更新失败的 key 存入队列中，等缓存服务可用之后，再将 缓存中对应的 key 删除即可。
+2. **增加 cache 更新重试机制（常用）**： 如果 cache 服务当前不可用导致缓存删除失败的话，我们就隔一段时间进行重试，重试次数可以自己定。如果多次重试还是失败的话，我们可以把当前更新失败的 key 存入队列中，等缓存服务可用之后，再将 缓存中对应的 key 删除即可。
 
 ### 19. 参考
 
-* 《Redis 开发与运维》
-* 《Redis 设计与实现》
-* Redis 命令总结：http://Redisdoc.com/string/set.html
-* 通俗易懂的 Redis 数据结构基础教程：[https://juejin.im/post/5b53ee7e5188251aaa2d2e16](https://juejin.im/post/5b53ee7e5188251aaa2d2e16)
-* WHY Redis choose single thread (vs multi threads): [https://medium.com/@jychen7/sharing-redis-single-thread-vs-multi-threads-5870bd44d153](https://medium.com/@jychen7/sharing-redis-single-thread-vs-multi-threads-5870bd44d153)
+- 《Redis 开发与运维》
+- 《Redis 设计与实现》
+- Redis 命令总结：http://Redisdoc.com/string/set.html
+- 通俗易懂的 Redis 数据结构基础教程：[https://juejin.im/post/5b53ee7e5188251aaa2d2e16](https://juejin.im/post/5b53ee7e5188251aaa2d2e16)
+- WHY Redis choose single thread (vs multi threads): [https://medium.com/@jychen7/sharing-redis-single-thread-vs-multi-threads-5870bd44d153](https://medium.com/@jychen7/sharing-redis-single-thread-vs-multi-threads-5870bd44d153)
 
 ### 20. 公众号
 
