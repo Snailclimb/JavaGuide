@@ -64,7 +64,7 @@ Java 虚拟机在执行 Java 程序的过程中会把它管理的内存划分成
 
 **JDK 1.8 ：**
 
-![](./pictures/java内存区域/2019-3Java运行时数据区域JDK1.8.png)
+![](./pictures/java内存区域/Java运行时数据区域JDK1.8.png)
 
 
 **线程私有的：**
