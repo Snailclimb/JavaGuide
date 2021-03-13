@@ -64,7 +64,7 @@ Java 虚拟机在执行 Java 程序的过程中会把它管理的内存划分成
 
 **JDK 1.8 ：**
 
-![](./pictures/java内存区域/2019-3Java运行时数据区域JDK1.8.png)
+![](./pictures/java内存区域/Java运行时数据区域JDK1.8.png)
 
 
 **线程私有的：**
@@ -102,7 +102,9 @@ Java 虚拟机在执行 Java 程序的过程中会把它管理的内存划分成
 **Java 虚拟机栈会出现两种错误：`StackOverFlowError` 和 `OutOfMemoryError`。**
 
 - **`StackOverFlowError`：** 若 Java 虚拟机栈的内存大小不允许动态扩展，那么当线程请求栈的深度超过当前 Java 虚拟机栈的最大深度的时候，就抛出 StackOverFlowError 错误。
-- **`OutOfMemoryError`：** 若 Java 虚拟机堆中没有空闲内存，并且垃圾回收器也无法提供更多内存的话。就会抛出 OutOfMemoryError 错误。
+- **`OutOfMemoryError`：**  Java 虚拟机栈的内存大小可以动态扩展， 如果虚拟机在动态扩展栈时无法申请到足够的内存空间，则抛出`OutOfMemoryError`异常异常。
+
+![](./pictures/java内存区域/《深入理解虚拟机》第三版的第2章-虚拟机栈.png)
 
 Java 虚拟机栈也是线程私有的，每个线程都有各自的 Java 虚拟机栈，而且随着线程的创建而创建，随着线程的死亡而死亡。
 
