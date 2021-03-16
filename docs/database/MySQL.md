@@ -1,63 +1,14 @@
-点击关注[公众号](#公众号)及时获取笔主最新更新文章，并可免费领取本文档配套的《Java面试突击》以及Java工程师必备学习资源。
+## 关系型数据库
 
-- [书籍推荐](#书籍推荐)
-- [文字教程推荐](#文字教程推荐)
-- [视频教程推荐](#视频教程推荐)
-- [常见问题总结](#常见问题总结)
-    - [什么是MySQL?](#什么是mysql)
-    - [存储引擎](#存储引擎)
-        - [一些常用命令](#一些常用命令)
-        - [MyISAM和InnoDB区别](#myisam和innodb区别)
-    - [字符集及校对规则](#字符集及校对规则)
-    - [索引](#索引)
-    - [查询缓存的使用](#查询缓存的使用)
-    - [什么是事务?](#什么是事务)
-    - [事物的四大特性(ACID)](#事物的四大特性acid)
-    - [并发事务带来哪些问题?](#并发事务带来哪些问题)
-    - [事务隔离级别有哪些?MySQL的默认隔离级别是?](#事务隔离级别有哪些mysql的默认隔离级别是)
-    - [锁机制与InnoDB锁算法](#锁机制与innodb锁算法)
-    - [大表优化](#大表优化)
-        - [1. 限定数据的范围](#1-限定数据的范围)
-        - [2. 读/写分离](#2-读写分离)
-        - [3. 垂直分区](#3-垂直分区)
-        - [4. 水平分区](#4-水平分区)
-    - [一条SQL语句在MySQL中如何执行的](#一条sql语句在mysql中如何执行的)
-    - [MySQL高性能优化规范建议](#mysql高性能优化规范建议)
-    - [一条SQL语句执行得很慢的原因有哪些？](#一条sql语句执行得很慢的原因有哪些)
 
-<!-- /TOC -->
-
-## 书籍推荐
-
-- 《SQL基础教程（第2版）》 （入门级）
-- 《高性能MySQL : 第3版》 (进阶)
-
-## 文字教程推荐
-
-- [SQL Tutorial](https://www.w3schools.com/sql/default.asp) （SQL语句学习,英文）、[SQL Tutorial](https://www.w3school.com.cn/sql/index.asp)（SQL语句学习,中文）、[SQL语句在线练习](https://www.w3schools.com/sql/exercise.asp) （非常不错）
-- [Github-MySQL入门教程（MySQL tutorial book）](https://github.com/jaywcjlove/mysql-tutorial) （从零开始学习MySQL，主要是面向MySQL数据库管理系统初学者）
-- [官方教程](https://dev.mysql.com/doc/refman/5.7/)
-- [MySQL 教程（菜鸟教程）](http://www.runoob.com/MySQL/MySQL-tutorial.html)
-
-## 相关资源推荐
-
-- [中国5级行政区域mysql库](https://github.com/kakuilan/china_area_mysql)
-
-## 视频教程推荐
-
-**基础入门：** [与MySQL的零距离接触-慕课网](https://www.imooc.com/learn/122)
-
-**MySQL开发技巧：** [MySQL开发技巧（一）](https://www.imooc.com/learn/398)　　[MySQL开发技巧（二）](https://www.imooc.com/learn/427)　　[MySQL开发技巧（三）](https://www.imooc.com/learn/449)
-
-**MySQL5.7新特性及相关优化技巧：** [MySQL5.7版本新特性](https://www.imooc.com/learn/533)　　[性能优化之MySQL优化](https://www.imooc.com/learn/194)
-
-[MySQL集群（PXC）入门](https://www.imooc.com/learn/993)　　[MyCAT入门及应用](https://www.imooc.com/learn/951)
-
-## 常见问题总结
 
 ### 什么是MySQL?
 
-MySQL 是一种关系型数据库，在Java企业级开发中非常常用，因为 MySQL 是开源免费的，并且方便扩展。阿里巴巴数据库系统也大量用到了 MySQL，因此它的稳定性是有保障的。MySQL是开放源代码的，因此任何人都可以在 GPL(General Public License) 的许可下下载并根据个性化的需要对其进行修改。MySQL的默认端口号是**3306**。
+**MySQL 是一种关系型数据库，主要用于持久化存储我们的系统中的一些数据比如用户信息。**
+
+由于 MySQL 是开源免费并且比较成熟的数据库，因此，MySQL 被大量使用在各种系统中。任何人都可以在 GPL(General Public License) 的许可下下载并根据个性化的需要对其进行修改。MySQL的默认端口号是**3306**。
+
+
 
 ### 存储引擎
 

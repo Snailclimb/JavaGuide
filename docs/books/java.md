@@ -130,23 +130,6 @@
 
 ### 常用框架
 
-#### Spring/SpringBoot
-
-- **[《Spring 实战（第 4 版）》](https://book.douban.com/subject/26767354/)** ：不建议当做入门书籍读，入门的话可以找点国人的书或者视频看。这本定位就相当于是关于 Spring 的新华字典，只有一些基本概念的介绍和示例，涵盖了 Spring 的各个方面，但都不够深入。就像作者在最后一页写的那样：“学习 Spring，这才刚刚开始”。
-- **《[Spring源码深度解析 第2版](https://book.douban.com/subject/30452948/)》**  ：读Spring源码必备的一本书籍。市面上关于Spring源码分析的书籍太少了。
-- **[《Spring 5高级编程（第5版）》](https://book.douban.com/subject/30452637/)** ：推荐阅读，对于Spring5的新特性介绍的很好！不过内容比较多，可以作为工具书参考。
--  **[《精通Spring4.x企业应用开发实战》](https://read.douban.com/ebook/58113975/?dcs=subject-rec&dcm=douban&dct=26767354)** :通过实战讲解，比较适合作为Spring入门书籍来看。
-- **[《Spring入门经典》](https://book.douban.com/subject/26652876/)** ：适合入门，也有很多示例！
--  **[《Spring Boot实战派》](https://book.douban.com/subject/34894533/)** ：这本书使用的Spring Boot 2.0+的版本，还算比较新。整本书采用“知识点+实例”的形式编写。本书通过“58个基于知识的实例+2个综合性的项目”，深入地讲解Spring Boot的技术原理、知识点和具体应用；把晦涩难懂的理论用实例展现出来，使得读者对知识的理解变得非常容易，同时也立即学会如何使用它。说实话，我还是比较推荐这本书的。
-- **[《Spring Boot编程思想（核心篇）》](https://book.douban.com/subject/33390560/)** ：SpringBoot深入书，不适合初学者。书尤其的厚，这本书的缺点是书的很多知识点的讲解过于啰嗦和拖沓，优点是书中对SpringBoot内部原理讲解很清楚。
-
-#### Netty
-
-- **[《Netty进阶之路：跟着案例学Netty》](https://book.douban.com/subject/30381214/)** : 这本书的优点是有不少实际的案例的讲解，通过案例来学习是很不错的！
-- **[《Netty 4.x 用户指南》](https://waylau.gitbooks.io/netty-4-user-guide/content/)** ：《Netty 4.x 用户指南》中文翻译（包含了官方文档以及其他文章）。
-- **[《Netty 入门与实战：仿写微信 IM 即时通讯系统》](https://juejin.im/book/5b4bc28bf265da0f60130116?referrer=59fbb2daf265da4319559f3a)**   ：基于 Netty 框架实现 IM 核心系统，带你深入学习 Netty 网络编程核心知识
-- **[《Netty 实战》](https://book.douban.com/subject/27038538/)** ：可以作为工具书参考！
-
 ### 分布式
 
 - **[《从 Paxos 到 Zookeeper》](https://book.douban.com/subject/26292004/)**：简要介绍几种典型的分布式一致性协议，以及解决分布式一致性问题的思路，其中重点讲解了 Paxos 和 ZAB 协议。同时，本书深入介绍了分布式一致性问题的工业解决方案——ZooKeeper，并着重向读者展示这一分布式协调框架的使用方法、内部实现及运维技巧，旨在帮助读者全面了解 ZooKeeper，并更好地使用和运维 ZooKeeper。
