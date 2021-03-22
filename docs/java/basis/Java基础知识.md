@@ -272,7 +272,7 @@ Method add = clazz.getDeclaredMethod("add", Object.class);
 //但是通过反射添加，是可以的
 add.invoke(list, "kl");
 
-System.out.println(list)
+System.out.println(list);
 ```
 
 泛型一般有三种使用方式:泛型类、泛型接口、泛型方法。
