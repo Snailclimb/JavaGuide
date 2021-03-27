@@ -70,7 +70,7 @@ MyISAM 只有表级锁(table-level locking)，而 InnoDB 支持行级锁(row-lev
 
 也就说，MyISAM 一锁就是锁住了整张表，这在并发写的情况下是多么滴憨憨啊！这也是为什么 InnoDB 在并发写的时候，性能更牛皮了！
 
-**2.是否支持事务 **
+**2.是否支持事务**
 
 MyISAM 不提供事务支持。
 
