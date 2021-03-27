@@ -418,7 +418,8 @@ RPC 让调用远程服务调用像调用本地方法那样简单。
 
 ## 书单
 
-1. [「基础篇」Java 书单](./docs/books/java基础篇.md)
+1. [Java 基础篇](./docs/books/java基础篇.md)
+2. [计算机基础篇](./docs/books/计算机基础.md)
 
 ---
 
