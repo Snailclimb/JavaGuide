@@ -245,12 +245,12 @@ SQL 标准定义了四个隔离级别：
 
 ---
 
-|     隔离级别     | 脏读 | 不可重复读 | 幻影读 |
-| :--------------: | :--: | :--------: | :----: |
-| READ-UNCOMMITTED |  √   |     √      |   √    |
-|  READ-COMMITTED  |  ×   |     √      |   √    |
-| REPEATABLE-READ  |  ×   |     ×      |   √    |
-|   SERIALIZABLE   |  ×   |     ×      |   ×    |
+|     隔离级别     | 脏读 | 不可重复读 | 幻读 |
+| :--------------: | :--: | :--------: | :--: |
+| READ-UNCOMMITTED |  √   |     √      |  √   |
+|  READ-COMMITTED  |  ×   |     √      |  √   |
+| REPEATABLE-READ  |  ×   |     ×      |  √   |
+|   SERIALIZABLE   |  ×   |     ×      |  ×   |
 
 ### MySQL 的默认隔离级别是什么?
 
