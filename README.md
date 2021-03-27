@@ -35,16 +35,6 @@
     </tr>
   </tbody>
 </table>
-
-
-
-
-
-
-<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
-
-<!-- code_chunk_output -->
-
 - [Java](#java)
   - [基础 (必看 :+1:)](#基础)
   - [容器](#容器)
@@ -98,8 +88,6 @@
   - [捐赠支持](#捐赠支持)
   - [Contributor](#贡献者)
   - [公众号](#公众号)
-
-<!-- /code_chunk_output -->
 
 
 ## Java
@@ -196,9 +184,9 @@
 
 **总结：**
 
-1. **[MySQL知识点总结](docs/database/MySQL.md)**
-2. **[阿里巴巴开发手册数据库部分的一些最佳实践](docs/database/阿里巴巴开发手册数据库部分的一些最佳实践.md)**
-3. **[一千行 MySQL 学习笔记](docs/database/一千行MySQL命令.md)**
+1. **[MySQL知识点总结](docs/database/MySQL.md)** (必看 :+1:)
+2. [阿里巴巴开发手册数据库部分的一些最佳实践](docs/database/阿里巴巴开发手册数据库部分的一些最佳实践.md)
+3. [一千行 MySQL 学习笔记](docs/database/一千行MySQL命令.md)
 4. [MySQL 高性能优化规范建议](docs/database/MySQL高性能优化规范建议.md)
 
 **重要知识点：**
