@@ -1,6 +1,6 @@
 👍推荐 [在线阅读](https://snailclimb.gitee.io/javaguide)  (Github 访问速度比较慢可能会导致部分图片无法刷新出来) 
 
-书单已经被移动到了
+书单已经被移动到了：[https://github.com/CodingDocs/awesome-cs-books](https://github.com/CodingDocs/awesome-cs-books ) 这个仓库。
 
 ## 一些闲话：
 
