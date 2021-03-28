@@ -497,5 +497,3 @@ Dubbo 官方文档中还有一个关于这些[序列化协议的性能对比图]
 
 ![](https://img-blog.csdnimg.cn/20210328093219609.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0MzM3Mjcy,size_16,color_FFFFFF,t_70)
 
-## 
-
