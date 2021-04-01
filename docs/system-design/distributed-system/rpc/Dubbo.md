@@ -289,7 +289,7 @@ public abstract class AbstractLoadBalance implements LoadBalance {
 
 `AbstractLoadBalance` 的实现类有下面这些：
 
-![](/Users/guide/Library/Application Support/typora-user-images/image-20210326105257812.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/image-20210326105257812.png)
 
 官方文档对负载均衡这部分的介绍非常详细，推荐小伙伴们看看，地址：[https://dubbo.apache.org/zh/docs/v2.7/dev/source/loadbalance/#m-zhdocsv27devsourceloadbalance](https://dubbo.apache.org/zh/docs/v2.7/dev/source/loadbalance/#m-zhdocsv27devsourceloadbalance ) 。
 
