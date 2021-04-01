@@ -1,3 +1,5 @@
+点击关注[公众号](#公众号)及时获取笔主最新更新文章，并可免费领取本文档配套的《Java面试突击》以及Java工程师必备学习资源。
+
 <!-- MarkdownTOC -->
 
 - [Servlet总结](#servlet总结)
@@ -26,7 +28,7 @@
 
 ## Servlet总结
 
-在Java Web程序中，**Servlet**主要负责接收用户请求**HttpServletRequest**,在**doGet()**,**doPost()**中做相应的处理，并将回应**HttpServletResponse**反馈给用户。Servlet可以设置初始化参数，供Servlet内部使用。一个Servlet类只会有一个实例，在它初始化时调用**init()方法**，销毁时调用**destroy()方法**。**Servlet需要在web.xml中配置**（MyEclipse中创建Servlet会自动配置），**一个Servlet可以设置多个URL访问**。**Servlet不是线程安全**，因此要谨慎使用类变量。
+在Java Web程序中，**Servlet**主要负责接收用户请求 `HttpServletRequest`,在`doGet()`,`doPost()`中做相应的处理，并将回应`HttpServletResponse`反馈给用户。**Servlet** 可以设置初始化参数，供Servlet内部使用。一个Servlet类只会有一个实例，在它初始化时调用`init()`方法，销毁时调用`destroy()`方法**。**Servlet需要在web.xml中配置（MyEclipse中创建Servlet会自动配置），**一个Servlet可以设置多个URL访问**。**Servlet不是线程安全**，因此要谨慎使用类变量。
 
 ## 阐述Servlet和CGI的区别?
 
@@ -55,11 +57,11 @@
 ## Servlet接口中有哪些方法及Servlet生命周期探秘
 Servlet接口定义了5个方法，其中**前三个方法与Servlet生命周期相关**：
 
-- **void init(ServletConfig config) throws ServletException**
-- **void service(ServletRequest req, ServletResponse resp) throws ServletException, java.io.IOException**
-- **void destory()**
-- java.lang.String getServletInfo()
-- ServletConfig getServletConfig()
+- `void init(ServletConfig config) throws ServletException`
+- `void service(ServletRequest req, ServletResponse resp) throws ServletException, java.io.IOException`
+- `void destroy()`
+- `java.lang.String getServletInfo()`
+- `ServletConfig getServletConfig()`
 
 **生命周期：** **Web容器加载Servlet并将其实例化后，Servlet生命周期开始**，容器运行其**init()方法**进行Servlet的初始化；请求到达时调用Servlet的**service()方法**，service()方法会根据需要调用与请求对应的**doGet或doPost**等方法；当服务器关闭或项目被卸载时服务器会将Servlet实例销毁，此时会调用Servlet的**destroy()方法**。**init方法和destroy方法只会执行一次，service方法客户端每次请求Servlet都会执行**。Servlet中有时会用到一些需要初始化与销毁的资源，因此可以把初始化资源的代码放入init方法中，销毁资源的代码放入destroy方法中，这样就不需要每次处理客户端的请求都要初始化与销毁资源。
 
@@ -67,21 +69,11 @@ Servlet接口定义了5个方法，其中**前三个方法与Servlet生命周期
 
 ## get和post请求的区别
 
-> 网上也有文章说：get和post请求实际上是没有区别，大家可以自行查询相关文章（参考文章：[https://www.cnblogs.com/logsharing/p/8448446.html](https://www.cnblogs.com/logsharing/p/8448446.html)，知乎对应的问题链接：[get和post区别？](https://www.zhihu.com/question/28586791)）！我下面给出的只是一种常见的答案。
+get和post请求实际上是没有区别，大家可以自行查询相关文章（参考文章：[https://www.cnblogs.com/logsharing/p/8448446.html](https://www.cnblogs.com/logsharing/p/8448446.html)，知乎对应的问题链接：[get和post区别？](https://www.zhihu.com/question/28586791)）！
 
-①get请求用来从服务器上获得资源，而post是用来向服务器提交数据；
+可以把 get 和 post 当作两个不同的行为，两者并没有什么本质区别，底层都是 TCP 连接。 get请求用来从服务器上获得资源，而post是用来向服务器提交数据。比如你要获取人员列表可以用 get 请求，你需要创建一个人员可以用 post 。这也是 Restful  API 最基本的一个要求。
 
-②get将表单中数据按照name=value的形式，添加到action 所指向的URL 后面，并且两者使用"?"连接，而各个变量之间使用"&"连接；post是将表单中的数据放在HTTP协议的请求头或消息体中，传递到action所指向URL；
-
-③get传输的数据要受到URL长度限制（最大长度是 2048 个字符）；而post可以传输大量的数据，上传文件通常要使用post方式；
-
-④使用get时参数会显示在地址栏上，如果这些数据不是敏感数据，那么可以使用get；对于敏感数据还是应用使用post；
-
-⑤get使用MIME类型application/x-www-form-urlencoded的URL编码（也叫百分号编码）文本的格式传递参数，保证被传送的参数由遵循规范的文本组成，例如一个空格的编码是"%20"。
-
-补充：GET方式提交表单的典型应用是搜索引擎。GET方式就是被设计为查询用的。
-
-还有另外一种回答。推荐大家看一下：
+推荐阅读：
 
 - https://www.zhihu.com/question/28586791
 - https://mp.weixin.qq.com/s?__biz=MzI3NzIzMzg3Mw==&mid=100000054&idx=1&sn=71f6c214f3833d9ca20b9f7dcd9d33e4#rd
@@ -143,12 +135,10 @@ Response.setHeader("Refresh","5;URL=http://localhost:8080/servlet/example.htm");
 JSP是一种Servlet，但是与HttpServlet的工作方式不太一样。HttpServlet是先由源代码编译为class文件后部署到服务器下，为先编译后部署。而JSP则是先部署后编译。JSP会在客户端第一次请求JSP文件时被编译为HttpJspPage类（接口Servlet的一个子类）。该类会被服务器临时存放在服务器工作目录里面。下面通过实例给大家介绍。
 工程JspLoginDemo下有一个名为login.jsp的Jsp文件，把工程第一次部署到服务器上后访问这个Jsp文件，我们发现这个目录下多了下图这两个东东。
 .class文件便是JSP对应的Servlet。编译完毕后再运行class文件来响应客户端请求。以后客户端访问login.jsp的时候，Tomcat将不再重新编译JSP文件，而是直接调用class文件来响应客户端请求。
-![JSP工作原理](https://user-gold-cdn.xitu.io/2018/3/31/1627bee073079a28?w=675&h=292&f=jpeg&s=133553)
+![JSP工作原理](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/1.png)
 由于JSP只会在客户端第一次请求的时候被编译 ，因此第一次请求JSP时会感觉比较慢，之后就会感觉快很多。如果把服务器保存的class文件删除，服务器也会重新编译JSP。
 
 开发Web程序时经常需要修改JSP。Tomcat能够自动检测到JSP程序的改动。如果检测到JSP源代码发生了改动。Tomcat会在下次客户端请求JSP时重新编译JSP，而不需要重启Tomcat。这种自动检测功能是默认开启的，检测改动会消耗少量的时间，在部署Web应用的时候可以在web.xml中将它关掉。
-
-
 
 参考：《javaweb整合开发王者归来》P97
 
@@ -195,31 +185,31 @@ JSP有9个内置对象：
 ## request.getAttribute()和 request.getParameter()有何区别
 **从获取方向来看：**
 
-getParameter()是获取 POST/GET 传递的参数值；
+`getParameter()`是获取 POST/GET 传递的参数值；
 
-getAttribute()是获取对象容器中的数据值；
+`getAttribute()`是获取对象容器中的数据值；
 
 **从用途来看：**
 
-getParameter用于客户端重定向时，即点击了链接或提交按扭时传值用，即用于在用表单或url重定向传值时接收数据用。
+`getParameter()`用于客户端重定向时，即点击了链接或提交按扭时传值用，即用于在用表单或url重定向传值时接收数据用。
 
-getAttribute用于服务器端重定向时，即在 sevlet 中使用了 forward 函数,或 struts 中使用了
+`getAttribute()` 用于服务器端重定向时，即在 sevlet 中使用了 forward 函数,或 struts 中使用了
 mapping.findForward。 getAttribute 只能收到程序用 setAttribute 传过来的值。
 
-另外，可以用 setAttribute,getAttribute 发送接收对象.而 getParameter 显然只能传字符串。
-setAttribute 是应用服务器把这个对象放在该页面所对应的一块内存中去，当你的页面服务器重定向到另一个页面时，应用服务器会把这块内存拷贝另一个页面所对应的内存中。这样getAttribute就能取得你所设下的值，当然这种方法可以传对象。session也一样，只是对象在内存中的生命周期不一样而已。getParameter只是应用服务器在分析你送上来的 request页面的文本时，取得你设在表单或 url 重定向时的值。
+另外，可以用 `setAttribute()`,`getAttribute()` 发送接收对象.而 `getParameter()` 显然只能传字符串。
+`setAttribute()` 是应用服务器把这个对象放在该页面所对应的一块内存中去，当你的页面服务器重定向到另一个页面时，应用服务器会把这块内存拷贝另一个页面所对应的内存中。这样`getAttribute()`就能取得你所设下的值，当然这种方法可以传对象。session也一样，只是对象在内存中的生命周期不一样而已。`getParameter()`只是应用服务器在分析你送上来的 request页面的文本时，取得你设在表单或 url 重定向时的值。
 
 **总结：**
 
-getParameter 返回的是String,用于读取提交的表单中的值;（获取之后会根据实际需要转换为自己需要的相应类型，比如整型，日期类型啊等等）
+`getParameter()`返回的是String,用于读取提交的表单中的值;（获取之后会根据实际需要转换为自己需要的相应类型，比如整型，日期类型啊等等）
 
-getAttribute 返回的是Object，需进行转换,可用setAttribute 设置成任意对象，使用很灵活，可随时用
+`getAttribute()`返回的是Object，需进行转换,可用`setAttribute()`设置成任意对象，使用很灵活，可随时用
 
 ## include指令include的行为的区别
 **include指令：** JSP可以通过include指令来包含其他文件。被包含的文件可以是JSP文件、HTML文件或文本文件。包含的文件就好像是该JSP文件的一部分，会被同时编译执行。 语法格式如下： 
 <%@ include file="文件相对 url 地址" %>
 
-i**nclude动作：** <jsp:include>动作元素用来包含静态和动态的文件。该动作把指定文件插入正在生成的页面。语法格式如下：
+i**nclude动作：** `<jsp:include>`动作元素用来包含静态和动态的文件。该动作把指定文件插入正在生成的页面。语法格式如下：
 <jsp:include page="相对 URL 地址" flush="true" />
 
 ## JSP九大内置对象，七大动作，三大指令
@@ -232,11 +222,9 @@ JSP中的四种作用域包括page、request、session和application，具体来
 - **session**代表与某个用户与服务器建立的一次会话相关的对象和属性。跟某个用户相关的数据应该放在用户自己的session中。
 - **application**代表与整个Web应用程序相关的对象和属性，它实质上是跨越整个Web应用程序，包括多个页面、请求和会话的一个全局作用域。
 
-
-
 ## 如何实现JSP或Servlet的单线程模式
 对于JSP页面，可以通过page指令进行设置。
-<%@page isThreadSafe=”false”%>
+`<%@page isThreadSafe="false"%>`
 
 对于Servlet，可以让自定义的Servlet实现SingleThreadModel标识接口。
 
@@ -301,3 +289,13 @@ Cookie 和 Session都是用来跟踪浏览器用户身份的会话方式，但�
 Cookie 数据保存在客户端(浏览器端)，Session 数据保存在服务器端。
 
 Cookie 存储在客户端中，而Session存储在服务器上，相对来说 Session 安全性更高。如果使用 Cookie 的一些敏感信息不要写入 Cookie 中，最好能将 Cookie 信息加密然后使用到的时候再去服务器端解密。
+
+## 公众号
+
+如果大家想要实时关注我更新的文章以及分享的干货的话，可以关注我的公众号。
+
+**《Java面试突击》:** 由本文档衍生的专为面试而生的《Java面试突击》V2.0 PDF 版本[公众号](#公众号)后台回复 **"Java面试突击"** 即可免费领取！
+
+**Java工程师必备学习资源:** 一些Java工程师常用学习资源公众号后台回复关键字 **“1”** 即可免费无套路获取。 
+
+![我的公众号](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/167598cd2e17b8ec.png)
