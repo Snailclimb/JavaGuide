@@ -17,7 +17,7 @@ MyBatis 技术内幕系列博客，从原理和源码角度，介绍了其内部
 - `${}`是 Properties 文件中的变量占位符，它可以用于标签属性值和 sql 内部，属于静态文本替换，比如\${driver}会被静态替换为`com.mysql.jdbc.Driver`。
 - `#{}`是 sql 的参数占位符，MyBatis 会将 sql 中的`#{}`替换为?号，在 sql 执行前会使用 PreparedStatement 的参数设置方法，按序给 sql 的?号占位符设置参数值，比如 ps.setInt(0, parameterValue)，`#{item.name}` 的取值方式为使用反射从参数对象中获取 item 对象的 name 属性值，相当于 `param.getItem().getName()`。
 
-#### 2、Xml 映射文件中，除了常见的 select|insert|updae|delete 标签之外，还有哪些标签？
+#### 2、Xml 映射文件中，除了常见的 select|insert|update|delete 标签之外，还有哪些标签？
 
 注：这道题是京东面试官面试我时问的。
 
@@ -25,11 +25,46 @@ MyBatis 技术内幕系列博客，从原理和源码角度，介绍了其内部
 
 #### 3、最佳实践中，通常一个 Xml 映射文件，都会写一个 Dao 接口与之对应，请问，这个 Dao 接口的工作原理是什么？Dao 接口里的方法，参数不同时，方法能重载吗？
 
-注：这道题也是京东面试官面试我时问的。
+注：这道题也是京东面试官面试我被问的。
 
 答：Dao 接口，就是人们常说的 `Mapper`接口，接口的全限名，就是映射文件中的 namespace 的值，接口的方法名，就是映射文件中`MappedStatement`的 id 值，接口方法内的参数，就是传递给 sql 的参数。`Mapper`接口是没有实现类的，当调用接口方法时，接口全限名+方法名拼接字符串作为 key 值，可唯一定位一个`MappedStatement`，举例：`com.mybatis3.mappers.StudentDao.findStudentById`，可以唯一找到 namespace 为`com.mybatis3.mappers.StudentDao`下面`id = findStudentById`的`MappedStatement`。在 MyBatis 中，每一个`<select>`、`<insert>`、`<update>`、`<delete>`标签，都会被解析为一个`MappedStatement`对象。
 
-Dao 接口里的方法，是不能重载的，因为是全限名+方法名的保存和寻找策略。
+~~Dao 接口里的方法，是不能重载的，因为是全限名+方法名的保存和寻找策略。~~
+
+Dao 接口里的方法可以重载，但是Mybatis的XML里面的ID不允许重复。
+
+Mybatis版本3.3.0，亲测如下：
+
+```java
+/**
+ * Mapper接口里面方法重载
+ */
+public interface StuMapper {
+
+	List<Student> getAllStu();
+    
+	List<Student> getAllStu(@Param("id") Integer id);
+}
+```
+
+然后在 `StuMapper.xml` 中利用Mybatis的动态sql就可以实现。
+
+```java
+	<select id="getAllStu" resultType="com.pojo.Student">
+ 		select * from student
+		<where>
+			<if test="id != null">
+				id = #{id}
+			</if>
+		</where>
+ 	</select>
+```
+
+能正常运行，并能得到相应的结果，这样就实现了在Dao接口中写重载方法。
+
+**Mybatis 的 Dao 接口可以有多个重载方法，但是多个接口对应的映射必须只有一个，否则启动会报错。**
+
+相关 issue ：[更正：Dao 接口里的方法可以重载，但是Mybatis的XML里面的ID不允许重复！](https://github.com/Snailclimb/JavaGuide/issues/1122)。
 
 Dao 接口的工作原理是 JDK 动态代理，MyBatis 运行时会使用 JDK 动态代理为 Dao 接口生成代理 proxy 对象，代理对象 proxy 会拦截接口方法，转而执行`MappedStatement`所代表的 sql，然后将 sql 执行结果返回。
 
