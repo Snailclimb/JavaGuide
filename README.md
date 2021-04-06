@@ -1,6 +1,6 @@
 👍推荐 [在线阅读](https://snailclimb.gitee.io/javaguide)  (Github 访问速度比较慢可能会导致部分图片无法刷新出来) 
 
-书单已经被移动到[awesome-cs-books](https://github.com/CodingDocs/awesome-cs-books) 这个仓库。
+书单已经被移动到[awesome-cs](https://github.com/CodingDocs/awesome-cs) 这个仓库。
 
 > 1. **介绍**：关于 JavaGuide 的相关介绍请看：[关于 JavaGuide 的一些说明](https://www.yuque.com/snailclimb/dr6cvl/mr44yt) 。
 > 2. **PDF版本** ： [《JavaGuide 面试突击版》PDF 版本](#公众号) 。[图解计算机基础 PDF 版](#优质原创PDF资源)。
