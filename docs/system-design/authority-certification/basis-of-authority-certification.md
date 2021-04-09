@@ -37,7 +37,7 @@ Cookie 和 Session都是用来跟踪浏览器用户身份的会话方式，但�
 
 ### 2.2 如何在服务端使用 Cookie 呢？
 
-这部分内容参考：https://attacomsian.com/blog/cookies-spring-boot，更多如何在Spring Boot中使用Cookie 的内容可以查看这篇文章。
+这部分内容参考：https://attacomsian.com/blog/cookies-spring-boot, 更多如何在Spring Boot中使用Cookie 的内容可以查看这篇文章。
 
 **1)设置cookie返回给客户端**
 

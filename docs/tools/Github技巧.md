@@ -90,19 +90,13 @@ Github 前段时间推出的 Codespaces 可以提供类似 VS Code 的在线 IDE
 
 这个网站会提供一个类似 VS Code 的在线 IDE。
 
-## 6. 一键开启 Github 夜间模式
-
-通过 **GitHub Dark Theme** 这个 Chrome 插件你可以将 Github 的主题变为夜间样式。
-
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-11/image-20201107160240274.png)
-
-## 7. 扩展 Github 的功能
+## 6. 扩展 Github 的功能
 
 **Enhanced GitHub** 可以让你的 Github 更好用。这个 Chrome 插件可以可视化你的 Github 仓库大小，每个文件的大小并且可以让你快速下载单个文件。
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-11/image-20201107160817672.png)
 
-## 8. 自动为 Markdown 文件生成目录
+## 7. 自动为 Markdown 文件生成目录
 
 如果你想为 Github 上的 Markdown 文件生成目录的话，通过 VS Code 的 **Markdown Preview Enhanced** 这个插件就可以了。
 
@@ -110,7 +104,7 @@ Github 前段时间推出的 Codespaces 可以提供类似 VS Code 的在线 IDE
 
 ![](<https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-11/iShot2020-11-07%2016.14.14%20(1).png>)
 
-## 9. 后记
+## 8. 后记
 
 这篇文章是我上周六的时候坐在窗台写的，花了一下午时间。
 
