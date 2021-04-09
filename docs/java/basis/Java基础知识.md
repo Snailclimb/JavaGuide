@@ -11,9 +11,8 @@
       - [1.1.2.2. JDK 和 JRE](#1122-jdk-和-jre)
     - [1.1.3. Oracle JDK 和 OpenJDK 的对比](#113-oracle-jdk-和-openjdk-的对比)
     - [1.1.4. Java 和 C++的区别?](#114-java-和-c的区别)
-    - [1.1.5. 什么是 Java 程序的主类 应用程序和小程序的主类有何不同?](#115-什么是-java-程序的主类-应用程序和小程序的主类有何不同)
-    - [1.1.6. import java 和 javax 有什么区别？](#116-import-java-和-javax-有什么区别)
-    - [1.1.7. 为什么说 Java 语言“编译与解释并存”？](#117-为什么说-java-语言编译与解释并存)
+    - [1.1.5. import java 和 javax 有什么区别？](#115-import-java-和-javax-有什么区别)
+    - [1.1.6. 为什么说 Java 语言“编译与解释并存”？](#116-为什么说-java-语言编译与解释并存)
   - [1.2. Java 语法](#12-java-语法)
     - [1.2.1. 字符型常量和字符串常量的区别?](#121-字符型常量和字符串常量的区别)
     - [1.2.2. 关于注释？](#122-关于注释)
@@ -52,19 +51,19 @@
   - [2.3. 修饰符](#23-修饰符)
     - [2.3.1. 在一个静态方法内调用一个非静态成员为什么是非法的?](#231-在一个静态方法内调用一个非静态成员为什么是非法的)
     - [2.3.2. 静态方法和实例方法有何不同](#232-静态方法和实例方法有何不同)
-  - [2.5. 其它重要知识点](#25-其它重要知识点)
-    - [2.5.1. String StringBuffer 和 StringBuilder 的区别是什么? String 为什么是不可变的?](#251-string-stringbuffer-和-stringbuilder-的区别是什么-string-为什么是不可变的)
-    - [2.5.2. Object 类的常见方法总结](#252-object-类的常见方法总结)
-    - [2.5.3. == 与 equals(重要)](#253-与-equals重要)
-    - [2.5.4. hashCode 与 equals (重要)](#254-hashcode-与-equals-重要)
-      - [2.5.4.1. hashCode（）介绍](#2541-hashcode介绍)
-      - [2.5.4.2. 为什么要有 hashCode](#2542-为什么要有-hashcode)
-      - [2.5.4.3. hashCode（）与 equals（）的相关规定](#2543-hashcode与-equals的相关规定)
-    - [2.5.5. Java 序列化中如果有些字段不想进行序列化，怎么办？](#255-java-序列化中如果有些字段不想进行序列化怎么办)
-    - [2.5.6. 获取用键盘输入常用的两种方法](#256-获取用键盘输入常用的两种方法)
+  - [2.4. 其它重要知识点](#24-其它重要知识点)
+    - [2.4.1. String StringBuffer 和 StringBuilder 的区别是什么? String 为什么是不可变的?](#241-string-stringbuffer-和-stringbuilder-的区别是什么-string-为什么是不可变的)
+    - [2.4.2. Object 类的常见方法总结](#242-object-类的常见方法总结)
+    - [2.4.3. == 与 equals(重要)](#243-与-equals重要)
+    - [2.4.4. hashCode 与 equals (重要)](#244-hashcode-与-equals-重要)
+      - [2.4.4.1. hashCode（）介绍](#2441-hashcode介绍)
+      - [2.4.4.2. 为什么要有 hashCode](#2442-为什么要有-hashcode)
+      - [2.4.4.3. hashCode（）与 equals（）的相关规定](#2443-hashcode与-equals的相关规定)
+    - [2.4.5. Java 序列化中如果有些字段不想进行序列化，怎么办？](#245-java-序列化中如果有些字段不想进行序列化怎么办)
+    - [2.4.6. 获取用键盘输入常用的两种方法](#246-获取用键盘输入常用的两种方法)
 - [3. Java 核心技术](#3-java-核心技术)
   - [3.1. 反射机制](#31-反射机制)
-    - [3.1.1.静态编译和动态编译](#311静态编译和动态编译)
+    - [3.1.1.何为反射？](#311何为反射)
     - [3.1.2.反射机制优缺点](#312反射机制优缺点)
     - [3.1.3.反射的应用场景](#313反射的应用场景)
   - [3.2. 异常](#32-异常)
@@ -273,7 +272,7 @@ Method add = clazz.getDeclaredMethod("add", Object.class);
 //但是通过反射添加，是可以的
 add.invoke(list, "kl");
 
-System.out.println(list)
+System.out.println(list);
 ```
 
 泛型一般有三种使用方式:泛型类、泛型接口、泛型方法。
@@ -760,7 +759,7 @@ Java 程序设计语言对对象采用的不是引用调用，实际上，对象
 
 **重载：**
 
-发生在同一个类中，方法名必须相同，参数类型不同、个数不同、顺序不同，方法返回值和访问修饰符可以不同。
+发生在同一个类中（或者父类和子类之间），方法名必须相同，参数类型不同、个数不同、顺序不同，方法返回值和访问修饰符可以不同。
 
 下面是《Java 核心技术》对重载这个概念的介绍：
 
@@ -1004,9 +1003,9 @@ public class Student {
 
 2. 静态方法在访问本类的成员时，只允许访问静态成员（即静态成员变量和静态方法），而不允许访问实例成员变量和实例方法；实例方法则无此限制。
 
-### 2.5. 其它重要知识点
+### 2.4. 其它重要知识点
 
-#### 2.5.1. String StringBuffer 和 StringBuilder 的区别是什么? String 为什么是不可变的?
+#### 2.4.1. String StringBuffer 和 StringBuilder 的区别是什么? String 为什么是不可变的?
 
 **可变性**
 
@@ -1051,7 +1050,7 @@ abstract class AbstractStringBuilder implements Appendable, CharSequence {
 2. 单线程操作字符串缓冲区下操作大量数据: 适用 `StringBuilder`
 3. 多线程操作字符串缓冲区下操作大量数据: 适用 `StringBuffer`
 
-#### 2.5.2. Object 类的常见方法总结
+#### 2.4.2. Object 类的常见方法总结
 
 Object 类是一个特殊的类，是所有类的父类。它主要提供了以下 11 个方法：
 
@@ -1080,7 +1079,7 @@ protected void finalize() throws Throwable { }//实例被垃圾回收器回收�
 
 ```
 
-#### 2.5.3. == 与 equals(重要)
+#### 2.4.3. == 与 equals(重要)
 
 **==** : 它的作用是判断两个对象的地址是不是相等。即，判断两个对象是不是同一个对象(基本数据类型==比较的是值，引用数据类型==比较的是内存地址)。
 
@@ -1116,23 +1115,23 @@ public class test1 {
 - String 中的 equals 方法是被重写过的，因为 object 的 equals 方法是比较的对象的内存地址，而 String 的 equals 方法比较的是对象的值。
 - 当创建 String 类型的对象时，虚拟机会在常量池中查找有没有已经存在的值和要创建的值相同的对象，如果有就把它赋给当前引用。如果没有就在常量池中重新创建一个 String 对象。
 
-#### 2.5.4. hashCode 与 equals (重要)
+#### 2.4.4. hashCode 与 equals (重要)
 
 面试官可能会问你：“你重写过 hashcode 和 equals 么，为什么重写 equals 时必须重写 hashCode 方法？”
 
-##### 2.5.4.1. hashCode（）介绍
+##### 2.4.4.1. hashCode（）介绍
 
 hashCode() 的作用是获取哈希码，也称为散列码；它实际上是返回一个 int 整数。这个哈希码的作用是确定该对象在哈希表中的索引位置。hashCode() 定义在 JDK 的 Object.java 中，这就意味着 Java 中的任何类都包含有 hashCode() 函数。
 
 散列表存储的是键值对(key-value)，它的特点是：能根据“键”快速的检索出对应的“值”。这其中就利用到了散列码！（可以快速找到所需要的对象）
 
-##### 2.5.4.2. 为什么要有 hashCode
+##### 2.4.4.2. 为什么要有 hashCode
 
 **我们先以“HashSet 如何检查重复”为例子来说明为什么要有 hashCode：** 当你把对象加入 HashSet 时，HashSet 会先计算对象的 hashcode 值来判断对象加入的位置，同时也会与该位置其他已经加入的对象的 hashcode 值作比较，如果没有相符的 hashcode，HashSet 会假设对象没有重复出现。但是如果发现有相同 hashcode 值的对象，这时会调用 `equals()`方法来检查 hashcode 相等的对象是否真的相同。如果两者相同，HashSet 就不会让其加入操作成功。如果不同的话，就会重新散列到其他位置。（摘自我的 Java 启蒙书《Head first java》第二版）。这样我们就大大减少了 equals 的次数，相应就大大提高了执行速度。
 
 通过我们可以看出：`hashCode()` 的作用就是**获取哈希码**，也称为散列码；它实际上是返回一个 int 整数。这个**哈希码的作用**是确定该对象在哈希表中的索引位置。**`hashCode()`在散列表中才有用，在其它情况下没用**。在散列表中 hashCode() 的作用是获取对象的散列码，进而确定该对象在散列表中的位置。
 
-##### 2.5.4.3. hashCode（）与 equals（）的相关规定
+##### 2.4.4.3. hashCode（）与 equals（）的相关规定
 
 1. 如果两个对象相等，则 hashcode 一定也是相同的
 2. 两个对象相等,对两个对象分别调用 equals 方法都返回 true
@@ -1142,13 +1141,13 @@ hashCode() 的作用是获取哈希码，也称为散列码；它实际上是返
 
 推荐阅读：[Java hashCode() 和 equals()的若干问题解答](https://www.cnblogs.com/skywang12345/p/3324958.html)
 
-#### 2.5.5. Java 序列化中如果有些字段不想进行序列化，怎么办？
+#### 2.4.5. Java 序列化中如果有些字段不想进行序列化，怎么办？
 
 对于不想进行序列化的变量，使用 transient 关键字修饰。
 
 transient 关键字的作用是：阻止实例中那些用此关键字修饰的的变量序列化；当对象被反序列化时，被 transient 修饰的变量值不会被持久化和恢复。transient 只能修饰变量，不能修饰类和方法。
 
-#### 2.5.6. 获取用键盘输入常用的两种方法
+#### 2.4.6. 获取用键盘输入常用的两种方法
 
 方法 1：通过 Scanner
 
@@ -1169,30 +1168,57 @@ String s = input.readLine();
 
 ### 3.1. 反射机制
 
-JAVA 反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意一个方法和属性；这种动态获取的信息以及动态调用对象的方法的功能称为 java 语言的反射机制。
+#### 3.1.1.何为反射？
 
-#### 3.1.1.静态编译和动态编译
+如果说大家研究过框架的底层原理或者咱们自己写过框架的话，一定对反射这个概念不陌生。
 
-- **静态编译：** 在编译时确定类型，绑定对象
-- **动态编译：** 运行时确定类型，绑定对象
+反射之所以被称为框架的灵魂，主要是因为它赋予了我们在运行时分析类以及执行类中方法的能力。
+
+通过反射你可以获取任意一个类的所有属性和方法，你还可以调用这些方法和属性。
 
 #### 3.1.2.反射机制优缺点
 
-- **优点：** 运行期类型的判断，动态加载类，提高代码灵活度。
-- **缺点：** 1,性能瓶颈：反射相当于一系列解释操作，通知 JVM 要做的事情，性能比直接的 java 代码要慢很多。2,安全问题，让我们可以动态操作改变类的属性同时也增加了类的安全隐患。
+**优点** ： 可以让咱们的代码更加灵活、为各种框架提供开箱即用的功能提供了便利
+
+**缺点** ：让我们在运行时有了分析操作类的能力，这同样也增加了安全问题。比如可以无视泛型参数的安全检查（泛型参数的安全检查发生在编译时）。另外，反射的性能也要稍差点，不过，对于框架来说实际是影响不大的。[Java Reflection: Why is it so slow?](https://stackoverflow.com/questions/1392351/java-reflection-why-is-it-so-slow)
 
 #### 3.1.3.反射的应用场景
 
-**反射是框架设计的灵魂。**
+像咱们平时大部分时候都是在写业务代码，很少会接触到直接使用反射机制的场景。
 
-在我们平时的项目开发过程中，基本上很少会直接使用到反射机制，但这不能说明反射机制没有用，实际上有很多设计、开发都与反射机制有关，例如模块化的开发，通过反射去调用对应的字节码；动态代理设计模式也采用了反射机制，还有我们日常使用的 Spring／Hibernate 等框架也大量使用到了反射机制。
+但是，这并不代表反射没有用。相反，正是因为反射，你才能这么轻松地使用各种框架。像 Spring/Spring Boot、MyBatis 等等框架中都大量使用了反射机制。
 
-举例：
+**这些框架中也大量使用了动态代理，而动态代理的实现也依赖反射。**
 
-1. 我们在使用 JDBC 连接数据库时使用 `Class.forName()`通过反射加载数据库的驱动程序；
-2. Spring 框架的 IOC（动态加载管理 Bean）创建对象以及 AOP（动态代理）功能都和反射有联系；
-3. 动态配置实例的属性；
-4. ......
+比如下面是通过 JDK 实现动态代理的示例代码，其中就使用了反射类 `Method` 来调用指定的方法。
+
+```java
+public class DebugInvocationHandler implements InvocationHandler {
+    /**
+     * 代理类中的真实对象
+     */
+    private final Object target;
+
+    public DebugInvocationHandler(Object target) {
+        this.target = target;
+    }
+
+
+    public Object invoke(Object proxy, Method method, Object[] args) throws InvocationTargetException, IllegalAccessException {
+        System.out.println("before method " + method.getName());
+        Object result = method.invoke(target, args);
+        System.out.println("after method " + method.getName());
+        return result;
+    }
+}
+
+```
+
+另外，像 Java 中的一大利器 **注解** 的实现也用到了反射。
+
+为什么你使用 Spring 的时候 ，一个`@Component`注解就声明了一个类为 Spring Bean 呢？为什么你通过一个 `@Value`注解就读取到配置文件中的值呢？究竟是怎么起作用的呢？
+
+这些都是因为你可以基于反射分析类，然后获取到类/属性/方法/方法的参数上的注解。你获取到注解之后，就可以做进一步的处理。
 
 ### 3.2. 异常
 
@@ -1225,7 +1251,7 @@ Java 代码在编译过程中，如果受检查异常没有被 `catch`/`throw` �
 
 Java 代码在编译过程中 ，我们即使不处理不受检查异常也可以正常通过编译。
 
-`RuntimeException` 及其子类都统称为非受检查异常，例如：`NullPointExecrption`、`NumberFormatException`（字符串转换为数字）、`ArrayIndexOutOfBoundsException`（数组越界）、`ClassCastException`（类型转换错误）、`ArithmeticException`（算术错误）等。
+`RuntimeException` 及其子类都统称为非受检查异常，例如：`NullPoin​terException`、`NumberFormatException`（字符串转换为数字）、`ArrayIndexOutOfBoundsException`（数组越界）、`ClassCastException`（类型转换错误）、`ArithmeticException`（算术错误）等。
 
 #### 3.2.2. Throwable 类常用方法
 

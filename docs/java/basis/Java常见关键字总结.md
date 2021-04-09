@@ -233,7 +233,7 @@ public class Singleton {
 
 
  //将Math中的所有静态资源导入，这时候可以直接使用里面的静态方法，而不用通过类名进行调用
- //如果只想导入单一某个静态方法，只需要将换成对应的方法名即可
+ //如果只想导入单一某个静态方法，只需要将*换成对应的方法名即可
  
 import static java.lang.Math.*;//换成import static java.lang.Math.max;具有一样的效果
  

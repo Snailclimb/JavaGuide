@@ -175,7 +175,7 @@ public OneService getService(status) {
 
 ### 5.5 Spring 中的 bean 生命周期?
 
-这部分网上有很多文章都讲到了，下面的内容整理自：<https://yemengying.com/2016/07/14/spring-bean-life-cycle/> ，除了这篇文章，再推荐一篇很不错的文章 ：<https://www.cnblogs.com/zrtqsk/p/3735273.html> 。
+这部分网上有很多文章都讲到了，下面的内容整理自： ~~https://yemengying.com/2016/07/14/spring-bean-life-cycle/~~ (原作者可能不再维护这个博客，连接无法访问，可通过其 Github 仓库访问 <https://github.com/giraffe0813/giraffe0813.github.io>) ，除了这篇文章，再推荐一篇很不错的文章 ：<https://www.cnblogs.com/zrtqsk/p/3735273.html> 。
 
 - Bean 容器找到配置文件中 Spring Bean 的定义。
 - Bean 容器利用 Java Reflection API 创建一个Bean的实例。
@@ -347,6 +347,7 @@ String transient4; // not persistent because of @Transient
 - <https://howtodoinjava.com/interview-questions/top-spring-interview-questions-with-answers/>
 - <http://www.tomaszezula.com/2014/02/09/spring-series-part-5-component-vs-bean/>
 - <https://stackoverflow.com/questions/34172888/difference-between-bean-and-autowired>
+- <https://www.interviewbit.com/spring-interview-questions/>
 
 ## 公众号
 
