@@ -217,12 +217,12 @@ public final class DummyEnum extends Enum
     {
         return (DummyEnum[])$VALUES.clone();
     }
-	// 调用父类的valueOf方法，并墙砖返回
+	// 调用父类的valueOf方法，并强转返回
     public static DummyEnum valueOf(String s)
     {
         return (DummyEnum)Enum.valueOf(DummyEnum, s);
     }
-	// 默认提供一个私有的私有两个参数的构造器，并调用父类Enum的构造器
+	// 默认提供一个私有的两个参数的构造器，并调用父类Enum的构造器
     private DummyEnum(String s, int i)
     {
         super(s, i);
