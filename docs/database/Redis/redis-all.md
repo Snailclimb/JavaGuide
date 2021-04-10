@@ -257,7 +257,7 @@ OK
 下面我们简单看看它的使用！
 
 ```bash
-127.0.0.1:6379> hset userInfoKey name "guide" description "dev" age "24"
+127.0.0.1:6379> hmset userInfoKey name "guide" description "dev" age "24"
 OK
 127.0.0.1:6379> hexists userInfoKey name # 查看 key 对应的 value中指定的字段是否存在。
 (integer) 1
