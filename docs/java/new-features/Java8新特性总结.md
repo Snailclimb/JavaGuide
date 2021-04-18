@@ -872,6 +872,7 @@ System.out.println(string);     // Nov 03, 2014 - 07:13
 首先定义一个包装类Hints注解用来放置一组具体的Hint注解：
 
 ```java
+@Retention(RetentionPolicy.RUNTIME)
 @interface Hints {
     Hint[] value();
 }
