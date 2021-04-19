@@ -53,7 +53,7 @@
 2. [Java 常见关键字总结：final、static、this、super!](docs/java/basis/Java常见关键字总结.md)
 3. [什么是反射机制？反射机制的应用场景有哪些？](docs/java/basis/反射机制.md)
 4. [代理模式详解：静态代理+JDK/CGLIB 动态代理实战](docs/java/basis/代理模式详解.md)
-5. [常见的 IO 模型有哪些？Java 中的 BIO、NIO、AIO 有啥区别?](https://www.cnblogs.com/javaguide/p/io.html)
+5. [常见的 IO 模型有哪些？Java 中的 BIO、NIO、AIO 有啥区别?](docs/java/basis/IO模型.md)
 
 ### 容器
 
