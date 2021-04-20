@@ -516,7 +516,7 @@ static int hash(int h) {
 
 ### 1.4.8. HashMap 有哪几种常见的遍历方式?
 
-[HashMap 的 7 种遍历方式与性能分析！](https://mp.weixin.qq.com/s/Zz6mofCtmYpABDL1ap04ow)
+[HashMap 的 7 种遍历方式与性能分析！](https://mp.weixin.qq.com/s/zQBN3UvJDhRTKP6SzcZFKw)
 
 ### 1.4.9. ConcurrentHashMap 和 Hashtable 的区别
 
