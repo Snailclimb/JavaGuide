@@ -137,7 +137,7 @@
 
 **重要知识点：**
 
-1. [数据库索引总结 1](docs/database/MySQL%20Index.md)、[数据库索引总结 2](docs/database/数据库索引.md)
+1. [MySQL数据库索引总结](docs/database/MySQL数据库索引.md)
 2. [事务隔离级别(图文详解)](<docs/database/事务隔离级别(图文详解).md>)
 3. [一条 SQL 语句在 MySQL 中如何执行的](docs/database/一条sql语句在mysql中如何执行的.md)
 4. [关于数据库中如何存储时间的一点思考](docs/database/关于数据库存储时间的一点思考.md)
