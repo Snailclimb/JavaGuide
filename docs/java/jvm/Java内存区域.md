@@ -350,29 +350,37 @@ System.out.println(str2==str3);//false
 
 **String 类型的常量池比较特殊。它的主要使用方法有两种：**
 
-- 直接使用双引号声明出来的 String 对象会直接存储在常量池中。
-- 如果不是用双引号声明的 String 对象，可以使用 String 提供的 intern 方法。String.intern() 是一个 Native 方法，它的作用是：如果运行时常量池中已经包含一个等于此 String 对象内容的字符串，则返回常量池中该字符串的引用；如果没有，JDK1.7之前（不包含1.7）的处理方式是在常量池中创建与此 String 内容相同的字符串，并返回常量池中创建的字符串的引用，JDK1.7以及之后的处理方式是在常量池中记录此字符串的引用，并返回该引用。
+1. 直接使用双引号声明出来的 String 对象会直接存储在常量池中。
+2. 如果不是用双引号声明的 String 对象，可以使用 String 提供的 `intern()` 方法。`String.intern()` 是一个 Native 方法，它的作用是：如果运行时常量池中已经包含一个等于此 String 对象内容的字符串，则返回常量池中该字符串的引用；如果没有，JDK1.7之前（不包含1.7）的处理方式是在常量池中创建与此 String 内容相同的字符串，并返回常量池中创建的字符串的引用，JDK1.7 以及之后的处理方式是在常量池中记录此字符串的引用，并返回该引用。
+
+JDK8 :
 
 ```java
-	      String s1 = new String("计算机");
-	      String s2 = s1.intern();
-	      String s3 = "计算机";
-	      System.out.println(s2);//计算机
-	      System.out.println(s1 == s2);//false，因为一个是堆内存中的 String 对象一个是常量池中的 String 对象，
-	      System.out.println(s3 == s2);//true，因为两个都是常量池中的 String 对象
+String s1 = "计算机";
+String s2 = s1.intern();
+String s3 = "计算机";
+System.out.println(s2);//计算机
+System.out.println(s1.equals(s2));//true
+System.out.println(s3.equals(s2));//true，因为两个都是常量池中的 String 对象
 ```
+ `s1.equals(s2)` 输出为 true 的原因 :
+
+1. 对s1调用intern的时候，因为常量池没有对应的字面量，所以在常量池保存了一个指向s1的引用
+2. 接下来的s2会先去常量池里找，找到对应引用，故指向堆里的s1
+3. 故 s1==s2 为true
+
 **字符串拼接:**
 
 ```java
-		  String str1 = "str";
-		  String str2 = "ing";
-		 
-		  String str3 = "str" + "ing";//常量池中的对象
-		  String str4 = str1 + str2; //在堆上创建的新的对象	  
-		  String str5 = "string";//常量池中的对象
-		  System.out.println(str3 == str4);//false
-		  System.out.println(str3 == str5);//true
-		  System.out.println(str4 == str5);//false
+String str1 = "str";
+String str2 = "ing";
+
+String str3 = "str" + "ing";//常量池中的对象
+String str4 = str1 + str2; //在堆上创建的新的对象	  
+String str5 = "string";//常量池中的对象
+System.out.println(str3 == str4);//false
+System.out.println(str3 == str5);//true
+System.out.println(str4 == str5);//false
 ```
 ![字符串拼接](./pictures/java内存区域/字符串拼接-常量池2.png)
 
