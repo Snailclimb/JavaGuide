@@ -126,8 +126,6 @@ JVM具有四种类型的*GC*实现：
 -Xloggc:/path/to/gc.log
 ```
 
-
-
 ## 推荐阅读
 
 - [CMS GC 默认新生代是多大？](https://www.jianshu.com/p/832fc4d4cb53)
