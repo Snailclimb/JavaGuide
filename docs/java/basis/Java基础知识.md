@@ -64,70 +64,10 @@
   - [Java 中 IO 流分为几种?](#java-中-io-流分为几种)
   - [既然有了字节流,为什么还要有字符流?](#既然有了字节流为什么还要有字符流)
 - [4. 参考](#4-参考)
-  - [Java 语言有哪些特点?](#java-语言有哪些特点-1)
-  - [JVM vs JDK vs JRE](#jvm-vs-jdk-vs-jre-1)
-    - [JVM](#jvm-1)
-    - [JDK 和 JRE](#jdk-和-jre-1)
-  - [为什么说 Java 语言“编译与解释并存”？](#为什么说-java-语言编译与解释并存-1)
-  - [Oracle JDK 和 OpenJDK 的对比](#oracle-jdk-和-openjdk-的对比-1)
-  - [Java 和 C++的区别?](#java-和-c的区别-1)
-  - [import java 和 javax 有什么区别？](#import-java-和-javax-有什么区别-1)
-- [基本语法](#基本语法-1)
-  - [字符型常量和字符串常量的区别?](#字符型常量和字符串常量的区别-1)
-  - [注释](#注释-1)
-  - [标识符和关键字的区别是什么？](#标识符和关键字的区别是什么-1)
-  - [Java 中有哪些常见的关键字？](#java-中有哪些常见的关键字-1)
-  - [自增自减运算符](#自增自减运算符-1)
-  - [continue、break、和 return 的区别是什么？](#continue-break-和-return-的区别是什么-1)
-  - [Java 泛型了解么？什么是类型擦除？介绍一下常用的通配符？](#java-泛型了解么什么是类型擦除介绍一下常用的通配符-1)
-  - [==和 equals 的区别](#和-equals-的区别-1)
-  - [hashCode()与 equals()](#hashcode与-equals-1)
-- [基本数据类型](#基本数据类型-1)
-  - [Java 中的几种基本数据类型是什么？对应的包装类型是什么？各自占用多少字节呢？](#java-中的几种基本数据类型是什么对应的包装类型是什么各自占用多少字节呢-1)
-  - [自动装箱与拆箱](#自动装箱与拆箱-1)
-  - [8 种基本类型的包装类和常量池](#8-种基本类型的包装类和常量池-1)
-- [方法（函数）](#方法函数-1)
-  - [什么是方法的返回值?](#什么是方法的返回值-1)
-  - [方法有哪几种类型？](#方法有哪几种类型-1)
-  - [在一个静态方法内调用一个非静态成员为什么是非法的?](#在一个静态方法内调用一个非静态成员为什么是非法的-1)
-  - [静态方法和实例方法有何不同？](#静态方法和实例方法有何不同-1)
-  - [为什么 Java 中只有值传递？](#为什么-java-中只有值传递-1)
-  - [重载和重写的区别](#重载和重写的区别-1)
-    - [重载](#重载-1)
-    - [重写](#重写-1)
-  - [深拷贝 vs 浅拷贝](#深拷贝-vs-浅拷贝-1)
-- [Java 面向对象](#java-面向对象-1)
-  - [面向对象和面向过程的区别](#面向对象和面向过程的区别-1)
-  - [成员变量与局部变量的区别有哪些？](#成员变量与局部变量的区别有哪些-1)
-  - [创建一个对象用什么运算符?对象实体与对象引用有何不同?](#创建一个对象用什么运算符对象实体与对象引用有何不同-1)
-  - [对象的相等与指向他们的引用相等,两者有什么不同?](#对象的相等与指向他们的引用相等两者有什么不同-1)
-  - [一个类的构造方法的作用是什么? 若一个类没有声明构造方法，该程序能正确执行吗? 为什么?](#一个类的构造方法的作用是什么-若一个类没有声明构造方法该程序能正确执行吗-为什么-1)
-  - [构造方法有哪些特点？是否可被 override?](#构造方法有哪些特点是否可被-override-1)
-  - [面向对象三大特征](#面向对象三大特征-1)
-    - [封装](#封装-1)
-    - [继承](#继承-1)
-    - [多态](#多态-1)
-  - [String StringBuffer 和 StringBuilder 的区别是什么? String 为什么是不可变的?](#string-stringbuffer-和-stringbuilder-的区别是什么-string-为什么是不可变的-1)
-  - [Object 类的常见方法总结](#object-类的常见方法总结-1)
-- [反射](#反射-1)
-  - [何为反射？](#何为反射-1)
-  - [反射机制优缺点](#反射机制优缺点-1)
-  - [反射的应用场景](#反射的应用场景-1)
-- [异常](#异常-1)
-  - [Java 异常类层次结构图](#java-异常类层次结构图-1)
-  - [Throwable 类常用方法](#throwable-类常用方法-1)
-  - [try-catch-finally](#try-catch-finally-1)
-  - [使用 `try-with-resources` 来代替`try-catch-finally`](#使用-try-with-resources-来代替try-catch-finally-1)
-- [I\O 流](#io-流-1)
-  - [什么是序列化?什么是反序列化?](#什么是序列化什么是反序列化-1)
-  - [Java 序列化中如果有些字段不想进行序列化，怎么办？](#java-序列化中如果有些字段不想进行序列化怎么办-1)
-  - [获取用键盘输入常用的两种方法](#获取用键盘输入常用的两种方法-1)
-  - [Java 中 IO 流分为几种?](#java-中-io-流分为几种-1)
-  - [既然有了字节流,为什么还要有字符流?](#既然有了字节流为什么还要有字符流-1)
-- [4. 参考](#4-参考-1)
 
 <!-- /code_chunk_output -->
 
+<<<<<<< HEAD
 ## 基础概念与常识
 
 ### Java 语言有哪些特点?
@@ -1387,81 +1327,21 @@ try (BufferedInputStream bin = new BufferedInputStream(new FileInputStream(new F
 
 - **序列化**： 将数据结构或对象转换成二进制字节流的过程
 - **反序列化**：将在序列化过程中所生成的二进制字节流的过程转换成数据结构或者对象的过程
+=======
+这篇文章
+>>>>>>> Update Java基础知识.md
 
-对于 Java 这种面向对象编程语言来说，我们序列化的都是对象（Object）也就是实例化后的类(Class)，但是在 C++这种半面向对象的语言中，struct(结构体)定义的是数据结构类型，而 class 对应的是对象类型。
 
-维基百科是如是介绍序列化的：
-
-> **序列化**（serialization）在计算机科学的数据处理中，是指将数据结构或对象状态转换成可取用格式（例如存成文件，存于缓冲，或经由网络中发送），以留待后续在相同或另一台计算机环境中，能恢复原先状态的过程。依照序列化格式重新获取字节的结果时，可以利用它来产生与原始对象相同语义的副本。对于许多对象，像是使用大量引用的复杂对象，这种序列化重建的过程并不容易。面向对象中的对象序列化，并不概括之前原始对象所关系的函数。这种过程也称为对象编组（marshalling）。从一系列字节提取数据结构的反向操作，是反序列化（也称为解编组、deserialization、unmarshalling）。
-
-综上：**序列化的主要目的是通过网络传输对象或者说是将对象存储到文件系统、数据库、内存中。**
-
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2020-8/a478c74d-2c48-40ae-9374-87aacf05188c.png)
-
-<p style="text-align:right;font-size:13px;color:gray">https://www.corejavaguru.com/java/serialization/interview-questions-1</p>
-
-### Java 序列化中如果有些字段不想进行序列化，怎么办？
-
-`对于不想进行序列化的变量，使用`transient`关键字修饰。`
-
-`transient` 关键字的作用是：阻止实例中那些用此关键字修饰的的变量序列化；当对象被反序列化时，被 `transient` 修饰的变量值不会被持久化和恢复。`transient` 只能修饰变量，不能修饰类和方法。
-
-### 获取用键盘输入常用的两种方法
-
-方法 1：通过 `Scanner`
-
-```java
-Scanner input = new Scanner(System.in);
-String s  = input.nextLine();
-input.close();
-```
-
-方法 2：通过 `BufferedReader`
-
-```java
-BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-String s = input.readLine();
-```
-
-### Java 中 IO 流分为几种?
-
-- 按照流的流向分，可以分为输入流和输出流；
-- 按照操作单元划分，可以划分为字节流和字符流；
-- 按照流的角色划分为节点流和处理流。
-
-Java Io 流共涉及 40 多个类，这些类看上去很杂乱，但实际上很有规则，而且彼此之间存在非常紧密的联系， Java I0 流的 40 多个类都是从如下 4 个抽象类基类中派生出来的。
-
-- InputStream/Reader: 所有的输入流的基类，前者是字节输入流，后者是字符输入流。
-- OutputStream/Writer: 所有输出流的基类，前者是字节输出流，后者是字符输出流。
-
-按操作方式分类结构图：
-
-![IO-操作方式分类](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/IO-操作方式分类.png)
-
-按操作对象分类结构图：
-
-![IO-操作对象分类](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/IO-操作对象分类.png)
-
-### 既然有了字节流,为什么还要有字符流?
-
-问题本质想问：**不管是文件读写还是网络发送接收，信息的最小存储单元都是字节，那为什么 I/O 流操作要分为字节流操作和字符流操作呢？**
-
-回答：字符流是由 Java 虚拟机将字节转换得到的，问题就出在这个过程还算是非常耗时，并且，如果我们不知道编码类型就很容易出现乱码问题。所以， I/O 流就干脆提供了一个直接操作字符的接口，方便我们平时对字符进行流操作。如果音频文件、图片等媒体文件用字节流比较好，如果涉及到字符的话使用字符流比较好。
-
-## 4. 参考
-
-- https://stackoverflow.com/questions/1906445/what-is-the-difference-between-jdk-and-jre
-- https://www.educba.com/oracle-vs-openjdk/
-- https://stackoverflow.com/questions/22358071/differences-between-oracle-jdk-and-openjdk?answertab=active#tab-top## 基础概念与常识
+## 基础概念与常识
 
 ### Java 语言有哪些特点?
 
 1. 简单易学；
 2. 面向对象（封装，继承，多态）；
 3. 平台无关性（ Java 虚拟机实现平台无关性）；
-4. 可靠性；
-5. 安全性；
-6. 支持多线程（ C++ 语言没有内置的多线程机制，因此必须调用操作系统的多线程功能来进行多线程程序设计，而 Java 语言却提供了多线程支持）；
+4. 支持多线程（ C++ 语言没有内置的多线程机制，因此必须调用操作系统的多线程功能来进行多线程程序设计，而 Java 语言却提供了多线程支持）；
+5. 可靠性；
+6. 安全性；
 7. 支持网络编程并且很方便（ Java 语言诞生本身就是为简化网络编程设计的，因此 Java 语言不仅支持网络编程而且很方便）；
 8. 编译与解释并存；
 
@@ -2776,4 +2656,4 @@ Java Io 流共涉及 40 多个类，这些类看上去很杂乱，但实际上�
 
 - https://stackoverflow.com/questions/1906445/what-is-the-difference-between-jdk-and-jre
 - https://www.educba.com/oracle-vs-openjdk/
-- https://stackoverflow.com/questions/22358071/differences-between-oracle-jdk-and-openjdk?answertab=active#tab-top
+- https://stackoverflow.com/questions/22358071/differences-between-oracle-jdk-and-openjdk?answertab=active#tab-top## 基础概念与常识
