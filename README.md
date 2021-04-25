@@ -221,7 +221,7 @@ CAP 也就是 Consistency（一致性）、Availability（可用性）、Partiti
 
 **BASE** 是 **Basically Available（基本可用）** 、**Soft-state（软状态）** 和 **Eventually Consistent（最终一致性）** 三个短语的缩写。BASE 理论是对 CAP 中一致性和可用性权衡的结果，其来源于对大规模互联网系统分布式实践的总结，是基于 CAP 定理逐步演化而来的，它大大降低了我们对系统的要求。
 
-关于 CAP 的详细解读请看：[《BASE理论解读》](docs/system-design/distributed-system/BASE理论.md)。
+关于 BASE 的详细解读请看：[《BASE理论解读》](docs/system-design/distributed-system/BASE理论.md)。
 
 #### Paxos 算法和 Raft 算法
 
