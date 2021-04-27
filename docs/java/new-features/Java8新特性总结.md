@@ -824,6 +824,28 @@ DateTimeFormatter formatter=DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm:ss");
 System.out.println(formatter.format(rightNow));//2019-03-12 16:26:48
 ```
 
+**修正（参见： [issue#1157](https://github.com/Snailclimb/JavaGuide/issues/1157)）**：使用 `YYYY` 显示年份时，会显示当前时间所在周的年份，在跨年周会有问题。一般情况下都使用 `yyyy`，来显示准确的年份。
+
+跨年导致日期显示错误示例：
+
+```java
+LocalDateTime rightNow = LocalDateTime.of(2020, 12, 31, 12, 0, 0);
+String date= DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(rightNow);
+// 2020-12-31T12:00:00
+System.out.println(date);
+DateTimeFormatter formatterOfYYYY = DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm:ss");
+// 2021-12-31 12:00:00
+System.out.println(formatterOfYYYY.format(rightNow));
+
+DateTimeFormatter formatterOfYyyy = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+// 2020-12-31 12:00:00
+System.out.println(formatterOfYyyy.format(rightNow));
+```
+
+从下图可以更清晰的看到具体的错误，并且 IDEA 已经智能地提示更倾向于使用  `yyyy` 而不是  `YYYY` 。
+
+![](https://img-blog.csdnimg.cn/2021042717491413.png)
+
 ### LocalDateTime(本地日期时间)
 
 LocalDateTime 同时表示了时间和日期，相当于前两节内容合并到一个对象上了。LocalDateTime 和 LocalTime还有 LocalDate 一样，都是不可变的。LocalDateTime 提供了一些能访问具体字段的方法。
