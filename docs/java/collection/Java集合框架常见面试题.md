@@ -44,7 +44,6 @@
 
 <!-- /TOC -->
 
-
 # 1. 剖析面试最常见问题之 Java 集合框架
 
 ## 1.1. 集合概述
@@ -109,13 +108,15 @@
 ### 1.2.1. Arraylist 和 Vector 的区别?
 
 - `ArrayList` 是 `List` 的主要实现类，底层使用 `Object[ ]`存储，适用于频繁的查找工作，线程不安全 ；
-- `Vector` 是 `List` 的古老实现类，底层使用` Object[ ]` 存储，线程安全的。
+- `Vector` 是 `List` 的古老实现类，底层使用`Object[ ]` 存储，线程安全的。
 
 ### 1.2.2. Arraylist 与 LinkedList 区别?
 
 1. **是否保证线程安全：** `ArrayList` 和 `LinkedList` 都是不同步的，也就是不保证线程安全；
 2. **底层数据结构：** `Arraylist` 底层使用的是 **`Object` 数组**；`LinkedList` 底层使用的是 **双向链表** 数据结构（JDK1.6 之前为循环链表，JDK1.7 取消了循环。注意双向链表和双向循环链表的区别，下面有介绍到！）
-3. **插入和删除是否受元素位置的影响：** ① **`ArrayList` 采用数组存储，所以插入和删除元素的时间复杂度受元素位置的影响。** 比如：执行`add(E e)`方法的时候， `ArrayList` 会默认在将指定的元素追加到此列表的末尾，这种情况时间复杂度就是 O(1)。但是如果要在指定位置 i 插入和删除元素的话（`add(int index, E element)`）时间复杂度就为 O(n-i)。因为在进行上述操作的时候集合中第 i 和第 i 个元素之后的(n-i)个元素都要执行向后位/向前移一位的操作。 ② **`LinkedList` 采用链表存储，所以对于`add(E e)`方法的插入，删除元素时间复杂度不受元素位置的影响，近似 O(1)，如果是要在指定位置`i`插入和删除元素的话（`(add(int index, E element)`） 时间复杂度近似为`o(n))`因为需要先移动到指定位置再插入。**
+3. **插入和删除是否受元素位置的影响：**
+   - `ArrayList` 采用数组存储，所以插入和删除元素的时间复杂度受元素位置的影响。 比如：执行`add(E e)`方法的时候， `ArrayList` 会默认在将指定的元素追加到此列表的末尾，这种情况时间复杂度就是 O(1)。但是如果要在指定位置 i 插入和删除元素的话（`add(int index, E element)`）时间复杂度就为 O(n-i)。因为在进行上述操作的时候集合中第 i 和第 i 个元素之后的(n-i)个元素都要执行向后位/向前移一位的操作。
+   - `LinkedList` 采用链表存储，所以对于`add(E e)`方法的插入，删除元素时间复杂度不受元素位置的影响，近似 O(1)，如果是要在指定位置 `i` 插入和删除元素的话（`(add(int index, E element)`） 时间复杂度近似为 O(n) ，因为需要先移动到指定位置再插入。
 4. **是否支持快速随机访问：** `LinkedList` 不支持高效的随机元素访问，而 `ArrayList` 支持。快速随机访问就是通过元素的序号快速获取元素对象(对应于`get(int index)`方法)。
 5. **内存空间占用：** ArrayList 的空 间浪费主要体现在在 list 列表的结尾会预留一定的容量空间，而 LinkedList 的空间花费则体现在它的每一个元素都需要消耗比 ArrayList 更多的空间（因为要存放直接后继和直接前驱以及数据）。
 
@@ -359,7 +360,7 @@ Output：
 |           实现了 `Map` 接口            |                       实现 `Set` 接口                        |
 |               存储键值对               |                          仅存储对象                          |
 |     调用 `put()`向 map 中添加元素      |             调用 `add()`方法向 `Set` 中添加元素              |
-| `HashMap` 使用键（Key）计算 `hashcode` | `HashSet` 使用成员对象来计算 `hashcode` 值，对于两个对象来说 `hashcode` 可能相同，所以` equals()`方法用来判断对象的相等性 |
+| `HashMap` 使用键（Key）计算 `hashcode` | `HashSet` 使用成员对象来计算 `hashcode` 值，对于两个对象来说 `hashcode` 可能相同，所以`equals()`方法用来判断对象的相等性 |
 
 ### 1.4.3. HashMap 和 TreeMap 区别
 
@@ -441,7 +442,7 @@ TreeMap<Person, String> treeMap = new TreeMap<>((person1, person2) -> {
 2. 两个对象相等,对两个 `equals()` 方法返回 true
 3. 两个对象有相同的 `hashcode` 值，它们也不一定是相等的
 4. 综上，`equals()` 方法被覆盖过，则 `hashCode()` 方法也必须被覆盖
-5. `hashCode() `的默认行为是对堆上的对象产生独特值。如果没有重写 `hashCode()`，则该 class 的两个对象无论如何都不会相等（即使这两个对象指向相同的数据）。
+5. `hashCode()`的默认行为是对堆上的对象产生独特值。如果没有重写 `hashCode()`，则该 class 的两个对象无论如何都不会相等（即使这两个对象指向相同的数据）。
 
 **==与 equals 的区别**
 
@@ -616,8 +617,6 @@ synchronizedMap(Map<K,V> m) //返回由指定映射支持的同步（线程安�
 synchronizedSet(Set<T> s) //返回指定 set 支持的同步（线程安全的）set。
 ```
 
-
-
-**《Java面试突击》:** Java 程序员面试必备的《Java面试突击》V3.0 PDF 版本扫码关注下面的公众号，在后台回复 **"面试突击"** 即可免费领取！
+**《Java 面试突击》:** Java 程序员面试必备的《Java 面试突击》V3.0 PDF 版本扫码关注下面的公众号，在后台回复 **"面试突击"** 即可免费领取！
 
 ![我的公众号](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/format,png.jpeg)
