@@ -662,7 +662,7 @@ QUEUED
 OK
 ```
 
-[`WATCH`](https://redis.io/commands/watch) 命令用于监听指定的键，当调用 EXEC 命令执行事务时，如果一个被 `WATCH` 命令监视的键被修改的话，整个事务都不会执行，直接返回失败。
+[`WATCH`](https://redis.io/commands/watch) 命令用于监听指定的键，当调用 `EXEC` 命令执行事务时，如果一个被 `WATCH` 命令监视的键被修改的话，整个事务都不会执行，直接返回失败。
 
 ```bash
 > WATCH USER
