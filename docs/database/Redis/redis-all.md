@@ -40,7 +40,6 @@
 <!-- /code_chunk_output -->
 
 
-
 ### 1. 简单介绍一下 Redis 呗!
 
 简单来说 **Redis 就是一个使用 C 语言开发的数据库**，不过与传统数据库不同的是 **Redis 的数据是存在内存中的** ，也就是它是内存数据库，所以读写速度非常快，因此 Redis 被广泛应用于缓存方向。
@@ -628,21 +627,54 @@ AOF 重写是一个有歧义的名字，该功能是通过读取数据库中的�
 
 ### 15. Redis 事务
 
-Redis 可以通过 **MULTI，EXEC，DISCARD 和 WATCH** 等命令来实现事务(transaction)功能。
+Redis 可以通过 **`MULTI`，`EXEC`，`DISCARD` 和 `WATCH`** 等命令来实现事务(transaction)功能。
 
 ```bash
 > MULTI
 OK
-> INCR foo
+> SET USER "Guide哥"
 QUEUED
-> INCR bar
+> GET USER
 QUEUED
 > EXEC
-1) (integer) 1
-2) (integer) 1
+1) OK
+2) "Guide哥"
 ```
 
-使用 [MULTI](https://redis.io/commands/multi)命令后可以输入多个命令。Redis 不会立即执行这些命令，而是将它们放到队列，当调用了[EXEC](https://redis.io/commands/exec)命令将执行所有命令。
+使用 [`MULTI`](https://redis.io/commands/multi)命令后可以输入多个命令。Redis 不会立即执行这些命令，而是将它们放到队列，当调用了[`EXEC`](https://redis.io/commands/exec)命令将执行所有命令。
+
+这个过程是这样的：
+
+1. 开始事务（`MULTI`）。
+2. 命令入队(批量操作 Redis 的命令，先进先出（FIFO）的顺序执行)。
+3. 执行事务(`EXEC`)。
+
+你也可以通过 [`DISCARD`](https://redis.io/commands/discard) 命令取消一个事务，它会清空事务队列中保存的所有命令。
+
+```bash
+> MULTI
+OK
+> SET USER "Guide哥"
+QUEUED
+> GET USER
+QUEUED
+> DISCARD
+OK
+```
+
+[`WATCH`](https://redis.io/commands/watch) 命令用于监听指定的键，当调用 EXEC 命令执行事务时，如果一个被 `WATCH` 命令监视的键被修改的话，整个事务都不会执行，直接返回失败。
+
+```bash
+> WATCH USER
+OK
+> MULTI
+> SET USER "Guide哥"
+OK
+> GET USER
+Guide哥
+> EXEC
+ERR EXEC without MULTI
+```
 
 Redis 官网相关介绍 [https://redis.io/topics/transactions](https://redis.io/topics/transactions) 如下：
 
