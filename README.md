@@ -1,5 +1,7 @@
 👍推荐: [我花了半个月写的 2021 最新版 Java学习路线！](https://www.zhihu.com/question/56110328/answer/869069586)
 
+👍推荐: [程序员简历应该怎么写？](https://www.zhihu.com/question/25002833/answer/1869131751)
+
 👍推荐 [在线阅读](https://snailclimb.gitee.io/javaguide)  (Github 访问速度比较慢可能会导致部分图片无法刷新出来) 
 
 👍推荐[2021最新实战项目源码下载](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=100018862&idx=1&sn=858e00b60c6097e3ba061e79be472280&chksm=4ea1856579d60c73224e4d852af6b0188c3ab905069fc28f4b293963fd1ee55d2069fb229848#rd)
