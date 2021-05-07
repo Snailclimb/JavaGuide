@@ -153,11 +153,19 @@
 
 ## 系统设计
 
-### 编码之道(必看 :+1:)
+### 系统设计必备基础
 
-1. [RestFul API 简明教程](docs/system-design/coding-way/RESTfulAPI简明教程.md)
-2. [Java 编程规范以及优雅 Java 代码实践总结](docs/java/Java编程规范.md)
-3. [Java 命名之道](docs/system-design/naming.md)
+#### RESTful API
+
+我们在进行后端开发的时候，主要的工作就是为前端或者其他后端服务提供 API 比如查询用户数据的 API 。RESTful API 是一种基于 REST 构建的 API，它是一种被设计的更好使用的 API。
+
+相关阅读：[RestFul API 简明教程](docs/system-design/coding-way/RESTfulAPI简明教程.md)
+
+#### 命名
+
+编程过程中，一定要重视命名。因为好的命名即是注释，别人一看到你的命名就知道你的变量、方法或者类是做什么的！
+
+相关阅读： [Java 命名之道](docs/system-design/naming.md) 。
 
 ### 常用框架
 
