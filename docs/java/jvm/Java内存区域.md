@@ -354,15 +354,9 @@ String s1 = "计算机";
 String s2 = s1.intern();
 String s3 = "计算机";
 System.out.println(s2);//计算机
-System.out.println(s1.equals(s2));//true
-System.out.println(s3.equals(s2));//true，因为两个都是常量池中的 String 对象
+System.out.println(s1 == s2);//true
+System.out.println(s3 == s2);//true，因为两个都是常量池中的 String 对象
 ```
-
-`s1.equals(s2)` 输出为 true 的原因 :
-
-1. s1 调用 `intern()` 的时候，因为常量池没有对应的字面量，所以在常量池保存了一个指向 s1 的引用
-2. 接下来的 s2 会先去常量池里找，找到对应引用，故指向堆里的 s1
-3. 故 `s1.equals(s2)` 为 true
 
 **字符串拼接:**
 
