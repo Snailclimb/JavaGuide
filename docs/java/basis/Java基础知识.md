@@ -668,7 +668,7 @@ Integer i2 = new Integer(40);
 System.out.println(i1==i2);
 ```
 
-`Integer i1=40` 这一行代码会发生拆箱，也就是说这行代码等价于 `Integer i1=Integer.valueOf(40)` 。因此，`i1` 直接使用的是常量池中的对象。而`Integer i1 = new Integer(40)` 会直接创建新的对象。
+`Integer i1=40` 这一行代码会发生装箱，也就是说这行代码等价于 `Integer i1=Integer.valueOf(40)` 。因此，`i1` 直接使用的是常量池中的对象。而`Integer i1 = new Integer(40)` 会直接创建新的对象。
 
 因此，答案是 `false` 。你答对了吗？
 
