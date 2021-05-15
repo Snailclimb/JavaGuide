@@ -1,6 +1,4 @@
-👍推荐: [我花了半个月写的 2021 最新版 Java学习路线！](https://www.zhihu.com/question/56110328/answer/869069586) (原创不易，欢迎点赞分享~)
-
-👍推荐: [程序员需要达到什么水平才能顺利拿到 20k 无压力？](https://www.zhihu.com/question/47597895/answer/1870582783) (原创不易，欢迎点赞分享~)
+如果你不知道该学习什么的话，请看 [Java 学习线路图是怎样的？]( https://www.zhihu.com/question/56110328/answer/869069586)  （原创不易，欢迎点赞），这是 2021 最新最完善的 Java 学习路线！
 
 👍推荐 [在线阅读](https://snailclimb.gitee.io/javaguide)  (Github 访问速度比较慢可能会导致部分图片无法刷新出来) 
 
