@@ -894,7 +894,7 @@ public class EnsureCapacityTest {
 运行结果：
 
 ```
-使用ensureCapacity方法前：1773
+使用ensureCapacity方法后：1773
 ```
 
 通过运行结果，我们可以看出向 ArrayList 添加大量元素之前最好先使用`ensureCapacity` 方法，以减少增量重新分配的次数。
