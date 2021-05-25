@@ -91,7 +91,7 @@ public ConcurrentHashMap(int initialCapacity,float loadFactor, int concurrencyLe
 总结一下在 Java 7 中 ConcurrnetHashMap 的初始化逻辑。
 
 1. 必要参数校验。
-2. 校验并发级别 concurrencyLevel 大小，如果大于最大值，重置为最大值。无惨构造**默认值是 16.**
+2. 校验并发级别 concurrencyLevel 大小，如果大于最大值，重置为最大值。无参构造**默认值是 16.**
 3. 寻找并发级别 concurrencyLevel 之上最近的 **2 的幂次方**值，作为初始化容量大小，**默认是 16**。
 4. 记录 segmentShift 偏移量，这个值为【容量 =  2 的N次方】中的 N，在后面 Put 时计算位置时会用到。**默认是 32 - sshift = 28**.
 5. 记录 segmentMask，默认是 ssize - 1 = 16 -1 = 15.
