@@ -1119,7 +1119,6 @@ abstract class AbstractStringBuilder implements Appendable, CharSequence {
 Object 类是一个特殊的类，是所有类的父类。它主要提供了以下 11 个方法：
 
 ```java
-
 public final native Class<?> getClass()//native方法，用于返回当前运行时对象的Class对象，使用了final关键字修饰，故不允许子类重写。
 
 public native int hashCode() //native方法，用于返回对象的哈希码，主要使用在哈希表中，比如JDK中的HashMap。
@@ -1140,8 +1139,8 @@ public final void wait(long timeout, int nanos) throws InterruptedException//多
 public final void wait() throws InterruptedException//跟之前的2个wait方法一样，只不过该方法一直等待，没有超时时间这个概念
 
 protected void finalize() throws Throwable { }//实例被垃圾回收器回收的时候触发的操作
-
 ```
+
 
 ## 反射
 
