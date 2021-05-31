@@ -1,10 +1,8 @@
-如果你不知道该学习什么的话，请看 [Java 学习线路图是怎样的？]( https://www.zhihu.com/question/56110328/answer/869069586)  （原创不易，欢迎点赞），这是 2021 最新最完善的 Java 学习路线！
+👉 如果你不知道该学习什么的话，请看 [Java 学习线路图是怎样的？]( https://www.zhihu.com/question/56110328/answer/869069586)  （原创不易，欢迎点赞），这是 2021 最新最完善的 Java 学习路线！
 
-👍推荐 [在线阅读](https://snailclimb.gitee.io/javaguide)  (Github 访问速度比较慢可能会导致部分图片无法刷新出来) 
+👉 推荐 [在线阅读](https://snailclimb.gitee.io/javaguide)  (Github 访问速度比较慢可能会导致部分图片无法刷新出来) 
 
-👍推荐[2021最新实战项目源码下载](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=100018862&idx=1&sn=858e00b60c6097e3ba061e79be472280&chksm=4ea1856579d60c73224e4d852af6b0188c3ab905069fc28f4b293963fd1ee55d2069fb229848#rd)
-
-书单已经被移动到[awesome-cs](https://github.com/CodingDocs/awesome-cs) 这个仓库。
+👉 书单已经被移动到[awesome-cs](https://github.com/CodingDocs/awesome-cs) 这个仓库。
 
 > 1. **介绍**：关于 JavaGuide 的相关介绍请看：[关于 JavaGuide 的一些说明](https://www.yuque.com/snailclimb/dr6cvl/mr44yt) 。
 > 2. **PDF版本** ： [《JavaGuide 面试突击版》PDF 版本](#公众号) 。[图解计算机基础 PDF 版](#优质原创PDF资源)。
@@ -111,6 +109,7 @@
 - **图解数据结构：**
   1. [线性数据结构 :数组、链表、栈、队列](docs/dataStructures-algorithms/data-structure/线性数据结构.md)
   2. [图](docs/dataStructures-algorithms/data-structure/图.md)
+  3. [堆](docs/dataStructures-algorithms/data-structure/堆.md)
 - [不了解布隆过滤器？一文给你整的明明白白！](docs/dataStructures-algorithms/data-structure/bloom-filter.md)
 
 ### 算法
