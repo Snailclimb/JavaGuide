@@ -124,7 +124,7 @@
 
 **常见算法问题总结：**
 
-- [几道常见的字符串算法题总结 ](docs/dataStructures-algorithms/几道常见的子符串算法题.md)
+- [几道常见的字符串算法题总结 ](docs/dataStructures-algorithms/几道常见的字符串算法题.md)
 - [几道常见的链表算法题总结 ](docs/dataStructures-algorithms/几道常见的链表算法题.md)
 - [剑指 offer 部分编程题](docs/dataStructures-algorithms/剑指offer部分编程题.md)
 
