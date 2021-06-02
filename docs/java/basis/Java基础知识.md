@@ -316,7 +316,7 @@ class GeneratorImpl<T> implements Generator<T>{
 实现泛型接口，指定类型：
 
 ```java
-class GeneratorImpl<T> implements Generator<String>{
+class GeneratorImpl implements Generator<String>{
     @Override
     public String method() {
         return "hello";
