@@ -45,7 +45,7 @@
 
 另外，了解 shell 编程也是大部分互联网公司招聘后端开发人员的要求。下图是我截取的一些知名互联网公司对于 Shell 编程的要求。
 
-![大型互联网公司对于shell编程技能的要求](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-16/60190220.jpg)
+![大型互联网公司对于shell编程技能的要求](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-16/60190220.jpg)
 
 ### 什么是 Shell？
 
@@ -53,7 +53,7 @@
 
 
 W3Cschool 上的一篇文章是这样介绍 Shell的，如下图所示。
-![什么是 Shell？](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-26/19456505.jpg)
+![什么是 Shell？](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-26/19456505.jpg)
 
 
 ### Shell 编程的 Hello World
@@ -80,7 +80,7 @@ shell中 # 符号表示注释。**shell 的第一行比较特殊，一般都会�
 
 (4) 运行脚本:`./helloworld.sh` 。（注意，一定要写成 `./helloworld.sh` ，而不是 `helloworld.sh` ，运行其它二进制的程序也一样，直接写 `helloworld.sh` ，linux 系统会去 PATH 里寻找有没有叫 helloworld.sh 的，而只有 /bin, /sbin, /usr/bin，/usr/sbin 等在 PATH 里，你的当前目录通常不在 PATH 里，所以写成 `helloworld.sh` 是会找不到命令的，要用`./helloworld.sh` 告诉系统说，就在当前目录找。）
 
-![shell 编程Hello World](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-16/55296212.jpg)
+![shell 编程Hello World](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-16/55296212.jpg)
 
 
 ## Shell 变量
@@ -118,7 +118,7 @@ hello="hello world"
 echo $hello
 echo  "helloworld!"
 ```
-![使用自己定义的变量](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-17/19835037.jpg)
+![使用自己定义的变量](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-17/19835037.jpg)
 
 
 **Shell 编程中的变量名的命名的注意事项：**
@@ -183,7 +183,7 @@ echo $greeting_2  $greeting_3
 
 输出结果：
 
-![输出结果](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-17/51148933.jpg)
+![输出结果](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-17/51148933.jpg)
 
 
 **获取字符串长度：**
@@ -234,10 +234,10 @@ echo ${str:0:10} #输出:SnailClimb
 #!bin/bash
 #author:amau
 
-var="http://www.runoob.com/linux/linux-shell-variable.html"
+var="https://www.runoob.com/linux/linux-shell-variable.html"
 
 s1=${var%%t*}#h
-s2=${var%t*}#http://www.runoob.com/linux/linux-shell-variable.h
+s2=${var%t*}#https://www.runoob.com/linux/linux-shell-variable.h
 s3=${var%%.*}#http://www
 s4=${var#*/}#/www.runoob.com/linux/linux-shell-variable.html
 s5=${var##*/}#linux-shell-variable.html
@@ -281,7 +281,7 @@ for i in ${array[@]};do echo $i ;done # 遍历数组，数组元素为空，没�
 
 ### 算数运算符
 
-![算数运算符](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-22/4937342.jpg)
+![算数运算符](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-22/4937342.jpg)
 
 我以加法运算符做一个简单的示例（注意：不是单引号，是反引号）：
 
@@ -298,7 +298,7 @@ echo "Total value : $val"
 
 关系运算符只支持数字，不支持字符串，除非字符串的值是数字。
 
-![shell关系运算符](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-22/64391380.jpg)
+![shell关系运算符](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-22/64391380.jpg)
 
 通过一个简单的示例演示关系运算符的使用，下面shell程序的作用是当score=100的时候输出A否则输出B。
 
@@ -322,7 +322,7 @@ B
 
 ### 逻辑运算符
 
-![逻辑运算符](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-22/60545848.jpg)
+![逻辑运算符](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-22/60545848.jpg)
 
 示例：
 
@@ -336,13 +336,13 @@ echo $a;
 ### 布尔运算符
 
 
-![布尔运算符](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-22/93961425.jpg)
+![布尔运算符](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-22/93961425.jpg)
 
 这里就不做演示了，应该挺简单的。
 
 ### 字符串运算符
 
-![ 字符串运算符](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-22/309094.jpg)
+![ 字符串运算符](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-22/309094.jpg)
 
 简单示例：
 
@@ -366,7 +366,7 @@ a 不等于 b
 
 ### 文件相关运算符
 
-![文件相关运算符](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-22/60359774.jpg)
+![文件相关运算符](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-22/60359774.jpg)
 
 使用方式很简单，比如我们定义好了一个文件路径`file="/usr/learnshell/test.sh"` 如果我们想判断这个文件是否可读，可以这样`if [ -r $file ]` 如果想判断这个文件是否可写，可以这样`-w $file`，是不是很简单。
 

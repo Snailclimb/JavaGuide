@@ -186,7 +186,7 @@ static {
 
 一个类中的静态代码块可以有多个，位置可以随便放，它不在任何的方法体内，JVM加载类时会执行这些静态的代码块，如果静态代码块有多个，JVM将按照它们在类中出现的先后顺序依次执行它们，每个代码块只会被执行一次。
 
-![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-14/88531075.jpg)
+![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-14/88531075.jpg)
 
 静态代码块对于定义在它之后的静态变量，可以赋值，但是不能访问.
 

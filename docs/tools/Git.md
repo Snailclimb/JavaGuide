@@ -268,8 +268,8 @@ git push origin
 
 **推荐阅读：**
 
-- [Git - 简明指南](http://rogerdudler.github.io/git-guide/index.zh.html)
-- [图解Git](http://marklodato.github.io/visual-git-guide/index-zh-cn.html)
+- [Git - 简明指南](https://rogerdudler.github.io/git-guide/index.zh.html)
+- [图解Git](https://marklodato.github.io/visual-git-guide/index-zh-cn.html)
 - [猴子都能懂得Git入门](https://backlog.com/git-tutorial/cn/intro/intro1_1.html)
 - https://git-scm.com/book/en/v2
 - [Generating a new SSH key and adding it to the ssh-agent](https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
