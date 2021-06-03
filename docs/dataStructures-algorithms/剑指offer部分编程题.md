@@ -566,7 +566,7 @@ public ListNode Merge(ListNode list1,ListNode list2) {
 **栈：**后进先出（LIFO）
 **队列：** 先进先出
 很明显我们需要根据JDK给我们提供的栈的一些基本方法来实现。先来看一下Stack类的一些基本方法：
-![Stack类的一些常见方法](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-4-4/5985000.jpg)
+![Stack类的一些常见方法](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-4-4/5985000.jpg)
 
 既然题目给了我们两个栈，我们可以这样考虑当push的时候将元素push进stack1，pop的时候我们先把stack1的元素pop到stack2，然后再对stack2执行pop操作，这样就可以保证是先进先出的。（负[pop]负[pop]得正[先进先出]）
 

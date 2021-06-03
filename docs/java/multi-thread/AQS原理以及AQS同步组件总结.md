@@ -233,7 +233,7 @@ tryReleaseShared(int)//共享方式。尝试释放资源，成功则返回true�
 
 推荐两篇 AQS 原理和相关源码分析的文章：
 
-- http://www.cnblogs.com/waterystone/p/4920797.html
+- https://www.cnblogs.com/waterystone/p/4920797.html
 - https://www.cnblogs.com/chengxiao/archive/2017/07/24/7141160.html
 
 ### 3 Semaphore(信号量)-允许多个线程同时访问

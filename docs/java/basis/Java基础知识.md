@@ -175,7 +175,7 @@ Java 语言既具有编译型语言的特征，也具有解释型语言的特征
    > 字符封装类 `Character` 有一个成员常量 `Character.SIZE` 值为 16,单位是`bits`,该值除以 8(`1byte=8bits`)后就可以得到 2 个字节
 
 > java 编程思想第四版：2.2.2 节
-> ![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-15/86735519.jpg)
+> ![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-15/86735519.jpg)
 
 ### 注释
 
@@ -790,7 +790,7 @@ num2 = 20
 
 **解析：**
 
-![example 1 ](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-27/22191348.jpg)
+![example 1 ](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-27/22191348.jpg)
 
 在 swap 方法中，a、b 的值进行交换，并不会影响到 num1、num2。因为，a、b 中的值，只是从 num1、num2 的复制过来的。也就是说，a、b 相当于 num1、num2 的副本，副本的内容无论怎么修改，都不会影响到原件本身。
 
@@ -821,7 +821,7 @@ num2 = 20
 
 **解析：**
 
-![example 2](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-27/3825204.jpg)
+![example 2](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-27/3825204.jpg)
 
 array 被初始化 arr 的拷贝也就是一个对象的引用，也就是说 array 和 arr 指向的是同一个数组对象。 因此，外部对引用对象的改变会反映到所对应的对象上。
 
@@ -866,11 +866,11 @@ s2:小李
 
 交换之前：
 
-![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-27/88729818.jpg)
+![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-27/88729818.jpg)
 
 交换之后：
 
-![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-27/34384414.jpg)
+![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-27/34384414.jpg)
 
 通过上面两张图可以很清晰的看出： **方法并没有改变存储在变量 s1 和 s2 中的对象引用。swap 方法的参数 x 和 y 被初始化为两个对象引用的拷贝，这个方法交换的是这两个拷贝**
 

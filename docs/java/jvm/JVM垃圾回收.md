@@ -131,7 +131,7 @@ public class GCTest {
 
 运行结果 (红色字体描述有误，应该是对应于 JDK1.7 的永久代)：
 
-![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-26/28954286.jpg)
+![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-26/28954286.jpg)
 
 从上图我们可以看出 eden 区内存几乎已经被分配完全（即使程序什么也不做，新生代也会使用 2000 多 k 内存）。假如我们再为 allocation2 分配内存会出现什么情况呢？
 
@@ -139,7 +139,7 @@ public class GCTest {
 allocation2 = new byte[900*1024];
 ```
 
-![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-26/28128785.jpg)
+![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-26/28128785.jpg)
 
 **简单解释一下为什么会出现这种情况：** 因为给 allocation2 分配内存的时候 eden 区内存几乎已经被分配完了，我们刚刚讲了当 Eden 区没有足够空间进行分配时，虚拟机将发起一次 Minor GC.GC 期间虚拟机又发现 allocation1 无法存入 Survivor 空间，所以只好通过 **分配担保机制** 把新生代的对象提前转移到老年代中去，老年代上的空间足够存放 allocation1，所以不会出现 Full GC。执行 Minor GC 后，后面分配的对象如果能够存在 eden 区的话，还是会在 eden 区分配内存。可以执行如下代码验证：
 

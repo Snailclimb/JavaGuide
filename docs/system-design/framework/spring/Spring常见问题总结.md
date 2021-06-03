@@ -192,11 +192,11 @@ public OneService getService(status) {
 
 图示：
 
-![Spring Bean 生命周期](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-17/48376272.jpg)
+![Spring Bean 生命周期](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-17/48376272.jpg)
 
 与之比较类似的中文版本:
 
-![Spring Bean 生命周期](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-17/5496407.jpg)
+![Spring Bean 生命周期](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-17/5496407.jpg)
 
 ## 6. Spring MVC
 
@@ -213,12 +213,12 @@ MVC 是一种设计模式,Spring MVC 是一款很优秀的 MVC 框架。Spring M
 
 **Spring MVC 的简单原理图如下：**
 
-![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-10-11/60679444.jpg)
+![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-10-11/60679444.jpg)
 
 ### 6.2 SpringMVC 工作原理了解吗?
 
 **原理如下图所示：**
-![SpringMVC运行原理](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-10-11/49790288.jpg)
+![SpringMVC运行原理](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-10-11/49790288.jpg)
 
 上图的一个笔误的小问题：Spring MVC 的入口函数也就是前端控制器 `DispatcherServlet` 的作用是接收请求，响应结果。
 
@@ -340,7 +340,7 @@ String transient4; // not persistent because of @Transient
 ## 参考
 
 - 《Spring 技术内幕》
-- <http://www.cnblogs.com/wmyskxz/p/8820371.html>
+- <https://www.cnblogs.com/wmyskxz/p/8820371.html>
 - <https://www.journaldev.com/2696/spring-interview-questions-and-answers>
 - <https://www.edureka.co/blog/interview-questions/spring-interview-questions/>
 - https://www.cnblogs.com/clwydjgs/p/9317849.html

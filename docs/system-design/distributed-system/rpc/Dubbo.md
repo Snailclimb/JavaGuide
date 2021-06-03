@@ -30,7 +30,7 @@
 具体原理图如下，后面我会串起来将整个RPC的过程给大家说一下。
 
 
-![RPC原理图](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-12-6/37345851.jpg)
+![RPC原理图](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-12-6/37345851.jpg)
 
 1. 服务消费端（client）以本地调用的方式调用远程服务；
 1. 客户端 Stub（client stub） 接收到调用后负责将方法、参数等组装成能够进行网络传输的消息体（序列化）：`RpcRequest`；
@@ -90,7 +90,7 @@ Dubbo 是由阿里开源，后来加入了 Apache 。正式由于 Dubbo 的出�
 3. **服务访问压力以及时长统计、资源调度和治理** ：基于访问压力实时管理集群容量，提高集群利用率。
 4. ......
 
-![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-26/43050183.jpg)
+![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-26/43050183.jpg)
 
 另外，Dubbo 除了能够应用在分布式系统中，也可以应用在现在比较火的微服务系统中。不过，由于 Spring Cloud 在微服务中应用更加广泛，所以，我觉得一般我们提 Dubbo 的话，大部分是分布式系统的情况。
 
