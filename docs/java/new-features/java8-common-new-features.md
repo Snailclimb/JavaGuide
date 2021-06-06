@@ -898,7 +898,6 @@ public void getDay() {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         //获取当前月第一天：
         Calendar c = Calendar.getInstance();
-        c.add(Calendar.MONTH, 0);
         c.set(Calendar.DAY_OF_MONTH, 1);
         String first = format.format(c.getTime());
         System.out.println("first day:" + first);
