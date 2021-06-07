@@ -798,6 +798,7 @@ public void newFormat(){
     //format yyyy-MM-dd HH:mm:ss
     LocalDateTime dateTime = LocalDateTime.now();
     DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    String dateTimeStr = dateTime.format(dateTimeFormatter);
     System.out.println(String.format("dateTime format : %s", dateTimeStr));
 }
 ```
