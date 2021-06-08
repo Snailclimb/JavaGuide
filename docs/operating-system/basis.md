@@ -233,7 +233,7 @@
 
 于是面试完之后我默默去查阅了相关文档！留下了没有技术的泪水。。。
 
-> 这部分内容参考了 Microsoft 官网的介绍，地址：<https://msdn.microsoft.com/zh-cn/library/windows/hardware/hh439648(v=vs.85).aspx>
+> 这部分内容参考了 Microsoft 官网的介绍，地址：<https://docs.microsoft.com/zh-cn/windows-hardware/drivers/gettingstarted/virtual-address-spaces?redirectedfrom=MSDN>
 
 现代处理器使用的是一种称为 **虚拟寻址(Virtual Addressing)** 的寻址方式。**使用虚拟寻址，CPU 需要将虚拟地址翻译成物理地址，这样才能访问到真实的物理内存。** 实际上完成虚拟地址转换为物理地址转换的硬件是 CPU 中含有一个被称为 **内存管理单元（Memory Management Unit, MMU）** 的硬件。如下图所示：
 
