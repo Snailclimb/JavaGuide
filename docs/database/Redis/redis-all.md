@@ -127,7 +127,7 @@ _简单，来说使用缓存主要是为了提升用户体验以及应对更多�
 #### 6.1. string
 
 1. **介绍** ：string 数据结构是简单的 key-value 类型。虽然 Redis 是用 C 语言写的，但是 Redis 并没有使用 C 的字符串表示，而是自己构建了一种 **简单动态字符串**（simple dynamic string，**SDS**）。相比于 C 的原生字符串，Redis 的 SDS 不光可以保存文本数据还可以保存二进制数据，并且获取字符串长度复杂度为 O(1)（C 字符串为 O(N)）,除此之外,Redis 的 SDS API 是安全的，不会造成缓冲区溢出。
-2. **常用命令:** `set,get,strlen,exists,dect,incr,setex` 等等。
+2. **常用命令:** `set,get,strlen,exists,decr,incr,setex` 等等。
 3. **应用场景** ：一般常用在需要计数的场景，比如用户的访问次数、热点文章的点赞转发数量等等。
 
 下面我们简单看看它的使用！
