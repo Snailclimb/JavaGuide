@@ -235,12 +235,16 @@ echo ${str:0:10} #输出:SnailClimb
 #author:amau
 
 var="https://www.runoob.com/linux/linux-shell-variable.html"
-
-s1=${var%%t*}#h
-s2=${var%t*}#https://www.runoob.com/linux/linux-shell-variable.h
-s3=${var%%.*}#http://www
-s4=${var#*/}#/www.runoob.com/linux/linux-shell-variable.html
-s5=${var##*/}#linux-shell-variable.html
+# %表示删除从后匹配, 最短结果
+# %%表示删除从后匹配, 最长匹配结果
+# #表示删除从头匹配, 最短结果
+# ##表示删除从头匹配, 最长匹配结果
+# 注: *为通配符, 意为匹配任意数量的任意字符
+s1=${var%%t*} #h
+s2=${var%t*}  #https://www.runoob.com/linux/linux-shell-variable.h
+s3=${var%%.*} #http://www
+s4=${var#*/}  #/www.runoob.com/linux/linux-shell-variable.html
+s5=${var##*/} #linux-shell-variable.html
 ```
 
 ### Shell 数组
