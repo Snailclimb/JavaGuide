@@ -88,7 +88,7 @@ public class Sub extends Super {
 }
 ```
 
-在上面的例子中，Sub 类访问父类成员变量 number 并调用其其父类 Super 的 `showNumber（）` 方法。
+在上面的例子中，Sub 类访问父类成员变量 number 并调用其父类 Super 的 `showNumber（）` 方法。
 
 **使用 this 和 super 要注意的问题：**
 
