@@ -197,14 +197,14 @@ public V get(Object key) {
 
 举例：下面 join 查询出来 6 条记录，一、二列是 Teacher 对象列，第三列为 Student 对象列，MyBatis 去重复处理后，结果为 1 个老师 6 个学生，而不是 6 个老师 6 个学生。
 
- t_id t_name s_id
-
-| 1 | teacher | 38 |
-| 1 | teacher | 39 |
-| 1 | teacher | 40 |
-| 1 | teacher | 41 |
-| 1 | teacher | 42 |
-| 1 | teacher | 43 |
+| t_id | t_name  | s_id |
+| ---- | ------- | ---- |
+| 1    | teacher | 38   |
+| 1    | teacher | 39   |
+| 1    | teacher | 40   |
+| 1    | teacher | 41   |
+| 1    | teacher | 42   |
+| 1    | teacher | 43   |
 
 #### 10、MyBatis 是否支持延迟加载？如果支持，它的实现原理是什么？
 
@@ -238,7 +238,7 @@ public V get(Object key) {
 
 **`SimpleExecutor`：**每执行一次 update 或 select，就开启一个 Statement 对象，用完立刻关闭 Statement 对象。
 
-**``ReuseExecutor`：**执行 update 或 select，以 sql 作为 key 查找 Statement 对象，存在就使用，不存在就创建，用完后，不关闭 Statement 对象，而是放置于 Map<String, Statement>内，供下一次使用。简言之，就是重复使用 Statement 对象。
+**`ReuseExecutor`：**执行 update 或 select，以 sql 作为 key 查找 Statement 对象，存在就使用，不存在就创建，用完后，不关闭 Statement 对象，而是放置于 Map<String, Statement>内，供下一次使用。简言之，就是重复使用 Statement 对象。
 
 **`BatchExecutor`：**执行 update（没有 select，JDBC 批处理不支持 select），将所有 sql 都添加到批处理中（addBatch()），等待统一执行（executeBatch()），它缓存了多个 Statement 对象，每个 Statement 对象都是 addBatch()完毕后，等待逐一执行 executeBatch()批处理。与 JDBC 批处理相同。
 
