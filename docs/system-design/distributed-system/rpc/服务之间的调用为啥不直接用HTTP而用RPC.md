@@ -6,25 +6,19 @@ RPC（Remote Procedure Call）—远程过程调用，它是一种通过网络�
 
 ### **RPC原理是什么？**
 
-我这里这是简单的提一下，详细内容可以查看下面这篇文章：
+![RPC原理图](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-12-6/37345851.jpg)
 
-http://www.importnew.com/22003.html
+1. 服务消费端（client）以本地调用的方式调用远程服务；
+2. 客户端 Stub（client stub） 接收到调用后负责将方法、参数等组装成能够进行网络传输的消息体（序列化）：`RpcRequest`；
+3. 客户端 Stub（client stub） 找到远程服务的地址，并将消息发送到服务提供端；
+4. 服务端 Stub（桩）收到消息将消息反序列化为Java对象: `RpcRequest`；
+5. 服务端 Stub（桩）根据`RpcRequest`中的类、方法、方法参数等信息调用本地的方法；
+6. 服务端 Stub（桩）得到方法执行结果并将组装成能够进行网络传输的消息体：`RpcResponse`（序列化）发送至消费方；
+7. 客户端 Stub（client stub）接收到消息并将消息反序列化为Java对象:`RpcResponse` ，这样也就得到了最终结果。
 
-![RPC原理图](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-12-6/37345851.jpg)
+下面再贴一个网上的时序图，辅助理解：
 
-1. 服务消费方（client）调用以本地调用方式调用服务；
-2. client stub接收到调用后负责将方法、参数等组装成能够进行网络传输的消息体；
-3. client stub找到服务地址，并将消息发送到服务端；
-4. server stub收到消息后进行解码；
-5. server stub根据解码结果调用本地的服务；
-6. 本地服务执行并将结果返回给server stub；
-7. server stub将返回结果打包成消息并发送至消费方；
-8. client stub接收到消息，并进行解码；
-9. 服务消费方得到最终结果。
-
-下面再贴一个网上的时序图：
-
-![RPC原理时序图](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-12-6/32527396.jpg)
+![RPC原理时序图](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-12-6/32527396.jpg)
 
 ### RPC 解决了什么问题？
 
@@ -35,9 +29,12 @@ http://www.importnew.com/22003.html
 - **RMI（JDK自带）：** JDK自带的RPC，有很多局限性，不推荐使用。
 - **Dubbo:** Dubbo是 阿里巴巴公司开源的一个高性能优秀的服务框架，使得应用可通过高性能的 RPC 实现服务的输出和输入功能，可以和 Spring框架无缝集成。目前 Dubbo 已经成为 Spring Cloud Alibaba 中的官方组件。
 - **gRPC** ：gRPC是可以在任何环境中运行的现代开源高性能RPC框架。它可以通过可插拔的支持来有效地连接数据中心内和跨数据中心的服务，以实现负载平衡，跟踪，运行状况检查和身份验证。它也适用于分布式计算的最后一英里，以将设备，移动应用程序和浏览器连接到后端服务。
-
 - **Hessian：** Hessian是一个轻量级的remotingonhttp工具，使用简单的方法提供了RMI的功能。 相比WebService，Hessian更简单、快捷。采用的是二进制RPC协议，因为采用的是二进制协议，所以它很适合于发送二进制数据。
 - **Thrift：**  Apache Thrift是Facebook开源的跨语言的RPC通信框架，目前已经捐献给Apache基金会管理，由于其跨语言特性和出色的性能，在很多互联网公司得到应用，有能力的公司甚至会基于thrift研发一套分布式服务框架，增加诸如服务注册、服务发现等功能。
+
+### RPC学习材料
+
+- [跟着 Guide 哥造轮子](https://github.com/Snailclimb/guide-rpc-framework)
 
 ## 既有 HTTP ,为啥用 RPC 进行服务调用?
 

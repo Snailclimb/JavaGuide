@@ -6,7 +6,7 @@
 
 ## 1. 一键生成 Github 简历
 
-通过 [http://resume.github.io/](http://resume.github.io/) 这个网站你可以一键生成一个在线的 Github 简历。
+通过 [https://resume.github.io/](https://resume.github.io/) 这个网站你可以一键生成一个在线的 Github 简历。
 
 当时我参加的校招的时候，个人信息那里就放了一个在线的 Github 简历。我觉得这样会让面试官感觉你是一个内行，会提高一些印象分。
 

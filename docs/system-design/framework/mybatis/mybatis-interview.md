@@ -68,6 +68,81 @@ public interface StuMapper {
 
 Dao 接口的工作原理是 JDK 动态代理，MyBatis 运行时会使用 JDK 动态代理为 Dao 接口生成代理 proxy 对象，代理对象 proxy 会拦截接口方法，转而执行`MappedStatement`所代表的 sql，然后将 sql 执行结果返回。
 
+##### ==补充：==
+
+Dao接口方法可以重载，但是需要满足以下条件：
+
+1. 仅有一个无参方法和一个有参方法
+2. 多个有参方法时，参数数量必须一致。且使用相同的 `@Param` ，或者使用 `param1` 这种
+
+测试如下：
+
+`PersonDao.java`
+
+```java
+Person queryById();
+
+Person queryById(@Param("id") Long id);
+
+Person queryById(@Param("id") Long id, @Param("name") String name);
+```
+
+`PersonMapper.xml`
+
+```xml
+<select id="queryById" resultMap="PersonMap">
+    select
+      id, name, age, address
+    from person
+    <where>
+        <if test="id != null">
+            id = #{id}
+        </if>
+        <if test="name != null and name != ''">
+            name = #{name}
+        </if>
+    </where>
+    limit 1
+</select>
+```
+
+`org.apache.ibatis.scripting.xmltags.DynamicContext.ContextAccessor#getProperty`方法用于获取`<if>`标签中的条件值
+
+```java
+public Object getProperty(Map context, Object target, Object name) {
+  Map map = (Map) target;
+
+  Object result = map.get(name);
+  if (map.containsKey(name) || result != null) {
+    return result;
+  }
+
+  Object parameterObject = map.get(PARAMETER_OBJECT_KEY);
+  if (parameterObject instanceof Map) {
+    return ((Map)parameterObject).get(name);
+  }
+
+  return null;
+}
+```
+
+`parameterObject`为map，存放的是Dao接口中参数相关信息。
+
+`((Map)parameterObject).get(name)`方法如下
+
+```java
+public V get(Object key) {
+  if (!super.containsKey(key)) {
+    throw new BindingException("Parameter '" + key + "' not found. Available parameters are " + keySet());
+  }
+  return super.get(key);
+}
+```
+
+1. `queryById()`方法执行时，`parameterObject`为null，`getProperty`方法返回null值，`<if>`标签获取的所有条件值都为null，所有条件不成立，动态sql可以正常执行。
+2. `queryById(1L)`方法执行时，`parameterObject`为map，包含了`id`和`param1`两个key值。当获取`<if>`标签中`name`的属性值时，进入`((Map)parameterObject).get(name)`方法中，map中key不包含`name`，所以抛出异常。
+3. `queryById(1L,"1")`方法执行时，`parameterObject`中包含`id`,`param1`,`name`,`param2`四个key值，`id`和`name`属性都可以获取到，动态sql正常执行。
+
 #### 4、MyBatis 是如何进行分页的？分页插件的原理是什么？
 
 注：我出的。

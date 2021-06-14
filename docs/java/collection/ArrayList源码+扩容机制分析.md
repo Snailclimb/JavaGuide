@@ -733,6 +733,24 @@ public class ArrayList<E> extends AbstractList<E>
 
 #### 3.3.1. `System.arraycopy()` 方法
 
+源码：
+
+```java
+    // 我们发现 arraycopy 是一个 native 方法,接下来我们解释一下各个参数的具体意义
+    /**
+    *   复制数组
+    * @param src 源数组
+    * @param srcPos 源数组中的起始位置
+    * @param dest 目标数组
+    * @param destPos 目标数组中的起始位置
+    * @param length 要复制的数组元素的数量
+    */
+    public static native void arraycopy(Object src,  int  srcPos,
+                                        Object dest, int destPos,
+                                        int length);
+```
+
+场景：
 ```java
     /**
      * 在此列表中的指定位置插入指定的元素。
@@ -780,6 +798,21 @@ public class ArraycopyTest {
 ```
 
 #### 3.3.2. `Arrays.copyOf()`方法
+
+源码：
+
+```java
+    public static int[] copyOf(int[] original, int newLength) {
+    	// 申请一个新的数组
+        int[] copy = new int[newLength];
+	// 调用System.arraycopy,将源数组中的数据进行拷贝,并返回新的数组
+        System.arraycopy(original, 0, copy, 0,
+                         Math.min(original.length, newLength));
+        return copy;
+    }
+```
+
+场景：
 
 ```java
    /**
@@ -894,7 +927,7 @@ public class EnsureCapacityTest {
 运行结果：
 
 ```
-使用ensureCapacity方法前：1773
+使用ensureCapacity方法后：1773
 ```
 
 通过运行结果，我们可以看出向 ArrayList 添加大量元素之前最好先使用`ensureCapacity` 方法，以减少增量重新分配的次数。

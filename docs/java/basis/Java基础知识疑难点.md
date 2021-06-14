@@ -72,16 +72,16 @@ Reference:[Java中equals方法造成空指针异常的原因及解决方案](htt
 先看下面这个例子：
 
 ```java
-Integer x = 3;
-Integer y = 3;
-System.out.println(x == y);// true
-Integer a = new Integer(3);
-Integer b = new Integer(3);
-System.out.println(a == b);//false
-System.out.println(a.equals(b));//true
+Integer i1 = 40;
+Integer i2 = new Integer(40);
+System.out.println(i1==i2);//false
 ```
 
-当使用自动装箱方式创建一个Integer对象时，当数值在-128 ~127时，会将创建的 Integer 对象缓存起来，当下次再出现该数值时，直接从缓存中取出对应的Integer对象。所以上述代码中，x和y引用的是相同的Integer对象。	
+`Integer i1=40` 这一行代码会发生装箱，也就是说这行代码等价于 `Integer i1=Integer.valueOf(40)` 。因此，`i1` 直接使用的是常量池中的对象。而`Integer i1 = new Integer(40)` 会直接创建新的对象。因此，输出 false 。
+
+记住：**所有整型包装类对象之间值的比较，全部使用 `equals()`  方法比较**。
+
+![](https://img-blog.csdnimg.cn/20210313164740893.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0MzM3Mjcy,size_16,color_FFFFFF,t_70)
 
 **注意：** 如果你的IDE(IDEA/Eclipse)上安装了阿里巴巴的p3c插件，这个插件如果检测到你用 ==的话会报错提示，推荐安装一个这个插件，很不错。
 
@@ -98,7 +98,7 @@ System.out.println(a);// 0.100000024
 System.out.println(b);// 0.099999964
 System.out.println(a == b);// false
 ```
-具有基本数学知识的我们很清楚的知道输出并不是我们想要的结果（**精度丢失**），我们如何解决这个问题呢？一种很常用的方法是：**使用使用 BigDecimal 来定义浮点数的值，再进行浮点数的运算操作。**
+具有基本数学知识的我们很清楚的知道输出并不是我们想要的结果（**精度丢失**），我们如何解决这个问题呢？一种很常用的方法是：**使用 BigDecimal 来定义浮点数的值，再进行浮点数的运算操作。**
 
 ```java
 BigDecimal a = new BigDecimal("1.0");

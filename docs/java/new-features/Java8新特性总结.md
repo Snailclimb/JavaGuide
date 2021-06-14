@@ -441,7 +441,7 @@ optional.ifPresent((s) -> System.out.println(s.charAt(0)));     // "b"
 
 `java.util.Stream` 表示能应用在一组元素上一次执行的操作序列。Stream 操作分为中间操作或者最终操作两种，最终操作返回一特定类型的计算结果，而中间操作返回Stream本身，这样你就可以将多个操作依次串起来。Stream 的创建需要指定一个数据源，比如` java.util.Collection` 的子类，List 或者 Set， Map 不支持。Stream 的操作可以串行执行或者并行执行。
 
-首先看看Stream是怎么用，首先创建实例代码的用到的数据List：
+首先看看Stream是怎么用，首先创建实例代码需要用到的数据List：
 
 ```java
 List<String> stringList = new ArrayList<>();
@@ -552,7 +552,7 @@ Stream提供了多种匹配操作，允许检测指定的Predicate是否匹配�
 
 ### Reduce(规约)
 
-这是一个 **最终操作** ，允许通过指定的函数来讲stream中的多个元素规约为一个元素，规约后的结果是通过Optional 接口表示的：
+这是一个 **最终操作** ，允许通过指定的函数来将stream中的多个元素规约为一个元素，规约后的结果是通过Optional 接口表示的：
 
 ```java
         //测试 Reduce (规约)操作
@@ -705,7 +705,7 @@ map.merge(9, "concat", (value, newValue) -> value.concat(newValue));
 map.get(9);             // val9concat
 ```
 
-Merge 做的事情是如果键名不存在则插入，否则则对原键对应的值做合并操作并重新插入到map中。
+Merge 做的事情是如果键名不存在则插入，否则对原键对应的值做合并操作并重新插入到map中。
 
 ## Date API(日期相关API)
 
@@ -823,6 +823,28 @@ System.out.println(date);//2019-03-12T16:26:48.29
 DateTimeFormatter formatter=DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm:ss");
 System.out.println(formatter.format(rightNow));//2019-03-12 16:26:48
 ```
+
+**🐛 修正（参见： [issue#1157](https://github.com/Snailclimb/JavaGuide/issues/1157)）**：使用 `YYYY` 显示年份时，会显示当前时间所在周的年份，在跨年周会有问题。一般情况下都使用 `yyyy`，来显示准确的年份。
+
+跨年导致日期显示错误示例：
+
+```java
+LocalDateTime rightNow = LocalDateTime.of(2020, 12, 31, 12, 0, 0);
+String date= DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(rightNow);
+// 2020-12-31T12:00:00
+System.out.println(date);
+DateTimeFormatter formatterOfYYYY = DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm:ss");
+// 2021-12-31 12:00:00
+System.out.println(formatterOfYYYY.format(rightNow));
+
+DateTimeFormatter formatterOfYyyy = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+// 2020-12-31 12:00:00
+System.out.println(formatterOfYyyy.format(rightNow));
+```
+
+从下图可以更清晰的看到具体的错误，并且 IDEA 已经智能地提示更倾向于使用  `yyyy` 而不是  `YYYY` 。
+
+![](https://img-blog.csdnimg.cn/2021042717491413.png)
 
 ### LocalDateTime(本地日期时间)
 
