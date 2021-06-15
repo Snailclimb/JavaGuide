@@ -48,7 +48,7 @@ RBAC 即基于角色的权限访问控制（Role-Based Access Control）。这�
 
 ## 什么是 Cookie ? Cookie 的作用是什么?
 
-![](./images/basis-of-authority-certification/cookie-SessionId.png)
+![](https://img-blog.csdnimg.cn/20210615162505880.png)
 
 `Cookie` 和 `Session` 都是用来跟踪浏览器用户身份的会话方式，但是两者的应用场景不太一样。
 
