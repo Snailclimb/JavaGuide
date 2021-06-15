@@ -82,7 +82,7 @@ Linux 内核项目组当时使用分布式版本控制系统 BitKeeper 来管理
 
 大部分版本控制系统（CVS、Subversion、Perforce、Bazaar 等等）都是以文件变更列表的方式存储信息，这类系统**将它们保存的信息看作是一组基本文件和每个文件随时间逐步累积的差异。**
 
-具体原理如下图所示，理解起来其实很简单，每个我们对提交更新一个文件之后，系统记录都会记录这个文件做了哪些更新，以增量符号Δ(Delta)表示。
+具体原理如下图所示，理解起来其实很简单，每个我们对提交更新一个文件之后，系统都会记录这个文件做了哪些更新，以增量符号Δ(Delta)表示。
 
 <div align="center">  
 <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3deltas.png" width="500px"/>
