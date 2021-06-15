@@ -22,7 +22,7 @@
 
 这两个一般在我们的系统中被结合在一起使用，目的就是为了保护我们系统的安全性。
 
-## RBAC 模型介绍一下？
+## RBAC 模型了解吗？
 
 系统权限控制最常采用的访问控制模型就是 **RBAC 模型** 。
 
@@ -129,10 +129,10 @@ public String readAllCookies(HttpServletRequest request) {
 
 关于这种认证方式更详细的过程如下：
 
-![Session Based Authentication flow](./images/basis-of-authority-certification/Session-Based-Authentication-flow.png)
+![](./images/basis-of-authority-certification/session-cookie.png)
 
-1. 用户向服务器发送用户名和密码用于登陆系统。
-2. 服务器验证通过后，服务器为用户创建一个 `Session`，并将 `Session` 信息存储 起来。
+1. 用户向服务器发送用户名、密码、验证码用于登陆系统。
+2. 服务器验证通过后，服务器为用户创建一个 `Session`，并将 `Session` 信息存储起来。
 3. 服务器向用户返回一个 `SessionID`，写入用户的 `Cookie`。
 4. 当用户保持登录状态时，`Cookie` 将与每个后续请求一起被发送出去。
 5. 服务器可以将存储在 `Cookie` 上的 `SessionID` 与存储在内存中或者数据库中的 `Session` 信息进行比较，以验证用户的身份，返回给用户客户端响应信息的时候会附带用户当前的状态。
@@ -140,11 +140,7 @@ public String readAllCookies(HttpServletRequest request) {
 使用 `Session` 的时候需要注意下面几个点：
 
 1. 依赖 `Session` 的关键业务一定要确保客户端开启了 `Cookie`。
-2. 注意 `Session` 的过期时间
-
-画了个图简单总结了一下 `Session` 认证涉及的一些东西。
-
-![](./images/basis-of-authority-certification/Session-cookie-intro.jpeg)
+2. 注意 `Session` 的过期时间。
 
 另外，Spring Session 提供了一种跨多个应用程序或实例管理用户会话信息的机制。如果想详细了解可以查看下面几篇很不错的文章：
 
@@ -188,21 +184,23 @@ Session-Cookie 方案在单体环境是一个非常好的身份认证方案。�
 
 `Session` 认证中 `Cookie` 中的 `SessionId` 是由浏览器发送到服务端的，借助这个特性，攻击者就可以通过让用户误点攻击链接，达到攻击效果。
 
-但是，我们使用 `Token` 的话就不会存在这个问题，在我们登录成功获得 `Token` 之后，一般会选择存放在 local storage 中。然后我们在前端通过某些方式会给每个发到后端的请求加上这个 `Token`,这样就不会出现 CSRF 漏洞的问题。因为，即使有个你点击了非法链接发送了请求到服务端，这个非法请求是不会携带 `Token` 的，所以这个请求将是非法的。
+但是，我们使用 `Token` 的话就不会存在这个问题，在我们登录成功获得 `Token` 之后，一般会选择存放在 `localStorage` （浏览器本地存储）中。然后我们在前端通过某些方式会给每个发到后端的请求加上这个 `Token`,这样就不会出现 CSRF 漏洞的问题。因为，即使有个你点击了非法链接发送了请求到服务端，这个非法请求是不会携带 `Token` 的，所以这个请求将是非法的。
 
-需要注意的是不论是 Cookie 还是 Token 都无法避免 **跨站脚本攻击（Cross Site Scripting）XSS** 。
+![](https://img-blog.csdnimg.cn/20210615161108272.png)
+
+需要注意的是不论是 `Cookie` 还是 `Token` 都无法避免 **跨站脚本攻击（Cross Site Scripting）XSS** 。
 
 > 跨站脚本攻击（Cross Site Scripting）缩写为 CSS 但这会与层叠样式表（Cascading Style Sheets，CSS）的缩写混淆。因此，有人将跨站脚本攻击缩写为 XSS。
 
-XSS 中攻击者会用各种方式将恶意代码注入到其他用户的页面中。就可以通过脚本盗用信息比如 cookie。
+XSS 中攻击者会用各种方式将恶意代码注入到其他用户的页面中。就可以通过脚本盗用信息比如 `Cookie` 。
 
 推荐阅读：[如何防止 CSRF 攻击？—美团技术团队](https://tech.meituan.com/2018/10/11/fe-security-csrf.html)
 
 ## 什么是 Token?什么是 JWT?
 
-我们在上一个问题中探讨了使用 Session 来鉴别用户的身份，并且给出了几个 Spring Session 的案例分享。 我们知道 Session 信息需要保存一份在服务器端。这种方式会带来一些麻烦，比如需要我们保证保存 Session 信息服务器的可用性、不适合移动端（依赖 Cookie）等等。
+我们在前面的问题中探讨了使用 `Session` 来鉴别用户的身份，并且给出了几个 Spring Session 的案例分享。 我们知道 `Session` 信息需要保存一份在服务器端。这种方式会带来一些麻烦，比如需要我们保证保存 `Session` 信息服务器的可用性、不适合移动端（依赖 `Cookie`）等等。
 
-有没有一种不需要自己存放 Session 信息就能实现身份验证的方式呢？使用 Token 即可！JWT （JSON Web Token） 就是这种方式的实现，通过这种方式服务器端就不需要保存 Session 数据了，只用在客户端保存服务端返回给客户的 Token 就可以了，扩展性得到提升。
+有没有一种不需要自己存放 `Session` 信息就能实现身份验证的方式呢？使用 `Token` 即可！**JWT** （JSON Web Token） 就是这种方式的实现，通过这种方式服务器端就不需要保存 `Session` 数据了，只用在客户端保存服务端返回给客户的 `Token` 就可以了，扩展性得到提升。
 
 **JWT 本质上就一段签名的 JSON 格式的数据。由于它是带有签名的，因此接收者便可以验证它的真实性。**
 
@@ -212,27 +210,26 @@ XSS 中攻击者会用各种方式将恶意代码注入到其他用户的页面�
 
 JWT 由 3 部分构成:
 
-1. **Header** : 描述 JWT 的元数据，定义了生成签名的算法以及 Token 的类型。
+1. **Header** : 描述 JWT 的元数据，定义了生成签名的算法以及 `Token` 的类型。
 2. **Payload** : 用来存放实际需要传递的数据
-3. **Signature（签名）** ：服务器通过`Payload`、`Header`和一个密钥(`secret`)使用 Header 里面指定的签名算法（默认是 HMAC SHA256）生成。
+3. **Signature（签名）** ：服务器通过`Payload`、`Header`和一个密钥(`secret`)使用 `Header` 里面指定的签名算法（默认是 HMAC SHA256）生成。
 
 ## 如何基于 Token 进行身份验证？
 
 在基于 Token 进行身份验证的的应用程序中，服务器通过`Payload`、`Header`和一个密钥(`secret`)创建令牌（`Token`）并将 `Token` 发送给客户端，客户端将 `Token` 保存在 Cookie 或者 localStorage 里面，以后客户端发出的所有请求都会携带这个令牌。你可以把它放在 Cookie 里面自动发送，但是这样不能跨域，所以更好的做法是放在 HTTP Header 的 Authorization 字段中：`Authorization: Bearer Token`。
 
-![Token Based Authentication flow](./images/basis-of-authority-certification/Token-Based-Authentication.png)
+![jwt](./images/basis-of-authority-certification/jwt.png)
 
 1. 用户向服务器发送用户名和密码用于登陆系统。
 2. 身份验证服务响应并返回了签名的 JWT，上面包含了用户是谁的内容。
-3. 用户以后每次向后端发请求都在 Header 中带上 JWT。
+3. 用户以后每次向后端发请求都在 `Header` 中带上 JWT。
 4. 服务端检查 JWT 并从中获取用户相关信息。
 
-推荐阅读：
+## 什么是 SSO?
 
-- [JWT (JSON Web Tokens) Are Better Than Session Cookies](https://dzone.com/articles/jwtjson-web-Tokens-are-better-than-Session-cookies)
-- [JSON Web Tokens (JWT) 与 Sessions](https://juejin.im/entry/577b7b56a3413100618c2938)
-- [JSON Web Token 入门教程](https://www.ruanyifeng.com/blog/2018/07/json_web_Token-tutorial.html)
-- [彻底理解 Cookie，Session，Token](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247485603&idx=1&sn=c8d324f44d6102e7b44554733da10bb7&chksm=cea24768f9d5ce7efe7291ddabce02b68db34073c7e7d9a7dc9a7f01c5a80cebe33ac75248df&Token=844918801&lang=zh_CN#rd)
+SSO(Single Sign On)即单点登录说的是用户登陆多个子系统的其中一个就有权访问与其相关的其他系统。举个例子我们在登陆了京东金融之后，我们同时也成功登陆京东的京东超市、京东国际、京东生鲜等子系统。
+
+![sso](./images/basis-of-authority-certification/sso.png)
 
 ## 什么是 OAuth 2.0？
 
@@ -248,19 +245,13 @@ OAuth 2.0 比较常用的场景就是第三方登录，当你的网站接入了�
 
 ![](./images/basis-of-authority-certification/微信支付-fnglfdlgdfj.png)
 
+下图是 [Slack OAuth 2.0 第三方登录](https://api.slack.com/legacy/oauth)的示意图：
+
+![](https://img-blog.csdnimg.cn/20210615151716340.png)
+
 **推荐阅读：**
 
 - [OAuth 2.0 的一个简单解释](http://www.ruanyifeng.com/blog/2019/04/oauth_design.html)
 - [10 分钟理解什么是 OAuth 2.0 协议](https://deepzz.com/post/what-is-oauth2-protocol.html)
 - [OAuth 2.0 的四种方式](http://www.ruanyifeng.com/blog/2019/04/oauth-grant-types.html)
 - [GitHub OAuth 第三方登录示例教程](http://www.ruanyifeng.com/blog/2019/04/github-oauth.html)
-
-## 什么是 SSO?
-
-SSO(Single Sign On)即单点登录说的是用户登陆多个子系统的其中一个就有权访问与其相关的其他系统。举个例子我们在登陆了京东金融之后，我们同时也成功登陆京东的京东超市、京东家电等子系统。
-
-## 参考
-
-- https://medium.com/@sherryhsu/Session-vs-Token-based-authentication-11a6c5ac45e4
-- https://www.varonis.com/blog/what-is-oauth/
-- https://tools.ietf.org/html/rfc6749
