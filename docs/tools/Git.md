@@ -82,7 +82,7 @@ Linux 内核项目组当时使用分布式版本控制系统 BitKeeper 来管理
 
 大部分版本控制系统（CVS、Subversion、Perforce、Bazaar 等等）都是以文件变更列表的方式存储信息，这类系统**将它们保存的信息看作是一组基本文件和每个文件随时间逐步累积的差异。**
 
-具体原理如下图所示，理解起来其实很简单，每个我们对提交更新一个文件之后，系统记录都会记录这个文件做了哪些更新，以增量符号Δ(Delta)表示。
+具体原理如下图所示，理解起来其实很简单，每个我们对提交更新一个文件之后，系统都会记录这个文件做了哪些更新，以增量符号Δ(Delta)表示。
 
 <div align="center">  
 <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3deltas.png" width="500px"/>
@@ -154,7 +154,7 @@ Git 有三种状态，你的文件可能处于其中之一：
     主体部分当然也可以有几段，但是一定要注意换行和句子不要太长。因为这样在使用 "git log" 的时候会有缩进比较好看。
 
 提交的标题行描述应该尽量的清晰和尽量的一句话概括。这样就方便相关的 Git 日志查看工具显示和其他人的阅读。
-    
+
 ### 推送改动到远程仓库
 
 - 如果你还没有克隆现有仓库，并欲将你的仓库连接到某个远程服务器，你可以使用如下命令添加：·`git remote add origin <server>` ,比如我们要让本地的一个仓库和 Github 上创建的一个仓库关联可以这样`git remote add origin https://github.com/Snailclimb/test.git` 
@@ -164,7 +164,7 @@ Git 有三种状态，你的文件可能处于其中之一：
 
 ### 远程仓库的移除与重命名
 
-- 将 test 重命名位 test1：`git remote rename test test1`
+- 将 test 重命名为 test1：`git remote rename test test1`
 - 移除远程仓库 test1:`git remote rm test1`
 
 ### 查看提交历史
@@ -183,29 +183,28 @@ git log --author=bob
 
 有时候我们提交完了才发现漏掉了几个文件没有添加，或者提交信息写错了。 此时，可以运行带有 `--amend` 选项的提交命令尝试重新提交：
 
-```console
+```shell
 git commit --amend
 ```
 
 取消暂存的文件
 
-```console
+```shell
 git reset filename
 ```
 
 撤消对文件的修改:
 
-```
+```shell
 git checkout -- filename
 ```
 
 假如你想丢弃你在本地的所有改动与提交，可以到服务器上获取最新的版本历史，并将你本地主分支指向它：
 
-```
+```shell
 git fetch origin
 git reset --hard origin/master
 ```
-
 
 
 ### 分支
@@ -216,13 +215,13 @@ git reset --hard origin/master
 
 创建一个名字叫做 test 的分支
 
-```console
+```shell
 git branch test
 ```
 
 切换当前分支到 test（当你切换分支的时候，Git 会重置你的工作目录，使其看起来像回到了你在那个分支上最后一次提交的样子。 Git 会自动添加、删除、修改文件以确保此时你的工作目录和这个分支最后一次提交时的样子一模一样）
 
-```console
+```shell
 git checkout test
 ```
 
@@ -232,39 +231,39 @@ git checkout test
 
 你也可以直接这样创建分支并切换过去(上面两条命令的合写)
 
-```console
+```shell
 git checkout -b feature_x
 ```
 
 切换到主分支
 
-```
+```shell
 git checkout master
 ```
 
 合并分支(可能会有冲突)
 
-```java
+```shell
  git merge test
 ```
 
 把新建的分支删掉
 
-```
+```shell
 git branch -d feature_x
 ```
 
 将分支推送到远端仓库（推送成功后其他人可见）：
 
-```
-git push origin 
+```shell
+git push origin
 ```
 
 ## 推荐
 
 **在线演示学习工具：**
 
-「补充，来自[issue729](https://github.com/Snailclimb/JavaGuide/issues/729)」Learn Git Branching https://oschina.gitee.io/learn-git-branching/   。该网站可以方便的演示基本的git操作，讲解得明明白白。每一个基本命令的作用和结果。
+「补充，来自[issue729](https://github.com/Snailclimb/JavaGuide/issues/729)」Learn Git Branching https://oschina.gitee.io/learn-git-branching/。该网站可以方便的演示基本的git操作，讲解得明明白白。每一个基本命令的作用和结果。
 
 **推荐阅读：**
 
