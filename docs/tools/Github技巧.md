@@ -18,17 +18,17 @@
 
 Github 目前支持在个人主页自定义展示一些内容。展示效果如下图所示。
 
-![个性化首页展示效果](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-11/1.png)
+![个性化首页展示效果](/Users/guide/Library/Application Support/typora-user-images/image-20210616221212259.png)
 
 想要做到这样非常简单，你只需要创建一个和你的 Github 账户同名的仓库，然后自定义`README.md`的内容即可。
 
 展示在你主页的自定义内容就是`README.md`的内容（_不会 Markdown 语法的小伙伴自行面壁 5 分钟_）。
 
-![创建一个和你的Github账户同名的仓库](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-11/image-20201107110309341.png)
+![创建一个和你的Github账户同名的仓库](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/image-20201107110309341.png)
 
 这个也是可以玩出花来的！比如说：通过 [github-readme-stats](https://hellogithub.com/periodical/statistics/click/?target=https://github.com/anuraghazra/github-readme-stats) 这个开源项目，你可以 README 中展示动态生成的 GitHub 统计信息。展示效果如下图所示。
 
-![通过github-readme-stats动态生成GitHub统计信息 ](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-11/2.png)
+![通过github-readme-stats动态生成GitHub统计信息 ](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/image-20210616221312426.png)
 
 关于个性化首页这个就不多提了，感兴趣的小伙伴自行研究一下。
 
