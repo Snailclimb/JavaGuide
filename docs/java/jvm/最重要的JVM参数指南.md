@@ -1,4 +1,4 @@
->  本文由 JavaGuide 翻译自 https://www.baeldung.com/jvm-parameters，并对文章进行了大量的完善补充。翻译不易，如需转载请注明出处为：   作者： 。
+>  本文由 JavaGuide 翻译自 [https://www.baeldung.com/jvm-parameters](https://www.baeldung.com/jvm-parameters)，并对文章进行了大量的完善补充。翻译不易，如需转载请注明出处，作者：[baeldung](https://www.baeldung.com/author/baeldung/) 。
 
 ## 1.概述
 
@@ -7,7 +7,6 @@
 ## 2.堆内存相关
 
 >Java 虚拟机所管理的内存中最大的一块，Java 堆是所有线程共享的一块内存区域，在虚拟机启动时创建。**此内存区域的唯一目的就是存放对象实例，几乎所有的对象实例以及数组都在这里分配内存。**
->
 
 ### 2.1.显式指定堆内存`–Xms`和`-Xmx`
 
