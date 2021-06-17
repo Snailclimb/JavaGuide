@@ -4,7 +4,7 @@
 
 顾名思义，关系型数据库就是一种建立在关系模型的基础上的数据库。关系模型表明了数据库中所存储的数据之间的联系（一对一、一对多、多对多）。
 
-关系型数据库中，我们的数据都被存放在了各种表中（比如用户表），表中的每一列就存放着一条数据（比如一个用户的信息）。
+关系型数据库中，我们的数据都被存放在了各种表中（比如用户表），表中的每一行就存放着一条数据（比如一个用户的信息）。
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/5e3c1a71724a38245aa43b02_99bf70d46cc247be878de9d3a88f0c44.png)
 
@@ -34,7 +34,7 @@ mysql> show engines;
 
 ![查看MySQL提供的所有存储引擎](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/mysql-engines.png)
 
-从上图我们可以查看出 MySQL 当前默认的存储引擎是 InnoDB,并且在 5.7 版本所有的存储引擎中只有 InnoDB 是事务性存储引擎，也就是说只有 InnoDB 支持事务。
+从上图我们可以查看出 MySQL 当前默认的存储引擎是 InnoDB，并且在 5.7 版本所有的存储引擎中只有 InnoDB 是事务性存储引擎，也就是说只有 InnoDB 支持事务。
 
 **查看 MySQL 当前默认的存储引擎**
 
