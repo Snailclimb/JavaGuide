@@ -266,7 +266,7 @@ Innodb 是按照主键索引的顺序来组织表的
 
 ### 7. 对于频繁的查询优先考虑使用覆盖索引
 
-> 覆盖索引：就是包含了所有查询字段 (where,select,ordery by,group by 包含的字段) 的索引
+> 覆盖索引：就是包含了所有查询字段 (where,select,order by,group by 包含的字段) 的索引
 
 **覆盖索引的好处：**
 
