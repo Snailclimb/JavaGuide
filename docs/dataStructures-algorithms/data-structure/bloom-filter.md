@@ -39,7 +39,7 @@
 
 ![布隆过滤器hash计算](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/布隆过滤器-hash运算.png)
 
-如图所示，当字符串存储要加入到布隆过滤器中时，该字符串首先由多个哈希函数生成不同的哈希值，然后在对应的位数组的下表的元素设置为 1（当位数组初始化时 ，所有位置均为0）。当第二次存储相同字符串时，因为先前的对应位置已设置为 1，所以很容易知道此值已经存在（去重非常方便）。
+如图所示，当字符串存储要加入到布隆过滤器中时，该字符串首先由多个哈希函数生成不同的哈希值，然后将对应的位数组的下标设置为 1（当位数组初始化时，所有位置均为0）。当第二次存储相同字符串时，因为先前的对应位置已设置为 1，所以很容易知道此值已经存在（去重非常方便）。
 
 如果我们需要判断某个字符串是否在布隆过滤器中时，只需要对给定字符串再次进行相同的哈希计算，得到值之后判断位数组中的每个元素是否都为 1，如果值都为 1，那么说明这个值在布隆过滤器中，如果存在一个值不为 1，说明该元素不在布隆过滤器中。
 
@@ -147,15 +147,15 @@ public class MyBloomFilter {
 测试：
 
 ```java
-        String value1 = "https://javaguide.cn/";
-        String value2 = "https://github.com/Snailclimb";
-        MyBloomFilter filter = new MyBloomFilter();
-        System.out.println(filter.contains(value1));
-        System.out.println(filter.contains(value2));
-        filter.add(value1);
-        filter.add(value2);
-        System.out.println(filter.contains(value1));
-        System.out.println(filter.contains(value2));
+String value1 = "https://javaguide.cn/";
+String value2 = "https://github.com/Snailclimb";
+MyBloomFilter filter = new MyBloomFilter();
+System.out.println(filter.contains(value1));
+System.out.println(filter.contains(value2));
+filter.add(value1);
+filter.add(value2);
+System.out.println(filter.contains(value1));
+System.out.println(filter.contains(value2));
 ```
 
 Output:
@@ -170,15 +170,15 @@ true
 测试：
 
 ```java
-        Integer value1 = 13423;
-        Integer value2 = 22131;
-        MyBloomFilter filter = new MyBloomFilter();
-        System.out.println(filter.contains(value1));
-        System.out.println(filter.contains(value2));
-        filter.add(value1);
-        filter.add(value2);
-        System.out.println(filter.contains(value1));
-        System.out.println(filter.contains(value2));
+Integer value1 = 13423;
+Integer value2 = 22131;
+MyBloomFilter filter = new MyBloomFilter();
+System.out.println(filter.contains(value1));
+System.out.println(filter.contains(value2));
+filter.add(value1);
+filter.add(value2);
+System.out.println(filter.contains(value1));
+System.out.println(filter.contains(value2));
 ```
 
 Output:
@@ -190,18 +190,18 @@ true
 true
 ```
 
-### 5.利用Google开源的 Guava中自带的布隆过滤器
+### 5.利用 Google 开源的 Guava 中自带的布隆过滤器
 
 自己实现的目的主要是为了让自己搞懂布隆过滤器的原理，Guava 中布隆过滤器的实现算是比较权威的，所以实际项目中我们不需要手动实现一个布隆过滤器。
 
 首先我们需要在项目中引入 Guava 的依赖：
 
 ```java
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>28.0-jre</version>
-        </dependency>
+<dependency>
+    <groupId>com.google.guava</groupId>
+    <artifactId>guava</artifactId>
+    <version>28.0-jre</version>
+</dependency>
 ```
 
 实际使用如下：
@@ -209,42 +209,42 @@ true
 我们创建了一个最多存放 最多 1500个整数的布隆过滤器，并且我们可以容忍误判的概率为百分之（0.01）
 
 ```java
-        // 创建布隆过滤器对象
-        BloomFilter<Integer> filter = BloomFilter.create(
-                Funnels.integerFunnel(),
-                1500,
-                0.01);
-        // 判断指定元素是否存在
-        System.out.println(filter.mightContain(1));
-        System.out.println(filter.mightContain(2));
-        // 将元素添加进布隆过滤器
-        filter.put(1);
-        filter.put(2);
-        System.out.println(filter.mightContain(1));
-        System.out.println(filter.mightContain(2));
+// 创建布隆过滤器对象
+BloomFilter<Integer> filter = BloomFilter.create(
+    Funnels.integerFunnel(),
+    1500,
+    0.01);
+// 判断指定元素是否存在
+System.out.println(filter.mightContain(1));
+System.out.println(filter.mightContain(2));
+// 将元素添加进布隆过滤器
+filter.put(1);
+filter.put(2);
+System.out.println(filter.mightContain(1));
+System.out.println(filter.mightContain(2));
 ```
 
-在我们的示例中，当`mightContain（）` 方法返回*true*时，我们可以99％确定该元素在过滤器中，当过滤器返回*false*时，我们可以100％确定该元素不存在于过滤器中。
+在我们的示例中，当`mightContain()` 方法返回 *true* 时，我们可以99％确定该元素在过滤器中，当过滤器返回 *false* 时，我们可以100％确定该元素不存在于过滤器中。
 
 **Guava 提供的布隆过滤器的实现还是很不错的（想要详细了解的可以看一下它的源码实现），但是它有一个重大的缺陷就是只能单机使用（另外，容量扩展也不容易），而现在互联网一般都是分布式的场景。为了解决这个问题，我们就需要用到 Redis 中的布隆过滤器了。**
 
 ### 6.Redis 中的布隆过滤器
 
-#### 6.1介绍
+#### 6.1 介绍
 
 Redis v4.0 之后有了 Module（模块/插件） 功能，Redis Modules 让 Redis 可以使用外部模块扩展其功能 。布隆过滤器就是其中的 Module。详情可以查看 Redis 官方对 Redis Modules 的介绍 ：https://redis.io/modules
 
-另外，官网推荐了一个 RedisBloom  作为 Redis 布隆过滤器的 Module,地址：https://github.com/RedisBloom/RedisBloom. 其他还有：
+另外，官网推荐了一个 RedisBloom  作为 Redis 布隆过滤器的 Module，地址：https://github.com/RedisBloom/RedisBloom。其他还有：
 
-- redis-lua-scaling-bloom-filter （lua 脚本实现）：https://github.com/erikdubbelboer/redis-lua-scaling-bloom-filter
+- redis-lua-scaling-bloom-filter（lua 脚本实现）：https://github.com/erikdubbelboer/redis-lua-scaling-bloom-filter
 - pyreBloom（Python中的快速Redis 布隆过滤器） ：https://github.com/seomoz/pyreBloom
 - ......
 
 RedisBloom 提供了多种语言的客户端支持，包括：Python、Java、JavaScript 和 PHP。
 
-#### 6.2使用Docker安装
+#### 6.2 使用Docker安装
 
-如果我们需要体验 Redis 中的布隆过滤器非常简单，通过 Docker  就可以了！我们直接在 Google 搜索**docker redis bloomfilter** 然后在排除广告的第一条搜素结果就找到了我们想要的答案（这是我平常解决问题的一种方式，分享一下），具体地址：https://hub.docker.com/r/redislabs/rebloom/ （介绍的很详细 ）。
+如果我们需要体验 Redis 中的布隆过滤器非常简单，通过 Docker  就可以了！我们直接在 Google 搜索 **docker redis bloomfilter** 然后在排除广告的第一条搜素结果就找到了我们想要的答案（这是我平常解决问题的一种方式，分享一下），具体地址：https://hub.docker.com/r/redislabs/rebloom/ （介绍的很详细 ）。
 
 **具体操作如下：**
 
@@ -257,7 +257,7 @@ root@21396d02c252:/data# redis-cli
 
 #### 6.3常用命令一览
 
->  注意：   key:布隆过滤器的名称，item : 添加的元素。
+>  注意：   key : 布隆过滤器的名称，item : 添加的元素。
 
 1. **`BF.ADD `**：将元素添加到布隆过滤器中，如果该过滤器尚不存在，则创建该过滤器。格式：`BF.ADD {key} {item}`。
 2. **`BF.MADD `** : 将一个或多个元素添加到“布隆过滤器”中，并创建一个尚不存在的过滤器。该命令的操作方式`BF.ADD`与之相同，只不过它允许多个输入并返回多个值。格式：`BF.MADD {key} {item} [item ...]` 。
