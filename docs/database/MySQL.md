@@ -132,7 +132,7 @@ MVCC 可以看作是行级锁的一个升级，可以有效减少加锁操作，
 
 - Record lock：记录锁，单个行记录上的锁
 - Gap lock：间隙锁，锁定一个范围，不包括记录本身
-- Next-key lock：record+gap临键锁，锁定一个范围，包含记录本身
+- Next-key lock：record+gap 临键锁，锁定一个范围，包含记录本身
 
 ## 查询缓存
 
