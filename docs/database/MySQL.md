@@ -280,5 +280,4 @@ InnoDB 存储引擎在 **分布式事务** 的情况下一般会用到 **SERIALI
 ## 参考
 
 - 《高性能 MySQL》
-
 - https://www.omnisci.com/technical-glossary/relational-database
