@@ -120,7 +120,7 @@ Java 堆是垃圾收集器管理的主要区域，因此也被称作**GC 堆（G
 -XX:+UseParNewGC
 ```
 **示例代码如下：**
-```
+```java
 /*
 * 本实例用于java GC以后，新生代survivor区域的变化，以及晋升到老年代的时间和方式的测试代码。需要自行分步注释不需要的代码进行反复测试对比
 *
@@ -166,8 +166,8 @@ public class JavaGcTest {
 
 ```
 
-注意:如下输出结果中老年代的信息为concurrent mark-sweep generation和以前版本略有不同。另外还列出了某次GC后是否重新生成了threshold，以及各个年龄占用空间的大小。
-```
+注意:如下输出结果中老年代的信息为 `concurrent mark-sweep generation` 和以前版本略有不同。另外，还列出了某次GC后是否重新生成了threshold，以及各个年龄占用空间的大小。
+```bash
 2021-07-01T10:41:32.257+0800: [GC (Allocation Failure) 2021-07-01T10:41:32.257+0800: [ParNew
 Desired survivor size 3145728 bytes, new threshold 1 (max 3)
 - age   1:    3739264 bytes,    3739264 total
