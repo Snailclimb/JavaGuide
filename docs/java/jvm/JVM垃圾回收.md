@@ -166,7 +166,7 @@ public class JavaGcTest {
 
 ```
 
-注意:如下输出结果中老年代的信息为concurrent mark-sweep generation和以前版本略有不同。age列出了某次GC后是否重新生成了threshold，还有各个年龄占用空间的大小。
+注意:如下输出结果中老年代的信息为concurrent mark-sweep generation和以前版本略有不同。另外还列出了某次GC后是否重新生成了threshold，以及各个年龄占用空间的大小。
 ```
 2021-07-01T10:41:32.257+0800: [GC (Allocation Failure) 2021-07-01T10:41:32.257+0800: [ParNew
 Desired survivor size 3145728 bytes, new threshold 1 (max 3)
