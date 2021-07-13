@@ -123,7 +123,7 @@ void shouldGet200StatusCodoWhenRequestIsValid() {
 
 正例： `org.apache.dubbo.common.threadlocal`
 
-反例： ~~`org.apache.dubbo.common.threadLocal`~~
+反例： ~~`org.apache_dubbo.Common.threadLocals`~~
 
 **5.抽象类命名使用 Abstract 开头**。
 
