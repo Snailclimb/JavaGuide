@@ -74,7 +74,7 @@ Java 堆是垃圾收集器管理的主要区域，因此也被称作**GC 堆（G
 
 上图所示的 Eden 区、From Survivor0("From") 区、To Survivor1("To") 区都属于新生代，Old Memory 区属于老年代。
 
-大部分情况，对象都会首先在 Eden 区域分配，在一次新生代垃圾回收后，如果对象还存活，则会进入 s0 或者 s1，并且对象的年龄还会加 1(Eden 区->Survivor 区后对象的初始年龄变为 1)，当它的年龄增加到一定程度（默认为 15 岁），就会被晋升到老年代中。对象晋升到老年代的年龄阈值，可以通过参数 `-XX:MaxTenuringThreshold` 来设置。
+大部分情况，对象都会首先在 Eden 区域分配，在一次新生代垃圾回收后，如果对象还存活，则会进入 s0 或者 s1，并且对象的年龄还会加 1(Eden 区->Survivor 区后对象的初始年龄变为 1)，当它的年龄增加到一定程度（默认为大于 15 岁），就会被晋升到老年代中。对象晋升到老年代的年龄阈值，可以通过参数 `-XX:MaxTenuringThreshold` 来设置默认值，这个值会在虚拟机运行过程中进行调整，可以通过`-XX:+PrintTenuringDistribution`来打印出当次GC后的Threshold。
 
 > **🐛 修正（参见：[issue552](https://github.com/Snailclimb/JavaGuide/issues/552)）**：“Hotspot 遍历所有对象时，按照年龄从小到大对其所占用的大小进行累积，当累积的某个年龄大小超过了 survivor 区的一半时，取这个年龄和 MaxTenuringThreshold 中更小的一个值，作为新的晋升年龄阈值”。
 >
@@ -100,8 +100,90 @@ Java 堆是垃圾收集器管理的主要区域，因此也被称作**GC 堆（G
 > 
 > ```
 
-经过这次 GC 后，Eden 区和"From"区已经被清空。这个时候，"From"和"To"会交换他们的角色，也就是新的"To"就是上次 GC 前的“From”，新的"From"就是上次 GC 前的"To"。不管怎样，都会保证名为 To 的 Survivor 区域是空的。Minor GC 会一直重复这样的过程，直到“To”区被填满，"To"区被填满之后，会将所有对象移动到老年代中。
+经过这次 GC 后，Eden 区和"From"区已经被清空。这个时候，"From"和"To"会交换他们的角色，也就是新的"To"就是上次 GC 前的“From”，新的"From"就是上次 GC 前的"To"。不管怎样，都会保证名为 To 的 Survivor 区域是空的。Minor GC 会一直重复这样的过程，在这个过程中，有可能当次Minor GC后，Survivor 的"From"区域空间不够用，有一些还达不到进入老年代条件的实例放不下，则放不下的部分会提前进入老年代。
 
+接下来我们提供一个调试脚本来测试这个过程。
+
+**调试代码参数如下**
+```
+-verbose:gc
+-Xmx200M
+-Xms200M
+-Xmn50M
+-XX:+PrintGCDetails
+-XX:TargetSurvivorRatio=60
+-XX:+PrintTenuringDistribution
+-XX:+PrintGCDetails
+-XX:+PrintGCDateStamps
+-XX:MaxTenuringThreshold=3
+-XX:+UseConcMarkSweepGC
+-XX:+UseParNewGC
+```
+**示例代码如下：**
+```java
+/*
+* 本实例用于java GC以后，新生代survivor区域的变化，以及晋升到老年代的时间和方式的测试代码。需要自行分步注释不需要的代码进行反复测试对比
+*
+* 由于java的main函数以及其他基础服务也会占用一些eden空间，所以要提前空跑一次main函数，来看看这部分占用。
+*
+* 自定义的代码中，我们使用堆内分配数组和栈内分配数组的方式来分别模拟不可被GC的和可被GC的资源。
+*
+*
+* */
+
+public class JavaGcTest {
+
+    public static void main(String[] args) throws InterruptedException {
+        //空跑一次main函数来查看java服务本身占用的空间大小，我这里是占用了3M。所以40-3=37，下面分配三个1M的数组和一个34M的垃圾数组。
+
+
+        // 为了达到TargetSurvivorRatio（期望占用的Survivor区域的大小）这个比例指定的值, 即5M*60%=3M(Desired survivor size)，
+        // 这里用1M的数组的分配来达到Desired survivor size
+        //说明: 5M为S区的From或To的大小，60%为TargetSurvivorRatio参数指定,可以更改参数获取不同的效果。
+        byte[] byte1m_1 = new byte[1 * 1024 * 1024];
+        byte[] byte1m_2 = new byte[1 * 1024 * 1024];
+        byte[] byte1m_3 = new byte[1 * 1024 * 1024];
+
+        //使用函数方式来申请空间，函数运行完毕以后，就会变成垃圾等待回收。此时应保证eden的区域占用达到100%。可以通过调整传入值来达到效果。
+        makeGarbage(34);
+
+        //再次申请一个数组，因为eden已经满了，所以这里会触发Minor GC
+        byte[] byteArr = new byte[10*1024*1024];
+        // 这次Minor Gc时, 三个1M的数组因为尚有引用，所以进入From区域（因为是第一次GC）age为1
+        // 且由于From区已经占用达到了60%(-XX:TargetSurvivorRatio=60), 所以会重新计算对象晋升的age。
+        // 计算方法见上文，计算出age：min(age, MaxTenuringThreshold) = 1，输出中会有Desired survivor size 3145728 bytes, new threshold 1 (max 3)字样
+        //新的数组byteArr进入eden区域。
+
+
+        //再次触发垃圾回收，证明三个1M的数组会因为其第二次回收后age为2，大于上一次计算出的new threshold 1，所以进入老年代。
+        //而byteArr因为超过survivor的单个区域，直接进入了老年代。
+        makeGarbage(34);
+    }
+    private static void makeGarbage(int size){
+        byte[] byteArrTemp = new byte[size * 1024 * 1024];
+    }
+}
+
+```
+
+注意:如下输出结果中老年代的信息为 `concurrent mark-sweep generation` 和以前版本略有不同。另外，还列出了某次GC后是否重新生成了threshold，以及各个年龄占用空间的大小。
+```bash
+2021-07-01T10:41:32.257+0800: [GC (Allocation Failure) 2021-07-01T10:41:32.257+0800: [ParNew
+Desired survivor size 3145728 bytes, new threshold 1 (max 3)
+- age   1:    3739264 bytes,    3739264 total
+: 40345K->3674K(46080K), 0.0014584 secs] 40345K->3674K(199680K), 0.0015063 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] 
+2021-07-01T10:41:32.259+0800: [GC (Allocation Failure) 2021-07-01T10:41:32.259+0800: [ParNew
+Desired survivor size 3145728 bytes, new threshold 3 (max 3)
+: 13914K->0K(46080K), 0.0046596 secs] 13914K->13895K(199680K), 0.0046873 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] 
+Heap
+ par new generation   total 46080K, used 35225K [0x05000000, 0x08200000, 0x08200000)
+  eden space 40960K,  86% used [0x05000000, 0x072667f0, 0x07800000)
+  from space 5120K,   0% used [0x07800000, 0x07800000, 0x07d00000)
+  to   space 5120K,   0% used [0x07d00000, 0x07d00000, 0x08200000)
+ concurrent mark-sweep generation total 153600K, used 13895K [0x08200000, 0x11800000, 0x11800000)
+ Metaspace       used 153K, capacity 2280K, committed 2368K, reserved 4480K
+
+```
 ![堆内存常见分配策略 ](./pictures/jvm垃圾回收/堆内存.png)
 
 ### 1.1 对象优先在 eden 区分配
@@ -230,6 +312,16 @@ public class GCTest {
 - 混合收集（Mixed GC）：对整个新生代和部分老年代进行垃圾收集。
 
 整堆收集 (Full GC)：收集整个 Java 堆和方法区。
+
+### 1.6 空间分配担保
+
+空间分配担保是为了确保在 Minor GC 之前老年代本身还有容纳新生代所有对象的剩余空间。
+
+《深入理解Java虚拟机》第三章对于空间分配担保的描述如下：
+
+> JDK 6 Update 24 之前，在发生 Minor GC 之前，虚拟机必须先检查老年代最大可用的连续空间是否大于新生代所有对象总空间，如果这个条件成立，那这一次 Minor GC 可以确保是安全的。如果不成立，则虚拟机会先查看 `-XX:HandlePromotionFailure` 参数的设置值是否允许担保失败(Handle Promotion Failure);如果允许，那会继续检查老年代最大可用的连续空间是否大于历次晋升到老年代对象的平均大小，如果大于，将尝试进行一次 Minor GC，尽管这次 Minor GC 是有风险的;如果小于，或者 `-XX: HandlePromotionFailure` 设置不允许冒险，那这时就要改为进行一次  Full GC。
+>
+> JDK 6 Update 24之后的规则变为只要老年代的连续空间大于新生代对象总大小或者历次晋升的平均大小，就会进行 Minor GC，否则将进行 Full GC。
 
 ## 2 对象已经死亡？
 

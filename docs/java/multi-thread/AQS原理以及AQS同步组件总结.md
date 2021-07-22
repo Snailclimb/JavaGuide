@@ -292,7 +292,7 @@ public class SemaphoreExample1 {
 ```java
 semaphore.acquire(5);// 获取5个许可，所以可运行线程数量为20/5=4
 test(threadnum);
-semaphore.release(5);// 获取5个许可，所以可运行线程数量为20/5=4
+semaphore.release(5);// 释放5个许可
 ```
 
 除了 `acquire`方法之外，另一个比较常用的与之对应的方法是`tryAcquire`方法，该方法如果获取不到许可就立即返回 false。
