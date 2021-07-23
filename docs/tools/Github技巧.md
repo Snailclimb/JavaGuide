@@ -1,4 +1,4 @@
-我使用 Github 已经有 5 年多了，今天毫无保留地把自己觉得比较有用的 Gihub 小技巧送给关注 JavaGuide 的各位小伙伴。
+我使用 Github 已经有 5 年多了，今天毫无保留地把自己觉得比较有用的 Github 小技巧送给关注 JavaGuide 的各位小伙伴。
 
 这篇文章肝了很久，就挺用心的，大家看内容就知道了。
 
@@ -18,7 +18,7 @@
 
 Github 目前支持在个人主页自定义展示一些内容。展示效果如下图所示。
 
-![个性化首页展示效果](/Users/guide/Library/Application Support/typora-user-images/image-20210616221212259.png)
+![个性化首页展示效果](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/image-20210616221212259.png)
 
 想要做到这样非常简单，你只需要创建一个和你的 Github 账户同名的仓库，然后自定义`README.md`的内容即可。
 
@@ -56,7 +56,7 @@ Github 目前支持在个人主页自定义展示一些内容。展示效果如�
 
 ## 5. 高效阅读 Github 项目的源代码
 
-Github 前段时间推出的 Codespaces 可以提供类似 VS Code 的在线 IDE，不过目前还没还没完全开发使用。
+Github 前段时间推出的 Codespaces 可以提供类似 VS Code 的在线 IDE，不过目前还没有完全开发使用。
 
 简单介绍几种我最常用的阅读 Github 项目源代码的方式。
 
