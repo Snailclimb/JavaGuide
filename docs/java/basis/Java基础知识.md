@@ -1348,9 +1348,14 @@ try (BufferedInputStream bin = new BufferedInputStream(new FileInputStream(new F
 
 ### Java 序列化中如果有些字段不想进行序列化，怎么办？
 
-对于不想进行序列化的变量，使用`transient`关键字修饰。`
+对于不想进行序列化的变量，使用 `transient` 关键字修饰。
 
-`transient` 关键字的作用是：阻止实例中那些用此关键字修饰的的变量序列化；当对象被反序列化时，被 `transient` 修饰的变量值不会被持久化和恢复。`transient` 只能修饰变量，不能修饰类和方法。
+`transient` 关键字的作用是：阻止实例中那些用此关键字修饰的的变量序列化；当对象被反序列化时，被 `transient` 修饰的变量值不会被持久化和恢复。
+
+关于 `transient` 还有几点注意： 
+- `transient` 只能修饰变量，不能修饰类和方法。
+- `transient` 修饰的变量，在反序列化后变量值将会被置成类型的默认值。例如，如果是修饰 `int` 类型，那么反序列后结果就是 `0`。
+- `static` 变量因为不属于任何对象(Object)，所以无论有没有 `transient` 关键字修饰，均不会被序列化。
 
 ### 获取用键盘输入常用的两种方法
 
