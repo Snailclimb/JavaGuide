@@ -227,7 +227,11 @@ tryReleaseShared(int)//共享方式。尝试释放资源，成功则返回true�
 
 以 `ReentrantLock` 为例，state 初始化为 0，表示未锁定状态。A 线程 `lock()` 时，会调用 `tryAcquire()`独占该锁并将 state+1。此后，其他线程再 `tryAcquire()` 时就会失败，直到 A 线程 unlock()到 state=0（即释放锁）为止，其它线程才有机会获取该锁。当然，释放锁之前，A 线程自己是可以重复获取此锁的（state 会累加），这就是可重入的概念。但要注意，获取多少次就要释放多么次，这样才能保证 state 是能回到零态的。
 
-再以 `CountDownLatch` 以例，任务分为 N 个子线程去执行，state 也初始化为 N（注意 N 要与线程个数一致）。这 N 个子线程是并行执行的，每个子线程执行完后 `countDown()` 一次，state 会 CAS(Compare and Swap)减 1。等到所有子线程都执行完后(即 state=0)，会 unpark()主调用线程，然后主调用线程就会从 `await()` 函数返回，继续后余动作。
+再以 `CountDownLatch` 以例，任务分为 N 个子线程去执行，state 也初始化为 N（也可以不初始化为N，不初始化为N,state减到0也会从await()返回）。这 N 个子线程是并行执行的，每个子线程执行完后 `countDown()` 一次，state 会 CAS(Compare and Swap)减 1。等到state=0，会 unpark()主调用线程，然后主调用线程就会从 `await()` 函数返回，继续后余动作。
+
+所以CountDownLatch可以做倒计数器，减到0后唤醒的线程可以对线程池进行处理，比如关闭线程池。BOSS直聘面试官提过一个问题如下：
+
+现在有8个赛道进行比赛，而我只需要知道前三名就够了，可以怎么实现？大家可以自己思考这个问题了。
 
 一般来说，自定义同步器要么是独占方法，要么是共享方式，他们也只需实现`tryAcquire-tryRelease`、`tryAcquireShared-tryReleaseShared`中的一种即可。但 AQS 也支持自定义同步器同时实现独占和共享两种方式，如`ReentrantReadWriteLock`。
 
