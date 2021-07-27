@@ -1,48 +1,34 @@
-点击关注[公众号](#公众号 "公众号")及时获取笔主最新更新文章，并可免费领取本文档配套的《Java 面试突击》以及 Java 工程师必备学习资源。
+开始之前，先来看几道常见的面试题！建议你带着这些问题来看这篇文章：
 
-<!-- TOC -->
+- 何为 AQS？AQS 原理了解吗？
+- `CountDownLatch` 和 `CyclicBarrier` 了解吗？两者的区别是什么？
+- 用过 `Semaphore` 吗？应用场景了解吗？
+- ......
 
-- [1 AQS 简单介绍](#1-aqs-简单介绍)
-- [2 AQS 原理](#2-aqs-原理)
-  - [2.1 AQS 原理概览](#21-aqs-原理概览)
-  - [2.2 AQS 对资源的共享方式](#22-aqs-对资源的共享方式)
-  - [2.3 AQS 底层使用了模板方法模式](#23-aqs-底层使用了模板方法模式)
-- [3 Semaphore(信号量)-允许多个线程同时访问](#3-semaphore信号量-允许多个线程同时访问)
-- [4 CountDownLatch （倒计时器）](#4-countdownlatch-倒计时器)
-  - [4.1 CountDownLatch 的三种典型用法](#41-countdownlatch-的三种典型用法)
-  - [4.2 CountDownLatch 的使用示例](#42-countdownlatch-的使用示例)
-  - [4.3 CountDownLatch 的不足](#43-countdownlatch-的不足)
-  - [4.4 CountDownLatch 常见面试题](#44-countdownlatch-相常见面试题)
-- [5 CyclicBarrier(循环栅栏)](#5-cyclicbarrier循环栅栏)
-  - [5.1 CyclicBarrier 的应用场景](#51-cyclicbarrier-的应用场景)
-  - [5.2 CyclicBarrier 的使用示例](#52-cyclicbarrier-的使用示例)
-  - [5.3 `CyclicBarrier`源码分析](#53-cyclicbarrier源码分析)
-  - [5.4 CyclicBarrier 和 CountDownLatch 的区别](#54-cyclicbarrier-和-countdownlatch-的区别)
-- [6 ReentrantLock 和 ReentrantReadWriteLock](#6-reentrantlock-和-reentrantreadwritelock)
-- [参考](#参考)
-- [公众号](#公众号)
+## AQS 简单介绍
 
-<!-- /TOC -->
-
-> 常见问题：AQS 原理？;CountDownLatch 和 CyclicBarrier 了解吗,两者的区别是什么？用过 Semaphore 吗？
-
-### 1 AQS 简单介绍
-
-AQS 的全称为（`AbstractQueuedSynchronizer`），这个类在 `java.util.concurrent.locks` 包下面。
+AQS 的全称为 `AbstractQueuedSynchronizer` ，翻译过来的意思就是抽象队列同步器。这个类在 `java.util.concurrent.locks` 包下面。
 
 ![enter image description here](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/Java%20%E7%A8%8B%E5%BA%8F%E5%91%98%E5%BF%85%E5%A4%87%EF%BC%9A%E5%B9%B6%E5%8F%91%E7%9F%A5%E8%AF%86%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BB%93/AQS.png)
 
-AQS 是一个用来构建锁和同步器的框架，使用 AQS 能简单且高效地构造出应用广泛的大量的同步器，比如我们提到的 `ReentrantLock`，`Semaphore`，其他的诸如 `ReentrantReadWriteLock`，`SynchronousQueue`，`FutureTask`(jdk1.7) 等等皆是基于 AQS 的。当然，我们自己也能利用 AQS 非常轻松容易地构造出符合我们自己需求的同步器。
+AQS 就是一个抽象类，主要用来构建锁和同步器。
 
-### 2 AQS 原理
+```java
+public abstract class AbstractQueuedSynchronizer extends AbstractOwnableSynchronizer implements java.io.Serializable {
+}
+```
+
+AQS 为构建锁和同步器提供了一些通用功能的是实现，因此，使用 AQS 能简单且高效地构造出应用广泛的大量的同步器，比如我们提到的 `ReentrantLock`，`Semaphore`，其他的诸如 `ReentrantReadWriteLock`，`SynchronousQueue`，`FutureTask`(jdk1.7) 等等皆是基于 AQS 的。
+
+## AQS 原理
 
 > 在面试中被问到并发知识的时候，大多都会被问到“请你说一下自己对于 AQS 原理的理解”。下面给大家一个示例供大家参考，面试不是背题，大家一定要加入自己的思想，即使加入不了自己的思想也要保证自己能够通俗的讲出来而不是背出来。
 
 下面大部分内容其实在 AQS 类注释上已经给出了，不过是英语看着比较吃力一点，感兴趣的话可以看看源码。
 
-#### 2.1 AQS 原理概览
+### AQS 原理概览
 
-**AQS 核心思想是，如果被请求的共享资源空闲，则将当前请求资源的线程设置为有效的工作线程，并且将共享资源设置为锁定状态。如果被请求的共享资源被占用，那么就需要一套线程阻塞等待以及被唤醒时锁分配的机制，这个机制 AQS 是用 CLH 队列锁实现的，即将暂时获取不到锁的线程加入到队列中。**
+AQS 核心思想是，如果被请求的共享资源空闲，则将当前请求资源的线程设置为有效的工作线程，并且将共享资源设置为锁定状态。如果被请求的共享资源被占用，那么就需要一套线程阻塞等待以及被唤醒时锁分配的机制，这个机制 AQS 是用 **CLH 队列锁**实现的，即将暂时获取不到锁的线程加入到队列中。
 
 > CLH(Craig,Landin,and Hagersten)队列是一个虚拟的双向队列（虚拟的双向队列即不存在队列实例，仅存在结点之间的关联关系）。AQS 是将每条请求共享资源的线程封装成一个 CLH 锁队列的一个结点（Node）来实现锁的分配。
 
@@ -56,7 +42,7 @@ AQS 使用一个 int 成员变量来表示同步状态，通过内置的 FIFO �
 private volatile int state;//共享变量，使用volatile修饰保证线程可见性
 ```
 
-状态信息通过 protected 类型的`getState`，`setState`，`compareAndSetState`进行操作
+状态信息通过 `protected` 类型的`getState()`，`setState()`，`compareAndSetState()` 进行操作
 
 ```java
 //返回同步状态的当前值
@@ -73,16 +59,16 @@ protected final boolean compareAndSetState(int expect, int update) {
 }
 ```
 
-#### 2.2 AQS 对资源的共享方式
+### AQS 对资源的共享方式
 
-**AQS 定义两种资源共享方式**
+AQS 定义两种资源共享方式
 
 **1)Exclusive**（独占）
 
-只有一个线程能执行，如 `ReentrantLock`。又可分为公平锁和非公平锁，`ReentrantLock` 同时支持两种锁,下面以 `ReentrantLock` 对这两种锁的定义做介绍：
+只有一个线程能执行，如 `ReentrantLock`。又可分为公平锁和非公平锁，`ReentrantLock` 同时支持两种锁，下面以 `ReentrantLock` 对这两种锁的定义做介绍：
 
-- 公平锁：按照线程在队列中的排队顺序，先到者先拿到锁
-- 非公平锁：当线程要获取锁时，先通过两次 CAS 操作去抢锁，如果没抢到，当前线程再加入到队列中等待唤醒。
+- **公平锁** ：按照线程在队列中的排队顺序，先到者先拿到锁
+- **非公平锁** ：当线程要获取锁时，先通过两次 CAS 操作去抢锁，如果没抢到，当前线程再加入到队列中等待唤醒。
 
 > 说明：下面这部分关于 `ReentrantLock` 源代码内容节选自：https://www.javadoop.com/post/AbstractQueuedSynchronizer-2 ，这是一篇很不错文章，推荐阅读。
 
@@ -138,7 +124,7 @@ static final class FairSync extends Sync {
 }
 ```
 
-非公平锁的 lock 方法：
+非公平锁的 `lock` 方法：
 
 ```java
 static final class NonfairSync extends Sync {
@@ -201,7 +187,7 @@ final boolean nonfairTryAcquire(int acquires) {
 
 不同的自定义同步器争用共享资源的方式也不同。自定义同步器在实现时只需要实现共享资源 state 的获取与释放方式即可，至于具体线程等待队列的维护（如获取资源失败入队/唤醒出队等），AQS 已经在上层已经帮我们实现好了。
 
-#### 2.3 AQS 底层使用了模板方法模式
+### AQS 底层使用了模板方法模式
 
 同步器的设计是基于模板方法模式的，如果需要自定义同步器一般的方式是这样（模板方法模式很经典的一个应用）：
 
@@ -210,7 +196,9 @@ final boolean nonfairTryAcquire(int acquires) {
 
 这和我们以往通过实现接口的方式有很大区别，这是模板方法模式很经典的一个运用，下面简单的给大家介绍一下模板方法模式，模板方法模式是一个很容易理解的设计模式之一。
 
-> 模板方法模式是基于”继承“的，主要是为了在不改变模板结构的前提下在子类中重新定义模板中的内容以实现复用代码。举个很简单的例子假如我们要去一个地方的步骤是：购票`buyTicket()`->安检`securityCheck()`->乘坐某某工具回家`ride()`->到达目的地`arrive()`。我们可能乘坐不同的交通工具回家比如飞机或者火车，所以除了`ride()`方法，其他方法的实现几乎相同。我们可以定义一个包含了这些方法的抽象类，然后用户根据自己的需要继承该抽象类然后修改 `ride()`方法。
+> 模板方法模式是基于”继承“的，主要是为了在不改变模板结构的前提下在子类中重新定义模板中的内容以实现复用代码。
+>
+> 举个很简单的例子假如我们要去一个地方的步骤是：购票 `buyTicket()`->安检 `securityCheck()`->乘坐某某工具回家 `ride()` ->到达目的地 `arrive()`。我们可能乘坐不同的交通工具回家比如飞机或者火车，所以除了`ride()`方法，其他方法的实现几乎相同。我们可以定义一个包含了这些方法的抽象类，然后用户根据自己的需要继承该抽象类然后修改 `ride()`方法。
 
 **AQS 使用了模板方法模式，自定义同步器时需要重写下面几个 AQS 提供的模板方法：**
 
@@ -220,29 +208,26 @@ tryAcquire(int)//独占方式。尝试获取资源，成功则返回true，失�
 tryRelease(int)//独占方式。尝试释放资源，成功则返回true，失败则返回false。
 tryAcquireShared(int)//共享方式。尝试获取资源。负数表示失败；0表示成功，但没有剩余可用资源；正数表示成功，且有剩余资源。
 tryReleaseShared(int)//共享方式。尝试释放资源，成功则返回true，失败则返回false。
-
 ```
 
 默认情况下，每个方法都抛出 `UnsupportedOperationException`。 这些方法的实现必须是内部线程安全的，并且通常应该简短而不是阻塞。AQS 类中的其他方法都是 final ，所以无法被其他类使用，只有这几个方法可以被其他类使用。
 
 以 `ReentrantLock` 为例，state 初始化为 0，表示未锁定状态。A 线程 `lock()` 时，会调用 `tryAcquire()`独占该锁并将 state+1。此后，其他线程再 `tryAcquire()` 时就会失败，直到 A 线程 unlock()到 state=0（即释放锁）为止，其它线程才有机会获取该锁。当然，释放锁之前，A 线程自己是可以重复获取此锁的（state 会累加），这就是可重入的概念。但要注意，获取多少次就要释放多么次，这样才能保证 state 是能回到零态的。
 
-再以 `CountDownLatch` 以例，任务分为 N 个子线程去执行，state 也初始化为 N（也可以不初始化为N，不初始化为N,state减到0也会从await()返回）。这 N 个子线程是并行执行的，每个子线程执行完后 `countDown()` 一次，state 会 CAS(Compare and Swap)减 1。等到state=0，会 unpark()主调用线程，然后主调用线程就会从 `await()` 函数返回，继续后余动作。
+再以 `CountDownLatch` 以例，任务分为 N 个子线程去执行，state 也初始化为 N（也可以不初始化为 N，不初始化为 N,state 减到 0 也会从 await()返回）。这 N 个子线程是并行执行的，每个子线程执行完后 `countDown()` 一次，state 会 CAS(Compare and Swap)减 1。等到 `state=0`，会 `unpark()` 主调用线程，然后主调用线程就会从 `await()` 函数返回，继续后余动作。
 
-所以CountDownLatch可以做倒计数器，减到0后唤醒的线程可以对线程池进行处理，比如关闭线程池。BOSS直聘面试官提过一个问题如下：
-
-现在有8个赛道进行比赛，而我只需要知道前三名就够了，可以怎么实现？大家可以自己思考这个问题了。
+所以 `CountDownLatch` 可以做倒计数器，减到 0 后唤醒的线程可以对线程池进行处理，比如关闭线程池。
 
 一般来说，自定义同步器要么是独占方法，要么是共享方式，他们也只需实现`tryAcquire-tryRelease`、`tryAcquireShared-tryReleaseShared`中的一种即可。但 AQS 也支持自定义同步器同时实现独占和共享两种方式，如`ReentrantReadWriteLock`。
 
 推荐两篇 AQS 原理和相关源码分析的文章：
 
-- https://www.cnblogs.com/waterystone/p/4920797.html
-- https://www.cnblogs.com/chengxiao/archive/2017/07/24/7141160.html
+- [Java 并发之 AQS 详解](https://www.cnblogs.com/waterystone/p/4920797.html)
+- [Java 并发包基石-AQS 详解](https://www.cnblogs.com/chengxiao/p/7141160.html)
 
-### 3 Semaphore(信号量)-允许多个线程同时访问
+## Semaphore(信号量)
 
-**`synchronized` 和 `ReentrantLock` 都是一次只允许一个线程访问某个资源，`Semaphore`(信号量)可以指定多个线程同时访问某个资源。**
+`synchronized` 和 `ReentrantLock` 都是一次只允许一个线程访问某个资源，`Semaphore`(信号量)可以指定多个线程同时访问某个资源。
 
 示例代码如下：
 
@@ -289,7 +274,7 @@ public class SemaphoreExample1 {
 }
 ```
 
-执行 `acquire` 方法阻塞，直到有一个许可证可以获得然后拿走一个许可证；每个 `release` 方法增加一个许可证，这可能会释放一个阻塞的 acquire 方法。然而，其实并没有实际的许可证这个对象，`Semaphore` 只是维持了一个可获得许可证的数量。 `Semaphore` 经常用于限制获取某种资源的线程数量。
+执行 `acquire()` 方法阻塞，直到有一个许可证可以获得然后拿走一个许可证；每个 `release` 方法增加一个许可证，这可能会释放一个阻塞的 `acquire()` 方法。然而，其实并没有实际的许可证这个对象，`Semaphore` 只是维持了一个可获得许可证的数量。 `Semaphore` 经常用于限制获取某种资源的线程数量。
 
 当然一次也可以一次拿取和释放多个许可，不过一般没有必要这样做：
 
@@ -299,14 +284,14 @@ test(threadnum);
 semaphore.release(5);// 释放5个许可
 ```
 
-除了 `acquire`方法之外，另一个比较常用的与之对应的方法是`tryAcquire`方法，该方法如果获取不到许可就立即返回 false。
+除了 `acquire()` 方法之外，另一个比较常用的与之对应的方法是 `tryAcquire()` 方法，该方法如果获取不到许可就立即返回 false。
 
 `Semaphore` 有两种模式，公平模式和非公平模式。
 
-- **公平模式：** 调用 acquire 的顺序就是获取许可证的顺序，遵循 FIFO；
+- **公平模式：** 调用 `acquire()` 方法的顺序就是获取许可证的顺序，遵循 FIFO；
 - **非公平模式：** 抢占式的。
 
-**`Semaphore` 对应的两个构造方法如下：**
+`Semaphore` 对应的两个构造方法如下：
 
 ```java
    public Semaphore(int permits) {
@@ -323,20 +308,23 @@ semaphore.release(5);// 释放5个许可
 [issue645 补充内容](https://github.com/Snailclimb/JavaGuide/issues/645) ：`Semaphore` 与 `CountDownLatch` 一样，也是共享锁的一种实现。它默认构造 AQS 的 state 为 `permits`。当执行任务的线程数量超出 `permits`，那么多余的线程将会被放入阻塞队列 Park,并自旋判断 state 是否大于 0。只有当 state 大于 0 的时候，阻塞的线程才能继续执行,此时先前执行任务的线程继续执行 `release()` 方法，`release()` 方法使得 state 的变量会加 1，那么自旋的线程便会判断成功。
 如此，每次只有最多不超过 `permits` 数量的线程能自旋成功，便限制了执行任务线程的数量。
 
-由于篇幅问题，如果对 `Semaphore` 源码感兴趣的朋友可以看下这篇文章：https://juejin.im/post/5ae755366fb9a07ab508adc6
-
-### 4 CountDownLatch （倒计时器）
+## CountDownLatch （倒计时器）
 
 `CountDownLatch` 允许 `count` 个线程阻塞在一个地方，直至所有线程的任务都执行完毕。
 
 `CountDownLatch` 是共享锁的一种实现,它默认构造 AQS 的 `state` 值为 `count`。当线程使用 `countDown()` 方法时,其实使用了`tryReleaseShared`方法以 CAS 的操作来减少 `state`,直至 `state` 为 0 。当调用 `await()` 方法的时候，如果 `state` 不为 0，那就证明任务还没有执行完毕，`await()` 方法就会一直阻塞，也就是说 `await()` 方法之后的语句不会被执行。然后，`CountDownLatch` 会自旋 CAS 判断 `state == 0`，如果 `state == 0` 的话，就会释放所有等待的线程，`await()` 方法之后的语句得到执行。
 
-#### 4.1 CountDownLatch 的两种典型用法
+### CountDownLatch 的两种典型用法
 
-1. 某一线程在开始运行前等待 n 个线程执行完毕。将 `CountDownLatch` 的计数器初始化为 n ：`new CountDownLatch(n)`，每当一个任务线程执行完毕，就将计数器减 1 `countdownlatch.countDown()`，当计数器的值变为 0 时，在`CountDownLatch上 await()` 的线程就会被唤醒。一个典型应用场景就是启动一个服务时，主线程需要等待多个组件加载完毕，之后再继续执行。
-2. 实现多个线程开始执行任务的最大并行性。注意是并行性，不是并发，强调的是多个线程在某一时刻同时开始执行。类似于赛跑，将多个线程放到起点，等待发令枪响，然后同时开跑。做法是初始化一个共享的 `CountDownLatch` 对象，将其计数器初始化为 1 ：`new CountDownLatch(1)`，多个线程在开始执行任务前首先 `coundownlatch.await()`，当主线程调用 `countDown()` 时，计数器变为 0，多个线程同时被唤醒。
+**1、某一线程在开始运行前等待 n 个线程执行完毕。**
 
-#### 4.2 CountDownLatch 的使用示例
+将 `CountDownLatch` 的计数器初始化为 n （`new CountDownLatch(n)`），每当一个任务线程执行完毕，就将计数器减 1 （`countdownlatch.countDown()`），当计数器的值变为 0 时，在 `CountDownLatch 上 await()` 的线程就会被唤醒。一个典型应用场景就是启动一个服务时，主线程需要等待多个组件加载完毕，之后再继续执行。
+
+**2、实现多个线程开始执行任务的最大并行性。**
+
+注意是并行性，不是并发，强调的是多个线程在某一时刻同时开始执行。类似于赛跑，将多个线程放到起点，等待发令枪响，然后同时开跑。做法是初始化一个共享的 `CountDownLatch` 对象，将其计数器初始化为 1 （`new CountDownLatch(1)`），多个线程在开始执行任务前首先 `coundownlatch.await()`，当主线程调用 `countDown()` 时，计数器变为 0，多个线程同时被唤醒。
+
+### CountDownLatch 的使用示例
 
 ```java
 /**
@@ -383,7 +371,7 @@ public class CountDownLatchExample1 {
 
 上面的代码中，我们定义了请求的数量为 550，当这 550 个请求被处理完成之后，才会执行`System.out.println("finish");`。
 
-与 CountDownLatch 的第一次交互是主线程等待其他线程。主线程必须在启动其他线程后立即调用 `CountDownLatch.await()` 方法。这样主线程的操作就会在这个方法上阻塞，直到其他线程完成各自的任务。
+与 `CountDownLatch` 的第一次交互是主线程等待其他线程。主线程必须在启动其他线程后立即调用 `CountDownLatch.await()` 方法。这样主线程的操作就会在这个方法上阻塞，直到其他线程完成各自的任务。
 
 其他 N 个线程必须引用闭锁对象，因为他们需要通知 `CountDownLatch` 对象，他们已经完成了各自的任务。这种通知机制是通过 `CountDownLatch.countDown()`方法来完成的；每调用一次这个方法，在构造函数中初始化的 count 值就减 1。所以当 N 个线程都调 用了这个方法，count 的值等于 0，然后主线程就能通过 `await()`方法，恢复执行自己的任务。
 
@@ -397,29 +385,25 @@ for (int i = 0; i < threadCount-1; i++) {
 
 这样就导致 `count` 的值没办法等于 0，然后就会导致一直等待。
 
-如果对 `CountDownLatch` 源码感兴趣的朋友，可以查看： [【JUC】JDK1.8 源码分析之 CountDownLatch（五）](https://www.cnblogs.com/leesf456/p/5406191.html)
-
-#### 4.3 CountDownLatch 的不足
+### CountDownLatch 的不足
 
 `CountDownLatch` 是一次性的，计数器的值只能在构造方法中初始化一次，之后没有任何机制再次对其设置值，当 `CountDownLatch` 使用完毕后，它不能再次被使用。
 
-#### 4.4 CountDownLatch 相常见面试题
+### CountDownLatch 相常见面试题
 
-解释一下 `CountDownLatch` 概念？
+-  `CountDownLatch` 怎么用？应用场景是什么？
+- `CountDownLatch` 和 `CyclicBarrier` 的不同之处？
+- `CountDownLatch` 类中主要的方法？
 
-`CountDownLatch` 和 `CyclicBarrier` 的不同之处？
-
-给出一些 `CountDownLatch` 使用的例子？
-
-`CountDownLatch` 类中主要的方法？
-
-### 5 CyclicBarrier(循环栅栏)
+## CyclicBarrier(循环栅栏)
 
 `CyclicBarrier` 和 `CountDownLatch` 非常类似，它也可以实现线程间的技术等待，但是它的功能比 `CountDownLatch` 更加复杂和强大。主要应用场景和 `CountDownLatch` 类似。
 
-> `CountDownLatch` 的实现是基于 AQS 的，而 `CycliBarrier` 是基于 `ReentrantLock`(`ReentrantLock` 也属于 AQS 同步器)和 `Condition` 的.
+> `CountDownLatch` 的实现是基于 AQS 的，而 `CycliBarrier` 是基于 `ReentrantLock`(`ReentrantLock` 也属于 AQS 同步器)和 `Condition` 的。
 
-CyclicBarrier 的字面意思是可循环使用（Cyclic）的屏障（Barrier）。它要做的事情是，让一组线程到达一个屏障（也可以叫同步点）时被阻塞，直到最后一个线程到达屏障时，屏障才会开门，所有被屏障拦截的线程才会继续干活。CyclicBarrier 默认的构造方法是 `CyclicBarrier(int parties)`，其参数表示屏障拦截的线程数量，每个线程调用`await`方法告诉 CyclicBarrier 我已经到达了屏障，然后当前线程被阻塞。
+`CyclicBarrier` 的字面意思是可循环使用（Cyclic）的屏障（Barrier）。它要做的事情是：让一组线程到达一个屏障（也可以叫同步点）时被阻塞，直到最后一个线程到达屏障时，屏障才会开门，所有被屏障拦截的线程才会继续干活。
+
+`CyclicBarrier` 默认的构造方法是 `CyclicBarrier(int parties)`，其参数表示屏障拦截的线程数量，每个线程调用 `await()` 方法告诉 `CyclicBarrier` 我已经到达了屏障，然后当前线程被阻塞。
 
 再来看一下它的构造函数：
 
@@ -438,11 +422,11 @@ public CyclicBarrier(int parties, Runnable barrierAction) {
 
 其中，parties 就代表了有拦截的线程的数量，当拦截的线程数量达到这个值的时候就打开栅栏，让所有线程通过。
 
-#### 5.1 CyclicBarrier 的应用场景
+### CyclicBarrier 的应用场景
 
 `CyclicBarrier` 可以用于多线程计算数据，最后合并计算结果的应用场景。比如我们用一个 Excel 保存了用户所有银行流水，每个 Sheet 保存一个帐户近一年的每笔银行流水，现在需要统计用户的日均银行流水，先用多线程处理每个 sheet 里的银行流水，都执行完之后，得到每个 sheet 的日均银行流水，最后，再用 barrierAction 用这些线程的计算结果，计算出整个 Excel 的日均银行流水。
 
-#### 5.2 CyclicBarrier 的使用示例
+### CyclicBarrier 的使用示例
 
 示例 1：
 
@@ -521,9 +505,9 @@ threadnum:6is finish
 ......
 ```
 
-可以看到当线程数量也就是请求数量达到我们定义的 5 个的时候， `await`方法之后的方法才被执行。
+可以看到当线程数量也就是请求数量达到我们定义的 5 个的时候， `await()` 方法之后的方法才被执行。
 
-另外，`CyclicBarrier` 还提供一个更高级的构造函数`CyclicBarrier(int parties, Runnable barrierAction)`，用于在线程到达屏障时，优先执行`barrierAction`，方便处理更复杂的业务场景。示例代码如下：
+另外，`CyclicBarrier` 还提供一个更高级的构造函数 `CyclicBarrier(int parties, Runnable barrierAction)`，用于在线程到达屏障时，优先执行 `barrierAction`，方便处理更复杂的业务场景。示例代码如下：
 
 ```java
 /**
@@ -599,18 +583,18 @@ threadnum:7is finish
 ......
 ```
 
-#### 5.3 `CyclicBarrier`源码分析
+### CyclicBarrier 源码分析
 
-当调用 `CyclicBarrier` 对象调用 `await()` 方法时，实际上调用的是`dowait(false, 0L)`方法。 `await()` 方法就像树立起一个栅栏的行为一样，将线程挡住了，当拦住的线程数量达到 `parties` 的值时，栅栏才会打开，线程才得以通过执行。
+当调用 `CyclicBarrier` 对象调用 `await()` 方法时，实际上调用的是 `dowait(false, 0L)`方法。 `await()` 方法就像树立起一个栅栏的行为一样，将线程挡住了，当拦住的线程数量达到 `parties` 的值时，栅栏才会打开，线程才得以通过执行。
 
 ```java
-    public int await() throws InterruptedException, BrokenBarrierException {
-        try {
-            return dowait(false, 0L);
-        } catch (TimeoutException toe) {
-            throw new Error(toe); // cannot happen
-        }
-    }
+public int await() throws InterruptedException, BrokenBarrierException {
+  try {
+    	return dowait(false, 0L);
+  } catch (TimeoutException toe) {
+   	 throw new Error(toe); // cannot happen
+  }
+}
 ```
 
 `dowait(false, 0L)`：
@@ -696,11 +680,11 @@ threadnum:7is finish
 
 ```
 
-总结：`CyclicBarrier` 内部通过一个 count 变量作为计数器，cout 的初始值为 parties 属性的初始化值，每当一个线程到了栅栏这里了，那么就将计数器减一。如果 count 值为 0 了，表示这是这一代最后一个线程到达栅栏，就尝试执行我们构造方法中输入的任务。
+总结：`CyclicBarrier` 内部通过一个 count 变量作为计数器，count 的初始值为 parties 属性的初始化值，每当一个线程到了栅栏这里了，那么就将计数器减一。如果 count 值为 0 了，表示这是这一代最后一个线程到达栅栏，就尝试执行我们构造方法中输入的任务。
 
-#### 5.4 CyclicBarrier 和 CountDownLatch 的区别
+###  CyclicBarrier 和 CountDownLatch 的区别
 
-**下面这个是国外一个大佬的回答：**
+下面这个是国外一个大佬的回答：
 
 `CountDownLatch` 是计数器，只能使用一次，而 `CyclicBarrier` 的计数器提供 `reset` 功能，可以多次使用。但是我不那么认为它们之间的区别仅仅就是这么简单的一点。我们来从 jdk 作者设计的目的来看，javadoc 是这么描述它们的：
 
@@ -711,22 +695,6 @@ threadnum:7is finish
 
 `CountDownLatch` 是计数器，线程完成一个记录一个，只不过计数不是递增而是递减，而 `CyclicBarrier` 更像是一个阀门，需要所有线程都到达，阀门才能打开，然后继续执行。
 
-### 6 ReentrantLock 和 ReentrantReadWriteLock
+### ReentrantLock 和 ReentrantReadWriteLock
 
 `ReentrantLock` 和 `synchronized` 的区别在上面已经讲过了这里就不多做讲解。另外，需要注意的是：读写锁 `ReentrantReadWriteLock` 可以保证多个线程可以同时读，所以在读操作远大于写操作的时候，读写锁就非常有用了。
-
-### 参考
-
-- https://juejin.im/post/5ae755256fb9a07ac3634067
-- https://blog.csdn.net/u010185262/article/details/54692886
-- https://blog.csdn.net/tolcf/article/details/50925145?utm_source=blogxgwz0
-
-### 公众号
-
-如果大家想要实时关注我更新的文章以及分享的干货的话，可以关注我的公众号。
-
-**《Java 面试突击》:** 由本文档衍生的专为面试而生的《Java 面试突击》V2.0 PDF 版本[公众号](#公众号 "公众号")后台回复 **"面试突击"** 即可免费领取！
-
-**Java 工程师必备学习资源:** 一些 Java 工程师常用学习资源公众号后台回复关键字 **“1”** 即可免费无套路获取。
-
-![我的公众号](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/167598cd2e17b8ec.png)
