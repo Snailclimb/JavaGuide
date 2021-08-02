@@ -176,7 +176,7 @@ public interface Runnable{}
 
 ```java
 @FunctionalInterface
-public interface LambdaFunctionalInterface {
+public interface LambdaInterface {
  void f();
 }
 //使用
@@ -221,7 +221,7 @@ public class LambdaClassSuper {
     }
 }
 
-public class LambdaClass {
+public class LambdaClass extends LambdaClassSuper {
     public static LambdaInterface staticF() {
         return null;
     }
@@ -243,6 +243,7 @@ public class LambdaClass {
 
         //4. 构造方法调用
         LambdaInterface tt = LambdaClassSuper::new;
+    }
 }
 ```
 
