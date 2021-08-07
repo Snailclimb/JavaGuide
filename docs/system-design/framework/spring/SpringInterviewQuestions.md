@@ -258,6 +258,10 @@ MVC 是一种设计模式,Spring MVC 是一款很优秀的 MVC 框架。Spring M
 1. 基于XML的声明式事务
 2. 基于注解的声明式事务
 
+**思维导图**：
+
+![image-20210807101442105](https://gitee.com/yamonc/blogImage/raw/master//img/blogImage/image-20210807101442105.png)
+
 ### 8.2 Spring 事务中的隔离级别有哪几种?
 
 **TransactionDefinition 接口中定义了五个表示隔离级别的常量：**
@@ -285,6 +289,10 @@ MVC 是一种设计模式,Spring MVC 是一款很优秀的 MVC 框架。Spring M
 **其他情况：**
 
 - **TransactionDefinition.PROPAGATION_NESTED：** 如果当前存在事务，则创建一个事务作为当前事务的嵌套事务来运行；如果当前没有事务，则该取值等价于TransactionDefinition.PROPAGATION_REQUIRED。
+
+**思维导图：**
+
+![image-20210807102320870](https://gitee.com/yamonc/blogImage/raw/master//img/blogImage/image-20210807102320870.png)
 
 ### 8.4 @Transactional(rollbackFor = Exception.class)注解了解吗？
 
