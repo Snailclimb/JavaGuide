@@ -32,3 +32,7 @@ dataSources/
 
 ### OS ###
 .DS_Store
+.Ds_Store´
+/node_modules
+
+

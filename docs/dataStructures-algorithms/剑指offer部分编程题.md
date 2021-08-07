@@ -14,48 +14,37 @@ n<=39
 **采用迭代法：**
 
 ```java
-  int Fibonacci(int number) {
-			if (number <= 0) {
-				return 0;
-			}
-			if (number == 1 || number == 2) {
-				return 1;
-			}
-			int first = 1, second = 1, third = 0;
-			for (int i = 3; i <= number; i++) {
-				third = first + second;
-				first = second;
-				second = third;
-			}
-			return third;
-		}
+int Fibonacci(int number) {
+    if (number <= 0) {
+        return 0;
+    }
+    if (number == 1 || number == 2) {
+        return 1;
+    }
+    int first = 1, second = 1, third = 0;
+    for (int i = 3; i <= number; i++) {
+        third = first + second;
+        first = second;
+        second = third;
+    }
+    return third;
+}
 ```
 
 **采用递归：**
 
 ```java
-		 public int Fibonacci(int n) {
-           
-			if (n <= 0) {
-				return 0;
-			}
-			if (n == 1||n==2) {
-				return 1;
-			}
+public int Fibonacci(int n) {
+    if (n <= 0) {
+        return 0;
+    }
+    if (n == 1||n==2) {
+        return 1;
+    }
 
-			return Fibonacci(n - 2) + Fibonacci(n - 1);
-
-		}
+    return Fibonacci(n - 2) + Fibonacci(n - 1);
+}
 ```
-
-#### **运行时间对比：**
-
-假设n为40我们分别使用迭代法和递归法计算，计算结果如下：
-
-1. 迭代法
-   ![迭代法](https://ws1.sinaimg.cn/large/006rNwoDgy1fpydt5as85j308a025dfl.jpg)
-2. 递归法
-   ![递归法](https://ws1.sinaimg.cn/large/006rNwoDgy1fpydt2d1k3j30ed02kt8i.jpg)
 
 ### 二 跳台阶问题
 
@@ -80,24 +69,24 @@ f(1) = 1, f(2) = 2, f(3) = 3, f(4) = 5，  可以总结出f(n) = f(n-1) + f(n-2)
 #### **示例代码：**
 
 ```java
-	int jumpFloor(int number) {
-			if (number <= 0) {
-				return 0;
-			}
-			if (number == 1) {
-				return 1;
-			}
-			if (number == 2) {
-				return 2;
-			}
-			int first = 1, second = 2, third = 0;
-			for (int i = 3; i <= number; i++) {
-				third = first + second;
-				first = second;
-				second = third;
-			}
-			return third;
-		}
+int jumpFloor(int number) {
+    if (number <= 0) {
+        return 0;
+    }
+    if (number == 1) {
+        return 1;
+    }
+    if (number == 2) {
+        return 2;
+    }
+    int first = 1, second = 2, third = 0;
+    for (int i = 3; i <= number; i++) {
+        third = first + second;
+        first = second;
+        second = third;
+    }
+    return third;
+}
 ```
 
 ### 三 变态跳台阶问题
@@ -122,9 +111,9 @@ f(n)=f(n-1)+f(n-2)+...+f(1)
 #### **示例代码：**
 
 ```java
-     int JumpFloorII(int number) {
-		return 1 << --number;//2^(number-1)用位移操作进行，更快
-	}
+int JumpFloorII(int number) {
+    return 1 << --number;//2^(number-1)用位移操作进行，更快
+}
 ```
 
 #### **补充：**
@@ -133,7 +122,7 @@ f(n)=f(n-1)+f(n-2)+...+f(1)
 
 1. “<<” :     **左移运算符**，等同于乘2的n次方
 2. “>>”:     **右移运算符**，等同于除2的n次方
-3. “>>>” **无符号右移运算符**，不管移动前最高位是0还是1，右移后左侧产生的空位部分都以0来填充。与>>类似。
+3. “>>>” :  **无符号右移运算符**，不管移动前最高位是0还是1，右移后左侧产生的空位部分都以0来填充。与>>类似。
    例：
     int a = 16;
     int b = a << 2;//左移2，等同于16 * 2的2次方，也就是16 * 4
@@ -156,22 +145,22 @@ f(n)=f(n-1)+f(n-2)+...+f(1)
 #### **示例代码：**
 
 ```java
-    public boolean Find(int target, int [][] array) {
-        //基本思路从左下角开始找，这样速度最快
-       int row = array.length-1;//行
-        int column = 0;//列
-        //当行数大于0，当前列数小于总列数时循环条件成立
-        while((row >= 0)&& (column< array[0].length)){
-            if(array[row][column] > target){
-                row--;
-            }else if(array[row][column] < target){
-               column++;
-            }else{
-                return true;
-            }
+public boolean Find(int target, int [][] array) {
+    //基本思路从左下角开始找，这样速度最快
+    int row = array.length-1;//行
+    int column = 0;//列
+    //当行数大于0，当前列数小于总列数时循环条件成立
+    while((row >= 0)&& (column< array[0].length)){
+        if(array[row][column] > target){
+            row--;
+        }else if(array[row][column] < target){
+            column++;
+        }else{
+            return true;
         }
-        return false;
     }
+    return false;
+}
 ```
 
 ### 五 替换空格
@@ -184,38 +173,37 @@ f(n)=f(n-1)+f(n-2)+...+f(1)
 
 这道题不难，我们可以通过循环判断字符串的字符是否为空格，是的话就利用append()方法添加追加“%20”，否则还是追加原字符。
 
-或者最简单的方法就是利用： replaceAll(String regex,String replacement)方法了，一行代码就可以解决。
+或者最简单的方法就是利用：replaceAll(String regex,String replacement)方法了，一行代码就可以解决。
 
 #### **示例代码：**
 
 **常规做法：**
 
 ```java
-    public String replaceSpace(StringBuffer str) {
-        StringBuffer out=new StringBuffer();
-        for (int i = 0; i < str.toString().length(); i++) {
-            char b=str.charAt(i);
-            if(String.valueOf(b).equals(" ")){
-                out.append("%20");
-            }else{
-                out.append(b);
-            }
+public String replaceSpace(StringBuffer str) {
+    StringBuffer out = new StringBuffer();
+    for (int i = 0; i < str.toString().length(); i++) {
+        char b = str.charAt(i);
+        if(String.valueOf(b).equals(" ")){
+            out.append("%20");
+        }else{
+            out.append(b);
         }
-        return out.toString();     
     }
+    return out.toString();     
+}
 ```
 
 **一行代码解决：**
 
 ```java
-    public String replaceSpace(StringBuffer str) {
-        //return str.toString().replaceAll(" ", "%20");
-        //public String replaceAll(String regex,String replacement)
-        //用给定的替换替换与给定的regular expression匹配的此字符串的每个子字符串。 
-        //\ 转义字符. 如果你要使用 "\" 本身, 则应该使用 "\\". String类型中的空格用“\s”表示，所以我这里猜测"\\s"就是代表空格的意思
-        return str.toString().replaceAll("\\s", "%20");
-    }
-
+public String replaceSpace(StringBuffer str) {
+    //return str.toString().replaceAll(" ", "%20");
+    //public String replaceAll(String regex,String replacement)
+    //用给定的替换替换与给定的regular expression匹配的此字符串的每个子字符串。 
+    //\ 转义字符. 如果你要使用 "\" 本身, 则应该使用 "\\". String类型中的空格用“\s”表示，所以我这里猜测"\\s"就是代表空格的意思
+    return str.toString().replaceAll("\\s", "%20");
+}
 ```
 
 ### 六 数值的整数次方
@@ -288,17 +276,17 @@ public class Solution {
 当然这一题也可以采用笨方法：累乘。不过这种方法的时间复杂度为O（n），这样没有前一种方法效率高。
 
 ```java
-    // 使用累乘
-    public double powerAnother(double base, int exponent) {
-        double result = 1.0;
-        for (int i = 0; i < Math.abs(exponent); i++) {
-            result *= base;
-        }
-        if (exponent >= 0)
-            return result;
-        else
-            return 1 / result;
+// 使用累乘
+public double powerAnother(double base, int exponent) {
+    double result = 1.0;
+    for (int i = 0; i < Math.abs(exponent); i++) {
+        result *= base;
     }
+    if (exponent >= 0)
+        return result;
+    else
+        return 1 / result;
+}
 ```
 
 ### 七 调整数组顺序使奇数位于偶数前面
@@ -443,22 +431,21 @@ public class ListNode {
     }
 }*/
 public class Solution {
-public ListNode ReverseList(ListNode head) {
-   ListNode next = null;
-   ListNode pre = null;
-    while (head != null) {
-          //保存要反转到头来的那个节点
-           next = head.next;
-           //要反转的那个节点指向已经反转的上一个节点
-           head.next = pre;
-           //上一个已经反转到头部的节点
-           pre = head;
-           //一直向链表尾走
-           head = next;
+    public ListNode ReverseList(ListNode head) {
+       ListNode next = null;
+       ListNode pre = null;
+        while (head != null) {
+              //保存要反转到头来的那个节点
+               next = head.next;
+               //要反转的那个节点指向已经反转的上一个节点
+               head.next = pre;
+               //上一个已经反转到头部的节点
+               pre = head;
+               //一直向链表尾走
+               head = next;
+        }
+        return pre;
     }
-    return pre;
-}
-
 }
 ```
 
@@ -547,20 +534,20 @@ public class Solution {
 
 ```java
 public ListNode Merge(ListNode list1,ListNode list2) {
-       if(list1 == null){
-           return list2;
-       }
-       if(list2 == null){
-           return list1;
-       }
-       if(list1.val <= list2.val){
-           list1.next = Merge(list1.next, list2);
-           return list1;
-       }else{
-           list2.next = Merge(list1, list2.next);
-           return list2;
-       }       
-   }
+    if(list1 == null){
+        return list2;
+    }
+    if(list2 == null){
+        return list1;
+    }
+    if(list1.val <= list2.val){
+        list1.next = Merge(list1.next, list2);
+        return list1;
+    }else{
+        list2.next = Merge(list1, list2.next);
+        return list2;
+    }       
+}
 ```
 
 ### 十一 用两个栈实现队列
@@ -575,7 +562,7 @@ public ListNode Merge(ListNode list1,ListNode list2) {
 **栈：**后进先出（LIFO）
 **队列：** 先进先出
 很明显我们需要根据JDK给我们提供的栈的一些基本方法来实现。先来看一下Stack类的一些基本方法：
-![Stack类的一些常见方法](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-4-4/5985000.jpg)
+![Stack类的一些常见方法](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-4-4/5985000.jpg)
 
 既然题目给了我们两个栈，我们可以这样考虑当push的时候将元素push进stack1，pop的时候我们先把stack1的元素pop到stack2，然后再对stack2执行pop操作，这样就可以保证是先进先出的。（负[pop]负[pop]得正[先进先出]）
 
@@ -650,8 +637,6 @@ https://www.nowcoder.com/questionTerminal/d77d11405cc7470d82554cb392585106
 
 ….
 依次执行，最后辅助栈为空。如果不为空说明弹出序列不是该栈的弹出顺序。 
-
-
 
 #### **考察内容：**
 
