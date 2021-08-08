@@ -93,9 +93,10 @@ AOP(Aspect-Oriented Programming:面向切面编程)能够将那些与业务无�
 
 ### 4.2 Spring AOP 和 AspectJ AOP 有什么区别？
 
-**Spring AOP 属于运行时增强，而 AspectJ 是编译时增强。** Spring AOP 基于代理(Proxying)，而 AspectJ 基于字节码操作(Bytecode Manipulation)。
+1.  **Spring AOP 属于运行时增强，而 AspectJ 是编译时增强。** 
+2. **Spring AOP** 基于**代理(Proxying)**，而 **AspectJ** 基于**字节码操作(Bytecode Manipulation)**。
 
- Spring AOP 已经集成了 AspectJ  ，AspectJ  应该算的上是 Java 生态系统中最完整的 AOP 框架了。AspectJ  相比于 Spring AOP 功能更加强大，但是 Spring AOP 相对来说更简单，
+3. **Spring AOP** 已经集成了 AspectJ  ，AspectJ  应该算的上是 Java 生态系统中最完整的 AOP 框架了。AspectJ  相比于 Spring AOP 功能更加强大，但是 Spring AOP 相对来说更简单，
 
 如果我们的切面比较少，那么两者性能差异不大。但是，当切面太多的话，最好选择 AspectJ ，它比Spring AOP 快很多。
 
@@ -258,6 +259,10 @@ MVC 是一种设计模式,Spring MVC 是一款很优秀的 MVC 框架。Spring M
 1. 基于XML的声明式事务
 2. 基于注解的声明式事务
 
+**思维导图**：
+
+![image-20210807101442105](https://gitee.com/yamonc/blogImage/raw/master//img/blogImage/image-20210807101442105.png)
+
 ### 8.2 Spring 事务中的隔离级别有哪几种?
 
 **TransactionDefinition 接口中定义了五个表示隔离级别的常量：**
@@ -285,6 +290,10 @@ MVC 是一种设计模式,Spring MVC 是一款很优秀的 MVC 框架。Spring M
 **其他情况：**
 
 - **TransactionDefinition.PROPAGATION_NESTED：** 如果当前存在事务，则创建一个事务作为当前事务的嵌套事务来运行；如果当前没有事务，则该取值等价于TransactionDefinition.PROPAGATION_REQUIRED。
+
+**思维导图：**
+
+![image-20210807102320870](https://gitee.com/yamonc/blogImage/raw/master//img/blogImage/image-20210807102320870.png)
 
 ### 8.4 @Transactional(rollbackFor = Exception.class)注解了解吗？
 
