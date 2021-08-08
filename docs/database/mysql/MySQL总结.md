@@ -22,8 +22,6 @@ MySQL、PostgreSQL、Oracle、SQL Server、SQLite（微信本地的聊天记录�
 
 由于 MySQL 是开源免费并且比较成熟的数据库，因此，MySQL 被大量使用在各种系统中。任何人都可以在 GPL(General Public License) 的许可下下载并根据个性化的需要对其进行修改。MySQL 的默认端口号是**3306**。
 
-
-
 ## 存储引擎
 
 ### 存储引擎相关的命令
