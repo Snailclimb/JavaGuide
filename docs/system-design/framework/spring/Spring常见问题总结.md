@@ -252,13 +252,23 @@ public OneService getService(status) {
 
 ### 说说自己对于 Spring MVC 了解?
 
-谈到这个问题，我们不得不提提之前 Model1 和 Model2 这两个没有 Spring MVC 的时代。
+MVC 是模型(Model)、视图(View)、控制器(Controller)的简写，其核心思想是通过将业务逻辑、数据、显示分离来组织代码。
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/image-20210809181452421.png)
+
+网上有很多人说 MVC 不是设计模式，只是软件设计规范，我个人更倾向于 MVC 同样是众多设计模式中的一种。**[java-design-patterns](https://github.com/iluwatar/java-design-patterns)** 项目中就有关于 MVC 的相关介绍。
+
+![](https://img-blog.csdnimg.cn/159b3d3e70dd45e6afa81bf06d09264e.png)
+
+想要真正理解 Spring MVC，我们先来看看 Model 1 和 Model 2 这两个没有 Spring MVC 的时代。
 
 **Model 1 时代**
 
 很多学 Java 后端比较晚的朋友可能并没有接触过 Model 1 时代下的 JavaWeb 应用开发。在 Model1 模式下，整个 Web 应用几乎全部用 JSP 页面组成，只用少量的 JavaBean 来处理数据库连接、访问等操作。
 
 这个模式下 JSP 即是控制层（Controller）又是表现层（View）。显而易见，这种模式存在很多问题。比如控制逻辑和表现逻辑混杂在一起，导致代码重用率极低；再比如前端和后端相互依赖，难以进行测试维护并且开发效率极低。
+
+![mvc-mode1](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/mvc-mode1.png)
 
 **Model 2 时代**
 
@@ -267,6 +277,8 @@ public OneService getService(status) {
 - Model:系统涉及的数据，也就是 dao 和 bean。
 - View：展示模型中的数据，只是用来展示。
 - Controller：处理用户请求都发送给 ，返回数据给 JSP 并展示给用户。
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/mvc-model2.png)
 
 Model2 模式下还存在很多问题，Model2 的抽象和封装程度还远远不够，使用 Model2 进行开发时不可避免地会重复造轮子，这就大大降低了程序的可维护性和复用性。
 
