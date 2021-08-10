@@ -18,7 +18,7 @@
 
 ## 一致性非锁定读和锁定读
 
-#### 一致性非锁定读
+### 一致性非锁定读
 
 对于 [**一致性非锁定读（Consistent Nonlocking Reads）** ](https://dev.mysql.com/doc/refman/5.7/en/innodb-consistent-read.html)的实现，通常做法是加一个版本号或者时间戳字段，在更新数据的同时版本号 + 1 或者更新时间戳。查询时，将当前可见的版本号与对应记录的版本号进行比对，如果记录的版本小于可见版本，则表示该记录可见
 
@@ -26,13 +26,13 @@
 
 在 `Repeatable Read` 和 `Read Committed` 两个隔离级别下，如果是执行普通的 `select` 语句（不包括 `select ... lock in share mode` ,`select ... for update`）则会使用 `一致性非锁定读（MVCC）`。并且在 `Repeatable Read` 下 `MVCC` 实现了可重复读和防止部分幻读
 
-#### 锁定读
+### 锁定读
 
 如果执行的是下列语句，就是 [**锁定读（Locking Reads）**](https://dev.mysql.com/doc/refman/5.7/en/innodb-locking-reads.html)
 
-- select ... lock in share mode
-- select ... for update
-- insert、update、delete 操作
+- `select ... lock in share mode`
+- `select ... for update`
+- `insert`、`update`、`delete` 操作
 
 在锁定读下，读取的是数据的最新版本，这种读也被称为 `当前读（current read）`。锁定读会对读取到的记录加锁：
 
@@ -40,13 +40,13 @@
 
 - `select ... for update`、`insert`、`update`、`delete`：对记录加 `X` 锁，且其它事务不能加任何锁
 
-在一致性非锁定读下，即使读取的记录已被其它事务加上 `X` 锁，这时记录也是可以被读取的，即读取的快照数据。上面说了在 `Repeatable Read` 下 `MVCC` 防止了部分幻读，这边的 “部分” 是指在 `一致性非锁定读` 情况下，只能读取到第一次查询之前所插入的数据（根据 Read View 判断数据可见性，Read View 在第一次查询时生成），但如果是`当前读` ，每次读取的都是最新数据，这时如果两次查询中间有其它事务插入数据，就会产生幻读。**所以 `InnoDB` 在实现`Repeatable Read` 时，如果执行的是当前读，则会对读取的记录使用 `Next-key Lock` ，来防止其它事务在间隙间插入数据**
+在一致性非锁定读下，即使读取的记录已被其它事务加上 `X` 锁，这时记录也是可以被读取的，即读取的快照数据。上面说了，在 `Repeatable Read` 下 `MVCC` 防止了部分幻读，这边的 “部分” 是指在 `一致性非锁定读` 情况下，只能读取到第一次查询之前所插入的数据（根据 Read View 判断数据可见性，Read View 在第一次查询时生成）。但是！如果是 `当前读` ，每次读取的都是最新数据，这时如果两次查询中间有其它事务插入数据，就会产生幻读。所以， **`InnoDB` 在实现`Repeatable Read` 时，如果执行的是当前读，则会对读取的记录使用 `Next-key Lock` ，来防止其它事务在间隙间插入数据**
 
 ## InnoDB 对 MVCC 的实现
 
 `MVCC` 的实现依赖于：**隐藏字段、Read View、undo log**。在内部实现中，`InnoDB` 通过数据行的 `DB_TRX_ID` 和 `Read View` 来判断数据的可见性，如不可见，则通过数据行的 `DB_ROLL_PTR` 找到 `undo log` 中的历史版本。每个事务读到的数据版本可能是不一样的，在同一个事务中，用户只能看到该事务创建 `Read View` 之前已经提交的修改和该事务本身做的修改
 
-#### 隐藏字段
+### 隐藏字段
 
 在内部，`InnoDB` 存储引擎为每行数据添加了三个 [隐藏字段](https://dev.mysql.com/doc/refman/5.7/en/innodb-multi-versioning.html)：
 
@@ -54,7 +54,7 @@
 - `DB_ROLL_PTR（7字节）` 回滚指针，指向该行的 `undo log` 。如果该行未被更新，则为空
 - `DB_ROW_ID（6字节）`：如果没有设置主键且该表没有唯一非空索引时，`InnoDB` 会使用该 id 来生成聚簇索引
 
-#### ReadView
+### ReadView
 
 [`Read View`](https://github.com/facebook/mysql-8.0/blob/8.0/storage/innobase/include/read0types.h#L298) 主要是用来做可见性判断，里面保存了 “当前对本事务不可见的其他活跃事务”
 
@@ -65,7 +65,7 @@
 - `m_ids`：`Read View` 创建时其他未提交的活跃事务 ID 列表。创建 `Read View`时，将当前未提交事务 ID 记录下来，后续即使它们修改了记录行的值，对于当前事务也是不可见的。`m_ids` 不包括当前事务自己和已提交的事务（正在内存中）
 - `m_creator_trx_id`：创建该 `Read View` 的事务 ID
 
-#### undo-log
+### undo-log
 
 `undo log` 主要有两个作用：
 
@@ -78,21 +78,21 @@
 
 **`insert` 时的数据初始状态：**
 
-![markdown](https://ddmcc-1255635056.file.myqcloud.com/317e91e1-1ee1-42ad-9412-9098d5c6a9ad.png)
+![](https://ddmcc-1255635056.file.myqcloud.com/317e91e1-1ee1-42ad-9412-9098d5c6a9ad.png)
 
 2. **`update undo log`** ：`update` 或 `delete` 操作中产生的 `undo log`。该 `undo log`可能需要提供 `MVCC` 机制，因此不能在事务提交时就进行删除。提交时放入 `undo log` 链表，等待 `purge线程` 进行最后的删除
 
 **数据第一次被修改时：**
 
-![markdown](https://ddmcc-1255635056.file.myqcloud.com/c52ff79f-10e6-46cb-b5d4-3c9cbcc1934a.png)
+![](https://ddmcc-1255635056.file.myqcloud.com/c52ff79f-10e6-46cb-b5d4-3c9cbcc1934a.png)
 
 **数据第二次被修改时：**
 
-![markdown](https://ddmcc-1255635056.file.myqcloud.com/6a276e7a-b0da-4c7b-bdf7-c0c7b7b3b31c.png)
+![](https://ddmcc-1255635056.file.myqcloud.com/6a276e7a-b0da-4c7b-bdf7-c0c7b7b3b31c.png)
 
 不同事务或者相同事务的对同一记录行的修改，会使该记录行的 `undo log` 成为一条链表，链首就是最新的记录，链尾就是最早的旧记录
 
-#### 数据可见性算法
+### 数据可见性算法
 
 在 `InnoDB` 存储引擎中，创建一个新事务后，执行每个 `select` 语句前，都会创建一个快照（Read View），**快照中保存了当前数据库系统中正处于活跃（没有 commit）的事务的 ID 号**。其实简单的说保存的是系统中当前不应该被本事务看到的其他事务 ID 列表（即 m_ids）。当用户在这个事务中要读取某个记录行的时候，`InnoDB` 会将该记录行的 `DB_TRX_ID` 与 `Read View` 中的一些变量及当前事务 ID 进行比较，判断是否满足可见性条件
 
@@ -127,13 +127,13 @@
 
 举个例子：
 
-![markdown](https://ddmcc-1255635056.file.myqcloud.com/6fb2b9a1-5f14-4dec-a797-e4cf388ed413.png)
+![](https://ddmcc-1255635056.file.myqcloud.com/6fb2b9a1-5f14-4dec-a797-e4cf388ed413.png)
 
-#### **在 RC 下 ReadView 生成情况**
+### 在 RC 下 ReadView 生成情况
 
 1. **`假设时间线来到 T4 ，那么此时数据行 id = 1 的版本链为`：**
 
-   ![markdown](https://ddmcc-1255635056.file.myqcloud.com/a3fd1ec6-8f37-42fa-b090-7446d488fd04.png)
+   ![](https://ddmcc-1255635056.file.myqcloud.com/a3fd1ec6-8f37-42fa-b090-7446d488fd04.png)
 
 由于 RC 级别下每次查询都会生成`Read View` ，并且事务 101、102 并未提交，此时 `103` 事务生成的 `Read View` 中活跃的事务 **`m_ids` 为：[101,102]** ，`m_low_limit_id`为：104，`m_up_limit_id`为：101，`m_creator_trx_id` 为：103
 
@@ -159,7 +159,7 @@
 
 > **总结：** **在 RC 隔离级别下，事务在每次查询开始时都会生成并设置新的 Read View，所以导致不可重复读**
 
-#### **在 RR 下 ReadView 生成情况**
+### 在 RR 下 ReadView 生成情况
 
 **在可重复读级别下，只会在事务开始后第一次读取数据时生成一个 Read View（m_ids 列表）**
 
@@ -199,11 +199,11 @@
 
 `InnoDB`存储引擎在 RR 级别下通过 `MVCC`和 `Next-key Lock` 来解决幻读问题：
 
-1. **执行普通 `select`，此时会以 `MVCC` 快照读的方式读取数据**
+**1、执行普通 `select`，此时会以 `MVCC` 快照读的方式读取数据**
 
 在快照读的情况下，RR 隔离级别只会在事务开启后的第一次查询生成 `Read View` ，并使用至事务提交。所以在生成 `Read View` 之后其它事务所做的更新、插入记录版本对当前事务并不可见，实现了可重复读和防止快照读下的 “幻读”
 
-2. **执行 select...for update/lock in share mode、insert、update、delete 等当前读**
+**2、执行 select...for update/lock in share mode、insert、update、delete 等当前读**
 
 在当前读下，读取的都是最新的数据，如果其它事务有插入新的记录，并且刚好在当前事务查询范围内，就会产生幻读！`InnoDB` 使用 [Next-key Lock](https://dev.mysql.com/doc/refman/5.7/en/innodb-locking.html#innodb-next-key-locks) 来防止这种情况。当执行当前读时，会锁定读取到的记录的同时，锁定它们的间隙，防止其它事务在查询范围内插入数据。只要我不让你插入，就不会发生幻读
 
