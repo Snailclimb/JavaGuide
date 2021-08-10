@@ -137,18 +137,19 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 **总结：**
 
-1. **[MySQL知识点总结](docs/database/MySQL.md)** (必看 :+1:)
-2. [阿里巴巴开发手册数据库部分的一些最佳实践](docs/database/阿里巴巴开发手册数据库部分的一些最佳实践.md)
-3. [一千行 MySQL 学习笔记](docs/database/一千行MySQL命令.md)
-4. [MySQL 高性能优化规范建议](docs/database/MySQL高性能优化规范建议.md)
+1. [数据库基础知识总结](docs/database/数据库基础知识.md)
+2. **[MySQL知识点总结](docs/database/mysql/MySQL总结.md)** (必看 :+1:)
+3. [阿里巴巴开发手册数据库部分的一些最佳实践](docs/database/mysql/阿里巴巴开发手册数据库部分的一些最佳实践.md)
+4. [一千行 MySQL 学习笔记](docs/database/mysql/一千行MySQL学习笔记.md)
+5. [MySQL 高性能优化规范建议](docs/database/mysql/MySQL高性能优化规范建议.md)
 
 **重要知识点：**
 
-1. [MySQL数据库索引总结](docs/database/MySQL数据库索引.md)
-2. [事务隔离级别(图文详解)](<docs/database/事务隔离级别(图文详解).md>)
-3. [一条 SQL 语句在 MySQL 中如何执行的](docs/database/一条sql语句在mysql中如何执行的.md)
-4. [关于数据库中如何存储时间的一点思考](docs/database/关于数据库存储时间的一点思考.md)
-5. [InnoDB存储引擎对MVCC的实现](docs/database/InnoDB对MVCC的实现.md)
+1. [MySQL数据库索引总结](docs/database/mysql/MySQL数据库索引.md)
+2. [事务隔离级别(图文详解)](docs/database/mysql/事务隔离级别(图文详解).md)
+3. [InnoDB存储引擎对MVCC的实现](docs/database/mysql/InnoDB对MVCC的实现.md)
+4. [一条 SQL 语句在 MySQL 中如何执行的](docs/database/mysql/一条sql语句在mysql中如何执行的.md)
+5. [关于数据库中如何存储时间的一点思考](docs/database/mysql/关于数据库存储时间的一点思考.md)
 
 ### Redis
 
