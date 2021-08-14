@@ -333,7 +333,7 @@ Output：
 
 `Deque` 扩展了 `Queue` 的接口, 增加了在队首和队尾进行插入和删除的方法，同样根据失败后处理方式的不同分为两类：
 
-| `Deque`接口  | 抛出异常      | 返回特殊值      |
+| `Deque` 接口  | 抛出异常      | 返回特殊值      |
 | ------------ | ------------- | --------------- |
 | 插入队首     | addFirst(E e) | offerFirst(E e) |
 | 插入队尾     | addLast(E e)  | offerLast(E e)  |
@@ -342,12 +342,12 @@ Output：
 | 查询队首元素 | getFirst()    | peekFirst()     |
 | 查询队尾元素 | getLast()     | peekLast()      |
 
-事实上，`Deque` 还提供有 `push()` 和 `pop()` 等其他方法，用于模拟栈。
+事实上，`Deque` 还提供有 `push()` 和 `pop()` 等其他方法，可用于模拟栈。
 
 
 ### 1.4.2 ArrayDeque 与 LinkedList 的区别
 
-`ArrayDeque` 和 `LinkedList` 都实现了`Deque`接口，两者都具有队列的功能，但两者有什么区别呢？
+`ArrayDeque` 和 `LinkedList` 都实现了 `Deque` 接口，两者都具有队列的功能，但两者有什么区别呢？
 
 - `ArrayDeque` 是基于可变长的数组和双指针来实现，而 `LinkedList` 则通过链表来实现。
 
@@ -357,7 +357,7 @@ Output：
 
 - `ArrayDeque` 插入时可能存在扩容过程, 不过均摊后的插入操作依然为 O(1)。虽然 `LinkedList` 不需要扩容，但是每次插入数据时均需要申请新的堆空间，均摊性能相比更慢。
 
-从性能的角度上，选用 `ArrayDeque` 去实现队列要比 `LinkedList` 更好。此外，`ArrayDeque` 也可以用于实现栈。
+从性能的角度上，选用 `ArrayDeque` 来实现队列要比 `LinkedList` 更好。此外，`ArrayDeque` 也可以用于实现栈。
 
 ### 1.4.3 说一说 PriorityQueue
 
@@ -368,9 +368,9 @@ Output：
 - `PriorityQueue` 利用了二叉堆的数据结构来实现的，底层使用可变长的数组来存储数据
 - `PriorityQueue` 通过堆元素的上浮和下沉，实现了在 O(logn) 的时间复杂度内插入元素和删除堆顶元素。
 - `PriorityQueue` 是非线程安全的，且不支持存储 `NULL` 和 `non-comparable` 的对象。
-- `PriorityQueue` 默认是小顶堆，可以接收一个`Comparator`作为构造参数来比较队列中元素的优先级。
+- `PriorityQueue` 默认是小顶堆，但可以接收一个 `Comparator` 作为构造参数，从而来自定义元素优先级的先后。
 
-`PriorityQueue` 在面试中可能更多的会出现在手撕算法的时候，典型例题包括堆排序、求第K大的数、带权图的遍历等，所以需要学会熟练使用才行。
+`PriorityQueue` 在面试中可能更多的会出现在手撕算法的时候，典型例题包括堆排序、求第K大的数、带权图的遍历等，所以需要会熟练使用才行。
 
 ## 1.5. Map 接口
 
