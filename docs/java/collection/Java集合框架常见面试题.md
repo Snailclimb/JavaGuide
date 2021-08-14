@@ -310,9 +310,66 @@ Output：
 
 `TreeSet` 底层使用红黑树，能够按照添加元素的顺序进行遍历，排序的方式有自然排序和定制排序。
 
-## 1.4. Map 接口
+## 1.4 Collection 子接口之 Queue
 
-### 1.4.1. HashMap 和 Hashtable 的区别
+### 1.4.1 Queue 与 Deque 的区别
+
+`Queue` 是单端队列，只能从一端插入元素，另一端删除元素，实现上一般遵循 **先进先出（FIFO）** 规则。
+
+`Queue` 扩展了 `Collection` 的接口，根据 **因为容量问题而导致操作失败后处理方式的不同** 可以分为两类方法: 一种在操作失败后会抛出异常，另一种则会返回特殊值。
+
+| `Queue` 接口| 抛出异常  | 返回特殊值 |
+| ------------ | --------- | ---------- |
+| 插入队尾     | add(E e)  | offer(E e) |
+| 删除队首     | remove()  | poll()     |
+| 查询队首元素 | element() | peek()     |
+
+`Deque` 是双端队列，在队列的两端均可以插入或删除元素。
+
+`Deque` 扩展了 `Queue` 的接口, 增加了在队首和队尾进行插入和删除的方法，同样根据失败后处理方式的不同分为两类：
+
+| `Deque`接口  | 抛出异常      | 返回特殊值      |
+| ------------ | ------------- | --------------- |
+| 插入队首     | addFirst(E e) | offerFirst(E e) |
+| 插入队尾     | addLast(E e)  | offerLast(E e)  |
+| 删除队首     | removeFirst() | pollFirst()     |
+| 删除队尾     | removeLast()  | pollLast()      |
+| 查询队首元素 | getFirst()    | peekFirst()     |
+| 查询队尾元素 | getLast()     | peekLast()      |
+
+事实上，`Deque` 还提供有 `push()` 和 `pop()` 等其他方法，用于模拟栈。
+
+
+### 1.4.2 ArrayDeque 与 LinkedList 的区别
+
+`ArrayDeque` 和 `LinkedList` 都实现了`Deque`接口，两者都具有队列的功能，但两者有什么区别呢？
+
+- `ArrayDeque` 是基于可变长的数组和双指针来实现，而 `LinkedList` 则通过链表来实现。
+
+- `ArrayDeque` 不支持存储 `NULL` 数据，但 `LinkedList` 支持。
+
+- `ArrayDeque` 是在 JDK1.6 才被引入的，而`LinkedList` 早在 JDK1.2 时就已经存在。
+
+- `ArrayDeque` 插入时可能存在扩容过程, 不过均摊后的插入操作依然为 O(1)。虽然 `LinkedList` 不需要扩容，但是每次插入数据时均需要申请新的堆空间，均摊性能相比更慢。
+
+从性能的角度上，选用 `ArrayDeque` 去实现队列要比 `LinkedList` 更好。此外，`ArrayDeque` 也可以用于实现栈。
+
+### 1.4.3 说一说 PriorityQueue
+
+`PriorityQueue` 是在 JDK1.5 中被引入的, 其与 `Queue` 的区别在于元素出队顺序是与优先级相关的，即总是优先级最高的元素先出队。
+
+这里列举其相关的一些要点：
+
+- `PriorityQueue` 利用了二叉堆的数据结构来实现的，底层使用可变长的数组来存储数据
+- `PriorityQueue` 通过堆元素的上浮和下沉，实现了在 O(logn) 的时间复杂度内插入元素和删除堆顶元素。
+- `PriorityQueue` 是非线程安全的，且不支持存储 `NULL` 和 `non-comparable` 的对象。
+- `PriorityQueue` 默认是小顶堆，可以接收一个`Comparator`作为构造参数来比较队列中元素的优先级。
+
+`PriorityQueue` 在面试中可能更多的会出现在手撕算法的时候，典型例题包括堆排序、求第K大的数、带权图的遍历等，所以需要学会熟练使用才行。
+
+## 1.5. Map 接口
+
+### 1.5.1. HashMap 和 Hashtable 的区别
 
 1. **线程是否安全：** `HashMap` 是非线程安全的，`HashTable` 是线程安全的,因为 `HashTable` 内部的方法基本都经过`synchronized` 修饰。（如果你要保证线程安全的话就使用 `ConcurrentHashMap` 吧！）；
 2. **效率：** 因为线程安全的问题，`HashMap` 要比 `HashTable` 效率高一点。另外，`HashTable` 基本被淘汰，不要在代码中使用它；
@@ -357,7 +414,7 @@ Output：
     }
 ```
 
-### 1.4.2. HashMap 和 HashSet 区别
+### 1.5.2. HashMap 和 HashSet 区别
 
 如果你看过 `HashSet` 源码的话就应该知道：`HashSet` 底层就是基于 `HashMap` 实现的。（`HashSet` 的源码非常非常少，因为除了 `clone()`、`writeObject()`、`readObject()`是 `HashSet` 自己不得不实现之外，其他方法都是直接调用 `HashMap` 中的方法。
 
@@ -368,7 +425,7 @@ Output：
 |     调用 `put()`向 map 中添加元素      |             调用 `add()`方法向 `Set` 中添加元素              |
 | `HashMap` 使用键（Key）计算 `hashcode` | `HashSet` 使用成员对象来计算 `hashcode` 值，对于两个对象来说 `hashcode` 可能相同，所以`equals()`方法用来判断对象的相等性 |
 
-### 1.4.3. HashMap 和 TreeMap 区别
+### 1.5.3. HashMap 和 TreeMap 区别
 
 `TreeMap` 和`HashMap` 都继承自`AbstractMap` ，但是需要注意的是`TreeMap`它还实现了`NavigableMap`接口和`SortedMap` 接口。
 
@@ -436,7 +493,7 @@ TreeMap<Person, String> treeMap = new TreeMap<>((person1, person2) -> {
 
 **综上，相比于`HashMap`来说 `TreeMap` 主要多了对集合中的元素根据键排序的能力以及对集合内元素的搜索的能力。**
 
-### 1.4.4. HashSet 如何检查重复
+### 1.5.4. HashSet 如何检查重复
 
 以下内容摘自我的 Java 启蒙书《Head first java》第二版：
 
@@ -479,9 +536,9 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
 
 对于引用类型（包括包装类型）来说，equals 如果没有被重写，对比它们的地址是否相等；如果 equals()方法被重写（例如 String），则比较的是地址里的内容。
 
-### 1.4.5. HashMap 的底层实现
+### 1.5.5. HashMap 的底层实现
 
-#### 1.4.5.1. JDK1.8 之前
+#### 1.5.5.1. JDK1.8 之前
 
 JDK1.8 之前 `HashMap` 底层是 **数组和链表** 结合在一起使用也就是 **链表散列**。**HashMap 通过 key 的 hashCode 经过扰动函数处理过后得到 hash 值，然后通过 (n - 1) & hash 判断当前元素存放的位置（这里的 n 指的是数组的长度），如果当前位置存在元素的话，就判断该元素与要存入的元素的 hash 值以及 key 是否相同，如果相同的话，直接覆盖，不相同就通过拉链法解决冲突。**
 
@@ -520,7 +577,7 @@ static int hash(int h) {
 
 ![jdk1.8之前的内部结构-HashMap](images/jdk1.8之前的内部结构-HashMap.png)
 
-#### 1.4.5.2. JDK1.8 之后
+#### 1.5.5.2. JDK1.8 之后
 
 相比于之前的版本， JDK1.8 之后在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为 8）（将链表转换成红黑树前会判断，如果当前数组的长度小于 64，那么会选择先进行数组扩容，而不是转换为红黑树）时，将链表转化为红黑树，以减少搜索时间。
 
@@ -528,7 +585,7 @@ static int hash(int h) {
 
 > TreeMap、TreeSet 以及 JDK1.8 之后的 HashMap 底层都用到了红黑树。红黑树就是为了解决二叉查找树的缺陷，因为二叉查找树在某些情况下会退化成一个线性结构。
 
-### 1.4.6. HashMap 的长度为什么是 2 的幂次方
+### 1.5.6. HashMap 的长度为什么是 2 的幂次方
 
 为了能让 HashMap 存取高效，尽量较少碰撞，也就是要尽量把数据分配均匀。我们上面也讲到了过了，Hash 值的范围值-2147483648 到 2147483647，前后加起来大概 40 亿的映射空间，只要哈希函数映射得比较均匀松散，一般应用是很难出现碰撞的。但问题是一个 40 亿长度的数组，内存是放不下的。所以这个散列值是不能直接拿来用的。用之前还要先做对数组的长度取模运算，得到的余数才能用来要存放的位置也就是对应的数组下标。这个数组下标的计算方法是“ `(n - 1) & hash`”。（n 代表数组长度）。这也就解释了 HashMap 的长度为什么是 2 的幂次方。
 
@@ -536,17 +593,17 @@ static int hash(int h) {
 
 我们首先可能会想到采用%取余的操作来实现。但是，重点来了：**“取余(%)操作中如果除数是 2 的幂次则等价于与其除数减一的与(&)操作（也就是说 hash%length==hash&(length-1)的前提是 length 是 2 的 n 次方；）。”** 并且 **采用二进制位操作 &，相对于%能够提高运算效率，这就解释了 HashMap 的长度为什么是 2 的幂次方。**
 
-### 1.4.7. HashMap 多线程操作导致死循环问题
+### 1.5.7. HashMap 多线程操作导致死循环问题
 
 主要原因在于并发下的 Rehash 会造成元素之间会形成一个循环链表。不过，jdk 1.8 后解决了这个问题，但是还是不建议在多线程下使用 HashMap,因为多线程下使用 HashMap 还是会存在其他问题比如数据丢失。并发环境下推荐使用 ConcurrentHashMap 。
 
 详情请查看：<https://coolshell.cn/articles/9606.html>
 
-### 1.4.8. HashMap 有哪几种常见的遍历方式?
+### 1.5.8. HashMap 有哪几种常见的遍历方式?
 
 [HashMap 的 7 种遍历方式与性能分析！](https://mp.weixin.qq.com/s/zQBN3UvJDhRTKP6SzcZFKw)
 
-### 1.4.9. ConcurrentHashMap 和 Hashtable 的区别
+### 1.5.9. ConcurrentHashMap 和 Hashtable 的区别
 
 `ConcurrentHashMap` 和 `Hashtable` 的区别主要体现在实现线程安全的方式上不同。
 
@@ -573,9 +630,9 @@ static int hash(int h) {
 
 JDK1.8 的 `ConcurrentHashMap` 不在是 **Segment 数组 + HashEntry 数组 + 链表**，而是 **Node 数组 + 链表 / 红黑树**。不过，Node 只能用于链表的情况，红黑树的情况需要使用 **`TreeNode`**。当冲突链表达到一定长度时，链表会转换成红黑树。
 
-### 1.4.10. ConcurrentHashMap 线程安全的具体实现方式/底层具体实现
+### 1.5.10. ConcurrentHashMap 线程安全的具体实现方式/底层具体实现
 
-#### 1.4.10.1. JDK1.7（上面有示意图）
+#### 1.5.10.1. JDK1.7（上面有示意图）
 
 首先将数据分为一段一段的存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据时，其他段的数据也能被其他线程访问。
 
@@ -590,13 +647,13 @@ static class Segment<K,V> extends ReentrantLock implements Serializable {
 
 一个 `ConcurrentHashMap` 里包含一个 `Segment` 数组。`Segment` 的结构和 `HashMap` 类似，是一种数组和链表结构，一个 `Segment` 包含一个 `HashEntry` 数组，每个 `HashEntry` 是一个链表结构的元素，每个 `Segment` 守护着一个 `HashEntry` 数组里的元素，当对 `HashEntry` 数组的数据进行修改时，必须首先获得对应的 `Segment` 的锁。
 
-#### 1.4.10.2. JDK1.8 （上面有示意图）
+#### 1.5.10.2. JDK1.8 （上面有示意图）
 
 `ConcurrentHashMap` 取消了 `Segment` 分段锁，采用 CAS 和 `synchronized` 来保证并发安全。数据结构跟 HashMap1.8 的结构类似，数组+链表/红黑二叉树。Java 8 在链表长度超过一定阈值（8）时将链表（寻址时间复杂度为 O(N)）转换为红黑树（寻址时间复杂度为 O(log(N))）
 
 `synchronized` 只锁定当前链表或红黑二叉树的首节点，这样只要 hash 不冲突，就不会产生并发，效率又提升 N 倍。
 
-## 1.5. Collections 工具类
+## 1.6. Collections 工具类
 
 Collections 工具类常用方法:
 
@@ -604,7 +661,7 @@ Collections 工具类常用方法:
 2. 查找,替换操作
 3. 同步控制(不推荐，需要线程安全的集合类型时请考虑使用 JUC 包下的并发集合)
 
-### 1.5.1. 排序操作
+### 1.6.1. 排序操作
 
 ```java
 void reverse(List list)//反转
@@ -615,7 +672,7 @@ void swap(List list, int i , int j)//交换两个索引位置的元素
 void rotate(List list, int distance)//旋转。当distance为正数时，将list后distance个元素整体移到前面。当distance为负数时，将 list的前distance个元素整体移到后面
 ```
 
-### 1.5.2. 查找,替换操作
+### 1.6.2. 查找,替换操作
 
 ```java
 int binarySearch(List list, Object key)//对List进行二分查找，返回索引，注意List必须是有序的
@@ -627,7 +684,7 @@ int indexOfSubList(List list, List target)//统计target在list中第一次出�
 boolean replaceAll(List list, Object oldVal, Object newVal)//用新元素替换旧元素
 ```
 
-### 1.5.3. 同步控制
+### 1.6.3. 同步控制
 
 `Collections` 提供了多个`synchronizedXxx()`方法·，该方法可以将指定集合包装成线程同步的集合，从而解决多线程并发访问集合时的线程安全问题。
 
