@@ -371,7 +371,7 @@ System.out.println(str3 == str5);//true
 System.out.println(str4 == str5);//false
 ```
 
-![字符串拼接](./pictures/java内存区域/字符串拼接-常量池2.png)
+![字符串拼接](./pictures/java内存区域/字符串拼接-常量池.png)
 
 尽量避免多个字符串拼接，因为这样会重新创建对象。如果需要改变字符串的话，可以使用 StringBuilder 或者 StringBuffer。
 
