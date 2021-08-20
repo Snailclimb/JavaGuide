@@ -336,7 +336,7 @@ var op = Optional.empty();
 System.out.println(op.isEmpty());//判断指定的 Optional 对象是否为空
 ```
 
-### ZGC：可伸缩低延迟垃圾收集器
+### ZGC(可伸缩低延迟垃圾收集器)
 
 **ZGC 即 Z Garbage Collector**，是一个可伸缩的、低延迟的垃圾收集器。
 
@@ -549,6 +549,46 @@ if(obj instanceof String str){
 
 ## Java13
 
+### 增强 ZGC(释放未使用内存)
+
+在 Java 11 中是实验性的引入的 ZGC 在实际的使用中存在未能主动将未使用的内存释放给操作系统的问题。
+
+ZGC 堆由一组称为 ZPages 的堆区域组成。在 GC 周期中清空 ZPages 区域时，它们将被释放并返回到页面缓存 **ZPageCache** 中，此缓存中的 ZPages 按最近最少使用（LRU）的顺序，并按照大小进行组织。
+
+在 Java 13 中，ZGC 将向操作系统返回被标识为长时间未使用的页面，这样它们将可以被其他进程重用。
+
+### SocketAPI 重构
+
+Java Socket API 终于迎来了重大更新！
+
+Java 13 将 Socket API 的底层进行了重写， `NioSocketImpl` 是对 `PlainSocketImpl` 的直接替代，它使用 `java.util.concurrent` 包下的锁而不是同步方法。如果要使用旧实现，请使用 `-Djdk.net.usePlainSocketImpl=true`。
+
+并且，在 Java 13 中是默认使用新的 Socket 实现。
+
+```java
+public final class NioSocketImpl extends SocketImpl implements PlatformSocketImpl {
+}
+```
+
+### FileSystems
+
+`FileSystems` 类中添加了以下三种新方法，以便更容易地使用将文件内容视为文件系统的文件系统提供程序：
+
+- `newFileSystem(Path)`
+- `newFileSystem(Path, Map<String, ?>)`
+- `newFileSystem(Path, Map<String, ?>, ClassLoader)`
+
+### 动态 CDS 存档
+
+Java 13 中对 Java 10 中引入的应用程序类数据共享(AppCDS)进行了进一步的简化、改进和扩展，即：**允许在 Java 应用程序执行结束时动态进行类归档**，具体能够被归档的类包括所有已被加载，但不属于默认基层 CDS 的应用程序类和引用类库中的类。
+
+这提高了应用程序类数据共享（[AppCDS](https://openjdk.java.net/jeps/310)）的可用性。无需用户进行试运行来为每个应用程序创建类列表。
+
+```bash
+$ java -XX:ArchiveClassesAtExit=my_app_cds.jsa -cp my_app.jar
+$ java -XX:SharedArchiveFile=my_app_cds.jsa -cp my_app.jar
+```
+
 ### 预览新特性
 
 #### 文本块
@@ -569,7 +609,6 @@ String json ="{\n" +
 支持文本块之后的 HTML 写法：
 
 ```java
-
  String json = """
                 {
                     "name":"mkyong",
@@ -631,46 +670,6 @@ public String translateEscapes() {
             default: yield name +" is a good language";
         };
  }
-```
-
-### 增强 ZGC(释放未使用内存)
-
-在 Java 11 中是实验性的引入的 ZGC 在实际的使用中存在未能主动将未使用的内存释放给操作系统的问题。
-
-ZGC 堆由一组称为 ZPages 的堆区域组成。在 GC 周期中清空 ZPages 区域时，它们将被释放并返回到页面缓存 **ZPageCache** 中，此缓存中的 ZPages 按最近最少使用（LRU）的顺序，并按照大小进行组织。
-
-在 Java 13 中，ZGC 将向操作系统返回被标识为长时间未使用的页面，这样它们将可以被其他进程重用。
-
-### SocketAPI 重构
-
-Java Socket API 终于迎来了重大更新！
-
-Java 13 将 Socket API 的底层进行了重写， `NioSocketImpl` 是对 `PlainSocketImpl` 的直接替代，它使用 `java.util.concurrent` 包下的锁而不是同步方法。如果要使用旧实现，请使用 `-Djdk.net.usePlainSocketImpl=true`。
-
-并且，在 Java 13 中是默认使用新的 Socket 实现，使其易于发现并在排除问题同时增加可维护性
-
-```java
-public final class NioSocketImpl extends SocketImpl implements PlatformSocketImpl {
-}
-```
-
-### FileSystems
-
-`FileSystems` 类中添加了以下三种新方法，以便更容易地使用将文件内容视为文件系统的文件系统提供程序：
-
-- `newFileSystem(Path)`
-- `newFileSystem(Path, Map<String, ?>)`
-- `newFileSystem(Path, Map<String, ?>, ClassLoader)`
-
-### 动态 CDS 存档
-
-Java 13 中对 Java 10 中引入的应用程序类数据共享(AppCDS)进行了进一步的简化、改进和扩展，即：**允许在 Java 应用程序执行结束时动态进行类归档**，具体能够被归档的类包括所有已被加载，但不属于默认基层 CDS 的应用程序类和引用类库中的类。
-
-这提高了应用程序类数据共享（[AppCDS](https://openjdk.java.net/jeps/310)）的可用性。无需用户进行试运行来为每个应用程序创建类列表。
-
-```bash
-$ java -XX:ArchiveClassesAtExit=my_app_cds.jsa -cp my_app.jar
-$ java -XX:SharedArchiveFile=my_app_cds.jsa -cp my_app.jar
 ```
 
 ## Java14
@@ -789,6 +788,127 @@ c++ php
 - 移除了 CMS(Concurrent Mark Sweep) 垃圾收集器（功成而退）
 - 新增了 jpackage 工具，标配将应用打成 jar 包外，还支持不同平台的特性包，比如 linux 下的`deb`和`rpm`，window 平台下的`msi`和`exe`
 
+## Java15
+
+### CharSequence
+
+`CharSequence` 接口添加了一个默认方法 `isEmpty()` 来判断字符序列为空，如果是则返回 true。
+
+```java
+public interface CharSequence {
+  default boolean isEmpty() {
+      return this.length() == 0;
+  }
+}
+```
+
+### TreeMap
+
+`TreeMap` 新引入了下面这些方法：
+
+- `putIfAbsent()`
+- `computeIfAbsent()`
+- `computeIfPresent()`
+- `compute()`
+- `merge()`
+
+### ZGC(转正)
+
+Java11 的时候 ，ZGC 还在试验阶段。
+
+当时，ZGC 的出现让众多 Java 开发者看到了垃圾回收器的另外一种可能，因此备受关注。
+
+经过多个版本的迭代，不断的完善和修复问题，ZGC 在 Java 15 已经可以正式使用了！
+
+不过，默认的垃圾回收器依然是 G1。你可以通过下面的参数启动 ZGC：
+
+```bash
+$ java -XX:+UseZGC className
+```
+
+### EdDSA(数字签名算法)
+
+新加入了一个安全性和性能都更强的基于 Edwards-Curve Digital Signature Algorithm （EdDSA）实现的数字签名算法。
+
+虽然其性能优于现有的 ECDSA 实现，不过，它并不会完全取代 JDK 中现有的椭圆曲线数字签名算法( ECDSA)。
+
+```java
+KeyPairGenerator kpg = KeyPairGenerator.getInstance("Ed25519");
+KeyPair kp = kpg.generateKeyPair();
+
+byte[] msg = "test_string".getBytes(StandardCharsets.UTF_8);
+
+Signature sig = Signature.getInstance("Ed25519");
+sig.initSign(kp.getPrivate());
+sig.update(msg);
+byte[] s = sig.sign();
+
+String encodedString = Base64.getEncoder().encodeToString(s);
+System.out.println(encodedString);
+```
+
+输出：
+
+```
+0Hc0lxxASZNvS52WsvnncJOH/mlFhnA8Tc6D/k5DtAX5BSsNVjtPF4R4+yMWXVjrvB2mxVXmChIbki6goFBgAg==
+```
+
+### 文本块(转正)
+
+在 Java 15 ，文本块是正式的功能特性了。
+
+### 隐藏类(Hidden Classes)
+
+隐藏类是为框架（frameworks）所设计的，隐藏类不能直接被其他类的字节码使用，只能在运行时生成类并通过反射间接使用它们。
+
+### 预览新特性
+
+#### record 关键字
+
+Java 15 对 Java 14 中引入的预览新特性进行了增强，主要是引入了一个新的概念 **密封类（Sealed Classes）。**
+
+密封类可以对继承或者实现它们的类进行限制。
+
+比如抽象类 `Person` 只允许 `Employee` 和 `Manager` 继承。
+
+```java
+public abstract sealed class Person
+    permits Employee, Manager {
+
+    //...
+}
+```
+
+另外，任何扩展密封类的类本身都必须声明为 `sealed`、`non-sealed` 或 `final`。
+
+```java
+public final class Employee extends Person {
+}
+
+public non-sealed class Manager extends Person {
+}
+```
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/image-20210820153955587.png)
+
+在 `java.lang.Class` 增加了两个公共方法用于获取 `Record` 类信息：
+
+1. `RecordComponent[] getRecordComponents()`
+2. `boolean isRecord()`
+
+#### instanceof 模式匹配
+
+Java 15 并没有对此特性进行调整，继续预览特性，主要用于接受更多的使用反馈。
+
+在未来的 Java 版本中，Java 的目标是继续完善 `instanceof` 模式匹配新特性。
+
+### Java15 其他新特性
+
+- **Nashorn JavaScript 引擎彻底移除** ：Nashorn 从 Java8 开始引入的 JavaScript 引擎，Java9 对 Nashorn 做了些增强，实现了一些 ES6 的新特性。在 Java 11 中就已经被弃用，到了 Java 15 就彻底被删除了。
+- **DatagramSocket API 重构**
+- **禁用和废弃偏向锁（Biased Locking）** ： 偏向锁的引入增加了 JVM 的复杂性大于其带来的性能提升。不过，你仍然可以使用 `-XX:+UseBiasedLocking` 启用偏向锁定，但它会提示 这是一个已弃用的 API。
+- ......
+
 ## 总结
 
 ### 关于预览特性
@@ -825,3 +945,4 @@ c++ php
 - Oracle Java14 record <https://docs.oracle.com/en/java/javase/14/language/records.html>
 - java14-features <https://www.techgeeknext.com/java/java14-features>
 - Java 14 Features : <https://www.journaldev.com/37273/java-14-features>
+- What is new in Java 15: https://mkyong.com/java/what-is-new-in-java-15/
