@@ -1,4 +1,4 @@
-👉 如果你不知道该学习什么的话，请看 [Java 学习线路图是怎样的？]( https://zhuanlan.zhihu.com/p/379041500)  （原创不易，欢迎点赞），这是 2021 最新最完善的 Java 学习路线！另外，我整理了一份各个技术的学习路线，需要的小伙伴[加我微信](#联系我)备注“**Github-学习路线**”即可！
+👉 如果你不知道该学习什么的话，请看 [Java 学习线路图是怎样的？]( https://zhuanlan.zhihu.com/p/379041500)  （原创不易，欢迎点赞），这是 2021 最新最完善的 Java 学习路线！另外，[我的朋友整理了一份消息队列常见面试题，需要的小伙伴可以点击领取！](http://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=100025985&idx=1&sn=681af486050fabbeea27fa1c3bec5d65&chksm=4ea1e94a79d6605c72f280b5268100c6e96c6ab1dc9a0178b33e25a72ff5f4eac3dcb56fa44f#rd)
 
 👉 推荐 [在线阅读](https://snailclimb.gitee.io/javaguide)  (Github 访问速度比较慢可能会导致部分图片无法刷新出来) 
 
