@@ -345,8 +345,7 @@ ZGC 主要为了满足如下目标进行设计：
 - GC 停顿时间不超过 10ms
 - 即能处理几百 MB 的小堆，也能处理几个 TB 的大堆
 - 应用吞吐能力不会下降超过 15%（与 G1 回收算法相比）
-- 方便在此基础上引入新的 GC 特性和利用 colord
-- 针以及 Load barriers 优化奠定基础
+- 方便在此基础上引入新的 GC 特性和利用 colored 针以及 Load barriers 优化奠定基础
 - 当前只支持 Linux/x64 位平台
 
 ZGC 目前 **处在实验阶段**，只支持 Linux/x64 平台。
@@ -725,7 +724,7 @@ System.out.println(result);
 
 简化数据类的定义方式，使用 `record` 代替 `class` 定义的类，只需要声明属性，就可以在获得属性的访问方法，以及 `toString()`，`hashCode()`, `equals()`方法
 
-类似于使用 `class` 定义类，同时使用了 lomobok 插件，并打上了`@Getter,@ToString,@EqualsAndHashCode`注解
+类似于使用 `class` 定义类，同时使用了 lombok 插件，并打上了`@Getter,@ToString,@EqualsAndHashCode`注解
 
 ```java
 /**
