@@ -60,7 +60,7 @@ jshell 是 Java 9 新增的一个实用工具。为 Java 提供了类似于 Pyth
 ```java
 List.of("Java", "C++");
 Set.of("Java", "C++");
-Map.of("Java", 1, "C++", 2)`;
+Map.of("Java", 1, "C++", 2);
 ```
 
 使用 `of()` 创建的集合为不可变集合，不能进行添加、删除、替换、 排序等操作，不然会报 `java.lang.UnsupportedOperationException` 异常。
