@@ -205,7 +205,7 @@ public interface MyInterface {
 - 类 `CompletableFuture` 中增加了几个新的方法（`completeAsync` ，`orTimeout` 等）
 - **Nashorn 引擎的增强** ：Nashorn 从 Java8 开始引入的 JavaScript 引擎，Java9 对 Nashorn 做了些增强，实现了一些 ES6 的新特性（Java 11 中已经被弃用）。
 - **I/O 流的新特性** ：增加了新的方法来读取和复制 `InputStream` 中包含的数据
-- **改进应用的安全性能** ：Java 9 新增了 4 个 SHA- 3 哈希算法，SHA3-224、SHA3-256、SHA3-384 和 S HA3-512
+- **改进应用的安全性能** ：Java 9 新增了 4 个 SHA- 3 哈希算法，SHA3-224、SHA3-256、SHA3-384 和 SHA3-512
 - ......
 
 ## Java10
