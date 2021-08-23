@@ -1,4 +1,4 @@
-👉 如果你不知道该学习什么的话，请看 [Java 学习线路图是怎样的？]( https://zhuanlan.zhihu.com/p/379041500)  （原创不易，欢迎点赞），这是 2021 最新最完善的 Java 学习路线！另外，我整理了一份各个技术的学习路线，需要的小伙伴[加我微信](#联系我)备注“**Github-学习路线**”即可！
+👉 如果你不知道该学习什么的话，请看 [Java 学习线路图是怎样的？]( https://zhuanlan.zhihu.com/p/379041500)  （原创不易，欢迎点赞），这是 2021 最新最完善的 Java 学习路线！另外，[我的朋友整理了一份消息队列常见面试题，需要的小伙伴可以点击领取！](http://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=100025985&idx=1&sn=681af486050fabbeea27fa1c3bec5d65&chksm=4ea1e94a79d6605c72f280b5268100c6e96c6ab1dc9a0178b33e25a72ff5f4eac3dcb56fa44f#rd)
 
 👉 推荐 [在线阅读](https://snailclimb.gitee.io/javaguide)  (Github 访问速度比较慢可能会导致部分图片无法刷新出来) 
 
@@ -44,7 +44,7 @@
 
 ### 基础
 
-**知识点/面试题:**(必看:+1: )
+**知识点/面试题** : (必看:+1: )
 
 1. **[Java 基础知识](docs/java/basis/Java基础知识.md)**
 2. **[Java 基础知识疑难点/易错点](docs/java/basis/Java基础知识疑难点.md)**
@@ -71,11 +71,11 @@
 
 **重要知识点详解：**
 
-2. **线程池**：[Java 线程池学习总结](./docs/java/multi-thread/java线程池学习总结.md)、[拿来即用的线程池最佳实践](./docs/java/multi-thread/拿来即用的线程池最佳实践.md)
-4. [ ThreadLocal 关键字解析](docs/java/multi-thread/万字详解ThreadLocal关键字.md)
-5. [并发容器总结](docs/java/multi-thread/并发容器总结.md)
-6. [JUC 中的 Atomic 原子类总结](docs/java/multi-thread/Atomic原子类总结.md)
-7. [AQS 原理以及 AQS 同步组件总结](docs/java/multi-thread/AQS原理以及AQS同步组件总结.md)
+1. **线程池**：[Java 线程池学习总结](./docs/java/multi-thread/java线程池学习总结.md)、[拿来即用的线程池最佳实践](./docs/java/multi-thread/拿来即用的线程池最佳实践.md)
+2. [ ThreadLocal 关键字解析](docs/java/multi-thread/万字详解ThreadLocal关键字.md)
+3. [并发容器总结](docs/java/multi-thread/并发容器总结.md)
+4. [JUC 中的 Atomic 原子类总结](docs/java/multi-thread/Atomic原子类总结.md)
+5. [AQS 原理以及 AQS 同步组件总结](docs/java/multi-thread/AQS原理以及AQS同步组件总结.md)
 
 ### JVM (必看 :+1:)
 
@@ -93,7 +93,12 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 ### 新特性
 
 1.  **Java 8** ：[Java 8 新特性总结](docs/java/new-features/Java8新特性总结.md)、[Java8常用新特性总结](docs/java/new-features/java8-common-new-features.md) 、[Java 8 学习资源推荐](docs/java/new-features/Java8教程推荐.md)、[Java8 forEach 指南](docs/java/new-features/Java8foreach指南.md)
-2.  **Java9~Java14** : [一文带你看遍 JDK9~14 的重要新特性！](./docs/java/new-features/一文带你看遍JDK9到14的重要新特性.md)
+2.  **Java9~Java15** : [一文带你看遍 JDK9~15 的重要新特性！](./docs/java/new-features/java新特性总结.md)
+
+### 小技巧
+
+1. [JAD 反编译](docs/java/tips/JAD反编译tricks.md)
+2. [手把手教你定位常见 Java 性能问题](./docs/java/tips/手把手教你定位常见Java性能问题.md)
 
 ## 计算机基础
 
@@ -101,22 +106,27 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 ### 操作系统
 
-1. [操作系统常见问题总结！](docs/operating-system/basis.md)
-2. [后端程序员必备的 Linux 基础知识](docs/operating-system/linux.md)
-3. [Shell 编程入门](docs/operating-system/Shell.md)
+1. [操作系统常见问题总结！](docs/cs-basics/operating-system/basis.md)
+2. [后端程序员必备的 Linux 基础知识总结](docs/cs-basics/operating-system/linux.md)
+3. [Shell 编程入门](docs/cs-basics/operating-system/Shell.md)
 
 ### 网络
 
-1. [计算机网络常见面试题](docs/network/计算机网络.md)
-2. [计算机网络基础知识总结](docs/network/计算机网络知识总结.md)
+1. [计算机网络常见面试题](docs/cs-basics/network/计算机网络.md)
+2. [计算机网络基础知识总结](docs/cs-basics/network/计算机网络知识总结.md)
 
 ### 数据结构
 
-- **图解数据结构：**
-  1. [线性数据结构 :数组、链表、栈、队列](docs/dataStructures-algorithms/data-structure/线性数据结构.md)
-  2. [图](docs/dataStructures-algorithms/data-structure/图.md)
-  3. [堆](docs/dataStructures-algorithms/data-structure/堆.md)
-- [不了解布隆过滤器？一文给你整的明明白白！](docs/dataStructures-algorithms/data-structure/bloom-filter.md)
+**图解数据结构：**
+
+1. [线性数据结构 :数组、链表、栈、队列](docs/cs-basics/data-structure/线性数据结构.md)
+2. [图](docs/cs-basics/data-structure/图.md)
+3. [堆](docs/cs-basics/data-structure/堆.md)
+4. [树](docs/cs-basics/data-structure/树.md) ：重点关注[红黑树](docs/cs-basics/data-structure/红黑树.md)、B-，B+，B*树、LSM树
+
+其他常用数据结构 ：
+
+1. [布隆过滤器](docs/cs-basics/data-structure/bloom-filter.md)
 
 ### 算法
 
@@ -125,11 +135,13 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 - [算法学习书籍+资源推荐](https://www.zhihu.com/question/323359308/answer/1545320858) 。
 - [如何刷Leetcode?](https://www.zhihu.com/question/31092580/answer/1534887374) 
 
-**常见算法问题总结：**
+**常见算法问题总结** ：
 
-- [几道常见的字符串算法题总结 ](docs/dataStructures-algorithms/几道常见的字符串算法题.md)
-- [几道常见的链表算法题总结 ](docs/dataStructures-algorithms/几道常见的链表算法题.md)
-- [剑指 offer 部分编程题](docs/dataStructures-algorithms/剑指offer部分编程题.md)
+- [几道常见的字符串算法题总结 ](docs/cs-basics/algorithms/几道常见的字符串算法题.md)
+- [几道常见的链表算法题总结 ](docs/cs-basics/algorithms/几道常见的链表算法题.md)
+- [剑指 offer 部分编程题](docs/cs-basics/algorithms/剑指offer部分编程题.md)
+
+另外，[GeeksforGeeks]( https://www.geeksforgeeks.org/fundamentals-of-algorithms/) 这个网站总结了常见的算法 ，比较全面系统。
 
 ## 数据库
 
@@ -147,9 +159,10 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 1. [MySQL数据库索引总结](docs/database/mysql/MySQL数据库索引.md)
 2. [事务隔离级别(图文详解)](docs/database/mysql/事务隔离级别(图文详解).md)
-3. [InnoDB存储引擎对MVCC的实现](docs/database/mysql/InnoDB对MVCC的实现.md)
-4. [一条 SQL 语句在 MySQL 中如何执行的](docs/database/mysql/一条sql语句在mysql中如何执行的.md)
-5. [关于数据库中如何存储时间的一点思考](docs/database/mysql/关于数据库存储时间的一点思考.md)
+3. [MySQL三大日志(binlog、redo log和undo log)详解](docs/database/mysql/MySQL三大日志(binlog、redo log和undo log).md)
+4. [InnoDB存储引擎对MVCC的实现](docs/database/mysql/InnoDB对MVCC的实现.md)
+5. [一条 SQL 语句在 MySQL 中如何执行的](docs/database/mysql/一条sql语句在mysql中如何执行的.md)
+6. [关于数据库中如何存储时间的一点思考](docs/database/mysql/关于数据库存储时间的一点思考.md)
 
 ### Redis
 
@@ -353,7 +366,6 @@ Dubbo 是一款国产的 RPC 框架，由阿里开源。相关阅读：
 
 ## 工具
 
-1. **Java** ：[JAD 反编译](docs/java/JAD反编译tricks.md)、[手把手教你定位常见 Java 性能问题](./docs/java/手把手教你定位常见Java性能问题.md)
 2. **Git** ：[Git 入门](docs/tools/Git.md)
 3. **Github** ： [Github小技巧](docs/tools/Github技巧.md)
 4. **Docker** : [Docker 基本概念解读](docs/tools/Docker.md) 、[Docker从入门到上手干事](docs/tools/Docker从入门到实战.md)
@@ -377,7 +389,8 @@ Dubbo 是一款国产的 RPC 框架，由阿里开源。相关阅读：
 
 ### 待办
 
-- [ ] 数据结构总结重构
+- [ ] 计算机网络知识点完善
+- [ ] 分布式常见理论和算法总结完善
 
 ### 捐赠支持
 
