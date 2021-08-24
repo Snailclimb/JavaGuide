@@ -100,7 +100,7 @@ HISTSIZE　历史记录数
 LOGNAME 当前用户的登录名  
 HOSTNAME　指主机的名称  
 SHELL 当前用户Shell类型  
-LANGUGE 　语言相关的环境变量，多语言可以修改此环境变量  
+LANGUAGE 　语言相关的环境变量，多语言可以修改此环境变量  
 MAIL　当前用户的邮件存放目录  
 PS1　基本提示符，对于root用户是#，对于普通用户是$
 
