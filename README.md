@@ -159,7 +159,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 1. [MySQL数据库索引总结](docs/database/mysql/MySQL数据库索引.md)
 2. [事务隔离级别(图文详解)](docs/database/mysql/事务隔离级别(图文详解).md)
-3. [MySQL三大日志(binlog、redo log和undo log)详解](docs/database/mysql/MySQL三大日志(binlog、redo log和undo log).md)
+3. [MySQL三大日志(binlog、redo log和undo log)详解](docs/database/mysql/MySQL三大日志.md)
 4. [InnoDB存储引擎对MVCC的实现](docs/database/mysql/InnoDB对MVCC的实现.md)
 5. [一条 SQL 语句在 MySQL 中如何执行的](docs/database/mysql/一条sql语句在mysql中如何执行的.md)
 6. [关于数据库中如何存储时间的一点思考](docs/database/mysql/关于数据库存储时间的一点思考.md)
