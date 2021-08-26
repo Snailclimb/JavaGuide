@@ -47,7 +47,7 @@
 **知识点/面试题** : (必看:+1: )
 
 1. **[Java 基础知识](docs/java/basis/Java基础知识.md)**
-2. **[Java 基础知识疑难点/易错点](docs/java/basis/Java基础知识疑难点.md)**
+2. [Java 基础知识疑难点/易错点](docs/java/basis/Java基础知识疑难点.md)
 
 **重要知识点详解：**
 
@@ -61,6 +61,7 @@
 
 1. **[Java 容器常见问题总结](docs/java/collection/Java集合框架常见面试题.md)** (必看 :+1:)
 2. **源码分析** ：[ArrayList 源码+扩容机制分析](docs/java/collection/ArrayList源码+扩容机制分析.md) 、[LinkedList 源码](docs/java/collection/LinkedList源码分析.md) 、[HashMap(JDK1.8)源码+底层数据结构分析](<docs/java/collection/HashMap(JDK1.8)源码+底层数据结构分析.md>) 、[ConcurrentHashMap 源码+底层数据结构分析](docs/java/collection/ConcurrentHashMap源码+底层数据结构分析.md)
+3. [Java 容器使用注意事项总结](docs/java/collection/Java集合使用注意事项总结.md)
 
 ### 并发
 
