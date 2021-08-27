@@ -57,7 +57,7 @@ W3Cschool 上的一篇文章是这样介绍 Shell的，如下图所示。
 
 ### Shell 编程的 Hello World
 
-学习任何一门编程语言第一件事就是输出HelloWord了！下面我会从新建文件到shell代码编写来说下Shell 编程如何输出Hello World。
+学习任何一门编程语言第一件事就是输出HelloWorld了！下面我会从新建文件到shell代码编写来说下Shell 编程如何输出Hello World。
 
 
 (1)新建一个文件 helloworld.sh :`touch helloworld.sh`，扩展名为 sh（sh代表Shell）（扩展名并不影响脚本执行，见名知意就好，如果你用 php 写 shell 脚本，扩展名就用 php 好了）
@@ -94,14 +94,14 @@ shell中 # 符号表示注释。**shell 的第一行比较特殊，一般都会�
 3. **Shell变量** ：Shell变量是由 Shell 程序设置的特殊变量。Shell 变量中有一部分是环境变量，有一部分是局部变量，这些变量保证了 Shell 的正常运行
 
 **常用的环境变量:**
-> PATH 决定了shell将到哪些目录中寻找命令或程序 
-HOME 当前用户主目录 
-HISTSIZE　历史记录数 
-LOGNAME 当前用户的登录名 
-HOSTNAME　指主机的名称 
-SHELL 当前用户Shell类型 
-LANGUGE 　语言相关的环境变量，多语言可以修改此环境变量 
-MAIL　当前用户的邮件存放目录 
+> PATH 决定了shell将到哪些目录中寻找命令或程序  
+HOME 当前用户主目录  
+HISTSIZE　历史记录数  
+LOGNAME 当前用户的登录名  
+HOSTNAME　指主机的名称  
+SHELL 当前用户Shell类型  
+LANGUAGE 　语言相关的环境变量，多语言可以修改此环境变量  
+MAIL　当前用户的邮件存放目录  
 PS1　基本提示符，对于root用户是#，对于普通用户是$
 
 **使用 Linux 已定义的环境变量：**

@@ -47,7 +47,7 @@
 **知识点/面试题** : (必看:+1: )
 
 1. **[Java 基础知识](docs/java/basis/Java基础知识.md)**
-2. **[Java 基础知识疑难点/易错点](docs/java/basis/Java基础知识疑难点.md)**
+2. [Java 基础知识疑难点/易错点](docs/java/basis/Java基础知识疑难点.md)
 
 **重要知识点详解：**
 
@@ -61,6 +61,7 @@
 
 1. **[Java 容器常见问题总结](docs/java/collection/Java集合框架常见面试题.md)** (必看 :+1:)
 2. **源码分析** ：[ArrayList 源码+扩容机制分析](docs/java/collection/ArrayList源码+扩容机制分析.md) 、[LinkedList 源码](docs/java/collection/LinkedList源码分析.md) 、[HashMap(JDK1.8)源码+底层数据结构分析](<docs/java/collection/HashMap(JDK1.8)源码+底层数据结构分析.md>) 、[ConcurrentHashMap 源码+底层数据结构分析](docs/java/collection/ConcurrentHashMap源码+底层数据结构分析.md)
+3. [Java 容器使用注意事项总结](docs/java/collection/Java集合使用注意事项总结.md)
 
 ### 并发
 
@@ -159,7 +160,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 1. [MySQL数据库索引总结](docs/database/mysql/MySQL数据库索引.md)
 2. [事务隔离级别(图文详解)](docs/database/mysql/事务隔离级别(图文详解).md)
-3. [MySQL三大日志(binlog、redo log和undo log)详解](docs/database/mysql/MySQL三大日志(binlog、redo log和undo log).md)
+3. [MySQL三大日志(binlog、redo log和undo log)详解](docs/database/mysql/MySQL三大日志.md)
 4. [InnoDB存储引擎对MVCC的实现](docs/database/mysql/InnoDB对MVCC的实现.md)
 5. [一条 SQL 语句在 MySQL 中如何执行的](docs/database/mysql/一条sql语句在mysql中如何执行的.md)
 6. [关于数据库中如何存储时间的一点思考](docs/database/mysql/关于数据库存储时间的一点思考.md)
