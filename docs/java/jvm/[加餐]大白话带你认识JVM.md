@@ -9,6 +9,7 @@
 JVM 是 Java Virtual Machine 的缩写，它是一个虚构出来的计算机，一种规范。通过在实际的计算机上仿真模拟各类计算机功能实现···
 
 好，其实抛开这么专业的句子不说，就知道JVM其实就类似于一台小电脑运行在windows或者linux这些操作系统环境下即可。它直接和操作系统进行交互，与硬件不直接交互，而操作系统可以帮我们完成和硬件进行交互的工作。
+
 ![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/d947f91e44c44c6c80222b49c2dee859-new-image19a36451-d673-486e-9c8e-3c7d8ab66929.png)
 
 ### 1.1 Java文件是如何被运行的
@@ -20,6 +21,7 @@ JVM 是 Java Virtual Machine 的缩写，它是一个虚构出来的计算机，
 #### ① 类加载器
 
 如果 **JVM** 想要执行这个 **.class** 文件，我们需要将其装进一个 **类加载器** 中，它就像一个搬运工一样，会把所有的 **.class** 文件全部搬进JVM里面来。
+
 ![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/81f1813f371c40ffa1c1f6d78bc49ed9-new-image28314ec8-066f-451e-8373-4517917d6bf7.png)
 
 #### ② 方法区
@@ -41,6 +43,7 @@ JVM 是 Java Virtual Machine 的缩写，它是一个虚构出来的计算机，
 #### ⑤ 程序计数器
 
 主要就是完成一个加载工作，类似于一个指针一样的，指向下一行我们需要执行的代码。和栈一样，都是 **线程独享** 的，就是说每一个线程都会有自己对应的一块区域而不会存在并发和多线程的问题。
+
 ![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/897863ee5ecb4d92b9119d065f468262-new-imagef7287f0b-c9f0-4f22-9eb4-6968bbaa5a82.png)
 
 #### 小总结
@@ -52,9 +55,11 @@ JVM 是 Java Virtual Machine 的缩写，它是一个虚构出来的计算机，
 ### 1.2 简单的代码例子
 
 一个简单的学生类
+
 ![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/29046a721c2548e0a0680ec5baf4ea95-new-imageb0b42e5e-8e25-409e-b7b9-6586a39a0b8d.png)
 
 一个main方法
+
 ![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/a3d34d33eab74f6f8743ecf62807445c-new-image08506a9e-5101-4f30-b0bc-3abbcb8f1894.png)
 
 执行main方法的步骤如下:
@@ -90,7 +95,7 @@ JVM 是 Java Virtual Machine 的缩写，它是一个虚构出来的计算机，
 
 #### 2.1.3 初始化
 
-初始化其实就是执行类构造器方法的`<clinit>()`的过程，而且要保证执行前父类的`<clinit>()`方法执行完毕。这个方法由编译器收集，顺序执行所有类变量（static修饰的成员变量）显式初始化和静态代码块中语句。此时准备阶段时的那个 `static int a` 由默认初始化的0变成了显式初始化的3. 由于执行顺序缘故，初始化阶段类变量如果在静态代码块中又进行了更改，会覆盖类变量的显式初始化，最终值会为静态代码块中的赋值。
+初始化其实就是执行类构造器方法的`<clinit>()`的过程，而且要保证执行前父类的`<clinit>()`方法执行完毕。这个方法由编译器收集，顺序执行所有类变量（static修饰的成员变量）显式初始化和静态代码块中语句。此时准备阶段时的那个 `static int a` 由默认初始化的0变成了显式初始化的3。 由于执行顺序缘故，初始化阶段类变量如果在静态代码块中又进行了更改，会覆盖类变量的显式初始化，最终值会为静态代码块中的赋值。
 >注意：字节码文件中初始化方法有两种，非静态资源初始化的`<init>`和静态资源初始化的`<clinit>`，类构造器方法`<clinit>()`不同于类的构造器，这些方法都是字节码文件中只能给JVM识别的特殊方法。
 
 #### 2.1.4 卸载
@@ -108,19 +113,22 @@ GC将无用对象从内存中卸载
 
 ### 2.3 双亲委派机制
 
-当一个类收到了加载请求时，它是不会先自己去尝试加载的，而是委派给父类去完成，比如我现在要new一个Person，这个Person是我们自定义的类，如果我们要加载它，就会先委派App ClassLoader，只有当父类加载器都反馈自己无法完成这个请求（也就是父类加载器都没有找到加载所需的Class）时，子类加载器才会自行尝试加载
+当一个类收到了加载请求时，它是不会先自己去尝试加载的，而是委派给父类去完成，比如我现在要 new 一个 Person，这个 Person 是我们自定义的类，如果我们要加载它，就会先委派 App ClassLoader ，只有当父类加载器都反馈自己无法完成这个请求（也就是父类加载器都没有找到加载所需的 Class）时，子类加载器才会自行尝试加载。
 
-这样做的好处是，加载位于rt.jar包中的类时不管是哪个加载器加载，最终都会委托到BootStrap ClassLoader进行加载，这样保证了使用不同的类加载器得到的都是同一个结果。
+这样做的好处是，加载位于 rt.jar 包中的类时不管是哪个加载器加载，最终都会委托到 BootStrap ClassLoader 进行加载，这样保证了使用不同的类加载器得到的都是同一个结果。
 
-其实这个也是一个隔离的作用，避免了我们的代码影响了JDK的代码，比如我现在要来一个
+其实这个也是一个隔离的作用，避免了我们的代码影响了 JDK 的代码，比如我现在自己定义一个 `java.lang.String` ：
 
 ```java
-public class String(){
-    public static void main(){sout;}
+package java.lang;
+public class String {
+    public static void main(String[] args) {
+        System.out.println();
+    }
 }
 ```
 
-这种时候，我们的代码肯定会报错，因为在加载的时候其实是找到了rt.jar中的String.class，然后发现这也没有main方法
+尝试运行当前类的 `main` 函数的时候，我们的代码肯定会报错。这是因为在加载的时候其实是找到了 rt.jar 中的`java.lang.String`，然而发现这个里面并没有 `main` 方法。
 
 ## 三、运行时数据区
 
@@ -282,6 +290,7 @@ finalize()是Object类的一个方法、一个对象的finalize()方法只会被
 ### 3.5 （了解）各种各样的垃圾回收器
 
 HotSpot VM中的垃圾回收器，以及适用场景
+
 ![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/11e9dcd0f1ee4f25836e6f1c47104c51-new-image69e1c56a-1d40-493a-9901-6efc647a01f3.png)
 
 到jdk8为止，默认的垃圾收集器是Parallel Scavenge 和 Parallel Old
@@ -335,6 +344,7 @@ System.out.println("total mem=" + Runtime.getRuntime().totalMemory() / 1024.0 / 
 ```
 
 注意：此处设置的是Java堆大小，也就是新生代大小 + 老年代大小
+
 ![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/5e7b352c16d74c789c665af46d3a2509-new-imagedd645dae-307d-4572-b6e2-b5a9925a46cd.png)
 
 设置一个VM options的参数
@@ -346,6 +356,7 @@ System.out.println("total mem=" + Runtime.getRuntime().totalMemory() / 1024.0 / 
 再次启动main方法
 
 ![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/300539f6560043dd8a3fe085d28420e6-new-image3c581a2e-196f-4b01-90f1-c27731b4610b.png)
+
 这里GC弹出了一个Allocation Failure分配失败，这个事情发生在PSYoungGen，也就是年轻代中
 
 这时候申请到的内存为18M，空闲内存为4.214195251464844M
