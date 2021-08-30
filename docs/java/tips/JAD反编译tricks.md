@@ -197,7 +197,7 @@ public enum DummyEnum {
 使用 jad 反编译查看结果：
 
 - 自定义枚举类被转换成 final 类，并且继承 Enum
-- 提供了两个参数（name，odinal）的私有构造器，并且调用了父类的构造器。注意即使没有提供任何参数，也会有该该构造器，其中 name 就是枚举实例的名称，odinal 是枚举实例的索引号
+- 提供了两个参数（name，odinal）的私有构造器，并且调用了父类的构造器。注意即使没有提供任何参数，也会有该构造器，其中 name 就是枚举实例的名称，odinal 是枚举实例的索引号
 - 初始化了一个 private static final 自定义类型的空数组 **\$VALUES**
 - 提供了两个 public static 方法：
   - values()方法通过 clone()方法返回内部\$VALUES 的浅拷贝。这个方法结合私有构造器可以完美实现单例模式，想一想 values()方法是不是和单例模式中 getInstance()方法功能类似
@@ -255,7 +255,7 @@ public enum DummyEnum {
 
 - 原来 final class 变成了 abstract class：这很好理解，有抽象方法的类自然是抽象类
 - 多了两个 public static final 的成员 DUMMY1、DUMMY2，这两个实例的初始化过程被放到了 static 代码块中，并且实例过程中直接重写了抽象方法，类似于匿名内部类的形式。
-- 数组**\$VALUES[]**初始化时放入枚举实例
+- 数组 **\$VALUES[]** 初始化时放入枚举实例
 
 还有其它变化么？
 
