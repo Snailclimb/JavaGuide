@@ -313,7 +313,7 @@ Output：
 
 `LinkedHashSet` 是 `HashSet` 的子类，能够按照添加的顺序遍历；
 
-`TreeSet` 底层使用红黑树，能够按照添加元素的顺序进行遍历，排序的方式有自然排序和定制排序。
+`TreeSet` 底层使用红黑树，元素是有序的，排序的方式有自然排序和定制排序。
 
 ## 1.4 Collection 子接口之 Queue
 
