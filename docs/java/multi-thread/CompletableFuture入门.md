@@ -4,12 +4,30 @@
 
 ## 简单介绍
 
-`CompletableFuture` 同时实现了 `Future` 和 `CompletionStage` 接口。其除了提供了更为好用和强大的 `Future` 特性之外，还提供了函数式编程的能力。
+`CompletableFuture` 同时实现了 `Future` 和 `CompletionStage` 接口。
 
 ```java
 public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
 }
 ```
+
+`CompletableFuture` 除了提供了更为好用和强大的 `Future` 特性之外，还提供了函数式编程的能力。
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/image-20210902092441434.png)
+
+`Future` 接口有 5 个方法：
+
+- `boolean cancel(boolean mayInterruptIfRunning)` ：尝试取消执行任务。
+- `boolean isCancelled()` ：判断任务是否被取消。
+- `boolean isDone()` ： 判断任务是否已经被执行完成。
+- `get()` ：等待任务执行完成并获取运算结果。
+- `get(long timeout, TimeUnit unit)` ：多了一个超时时间。
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/image-20210902093026059.png)
+
+`CompletionStage<T>` 接口中的方法比较多，`CompletableFuture` 的函数式能力就是这个接口赋予的。从这个接口的方法参数你就可以发现其大量使用了 Java8 引入的函数式编程。
+
+由于方法众多，所以这里不能一一讲解，下文中我会介绍大部分常见方法的使用。
 
 ## 常见操作
 
@@ -490,3 +508,11 @@ efg
 future1 done...
 abc
 ```
+
+## 后记
+
+这篇文章只是简单介绍了 `CompletableFuture` 比较常用的一些 API 。
+
+如果想要深入学习的话，可以多找一些书籍和博客看。
+
+另外，建议G友们可以看看京东的 [asyncTool](https://gitee.com/jd-platform-opensource/asyncTool) 这个并发框架，里面大量使用到了  `CompletableFuture`  。
