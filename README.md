@@ -77,6 +77,7 @@
 3. [并发容器总结](docs/java/multi-thread/并发容器总结.md)
 4. [JUC 中的 Atomic 原子类总结](docs/java/multi-thread/Atomic原子类总结.md)
 5. [AQS 原理以及 AQS 同步组件总结](docs/java/multi-thread/AQS原理以及AQS同步组件总结.md)
+6. [CompletableFuture入门](docs/java/multi-thread/CompletableFuture入门.md)
 
 ### JVM (必看 :+1:)
 
