@@ -27,7 +27,7 @@ Objects.equals(null,"SnailClimb");// false
 我们看一下`java.util.Objects#equals`的源码就知道原因了。
 ```java
 public static boolean equals(Object a, Object b) {
-    // 可以避免空指针异常。如果a==null的话此时a.equals(b)就不会得到执行，避免出现空指针异常。
+    // 可以避免空指针异常。如果a=null的话此时a.equals(b)就不会得到执行，避免出现空指针异常。
     return (a == b) || (a != null && a.equals(b));
 }
 ```
