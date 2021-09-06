@@ -1,10 +1,12 @@
+# 再见Java8！Java11新特性真香
+
 Java 8 新特性见这里：[Java8 新特性最佳指南](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247484744&idx=1&sn=9db31dca13d327678845054af75efb74&chksm=cea24a83f9d5c3956f4feb9956b068624ab2fdd6c4a75fe52d5df5dca356a016577301399548&token=1082669959&lang=zh_CN&scene=21#wechat_redirect) 。
 
 你可以在 [Archived OpenJDK General-Availability Releases](http://jdk.java.net/archive/) 上下载自己需要的 JDK 版本！
 
 官方的新特性说明文档地址： https://openjdk.java.net/projects/jdk/ 。
 
-_Guide 哥：别人家的特性都用了几年了，我 Java 才出来，哈哈！真实！_
+_Guide ：别人家的特性都用了几年了，我 Java 才出来，哈哈！真实！_
 
 ## Java9
 
