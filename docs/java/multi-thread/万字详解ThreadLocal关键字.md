@@ -8,7 +8,7 @@
 
 对于`ThreadLocal`，大家的第一反应可能是很简单呀，线程的变量副本，每个线程隔离。那这里有几个问题大家可以思考一下：
 
-- `ThreadLocal`的 key 是**弱引用**，那么在 `ThreadLocal`.get()的时候,发生**GC**之后，key 是否为**null**？
+- `ThreadLocal`的 key 是**弱引用**，那么在 `ThreadLocal.get()`的时候，发生**GC**之后，key 是否为**null**？
 - `ThreadLocal`中`ThreadLocalMap`的**数据结构**？
 - `ThreadLocalMap`的**Hash 算法**？
 - `ThreadLocalMap`中**Hash 冲突**如何解决？
@@ -80,7 +80,7 @@ size: 0
 
 ### GC 之后 key 是否为 null？
 
-回应开头的那个问题， `ThreadLocal` 的`key`是弱引用，那么在`ThreadLocal.get()`的时候,发生`GC`之后，`key`是否是`null`？
+回应开头的那个问题， `ThreadLocal` 的`key`是弱引用，那么在`ThreadLocal.get()`的时候，发生`GC`之后，`key`是否是`null`？
 
 为了搞清楚这个问题，我们需要搞清楚`Java`的**四种引用类型**：
 
@@ -241,7 +241,7 @@ public class ThreadLocal<T> {
 
 > **注明：** 下面所有示例图中，**绿色块**`Entry`代表**正常数据**，**灰色块**代表`Entry`的`key`值为`null`，**已被垃圾回收**。**白色块**表示`Entry`为`null`。
 
-虽然`ThreadLocalMap`中使用了**黄金分割数来**作为`hash`计算因子，大大减少了`Hash`冲突的概率，但是仍然会存在冲突。
+虽然`ThreadLocalMap`中使用了**黄金分割数**来作为`hash`计算因子，大大减少了`Hash`冲突的概率，但是仍然会存在冲突。
 
 `HashMap`中解决冲突的方法是在数组上构造一个**链表**结构，冲突的数据挂载到链表上，如果链表长度超过一定数量则会转化成**红黑树**。
 
@@ -249,7 +249,7 @@ public class ThreadLocal<T> {
 
 ![](./images/thread-local/7.png)
 
-如上图所示，如果我们插入一个`value=27`的数据，通过 `hash` 计算后应该落入第 4 个槽位中，而槽位 4 已经有了 `Entry` 数据。
+如上图所示，如果我们插入一个`value=27`的数据，通过 `hash` 计算后应该落入槽位 4 中，而槽位 4 已经有了 `Entry` 数据。
 
 此时就会线性向后查找，一直找到 `Entry` 为 `null` 的槽位才会停止查找，将当前元素放入此槽位中。当然迭代过程中还有其他的情况，比如遇到了 `Entry` 不为 `null` 且 `key` 值相等的情况，还有 `Entry` 中的 `key` 值为 `null` 的情况等等都会有不同的处理，后面会一一详细讲解。
 
@@ -261,7 +261,7 @@ public class ThreadLocal<T> {
 
 看完了`ThreadLocal` **hash 算法**后，我们再来看`set`是如何实现的。
 
-往`ThreadLocalMap`中`set`数据（**新增**或者**更新**数据）分为好几种情况，针对不同的情况我们画图来说说明。
+往`ThreadLocalMap`中`set`数据（**新增**或者**更新**数据）分为好几种情况，针对不同的情况我们画图来说明。
 
 **第一种情况：** 通过`hash`计算后的槽位对应的`Entry`数据为空：
 
@@ -281,7 +281,7 @@ public class ThreadLocal<T> {
 
 遍历散列数组，线性往后查找，如果找到`Entry`为`null`的槽位，则将数据放入该槽位中，或者往后遍历过程中，遇到了**key 值相等**的数据，直接更新即可。
 
-**第四种情况：** 槽位数据不为空，往后遍历过程中，在找到`Entry`为`null`的槽位之前，遇到`key`过期的`Entry`，如下图，往后遍历过程中，一到了`index=7`的槽位数据`Entry`的`key=null`：
+**第四种情况：** 槽位数据不为空，往后遍历过程中，在找到`Entry`为`null`的槽位之前，遇到`key`过期的`Entry`，如下图，往后遍历过程中，遇到了`index=7`的槽位数据`Entry`的`key=null`：
 
 ![](./images/thread-local/12.png)
 
@@ -299,7 +299,7 @@ public class ThreadLocal<T> {
 
 上面向前迭代的操作是为了更新探测清理过期数据的起始下标`slotToExpunge`的值，这个值在后面会讲解，它是用来判断当前过期槽位`staleSlot`之前是否还有过期元素。
 
-接着开始以`staleSlot`位置(index=7)向后迭代，**如果找到了相同 key 值的 Entry 数据：**
+接着开始以`staleSlot`位置(`index=7`)向后迭代，**如果找到了相同 key 值的 Entry 数据：**
 
 ![](./images/thread-local/14.png)
 
@@ -383,15 +383,15 @@ private static int prevIndex(int i, int len) {
 接着看剩下`for`循环中的逻辑：
 
 1. 遍历当前`key`值对应的桶中`Entry`数据为空，这说明散列数组这里没有数据冲突，跳出`for`循环，直接`set`数据到对应的桶中
-2. 如果`key`值对应的桶中`Entry`数据不为空
-   2.1 如果`k = key`，说明当前`set`操作是一个替换操作，做替换逻辑，直接返回
-   2.2 如果`key = null`，说明当前桶位置的`Entry`是过期数据，执行`replaceStaleEntry()`方法(核心方法)，然后返回
-3. `for`循环执行完毕，继续往下执行说明向后迭代的过程中遇到了`entry`为`null`的情况
-   3.1 在`Entry`为`null`的桶中创建一个新的`Entry`对象
-   3.2 执行`++size`操作
-4. 调用`cleanSomeSlots()`做一次启发式清理工作，清理散列数组中`Entry`的`key`过期的数据
-   4.1 如果清理工作完成后，未清理到任何数据，且`size`超过了阈值(数组长度的 2/3)，进行`rehash()`操作
-   4.2 `rehash()`中会先进行一轮探测式清理，清理过期`key`，清理完成后如果**size >= threshold - threshold / 4**，就会执行真正的扩容逻辑(扩容逻辑往后看)
+2. 如果`key`值对应的桶中`Entry`数据不为空  
+   2.1 如果`k = key`，说明当前`set`操作是一个替换操作，做替换逻辑，直接返回  
+   2.2 如果`key = null`，说明当前桶位置的`Entry`是过期数据，执行`replaceStaleEntry()`方法(核心方法)，然后返回  
+3. `for`循环执行完毕，继续往下执行说明向后迭代的过程中遇到了`entry`为`null`的情况  
+   3.1 在`Entry`为`null`的桶中创建一个新的`Entry`对象  
+   3.2 执行`++size`操作  
+4. 调用`cleanSomeSlots()`做一次启发式清理工作，清理散列数组中`Entry`的`key`过期的数据  
+   4.1 如果清理工作完成后，未清理到任何数据，且`size`超过了阈值(数组长度的 2/3)，进行`rehash()`操作  
+   4.2 `rehash()`中会先进行一轮探测式清理，清理过期`key`，清理完成后如果**size >= threshold - threshold / 4**，就会执行真正的扩容逻辑(扩容逻辑往后看)  
 
 接着重点看下`replaceStaleEntry()`方法，`replaceStaleEntry()`方法提供替换过期数据的功能，我们可以对应上面**第四种情况**的原理图来再回顾下，具体代码如下：
 
@@ -510,7 +510,7 @@ if (slotToExpunge != staleSlot)
 
 如果再有其他数据`set`到`map`中，就会触发**探测式清理**操作。
 
-如上图，执行**探测式清理**后，`index=5`的数据被清理掉，继续往后迭代，到`index=7`的元素时，经过`rehash`后发现该元素正确的`index=4`，而此位置已经已经有了数据，往后查找离`index=4`最近的`Entry=null`的节点(刚被探测式清理掉的数据：index=5)，找到后移动`index= 7`的数据到`index=5`中，此时桶的位置离正确的位置`index=4`更近了。
+如上图，执行**探测式清理**后，`index=5`的数据被清理掉，继续往后迭代，到`index=7`的元素时，经过`rehash`后发现该元素正确的`index=4`，而此位置已经有了数据，往后查找离`index=4`最近的`Entry=null`的节点(刚被探测式清理掉的数据：`index=5`)，找到后移动`index= 7`的数据到`index=5`中，此时桶的位置离正确的位置`index=4`更近了。
 
 经过一轮探测式清理后，`key`过期的数据会被清理掉，没过期的数据经过`rehash`重定位后所处的桶位置理论上更接近`i= key.hashCode & (tab.len - 1)`的位置。这种优化会提高整个散列表查询性能。
 
@@ -627,7 +627,7 @@ private void expungeStaleEntries() {
 }
 ```
 
-这里首先是会进行探测式清理工作，从`table`的起始位置往后清理，上面有分析清理的详细流程。清理完成之后，`table`中可能有一些`key`为`null`的`Entry`数据被清理掉，所以此时通过判断`size >= threshold - threshold / 4` 也就是`size >= threshold* 3/4` 来决定是否扩容。
+这里首先是会进行探测式清理工作，从`table`的起始位置往后清理，上面有分析清理的详细流程。清理完成之后，`table`中可能有一些`key`为`null`的`Entry`数据被清理掉，所以此时通过判断`size >= threshold - threshold / 4` 也就是`size >= threshold * 3/4` 来决定是否扩容。
 
 我们还记得上面进行`rehash()`的阈值是`size >= threshold`，所以当面试官套路我们`ThreadLocalMap`扩容机制的时候 我们一定要说清楚这两个步骤：
 
@@ -723,7 +723,7 @@ private Entry getEntryAfterMiss(ThreadLocal<?> key, int i, Entry e) {
 
 ### `ThreadLocalMap`过期 key 的启发式清理流程
 
-上面多次提及到`ThreadLocalMap`过期可以的两种清理方式：**探测式清理(expungeStaleEntry())**、**启发式清理(cleanSomeSlots())**
+上面多次提及到`ThreadLocalMap`过期key的两种清理方式：**探测式清理(expungeStaleEntry())**、**启发式清理(cleanSomeSlots())**
 
 探测式清理是以当前`Entry` 往后清理，遇到值为`null`则结束清理，属于**线性探测清理**。
 
