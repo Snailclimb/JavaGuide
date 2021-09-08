@@ -51,7 +51,7 @@
 
 这么做虽然解决了本地版本控制系统无法让在不同系统上的开发者协同工作的诟病，但也还是存在下面的问题：
 
-- **单点故障：** 中央服务器宕机，则其他人无法使用；如果中心数据库磁盘损坏有没有进行备份，你将丢失所有数据。本地版本控制系统也存在类似问题，只要整个项目的历史记录被保存在单一位置，就有丢失所有历史更新记录的风险。
+- **单点故障：** 中央服务器宕机，则其他人无法使用；如果中心数据库磁盘损坏又没有进行备份，你将丢失所有数据。本地版本控制系统也存在类似问题，只要整个项目的历史记录被保存在单一位置，就有丢失所有历史更新记录的风险。
 - **必须联网才能工作：** 受网络状况、带宽影响。
 
 ### 分布式版本控制系统
@@ -76,13 +76,13 @@ Linux 内核项目组当时使用分布式版本控制系统 BitKeeper 来管理
 
  Git 在保存和对待各种信息的时候与其它版本控制系统有很大差异，尽管操作起来的命令形式非常相近，理解这些差异将有助于防止你使用中的困惑。
 
-下面我们主要说一个关于 Git 其他版本管理系统的主要差别：**对待数据的方式**。
+下面我们主要说一个关于 Git 与其他版本管理系统的主要差别：**对待数据的方式**。
 
 **Git采用的是直接记录快照的方式，而非差异比较。我后面会详细介绍这两种方式的差别。**
 
 大部分版本控制系统（CVS、Subversion、Perforce、Bazaar 等等）都是以文件变更列表的方式存储信息，这类系统**将它们保存的信息看作是一组基本文件和每个文件随时间逐步累积的差异。**
 
-具体原理如下图所示，理解起来其实很简单，每个我们对提交更新一个文件之后，系统都会记录这个文件做了哪些更新，以增量符号Δ(Delta)表示。
+具体原理如下图所示，理解起来其实很简单，每当我们提交更新一个文件之后，系统都会记录这个文件做了哪些更新，以增量符号Δ(Delta)表示。
 
 <div align="center">  
 <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3deltas.png" width="500px"/>
@@ -113,7 +113,7 @@ Git 有三种状态，你的文件可能处于其中之一：
 2. **已修改（modified）**：已修改表示修改了文件，但还没保存到数据库中。
 3. **已暂存（staged）**：表示对一个已修改文件的当前版本做了标记，使之包含在下次提交的快照中。
 
-由此引入 Git 项目的三个工作区域的概念：**Git 仓库(.git directoty)**、**工作目录(Working Directory)** 以及 **暂存区域(Staging Area)** 。
+由此引入 Git 项目的三个工作区域的概念：**Git 仓库(.git directory)**、**工作目录(Working Directory)** 以及 **暂存区域(Staging Area)** 。
 
 <div align="center">  
 <img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3areas.png" width="500px"/>
@@ -132,7 +132,7 @@ Git 有三种状态，你的文件可能处于其中之一：
 有两种取得 Git 项目仓库的方法。
 
 1. 在现有目录中初始化仓库: 进入项目目录运行  `git init`  命令,该命令将创建一个名为 `.git` 的子目录。
-2. 从一个服务器克隆一个现有的 Git 仓库: `git clone [url]` 自定义本地仓库的名字: `git clone [url]` directoryname 
+2. 从一个服务器克隆一个现有的 Git 仓库: `git clone [url]` 自定义本地仓库的名字: `git clone [url] directoryname`
 
 ### 记录每次更新到仓库
 
@@ -157,7 +157,7 @@ Git 有三种状态，你的文件可能处于其中之一：
 
 ### 推送改动到远程仓库
 
-- 如果你还没有克隆现有仓库，并欲将你的仓库连接到某个远程服务器，你可以使用如下命令添加：·`git remote add origin <server>` ,比如我们要让本地的一个仓库和 Github 上创建的一个仓库关联可以这样`git remote add origin https://github.com/Snailclimb/test.git` 
+- 如果你还没有克隆现有仓库，并欲将你的仓库连接到某个远程服务器，你可以使用如下命令添加：`git remote add origin <server>` ,比如我们要让本地的一个仓库和 Github 上创建的一个仓库关联可以这样`git remote add origin https://github.com/Snailclimb/test.git` 
 - 将这些改动提交到远端仓库：`git push origin master` (可以把 *master* 换成你想要推送的任何分支)
 
   如此你就能够将你的改动推送到所添加的服务器上去了。
@@ -209,7 +209,7 @@ git reset --hard origin/master
 
 ### 分支
 
-分支是用来将特性开发绝缘开来的。在你创建仓库的时候，*master* 是“默认的”分支。在其他分支上进行开发，完成后再将它们合并到主分支上。
+分支是用来将特性开发绝缘开来的。在你创建仓库的时候，*master* 是“默认”的分支。在其他分支上进行开发，完成后再将它们合并到主分支上。
 
 我们通常在开发新功能、修复一个紧急 bug 等等时候会选择创建分支。单分支开发好还是多分支开发好，还是要看具体场景来说。
 
@@ -263,7 +263,7 @@ git push origin
 
 **在线演示学习工具：**
 
-「补充，来自[issue729](https://github.com/Snailclimb/JavaGuide/issues/729)」Learn Git Branching https://oschina.gitee.io/learn-git-branching/。该网站可以方便的演示基本的git操作，讲解得明明白白。每一个基本命令的作用和结果。
+「补充，来自[issue729](https://github.com/Snailclimb/JavaGuide/issues/729)」Learn Git Branching https://oschina.gitee.io/learn-git-branching/ 。该网站可以方便的演示基本的git操作，讲解得明明白白。每一个基本命令的作用和结果。
 
 **推荐阅读：**
 
