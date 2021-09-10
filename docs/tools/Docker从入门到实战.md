@@ -2,7 +2,7 @@
 
 ### 什么是 Docker？
 
-说实话关于 Docker 是什么并太好说，下面我通过四点向你说明 Docker 到底是个什么东西。
+说实话关于 Docker 是什么并不太好说，下面我通过四点向你说明 Docker 到底是个什么东西。
 
 - Docker 是世界领先的软件容器平台，基于 **Go 语言** 进行开发实现。
 - Docker 能够自动执行重复性任务，例如搭建和配置开发环境，从而解放开发人员。
@@ -213,7 +213,7 @@ MySQL        5.7.32    f07dfa83b528   11 days ago     448MB
 MySQL        5.5       d404d78aa797   20 months ago   205MB
 ```
 
-该指令还能够携带`-p`参数：`docker images -q` ， `-q`表示仅显示镜像的 id：
+该指令还能够携带`-q`参数：`docker images -q` ， `-q`表示仅显示镜像的 id：
 
 ```shell
 [root@izrcf5u3j3q8xaz ~]# docker images -q
@@ -282,7 +282,7 @@ docker image rm -f bf756fb1ae65
 
 Docker 还提供了删除镜像的简化版本：`docker rmi 镜像名:版本标志` 。
 
-此时我们即可借助`rmi`和`-p`进行一些联合操作，比如现在想删除所有的 MySQL 镜像，那么你需要查询出 MySQL 镜像的 id，并根据这些 id 一个一个地执行`docker rmi`进行删除，但是现在，我们可以这样：
+此时我们即可借助`rmi`和`-q`进行一些联合操作，比如现在想删除所有的 MySQL 镜像，那么你需要查询出 MySQL 镜像的 id，并根据这些 id 一个一个地执行`docker rmi`进行删除，但是现在，我们可以这样：
 
 ```shell
 docker rmi -f $(docker images MySQL -q)
