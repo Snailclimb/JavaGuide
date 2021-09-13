@@ -1,10 +1,12 @@
+# 再见Java8！Java11新特性真香
+
 Java 8 新特性见这里：[Java8 新特性最佳指南](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247484744&idx=1&sn=9db31dca13d327678845054af75efb74&chksm=cea24a83f9d5c3956f4feb9956b068624ab2fdd6c4a75fe52d5df5dca356a016577301399548&token=1082669959&lang=zh_CN&scene=21#wechat_redirect) 。
 
 你可以在 [Archived OpenJDK General-Availability Releases](http://jdk.java.net/archive/) 上下载自己需要的 JDK 版本！
 
 官方的新特性说明文档地址： https://openjdk.java.net/projects/jdk/ 。
 
-_Guide 哥：别人家的特性都用了几年了，我 Java 才出来，哈哈！真实！_
+_Guide ：别人家的特性都用了几年了，我 Java 才出来，哈哈！真实！_
 
 ## Java9
 
@@ -60,7 +62,7 @@ jshell 是 Java 9 新增的一个实用工具。为 Java 提供了类似于 Pyth
 ```java
 List.of("Java", "C++");
 Set.of("Java", "C++");
-Map.of("Java", 1, "C++", 2)`;
+Map.of("Java", 1, "C++", 2);
 ```
 
 使用 `of()` 创建的集合为不可变集合，不能进行添加、删除、替换、 排序等操作，不然会报 `java.lang.UnsupportedOperationException` 异常。
@@ -205,7 +207,7 @@ public interface MyInterface {
 - 类 `CompletableFuture` 中增加了几个新的方法（`completeAsync` ，`orTimeout` 等）
 - **Nashorn 引擎的增强** ：Nashorn 从 Java8 开始引入的 JavaScript 引擎，Java9 对 Nashorn 做了些增强，实现了一些 ES6 的新特性（Java 11 中已经被弃用）。
 - **I/O 流的新特性** ：增加了新的方法来读取和复制 `InputStream` 中包含的数据
-- **改进应用的安全性能** ：Java 9 新增了 4 个 SHA- 3 哈希算法，SHA3-224、SHA3-256、SHA3-384 和 S HA3-512
+- **改进应用的安全性能** ：Java 9 新增了 4 个 SHA- 3 哈希算法，SHA3-224、SHA3-256、SHA3-384 和 SHA3-512
 - ......
 
 ## Java10
@@ -345,8 +347,7 @@ ZGC 主要为了满足如下目标进行设计：
 - GC 停顿时间不超过 10ms
 - 即能处理几百 MB 的小堆，也能处理几个 TB 的大堆
 - 应用吞吐能力不会下降超过 15%（与 G1 回收算法相比）
-- 方便在此基础上引入新的 GC 特性和利用 colord
-- 针以及 Load barriers 优化奠定基础
+- 方便在此基础上引入新的 GC 特性和利用 colored 针以及 Load barriers 优化奠定基础
 - 当前只支持 Linux/x64 位平台
 
 ZGC 目前 **处在实验阶段**，只支持 Linux/x64 平台。
@@ -725,7 +726,7 @@ System.out.println(result);
 
 简化数据类的定义方式，使用 `record` 代替 `class` 定义的类，只需要声明属性，就可以在获得属性的访问方法，以及 `toString()`，`hashCode()`, `equals()`方法
 
-类似于使用 `class` 定义类，同时使用了 lomobok 插件，并打上了`@Getter,@ToString,@EqualsAndHashCode`注解
+类似于使用 `class` 定义类，同时使用了 lombok 插件，并打上了`@Getter,@ToString,@EqualsAndHashCode`注解
 
 ```java
 /**

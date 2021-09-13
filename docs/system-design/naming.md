@@ -69,7 +69,7 @@
 
 驼峰命名法应该我们最常见的一个，这种命名方式使用大小写混合的格式来区别各个单词，并且单词之间不使用空格隔开或者连接字符连接的命名方式
 
-#### 大驼峰命名法（CamelCase）
+#### 大驼峰命名法（UpperCamelCase）
 
 **类名需要使用大驼峰命名法（UpperCamelCase）**
 
@@ -111,7 +111,7 @@ Uservice user_service
 
 在蛇形命名法中，各个单词之间通过下划线“\_”连接，比如`should_get_200_status_code_when_request_is_valid`、`CLIENT_CONNECT_SERVER_FAILURE`。
 
-蛇形命名法的优势是命名所需要的单词比较多的时候，比如我把上面的命名通过小驼峰命名法给大家看一下：“shouldGet200StatusCodoWhenRequestIsValid”。
+蛇形命名法的优势是命名所需要的单词比较多的时候，比如我把上面的命名通过小驼峰命名法给大家看一下：“shouldGet200StatusCodeWhenRequestIsValid”。
 
 感觉如何？ 相比于使用蛇形命名法（snake_case）来说是不是不那么易读？
 
@@ -128,7 +128,7 @@ void should_get_200_status_code_when_request_is_valid() {
 
 ```java
 @Test
-void shouldGet200StatusCodoWhenRequestIsValid() {
+void shouldGet200StatusCodeWhenRequestIsValid() {
   ......
 }
 ```

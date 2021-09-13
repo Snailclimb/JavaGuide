@@ -94,9 +94,9 @@ Spring 时代我们一般通过 XML 文件来配置 Bean，后来开发人员觉
 
 ### 谈谈自己对于 AOP 的了解
 
-AOP(Aspect-Oriented Programming:面向切面编程)能够将那些与业务无关，却为业务模块所共同调用的逻辑或责任（例如事务处理、日志管理、权限控制等）封装起来，便于减少系统的重复代码**，**降低模块间的耦合度，并有利于未来的可拓展性和可维护性。
+AOP(Aspect-Oriented Programming:面向切面编程)能够将那些与业务无关，却为业务模块所共同调用的逻辑或责任（例如事务处理、日志管理、权限控制等）封装起来，便于减少系统的重复代码，降低模块间的耦合度，并有利于未来的可拓展性和可维护性。
 
-Spring AOP 就是基于动态代理的，如果要代理的对象，实现了某个接口，那么 Spring AOP 会使用 **JDK Proxy**，去创建代理对象，而对于没有实现接口的对象，就无法使用 JDK Proxy 去进行代理了，这时候 Spring AOP 会使用 **Cglib** ，这时候 Spring AOP 会使用 **Cglib** 生成一个被代理对象的子类来作为代理，如下图所示：
+Spring AOP 就是基于动态代理的，如果要代理的对象，实现了某个接口，那么 Spring AOP 会使用 **JDK Proxy**，去创建代理对象，而对于没有实现接口的对象，就无法使用 JDK Proxy 去进行代理了，这时候 Spring AOP 会使用 **Cglib** 生成一个被代理对象的子类来作为代理，如下图所示：
 
 ![SpringAOPProcess](https://images.xiaozhuanlan.com/photo/2019/926dfc549b06d280a37397f9fd49bf9d.jpg)
 
@@ -116,7 +116,7 @@ Spring AOP 已经集成了 AspectJ ，AspectJ 应该算的上是 Java 生态系�
 
 简单来说，bean 代指的就是那些被 IoC 容器所管理的对象。
 
-我们需要告诉 IoC 容器帮助我们管理哪些对象，这个是通过配置元数据的定义的。配置元数据可以是 XML 文件、注解或者 Java 配置类。
+我们需要告诉 IoC 容器帮助我们管理哪些对象，这个是通过配置元数据来定义的。配置元数据可以是 XML 文件、注解或者 Java 配置类。
 
 ```xml
 <!-- Constructor-arg with 'value' attribute -->
@@ -133,12 +133,12 @@ Spring AOP 已经集成了 AspectJ ，AspectJ 应该算的上是 Java 生态系�
 
 ### bean 的作用域有哪些?
 
-Spring 中 Bean 的作用域通常由下面几种：
+Spring 中 Bean 的作用域通常有下面几种：
 
 - **singleton** : 唯一 bean 实例，Spring 中的 bean 默认都是单例的，对单例设计模式的应用。
 - **prototype** : 每次请求都会创建一个新的 bean 实例。
 - **request** : 每一次 HTTP 请求都会产生一个新的 bean，该 bean 仅在当前 HTTP request 内有效。
-- **session** : 每一次 HTTP 请求都会产生一个新的 bean，该 bean 仅在当前 HTTP session 内有效。
+- **session** : 每一次来自新 session 的 HTTP 请求都会产生一个新的 bean，该 bean 仅在当前 HTTP session 内有效。
 - **global-session** ： 全局 session 作用域，仅仅在基于 portlet 的 web 应用中才有意义，Spring5 已经没有了。Portlet 是能够生成语义代码(例如：HTML)片段的小型 Java Web 插件。它们基于 portlet 容器，可以像 servlet 一样处理 HTTP 请求。但是，与 servlet 不同，每个 portlet 都有不同的会话。
 
 **如何配置 bean 的作用域呢？**
@@ -173,8 +173,8 @@ public Person personPrototype() {
 ### @Component 和 @Bean 的区别是什么？
 
 1. `@Component` 注解作用于类，而`@Bean`注解作用于方法。
-2. `@Component`通常是通过类路径扫描来自动侦测以及自动装配到 Spring 容器中（我们可以使用 `@ComponentScan` 注解定义要扫描的路径从中找出标识了需要装配的类自动装配到 Spring 的 bean 容器中）。`@Bean` 注解通常是我们在标有该注解的方法中定义产生这个 bean,`@Bean`告诉了 Spring 这是某个类的示例，当我需要用它的时候还给我。
-3. `@Bean` 注解比 `Component` 注解的自定义性更强，而且很多地方我们只能通过 `@Bean` 注解来注册 bean。比如当我们引用第三方库中的类需要装配到 `Spring`容器时，则只能通过 `@Bean`来实现。
+2. `@Component`通常是通过类路径扫描来自动侦测以及自动装配到 Spring 容器中（我们可以使用 `@ComponentScan` 注解定义要扫描的路径从中找出标识了需要装配的类自动装配到 Spring 的 bean 容器中）。`@Bean` 注解通常是我们在标有该注解的方法中定义产生这个 bean,`@Bean`告诉了 Spring 这是某个类的实例，当我需要用它的时候还给我。
+3. `@Bean` 注解比 `@Component` 注解的自定义性更强，而且很多地方我们只能通过 `@Bean` 注解来注册 bean。比如当我们引用第三方库中的类需要装配到 `Spring`容器时，则只能通过 `@Bean`来实现。
 
 `@Bean`注解使用示例：
 
@@ -231,7 +231,7 @@ public OneService getService(status) {
 - 如果涉及到一些属性值 利用 `set()`方法设置一些属性值。
 - 如果 Bean 实现了 `BeanNameAware` 接口，调用 `setBeanName()`方法，传入 Bean 的名字。
 - 如果 Bean 实现了 `BeanClassLoaderAware` 接口，调用 `setBeanClassLoader()`方法，传入 `ClassLoader`对象的实例。
-- 如果 Bean 实现了 `BeanFactoryAware` 接口，调用 `setBeanClassLoader()`方法，传入 `ClassLoade` r 对象的实例。
+- 如果 Bean 实现了 `BeanFactoryAware` 接口，调用 `setBeanFactory()`方法，传入 `BeanFactory`对象的实例。
 - 与上面的类似，如果实现了其他 `*.Aware`接口，就调用相应的方法。
 - 如果有和加载这个 Bean 的 Spring 容器相关的 `BeanPostProcessor` 对象，执行`postProcessBeforeInitialization()` 方法
 - 如果 Bean 实现了`InitializingBean`接口，执行`afterPropertiesSet()`方法。
@@ -407,16 +407,16 @@ public enum Isolation {
 
 当 `@Transactional` 注解作用于类上时，该类的所有 public 方法将都具有该类型的事务属性，同时，我们也可以在方法级别使用该标注来覆盖类级别的定义。如果类或者方法加了这个注解，那么这个类里面的方法抛出异常，就会回滚，数据库里面的数据也会回滚。
 
-在 `@Transactional` 注解中如果不配置`rollbackFor`属性,那么事物只会在遇到`RuntimeException`的时候才会回滚，加上 `rollbackFor=Exception.class`,可以让事物在遇到非运行时异常时也回滚。
+在 `@Transactional` 注解中如果不配置`rollbackFor`属性,那么事务只会在遇到`RuntimeException`的时候才会回滚，加上 `rollbackFor=Exception.class`,可以让事务在遇到非运行时异常时也回滚。
 
 ## JPA
 
 ### 如何使用 JPA 在数据库中非持久化一个字段？
 
-假如我们有有下面一个类：
+假如我们有下面一个类：
 
 ```java
-Entity(name="USER")
+@Entity(name="USER")
 public class User {
 
     @Id
@@ -439,7 +439,7 @@ public class User {
 
 ```java
 static String transient1; // not persistent because of static
-final String transient2 = “Satish”; // not persistent because of final
+final String transient2 = "Satish"; // not persistent because of final
 transient String transient3; // not persistent because of transient
 @Transient
 String transient4; // not persistent because of @Transient

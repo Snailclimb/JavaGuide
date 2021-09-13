@@ -12,7 +12,7 @@
 
 enum关键字在 java5 中引入，表示一种特殊类型的类，其总是继承java.lang.Enum类，更多内容可以自行查看其[官方文档](https://docs.oracle.com/javase/6/docs/api/java/lang/Enum.html)。
 
-枚举在很多时候会和常量拿来对比，可能因为本身我们大量实际使用枚举的地方就是为了替代常量。那么这种方式由什么优势呢？
+枚举在很多时候会和常量拿来对比，可能因为本身我们大量实际使用枚举的地方就是为了替代常量。那么这种方式有什么优势呢？
 
 **以这种方式定义的常量使代码更具可读性，允许进行编译时检查，预先记录可接受值的列表，并避免由于传入无效值而引起的意外行为。**
 
@@ -219,7 +219,7 @@ public class Pizza {
 }
 ```
 
-  下面的测试演示了展示了 `EnumSet` 在某些场景下的强大功能：
+  下面的测试展示了 `EnumSet` 在某些场景下的强大功能：
 
 ```java
 @Test
@@ -272,7 +272,7 @@ while (iterator.hasNext()) {
 }
 ```
 
- 下面的测试演示了展示了 `EnumMap` 在某些场景下的强大功能：
+ 下面的测试展示了 `EnumMap` 在某些场景下的强大功能：
 
 ```java
 @Test
@@ -308,7 +308,7 @@ public void givenPizaOrders_whenGroupByStatusCalled_thenCorrectlyGrouped() {
 
 通常，使用类实现 Singleton 模式并非易事，枚举提供了一种实现单例的简便方法。
 
-《Effective Java 》和《Java与模式》都非常推荐这种方式，使用这种方式方式实现枚举可以有什么好处呢？
+《Effective Java 》和《Java与模式》都非常推荐这种方式，使用这种方式实现枚举可以有什么好处呢？
 
 《Effective Java》
 
@@ -401,9 +401,9 @@ public void givenPizaOrder_whenDelivered_thenPizzaGetsDeliveredAndStatusChanges(
 
 ## 8. Java 8 与枚举
 
-Pizza 类可以用Java 8重写，您可以看到方法 lambda 和Stream API如何使 `getAllUndeliveredPizzas（）`和`groupPizzaByStatus（）`方法变得如此简洁：
+Pizza 类可以用Java 8重写，您可以看到方法 lambda 和Stream API如何使 `getAllUndeliveredPizzas()`和`groupPizzaByStatus()`方法变得如此简洁：
 
-`getAllUndeliveredPizzas（）`:
+`getAllUndeliveredPizzas()`:
 
 ```java
 public static List<Pizza> getAllUndeliveredPizzas(List<Pizza> input) {
@@ -413,7 +413,7 @@ public static List<Pizza> getAllUndeliveredPizzas(List<Pizza> input) {
 }
 ```
 
-`groupPizzaByStatus（）` :
+`groupPizzaByStatus()` :
 
 ```java
 public static EnumMap<PizzaStatus, List<Pizza>> 

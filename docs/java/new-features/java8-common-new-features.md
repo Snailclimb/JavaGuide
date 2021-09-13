@@ -78,7 +78,7 @@ public class InterfaceNewImpl implements InterfaceNew , InterfaceNew1{
 
 2. interface 的方法是更像是一个扩展插件。而 abstract class 的方法是要继承的。
 
-开始我们也提到，interface 新增`default`，和`static`修饰的方法，为了解决接口的修改与现有的实现不兼容的问题，并不是为了要替代`abstract class`。在使用上，该用 abstract class 的地方还是要用 abstract class，不要因为 interface 的新特性而降之替换。
+开始我们也提到，interface 新增`default`和`static`修饰的方法，为了解决接口的修改与现有的实现不兼容的问题，并不是为了要替代`abstract class`。在使用上，该用 abstract class 的地方还是要用 abstract class，不要因为 interface 的新特性而将之替换。
 
 **记住接口永远和类不一样。**
 
@@ -463,7 +463,7 @@ Predicate.test 执行
 
 按执行顺序应该是先打印 4 次「`Predicate.test` 执行」，再打印「`count` 执行」。实际结果恰恰相反。说明 filter 中的方法并没有立刻执行，而是等调用`count()`方法后才执行。
 
-上面都是串行 `Stream` 的实例。并行 `parallelStream` 在使用方法上和串行一样。主要区别是 `parallelStream` 可多线程执行，是基于 ForkJoin 框架实现的，有时间大家可以了解一下 `ForkJoin` 框架和 `ForkJoinPool`。这里可以简单的理解它是通过线程池来实现的，这样就会涉及到线程安全，线程消耗等问题。下面我们通过代码来体验一下串行流的多线程执行。
+上面都是串行 `Stream` 的实例。并行 `parallelStream` 在使用方法上和串行一样。主要区别是 `parallelStream` 可多线程执行，是基于 ForkJoin 框架实现的，有时间大家可以了解一下 `ForkJoin` 框架和 `ForkJoinPool`。这里可以简单的理解它是通过线程池来实现的，这样就会涉及到线程安全，线程消耗等问题。下面我们通过代码来体验一下并行流的多线程执行。
 
 ```java
 @Test
@@ -733,7 +733,7 @@ public Optional<T> filter(Predicate<? super T> predicate) {
 
 ### 小结
 
-看完 `Optional` 源码，`Optional` 的方法真的非常简单，值得注意的是如果坚决不想看见 `NPE`，就不要用 `of() `、 `get()` 、`flatMap(..)`\。最后再综合用一下 `Optional` 的高频方法。
+看完 `Optional` 源码，`Optional` 的方法真的非常简单，值得注意的是如果坚决不想看见 `NPE`，就不要用 `of() `、 `get()` 、`flatMap(..)`。最后再综合用一下 `Optional` 的高频方法。
 
 ```java
 Optional.ofNullable(zoo).map(o -> o.getDog()).map(d -> d.getAge()).filter(v->v==1).orElse(3);
@@ -947,7 +947,7 @@ public void getDayNew() {
 
 1. `Date` ---> `LocalDate`
 2. `Time` ---> `LocalTime`
-3. `TimesSamp` ---> `LocalDateTime`
+3. `Timestamp` ---> `LocalDateTime`
 
 而之前统统对应 `Date`，也只有 `Date`。
 
@@ -1017,4 +1017,4 @@ System.out.println("本地时区时间: " + localZoned);
 - Optional
 - Date time-api
 
-这些都是开发当中比较常用的特征。梳理下来发现它们真香，而我却没有更早的应用。总觉得学习 java 8 新特性比较麻烦，一致使用老的实现方式。其实这些新特性几天就可以掌握，一但掌握，效率会有很大的提高。其实我们涨工资也是涨的学习的钱，不学习终究会被淘汰，35 岁危机会提前来临。
+这些都是开发当中比较常用的特性。梳理下来发现它们真香，而我却没有更早的应用。总觉得学习 java 8 新特性比较麻烦，一直使用老的实现方式。其实这些新特性几天就可以掌握，一但掌握，效率会有很大的提高。其实我们涨工资也是涨的学习的钱，不学习终究会被淘汰，35 岁危机会提前来临。

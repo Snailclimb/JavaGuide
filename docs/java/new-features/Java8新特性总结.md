@@ -118,7 +118,7 @@ Collections.sort(names, (String a, String b) -> {
 });
 ```
 
-可以看出，代码变得更段且更具有可读性，但是实际上还可以写得更短：
+可以看出，代码变得更短且更具有可读性，但是实际上还可以写得更短：
 
 ```java
 Collections.sort(names, (String a, String b) -> b.compareTo(a));
@@ -215,7 +215,7 @@ Person person = personFactory.create("Peter", "Parker");
 ```
 我们只需要使用 `Person::new` 来获取Person类构造函数的引用，Java编译器会自动根据`PersonFactory.create`方法的参数类型来选择合适的构造函数。
 
-### Lamda 表达式作用域(Lambda Scopes)
+### Lambda 表达式作用域(Lambda Scopes)
 
 #### 访问局部变量
 
@@ -423,15 +423,15 @@ Optional 是一个简单的容器，其值可能是null或者不是null。在Jav
 译者注：示例中每个方法的作用已经添加。
 
 ```java
-//of（）：为非null的值创建一个Optional
+//of()：为非null的值创建一个Optional
 Optional<String> optional = Optional.of("bam");
-// isPresent（）： 如果值存在返回true，否则返回false
+// isPresent()： 如果值存在返回true，否则返回false
 optional.isPresent();           // true
 //get()：如果Optional有值则将其返回，否则抛出NoSuchElementException
 optional.get();                 // "bam"
-//orElse（）：如果有值则将其返回，否则返回指定的其它值
+//orElse()：如果有值则将其返回，否则返回指定的其它值
 optional.orElse("fallback");    // "bam"
-//ifPresent（）：如果Optional实例有值则为其调用consumer，否则不做处理
+//ifPresent()：如果Optional实例有值则为其调用consumer，否则不做处理
 optional.ifPresent((s) -> System.out.println(s.charAt(0)));     // "b"
 ```
 
@@ -484,7 +484,7 @@ forEach 是为 Lambda 而设计的，保持了最紧凑的风格。而且 Lambda
                 .forEach(System.out::println);// aaa1 aaa2
 ```
 
-需要注意的是，排序只创建了一个排列好后的Stream，而不会影响原有的数据源，排序之后原数据stringCollection是不会被修改的：
+需要注意的是，排序只创建了一个排列好后的Stream，而不会影响原有的数据源，排序之后原数据stringList是不会被修改的：
 
 ```java
     System.out.println(stringList);// ddd2, aaa2, bbb1, aaa1, bbb3, ccc, bbb2, ddd1
@@ -502,7 +502,7 @@ forEach 是为 Lambda 而设计的，保持了最紧凑的风格。而且 Lambda
                 .stream()
                 .map(String::toUpperCase)
                 .sorted((a, b) -> b.compareTo(a))
-                .forEach(System.out::println);// "DDD2", "DDD1", "CCC", "BBB3", "BBB2", "AAA2", "AAA1"
+                .forEach(System.out::println);// "DDD2", "DDD1", "CCC", "BBB3", "BBB2", "BBB1", "AAA2", "AAA1"
 ```
 
 
@@ -649,7 +649,7 @@ parallel sort took: 475 ms//串行排序所用的时间
 
 ## Maps
 
-前面提到过，Map 类型不支持 streams，不过Map提供了一些新的有用的方法来处理一些日常任务。Map接口本身没有可用的 `stream（）`方法，但是你可以在键，值上创建专门的流或者通过 `map.keySet().stream()`,`map.values().stream()`和`map.entrySet().stream()`。
+前面提到过，Map 类型不支持 streams，不过Map提供了一些新的有用的方法来处理一些日常任务。Map接口本身没有可用的 `stream()`方法，但是你可以在键，值上创建专门的流或者通过 `map.keySet().stream()`,`map.values().stream()`和`map.entrySet().stream()`。
 
 此外,Maps 支持各种新的和有用的方法来执行常见任务。
 
