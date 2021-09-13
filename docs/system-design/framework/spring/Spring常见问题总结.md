@@ -231,7 +231,7 @@ public OneService getService(status) {
 - 如果涉及到一些属性值 利用 `set()`方法设置一些属性值。
 - 如果 Bean 实现了 `BeanNameAware` 接口，调用 `setBeanName()`方法，传入 Bean 的名字。
 - 如果 Bean 实现了 `BeanClassLoaderAware` 接口，调用 `setBeanClassLoader()`方法，传入 `ClassLoader`对象的实例。
-- 如果 Bean 实现了 `BeanFactoryAware` 接口，调用 `setBeanClassLoader()`方法，传入 `ClassLoade` r 对象的实例。
+- 如果 Bean 实现了 `BeanFactoryAware` 接口，调用 `setBeanFactory()`方法，传入 `BeanFactory`对象的实例。
 - 与上面的类似，如果实现了其他 `*.Aware`接口，就调用相应的方法。
 - 如果有和加载这个 Bean 的 Spring 容器相关的 `BeanPostProcessor` 对象，执行`postProcessBeforeInitialization()` 方法
 - 如果 Bean 实现了`InitializingBean`接口，执行`afterPropertiesSet()`方法。
