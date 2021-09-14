@@ -171,6 +171,10 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 2. [Redis 常见问题总结](docs/database/Redis/redis-all.md)
 3. [面试/工作必备！3种常用的缓存读写策略！](docs/database/Redis/3种常用的缓存读写策略.md)
 
+## 搜索引擎
+
+用于提高搜索效率，功能和浏览器搜索引擎类似。比较常见的搜索引擎是 Elasticsearch（推荐） 和 Solr。
+
 ## 系统设计
 
 ### 系统设计必备基础
@@ -255,10 +259,6 @@ CAP 也就是 Consistency（一致性）、Availability（可用性）、Partiti
 #### Paxos 算法和 Raft 算法
 
 **Paxos 算法**诞生于 1990 年，这是一种解决分布式系统一致性的经典算法 。但是，由于 Paxos 算法非常难以理解和实现，不断有人尝试简化这一算法。到了2013 年才诞生了一个比 Paxos 算法更易理解和实现的分布式一致性算法—**Raft 算法**。
-
-#### 搜索引擎
-
-用于提高搜索效率，功能和浏览器搜索引擎类似。比较常见的搜索引擎是 Elasticsearch（推荐） 和 Solr。
 
 #### RPC
 
