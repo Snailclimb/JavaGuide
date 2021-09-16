@@ -864,7 +864,7 @@ System.out.println(encodedString);
 
 ### 预览新特性
 
-#### record 关键字
+#### 密封类
 
 Java 15 对 Java 14 中引入的预览新特性进行了增强，主要是引入了一个新的概念 **密封类（Sealed Classes）。**
 
@@ -891,11 +891,6 @@ public non-sealed class Manager extends Person {
 ```
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/image-20210820153955587.png)
-
-在 `java.lang.Class` 增加了两个公共方法用于获取 `Record` 类信息：
-
-1. `RecordComponent[] getRecordComponents()`
-2. `boolean isRecord()`
 
 #### instanceof 模式匹配
 
