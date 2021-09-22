@@ -57,7 +57,7 @@
 
 ## 二 运行时数据区域
 
-Java 虚拟机在执行 Java 程序的过程中会把它管理的内存划分成若干个不同的数据区域。JDK. 1.8 和之前的版本略有不同，下面会介绍到。
+Java 虚拟机在执行 Java 程序的过程中会把它管理的内存划分成若干个不同的数据区域。JDK 1.8 和之前的版本略有不同，下面会介绍到。
 
 **JDK 1.8 之前：**
 
@@ -96,14 +96,14 @@ Java 虚拟机在执行 Java 程序的过程中会把它管理的内存划分成
 
 **与程序计数器一样，Java 虚拟机栈也是线程私有的，它的生命周期和线程相同，描述的是 Java 方法执行的内存模型，每次方法调用的数据都是通过栈传递的。**
 
-**Java 内存可以粗糙的区分为堆内存（Heap）和栈内存 (Stack),其中栈就是现在说的虚拟机栈，或者说是虚拟机栈中局部变量表部分。** （实际上，Java 虚拟机栈是由一个个栈帧组成，而每个栈帧中都拥有：局部变量表、操作数栈、动态链接、方法出口信息。）
+**Java 内存可以粗糙的区分为堆内存（Heap）和栈内存 (Stack)，其中栈就是现在说的虚拟机栈，或者说是虚拟机栈中局部变量表部分。** （实际上，Java 虚拟机栈是由一个个栈帧组成，而每个栈帧中都拥有：局部变量表、操作数栈、动态链接、方法出口信息。）
 
 **局部变量表主要存放了编译期可知的各种数据类型**（boolean、byte、char、short、int、float、long、double）、**对象引用**（reference 类型，它不同于对象本身，可能是一个指向对象起始地址的引用指针，也可能是指向一个代表对象的句柄或其他与此对象相关的位置）。
 
 **Java 虚拟机栈会出现两种错误：`StackOverFlowError` 和 `OutOfMemoryError`。**
 
 - **`StackOverFlowError`：** 若 Java 虚拟机栈的内存大小不允许动态扩展，那么当线程请求栈的深度超过当前 Java 虚拟机栈的最大深度的时候，就抛出 StackOverFlowError 错误。
-- **`OutOfMemoryError`：** Java 虚拟机栈的内存大小可以动态扩展， 如果虚拟机在动态扩展栈时无法申请到足够的内存空间，则抛出`OutOfMemoryError`异常异常。
+- **`OutOfMemoryError`：** Java 虚拟机栈的内存大小可以动态扩展， 如果虚拟机在动态扩展栈时无法申请到足够的内存空间，则抛出`OutOfMemoryError`异常。
 
 ![](./pictures/java内存区域/《深入理解虚拟机》第三版的第2章-虚拟机栈.png)
 
@@ -111,7 +111,7 @@ Java 虚拟机栈也是线程私有的，每个线程都有各自的 Java 虚拟
 
 **扩展：那么方法/函数如何调用？**
 
-Java 栈可用类比数据结构中栈，Java 栈中保存的主要内容是栈帧，每一次函数调用都会有一个对应的栈帧被压入 Java 栈，每一个函数调用结束后，都会有一个栈帧被弹出。
+Java 栈可以类比数据结构中栈，Java 栈中保存的主要内容是栈帧，每一次函数调用都会有一个对应的栈帧被压入 Java 栈，每一个函数调用结束后，都会有一个栈帧被弹出。
 
 Java 方法有两种返回方式：
 
@@ -132,11 +132,11 @@ Java 方法有两种返回方式：
 
 Java 虚拟机所管理的内存中最大的一块，Java 堆是所有线程共享的一块内存区域，在虚拟机启动时创建。**此内存区域的唯一目的就是存放对象实例，几乎所有的对象实例以及数组都在这里分配内存。**
 
-Java 世界中“几乎”所有的对象都在堆中分配，但是，随着 JIT 编译期的发展与逃逸分析技术逐渐成熟，栈上分配、标量替换优化技术将会导致一些微妙的变化，所有的对象都分配到堆上也渐渐变得不那么“绝对”了。从 JDK 1.7 开始已经默认开启逃逸分析，如果某些方法中的对象引用没有被返回或者未被外面使用（也就是未逃逸出去），那么对象可以直接在栈上分配内存。
+Java 世界中“几乎”所有的对象都在堆中分配，但是，随着 JIT 编译器的发展与逃逸分析技术逐渐成熟，栈上分配、标量替换优化技术将会导致一些微妙的变化，所有的对象都分配到堆上也渐渐变得不那么“绝对”了。从 JDK 1.7 开始已经默认开启逃逸分析，如果某些方法中的对象引用没有被返回或者未被外面使用（也就是未逃逸出去），那么对象可以直接在栈上分配内存。
 
-Java 堆是垃圾收集器管理的主要区域，因此也被称作**GC 堆（Garbage Collected Heap）**.从垃圾回收的角度，由于现在收集器基本都采用分代垃圾收集算法，所以 Java 堆还可以细分为：新生代和老年代：再细致一点有：Eden 空间、From Survivor、To Survivor 空间等。**进一步划分的目的是更好地回收内存，或者更快地分配内存。**
+Java 堆是垃圾收集器管理的主要区域，因此也被称作**GC 堆（Garbage Collected Heap）**。从垃圾回收的角度，由于现在收集器基本都采用分代垃圾收集算法，所以 Java 堆还可以细分为：新生代和老年代；再细致一点有：Eden 空间、From Survivor、To Survivor 空间等。**进一步划分的目的是更好地回收内存，或者更快地分配内存。**
 
-在 JDK 7 版本及 JDK 7 版本之前，堆内存被通常被分为下面三部分：
+在 JDK 7 版本及 JDK 7 版本之前，堆内存被通常分为下面三部分：
 
 1. 新生代内存(Young Generation)
 2. 老生代(Old Generation)
@@ -170,13 +170,12 @@ JDK 8 版本之后方法区（HotSpot 的永久代）被彻底移除了（JDK1.7
 > uint result = age < MaxTenuringThreshold ? age : MaxTenuringThreshold;
 > 	...
 > }
-> 
 > ```
 
 堆这里最容易出现的就是 OutOfMemoryError 错误，并且出现这种错误之后的表现形式还会有几种，比如：
 
-1. **`OutOfMemoryError: GC Overhead Limit Exceeded`** ： 当 JVM 花太多时间执行垃圾回收并且只能回收很少的堆空间时，就会发生此错误。
-2. **`java.lang.OutOfMemoryError: Java heap space`** :假如在创建新的对象时, 堆内存中的空间不足以存放新创建的对象, 就会引发`java.lang.OutOfMemoryError: Java heap space` 错误。(和本机物理内存无关，和你配置的内存大小有关！)
+1. **`java.lang.OutOfMemoryError: GC Overhead Limit Exceeded`** ： 当 JVM 花太多时间执行垃圾回收并且只能回收很少的堆空间时，就会发生此错误。
+2. **`java.lang.OutOfMemoryError: Java heap space`** :假如在创建新的对象时, 堆内存中的空间不足以存放新创建的对象, 就会引发此错误。(和配置的最大堆内存有关，且受制于物理内存大小。最大堆内存可通过`-Xmx`参数配置，若没有特别配置，将会使用默认值，详见：[Default Java 8 max heap size](https://stackoverflow.com/questions/28272923/default-xmxsize-in-java-8-max-heap-size))
 3. ......
 
 ### 2.5 方法区
@@ -247,7 +246,7 @@ JDK 1.8 的时候，方法区（HotSpot 的永久代）被彻底移除了（JDK1
 
 **直接内存并不是虚拟机运行时数据区的一部分，也不是虚拟机规范中定义的内存区域，但是这部分内存也被频繁地使用。而且也可能导致 OutOfMemoryError 错误出现。**
 
-JDK1.4 中新加入的 **NIO(New Input/Output) 类**，引入了一种基于**通道（Channel）** 与**缓存区（Buffer）** 的 I/O 方式，它可以直接使用 Native 函数库直接分配堆外内存，然后通过一个存储在 Java 堆中的 DirectByteBuffer 对象作为这块内存的引用进行操作。这样就能在一些场景中显著提高性能，因为**避免了在 Java 堆和 Native 堆之间来回复制数据**。
+JDK1.4 中新加入的 **NIO(New Input/Output) 类**，引入了一种基于**通道（Channel）**与**缓存区（Buffer）**的 I/O 方式，它可以直接使用 Native 函数库直接分配堆外内存，然后通过一个存储在 Java 堆中的 DirectByteBuffer 对象作为这块内存的引用进行操作。这样就能在一些场景中显著提高性能，因为**避免了在 Java 堆和 Native 堆之间来回复制数据**。
 
 本机直接内存的分配不会受到 Java 堆的限制，但是，既然是内存就会受到本机总内存大小以及处理器寻址空间的限制。
 
@@ -372,7 +371,7 @@ System.out.println(str3 == str5);//true
 System.out.println(str4 == str5);//false
 ```
 
-![字符串拼接](./pictures/java内存区域/字符串拼接-常量池2.png)
+![字符串拼接](./pictures/java内存区域/字符串拼接-常量池.png)
 
 尽量避免多个字符串拼接，因为这样会重新创建对象。如果需要改变字符串的话，可以使用 StringBuilder 或者 StringBuffer。
 
@@ -383,10 +382,10 @@ System.out.println(str4 == str5);//false
 **验证：**
 
 ```java
-		String s1 = new String("abc");// 堆内存的地址值
-		String s2 = "abc";
-		System.out.println(s1 == s2);// 输出 false,因为一个是堆内存，一个是常量池的内存，故两者是不同的。
-		System.out.println(s1.equals(s2));// 输出 true
+String s1 = new String("abc");// 堆内存的地址值
+String s2 = "abc";
+System.out.println(s1 == s2);// 输出 false,因为一个是堆内存，一个是常量池的内存，故两者是不同的。
+System.out.println(s1.equals(s2));// 输出 true
 ```
 
 **结果：**
@@ -421,15 +420,15 @@ private static class CharacterCache {
 两种浮点数类型的包装类 Float,Double 并没有实现常量池技术。
 
 ```java
-		Integer i1 = 33;
-		Integer i2 = 33;
-		System.out.println(i1 == i2);// 输出 true
-		Integer i11 = 333;
-		Integer i22 = 333;
-		System.out.println(i11 == i22);// 输出 false
-		Double i3 = 1.2;
-		Double i4 = 1.2;
-		System.out.println(i3 == i4);// 输出 false
+Integer i1 = 33;
+Integer i2 = 33;
+System.out.println(i1 == i2);// 输出 true
+Integer i11 = 333;
+Integer i22 = 333;
+System.out.println(i11 == i22);// 输出 false
+Double i3 = 1.2;
+Double i4 = 1.2;
+System.out.println(i3 == i4);// 输出 false
 ```
 
 **Integer 缓存源代码：**
@@ -438,12 +437,11 @@ private static class CharacterCache {
 /**
 *此方法将始终缓存-128 到 127（包括端点）范围内的值，并可以缓存此范围之外的其他值。
 */
-    public static Integer valueOf(int i) {
-        if (i >= IntegerCache.low && i <= IntegerCache.high)
-            return IntegerCache.cache[i + (-IntegerCache.low)];
-        return new Integer(i);
-    }
-
+public static Integer valueOf(int i) {
+    if (i >= IntegerCache.low && i <= IntegerCache.high)
+        return IntegerCache.cache[i + (-IntegerCache.low)];
+    return new Integer(i);
+}
 ```
 
 **应用场景：**
@@ -452,38 +450,38 @@ private static class CharacterCache {
 2. Integer i1 = new Integer(40);这种情况下会创建新的对象。
 
 ```java
-  Integer i1 = 40;
-  Integer i2 = new Integer(40);
-  System.out.println(i1==i2);//输出 false
+Integer i1 = 40;
+Integer i2 = new Integer(40);
+System.out.println(i1==i2);//输出 false
 ```
 
 **Integer 比较更丰富的一个例子:**
 
 ```java
-  Integer i1 = 40;
-  Integer i2 = 40;
-  Integer i3 = 0;
-  Integer i4 = new Integer(40);
-  Integer i5 = new Integer(40);
-  Integer i6 = new Integer(0);
+Integer i1 = 40;
+Integer i2 = 40;
+Integer i3 = 0;
+Integer i4 = new Integer(40);
+Integer i5 = new Integer(40);
+Integer i6 = new Integer(0);
 
-  System.out.println("i1=i2   " + (i1 == i2));
-  System.out.println("i1=i2+i3   " + (i1 == i2 + i3));
-  System.out.println("i1=i4   " + (i1 == i4));
-  System.out.println("i4=i5   " + (i4 == i5));
-  System.out.println("i4=i5+i6   " + (i4 == i5 + i6));
-  System.out.println("40=i5+i6   " + (40 == i5 + i6));
+System.out.println("i1=i2   " + (i1 == i2));
+System.out.println("i1=i2+i3   " + (i1 == i2 + i3));
+System.out.println("i1=i4   " + (i1 == i4));
+System.out.println("i4=i5   " + (i4 == i5));
+System.out.println("i4=i5+i6   " + (i4 == i5 + i6));
+System.out.println("40=i5+i6   " + (40 == i5 + i6));
 ```
 
 结果：
 
 ```
-i1=i2   true
-i1=i2+i3   true
-i1=i4   false
-i4=i5   false
-i4=i5+i6   true
-40=i5+i6   true
+i1=i2   	true
+i1=i2+i3   	true
+i1=i4   	false
+i4=i5  		false
+i4=i5+i6   	true
+40=i5+i6  	true
 ```
 
 解释：

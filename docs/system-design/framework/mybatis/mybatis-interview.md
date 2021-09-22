@@ -147,7 +147,7 @@ public V get(Object key) {
 
 注：我出的。
 
-答：MyBatis 使用 RowBounds 对象进行分页，它是针对 ResultSet 结果集执行的内存分页，而非物理分页，可以在 sql 内直接书写带有物理分页的参数来完成物理分页功能，也可以使用分页插件来完成物理分页。
+答：**(1)** MyBatis 使用 RowBounds 对象进行分页，它是针对 ResultSet 结果集执行的内存分页，而非物理分页；**(2)** 可以在 sql 内直接书写带有物理分页的参数来完成物理分页功能，**(3)** 也可以使用分页插件来完成物理分页。
 
 分页插件的基本原理是使用 MyBatis 提供的插件接口，实现自定义插件，在插件的拦截方法内拦截待执行的 sql，然后重写 sql，根据 dialect 方言，添加对应的物理分页语句和物理分页参数。
 
@@ -197,14 +197,14 @@ public V get(Object key) {
 
 举例：下面 join 查询出来 6 条记录，一、二列是 Teacher 对象列，第三列为 Student 对象列，MyBatis 去重复处理后，结果为 1 个老师 6 个学生，而不是 6 个老师 6 个学生。
 
- t_id t_name s_id
-
-| 1 | teacher | 38 |
-| 1 | teacher | 39 |
-| 1 | teacher | 40 |
-| 1 | teacher | 41 |
-| 1 | teacher | 42 |
-| 1 | teacher | 43 |
+| t_id | t_name  | s_id |
+| ---- | ------- | ---- |
+| 1    | teacher | 38   |
+| 1    | teacher | 39   |
+| 1    | teacher | 40   |
+| 1    | teacher | 41   |
+| 1    | teacher | 42   |
+| 1    | teacher | 43   |
 
 #### 10、MyBatis 是否支持延迟加载？如果支持，它的实现原理是什么？
 
@@ -238,7 +238,7 @@ public V get(Object key) {
 
 **`SimpleExecutor`：**每执行一次 update 或 select，就开启一个 Statement 对象，用完立刻关闭 Statement 对象。
 
-**``ReuseExecutor`：**执行 update 或 select，以 sql 作为 key 查找 Statement 对象，存在就使用，不存在就创建，用完后，不关闭 Statement 对象，而是放置于 Map<String, Statement>内，供下一次使用。简言之，就是重复使用 Statement 对象。
+**`ReuseExecutor`：**执行 update 或 select，以 sql 作为 key 查找 Statement 对象，存在就使用，不存在就创建，用完后，不关闭 Statement 对象，而是放置于 Map<String, Statement>内，供下一次使用。简言之，就是重复使用 Statement 对象。
 
 **`BatchExecutor`：**执行 update（没有 select，JDBC 批处理不支持 select），将所有 sql 都添加到批处理中（addBatch()），等待统一执行（executeBatch()），它缓存了多个 Statement 对象，每个 Statement 对象都是 addBatch()完毕后，等待逐一执行 executeBatch()批处理。与 JDBC 批处理相同。
 

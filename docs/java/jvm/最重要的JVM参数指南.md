@@ -1,4 +1,4 @@
->  本文由 JavaGuide 翻译自 https://www.baeldung.com/jvm-parameters，并对文章进行了大量的完善补充。翻译不易，如需转载请注明出处为：   作者： 。
+>  本文由 JavaGuide 翻译自 [https://www.baeldung.com/jvm-parameters](https://www.baeldung.com/jvm-parameters)，并对文章进行了大量的完善补充。翻译不易，如需转载请注明出处，作者：[baeldung](https://www.baeldung.com/author/baeldung/) 。
 
 ## 1.概述
 
@@ -7,7 +7,6 @@
 ## 2.堆内存相关
 
 >Java 虚拟机所管理的内存中最大的一块，Java 堆是所有线程共享的一块内存区域，在虚拟机启动时创建。**此内存区域的唯一目的就是存放对象实例，几乎所有的对象实例以及数组都在这里分配内存。**
->
 
 ### 2.1.显式指定堆内存`–Xms`和`-Xmx`
 
@@ -27,7 +26,7 @@
 -Xms2G -Xmx5G
 ```
 
-### 2.2.显式新生代内存(Young Ceneration)
+### 2.2.显式新生代内存(Young Generation)
 
 根据[Oracle官方文档](https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/sizing.html)，在堆总可用内存配置完成之后，第二大影响因素是为 `Young Generation` 在堆内存所占的比例。默认情况下，YG 的最小大小为 1310 *MB*，最大大小为*无限制*。
 

@@ -172,12 +172,14 @@ class Broker {
 
 1. 注意，RocketMQ 已经说了自己会有低延迟问题，其中就包括这个消息的 push 延迟问题
 2. 因为这并不是真正的将消息主动的推送到消费者，而是 Broker 定时任务每5s将消息推送到消费者
+3. pull模式需要我们手动调用consumer拉消息，而push模式则只需要我们提供一个listener即可实现对消息的监听，而实际上，RocketMQ的push模式是基于pull模式实现的，它没有实现真正的push。
+4. push方式里，consumer把轮询过程封装了，并注册MessageListener监听器，取到消息后，唤醒MessageListener的consumeMessage()来消费，对用户而言，感觉消息是被推送过来的。
 
 ### 2.1.8 消息重复发送的避免
 
 1. RocketMQ 会出现消息重复发送的问题，因为在网络延迟的情况下，这种问题不可避免的发生，如果非要实现消息不可重复发送，那基本太难，因为网络环境无法预知，还会使程序复杂度加大，因此默认允许消息重复发送
 2. RocketMQ 让使用者在消费者端去解决该问题，即需要消费者端在消费消息时支持幂等性的去消费消息
-3. 最简单的解决方案是每条消费记录有个消费状态字段，根据这个消费状态字段来是否消费或者使用一个集中式的表，来存储所有消息的消费状态，从而避免重复消费
+3. 最简单的解决方案是每条消费记录有个消费状态字段，根据这个消费状态字段来判断是否消费或者使用一个集中式的表，来存储所有消息的消费状态，从而避免重复消费
 4. 具体实现可以查询关于消息幂等消费的解决方案
 
 ### 2.1.9 广播消费与集群消费
@@ -188,7 +190,7 @@ class Broker {
 ### 2.1.10 RocketMQ 不使用 ZooKeeper 作为注册中心的原因，以及自制的 NameServer 优缺点？
 
 1. ZooKeeper 作为支持顺序一致性的中间件，在某些情况下，它为了满足一致性，会丢失一定时间内的可用性，RocketMQ 需要注册中心只是为了发现组件地址，在某些情况下，RocketMQ 的注册中心可以出现数据不一致性，这同时也是 NameServer 的缺点，因为 NameServer 集群间互不通信，它们之间的注册信息可能会不一致
-2. 另外，当有新的服务器加入时，NameServer 并不会立马通知到 Produer，而是由 Produer 定时去请求 NameServer 获取最新的 Broker/Consumer 信息（这种情况是通过 Producer 发送消息时，负载均衡解决）
+2. 另外，当有新的服务器加入时，NameServer 并不会立马通知到 Producer，而是由 Producer 定时去请求 NameServer 获取最新的 Broker/Consumer 信息（这种情况是通过 Producer 发送消息时，负载均衡解决）
 
 ### 2.1.11 其它
 
@@ -199,13 +201,13 @@ class Broker {
 2. 消息重试负载均衡策略（具体参考 Dubbo 负载均衡策略）
 3. 消息过滤器（Producer 发送消息到 Broker，Broker 存储消息信息，Consumer 消费时请求 Broker 端从磁盘文件查询消息文件时,在 Broker 端就使用过滤服务器进行过滤）  
 4. Broker 同步双写和异步双写中 Master 和 Slave 的交互
-5. Broker 在 4.5.0 版本更新中引入了基于 Raft 协议的多副本选举，之前这是商业版才有的特性 [ISSUE-1046][2]
+5. Broker 在 4.5.0 版本更新中引入了基于 Raft 协议的多副本选举，之前这是商业版才有的特性 [ISSUE-1046][2]
 
 # 3 参考
 
 1. 《RocketMQ技术内幕》：https://blog.csdn.net/prestigeding/article/details/85233529
 2. 关于 RocketMQ 对 MappedByteBuffer 的一点优化：https://lishoubo.github.io/2017/09/27/MappedByteBuffer%E7%9A%84%E4%B8%80%E7%82%B9%E4%BC%98%E5%8C%96/
-3. 阿里中间件团队博客-十分钟入门RocketMQ：http://jm.taobao.org/2017/01/12/rocketmq-quick-start-in-10-minutes/
+3. 十分钟入门RocketMQ：https://developer.aliyun.com/article/66101
 4. 分布式事务的种类以及 RocketMQ 支持的分布式消息：https://www.infoq.cn/article/2018/08/rocketmq-4.3-release
 5. 滴滴出行基于RocketMQ构建企业级消息队列服务的实践：https://yq.aliyun.com/articles/664608
 6. 基于《RocketMQ技术内幕》源码注释：https://github.com/LiWenGu/awesome-rocketmq

@@ -117,17 +117,17 @@ JRE 是 Java 运行时环境。它是运行已编译 Java 程序所需的所有�
 高级编程语言按照程序的执行方式分为编译型和解释型两种。简单来说，编译型语言是指编译器针对特定的操作系统将源代码一次性翻译成可被该平台执行的机器码；解释型语言是指解释器对源程序逐行解释成特定平台的机器码并立即执行。比如，你想阅读一本英文名著，你可以找一个英文翻译人员帮助你阅读，
 有两种选择方式，你可以先等翻译人员将全本的英文名著（也就是源码）都翻译成汉语，再去阅读，也可以让翻译人员翻译一段，你在旁边阅读一段，慢慢把书读完。
 
-Java 语言既具有编译型语言的特征，也具有解释型语言的特征，因为 Java 程序要经过先编译，后解释两个步骤，由 Java 编写的程序需要先经过编译步骤，生成字节码（`\*.class` 文件），这种字节码必须由 Java 解释器来解释执行。因此，我们可以认为 Java 语言编译与解释并存。
+Java 语言既具有编译型语言的特征，也具有解释型语言的特征，因为 Java 程序要经过先编译，后解释两个步骤，由 Java 编写的程序需要先经过编译步骤，生成字节码（`*.class` 文件），这种字节码必须由 Java 解释器来解释执行。因此，我们可以认为 Java 语言编译与解释并存。
 
 ### Oracle JDK 和 OpenJDK 的对比
 
-可能在看这个问题之前很多人和我一样并没有接触和使用过 OpenJDK 。那么 Oracle 和 OpenJDK 之间是否存在重大差异？下面我通过收集到的一些资料，为你解答这个被很多人忽视的问题。
+可能在看这个问题之前很多人和我一样并没有接触和使用过 OpenJDK 。那么 Oracle JDK 和 OpenJDK 之间是否存在重大差异？下面我通过收集到的一些资料，为你解答这个被很多人忽视的问题。
 
 对于 Java 7，没什么关键的地方。OpenJDK 项目主要基于 Sun 捐赠的 HotSpot 源代码。此外，OpenJDK 被选为 Java 7 的参考实现，由 Oracle 工程师维护。关于 JVM，JDK，JRE 和 OpenJDK 之间的区别，Oracle 博客帖子在 2012 年有一个更详细的答案：
 
 > 问：OpenJDK 存储库中的源代码与用于构建 Oracle JDK 的代码之间有什么区别？
 >
-> 答：非常接近 - 我们的 Oracle JDK 版本构建过程基于 OpenJDK 7 构建，只添加了几个部分，例如部署代码，其中包括 Oracle 的 Java 插件和 Java WebStart 的实现，以及一些封闭的源代码派对组件，如图形光栅化器，一些开源的第三方组件，如 Rhino，以及一些零碎的东西，如附加文档或第三方字体。展望未来，我们的目的是开源 Oracle JDK 的所有部分，除了我们考虑商业功能的部分。
+> 答：非常接近 - 我们的 Oracle JDK 版本构建过程基于 OpenJDK 7 构建，只添加了几个部分，例如部署代码，其中包括 Oracle 的 Java 插件和 Java WebStart 的实现，以及一些闭源的第三方组件，如图形光栅化器，一些开源的第三方组件，如 Rhino，以及一些零碎的东西，如附加文档或第三方字体。展望未来，我们的目的是开源 Oracle JDK 的所有部分，除了我们考虑商业功能的部分。
 
 **总结：**
 
@@ -175,7 +175,7 @@ Java 语言既具有编译型语言的特征，也具有解释型语言的特征
    > 字符封装类 `Character` 有一个成员常量 `Character.SIZE` 值为 16,单位是`bits`,该值除以 8(`1byte=8bits`)后就可以得到 2 个字节
 
 > java 编程思想第四版：2.2.2 节
-> ![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-15/86735519.jpg)
+> ![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-15/86735519.jpg)
 
 ### 注释
 
@@ -216,8 +216,9 @@ Java 中的注释有三种：
 
 ### Java 中有哪些常见的关键字？
 
+| 分类             | 关键字  |   |    |              |            |           |        |
+| :-------------------- | -------- | ---------- | -------- | ------------ | ---------- | --------- | ------ |
 | 访问控制             | private  | protected  | public   |              |            |           |        |
-| -------------------- | -------- | ---------- | -------- | ------------ | ---------- | --------- | ------ |
 | 类，方法和变量修饰符 | abstract | class      | extends  | final        | implements | interface | native |
 |                      | new      | static     | strictfp | synchronized | transient  | volatile  |        |
 | 程序控制             | break    | continue   | return   | do           | while      | if        | else   |
@@ -251,7 +252,7 @@ return 用于跳出所在方法，结束该方法的运行。return 一般有两
 
 Java 泛型（generics）是 JDK 5 中引入的一个新特性, 泛型提供了编译时类型安全检测机制，该机制允许程序员在编译时检测到非法的类型。泛型的本质是参数化类型，也就是说所操作的数据类型被指定为一个参数。
 
-Java 的泛型是伪泛型，这是因为 Java 在编译期间，所有的泛型信息都会被擦掉，这也就是通常所说类型擦除 。
+Java 的泛型是伪泛型，这是因为 Java 在运行期间，所有的泛型信息都会被擦掉，这也就是通常所说类型擦除 。
 
 ```java
 List<Integer> list = new ArrayList<>();
@@ -274,7 +275,7 @@ System.out.println(list);
 ```java
 //此处T可以随便写为任意标识，常见的如T、E、K、V等形式的参数常用于表示泛型
 //在实例化泛型类时，必须指定T的具体类型
-public class Generic<T>{
+public class Generic<T> {
 
     private T key;
 
@@ -282,7 +283,7 @@ public class Generic<T>{
         this.key = key;
     }
 
-    public T getKey(){
+    public T getKey() {
         return key;
     }
 }
@@ -316,7 +317,7 @@ class GeneratorImpl<T> implements Generator<T>{
 实现泛型接口，指定类型：
 
 ```java
-class GeneratorImpl<T> implements Generator<String>{
+class GeneratorImpl implements Generator<String>{
     @Override
     public String method() {
         return "hello";
@@ -327,13 +328,12 @@ class GeneratorImpl<T> implements Generator<String>{
 **3.泛型方法** ：
 
 ```java
-   public static < E > void printArray( E[] inputArray )
-   {
-         for ( E element : inputArray ){
-            System.out.printf( "%s ", element );
-         }
-         System.out.println();
+public static <E> void printArray(E[] inputArray) {
+    for (E element : inputArray) {
+        System.out.printf("%s ", element);
     }
+    System.out.println();
+}
 ```
 
 使用：
@@ -342,8 +342,8 @@ class GeneratorImpl<T> implements Generator<String>{
 // 创建不同类型数组： Integer, Double 和 Character
 Integer[] intArray = { 1, 2, 3 };
 String[] stringArray = { "Hello", "World" };
-printArray( intArray  );
-printArray( stringArray  );
+printArray(intArray);
+printArray(stringArray);
 ```
 
 **常用的通配符为： T，E，K，V，？**
@@ -457,7 +457,7 @@ public native int hashCode();
 
 在这里解释一位小伙伴的问题。以下内容摘自《Head Fisrt Java》。
 
-因为 `hashCode()` 所使用的杂凑算法也许刚好会让多个对象传回相同的杂凑值。越糟糕的杂凑算法越容易碰撞，但这也与数据值域分布的特性有关（所谓碰撞也就是指的是不同的对象得到相同的 `hashCode`。
+因为 `hashCode()` 所使用的哈希算法也许刚好会让多个对象传回相同的哈希值。越糟糕的哈希算法越容易碰撞，但这也与数据值域分布的特性有关（所谓碰撞也就是指的是不同的对象得到相同的 `hashCode` )。
 
 我们刚刚也提到了 `HashSet`,如果 `HashSet` 在对比的时候，同样的 hashcode 有多个对象，它会使用 `equals()` 来判断是否真的相同。也就是说 `hashcode` 只是用来缩小查找成本。
 
@@ -501,7 +501,7 @@ Java 中有 8 种基本数据类型，分别为：
 
 基本数据类型直接存放在 Java 虚拟机栈中的局部变量表中，而包装类型属于对象类型，我们知道对象实例都存在于堆中。相比于对象类型， 基本数据类型占用的空间非常小。
 
-> 《深入理解 Java 虚拟机》 ：局部变量表主要存放了编译期可知的基本数据类型**（boolean、byte、char、short、int、float、long、double）**、**对象引用**（reference 类型，它不同于对象本身，可能是一个指向对象起始地址的引用指针，也可能是指向一个代表对象的句柄或其他与此对象相关的位置）。
+> 《深入理解 Java 虚拟机》 ：局部变量表主要存放了编译期可知的基本数据类型 **（boolean、byte、char、short、int、float、long、double）**、**对象引用**（reference 类型，它不同于对象本身，可能是一个指向对象起始地址的引用指针，也可能是指向一个代表对象的句柄或其他与此对象相关的位置）。
 
 ### 自动装箱与拆箱
 
@@ -742,15 +742,43 @@ public void f5(int a) {
 
 ### 静态方法和实例方法有何不同？
 
-1. 在外部调用静态方法时，可以使用"类名.方法名"的方式，也可以使用"对象名.方法名"的方式。而实例方法只有后面这种方式。也就是说，**调用静态方法可以无需创建对象。**
+**1、调用方式**
 
-2. 静态方法在访问本类的成员时，只允许访问静态成员（即静态成员变量和静态方法），而不允许访问实例成员变量和实例方法；实例方法则无此限制。
+在外部调用静态方法时，可以使用 `类名.方法名` 的方式，也可以使用 `对象.方法名` 的方式，而实例方法只有后面这种方式。也就是说，**调用静态方法可以无需创建对象** 。
+
+不过，需要注意的是一般不建议使用 `对象.方法名` 的方式来调用静态方法。这种方式非常容易造成混淆，静态方法不属于类的某个对象而是属于这个类。
+
+因此，一般建议使用  `类名.方法名` 的方式来调用静态方法。
+
+```java
+
+public class Person {
+    public void method() { 
+      //......
+    }
+ 
+    public static void staicMethod(){
+      //......
+    }
+    public static void main(String[] args) {
+        Person person = new Person();
+        // 调用实例方法
+        person.method(); 
+        // 调用静态方法
+        Person.staicMethod()
+    }
+}
+```
+
+**2、访问类成员是否存在限制**
+
+静态方法在访问本类的成员时，只允许访问静态成员（即静态成员变量和静态方法），不允许访问实例成员（即实例成员变量和实例方法），而实例方法不存在这个限制。
 
 ### 为什么 Java 中只有值传递？
 
 首先，我们回顾一下在程序设计语言中有关将参数传递给方法（或函数）的一些专业术语。
 
-**按值调用(call by value)** 表示方法接收的是调用者提供的值，**按引用调用（call by reference)** 表示方法接收的是调用者提供的变量地址。一个方法可以修改传递引用所对应的变量值，而不能修改传递值调用所对应的变量值。它用来描述各种程序设计语言（不只是 Java)中方法参数传递方式。
+**按值调用(call by value)** 表示方法接收的是调用者提供的值，**按引用调用（call by reference)** 表示方法接收的是调用者提供的变量地址。一个方法可以修改传递引用所对应的变量值，而不能修改传递值调用所对应的变量值。它用来描述各种程序设计语言（不只是 Java）中方法参数传递方式。
 
 **Java 程序设计语言总是采用按值调用。也就是说，方法得到的是所有参数值的一个拷贝，也就是说，方法不能修改传递给它的任何参数变量的内容。**
 
@@ -790,7 +818,7 @@ num2 = 20
 
 **解析：**
 
-![example 1 ](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-27/22191348.jpg)
+![example 1 ](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-27/22191348.jpg)
 
 在 swap 方法中，a、b 的值进行交换，并不会影响到 num1、num2。因为，a、b 中的值，只是从 num1、num2 的复制过来的。也就是说，a、b 相当于 num1、num2 的副本，副本的内容无论怎么修改，都不会影响到原件本身。
 
@@ -821,7 +849,7 @@ num2 = 20
 
 **解析：**
 
-![example 2](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-27/3825204.jpg)
+![example 2](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-27/3825204.jpg)
 
 array 被初始化 arr 的拷贝也就是一个对象的引用，也就是说 array 和 arr 指向的是同一个数组对象。 因此，外部对引用对象的改变会反映到所对应的对象上。
 
@@ -866,11 +894,11 @@ s2:小李
 
 交换之前：
 
-![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-27/88729818.jpg)
+![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-27/88729818.jpg)
 
 交换之后：
 
-![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-27/34384414.jpg)
+![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-27/34384414.jpg)
 
 通过上面两张图可以很清晰的看出： **方法并没有改变存储在变量 s1 和 s2 中的对象引用。swap 方法的参数 x 和 y 被初始化为两个对象引用的拷贝，这个方法交换的是这两个拷贝**
 
@@ -932,7 +960,7 @@ Java 程序设计语言对对象采用的不是引用调用，实际上，对象
 - “两小”指的是子类方法返回值类型应比父类方法返回值类型更小或相等，子类方法声明抛出的异常类应比父类方法声明抛出的异常类更小或相等；
 - “一大”指的是子类方法的访问权限应比父类方法的访问权限更大或相等。
 
-⭐️ 关于 **重写的返回值类**型 这里需要额外多说明一下，上面的表述不太清晰准确：如果方法的返回类型是 void 和基本数据类型，则返回值重写时不可修改。但是如果方法的返回值是引用类型，重写时是可以返回该引用类型的子类的。
+⭐️ 关于 **重写的返回值类型** 这里需要额外多说明一下，上面的表述不太清晰准确：如果方法的返回类型是 void 和基本数据类型，则返回值重写时不可修改。但是如果方法的返回值是引用类型，重写时是可以返回该引用类型的子类的。
 
 ```java
 public class Hero {
@@ -1119,7 +1147,6 @@ abstract class AbstractStringBuilder implements Appendable, CharSequence {
 Object 类是一个特殊的类，是所有类的父类。它主要提供了以下 11 个方法：
 
 ```java
-
 public final native Class<?> getClass()//native方法，用于返回当前运行时对象的Class对象，使用了final关键字修饰，故不允许子类重写。
 
 public native int hashCode() //native方法，用于返回对象的哈希码，主要使用在哈希表中，比如JDK中的HashMap。
@@ -1140,8 +1167,8 @@ public final void wait(long timeout, int nanos) throws InterruptedException//多
 public final void wait() throws InterruptedException//跟之前的2个wait方法一样，只不过该方法一直等待，没有超时时间这个概念
 
 protected void finalize() throws Throwable { }//实例被垃圾回收器回收的时候触发的操作
-
 ```
+
 
 ## 反射
 
@@ -1231,9 +1258,9 @@ Java 代码在编译过程中 ，我们即使不处理不受检查异常也可�
 
 ### Throwable 类常用方法
 
-- **`public string getMessage()`**:返回异常发生时的简要描述
-- **`public string toString()`**:返回异常发生时的详细信息
-- **`public string getLocalizedMessage()`**:返回异常对象的本地化信息。使用 `Throwable` 的子类覆盖这个方法，可以生成本地化信息。如果子类没有覆盖该方法，则该方法返回的信息与 `getMessage（）`返回的结果相同
+- **`public String getMessage()`**:返回异常发生时的简要描述
+- **`public String toString()`**:返回异常发生时的详细信息
+- **`public String getLocalizedMessage()`**:返回异常对象的本地化信息。使用 `Throwable` 的子类覆盖这个方法，可以生成本地化信息。如果子类没有覆盖该方法，则该方法返回的信息与 `getMessage()`返回的结果相同
 - **`public void printStackTrace()`**:在控制台上打印 `Throwable` 对象封装的异常信息
 
 ### try-catch-finally
@@ -1244,9 +1271,9 @@ Java 代码在编译过程中 ，我们即使不处理不受检查异常也可�
 
 **在以下 3 种特殊情况下，`finally` 块不会被执行：**
 
-2. 在 `try` 或 `finally`块中用了 `System.exit(int)`退出程序。但是，如果 `System.exit(int)` 在异常语句之后，`finally` 还是会被执行
-3. 程序所在的线程死亡。
-4. 关闭 CPU。
+1. 在 `try` 或 `finally`块中用了 `System.exit(int)`退出程序。但是，如果 `System.exit(int)` 在异常语句之后，`finally` 还是会被执行
+2. 程序所在的线程死亡。
+3. 关闭 CPU。
 
 下面这部分内容来自 issue:<https://github.com/Snailclimb/JavaGuide/issues/190>。
 
@@ -1325,7 +1352,7 @@ try (BufferedInputStream bin = new BufferedInputStream(new FileInputStream(new F
         }
 ```
 
-## I\O 流
+## I/O 流
 
 ### 什么是序列化?什么是反序列化?
 
@@ -1334,7 +1361,7 @@ try (BufferedInputStream bin = new BufferedInputStream(new FileInputStream(new F
 简单来说：
 
 - **序列化**： 将数据结构或对象转换成二进制字节流的过程
-- **反序列化**：将在序列化过程中所生成的二进制字节流的过程转换成数据结构或者对象的过程
+- **反序列化**：将在序列化过程中所生成的二进制字节流转换成数据结构或者对象的过程
 
 对于 Java 这种面向对象编程语言来说，我们序列化的都是对象（Object）也就是实例化后的类(Class)，但是在 C++这种半面向对象的语言中，struct(结构体)定义的是数据结构类型，而 class 对应的是对象类型。
 
@@ -1350,9 +1377,14 @@ try (BufferedInputStream bin = new BufferedInputStream(new FileInputStream(new F
 
 ### Java 序列化中如果有些字段不想进行序列化，怎么办？
 
-`对于不想进行序列化的变量，使用`transient`关键字修饰。`
+对于不想进行序列化的变量，使用 `transient` 关键字修饰。
 
-`transient` 关键字的作用是：阻止实例中那些用此关键字修饰的的变量序列化；当对象被反序列化时，被 `transient` 修饰的变量值不会被持久化和恢复。`transient` 只能修饰变量，不能修饰类和方法。
+`transient` 关键字的作用是：阻止实例中那些用此关键字修饰的的变量序列化；当对象被反序列化时，被 `transient` 修饰的变量值不会被持久化和恢复。
+
+关于 `transient` 还有几点注意： 
+- `transient` 只能修饰变量，不能修饰类和方法。
+- `transient` 修饰的变量，在反序列化后变量值将会被置成类型的默认值。例如，如果是修饰 `int` 类型，那么反序列后结果就是 `0`。
+- `static` 变量因为不属于任何对象(Object)，所以无论有没有 `transient` 关键字修饰，均不会被序列化。
 
 ### 获取用键盘输入常用的两种方法
 
@@ -1377,7 +1409,7 @@ String s = input.readLine();
 - 按照操作单元划分，可以划分为字节流和字符流；
 - 按照流的角色划分为节点流和处理流。
 
-Java Io 流共涉及 40 多个类，这些类看上去很杂乱，但实际上很有规则，而且彼此之间存在非常紧密的联系， Java I0 流的 40 多个类都是从如下 4 个抽象类基类中派生出来的。
+Java IO 流共涉及 40 多个类，这些类看上去很杂乱，但实际上很有规则，而且彼此之间存在非常紧密的联系， Java IO 流的 40 多个类都是从如下 4 个抽象类基类中派生出来的。
 
 - InputStream/Reader: 所有的输入流的基类，前者是字节输入流，后者是字符输入流。
 - OutputStream/Writer: 所有输出流的基类，前者是字节输出流，后者是字符输出流。
@@ -1400,4 +1432,4 @@ Java Io 流共涉及 40 多个类，这些类看上去很杂乱，但实际上�
 
 - https://stackoverflow.com/questions/1906445/what-is-the-difference-between-jdk-and-jre
 - https://www.educba.com/oracle-vs-openjdk/
-- https://stackoverflow.com/questions/22358071/differences-between-oracle-jdk-and-openjdk?answertab=active#tab-top## 基础概念与常识
+- https://stackoverflow.com/questions/22358071/differences-between-oracle-jdk-and-openjdk 基础概念与常识

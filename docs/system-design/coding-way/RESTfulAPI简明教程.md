@@ -77,9 +77,9 @@ POST   /classes：新建一个班级
 
 路径又称"终点"（endpoint），表示 API 的具体网址。实际开发中常见的规范如下：
 
-1. **网址中不能有动词，只能有名词，API 中的名词也应该使用复数。**因为 REST 中的资源往往和数据库中的表对应，而数据库中的表都是同种记录的"集合"（collection）。如果 API 调用并不涉及资源（如计算，翻译等操作）的话，可以用动词。比如：`GET /calculate?param1=11&param2=33` 。
+1. **网址中不能有动词，只能有名词，API 中的名词也应该使用复数。** 因为 REST 中的资源往往和数据库中的表对应，而数据库中的表都是同种记录的"集合"（collection）。如果 API 调用并不涉及资源（如计算，翻译等操作）的话，可以用动词。比如：`GET /calculate?param1=11&param2=33` 。
 2. **不用大写字母，建议用中杠 - 不用下杠 \_** 。比如邀请码写成 `invitation-code`而不是 ~~invitation_code~~ 。
-3. **善用版本化 API**。当我们的 API 发生了重大改变而不兼容前期版本的时候，我们可以通过 URL 来实现版本化，比如 `Http://api.example.com/v1`、`http://apiv1.example.com` 。版本不必非要是数字，只是数字用的最多，日期、季节都可以作为版本标识符，项目团队达成共识就可。
+3. **善用版本化 API**。当我们的 API 发生了重大改变而不兼容前期版本的时候，我们可以通过 URL 来实现版本化，比如 `http://api.example.com/v1`、`http://apiv1.example.com` 。版本不必非要是数字，只是数字用的最多，日期、季节都可以作为版本标识符，项目团队达成共识就可。
 4. **接口尽量使用名词，避免使用动词。** RESTful API 操作（HTTP Method）的是资源（名词）而不是动作（动词）。
 
 Talk is cheap！来举个实际的例子来说明一下吧！现在有这样一个 API 提供班级（class）的信息，还包括班级中的学生和教师的信息，则它的路径应该设计成下面这样。
@@ -87,13 +87,13 @@ Talk is cheap！来举个实际的例子来说明一下吧！现在有这样一�
 ```
 GET    /classes：列出所有班级
 POST   /classes：新建一个班级
-GET    /classes/classId：获取某个指定班级的信息
-PUT    /classes/classId：更新某个指定班级的信息（一般倾向整体更新）
-PATCH  /classes/classId：更新某个指定班级的信息（一般倾向部分更新）
-DELETE /classes/classId：删除某个班级
-GET    /classes/classId/teachers：列出某个指定班级的所有老师的信息
-GET    /classes/classId/students：列出某个指定班级的所有学生的信息
-DELETE classes/classId/teachers/ID：删除某个指定班级下的指定的老师的信息
+GET    /classes/{classId}：获取某个指定班级的信息
+PUT    /classes/{classId}：更新某个指定班级的信息（一般倾向整体更新）
+PATCH  /classes/{classId}：更新某个指定班级的信息（一般倾向部分更新）
+DELETE /classes/{classId}：删除某个班级
+GET    /classes/{classId}/teachers：列出某个指定班级的所有老师的信息
+GET    /classes/{classId}/students：列出某个指定班级的所有学生的信息
+DELETE /classes/{classId}/teachers/{ID}：删除某个指定班级下的指定的老师的信息
 ```
 
 反例：
@@ -151,10 +151,10 @@ GET    /classes?page=1&size=10 //指定第1页，每页10个数据
 
 上面代码表示，文档中有一个 `link` 属性，用户读取这个属性就知道下一步该调用什么 API 了。`rel` 表示这个 API 与当前网址的关系（collection 关系，并给出该 collection 的网址），`href` 表示 API 的路径，title 表示 API 的标题，`type` 表示返回类型 `Hypermedia API` 的设计被称为[HATEOAS](http://en.wikipedia.org/wiki/HATEOAS)。
 
-在 Spring 中有一个叫做 HATEOAS 的 API 库，通过它我们可以更轻松的创建除符合 HATEOAS 设计的 API。相关文章：
+在 Spring 中有一个叫做 HATEOAS 的 API 库，通过它我们可以更轻松的创建出符合 HATEOAS 设计的 API。相关文章：
 
-- [在 Spring Boot 中使用 HATEOAS](a)
-- [Building REST services with Spring](https://spring.io/guides/tutorials/classmarks/) (Spring 官网 )
+- [在 Spring Boot 中使用 HATEOAS](https://blog.aisensiy.me/2017/06/04/spring-boot-and-hateoas/)
+- [Building REST services with Spring](https://spring.io/guides/tutorials/rest/) (Spring 官网 )
 - [An Intro to Spring HATEOAS](https://www.baeldung.com/spring-hateoas-tutorial)
 - [spring-hateoas-examples](https://github.com/spring-projects/spring-hateoas-examples/tree/master/hypermedia)
 - [Spring HATEOAS](https://spring.io/projects/spring-hateoas#learn) (Spring 官网 )
@@ -163,7 +163,7 @@ GET    /classes?page=1&size=10 //指定第1页，每页10个数据
 
 - https://RESTfulapi.net/
 
-- http://www.ruanyifeng.com/blog/2014/05/RESTful_api.html
+- https://www.ruanyifeng.com/blog/2014/05/restful_api.html
 
 - https://juejin.im/entry/59e460c951882542f578f2f0
 
