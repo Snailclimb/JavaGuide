@@ -220,7 +220,7 @@ OK
 "value3"
 ```
 
-我专门花了一个图方便小伙伴们来理解：
+我专门画了一个图方便小伙伴们来理解：
 
 ![redis list](./images/redis-all/redis-list.png)
 
