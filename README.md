@@ -67,8 +67,8 @@
 
 **知识点/面试题:** (必看 :+1:)
 
-1. **[Java 并发基础常见面试题总结](docs/java/multi-thread/2020最新Java并发基础常见面试题总结.md)**
-2. **[Java 并发进阶常见面试题总结](docs/java/multi-thread/2020最新Java并发进阶常见面试题总结.md)**
+1. **[Java 并发基础常见面试题总结](docs/java/multi-thread/Java并发基础常见面试题总结.md)**
+2. **[Java 并发进阶常见面试题总结](docs/java/multi-thread/Java并发进阶常见面试题总结.md)**
 
 **重要知识点详解：**
 
