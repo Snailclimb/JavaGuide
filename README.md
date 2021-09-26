@@ -242,6 +242,10 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 数据脱敏说的就是我们根据特定的规则对敏感信息数据进行变形，比如我们把手机号、身份证号某些位数使用 * 来代替。
 
+### 定时任务
+
+最近有朋友问到定时任务相关的问题。于是，我简单写了一篇文章总结一下定时任务的一些概念以及一些常见的定时任务技术选型：[《Java定时任务大揭秘》](./docs/system-design/Java定时任务大揭秘.md)
+
 ### 分布式
 
 #### CAP 理论和 BASE 理论
@@ -285,7 +289,7 @@ Dubbo 是一款国产的 RPC 框架，由阿里开源。相关阅读：
 1. [ 大白话入门 Spring Cloud](docs/system-design/micro-service/spring-cloud.md)
 2. [微服务/分布式大厂真实面试问题解答](https://xiaozhuanlan.com/topic/2895047136)
 
-### 高并发
+### 高性能
 
 #### 消息队列
 
