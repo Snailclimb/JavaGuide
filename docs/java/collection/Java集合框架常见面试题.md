@@ -135,7 +135,7 @@ Java 集合框架如下图所示：
 
 **双向链表：** 包含两个指针，一个 prev 指向前一个节点，一个 next 指向后一个节点。
 
-> 另外推荐一篇把双向链表讲清楚的文章：[https://juejin.im/post/5b5d1a9af265da0f47352f14](https://juejin.im/post/5b5d1a9af265da0f47352f14)
+> 另外推荐一篇把双向链表讲清楚的文章：[https://juejin.cn/post/6844903648154271757](https://juejin.cn/post/6844903648154271757)
 
 ![双向链表](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/双向链表.png)
 
