@@ -106,7 +106,7 @@ JVM具有四种类型的*GC*实现：
 ```
 -XX:+UseSerialGC
 -XX:+UseParallelGC
--XX:+USeParNewGC
+-XX:+UseParNewGC
 -XX:+UseG1GC
 ```
 
