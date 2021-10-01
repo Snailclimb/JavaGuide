@@ -312,7 +312,8 @@ Dubbo 是一款国产的 RPC 框架，由阿里开源。相关阅读：
 常见的分库分表工具有：`sharding-jdbc`（当当）、`TSharding`（蘑菇街）、`MyCAT`（基于 Cobar）、`Cobar`（阿里巴巴）...。 推荐使用 `sharding-jdbc`。 因为，`sharding-jdbc` 是一款轻量级 `Java` 框架，以 `jar` 包形式提供服务，不要我们做额外的运维工作，并且兼容性也很好。
 
 相关阅读： [读写分离&分库分表常见问题总结](docs/system-design/读写分离&分库分表.md)
-
+ 
+ 
 #### 负载均衡
 
 负载均衡系统通常用于将任务比如用户请求处理分配到多个服务器处理以提高网站、应用或者数据库的性能和可靠性。
@@ -333,7 +334,7 @@ Dubbo 是一款国产的 RPC 框架，由阿里开源。相关阅读：
 
 限流是从用户访问压力的角度来考虑如何应对系统故障。
 
-限流为了对服务端的接口接受请求的频率进行限制，防止服务挂掉。比如某一接口的请求限制为 100 个每秒, 对超过限制的请求放弃处理或者放到队列中等待处理。限流可以有效应对突发请求过多。相关阅读：[限流算法有哪些？](docs/system-design/high-availability/limit-request.md)
+限流为了对服务端的接口接受请求的频率进行限制，防止服务挂掉。比如某一接口的请求限制为 100 个每秒, 对超过限制的请求放弃处理或者放到队列中等待处理。限流可以有效应对突发请求过多。相关阅读：[限流算法有哪些？](docs/system-design/high-availabil ity/limit-request.md)
 
 #### 降级
 
@@ -376,24 +377,24 @@ Dubbo 是一款国产的 RPC 框架，由阿里开源。相关阅读：
 
 相关阅读：
 
-- [四步构建异地多活](https://mp.weixin.qq.com/s/hMD-IS__4JE5_nQhYPYSTg)
+- [四步构建异地多活](https://mp.weixin.qq.com /s/hMD-IS__4JE5_nQhYPYSTg)
 - [《从零开始学架构》— 28 | 业务高可用的保障：异地多活架构](http://gk.link/a/10pKZ)
 
 ### 大型网站架构
 
-- [8 张图读懂大型网站技术架构](docs/system-design/website-architecture/8%20张图读懂大型网站技术架构.md)
+- [8 张图读懂大型网站技术架构](docs/system-des ign/website-architecture/8%20张图读懂大型网站技术架构.md)
 - [关于大型网站系统架构你不得不懂的 10 个问题](docs/system-design/website-architecture/关于大型网站系统架构你不得不懂的10个问题.md)
 
 ## 工具
 
 2. **Git** ：[Git 入门](docs/tools/Git.md)
 3. **Github** ： [Github小技巧](docs/tools/Github技巧.md)
-4. **Docker** : [Docker 基本概念解读](docs/tools/Docker.md) 、[Docker从入门到上手干事](docs/tools/Docker从入门到实战.md)
+4. **Docker** : [Docker 基本概念解读](docs/to ols/Docker.md) 、[Docker从入门到上手干事](docs/tools/Docker从入门到实战.md)
 
 ## Java 学习常见问题汇总
 
 1. [2021最新 Java 学习路线！凎！](https://www.zhihu.com/question/56110328/answer/869069586)
-2. [Java 培训四个月能学会吗？](docs/questions/java-training-4-month.md)
+2. [Java 培训四个月能学会吗？](docs/questions/java-train ing-4-month.md)
 3. [新手学习 Java，有哪些 Java 相关的博客，专栏，和技术学习网站推荐？](docs/questions/java-learning-website-blog.md)
 4. [Java 还是大数据，你需要了解这些东西！](docs/questions/java-big-data.md)
 
@@ -416,7 +417,7 @@ Dubbo 是一款国产的 RPC 框架，由阿里开源。相关阅读：
 
 项目的发展离不开你的支持，如果 JavaGuide 帮助到了你找到自己满意的 offer，请作者喝杯咖啡吧 ☕ 后续会继续完善更新！加油！
 
-[点击捐赠支持作者](https://www.yuque.com/snailclimb/dr6cvl/mr44yt#vu3ok)
+[点击捐赠支持作者](https://www.yuque.com/snail climb/dr6cvl/mr44yt#vu3ok)
 
 ### 联系我
 
