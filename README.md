@@ -273,8 +273,10 @@ Dubbo 是一款国产的 RPC 框架，由阿里开源。相关阅读：
 
 网关主要用于请求转发、安全认证、协议转换、容灾。
 
-1. [为什么要网关？你知道有哪些常见的网关系统？](docs/system-design/distributed-system/api-gateway/为什么要网站有哪些常见的网站系统.md)
-2. [如何设计一个亿级网关(API Gateway)？](docs/system-design/distributed-system/api-gateway/如何设计一个亿级网关.md)
+相关阅读：
+
+- [为什么要网关？你知道有哪些常见的网关系统？](docs/system-design/distributed-system/api-gateway/api网关入门.md)
+- [百亿规模API网关服务Shepherd的设计与实现](https://tech.meituan.com/2021/05/20/shepherd-api-gateway.html)
 
 #### 分布式 id
 
