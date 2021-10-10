@@ -391,6 +391,7 @@ Dubbo 是一款国产的 RPC 框架，由阿里开源。相关阅读：
 2. **Git** ：[Git 入门](docs/tools/Git.md)
 3. **Github** ： [Github小技巧](docs/tools/Github技巧.md)
 4. **Docker** : [Docker 基本概念解读](docs/tools/Docker.md) 、[Docker从入门到上手干事](docs/tools/Docker从入门到实战.md)
+5. **IDEA** ：[IntelliJ IDEA 使用指南 | 必备插件推荐 | 插件开发入门 | 重构小技巧 | 源码阅读技巧](https://github.com/CodingDocs/awesome-idea-tutorial)。
 
 ## Java 学习常见问题汇总
 
