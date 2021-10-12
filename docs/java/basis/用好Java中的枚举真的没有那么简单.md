@@ -12,7 +12,7 @@
 
 enum关键字在 java5 中引入，表示一种特殊类型的类，其总是继承java.lang.Enum类，更多内容可以自行查看其[官方文档](https://docs.oracle.com/javase/6/docs/api/java/lang/Enum.html)。
 
-枚举在很多时候会和常量拿来对比，可能因为本身我们大量实际使用枚举的地方就是为了替代常量。那么这种方式由什么优势呢？
+枚举在很多时候会和常量拿来对比，可能因为本身我们大量实际使用枚举的地方就是为了替代常量。那么这种方式有什么优势呢？
 
 **以这种方式定义的常量使代码更具可读性，允许进行编译时检查，预先记录可接受值的列表，并避免由于传入无效值而引起的意外行为。**
 
@@ -65,15 +65,16 @@ public class Pizza {
 首先，让我们看一下以下代码段中的运行时安全性，其中 `==` 运算符用于比较状态，并且如果两个值均为null 都不会引发 NullPointerException。相反，如果使用equals方法，将抛出 NullPointerException：
 
 ```java
-if(testPz.getStatus().equals(Pizza.PizzaStatus.DELIVERED)); 
-if(testPz.getStatus() == Pizza.PizzaStatus.DELIVERED); 
+Pizza.PizzaStatus pizza = null;
+System.out.println(pizza.equals(Pizza.PizzaStatus.DELIVERED));//空指针异常
+System.out.println(pizza == Pizza.PizzaStatus.DELIVERED);//正常运行
 ```
 
-对于编译时安全性，我们看另一个示例，两个不同枚举类型进行比较，使用equal方法比较结果确定为true，因为`getStatus`方法的枚举值与另一个类型枚举值一致，但逻辑上应该为false。这个问题可以使用==操作符避免。因为编译器会表示类型不兼容错误：
+对于编译时安全性，我们看另一个示例，两个不同枚举类型进行比较：
 
 ```java
-if(testPz.getStatus().equals(TestColor.GREEN));
-if(testPz.getStatus() == TestColor.GREEN);
+if (Pizza.PizzaStatus.DELIVERED.equals(TestColor.GREEN)); // 编译正常
+if (Pizza.PizzaStatus.DELIVERED == TestColor.GREEN);      // 编译失败，类型不匹配
 ```
 
 ## 4.在 switch 语句中使用枚举类型
@@ -218,7 +219,7 @@ public class Pizza {
 }
 ```
 
-  下面的测试演示了展示了 `EnumSet` 在某些场景下的强大功能：
+  下面的测试展示了 `EnumSet` 在某些场景下的强大功能：
 
 ```java
 @Test
@@ -271,7 +272,7 @@ while (iterator.hasNext()) {
 }
 ```
 
- 下面的测试演示了展示了 `EnumMap` 在某些场景下的强大功能：
+ 下面的测试展示了 `EnumMap` 在某些场景下的强大功能：
 
 ```java
 @Test
@@ -307,7 +308,7 @@ public void givenPizaOrders_whenGroupByStatusCalled_thenCorrectlyGrouped() {
 
 通常，使用类实现 Singleton 模式并非易事，枚举提供了一种实现单例的简便方法。
 
-《Effective Java 》和《Java与模式》都非常推荐这种方式，使用这种方式方式实现枚举可以有什么好处呢？
+《Effective Java 》和《Java与模式》都非常推荐这种方式，使用这种方式实现枚举可以有什么好处呢？
 
 《Effective Java》
 
@@ -400,9 +401,9 @@ public void givenPizaOrder_whenDelivered_thenPizzaGetsDeliveredAndStatusChanges(
 
 ## 8. Java 8 与枚举
 
-Pizza 类可以用Java 8重写，您可以看到方法 lambda 和Stream API如何使 `getAllUndeliveredPizzas（）`和`groupPizzaByStatus（）`方法变得如此简洁：
+Pizza 类可以用Java 8重写，您可以看到方法 lambda 和Stream API如何使 `getAllUndeliveredPizzas()`和`groupPizzaByStatus()`方法变得如此简洁：
 
-`getAllUndeliveredPizzas（）`:
+`getAllUndeliveredPizzas()`:
 
 ```java
 public static List<Pizza> getAllUndeliveredPizzas(List<Pizza> input) {
@@ -412,7 +413,7 @@ public static List<Pizza> getAllUndeliveredPizzas(List<Pizza> input) {
 }
 ```
 
-`groupPizzaByStatus（）` :
+`groupPizzaByStatus()` :
 
 ```java
 public static EnumMap<PizzaStatus, List<Pizza>> 

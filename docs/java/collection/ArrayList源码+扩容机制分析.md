@@ -2,7 +2,7 @@
 
 `ArrayList` 的底层是数组队列，相当于动态数组。与 Java 中的数组相比，它的容量能动态增长。在添加大量元素前，应用程序可以使用`ensureCapacity`操作来增加 `ArrayList` 实例的容量。这可以减少递增式再分配的数量。
 
-`ArrayList`继承于 **`AbstractList`**，实现了 **`List`**, **`RandomAccess`**, **`Cloneable`**, **`java.io.Serializable`** 这些接口。
+`ArrayList`继承于 **`AbstractList`** ，实现了 **`List`**, **`RandomAccess`**, **`Cloneable`**, **`java.io.Serializable`** 这些接口。
 
 ```java
 
@@ -14,7 +14,7 @@ public class ArrayList<E> extends AbstractList<E>
 
 - `RandomAccess` 是一个标志接口，表明实现这个这个接口的 List 集合是支持**快速随机访问**的。在 `ArrayList` 中，我们即可以通过元素的序号快速获取元素对象，这就是快速随机访问。
 - `ArrayList` 实现了 **`Cloneable` 接口** ，即覆盖了函数`clone()`，能被克隆。
-- `ArrayList` 实现了 java.io.Serializable `接口，这意味着`ArrayList`支持序列化，能通过序列化去传输。
+- `ArrayList` 实现了 `java.io.Serializable`接口，这意味着`ArrayList`支持序列化，能通过序列化去传输。
 
 ### 1.1. Arraylist 和 Vector 的区别?
 
@@ -541,7 +541,7 @@ public class ArrayList<E> extends AbstractList<E>
 
 ### 3.1. 先从 ArrayList 的构造函数说起
 
-**ArrayList 有三种方式来初始化，构造方法源码如下：**
+**（JDK8）ArrayList 有三种方式来初始化，构造方法源码如下：**
 
 ```java
    /**
@@ -594,7 +594,9 @@ public class ArrayList<E> extends AbstractList<E>
 
 ```
 
-细心的同学一定会发现 ：**以无参数构造方法创建 ArrayList 时，实际上初始化赋值的是一个空数组。当真正对数组进行添加元素操作时，才真正分配容量。即向数组中添加第一个元素时，数组容量扩为 10。** 下面在我们分析 ArrayList 扩容时会讲到这一点内容！
+细心的同学一定会发现 ：**以无参数构造方法创建 `ArrayList` 时，实际上初始化赋值的是一个空数组。当真正对数组进行添加元素操作时，才真正分配容量。即向数组中添加第一个元素时，数组容量扩为 10。** 下面在我们分析 ArrayList 扩容时会讲到这一点内容！
+
+> 补充：JDK6 new 无参构造的 `ArrayList` 对象时，直接创建了长度是 10 的 `Object[]` 数组 elementData 。
 
 ### 3.2. 一步一步分析 ArrayList 扩容机制
 
@@ -619,7 +621,7 @@ public class ArrayList<E> extends AbstractList<E>
 
 #### 3.2.2. 再来看看 `ensureCapacityInternal()` 方法
 
-可以看到 `add` 方法 首先调用了`ensureCapacityInternal(size + 1)`
+（JDK7）可以看到 `add` 方法 首先调用了`ensureCapacityInternal(size + 1)`
 
 ```java
    //得到最小扩容量
@@ -634,6 +636,8 @@ public class ArrayList<E> extends AbstractList<E>
 ```
 
 **当 要 add 进第 1 个元素时，minCapacity 为 1，在 Math.max()方法比较后，minCapacity 为 10。**
+
+> 此处和后续 JDK8 代码格式化略有不同，核心代码基本一样。
 
 #### 3.2.3. `ensureExplicitCapacity()` 方法
 
@@ -729,6 +733,25 @@ public class ArrayList<E> extends AbstractList<E>
 
 #### 3.3.1. `System.arraycopy()` 方法
 
+源码：
+
+```java
+    // 我们发现 arraycopy 是一个 native 方法,接下来我们解释一下各个参数的具体意义
+    /**
+    *   复制数组
+    * @param src 源数组
+    * @param srcPos 源数组中的起始位置
+    * @param dest 目标数组
+    * @param destPos 目标数组中的起始位置
+    * @param length 要复制的数组元素的数量
+    */
+    public static native void arraycopy(Object src,  int  srcPos,
+                                        Object dest, int destPos,
+                                        int length);
+```
+
+场景：
+
 ```java
     /**
      * 在此列表中的指定位置插入指定的元素。
@@ -776,6 +799,21 @@ public class ArraycopyTest {
 ```
 
 #### 3.3.2. `Arrays.copyOf()`方法
+
+源码：
+
+```java
+    public static int[] copyOf(int[] original, int newLength) {
+    	// 申请一个新的数组
+        int[] copy = new int[newLength];
+	// 调用System.arraycopy,将源数组中的数据进行拷贝,并返回新的数组
+        System.arraycopy(original, 0, copy, 0,
+                         Math.min(original.length, newLength));
+        return copy;
+    }
+```
+
+场景：
 
 ```java
    /**
@@ -890,7 +928,7 @@ public class EnsureCapacityTest {
 运行结果：
 
 ```
-使用ensureCapacity方法前：1773
+使用ensureCapacity方法后：1773
 ```
 
 通过运行结果，我们可以看出向 ArrayList 添加大量元素之前最好先使用`ensureCapacity` 方法，以减少增量重新分配的次数。

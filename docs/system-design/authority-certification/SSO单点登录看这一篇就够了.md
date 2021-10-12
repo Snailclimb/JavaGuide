@@ -10,12 +10,12 @@
 
 SSO英文全称Single Sign On，单点登录。SSO是在多个应用系统中，用户只需要登录一次就可以访问所有相互信任的应用系统。https://baike.baidu.com/item/SSO/3451380
 
-例如访问在网易账号中心（http://reg.163.com/ ）登录之后
+例如访问在网易账号中心（https://reg.163.com/ ）登录之后
 访问以下站点都是登录状态
 
-- 网易直播 [http://v.163.com](http://v.163.com/)
-- 网易博客 [http://blog.163.com](http://blog.163.com/)
-- 网易花田 [http://love.163.com](http://love.163.com/)
+- 网易直播 [https://v.163.com](https://v.163.com/)
+- 网易博客 [https://blog.163.com](https://blog.163.com/)
+- 网易花田 [https://love.163.com](https://love.163.com/)
 - 网易考拉 [https://www.kaola.com](https://www.kaola.com/)
 - 网易Lofter [http://www.lofter.com](http://www.lofter.com/)
 
@@ -72,9 +72,9 @@ SSO英文全称Single Sign On，单点登录。SSO是在多个应用系统中，
 
 ![SSO系统设计-登录时序图](https://img.ken.io/blog/sso/sso-login-sequence.png-kbrb.png)
 
-按照上图，用户登录后Authtoken保存在Cookie中。 domian= test. com
+按照上图，用户登录后AuthToken保存在Cookie中。 domain=test.com
 浏览器会将domain设置成 .test.com，
-这样访问所有*.test.com的web站点，都会将Authtoken携带到服务器端。
+这样访问所有*.test.com的web站点，都会将AuthToken携带到服务器端。
 然后通过SSO服务，完成对用户状态的校验/用户登录信息的获取
 
 - 登录信息获取/登录状态校验

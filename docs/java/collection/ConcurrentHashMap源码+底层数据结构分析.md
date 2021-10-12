@@ -6,9 +6,11 @@
 
 ### 1. 存储结构
 
+> 下图存在一个笔误 Segmeng -> Segment
+
 ![Java 7 ConcurrentHashMap 存储结构](./images/image-20200405151029416.png)
 
-Java 7 中 ConcurrentHashMap 的存储结构如上图，ConcurrnetHashMap 由很多个 Segment  组合，而每一个 Segment 是一个类似于 HashMap 的结构，所以每一个 HashMap 的内部可以进行扩容。但是 Segment 的个数一旦**初始化就不能改变**，默认 Segment 的个数是 16 个，你也可以认为 ConcurrentHashMap 默认支持最多 16 个线程并发。
+Java 7 中 `ConcurrentHashMap` 的存储结构如上图，`ConcurrnetHashMap` 由很多个 `Segment`  组合，而每一个 `Segment` 是一个类似于 HashMap 的结构，所以每一个 `HashMap` 的内部可以进行扩容。但是 `Segment` 的个数一旦**初始化就不能改变**，默认 `Segment` 的个数是 16 个，你也可以认为 `ConcurrentHashMap` 默认支持最多 16 个线程并发。
 
 ### 2. 初始化
 
@@ -91,7 +93,7 @@ public ConcurrentHashMap(int initialCapacity,float loadFactor, int concurrencyLe
 总结一下在 Java 7 中 ConcurrnetHashMap 的初始化逻辑。
 
 1. 必要参数校验。
-2. 校验并发级别 concurrencyLevel 大小，如果大于最大值，重置为最大值。无惨构造**默认值是 16.**
+2. 校验并发级别 concurrencyLevel 大小，如果大于最大值，重置为最大值。无参构造**默认值是 16.**
 3. 寻找并发级别 concurrencyLevel 之上最近的 **2 的幂次方**值，作为初始化容量大小，**默认是 16**。
 4. 记录 segmentShift 偏移量，这个值为【容量 =  2 的N次方】中的 N，在后面 Put 时计算位置时会用到。**默认是 32 - sshift = 28**.
 5. 记录 segmentMask，默认是 ssize - 1 = 16 -1 = 15.
@@ -573,12 +575,12 @@ public V get(Object key) {
 
 总结：
 
-总的来说 ConcruuentHashMap 在 Java8 中相对于 Java7 来说变化还是挺大的，
+总的来说 ConcurrentHashMap 在 Java8 中相对于 Java7 来说变化还是挺大的，
 
 ## 3.  总结
 
-Java7 中 ConcruuentHashMap 使用的分段锁，也就是每一个 Segment 上同时只有一个线程可以操作，每一个 Segment 都是一个类似 HashMap 数组的结构，它可以扩容，它的冲突会转化为链表。但是 Segment 的个数一但初始化就不能改变。
+Java7 中 ConcurrentHashMap 使用的分段锁，也就是每一个 Segment 上同时只有一个线程可以操作，每一个 Segment 都是一个类似 HashMap 数组的结构，它可以扩容，它的冲突会转化为链表。但是 Segment 的个数一但初始化就不能改变。
 
-Java8 中的 ConcruuentHashMap  使用的 Synchronized 锁加 CAS 的机制。结构也由 Java7 中的 **Segment 数组 + HashEntry 数组 + 链表** 进化成了  **Node 数组 + 链表 / 红黑树**，Node 是类似于一个 HashEntry 的结构。它的冲突再达到一定大小时会转化成红黑树，在冲突小于一定数量时又退回链表。
+Java8 中的 ConcurrentHashMap  使用的 Synchronized 锁加 CAS 的机制。结构也由 Java7 中的 **Segment 数组 + HashEntry 数组 + 链表** 进化成了  **Node 数组 + 链表 / 红黑树**，Node 是类似于一个 HashEntry 的结构。它的冲突再达到一定大小时会转化成红黑树，在冲突小于一定数量时又退回链表。
 
 有些同学可能对 Synchronized 的性能存在疑问，其实 Synchronized 锁自从引入锁升级策略后，性能不再是问题，有兴趣的同学可以自己了解下 Synchronized 的**锁升级**。

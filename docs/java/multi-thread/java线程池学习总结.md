@@ -47,14 +47,14 @@
 
 ## 一 使用线程池的好处
 
-> **池化技术相比大家已经屡见不鲜了，线程池、数据库连接池、Http 连接池等等都是对这个思想的应用。池化技术的思想主要是为了减少每次获取资源的消耗，提高对资源的利用率。**
+> **池化技术想必大家已经屡见不鲜了，线程池、数据库连接池、Http 连接池等等都是对这个思想的应用。池化技术的思想主要是为了减少每次获取资源的消耗，提高对资源的利用率。**
 
 **线程池**提供了一种限制和管理资源（包括执行一个任务）。 每个**线程池**还维护一些基本统计信息，例如已完成任务的数量。
 
 这里借用《Java 并发编程的艺术》提到的来说一下**使用线程池的好处**：
 
 - **降低资源消耗**。通过重复利用已创建的线程降低线程创建和销毁造成的消耗。
-- **提高响应速度**。当任务到达时，任务可以不需要的等到线程创建就能立即执行。
+- **提高响应速度**。当任务到达时，任务可以不需要等到线程创建就能立即执行。
 - **提高线程的可管理性**。线程是稀缺资源，如果无限制的创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可以进行统一的分配，调优和监控。
 
 ## 二 Executor 框架
@@ -173,10 +173,10 @@ public class ScheduledThreadPoolExecutor
 
 如果当前同时运行的线程数量达到最大线程数量并且队列也已经被放满了任务时，`ThreadPoolTaskExecutor` 定义一些策略:
 
-- **`ThreadPoolExecutor.AbortPolicy`**：抛出 `RejectedExecutionException`来拒绝新任务的处理。
-- **`ThreadPoolExecutor.CallerRunsPolicy`**：调用执行自己的线程运行任务，也就是直接在调用`execute`方法的线程中运行(`run`)被拒绝的任务，如果执行程序已关闭，则会丢弃该任务。因此这种策略会降低对于新任务提交速度，影响程序的整体性能。如果您的应用程序可以承受此延迟并且你要求任何一个任务请求都要被执行的话，你可以选择这个策略。
-- **`ThreadPoolExecutor.DiscardPolicy`：** 不处理新任务，直接丢弃掉。
-- **`ThreadPoolExecutor.DiscardOldestPolicy`：** 此策略将丢弃最早的未处理的任务请求。
+- **`ThreadPoolExecutor.AbortPolicy`** ：抛出 `RejectedExecutionException`来拒绝新任务的处理。
+- **`ThreadPoolExecutor.CallerRunsPolicy`** ：调用执行自己的线程运行任务，也就是直接在调用`execute`方法的线程中运行(`run`)被拒绝的任务，如果执行程序已关闭，则会丢弃该任务。因此这种策略会降低对于新任务提交速度，影响程序的整体性能。如果您的应用程序可以承受此延迟并且你要求任何一个任务请求都要被执行的话，你可以选择这个策略。
+- **`ThreadPoolExecutor.DiscardPolicy`** ：不处理新任务，直接丢弃掉。
+- **`ThreadPoolExecutor.DiscardOldestPolicy`** ： 此策略将丢弃最早的未处理的任务请求。
 
 举个例子：
 
@@ -184,7 +184,7 @@ public class ScheduledThreadPoolExecutor
 
 ### 3.2 推荐使用 `ThreadPoolExecutor` 构造函数创建线程池
 
-**在《阿里巴巴 Java 开发手册》“并发处理”这一章节，明确指出线程资源必须通过线程池提供，不允许在应用中自行显示创建线程。**
+**在《阿里巴巴 Java 开发手册》“并发处理”这一章节，明确指出线程资源必须通过线程池提供，不允许在应用中自行显式创建线程。**
 
 **为什么呢？**
 
@@ -199,6 +199,7 @@ public class ScheduledThreadPoolExecutor
 
 **方式一：通过`ThreadPoolExecutor`构造函数实现（推荐）**
 ![通过构造方法实现](images/java线程池学习总结/threadpoolexecutor构造函数.png)
+
 **方式二：通过 Executor 框架的工具类 Executors 来实现**
 我们可以创建三种类型的 ThreadPoolExecutor：
 
@@ -337,11 +338,11 @@ pool-1-thread-2 End. Time = Sun Apr 12 11:14:47 CST 2020
 
 ### 4.2 线程池原理分析
 
-承接 4.1 节，我们通过代码输出结果可以看出：**线程首先会先执行 5 个任务，然后这些任务有任务被执行完的话，就会去拿新的任务执行。** 大家可以先通过上面讲解的内容，分析一下到底是咋回事？（自己独立思考一会）
+承接 4.1 节，我们通过代码输出结果可以看出：**线程池首先会先执行 5 个任务，然后这些任务有任务被执行完的话，就会去拿新的任务执行。** 大家可以先通过上面讲解的内容，分析一下到底是咋回事？（自己独立思考一会）
 
 现在，我们就分析上面的输出内容来简单分析一下线程池原理。
 
-**为了搞懂线程池的原理，我们需要首先分析一下 `execute`方法。**在 4.1 节中的 Demo 中我们使用 `executor.execute(worker)`来提交一个任务到线程池中去，这个方法非常重要，下面我们来看看它的源码：
+**为了搞懂线程池的原理，我们需要首先分析一下 `execute`方法。** 在 4.1 节中的 Demo 中我们使用 `executor.execute(worker)`来提交一个任务到线程池中去，这个方法非常重要，下面我们来看看它的源码：
 
 ```java
    // 存放线程池的运行状态 (runState) 和线程池内有效线程的数量 (workerCount)
@@ -388,7 +389,7 @@ pool-1-thread-2 End. Time = Sun Apr 12 11:14:47 CST 2020
 
 通过下图可以更好的对上面这 3 步做一个展示，下图是我为了省事直接从网上找到，原地址不明。
 
-![图解线程池实现原理](images/java线程池学习总结/图解线程池实现原理.png)
+![图解线程池实现原理](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/%E5%9B%BE%E8%A7%A3%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.png)
 
 
 
@@ -509,9 +510,9 @@ pool-1-thread-2 End. Time = Sun Apr 12 11:14:47 CST 2020
 
 #### 4.3.1 `Runnable` vs `Callable`
 
-`Runnable`自 Java 1.0 以来一直存在，但`Callable`仅在 Java 1.5 中引入,目的就是为了来处理`Runnable`不支持的用例。**`Runnable` 接口**不会返回结果或抛出检查异常，但是**`Callable` 接口**可以。所以，如果任务不需要返回结果或抛出异常推荐使用 **`Runnable` 接口**，这样代码看起来会更加简洁。
+`Runnable`自 Java 1.0 以来一直存在，但`Callable`仅在 Java 1.5 中引入,目的就是为了来处理`Runnable`不支持的用例。**`Runnable` 接口**不会返回结果或抛出检查异常，但是 **`Callable` 接口**可以。所以，如果任务不需要返回结果或抛出异常推荐使用 **`Runnable` 接口**，这样代码看起来会更加简洁。
 
-工具类 `Executors` 可以实现 `Runnable` 对象和 `Callable` 对象之间的相互转换。（`Executors.callable（Runnable task`）或 `Executors.callable（Runnable task，Object resule）`）。
+工具类 `Executors` 可以实现将 `Runnable` 对象转换成 `Callable` 对象。（`Executors.callable(Runnable task)` 或 `Executors.callable(Runnable task, Object result)`）。
 
 `Runnable.java`
 
@@ -543,9 +544,9 @@ public interface Callable<V> {
 #### 4.3.2 `execute()` vs `submit()`
 
 1. **`execute()`方法用于提交不需要返回值的任务，所以无法判断任务是否被线程池执行成功与否；**
-2. **`submit()`方法用于提交需要返回值的任务。线程池会返回一个 `Future` 类型的对象，通过这个 `Future` 对象可以判断任务是否执行成功**，并且可以通过 `Future` 的 `get()`方法来获取返回值，`get()`方法会阻塞当前线程直到任务完成，而使用 `get（long timeout，TimeUnit unit）`方法则会阻塞当前线程一段时间后立即返回，这时候有可能任务没有执行完。
+2. **`submit()`方法用于提交需要返回值的任务。线程池会返回一个 `Future` 类型的对象，通过这个 `Future` 对象可以判断任务是否执行成功** ，并且可以通过 `Future` 的 `get()`方法来获取返回值，`get()`方法会阻塞当前线程直到任务完成，而使用 `get（long timeout，TimeUnit unit）`方法则会阻塞当前线程一段时间后立即返回，这时候有可能任务没有执行完。
 
-我们以**`AbstractExecutorService`**接口中的一个 `submit` 方法为例子来看看源代码：
+我们以 **`AbstractExecutorService`** 接口中的一个 `submit()` 方法为例子来看看源代码：
 
 ```java
     public Future<?> submit(Runnable task) {
@@ -715,7 +716,7 @@ Wed Nov 13 13:40:43 CST 2019::pool-1-thread-5
 
 #### 5.1.3 为什么不推荐使用`FixedThreadPool`？
 
-**`FixedThreadPool` 使用无界队列 `LinkedBlockingQueue`（队列的容量为 Intger.MAX_VALUE）作为线程池的工作队列会对线程池带来如下影响 ：**
+**`FixedThreadPool` 使用无界队列 `LinkedBlockingQueue`（队列的容量为 Integer.MAX_VALUE）作为线程池的工作队列会对线程池带来如下影响 ：**
 
 1. 当线程池中的线程数达到 `corePoolSize` 后，新任务将在无界队列中等待，因此线程池中的线程数不会超过 corePoolSize；
 2. 由于使用无界队列时 `maximumPoolSize` 将是一个无效参数，因为不可能存在任务队列满的情况。所以，通过创建 `FixedThreadPool`的源码可以看出创建的 `FixedThreadPool` 的 `corePoolSize` 和 `maximumPoolSize` 被设置为同一个值。
@@ -834,7 +835,7 @@ Wed Nov 13 13:40:43 CST 2019::pool-1-thread-5
 
 **`ScheduledThreadPoolExecutor` 的执行主要分为两大部分：**
 
-1. 当调用 `ScheduledThreadPoolExecutor` 的 **`scheduleAtFixedRate()`** 方法或者**`scheduleWirhFixedDelay()`** 方法时，会向 `ScheduledThreadPoolExecutor` 的 **`DelayQueue`** 添加一个实现了 **`RunnableScheduledFuture`** 接口的 **`ScheduledFutureTask`** 。
+1. 当调用 `ScheduledThreadPoolExecutor` 的 **`scheduleAtFixedRate()`** 方法或者 **`scheduleWithFixedDelay()`** 方法时，会向 `ScheduledThreadPoolExecutor` 的 **`DelayQueue`** 添加一个实现了 **`RunnableScheduledFuture`** 接口的 **`ScheduledFutureTask`** 。
 2. 线程池中的线程从 `DelayQueue` 中获取 `ScheduledFutureTask`，然后执行任务。
 
 **`ScheduledThreadPoolExecutor` 为了实现周期性的执行任务，对 `ThreadPoolExecutor`做了如下修改：**
@@ -879,7 +880,7 @@ Wed Nov 13 13:40:43 CST 2019::pool-1-thread-5
 
 **如何判断是 CPU 密集任务还是 IO 密集任务？**
 
-CPU 密集型简单理解就是利用 CPU 计算能力的任务比如你在内存中对大量数据进行排序。单凡涉及到网络读取，文件读取这类都是 IO 密集型，这类任务的特点是 CPU 计算耗费时间相比于等待 IO 操作完成的时间来说很少，大部分时间都花在了等待 IO 操作完成上。
+CPU 密集型简单理解就是利用 CPU 计算能力的任务比如你在内存中对大量数据进行排序。但凡涉及到网络读取，文件读取这类都是 IO 密集型，这类任务的特点是 CPU 计算耗费时间相比于等待 IO 操作完成的时间来说很少，大部分时间都花在了等待 IO 操作完成上。
 
 ## 八 参考
 

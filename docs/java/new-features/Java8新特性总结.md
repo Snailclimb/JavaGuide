@@ -118,7 +118,7 @@ Collections.sort(names, (String a, String b) -> {
 });
 ```
 
-可以看出，代码变得更段且更具有可读性，但是实际上还可以写得更短：
+可以看出，代码变得更短且更具有可读性，但是实际上还可以写得更短：
 
 ```java
 Collections.sort(names, (String a, String b) -> b.compareTo(a));
@@ -215,7 +215,7 @@ Person person = personFactory.create("Peter", "Parker");
 ```
 我们只需要使用 `Person::new` 来获取Person类构造函数的引用，Java编译器会自动根据`PersonFactory.create`方法的参数类型来选择合适的构造函数。
 
-### Lamda 表达式作用域(Lambda Scopes)
+### Lambda 表达式作用域(Lambda Scopes)
 
 #### 访问局部变量
 
@@ -283,7 +283,7 @@ Formula formula = (a) -> sqrt(a * 100);
 
 ### 内置函数式接口(Built-in Functional Interfaces)
 
-JDK 1.8 API包含许多内置函数式接口。 其中一些借口在老版本的 Java 中是比较常见的比如： `Comparator` 或`Runnable`，这些接口都增加了`@FunctionalInterface`注解以便能用在 lambda 表达式上。
+JDK 1.8 API包含许多内置函数式接口。 其中一些接口在老版本的 Java 中是比较常见的比如： `Comparator` 或`Runnable`，这些接口都增加了`@FunctionalInterface`注解以便能用在 lambda 表达式上。
 
 但是 Java 8 API 同样还提供了很多全新的函数式接口来让你的编程工作更加方便，有一些接口是来自 [Google Guava](https://code.google.com/p/guava-libraries/) 库里的，即便你对这些很熟悉了，还是有必要看看这些是如何扩展到lambda上使用的。
 
@@ -423,15 +423,15 @@ Optional 是一个简单的容器，其值可能是null或者不是null。在Jav
 译者注：示例中每个方法的作用已经添加。
 
 ```java
-//of（）：为非null的值创建一个Optional
+//of()：为非null的值创建一个Optional
 Optional<String> optional = Optional.of("bam");
-// isPresent（）： 如果值存在返回true，否则返回false
+// isPresent()： 如果值存在返回true，否则返回false
 optional.isPresent();           // true
 //get()：如果Optional有值则将其返回，否则抛出NoSuchElementException
 optional.get();                 // "bam"
-//orElse（）：如果有值则将其返回，否则返回指定的其它值
+//orElse()：如果有值则将其返回，否则返回指定的其它值
 optional.orElse("fallback");    // "bam"
-//ifPresent（）：如果Optional实例有值则为其调用consumer，否则不做处理
+//ifPresent()：如果Optional实例有值则为其调用consumer，否则不做处理
 optional.ifPresent((s) -> System.out.println(s.charAt(0)));     // "b"
 ```
 
@@ -441,7 +441,7 @@ optional.ifPresent((s) -> System.out.println(s.charAt(0)));     // "b"
 
 `java.util.Stream` 表示能应用在一组元素上一次执行的操作序列。Stream 操作分为中间操作或者最终操作两种，最终操作返回一特定类型的计算结果，而中间操作返回Stream本身，这样你就可以将多个操作依次串起来。Stream 的创建需要指定一个数据源，比如` java.util.Collection` 的子类，List 或者 Set， Map 不支持。Stream 的操作可以串行执行或者并行执行。
 
-首先看看Stream是怎么用，首先创建实例代码的用到的数据List：
+首先看看Stream是怎么用，首先创建实例代码需要用到的数据List：
 
 ```java
 List<String> stringList = new ArrayList<>();
@@ -484,7 +484,7 @@ forEach 是为 Lambda 而设计的，保持了最紧凑的风格。而且 Lambda
                 .forEach(System.out::println);// aaa1 aaa2
 ```
 
-需要注意的是，排序只创建了一个排列好后的Stream，而不会影响原有的数据源，排序之后原数据stringCollection是不会被修改的：
+需要注意的是，排序只创建了一个排列好后的Stream，而不会影响原有的数据源，排序之后原数据stringList是不会被修改的：
 
 ```java
     System.out.println(stringList);// ddd2, aaa2, bbb1, aaa1, bbb3, ccc, bbb2, ddd1
@@ -502,7 +502,7 @@ forEach 是为 Lambda 而设计的，保持了最紧凑的风格。而且 Lambda
                 .stream()
                 .map(String::toUpperCase)
                 .sorted((a, b) -> b.compareTo(a))
-                .forEach(System.out::println);// "DDD2", "DDD1", "CCC", "BBB3", "BBB2", "AAA2", "AAA1"
+                .forEach(System.out::println);// "DDD2", "DDD1", "CCC", "BBB3", "BBB2", "BBB1", "AAA2", "AAA1"
 ```
 
 
@@ -552,7 +552,7 @@ Stream提供了多种匹配操作，允许检测指定的Predicate是否匹配�
 
 ### Reduce(规约)
 
-这是一个 **最终操作** ，允许通过指定的函数来讲stream中的多个元素规约为一个元素，规约后的结果是通过Optional 接口表示的：
+这是一个 **最终操作** ，允许通过指定的函数来将stream中的多个元素规约为一个元素，规约后的结果是通过Optional 接口表示的：
 
 ```java
         //测试 Reduce (规约)操作
@@ -649,7 +649,7 @@ parallel sort took: 475 ms//串行排序所用的时间
 
 ## Maps
 
-前面提到过，Map 类型不支持 streams，不过Map提供了一些新的有用的方法来处理一些日常任务。Map接口本身没有可用的 `stream（）`方法，但是你可以在键，值上创建专门的流或者通过 `map.keySet().stream()`,`map.values().stream()`和`map.entrySet().stream()`。
+前面提到过，Map 类型不支持 streams，不过Map提供了一些新的有用的方法来处理一些日常任务。Map接口本身没有可用的 `stream()`方法，但是你可以在键，值上创建专门的流或者通过 `map.keySet().stream()`,`map.values().stream()`和`map.entrySet().stream()`。
 
 此外,Maps 支持各种新的和有用的方法来执行常见任务。
 
@@ -705,7 +705,7 @@ map.merge(9, "concat", (value, newValue) -> value.concat(newValue));
 map.get(9);             // val9concat
 ```
 
-Merge 做的事情是如果键名不存在则插入，否则则对原键对应的值做合并操作并重新插入到map中。
+Merge 做的事情是如果键名不存在则插入，否则对原键对应的值做合并操作并重新插入到map中。
 
 ## Date API(日期相关API)
 
@@ -824,6 +824,28 @@ DateTimeFormatter formatter=DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm:ss");
 System.out.println(formatter.format(rightNow));//2019-03-12 16:26:48
 ```
 
+**🐛 修正（参见： [issue#1157](https://github.com/Snailclimb/JavaGuide/issues/1157)）**：使用 `YYYY` 显示年份时，会显示当前时间所在周的年份，在跨年周会有问题。一般情况下都使用 `yyyy`，来显示准确的年份。
+
+跨年导致日期显示错误示例：
+
+```java
+LocalDateTime rightNow = LocalDateTime.of(2020, 12, 31, 12, 0, 0);
+String date= DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(rightNow);
+// 2020-12-31T12:00:00
+System.out.println(date);
+DateTimeFormatter formatterOfYYYY = DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm:ss");
+// 2021-12-31 12:00:00
+System.out.println(formatterOfYYYY.format(rightNow));
+
+DateTimeFormatter formatterOfYyyy = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+// 2020-12-31 12:00:00
+System.out.println(formatterOfYyyy.format(rightNow));
+```
+
+从下图可以更清晰的看到具体的错误，并且 IDEA 已经智能地提示更倾向于使用  `yyyy` 而不是  `YYYY` 。
+
+![](https://img-blog.csdnimg.cn/2021042717491413.png)
+
 ### LocalDateTime(本地日期时间)
 
 LocalDateTime 同时表示了时间和日期，相当于前两节内容合并到一个对象上了。LocalDateTime 和 LocalTime还有 LocalDate 一样，都是不可变的。LocalDateTime 提供了一些能访问具体字段的方法。
@@ -872,6 +894,7 @@ System.out.println(string);     // Nov 03, 2014 - 07:13
 首先定义一个包装类Hints注解用来放置一组具体的Hint注解：
 
 ```java
+@Retention(RetentionPolicy.RUNTIME)
 @interface Hints {
     Hint[] value();
 }

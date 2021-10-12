@@ -1,4 +1,4 @@
->  本文由 JavaGuide 翻译自 https://www.baeldung.com/jvm-parameters，并对文章进行了大量的完善补充。翻译不易，如需转载请注明出处为：   作者： 。
+>  本文由 JavaGuide 翻译自 [https://www.baeldung.com/jvm-parameters](https://www.baeldung.com/jvm-parameters)，并对文章进行了大量的完善补充。翻译不易，如需转载请注明出处，作者：[baeldung](https://www.baeldung.com/author/baeldung/) 。
 
 ## 1.概述
 
@@ -7,7 +7,6 @@
 ## 2.堆内存相关
 
 >Java 虚拟机所管理的内存中最大的一块，Java 堆是所有线程共享的一块内存区域，在虚拟机启动时创建。**此内存区域的唯一目的就是存放对象实例，几乎所有的对象实例以及数组都在这里分配内存。**
->
 
 ### 2.1.显式指定堆内存`–Xms`和`-Xmx`
 
@@ -27,7 +26,7 @@
 -Xms2G -Xmx5G
 ```
 
-### 2.2.显式新生代内存(Young Ceneration)
+### 2.2.显式新生代内存(Young Generation)
 
 根据[Oracle官方文档](https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/sizing.html)，在堆总可用内存配置完成之后，第二大影响因素是为 `Young Generation` 在堆内存所占的比例。默认情况下，YG 的最小大小为 1310 *MB*，最大大小为*无限制*。
 
@@ -67,7 +66,7 @@ GC 调优策略中很重要的一条经验总结是这样说的：
 -XX:NewRatio=1
 ```
 
-### 2.3.显示指定永久代/元空间的大小
+### 2.3.显式指定永久代/元空间的大小
 
 **从Java 8开始，如果我们没有指定 Metaspace 的大小，随着更多类的创建，虚拟机会耗尽所有可用的系统内存（永久代并不会出现这种情况）。**
 
@@ -80,7 +79,7 @@ JDK 1.8 之前永久代还没被彻底移除的时候通常通过下面这些参
 
 相对而言，垃圾收集行为在这个区域是比较少出现的，但并非数据进入方法区后就“永久存在”了。
 
-**JDK 1.8 的时候，方法区（HotSpot 的永久代）被彻底移除了（JDK1.7 就已经开始了），取而代之是元空间，元空间使用的是直接内存。**
+**JDK 1.8 的时候，方法区（HotSpot 的永久代）被彻底移除了（JDK1.7 就已经开始了），取而代之是元空间，元空间使用的是本地内存。**
 
 下面是一些常用参数：
 
@@ -107,7 +106,7 @@ JVM具有四种类型的*GC*实现：
 ```
 -XX:+UseSerialGC
 -XX:+UseParallelGC
--XX:+USeParNewGC
+-XX:+UseParNewGC
 -XX:+UseG1GC
 ```
 
@@ -125,8 +124,6 @@ JVM具有四种类型的*GC*实现：
 -XX:GCLogFileSize=< file size >[ unit ]
 -Xloggc:/path/to/gc.log
 ```
-
-
 
 ## 推荐阅读
 

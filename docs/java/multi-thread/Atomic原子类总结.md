@@ -65,7 +65,7 @@ Atomic 翻译成中文是原子的意思。在化学上，我们知道原子是�
 - AtomicLongFieldUpdater：原子更新长整型字段的更新器
 - AtomicReferenceFieldUpdater：原子更新引用类型里的字段
 
-> 修正: **AtomicMarkableReference 不能解决ABA问题**   **[issue#626](https://github.com/Snailclimb/JavaGuide/issues/626)**
+> **🐛 修正（参见：[issue#626](https://github.com/Snailclimb/JavaGuide/issues/626)）** :  `AtomicMarkableReference` 不能解决ABA问题。
 
 ```java
     /**
