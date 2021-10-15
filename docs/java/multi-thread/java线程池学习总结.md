@@ -1,4 +1,3 @@
-
 ## 一 使用线程池的好处
 
 > **池化技术想必大家已经屡见不鲜了，线程池、数据库连接池、Http 连接池等等都是对这个思想的应用。池化技术的思想主要是为了减少每次获取资源的消耗，提高对资源的利用率。**
@@ -302,7 +301,7 @@ pool-1-thread-2 End. Time = Sun Apr 12 11:14:47 CST 2020
 ```java
    // 存放线程池的运行状态 (runState) 和线程池内有效线程的数量 (workerCount)
    private final AtomicInteger ctl = new AtomicInteger(ctlOf(RUNNING, 0));
-   
+
     private static int workerCountOf(int c) {
         return c & CAPACITY;
     }
@@ -346,9 +345,7 @@ pool-1-thread-2 End. Time = Sun Apr 12 11:14:47 CST 2020
 
 ![图解线程池实现原理](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/%E5%9B%BE%E8%A7%A3%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.png)
 
-
-
-**`addWorker` 这个方法主要用来创建新的工作线程，如果返回true说明创建和启动工作线程成功，否则的话返回的就是false。**
+**`addWorker` 这个方法主要用来创建新的工作线程，如果返回 true 说明创建和启动工作线程成功，否则的话返回的就是 false。**
 
 ```java
     // 全局锁，并发操作必备
@@ -388,7 +385,7 @@ pool-1-thread-2 End. Time = Sun Apr 12 11:14:47 CST 2020
             for (;;) {
                //获取线程池中线程的数量
                 int wc = workerCountOf(c);
-                // core参数为true的话表明队列也满了，线程池大小变为 maximumPoolSize 
+                // core参数为true的话表明队列也满了，线程池大小变为 maximumPoolSize
                 if (wc >= CAPACITY ||
                     wc >= (core ? corePoolSize : maximumPoolSize))
                     return false;
@@ -396,7 +393,7 @@ pool-1-thread-2 End. Time = Sun Apr 12 11:14:47 CST 2020
                 if (compareAndIncrementWorkerCount(c))
                     break retry;
                 // 如果线程的状态改变了就再次执行上述操作
-                c = ctl.get();  
+                c = ctl.get();
                 if (runStateOf(c) != rs)
                     continue retry;
                 // else CAS failed due to workerCount change; retry inner loop
@@ -408,7 +405,7 @@ pool-1-thread-2 End. Time = Sun Apr 12 11:14:47 CST 2020
         boolean workerAdded = false;
         Worker w = null;
         try {
-        
+
             w = new Worker(firstTask);
             final Thread t = w.thread;
             if (t != null) {
@@ -453,13 +450,13 @@ pool-1-thread-2 End. Time = Sun Apr 12 11:14:47 CST 2020
     }
 ```
 
-更多关于线程池源码分析的内容推荐这篇文章：《[JUC线程池ThreadPoolExecutor源码分析](http://www.throwable.club/2019/07/15/java-concurrency-thread-pool-executor/)》
+更多关于线程池源码分析的内容推荐这篇文章：《[JUC 线程池 ThreadPoolExecutor 源码分析](http://www.throwable.club/2019/07/15/java-concurrency-thread-pool-executor/)》
 
 现在，让我们在回到 4.1 节我们写的 Demo， 现在应该是不是很容易就可以搞懂它的原理了呢？
 
 没搞懂的话，也没关系，可以看看我的分析：
 
-> 我们在代码中模拟了 10 个任务，我们配置的核心线程数为 5 、等待队列容量为 100 ，所以每次只可能存在 5 个任务同时执行，剩下的 5 个任务会被放到等待队列中去。当前的5个任务中如果有任务被执行完了，线程池就会去拿新的任务执行。
+> 我们在代码中模拟了 10 个任务，我们配置的核心线程数为 5 、等待队列容量为 100 ，所以每次只可能存在 5 个任务同时执行，剩下的 5 个任务会被放到等待队列中去。当前的 5 个任务中如果有任务被执行完了，线程池就会去拿新的任务执行。
 
 ### 4.3 几个常见的对比
 
