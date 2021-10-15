@@ -1,50 +1,4 @@
 
-<!-- TOC -->
-
-- [一 使用线程池的好处](#一-使用线程池的好处)
-- [二 Executor 框架](#二-executor-框架)
-    - [2.1 简介](#21-简介)
-    - [2.2 Executor 框架结构(主要由三大部分组成)](#22-executor-框架结构主要由三大部分组成)
-        - [1) 任务(`Runnable` /`Callable`)](#1-任务runnable-callable)
-        - [2) 任务的执行(`Executor`)](#2-任务的执行executor)
-        - [3) 异步计算的结果(`Future`)](#3-异步计算的结果future)
-    - [2.3 Executor 框架的使用示意图](#23-executor-框架的使用示意图)
-- [三 (重要)ThreadPoolExecutor 类简单介绍](#三-重要threadpoolexecutor-类简单介绍)
-    - [3.1 ThreadPoolExecutor 类分析](#31-threadpoolexecutor-类分析)
-    - [3.2 推荐使用 `ThreadPoolExecutor` 构造函数创建线程池](#32-推荐使用-threadpoolexecutor-构造函数创建线程池)
-- [四 (重要)ThreadPoolExecutor 使用示例](#四-重要threadpoolexecutor-使用示例)
-    - [4.1 示例代码:`Runnable`+`ThreadPoolExecutor`](#41-示例代码runnablethreadpoolexecutor)
-    - [4.2 线程池原理分析](#42-线程池原理分析)
-    - [4.3 几个常见的对比](#43-几个常见的对比)
-        - [4.3.1 `Runnable` vs `Callable`](#431-runnable-vs-callable)
-        - [4.3.2 `execute()` vs `submit()`](#432-execute-vs-submit)
-        - [4.3.3 `shutdown()`VS`shutdownNow()`](#433-shutdownvsshutdownnow)
-        - [4.3.2 `isTerminated()` VS `isShutdown()`](#432-isterminated-vs-isshutdown)
-    - [4.4 加餐:`Callable`+`ThreadPoolExecutor`示例代码](#44-加餐callablethreadpoolexecutor示例代码)
-- [五 几种常见的线程池详解](#五-几种常见的线程池详解)
-    - [5.1 FixedThreadPool](#51-fixedthreadpool)
-        - [5.1.1 介绍](#511-介绍)
-        - [5.1.2 执行任务过程介绍](#512-执行任务过程介绍)
-        - [5.1.3 为什么不推荐使用`FixedThreadPool`？](#513-为什么不推荐使用fixedthreadpool)
-    - [5.2 SingleThreadExecutor 详解](#52-singlethreadexecutor-详解)
-        - [5.2.1 介绍](#521-介绍)
-        - [5.2.2 执行任务过程介绍](#522-执行任务过程介绍)
-        - [5.2.3 为什么不推荐使用`SingleThreadExecutor`？](#523-为什么不推荐使用singlethreadexecutor)
-    - [5.3 CachedThreadPool 详解](#53-cachedthreadpool-详解)
-        - [5.3.1 介绍](#531-介绍)
-        - [5.3.2 执行任务过程介绍](#532-执行任务过程介绍)
-        - [5.3.3 为什么不推荐使用`CachedThreadPool`？](#533-为什么不推荐使用cachedthreadpool)
-- [六 ScheduledThreadPoolExecutor 详解](#六-scheduledthreadpoolexecutor-详解)
-    - [6.1 简介](#61-简介)
-    - [6.2 运行机制](#62-运行机制)
-    - [6.3 ScheduledThreadPoolExecutor 执行周期任务的步骤](#63-scheduledthreadpoolexecutor-执行周期任务的步骤)
-- [七 线程池大小确定](#七-线程池大小确定)
-- [八 参考](#八-参考)
-- [九 其他推荐阅读](#九-其他推荐阅读)
-
-<!-- /TOC -->
-
-
 ## 一 使用线程池的好处
 
 > **池化技术想必大家已经屡见不鲜了，线程池、数据库连接池、Http 连接池等等都是对这个思想的应用。池化技术的思想主要是为了减少每次获取资源的消耗，提高对资源的利用率。**
@@ -61,11 +15,11 @@
 
 ### 2.1 简介
 
-Executor 框架是 Java5 之后引进的，在 Java 5 之后，通过 Executor 来启动线程比使用 Thread 的 start 方法更好，除了更易管理，效率更好（用线程池实现，节约开销）外，还有关键的一点：有助于避免 this 逃逸问题。
+`Executor` 框架是 Java5 之后引进的，在 Java 5 之后，通过 `Executor` 来启动线程比使用 `Thread` 的 `start` 方法更好，除了更易管理，效率更好（用线程池实现，节约开销）外，还有关键的一点：有助于避免 this 逃逸问题。
 
 > 补充：this 逃逸是指在构造函数返回之前其他线程就持有该对象的引用. 调用尚未构造完全的对象的方法可能引发令人疑惑的错误。
 
-Executor 框架不仅包括了线程池的管理，还提供了线程工厂、队列以及拒绝策略等，Executor 框架让并发编程变得更加简单。
+`Executor` 框架不仅包括了线程池的管理，还提供了线程工厂、队列以及拒绝策略等，`Executor` 框架让并发编程变得更加简单。
 
 ### 2.2 Executor 框架结构(主要由三大部分组成)
 
@@ -120,7 +74,7 @@ public class ScheduledThreadPoolExecutor
 
 ### 3.1 ThreadPoolExecutor 类分析
 
-`ThreadPoolExecutor` 类中提供的四个构造方法。我们来看最长的那个，其余三个都是在这个构造方法的基础上产生（其他几个构造方法说白点都是给定某些默认参数的构造方法比如默认制定拒绝策略是什么），这里就不贴代码讲了，比较简单。
+`ThreadPoolExecutor` 类中提供的四个构造方法。我们来看最长的那个，其余三个都是在这个构造方法的基础上产生（其他几个构造方法说白点都是给定某些默认参数的构造方法比如默认制定拒绝策略是什么）。
 
 ```java
     /**
@@ -150,7 +104,7 @@ public class ScheduledThreadPoolExecutor
     }
 ```
 
-**下面这些对创建 非常重要，在后面使用线程池的过程中你一定会用到！所以，务必拿着小本本记清楚。**
+下面这些对创建非常重要，在后面使用线程池的过程中你一定会用到！所以，务必拿着小本本记清楚。
 
 **`ThreadPoolExecutor` 3 个最重要的参数：**
 
@@ -158,7 +112,7 @@ public class ScheduledThreadPoolExecutor
 - **`maximumPoolSize` :** 当队列中存放的任务达到队列容量的时候，当前可以同时运行的线程数量变为最大线程数。
 - **`workQueue`:** 当新任务来的时候会先判断当前运行的线程数量是否达到核心线程数，如果达到的话，新任务就会被存放在队列中。
 
-`ThreadPoolExecutor`其他常见参数:
+`ThreadPoolExecutor`其他常见参数 :
 
 1. **`keepAliveTime`**:当线程池中的线程数量大于 `corePoolSize` 的时候，如果这时没有新的任务提交，核心线程外的线程不会立即销毁，而是会等待，直到等待的时间超过了 `keepAliveTime`才会被回收销毁；
 2. **`unit`** : `keepAliveTime` 参数的时间单位。
@@ -184,33 +138,34 @@ public class ScheduledThreadPoolExecutor
 
 ### 3.2 推荐使用 `ThreadPoolExecutor` 构造函数创建线程池
 
-**在《阿里巴巴 Java 开发手册》“并发处理”这一章节，明确指出线程资源必须通过线程池提供，不允许在应用中自行显式创建线程。**
+在《阿里巴巴 Java 开发手册》“并发处理”这一章节，明确指出线程资源必须通过线程池提供，不允许在应用中自行显式创建线程。
 
 **为什么呢？**
 
-> **使用线程池的好处是减少在创建和销毁线程上所消耗的时间以及系统资源开销，解决资源不足的问题。如果不使用线程池，有可能会造成系统创建大量同类线程而导致消耗完内存或者“过度切换”的问题。**
+> 使用线程池的好处是减少在创建和销毁线程上所消耗的时间以及系统资源开销，解决资源不足的问题。如果不使用线程池，有可能会造成系统创建大量同类线程而导致消耗完内存或者“过度切换”的问题。
 
-**另外《阿里巴巴 Java 开发手册》中强制线程池不允许使用 Executors 去创建，而是通过 ThreadPoolExecutor 构造函数的方式，这样的处理方式让写的同学更加明确线程池的运行规则，规避资源耗尽的风险**
+另外，《阿里巴巴 Java 开发手册》中强制线程池不允许使用 `Executors` 去创建，而是通过 `ThreadPoolExecutor` 构造函数的方式，这样的处理方式让写的同学更加明确线程池的运行规则，规避资源耗尽的风险
 
-> Executors 返回线程池对象的弊端如下：
+> `Executors` 返回线程池对象的弊端如下(后文会详细介绍到)：
 >
-> - **`FixedThreadPool` 和 `SingleThreadExecutor`** ： 允许请求的队列长度为 Integer.MAX_VALUE,可能堆积大量的请求，从而导致 OOM。
-> - **CachedThreadPool 和 ScheduledThreadPool** ： 允许创建的线程数量为 Integer.MAX_VALUE ，可能会创建大量线程，从而导致 OOM。
+> - **`FixedThreadPool` 和 `SingleThreadExecutor`** ： 允许请求的队列长度为 `Integer.MAX_VALUE`,可能堆积大量的请求，从而导致 OOM。
+> - **`CachedThreadPool` 和 `ScheduledThreadPool`** ： 允许创建的线程数量为 `Integer.MAX_VALUE` ，可能会创建大量线程，从而导致 OOM。
 
 **方式一：通过`ThreadPoolExecutor`构造函数实现（推荐）**
 ![通过构造方法实现](images/java线程池学习总结/threadpoolexecutor构造函数.png)
 
-**方式二：通过 Executor 框架的工具类 Executors 来实现**
-我们可以创建三种类型的 ThreadPoolExecutor：
+**方式二：通过 `Executor` 框架的工具类 `Executors` 来实现**
+我们可以创建三种类型的 `ThreadPoolExecutor`：
 
-- **FixedThreadPool**
-- **SingleThreadExecutor**
-- **CachedThreadPool**
+- `FixedThreadPool`
+- `SingleThreadExecutor`
+- CachedThreadPool
 
 对应 Executors 工具类中的方法如图所示：
+
 ![通过Executor 框架的工具类Executors来实现](images/java线程池学习总结/Executors工具类.png)
 
-## 四 (重要)ThreadPoolExecutor 使用示例
+## 四 ThreadPoolExecutor 使用+原理分析
 
 我们上面讲解了 `Executor`框架以及 `ThreadPoolExecutor` 类，下面让我们实战一下，来通过写一个 `ThreadPoolExecutor` 的小 Demo 来回顾上面的内容。
 
@@ -543,10 +498,10 @@ public interface Callable<V> {
 
 #### 4.3.2 `execute()` vs `submit()`
 
-1. **`execute()`方法用于提交不需要返回值的任务，所以无法判断任务是否被线程池执行成功与否；**
-2. **`submit()`方法用于提交需要返回值的任务。线程池会返回一个 `Future` 类型的对象，通过这个 `Future` 对象可以判断任务是否执行成功** ，并且可以通过 `Future` 的 `get()`方法来获取返回值，`get()`方法会阻塞当前线程直到任务完成，而使用 `get（long timeout，TimeUnit unit）`方法则会阻塞当前线程一段时间后立即返回，这时候有可能任务没有执行完。
+- `execute()`方法用于提交不需要返回值的任务，所以无法判断任务是否被线程池执行成功与否；
+- `submit()`方法用于提交需要返回值的任务。线程池会返回一个 `Future` 类型的对象，通过这个 `Future` 对象可以判断任务是否执行成功，并且可以通过 `Future` 的 `get()`方法来获取返回值，`get()`方法会阻塞当前线程直到任务完成，而使用 `get（long timeout，TimeUnit unit）`方法则会阻塞当前线程一段时间后立即返回，这时候有可能任务没有执行完。
 
-我们以 **`AbstractExecutorService`** 接口中的一个 `submit()` 方法为例子来看看源代码：
+我们以 `AbstractExecutorService` 接口中的一个 `submit()` 方法为例子来看看源代码：
 
 ```java
     public Future<?> submit(Runnable task) {
@@ -755,12 +710,12 @@ Wed Nov 13 13:40:43 CST 2019::pool-1-thread-5
 
 #### 5.2.2 执行任务过程介绍
 
-**`SingleThreadExecutor` 的运行示意图（该图片来源：《Java 并发编程的艺术》）：**
+`SingleThreadExecutor` 的运行示意图（该图片来源：《Java 并发编程的艺术》）：
 ![SingleThreadExecutor的运行示意图](images/java线程池学习总结/SingleThreadExecutor.png)
 
-**上图说明;**
+**上图说明** :
 
-1. 如果当前运行的线程数少于 corePoolSize，则创建一个新的线程执行任务；
+1. 如果当前运行的线程数少于 `corePoolSize`，则创建一个新的线程执行任务；
 2. 当前线程池中有一个运行的线程后，将任务加入 `LinkedBlockingQueue`
 3. 线程执行完当前的任务后，会在循环中反复从`LinkedBlockingQueue` 中获取任务来执行；
 
@@ -795,11 +750,11 @@ Wed Nov 13 13:40:43 CST 2019::pool-1-thread-5
     }
 ```
 
-`CachedThreadPool` 的`corePoolSize` 被设置为空（0），`maximumPoolSize`被设置为 Integer.MAX.VALUE，即它是无界的，这也就意味着如果主线程提交任务的速度高于 `maximumPool` 中线程处理任务的速度时，`CachedThreadPool` 会不断创建新的线程。极端情况下，这样会导致耗尽 cpu 和内存资源。
+`CachedThreadPool` 的`corePoolSize` 被设置为空（0），`maximumPoolSize`被设置为 `Integer.MAX.VALUE`，即它是无界的，这也就意味着如果主线程提交任务的速度高于 `maximumPool` 中线程处理任务的速度时，`CachedThreadPool` 会不断创建新的线程。极端情况下，这样会导致耗尽 cpu 和内存资源。
 
 #### 5.3.2 执行任务过程介绍
 
-**CachedThreadPool 的 execute()方法的执行示意图（该图片来源：《Java 并发编程的艺术》）：**
+`CachedThreadPool` 的 `execute()` 方法的执行示意图（该图片来源：《Java 并发编程的艺术》）：
 ![CachedThreadPool的execute()方法的执行示意图](images/java线程池学习总结/CachedThreadPool-execute.png)
 
 **上图说明：**
@@ -809,15 +764,15 @@ Wed Nov 13 13:40:43 CST 2019::pool-1-thread-5
 
 #### 5.3.3 为什么不推荐使用`CachedThreadPool`？
 
-`CachedThreadPool`允许创建的线程数量为 Integer.MAX_VALUE ，可能会创建大量线程，从而导致 OOM。
+`CachedThreadPool`允许创建的线程数量为 `Integer.MAX_VALUE` ，可能会创建大量线程，从而导致 OOM。
 
 ## 六 ScheduledThreadPoolExecutor 详解
 
-**`ScheduledThreadPoolExecutor` 主要用来在给定的延迟后运行任务，或者定期执行任务。** 这个在实际项目中基本不会被用到，因为有其他方案选择比如`quartz`。大家只需要简单了解一下它的思想。关于如何在 Spring Boot 中 实现定时任务，可以查看这篇文章[《5 分钟搞懂如何在 Spring Boot 中 Schedule Tasks》](https://github.com/Snailclimb/springboot-guide/blob/master/docs/advanced/SpringBoot-ScheduleTasks.md)。
+**`ScheduledThreadPoolExecutor` 主要用来在给定的延迟后运行任务，或者定期执行任务。** 这个在实际项目中基本不会被用到，也不推荐使用，大家只需要简单了解一下它的思想即可。
 
 ### 6.1 简介
 
-**`ScheduledThreadPoolExecutor` 使用的任务队列 `DelayQueue` 封装了一个 `PriorityQueue`，`PriorityQueue` 会对队列中的任务进行排序，执行所需时间短的放在前面先被执行(`ScheduledFutureTask` 的 `time` 变量小的先执行)，如果执行所需时间相同则先提交的任务将被先执行(`ScheduledFutureTask` 的 `squenceNumber` 变量小的先执行)。**
+`ScheduledThreadPoolExecutor` 使用的任务队列 `DelayQueue` 封装了一个 `PriorityQueue`，`PriorityQueue` 会对队列中的任务进行排序，执行所需时间短的放在前面先被执行(`ScheduledFutureTask` 的 `time` 变量小的先执行)，如果执行所需时间相同则先提交的任务将被先执行(`ScheduledFutureTask` 的 `squenceNumber` 变量小的先执行)。
 
 **`ScheduledThreadPoolExecutor` 和 `Timer` 的比较：**
 
@@ -827,7 +782,7 @@ Wed Nov 13 13:40:43 CST 2019::pool-1-thread-5
 
 **综上，在 JDK1.5 之后，你没有理由再使用 Timer 进行任务调度了。**
 
-> **备注：** Quartz 是一个由 java 编写的任务调度库，由 OpenSymphony 组织开源出来。在实际项目开发中使用 Quartz 的还是居多，比较推荐使用 Quartz。因为 Quartz 理论上能够同时对上万个任务进行调度，拥有丰富的功能特性，包括任务调度、任务持久化、可集群化、插件等等。
+> 关于定时任务的详细介绍，小伙伴们可以在 JavaGuide 的项目首页搜索“定时任务”找到对应的原创内容。
 
 ### 6.2 运行机制
 
