@@ -4,7 +4,7 @@
 
 👉 书单已经被移动到 [awesome-cs](https://github.com/CodingDocs/awesome-cs) 这个仓库。
 
-👉 我的最新原创分享 [《程序员副业赚钱之路》](https://github.com/CodingDocs/programmer-sideline) 。
+👉 [朋友开源的面试八股文系列](https://github.com/csguide-dabai/interview-guide)。
 
 > 1. **介绍**：关于 JavaGuide 的相关介绍请看：[关于 JavaGuide 的一些说明](https://www.yuque.com/snailclimb/dr6cvl/mr44yt) 。
 > 2. **贡献指南** ：欢迎参与 [JavaGuide的维护工作](https://github.com/Snailclimb/JavaGuide/issues/1235)，这是一件非常有意义的事情。
