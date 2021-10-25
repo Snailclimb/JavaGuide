@@ -104,7 +104,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 ### 小技巧
 
 1. [JAD 反编译](docs/java/tips/JAD反编译tricks.md)
-2. [手把手教你定位常见 Java 性能问题](./docs/java/tips/手把手教你定位常见Java性能问题.md)
+2. [手把手教你定位常见 Java 性能问题](./docs/java/tips/locate-performance-problems/手把手教你定位常见Java性能问题.md)
 
 ## 计算机基础
 

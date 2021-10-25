@@ -1,3 +1,5 @@
+> 本文来自木木匠投稿。
+
 ## 手把手教你定位常见 Java 性能问题
 
 ## 概述
@@ -127,15 +129,15 @@ MAT(Memory Analyzer Tool)工具是 eclipse 的一个插件(MAT 也可以单独�
 
 请求接口地址测试`curl localhost:8080/cpu/loop`,发现 CPU 立马飙升到 100%
 
-![](./images/performance-tuning/java-performance1.png)
+![](./images/3be5a280b0f5499a80c706c8e5da2a4f-1.png)
 
 通过执行`top -Hp 32805` 查看 Java 线程情况
 
-![](./images/performance-tuning/java-performance2.png)
+![](./images/3d8d5ffd3ada43fb86ef54b05408c656-1.png)
 
 执行 `printf '%x' 32826` 获取 16 进制的线程 id，用于`dump`信息查询，结果为 `803a`。最后我们执行`jstack 32805 |grep -A 20 803a`来查看下详细的`dump`信息。
 
-![](./images/performance-tuning/java-performance3.png)
+![](./images/1fb751b0d78b4a3b8d0f528598ae885d-1.png)
 
 这里`dump`信息直接定位出了问题方法以及代码行，这就定位出了 CPU 占满的问题。
 
@@ -158,7 +160,9 @@ MAT(Memory Analyzer Tool)工具是 eclipse 的一个插件(MAT 也可以单独�
 
 我们给启动加上堆内存大小限制，同时设置内存溢出的时候输出堆栈快照并输出日志。
 
-`java -jar -Xms500m -Xmx500m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/heapdump.hprof -XX:+PrintGCTimeStamps -XX:+PrintGCDetails -Xloggc:/tmp/heaplog.log analysis-demo-0.0.1-SNAPSHOT.jar`
+```bash
+java -jar -Xms500m -Xmx500m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/heapdump.hprof -XX:+PrintGCTimeStamps -XX:+PrintGCDetails -Xloggc:/tmp/heaplog.log analysis-demo-0.0.1-SNAPSHOT.jar
+```
 
 启动成功后我们循环执行 100 次,`for i in {1..500}; do curl localhost:8080/memory/leak;done`,还没执行完毕，系统已经返回 500 错误了。查看系统日志出现了如下异常：
 
@@ -168,23 +172,23 @@ java.lang.OutOfMemoryError: Java heap space
 
 我们用`jstat -gc pid` 命令来看看程序的 GC 情况。
 
-![](./images/performance-tuning/java-performance4.png)
+![](./images/e9bf831860f442a3a992eef64ebb6a50-1.png)
 
 很明显，内存溢出了，堆内存经过 45 次 Full Gc 之后都没释放出可用内存，这说明当前堆内存中的对象都是存活的，有 GC Roots 引用，无法回收。那是什么原因导致内存溢出呢？是不是我只要加大内存就行了呢？如果是普通的内存溢出也许扩大内存就行了，但是如果是内存泄漏的话，扩大的内存不一会就会被占满，所以我们还需要确定是不是内存泄漏。我们之前保存了堆 Dump 文件，这个时候借助我们的 MAT 工具来分析下。导入工具选择`Leak Suspects Report`，工具直接就会给你列出问题报告。
 
-![](./images/performance-tuning/java-performance5.png)
+![](./images/392e4090c0094657ae29af030d3646e3-1.png)
 
 这里已经列出了可疑的 4 个内存泄漏问题，我们点击其中一个查看详情。
 
-![](./images/performance-tuning/java-performance6.png)
+![](./images/53fd3ee9a1a0448ca1878e865f4e5f96-1.png)
 
 这里已经指出了内存被线程占用了接近 50M 的内存，占用的对象就是 ThreadLocal。如果想详细的通过手动去分析的话，可以点击`Histogram`,查看最大的对象占用是谁，然后再分析它的引用关系，即可确定是谁导致的内存溢出。
 
-![](./images/performance-tuning/java-performance7.png)
+![](./images/ba07b0fee1754ffc943e546a18a3907e-1.png)
 
 上图发现占用内存最大的对象是一个 Byte 数组，我们看看它到底被那个 GC Root 引用导致没有被回收。按照上图红框操作指引，结果如下图：
 
-![](./images/performance-tuning/java-performance8.png)
+![](./images/0605fbf554814a23b80f6351408598be-1.png)
 
 我们发现 Byte 数组是被线程对象引用的，图中也标明，Byte 数组对像的 GC Root 是线程，所以它是不会被回收的，展开详细信息查看，我们发现最终的内存占用对象是被 ThreadLocal 对象占据了。这也和 MAT 工具自动帮我们分析的结果一致。
 
