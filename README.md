@@ -48,15 +48,10 @@
 
 ### 基础
 
-**知识点/面试题** : (必看:+1: )
-
-1. **[Java 基础知识](docs/java/basis/Java基础知识.md)**
-2. [Java 基础知识疑难点/易错点](docs/java/basis/Java基础知识疑难点.md)
+**知识点/面试题** : (必看:+1: )：[Java 基础知识点/面试题总结](docs/java/basis/Java基础知识.md)
 
 **重要知识点详解：**
 
-1. [枚举](docs/java/basis/用好Java中的枚举真的没有那么简单.md) （很重要的一个数据结构，用好枚举真的没有那么简单！）
-2. [Java 常见关键字总结：final、static、this、super!](docs/java/basis/Java常见关键字总结.md)
 3. [什么是反射机制？反射机制的应用场景有哪些？](docs/java/basis/反射机制.md)
 4. [代理模式详解：静态代理+JDK/CGLIB 动态代理实战](docs/java/basis/代理模式详解.md)
 5. [常见的 IO 模型有哪些？Java 中的 BIO、NIO、AIO 有啥区别?](docs/java/basis/IO模型.md)
@@ -156,25 +151,24 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 **总结：**
 
 1. [数据库基础知识总结](docs/database/数据库基础知识.md)
-2. **[MySQL知识点总结](docs/database/mysql/MySQL总结.md)** (必看 :+1:)
-3. [阿里巴巴开发手册数据库部分的一些最佳实践](docs/database/mysql/阿里巴巴开发手册数据库部分的一些最佳实践.md)
-4. [一千行 MySQL 学习笔记](docs/database/mysql/一千行MySQL学习笔记.md)
-5. [MySQL 高性能优化规范建议](docs/database/mysql/MySQL高性能优化规范建议.md)
+2. **[MySQL知识点总结](docs/database/mysql/mysql知识点&面试题总结.md)** (必看 :+1:)
+4. [一千行 MySQL 学习笔记](docs/database/mysql/a-thousand-lines-of-mysql-study-notes.md)
+5. [MySQL 高性能优化规范建议](docs/database/mysql/mysql-high-performance-optimization-specification-recommendations.md)
 
 **重要知识点：**
 
-1. [MySQL数据库索引总结](docs/database/mysql/MySQL数据库索引.md)
-2. [事务隔离级别(图文详解)](docs/database/mysql/事务隔离级别(图文详解).md)
-3. [MySQL三大日志(binlog、redo log和undo log)详解](docs/database/mysql/MySQL三大日志.md)
-4. [InnoDB存储引擎对MVCC的实现](docs/database/mysql/InnoDB对MVCC的实现.md)
-5. [一条 SQL 语句在 MySQL 中如何执行的?](docs/database/mysql/一条sql语句在mysql中如何执行的.md)
+1. [MySQL数据库索引总结](docs/database/mysql/mysql-index.md)
+2. [事务隔离级别(图文详解)](docs/database/mysql/transaction-isolation-level.md)
+3. [MySQL三大日志(binlog、redo log和undo log)详解](docs/database/mysql/mysql-logs.md)
+4. [InnoDB存储引擎对MVCC的实现](docs/database/mysql/innodb-implementation-of-mvcc.md)
+5. [一条 SQL 语句在 MySQL 中如何被执行的?](docs/database/mysql/how-sql-executed-in-mysql.md)
 6. [字符集详解：为什么不建议在MySQL中使用 utf8 ？](docs/database/字符集.md)
-7. [关于数据库中如何存储时间的一点思考](docs/database/mysql/关于数据库存储时间的一点思考.md)
+7. [关于数据库中如何存储时间的一点思考](docs/database/mysql/some-thoughts-on-database-storage-time.md)
 
 ### Redis
 
-2. [Redis 常见问题总结](docs/database/Redis/redis-all.md)
-3. [面试/工作必备！3种常用的缓存读写策略！](docs/database/Redis/3种常用的缓存读写策略.md)
+1. [Redis 常见问题总结](docs/database/redis/redis-all.md)
+2. [3种常用的缓存读写策略](docs/database/redis/3-commonly-used-cache-read-and-write-strategies.md)
 
 ## 搜索引擎
 
