@@ -66,17 +66,17 @@
 
 **知识点/面试题:** (必看 :+1:)
 
-1. **[Java 并发基础常见面试题总结](docs/java/multi-thread/Java并发基础常见面试题总结.md)**
-2. **[Java 并发进阶常见面试题总结](docs/java/multi-thread/Java并发进阶常见面试题总结.md)**
+1. **[Java 并发基础常见面试题总结](docs/java/multi-thread/java并发基础常见面试题总结.md)**
+2. **[Java 并发进阶常见面试题总结](docs/java/multi-thread/java并发进阶常见面试题总结.md)**
 
 **重要知识点详解：**
 
-1. **线程池**：[Java 线程池学习总结](./docs/java/multi-thread/java线程池学习总结.md)、[拿来即用的线程池最佳实践](./docs/java/multi-thread/拿来即用的线程池最佳实践.md)
-2. [ ThreadLocal 关键字解析](docs/java/multi-thread/万字详解ThreadLocal关键字.md)
-3. [并发容器总结](docs/java/multi-thread/并发容器总结.md)
-4. [JUC 中的 Atomic 原子类总结](docs/java/multi-thread/Atomic原子类总结.md)
-5. [AQS 原理以及 AQS 同步组件总结](docs/java/multi-thread/AQS原理以及AQS同步组件总结.md)
-6. [CompletableFuture入门](docs/java/multi-thread/CompletableFuture入门.md)
+1. **线程池**：[Java 线程池学习总结](./docs/java/multi-thread/java线程池学习总结.md)、[拿来即用的 Java 线程池最佳实践](./docs/java/multi-thread/拿来即用的java线程池最佳实践.md)
+2. [ThreadLocal 关键字解析](docs/java/multi-thread/threadlocal.md)
+3. [Java 并发容器总结](docs/java/multi-thread/并发容器总结.md)
+4. [Atomic 原子类总结](docs/java/multi-thread/atomic原子类总结.md)
+5. [AQS 原理以及 AQS 同步组件总结](docs/java/multi-thread/aqs原理以及aqs同步组件总结.md)
+6. [CompletableFuture入门](docs/java/multi-thread/completablefuture-intro.md)
 
 ### JVM (必看 :+1:)
 
