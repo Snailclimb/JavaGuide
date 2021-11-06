@@ -326,7 +326,7 @@ procs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----
 
 **sy=86**，说明内核态占用了 86%的 CPU，这里明显就是做上下文切换工作了。
 
-我们通过`top`命令以及`top -Hp pid`查看进程和线程 CPU 情况，发现 Java 线程 CPU 占满了，但是线程 CPU 使用情况很平均，没有某一个线程把 CPU 吃满的情况。
+我们通过`top`命令以及`top -Hp pid`查看进程和线程 CPU 情况，发现 Java 进程 CPU 占满了，但是线程 CPU 使用情况很平均，没有某一个线程把 CPU 吃满的情况。
 
 ```
 PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
