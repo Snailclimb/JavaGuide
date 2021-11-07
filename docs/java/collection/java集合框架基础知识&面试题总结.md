@@ -1,54 +1,3 @@
-<!-- TOC -->
-
-- [1. 剖析面试最常见问题之 Java 集合框架](#1-剖析面试最常见问题之-java-集合框架)
-  - [1.1. 集合概述](#11-集合概述)
-    - [1.1.1. Java 集合概览](#111-java-集合概览)
-    - [1.1.2. 说说 List, Set, Queue, Map 四者的区别？](#112-说说-list-set-queue-map-四者的区别)
-    - [1.1.3. 集合框架底层数据结构总结](#113-集合框架底层数据结构总结)
-      - [1.1.3.1. List](#1131-list)
-      - [1.1.3.2. Set](#1132-set)
-      - [1.1.3.3 Queue](#1133-queue)
-      - [1.1.3.4. Map](#1134-map)
-    - [1.1.4. 如何选用集合?](#114-如何选用集合)
-    - [1.1.5. 为什么要使用集合？](#115-为什么要使用集合)
-  - [1.2. Collection 子接口之 List](#12-collection-子接口之-list)
-    - [1.2.1. Arraylist 和 Vector 的区别?](#121-arraylist-和-vector-的区别)
-    - [1.2.2. Arraylist 与 LinkedList 区别?](#122-arraylist-与-linkedlist-区别)
-      - [1.2.2.1. 补充内容:双向链表和双向循环链表](#1221-补充内容双向链表和双向循环链表)
-      - [1.2.2.2. 补充内容:RandomAccess 接口](#1222-补充内容randomaccess-接口)
-    - [1.2.3. 说一说 ArrayList 的扩容机制吧](#123-说一说-arraylist-的扩容机制吧)
-  - [1.3. Collection 子接口之 Set](#13-collection-子接口之-set)
-    - [1.3.1. comparable 和 Comparator 的区别](#131-comparable-和-comparator-的区别)
-      - [1.3.1.1. Comparator 定制排序](#1311-comparator-定制排序)
-      - [1.3.1.2. 重写 compareTo 方法实现按年龄来排序](#1312-重写-compareto-方法实现按年龄来排序)
-    - [1.3.2. 无序性和不可重复性的含义是什么](#132-无序性和不可重复性的含义是什么)
-    - [1.3.3. 比较 HashSet、LinkedHashSet 和 TreeSet 三者的异同](#133-比较-hashsetlinkedhashset-和-treeset-三者的异同)
-  - [1.4 Collection 子接口之 Queue](#14-collection-子接口之-queue)
-    - [1.4.1 Queue 与 Deque 的区别](#141-queue-与-deque-的区别)
-    - [1.4.2 ArrayDeque 与 LinkedList 的区别](#142-arraydeque-与-linkedlist-的区别)
-    - [1.4.3 说一说 PriorityQueue](#143-说一说-priorityqueue)
-  - [1.5. Map 接口](#15-map-接口)
-    - [1.5.1. HashMap 和 Hashtable 的区别](#151-hashmap-和-hashtable-的区别)
-    - [1.5.2. HashMap 和 HashSet 区别](#152-hashmap-和-hashset-区别)
-    - [1.5.3. HashMap 和 TreeMap 区别](#153-hashmap-和-treemap-区别)
-    - [1.5.4. HashSet 如何检查重复](#154-hashset-如何检查重复)
-    - [1.5.5. HashMap 的底层实现](#155-hashmap-的底层实现)
-      - [1.5.5.1. JDK1.8 之前](#1551-jdk18-之前)
-      - [1.5.5.2. JDK1.8 之后](#1552-jdk18-之后)
-    - [1.5.6. HashMap 的长度为什么是 2 的幂次方](#156-hashmap-的长度为什么是-2-的幂次方)
-    - [1.5.7. HashMap 多线程操作导致死循环问题](#157-hashmap-多线程操作导致死循环问题)
-    - [1.5.8. HashMap 有哪几种常见的遍历方式?](#158-hashmap-有哪几种常见的遍历方式)
-    - [1.5.9. ConcurrentHashMap 和 Hashtable 的区别](#159-concurrenthashmap-和-hashtable-的区别)
-    - [1.5.10. ConcurrentHashMap 线程安全的具体实现方式/底层具体实现](#1510-concurrenthashmap-线程安全的具体实现方式底层具体实现)
-      - [1.5.10.1. JDK1.7（上面有示意图）](#15101-jdk17上面有示意图)
-      - [1.5.10.2. JDK1.8 （上面有示意图）](#15102-jdk18-上面有示意图)
-  - [1.6. Collections 工具类](#16-collections-工具类)
-    - [1.6.1. 排序操作](#161-排序操作)
-    - [1.6.2. 查找,替换操作](#162-查找替换操作)
-    - [1.6.3. 同步控制](#163-同步控制)
-
-<!-- /TOC -->
-
 # 1. 剖析面试最常见问题之 Java 集合框架
 
 ## 1.1. 集合概述
@@ -309,11 +258,9 @@ Output：
 
 ### 1.3.3. 比较 HashSet、LinkedHashSet 和 TreeSet 三者的异同
 
-`HashSet` 是 `Set` 接口的主要实现类 ，`HashSet` 的底层是 `HashMap`，线程不安全的，可以存储 null 值；
-
-`LinkedHashSet` 是 `HashSet` 的子类，能够按照添加的顺序遍历；
-
-`TreeSet` 底层使用红黑树，元素是有序的，排序的方式有自然排序和定制排序。
+- `HashSet`、`LinkedHashSet` 和 `TreeSet` 都是 `Set` 接口的实现类，都能保证元素唯一，并且都不是线程安全的。
+- `HashSet`、`LinkedHashSet` 和 `TreeSet` 的主要区别在于底层数据结构不同。`HashSet` 的底层数据结构是哈希表（基于 `HashMap` 实现）。`LinkedHashSet` 的底层数据结构是链表和哈希表，元素的插入和取出顺序满足 FIFO。`TreeSet` 底层数据结构是红黑树，元素是有序的，排序的方式有自然排序和定制排序。
+- 底层数据结构不同又导致这三者的应用场景不同。`HashSet` 用于不需要保证元素插入和取出顺序的场景，`LinkHashSet` 用于保证元素的插入和取出顺序满足 FIFO 的场景，`TreeSet` 用于支持对元素自定义排序规则的场景。
 
 ## 1.4 Collection 子接口之 Queue
 
