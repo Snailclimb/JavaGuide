@@ -1,4 +1,6 @@
->  本文由 JavaGuide 翻译自 [https://www.baeldung.com/jvm-parameters](https://www.baeldung.com/jvm-parameters)，并对文章进行了大量的完善补充。翻译不易，如需转载请注明出处，作者：[baeldung](https://www.baeldung.com/author/baeldung/) 。
+# 最重要的 JVM 参数总结
+
+本文由 JavaGuide 翻译自 [https://www.baeldung.com/jvm-parameters](https://www.baeldung.com/jvm-parameters)，并对文章进行了大量的完善补充。翻译不易，如需转载请注明出处，作者：[baeldung](https://www.baeldung.com/author/baeldung/) 。
 
 ## 1.概述
 

@@ -82,14 +82,14 @@
 
 JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle.com/javase/specs/jvms/se8/html/index.html) 和周志明老师的[《深入理解Java虚拟机（第3版）》](https://book.douban.com/subject/34907497/) （强烈建议阅读多遍！）。
 
-1. **[Java 内存区域](docs/java/jvm/Java内存区域.md)**
-2. **[JVM 垃圾回收](docs/java/jvm/JVM垃圾回收.md)**
-3. [JDK 监控和故障处理工具](docs/java/jvm/JDK监控和故障处理工具总结.md)
+1. **[Java 内存区域](docs/java/jvm/内存区域.md)**
+2. **[JVM 垃圾回收](docs/java/jvm/jvm垃圾回收.md)**
+3. [JDK 监控和故障处理工具](docs/java/jvm/jdk监控和故障处理工具总结.md)
 4. [类文件结构](docs/java/jvm/类文件结构.md)
 5. **[类加载过程](docs/java/jvm/类加载过程.md)**
 6. [类加载器](docs/java/jvm/类加载器.md)
-7. **[【待完成】最重要的 JVM 参数指南（翻译完善了一半）](docs/java/jvm/最重要的JVM参数指南.md)**
-9. **[【加餐】大白话带你认识 JVM](docs/java/jvm/[加餐]大白话带你认识JVM.md)**
+7. **[【待完成】最重要的 JVM 参数总结（翻译完善了一半）](docs/java/jvm/jvm参数指南.md)**
+9. **[【加餐】大白话带你认识 JVM](docs/java/jvm/[加餐]大白话带你认识jvm.md)**
 
 ### 新特性
 
