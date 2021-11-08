@@ -1,14 +1,17 @@
+# 大白话带你认识JVM
+
 > 来自掘金用户：[说出你的愿望吧丷](https://juejin.im/user/5c2400afe51d45451758aa96)投稿，原文地址：https://juejin.im/post/5e1505d0f265da5d5d744050#heading-28
 
 ## 前言
 
-如果在文中用词或者理解方面出现问题，欢迎指出。此文旨在提及和而不深究，但会尽量效率地把知识点都抛出来
+如果在文中用词或者理解方面出现问题，欢迎指出。此文旨在提及而不深究，但会尽量效率地把知识点都抛出来
 
 ## 一、JVM的基本介绍
 
 JVM 是 Java Virtual Machine 的缩写，它是一个虚构出来的计算机，一种规范。通过在实际的计算机上仿真模拟各类计算机功能实现···
 
-好，其实抛开这么专业的句子不说，就知道JVM其实就类似于一台小电脑运行在windows或者linux这些操作系统环境下即可。它直接和操作系统进行交互，与硬件不直接交互，可操作系统可以帮我们完成和硬件进行交互的工作。
+好，其实抛开这么专业的句子不说，就知道JVM其实就类似于一台小电脑运行在windows或者linux这些操作系统环境下即可。它直接和操作系统进行交互，与硬件不直接交互，而操作系统可以帮我们完成和硬件进行交互的工作。
+
 ![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/d947f91e44c44c6c80222b49c2dee859-new-image19a36451-d673-486e-9c8e-3c7d8ab66929.png)
 
 ### 1.1 Java文件是如何被运行的
@@ -20,6 +23,7 @@ JVM 是 Java Virtual Machine 的缩写，它是一个虚构出来的计算机，
 #### ① 类加载器
 
 如果 **JVM** 想要执行这个 **.class** 文件，我们需要将其装进一个 **类加载器** 中，它就像一个搬运工一样，会把所有的 **.class** 文件全部搬进JVM里面来。
+
 ![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/81f1813f371c40ffa1c1f6d78bc49ed9-new-image28314ec8-066f-451e-8373-4517917d6bf7.png)
 
 #### ② 方法区
@@ -41,6 +45,7 @@ JVM 是 Java Virtual Machine 的缩写，它是一个虚构出来的计算机，
 #### ⑤ 程序计数器
 
 主要就是完成一个加载工作，类似于一个指针一样的，指向下一行我们需要执行的代码。和栈一样，都是 **线程独享** 的，就是说每一个线程都会有自己对应的一块区域而不会存在并发和多线程的问题。
+
 ![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/897863ee5ecb4d92b9119d065f468262-new-imagef7287f0b-c9f0-4f22-9eb4-6968bbaa5a82.png)
 
 #### 小总结
@@ -52,9 +57,11 @@ JVM 是 Java Virtual Machine 的缩写，它是一个虚构出来的计算机，
 ### 1.2 简单的代码例子
 
 一个简单的学生类
+
 ![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/29046a721c2548e0a0680ec5baf4ea95-new-imageb0b42e5e-8e25-409e-b7b9-6586a39a0b8d.png)
 
 一个main方法
+
 ![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/a3d34d33eab74f6f8743ecf62807445c-new-image08506a9e-5101-4f30-b0bc-3abbcb8f1894.png)
 
 执行main方法的步骤如下:
@@ -90,7 +97,8 @@ JVM 是 Java Virtual Machine 的缩写，它是一个虚构出来的计算机，
 
 #### 2.1.3 初始化
 
-初始化其实就是一个赋值的操作，它会执行一个类构造器的<<clinit>clinit>()方法。由编译器自动收集类中所有变量的赋值动作，此时准备阶段时的那个 static int a = 3 的例子，在这个时候就正式赋值为3
+初始化其实就是执行类构造器方法的`<clinit>()`的过程，而且要保证执行前父类的`<clinit>()`方法执行完毕。这个方法由编译器收集，顺序执行所有类变量（static修饰的成员变量）显式初始化和静态代码块中语句。此时准备阶段时的那个 `static int a` 由默认初始化的0变成了显式初始化的3。 由于执行顺序缘故，初始化阶段类变量如果在静态代码块中又进行了更改，会覆盖类变量的显式初始化，最终值会为静态代码块中的赋值。
+>注意：字节码文件中初始化方法有两种，非静态资源初始化的`<init>`和静态资源初始化的`<clinit>`，类构造器方法`<clinit>()`不同于类的构造器，这些方法都是字节码文件中只能给JVM识别的特殊方法。
 
 #### 2.1.4 卸载
 
@@ -101,23 +109,28 @@ GC将无用对象从内存中卸载
 加载一个Class类的顺序也是有优先级的，类加载器从最底层开始往上的顺序是这样的
 
 1.  BootStrap ClassLoader：rt.jar
-2.  Extention ClassLoader: 加载扩展的jar包
+2.  Extension ClassLoader: 加载扩展的jar包
 3.  App ClassLoader：指定的classpath下面的jar包
 4.  Custom ClassLoader：自定义的类加载器
-  
+
 ### 2.3 双亲委派机制
 
-当一个类收到了加载请求时，它是不会先自己去尝试加载的，而是委派给父类去完成，比如我现在要new一个Person，这个Person是我们自定义的类，如果我们要加载它，就会先委派App ClassLoader，只有当父类加载器都反馈自己无法完成这个请求（也就是父类加载器都没有找到加载所需的Class）时，子类加载器才会自行尝试加载
+当一个类收到了加载请求时，它是不会先自己去尝试加载的，而是委派给父类去完成，比如我现在要 new 一个 Person，这个 Person 是我们自定义的类，如果我们要加载它，就会先委派 App ClassLoader ，只有当父类加载器都反馈自己无法完成这个请求（也就是父类加载器都没有找到加载所需的 Class）时，子类加载器才会自行尝试加载。
 
-这样做的好处是，加载位于rt.jar包中的类时不管是哪个加载器加载，最终都会委托到BootStrap ClassLoader进行加载，这样保证了使用不同的类加载器得到的都是同一个结果。
+这样做的好处是，加载位于 rt.jar 包中的类时不管是哪个加载器加载，最终都会委托到 BootStrap ClassLoader 进行加载，这样保证了使用不同的类加载器得到的都是同一个结果。
 
-其实这个也是一个隔离的作用，避免了我们的代码影响了JDK的代码，比如我现在要来一个
+其实这个也是一个隔离的作用，避免了我们的代码影响了 JDK 的代码，比如我现在自己定义一个 `java.lang.String` ：
 
-    public class String(){
-        public static void main(){sout;}
+```java
+package java.lang;
+public class String {
+    public static void main(String[] args) {
+        System.out.println();
     }
+}
+```
 
-这种时候，我们的代码肯定会报错，因为在加载的时候其实是找到了rt.jar中的String.class，然后发现这也没有main方法
+尝试运行当前类的 `main` 函数的时候，我们的代码肯定会报错。这是因为在加载的时候其实是找到了 rt.jar 中的`java.lang.String`，然而发现这个里面并没有 `main` 方法。
 
 ## 三、运行时数据区
 
@@ -131,7 +144,7 @@ GC将无用对象从内存中卸载
 
 ### 3.2 方法区
 
-方法区主要的作用技术存放类的元数据信息，常量和静态变量···等。当它存储的信息过大时，会在无法满足内存分配时报错。
+方法区主要的作用是存放类的元数据信息，常量和静态变量···等。当它存储的信息过大时，会在无法满足内存分配时报错。
 
 
 ### 3.3 虚拟机栈和虚拟机堆
@@ -142,13 +155,15 @@ GC将无用对象从内存中卸载
 
 它是Java方法执行的内存模型。里面会对局部变量，动态链表，方法出口，栈的操作（入栈和出栈）进行存储，且线程独享。同时如果我们听到局部变量表，那也是在说虚拟机栈
 
-    public class Person{
-        int a = 1;
-        
-        public void doSomething(){
-            int b = 2;
-        }
+```java
+public class Person{
+    int a = 1;
+    
+    public void doSomething(){
+        int b = 2;
     }
+}
+```
 
 
 #### 3.3.2 虚拟机栈存在的异常
@@ -190,7 +205,7 @@ JVM内存会划分为堆内存和非堆内存，堆内存中也会划分为**年
 
 当Eden空间满了之后，会触发一个叫做Minor GC（就是一个发生在年轻代的GC）的操作，存活下来的对象移动到Survivor0区。Survivor0区满后触发 Minor GC，就会将存活对象移动到Survivor1区，此时还会把from和to两个指针交换，这样保证了一段时间内总有一个survivor区为空且to所指向的survivor区为空。经过多次的 Minor GC后仍然存活的对象（**这里的存活判断是15次，对应到虚拟机参数为 -XX:MaxTenuringThreshold 。为什么是15，因为HotSpot会在对象投中的标记字段里记录年龄，分配到的空间仅有4位，所以最多只能记录到15**）会移动到老年代。老年代是存储长期存活的对象的，占满时就会触发我们最常听说的Full GC，期间会停止所有线程等待GC的完成。所以对于响应要求高的应用应该尽量去减少发生Full GC从而避免响应超时的问题。
 
-而且当老年区执行了full gc之后仍然无法进行对象保存的操作，就会产生OOM，这时候就是虚拟机中的堆内存不足，原因可能会是堆内存设置的大小过小，这个可以通过参数-Xms、-Xms来调整。也可能是代码中创建的对象大且多，而且它们一直在被引用从而长时间垃圾收集无法收集它们。
+而且当老年区执行了full gc之后仍然无法进行对象保存的操作，就会产生OOM，这时候就是虚拟机中的堆内存不足，原因可能会是堆内存设置的大小过小，这个可以通过参数-Xms、-Xmx来调整。也可能是代码中创建的对象大且多，而且它们一直在被引用从而长时间垃圾收集无法收集它们。
 
 ![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/c02ecba3c33f43429a765987b928e423-new-image93b46f3d-33f9-46f9-a825-ec7129b004f6.png)
 
@@ -277,6 +292,7 @@ finalize()是Object类的一个方法、一个对象的finalize()方法只会被
 ### 3.5 （了解）各种各样的垃圾回收器
 
 HotSpot VM中的垃圾回收器，以及适用场景
+
 ![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/11e9dcd0f1ee4f25836e6f1c47104c51-new-image69e1c56a-1d40-493a-9901-6efc647a01f3.png)
 
 到jdk8为止，默认的垃圾收集器是Parallel Scavenge 和 Parallel Old
@@ -297,7 +313,7 @@ JVM的参数非常之多，这里只列举比较重要的几个，通过各种�
 | -XX:MaxNewSize  | 年轻代最大值(for 1.3/1.4)        |         |
 | -XX:PermSize  | 设置持久代(perm gen)初始值     | 物理内存的1/64       |
 | -XX:MaxPermSize  | 设置持久代最大值          | 物理内存的1/4         |
-| -Xss  | 每个线程的堆栈大小        |         | JDK5.0以后每个线程堆栈大小为1M,以前每个线程堆栈大小为256K.更具应用的线程所需内存大小进行 调整.在相同物理内存下,减小这个值能生成更多的线程.但是操作系统对一个进程内的线程数还是有限制的,不能无限生成,经验值在3000~5000左右一般小的应用， 如果栈不是很深， 应该是128k够用的 大的应用建议使用256k。这个选项对性能影响比较大，需要严格的测试。（校长）和threadstacksize选项解释很类似,官方文档似乎没有解释,在论坛中有这样一句话:-Xss is translated in a VM flag named ThreadStackSize”一般设置这个值就可以了
+| -Xss  | 每个线程的堆栈大小        |         | JDK5.0以后每个线程堆栈大小为1M,以前每个线程堆栈大小为256K.根据应用的线程所需内存大小进行 调整.在相同物理内存下,减小这个值能生成更多的线程.但是操作系统对一个进程内的线程数还是有限制的,不能无限生成,经验值在3000~5000左右一般小的应用， 如果栈不是很深， 应该是128k够用的 大的应用建议使用256k。这个选项对性能影响比较大，需要严格的测试。（校长）和threadstacksize选项解释很类似,官方文档似乎没有解释,在论坛中有这样一句话:-Xss is translated in a VM flag named ThreadStackSize”一般设置这个值就可以了
 | -XX:NewRatio  | 年轻代(包括Eden和两个Survivor区)与年老代的比值(除去持久代)       |        |-XX:NewRatio=4表示年轻代与年老代所占比值为1:4,年轻代占整个堆栈的1/5Xms=Xmx并且设置了Xmn的情况下，该参数不需要进行设置。
 | -XX:SurvivorRatio  | Eden区与Survivor区的大小比值          |          |设置为8,则两个Survivor区与一个Eden区的比值为2:8,一个Survivor区占整个年轻代的1/10
 | -XX:+DisableExplicitGC  | 关闭System.gc()        |         |这个参数需要严格的测试
@@ -319,15 +335,18 @@ JVM的参数非常之多，这里只列举比较重要的几个，通过各种�
 
 默认(MinHeapFreeRatio参数可以调整)空余堆内存小于40%时，JVM就会增大堆直到-Xmx的最大限制.，默认(MaxHeapFreeRatio参数可以调整)空余堆内存大于70%时，JVM会减少堆直到 -Xms的最小限制。简单点来说，你不停地往堆内存里面丢数据，等它剩余大小小于40%了，JVM就会动态申请内存空间不过会小于-Xmx，如果剩余大小大于70%，又会动态缩小不过不会小于–Xms。就这么简单
 
-开发过程中，通常会将 -Xms 与 -Xmx两个参数的配置相同的值，其目的是为了能够在java垃圾回收机制清理完堆区后不需要重新分隔计算堆区的大小而浪费资源。
+开发过程中，通常会将 -Xms 与 -Xmx两个参数配置成相同的值，其目的是为了能够在java垃圾回收机制清理完堆区后不需要重新分隔计算堆区的大小而浪费资源。
 
 我们执行下面的代码
 
-    System.out.println("Xmx=" + Runtime.getRuntime().maxMemory() / 1024.0 / 1024 + "M");    //系统的最大空间
-    System.out.println("free mem=" + Runtime.getRuntime().freeMemory() / 1024.0 / 1024 + "M");  //系统的空闲空间
-    System.out.println("total mem=" + Runtime.getRuntime().totalMemory() / 1024.0 / 1024 + "M");  //当前可用的总空间
+```java
+System.out.println("Xmx=" + Runtime.getRuntime().maxMemory() / 1024.0 / 1024 + "M");    //系统的最大空间
+System.out.println("free mem=" + Runtime.getRuntime().freeMemory() / 1024.0 / 1024 + "M");  //系统的空闲空间
+System.out.println("total mem=" + Runtime.getRuntime().totalMemory() / 1024.0 / 1024 + "M");  //当前可用的总空间
+```
 
 注意：此处设置的是Java堆大小，也就是新生代大小 + 老年代大小
+
 ![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/5e7b352c16d74c789c665af46d3a2509-new-imagedd645dae-307d-4572-b6e2-b5a9925a46cd.png)
 
 设置一个VM options的参数
@@ -339,17 +358,20 @@ JVM的参数非常之多，这里只列举比较重要的几个，通过各种�
 再次启动main方法
 
 ![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/300539f6560043dd8a3fe085d28420e6-new-image3c581a2e-196f-4b01-90f1-c27731b4610b.png)
+
 这里GC弹出了一个Allocation Failure分配失败，这个事情发生在PSYoungGen，也就是年轻代中
 
 这时候申请到的内存为18M，空闲内存为4.214195251464844M
 
 我们此时创建一个字节数组看看，执行下面的代码
 
-    byte[] b = new byte[1 * 1024 * 1024];
-    System.out.println("分配了1M空间给数组");
-    System.out.println("Xmx=" + Runtime.getRuntime().maxMemory() / 1024.0 / 1024 + "M");  //系统的最大空间
-    System.out.println("free mem=" + Runtime.getRuntime().freeMemory() / 1024.0 / 1024 + "M");  //系统的空闲空间
-    System.out.println("total mem=" + Runtime.getRuntime().totalMemory() / 1024.0 / 1024 + "M");
+```java
+byte[] b = new byte[1 * 1024 * 1024];
+System.out.println("分配了1M空间给数组");
+System.out.println("Xmx=" + Runtime.getRuntime().maxMemory() / 1024.0 / 1024 + "M");  //系统的最大空间
+System.out.println("free mem=" + Runtime.getRuntime().freeMemory() / 1024.0 / 1024 + "M");  //系统的空闲空间
+System.out.println("total mem=" + Runtime.getRuntime().totalMemory() / 1024.0 / 1024 + "M");
+```
 
 
 ![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/bdd717d0a3394be7a733760052773374-new-image371b5d59-0020-4091-9874-603c0ab0073d.png)
@@ -369,11 +391,12 @@ JVM的参数非常之多，这里只列举比较重要的几个，通过各种�
 
 此时我们再跑一下这个代码
 
-    System.gc();
-    System.out.println("Xmx=" + Runtime.getRuntime().maxMemory() / 1024.0 / 1024 + "M");    //系统的最大空间
-    System.out.println("free mem=" + Runtime.getRuntime().freeMemory() / 1024.0 / 1024 + "M");  //系统的空闲空间
-    System.out.println("total mem=" + Runtime.getRuntime().totalMemory() / 1024.0 / 1024 + "M");  //当前可用的总空间
-
+```java
+System.gc();
+System.out.println("Xmx=" + Runtime.getRuntime().maxMemory() / 1024.0 / 1024 + "M");    //系统的最大空间
+System.out.println("free mem=" + Runtime.getRuntime().freeMemory() / 1024.0 / 1024 + "M");  //系统的空闲空间
+System.out.println("total mem=" + Runtime.getRuntime().totalMemory() / 1024.0 / 1024 + "M");  //当前可用的总空间
+```
 
 ![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/4cc44b5d5d1c40c48640ece6a296b1ac-new-image4b57baf6-085b-4150-9c60-ac51b0f815d7.png)
     
