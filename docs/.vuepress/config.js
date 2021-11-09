@@ -29,8 +29,9 @@ module.exports = config({
     repo: "https://github.com/Snailclimb/JavaGuide",
     nav: [
       { text: "Java面试指南", icon: "java", link: "/", },
+      { text: "Java面试指北", icon: "java", link: "https://www.yuque.com/docs/share/f37fc804-bfe6-4b0d-b373-9c462188fec7?#%20%E3%80%8A%E3%80%8AJava%E9%9D%A2%E8%AF%95%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8C%97%20%20%E6%89%93%E9%80%A0%E4%B8%AA%E4%BA%BA%E7%9A%84%E6%8A%80%E6%9C%AF%E7%AB%9E%E4%BA%89%E5%8A%9B%E3%80%8B%E3%80%8B", },
       {
-        text: "Java精选", icon: "file",
+        text: "Java精选", icon: "file", icon: "java",
         items: [
           { text: "Java书单精选", icon: "book", link: "https://gitee.com/SnailClimb/awesome-cs" },
           { text: "Java学习路线", icon: "luxianchaxun", link: "https://zhuanlan.zhihu.com/p/379041500" },
@@ -40,7 +41,7 @@ module.exports = config({
       { text: "IDEA指南", icon: "intellijidea", link: "/idea-tutorial/", },
       { text: "开发工具", icon: "Tools", link: "/tools/", },
       {
-        text: "PDF资源", icon: "file",
+        text: "PDF资源", icon: "pdf",
         items: [
           { text: "JavaGuide面试突击版", link: "https://t.1yb.co/Fy1e", },
           { text: "消息队列常见知识点&面试题总结", link: "https://t.1yb.co/Fy0u", },
@@ -48,7 +49,7 @@ module.exports = config({
         ],
       },
       {
-        text: "关于作者", link: "/about-the-author/"
+        text: "关于作者", icon: "zuozhe", link: "/about-the-author/"
       },
     ],
     sidebar: {
