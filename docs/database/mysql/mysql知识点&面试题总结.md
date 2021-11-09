@@ -1,3 +1,12 @@
+---
+title: MySQL知识点&面试题总结
+category: 数据库
+tag:
+  - MySQL
+  - 大厂面试
+---
+
+
 ## MySQL 基础
 
 ### 关系型数据库介绍

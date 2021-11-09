@@ -1,50 +1,9 @@
-点击关注[公众号](#公众号)及时获取笔主最新更新文章，并可免费领取本文档配套的《Java面试突击》以及Java工程师必备学习资源。
+# 《Java8指南》中文翻译
 
 随着 Java 8 的普及度越来越高，很多人都提到面试中关于Java 8 也是非常常问的知识点。应各位要求和需要，我打算对这部分知识做一个总结。本来准备自己总结的，后面看到Github 上有一个相关的仓库，地址：
-[https://github.com/winterbe/java8-tutorial](https://github.com/winterbe/java8-tutorial)。这个仓库是英文的，我对其进行了翻译并添加和修改了部分内容，下面是正文了。
+[https://github.com/winterbe/java8-tutorial](https://github.com/winterbe/java8-tutorial)。这个仓库是英文的，我对其进行了翻译并添加和修改了部分内容，下面是正文。
 
-<!-- MarkdownTOC -->
-
-- [Java 8 Tutorial](#java-8-tutorial)
-    - [接口的默认方法\(Default Methods for Interfaces\)](#接口的默认方法default-methods-for-interfaces)
-    - [Lambda表达式\(Lambda expressions\)](#lambda表达式lambda-expressions)
-    - [函数式接口\(Functional Interfaces\)](#函数式接口functional-interfaces)
-    - [方法和构造函数引用\(Method and Constructor References\)](#方法和构造函数引用method-and-constructor-references)
-    - [Lamda 表达式作用域\(Lambda Scopes\)](#lamda-表达式作用域lambda-scopes)
-      - [访问局部变量](#访问局部变量)
-      - [访问字段和静态变量](#访问字段和静态变量)
-      - [访问默认接口方法](#访问默认接口方法)
-    - [内置函数式接口\(Built-in Functional Interfaces\)](#内置函数式接口built-in-functional-interfaces)
-      - [Predicate](#predicate)
-      - [Function](#function)
-      - [Supplier](#supplier)
-      - [Consumer](#consumer)
-      - [Comparator](#comparator)
-  - [Optional](#optional)
-  - [Streams\(流\)](#streams流)
-    - [Filter\(过滤\)](#filter过滤)
-    - [Sorted\(排序\)](#sorted排序)
-    - [Map\(映射\)](#map映射)
-    - [Match\(匹配\)](#match匹配)
-    - [Count\(计数\)](#count计数)
-    - [Reduce\(规约\)](#reduce规约)
-  - [Parallel Streams\(并行流\)](#parallel-streams并行流)
-    - [Sequential Sort\(串行排序\)](#sequential-sort串行排序)
-    - [Parallel Sort\(并行排序\)](#parallel-sort并行排序)
-  - [Maps](#maps)
-  - [Date API\(日期相关API\)](#date-api日期相关api)
-    - [Clock](#clock)
-    - [Timezones\(时区\)](#timezones时区)
-    - [LocalTime\(本地时间\)](#localtime本地时间)
-    - [LocalDate\(本地日期\)](#localdate本地日期)
-    - [LocalDateTime\(本地日期时间\)](#localdatetime本地日期时间)
-  - [Annotations\(注解\)](#annotations注解)
-  - [Where to go from here?](#where-to-go-from-here)
-
-<!-- /MarkdownTOC -->
-
-
-# Java 8 Tutorial 
+------
 
 欢迎阅读我对Java 8的介绍。本教程将逐步指导您完成所有新语言功能。 在简短的代码示例的基础上，您将学习如何使用默认接口方法，lambda表达式，方法引用和可重复注释。 在本文的最后，您将熟悉最新的 API 更改，如流，函数式接口(Functional Interfaces)，Map 类的扩展和新的 Date API。 没有大段枯燥的文字，只有一堆注释的代码片段。
 
@@ -944,13 +903,3 @@ System.out.println(hints2.length);          // 2
 ## Where to go from here?
 
 关于Java 8的新特性就写到这了，肯定还有更多的特性等待发掘。JDK 1.8里还有很多很有用的东西，比如`Arrays.parallelSort`, `StampedLock`和`CompletableFuture`等等。
-
-## 公众号
-
-如果大家想要实时关注我更新的文章以及分享的干货的话，可以关注我的公众号。
-
-**《Java面试突击》:** 由本文档衍生的专为面试而生的《Java面试突击》V2.0 PDF 版本[公众号](#公众号)后台回复 **"Java面试突击"** 即可免费领取！
-
-**Java工程师必备学习资源:** 一些Java工程师常用学习资源[公众号](#公众号)后台回复关键字 **“1”** 即可免费无套路获取。 
-
-![我的公众号](https://user-gold-cdn.xitu.io/2018/11/28/167598cd2e17b8ec?w=258&h=258&f=jpeg&s=27334)

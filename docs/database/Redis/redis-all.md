@@ -1,3 +1,10 @@
+---
+title: Redis知识点&面试题总结
+category: 数据库
+tag:
+  - Redis
+---
+
 
 ### 简单介绍一下 Redis 呗!
 

@@ -1,19 +1,9 @@
-<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
-
-<!-- code_chunk_output -->
-
-- [HashMap 简介](#hashmap-简介)
-- [底层数据结构分析](#底层数据结构分析)
-  - [JDK1.8 之前](#jdk18-之前)
-  - [JDK1.8 之后](#jdk18-之后)
-- [HashMap 源码分析](#hashmap-源码分析)
-  - [构造方法](#构造方法)
-  - [put 方法](#put-方法)
-  - [get 方法](#get-方法)
-  - [resize 方法](#resize-方法)
-- [HashMap 常用方法测试](#hashmap-常用方法测试)
-
-<!-- /code_chunk_output -->
+---
+title:  HashMap源码+底层数据结构分析
+category: Java
+tag:
+  - Java集合
+---
 
 
 > 感谢 [changfubai](https://github.com/changfubai) 对本文的改进做出的贡献！

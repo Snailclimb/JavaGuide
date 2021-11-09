@@ -1,3 +1,11 @@
+---
+category: 计算机基础
+tag:
+  - 数据结构
+---
+
+# 布隆过滤器
+
 海量数据处理以及缓存穿透这两个场景让我认识了 布隆过滤器 ，我查阅了一些资料来了解它，但是很多现成资料并不满足我的需求，所以就决定自己总结一篇关于布隆过滤器的文章。希望通过这篇文章让更多人了解布隆过滤器，并且会实际去使用它！
 
 下面我们将分为几个方面来介绍布隆过滤器：
@@ -9,7 +17,7 @@
 5. 利用 Google 开源的 Guava 中自带的布隆过滤器。
 6. Redis 中的布隆过滤器。
 
-### 1.什么是布隆过滤器？
+## 什么是布隆过滤器？
 
 首先，我们需要了解布隆过滤器的概念。
 
@@ -21,7 +29,7 @@
 
 总结：**一个名叫 Bloom 的人提出了一种来检索元素是否在给定大集合中的数据结构，这种数据结构是高效且性能很好的，但缺点是具有一定的错误识别率和删除难度。并且，理论情况下，添加到集合中的元素越多，误报的可能性就越大。**
 
-### 2.布隆过滤器的原理介绍
+## 布隆过滤器的原理介绍
 
 **当一个元素加入布隆过滤器中的时候，会进行如下操作：**
 
@@ -45,12 +53,15 @@
 
 综上，我们可以得出：**布隆过滤器说某个元素存在，小概率会误判。布隆过滤器说某个元素不在，那么这个元素一定不在。**
 
-### 3.布隆过滤器使用场景
+## 布隆过滤器使用场景
 
 1. 判断给定数据是否存在：比如判断一个数字是否存在于包含大量数字的数字集中（数字集很大，5 亿以上！）、 防止缓存穿透（判断请求的数据是否有效避免直接绕过缓存请求数据库）等等、邮箱的垃圾邮件过滤、黑名单功能等等。
 2. 去重：比如爬给定网址的时候对已经爬取过的 URL 去重。
 
-### 4.通过 Java 编程手动实现布隆过滤器
+
+## 编码实战
+
+### 通过 Java 编程手动实现布隆过滤器
 
 我们上面已经说了布隆过滤器的原理，知道了布隆过滤器的原理之后就可以自己手动实现一个了。
 
@@ -188,7 +199,7 @@ true
 true
 ```
 
-### 5.利用 Google 开源的 Guava 中自带的布隆过滤器
+### 利用 Google 开源的 Guava 中自带的布隆过滤器
 
 自己实现的目的主要是为了让自己搞懂布隆过滤器的原理，Guava 中布隆过滤器的实现算是比较权威的，所以实际项目中我们不需要手动实现一个布隆过滤器。
 
@@ -222,26 +233,26 @@ System.out.println(filter.mightContain(1));
 System.out.println(filter.mightContain(2));
 ```
 
-在我们的示例中，当`mightContain()` 方法返回 _true_ 时，我们可以 99％确定该元素在过滤器中，当过滤器返回 _false_ 时，我们可以 100％确定该元素不存在于过滤器中。
+在我们的示例中，当 `mightContain()` 方法返回 _true_ 时，我们可以 99％确定该元素在过滤器中，当过滤器返回 _false_ 时，我们可以 100％确定该元素不存在于过滤器中。
 
 **Guava 提供的布隆过滤器的实现还是很不错的（想要详细了解的可以看一下它的源码实现），但是它有一个重大的缺陷就是只能单机使用（另外，容量扩展也不容易），而现在互联网一般都是分布式的场景。为了解决这个问题，我们就需要用到 Redis 中的布隆过滤器了。**
 
-### 6.Redis 中的布隆过滤器
+## Redis 中的布隆过滤器
 
-#### 6.1 介绍
+### 介绍
 
 Redis v4.0 之后有了 Module（模块/插件） 功能，Redis Modules 让 Redis 可以使用外部模块扩展其功能 。布隆过滤器就是其中的 Module。详情可以查看 Redis 官方对 Redis Modules 的介绍 ：https://redis.io/modules
 
 另外，官网推荐了一个 RedisBloom 作为 Redis 布隆过滤器的 Module，地址：https://github.com/RedisBloom/RedisBloom 
 其他还有：
 
-- redis-lua-scaling-bloom-filter（lua 脚本实现）：https://github.com/erikdubbelboer/redis-lua-scaling-bloom-filter
-- pyreBloom（Python 中的快速 Redis 布隆过滤器） ：https://github.com/seomoz/pyreBloom
-- ......
+* redis-lua-scaling-bloom-filter（lua 脚本实现）：https://github.com/erikdubbelboer/redis-lua-scaling-bloom-filter
+* pyreBloom（Python 中的快速 Redis 布隆过滤器） ：https://github.com/seomoz/pyreBloom
+* ......
 
 RedisBloom 提供了多种语言的客户端支持，包括：Python、Java、JavaScript 和 PHP。
 
-#### 6.2 使用 Docker 安装
+### 使用 Docker 安装
 
 如果我们需要体验 Redis 中的布隆过滤器非常简单，通过 Docker 就可以了！我们直接在 Google 搜索 **docker redis bloomfilter** 然后在排除广告的第一条搜素结果就找到了我们想要的答案（这是我平常解决问题的一种方式，分享一下），具体地址：https://hub.docker.com/r/redislabs/rebloom/ （介绍的很详细 ）。
 
@@ -254,7 +265,7 @@ root@21396d02c252:/data# redis-cli
 127.0.0.1:6379>
 ```
 
-#### 6.3 常用命令一览
+### 常用命令一览
 
 > 注意： key : 布隆过滤器的名称，item : 添加的元素。
 
@@ -263,11 +274,11 @@ root@21396d02c252:/data# redis-cli
 3. **`BF.EXISTS`** : 确定元素是否在布隆过滤器中存在。格式：`BF.EXISTS {key} {item}`。
 4. **`BF.MEXISTS`** ： 确定一个或者多个元素是否在布隆过滤器中存在格式：`BF.MEXISTS {key} {item} [item ...]`。
 
-另外，`BF.RESERVE` 命令需要单独介绍一下：
+另外， `BF. RESERVE` 命令需要单独介绍一下：
 
 这个命令的格式如下：
 
-`BF.RESERVE {key} {error_rate} {capacity} [EXPANSION expansion]`。
+`BF. RESERVE {key} {error_rate} {capacity} [EXPANSION expansion]` 。
 
 下面简单介绍一下每个参数的具体含义：
 
@@ -277,9 +288,9 @@ root@21396d02c252:/data# redis-cli
 
 可选参数：
 
-- expansion：如果创建了一个新的子过滤器，则其大小将是当前过滤器的大小乘以`expansion`。默认扩展值为 2。这意味着每个后续子过滤器将是前一个子过滤器的两倍。
+* expansion：如果创建了一个新的子过滤器，则其大小将是当前过滤器的大小乘以`expansion`。默认扩展值为 2。这意味着每个后续子过滤器将是前一个子过滤器的两倍。
 
-#### 6.4 实际使用
+### 实际使用
 
 ```shell
 127.0.0.1:6379> BF.ADD myFilter java

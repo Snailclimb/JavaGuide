@@ -1,3 +1,11 @@
+---
+title:  ArrayList 源码+扩容机制分析
+category: Java
+tag:
+  - Java集合
+---
+
+
 ## 1. ArrayList 简介
 
 `ArrayList` 的底层是数组队列，相当于动态数组。与 Java 中的数组相比，它的容量能动态增长。在添加大量元素前，应用程序可以使用`ensureCapacity`操作来增加 `ArrayList` 实例的容量。这可以减少递增式再分配的数量。

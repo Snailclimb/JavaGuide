@@ -1,3 +1,11 @@
+---
+title:  ConcurrentHashMap源码+底层数据结构分析
+category: Java
+tag:
+  - Java集合
+---
+
+
 > 本文来自公众号：末读代码的投稿，原文地址：https://mp.weixin.qq.com/s/AHWzboztt53ZfFZmsSnMSw  。
 
 上一篇文章介绍了 HashMap 源码，反响不错，也有很多同学发表了自己的观点，这次又来了，这次是 `ConcurrentHashMap ` 了，作为线程安全的HashMap ，它的使用频率也是很高。那么它的存储结构和实现原理是怎么样的呢？

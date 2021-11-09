@@ -1,3 +1,12 @@
+---
+title: MySQL三大日志(binlog、redo log和undo log)详解
+category: 数据库
+tag:
+  - MySQL
+---
+
+
+
 > 本文来自公号程序猿阿星投稿，JavaGuide 对其做了补充完善。
 
 ## 前言

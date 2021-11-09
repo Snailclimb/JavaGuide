@@ -1,20 +1,9 @@
-<!-- TOC -->
-
-- [一致性非锁定读和锁定读](#一致性非锁定读和锁定读)
-  - [一致性非锁定读](#一致性非锁定读)
-  - [锁定读](#锁定读)
-- [InnoDB 对 MVCC 的实现](#InnoDB对MVCC的实现)
-  - [隐藏字段](#隐藏字段])
-  - [ReadView](#ReadView)
-  - [undo-log](#undo-log)
-  - [数据可见性算法](#数据可见性算法)
-- [RC、RR 隔离级别下 MVCC 的差异](#RC、RR隔离级别下MVCC的差异)
-- [MVCC 解决不可重复读问题](#MVCC解决不可重复读问题)
-  - [在 RC 下 ReadView 生成情况](#在RC下ReadView生成情况)
-  - [在 RR 下 ReadView 生成情况](#在RR下ReadView生成情况)
-- [MVCC+Next-key-Lock 防止幻读](#MVCC➕Next-key-Lock防止幻读)
-
-<!-- /TOC -->
+---
+title: InnoDB存储引擎对MVCC的实现
+category: 数据库
+tag:
+  - MySQL
+---
 
 ## 一致性非锁定读和锁定读
 
