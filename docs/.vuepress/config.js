@@ -29,18 +29,19 @@ module.exports = config({
     repo: "https://github.com/Snailclimb/JavaGuide",
     nav: [
       { text: "Java面试指南", icon: "java", link: "/", },
+      { text: "Java面试指北", icon: "java", link: "https://www.yuque.com/docs/share/f37fc804-bfe6-4b0d-b373-9c462188fec7?#%20%E3%80%8A%E3%80%8AJava%E9%9D%A2%E8%AF%95%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8C%97%20%20%E6%89%93%E9%80%A0%E4%B8%AA%E4%BA%BA%E7%9A%84%E6%8A%80%E6%9C%AF%E7%AB%9E%E4%BA%89%E5%8A%9B%E3%80%8B%E3%80%8B", },
       {
-        text: "Java精选", icon: "file",
+        text: "Java精选", icon: "file", icon: "java",
         items: [
           { text: "Java书单精选", icon: "book", link: "https://gitee.com/SnailClimb/awesome-cs" },
           { text: "Java学习路线", icon: "luxianchaxun", link: "https://zhuanlan.zhihu.com/p/379041500" },
-          { text: "Java开源项目精选", icon: "luxianchaxun", link: "https://gitee.com/SnailClimb/awesome-java" }
+          { text: "Java开源项目精选", icon: "git", link: "https://gitee.com/SnailClimb/awesome-java" }
         ],
       },
       { text: "IDEA指南", icon: "intellijidea", link: "/idea-tutorial/", },
       { text: "开发工具", icon: "Tools", link: "/tools/", },
       {
-        text: "PDF资源", icon: "file",
+        text: "PDF资源", icon: "pdf",
         items: [
           { text: "JavaGuide面试突击版", link: "https://t.1yb.co/Fy1e", },
           { text: "消息队列常见知识点&面试题总结", link: "https://t.1yb.co/Fy0u", },
@@ -48,7 +49,7 @@ module.exports = config({
         ],
       },
       {
-        text: "关于作者", link: "/about-the-author/"
+        text: "关于作者", icon: "zuozhe", link: "/about-the-author/"
       },
     ],
     sidebar: {
@@ -73,7 +74,7 @@ module.exports = config({
         },
         {
           title: "Docker",
-          icon: "git",
+          icon: "docker1",
           prefix: "docker/",
           collapsable: false,
           children: ["docker", "docker从入门到实战"]
@@ -100,7 +101,7 @@ module.exports = config({
             children: [
               "shortcut-key", "idea-themes", "improve-code", "interface-beautification",
               "camel-case", "code-glance", "code-statistic",
-              "git-commit-template", "gson-format", "dea-features-trainer", "jclasslib",
+              "git-commit-template", "gson-format", "idea-features-trainer", "jclasslib",
               "maven-helper", "rest-devlop", "save-actions", "sequence-diagram", "translation",
               "others"
             ]
@@ -122,7 +123,7 @@ module.exports = config({
           {
             title: "容器", prefix: "collection/",
             children: [
-              "java集合框架基础知识&面试题总结", "java集合使用注意事项总结",
+              "java集合框架基础知识&面试题总结", "java集合使用注意事项",
               {
                 title: "源码分析",
                 children: ["arraylist-source-code", "hashmap-source-code", "concurrent-hash-map-source-code"],
@@ -141,15 +142,15 @@ module.exports = config({
           },
           {
             title: "JVM", prefix: "jvm/",
-            children: ["内存区域", "jvm垃圾回收", "类文件结构", "类加载过程", "类加载器", "jvm参数指南", "[加餐]大白话带你认识jvm"],
+            children: ["memory-area", "jvm-garbage-collection", "class-file-structure", "class-loading-process", "classloader", "jvm-parameters-intro", "jvm-intro", "jdk-monitoring-and-troubleshooting-tools"],
           },
           {
             title: "新特性", prefix: "new-features/",
-            children: ["java8-common-new-features", "java8新特性总结", "java新特性总结"],
+            children: ["java8-common-new-features", "java8-tutorial-translate", "java新特性总结"],
           },
           {
             title: "小技巧", prefix: "tips/",
-            children: ["locate-performance-problems/手把手教你定位常见Java性能问题", "jad反编译tricks"],
+            children: ["locate-performance-problems/手把手教你定位常见Java性能问题", "jad"],
           },
         ],
       },
@@ -165,7 +166,7 @@ module.exports = config({
           {
             title: "操作系统", prefix: "operating-system/", icon: "caozuoxitong",
             children: [
-              "basis", "linux", "shell"
+              "操作系统常见面试题&知识点总结", "linux-intro", "shell-intro"
             ],
           },
           {
@@ -201,7 +202,7 @@ module.exports = config({
           },
           {
             title: "Redis", prefix: "redis/",
-            children: ["redis-all", "3-commonly-used-cache-read-and-write-strategies"],
+            children: ["redis知识点&面试题总结", "3-commonly-used-cache-read-and-write-strategies"],
           },
         ],
       },
