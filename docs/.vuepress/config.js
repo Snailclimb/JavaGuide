@@ -29,8 +29,14 @@ module.exports = config({
     repo: "https://github.com/Snailclimb/JavaGuide",
     nav: [
       { text: "Java面试指南", icon: "java", link: "/", },
-      { text: "Java书单", icon: "book", link: "https://gitee.com/SnailClimb/awesome-cs", },
-      { text: "Java学习路线", icon: "luxianchaxun", link: "https://zhuanlan.zhihu.com/p/379041500", },
+      {
+        text: "Java精选", icon: "file",
+        items: [
+          { text: "Java书单精选", icon: "book", link: "https://gitee.com/SnailClimb/awesome-cs" },
+          { text: "Java学习路线", icon: "luxianchaxun", link: "https://zhuanlan.zhihu.com/p/379041500" },
+          { text: "Java开源项目精选", icon: "luxianchaxun", link: "https://gitee.com/SnailClimb/awesome-java" }
+        ],
+      },
       { text: "IDEA指南", icon: "intellijidea", link: "/idea-tutorial/", },
       { text: "开发工具", icon: "Tools", link: "/tools/", },
       {
