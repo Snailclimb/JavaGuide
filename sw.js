@@ -19,6 +19,8 @@ const getFixedUrl = (req) => {
   var now = Date.now()
   var url = new URL(req.url)
 
+  
+  
   // 1. fixed http URL
   // Just keep syncing with location.protocol
   // fetch(httpURL) belongs to active mixed content.
