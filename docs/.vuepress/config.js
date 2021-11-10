@@ -22,10 +22,8 @@ module.exports = config({
     ],
     // 添加百度统计
     [
-      "script",
-      {},
-      `<script>
-      var _hmt = _hmt || [];
+      "script",{},
+      `var _hmt = _hmt || [];
       (function() {
         var hm = document.createElement("script");
         hm.src = "https://hm.baidu.com/hm.js?5dd2e8c97962d57b7b8fea1737c01743";
