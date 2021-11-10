@@ -3,6 +3,7 @@ const { config } = require("vuepress-theme-hope");
 module.exports = config({
   title: "JavaGuide",
   description: "Java学习&&面试指南",
+  //指定 vuepress build 的输出目录
   dest: "./dist",
   head: [
     [
@@ -22,7 +23,7 @@ module.exports = config({
     ],
     // 添加百度统计
     [
-      "script",{},
+      "script", {},
       `var _hmt = _hmt || [];
       (function() {
         var hm = document.createElement("script");
@@ -32,12 +33,18 @@ module.exports = config({
       })();`
     ]
   ],
-
+  locales: {
+    "/": {
+      lang: "zh-CN"
+    }
+  },
   themeConfig: {
     logo: "/logo.png",
     hostname: "https://javaguide.cn/",
     author: "Guide哥",
     repo: "https://github.com/Snailclimb/JavaGuide",
+    editLinks: true,
+    docsDir: 'docs',
     nav: [
       { text: "Java面试指南", icon: "java", link: "/", },
       { text: "Java面试指北", icon: "java", link: "https://www.yuque.com/docs/share/f37fc804-bfe6-4b0d-b373-9c462188fec7?#%20%E3%80%8A%E3%80%8AJava%E9%9D%A2%E8%AF%95%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8C%97%20%20%E6%89%93%E9%80%A0%E4%B8%AA%E4%BA%BA%E7%9A%84%E6%8A%80%E6%9C%AF%E7%AB%9E%E4%BA%89%E5%8A%9B%E3%80%8B%E3%80%8B", },
@@ -282,7 +289,7 @@ module.exports = config({
       }],
     },
     blog: {
-      intro: "/intro/",
+      intro: "/about-the-author/",
       sidebarDisplay: "mobile",
       links: {
         Zhihu: "https://www.zhihu.com/people/javaguide",
@@ -290,7 +297,6 @@ module.exports = config({
         Gitee: "https://gitee.com/SnailClimb",
       },
     },
-
     footer: {
       display: true,
       content: '<a href="https://beian.miit.gov.cn/" target="_blank">鄂ICP备2020015769号-1</a>',
