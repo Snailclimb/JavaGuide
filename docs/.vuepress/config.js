@@ -35,7 +35,7 @@ module.exports = config({
 
   themeConfig: {
     logo: "/logo.png",
-    hostname: "https://vuepress-theme-hope-demo.mrhope.site",
+    hostname: "https://javaguide.cn/",
     author: "Guide哥",
     repo: "https://github.com/Snailclimb/JavaGuide",
     nav: [
