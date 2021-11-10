@@ -70,7 +70,7 @@ module.exports = config({
           icon: "git",
           prefix: "git/",
           collapsable: false,
-          children: ["git", "github小技巧"]
+          children: ["git-intro", "github技巧"]
         },
         {
           title: "Docker",

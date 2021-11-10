@@ -13,7 +13,7 @@
 
 官网地址：https://www.docker.com/ 。
 
-![什么是Docker](https://user-gold-cdn.xitu.io/2018/6/18/16411c3946dda762?w=971&h=629&f=jpeg&s=56655)
+![认识容器](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/container.png)
 
 ### 为什么要用 Docker?
 
