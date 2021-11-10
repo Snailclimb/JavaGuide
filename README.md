@@ -1,10 +1,7 @@
-👉 [阿里云双11服务器新人优惠，2核2g ，一年仅需58元！数量有限！速抢](https://www.aliyun.com/minisite/goods?taskPkg=1111ydsrwb&pkgSid=1532&recordId=959605&userCode=hf47liqn)
+👏 重大更新！！！重磅！
 
-👉 如果你不知道该学习什么的话，请看 [Java 学习线路图是怎样的？]( https://zhuanlan.zhihu.com/p/379041500)  （原创不易，欢迎点赞，精简版学习路线正在路上），这是 2021 最新最完善的 Java 学习路线！另外，[我的朋友整理了一份消息队列常见面试题，需要的小伙伴可以点击领取！](http://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=100025985&idx=1&sn=681af486050fabbeea27fa1c3bec5d65&chksm=4ea1e94a79d6605c72f280b5268100c6e96c6ab1dc9a0178b33e25a72ff5f4eac3dcb56fa44f#rd)。
-
-👉 推荐 [在线阅读](https://snailclimb.gitee.io/javaguide)  (Github 访问速度比较慢可能会导致部分图片无法刷新出来) 
-
-👉 书单已经被移动到 [awesome-cs](https://github.com/CodingDocs/awesome-cs) 这个仓库。
+- JavaGuide 在线阅读版（新版，推荐👍）：https://javaguide.cn/
+- JavaGuide 在线阅读版（老版）:https://snailclimb.gitee.io/javaguide/#/
 
 👉 [朋友开源的面试八股文系列](https://github.com/csguide-dabai/interview-guide)。
 
