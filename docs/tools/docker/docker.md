@@ -38,7 +38,7 @@
 
 **容器：**
 
-![容器](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/容器图解.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/image-20211110104003678.png)
 
 通过上面这三张抽象图，我们可以大概通过类比概括出： **容器虚拟化的是操作系统而不是硬件，容器之间是共享同一套操作系统资源的。虚拟机技术是虚拟出一套硬件后，在其上运行一个完整操作系统。因此容器的隔离级别会稍低一些。**
 
@@ -48,8 +48,6 @@
 
 ## 二 再来谈谈 Docker 的一些概念
 
-![Docker的一些概念](https://user-gold-cdn.xitu.io/2018/6/18/16410734eb1ed373?w=1566&h=696&f=png&s=294564)
-
 ### 2.1 什么是 Docker?
 
 说实话关于 Docker 是什么并太好说，下面我通过四点向你说明 Docker 到底是个什么东西。
@@ -58,8 +56,6 @@
 - **Docker** 使用 Google 公司推出的 **Go 语言** 进行开发实现，基于 **Linux 内核** 提供的 CGroup 功能和 namespace 来实现的，以及 AUFS 类的 **UnionFS** 等技术，**对进程进行封装隔离，属于操作系统层面的虚拟化技术。** 由于隔离的进程独立于宿主和其它的隔离的进程，因此也称其为容器。
 - **Docker 能够自动执行重复性任务，例如搭建和配置开发环境，从而解放了开发人员以便他们专注在真正重要的事情上：构建杰出的软件。**
 - **用户可以方便地创建和使用容器，把自己的应用放入容器。容器还可以进行版本管理、复制、分享、修改，就像管理普通的代码一样。**
-
-![什么是Docker](https://user-gold-cdn.xitu.io/2018/6/18/16411c3946dda762?w=971&h=629&f=jpeg&s=56655)
 
 ### 2.2 Docker 思想
 
@@ -94,11 +90,11 @@
 
 传统虚拟机技术是虚拟出一套硬件后，在其上运行一个完整操作系统，在该系统上再运行所需应用进程；而容器内的应用进程直接运行于宿主的内核，容器内没有自己的内核，而且也没有进行硬件虚拟。因此容器要比传统虚拟机更为轻便。
 
-![容器 VS 虚拟机](https://user-gold-cdn.xitu.io/2018/6/17/1640cb4abec9e902?w=1086&h=406&f=png&s=70264)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/2e2b95eebf60b6d03f6c1476f4d7c697.png)
 
 ### 3.2 容器与虚拟机总结
 
-![容器与虚拟机 (VM) 总结](https://user-gold-cdn.xitu.io/2018/6/18/16410aa3b89ae481?w=801&h=206&f=png&s=37241)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/4ef8691d67eb1eb53217099d0a691eb5.png)
 
 - **容器是一个应用层抽象，用于将代码和依赖资源打包在一起。** **多个容器可以在同一台机器上运行，共享操作系统内核，但各自作为独立的进程在用户空间中运行** 。与虚拟机相比， **容器占用的空间较少**（容器镜像大小通常只有几十兆），**瞬间就能完成启动** 。
 
@@ -110,7 +106,7 @@
 
 就我而言，对于两者无所谓谁会取代谁，而是两者可以和谐共存。
 
-![两者是可以共存的](https://user-gold-cdn.xitu.io/2018/6/17/1640cca26fc38f9e)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/056c87751b9dd7b56f4264240fe96d00.png)
 
 ---
 
@@ -244,7 +240,7 @@ docker rmi f6509bac4980 #  或者 docker rmi mysql
 
 如果你搜索 Docker 官网，会发现如下的字样：**“Docker - Build, Ship, and Run Any App, Anywhere”**。那么 Build, Ship, and Run 到底是在干什么呢？
 
-![build ship run](https://user-gold-cdn.xitu.io/2018/6/18/16411c521e79bd82?w=486&h=255&f=png&s=185903)
+![](https://img-blog.csdnimg.cn/2419919953764fc690c929d3844f7011.png)
 
 - **Build（构建镜像）** ： 镜像就像是集装箱包括文件以及运行环境等等资源。
 - **Ship（运输镜像）** ：主机和仓库间运输，这里的仓库就像是超级码头一样。
