@@ -72,7 +72,7 @@ module.exports = config({
     ],
     sidebar: {
       "/about-the-author/": [
-        "internet-addiction-teenager", "feelings-after-one-month-of-induction-training"
+        "internet-addiction-teenager", "feelings-after-one-month-of-induction-training", "my-article-was-stolen-and-made-into-video-and-it-became-popular"
       ],
       // 应该把更精确的路径放置在前边
       '/tools/': [
