@@ -365,3 +365,11 @@ Dubbo 是一款国产的 RPC 框架，由阿里开源。相关阅读：
 - [搞懂异地多活，看这篇就够了](https://mp.weixin.qq.com/s/T6mMDdtTfBuIiEowCpqu6Q)
 - [四步构建异地多活](https://mp.weixin.qq.com/s/hMD-IS__4JE5_nQhYPYSTg)
 - [《从零开始学架构》— 28 | 业务高可用的保障：异地多活架构](http://gk.link/a/10pKZ)
+
+## 关于作者
+
+- [个人介绍 Q&A](https://javaguide.cn/about-the-author/)
+- [我曾经也是网瘾少年](https://javaguide.cn/about-the-author/internet-addiction-teenager/)
+- [入职培训一个月后的感受](https://javaguide.cn/about-the-author/feelings-after-one-month-of-induction-training/)
+- [从毕业到入职半年的感受](https://javaguide.cn/about-the-author/feelings-of-half-a-year-from-graduation-to-entry/)
+- [某培训机构盗我文章做成视频还上了B站热门](https://javaguide.cn/about-the-author/my-article-was-stolen-and-made-into-video-and-it-became-popular/)
