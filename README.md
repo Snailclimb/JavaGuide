@@ -1,7 +1,7 @@
 👏 重大更新！！！重磅！
 
 - JavaGuide 在线阅读版（新版，推荐👍）：https://javaguide.cn/
-- JavaGuide 在线阅读版（老版）:https://snailclimb.gitee.io/javaguide/#/
+- JavaGuide 在线阅读版（老版，部分链接已经无法访问）:https://snailclimb.gitee.io/javaguide/#/
 
 👉 [朋友开源的面试八股文系列](https://github.com/csguide-dabai/interview-guide)。
 
