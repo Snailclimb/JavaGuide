@@ -1,4 +1,4 @@
-👏 重大更新！！！重磅！
+## 👏 重大更新！！！重磅！
 
 - JavaGuide 在线阅读版（新版，推荐👍）：https://javaguide.cn/
 - JavaGuide 在线阅读版（老版，部分链接已经无法访问）:https://snailclimb.gitee.io/javaguide/#/
@@ -19,13 +19,12 @@
 </a>
 </p>
 <p align="center">
-  <a href="https://snailclimb.gitee.io/javaguide"><img src="https://img.shields.io/badge/阅读-read-brightgreen.svg" alt="阅读"></a>
-  <img src="https://img.shields.io/github/stars/Snailclimb/JavaGuide" alt="stars">
+  <a href="https://javaguide.cn/"><img src="https://img.shields.io/badge/阅读-read-brightgreen.svg" alt="阅读"></a>
+  <img src="https://img.shields.io/github/stars/Snailclimb/JavaGuide" alt="stars"/>
+  <img src="https://img.shields.io/github/forks/Snailclimb/JavaGuide" alt="forks"/>
+  <img src="https://img.shields.io/github/issues/Snailclimb/JavaGuide" alt="issues"/>
 </p>
-
-
 <h3 align="center">Sponsor</h3>
-
 <table>
   <tbody>
     <tr>
