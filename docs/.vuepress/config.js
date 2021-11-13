@@ -53,7 +53,8 @@ module.exports = config({
         items: [
           { text: "Java书单精选", icon: "book", link: "https://gitee.com/SnailClimb/awesome-cs" },
           { text: "Java学习路线", icon: "luxianchaxun", link: "https://zhuanlan.zhihu.com/p/379041500" },
-          { text: "Java开源项目精选", icon: "git", link: "https://gitee.com/SnailClimb/awesome-java" }
+          { text: "Java开源项目精选", icon: "git", link: "https://gitee.com/SnailClimb/awesome-java" },
+          { text: "Java技术文章精选集", icon: "star", link: "/high-quality-technical-articles/" }
         ],
       },
       { text: "IDEA指南", icon: "intellijidea", link: "/idea-tutorial/", },
@@ -71,41 +72,35 @@ module.exports = config({
       },
     ],
     sidebar: {
+      // 应该把更精确的路径放置在前边
       "/about-the-author/": [
         "internet-addiction-teenager", "feelings-after-one-month-of-induction-training", "feelings-of-half-a-year-from-graduation-to-entry",
         "my-article-was-stolen-and-made-into-video-and-it-became-popular",
       ],
-      // 应该把更精确的路径放置在前边
       '/tools/': [
         {
-          title: "数据库",
-          icon: "database",
-          prefix: "database/",
-          collapsable: false,
+          title: "数据库", icon: "database", prefix: "database/", collapsable: false,
           children: ["CHINER", "DBeaver", "screw"]
         },
         {
-          title: "Git",
-          icon: "git",
-          prefix: "git/",
-          collapsable: false,
+          title: "Git", icon: "git", prefix: "git/", collapsable: false,
           children: ["git-intro", "github技巧"]
         },
         {
-          title: "Docker",
-          icon: "docker1",
-          prefix: "docker/",
-          collapsable: false,
+          title: "Docker", icon: "docker1", prefix: "docker/", collapsable: false,
           children: ["docker", "docker从入门到实战"]
+        },
+      ],
+      '/high-quality-technical-articles/': [
+        {
+          title: "面试", icon: "mianshixinxi-02", prefix: "interview/",
+          children: ["the-experience-and-thinking-of-an-interview-experienced-by-an-older-programmer", "technical-preliminary-preparation"]
         },
       ],
       '/idea-tutorial/':
         [
           {
-            title: "IDEA小技巧",
-            icon: "creative",
-            prefix: "idea-tips/",
-            collapsable: false,
+            title: "IDEA小技巧", icon: "tips", prefix: "idea-tips/", collapsable: false,
             children: [
               "idea-refractor-intro",
               "idea-plug-in-development-intro",
@@ -113,10 +108,7 @@ module.exports = config({
             ]
           },
           {
-            title: "IDEA插件推荐",
-            icon: "plugin",
-            collapsable: false,
-            prefix: "idea-plugins/",
+            title: "IDEA插件推荐", icon: "chajian1", collapsable: false, prefix: "idea-plugins/",
             children: [
               "shortcut-key", "idea-themes", "improve-code", "interface-beautification",
               "camel-case", "code-glance", "code-statistic",
