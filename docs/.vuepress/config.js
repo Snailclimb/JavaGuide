@@ -1,10 +1,30 @@
 const { config } = require("vuepress-theme-hope");
 
 module.exports = config({
+  port: "8080",
   title: "JavaGuide",
   description: "Java学习&&面试指南",
   //指定 vuepress build 的输出目录
   dest: "./dist",
+  // 是否开启默认预加载js
+  shouldPrefetch: (file, type) => false,
+  // webpack 配置 https://vuepress.vuejs.org/zh/config/#chainwebpack
+  chainWebpack: config => {
+    if (process.env.NODE_ENV === 'production') {
+      const dateTime = new Date().getTime();
+
+      // 清除js版本号
+      config.output.filename('assets/js/jg-[name].js?v=' + dateTime).end();
+      config.output.chunkFilename('assets/js/jg-[name].js?v=' + dateTime).end();
+
+      // 清除css版本号
+      config.plugin('mini-css-extract-plugin').use(require('mini-css-extract-plugin'), [{
+        filename: 'assets/css/[name].css?v=' + dateTime,
+        chunkFilename: 'assets/css/[name].css?v=' + dateTime
+      }]).end();
+
+    }
+  },
   head: [
     [
       "script",
