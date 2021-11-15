@@ -15,7 +15,7 @@ tag:
 
 举个例子。我直接点击tab栏下的菜单打开 Version Control(版本控制) 的话，这个插件就会提示你可以用快捷键 `command+9`或者`shift+command+9`打开。如下图所示。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/source-code/dubbo/Key-Promoter-X1.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/idea/Key-Promoter-X1.png)
 
 除了这个很棒的功能之外，这个插件还有一个功能我觉得非常棒。
 
@@ -23,7 +23,7 @@ tag:
 
 我忘记最多的快捷键是debug的时候经常使用的 F8（Step Over）。如下图所示。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/source-code/dubbo/Key-Promoter-X2.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/idea/Key-Promoter-X2.png)
 
 关于快捷键，很多人不愿意去记，觉得单纯靠鼠标就完全够了。
 
@@ -47,7 +47,7 @@ tag:
 
 举个例子。我使用快捷键 `command+9`打开 Version Control ，使用了这个插件之后的效果如下图所示。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/source-code/dubbo/Presentation-Assistant.gif)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/idea/Presentation-Assistant.gif)
 
 从上图可以很清晰地看到，IDEA 的底部中间的位置将我刚刚所使用的快捷键给展示了出来。
 
