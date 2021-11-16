@@ -59,12 +59,8 @@ module.exports = config({
     }
   },
   themeConfig: {
-    logo: "/logo.png",
-    hostname: "https://javaguide.cn/",
-    author: "Guide哥",
-    repo: "https://github.com/Snailclimb/JavaGuide",
-    editLinks: true,
-    docsDir: 'docs',
+    logo: "/logo.png", hostname: "https://javaguide.cn/", author: "Guide哥", repo: "https://github.com/Snailclimb/JavaGuide",
+    editLinks: true, docsDir: 'docs',
     nav: [
       { text: "Java面试指南", icon: "java", link: "/", },
       { text: "Java面试指北", icon: "java", link: "https://www.yuque.com/docs/share/f37fc804-bfe6-4b0d-b373-9c462188fec7?#%20%E3%80%8A%E3%80%8AJava%E9%9D%A2%E8%AF%95%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8C%97%20%20%E6%89%93%E9%80%A0%E4%B8%AA%E4%BA%BA%E7%9A%84%E6%8A%80%E6%9C%AF%E7%AB%9E%E4%BA%89%E5%8A%9B%E3%80%8B%E3%80%8B", },
@@ -113,9 +109,13 @@ module.exports = config({
       ],
       '/high-quality-technical-articles/': [
         {
-          title: "面试", icon: "mianshixinxi-02", prefix: "interview/",
-          children: ["the-experience-and-thinking-of-an-interview-experienced-by-an-older-programmer", "technical-preliminary-preparation"]
+          title: "面试", icon: "mianshixinxi-02", prefix: "interview/", collapsable: false,
+          children: ["the-experience-and-thinking-of-an-interview-experienced-by-an-older-programmer", "technical-preliminary-preparation"],
         },
+        {
+          title: "个人经历", icon: "zuozhe", prefix: "personal-experience/", collapsable: false,
+          children: ["two-years-of-back-end-develop--experience-in-didi&toutiao"]
+        }
       ],
       '/idea-tutorial/':
         [
