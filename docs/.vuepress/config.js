@@ -110,7 +110,7 @@ module.exports = config({
       '/high-quality-technical-articles/': [
         {
           title: "面试", icon: "mianshixinxi-02", prefix: "interview/", collapsable: false,
-          children: ["the-experience-and-thinking-of-an-interview-experienced-by-an-older-programmer", "technical-preliminary-preparation"],
+          children: ["the-experience-and-thinking-of-an-interview-experienced-by-an-older-programmer", "technical-preliminary-preparation", "screen-candidates-for-packaging"],
         },
         {
           title: "个人经历", icon: "zuozhe", prefix: "personal-experience/", collapsable: false,
