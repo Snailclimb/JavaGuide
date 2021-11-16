@@ -99,14 +99,14 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 ### 操作系统
 
-1. [操作系统常见问题总结！](docs/cs-basics/operating-system/basis.md)
-2. [后端程序员必备的 Linux 基础知识总结](docs/cs-basics/operating-system/linux.md)
-3. [Shell 编程入门](docs/cs-basics/operating-system/Shell.md)
+1. [操作系统常见问题总结！](docs/cs-basics/operating-system/操作系统常见面试题&知识点总结.md)
+2. [后端程序员必备的 Linux 基础知识总结](docs/cs-basics/operating-system/linux-intro.md)
+3. [Shell 编程入门](docs/cs-basics/operating-system/shell-intro.md)
 
 ### 网络
 
-1. [计算机网络常见面试题](docs/cs-basics/network/计算机网络.md)
-2. [计算机网络基础知识总结](docs/cs-basics/network/计算机网络知识总结.md)
+1. [计算机网络常见面试题](docs/cs-basics/network/计算机网络常见面试题.md)
+2. [谢希仁老师的《计算机网络》内容总结](docs/cs-basics/network/谢希仁老师的《计算机网络》内容总结.md)
 
 ### 数据结构
 
