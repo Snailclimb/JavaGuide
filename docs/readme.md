@@ -34,7 +34,7 @@ title: JavaGuide（Java学习&&面试指南）
 
 相比于其他通过 JavaGuide 学到东西或者说助力获得 offer 的朋友来说 ， JavaGuide 对我的意义更加重大。不夸张的说，有时候真的感觉像是自己的孩子一点一点长大一样，我一直用心呵护着它。
 
-虽然，我花了很长时间来维护它，但是，我觉得非常值得！非常有有益！
+虽然，我花了很长时间来维护它，但是，我觉得非常值得！非常有意义！
 
 另外，[JavaGuide](https://github.com/Snailclimb/JavaGuide) 的 Star 数量虽然比较多，但是它的价值和含金量一定是不能和 Dubbo、Nacos 、SkyWalking 这些优秀的国产开源项目比的。希望国内可以出更多优秀的开源项目！
 
