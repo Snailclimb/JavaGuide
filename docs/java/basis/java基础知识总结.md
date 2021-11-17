@@ -122,9 +122,7 @@ JRE 是 Java 运行时环境。它是运行已编译 Java 程序所需的所有�
 
 1. **形式** : 字符常量是单引号引起的一个字符，字符串常量是双引号引起的 0 个或若干个字符
 2. **含义** : 字符常量相当于一个整型值( ASCII 值),可以参加表达式运算; 字符串常量代表一个地址值(该字符串在内存中存放位置)
-3. **占内存大小** ： 字符常量只占 2 个字节; 字符串常量占若干个字节 (**注意： char 在 Java 中占两个字节**),
-
-   > 字符封装类 `Character` 有一个成员常量 `Character.SIZE` 值为 16,单位是`bits`,该值除以 8(`1byte=8bits`)后就可以得到 2 个字节
+3. **占内存大小** ： 字符常量只占 2 个字节; 字符串常量占若干个字节 (**注意： `char` 在 Java 中占两个字节**),
 
 > java 编程思想第四版：2.2.2 节
 > ![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-15/86735519.jpg)
@@ -186,23 +184,25 @@ Java 中的注释有三种：
 
 在写代码的过程中，常见的一种情况是需要某个整数类型变量增加 1 或减少 1，Java 提供了一种特殊的运算符，用于这种表达式，叫做自增运算符（++)和自减运算符（--）。
 
-++和--运算符可以放在变量之前，也可以放在变量之后，当运算符放在变量之前时(前缀)，先自增/减，再赋值；当运算符放在变量之后时(后缀)，先赋值，再自增/减。例如，当 `b = ++a` 时，先自增（自己增加 1），再赋值（赋值给 b）；当 `b = a++` 时，先赋值(赋值给 b)，再自增（自己增加 1）。也就是，++a 输出的是 a+1 的值，a++输出的是 a 值。用一句口诀就是：“符号在前就先加/减，符号在后就后加/减”。
+++ 和 -- 运算符可以放在变量之前，也可以放在变量之后，当运算符放在变量之前时(前缀)，先自增/减，再赋值；当运算符放在变量之后时(后缀)，先赋值，再自增/减。例如，当 `b = ++a` 时，先自增（自己增加 1），再赋值（赋值给 b）；当 `b = a++` 时，先赋值(赋值给 b)，再自增（自己增加 1）。也就是，++a 输出的是 a+1 的值，a++输出的是 a 值。用一句口诀就是：“符号在前就先加/减，符号在后就后加/减”。
 
-### continue、break、和 return 的区别是什么？
+### continue、break 和 return 的区别是什么？
 
 在循环结构中，当循环条件不满足或者循环次数达到要求时，循环会正常结束。但是，有时候可能需要在循环的过程中，当发生了某种条件之后 ，提前终止循环，这就需要用到下面几个关键词：
 
-1. continue ：指跳出当前的这一次循环，继续下一次循环。
-2. break ：指跳出整个循环体，继续执行循环下面的语句。
+1. `continue` ：指跳出当前的这一次循环，继续下一次循环。
+2. `break` ：指跳出整个循环体，继续执行循环下面的语句。
 
-return 用于跳出所在方法，结束该方法的运行。return 一般有两种用法：
+`return` 用于跳出所在方法，结束该方法的运行。return 一般有两种用法：
 
 1. `return;` ：直接使用 return 结束方法执行，用于没有返回值函数的方法
 2. `return value;` ：return 一个特定值，用于有返回值函数的方法
 
-### Java 泛型了解么？什么是类型擦除？介绍一下常用的通配符？
+### 泛型
 
-Java 泛型（generics）是 JDK 5 中引入的一个新特性, 泛型提供了编译时类型安全检测机制，该机制允许程序员在编译时检测到非法的类型。泛型的本质是参数化类型，也就是说所操作的数据类型被指定为一个参数。
+#### Java 泛型了解么？什么是类型擦除？介绍一下常用的通配符？
+
+**Java 泛型（generics）** 是 JDK 5 中引入的一个新特性, 泛型提供了编译时类型安全检测机制，该机制允许程序员在编译时检测到非法的类型。泛型的本质是参数化类型，也就是说所操作的数据类型被指定为一个参数。
 
 Java 的泛型是伪泛型，这是因为 Java 在运行期间，所有的泛型信息都会被擦掉，这也就是通常所说类型擦除 。
 
@@ -214,13 +214,13 @@ list.add(12);
 list.add("a");
 Class<? extends List> clazz = list.getClass();
 Method add = clazz.getDeclaredMethod("add", Object.class);
-//但是通过反射添加，是可以的
+//但是通过反射添加是可以的
+//这就说明在运行期间所有的泛型信息都会被擦掉
 add.invoke(list, "kl");
-
 System.out.println(list);
 ```
 
-泛型一般有三种使用方式:泛型类、泛型接口、泛型方法。
+泛型一般有三种使用方式: 泛型类、泛型接口、泛型方法。
 
 **1.泛型类**：
 
@@ -228,13 +228,10 @@ System.out.println(list);
 //此处T可以随便写为任意标识，常见的如T、E、K、V等形式的参数常用于表示泛型
 //在实例化泛型类时，必须指定T的具体类型
 public class Generic<T> {
-
     private T key;
-
     public Generic(T key) {
         this.key = key;
     }
-
     public T getKey() {
         return key;
     }
@@ -298,16 +295,28 @@ printArray(intArray);
 printArray(stringArray);
 ```
 
+#### 常用的通配符有哪些？
+
 **常用的通配符为： T，E，K，V，？**
 
-- ？ 表示不确定的 java 类型
-- T (type) 表示具体的一个 java 类型
-- K V (key value) 分别代表 java 键值中的 Key Value
+- ？ 表示不确定的 Java 类型
+- T (type) 表示具体的一个 Java 类型
+- K V (key value) 分别代表 Java 键值中的 Key Value
 - E (element) 代表 Element
 
-### ==和 equals 的区别
+#### 你的项目中哪里用到了泛型？
 
-对于基本数据类型来说，==比较的是值。对于引用数据类型来说，==比较的是对象的内存地址。
+- 可用于定义通用返回结果 `CommonResult<T>` 通过参数 `T` 可根据具体的返回类型动态指定结果的数据类型
+- 定义 `Excel` 处理类 `ExcelUtil<T>` 用于动态指定 `Excel` 导出的数据类型
+- 用于构建集合工具类。参考 `Collections` 中的 `sort`, `binarySearch` 方法
+- ......
+
+### == 和 equals() 的区别
+
+**`==`** 对于基本类型和引用类型的作用效果是不同的：
+
+- 对于基本数据类型来说，`==` 比较的是值。
+- 对于引用数据类型来说，`==` 比较的是对象的内存地址。
 
 > 因为 Java 只有值传递，所以，对于 == 来说，不管是比较基本数据类型，还是引用数据类型的变量，其本质比较的都是值，只是引用类型变量存的值是对象的地址。
 
@@ -326,32 +335,22 @@ public boolean equals(Object obj) {
 - **类没有覆盖 `equals()`方法** ：通过`equals()`比较该类的两个对象时，等价于通过“==”比较这两个对象，使用的默认是 `Object`类`equals()`方法。
 - **类覆盖了 `equals()`方法** ：一般我们都覆盖 `equals()`方法来比较两个对象中的属性是否相等；若它们的属性相等，则返回 true(即，认为这两个对象相等)。
 
-**举个例子：**
+举个例子（这里只是为了举例。实际上，你按照下面这种写法的话，像 IDEA 这种比较智能的 IDE 都会提示你将 `==` 换成 `equals()` ）：
 
 ```java
-public class test1 {
-    public static void main(String[] args) {
-        String a = new String("ab"); // a 为一个引用
-        String b = new String("ab"); // b为另一个引用,对象的内容一样
-        String aa = "ab"; // 放在常量池中
-        String bb = "ab"; // 从常量池中查找
-        if (aa == bb) // true
-            System.out.println("aa==bb");
-        if (a == b) // false，非同一对象
-            System.out.println("a==b");
-        if (a.equals(b)) // true
-            System.out.println("aEQb");
-        if (42 == 42.0) { // true
-            System.out.println("true");
-        }
-    }
-}
+String a = new String("ab"); // a 为一个引用
+String b = new String("ab"); // b为另一个引用,对象的内容一样
+String aa = "ab"; // 放在常量池中
+String bb = "ab"; // 从常量池中查找
+System.out.println(aa == bb);// true
+System.out.println(a == b);// false
+System.out.println(a.equals(b));// true
+System.out.println(42 == 42.0);// true
 ```
 
-**说明：**
+`String` 中的 `equals` 方法是被重写过的，因为 `Object` 的 `equals` 方法是比较的对象的内存地址，而 `String` 的 `equals` 方法比较的是对象的值。
 
-- `String` 中的 `equals` 方法是被重写过的，因为 `Object` 的 `equals` 方法是比较的对象的内存地址，而 `String` 的 `equals` 方法比较的是对象的值。
-- 当创建 `String` 类型的对象时，虚拟机会在常量池中查找有没有已经存在的值和要创建的值相同的对象，如果有就把它赋给当前引用。如果没有就在常量池中重新创建一个 `String` 对象。
+当创建 `String` 类型的对象时，虚拟机会在常量池中查找有没有已经存在的值和要创建的值相同的对象，如果有就把它赋给当前引用。如果没有就在常量池中重新创建一个 `String` 对象。
 
 `String`类`equals()`方法：
 
@@ -379,13 +378,13 @@ public boolean equals(Object anObject) {
 }
 ```
 
-### hashCode()与 equals()
+### hashCode() 与 equals()
 
-面试官可能会问你：“你重写过 `hashcode` 和 `equals`么，为什么重写 `equals` 时必须重写 `hashCode` 方法？”
+面试官可能会问你：“你重写过 `hashcode()` 和 `equals()`么?为什么重写 `equals()` 时必须重写 `hashCode()` 方法？”
 
-**1)hashCode()介绍:**
+#### hashCode() 介绍
 
-`hashCode()` 的作用是获取哈希码，也称为散列码；它实际上是返回一个 int 整数。这个哈希码的作用是确定该对象在哈希表中的索引位置。`hashCode()`定义在 JDK 的 `Object` 类中，这就意味着 Java 中的任何类都包含有 `hashCode()` 函数。另外需要注意的是： `Object` 的 hashcode 方法是本地方法，也就是用 c 语言或 c++ 实现的，该方法通常用来将对象的 内存地址 转换为整数之后返回。
+`hashCode()` 的作用是获取哈希码（`int` 整数），也称为散列码。这个哈希码的作用是确定该对象在哈希表中的索引位置。`hashCode()`定义在 JDK 的 `Object` 类中，这就意味着 Java 中的任何类都包含有 `hashCode()` 函数。另外需要注意的是： `Object` 的 `hashCode()` 方法是本地方法，也就是用 C 语言或 C++ 实现的，该方法通常用来将对象的内存地址转换为整数之后返回。
 
 ```java
 public native int hashCode();
@@ -393,25 +392,25 @@ public native int hashCode();
 
 散列表存储的是键值对(key-value)，它的特点是：能根据“键”快速的检索出对应的“值”。这其中就利用到了散列码！（可以快速找到所需要的对象）
 
-**2)为什么要有 hashCode？**
+#### 为什么要有 hashCode？
 
-我们以“`HashSet` 如何检查重复”为例子来说明为什么要有 hashCode？
+我们以“`HashSet` 如何检查重复”为例子来说明为什么要有 `hashCode`？
 
-当你把对象加入 `HashSet` 时，`HashSet` 会先计算对象的 hashcode 值来判断对象加入的位置，同时也会与其他已经加入的对象的 hashcode 值作比较，如果没有相符的 hashcode，`HashSet` 会假设对象没有重复出现。但是如果发现有相同 hashcode 值的对象，这时会调用 `equals()` 方法来检查 hashcode 相等的对象是否真的相同。如果两者相同，`HashSet` 就不会让其加入操作成功。如果不同的话，就会重新散列到其他位置。（摘自我的 Java 启蒙书《Head First Java》第二版）。这样我们就大大减少了 equals 的次数，相应就大大提高了执行速度。
+下面这段内容摘自我的 Java 启蒙书《Head First Java》:
 
-**3)为什么重写 `equals` 时必须重写 `hashCode` 方法？**
+> 当你把对象加入 `HashSet` 时，`HashSet` 会先计算对象的 `hashcode` 值来判断对象加入的位置，同时也会与其他已经加入的对象的 hashcode 值作比较，如果没有相符的 `hashcode`，`HashSet` 会假设对象没有重复出现。但是如果发现有相同 `hashcode` 值的对象，这时会调用 `equals()` 方法来检查 `hashcode` 相等的对象是否真的相同。如果两者相同，`HashSet` 就不会让其加入操作成功。如果不同的话，就会重新散列到其他位置。。这样我们就大大减少了 `equals` 的次数，相应就大大提高了执行速度。
 
-如果两个对象相等，则 hashcode 一定也是相同的。两个对象相等,对两个对象分别调用 equals 方法都返回 true。但是，两个对象有相同的 hashcode 值，它们也不一定是相等的 。**因此，equals 方法被覆盖过，则 `hashCode` 方法也必须被覆盖。**
+#### 为什么重写 equals() 时必须重写 hashCode() 方法？
 
-> `hashCode()`的默认行为是对堆上的对象产生独特值。如果没有重写 `hashCode()`，则该 class 的两个对象无论如何都不会相等（即使这两个对象指向相同的数据）
+`hashCode()`的默认行为是对堆上的对象产生独特值。如果没有重写 `hashCode()`，则该 class 的两个对象无论如何都不会相等（即使这两个对象指向相同的数据）
 
-**4)为什么两个对象有相同的 hashcode 值，它们也不一定是相等的？**
+简单来说就是：如果 `equals` 方法判断两个对象是相等的，那这两个对象的 `hashCode` 值也要相等。
 
-在这里解释一位小伙伴的问题。以下内容摘自《Head Fisrt Java》。
+**为什么两个对象有相同的 hashcode 值，它们也不一定是相等的？**
 
 因为 `hashCode()` 所使用的哈希算法也许刚好会让多个对象传回相同的哈希值。越糟糕的哈希算法越容易碰撞，但这也与数据值域分布的特性有关（所谓碰撞也就是指的是不同的对象得到相同的 `hashCode` )。
 
-我们刚刚也提到了 `HashSet`,如果 `HashSet` 在对比的时候，同样的 hashcode 有多个对象，它会使用 `equals()` 来判断是否真的相同。也就是说 `hashcode` 只是用来缩小查找成本。
+我们刚刚也提到了 `HashSet`,如果 `HashSet` 在对比的时候，同样的 `hashcode` 有多个对象，它会使用 `equals()` 来判断是否真的相同。也就是说 `hashcode` 只是用来缩小查找成本。
 
 更多关于 `hashcode()` 和 `equals()` 的内容可以查看：[Java hashCode() 和 equals()的若干问题解答](https://www.cnblogs.com/skywang12345/p/3324958.html)
 
@@ -897,14 +896,14 @@ Java 程序设计语言对对象采用的不是引用调用，实际上，对象
 
 暖心的 Guide 哥最后再来个图表总结一下！
 
-| 区别点     | 重载方法 | 重写方法                                                     |
-| :--------- | :------- | :----------------------------------------------------------- |
-| 发生范围   | 同一个类 | 子类                                                         |
-| 参数列表   | 必须修改 | 一定不能修改                                                 |
-| 返回类型   | 可修改   | 子类方法返回值类型应比父类方法返回值类型更小或相等           |
+| 区别点     | 重载方法 | 重写方法                                                         |
+| :--------- | :------- | :--------------------------------------------------------------- |
+| 发生范围   | 同一个类 | 子类                                                             |
+| 参数列表   | 必须修改 | 一定不能修改                                                     |
+| 返回类型   | 可修改   | 子类方法返回值类型应比父类方法返回值类型更小或相等               |
 | 异常       | 可修改   | 子类方法声明抛出的异常类应比父类方法声明抛出的异常类更小或相等； |
-| 访问修饰符 | 可修改   | 一定不能做更严格的限制（可以降低限制）                       |
-| 发生阶段   | 编译期   | 运行期                                                       |
+| 访问修饰符 | 可修改   | 一定不能做更严格的限制（可以降低限制）                           |
+| 发生阶段   | 编译期   | 运行期                                                           |
 
 **方法的重写要遵循“两同两小一大”**（以下内容摘录自《疯狂 Java 讲义》,[issue#892](https://github.com/Snailclimb/JavaGuide/issues/892) ）：
 
@@ -1384,4 +1383,4 @@ Java IO 流共涉及 40 多个类，这些类看上去很杂乱，但实际上�
 
 - https://stackoverflow.com/questions/1906445/what-is-the-difference-between-jdk-and-jre
 - https://www.educba.com/oracle-vs-openjdk/
-- https://stackoverflow.com/questions/22358071/differences-between-oracle-jdk-and-openjdk 基础概念与常识
+- https://stackoverflow.com/questions/22358071/differences-between-oracle-jdk-and-openjdk
