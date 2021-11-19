@@ -416,7 +416,7 @@ public native int hashCode();
 
 ## 基本数据类型
 
-### Java 中的几种基本数据类型是什么？对应的包装类型是什么？各自占用多少字节呢？
+### Java 中的几种基本数据类型是什么？各自占用多少字节呢？对应的包装类型是什么？
 
 Java 中有 8 种基本数据类型，分别为：
 
@@ -454,7 +454,96 @@ Java 中有 8 种基本数据类型，分别为：
 
 > 《深入理解 Java 虚拟机》 ：局部变量表主要存放了编译期可知的基本数据类型 **（boolean、byte、char、short、int、float、long、double）**、**对象引用**（reference 类型，它不同于对象本身，可能是一个指向对象起始地址的引用指针，也可能是指向一个代表对象的句柄或其他与此对象相关的位置）。
 
-### 自动装箱与拆箱
+### 包装类型的常量池技术了解么？
+
+Java 基本类型的包装类的大部分都实现了常量池技术。
+
+`Byte`,`Short`,`Integer`,`Long` 这 4 种包装类默认创建了数值 **[-128，127]** 的相应类型的缓存数据，`Character` 创建了数值在 **[0,127]** 范围的缓存数据，`Boolean` 直接返回 `True` or `False`。
+
+**Integer 缓存源码：**
+
+```java
+public static Integer valueOf(int i) {
+    if (i >= IntegerCache.low && i <= IntegerCache.high)
+        return IntegerCache.cache[i + (-IntegerCache.low)];
+    return new Integer(i);
+}
+private static class IntegerCache {
+    static final int low = -128;
+    static final int high;
+    static {
+        // high value may be configured by property
+        int h = 127;
+    }
+}
+```
+
+**`Character` 缓存源码:**
+
+```java
+public static Character valueOf(char c) {
+    if (c <= 127) { // must cache
+      return CharacterCache.cache[(int)c];
+    }
+    return new Character(c);
+}
+
+private static class CharacterCache {
+    private CharacterCache(){}
+    static final Character cache[] = new Character[127 + 1];
+    static {
+        for (int i = 0; i < cache.length; i++)
+            cache[i] = new Character((char)i);
+    }
+
+}
+```
+
+**`Boolean` 缓存源码：**
+
+```java
+public static Boolean valueOf(boolean b) {
+    return (b ? TRUE : FALSE);
+}
+```
+
+如果超出对应范围仍然会去创建新的对象，缓存的范围区间的大小只是在性能和资源之间的权衡。
+
+两种浮点数类型的包装类 `Float`,`Double` 并没有实现常量池技术。
+
+```java
+Integer i1 = 33;
+Integer i2 = 33;
+System.out.println(i1 == i2);// 输出 true
+
+Float i11 = 333f;
+Float i22 = 333f;
+System.out.println(i11 == i22);// 输出 false
+
+Double i3 = 1.2;
+Double i4 = 1.2;
+System.out.println(i3 == i4);// 输出 false
+```
+
+下面我们来看一下问题。下面的代码的输出结果是 `true` 还是 `flase` 呢？
+
+```java
+Integer i1 = 40;
+Integer i2 = new Integer(40);
+System.out.println(i1==i2);
+```
+
+`Integer i1=40` 这一行代码会发生装箱，也就是说这行代码等价于 `Integer i1=Integer.valueOf(40)` 。因此，`i1` 直接使用的是常量池中的对象。而`Integer i1 = new Integer(40)` 会直接创建新的对象。
+
+因此，答案是 `false` 。你答对了吗？
+
+记住：**所有整型包装类对象之间值的比较，全部使用 equals 方法比较**。
+
+![](https://img-blog.csdnimg.cn/20210422164544846.png)
+
+### 自动装箱与拆箱了解吗？原理是什么？
+
+**什么是自动拆装箱？**
 
 - **装箱**：将基本类型用它们对应的引用类型包装起来；
 - **拆箱**：将包装类型转换为基本数据类型；
@@ -505,127 +594,17 @@ int n = i;   //拆箱
 - `Integer i = 10` 等价于 `Integer i = Integer.valueOf(10)`
 - `int n = i` 等价于 `int n = i.intValue()`;
 
-### 8 种基本类型的包装类和常量池
-
-Java 基本类型的包装类的大部分都实现了常量池技术。`Byte`,`Short`,`Integer`,`Long` 这 4 种包装类默认创建了数值 **[-128，127]** 的相应类型的缓存数据，`Character` 创建了数值在[0,127]范围的缓存数据，`Boolean` 直接返回 `True` Or `False`。
-
-**Integer 缓存源码：**
+注意：**如果频繁拆装箱的话，也会严重影响系统的性能。我们应该尽量避免不必要的拆装箱操作。**
 
 ```java
-/**
-
-*此方法将始终缓存-128 到 127（包括端点）范围内的值，并可以缓存此范围之外的其他值。
-
-*/
-
-public static Integer valueOf(int i) {
-
-    if (i >= IntegerCache.low && i <= IntegerCache.high)
-
-      return IntegerCache.cache[i + (-IntegerCache.low)];
-
-    return new Integer(i);
-
-}
-
-private static class IntegerCache {
-
-    static final int low = -128;
-
-    static final int high;
-
-    static final Integer cache[];
-
+private static long sum() {
+    // 应该使用 long 而不是 Long
+    Long sum = 0L;
+    for (long i = 0; i <= Integer.MAX_VALUE; i++)
+        sum += i;
+    return sum;
 }
 ```
-
-**`Character` 缓存源码:**
-
-```java
-public static Character valueOf(char c) {
-
-    if (c <= 127) { // must cache
-
-      return CharacterCache.cache[(int)c];
-
-    }
-
-    return new Character(c);
-
-}
-
-
-
-private static class CharacterCache {
-
-    private CharacterCache(){}
-
-
-
-    static final Character cache[] = new Character[127 + 1];
-
-    static {
-
-        for (int i = 0; i < cache.length; i++)
-
-            cache[i] = new Character((char)i);
-
-    }
-
-}
-```
-
-**`Boolean` 缓存源码：**
-
-```java
-public static Boolean valueOf(boolean b) {
-
-    return (b ? TRUE : FALSE);
-
-}
-```
-
-如果超出对应范围仍然会去创建新的对象，缓存的范围区间的大小只是在性能和资源之间的权衡。
-
-两种浮点数类型的包装类 `Float`,`Double` 并没有实现常量池技术。
-
-```java
-Integer i1 = 33;
-
-Integer i2 = 33;
-
-System.out.println(i1 == i2);// 输出 true
-
-Float i11 = 333f;
-
-Float i22 = 333f;
-
-System.out.println(i11 == i22);// 输出 false
-
-Double i3 = 1.2;
-
-Double i4 = 1.2;
-
-System.out.println(i3 == i4);// 输出 false
-```
-
-下面我们来看一下问题。下面的代码的输出结果是 `true` 还是 `flase` 呢？
-
-```java
-Integer i1 = 40;
-
-Integer i2 = new Integer(40);
-
-System.out.println(i1==i2);
-```
-
-`Integer i1=40` 这一行代码会发生装箱，也就是说这行代码等价于 `Integer i1=Integer.valueOf(40)` 。因此，`i1` 直接使用的是常量池中的对象。而`Integer i1 = new Integer(40)` 会直接创建新的对象。
-
-因此，答案是 `false` 。你答对了吗？
-
-记住：**所有整型包装类对象之间值的比较，全部使用 equals 方法比较**。
-
-![](https://img-blog.csdnimg.cn/20210422164544846.png)
 
 ## 方法（函数）
 
@@ -1257,20 +1236,20 @@ public class Test {
 Java 中类似于`InputStream`、`OutputStream` 、`Scanner` 、`PrintWriter`等的资源都需要我们调用`close()`方法来手动关闭，一般情况下我们都是通过`try-catch-finally`语句来实现这个需求，如下：
 
 ```java
-        //读取文本文件的内容
-        Scanner scanner = null;
-        try {
-            scanner = new Scanner(new File("D://read.txt"));
-            while (scanner.hasNext()) {
-                System.out.println(scanner.nextLine());
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } finally {
-            if (scanner != null) {
-                scanner.close();
-            }
-        }
+//读取文本文件的内容
+Scanner scanner = null;
+try {
+    scanner = new Scanner(new File("D://read.txt"));
+    while (scanner.hasNext()) {
+        System.out.println(scanner.nextLine());
+    }
+} catch (FileNotFoundException e) {
+    e.printStackTrace();
+} finally {
+    if (scanner != null) {
+        scanner.close();
+    }
+}
 ```
 
 使用 Java 7 之后的 `try-with-resources` 语句改造上面的代码:
