@@ -1,4 +1,4 @@
-# 我，一个10年老程序员，最近才开始用 Java 8 新特性
+# Java8新特性实战
 
 > 本文来自[cowbi](https://github.com/cowbi)的投稿~
 
@@ -78,7 +78,7 @@ public class InterfaceNewImpl implements InterfaceNew , InterfaceNew1{
 
 2. interface 的方法是更像是一个扩展插件。而 abstract class 的方法是要继承的。
 
-开始我们也提到，interface 新增`default`，和`static`修饰的方法，为了解决接口的修改与现有的实现不兼容的问题，并不是为了要替代`abstract class`。在使用上，该用 abstract class 的地方还是要用 abstract class，不要因为 interface 的新特性而降之替换。
+开始我们也提到，interface 新增`default`和`static`修饰的方法，为了解决接口的修改与现有的实现不兼容的问题，并不是为了要替代`abstract class`。在使用上，该用 abstract class 的地方还是要用 abstract class，不要因为 interface 的新特性而将之替换。
 
 **记住接口永远和类不一样。**
 
@@ -176,7 +176,7 @@ public interface Runnable{}
 
 ```java
 @FunctionalInterface
-public interface LambdaFunctionalInterface {
+public interface LambdaInterface {
  void f();
 }
 //使用
@@ -221,7 +221,7 @@ public class LambdaClassSuper {
     }
 }
 
-public class LambdaClass {
+public class LambdaClass extends LambdaClassSuper {
     public static LambdaInterface staticF() {
         return null;
     }
@@ -243,6 +243,7 @@ public class LambdaClass {
 
         //4. 构造方法调用
         LambdaInterface tt = LambdaClassSuper::new;
+    }
 }
 ```
 
@@ -462,7 +463,7 @@ Predicate.test 执行
 
 按执行顺序应该是先打印 4 次「`Predicate.test` 执行」，再打印「`count` 执行」。实际结果恰恰相反。说明 filter 中的方法并没有立刻执行，而是等调用`count()`方法后才执行。
 
-上面都是串行 `Stream` 的实例。并行 `parallelStream` 在使用方法上和串行一样。主要区别是 `parallelStream` 可多线程执行，是基于 ForkJoin 框架实现的，有时间大家可以了解一下 `ForkJoin` 框架和 `ForkJoinPool`。这里可以简单的理解它是通过线程池来实现的，这样就会涉及到线程安全，线程消耗等问题。下面我们通过代码来体验一下串行流的多线程执行。
+上面都是串行 `Stream` 的实例。并行 `parallelStream` 在使用方法上和串行一样。主要区别是 `parallelStream` 可多线程执行，是基于 ForkJoin 框架实现的，有时间大家可以了解一下 `ForkJoin` 框架和 `ForkJoinPool`。这里可以简单的理解它是通过线程池来实现的，这样就会涉及到线程安全，线程消耗等问题。下面我们通过代码来体验一下并行流的多线程执行。
 
 ```java
 @Test
@@ -510,7 +511,7 @@ ForkJoinPool.commonPool-worker-9>>2
 >
 > 正例：使用 JDK8 的 Optional 类来防止 NPE 问题。
 
-他建议使用 `Optional` 解决 NPE（`java.lang.NumberFormatException`）问题，它就是为 NPE 而生的，其中可以包含空值或非空值。下面我们通过源码逐步揭开 `Optional` 的红盖头。
+他建议使用 `Optional` 解决 NPE（`java.lang.NullPointerException`）问题，它就是为 NPE 而生的，其中可以包含空值或非空值。下面我们通过源码逐步揭开 `Optional` 的红盖头。
 
 假设有一个 `Zoo` 类，里面有个属性 `Dog`，需求要获取 `Dog` 的 `age`。
 
@@ -537,7 +538,7 @@ if(zoo != null){
 }
 ```
 
-层层判断对象分空，有人说这种方式很丑陋不优雅，我并不这么认为。反而觉得很整洁，易读，易懂。你们觉得呢？
+层层判断对象非空，有人说这种方式很丑陋不优雅，我并不这么认为。反而觉得很整洁，易读，易懂。你们觉得呢？
 
 `Optional` 是这样的实现的：
 
@@ -732,7 +733,7 @@ public Optional<T> filter(Predicate<? super T> predicate) {
 
 ### 小结
 
-看完 `Optional` 源码，`Optional` 的方法真的非常简单，值得注意的是如果坚决不想看见 `NPE`，就不要用 `of() `、 `get()` 、`flatMap(..)`\。最后再综合用一下 `Optional` 的高频方法。
+看完 `Optional` 源码，`Optional` 的方法真的非常简单，值得注意的是如果坚决不想看见 `NPE`，就不要用 `of() `、 `get()` 、`flatMap(..)`。最后再综合用一下 `Optional` 的高频方法。
 
 ```java
 Optional.ofNullable(zoo).map(o -> o.getDog()).map(d -> d.getAge()).filter(v->v==1).orElse(3);
@@ -798,6 +799,7 @@ public void newFormat(){
     //format yyyy-MM-dd HH:mm:ss
     LocalDateTime dateTime = LocalDateTime.now();
     DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    String dateTimeStr = dateTime.format(dateTimeFormatter);
     System.out.println(String.format("dateTime format : %s", dateTimeStr));
 }
 ```
@@ -898,7 +900,6 @@ public void getDay() {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         //获取当前月第一天：
         Calendar c = Calendar.getInstance();
-        c.add(Calendar.MONTH, 0);
         c.set(Calendar.DAY_OF_MONTH, 1);
         String first = format.format(c.getTime());
         System.out.println("first day:" + first);
@@ -934,7 +935,7 @@ public void getDayNew() {
     //当年最后一天
     LocalDate lastday = today.with(TemporalAdjusters.lastDayOfYear());
     //2021年最后一个周日，如果用Calendar是不得烦死。
-    LocalDate lastMondayOf2021 = LocalDate.parse("2021-12-			       31").with(TemporalAdjusters.lastInMonth(DayOfWeek.SUNDAY));
+    LocalDate lastMondayOf2021 = LocalDate.parse("2021-12-31").with(TemporalAdjusters.lastInMonth(DayOfWeek.SUNDAY));
 }
 ```
 
@@ -946,7 +947,7 @@ public void getDayNew() {
 
 1. `Date` ---> `LocalDate`
 2. `Time` ---> `LocalTime`
-3. `TimesSamp` ---> `LocalDateTime`
+3. `Timestamp` ---> `LocalDateTime`
 
 而之前统统对应 `Date`，也只有 `Date`。
 
@@ -1016,4 +1017,4 @@ System.out.println("本地时区时间: " + localZoned);
 - Optional
 - Date time-api
 
-这些都是开发当中比较常用的特征。梳理下来发现它们真香，而我却没有更早的应用。总觉得学习 java 8 新特性比较麻烦，一致使用老的实现方式。其实这些新特性几天就可以掌握，一但掌握，效率会有很大的提高。其实我们涨工资也是涨的学习的钱，不学习终究会被淘汰，35 岁危机会提前来临。
+这些都是开发当中比较常用的特性。梳理下来发现它们真香，而我却没有更早的应用。总觉得学习 java 8 新特性比较麻烦，一直使用老的实现方式。其实这些新特性几天就可以掌握，一但掌握，效率会有很大的提高。其实我们涨工资也是涨的学习的钱，不学习终究会被淘汰，35 岁危机会提前来临。
