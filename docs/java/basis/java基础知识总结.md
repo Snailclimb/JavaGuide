@@ -879,7 +879,7 @@ public final class String implements java.io.Serializable, Comparable<String>, C
 }
 ```
 
-> 🐛修正 ： 我们知道被  `final` 关键字修饰的类不能被继承，修饰的方法不能被重写，修饰的变量是基本数据类型则值不能改变，修饰的变量是引用类型则不能再指向其他对象。因此，`final` 关键字修饰的数组保存字符串并不是 `String` 不可变的根本原因，因为这个数组保存的字符串是可变的（`final` 修饰引用类型变量的情况）。
+> 🐛 修正 ： 我们知道被 `final` 关键字修饰的类不能被继承，修饰的方法不能被重写，修饰的变量是基本数据类型则值不能改变，修饰的变量是引用类型则不能再指向其他对象。因此，`final` 关键字修饰的数组保存字符串并不是 `String` 不可变的根本原因，因为这个数组保存的字符串是可变的（`final` 修饰引用类型变量的情况）。
 >
 > `String` 真正不可变有下面几点原因：
 >
@@ -890,7 +890,7 @@ public final class String implements java.io.Serializable, Comparable<String>, C
 >
 > 补充（来自[issue 675](https://github.com/Snailclimb/JavaGuide/issues/675)）：在 Java 9 之后，String 、`StringBuilder` 与 `StringBuffer` 的实现改用 byte 数组存储字符串 `private final byte[] value`
 
- `StringBuilder` 与 `StringBuffer` 都继承自 `AbstractStringBuilder` 类，在 `AbstractStringBuilder` 中也是使用字符数组保存字符串，不过没有使用 `final`  和 `private` 关键字修饰，最关键的是这个 `AbstractStringBuilder` 类还提供了很多修改字符串的方法比如 `append` 方法。
+`StringBuilder` 与 `StringBuffer` 都继承自 `AbstractStringBuilder` 类，在 `AbstractStringBuilder` 中也是使用字符数组保存字符串，不过没有使用 `final` 和 `private` 关键字修饰，最关键的是这个 `AbstractStringBuilder` 类还提供了很多修改字符串的方法比如 `append` 方法。
 
 ```java
 abstract class AbstractStringBuilder implements Appendable, CharSequence {
@@ -903,7 +903,7 @@ abstract class AbstractStringBuilder implements Appendable, CharSequence {
         str.getChars(0, len, value, count);
         count += len;
         return this;
-    } 
+    }
   	//...
 }
 ```
@@ -962,7 +962,7 @@ protected void finalize() throws Throwable { }//实例被垃圾回收器回收�
 
 浅拷贝的示例代码如下，我们这里实现了 `Cloneable` 接口，并重写了 `clone()` 方法。
 
- `clone()` 方法的实现很简单，直接调用的是父类 `Object` 的 `clone()` 方法。
+`clone()` 方法的实现很简单，直接调用的是父类 `Object` 的 `clone()` 方法。
 
 ```java
 public class Address implements Cloneable{
@@ -1002,7 +1002,7 @@ Person person1Copy = person1.clone();
 System.out.println(person1.getAddress() == person1Copy.getAddress());
 ```
 
-从输出结构就可以看出， `person1` 的克隆对象和 `person1`  使用的仍然是同一个 `Address` 对象。
+从输出结构就可以看出， `person1` 的克隆对象和 `person1` 使用的仍然是同一个 `Address` 对象。
 
 **深拷贝**
 
@@ -1030,7 +1030,7 @@ Person person1Copy = person1.clone();
 System.out.println(person1.getAddress() == person1Copy.getAddress());
 ```
 
-从输出结构就可以看出，虽然 `person1` 的克隆对象和 `person1`  包含的 `Address` 对象已经是不同的了。
+从输出结构就可以看出，虽然 `person1` 的克隆对象和 `person1` 包含的 `Address` 对象已经是不同的了。
 
 **那什么是引用拷贝呢？** 简单来说，引用拷贝就是两个不同的引用指向同一个对象。
 
