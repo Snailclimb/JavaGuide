@@ -198,6 +198,166 @@ Java 中的注释有三种：
 1. `return;` ：直接使用 return 结束方法执行，用于没有返回值函数的方法
 2. `return value;` ：return 一个特定值，用于有返回值函数的方法
 
+### 方法
+
+#### 什么是方法的返回值?方法有哪几种类型？
+
+**方法的返回值** 是指我们获取到的某个方法体中的代码执行后产生的结果！（前提是该方法可能产生结果）。返回值的作用是接收出结果，使得它可以用于其他的操作！
+
+我们可以按照方法的返回值和参数类型将方法分为下面这几种：
+
+**1.无参数无返回值的方法**
+
+```java
+public void f1() {
+    //......
+}
+// 下面这个方法也没有返回值，虽然用到了 return
+public void f(int a) {
+    if (...) {
+        // 表示结束方法的执行,下方的输出语句不会执行
+        return;
+    }
+    System.out.println(a);
+}
+```
+
+**2.有参数无返回值的方法**
+
+```java
+public void f2(Parameter 1, ..., Parameter n) {
+    //......
+}
+```
+
+**3.有返回值无参数的方法**
+
+```java
+public int f3() {
+    //......
+    return x;
+}
+```
+
+**4.有返回值有参数的方法**
+
+```java
+public int f4(int a, int b) {
+    return a * b;
+}
+```
+
+#### 静态方法为什么不能调用非静态成员?
+
+这个需要结合 JVM 的相关知识，主要原因如下：
+
+1. 静态方法是属于类的，在类加载的时候就会分配内存，可以通过类名直接访问。而非静态成员属于实例对象，只有在对象实例化之后才存在，需要通过类的实例对象去访问。
+2. 在类的非静态成员不存在的时候静态成员就已经存在了，此时调用在内存中还不存在的非静态成员，属于非法操作。
+
+#### 静态方法和实例方法有何不同？
+
+**1、调用方式**
+
+在外部调用静态方法时，可以使用 `类名.方法名` 的方式，也可以使用 `对象.方法名` 的方式，而实例方法只有后面这种方式。也就是说，**调用静态方法可以无需创建对象** 。
+
+不过，需要注意的是一般不建议使用 `对象.方法名` 的方式来调用静态方法。这种方式非常容易造成混淆，静态方法不属于类的某个对象而是属于这个类。
+
+因此，一般建议使用 `类名.方法名` 的方式来调用静态方法。
+
+```java
+public class Person {
+    public void method() {
+      //......
+    }
+
+    public static void staicMethod(){
+      //......
+    }
+    public static void main(String[] args) {
+        Person person = new Person();
+        // 调用实例方法
+        person.method();
+        // 调用静态方法
+        Person.staicMethod()
+    }
+}
+```
+
+**2、访问类成员是否存在限制**
+
+静态方法在访问本类的成员时，只允许访问静态成员（即静态成员变量和静态方法），不允许访问实例成员（即实例成员变量和实例方法），而实例方法不存在这个限制。
+
+#### 重载和重写的区别
+
+> 重载就是同样的一个方法能够根据输入数据的不同，做出不同的处理
+>
+> 重写就是当子类继承自父类的相同方法，输入数据一样，但要做出有别于父类的响应时，你就要覆盖父类方法
+
+**重载**
+
+发生在同一个类中（或者父类和子类之间），方法名必须相同，参数类型不同、个数不同、顺序不同，方法返回值和访问修饰符可以不同。
+
+下面是《Java 核心技术》对重载这个概念的介绍：
+
+![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/bg/desktopjava核心技术-重载.jpg)
+
+综上：重载就是同一个类中多个同名方法根据不同的传参来执行不同的逻辑处理。
+
+**重写**
+
+重写发生在运行期，是子类对父类的允许访问的方法的实现过程进行重新编写。
+
+1. 返回值类型、方法名、参数列表必须相同，抛出的异常范围小于等于父类，访问修饰符范围大于等于父类。
+2. 如果父类方法访问修饰符为 `private/final/static` 则子类就不能重写该方法，但是被 static 修饰的方法能够被再次声明。
+3. 构造方法无法被重写
+
+综上：**重写就是子类对父类方法的重新改造，外部样子不能改变，内部逻辑可以改变。**
+
+| 区别点     | 重载方法 | 重写方法                                                     |
+| :--------- | :------- | :----------------------------------------------------------- |
+| 发生范围   | 同一个类 | 子类                                                         |
+| 参数列表   | 必须修改 | 一定不能修改                                                 |
+| 返回类型   | 可修改   | 子类方法返回值类型应比父类方法返回值类型更小或相等           |
+| 异常       | 可修改   | 子类方法声明抛出的异常类应比父类方法声明抛出的异常类更小或相等； |
+| 访问修饰符 | 可修改   | 一定不能做更严格的限制（可以降低限制）                       |
+| 发生阶段   | 编译期   | 运行期                                                       |
+
+**方法的重写要遵循“两同两小一大”**（以下内容摘录自《疯狂 Java 讲义》，[issue#892](https://github.com/Snailclimb/JavaGuide/issues/892) ）：
+
+- “两同”即方法名相同、形参列表相同；
+- “两小”指的是子类方法返回值类型应比父类方法返回值类型更小或相等，子类方法声明抛出的异常类应比父类方法声明抛出的异常类更小或相等；
+- “一大”指的是子类方法的访问权限应比父类方法的访问权限更大或相等。
+
+⭐️ 关于 **重写的返回值类型** 这里需要额外多说明一下，上面的表述不太清晰准确：如果方法的返回类型是 void 和基本数据类型，则返回值重写时不可修改。但是如果方法的返回值是引用类型，重写时是可以返回该引用类型的子类的。
+
+```java
+public class Hero {
+    public String name() {
+        return "超级英雄";
+    }
+}
+public class SuperMan extends Hero{
+    @Override
+    public String name() {
+        return "超人";
+    }
+    public Hero hero() {
+        return new Hero();
+    }
+}
+
+public class SuperSuperMan extends SuperMan {
+    public String name() {
+        return "超级超级英雄";
+    }
+
+    @Override
+    public SuperMan hero() {
+        return new SuperMan();
+    }
+}
+```
+
 ### 泛型
 
 #### Java 泛型了解么？什么是类型擦除？介绍一下常用的通配符？
@@ -606,327 +766,6 @@ private static long sum() {
 }
 ```
 
-## 方法（函数）
-
-### 什么是方法的返回值?
-
-方法的返回值是指我们获取到的某个方法体中的代码执行后产生的结果！（前提是该方法可能产生结果）。返回值的作用是接收出结果，使得它可以用于其他的操作！
-
-### 方法有哪几种类型？
-
-**1.无参数无返回值的方法**
-
-```java
-// 无参数无返回值的方法(如果方法没有返回值，不能不写，必须写void，表示没有返回值)
-public void f1() {
-    System.out.println("无参数无返回值的方法");
-}
-```
-
-**2.有参数无返回值的方法**
-
-```java
-/**
-* 有参数无返回值的方法
-* 参数列表由零组到多组“参数类型+形参名”组合而成，多组参数之间以英文逗号（,）隔开，形参类型和形参名之间以英文空格隔开
-*/
-public void f2(int a, String b, int c) {
-    System.out.println(a + "-->" + b + "-->" + c);
-}
-```
-
-**3.有返回值无参数的方法**
-
-```java
-// 有返回值无参数的方法（返回值可以是任意的类型,在函数里面必须有return关键字返回对应的类型）
-public int f3() {
-    System.out.println("有返回值无参数的方法");
-    return 2;
-}
-```
-
-**4.有返回值有参数的方法**
-
-```java
-// 有返回值有参数的方法
-public int f4(int a, int b) {
-    return a * b;
-}
-```
-
-**5.return 在无返回值方法的特殊使用**
-
-```java
-// return在无返回值方法的特殊使用
-public void f5(int a) {
-    if (a > 10) {
-        return;//表示结束所在方法 （f5方法）的执行,下方的输出语句不会执行
-    }
-    System.out.println(a);
-}
-```
-
-### 在一个静态方法内调用一个非静态成员为什么是非法的?
-
-这个需要结合 JVM 的相关知识，静态方法是属于类的，在类加载的时候就会分配内存，可以通过类名直接访问。而非静态成员属于实例对象，只有在对象实例化之后才存在，然后通过类的实例对象去访问。在类的非静态成员不存在的时候静态成员就已经存在了，此时调用在内存中还不存在的非静态成员，属于非法操作。
-
-### 静态方法和实例方法有何不同？
-
-**1、调用方式**
-
-在外部调用静态方法时，可以使用 `类名.方法名` 的方式，也可以使用 `对象.方法名` 的方式，而实例方法只有后面这种方式。也就是说，**调用静态方法可以无需创建对象** 。
-
-不过，需要注意的是一般不建议使用 `对象.方法名` 的方式来调用静态方法。这种方式非常容易造成混淆，静态方法不属于类的某个对象而是属于这个类。
-
-因此，一般建议使用 `类名.方法名` 的方式来调用静态方法。
-
-```java
-
-public class Person {
-    public void method() {
-      //......
-    }
-
-    public static void staicMethod(){
-      //......
-    }
-    public static void main(String[] args) {
-        Person person = new Person();
-        // 调用实例方法
-        person.method();
-        // 调用静态方法
-        Person.staicMethod()
-    }
-}
-```
-
-**2、访问类成员是否存在限制**
-
-静态方法在访问本类的成员时，只允许访问静态成员（即静态成员变量和静态方法），不允许访问实例成员（即实例成员变量和实例方法），而实例方法不存在这个限制。
-
-### 为什么 Java 中只有值传递？
-
-首先，我们回顾一下在程序设计语言中有关将参数传递给方法（或函数）的一些专业术语。
-
-**按值调用(call by value)** 表示方法接收的是调用者提供的值，**按引用调用（call by reference)** 表示方法接收的是调用者提供的变量地址。一个方法可以修改传递引用所对应的变量值，而不能修改传递值调用所对应的变量值。它用来描述各种程序设计语言（不只是 Java）中方法参数传递方式。
-
-**Java 程序设计语言总是采用按值调用。也就是说，方法得到的是所有参数值的一个拷贝，也就是说，方法不能修改传递给它的任何参数变量的内容。**
-
-**下面通过 3 个例子来给大家说明**
-
-> **example 1**
-
-```java
-public static void main(String[] args) {
-    int num1 = 10;
-    int num2 = 20;
-
-    swap(num1, num2);
-
-    System.out.println("num1 = " + num1);
-    System.out.println("num2 = " + num2);
-}
-
-public static void swap(int a, int b) {
-    int temp = a;
-    a = b;
-    b = temp;
-
-    System.out.println("a = " + a);
-    System.out.println("b = " + b);
-}
-```
-
-**结果：**
-
-```
-a = 20
-b = 10
-num1 = 10
-num2 = 20
-```
-
-**解析：**
-
-![example 1 ](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-27/22191348.jpg)
-
-在 swap 方法中，a、b 的值进行交换，并不会影响到 num1、num2。因为，a、b 中的值，只是从 num1、num2 的复制过来的。也就是说，a、b 相当于 num1、num2 的副本，副本的内容无论怎么修改，都不会影响到原件本身。
-
-**通过上面例子，我们已经知道了一个方法不能修改一个基本数据类型的参数，而对象引用作为参数就不一样，请看 example2.**
-
-> **example 2**
-
-```java
-	public static void main(String[] args) {
-		int[] arr = { 1, 2, 3, 4, 5 };
-		System.out.println(arr[0]);
-		change(arr);
-		System.out.println(arr[0]);
-	}
-
-	public static void change(int[] array) {
-		// 将数组的第一个元素变为0
-		array[0] = 0;
-	}
-```
-
-**结果：**
-
-```
-1
-0
-```
-
-**解析：**
-
-![example 2](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-27/3825204.jpg)
-
-array 被初始化 arr 的拷贝也就是一个对象的引用，也就是说 array 和 arr 指向的是同一个数组对象。 因此，外部对引用对象的改变会反映到所对应的对象上。
-
-**通过 example2 我们已经看到，实现一个改变对象参数状态的方法并不是一件难事。理由很简单，方法得到的是对象引用的拷贝，对象引用及其他的拷贝同时引用同一个对象。**
-
-**很多程序设计语言（特别是，C++和 Pascal)提供了两种参数传递的方式：值调用和引用调用。有些程序员（甚至本书的作者）认为 Java 程序设计语言对对象采用的是引用调用，实际上，这种理解是不对的。由于这种误解具有一定的普遍性，所以下面给出一个反例来详细地阐述一下这个问题。**
-
-> **example 3**
-
-```java
-public class Test {
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Student s1 = new Student("小张");
-		Student s2 = new Student("小李");
-		Test.swap(s1, s2);
-		System.out.println("s1:" + s1.getName());
-		System.out.println("s2:" + s2.getName());
-	}
-
-	public static void swap(Student x, Student y) {
-		Student temp = x;
-		x = y;
-		y = temp;
-		System.out.println("x:" + x.getName());
-		System.out.println("y:" + y.getName());
-	}
-}
-```
-
-**结果：**
-
-```
-x:小李
-y:小张
-s1:小张
-s2:小李
-```
-
-**解析：**
-
-交换之前：
-
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-27/88729818.jpg)
-
-交换之后：
-
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-27/34384414.jpg)
-
-通过上面两张图可以很清晰的看出： **方法并没有改变存储在变量 s1 和 s2 中的对象引用。swap 方法的参数 x 和 y 被初始化为两个对象引用的拷贝，这个方法交换的是这两个拷贝**
-
-> **总结**
-
-Java 程序设计语言对对象采用的不是引用调用，实际上，对象引用是按
-值传递的。
-
-下面再总结一下 Java 中方法参数的使用情况：
-
-- 一个方法不能修改一个基本数据类型的参数（即数值型或布尔型）。
-- 一个方法可以改变一个对象参数的状态。
-- 一个方法不能让对象参数引用一个新的对象。
-
-**参考：**
-
-《Java 核心技术卷 Ⅰ》基础知识第十版第四章 4.5 小节
-
-### 重载和重写的区别
-
-> 重载就是同样的一个方法能够根据输入数据的不同，做出不同的处理
->
-> 重写就是当子类继承自父类的相同方法，输入数据一样，但要做出有别于父类的响应时，你就要覆盖父类方法
-
-#### 重载
-
-发生在同一个类中（或者父类和子类之间），方法名必须相同，参数类型不同、个数不同、顺序不同，方法返回值和访问修饰符可以不同。
-
-下面是《Java 核心技术》对重载这个概念的介绍：
-
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/bg/desktopjava核心技术-重载.jpg)
-
-综上：重载就是同一个类中多个同名方法根据不同的传参来执行不同的逻辑处理。
-
-#### 重写
-
-重写发生在运行期，是子类对父类的允许访问的方法的实现过程进行重新编写。
-
-1. 返回值类型、方法名、参数列表必须相同，抛出的异常范围小于等于父类，访问修饰符范围大于等于父类。
-2. 如果父类方法访问修饰符为 `private/final/static` 则子类就不能重写该方法，但是被 static 修饰的方法能够被再次声明。
-3. 构造方法无法被重写
-
-综上：重写就是子类对父类方法的重新改造，外部样子不能改变，内部逻辑可以改变
-
-暖心的 Guide 哥最后再来个图表总结一下！
-
-| 区别点     | 重载方法 | 重写方法                                                         |
-| :--------- | :------- | :--------------------------------------------------------------- |
-| 发生范围   | 同一个类 | 子类                                                             |
-| 参数列表   | 必须修改 | 一定不能修改                                                     |
-| 返回类型   | 可修改   | 子类方法返回值类型应比父类方法返回值类型更小或相等               |
-| 异常       | 可修改   | 子类方法声明抛出的异常类应比父类方法声明抛出的异常类更小或相等； |
-| 访问修饰符 | 可修改   | 一定不能做更严格的限制（可以降低限制）                           |
-| 发生阶段   | 编译期   | 运行期                                                           |
-
-**方法的重写要遵循“两同两小一大”**（以下内容摘录自《疯狂 Java 讲义》,[issue#892](https://github.com/Snailclimb/JavaGuide/issues/892) ）：
-
-- “两同”即方法名相同、形参列表相同；
-- “两小”指的是子类方法返回值类型应比父类方法返回值类型更小或相等，子类方法声明抛出的异常类应比父类方法声明抛出的异常类更小或相等；
-- “一大”指的是子类方法的访问权限应比父类方法的访问权限更大或相等。
-
-⭐️ 关于 **重写的返回值类型** 这里需要额外多说明一下，上面的表述不太清晰准确：如果方法的返回类型是 void 和基本数据类型，则返回值重写时不可修改。但是如果方法的返回值是引用类型，重写时是可以返回该引用类型的子类的。
-
-```java
-public class Hero {
-    public String name() {
-        return "超级英雄";
-    }
-}
-public class SuperMan extends Hero{
-    @Override
-    public String name() {
-        return "超人";
-    }
-    public Hero hero() {
-        return new Hero();
-    }
-}
-
-public class SuperSuperMan extends SuperMan {
-    public String name() {
-        return "超级超级英雄";
-    }
-
-    @Override
-    public SuperMan hero() {
-        return new SuperMan();
-    }
-}
-```
-
-### 深拷贝 vs 浅拷贝
-
-1. **浅拷贝**：对基本数据类型进行值传递，对引用数据类型进行引用传递般的拷贝，此为浅拷贝。
-2. **深拷贝**：对基本数据类型进行值传递，对引用数据类型，创建一个新的对象，并复制其内容，此为深拷贝。
-
-![deep and shallow copy](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/java-deep-and-shallow-copy.jpg)
-
 ## Java 面向对象
 
 ### 面向对象和面向过程的区别
@@ -1109,6 +948,95 @@ public final void wait() throws InterruptedException//跟之前的2个wait方法
 
 protected void finalize() throws Throwable { }//实例被垃圾回收器回收的时候触发的操作
 ```
+
+### 深拷贝和浅拷贝区别了解吗？什么是引用拷贝？
+
+关于深拷贝和浅拷贝区别，我这里先给结论：
+
+- **浅拷贝**：浅拷贝会在堆上创建一个新的对象（区别于引用拷贝的一点），不过，如果原对象内部的属性是引用类型的话，浅拷贝会直接复制内部对象的引用地址，也就是说拷贝对象和原对象共用同一个内部对象。
+- **深拷贝** ：深拷贝会完全复制整个对象，包括这个对象所包含的内部对象。
+
+上面的结论没有完全理解的话也没关系，我们来看一个具体的案例！
+
+**浅拷贝**
+
+浅拷贝的示例代码如下，我们这里实现了 `Cloneable` 接口，并重写了 `clone()` 方法。
+
+ `clone()` 方法的实现很简单，直接调用的是父类 `Object` 的 `clone()` 方法。
+
+```java
+public class Address implements Cloneable{
+    private final String name;
+    // 省略构造函数、Getter&Setter方法
+    @Override
+    public Address clone() {
+        try {
+            return (Address) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
+}
+
+public class Person implements Cloneable {
+    private Address address;
+    // 省略构造函数、Getter&Setter方法
+    @Override
+    public Person clone() {
+        try {
+            Person person = (Person) super.clone();
+            return person;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
+}
+```
+
+测试 ：
+
+```java
+Person person1 = new Person(new Address("武汉"));
+Person person1Copy = person1.clone();
+// true
+System.out.println(person1.getAddress() == person1Copy.getAddress());
+```
+
+从输出结构就可以看出， `person1` 的克隆对象和 `person1`  使用的仍然是同一个 `Address` 对象。
+
+**深拷贝**
+
+这里我们简单对 `Person` 类的 `clone()` 方法进行修改，连带着要把 `Person` 对象内部的 `Address` 对象一起复制。
+
+```java
+@Override
+public Person clone() {
+    try {
+        Person person = (Person) super.clone();
+        person.setAddress(person.getAddress().clone());
+        return person;
+    } catch (CloneNotSupportedException e) {
+        throw new AssertionError();
+    }
+}
+```
+
+测试 ：
+
+```java
+Person person1 = new Person(new Address("武汉"));
+Person person1Copy = person1.clone();
+// false
+System.out.println(person1.getAddress() == person1Copy.getAddress());
+```
+
+从输出结构就可以看出，虽然 `person1` 的克隆对象和 `person1`  包含的 `Address` 对象已经是不同的了。
+
+**那什么是引用拷贝呢？** 简单来说，引用拷贝就是两个不同的引用指向同一个对象。
+
+我专门画了一张图来描述浅拷贝、深拷贝、引用拷贝：
+
+![](./images/shallow&deep-copy.png)
 
 ## 反射
 
