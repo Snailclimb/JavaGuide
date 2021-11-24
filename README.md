@@ -52,7 +52,7 @@
 ### 集合
 
 1. **[Java 集合常见问题总结](docs/java/collection/java集合框架基础知识&面试题总结.md)** (必看 :+1:)
-2. [Java 容器使用注意事项总结](docs/java/collection/java集合使用注意事项总结.md)
+2. [Java 容器使用注意事项总结](docs/java/collection/java集合使用注意事项.md)
 3. **源码分析** ：[ArrayList 源码+扩容机制分析](docs/java/collection/arraylist-source-code.md)  、[HashMap(JDK1.8)源码+底层数据结构分析](docs/java/collection/hashmap-source-code.md) 、[ConcurrentHashMap 源码+底层数据结构分析](docs/java/collection/concurrent-hash-map-source-code.md)
 
 ### 并发
