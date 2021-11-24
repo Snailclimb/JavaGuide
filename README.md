@@ -160,7 +160,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 ### Redis
 
-1. [Redis 常见问题总结](docs/database/redis/redis-all.md)
+1. [Redis 常见问题总结](docs/database/redis/redis知识点&面试题总结.md)
 2. [3种常用的缓存读写策略](docs/database/redis/3-commonly-used-cache-read-and-write-strategies.md)
 
 ## 搜索引擎
