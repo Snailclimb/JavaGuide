@@ -3,6 +3,8 @@ icon: creative
 title: JavaGuide（Java学习&&面试指南）
 ---
 
+<a href="https://t.1yb.co/GXLF"><img src="https://img-blog.csdnimg.cn/2f61f3e2d1f2427da977340919e41616.png" style="margin: 0 auto;width:850px" /></a>
+
 > 1. **贡献指南** ：欢迎参与 [JavaGuide 的维护工作](https://github.com/Snailclimb/JavaGuide/issues/1235)，这是一件非常有意义的事情。
 > 2. **知识星球** : 简历指导/Java 学习/面试指导/面试小册。欢迎加入[我的知识星球](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=100015911&idx=1&sn=2e8a0f5acb749ecbcbb417aa8a4e18cc&chksm=4ea1b0ec79d639fae37df1b86f196e8ce397accfd1dd2004bcadb66b4df5f582d90ae0d62448#rd) 。
 > 3. **面试专版** ：准备面试的小伙伴可以考虑面试专版：[《Java 面试进阶指北 》](https://www.yuque.com/docs/share/f37fc804-bfe6-4b0d-b373-9c462188fec7) (质量很高，专为面试打造)
