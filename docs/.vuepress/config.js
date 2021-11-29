@@ -96,7 +96,7 @@ module.exports = config({
       '/tools/': [
         {
           title: "数据库", icon: "database", prefix: "database/", collapsable: false,
-          children: ["CHINER", "DBeaver", "screw"]
+          children: ["CHINER", "DBeaver", "screw", "DataGrip"]
         },
         {
           title: "Git", icon: "git", prefix: "git/", collapsable: false,

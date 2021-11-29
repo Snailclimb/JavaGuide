@@ -1,4 +1,9 @@
-# CHINER: 干掉 PowerDesigner，这个国产数据库建模工具很强！
+---
+title:  CHINER:干掉 PowerDesigner，这个国产数据库建模工具很强！
+category: 数据库
+tag:
+  - 开发工具
+---
 
 大家好，我是 Guide！
 

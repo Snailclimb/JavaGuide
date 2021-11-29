@@ -1,3 +1,10 @@
+---
+title: DBeaver:开源数据库管理工具
+category: 数据库
+tag:
+  - 开发工具
+---
+
 # DBeaver:开源数据库管理工具。
 
 [《再见，Navicat！同事安利的这个IDEA的兄弟，真香！》](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247489523&idx=1&sn=4e96972842bdcea2e05cb267d17c5e8e&chksm=cea25838f9d5d12e45a9939370eccf2bff7177038e70437ea0e01d64030118852ee66ae72284&token=2000865596&lang=zh_CN#rd)    这篇文章发了之后很多人抱怨Datagrip 的占用内存太大，很多人推荐了  DBeaver 这款开源免费的数据库管理工具。于是，我昨夜简单体验了一下 DBeaver ，然后写了这篇文章。
