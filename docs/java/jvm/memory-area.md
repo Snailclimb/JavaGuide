@@ -363,7 +363,7 @@ String str4 = new StringBuilder().append(str1).append(str2).toString();
 final String str1 = "str";
 final String str2 = "ing";
 // 下面两个表达式其实是等价的
-String c = "str" + "str2";// 常量池中的对象
+String c = "str" + "ing";// 常量池中的对象
 String d = str1 + str2; // 常量池中的对象
 System.out.println(c == d);// true
 ```
@@ -377,7 +377,7 @@ System.out.println(c == d);// true
 ```java
 final String str1 = "str";
 final String str2 = getStr();
-String c = "str" + "str2";// 常量池中的对象
+String c = "str" + "ing";// 常量池中的对象
 String d = str1 + str2; // 在堆上创建的新的对象
 System.out.println(c == d);// false
 public static String getStr() {
