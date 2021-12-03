@@ -150,7 +150,8 @@ public class ArrayList<E> extends AbstractList<E>
             ensureExplicitCapacity(minCapacity);
         }
     }
-   //得到最小扩容量
+   //1.得到最小扩容量
+   //2.通过最小容量扩容
     private void ensureCapacityInternal(int minCapacity) {
         if (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) {
               // 获取“默认的容量”和“传入参数”两者之间的最大值
