@@ -23,7 +23,7 @@ title: JavaGuide（Java学习&&面试指南）
     <img src="https://img.shields.io/github/issues/Snailclimb/JavaGuide" alt="issues" />
 </p>
 <p>
-    <a href="https://t.1yb.co/iskv"> <img src="../media/sponsor/知识星球.png" style="margin: 0 auto; width: 850px;" /></a>
+    <a href="https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247514565&idx=1&sn=02995b7591bef3361fd5be06d6bebdbc&chksm=cea1f60ef9d67f184057833b01ee7a820ffc6cc201bc2f6dae9f4c3d93fe7962bb3ab08adbfd&token=1069133552&lang=zh_CN#rd"> <img src="../media/sponsor/知识星球.png" style="margin: 0 auto; width: 850px;" /></a>
 </p>
 :::
 
