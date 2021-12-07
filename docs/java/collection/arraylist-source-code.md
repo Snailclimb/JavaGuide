@@ -1,5 +1,5 @@
 ---
-title:  ArrayList 源码+扩容机制分析
+title:  ArrayList源码&扩容机制分析
 category: Java
 tag:
   - Java集合
