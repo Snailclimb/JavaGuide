@@ -77,11 +77,16 @@ module.exports = config({
     nav: [
       { text: "Java面试指南", icon: "java", link: "/home", },
       { text: "Java面试指北", icon: "java", link: "https://sourl.cn/e7ee87", },
-      { text: "IDEA指南", icon: "intellijidea", link: "/idea-tutorial/", },
-      { text: "开发工具", icon: "Tools", link: "/tools/", },
       {
-        text: "关于作者", icon: "zuozhe", link: "/about-the-author/"
+        text: "开发工具", icon: "Tools", link: "/tools/",
+        items: [
+          { text: "Database", icon: "database", link: "/tools/database/chiner/" },
+          { text: "Git", icon: "git", link: "/tools/git/git-intro/" },
+          { text: "Docker", icon: "docker1", link: "/tools/docker/docker-intro/" },
+          { text: "IntelliJ IDEA", icon: "intellijidea", link: "/idea-tutorial/" },
+        ]
       },
+      { text: "关于作者", icon: "zuozhe", link: "/about-the-author/" },
     ],
     sidebar: {
       // 应该把更精确的路径放置在前边
@@ -91,7 +96,7 @@ module.exports = config({
       ],
       '/tools/': [
         {
-          title: "数据库", icon: "database", prefix: "database/", collapsable: false,
+          title: "Database", icon: "database", prefix: "database/", collapsable: false,
           children: ["CHINER", "DBeaver", "screw", "DataGrip"]
         },
         {
@@ -100,7 +105,7 @@ module.exports = config({
         },
         {
           title: "Docker", icon: "docker1", prefix: "docker/", collapsable: false,
-          children: ["docker", "docker从入门到实战"]
+          children: ["docker-intro", "docker从入门到实战"]
         },
       ],
       '/high-quality-technical-articles/': [

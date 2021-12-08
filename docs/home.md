@@ -10,20 +10,25 @@ title: JavaGuide（Java学习&&面试指南）
 > 3. **面试专版** ：准备面试的小伙伴可以考虑面试专版：[《Java 面试进阶指北 》](https://www.yuque.com/docs/share/f37fc804-bfe6-4b0d-b373-9c462188fec7) (质量很高，专为面试打造)
 > 4. **转载须知** ：以下所有文章如非文首说明为转载皆为我（Guide 哥）的原创，转载在文首注明出处，如发现恶意抄袭/搬运，会动用法律武器维护自己的权益。让我们一起维护一个良好的技术创作环境！⛽️
 
-<p align="center">
-    <a href="https://github.com/Snailclimb/JavaGuide" target="_blank">
-        <img src="https://img-blog.csdnimg.cn/img_convert/1c00413c65d1995993bf2b0daf7b4f03.png#pic_center" width="" />
-    </a>
-</p>
-<p align="center">
-    <a href="https://javaguide.cn/"><img src="https://img.shields.io/badge/阅读-read-brightgreen.svg" alt="阅读" /></a>
-    <img src="https://img.shields.io/github/stars/Snailclimb/JavaGuide" alt="stars" />
-    <img src="https://img.shields.io/github/forks/Snailclimb/JavaGuide" alt="forks" />
-    <img src="https://img.shields.io/github/issues/Snailclimb/JavaGuide" alt="issues" />
-</p>
-<p align="center">
-    <a href="https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247514565&idx=1&sn=02995b7591bef3361fd5be06d6bebdbc&chksm=cea1f60ef9d67f184057833b01ee7a820ffc6cc201bc2f6dae9f4c3d93fe7962bb3ab08adbfd&token=1069133552&lang=zh_CN#rd"> <img src="../media/sponsor/知识星球.png" style="margin: 0 auto; width: 850px;" /></a>
-</p>
+<div align="center">
+    <p>
+        <a href="https://github.com/Snailclimb/JavaGuide" target="_blank">
+            <img src="https://img-blog.csdnimg.cn/img_convert/1c00413c65d1995993bf2b0daf7b4f03.png#pic_center" width="" />
+        </a>
+    </p>
+    <p>
+        <a href="https://javaguide.cn/"><img src="https://img.shields.io/badge/阅读-read-brightgreen.svg" alt="阅读" /></a>
+        <img src="https://img.shields.io/github/stars/Snailclimb/JavaGuide" alt="stars" />
+        <img src="https://img.shields.io/github/forks/Snailclimb/JavaGuide" alt="forks" />
+        <img src="https://img.shields.io/github/issues/Snailclimb/JavaGuide" alt="issues" />
+    </p>
+    <p>
+        <a href="https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247514565&idx=1&sn=02995b7591bef3361fd5be06d6bebdbc&chksm=cea1f60ef9d67f184057833b01ee7a820ffc6cc201bc2f6dae9f4c3d93fe7962bb3ab08adbfd&token=1069133552&lang=zh_CN#rd">
+            <img src="../media/sponsor/知识星球.png" style="margin: 0 auto; width: 850px;" />
+        </a>
+    </p>
+</div>
+
 
 在大三准备面试的时候，我开源了 JavaGuide 。我把自己准备面试过程中的一些总结都毫不保留地通过 JavaGuide 分享了出来。
 
