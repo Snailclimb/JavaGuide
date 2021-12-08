@@ -1,87 +1,48 @@
 ---
-icon: creative
-title: JavaGuide（Java学习&&面试指南）
+home: true
+icon: home
+title: 主页
+heroImage: /logo.svg
+heroText: JavaGuide
+tagline: 「Java学习+面试指南」一份涵盖大部分 Java 程序员所需要掌握的核心知识。准备 Java 面试，首选 JavaGuide！
+action:
+  - text: 开始阅读
+    link: /home/
+    type: primary
+  - text: 关于作者
+    link: /about-the-author/
 ---
 
-<a href="https://t.1yb.co/GXLF"><img src="https://img-blog.csdnimg.cn/2f61f3e2d1f2427da977340919e41616.png" style="margin: 0 auto;width:850px" /></a>
+👉 **[我整理汇总了一些 Java 面试相关的 PDF 资料（质量很高！不要在看网上的哪些东拼西凑的垃圾面试题了！！！），希望对需要的小伙伴有帮助（点击下载）！](https://t.1yb.co/GXLF)**
 
 > 1. **贡献指南** ：欢迎参与 [JavaGuide 的维护工作](https://github.com/Snailclimb/JavaGuide/issues/1235)，这是一件非常有意义的事情。
 > 2. **知识星球** : 简历指导/Java 学习/面试指导/面试小册。欢迎加入[我的知识星球](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=100015911&idx=1&sn=2e8a0f5acb749ecbcbb417aa8a4e18cc&chksm=4ea1b0ec79d639fae37df1b86f196e8ce397accfd1dd2004bcadb66b4df5f582d90ae0d62448#rd) 。
 > 3. **面试专版** ：准备面试的小伙伴可以考虑面试专版：[《Java 面试进阶指北 》](https://www.yuque.com/docs/share/f37fc804-bfe6-4b0d-b373-9c462188fec7) (质量很高，专为面试打造)
 > 4. **转载须知** ：以下所有文章如非文首说明为转载皆为我（Guide 哥）的原创，转载在文首注明出处，如发现恶意抄袭/搬运，会动用法律武器维护自己的权益。让我们一起维护一个良好的技术创作环境！⛽️
 
-::: center
-<p>
-    <a href="https://github.com/Snailclimb/JavaGuide" target="_blank">
-        <img src="https://img-blog.csdnimg.cn/img_convert/1c00413c65d1995993bf2b0daf7b4f03.png#pic_center" width="" />
-    </a>
-</p>
-<p>
-    <a href="https://javaguide.cn/"><img src="https://img.shields.io/badge/阅读-read-brightgreen.svg" alt="阅读" /></a>
-    <img src="https://img.shields.io/github/stars/Snailclimb/JavaGuide" alt="stars" />
-    <img src="https://img.shields.io/github/forks/Snailclimb/JavaGuide" alt="forks" />
-    <img src="https://img.shields.io/github/issues/Snailclimb/JavaGuide" alt="issues" />
-</p>
-<p>
-    <a href="https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247514565&idx=1&sn=02995b7591bef3361fd5be06d6bebdbc&chksm=cea1f60ef9d67f184057833b01ee7a820ffc6cc201bc2f6dae9f4c3d93fe7962bb3ab08adbfd&token=1069133552&lang=zh_CN#rd"> <img src="../media/sponsor/知识星球.png" style="margin: 0 auto; width: 850px;" /></a>
-</p>
-:::
+## 👇推荐阅读 
 
-在大三准备面试的时候，我开源了 JavaGuide 。我把自己准备面试过程中的一些总结都毫不保留地通过 JavaGuide 分享了出来。
+- [Java学习路线](https://zhuanlan.zhihu.com/p/379041500) : 一份涵盖 Java 后端开发必备技能的学习路线！全面且清晰！
+- [Java开源项目精选](https://gitee.com/SnailClimb/awesome-java) ：收集整理了 Gitee/Github 上非常棒的 Java 开源项目集合。Java 开发必备！
+- [Java技术文章精选集](/high-quality-technical-articles/) : 精选一些和 Java 相关的优质技术文章，每一篇都值得你阅读 3 遍以上！
+- [Java书单精选](https://gitee.com/SnailClimb/awesome-cs) : Java 后端开发值得一读的一些书籍。
 
-开源 JavaGuide 初始想法源于自己的个人那一段比较迷茫的学习经历。主要目的是为了通过这个开源平台来帮助一些在学习 Java 或者面试过程中遇到问题的小伙伴。
+## 🔥PDF 资源
 
-- **对于 Java 初学者来说：** 本文档倾向于给你提供一个比较详细的学习路径，让你对于 Java 整体的知识体系有一个初步认识。另外，本文的一些文章也是你学习和复习 Java 知识不错的实践；
-- **对于非 Java 初学者来说：** 本文档更适合回顾知识，准备面试，搞清面试应该把重心放在那些问题上。要搞清楚这个道理：提前知道那些面试常见，不是为了背下来应付面试，而是为了让你可以更有针对的学习重点。
+- [《JavaGuide 面试突击版》](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=100029614&idx=1&sn=62993c5cf10265cb7018db7f1ec67250&chksm=4ea1fb6579d67273499b7243641d4ef372decd08047bfbb6dfb5843ef81c7ccba209086cf345#rd)
+- [《消息队列常见知识点&面试题总结》](https://t.1yb.co/Fy0u)
+- [《Java 工程师进阶知识完全扫盲》](https://t.1yb.co/GXLF)
+- [《分布式相关面试题汇总》](https://t.1yb.co/GXLF)
+- [《图解计算机基础》](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=100021725&idx=1&sn=2db9664ca25363139a81691043e9fd8f&chksm=4ea19a1679d61300d8990f7e43bfc7f476577a81b712cf0f9c6f6552a8b219bc081efddb5c54#rd)
 
-相比于其他通过 JavaGuide 学到东西或者说助力获得 offer 的朋友来说 ， JavaGuide 对我的意义更加重大。不夸张的说，有时候真的感觉像是自己的孩子一点一点长大一样，我一直用心呵护着它。
+## 💡官方公众号
 
-虽然，我花了很长时间来维护它，但是，我觉得非常值得！非常有意义！
-
-另外，[JavaGuide](https://github.com/Snailclimb/JavaGuide) 的 Star 数量虽然比较多，但是它的价值和含金量一定是不能和 Dubbo、Nacos 、SkyWalking 这些优秀的国产开源项目比的。希望国内可以出更多优秀的开源项目！
-
-希望大家对面试不要抱有侥幸的心理，打铁还需自身硬！ 我希望这个文档是为你学习 Java 指明方向，而不是用来应付面试用的。加油！奥利给！
-
-## 项目说明
-
-1. 项目的 Markdown 格式参考：[Github Markdown 格式](https://guides.github.com/features/mastering-markdown/)，表情素材来自：[EMOJI CHEAT SHEET](https://www.webpagefx.com/tools/emoji-cheat-sheet/)。
-2. Logo 下的小图标是使用[Shields.IO](https://shields.io/) 生成的。
-
-## 如何对该开源文档进行贡献
-
-欢迎参与 JavaGuide 的维护工作，这是一件非常有意义的事情。详细信息请看：[JavaGuide 贡献指南](https://github.com/Snailclimb/JavaGuide/issues/1235) 。
-
-你可以从下面几个方向来做贡献：
-
-- 笔记内容大多是手敲，所以难免会有笔误，你可以帮我找错别字。
-- 很多知识点我可能没有涉及到，所以你可以对其他知识点进行补充。
-- 现有的知识点难免存在不完善或者错误，所以你可以对已有知识点进行修改/补充。
-
-如果要提 issue/question 的话，强烈推荐阅读 [《提问的智慧》](https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way)、[《如何向开源社区提问题》](https://github.com/seajs/seajs/issues/545) 和 [《如何有效地报告 Bug》](http://www.chiark.greenend.org.uk/~sgtatham/bugs-cn.html)、[《如何向开源项目提交无法解答的问题》](https://zhuanlan.zhihu.com/p/25795393)。
-
-## 贡献者
-
-[你可以点此链接查看 JavaGuide 的所有贡献者。](https://github.com/Snailclimb/JavaGuide/graphs/contributors) 感谢你们让 JavaGuide 变得更好！如果你们来到武汉一定要找我，我请你们吃饭玩耍。
-
-_悄悄话：JavaGuide 会不定时为贡献者们送福利。_
-
-## 待办
-
-- [ ] 计算机网络知识点完善
-- [ ] 分布式常见理论和算法总结完善
-
-## 联系我
-
-![各种技术的学习路线](https://img-blog.csdnimg.cn/20210609102613344.png)
-
-整理了一份各个技术的学习路线，需要的小伙伴加我微信：“**JavaGuide1996**”备注“**Github-学习路线**”即可！
-
-![](../media/pictures/weixin.jpeg)
-
-## 公众号
-
-如果大家想要实时关注我更新的文章以及分享的干货的话，可以关注我的公众号“**JavaGuide**”。
-
-**《Java 面试突击》:** 由本文档衍生的专为面试而生的《Java 面试突击》V4.0 PDF 版本[公众号](#公众号)后台回复 **"面试突击"** 即可领取！
+最新更新会第一时间同步在公众号，强烈推荐大家关注一波！另外，公众号上有很多干货不会同步在线阅读网站。
 
 ![我的公众号](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images/2020-08/167598cd2e17b8ec.png)
+
+## 🙉联系我
+
+交流/加群/互看朋友圈，欢迎添加我的微信（备注“Github”即可）。
+
+![](../media/pictures/weixin.jpeg)

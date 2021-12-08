@@ -1,4 +1,5 @@
 const { config } = require("vuepress-theme-hope");
+const CompressionPlugin = require("compression-webpack-plugin");
 
 module.exports = config({
   port: "8080",
@@ -9,22 +10,34 @@ module.exports = config({
   // 是否开启默认预加载js
   shouldPrefetch: (file, type) => false,
   // webpack 配置 https://vuepress.vuejs.org/zh/config/#chainwebpack
-  chainWebpack: config => {
-    if (process.env.NODE_ENV === 'production') {
-      const dateTime = new Date().getTime();
+  // chainWebpack: config => {
+  //   if (process.env.NODE_ENV === 'production') {
+  //     const dateTime = new Date().getTime();
 
-      // 清除js版本号
-      config.output.filename('assets/js/jg-[name].js?v=' + dateTime).end();
-      config.output.chunkFilename('assets/js/jg-[name].js?v=' + dateTime).end();
+  //     // 清除js版本号
+  //     config.output.filename('assets/js/jg-[name].js?v=' + dateTime).end();
+  //     config.output.chunkFilename('assets/js/jg-[name].js?v=' + dateTime).end();
 
-      // 清除css版本号
-      config.plugin('mini-css-extract-plugin').use(require('mini-css-extract-plugin'), [{
-        filename: 'assets/css/[name].css?v=' + dateTime,
-        chunkFilename: 'assets/css/[name].css?v=' + dateTime
-      }]).end();
+  //     // 清除css版本号
+  //     config.plugin('mini-css-extract-plugin').use(require('mini-css-extract-plugin'), [{
+  //       filename: 'assets/css/[name].css?v=' + dateTime,
+  //       chunkFilename: 'assets/css/[name].css?v=' + dateTime
+  //     }]).end();
 
-    }
+  //   }
+  // },
+  configureWebpack: {
+    //vuepress 编译压缩
+    plugins: [new CompressionPlugin({
+      filename: "[path].gz", //编译后的文件名
+      algorithm: "gzip",
+      test: /\.js$|\.css$|\.html$/,//需要编译的文件
+      threshold: 10240,//需要编译的文件大小
+      minRatio: 0.8,//压缩比
+      deleteOriginalAssets: false,//编译时是否删除源文件
+    })],
   },
+
   head: [
     [
       "script",
@@ -62,27 +75,10 @@ module.exports = config({
     logo: "/logo.png", hostname: "https://javaguide.cn/", author: "Guide哥", repo: "https://github.com/Snailclimb/JavaGuide",
     editLinks: true, docsDir: 'docs',
     nav: [
-      { text: "Java面试指南", icon: "java", link: "/", },
-      { text: "Java面试指北", icon: "java", link: "https://www.yuque.com/docs/share/f37fc804-bfe6-4b0d-b373-9c462188fec7?#%20%E3%80%8A%E3%80%8AJava%E9%9D%A2%E8%AF%95%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8C%97%20%20%E6%89%93%E9%80%A0%E4%B8%AA%E4%BA%BA%E7%9A%84%E6%8A%80%E6%9C%AF%E7%AB%9E%E4%BA%89%E5%8A%9B%E3%80%8B%E3%80%8B", },
-      {
-        text: "Java精选", icon: "file", icon: "java",
-        items: [
-          { text: "Java书单精选", icon: "book", link: "https://gitee.com/SnailClimb/awesome-cs" },
-          { text: "Java学习路线", icon: "luxianchaxun", link: "https://zhuanlan.zhihu.com/p/379041500" },
-          { text: "Java开源项目精选", icon: "git", link: "https://gitee.com/SnailClimb/awesome-java" },
-          { text: "Java技术文章精选集", icon: "star", link: "/high-quality-technical-articles/" }
-        ],
-      },
+      { text: "Java面试指南", icon: "java", link: "/home", },
+      { text: "Java面试指北", icon: "java", link: "https://sourl.cn/e7ee87", },
       { text: "IDEA指南", icon: "intellijidea", link: "/idea-tutorial/", },
       { text: "开发工具", icon: "Tools", link: "/tools/", },
-      {
-        text: "PDF资源", icon: "pdf",
-        items: [
-          { text: "JavaGuide面试突击版", link: "https://t.1yb.co/Fy1e", },
-          { text: "消息队列常见知识点&面试题总结", link: "https://t.1yb.co/Fy0u", },
-          { text: "图解计算机基础!", link: "https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=100021725&idx=1&sn=2db9664ca25363139a81691043e9fd8f&chksm=4ea19a1679d61300d8990f7e43bfc7f476577a81b712cf0f9c6f6552a8b219bc081efddb5c54#rd" }
-        ],
-      },
       {
         text: "关于作者", icon: "zuozhe", link: "/about-the-author/"
       },
@@ -324,17 +320,10 @@ module.exports = config({
     },
 
     mdEnhance: {
-      enableAll: true,
+      enableAll: false,
       presentation: {
         plugins: [
-          "highlight",
-          "math",
-          "search",
-          "notes",
-          "zoom",
-          "anything",
-          "audio",
-          "chalkboard",
+          "highlight", "math", "search", "notes", "zoom", "anything", "audio", "chalkboard",
         ],
       },
     },

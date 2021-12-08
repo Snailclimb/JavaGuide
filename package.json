@@ -10,7 +10,9 @@
     "eject-theme": "vuepress eject-hope docs"
   },
   "devDependencies": {
+    "compression-webpack-plugin": "^5.0.0",
     "vuepress": "^1.8.2",
     "vuepress-theme-hope": "^1.20.5"
-  }
+  },
+  "dependencies": {}
 }
