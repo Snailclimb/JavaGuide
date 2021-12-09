@@ -110,12 +110,20 @@ module.exports = config({
       ],
       '/high-quality-technical-articles/': [
         {
+          title: "练级攻略", icon: "lujing", prefix: "advanced-programmer/", collapsable: false,
+          children: ["seven-tips-for-becoming-an-advanced-programmer"]
+        },
+        {
+          title: "个人经历", icon: "zuozhe", prefix: "personal-experience/", collapsable: false,
+          children: ["two-years-of-back-end-develop--experience-in-didi&toutiao", "8-years-programmer-work-summary"]
+        },
+        {
           title: "面试", icon: "mianshixinxi-02", prefix: "interview/", collapsable: false,
           children: ["the-experience-and-thinking-of-an-interview-experienced-by-an-older-programmer", "technical-preliminary-preparation", "screen-candidates-for-packaging"],
         },
         {
-          title: "个人经历", icon: "zuozhe", prefix: "personal-experience/", collapsable: false,
-          children: ["two-years-of-back-end-develop--experience-in-didi&toutiao"]
+          title: "工作", icon: "work0", prefix: "work/", collapsable: false,
+          children: ["get-into-work-mode-quickly-when-you-join-a-company"]
         }
       ],
       '/idea-tutorial/':
