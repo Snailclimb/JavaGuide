@@ -26,7 +26,7 @@
   <img src="https://img.shields.io/github/forks/Snailclimb/JavaGuide" alt="forks"/>
   <img src="https://img.shields.io/github/issues/Snailclimb/JavaGuide" alt="issues"/>
 </p>
-<h3 align="center">Sponsor</h3>
+<h3 align="center">推荐</h3>
 <table>
   <tbody>
     <tr>
@@ -37,6 +37,7 @@
     </tr>
   </tbody>
 </table>
+
 
 ## Java
 
