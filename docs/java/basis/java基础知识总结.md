@@ -127,6 +127,85 @@ JRE 是 Java 运行时环境。它是运行已编译 Java 程序所需的所有�
 > java 编程思想第四版：2.2.2 节
 > ![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-15/86735519.jpg)
 
+### 可变长参数
+
+从 Java5 开始，Java 支持定义可变长参数，所谓可变长参数就是允许在调用方法时传入不定长度的参数。就比如下面的这个 `printVariable` 方法就可以接受 0 个或者多个参数。
+
+```java
+public static void method1(String... args) {
+   //......
+}
+```
+
+另外，可变参数只能作为函数的最后一个参数，但其前面可以有也可以没有任何其他参数。
+
+```java
+public static void method2(String arg1, String... args) {
+   //......
+}
+```
+
+**遇到方法重载的情况怎么办呢？会优先匹配固定参数还是可变参数的方法呢？**
+
+答案是会优先匹配固定参数的方法，因为固定参数的方法匹配度更高。
+
+我们通过下面这个例子来证明一下。
+
+```java
+/**
+ * 微信搜 JavaGuide 回复"面试突击"即可免费领取个人原创的 Java 面试手册
+ *
+ * @author Guide哥
+ * @date 2021/12/13 16:52
+ **/
+public class VariableLengthArgument {
+
+    public static void printVariable(String... args) {
+        for (String s : args) {
+            System.out.println(s);
+        }
+    }
+
+    public static void printVariable(String arg1, String arg2) {
+        System.out.println(arg1 + arg2);
+    }
+
+    public static void main(String[] args) {
+        printVariable("a", "b");
+        printVariable("a", "b", "c", "d");
+    }
+}
+```
+
+输出：
+
+```
+ab
+a
+b
+c
+d
+```
+
+另外，Java 的可变参数编译后实际会被转换成一个数组，我们看编译后生成的 `class`文件就可以看出来了。 
+
+```java
+public class VariableLengthArgument {
+
+    public static void printVariable(String... args) {
+        String[] var1 = args;
+        int var2 = args.length;
+
+        for(int var3 = 0; var3 < var2; ++var3) {
+            String s = var1[var3];
+            System.out.println(s);
+        }
+
+    }
+    // ......
+}
+```
+
 ### 注释
 
 Java 中的注释有三种：
