@@ -1,5 +1,11 @@
+---
+title:  Spring Boot 自动装配原理
+category: 框架
+tag:
+  - SpringBoot
+---
 
-# Spring Boot 自动装配原理
+# 
 
 > 本文已经收录进  Github 95k+ Star 的Java项目JavaGuide 。JavaGuide项目地址 : https://github.com/Snailclimb/JavaGuide 。
 >

@@ -1,5 +1,10 @@
-
-# Spring/Spring Boot 常用注解总结！安排！
+---
+title:  Spring/Spring Boot 常用注解总结！
+category: 框架
+tag:
+  - SpringBoot
+  - Spring
+---
 
 ### 0.前言
 
