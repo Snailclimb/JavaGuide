@@ -263,7 +263,7 @@ module.exports = config({
             title: "常用框架", prefix: "framework/", icon: "framework",
             children: [{
               title: "Spring", prefix: "spring/",
-              children: ["Spring常见问题总结", "Spring&SpringBoot常用注解总结", "Spring事务总结", "Spring设计模式总结", "SpringBoot自动装配原理"]
+              children: ["Spring常见问题总结", "Spring&SpringBoot常用注解总结", "Spring事务总结", "Spring设计模式总结", "spring-boot-auto-assembly-principles"]
             },
               "mybatis/mybatis-interview", "netty",
             {
