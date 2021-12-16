@@ -541,7 +541,7 @@ final V putVal(K key, V value, boolean onlyIfAbsent) {
 
 5. 如果都不满足，则利用 synchronized 锁写入数据。
 
-6. 如果数量大于 `TREEIFY_THRESHOLD` 则要转换为红黑树。
+6. 如果数量大于 `TREEIFY_THRESHOLD` 则要执行树化方法，在treeifyBin中会首先判断当前数组长度≥64时才会将链表转换为红黑树。
 
 ### 4. get
 
