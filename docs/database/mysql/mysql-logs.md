@@ -35,6 +35,8 @@ tag:
 
 ![](https://cdn.jsdelivr.net/gh/18702524676/CND5/image/mysql/03/03.png)
 
+> 图片笔误提示：第4步 “清空 redo log buffe 刷盘到 redo 日志中”这句话中的 buffe 应该是 buffer。
+
 理想情况，事务一提交就会进行刷盘操作，但实际上，刷盘的时机是根据策略来进行的。
 
 > 小贴士：每条 redo 记录由“表空间号+数据页号+偏移量+修改数据长度+具体修改的数据”组成
