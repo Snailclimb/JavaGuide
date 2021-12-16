@@ -318,7 +318,7 @@ System.out.println(str4 == str5);//false
 > ```java
 > String aa = "ab"; // 放在常量池中
 > String bb = "ab"; // 从常量池中查找
-> System.out.println("aa==bb");// true
+> System.out.println(aa==bb);// true
 > ```
 >
 > JDK1.7 之前运行时常量池逻辑包含字符串常量池存放在方法区。JDK1.7 的时候，字符串常量池被从方法区拿到了堆中。
