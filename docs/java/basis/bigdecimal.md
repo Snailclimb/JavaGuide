@@ -5,6 +5,10 @@ tag:
   - Java基础
 ---
 
+《阿里巴巴 Java 开发手册》中提到：“为了避免精度丢失，可以使用 `BigDecimal` 来进行浮点数的运算”。
+
+这篇文章，我就简单解释一下浮点数运算出现精度丢失的原因以及 `BigDecimal` 的常见用法，希望对大家有帮助！
+
 ## BigDecimal 介绍
 
 `BigDecimal` 可以实现对浮点数的运算，不会造成精度丢失。通常情况下，大部分需要浮点数精确运算结果的业务场景（比如涉及到钱的场景）都是通过 `BigDecimal` 来做的。
@@ -335,6 +339,7 @@ public class BigDecimalUtil {
 
 ## 总结
 
-`BigDecimal` 主要用来操作（大）浮点数，`BigInteger` 主要用来操作大整数（超过 `long` 类型）。
+浮点数没有办法用二进制精确表示，因此存在精度丢失的风险。
 
-`BigDecimal` 的实现利用到了 `BigInteger`, 所不同的是 `BigDecimal` 加入了小数位的概念
+不过，Java 提供了`BigDecimal` 来操作浮点数。`BigDecimal` 的实现利用到了 `BigInteger` （用来操作大整数）, 所不同的是 `BigDecimal` 加入了小数位的概念。
+
