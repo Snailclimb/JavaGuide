@@ -295,7 +295,7 @@ module.exports = config({
           },
           "distributed-transaction",
           {
-            title: "分布式协调", prefix: "分布式协调/",
+            title: "分布式协调", prefix: "distributed-process-coordination/",
             children: ["zookeeper/zookeeper-intro", "zookeeper/zookeeper-plus", "zookeeper/zookeeper-in-action"]
           },
         ],
