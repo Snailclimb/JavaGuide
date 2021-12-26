@@ -90,12 +90,6 @@ Github 前段时间推出的 Codespaces 可以提供类似 VS Code 的在线 IDE
 
 如果你想要深入了解某个项目的话，首选这种方式。一个`git clone` 就完事了。
 
-### 5.4. 其他
-
-如果你要看的是前端项目的话，还可以考虑使用 [https://stackblitz.com/](https://stackblitz.com/) 这个网站。
-
-这个网站会提供一个类似 VS Code 的在线 IDE。
-
 ## 6. 扩展 Github 的功能
 
 **Enhanced GitHub** 可以让你的 Github 更好用。这个 Chrome 插件可以可视化你的 Github 仓库大小，每个文件的大小并且可以让你快速下载单个文件。
