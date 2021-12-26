@@ -6,7 +6,7 @@
 
 如果觉得有收获的话，不要白嫖！点个赞/在看就是对我最大的鼓励。你要是可以三连（点赞+在看+转发）的话，我就更爽了（_我在想屁吃？_）。
 
-## 1. 一键生成 Github 简历
+## 1. 一键生成 Github 简历 & Github年报
 
 通过 [https://resume.github.io/](https://resume.github.io/) 这个网站你可以一键生成一个在线的 Github 简历。
 
@@ -15,6 +15,10 @@
 但是，如果你的 Github 没有什么项目的话还是不要放在简历里面了。生成后的效果如下图所示。
 
 ![Github简历](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-11/image-20201108192205620.png)
+
+通过 https://www.githubtrends.io/wrapped 这个网站，你可以生成一份 Github 个人年报，这个年报会列举出你在这一年的项目贡献情况、最常使用的编程语言、详细的贡献信息。
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/dootask/image-20211226144607457.png)
 
 ## 2. 个性化 Github 首页
 
