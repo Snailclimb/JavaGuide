@@ -281,9 +281,9 @@ Dubbo 是一款国产的 RPC 框架，由阿里开源。相关阅读：
 
 > 前两篇文章可能有内容重合部分，推荐都看一遍。
 
-1. [【入门】ZooKeeper 相关概念总结](docs/distributed-system/分布式协调/zookeeper/zookeeper-intro.md)
-2. [【进阶】ZooKeeper 相关概念总结](docs/distributed-system/分布式协调/zookeeper/zookeeper-plus.md)
-3. [【实战】ZooKeeper 实战](docs/distributed-system/分布式协调/zookeeper/zookeeper-in-action.md)
+1. [【入门】ZooKeeper 相关概念总结](docs/distributed-system/distributed-process-coordination/zookeeper/zookeeper-intro.md)
+2. [【进阶】ZooKeeper 相关概念总结](docs/distributed-system/distributed-process-coordination/zookeeper/zookeeper-plus.md)
+3. [【实战】ZooKeeper 实战](docs/distributed-system/distributed-process-coordination/zookeeper/zookeeper-in-action.md)
 
 ## 高性能
 

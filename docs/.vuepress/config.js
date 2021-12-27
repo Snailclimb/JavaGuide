@@ -97,11 +97,11 @@ module.exports = config({
       '/tools/': [
         {
           title: "Database", icon: "database", prefix: "database/", collapsable: false,
-          children: ["CHINER", "DBeaver", "screw", "DataGrip"]
+          children: ["chiner", "dbeaver", "screw", "datagrip"]
         },
         {
           title: "Git", icon: "git", prefix: "git/", collapsable: false,
-          children: ["git-intro", "github技巧"]
+          children: ["git-intro", "github-tips"]
         },
         {
           title: "Docker", icon: "docker1", prefix: "docker/", collapsable: false,
