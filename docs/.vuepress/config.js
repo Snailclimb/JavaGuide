@@ -91,8 +91,14 @@ module.exports = config({
     sidebar: {
       // 应该把更精确的路径放置在前边
       "/about-the-author/": [
-        "internet-addiction-teenager", "feelings-after-one-month-of-induction-training", "feelings-of-half-a-year-from-graduation-to-entry",
-        "my-article-was-stolen-and-made-into-video-and-it-became-popular",
+        {
+          title: "个人经历", icon: "zuozhe", collapsable: false,
+          children: ["internet-addiction-teenager", "javaguide-100k-star", "feelings-after-one-month-of-induction-training", "feelings-of-half-a-year-from-graduation-to-entry",]
+        },
+        {
+          title: "杂谈", icon: "chat", collapsable: false,
+          children: ["my-article-was-stolen-and-made-into-video-and-it-became-popular", "dog-that-copies-other-people-essay",]
+        },
       ],
       '/tools/': [
         {
