@@ -1,12 +1,10 @@
-# Github小技巧
+# Github 小技巧
 
-我使用 Github 已经有 5 年多了，今天毫无保留地把自己觉得比较有用的 Github 小技巧送给关注 JavaGuide 的各位小伙伴。
+我使用 Github 已经有 6 年多了，今天毫无保留地把自己觉得比较有用的 Github 小技巧送给关注 JavaGuide 的各位小伙伴。
 
 这篇文章肝了很久，就挺用心的，大家看内容就知道了。
 
-如果觉得有收获的话，不要白嫖！点个赞/在看就是对我最大的鼓励。你要是可以三连（点赞+在看+转发）的话，我就更爽了（_我在想屁吃？_）。
-
-## 1. 一键生成 Github 简历 & Github年报
+## 一键生成 Github 简历 & Github 年报
 
 通过 [https://resume.github.io/](https://resume.github.io/) 这个网站你可以一键生成一个在线的 Github 简历。
 
@@ -20,7 +18,7 @@
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/dootask/image-20211226144607457.png)
 
-## 2. 个性化 Github 首页
+## 个性化 Github 首页
 
 Github 目前支持在个人主页自定义展示一些内容。展示效果如下图所示。
 
@@ -38,7 +36,7 @@ Github 目前支持在个人主页自定义展示一些内容。展示效果如�
 
 关于个性化首页这个就不多提了，感兴趣的小伙伴自行研究一下。
 
-## 3. 自定义项目徽章
+## 自定义项目徽章
 
 你在 Github 上看到的项目徽章都是通过 [https://shields.io/](https://shields.io/) 这个网站生成的。我的 JavaGuide 这个项目的徽章如下图所示。
 
@@ -52,7 +50,15 @@ Github 目前支持在个人主页自定义展示一些内容。展示效果如�
 
 ![描述项目状态的徽章](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-11/image-20201107143752642.png)
 
-## 4. Github 表情
+## 自动为项目添加贡献情况图标
+
+通过 repobeats 这个工具可以为 Github 项目添加如下图所示的项目贡献基本情况图表，挺不错的 👍
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/dootask/repobeats.png)
+
+地址：https://repobeats.axiom.co/ 。
+
+## Github 表情
 
 ![Github表情](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-11/image-20201107162254582.png)
 
@@ -60,19 +66,19 @@ Github 目前支持在个人主页自定义展示一些内容。展示效果如�
 
 ![在线Github表情](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-11/image-20201107162432941.png)
 
-## 5. 高效阅读 Github 项目的源代码
+## 高效阅读 Github 项目的源代码
 
 Github 前段时间推出的 Codespaces 可以提供类似 VS Code 的在线 IDE，不过目前还没有完全开发使用。
 
 简单介绍几种我最常用的阅读 Github 项目源代码的方式。
 
-### 5.1. Chrome 插件 Octotree
+### Chrome 插件 Octotree
 
 这个已经老生常谈了，是我最喜欢的一种方式。使用了 Octotree 之后网页侧边栏会按照树形结构展示项目，为我们带来 IDE 般的阅读源代码的感受。
 
 ![Chrome插件Octotree](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-11/image-20201107144944798.png)
 
-### 5.2. Chrome 插件 SourceGraph
+### Chrome 插件 SourceGraph
 
 我不想将项目 clone 到本地的时候一般就会使用这种方式来阅读项目源代码。SourceGraph 不仅可以让我们在 Github 优雅的查看代码，它还支持一些骚操作，比如：类之间的跳转、代码搜索等功能。
 
@@ -84,19 +90,19 @@ Github 前段时间推出的 Codespaces 可以提供类似 VS Code 的在线 IDE
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-11/image-20201107150307314.png)
 
-### 5.3. 克隆项目到本地
+### 克隆项目到本地
 
 先把项目克隆到本地，然后使用自己喜欢的 IDE 来阅读。可以说是最酸爽的方式了！
 
 如果你想要深入了解某个项目的话，首选这种方式。一个`git clone` 就完事了。
 
-## 6. 扩展 Github 的功能
+## 扩展 Github 的功能
 
 **Enhanced GitHub** 可以让你的 Github 更好用。这个 Chrome 插件可以可视化你的 Github 仓库大小，每个文件的大小并且可以让你快速下载单个文件。
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-11/image-20201107160817672.png)
 
-## 7. 自动为 Markdown 文件生成目录
+## 自动为 Markdown 文件生成目录
 
 如果你想为 Github 上的 Markdown 文件生成目录的话，通过 VS Code 的 **Markdown Preview Enhanced** 这个插件就可以了。
 
@@ -104,12 +110,36 @@ Github 前段时间推出的 Codespaces 可以提供类似 VS Code 的在线 IDE
 
 ![](<https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-11/iShot2020-11-07%2016.14.14%20(1).png>)
 
-## 8. 后记
+不过，目前 Github 已经自动为 Markdown 文件生成了目录，只是需要通过点击的方式才能显示出来。
 
-这篇文章是我上周六的时候坐在窗台写的，花了一下午时间。
+![image-20211227093215005](/Users/guide/Library/Application Support/typora-user-images/image-20211227093215005.png)
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-11/301604738120_.pic_hd.jpg)
+## 善用 Github Explore
 
-除了我提到的这些技巧之外，像 Github 搜索技巧、GitHub Actions 等内容的话，我这里没有提，感兴趣的小伙伴自行研究一下。
+其实，Github 自带的 Explore 是一个非常强大且好用的功能。不过，据我观察，国内很多 Github 用户都不知道这个到底是干啥的。
 
-这里多说一句心里话： **Github 搜索技巧不必要记网上那些文章说的各种命令啥的，真没啥卵用。你会发现你用的最多的还是关键字搜索以及 Github 自带的筛选功能。**
+简单来说，Github Explore 可以为你带来下面这些服务：
+
+1. 可以根据你的个人兴趣为你推荐项目；
+2. Githunb Topics 按照类别/话题将一些项目进行了分类汇总。比如 [Data visualization](https://github.com/topics/data-visualization) 汇总了数据可视化相关的一些开源项目，[Awesome Lists](https://github.com/topics/awesome) 汇总了 Awesome 系列的仓库；
+3. 通过 Github Trending 我们可以看到最近比较热门的一些开源项目，我们可以按照语言类型以及时间维度对项目进行筛选；
+4. Github Collections 类似一个收藏夹集合。比如 [Teaching materials for computational social science](https://github.com/collections/teaching-computational-social-science) 这个收藏夹就汇总了计算机课程相关的开源资源，[Learn to Code](https://github.com/collections/learn-to-code) 这个收藏夹就汇总了对你学习编程有帮助的一些仓库；
+5. ......
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/github-explore.png)
+
+## GitHub Actions 很强大
+
+你可以简单地将 GitHub Actions 理解为 Github 自带的 CI/CD ，通过 GitHub Actions 你可以直接在 GitHub 构建、测试和部署代码，你还可以对代码进行审查、管理 API 、分析项目依赖项。总之，GitHub Actions 可以自动化地帮你完成很多事情。
+
+关于 GitHub Actions 的详细介绍，推荐看一下阮一峰老师写的 [GitHub Actions 入门教程](https://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html) 。
+
+GitHub Actions 有一个官方市场，上面有非常多别人提交的 Actions ，你可以直接拿来使用。
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/image-20211227100147433.png)
+
+## 后记
+
+这一篇文章，我毫无保留地把自己这些年总结的 Github 小技巧分享了出来，真心希望对大家有帮助，真心希望大家一定要利用好 Gihub 这个专属程序员的宝藏。
+
+另外，这篇文章中，我并没有提到 Github 搜索技巧。在我看来，Github 搜索技巧不必要记网上那些文章说的各种命令啥的，真没啥卵用。你会发现你用的最多的还是关键字搜索以及 Github 自带的筛选功能。
