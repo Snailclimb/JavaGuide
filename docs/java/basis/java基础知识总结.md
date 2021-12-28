@@ -187,7 +187,7 @@ c
 d
 ```
 
-另外，Java 的可变参数编译后实际会被转换成一个数组，我们看编译后生成的 `class`文件就可以看出来了。 
+另外，Java 的可变参数编译后实际会被转换成一个数组，我们看编译后生成的 `class`文件就可以看出来了。
 
 ```java
 public class VariableLengthArgument {
@@ -619,17 +619,21 @@ public boolean equals(Object anObject) {
 
 ### hashCode() 与 equals()
 
-面试官可能会问你：“你重写过 `hashcode()` 和 `equals()`么?为什么重写 `equals()` 时必须重写 `hashCode()` 方法？”
+面试官可能会问你：“你重写过 `hashCode()` 和 `equals()`么?为什么重写 `equals()` 时必须重写 `hashCode()` 方法？”
 
-#### hashCode() 介绍
+一个非常基础的问题，面试中的重中之重，然而，很多求职者还是会达不到点子上去。
 
-`hashCode()` 的作用是获取哈希码（`int` 整数），也称为散列码。这个哈希码的作用是确定该对象在哈希表中的索引位置。`hashCode()`定义在 JDK 的 `Object` 类中，这就意味着 Java 中的任何类都包含有 `hashCode()` 函数。另外需要注意的是： `Object` 的 `hashCode()` 方法是本地方法，也就是用 C 语言或 C++ 实现的，该方法通常用来将对象的内存地址转换为整数之后返回。
+#### hashCode() 有什么用？
+
+`hashCode()` 的作用是获取哈希码（`int` 整数），也称为散列码。这个哈希码的作用是确定该对象在哈希表中的索引位置。
+
+`hashCode()`定义在 JDK 的 `Object` 类中，这就意味着 Java 中的任何类都包含有 `hashCode()` 函数。另外需要注意的是： `Object` 的 `hashCode()` 方法是本地方法，也就是用 C 语言或 C++ 实现的，该方法通常用来将对象的内存地址转换为整数之后返回。
 
 ```java
 public native int hashCode();
 ```
 
-散列表存储的是键值对(key-value)，它的特点是：能根据“键”快速的检索出对应的“值”。这其中就利用到了散列码！（可以快速找到所需要的对象）
+散列表存储的是键值对(key-value)，它的特点是：**能根据“键”快速的检索出对应的“值”。这其中就利用到了散列码！（可以快速找到所需要的对象）**
 
 #### 为什么要有 hashCode？
 
@@ -637,21 +641,46 @@ public native int hashCode();
 
 下面这段内容摘自我的 Java 启蒙书《Head First Java》:
 
-> 当你把对象加入 `HashSet` 时，`HashSet` 会先计算对象的 `hashcode` 值来判断对象加入的位置，同时也会与其他已经加入的对象的 hashcode 值作比较，如果没有相符的 `hashcode`，`HashSet` 会假设对象没有重复出现。但是如果发现有相同 `hashcode` 值的对象，这时会调用 `equals()` 方法来检查 `hashcode` 相等的对象是否真的相同。如果两者相同，`HashSet` 就不会让其加入操作成功。如果不同的话，就会重新散列到其他位置。。这样我们就大大减少了 `equals` 的次数，相应就大大提高了执行速度。
+> 当你把对象加入 `HashSet` 时，`HashSet` 会先计算对象的 `hashCode` 值来判断对象加入的位置，同时也会与其他已经加入的对象的 `hashCode` 值作比较，如果没有相符的 `hashCode`，`HashSet` 会假设对象没有重复出现。但是如果发现有相同 `hashCode` 值的对象，这时会调用 `equals()` 方法来检查 `hashCode` 相等的对象是否真的相同。如果两者相同，`HashSet` 就不会让其加入操作成功。如果不同的话，就会重新散列到其他位置。。这样我们就大大减少了 `equals` 的次数，相应就大大提高了执行速度。
+
+其实， `hashCode()` 和 `equals()`都是用于比较两个对象是否相等。
+
+**那为什么 JDK 还要同时提供这两个方法呢？**
+
+这是因为在一些容器（比如 `HashMap`、`HashSet`）中，有了 `hashCode()` 之后，判断元素是否在对应容器中的效率会更高（参考添加元素进`HastSet`的过程）！
+
+我们在前面也提到了添加元素进`HastSet`的过程，如果 `HashSet` 在对比的时候，同样的 `hashCode` 有多个对象，它会继续使用 `equals()` 来判断是否真的相同。也就是说 `hashCode` 帮助我们大大缩小了查找成本。
+
+**那为什么不只提供 `hashCode()` 方法呢？**
+
+这是因为两个对象的`hashCode` 值相等并不代表两个对象就相等。
+
+**那为什么两个对象有相同的 `hashCode` 值，它们也不一定是相等的？**
+
+因为 `hashCode()` 所使用的哈希算法也许刚好会让多个对象传回相同的哈希值。越糟糕的哈希算法越容易碰撞，但这也与数据值域分布的特性有关（所谓哈希碰撞也就是指的是不同的对象得到相同的 `hashCode` )。
+
+总结下来就是 ：
+
+- 如果两个对象的`hashCode` 值相等，那这两个对象不一定相等（哈希碰撞）。
+- 如果两个对象的`hashCode` 值相等并且`equals()`方法返回 `true`，我们才认为这两个对象相等。
+- 如果两个对象的`hashCode` 值不相等，我们就可以直接认为这两个对象不相等。
+
+相信大家看了我前面对 `hashCode()` 和 `equals()` 的介绍之后，下面这个问题已经难不倒你们了。
 
 #### 为什么重写 equals() 时必须重写 hashCode() 方法？
 
-`hashCode()`的默认行为是对堆上的对象产生独特值。如果没有重写 `hashCode()`，则该 class 的两个对象无论如何都不会相等（即使这两个对象指向相同的数据）
+因为两个相等的对象的 `hashCode` 值必须是相等。也就是说如果 `equals` 方法判断两个对象是相等的，那这两个对象的 `hashCode` 值也要相等。
 
-简单来说就是：如果 `equals` 方法判断两个对象是相等的，那这两个对象的 `hashCode` 值也要相等。
+如果重写 `equals()` 时没有重写 `hashCode()` 方法的话就可能会导致 `equals` 方法判断是相等的两个对象，`hashCode` 值却不相等。
 
-**为什么两个对象有相同的 hashcode 值，它们也不一定是相等的？**
+**思考** ：重写 `equals()` 时没有重写 `hashCode()` 方法的话，使用 `HashMap` 可能会出现什么问题。
 
-因为 `hashCode()` 所使用的哈希算法也许刚好会让多个对象传回相同的哈希值。越糟糕的哈希算法越容易碰撞，但这也与数据值域分布的特性有关（所谓碰撞也就是指的是不同的对象得到相同的 `hashCode` )。
+**总结** ：
 
-我们刚刚也提到了 `HashSet`,如果 `HashSet` 在对比的时候，同样的 `hashcode` 有多个对象，它会使用 `equals()` 来判断是否真的相同。也就是说 `hashcode` 只是用来缩小查找成本。
+- `equals` 方法判断两个对象是相等的，那这两个对象的 `hashCode` 值也要相等。
+- 两个对象有相同的 `hashCode` 值，他们也不一定是相等的（哈希碰撞）。
 
-更多关于 `hashcode()` 和 `equals()` 的内容可以查看：[Java hashCode() 和 equals()的若干问题解答](https://www.cnblogs.com/skywang12345/p/3324958.html)
+更多关于 `hashCode()` 和 `equals()` 的内容可以查看：[Java hashCode() 和 equals()的若干问题解答](https://www.cnblogs.com/skywang12345/p/3324958.html)
 
 ## 基本数据类型
 
