@@ -606,6 +606,59 @@ AOF 重写是一个有歧义的名字，该功能是通过读取数据库中的�
 
 在执行 BGREWRITEAOF 命令时，Redis 服务器会维护一个 AOF 重写缓冲区，该缓冲区会在子进程创建新 AOF 文件期间，记录服务器执行的所有写命令。当子进程完成创建新 AOF 文件的工作之后，服务器会将重写缓冲区中的所有内容追加到新 AOF 文件的末尾，使得新的 AOF 文件保存的数据库状态与现有的数据库状态一致。最后，服务器用新的 AOF 文件替换旧的 AOF 文件，以此来完成 AOF 文件重写操作。
 
+### bigkey
+
+#### 什么是 bigkey？
+
+简单来说，如果一个 key 对应的 value 所占用的内存比较大，那这个 key 就可以看作是 bigkey。具体多大才算大呢？有一个不是特别精确的参考标准：string 类型的 value 超过 10 kb，复合类型的 value 包含的元素超过 5000 个。
+
+#### bigkey 有什么危害？
+
+除了会消耗更多的内存空间，bigkey 对性能也会有比较大的影响。
+
+因此，我们应该尽量避免写入 bigkey！
+
+#### 如何发现 bigkey？
+
+**1、使用 Redis 自带的 `--bigkeys` 参数来查找。**
+
+```bash
+# redis-cli -p 6379 --bigkeys
+
+# Scanning the entire keyspace to find biggest keys as well as
+# average sizes per key type.  You can use -i 0.1 to sleep 0.1 sec
+# per 100 SCAN commands (not usually needed).
+
+[00.00%] Biggest string found so far '"ballcat:oauth:refresh_auth:f6cdb384-9a9d-4f2f-af01-dc3f28057c20"' with 4437 bytes
+[00.00%] Biggest list   found so far '"my-list"' with 17 items
+
+-------- summary -------
+
+Sampled 5 keys in the keyspace!
+Total key length in bytes is 264 (avg len 52.80)
+
+Biggest   list found '"my-list"' has 17 items
+Biggest string found '"ballcat:oauth:refresh_auth:f6cdb384-9a9d-4f2f-af01-dc3f28057c20"' has 4437 bytes
+
+1 lists with 17 items (20.00% of keys, avg size 17.00)
+0 hashs with 0 fields (00.00% of keys, avg size 0.00)
+4 strings with 4831 bytes (80.00% of keys, avg size 1207.75)
+0 streams with 0 entries (00.00% of keys, avg size 0.00)
+0 sets with 0 members (00.00% of keys, avg size 0.00)
+0 zsets with 0 members (00.00% of keys, avg size 0.00
+```
+
+从这个命令的运行结果，我们可以看出：这个命令会扫描(Scan) Redis 中的所有 key ，会对 Redis 的性能有一点影响。并且，这种方式只能找出每种数据结构 top 1 bigkey（占用内存最大的 string 数据类型，包含元素最多的复合数据类型）。
+
+**2、分析 RDB 文件**
+
+通过分析 RDB 文件来找出 big key。这种方案的前提是你的 Redis 采用的是 RDB 持久化。
+
+网上有现成的代码/工具可以直接拿来使用：
+
+- [redis-rdb-tools](https://github.com/sripathikrishnan/redis-rdb-tools) ：Python 语言写的用来分析 Redis 的 RDB 快照文件用的工具
+- [rdb_bigkeys](https://github.com/weiyanwei412/rdb_bigkeys) : Go 语言写的用来分析 Redis 的 RDB 快照文件用的工具，性能更好。
+
 ### Redis 事务
 
 Redis 可以通过 **`MULTI`，`EXEC`，`DISCARD` 和 `WATCH`** 等命令来实现事务(transaction)功能。
