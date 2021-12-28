@@ -684,6 +684,8 @@ private void method1() {
 1.  `@Transactional` 注解只有作用到 public 方法上事务才生效，不推荐在接口上使用；
 2.  避免同一个类中调用 `@Transactional` 注解的方法，这样会导致事务失效；
 3.  正确的设置 `@Transactional` 的 `rollbackFor` 和 `propagation` 属性，否则事务可能会回滚失败;
+3.  被 `@Transactional` 注解的方法所在的类必须被 Spring 管理，否则不生效；
+3.  底层使用的数据库必须支持事务机制，否则不生效；
 4.  ......
 
 ## 4. Reference
