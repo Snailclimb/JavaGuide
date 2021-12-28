@@ -654,7 +654,7 @@ public class DefaultAopProxyFactory implements AopProxyFactory, Serializable {
 
 > `TransactionInterceptor` 类中的 `invoke()`方法内部实际调用的是 `TransactionAspectSupport` 类的 `invokeWithinTransaction()`方法。由于新版本的 Spring 对这部分重写很大，而且用到了很多响应式编程的知识，这里就不列源码了。
 
-#### 4)Spring AOP 自调用问题
+#### 4) Spring AOP 自调用问题
 
 若同一类中的其他没有 `@Transactional` 注解的方法内部调用有 `@Transactional` 注解的方法，有`@Transactional` 注解的方法的事务会失效。
 
@@ -683,7 +683,7 @@ private void method1() {
 
 1.  `@Transactional` 注解只有作用到 public 方法上事务才生效，不推荐在接口上使用；
 2.  避免同一个类中调用 `@Transactional` 注解的方法，这样会导致事务失效；
-3.  正确的设置 `@Transactional` 的 rollbackFor 和 propagation 属性，否则事务可能会回滚失败
+3.  正确的设置 `@Transactional` 的 `rollbackFor` 和 `propagation` 属性，否则事务可能会回滚失败;
 4.  ......
 
 ## 4. Reference
