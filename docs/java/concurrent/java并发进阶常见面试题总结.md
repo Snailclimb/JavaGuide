@@ -935,12 +935,11 @@ protected final boolean compareAndSetState(int expect, int update) {
 **AQS 使用了模板方法模式，自定义同步器时需要重写下面几个 AQS 提供的模板方法：**
 
 ```java
-isHeldExclusively()//该线程是否正在独占资源。只有用到condition才需要去实现它。
-tryAcquire(int)//独占方式。尝试获取资源，成功则返回true，失败则返回false。
-tryRelease(int)//独占方式。尝试释放资源，成功则返回true，失败则返回false。
-tryAcquireShared(int)//共享方式。尝试获取资源。负数表示失败；0表示成功，但没有剩余可用资源；正数表示成功，且有剩余资源。
-tryReleaseShared(int)//共享方式。尝试释放资源，成功则返回true，失败则返回false。
-
+protected boolean tryAcquire(int)//独占方式。尝试获取资源，成功则返回true，失败则返回false。
+protected boolean tryRelease(int)//独占方式。尝试释放资源，成功则返回true，失败则返回false。
+protected boolean tryAcquireShared(int)//共享方式。尝试获取资源。负数表示失败；0表示成功，但没有剩余可用资源；正数表示成功，且有剩余资源。
+protected boolean tryReleaseShared(int)//共享方式。尝试释放资源，成功则返回true，失败则返回false。
+protected boolean isHeldExclusively()//该线程是否正在独占资源。只有用到condition才需要去实现它。
 ```
 
 默认情况下，每个方法都抛出 `UnsupportedOperationException`。 这些方法的实现必须是内部线程安全的，并且通常应该简短而不是阻塞。AQS 类中的其他方法都是 final ，所以无法被其他类使用，只有这几个方法可以被其他类使用。
