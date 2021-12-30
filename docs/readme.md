@@ -13,7 +13,7 @@ action:
     link: /about-the-author/
 ---
 
-👉 **[我整理汇总了一些 Java 面试相关的 PDF 资料（质量很高！不要在看网上的哪些东拼西凑的垃圾面试题了！！！），希望对需要的小伙伴有帮助（点击下载）！](https://t.1yb.co/GXLF)**
+👉 **[我整理汇总了一些 Java 面试相关的 PDF 资料（质量很高！不要在看网上的那些东拼西凑的垃圾面试题了！！！），希望对需要的小伙伴有帮助（点击下载）！](https://t.1yb.co/GXLF)**
 
 > 1. **贡献指南** ：欢迎参与 [JavaGuide 的维护工作](https://github.com/Snailclimb/JavaGuide/issues/1235)，这是一件非常有意义的事情。
 > 2. **知识星球** : 简历指导/Java 学习/面试指导/面试小册。欢迎加入[我的知识星球](https://sourl.cn/e7ee87) 。
