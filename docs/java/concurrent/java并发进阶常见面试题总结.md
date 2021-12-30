@@ -729,7 +729,7 @@ public void execute(Runnable command) {
         c = ctl.get();
     }
     // 2.如果当前执行的任务数量大于等于 corePoolSize 的时候就会走到这里
-    // 通过 isRunning 方法判断线程池状态，线程池处于 RUNNING 状态才会被并且队列可以加入任务，该任务才会被加入进去
+    // 通过 isRunning 方法判断线程池状态，线程池处于 RUNNING 状态并且队列可以加入任务，该任务才会被加入进去
     if (isRunning(c) && workQueue.offer(command)) {
         int recheck = ctl.get();
         // 再次获取线程池状态，如果线程池状态不是 RUNNING 状态就需要从任务队列中移除任务，并尝试判断线程是否全部执行完毕。同时执行拒绝策略。
