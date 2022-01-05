@@ -39,6 +39,8 @@ module.exports = config({
   },
 
   head: [
+    // 百度站点验证
+    ["meta", { name: "baidu-site-verification", content: "code-IZvTs9l2OK" }],
     [
       "script",
       { src: "https://cdn.jsdelivr.net/npm/react/umd/react.production.min.js" },
@@ -65,8 +67,6 @@ module.exports = config({
         s.parentNode.insertBefore(hm, s);
       })();`
     ]
-    // 百度站点验证
-    ["meta", { name: "baidu-site-verification", content: "code-IZvTs9l2OK" }],
   ],
   locales: {
     "/": {
@@ -75,7 +75,7 @@ module.exports = config({
   },
   themeConfig: {
     logo: "/logo.png", hostname: "https://javaguide.cn/", author: "Guide哥", repo: "https://github.com/Snailclimb/JavaGuide",
-    editLinks: true, docsDir: 'docs',
+    editLinks: true, docsDir: 'docs', seo: true,
     nav: [
       { text: "Java面试指南", icon: "java", link: "/home", },
       { text: "Java面试指北", icon: "java", link: "https://sourl.cn/e7ee87", },
