@@ -26,12 +26,6 @@ module.exports = config({
 
   //   }
   // },
-
-  plugins: [
-    [
-      "@mr-hope/seo",
-    ],
-  ],
   configureWebpack: {
     //vuepress 编译压缩
     plugins: [new CompressionPlugin({
