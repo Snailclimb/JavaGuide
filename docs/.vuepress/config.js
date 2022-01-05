@@ -26,6 +26,12 @@ module.exports = config({
 
   //   }
   // },
+
+  plugins: [
+    [
+      "@mr-hope/seo",
+    ],
+  ],
   configureWebpack: {
     //vuepress 编译压缩
     plugins: [new CompressionPlugin({
@@ -65,6 +71,8 @@ module.exports = config({
         s.parentNode.insertBefore(hm, s);
       })();`
     ]
+    // 百度站点验证
+    ["meta", { name: "baidu-site-verification", content: "code-IZvTs9l2OK" }],
   ],
   locales: {
     "/": {
