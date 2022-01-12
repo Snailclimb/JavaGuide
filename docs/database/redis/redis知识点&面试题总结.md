@@ -746,6 +746,8 @@ Redis 5.0 新增加的一个数据结构 `Stream` 可以用来做消息队列，
 
 我们通常建议是不需要使用 Redis 来做消息队列的，你完全可以选择市面上比较成熟的一些消息队列比如 RocketMQ、Kafka。
 
+相关文章推荐：[Redis 消息队列的三种方案（List、Streams、Pub/Sub）](https://javakeeper.starfish.ink/data-management/Redis/Redis-MQ.html)。
+
 ### 缓存穿透
 
 #### 什么是缓存穿透？
