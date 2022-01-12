@@ -82,6 +82,7 @@ module.exports = config({
       {
         text: "开发工具", icon: "Tools", link: "/tools/",
         items: [
+          { text: "Java", icon: "java", link: "/tools/java/jadx/" },
           { text: "Database", icon: "database", link: "/tools/database/chiner/" },
           { text: "Git", icon: "git", link: "/tools/git/git-intro/" },
           { text: "Docker", icon: "docker1", link: "/tools/docker/docker-intro/" },
@@ -103,6 +104,10 @@ module.exports = config({
         },
       ],
       '/tools/': [
+        {
+          title: "Java", icon: "java", prefix: "java/", collapsable: false,
+          children: ["jadx"]
+        },
         {
           title: "Database", icon: "database", prefix: "database/", collapsable: false,
           children: ["chiner", "dbeaver", "screw", "datagrip"]
