@@ -90,12 +90,12 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 ### 新特性
 
-1.  **Java 8** ：[Java 8 新特性总结](docs/java/new-features/Java8新特性总结.md)、[Java8常用新特性总结](docs/java/new-features/java8-common-new-features.md)
+1.  **Java 8** ：[Java 8 新特性总结（翻译）](docs/java/new-features/java8-tutorial-translate.md)、[Java8常用新特性总结](docs/java/new-features/java8-common-new-features.md)
 2.  **Java9~Java15** : [一文带你看遍 JDK9~15 的重要新特性！](./docs/java/new-features/java新特性总结.md)
 
 ### 小技巧
 
-1. [JAD 反编译](docs/java/tips/JAD反编译tricks.md)
+1. [JAD 反编译](docs/java/tips/jad.md)
 2. [手把手教你定位常见 Java 性能问题](./docs/java/tips/locate-performance-problems/手把手教你定位常见Java性能问题.md)
 
 ## 计算机基础
@@ -185,7 +185,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 编程过程中，一定要重视命名。因为好的命名即是注释，别人一看到你的命名就知道你的变量、方法或者类是做什么的！
 
-相关阅读： [Java 命名之道](docs/system-design/naming.md) 。
+相关阅读： [Java 命名之道](docs/system-design/basis/naming.md) 。
 
 ### 常用框架
 
