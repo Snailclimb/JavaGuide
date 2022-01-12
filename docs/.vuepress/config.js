@@ -118,7 +118,7 @@ module.exports = config({
         },
         {
           title: "Docker", icon: "docker1", prefix: "docker/", collapsable: false,
-          children: ["docker-intro", "docker从入门到实战"]
+          children: ["docker-intro", "docker-in-action"]
         },
       ],
       '/high-quality-technical-articles/': [
