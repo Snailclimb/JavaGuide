@@ -606,7 +606,7 @@ AOF 重写是一个有歧义的名字，该功能是通过读取数据库中的�
 
 在执行 BGREWRITEAOF 命令时，Redis 服务器会维护一个 AOF 重写缓冲区，该缓冲区会在子进程创建新 AOF 文件期间，记录服务器执行的所有写命令。当子进程完成创建新 AOF 文件的工作之后，服务器会将重写缓冲区中的所有内容追加到新 AOF 文件的末尾，使得新的 AOF 文件保存的数据库状态与现有的数据库状态一致。最后，服务器用新的 AOF 文件替换旧的 AOF 文件，以此来完成 AOF 文件重写操作。
 
-### bigkey
+### Redis bigkey
 
 #### 什么是 bigkey？
 
@@ -733,6 +733,18 @@ Redis 官网也解释了自己为啥不支持回滚。简单来说就是 Redis �
 
 - [issue452: 关于 Redis 事务不满足原子性的问题](https://github.com/Snailclimb/JavaGuide/issues/452) 。
 - [Issue491:关于 redis 没有事务回滚？](https://github.com/Snailclimb/JavaGuide/issues/491)
+
+### Redis 可以做消息队列么？
+
+Redis 5.0 新增加的一个数据结构 `Stream` 可以用来做消息队列，`Stream` 支持：
+
+- 发布 / 订阅模式
+- 按照消费者组进行消费
+- 消息持久化（ RDB 和 AOF）
+
+不过，和专业的消息队列相比，还是有很多欠缺的地方比如消息丢失和堆积问题不好解决。
+
+我们通常建议是不需要使用 Redis 来做消息队列的，你完全可以选择市面上比较成熟的一些消息队列比如 RocketMQ、Kafka。
 
 ### 缓存穿透
 
