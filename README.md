@@ -231,9 +231,9 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 #### 敏感词过滤
 
+系统需要对用户输入的文本进行敏感词过滤如色情、政治、暴力相关的词汇。
 
-
-https://github.com/toolgood/ToolGood.Words
+相关阅读：[《Java定时任务大揭秘》](./docs/system-design/security/sentive-words-filter.md)
 
 ### 定时任务
 
