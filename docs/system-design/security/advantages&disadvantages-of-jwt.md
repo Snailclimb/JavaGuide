@@ -1,4 +1,9 @@
-# JWT 身份认证优缺点分析以及常见问题解决方案
+---
+title: JWT 身份认证优缺点分析
+category: 系统设计
+tag:
+  - 安全
+---
 
 之前分享了一个使用 Spring Security 实现 JWT 身份认证的 Demo，文章地址：[适合初学者入门 Spring Security With JWT 的 Demo](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247485622&idx=1&sn=e9750ed63c47457ba1896db8dfceac6a&chksm=cea2477df9d5ce6b7af20e582c6c60b7408a6459b05b849394c45f04664d1651510bdee029f7&token=684071313&lang=zh_CN&scene=21#wechat_redirect)。 Demo 非常简单，没有介绍到 JWT 存在的一些问题。所以，单独抽了一篇文章出来介绍。为了完成这篇文章，我查阅了很多资料和文献，我觉得应该对大家有帮助。
 

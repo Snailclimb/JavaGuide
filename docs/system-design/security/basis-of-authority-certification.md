@@ -1,4 +1,9 @@
-# 认证授权基础
+---
+title: 认证授权基础
+category: 系统设计
+tag:
+  - 安全
+---
 
 ## 认证 (Authentication) 和授权 (Authorization)的区别是什么？
 

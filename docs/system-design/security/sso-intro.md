@@ -1,4 +1,9 @@
-# SSO 单点登录
+---
+title: SSO 单点登录
+category: 系统设计
+tag:
+  - 安全
+---
 
 > 本文授权转载自 ： https://ken.io/note/sso-design-implement 作者：ken.io
 >

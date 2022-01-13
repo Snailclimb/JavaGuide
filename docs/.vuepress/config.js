@@ -289,7 +289,7 @@ module.exports = config({
           },
           {
             title: "安全", prefix: "security/", icon: "security-fill",
-            children: ["basis-of-authority-certification", "jwt优缺点分析以及常见问题解决方案", "sso-intro", "数据脱敏"]
+            children: ["basis-of-authority-certification", "advantages&disadvantages-of-jwt", "sso-intro", "sentive-words-filter", "data-desensitization"]
           },
           "定时任务"
         ],
