@@ -505,33 +505,59 @@ public interface Callable<V> {
 #### 4.3.2 `execute()` vs `submit()`
 
 - `execute()`方法用于提交不需要返回值的任务，所以无法判断任务是否被线程池执行成功与否；
-- `submit()`方法用于提交需要返回值的任务。线程池会返回一个 `Future` 类型的对象，通过这个 `Future` 对象可以判断任务是否执行成功，并且可以通过 `Future` 的 `get()`方法来获取返回值，`get()`方法会阻塞当前线程直到任务完成，而使用 `get（long timeout，TimeUnit unit）`方法则会阻塞当前线程一段时间后立即返回，这时候有可能任务没有执行完。
+- `submit()`方法用于提交需要返回值的任务。线程池会返回一个 `Future` 类型的对象，通过这个 `Future` 对象可以判断任务是否执行成功，并且可以通过 `Future` 的 `get()`方法来获取返回值，`get()`方法会阻塞当前线程直到任务完成，而使用 `get（long timeout，TimeUnit unit）`方法的话，如果在 `timeout` 时间内任务还没有执行完，就会抛出 `java.util.concurrent.TimeoutException`。
 
-我们以 `AbstractExecutorService` 接口中的一个 `submit()` 方法为例子来看看源代码：
+这里只是为了演示使用，推荐使用 `ThreadPoolExecutor` 构造方法来创建线程池。
+
+示例1：使用 `get() `方法获取返回值。
 
 ```java
-    public Future<?> submit(Runnable task) {
-        if (task == null) throw new NullPointerException();
-        RunnableFuture<Void> ftask = newTaskFor(task, null);
-        execute(ftask);
-        return ftask;
+ExecutorService executorService = Executors.newFixedThreadPool(3);
+
+Future<String> submit = executorService.submit(() -> {
+    try {
+        Thread.sleep(5000L);
+    } catch (InterruptedException e) {
+        e.printStackTrace();
     }
+    return "abc";
+});
+
+String s = submit.get();
+System.out.println(s);
+executorService.shutdown();
 ```
 
-上面方法调用的 `newTaskFor` 方法返回了一个 `FutureTask` 对象。
+输出：
 
-```java
-    protected <T> RunnableFuture<T> newTaskFor(Runnable runnable, T value) {
-        return new FutureTask<T>(runnable, value);
-    }
+```
+abc
 ```
 
-我们再来看看`execute()`方法：
+示例2：使用 `get（long timeout，TimeUnit unit） `方法获取返回值。
 
 ```java
-    public void execute(Runnable command) {
-      ...
+ExecutorService executorService = Executors.newFixedThreadPool(3);
+
+Future<String> submit = executorService.submit(() -> {
+    try {
+        Thread.sleep(5000L);
+    } catch (InterruptedException e) {
+        e.printStackTrace();
     }
+    return "abc";
+});
+
+String s = submit.get(3, TimeUnit.SECONDS);
+System.out.println(s);
+executorService.shutdown();
+```
+
+输出：
+
+```
+Exception in thread "main" java.util.concurrent.TimeoutException
+	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
 ```
 
 #### 4.3.3 `shutdown()`VS`shutdownNow()`
