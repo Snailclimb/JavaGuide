@@ -117,7 +117,7 @@ Github 前段时间推出的 Codespaces 可以提供类似 VS Code 的在线 IDE
 
 不过，目前 Github 已经自动为 Markdown 文件生成了目录，只是需要通过点击的方式才能显示出来。
 
-![image-20211227093215005](/Users/guide/Library/Application Support/typora-user-images/image-20211227093215005.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/cosy/image-20211227093215005.png)
 
 ## 善用 Github Explore
 

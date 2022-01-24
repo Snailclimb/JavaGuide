@@ -171,8 +171,8 @@ module.exports = config({
               {
                 title: "重要知识点",
                 children: [
-                  "why-there-only-value-passing-in-java", "反射机制详解", "代理模式详解", "io模型详解",
-                  "bigdecimal"
+                  "why-there-only-value-passing-in-java", "reflection", "proxy", "io",
+                  "bigdecimal", "generics"
                 ],
               },],
           },
