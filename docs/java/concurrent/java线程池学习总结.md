@@ -459,7 +459,7 @@ pool-1-thread-2 End. Time = Sun Apr 12 11:14:47 CST 2020
     }
 ```
 
-更多关于线程池源码分析的内容推荐这篇文章：《[JUC 线程池 ThreadPoolExecutor 源码分析](http://www.throwable.club/2019/07/15/java-concurrency-thread-pool-executor/)》
+更多关于线程池源码分析的内容推荐这篇文章：硬核干货：[4W字从源码上分析JUC线程池ThreadPoolExecutor的实现原理](https://www.throwx.cn/2020/08/23/java-concurrency-thread-pool-executor/)
 
 现在，让我们在回到 4.1 节我们写的 Demo， 现在应该是不是很容易就可以搞懂它的原理了呢？
 
