@@ -153,3 +153,9 @@ raft的要求之一就是安全性不依赖于时间：系统不能仅仅因为�
 
 一般来说，broadcastTime 一般为 `0.5～20ms`，electionTimeout 可以设置为 `10～500ms`，MTBF 一般为一两个月。
 
+## 6 参考
+
+* https://tanxinyu.work/raft/
+* https://github.com/OneSizeFitsQuorum/raft-thesis-zh_cn/blob/master/raft-thesis-zh_cn.md
+* https://github.com/ongardie/dissertation/blob/master/stanford.pdf
+* https://knowledge-sharing.gitbooks.io/raft/content/chapter5.html
