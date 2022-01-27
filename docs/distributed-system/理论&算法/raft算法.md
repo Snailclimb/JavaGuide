@@ -24,9 +24,9 @@
 
 共识算法允许一组节点像一个整体一样一起工作，即使其中的一些节点出现故障也能够继续工作下去，其正确性主要是源于复制状态机的性质：一组`Server`的状态机计算相同状态的副本，即使有一部分的`Server`宕机了它们仍然能够继续运行。
 
-https://raw.githubusercontent.com/jun0315/JavaGuide/raft-pic/media/pictures/raft/rsm-architecture.png
+![rsm-architecture](https://github.com/jun0315/JavaGuide/blob/raft-pic/media/pictures/raft/rsm-architecture.png?raw=ture)
 
-`图-1：复制状态机架构`
+<center>图-1 复制状态机架构</center>
 
 一般通过使用复制日志来实现复制状态机。每个`Server`存储着一份包括命令序列的日志文件，状态机会按顺序执行这些命令。因为每个日志包含相同的命令，并且顺序也相同，所以每个状态机处理相同的命令序列。由于状态机是确定性的，所以处理相同的状态，得到相同的输出。
 
@@ -52,15 +52,15 @@ https://raw.githubusercontent.com/jun0315/JavaGuide/raft-pic/media/pictures/raft
 
 在正常的情况下，只有一个服务器是Leader，剩下的服务器是Follower。Follower是被动的，它们不会发送任何请求，只是响应来自Leader和Candidate的请求。
 
-https://raw.githubusercontent.com/jun0315/JavaGuide/raft-pic/media/pictures/raft/server-state.png
+![rsm-architecture](https://github.com/jun0315/JavaGuide/blob/raft-pic/media/pictures/raft/server-state.png?raw=ture)
 
-`图-2：服务器的状态`
+<center>图-2：服务器的状态</center>
 
 ### 2.2 任期
 
-https://raw.githubusercontent.com/jun0315/JavaGuide/raft-pic/media/pictures/raft/term.png
+![rsm-architecture](https://github.com/jun0315/JavaGuide/blob/raft-pic/media/pictures/raft/term.png?raw=ture)
 
-`图-3：任期`
+<center>图-3：任期<center>
 
 如图3所示，raft算法将时间划分为任意长度的任期（term），任期用连续的数字表示，看作当前term号。每一个任期的开始都是一次选举，在选举开始时，一个或多个Candidate会尝试成为Leader。如果一个Candidate赢得了选举，它就会在该任期内担任Leader。如果没有选出Leader，将会开启另一个任期，并立刻开始下一次选举。raft算法保证在给定的一个任期最少要有一个Leader。
 
