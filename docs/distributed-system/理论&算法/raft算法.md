@@ -28,7 +28,9 @@
 
 共识算法允许一组节点像一个整体一样一起工作，即使其中的一些节点出现故障也能够继续工作下去，其正确性主要是源于复制状态机的性质：一组`Server`的状态机计算相同状态的副本，即使有一部分的`Server`宕机了它们仍然能够继续运行。
 
-`图-1：复制状态机架构 一致性算法管理来自客户端的状态机命令的复制日志。状态机处理日志中相同顺序的命令序列，因此会输出相同的结果。`
+https://raw.githubusercontent.com/jun0315/JavaGuide/raft-pic/media/pictures/raft/rsm-architecture.png
+
+`图-1：复制状态机架构`
 
 一般通过使用复制日志来实现复制状态机。每个`Server`存储着一份包括命令序列的日志文件，状态机会按顺序执行这些命令。因为每个日志包含相同的命令，并且顺序也相同，所以每个状态机处理相同的命令序列。由于状态机是确定性的，所以处理相同的状态，得到相同的输出。
 
@@ -54,9 +56,13 @@
 
 在正常的情况下，只有一个服务器是Leader，剩下的服务器是Follower。Follower是被动的，它们不会发送任何请求，只是响应来自Leader和Candidate的请求。
 
+https://raw.githubusercontent.com/jun0315/JavaGuide/raft-pic/media/pictures/raft/server-state.png
+
 `图-2：服务器的状态`
 
 ### 2.2 任期
+
+https://raw.githubusercontent.com/jun0315/JavaGuide/raft-pic/media/pictures/raft/term.png
 
 `图-3：任期`
 
