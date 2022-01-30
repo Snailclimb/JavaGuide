@@ -1226,77 +1226,135 @@ JDK 提供了很多内置的注解（比如 `@Override` 、`@Deprecated`），�
 
 ## 异常
 
-### Java 异常类层次结构图
+**Java 异常类层次结构图概览** ：
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-12/Java%E5%BC%82%E5%B8%B8%E7%B1%BB%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84%E5%9B%BE.png)
+![types-of-exceptions-in-java](/Users/guide/Documents/GitHub/JavaGuide/docs/java/basis/images/types-of-exceptions-in-java.png)
 
-<p style="font-size:13px;text-align:right">图片来自：https://simplesnippets.tech/exception-handling-in-java-part-1/</p>
+
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-12/Java%E5%BC%82%E5%B8%B8%E7%B1%BB%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84%E5%9B%BE2.png)
 
 <p style="font-size:13px;text-align:right">图片来自：https://chercher.tech/java-programming/exceptions-java</p>
 
-在 Java 中，所有的异常都有一个共同的祖先 `java.lang` 包中的 `Throwable` 类。`Throwable` 类有两个重要的子类 `Exception`（异常）和 `Error`（错误）。`Exception` 能被程序本身处理(`try-catch`)， `Error` 是无法处理的(只能尽量避免)。
+### Exception 和 Error 有什么区别？
 
-`Exception` 和 `Error` 二者都是 Java 异常处理的重要子类，各自都包含大量子类。
+在 Java 中，所有的异常都有一个共同的祖先 `java.lang` 包中的 `Throwable` 类。`Throwable` 类有两个重要的子类:
 
-- **`Exception`** :程序本身可以处理的异常，可以通过 `catch` 来进行捕获。`Exception` 又可以分为 受检查异常(必须处理) 和 不受检查异常(可以不处理)。
-- **`Error`** ：`Error` 属于程序无法处理的错误 ，我们没办法通过 `catch` 来进行捕获 。例如，Java 虚拟机运行错误（`Virtual MachineError`）、虚拟机内存不够错误(`OutOfMemoryError`)、类定义错误（`NoClassDefFoundError`）等 。这些异常发生时，Java 虚拟机（JVM）一般会选择线程终止。
+- **`Exception`** :程序本身可以处理的异常，可以通过 `catch` 来进行捕获。`Exception` 又可以分为 Checked Exception (受检查异常，必须处理) 和 Unchecked Exception (不受检查异常，可以不处理)。
+- **`Error`** ：`Error` 属于程序无法处理的错误 ，我们没办法通过 `catch` 来进行捕获 。例如Java 虚拟机运行错误（`Virtual MachineError`）、虚拟机内存不够错误(`OutOfMemoryError`)、类定义错误（`NoClassDefFoundError`）等 。这些异常发生时，Java 虚拟机（JVM）一般会选择线程终止。
 
-**受检查异常**
+### Checked Exception 和 Unchecked Exception 有什么区别？
 
-Java 代码在编译过程中，如果受检查异常没有被 `catch`/`throw` 处理的话，就没办法通过编译 。比如下面这段 IO 操作的代码。
+**Checked Exception** 即受检查异常，Java 代码在编译过程中，如果受检查异常没有被 `catch`/`throw` 处理的话，就没办法通过编译 。
 
-![check-exception](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-12/check-exception.png)
+比如下面这段 IO 操作的代码：
+
+![](./images/checked-exception.png)
 
 除了`RuntimeException`及其子类以外，其他的`Exception`类及其子类都属于受检查异常 。常见的受检查异常有： IO 相关的异常、`ClassNotFoundException` 、`SQLException`...。
 
-**不受检查异常**
-
-Java 代码在编译过程中 ，我们即使不处理不受检查异常也可以正常通过编译。
+**Unchecked Exception** 即 **不受检查异常** ，Java 代码在编译过程中 ，我们即使不处理不受检查异常也可以正常通过编译。
 
 `RuntimeException` 及其子类都统称为非受检查异常，例如：`NullPointerException`、`NumberFormatException`（字符串转换为数字）、`ArrayIndexOutOfBoundsException`（数组越界）、`ClassCastException`（类型转换错误）、`ArithmeticException`（算术错误）等。
 
-### Throwable 类常用方法
+![](./images/unchecked-exception.png)
 
-- **`public String getMessage()`**:返回异常发生时的简要描述
-- **`public String toString()`**:返回异常发生时的详细信息
-- **`public String getLocalizedMessage()`**:返回异常对象的本地化信息。使用 `Throwable` 的子类覆盖这个方法，可以生成本地化信息。如果子类没有覆盖该方法，则该方法返回的信息与 `getMessage()`返回的结果相同
-- **`public void printStackTrace()`**:在控制台上打印 `Throwable` 对象封装的异常信息
+### Throwable 类常用方法有哪些？
 
-### try-catch-finally
+- `String getMessage()`: 返回异常发生时的简要描述
+- `String toString()`: 返回异常发生时的详细信息
+- `String getLocalizedMessage()`: 返回异常对象的本地化信息。使用 `Throwable` 的子类覆盖这个方法，可以生成本地化信息。如果子类没有覆盖该方法，则该方法返回的信息与 `getMessage()`返回的结果相同
+- `void printStackTrace()`: 在控制台上打印 `Throwable` 对象封装的异常信息
+
+### try-catch-finally 如何使用？
 
 - **`try`块：** 用于捕获异常。其后可接零个或多个 `catch` 块，如果没有 `catch` 块，则必须跟一个 `finally` 块。
 - **`catch`块：** 用于处理 try 捕获到的异常。
 - **`finally` 块：** 无论是否捕获或处理异常，`finally` 块里的语句都会被执行。当在 `try` 块或 `catch` 块中遇到 `return` 语句时，`finally` 语句块将在方法返回之前被执行。
 
-**在以下 3 种特殊情况下，`finally` 块不会被执行：**
-
-1. 在 `try` 或 `finally`块中用了 `System.exit(int)`退出程序。但是，如果 `System.exit(int)` 在异常语句之后，`finally` 还是会被执行
-2. 程序所在的线程死亡。
-3. 关闭 CPU。
-
-下面这部分内容来自 issue:<https://github.com/Snailclimb/JavaGuide/issues/190>。
-
-**注意：** 当 try 语句和 finally 语句中都有 return 语句时，在方法返回之前，finally 语句的内容将被执行，并且 finally 语句的返回值将会覆盖原始的返回值。如下：
+示例：
 
 ```java
-public class Test {
-    public static int f(int value) {
-        try {
-            return value * value;
-        } finally {
-            if (value == 2) {
-                return 0;
-            }
+try {
+    System.out.println("Try to do something");
+    throw new RuntimeException("RuntimeException");
+} catch (Exception e) {
+    System.out.println("Catch Exception -> " + e.getMessage());
+} finally {
+    System.out.println("Finally");
+}
+```
+
+输出：
+
+```
+Try to do something
+Catch Exception -> RuntimeException
+Finally
+```
+
+**注意：不要在 finally 语句块中使用 return!**  当 try 语句和 finally 语句中都有 return 语句时，try 语句块中的 return 语句不会被执行。
+
+示例：
+
+```java
+public static void main(String[] args) {
+    System.out.println(f(2));;
+}
+
+public static int f(int value) {
+    try {
+        return value * value;
+    } finally {
+        if (value == 2) {
+            return 0;
         }
     }
 }
 ```
 
-如果调用 `f(2)`，返回值将是 0，因为 finally 语句的返回值覆盖了 try 语句块的返回值。
+输出：
 
-### 使用 `try-with-resources` 来代替`try-catch-finally`
+```
+0
+```
+
+### finally 中的代码一定会执行吗？
+
+不一定的！在某些情况下，finally 中的代码不会被执行。
+
+就比如说 `finally` 之前虚拟机被终止运行的话，finally 中的代码就不会被执行。
+
+```java
+try {
+    System.out.println("Try to do something");
+    throw new RuntimeException("RuntimeException");
+} catch (Exception e) {
+    System.out.println("Catch Exception -> " + e.getMessage());
+    // 终止当前正在运行的Java虚拟机
+    System.exit(1);
+} finally {
+    System.out.println("Finally");
+}
+```
+
+输出：
+
+```
+Try to do something
+Catch Exception -> RuntimeException
+```
+
+另外，在以下 2 种特殊情况下，`finally` 块的代码也不会被执行：
+
+1. 程序所在的线程死亡。
+2. 关闭 CPU。
+
+相关 issue： <https://github.com/Snailclimb/JavaGuide/issues/190>。
+
+🧗🏻进阶一下：从字节码角度分析`try catch finally`这个语法糖背后的实现原理。
+
+### 如何使用 `try-with-resources` 代替`try-catch-finally`？
 
 1. **适用范围（资源的定义）：** 任何实现 `java.lang.AutoCloseable`或者 `java.io.Closeable` 的对象
 2. **关闭资源和 finally 块的执行顺序：** 在 `try-with-resources` 语句中，任何 catch 或 finally 块在声明的资源关闭后运行
