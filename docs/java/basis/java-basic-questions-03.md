@@ -221,7 +221,7 @@ JDK 提供了很多内置的注解（比如 `@Override` 、`@Deprecated`），�
 
 比如下面这段 IO 操作的代码：
 
-![](/Users/guide/Documents/GitHub/JavaGuide/docs/java/basis/images/checked-exception.png)
+![](./images/checked-exception.png)
 
 除了`RuntimeException`及其子类以外，其他的`Exception`类及其子类都属于受检查异常 。常见的受检查异常有： IO 相关的异常、`ClassNotFoundException` 、`SQLException`...。
 
@@ -229,7 +229,7 @@ JDK 提供了很多内置的注解（比如 `@Override` 、`@Deprecated`），�
 
 `RuntimeException` 及其子类都统称为非受检查异常，例如：`NullPointerException`、`NumberFormatException`（字符串转换为数字）、`ArrayIndexOutOfBoundsException`（数组越界）、`ClassCastException`（类型转换错误）、`ArithmeticException`（算术错误）等。
 
-![](/Users/guide/Documents/GitHub/JavaGuide/docs/java/basis/images/unchecked-exception.png)
+![](./images/unchecked-exception.png)
 
 ### Throwable 类常用方法有哪些？
 
