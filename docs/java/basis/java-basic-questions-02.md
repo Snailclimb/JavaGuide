@@ -197,7 +197,38 @@ System.out.println(person1.getAddress() == person1Copy.getAddress());
 
 ## Java 常见对象
 
-### String、StringBuffer、StringBuilder的区别？String 为什么是不可变的?
+### Object
+
+#### Object 类的常见方法有哪些？
+
+Object 类是一个特殊的类，是所有类的父类。它主要提供了以下 11 个方法：
+
+```java
+public final native Class<?> getClass()//native方法，用于返回当前运行时对象的Class对象，使用了final关键字修饰，故不允许子类重写。
+
+public native int hashCode() //native方法，用于返回对象的哈希码，主要使用在哈希表中，比如JDK中的HashMap。
+public boolean equals(Object obj)//用于比较2个对象的内存地址是否相等，String类对该方法进行了重写用户比较字符串的值是否相等。
+
+protected native Object clone() throws CloneNotSupportedException//naitive方法，用于创建并返回当前对象的一份拷贝。一般情况下，对于任何对象 x，表达式 x.clone() != x 为true，x.clone().getClass() == x.getClass() 为true。Object本身没有实现Cloneable接口，所以不重写clone方法并且进行调用的话会发生CloneNotSupportedException异常。
+
+public String toString()//返回类的名字@实例的哈希码的16进制的字符串。建议Object所有的子类都重写这个方法。
+
+public final native void notify()//native方法，并且不能重写。唤醒一个在此对象监视器上等待的线程(监视器相当于就是锁的概念)。如果有多个线程在等待只会任意唤醒一个。
+
+public final native void notifyAll()//native方法，并且不能重写。跟notify一样，唯一的区别就是会唤醒在此对象监视器上等待的所有线程，而不是一个线程。
+
+public final native void wait(long timeout) throws InterruptedException//native方法，并且不能重写。暂停线程的执行。注意：sleep方法没有释放锁，而wait方法释放了锁 。timeout是等待时间。
+
+public final void wait(long timeout, int nanos) throws InterruptedException//多了nanos参数，这个参数表示额外时间（以毫微秒为单位，范围是 0-999999）。 所以超时的时间还需要加上nanos毫秒。
+
+public final void wait() throws InterruptedException//跟之前的2个wait方法一样，只不过该方法一直等待，没有超时时间这个概念
+
+protected void finalize() throws Throwable { }//实例被垃圾回收器回收的时候触发的操作
+```
+
+### String
+
+#### String、StringBuffer、StringBuilder 的区别？String 为什么是不可变的?
 
 **可变性**
 
@@ -253,11 +284,43 @@ abstract class AbstractStringBuilder implements Appendable, CharSequence {
 2. 单线程操作字符串缓冲区下操作大量数据: 适用 `StringBuilder`
 3. 多线程操作字符串缓冲区下操作大量数据: 适用 `StringBuffer`
 
-### String#equals() 和 Object#equals() 有何区别？
+#### 字符串拼接用“+” 还是 StringBuilder?
 
-`String` 中的 `equals` 方法是被重写过的，比较的是String 字符串的值是否相等。 `Object` 的 `equals` 方法是比较的对象的内存地址。
+Java 语言本身并不支持运算符重载，“+”和“+=”是专门为 String 类重载过的运算符，也是 Java 中仅有的两个重载过的元素符。
 
-### 字符串常量池的作用了解吗？
+```java
+String str1 = "he";
+String str2 = "llo";
+String str3 = "world";
+String str4 = str1 + str2 + str3;
+```
+
+对象引用和“+”的字符串拼接方式，实际上是通过 `StringBuilder` 调用 `append()` 方法实现的，拼接完成之后调用 `toString()` 得到一个 `String` 对象 。
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/touzi/image-20220131173604062.png)
+
+不过，在循环内使用“+”进行字符串的拼接的话，存在比较明显的缺陷：**编译器不会创建单个 `StringBuilder` 以复用，会导致创建过多的 `StringBuilder` 对象**。
+
+```java
+String[] arr = {"he", "llo", "world"};
+String s = "";
+for (int i = 0; i < arr.length; i++) {
+    s += arr[i];
+}
+System.out.println(s);
+```
+
+`StringBuilder` 对象是在循环内部被创建的，这意味着每循环一次就会创建一个 `StringBuilder` 对象。
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/touzi/image-20220131175013108.png)
+
+如果直接使用 `StringBuilder` 对象进行字符串拼接的话，就不会存在这个问题了。
+
+#### String#equals() 和 Object#equals() 有何区别？
+
+`String` 中的 `equals` 方法是被重写过的，比较的是 String 字符串的值是否相等。 `Object` 的 `equals` 方法是比较的对象的内存地址。
+
+#### 字符串常量池的作用了解吗？
 
 **字符串常量池** 是 JVM 为了提升性能和减少内存消耗针为字符串（String 类）专门开辟的一块区域，主要目的是为了避免字符串的重复创建。
 
@@ -269,32 +332,4 @@ System.out.println(aa==bb);// true
 
 JDK1.7 之前运行时常量池逻辑包含字符串常量池存放在方法区。JDK1.7 的时候，字符串常量池被从方法区拿到了堆中。
 
-你可以在JVM 部分找到更多关于字符串常量池的介绍。
-
-### Object 类的常见方法有哪些？
-
-Object 类是一个特殊的类，是所有类的父类。它主要提供了以下 11 个方法：
-
-```java
-public final native Class<?> getClass()//native方法，用于返回当前运行时对象的Class对象，使用了final关键字修饰，故不允许子类重写。
-
-public native int hashCode() //native方法，用于返回对象的哈希码，主要使用在哈希表中，比如JDK中的HashMap。
-public boolean equals(Object obj)//用于比较2个对象的内存地址是否相等，String类对该方法进行了重写用户比较字符串的值是否相等。
-
-protected native Object clone() throws CloneNotSupportedException//naitive方法，用于创建并返回当前对象的一份拷贝。一般情况下，对于任何对象 x，表达式 x.clone() != x 为true，x.clone().getClass() == x.getClass() 为true。Object本身没有实现Cloneable接口，所以不重写clone方法并且进行调用的话会发生CloneNotSupportedException异常。
-
-public String toString()//返回类的名字@实例的哈希码的16进制的字符串。建议Object所有的子类都重写这个方法。
-
-public final native void notify()//native方法，并且不能重写。唤醒一个在此对象监视器上等待的线程(监视器相当于就是锁的概念)。如果有多个线程在等待只会任意唤醒一个。
-
-public final native void notifyAll()//native方法，并且不能重写。跟notify一样，唯一的区别就是会唤醒在此对象监视器上等待的所有线程，而不是一个线程。
-
-public final native void wait(long timeout) throws InterruptedException//native方法，并且不能重写。暂停线程的执行。注意：sleep方法没有释放锁，而wait方法释放了锁 。timeout是等待时间。
-
-public final void wait(long timeout, int nanos) throws InterruptedException//多了nanos参数，这个参数表示额外时间（以毫微秒为单位，范围是 0-999999）。 所以超时的时间还需要加上nanos毫秒。
-
-public final void wait() throws InterruptedException//跟之前的2个wait方法一样，只不过该方法一直等待，没有超时时间这个概念
-
-protected void finalize() throws Throwable { }//实例被垃圾回收器回收的时候触发的操作
-```
-
+你可以在 JVM 部分找到更多关于字符串常量池的介绍。
