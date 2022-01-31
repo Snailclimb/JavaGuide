@@ -257,6 +257,20 @@ abstract class AbstractStringBuilder implements Appendable, CharSequence {
 
 `String` 中的 `equals` 方法是被重写过的，比较的是String 字符串的值是否相等。 `Object` 的 `equals` 方法是比较的对象的内存地址。
 
+### 字符串常量池的作用了解吗？
+
+**字符串常量池** 是 JVM 为了提升性能和减少内存消耗针为字符串（String 类）专门开辟的一块区域，主要目的是为了避免字符串的重复创建。
+
+```java
+String aa = "ab"; // 放在常量池中
+String bb = "ab"; // 从常量池中查找
+System.out.println(aa==bb);// true
+```
+
+JDK1.7 之前运行时常量池逻辑包含字符串常量池存放在方法区。JDK1.7 的时候，字符串常量池被从方法区拿到了堆中。
+
+你可以在JVM 部分找到更多关于字符串常量池的介绍。
+
 ### Object 类的常见方法有哪些？
 
 Object 类是一个特殊的类，是所有类的父类。它主要提供了以下 11 个方法：
