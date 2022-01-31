@@ -167,7 +167,7 @@ module.exports = config({
           {
             title: "基础", prefix: "basis/",
             children: [
-              "java基础知识总结",
+              "java-basic-questions-01", "java-basic-questions-02", "java-basic-questions-03",
               {
                 title: "重要知识点",
                 children: [
