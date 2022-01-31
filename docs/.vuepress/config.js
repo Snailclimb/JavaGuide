@@ -188,7 +188,7 @@ module.exports = config({
           {
             title: "并发编程", prefix: "concurrent/",
             children: [
-              "java并发基础常见面试题总结", "java并发进阶常见面试题总结",
+              "java-concurrent-questions-01", "java-concurrent-questions-02",
               {
                 title: "重要知识点",
                 children: ["java线程池学习总结", "并发容器总结", "拿来即用的java线程池最佳实践", "aqs原理以及aqs同步组件总结", "reentrantlock",
