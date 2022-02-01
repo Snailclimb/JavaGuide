@@ -179,7 +179,7 @@ module.exports = config({
           {
             title: "容器", prefix: "collection/",
             children: [
-              "java集合框架基础知识&面试题总结", "java集合使用注意事项",
+              "java-collection-questions-01", "java-collection-questions-02", "java集合使用注意事项",
               {
                 title: "源码分析",
                 children: ["arraylist-source-code", "hashmap-source-code", "concurrent-hash-map-source-code"],
