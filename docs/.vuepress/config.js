@@ -298,8 +298,8 @@ module.exports = config({
         title: "分布式", icon: "distributed-network", prefix: "distributed-system/",
         children: [
           {
-            title: "理论&算法", prefix: "理论&算法/",
-            children: ["cap&base理论", "paxos&raft算法"],
+            title: "理论&算法&协议", prefix: "theorem&algorithm&protocol/",
+            children: ["cap&base-theorem", "paxos-algorithm", "raft-algorithm"],
           },
           "api-gateway", "distributed-id",
           {

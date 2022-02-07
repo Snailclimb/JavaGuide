@@ -135,8 +135,6 @@ Other common data structures : 1.
 
 This part of the algorithm is very important, if you do not know how to learn the algorithm, you can look at what I wrote.
 
-
-
 - [Recommended Algorithm Learning Books + Resources](https://www.zhihu.com/question/323359308/answer/1545320858) 。
 - [如何刷Leetcode?](https://www.zhihu.com/question/31092580/answer/1534887374) 
 
@@ -248,7 +246,7 @@ CAP is also the combination of the initials Consistency, Availability, and Parti
 
 **BASE** is an acronym for **Basically Available**, **Soft-state**, and **Eventually Consistent**. The BASE theory is the result of a trade-off between consistency and availability in the CAP, and is derived from a summary of distributed practices for large-scale Internet systems, evolving from the CAP theorem, which significantly reduces our system requirements.
 
-Related reading: [CAP Theory and BASE Theory Explained](docs/distributed-system/理论&算法/cap&base理论.md)
+Related reading: [CAP Theory and BASE Theory Explained](docs/distributed-system/theorem&algorithm&protocol/cap&base-theorem.md)
 
 ### Paxos algorithm and Raft algorithm
 

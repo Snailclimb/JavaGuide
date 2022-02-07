@@ -247,11 +247,16 @@ CAP 也就是 Consistency（一致性）、Availability（可用性）、Partiti
 
 **BASE** 是 **Basically Available（基本可用）** 、**Soft-state（软状态）** 和 **Eventually Consistent（最终一致性）** 三个短语的缩写。BASE 理论是对 CAP 中一致性和可用性权衡的结果，其来源于对大规模互联网系统分布式实践的总结，是基于 CAP 定理逐步演化而来的，它大大降低了我们对系统的要求。
 
-相关阅读：[CAP 理论和 BASE 理论解读](docs/distributed-system/理论&算法/cap&base理论.md)
+相关阅读：[CAP 理论和 BASE 理论解读](docs/distributed-system/theorem&algorithm&protocol/cap&base-theorem.md)
 
 ### Paxos 算法和 Raft 算法
 
-**Paxos 算法**诞生于 1990 年，这是一种解决分布式系统一致性的经典算法 。但是，由于 Paxos 算法非常难以理解和实现，不断有人尝试简化这一算法。到了2013 年才诞生了一个比 Paxos 算法更易理解和实现的分布式一致性算法—**Raft 算法**。
+**Paxos 算法** 诞生于 1990 年，这是一种解决分布式系统一致性的经典算法 。但是，由于 Paxos 算法非常难以理解和实现，不断有人尝试简化这一算法。到了2013 年才诞生了一个比 Paxos 算法更易理解和实现的分布式一致性算法—**Raft 算法**。
+
+相关阅读：
+
+- [Paxos 算法解读](docs/distributed-system/theorem&algorithm&protocol/paxos-algorithm.md)
+- [Raft 算法解读](docs/distributed-system/theorem&algorithm&protocol/raft-algorithm.md)
 
 ### RPC
 
