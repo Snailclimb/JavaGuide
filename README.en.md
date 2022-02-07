@@ -44,7 +44,11 @@ Read in other languages: [Mandarin](https://github.com/Snailclimb/JavaGuide/blob
 
 ### Basis
 
-**Knowledge points/interview questions**: (Must see:+1: ): [Java Basics Knowledge Points/Interview Questions Summary](docs/java/basis/javabasics-summary.md)
+**Knowledge points/interview questions**: (Must see:+1: ): 
+
+- [Java Basics Knowledge Points/Interview Questions Summary(1)](docs/java/basis/java-basic-questions-01.md)
+- [Java Basics Knowledge Points/Interview Questions Summary(2)](docs/java/basis/java-basic-questions-01.md)
+- [Java Basics Knowledge Points/Interview Questions Summary(3)](docs/java/basis/java-basic-questions-01.md)
 
 **Important Knowledge Points Explained:**
 
@@ -71,11 +75,11 @@ Read in other languages: [Mandarin](https://github.com/Snailclimb/JavaGuide/blob
 
 **Important Knowledge Points Explained:**
 
-1. **Thread pool**: [Java thread pool learning summary](./docs/java/concurrent/java线程池学习总结.md), [Java thread pooling best practices](./docs/java/concurrent/拿来即用的java线程池最佳实践.md)
+1. **Thread pool**: [Java thread pool learning summary](./docs/java/concurrent/java-thread-pool-summary.md), [Java thread pooling best practices](./docs/java/concurrent/java-thread-pool-best-practices.md)
 2. [ThreadLocal keyword resolution](docs/java/concurrent/threadlocal.md)
-3. [Java concurrency container summary](docs/java/concurrent/并发容器总结.md)
-4. [Atomic atomic class summary](docs/java/concurrent/atomic原子类总结.md)
-5. [AQS principle and AQS synchronization component summary](docs/java/concurrent/aqs原理以及aqs同步组件总结.md)
+3. [Java concurrency container summary](docs/java/concurrent/java-concurrent-collections.md)
+4. [Atomic atomic class summary](docs/java/concurrent/atomic-classes.md)
+5. [AQS principle and AQS synchronization component summary](docs/java/concurrent/aqs.md)
 6. [Getting Started with CompletableFuture](docs/java/concurrent/completablefuture-intro.md)
 
 ### JVM (must see :+1:)

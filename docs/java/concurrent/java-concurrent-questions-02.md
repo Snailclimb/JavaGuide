@@ -758,7 +758,7 @@ public void execute(Runnable command) {
 
 通过下图可以更好的对上面这 3 步做一个展示，下图是我为了省事直接从网上找到，原地址不明。
 
-![图解线程池实现原理](images/java线程池学习总结/图解线程池实现原理.png)
+![图解线程池实现原理](images/java-thread-pool-summary/图解线程池实现原理.png)
 
 现在，让我们在回到 4.6 节我们写的 Demo， 现在是不是很容易就可以搞懂它的原理了呢？
 

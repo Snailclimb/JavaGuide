@@ -1,5 +1,5 @@
 ---
-title:  拿来即用的Java线程池最佳实践
+title: Java 线程池最佳实践
 category: Java
 tag:
   - Java并发

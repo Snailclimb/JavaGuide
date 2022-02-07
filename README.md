@@ -1,7 +1,7 @@
 ## 👏 重大更新！！！重磅！
 
 - JavaGuide 在线阅读版（新版，推荐👍）：https://javaguide.cn/
-- JavaGuide 在线阅读版（老版，部分链接已经无法访问）:https://snailclimb.gitee.io/javaguide/#/
+- JavaGuide 在线阅读版（老版）:https://snailclimb.gitee.io/javaguide/#/
 -  [《JavaGuide 面试突击版》PDF 版本下载](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=100029614&idx=1&sn=62993c5cf10265cb7018db7f1ec67250&chksm=4ea1fb6579d67273499b7243641d4ef372decd08047bfbb6dfb5843ef81c7ccba209086cf345#rd) 
 
 <a href="https://t.1yb.co/GXLF"><img src="https://img-blog.csdnimg.cn/2f61f3e2d1f2427da977340919e41616.png" style="margin: 0 auto;width:850px" /></a>
@@ -43,34 +43,47 @@
 
 ### 基础
 
-**知识点/面试题** : (必看:+1: )：[Java 基础知识点/面试题总结](docs/java/basis/java基础知识总结.md)
+**知识点/面试题** : (必看:+1: )：
 
-**重要知识点详解：**
+- [Java 基础常见知识点&面试题总结(上)](docs/java/basis/java-basic-questions-01.md)
+- [Java 基础常见知识点&面试题总结(中)](docs/java/basis/java-basic-questions-01.md)
+- [Java 基础常见知识点&面试题总结(下)](docs/java/basis/java-basic-questions-01.md)
+
+**重要知识点详解** ：
 
 - [为什么 Java 中只有值传递？](docs/java/basis/why-there-only-value-passing-in-java.md)
-- [什么是反射机制？反射机制的应用场景有哪些？](docs/java/basis/反射机制详解.md)
-- [代理模式详解：静态代理+JDK/CGLIB 动态代理实战](docs/java/basis/代理模式详解.md)
-- [常见的 IO 模型有哪些？Java 中的 BIO、NIO、AIO 有啥区别?](docs/java/basis/io模型详解.md)
+- [什么是反射机制？反射机制的应用场景有哪些？](docs/java/basis/reflection.md)
+- [代理模式详解：静态代理+JDK/CGLIB 动态代理实战](docs/java/basis/proxy.md)
+- [常见的 IO 模型有哪些？Java 中的 BIO、NIO、AIO 有啥区别?](docs/java/basis/io.md)
 - [BigDecimal解决浮点数运算精度丢失问题](docs/java/basis/bigdecimal.md)
+- **[泛型连环炮](docs/java/basis/generics.md)**
 
 ### 集合
 
-1. **[Java 集合常见问题总结](docs/java/collection/java集合框架基础知识&面试题总结.md)** (必看 :+1:)
+**知识点/面试题** ：
+
+1. [Java 集合常见知识点&面试题总结(上)](docs/java/collection/java-collection-questions-01.md) (必看 :+1:)
+2. [Java 集合常见知识点&面试题总结(下)](docs/java/collection/java-collection-questions-02.md) (必看 :+1:)
 2. [Java 容器使用注意事项总结](docs/java/collection/java集合使用注意事项.md)
-3. **源码分析** ：[ArrayList 源码+扩容机制分析](docs/java/collection/arraylist-source-code.md)  、[HashMap(JDK1.8)源码+底层数据结构分析](docs/java/collection/hashmap-source-code.md) 、[ConcurrentHashMap 源码+底层数据结构分析](docs/java/collection/concurrent-hash-map-source-code.md)
+
+**源码分析** ：
+
+- [ArrayList 源码+扩容机制分析](docs/java/collection/arraylist-source-code.md)
+- [HashMap(JDK1.8)源码+底层数据结构分析](docs/java/collection/hashmap-source-code.md)
+- [ConcurrentHashMap 源码+底层数据结构分析](docs/java/collection/concurrent-hash-map-source-code.md)
 
 ### 并发
 
-**知识点/面试题:** (必看 :+1:)
+**知识点/面试题** : (必看 :+1:)
 
-1. **[Java 并发基础常见面试题总结](docs/java/concurrent/java并发基础常见面试题总结.md)**
-2. **[Java 并发进阶常见面试题总结](docs/java/concurrent/java并发进阶常见面试题总结.md)**
+1. [Java 并发常见知识点&面试题总结（基础篇）](docs/java/concurrent/java-concurrent-questions-01.md)
+2. [Java 并发常见知识点&面试题总结（进阶篇）](docs/java/concurrent/java-concurrent-questions-02.md)
 
-**重要知识点详解：**
+**重要知识点详解** ：
 
-1. **线程池**：[Java 线程池学习总结](./docs/java/concurrent/java线程池学习总结.md)、[拿来即用的 Java 线程池最佳实践](./docs/java/concurrent/拿来即用的java线程池最佳实践.md)
+1. **线程池** ：[Java 线程池详解](./docs/java/concurrent/java-thread-pool-summary.md)、[Java 线程池最佳实践](./docs/java/concurrent/java-thread-pool-best-practices.md)
 2. [ThreadLocal 关键字解析](docs/java/concurrent/threadlocal.md)
-3. [Java 并发容器总结](docs/java/concurrent/并发容器总结.md)
+3. [Java 并发容器总结](docs/java/concurrent/java-concurrent-collections.md)
 4. [Atomic 原子类总结](docs/java/concurrent/atomic原子类总结.md)
 5. [AQS 原理以及 AQS 同步组件总结](docs/java/concurrent/aqs原理以及aqs同步组件总结.md)
 6. [CompletableFuture入门](docs/java/concurrent/completablefuture-intro.md)
@@ -193,17 +206,17 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 #### Spring/SpringBoot (必看 :+1:)
 
-**知识点/面试题:** 
+**知识点/面试题** :
 
-1. **[Spring 常见问题总结](docs/system-design/framework/spring/Spring常见问题总结.md)**
+1. **[Spring 常见知识点&面试题总结](docs/system-design/framework/spring/spring-knowledge-and-questions-summary.md)**
 2. **[SpringBoot 入门指南](https://github.com/Snailclimb/springboot-guide)**
 
-**重要知识点详解：**
+**重要知识点详解** ：
 
-1. **[Spring/Spring Boot 常用注解总结！安排！](./docs/system-design/framework/spring/Spring&SpringBoot常用注解总结.md)** 
-2. **[Spring 事务总结](docs/system-design/framework/spring/Spring事务总结.md)** 
-3. [Spring 中都用到了那些设计模式?](docs/system-design/framework/spring/Spring设计模式总结.md)
-4. **[SpringBoot 自动装配原理？”](docs/system-design/framework/spring/SpringBoot自动装配原理.md)**
+1. **[Spring/Spring Boot 常用注解总结！安排！](./docs/system-design/framework/spring/spring-common-annotations.md)** 
+2. **[Spring 事务总结](docs/system-design/framework/spring/spring-transaction.md)** 
+3. [Spring 中都用到了那些设计模式?](docs/system-design/framework/spring/spring-design-patterns-summary.md)
+4. **[SpringBoot 自动装配原理](docs/system-design/framework/spring/spring-boot-auto-assembly-principles.md)**
 
 #### MyBatis
 
@@ -220,7 +233,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 **[《认证授权基础》](docs/system-design/security/basis-of-authority-certification.md)** 这篇文章中我会介绍认证授权常见概念： **Authentication**,**Authorization** 以及 **Cookie**、**Session**、Token、**OAuth 2**、**SSO** 。如果你不清楚这些概念的话，建议好好阅读一下这篇文章。
 
 - **JWT** ：JWT（JSON Web Token）是一种身份认证的方式，JWT 本质上就一段签名的 JSON 格式的数据。由于它是带有签名的，因此接收者便可以验证它的真实性。相关阅读：
-  - [JWT 优缺点分析以及常见问题解决方案](docs/system-design/security/jwt优缺点分析以及常见问题解决方案.md)
+  - [JWT 优缺点分析以及常见问题解决方案](docs/system-design/security/advantages&disadvantages-of-jwt.md)
   - [适合初学者入门 Spring Security With JWT 的 Demo](https://github.com/Snailclimb/spring-security-jwt-guide)
 
 - **SSO(单点登录)** ：**SSO(Single Sign On)** 即单点登录说的是用户登陆多个子系统的其中一个就有权访问与其相关的其他系统。举个例子我们在登陆了京东金融之后，我们同时也成功登陆京东的京东超市、京东家电等子系统。相关阅读：[**SSO 单点登录看这篇就够了！**](docs/system-design/security/sso-intro.md)
@@ -400,7 +413,7 @@ Dubbo 是一款国产的 RPC 框架，由阿里开源。相关阅读：
 ### Docker
 
 - [Docker 基本概念解读](./docs/tools/docker/docker-intro.md)
-- [Docker从入门到上手干事](./docs/tools/docker/docker-in-actiono.md)
+- [Docker从入门到上手干事](./docs/tools/docker/docker-in-action.md)
 
 ## 关于作者
 

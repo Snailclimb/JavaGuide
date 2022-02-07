@@ -1,5 +1,5 @@
 ---
-title:  Java线程池学习总结
+title:  Java 线程池详解
 category: Java
 tag:
   - Java并发
@@ -59,7 +59,7 @@ public class ScheduledThreadPoolExecutor
         implements ScheduledExecutorService
 ```
 
-![任务的执行相关接口](images/java线程池学习总结/任务的执行相关接口.png)
+![任务的执行相关接口](images/java-thread-pool-summary/任务的执行相关接口.png)
 
 #### 3) 异步计算的结果(`Future`)
 
@@ -69,7 +69,7 @@ public class ScheduledThreadPoolExecutor
 
 ### 2.3 Executor 框架的使用示意图
 
-![Executor 框架的使用示意图](images/java线程池学习总结/Executor框架的使用示意图.png)
+![Executor 框架的使用示意图](images/java-thread-pool-summary/Executor框架的使用示意图.png)
 
 1. **主线程首先要创建实现 `Runnable` 或者 `Callable` 接口的任务对象。**
 2. **把创建完成的实现 `Runnable`/`Callable`接口的 对象直接交给 `ExecutorService` 执行**: `ExecutorService.execute（Runnable command）`）或者也可以把 `Runnable` 对象或`Callable` 对象提交给 `ExecutorService` 执行（`ExecutorService.submit（Runnable task）`或 `ExecutorService.submit（Callable <T> task）`）。
@@ -129,7 +129,7 @@ public class ScheduledThreadPoolExecutor
 
 下面这张图可以加深你对线程池中各个参数的相互关系的理解（图片来源：《Java 性能调优实战》）：
 
-![线程池各个参数的关系](images/java线程池学习总结/线程池各个参数之间的关系.png)
+![线程池各个参数的关系](images/java-thread-pool-summary/线程池各个参数之间的关系.png)
 
 **`ThreadPoolExecutor` 饱和策略定义:**
 
@@ -160,7 +160,7 @@ public class ScheduledThreadPoolExecutor
 > - **`CachedThreadPool` 和 `ScheduledThreadPool`** ： 允许创建的线程数量为 `Integer.MAX_VALUE` ，可能会创建大量线程，从而导致 OOM。
 
 **方式一：通过`ThreadPoolExecutor`构造函数实现（推荐）**
-![通过构造方法实现](images/java线程池学习总结/threadpoolexecutor构造函数.png)
+![通过构造方法实现](images/java-thread-pool-summary/threadpoolexecutor构造函数.png)
 
 **方式二：通过 `Executor` 框架的工具类 `Executors` 来实现**
 我们可以创建三种类型的 `ThreadPoolExecutor`：
@@ -171,7 +171,7 @@ public class ScheduledThreadPoolExecutor
 
 对应 Executors 工具类中的方法如图所示：
 
-![通过Executor 框架的工具类Executors来实现](images/java线程池学习总结/Executors工具类.png)
+![通过Executor 框架的工具类Executors来实现](images/java-thread-pool-summary/Executors工具类.png)
 
 ## 四 ThreadPoolExecutor 使用+原理分析
 
@@ -693,7 +693,7 @@ Wed Nov 13 13:40:43 CST 2019::pool-1-thread-5
 
 `FixedThreadPool` 的 `execute()` 方法运行示意图（该图片来源：《Java 并发编程的艺术》）：
 
-![FixedThreadPool的execute()方法运行示意图](images/java线程池学习总结/FixedThreadPool.png)
+![FixedThreadPool的execute()方法运行示意图](images/java-thread-pool-summary/FixedThreadPool.png)
 
 **上图说明：**
 
@@ -743,7 +743,7 @@ Wed Nov 13 13:40:43 CST 2019::pool-1-thread-5
 #### 5.2.2 执行任务过程介绍
 
 `SingleThreadExecutor` 的运行示意图（该图片来源：《Java 并发编程的艺术》）：
-![SingleThreadExecutor的运行示意图](images/java线程池学习总结/SingleThreadExecutor.png)
+![SingleThreadExecutor的运行示意图](images/java-thread-pool-summary/SingleThreadExecutor.png)
 
 **上图说明** :
 
@@ -787,7 +787,7 @@ Wed Nov 13 13:40:43 CST 2019::pool-1-thread-5
 #### 5.3.2 执行任务过程介绍
 
 `CachedThreadPool` 的 `execute()` 方法的执行示意图（该图片来源：《Java 并发编程的艺术》）：
-![CachedThreadPool的execute()方法的执行示意图](images/java线程池学习总结/CachedThreadPool-execute.png)
+![CachedThreadPool的execute()方法的执行示意图](images/java-thread-pool-summary/CachedThreadPool-execute.png)
 
 **上图说明：**
 
@@ -818,7 +818,7 @@ Wed Nov 13 13:40:43 CST 2019::pool-1-thread-5
 
 ### 6.2 运行机制
 
-![ScheduledThreadPoolExecutor运行机制](images/java线程池学习总结/ScheduledThreadPoolExecutor机制.png)
+![ScheduledThreadPoolExecutor运行机制](images/java-thread-pool-summary/ScheduledThreadPoolExecutor机制.png)
 
 **`ScheduledThreadPoolExecutor` 的执行主要分为两大部分：**
 
@@ -833,7 +833,7 @@ Wed Nov 13 13:40:43 CST 2019::pool-1-thread-5
 
 ### 6.3 ScheduledThreadPoolExecutor 执行周期任务的步骤
 
-![ScheduledThreadPoolExecutor执行周期任务的步骤](images/java线程池学习总结/ScheduledThreadPoolExecutor执行周期任务步骤.png)
+![ScheduledThreadPoolExecutor执行周期任务的步骤](images/java-thread-pool-summary/ScheduledThreadPoolExecutor执行周期任务步骤.png)
 
 1. 线程 1 从 `DelayQueue` 中获取已到期的 `ScheduledFutureTask（DelayQueue.take()）`。到期任务是指 `ScheduledFutureTask`的 time 大于等于当前系统的时间；
 2. 线程 1 执行这个 `ScheduledFutureTask`；
