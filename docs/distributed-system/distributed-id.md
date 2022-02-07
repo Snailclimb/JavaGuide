@@ -120,7 +120,7 @@ CREATE TABLE `sequence_id_generator` (
 
 ![](https://img-blog.csdnimg.cn/20210610081149228.png)
 
-`version` 字段主要用于解决并发问题（乐观锁）,`biz_type` 主要用于表示业余类型。
+`version` 字段主要用于解决并发问题（乐观锁）,`biz_type` 主要用于表示业务类型。
 
 **2.先插入一行数据。**
 
