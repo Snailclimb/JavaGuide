@@ -128,7 +128,7 @@ new Thread(new Runnable() {
 new Thread(() -> System.out.println("It's a lambda function!")).start();
 ```
 
-**2.`Comperator` 接口**
+**2.`Comparator` 接口**
 
 ```java
 List<Integer> strings = Arrays.asList(1, 2, 3);
