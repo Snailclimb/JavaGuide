@@ -1,4 +1,9 @@
-# 1049天,100K Star！简单复盘
+---
+title: 1049天,100K Star！简单复盘
+category: 走近作者
+tag:
+  - 个人经历
+---
 
 2021-03-21，晚上12点，肝完了我正在做的一个项目的前端的某块功能，我随手打开了[我的 Github 主页](https://github.com/Snailclimb)。
 
