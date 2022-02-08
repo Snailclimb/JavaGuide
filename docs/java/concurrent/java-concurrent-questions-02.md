@@ -7,8 +7,6 @@ tag:
 
 ## 1.synchronized 关键字
 
-![](images/interview-questions/synchronized关键字.png)
-
 ### 1.1.说一说自己对于 synchronized 关键字的了解
 
 **`synchronized` 关键字解决的是多个线程之间访问资源的同步性，`synchronized`关键字可以保证被它修饰的方法或者代码块在任意时刻只能有一个线程执行。**
@@ -220,7 +218,7 @@ JDK1.6 对锁的实现引入了大量的优化，如偏向锁、轻量级锁、�
 
 为了更好地理解，我画了一个简单的 CPU Cache 示意图如下（实际上，现代的 CPU Cache 通常分为三层，分别叫 L1,L2,L3 Cache）:
 
-![CPU Cache](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-8/303a300f-70dd-4ee1-9974-3f33affc6574.png)
+![cpu-cache](./images/interview-questions/cpu-cache.png)
 
 **CPU Cache 的工作方式：**
 
@@ -230,15 +228,20 @@ JDK1.6 对锁的实现引入了大量的优化，如偏向锁、轻量级锁、�
 
 ### 2.2. 讲一下 JMM(Java 内存模型)
 
+Java 内存模型抽象了线程和主内存之间的关系，就比如说线程之间的共享变量必须存储在主内存中。Java 内存模型主要目的是为了屏蔽系统和硬件的差异，避免一套代码在不同的平台下产生的效果不一致。
+
 在 JDK1.2 之前，Java 的内存模型实现总是从**主存**（即共享内存）读取变量，是不需要进行特别的注意的。而在当前的 Java 内存模型下，线程可以把变量保存**本地内存**（比如机器的寄存器）中，而不是直接在主存中进行读写。这就可能造成一个线程在主存中修改了一个变量的值，而另外一个线程还继续使用它在寄存器中的变量值的拷贝，造成**数据的不一致**。
 
-![JMM(Java内存模型)](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-8/0ac7e663-7db8-4b95-8d8e-7d2b179f67e8.png)
+> - **主内存** ：所有线程创建的实例对象都存放在主内存中，不管该实例对象是成员变量还是方法中的本地变量(也称局部变量)
+> - **本地内存** ：每个线程都有一个私有的本地内存来存储共享变量的副本，并且，每个线程只能访问自己的本地内存，无法访问其他线程的本地内存。本地内存是 JMM 抽象出来的一个概念，存储了主内存中的共享变量副本。
+
+![JMM(Java 内存模型)](./images/interview-questions/jmm.png)
 
 要解决这个问题，就需要把变量声明为 **`volatile`** ，这就指示 JVM，这个变量是共享且不稳定的，每次使用它都到主存中进行读取。
 
 所以，**`volatile` 关键字 除了防止 JVM 的指令重排 ，还有一个重要的作用就是保证变量的可见性。**
 
-![volatile关键字的可见性](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-8/d49c5557-140b-4abf-adad-8aac3c9036cf.png)
+![volatile关键字可见性](./images/interview-questions/jmm2.png)
 
 ### 2.3. 并发编程的三个重要特性
 
