@@ -173,7 +173,7 @@ In addition，[GeeksforGeeks]( https://www.geeksforgeeks.org/fundamentals-of-alg
 
 ### Redis
 
-1. [Redis FAQ Summary](docs/database/redis/redis知识点&面试题总结.md)
+1. [Redis FAQ Summary](docs/database/redis/redis-questions-01.md)
 2. [3 common cache read and write strategies](docs/database/redis/3-commonly-used-cache-read-and-write-strategies.md)
 
 ## Search Engine

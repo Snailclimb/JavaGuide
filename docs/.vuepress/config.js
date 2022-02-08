@@ -258,7 +258,7 @@ module.exports = config({
           },
           {
             title: "Redis", prefix: "redis/",
-            children: ["redis知识点&面试题总结", "3-commonly-used-cache-read-and-write-strategies"],
+            children: ["redis-questions-01", "3-commonly-used-cache-read-and-write-strategies"],
           },
         ],
       },
