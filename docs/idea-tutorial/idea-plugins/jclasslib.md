@@ -9,7 +9,7 @@ tag:
 
 由于后面要分享的一篇文章中用到了这篇文章要推荐的一个插件，所以这里分享一下。非常实用！你会爱上它的！
 
-![](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%93%E4%B8%9A%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/image-20201013084919965.png)
+![](./pictures/jclasslib/image-20201013084919965.png)
 
 **开始推荐 IDEA 字节码查看神器之前，先来回顾一下 Java 字节码是啥。**
 
@@ -55,11 +55,11 @@ public class Main {
 
 > 需要注意的是：**查看某个类对应的字节码文件之前确保它已经被编译过。**
 
-![使用IDEA自带功能查看Java字节码](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images/IDEA%E6%8F%92%E4%BB%B6/image-20201012143530226.png)
+![使用IDEA自带功能查看Java字节码](./pictures/jclasslib/image-20201012143530226.png)
 
 稍等几秒钟之后，你就可以直观到看到对应的类的字节码内容了。
 
-![](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images/2020-10/image-20201012145127465.png)
+![](./pictures/jclasslib/image-20201012145127465.png)
 
 从字节码中可以看出，我圈出来的位置发生了 **拆箱操作** 。
 
@@ -82,12 +82,12 @@ System.out.println(flag ? 0 : i);
 
 **使用 `jclasslib` 不光可以直观地查看某个类对应的字节码文件，还可以查看类的基本信息、常量池、接口、属性、函数等信息。**
 
-![](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images/2020-10/image-20201012145646086.png)
+![](./pictures/jclasslib/image-20201012145646086.png)
 
 我们直接在 IDEA 的插件市场即可找到这个插件。我这里已经安装好了。
 
-![](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images/2020-10-12/image-20201012145900911.png)
+![](./pictures/jclasslib/image-20201012145900911.png)
 
 安装完成之后，重启 IDEA。点击`View -> Show Bytecode With jclasslib` 即可通过`jclasslib` 查看某个类对应的字节码文件。
 
-![使用IDEA插件jclasslib查看类的字节码](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%93%E4%B8%9A%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/image-20201012150252106.png)
+![使用IDEA插件jclasslib查看类的字节码](./pictures/jclasslib/image-20201012150252106.png)

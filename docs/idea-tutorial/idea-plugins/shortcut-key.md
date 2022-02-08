@@ -47,7 +47,7 @@ tag:
 
 举个例子。我使用快捷键 `command+9`打开 Version Control ，使用了这个插件之后的效果如下图所示。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/idea/Presentation-Assistant.gif)
+![](./pictures/Presentation-Assistant.png)
 
 从上图可以很清晰地看到，IDEA 的底部中间的位置将我刚刚所使用的快捷键给展示了出来。
 

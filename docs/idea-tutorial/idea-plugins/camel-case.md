@@ -6,11 +6,11 @@ tag:
   - IDEA插件
 ---
 
-非常有用！这个插件可以实现包含6种常见命名格式之间的切换。并且，你还可以对转换格式进行相关配置（转换格式），如下图所示：
+非常有用！这个插件可以实现包含6种常见命名格式之间的切换。并且，你还可以对转换格式进行相关配置（转换格式） *Preferences / Settings | Camel Case* 。
 
-![img](./pictures/camel-case/camel-case1.png)
+![](./pictures/camel-case/camel-case1.png)
 
-有了这个插件之后，你只需要使用快捷键 `shift+option+u(mac)` / `shift+alt+u` 对准你要修改的变量或者方法名字，就能实现在多种格式之间切换了，如下图所示：
+有了这个插件之后，点击你想要修改的变量或者方法名使用快捷键 `shift+option+u(mac)` / `shift+alt+u` 即可实现在多种命名格式之间切换。
 
 ![](./pictures/camel-case/camel-case2.gif)
 
@@ -24,4 +24,3 @@ tag:
 
 如果我们不用这个插件，而是手动去一个一个改的话，工作量想必会很大，而且正确率也会因为手工的原因降低。
 
->  
