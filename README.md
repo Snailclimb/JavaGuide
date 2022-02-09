@@ -46,8 +46,8 @@
 **知识点/面试题** : (必看:+1: )：
 
 - [Java 基础常见知识点&面试题总结(上)](docs/java/basis/java-basic-questions-01.md)
-- [Java 基础常见知识点&面试题总结(中)](docs/java/basis/java-basic-questions-01.md)
-- [Java 基础常见知识点&面试题总结(下)](docs/java/basis/java-basic-questions-01.md)
+- [Java 基础常见知识点&面试题总结(中)](docs/java/basis/java-basic-questions-02.md)
+- [Java 基础常见知识点&面试题总结(下)](docs/java/basis/java-basic-questions-03.md)
 
 **重要知识点详解** ：
 
