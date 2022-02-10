@@ -1,10 +1,9 @@
 ---
+title:  Java 内存区域详解
 category: Java
 tag:
   - JVM
 ---
-
-# Java 内存区域详解
 
 如果没有特殊说明，都是针对的是 HotSpot 虚拟机。
 

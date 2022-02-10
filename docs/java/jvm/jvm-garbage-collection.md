@@ -48,20 +48,20 @@ Java 堆是垃圾收集器管理的主要区域，因此也被称作**GC 堆（G
 >
 > ```c++
 > uint ageTable::compute_tenuring_threshold(size_t survivor_capacity) {
->  //survivor_capacity是survivor空间的大小
->  size_t desired_survivor_size = (size_t)((((double)survivor_capacity)*TargetSurvivorRatio)/100);
->  size_t total = 0;
->  uint age = 1;
->  while (age < table_size) {
->      //sizes数组是每个年龄段对象大小
->      total += sizes[age];
->      if (total > desired_survivor_size) {
->          break;
->      }
->      age++;
->  }
->  uint result = age < MaxTenuringThreshold ? age : MaxTenuringThreshold;
->  ...
+> //survivor_capacity是survivor空间的大小
+> size_t desired_survivor_size = (size_t)((((double)survivor_capacity)*TargetSurvivorRatio)/100);
+> size_t total = 0;
+> uint age = 1;
+> while (age < table_size) {
+>   //sizes数组是每个年龄段对象大小
+>   total += sizes[age];
+>   if (total > desired_survivor_size) {
+>       break;
+>   }
+>   age++;
+> }
+> uint result = age < MaxTenuringThreshold ? age : MaxTenuringThreshold;
+> ...
 > }
 > 
 > ```
@@ -155,8 +155,6 @@ Heap
 
 ```
 
-![堆内存常见分配策略 ](./pictures/jvm垃圾回收/堆内存.png)
-
 ### 1.1 对象优先在 eden 区分配
 
 目前主流的垃圾收集器都会采用分代回收算法，因此需要将堆内存分为新生代和老年代，这样我们就可以根据各个年代的特点选择合适的垃圾收集算法。
@@ -167,7 +165,6 @@ Heap
 
 ```java
 public class GCTest {
-
 	public static void main(String[] args) {
 		byte[] allocation1, allocation2;
 		allocation1 = new byte[30900*1024];
@@ -180,7 +177,7 @@ public class GCTest {
 ![](./pictures/jvm垃圾回收/25178350.png)
 
 添加的参数：`-XX:+PrintGCDetails`
-![](./pictures/jvm垃圾回收/10317146.png)
+![](./pictures/jvm垃圾回收/run-with-PrintGCDetails.png)
 
 运行结果 (红色字体描述有误，应该是对应于 JDK1.7 的永久代)：
 
@@ -244,12 +241,12 @@ public class GCTest {
 > size_t total = 0;
 > uint age = 1;
 > while (age < table_size) {
->   //sizes数组是每个年龄段对象大小
->   total += sizes[age];
->   if (total > desired_survivor_size) {
->       break;
->   }
->   age++;
+> //sizes数组是每个年龄段对象大小
+> total += sizes[age];
+> if (total > desired_survivor_size) {
+>    break;
+> }
+> age++;
 > }
 > uint result = age < MaxTenuringThreshold ? age : MaxTenuringThreshold;
 > ...
@@ -270,7 +267,7 @@ public class GCTest {
 
 上面的说法已经在《深入理解 Java 虚拟机》第三版中被改正过来了。感谢 R 大的回答：
 
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2020-8/b48228c2-ac00-4668-a78f-6f221f8563b5.png)
+![](./pictures/jvm垃圾回收/rf-hotspot-vm-gc.png)
 
 **总结：**
 
@@ -298,8 +295,6 @@ public class GCTest {
 
 堆中几乎放着所有的对象实例，对堆垃圾回收前的第一步就是要判断哪些对象已经死亡（即不能再被任何途径使用的对象）。
 
-![](./pictures/jvm垃圾回收/11034259.png)
-
 ### 2.1 引用计数法
 
 给对象中添加一个引用计数器，每当有一个地方引用它，计数器就加 1；当引用失效，计数器就减 1；任何时候计数器为 0 的对象就是不可能再被使用的。
@@ -323,17 +318,32 @@ public class ReferenceCountingGc {
 
 ### 2.2 可达性分析算法
 
-这个算法的基本思想就是通过一系列的称为 **“GC Roots”** 的对象作为起点，从这些节点开始向下搜索，节点所走过的路径称为引用链，当一个对象到 GC Roots 没有任何引用链相连的话，则证明此对象是不可用的。
+这个算法的基本思想就是通过一系列的称为 **“GC Roots”** 的对象作为起点，从这些节点开始向下搜索，节点所走过的路径称为引用链，当一个对象到 GC Roots 没有任何引用链相连的话，则证明此对象是不可用的，需要被回收。
 
-![可达性分析算法 ](./pictures/jvm垃圾回收/72762049.png)
+下图中的 `Object 6 ~ Object 10` 之间虽有引用关系，但它们到 GC Roots 不可达，因此为需要被回收的对象。
 
-可作为 GC Roots 的对象包括下面几种:
+![可达性分析算法](./pictures/jvm垃圾回收/jvm-gc-roots.png)
+
+**哪些对象可以作为 GC Roots 呢？**
 
 - 虚拟机栈(栈帧中的本地变量表)中引用的对象
 - 本地方法栈(Native 方法)中引用的对象
 - 方法区中类静态属性引用的对象
 - 方法区中常量引用的对象
 - 所有被同步锁持有的对象
+
+**对象可以被回收，就代表一定会被回收吗？**
+
+即使在可达性分析法中不可达的对象，也并非是“非死不可”的，这时候它们暂时处于“缓刑阶段”，要真正宣告一个对象死亡，至少要经历两次标记过程；可达性分析法中不可达的对象被第一次标记并且进行一次筛选，筛选的条件是此对象是否有必要执行 `finalize` 方法。当对象没有覆盖 `finalize` 方法，或 `finalize` 方法已经被虚拟机调用过时，虚拟机将这两种情况视为没有必要执行。
+
+被判定为需要执行的对象将会被放在一个队列中进行第二次标记，除非这个对象与引用链上的任何一个对象建立关联，否则就会被真的回收。
+
+> `Object` 类中的 `finalize` 方法一直被认为是一个糟糕的设计，成为了 Java 语言的负担，影响了 Java 语言的安全和 GC 的性能。JDK9 版本及后续版本中各个类中的 `finalize` 方法会被逐渐弃用移除。忘掉它的存在吧！
+>
+> 参考：
+>
+> - [JEP 421: Deprecate Finalization for Removal](https://openjdk.java.net/jeps/421)
+> - [是时候忘掉 finalize 方法了](https://mp.weixin.qq.com/s/LW-paZAMD08DP_3-XCUxmg)
 
 ### 2.3 再谈引用
 
@@ -369,19 +379,6 @@ JDK1.2 以后，Java 对引用的概念进行了扩充，将引用分为强引�
 
 特别注意，在程序设计中一般很少使用弱引用与虚引用，使用软引用的情况较多，这是因为**软引用可以加速 JVM 对垃圾内存的回收速度，可以维护系统的运行安全，防止内存溢出（OutOfMemory）等问题的产生**。
 
-### 2.4 不可达的对象并非“非死不可”
-
-即使在可达性分析法中不可达的对象，也并非是“非死不可”的，这时候它们暂时处于“缓刑阶段”，要真正宣告一个对象死亡，至少要经历两次标记过程；可达性分析法中不可达的对象被第一次标记并且进行一次筛选，筛选的条件是此对象是否有必要执行 `finalize` 方法。当对象没有覆盖 `finalize` 方法，或 `finalize` 方法已经被虚拟机调用过时，虚拟机将这两种情况视为没有必要执行。
-
-被判定为需要执行的对象将会被放在一个队列中进行第二次标记，除非这个对象与引用链上的任何一个对象建立关联，否则就会被真的回收。
-
->  `Object` 类中的 `finalize` 方法一直被认为是一个糟糕的设计，成为了 Java 语言的负担，影响了 Java 语言的安全和 GC 的性能。JDK9 版本及后续版本中各个类中的 `finalize` 方法会被逐渐弃用移除。忘掉它的存在吧！
->
-> 参考：
->
-> - [JEP 421: Deprecate Finalization for Removal](https://openjdk.java.net/jeps/421)
-> - [是时候忘掉 finalize 方法了](https://mp.weixin.qq.com/s/LW-paZAMD08DP_3-XCUxmg)
-
 ### 2.5 如何判断一个常量是废弃常量？
 
 运行时常量池主要回收的是废弃的常量。那么，我们如何判断一个常量是废弃常量呢？
@@ -409,8 +406,6 @@ JDK1.2 以后，Java 对引用的概念进行了扩充，将引用分为强引�
 虚拟机可以对满足上述 3 个条件的无用类进行回收，这里说的仅仅是“可以”，而并不是和对象一样不使用了就会必然被回收。
 
 ## 3 垃圾收集算法
-
-![垃圾收集算法分类](./pictures/jvm垃圾回收/垃圾收集算法.png)
 
 ### 3.1 标记-清除算法
 
@@ -444,8 +439,6 @@ JDK1.2 以后，Java 对引用的概念进行了扩充，将引用分为强引�
 根据上面的对分代收集算法的介绍回答。
 
 ## 4 垃圾收集器
-
-![垃圾收集器分类](./pictures/jvm垃圾回收/垃圾收集器.png)
 
 **如果说收集算法是内存回收的方法论，那么垃圾收集器就是内存回收的具体实现。**
 

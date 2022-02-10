@@ -19,7 +19,7 @@ title: JavaGuide（Java学习&&面试指南）
     </p>
     <p>
         <a href="https://sourl.cn/psyWaE">
-            <img src="../media/sponsor/知识星球.png" style="margin: 0 auto; width: 850px;" />
+            <img src="../media/sponsor/xingqiu.png" style="margin: 0 auto; width: 850px;" />
         </a>
     </p>
 </div>

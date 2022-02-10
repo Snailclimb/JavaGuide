@@ -32,7 +32,7 @@
     <tr>
        <td align="center" valign="middle">
         <a href="https://sourl.cn/psyWaE">
-         <img src="./media/sponsor/知识星球.png" style="margin: 0 auto;width:850px" /></a>
+         <img src="./media/sponsor/xingqiu.png" style="margin: 0 auto;width:850px" /></a>
       </td>       
     </tr>
   </tbody>

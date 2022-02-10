@@ -33,7 +33,7 @@ Read in other languages: [Mandarin](https://github.com/Snailclimb/JavaGuide/blob
     <tr>
        <td align="center" valign="middle">
         <a href="https://sourl.cn/e7ee87">
-         <img src="./media/sponsor/知识星球.png" style="margin: 0 auto;width:850px" /></a>
+         <img src="./media/sponsor/xingqiu.png" style="margin: 0 auto;width:850px" /></a>
       </td>       
     </tr>
   </tbody>
@@ -163,7 +163,25 @@ In addition，[GeeksforGeeks]( https://www.geeksforgeeks.org/fundamentals-of-alg
 
 **Important knowledge points:**
 
-1. [MySQL Database Indexing Summary](docs/database/mysql/mysql-index.md)
+1. <div align="center">
+       <p>
+           <a href="https://github.com/Snailclimb/JavaGuide" target="_blank">
+               <img src="https://img-blog.csdnimg.cn/img_convert/1c00413c65d1995993bf2b0daf7b4f03.png#pic_center" width="" />
+           </a>
+       </p>
+       <p>
+           <a href="https://javaguide.cn/"><img src="https://img.shields.io/badge/阅读-read-brightgreen.svg" alt="阅读" /></a>
+           <img src="https://img.shields.io/github/stars/Snailclimb/JavaGuide" alt="stars" />
+           <img src="https://img.shields.io/github/forks/Snailclimb/JavaGuide" alt="forks" />
+           <img src="https://img.shields.io/github/issues/Snailclimb/JavaGuide" alt="issues" />
+       </p>
+       <p>
+           <a href="https://sourl.cn/psyWaE">
+               <img src="../media/sponsor/xingqiu.png" style="margin: 0 auto; width: 850px;" />
+           </a>
+       </p>
+   </div>
+
 2. [Transaction isolation level (graphic detail)](docs/database/mysql/transaction-isolation-level.md)
 3. [MySQL's Three Major Logs (binlog, redo log and undo log) Explained](docs/database/mysql/mysql-logs.md)
 4. [InnoDB storage engine implementation of MVCC](docs/database/mysql/innodb-implementation-of-mvcc.md)
