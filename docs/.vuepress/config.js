@@ -78,7 +78,7 @@ module.exports = config({
     editLinks: true, docsDir: 'docs', seo: true,
     nav: [
       { text: "Java面试指南", icon: "java", link: "/home", },
-      { text: "Java面试指北", icon: "java", link: "https://sourl.cn/e7ee87", },
+      { text: "Java面试指北", icon: "java", link: "https://www.yuque.com/snailclimb/rpkqw1/qoaxer", },
       {
         text: "开发工具", icon: "Tools", link: "/tools/",
         items: [
