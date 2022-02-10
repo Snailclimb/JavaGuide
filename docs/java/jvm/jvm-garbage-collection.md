@@ -1,10 +1,9 @@
 ---
+title:  JVM 垃圾回收详解
 category: Java
 tag:
   - JVM
 ---
-
-# JVM 垃圾回收详解
 
 ## 写在前面
 
