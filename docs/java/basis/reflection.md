@@ -90,7 +90,7 @@ Class alunbarClass2 = o.getClass();
 Class clazz = ClassLoader.loadClass("cn.javaguide.TargetObject");
 ```
 
-通过类加载器获取 Class 对象不会进行初始化，意味着不进行包括初始化等一些列步骤，静态块和静态对象不会得到执行
+通过类加载器获取 Class 对象不会进行初始化，意味着不进行包括初始化等一系列步骤，静态块和静态对象不会得到执行
 
 ### 反射的一些基本操作
 
