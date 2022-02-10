@@ -34,7 +34,7 @@ Java 虚拟机（JVM）是运行 Java 字节码的虚拟机。JVM 有针对不�
 
 除了我们平时最常用的 HotSpot VM 外，还有 J9 VM、Zing VM、JRockit VM 等 JVM 。维基百科上就有常见 JVM 的对比：[Comparison of Java virtual machines](https://en.wikipedia.org/wiki/Comparison_of_Java_virtual_machines) ，感兴趣的可以去看看。并且，你可以在 [Java SE Specifications](https://docs.oracle.com/javase/specs/index.html) 上找到各个版本的 JDK 对应的 JVM 规范。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/Java-SE-Specifications.png)
+![Java SE Specifications](/Users/guide/Documents/GitHub/JavaGuide/docs/java/basis/images/java-se-specifications.png)
 
 #### JDK 和 JRE
 
@@ -376,9 +376,11 @@ public class Person {
 
 发生在同一个类中（或者父类和子类之间），方法名必须相同，参数类型不同、个数不同、顺序不同，方法返回值和访问修饰符可以不同。
 
-下面是《Java 核心技术》对重载这个概念的介绍：
+《Java 核心技术》这本书是这样介绍重载的：
 
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/bg/desktopjava核心技术-重载.jpg)
+> 如果多个方法(比如 `StringBuilder` 构造器方法)有相同的名字、不同的参数， 便产生了重载。 编译器必须挑选出具体执行哪个方法，它通过用各个方法给出的参数类型与特定方法调用所使用的值类型进行匹配来挑选出相应的方法。 如果编译器找不到匹配的参数， 就会产生编译时错误， 因为根本不存在匹配， 或者没有一个比其他的更好(这个过程被称为重载解析(overloading resolution))。
+>
+>  Java 允许重载任何方法， 而不只是构造器方法。 
 
 综上：重载就是同一个类中多个同名方法根据不同的传参来执行不同的逻辑处理。
 
