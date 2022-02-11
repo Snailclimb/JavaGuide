@@ -85,7 +85,7 @@ public class HashMap<K,V> extends AbstractMap<K,V> implements Map<K,V>, Cloneabl
     static final int TREEIFY_THRESHOLD = 8;
     // 当桶(bucket)上的结点数小于这个值时树转链表
     static final int UNTREEIFY_THRESHOLD = 6;
-    // 桶中结构转化为红黑树对应的table的最小大小
+    // 桶中结构转化为红黑树对应的table的最小容量
     static final int MIN_TREEIFY_CAPACITY = 64;
     // 存储元素的数组，总是2的幂次倍
     transient Node<k,v>[] table;
@@ -95,7 +95,7 @@ public class HashMap<K,V> extends AbstractMap<K,V> implements Map<K,V>, Cloneabl
     transient int size;
     // 每次扩容和更改map结构的计数器
     transient int modCount;
-    // 临界值 当实际大小(容量*填充因子)超过临界值时，会进行扩容
+    // 临界值(容量*填充因子) 当实际大小超过临界值时，会进行扩容
     int threshold;
     // 加载因子
     final float loadFactor;
