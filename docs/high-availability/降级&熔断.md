@@ -4,7 +4,7 @@
 
 《Java 面试指北》的部分内容展示如下，你可以将其看作是  [JavaGuide](https://javaguide.cn/#/) 的补充完善，两者配合使用。
 
-![](/Users/guide/Documents/GitHub/JavaGuide/media/pictures/javamianshizhibei.png)
+![](https://gitee.com/SnailClimb/blog-images/raw/master/cs//javamianshizhibei.png)
 
 **我的知识星球可以提供哪些服务？**
 
