@@ -25,7 +25,7 @@ tag:
 
 目前星球的价格调整为  **159** 元，即将上调到 **199** ！并且，现在还提供了优惠券，你可以在公众号“JavaGuide”回复“星球”领取优惠券或者通过这个链接获取：https://sourl.cn/psyWaE 。
 
-![](/Users/guide/Library/Application Support/typora-user-images/image-20220211161659030.png)
+![](https://gitee.com/SnailClimb/blog-images/raw/master/cs//image-20220211161659030.png)
 
 **相信我，星球的内容一定不会让你失望！**
 
