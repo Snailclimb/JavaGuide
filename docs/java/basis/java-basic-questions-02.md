@@ -123,7 +123,7 @@ public class Student {
 
 ```java
 public class Address implements Cloneable{
-    private final String name;
+    private String name;
     // 省略构造函数、Getter&Setter方法
     @Override
     public Address clone() {
