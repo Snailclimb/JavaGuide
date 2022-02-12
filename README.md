@@ -31,7 +31,7 @@
   <tbody>
     <tr>
        <td align="center" valign="middle">
-        <a href="https://sourl.cn/psyWaE">
+        <a href="https://sourl.cn/JkDJJP">
          <img src="./media/sponsor/xingqiu.png" style="margin: 0 auto;width:850px" /></a>
       </td>       
     </tr>

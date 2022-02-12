@@ -13,14 +13,13 @@ action:
     link: /about-the-author/
 ---
 
-👉 **[我整理汇总了一些 Java 面试相关的 PDF 资料（质量很高！不要在看网上的那些东拼西凑的垃圾面试题了！！！），希望对需要的小伙伴有帮助（点击下载）！](https://t.1yb.co/GXLF)**
+## 👍官方知识星球
 
-> 1. **贡献指南** ：欢迎参与 [JavaGuide 的维护工作](https://zhuanlan.zhihu.com/p/464832264)，这是一件非常有意义的事情。
-> 2. **知识星球** : 面试小册/一对一交流/面试修改/求职指南。欢迎加入[我的知识星球](https://sourl.cn/psyWaE) 。
-> 3. **面试专版** ：准备面试的小伙伴可以考虑面试专版：[《Java 面试进阶指北 》](https://www.yuque.com/docs/share/f37fc804-bfe6-4b0d-b373-9c462188fec7) (质量很高，专为面试打造，配合 JavaGuide 食用)
-> 4. **转载须知** ：以下所有文章如非文首说明为转载皆为我（Guide 哥）的原创，转载在文首注明出处，如发现恶意抄袭/搬运，会动用法律武器维护自己的权益。让我们一起维护一个良好的技术创作环境！⛽️
+面试小册/一对一交流/面试修改/求职指南。欢迎加入 JavaGuide 专属[知识星球](https://sourl.cn/JkDJJP)，JavaGuide 专属知识星球详细介绍：[https://sourl.cn/JkDJJP](https://sourl.cn/JkDJJP)。
 
-## 👇推荐阅读 
+**真诚欢迎准备面试的小伙伴加入星球一起交流！真心希望能够帮助到更多小伙伴！**
+
+## 👉推荐阅读 
 
 - [Java学习路线](https://zhuanlan.zhihu.com/p/379041500) : 一份涵盖 Java 后端开发必备技能的学习路线！全面且清晰！
 - [Java开源项目精选](https://gitee.com/SnailClimb/awesome-java) ：收集整理了 Gitee/Github 上非常棒的 Java 开源项目集合。Java 开发必备！
@@ -41,7 +40,7 @@ action:
 
 ![我的公众号](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images/2020-08/167598cd2e17b8ec.png)
 
-## 🙉联系我
+## 📧联系我
 
 交流/加群/互看朋友圈，欢迎添加我的微信（备注“Github”即可）。
 
