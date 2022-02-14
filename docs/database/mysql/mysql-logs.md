@@ -210,7 +210,7 @@ tag:
 
 ![](https://cdn.jsdelivr.net/gh/18702524676/CND5/image/mysql/04/05.png)
 
-虽然性能得到提升，但是机器宕机，`page cache`里面的 binglog 会丢失。
+虽然性能得到提升，但是机器宕机，`page cache`里面的 binlog 会丢失。
 
 为了安全起见，可以设置为`1`，表示每次提交事务都会执行`fsync`，就如同**binlog 日志刷盘流程**一样。
 
