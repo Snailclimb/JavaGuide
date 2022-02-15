@@ -14,7 +14,7 @@ tag:
 
 ### 1. 存储结构
 
-> 下图存在一个笔误 Segmeng -> Segment
+> 下图存在两个笔误 : Segmeng -> Segment ; HashEntity -> HashEntry
 
 ![Java 7 ConcurrentHashMap 存储结构](./images/image-20200405151029416.png)
 
