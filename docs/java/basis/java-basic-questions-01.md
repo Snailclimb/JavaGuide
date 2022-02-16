@@ -284,6 +284,47 @@ Java 中的注释有三种：
 1. `return;` ：直接使用 return 结束方法执行，用于没有返回值函数的方法
 2. `return value;` ：return 一个特定值，用于有返回值函数的方法
 
+思考一下：下列语句的运行结果是什么？
+
+```java
+    public static void main(String[] args) {
+        boolean flag = false;
+        for (int i = 0; i <= 3; i++) {
+            if (i == 0) {
+                System.out.println("0");
+            } else if (i == 1) {
+                System.out.println("1");
+                continue;
+            } else if (i == 2) {
+                System.out.println("2");
+                flag = true;
+            } else if (i == 3) {
+                System.out.println("3");
+                break;
+            } else if (i == 4) {
+                System.out.println("4");
+            }
+            System.out.println("xixi");
+        }
+        if (flag) {
+            System.out.println("haha");
+            return;
+        }
+        System.out.println("heihei");
+    }
+```
+
+运行结果：
+```
+0
+xixi
+1
+2
+xixi
+3
+haha
+```
+
 ### 方法
 
 #### 什么是方法的返回值?方法有哪几种类型？
