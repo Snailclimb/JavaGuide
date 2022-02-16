@@ -9,7 +9,7 @@ tag:
 
 DataGrip 是由 JetBrains 公司（就是那个出品 Intellij IDEA 的公司,JetBrains出品，必属精品）推出的数据库管理软件。如果你不爱折腾的话，这家公司出品的很多 IDE 都是你的最佳选择，比如你进行 Python 开发的可以选择 JetBrains 全家桶中的 PyCharm 。
 
-**DataGrip 支持几乎所有主流的关系数据库产品，如 DB2、Derby、H2、MySQL、Oracle、PostgreSQL、SQL Server、Sqllite 及 Sybase 等，并且提供了简单易用的界面，开发者上手几乎不会遇到任何困难。**
+**DataGrip 支持几乎所有主流的关系数据库产品，如 DB2、Derby、H2、MySQL、Oracle、PostgreSQL、SQL Server、SQLite 及 Sybase 等，并且提供了简单易用的界面，开发者上手几乎不会遇到任何困难。**
 
 我相信，当你第一眼看到 DataGrip 以后，会有一种惊艳的感觉，就好比你第一眼看到一个姑娘，就是那么一瞥，你对自己说，就是她了！废话不多说，来看看 DataGrip 的常用功能。
 
@@ -254,7 +254,7 @@ sql 使用大写形式是个好的习惯，如果使用了小写，可以将光�
 
 选中需要格式化的 sql 代码，使用 Ctrl+Alt+L 快捷键
 
-datagrip 提供了一个功能强大的编辑器，实现了 notpad++的列编辑模式
+datagrip 提供了一个功能强大的编辑器，实现了 notepad++的列编辑模式
 
 ### 列编辑
 
