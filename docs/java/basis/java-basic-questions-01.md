@@ -238,23 +238,33 @@ Java 中的注释有三种：
 
 ### 标识符和关键字的区别是什么？
 
-在我们编写程序的时候，需要大量地为程序、类、变量、方法等取名字，于是就有了标识符，简单来说，标识符就是一个名字。但是有一些标识符，Java 语言已经赋予了其特殊的含义，只能用于特定的地方，这种特殊的标识符就是关键字。因此，关键字是被赋予特殊含义的标识符。比如，在我们的日常生活中 ，“警察局”这个名字已经被赋予了特殊的含义，所以如果你开一家店，店的名字不能叫“警察局”，“警察局”就是我们日常生活中的关键字。
+在我们编写程序的时候，需要大量地为程序、类、变量、方法等取名字，于是就有了标识符，简单来说，标识符就是一个名字。但是有一些标识符，Java 语言已经赋予了其特殊的含义，只能用于特定的地方，这些特殊的标识符就是关键字。因此，关键字是被赋予特殊含义的标识符。比如，在我们的日常生活中，如果我们想要开一家店，则要给这个店起一个名字，起的这个“名字”就叫标识符。但是我们店的名字不能叫“警察局”，因为“警察局”这个名字已经被赋予了特殊的含义，而“警察局”就是我们日常生活中的关键字。
 
-### Java 中有哪些常见的关键字？
+### Java 中有 `53` 个关键字：
 
 | 分类                 | 关键字   |            |          |              |            |           |        |
 | :------------------- | -------- | ---------- | -------- | ------------ | ---------- | --------- | ------ |
 | 访问控制             | private  | protected  | public   |              |            |           |        |
 | 类，方法和变量修饰符 | abstract | class      | extends  | final        | implements | interface | native |
-|                      | new      | static     | strictfp | synchronized | transient  | volatile  |        |
+|                      | new      | static     | strictfp | synchronized | transient  | volatile  | enum   |
 | 程序控制             | break    | continue   | return   | do           | while      | if        | else   |
-|                      | for      | instanceof | switch   | case         | default    |           |        |
+|                      | for      | instanceof | switch   | case         | default    | assert    |        |
 | 错误处理             | try      | catch      | throw    | throws       | finally    |           |        |
 | 包相关               | import   | package    |          |              |            |           |        |
 | 基本类型             | boolean  | byte       | char     | double       | float      | int       | long   |
 |                      | short    | null       | true     | false        |            |           |        |
 | 变量引用             | super    | this       | void     |              |            |           |        |
 | 保留字               | goto     | const      |          |              |            |           |        |
+
+> Tips：所有的关键字都是小写的，在 `IDE` 中表现为<font color=blue>蓝色</font>。
+
+> `default` 这个关键字很特殊，既属于`程序控制`，也属于`类，方法和变量修饰符`，还属于`访问控制`。
+>
+> 在`程序控制`中，当在 `switch` 中匹配不到任何情况时，可以使用 `default` 来编写默认匹配的情况。
+>
+> 在`类，方法和变量修饰符`中，从 `JDK8` 开始引入了默认方法，可以使用 `default` 关键字来定义一个方法的默认实现。
+>
+> 在`访问控制`中，如果一个方法前没有任何修饰符，则默认会有一个修饰符 `default`，但是这个修饰符加上了就会报错。
 
 ### 自增自减运算符
 
@@ -273,6 +283,47 @@ Java 中的注释有三种：
 
 1. `return;` ：直接使用 return 结束方法执行，用于没有返回值函数的方法
 2. `return value;` ：return 一个特定值，用于有返回值函数的方法
+
+思考一下：下列语句的运行结果是什么？
+
+```java
+    public static void main(String[] args) {
+        boolean flag = false;
+        for (int i = 0; i <= 3; i++) {
+            if (i == 0) {
+                System.out.println("0");
+            } else if (i == 1) {
+                System.out.println("1");
+                continue;
+            } else if (i == 2) {
+                System.out.println("2");
+                flag = true;
+            } else if (i == 3) {
+                System.out.println("3");
+                break;
+            } else if (i == 4) {
+                System.out.println("4");
+            }
+            System.out.println("xixi");
+        }
+        if (flag) {
+            System.out.println("haha");
+            return;
+        }
+        System.out.println("heihei");
+    }
+```
+
+运行结果：
+```
+0
+xixi
+1
+2
+xixi
+3
+haha
+```
 
 ### 方法
 
@@ -581,22 +632,24 @@ public native int hashCode();
 
 Java 中有 8 种基本数据类型，分别为：
 
-1. 6 种数字类型 ：`byte`、`short`、`int`、`long`、`float`、`double`
+1. 6 种数字类型：
+   - 4 种整数型：`byte`、`short`、`int`、`long`
+   - 2 种浮点型：`float`、`double`
 2. 1 种字符类型：`char`
 3. 1 种布尔型：`boolean`。
 
 这 8 种基本数据类型的默认值以及所占空间的大小如下：
 
-| 基本类型  | 位数 | 字节 | 默认值  |
-| :-------- | :--- | :--- | :------ |
-| `int`     | 32   | 4    | 0       |
-| `short`   | 16   | 2    | 0       |
-| `long`    | 64   | 8    | 0L      |
-| `byte`    | 8    | 1    | 0       |
-| `char`    | 16   | 2    | 'u0000' |
-| `float`   | 32   | 4    | 0f      |
-| `double`  | 64   | 8    | 0d      |
-| `boolean` | 1    |      | false   |
+| 基本类型  | 位数 | 字节 | 默认值  | 取值范围                                   |
+| :-------- | :--- | :--- | :------ | ------------------------------------------ |
+| `byte`    | 8    | 1    | 0       | -128 ~ 127                                 |
+| `short`   | 16   | 2    | 0       | -32768 ~ 32767                             |
+| `int`     | 32   | 4    | 0       | -2147483648 ~ 2147483647                   |
+| `long`    | 64   | 8    | 0L      | -9223372036854775808 ~ 9223372036854775807 |
+| `char`    | 16   | 2    | 'u0000' | 0 ~ 65535                                  |
+| `float`   | 32   | 4    | 0f      | 1.4E-45 ~ 3.4028235E38                     |
+| `double`  | 64   | 8    | 0d      | 4.9E-324 ~ 1.7976931348623157E308          |
+| `boolean` | 1    |      | false   | true、false                                |
 
 对于 `boolean`，官方文档未明确定义，它依赖于 JVM 厂商的具体实现。逻辑上理解是占用 1 位，但是实际中会考虑计算机高效存储因素。
 
