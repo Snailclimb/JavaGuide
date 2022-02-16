@@ -246,9 +246,9 @@ Java 中的注释有三种：
 | :------------------- | -------- | ---------- | -------- | ------------ | ---------- | --------- | ------ |
 | 访问控制             | private  | protected  | public   |              |            |           |        |
 | 类，方法和变量修饰符 | abstract | class      | extends  | final        | implements | interface | native |
-|                      | new      | static     | strictfp | synchronized | transient  | volatile  |        |
+|                      | new      | static     | strictfp | synchronized | transient  | volatile  | enum   |
 | 程序控制             | break    | continue   | return   | do           | while      | if        | else   |
-|                      | for      | instanceof | switch   | case         | default    |           |        |
+|                      | for      | instanceof | switch   | case         | default    | assert    |        |
 | 错误处理             | try      | catch      | throw    | throws       | finally    |           |        |
 | 包相关               | import   | package    |          |              |            |           |        |
 | 基本类型             | boolean  | byte       | char     | double       | float      | int       | long   |
