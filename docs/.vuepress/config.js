@@ -93,6 +93,9 @@ module.exports = config({
     ],
     sidebar: {
       // 应该把更精确的路径放置在前边
+      "/javaguide/": [
+        "intro", "contribution-guideline", "faq", "todo"
+      ],
       "/about-the-author/": [
         {
           title: "个人经历", icon: "zuozhe", collapsable: false,
