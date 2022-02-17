@@ -577,7 +577,7 @@ AOF 文件的保存位置和 RDB 文件的位置相同，都是通过 dir 参数
 
 ```conf
 appendfsync always    #每次有数据修改发生时都会写入AOF文件,这样会严重降低Redis的速度
-appendfsync everysec  #每秒钟同步一次，显示地将多个写命令同步到硬盘
+appendfsync everysec  #每秒钟同步一次，显式地将多个写命令同步到硬盘
 appendfsync no        #让操作系统决定何时进行同步
 ```
 
