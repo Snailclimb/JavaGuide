@@ -78,7 +78,7 @@ module.exports = config({
     editLinks: true, docsDir: 'docs', seo: true,
     nav: [
       { text: "Java面试指南", icon: "java", link: "/home", },
-      { text: "官方知识星球", icon: "recommend", link: "https://sourl.cn/JkDJJP", },
+      { text: "官方知识星球", icon: "recommend", link: "https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc", },
       {
         text: "开发工具", icon: "Tools", link: "/tools/",
         items: [
@@ -268,6 +268,7 @@ module.exports = config({
       {
         title: "系统设计", icon: "xitongsheji", prefix: "system-design/",
         children: [
+          "system-design-questions",
           {
             title: "基础", prefix: "basis/", icon: "jibendebasic",
             children: [
