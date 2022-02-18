@@ -83,7 +83,7 @@
 1. **线程池** ：[Java 线程池详解](./docs/java/concurrent/java-thread-pool-summary.md)、[Java 线程池最佳实践](./docs/java/concurrent/java-thread-pool-best-practices.md)
 2. [ThreadLocal 关键字解析](docs/java/concurrent/threadlocal.md)
 3. [Java 并发容器总结](docs/java/concurrent/java-concurrent-collections.md)
-4. [Atomic 原子类总结](docs/java/concurrent/atomic原子类总结.md)
+4. [Atomic 原子类总结](docs/java/concurrent/atomic-classes.md)
 5. [AQS 原理以及 AQS 同步组件总结](docs/java/concurrent/aqs原理以及aqs同步组件总结.md)
 6. [CompletableFuture入门](docs/java/concurrent/completablefuture-intro.md)
 
