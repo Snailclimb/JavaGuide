@@ -5,6 +5,11 @@ title: JavaGuide（Java学习&&面试指南）
 
 <div align="center">
     <p>
+        <a href="https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc">
+            <img src="../media/sponsor/xingqiu.png" style="margin: 0 auto; width: 850px;" />
+        </a>
+    </p>
+    <p>
         <a href="https://github.com/Snailclimb/JavaGuide" target="_blank">
             <img src="https://img-blog.csdnimg.cn/img_convert/1c00413c65d1995993bf2b0daf7b4f03.png#pic_center" width="" />
         </a>
@@ -14,11 +19,6 @@ title: JavaGuide（Java学习&&面试指南）
         <img src="https://img.shields.io/github/stars/Snailclimb/JavaGuide" alt="stars" />
         <img src="https://img.shields.io/github/forks/Snailclimb/JavaGuide" alt="forks" />
         <img src="https://img.shields.io/github/issues/Snailclimb/JavaGuide" alt="issues" />
-    </p>
-    <p>
-        <a href="https://sourl.cn/JkDJJP">
-            <img src="../media/sponsor/xingqiu.png" style="margin: 0 auto; width: 850px;" />
-        </a>
     </p>
 </div>
 

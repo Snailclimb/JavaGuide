@@ -1,4 +1,7 @@
-# 分布式 ID
+---
+title: 分布式 ID
+category: 分布式
+---
 
 ## 分布式 ID 介绍
 

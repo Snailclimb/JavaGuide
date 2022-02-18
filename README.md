@@ -6,7 +6,6 @@
 
 <a href="https://t.1yb.co/GXLF"><img src="https://img-blog.csdnimg.cn/2f61f3e2d1f2427da977340919e41616.png" style="margin: 0 auto;width:850px" /></a>
 
-
 > 1. **介绍**：关于 JavaGuide 的相关介绍请看：[关于 JavaGuide 的一些说明](https://www.yuque.com/snailclimb/dr6cvl/mr44yt) 。
 > 2. **贡献指南** ：欢迎参与 [JavaGuide的维护工作](https://github.com/Snailclimb/JavaGuide/issues/1235)，这是一件非常有意义的事情。
 > 3. **PDF版本** ： [《JavaGuide 面试突击版》PDF 版本](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=100029614&idx=1&sn=62993c5cf10265cb7018db7f1ec67250&chksm=4ea1fb6579d67273499b7243641d4ef372decd08047bfbb6dfb5843ef81c7ccba209086cf345#rd) 。
@@ -31,7 +30,7 @@
   <tbody>
     <tr>
        <td align="center" valign="middle">
-        <a href="https://sourl.cn/JkDJJP">
+        <a href="https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc">
          <img src="./media/sponsor/xingqiu.png" style="margin: 0 auto;width:850px" /></a>
       </td>       
     </tr>

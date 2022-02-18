@@ -15,9 +15,11 @@ action:
 
 ## 👍官方知识星球
 
-面试小册/一对一交流/面试修改/求职指南。欢迎加入 JavaGuide 专属[知识星球](https://sourl.cn/JkDJJP)，JavaGuide 专属知识星球详细介绍：[https://sourl.cn/JkDJJP](https://sourl.cn/JkDJJP)。
+专属面试小册/一对一交流/简历修改/专属求职指南。欢迎加入 JavaGuide [知识星球](https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc)，星球详细介绍：[https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc](https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc)。
 
-**真诚欢迎准备面试的小伙伴加入星球一起交流！真心希望能够帮助到更多小伙伴！**
+**最优质良心的 Java 面试交流星球，多次被官方推荐！**
+
+**真诚欢迎准备面试的小伙伴加入星球一起交流！真心希望能够帮助到更多小伙伴！相信一定不会让你失望的！**
 
 ## 👉推荐阅读 
 
