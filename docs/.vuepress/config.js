@@ -249,7 +249,7 @@ module.exports = config({
           "数据库基础知识",
           "字符集",
           {
-            title: "MySQL", prefix: "mysql/",
+            title: "MySQL", prefix: "mysql/", icon: "mysql",
             children: [
               "mysql知识点&面试题总结",
               "a-thousand-lines-of-mysql-study-notes",
@@ -260,7 +260,7 @@ module.exports = config({
             ],
           },
           {
-            title: "Redis", prefix: "redis/",
+            title: "Redis", prefix: "redis/", icon: "redis",
             children: ["redis-questions-01", "3-commonly-used-cache-read-and-write-strategies"],
           },
         ],
@@ -321,7 +321,7 @@ module.exports = config({
         children: [
           "读写分离&分库分表", "负载均衡",
           {
-            title: "消息队列", prefix: "message-queue/",
+            title: "消息队列", prefix: "message-queue/", icon: "MQ",
             children: ["message-queue", "kafka知识点&面试题总结", "rocketmq-intro", "rocketmq-questions", "rabbitmq-intro"],
           },
         ],

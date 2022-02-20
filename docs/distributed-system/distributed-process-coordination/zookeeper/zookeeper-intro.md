@@ -174,7 +174,7 @@ Watcher（事件监听器），是 ZooKeeper 中的一个很重要的特性。Zo
 
 ![watcher机制](images/watche机制.png)
 
-_破音：非常有用的一个特性，都能出小本本记好了，后面用到 ZooKeeper 基本离不开 Watcher（事件监听器）机制。_
+_破音：非常有用的一个特性，都拿出小本本记好了，后面用到 ZooKeeper 基本离不开 Watcher（事件监听器）机制。_
 
 ### 3.6. 会话（Session）
 

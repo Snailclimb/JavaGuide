@@ -392,7 +392,7 @@ pool-1-thread-2 End. Time = Sun Apr 12 11:14:47 CST 2020
                 return false;
 
             for (;;) {
-               //获取线程池中线程的数量
+               //获取线程池中工作的线程的数量
                 int wc = workerCountOf(c);
                 // core参数为true的话表明队列也满了，线程池大小变为 maximumPoolSize
                 if (wc >= CAPACITY ||

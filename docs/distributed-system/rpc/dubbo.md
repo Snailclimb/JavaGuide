@@ -71,7 +71,7 @@
 
 Dubbo 目前已经有接近 34.4 k 的 Star  。 
 
-在 **2020 年度 OSC 中国开源项目** 评选活动中，Dubbo 位列开发框架和基础组件类项目的第7名。想比几年前来说，热度和排名有所下降。
+在 **2020 年度 OSC 中国开源项目** 评选活动中，Dubbo 位列开发框架和基础组件类项目的第7名。相比几年前来说，热度和排名有所下降。
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/%E6%BA%90%E7%A0%81/dubbo/image-20210107153159545.png)
 
