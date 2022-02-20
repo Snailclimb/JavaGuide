@@ -197,7 +197,27 @@ public class HelloAction extends AnAction {
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-11/image-20201118075803163.png)
 
-## 06 深入学习
+## 06 打包分发
+
+插件写好之后，如果我们想把插件分享给小伙伴使用的话要怎么做呢。
+
+### 首先，我们要打包插件
+
+执行 Gradle -> Tasks -> intellij -> buildPlugin
+
+执行完成后，项目中会生成一个 build 文件夹，点击进入后找到 distributions 文件夹，里面会出现一个 .zip 结尾的压缩包，里面打包了插件所需要的依赖、配置文件等。
+
+### 其次，分发插件
+
+打开 IDEA，在 Settings -> Plugins -> 点击小齿轮后选择 Install Plugin From Disk
+![](./pictures/install-plugin-from-disk.png)
+
+### 最后，提交至官网
+
+这步并不是必须的，如果你想把你的插件发布到官网上，别人直接可以在 [应用市场](https://plugins.jetbrains.com/) 中搜到你的插件的话可以做这步。
+
+
+## 07 深入学习
 
 如果你想要深入学习的 IDEA 插件的话，可以看一下官网文档：[https://jetbrains.org/intellij/sdk/docs/basics/basics.html ](https://jetbrains.org/intellij/sdk/docs/basics/basics.html "https://jetbrains.org/intellij/sdk/docs/basics/basics.html ") 。
 
@@ -206,7 +226,7 @@ public class HelloAction extends AnAction {
 - [8 条经验轻松上手 IDEA 插件开发](https://developer.aliyun.com/article/777850?spm=a2c6h.12873581.0.dArticle777850.118d6446r096V4&groupCode=alitech "8 条经验轻松上手 IDEA 插件开发")
 - [IDEA 插件开发入门教程](https://blog.xiaohansong.com/idea-plugin-development.html "IDEA 插件开发入门教程")
 
-## 07 后记
+## 08 后记
 
 我们开发 IDEA 插件主要是为了让 IDEA 更加好用，比如有些框架使用之后可以减少重复代码的编写、有些主题类型的插件可以让你的 IDEA 更好看。
 
