@@ -130,9 +130,9 @@ patchPluginXml {
 </actions>
 ```
 
-并且 `java` 目录下为生成一个叫做 `HelloAction` 的类。并且，这个类继承了 `AnAction` ，并覆盖了 `actionPerformed()` 方法。这个 `actionPerformed` 方法就好比 JS 中的 `onClick` 方法，会在你点击的时候被触发对应的动作。
+并且 `java` 目录下会生成一个叫做 `HelloAction` 的类。这个类继承了 `AnAction` ，并覆盖了 `actionPerformed()` 方法。这个 `actionPerformed` 方法就好比 JS 中的 `onClick` 方法，会在你点击的时候触发对应的动作。
 
-我简单对`actionPerformed` 方法进行了修改，添加了一行代码。这行代码很简单，就是显示 1 个对话框并展示一些信息。
+我简单对 `actionPerformed` 方法进行了修改，添加了一行代码。这行代码很简单，就是显示 1 个对话框并展示一些信息。
 
 ```java
 public class HelloAction extends AnAction {
