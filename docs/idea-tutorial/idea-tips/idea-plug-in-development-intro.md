@@ -169,7 +169,7 @@ public class HelloAction extends AnAction {
 
 ## 04 验收成果
 
-点击 `Gradle -> runIde` 就会启动一个默认了这个插件的 IDEA。然后，你可以在这个 IDEA 上实际使用这个插件了。
+点击 `Gradle -> Tasks -> intellij -> runIde` 就会启动一个默认了这个插件的 IDEA。然后，你可以在这个 IDEA 上实际使用这个插件了。
 
 ![点击 runIde 就会启动一个默认了这个插件的 IDEA](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-11/image-20201118075912490.png)
 
