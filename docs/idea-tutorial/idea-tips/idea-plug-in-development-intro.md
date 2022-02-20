@@ -211,3 +211,69 @@ public class HelloAction extends AnAction {
 我们开发 IDEA 插件主要是为了让 IDEA 更加好用，比如有些框架使用之后可以减少重复代码的编写、有些主题类型的插件可以让你的 IDEA 更好看。
 
 我这篇文章的这个案例说实话只是为了让大家简单入门一下 IDEA 开发，没有任何实际应用意义。**如果你想要开发一个不错的 IDEA 插件的话，还要充分发挥想象，利用 IDEA 插件平台的能力。**
+
+## 常见问题一：JDK版本过低
+
+创建好项目之后，运行 Gradle，出现如下报错
+
+```
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+A problem occurred configuring root project 'string-template-error-scanner'.
+> Could not resolve all artifacts for configuration ':classpath'.
+   > Could not resolve org.jetbrains.intellij.plugins:gradle-intellij-plugin:1.4.0.
+     Required by:
+         project : > org.jetbrains.intellij:org.jetbrains.intellij.gradle.plugin:1.4.0
+      > Unable to find a matching variant of org.jetbrains.intellij.plugins:gradle-intellij-plugin:1.4.0:
+          - Variant 'apiElements' capability org.jetbrains.intellij.plugins:gradle-intellij-plugin:1.4.0:
+              - Incompatible attributes:
+                  - Required org.gradle.jvm.version '8' and found incompatible value '11'.
+                  - Required org.gradle.usage 'java-runtime' and found incompatible value 'java-api'.
+              - Other attributes:
+                  - Found org.gradle.category 'library' but wasn't required.
+                  - Required org.gradle.dependency.bundling 'external' and found compatible value 'external'.
+                  - Found org.gradle.jvm.environment 'standard-jvm' but wasn't required.
+                  - Required org.gradle.libraryelements 'jar' and found compatible value 'jar'.
+                  - Found org.gradle.status 'release' but wasn't required.
+                  - Found org.jetbrains.kotlin.platform.type 'jvm' but wasn't required.
+          - Variant 'runtimeElements' capability org.jetbrains.intellij.plugins:gradle-intellij-plugin:1.4.0:
+              - Incompatible attribute:
+                  - Required org.gradle.jvm.version '8' and found incompatible value '11'.
+              - Other attributes:
+                  - Found org.gradle.category 'library' but wasn't required.
+                  - Required org.gradle.dependency.bundling 'external' and found compatible value 'external'.
+                  - Found org.gradle.jvm.environment 'standard-jvm' but wasn't required.
+                  - Required org.gradle.libraryelements 'jar' and found compatible value 'jar'.
+                  - Found org.gradle.status 'release' but wasn't required.
+                  - Required org.gradle.usage 'java-runtime' and found compatible value 'java-runtime'.
+                  - Found org.jetbrains.kotlin.platform.type 'jvm' but wasn't required.
+
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+BUILD FAILED in 94ms
+```
+
+> 原因分析：一般情况下，我们都是使用 JDK8 进行开发，但是新版的 IDEA 插件的编译需要使用 JAVA11 版本以上，因此要把 JDK8 换成 JDK11。（设置方法：左上角点击 Settings -> Build, Execution, Deployment, Build Tools -> Gradle，在下面找到 Gradle JVM: 改成 Java11 再次运行 Gradle 即可）
+>
+>
+
+## 常见问题二：无法创建 org.jetbrains.intellij.utils.ArchiveUtils 的实例
+
+```
+Build file 'D:\project\string-template-error-scanner\build.gradle' line: 3
+
+An exception occurred applying plugin request [id: 'org.jetbrains.intellij', version: '1.4.0']
+> Failed to apply plugin [id 'org.jetbrains.intellij']
+   > Could not create an instance of type org.jetbrains.intellij.utils.ArchiveUtils.
+      > Could not generate a decorated class for type ArchiveUtils.
+         > org/gradle/api/file/ArchiveOperations
+
+```
+
+> 原因分析：这个问题我在 StackOverFlow、CSDN 等等网站搜了一大圈都从根源上找到怎么解决（知道的小伙伴可以编辑此页和我说一下~）
+>
+> 最后通过修改 `build.gradle` 中 org.jetbrains.intellij 的版本解决的，我创建好项目之后版本是 1.4.0，换成 0.6.3，再重新运行一次 Gradle 就可以了
