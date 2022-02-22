@@ -564,7 +564,7 @@ public boolean equals(Object anObject) {
 
 面试官可能会问你：“你重写过 `hashCode()` 和 `equals()`么?为什么重写 `equals()` 时必须重写 `hashCode()` 方法？”
 
-一个非常基础的问题，面试中的重中之重，然而，很多求职者还是会达不到点子上去。
+一个非常基础的问题，面试中的重中之重，然而，很多求职者还是会回答不到点子上去。
 
 #### hashCode() 有什么用？
 
