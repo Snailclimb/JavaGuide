@@ -125,7 +125,7 @@ public Person personSingleton() {
 - singleton : 唯一 bean 实例，Spring 中的 bean 默认都是单例的。
 - prototype : 每次请求都会创建一个新的 bean 实例。
 - request : 每一次 HTTP 请求都会产生一个新的 bean，该 bean 仅在当前 HTTP request 内有效。
-- session : 每一次 HTTP 请求都会产生一个新的 bean，该 bean 仅在当前 HTTP session 内有效。
+- session : 每一个 HTTP Session 会产生一个新的 bean，该 bean 仅在当前 HTTP session 内有效。
 
 #### 2.5. `@Configuration`
 
