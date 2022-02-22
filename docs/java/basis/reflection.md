@@ -63,7 +63,7 @@ public class DebugInvocationHandler implements InvocationHandler {
 
 如果我们动态获取到这些信息，我们需要依靠 Class 对象。Class 类对象将一个类的方法、变量等信息告诉运行的程序。Java 提供了四种方式获取 Class 对象:
 
-**1.知道具体类的情况下可以使用：**
+**1. 知道具体类的情况下可以使用：**
 
 ```java
 Class alunbarClass = TargetObject.class;
@@ -71,30 +71,30 @@ Class alunbarClass = TargetObject.class;
 
 但是我们一般是不知道具体类的，基本都是通过遍历包下面的类来获取 Class 对象，通过此方式获取 Class 对象不会进行初始化
 
-**2.通过 `Class.forName()`传入类的路径获取：**
+**2. 通过 `Class.forName()`传入类的全路径获取：**
 
 ```java
 Class alunbarClass1 = Class.forName("cn.javaguide.TargetObject");
 ```
 
-**3.通过对象实例`instance.getClass()`获取：**
+**3. 通过对象实例`instance.getClass()`获取：**
 
 ```java
 TargetObject o = new TargetObject();
 Class alunbarClass2 = o.getClass();
 ```
 
-**4.通过类加载器`xxxClassLoader.loadClass()`传入类路径获取:**
+**4. 通过类加载器`xxxClassLoader.loadClass()`传入类路径获取:**
 
 ```java
 Class clazz = ClassLoader.loadClass("cn.javaguide.TargetObject");
 ```
 
-通过类加载器获取 Class 对象不会进行初始化，意味着不进行包括初始化等一系列步骤，静态块和静态对象不会得到执行
+通过类加载器获取 Class 对象不会进行初始化，意味着不进行包括初始化等一系列步骤，静态代码块和静态对象不会得到执行
 
 ### 反射的一些基本操作
 
-1.创建一个我们要使用反射操作的类 `TargetObject`。
+1. 创建一个我们要使用反射操作的类 `TargetObject`。
 
 ```java
 package cn.javaguide;
@@ -116,7 +116,7 @@ public class TargetObject {
 }
 ```
 
-2.使用反射操作这个类的方法以及参数
+2. 使用反射操作这个类的方法以及参数
 
 ```java
 package cn.javaguide;
@@ -128,17 +128,18 @@ import java.lang.reflect.Method;
 public class Main {
     public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchFieldException {
         /**
-         * 获取TargetObject类的Class对象并且创建TargetObject类实例
+         * 获取 TargetObject 类的 Class 对象并且创建 TargetObject 类实例
          */
-        Class<?> targetClass = Class.forName("cn.javaguide.TargetObject");
-        TargetObject targetObject = (TargetObject) targetClass.newInstance();
+        Class<?> tagetClass = Class.forName("cn.javaguide.TargetObject");
+        TargetObject targetObject = (TargetObject) tagetClass.newInstance();
         /**
-         * 获取所有类中所有定义的方法
+         * 获取 TargetObject 类中定义的所有方法
          */
         Method[] methods = targetClass.getDeclaredMethods();
         for (Method method : methods) {
             System.out.println(method.getName());
         }
+
         /**
          * 获取指定方法并调用
          */
@@ -146,6 +147,7 @@ public class Main {
                 String.class);
 
         publicMethod.invoke(targetObject, "JavaGuide");
+
         /**
          * 获取指定参数并对参数进行修改
          */
@@ -153,6 +155,7 @@ public class Main {
         //为了对类中的参数进行修改我们取消安全检查
         field.setAccessible(true);
         field.set(targetObject, "JavaGuide");
+
         /**
          * 调用 private 方法
          */
