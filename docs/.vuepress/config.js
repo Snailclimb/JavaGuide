@@ -307,7 +307,7 @@ module.exports = config({
           },
           "api-gateway", "distributed-id",
           {
-            title: "rpc", prefix: "rpc/",
+            title: "RPC", prefix: "rpc/",
             children: ["dubbo", "why-use-rpc"]
           },
           "distributed-transaction",
