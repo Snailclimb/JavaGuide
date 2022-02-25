@@ -551,7 +551,7 @@ public static Boolean valueOf(boolean b) {
 
 如果超出对应范围仍然会去创建新的对象，缓存的范围区间的大小只是在性能和资源之间的权衡。
 
-下面我们来看一下问题。下面的代码的输出结果是 `true` 还是 `flase` 呢？
+下面我们来看一下问题。下面的代码的输出结果是 `true` 还是 `false` 呢？
 
 ```java
 Integer i1 = 40;
