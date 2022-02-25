@@ -190,9 +190,9 @@ Java 中的注释有三种：
 > - 在类，方法和变量修饰符中，从 JDK8 开始引入了默认方法，可以使用 `default` 关键字来定义一个方法的默认实现。
 > - 在访问控制中，如果一个方法前没有任何修饰符，则默认会有一个修饰符 `default`，但是这个修饰符加上了就会报错。
 
-注意 ⚠️：`true`, `false`, 和`null`看起来像关键字但不是关键字。
+注意 ⚠️：虽然 `true`, `false`, 和 `null` 看起来像关键字但实际上他们是字面值，同时你也不可以作为标识符来使用。
 
-官方文档：https://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html 。
+官方文档：[https://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html)
 
 ### 自增自减运算符
 
