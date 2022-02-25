@@ -122,7 +122,10 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 ### 网络
 
-1. [计算机网络常见面试题](docs/cs-basics/network/计算机网络常见面试题.md)
+1. [OSI 和 TCP/IP 网络分层模型详解（基础）](./docs/cs-basics/network/osi&tcp-ip-model.md)
+1. [HTTP vs HTTPS（应用层）](./docs/cs-basics/network/http&https.md)
+1. [HTTP 1.0 vs HTTP 1.1（应用层）](./docs/cs-basics/network/http1.0&http1.1.md)
+1. [计算机网络常见知识点&面试题（补充）](./docs/cs-basics/network/other-network-questions.md)
 2. [谢希仁老师的《计算机网络》内容总结](docs/cs-basics/network/谢希仁老师的《计算机网络》内容总结.md)
 
 ### 数据结构

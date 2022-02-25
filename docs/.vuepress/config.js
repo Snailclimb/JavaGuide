@@ -217,9 +217,10 @@ module.exports = config({
         title: "计算机基础", icon: "computer", prefix: "cs-basics/",
         children: [
           {
-            title: "计算机网络", prefix: "network/", icon: "network",
+            title: "网络", prefix: "network/", icon: "network",
             children: [
-              "计算机网络常见面试题", "谢希仁老师的《计算机网络》内容总结", "HTTPS中的TLS"
+              "osi&tcp-ip-model", "http&https", "http1.0&http1.1",
+              "other-network-questions"
             ],
           },
           {
