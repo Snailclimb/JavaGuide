@@ -88,7 +88,7 @@ InnoDB 存储引擎在 **分布式事务** 的情况下一般会用到 **SERIALI
 
 在下面我会使用 2 个命令行mysql ，模拟多线程（多事务）对同一份数据的脏读问题。
 
-MySQL 命令行的默认配置中事务都是自动提交的，即执行SQL语句后就会马上执行 COMMIT 操作。如果要显式地开启一个事务需要使用命令：`START TARNSACTION`。
+MySQL 命令行的默认配置中事务都是自动提交的，即执行SQL语句后就会马上执行 COMMIT 操作。如果要显式地开启一个事务需要使用命令：`START TRANSACTION`。
 
 我们可以通过下面的命令来设置隔离级别。
 
@@ -98,7 +98,7 @@ SET [SESSION|GLOBAL] TRANSACTION ISOLATION LEVEL [READ UNCOMMITTED|READ COMMITTE
 
 我们再来看一下我们在下面实际操作中使用到的一些并发控制语句:
 
-- `START TARNSACTION` |`BEGIN`：显式地开启一个事务。
+- `START TRANSACTION` |`BEGIN`：显式地开启一个事务。
 - `COMMIT`：提交事务，使得对数据库做的所有修改成为永久性。
 - `ROLLBACK`：回滚会结束用户的事务，并撤销正在进行的所有未提交的修改。
 
