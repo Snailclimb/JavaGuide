@@ -749,7 +749,7 @@ Double i4 = 1.2;
 System.out.println(i3 == i4);// 输出 false
 ```
 
-下面我们来看一下问题。下面的代码的输出结果是 `true` 还是 `flase` 呢？
+下面我们来看一下问题。下面的代码的输出结果是 `true` 还是 `false` 呢？
 
 ```java
 Integer i1 = 40;
