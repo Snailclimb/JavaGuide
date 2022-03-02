@@ -238,8 +238,7 @@ System.out.println(currentProcess.info());
 
 ## 参考
 
+- Release Notes for JDK 9 and JDK 9 Update Releases : https://www.oracle.com/java/technologies/javase/9-all-relnotes.html
 - 《深入剖析 Java 新特性》-极客时间 - JShell：怎么快速验证简单的小问题？
-
 - New Features in Java 9:https://www.baeldung.com/new-java-9
-
 - Java – Try with Resources：https://www.baeldung.com/java-try-with-resources
