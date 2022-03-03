@@ -34,6 +34,15 @@ export default defineThemeConfig({
         plugins: ["highlight", "math", "search", "notes", "zoom"],
       },
     },
+    feed: {
+      rss: true,
+      json:true
+    },
+    // docsearch: {
+    //   appId: "",
+    //   apiKey: "",
+    //   indexName: "",
+    // },
     pwa: {
       favicon: "/favicon.ico",
       cachePic: false,
