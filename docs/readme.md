@@ -5,12 +5,16 @@ title: 主页
 heroImage: /logo.svg
 heroText: JavaGuide
 tagline: 「Java学习+面试指南」一份涵盖大部分 Java 程序员所需要掌握的核心知识。准备 Java 面试，首选 JavaGuide！
-action:
+actions:
   - text: 开始阅读
     link: /home/
     type: primary
   - text: 关于作者
     link: /about-the-author/
+    type: default
+  - text: 知识星球
+    link: https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc
+    type: default
 ---
 
 ## 👍官方知识星球
