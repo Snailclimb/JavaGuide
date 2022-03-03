@@ -393,11 +393,11 @@ ThreadLocalMap(ThreadLocal<?> firstKey, Object firstValue) {
 
 比如我们在同一个线程中声明了两个 `ThreadLocal` 对象的话， `Thread`内部都是使用仅有的那个`ThreadLocalMap` 存放数据的，`ThreadLocalMap`的 key 就是 `ThreadLocal`对象，value 就是 `ThreadLocal` 对象调用`set`方法设置的值。
 
-![ThreadLocal数据结构](images/threadlocal数据结构.png)
+![ThreadLocal数据结构](./images/threadlocal数据结构.png)
 
 `ThreadLocalMap`是`ThreadLocal`的静态内部类。
 
-![ThreadLocal内部类](images/ThreadLocal内部类.png)
+![ThreadLocal内部类](./images/ThreadLocal内部类.png)
 
 ### 3.4. ThreadLocal 内存泄露问题
 
@@ -427,7 +427,7 @@ static class Entry extends WeakReference<ThreadLocal<?>> {
 
 > **池化技术想必大家已经屡见不鲜了，线程池、数据库连接池、Http 连接池等等都是对这个思想的应用。池化技术的思想主要是为了减少每次获取资源的消耗，提高对资源的利用率。**
 
-**线程池**提供了一种限制和管理资源（包括执行一个任务）。 每个**线程池**还维护一些基本统计信息，例如已完成任务的数量。
+**线程池**提供了一种限制和管理资源（包括执行一个任务）的方式。 每个**线程池**还维护一些基本统计信息，例如已完成任务的数量。
 
 这里借用《Java 并发编程的艺术》提到的来说一下**使用线程池的好处**：
 
@@ -761,7 +761,7 @@ public void execute(Runnable command) {
 
 通过下图可以更好的对上面这 3 步做一个展示，下图是我为了省事直接从网上找到，原地址不明。
 
-![图解线程池实现原理](images/java-thread-pool-summary/图解线程池实现原理.png)
+![图解线程池实现原理](./images/java-thread-pool-summary/图解线程池实现原理.png)
 
 现在，让我们在回到 4.6 节我们写的 Demo， 现在是不是很容易就可以搞懂它的原理了呢？
 
@@ -1042,7 +1042,7 @@ try {
 System.out.println("all done. ");
 ```
 
-上面的代码还可以接续优化，当任务过多的时候，把每一个 task 都列出来不太现实，可以考虑通过循环来添加任务。
+上面的代码还可以继续优化，当任务过多的时候，把每一个 task 都列出来不太现实，可以考虑通过循环来添加任务。
 
 ```java
 //文件夹位置

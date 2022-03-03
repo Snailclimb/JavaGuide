@@ -125,7 +125,7 @@ public Person personSingleton() {
 - singleton : 唯一 bean 实例，Spring 中的 bean 默认都是单例的。
 - prototype : 每次请求都会创建一个新的 bean 实例。
 - request : 每一次 HTTP 请求都会产生一个新的 bean，该 bean 仅在当前 HTTP request 内有效。
-- session : 每一次 HTTP 请求都会产生一个新的 bean，该 bean 仅在当前 HTTP session 内有效。
+- session : 每一个 HTTP Session 会产生一个新的 bean，该 bean 仅在当前 HTTP session 内有效。
 
 #### 2.5. `@Configuration`
 
@@ -274,7 +274,7 @@ public class UserRegisterRequest {
 
 这样我们的后端就可以直接把 json 格式的数据映射到我们的 `UserRegisterRequest` 类上。
 
-![](images/spring-annotations/@RequestBody.png)
+![](./images/spring-annotations/@RequestBody.png)
 
 👉 需要注意的是：**一个请求方法只可以有一个`@RequestBody`，但是可以有多个`@RequestParam`和`@PathVariable`**。 如果你的方法必须要用两个 `@RequestBody`来接受数据的话，大概率是你的数据库设计或者系统设计出问题了！
 

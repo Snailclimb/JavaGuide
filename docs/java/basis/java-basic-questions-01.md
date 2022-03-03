@@ -105,11 +105,12 @@ JRE 是 Java 运行时环境。它是运行已编译 Java 程序所需的所有�
 
 相关阅读 👍：[《Differences Between Oracle JDK and OpenJDK》](https://www.baeldung.com/oracle-jdk-vs-openjdk)
 
-### Java 和 C++的区别?
+### Java 和 C++ 的区别?
 
-我知道很多人没学过 C++，但是面试官就是没事喜欢拿咱们 Java 和 C++ 比呀！没办法！！！就算没学过 C++，也要记下来！
+我知道很多人没学过 C++，但是面试官就是没事喜欢拿咱们 Java 和 C++ 比呀！没办法！！！就算没学过 C++，也要记下来。
 
-- 都是面向对象的语言，都支持封装、继承和多态
+虽然，Java 和 C++ 都是面向对象的语言，都支持封装、继承和多态，但是，它们还是有挺多不相同的地方：
+
 - Java 不提供指针来直接访问内存，程序内存更加安全
 - Java 的类是单继承的，C++ 支持多重继承；虽然 Java 的类不可以多继承，但是接口可以多继承。
 - Java 有自动内存管理垃圾回收机制(GC)，不需要程序员手动释放无用内存。
@@ -120,90 +121,13 @@ JRE 是 Java 运行时环境。它是运行已编译 Java 程序所需的所有�
 
 ### 字符型常量和字符串常量的区别?
 
-1. **形式** : 字符常量是单引号引起的一个字符，字符串常量是双引号引起的 0 个或若干个字符
-2. **含义** : 字符常量相当于一个整型值( ASCII 值),可以参加表达式运算; 字符串常量代表一个地址值(该字符串在内存中存放位置)
-3. **占内存大小** ： 字符常量只占 2 个字节; 字符串常量占若干个字节 (**注意： `char` 在 Java 中占两个字节**)
+1. **形式** : 字符常量是单引号引起的一个字符，字符串常量是双引号引起的 0 个或若干个字符。
+2. **含义** : 字符常量相当于一个整型值( ASCII 值),可以参加表达式运算; 字符串常量代表一个地址值(该字符串在内存中存放位置)。
+3. **占内存大小** ： 字符常量只占 2 个字节; 字符串常量占若干个字节。
 
-### 使用过可变长参数吗？
+ (**注意： `char` 在 Java 中占两个字节**)
 
-从 Java5 开始，Java 支持定义可变长参数，所谓可变长参数就是允许在调用方法时传入不定长度的参数。就比如下面的这个 `printVariable` 方法就可以接受 0 个或者多个参数。
-
-```java
-public static void method1(String... args) {
-   //......
-}
-```
-
-另外，可变参数只能作为函数的最后一个参数，但其前面可以有也可以没有任何其他参数。
-
-```java
-public static void method2(String arg1, String... args) {
-   //......
-}
-```
-
-**遇到方法重载的情况怎么办呢？会优先匹配固定参数还是可变参数的方法呢？**
-
-答案是会优先匹配固定参数的方法，因为固定参数的方法匹配度更高。
-
-我们通过下面这个例子来证明一下。
-
-```java
-/**
- * 微信搜 JavaGuide 回复"面试突击"即可免费领取个人原创的 Java 面试手册
- *
- * @author Guide哥
- * @date 2021/12/13 16:52
- **/
-public class VariableLengthArgument {
-
-    public static void printVariable(String... args) {
-        for (String s : args) {
-            System.out.println(s);
-        }
-    }
-
-    public static void printVariable(String arg1, String arg2) {
-        System.out.println(arg1 + arg2);
-    }
-
-    public static void main(String[] args) {
-        printVariable("a", "b");
-        printVariable("a", "b", "c", "d");
-    }
-}
-```
-
-输出：
-
-```
-ab
-a
-b
-c
-d
-```
-
-另外，Java 的可变参数编译后实际会被转换成一个数组，我们看编译后生成的 `class`文件就可以看出来了。
-
-```java
-public class VariableLengthArgument {
-
-    public static void printVariable(String... args) {
-        String[] var1 = args;
-        int var2 = args.length;
-
-        for(int var3 = 0; var3 < var2; ++var3) {
-            String s = var1[var3];
-            System.out.println(s);
-        }
-
-    }
-    // ......
-}
-```
-
-### 注释有哪几种？注释越多越好吗？
+### 注释有哪几种形式？
 
 Java 中的注释有三种：
 
@@ -238,30 +162,37 @@ Java 中的注释有三种：
 
 ### 标识符和关键字的区别是什么？
 
-在我们编写程序的时候，需要大量地为程序、类、变量、方法等取名字，于是就有了标识符，简单来说，标识符就是一个名字。但是有一些标识符，Java 语言已经赋予了其特殊的含义，只能用于特定的地方，这些特殊的标识符就是关键字。因此，关键字是被赋予特殊含义的标识符。比如，在我们的日常生活中，如果我们想要开一家店，则要给这个店起一个名字，起的这个“名字”就叫标识符。但是我们店的名字不能叫“警察局”，因为“警察局”这个名字已经被赋予了特殊的含义，而“警察局”就是我们日常生活中的关键字。
+在我们编写程序的时候，需要大量地为程序、类、变量、方法等取名字，于是就有了 **标识符** 。简单来说， **标识符就是一个名字** 。
 
-### Java 中有 `53` 个关键字：
+有一些标识符，Java 语言已经赋予了其特殊的含义，只能用于特定的地方，这些特殊的标识符就是 **关键字** 。简单来说，**关键字是被赋予特殊含义的标识**符 。比如，在我们的日常生活中，如果我们想要开一家店，则要给这个店起一个名字，起的这个“名字”就叫标识符。但是我们店的名字不能叫“警察局”，因为“警察局”这个名字已经被赋予了特殊的含义，而“警察局”就是我们日常生活中的关键字。
+
+### Java 语言关键字有哪些？
 
 | 分类                 | 关键字   |            |          |              |            |           |        |
-| :------------------- | -------- | ---------- | -------- | ------------ | ---------- | --------- | ------ |
-| 访问控制             | private  | protected  | public   |              |            |           |        |
+| :------------------- | -------- |-------- | -------- | -------- | --------| --------| -------- |
+| 访问控制     | private  | protected  | public   |              |            |           |        |
 | 类，方法和变量修饰符 | abstract | class      | extends  | final        | implements | interface | native |
 |                      | new      | static     | strictfp | synchronized | transient  | volatile  | enum   |
-| 程序控制             | break    | continue   | return   | do           | while      | if        | else   |
+| 程序控制     | break    | continue   | return   | do           | while      | if        | else   |
 |                      | for      | instanceof | switch   | case         | default    | assert    |        |
-| 错误处理             | try      | catch      | throw    | throws       | finally    |           |        |
-| 包相关               | import   | package    |          |              |            |           |        |
-| 基本类型             | boolean  | byte       | char     | double       | float      | int       | long   |
-|                      | short    | null       | true     | false        |            |           |        |
-| 变量引用             | super    | this       | void     |              |            |           |        |
-| 保留字               | goto     | const      |          |              |            |           |        |
+| 错误处理     | try      | catch      | throw    | throws       | finally    |           |        |
+| 包相关         | import   | package    |          |              |            |           |        |
+| 基本类型     | boolean  | byte       | char     | double       | float      | int       | long   |
+|                      | short    |            |          |              |            |           |        |
+| 变量引用     | super    | this       | void     |              |            |           |        |
+| 保留字         | goto     | const      |          |              |            |           |        |
 
 > Tips：所有的关键字都是小写的，在 IDE 中会以特殊颜色显示。
 >
 > `default` 这个关键字很特殊，既属于程序控制，也属于类，方法和变量修饰符，还属于访问控制。
 >
-> - 在程序控制中，当在 `switch` 中匹配不到任何情况时，可以使用 `default` 来编写默认匹配的情况。在类，方法和变量修饰符中，从 JDK8 开始引入了默认方法，可以使用 `default` 关键字来定义一个方法的默认实现。
+> - 在程序控制中，当在 `switch` 中匹配不到任何情况时，可以使用 `default` 来编写默认匹配的情况。
+> - 在类，方法和变量修饰符中，从 JDK8 开始引入了默认方法，可以使用 `default` 关键字来定义一个方法的默认实现。
 > - 在访问控制中，如果一个方法前没有任何修饰符，则默认会有一个修饰符 `default`，但是这个修饰符加上了就会报错。
+
+注意 ⚠️：虽然 `true`, `false`, 和 `null` 看起来像关键字但实际上他们是字面值，同时你也不可以作为标识符来使用。
+
+官方文档：[https://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html)
 
 ### 自增自减运算符
 
@@ -501,7 +432,7 @@ public class SuperSuperMan extends SuperMan {
 
 > 因为 Java 只有值传递，所以，对于 == 来说，不管是比较基本数据类型，还是引用数据类型的变量，其本质比较的都是值，只是引用类型变量存的值是对象的地址。
 
-**`equals()`** 不能用于判断基本数据类型的变量，只能用来判断两个对象是否相等。`equals()`方法存在于`Object`类中，而`Object`类是所有类的直接或间接父类。
+**`equals()`** 不能用于判断基本数据类型的变量，只能用来判断两个对象是否相等。`equals()`方法存在于`Object`类中，而`Object`类是所有类的直接或间接父类，因此所有的类都有`equals()`方法。
 
 `Object` 类 `equals()` 方法：
 
@@ -513,8 +444,8 @@ public boolean equals(Object obj) {
 
 `equals()` 方法存在两种使用情况：
 
-- **类没有覆盖 `equals()`方法** ：通过`equals()`比较该类的两个对象时，等价于通过“==”比较这两个对象，使用的默认是 `Object`类`equals()`方法。
-- **类覆盖了 `equals()`方法** ：一般我们都覆盖 `equals()`方法来比较两个对象中的属性是否相等；若它们的属性相等，则返回 true(即，认为这两个对象相等)。
+- **类没有重写 `equals()`方法** ：通过`equals()`比较该类的两个对象时，等价于通过“==”比较这两个对象，使用的默认是 `Object`类`equals()`方法。
+- **类重写了 `equals()`方法** ：一般我们都重写 `equals()`方法来比较两个对象中的属性是否相等；若它们的属性相等，则返回 true(即，认为这两个对象相等)。
 
 举个例子（这里只是为了举例。实际上，你按照下面这种写法的话，像 IDEA 这种比较智能的 IDE 都会提示你将 `==` 换成 `equals()` ）：
 
@@ -563,7 +494,7 @@ public boolean equals(Object anObject) {
 
 面试官可能会问你：“你重写过 `hashCode()` 和 `equals()`么?为什么重写 `equals()` 时必须重写 `hashCode()` 方法？”
 
-一个非常基础的问题，面试中的重中之重，然而，很多求职者还是会达不到点子上去。
+一个非常基础的问题，面试中的重中之重，然而，很多求职者还是会回答不到点子上去。
 
 #### hashCode() 有什么用？
 
@@ -583,7 +514,7 @@ public native int hashCode();
 
 下面这段内容摘自我的 Java 启蒙书《Head First Java》:
 
-> 当你把对象加入 `HashSet` 时，`HashSet` 会先计算对象的 `hashCode` 值来判断对象加入的位置，同时也会与其他已经加入的对象的 `hashCode` 值作比较，如果没有相符的 `hashCode`，`HashSet` 会假设对象没有重复出现。但是如果发现有相同 `hashCode` 值的对象，这时会调用 `equals()` 方法来检查 `hashCode` 相等的对象是否真的相同。如果两者相同，`HashSet` 就不会让其加入操作成功。如果不同的话，就会重新散列到其他位置。。这样我们就大大减少了 `equals` 的次数，相应就大大提高了执行速度。
+> 当你把对象加入 `HashSet` 时，`HashSet` 会先计算对象的 `hashCode` 值来判断对象加入的位置，同时也会与其他已经加入的对象的 `hashCode` 值作比较，如果没有相符的 `hashCode`，`HashSet` 会假设对象没有重复出现。但是如果发现有相同 `hashCode` 值的对象，这时会调用 `equals()` 方法来检查 `hashCode` 相等的对象是否真的相同。如果两者相同，`HashSet` 就不会让其加入操作成功。如果不同的话，就会重新散列到其他位置。这样我们就大大减少了 `equals` 的次数，相应就大大提高了执行速度。
 
 其实， `hashCode()` 和 `equals()`都是用于比较两个对象是否相等。
 
@@ -604,7 +535,7 @@ public native int hashCode();
 总结下来就是 ：
 
 - 如果两个对象的`hashCode` 值相等，那这两个对象不一定相等（哈希碰撞）。
-- 如果两个对象的`hashCode` 值相等并且`equals()`方法返回 `true`，我们才认为这两个对象相等。
+- 如果两个对象的`hashCode` 值相等并且`equals()`方法也返回 `true`，我们才认为这两个对象相等。
 - 如果两个对象的`hashCode` 值不相等，我们就可以直接认为这两个对象不相等。
 
 相信大家看了我前面对 `hashCode()` 和 `equals()` 的介绍之后，下面这个问题已经难不倒你们了。
@@ -623,6 +554,85 @@ public native int hashCode();
 - 两个对象有相同的 `hashCode` 值，他们也不一定是相等的（哈希碰撞）。
 
 更多关于 `hashCode()` 和 `equals()` 的内容可以查看：[Java hashCode() 和 equals()的若干问题解答](https://www.cnblogs.com/skywang12345/p/3324958.html)
+
+### 什么是可变长参数？
+
+从 Java5 开始，Java 支持定义可变长参数，所谓可变长参数就是允许在调用方法时传入不定长度的参数。就比如下面的这个 `printVariable` 方法就可以接受 0 个或者多个参数。
+
+```java
+public static void method1(String... args) {
+   //......
+}
+```
+
+另外，可变参数只能作为函数的最后一个参数，但其前面可以有也可以没有任何其他参数。
+
+```java
+public static void method2(String arg1, String... args) {
+   //......
+}
+```
+
+**遇到方法重载的情况怎么办呢？会优先匹配固定参数还是可变参数的方法呢？**
+
+答案是会优先匹配固定参数的方法，因为固定参数的方法匹配度更高。
+
+我们通过下面这个例子来证明一下。
+
+```java
+/**
+ * 微信搜 JavaGuide 回复"面试突击"即可免费领取个人原创的 Java 面试手册
+ *
+ * @author Guide哥
+ * @date 2021/12/13 16:52
+ **/
+public class VariableLengthArgument {
+
+    public static void printVariable(String... args) {
+        for (String s : args) {
+            System.out.println(s);
+        }
+    }
+
+    public static void printVariable(String arg1, String arg2) {
+        System.out.println(arg1 + arg2);
+    }
+
+    public static void main(String[] args) {
+        printVariable("a", "b");
+        printVariable("a", "b", "c", "d");
+    }
+}
+```
+
+输出：
+
+```
+ab
+a
+b
+c
+d
+```
+
+另外，Java 的可变参数编译后实际会被转换成一个数组，我们看编译后生成的 `class`文件就可以看出来了。
+
+```java
+public class VariableLengthArgument {
+
+    public static void printVariable(String... args) {
+        String[] var1 = args;
+        int var2 = args.length;
+
+        for(int var3 = 0; var3 < var2; ++var3) {
+            String s = var1[var3];
+            System.out.println(s);
+        }
+
+    }
+    // ......
+}
+```
 
 ## 基本数据类型
 
@@ -739,7 +749,7 @@ Double i4 = 1.2;
 System.out.println(i3 == i4);// 输出 false
 ```
 
-下面我们来看一下问题。下面的代码的输出结果是 `true` 还是 `flase` 呢？
+下面我们来看一下问题。下面的代码的输出结果是 `true` 还是 `false` 呢？
 
 ```java
 Integer i1 = 40;

@@ -16,22 +16,22 @@ Read in other languages: [Mandarin](https://github.com/Snailclimb/JavaGuide/blob
 > 6. **Interview Special Edition** : For those who are preparing for the interview, you can consider the interview special edition: [Java Interview Advanced Guide].(https://www.yuque.com/docs/share/f37fc804-bfe6-4b0d-b373-9c462188fec7) (Very high quality, built specifically for interviews, free for planet users)
 > 7. **Reprint Instructions**: All the following articles are my (Guide) original if not stated at the beginning of the text, reproduced at the beginning of the text to indicate the source, if found malicious plagiarism / transport, will use legal weapons to defend their rights. Let's maintain a good technical creation environment together! ⛽️
 
-<p align="center">
+<p style="text-align:center">
 <a href="https://github.com/Snailclimb/JavaGuide" target="_blank">
 	<img src="https://img-blog.csdnimg.cn/img_convert/1c00413c65d1995993bf2b0daf7b4f03.png#pic_center" width=""/>
 </a>
 </p>
-<p align="center">
+<p style="text-align:center">
   <a href="https://javaguide.cn/"><img src="https://img.shields.io/badge/阅读-read-brightgreen.svg" alt="阅读"></a>
   <img src="https://img.shields.io/github/stars/Snailclimb/JavaGuide" alt="stars"/>
   <img src="https://img.shields.io/github/forks/Snailclimb/JavaGuide" alt="forks"/>
   <img src="https://img.shields.io/github/issues/Snailclimb/JavaGuide" alt="issues"/>
 </p>
-<h3 align="center">Recommended</h3>
+<h3 style="text-align:center">Recommended</h3>
 <table>
   <tbody>
     <tr>
-       <td align="center" valign="middle">
+       <td style="text-align:center" valign="middle">
         <a href="https://sourl.cn/e7ee87">
          <img src="./media/sponsor/xingqiu.png" style="margin: 0 auto;width:850px" /></a>
       </td>       
@@ -163,7 +163,7 @@ In addition，[GeeksforGeeks]( https://www.geeksforgeeks.org/fundamentals-of-alg
 
 **Important knowledge points:**
 
-1. <div align="center">
+1. <div style="text-align:center">
        <p>
            <a href="https://github.com/Snailclimb/JavaGuide" target="_blank">
                <img src="https://img-blog.csdnimg.cn/img_convert/1c00413c65d1995993bf2b0daf7b4f03.png#pic_center" width="" />

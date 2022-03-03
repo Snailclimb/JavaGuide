@@ -123,7 +123,7 @@ public interface RandomAccess {
 
 ### 说一说 ArrayList 的扩容机制吧
 
-详见笔主的这篇文章:[通过源码一步一步分析 ArrayList 扩容机制](https://snailclimb.gitee.io/javaguide/#/docs/java/collection/arraylist-source-code?id=_2-arraylist-%e6%a0%b8%e5%bf%83%e6%ba%90%e7%a0%81%e8%a7%a3%e8%af%bb)
+详见笔主的这篇文章:[ArrayList 扩容机制分析](https://javaguide.cn/java/collection/arraylist-source-code/#_2-arraylist-核心源码解读)
 
 ## Collection 子接口之 Set
 

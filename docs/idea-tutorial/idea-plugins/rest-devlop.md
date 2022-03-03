@@ -67,7 +67,7 @@ REST 即 **REpresentational State Transfer** 的缩写。这个词组的翻译�
 
 举个例子。我们选中 `Controller` 中的某个请求对应的方法右击，你会发现多了几个可选项。当你选择`Generate & Copy Full URL`的话，就可以把整个请求的路径直接复制下来。eg：`http://localhost:9333/api/users?pageNum=1&pageSize=1` 。
 
-![](pictures/RestfulToolkit3.png)
+![](./pictures/RestfulToolkit3.png)
 
 #### 将 Java 类转换为对应的 JSON 格式
 
@@ -75,7 +75,7 @@ REST 即 **REpresentational State Transfer** 的缩写。这个词组的翻译�
 
 我们选中的某个类对应的方法然后右击，你会发现多了几个可选项。
 
-![](pictures/RestfulToolkit4.png)
+![](./pictures/RestfulToolkit4.png)
 
 当我们选择`Convert to JSON`的话，你会得到如下 json 类型的数据：
 

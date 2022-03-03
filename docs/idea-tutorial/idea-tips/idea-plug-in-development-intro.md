@@ -109,7 +109,7 @@ patchPluginXml {
 
 ## 03 手动创建 Action
 
-我们可以把 Action 看作是 IDEA 提高的事件响应处理器，通过 Action 我们可以自定义一些事件处理逻辑/动作。比如说你点击某个菜单的时候，我们进行一个展示对话框的操作。
+我们可以把 Action 看作是 IDEA 提供的事件响应处理器，通过 Action 我们可以自定义一些事件处理逻辑/动作。比如说你点击某个菜单的时候，我们进行一个展示对话框的操作。
 
 **第一步，右键`java`目录并选择 new 一个 Action**
 
@@ -130,9 +130,9 @@ patchPluginXml {
 </actions>
 ```
 
-并且 `java` 目录下为生成一个叫做 `HelloAction` 的类。并且，这个类继承了 `AnAction` ，并覆盖了 `actionPerformed()` 方法。这个 `actionPerformed` 方法就好比 JS 中的 `onClick` 方法，会在你点击的时候被触发对应的动作。
+并且 `java` 目录下会生成一个叫做 `HelloAction` 的类。这个类继承了 `AnAction` ，并覆盖了 `actionPerformed()` 方法。这个 `actionPerformed` 方法就好比 JS 中的 `onClick` 方法，会在你点击的时候触发对应的动作。
 
-我简单对`actionPerformed` 方法进行了修改，添加了一行代码。这行代码很简单，就是显示 1 个对话框并展示一些信息。
+我简单对 `actionPerformed` 方法进行了修改，添加了一行代码。这行代码很简单，就是显示 1 个对话框并展示一些信息。
 
 ```java
 public class HelloAction extends AnAction {
@@ -169,7 +169,7 @@ public class HelloAction extends AnAction {
 
 ## 04 验收成果
 
-点击 `Gradle -> runIde` 就会启动一个默认了这个插件的 IDEA。然后，你可以在这个 IDEA 上实际使用这个插件了。
+点击 `Gradle -> Tasks -> intellij -> runIde` 就会启动一个默认了这个插件的 IDEA。然后，你可以在这个 IDEA 上实际使用这个插件了。
 
 ![点击 runIde 就会启动一个默认了这个插件的 IDEA](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-11/image-20201118075912490.png)
 
@@ -197,7 +197,27 @@ public class HelloAction extends AnAction {
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-11/image-20201118075803163.png)
 
-## 06 深入学习
+## 06 打包分发
+
+插件写好之后，如果我们想把插件分享给小伙伴使用的话要怎么做呢。
+
+### 首先，我们要打包插件
+
+执行 Gradle -> Tasks -> intellij -> buildPlugin
+
+执行完成后，项目中会生成一个 build 文件夹，点击进入后找到 distributions 文件夹，里面会出现一个 .zip 结尾的压缩包，里面打包了插件所需要的依赖、配置文件等。
+
+### 其次，分发插件
+
+打开 IDEA，在 Settings -> Plugins -> 点击小齿轮后选择 Install Plugin From Disk
+![](./pictures/install-plugin-from-disk.png)
+
+### 最后，提交至官网
+
+这步并不是必须的，如果你想把你的插件发布到官网上，别人直接可以在 [应用市场](https://plugins.jetbrains.com/) 中搜到你的插件的话可以做这步。
+
+
+## 07 深入学习
 
 如果你想要深入学习的 IDEA 插件的话，可以看一下官网文档：[https://jetbrains.org/intellij/sdk/docs/basics/basics.html ](https://jetbrains.org/intellij/sdk/docs/basics/basics.html "https://jetbrains.org/intellij/sdk/docs/basics/basics.html ") 。
 
@@ -206,8 +226,74 @@ public class HelloAction extends AnAction {
 - [8 条经验轻松上手 IDEA 插件开发](https://developer.aliyun.com/article/777850?spm=a2c6h.12873581.0.dArticle777850.118d6446r096V4&groupCode=alitech "8 条经验轻松上手 IDEA 插件开发")
 - [IDEA 插件开发入门教程](https://blog.xiaohansong.com/idea-plugin-development.html "IDEA 插件开发入门教程")
 
-## 07 后记
+## 08 后记
 
 我们开发 IDEA 插件主要是为了让 IDEA 更加好用，比如有些框架使用之后可以减少重复代码的编写、有些主题类型的插件可以让你的 IDEA 更好看。
 
 我这篇文章的这个案例说实话只是为了让大家简单入门一下 IDEA 开发，没有任何实际应用意义。**如果你想要开发一个不错的 IDEA 插件的话，还要充分发挥想象，利用 IDEA 插件平台的能力。**
+
+## 常见问题一：JDK版本过低
+
+创建好项目之后，运行 Gradle，出现如下报错
+
+```
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+A problem occurred configuring root project 'string-template-error-scanner'.
+> Could not resolve all artifacts for configuration ':classpath'.
+   > Could not resolve org.jetbrains.intellij.plugins:gradle-intellij-plugin:1.4.0.
+     Required by:
+         project : > org.jetbrains.intellij:org.jetbrains.intellij.gradle.plugin:1.4.0
+      > Unable to find a matching variant of org.jetbrains.intellij.plugins:gradle-intellij-plugin:1.4.0:
+          - Variant 'apiElements' capability org.jetbrains.intellij.plugins:gradle-intellij-plugin:1.4.0:
+              - Incompatible attributes:
+                  - Required org.gradle.jvm.version '8' and found incompatible value '11'.
+                  - Required org.gradle.usage 'java-runtime' and found incompatible value 'java-api'.
+              - Other attributes:
+                  - Found org.gradle.category 'library' but wasn't required.
+                  - Required org.gradle.dependency.bundling 'external' and found compatible value 'external'.
+                  - Found org.gradle.jvm.environment 'standard-jvm' but wasn't required.
+                  - Required org.gradle.libraryelements 'jar' and found compatible value 'jar'.
+                  - Found org.gradle.status 'release' but wasn't required.
+                  - Found org.jetbrains.kotlin.platform.type 'jvm' but wasn't required.
+          - Variant 'runtimeElements' capability org.jetbrains.intellij.plugins:gradle-intellij-plugin:1.4.0:
+              - Incompatible attribute:
+                  - Required org.gradle.jvm.version '8' and found incompatible value '11'.
+              - Other attributes:
+                  - Found org.gradle.category 'library' but wasn't required.
+                  - Required org.gradle.dependency.bundling 'external' and found compatible value 'external'.
+                  - Found org.gradle.jvm.environment 'standard-jvm' but wasn't required.
+                  - Required org.gradle.libraryelements 'jar' and found compatible value 'jar'.
+                  - Found org.gradle.status 'release' but wasn't required.
+                  - Required org.gradle.usage 'java-runtime' and found compatible value 'java-runtime'.
+                  - Found org.jetbrains.kotlin.platform.type 'jvm' but wasn't required.
+
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+BUILD FAILED in 94ms
+```
+
+> 原因分析：一般情况下，我们都是使用 JDK8 进行开发，但是新版的 IDEA 插件的编译需要使用 JAVA11 版本以上，因此要把 JDK8 换成 JDK11。（设置方法：左上角点击 Settings -> Build, Execution, Deployment, Build Tools -> Gradle，在下面找到 Gradle JVM: 改成 Java11 再次运行 Gradle 即可）
+>
+>
+
+## 常见问题二：无法创建 org.jetbrains.intellij.utils.ArchiveUtils 的实例
+
+```
+Build file 'D:\project\string-template-error-scanner\build.gradle' line: 3
+
+An exception occurred applying plugin request [id: 'org.jetbrains.intellij', version: '1.4.0']
+> Failed to apply plugin [id 'org.jetbrains.intellij']
+   > Could not create an instance of type org.jetbrains.intellij.utils.ArchiveUtils.
+      > Could not generate a decorated class for type ArchiveUtils.
+         > org/gradle/api/file/ArchiveOperations
+
+```
+
+> 原因分析：这个问题我在 StackOverFlow、CSDN 等等网站搜了一大圈都从根源上找到怎么解决（知道的小伙伴可以编辑此页和我说一下~）
+>
+> 最后通过修改 `build.gradle` 中 org.jetbrains.intellij 的版本解决的，我创建好项目之后版本是 1.4.0，换成 0.6.3，再重新运行一次 Gradle 就可以了

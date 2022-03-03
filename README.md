@@ -1,42 +1,40 @@
-## 👏 重大更新！！！重磅！
+>  [JavaGuide 官方知识星球](https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc)来啦！！！如果你需要专属面试小册/一对一交流/简历修改/专属求职指南/学习打卡，不妨花 3 分钟左右看看星球的详细介绍： [JavaGuide 知识星球详细介绍](https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc) （一定要确定自己真的需要再加入，一定要看完详细介绍之后再加我）。
 
-- JavaGuide 在线阅读版（新版，推荐👍）：https://javaguide.cn/
-- JavaGuide 在线阅读版（老版）:https://snailclimb.gitee.io/javaguide/#/
--  [《JavaGuide 面试突击版》PDF 版本下载](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=100029614&idx=1&sn=62993c5cf10265cb7018db7f1ec67250&chksm=4ea1fb6579d67273499b7243641d4ef372decd08047bfbb6dfb5843ef81c7ccba209086cf345#rd) 
-
-<a href="https://t.1yb.co/GXLF"><img src="https://img-blog.csdnimg.cn/2f61f3e2d1f2427da977340919e41616.png" style="margin: 0 auto;width:850px" /></a>
-
-> 1. **介绍**：关于 JavaGuide 的相关介绍请看：[关于 JavaGuide 的一些说明](https://www.yuque.com/snailclimb/dr6cvl/mr44yt) 。
-> 2. **贡献指南** ：欢迎参与 [JavaGuide的维护工作](https://github.com/Snailclimb/JavaGuide/issues/1235)，这是一件非常有意义的事情。
-> 3. **PDF版本** ： [《JavaGuide 面试突击版》PDF 版本](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=100029614&idx=1&sn=62993c5cf10265cb7018db7f1ec67250&chksm=4ea1fb6579d67273499b7243641d4ef372decd08047bfbb6dfb5843ef81c7ccba209086cf345#rd) 。
-> 4. **图解计算机基础** ：[图解计算机基础 PDF 下载](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=100021725&idx=1&sn=2db9664ca25363139a81691043e9fd8f&chksm=4ea19a1679d61300d8990f7e43bfc7f476577a81b712cf0f9c6f6552a8b219bc081efddb5c54#rd) 。
-> 5. **知识星球** :  简历指导/Java学习/面试指导/面试小册。欢迎加入[我的知识星球](https://sourl.cn/psyWaE) 。
-> 6. **面试专版** ：准备面试的小伙伴可以考虑面试专版：[《Java面试进阶指北 》](https://www.yuque.com/docs/share/f37fc804-bfe6-4b0d-b373-9c462188fec7) (质量很高，专为面试打造，星球用户免费)
-> 7. **转载须知** ：以下所有文章如非文首说明皆为我（Guide哥）的原创，转载在文首注明出处，如发现恶意抄袭/搬运，会动用法律武器维护自己的权益。让我们一起维护一个良好的技术创作环境！⛽️
-
-<p align="center">
-<a href="https://github.com/Snailclimb/JavaGuide" target="_blank">
-	<img src="https://img-blog.csdnimg.cn/img_convert/1c00413c65d1995993bf2b0daf7b4f03.png#pic_center" width=""/>
-</a>
-</p>
-<p align="center">
-  <a href="https://javaguide.cn/"><img src="https://img.shields.io/badge/阅读-read-brightgreen.svg" alt="阅读"></a>
-  <img src="https://img.shields.io/github/stars/Snailclimb/JavaGuide" alt="stars"/>
-  <img src="https://img.shields.io/github/forks/Snailclimb/JavaGuide" alt="forks"/>
-  <img src="https://img.shields.io/github/issues/Snailclimb/JavaGuide" alt="issues"/>
-</p>
-<h3 align="center">推荐</h3>
-<table>
-  <tbody>
-    <tr>
-       <td align="center" valign="middle">
+<div align="center">
+    <p>
         <a href="https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc">
-         <img src="./media/sponsor/xingqiu.png" style="margin: 0 auto;width:850px" /></a>
-      </td>       
-    </tr>
-  </tbody>
-</table>
+            <img src="./media/sponsor/xingqiu.png" style="margin: 0 auto; width: 850px;" />
+        </a>
+    </p>
+    <p>
+        <a href="https://github.com/Snailclimb/JavaGuide" target="_blank">
+            <img src="https://img-blog.csdnimg.cn/img_convert/1c00413c65d1995993bf2b0daf7b4f03.png#pic_center" width="" />
+        </a>
+    </p>
+    <p>
+        <a href="https://javaguide.cn/"><img src="https://img.shields.io/badge/阅读-read-brightgreen.svg" alt="阅读" /></a>
+        <img src="https://img.shields.io/github/stars/Snailclimb/JavaGuide" alt="stars" />
+        <img src="https://img.shields.io/github/forks/Snailclimb/JavaGuide" alt="forks" />
+        <img src="https://img.shields.io/github/issues/Snailclimb/JavaGuide" alt="issues" />
+    </p>
+</div>
 
+
+> 1. **面试专版** ：准备面试的小伙伴可以考虑面试专版：[《Java 面试进阶指北 》](https://www.yuque.com/docs/share/f37fc804-bfe6-4b0d-b373-9c462188fec7) (质量很高，专为面试打造，配合 JavaGuide 食用)。
+> 1. **知识星球** ：专属面试小册/一对一交流/简历修改/专属求职指南，欢迎加入 [JavaGuide 知识星球](https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc)（点击链接即可查看星球的详细介绍，一定一定一定确定自己真的需要再加入，一定一定要看完详细介绍之后再加我）。
+> 2. **转载须知** ：以下所有文章如非文首说明为转载皆为我（Guide 哥）的原创，转载在文首注明出处，如发现恶意抄袭/搬运，会动用法律武器维护自己的权益。让我们一起维护一个良好的技术创作环境！
+
+推荐你通过在线阅读网站进行阅读，体验更好，速度更快！
+
+- [JavaGuide 在线阅读网站（新版，推荐👍）](https://javaguide.cn/)
+- [JavaGuide 在线阅读版（老版）](https://snailclimb.gitee.io/javaguide/#/)
+
+你可能需要：
+
+- [项目介绍](./docs/javaguide/intro)
+- [贡献指南](./docs/javaguide/contribution-guideline)
+- [常见问题](./docs/javaguide/faq)
+- [项目代办](./docs/javaguide/todo)
 
 ## Java
 
@@ -83,7 +81,7 @@
 1. **线程池** ：[Java 线程池详解](./docs/java/concurrent/java-thread-pool-summary.md)、[Java 线程池最佳实践](./docs/java/concurrent/java-thread-pool-best-practices.md)
 2. [ThreadLocal 关键字解析](docs/java/concurrent/threadlocal.md)
 3. [Java 并发容器总结](docs/java/concurrent/java-concurrent-collections.md)
-4. [Atomic 原子类总结](docs/java/concurrent/atomic原子类总结.md)
+4. [Atomic 原子类总结](docs/java/concurrent/atomic-classes.md)
 5. [AQS 原理以及 AQS 同步组件总结](docs/java/concurrent/aqs原理以及aqs同步组件总结.md)
 6. [CompletableFuture入门](docs/java/concurrent/completablefuture-intro.md)
 
@@ -102,13 +100,12 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 ### 新特性
 
-1.  **Java 8** ：[Java 8 新特性总结（翻译）](docs/java/new-features/java8-tutorial-translate.md)、[Java8常用新特性总结](docs/java/new-features/java8-common-new-features.md)
-2.  **Java9~Java15** : [一文带你看遍 JDK9~15 的重要新特性！](./docs/java/new-features/java新特性总结.md)
-
-### 小技巧
-
-1. [JAD 反编译](docs/java/tips/jad.md)
-2. [手把手教你定位常见 Java 性能问题](./docs/java/tips/locate-performance-problems/手把手教你定位常见Java性能问题.md)
+1.  **Java 8** ：[Java 8 新特性总结（翻译）](docs/java/new-features/java8-tutorial-translate.md)、[Java8常用新特性总结](./docs/java/new-features/java8-common-new-features.md)
+2. [Java 9 新特性概览](./docs/java/new-features/java9.md)
+3. [Java 10 新特性概览](./docs/java/new-features/java10.md)
+4. [Java 11 新特性概览](./docs/java/new-features/java11.md)
+5. [Java 12~13 新特性概览](./docs/java/new-features/java12-13.md)
+6. [Java 14~15 新特性概览](./docs/java/new-features/java14-15.md)
 
 ## 计算机基础
 
@@ -116,23 +113,26 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 ### 操作系统
 
-1. [操作系统常见问题总结！](docs/cs-basics/operating-system/操作系统常见面试题&知识点总结.md)
+1. [操作系统常见问题总结！](docs/cs-basics/operating-system/operating-system-basic-questions-01.md)
 2. [后端程序员必备的 Linux 基础知识总结](docs/cs-basics/operating-system/linux-intro.md)
 3. [Shell 编程入门](docs/cs-basics/operating-system/shell-intro.md)
 
 ### 网络
 
-1. [计算机网络常见面试题](docs/cs-basics/network/计算机网络常见面试题.md)
+1. [OSI 和 TCP/IP 网络分层模型详解（基础）](./docs/cs-basics/network/osi&tcp-ip-model.md)
+1. [HTTP vs HTTPS（应用层）](./docs/cs-basics/network/http&https.md)
+1. [HTTP 1.0 vs HTTP 1.1（应用层）](./docs/cs-basics/network/http1.0&http1.1.md)
+1. [计算机网络常见知识点&面试题（补充）](./docs/cs-basics/network/other-network-questions.md)
 2. [谢希仁老师的《计算机网络》内容总结](docs/cs-basics/network/谢希仁老师的《计算机网络》内容总结.md)
 
 ### 数据结构
 
 **图解数据结构：**
 
-1. [线性数据结构 :数组、链表、栈、队列](docs/cs-basics/data-structure/线性数据结构.md)
-2. [图](docs/cs-basics/data-structure/图.md)
-3. [堆](docs/cs-basics/data-structure/堆.md)
-4. [树](docs/cs-basics/data-structure/树.md) ：重点关注[红黑树](docs/cs-basics/data-structure/红黑树.md)、B-，B+，B*树、LSM树
+1. [线性数据结构 :数组、链表、栈、队列](docs/cs-basics/data-structure/linear-data-structure.md)
+2. [图](docs/cs-basics/data-structure/graph.md)
+3. [堆](docs/cs-basics/data-structure/heap.md)
+4. [树](docs/cs-basics/data-structure/tree.md) ：重点关注[红黑树](docs/cs-basics/data-structure/red-black-tree.md)、B-，B+，B*树、LSM树
 
 其他常用数据结构 ：
 
@@ -147,9 +147,9 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 **常见算法问题总结** ：
 
-- [几道常见的字符串算法题总结 ](docs/cs-basics/algorithms/几道常见的字符串算法题.md)
-- [几道常见的链表算法题总结 ](docs/cs-basics/algorithms/几道常见的链表算法题.md)
-- [剑指 offer 部分编程题](docs/cs-basics/algorithms/剑指offer部分编程题.md)
+- [几道常见的字符串算法题总结 ](docs/cs-basics/algorithms/string-algorithm-problems.md)
+- [几道常见的链表算法题总结 ](docs/cs-basics/algorithms/linkedlist-algorithm-problems.md)
+- [剑指 offer 部分编程题](docs/cs-basics/algorithms/the-sword-refers-to-offer.md)
 
 另外，[GeeksforGeeks]( https://www.geeksforgeeks.org/fundamentals-of-algorithms/) 这个网站总结了常见的算法 ，比较全面系统。
 
@@ -159,8 +159,8 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 **总结：**
 
-1. [数据库基础知识总结](docs/database/数据库基础知识.md)
-2. **[MySQL知识点总结](docs/database/mysql/mysql知识点&面试题总结.md)** (必看 :+1:)
+1. [数据库基础知识总结](docs/database/basis.md)
+2. **[MySQL知识点总结](docs/database/mysql/mysql-questions-01.md)** (必看 :+1:)
 4. [一千行 MySQL 学习笔记](docs/database/mysql/a-thousand-lines-of-mysql-study-notes.md)
 5. [MySQL 高性能优化规范建议](docs/database/mysql/mysql-high-performance-optimization-specification-recommendations.md)
 
@@ -171,7 +171,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 3. [MySQL三大日志(binlog、redo log和undo log)详解](docs/database/mysql/mysql-logs.md)
 4. [InnoDB存储引擎对MVCC的实现](docs/database/mysql/innodb-implementation-of-mvcc.md)
 5. [一条 SQL 语句在 MySQL 中如何被执行的?](docs/database/mysql/how-sql-executed-in-mysql.md)
-6. [字符集详解：为什么不建议在MySQL中使用 utf8 ？](docs/database/字符集.md)
+6. [字符集详解：为什么不建议在MySQL中使用 utf8 ？](docs/database/character-set.md)
 7. [关于数据库中如何存储时间的一点思考](docs/database/mysql/some-thoughts-on-database-storage-time.md)
 
 ### Redis
@@ -223,7 +223,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 #### Spring Cloud
 
-[ 大白话入门 Spring Cloud](docs/system-design/framework/springcloud/springcloud-intro.md)
+[大白话入门 Spring Cloud](docs/system-design/framework/springcloud/springcloud-intro.md)
 
 ### 安全
 
@@ -245,11 +245,11 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 系统需要对用户输入的文本进行敏感词过滤如色情、政治、暴力相关的词汇。
 
-相关阅读：[《Java定时任务大揭秘》](./docs/system-design/security/sentive-words-filter.md)
+相关阅读：[《敏感词过滤》](./docs/system-design/security/sentive-words-filter.md)
 
 ### 定时任务
 
-最近有朋友问到定时任务相关的问题。于是，我简单写了一篇文章总结一下定时任务的一些概念以及一些常见的定时任务技术选型：[《Java定时任务大揭秘》](./docs/system-design/定时任务.md)
+最近有朋友问到定时任务相关的问题。于是，我简单写了一篇文章总结一下定时任务的一些概念以及一些常见的定时任务技术选型：[《Java定时任务大揭秘》](./docs/system-design/schedule-task.md)
 
 ## 分布式
 
@@ -316,7 +316,7 @@ Dubbo 是一款国产的 RPC 框架，由阿里开源。相关阅读：
 
 1. **RabbitMQ** : [RabbitMQ 入门](docs/high-performance/message-queue/rabbitmq-intro.md)
 2. **RocketMQ** : [RocketMQ 入门](docs/high-performance/message-queue/rocketmq-intro)、[RocketMQ 的几个简单问题与答案](docs/high-performance/message-queue/rocketmq-questions.md)
-3. **Kafka** ：[Kafka 常见问题总结](docs/high-performance/message-queue/kafka知识点&面试题总结.md)
+3. **Kafka** ：[Kafka 常见问题总结](docs/high-performance/message-queue/kafka-questions-01.md)
 
 ### 读写分离&分库分表
 
@@ -328,7 +328,7 @@ Dubbo 是一款国产的 RPC 框架，由阿里开源。相关阅读：
 
 常见的分库分表工具有：`sharding-jdbc`（当当）、`TSharding`（蘑菇街）、`MyCAT`（基于 Cobar）、`Cobar`（阿里巴巴）...。 推荐使用 `sharding-jdbc`。 因为，`sharding-jdbc` 是一款轻量级 `Java` 框架，以 `jar` 包形式提供服务，不要我们做额外的运维工作，并且兼容性也很好。
 
-相关阅读： [读写分离&分库分表常见问题总结](docs/high-performance/读写分离&分库分表.md)
+相关阅读： [读写分离&分库分表常见问题总结](docs/high-performance/read-and-write-separation-and-library-subtable.md)
 
 ### 负载均衡
 
@@ -344,7 +344,7 @@ Dubbo 是一款国产的 RPC 框架，由阿里开源。相关阅读：
 
 高可用描述的是一个系统在大部分时间都是可用的，可以为我们提供服务的。高可用代表系统即使在发生硬件故障或者系统升级的时候，服务仍然是可用的 。
 
-相关阅读： **《[如何设计一个高可用系统？要考虑哪些地方？](docs/high-availability/高可用系统设计.md)》** 。
+相关阅读： **《[如何设计一个高可用系统？要考虑哪些地方？](docs/high-availability/high-availability-system-design.md)》** 。
 
 ### 限流
 
