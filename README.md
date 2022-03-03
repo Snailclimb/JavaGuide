@@ -1,6 +1,7 @@
->  [JavaGuide 官方知识星球](https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc)来啦！！！如果你需要专属面试小册/一对一交流/简历修改/专属求职指南/学习打卡，不妨花 3 分钟左右看看星球的详细介绍： [JavaGuide 知识星球详细介绍](https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc) （一定要确定自己真的需要再加入，一定要看完详细介绍之后再加我）。
+> [JavaGuide 官方知识星球](https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc)来啦！！！如果你需要专属面试小册/一对一交流/简历修改/专属求职指南/学习打卡，不妨花 3 分钟左右看看星球的详细介绍： [JavaGuide 知识星球详细介绍](https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc) （一定要确定自己真的需要再加入，一定要看完详细介绍之后再加我）。
 
 <div align="center">
+
     <p>
         <a href="https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc">
             <img src="./media/sponsor/xingqiu.png" style="margin: 0 auto; width: 850px;" />
@@ -17,8 +18,8 @@
         <img src="https://img.shields.io/github/forks/Snailclimb/JavaGuide" alt="forks" />
         <img src="https://img.shields.io/github/issues/Snailclimb/JavaGuide" alt="issues" />
     </p>
-</div>
 
+</div>
 
 > 1. **面试专版** ：准备面试的小伙伴可以考虑面试专版：[《Java 面试进阶指北 》](https://www.yuque.com/docs/share/f37fc804-bfe6-4b0d-b373-9c462188fec7) (质量很高，专为面试打造，配合 JavaGuide 食用)。
 > 1. **知识星球** ：专属面试小册/一对一交流/简历修改/专属求职指南，欢迎加入 [JavaGuide 知识星球](https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc)（点击链接即可查看星球的详细介绍，一定一定一定确定自己真的需要再加入，一定一定要看完详细介绍之后再加我）。
@@ -26,15 +27,15 @@
 
 推荐你通过在线阅读网站进行阅读，体验更好，速度更快！
 
-- [JavaGuide 在线阅读网站（新版，推荐👍）](https://javaguide.cn/)
-- [JavaGuide 在线阅读版（老版）](https://snailclimb.gitee.io/javaguide/#/)
+* [JavaGuide 在线阅读网站（新版，推荐👍）](https://javaguide.cn/)
+* [JavaGuide 在线阅读版（老版）](https://snailclimb.gitee.io/javaguide/#/)
 
 你可能需要：
 
-- [项目介绍](./docs/javaguide/intro)
-- [贡献指南](./docs/javaguide/contribution-guideline)
-- [常见问题](./docs/javaguide/faq)
-- [项目代办](./docs/javaguide/todo)
+* [项目介绍](./docs/javaguide/intro)
+* [贡献指南](./docs/javaguide/contribution-guideline)
+* [常见问题](./docs/javaguide/faq)
+* [项目代办](./docs/javaguide/todo)
 
 ## Java
 
@@ -42,18 +43,18 @@
 
 **知识点/面试题** : (必看:+1: )：
 
-- [Java 基础常见知识点&面试题总结(上)](docs/java/basis/java-basic-questions-01.md)
-- [Java 基础常见知识点&面试题总结(中)](docs/java/basis/java-basic-questions-02.md)
-- [Java 基础常见知识点&面试题总结(下)](docs/java/basis/java-basic-questions-03.md)
+* [Java 基础常见知识点&面试题总结(上)](docs/java/basis/java-basic-questions-01.md)
+* [Java 基础常见知识点&面试题总结(中)](docs/java/basis/java-basic-questions-02.md)
+* [Java 基础常见知识点&面试题总结(下)](docs/java/basis/java-basic-questions-03.md)
 
 **重要知识点详解** ：
 
-- [为什么 Java 中只有值传递？](docs/java/basis/why-there-only-value-passing-in-java.md)
-- [什么是反射机制？反射机制的应用场景有哪些？](docs/java/basis/reflection.md)
-- [代理模式详解：静态代理+JDK/CGLIB 动态代理实战](docs/java/basis/proxy.md)
-- [常见的 IO 模型有哪些？Java 中的 BIO、NIO、AIO 有啥区别?](docs/java/basis/io.md)
-- [BigDecimal解决浮点数运算精度丢失问题](docs/java/basis/bigdecimal.md)
-- **[泛型连环炮](docs/java/basis/generics.md)**
+* [为什么 Java 中只有值传递？](docs/java/basis/why-there-only-value-passing-in-java.md)
+* [什么是反射机制？反射机制的应用场景有哪些？](docs/java/basis/reflection.md)
+* [代理模式详解：静态代理+JDK/CGLIB 动态代理实战](docs/java/basis/proxy.md)
+* [常见的 IO 模型有哪些？Java 中的 BIO、NIO、AIO 有啥区别?](docs/java/basis/io.md)
+* [BigDecimal解决浮点数运算精度丢失问题](docs/java/basis/bigdecimal.md)
+* **[泛型连环炮](docs/java/basis/generics.md)**
 
 ### 集合
 
@@ -65,9 +66,9 @@
 
 **源码分析** ：
 
-- [ArrayList 源码+扩容机制分析](docs/java/collection/arraylist-source-code.md)
-- [HashMap(JDK1.8)源码+底层数据结构分析](docs/java/collection/hashmap-source-code.md)
-- [ConcurrentHashMap 源码+底层数据结构分析](docs/java/collection/concurrent-hash-map-source-code.md)
+* [ArrayList 源码+扩容机制分析](docs/java/collection/arraylist-source-code.md)
+* [HashMap(JDK1.8)源码+底层数据结构分析](docs/java/collection/hashmap-source-code.md)
+* [ConcurrentHashMap 源码+底层数据结构分析](docs/java/collection/concurrent-hash-map-source-code.md)
 
 ### 并发
 
@@ -142,14 +143,14 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 算法这部分内容非常重要，如果你不知道如何学习算法的话，可以看下我写的：
 
-- [算法学习书籍+资源推荐](https://www.zhihu.com/question/323359308/answer/1545320858) 。
-- [如何刷Leetcode?](https://www.zhihu.com/question/31092580/answer/1534887374) 
+* [算法学习书籍+资源推荐](https://www.zhihu.com/question/323359308/answer/1545320858) 。
+* [如何刷Leetcode?](https://www.zhihu.com/question/31092580/answer/1534887374) 
 
 **常见算法问题总结** ：
 
-- [几道常见的字符串算法题总结 ](docs/cs-basics/algorithms/string-algorithm-problems.md)
-- [几道常见的链表算法题总结 ](docs/cs-basics/algorithms/linkedlist-algorithm-problems.md)
-- [剑指 offer 部分编程题](docs/cs-basics/algorithms/the-sword-refers-to-offer.md)
+* [几道常见的字符串算法题总结 ](docs/cs-basics/algorithms/string-algorithm-problems.md)
+* [几道常见的链表算法题总结 ](docs/cs-basics/algorithms/linkedlist-algorithm-problems.md)
+* [剑指 offer 部分编程题](docs/cs-basics/algorithms/the-sword-refers-to-offer.md)
 
 另外，[GeeksforGeeks]( https://www.geeksforgeeks.org/fundamentals-of-algorithms/) 这个网站总结了常见的算法 ，比较全面系统。
 
@@ -182,6 +183,18 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 ## 搜索引擎
 
 用于提高搜索效率，功能和浏览器搜索引擎类似。比较常见的搜索引擎是 Elasticsearch（推荐） 和 Solr。
+
+## 开发工具
+
+### Docker
+
+* [Docker 基本概念解读](./docs/tools/docker/docker-intro.md)
+* [Docker从入门到上手干事](./docs/tools/docker/docker-in-action.md)
+
+### Git
+
+* [Git 入门](./docs/tools/git/git-intro.md)
+* [Github 小技巧](./docs/tools/git/github-tips.md)
 
 ## 系统设计
 
@@ -229,13 +242,13 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 #### 认证授权
 
-**[《认证授权基础》](docs/system-design/security/basis-of-authority-certification.md)** 这篇文章中我会介绍认证授权常见概念： **Authentication**,**Authorization** 以及 **Cookie**、**Session**、Token、**OAuth 2**、**SSO** 。如果你不清楚这些概念的话，建议好好阅读一下这篇文章。
+**[《认证授权基础》](docs/system-design/security/basis-of-authority-certification.md)** 这篇文章中我会介绍认证授权常见概念： **Authentication**, **Authorization** 以及 **Cookie**、**Session**、Token、**OAuth 2**、**SSO** 。如果你不清楚这些概念的话，建议好好阅读一下这篇文章。
 
-- **JWT** ：JWT（JSON Web Token）是一种身份认证的方式，JWT 本质上就一段签名的 JSON 格式的数据。由于它是带有签名的，因此接收者便可以验证它的真实性。相关阅读：
-  - [JWT 优缺点分析以及常见问题解决方案](docs/system-design/security/advantages&disadvantages-of-jwt.md)
-  - [适合初学者入门 Spring Security With JWT 的 Demo](https://github.com/Snailclimb/spring-security-jwt-guide)
+* **JWT** ：JWT（JSON Web Token）是一种身份认证的方式，JWT 本质上就一段签名的 JSON 格式的数据。由于它是带有签名的，因此接收者便可以验证它的真实性。相关阅读：
+  + [JWT 优缺点分析以及常见问题解决方案](docs/system-design/security/advantages&disadvantages-of-jwt.md)
+  + [适合初学者入门 Spring Security With JWT 的 Demo](https://github.com/Snailclimb/spring-security-jwt-guide)
 
-- **SSO(单点登录)** ：**SSO(Single Sign On)** 即单点登录说的是用户登陆多个子系统的其中一个就有权访问与其相关的其他系统。举个例子我们在登陆了京东金融之后，我们同时也成功登陆京东的京东超市、京东家电等子系统。相关阅读：[**SSO 单点登录看这篇就够了！**](docs/system-design/security/sso-intro.md)
+* **SSO(单点登录)** ：**SSO(Single Sign On)** 即单点登录说的是用户登陆多个子系统的其中一个就有权访问与其相关的其他系统。举个例子我们在登陆了京东金融之后，我们同时也成功登陆京东的京东超市、京东家电等子系统。相关阅读：[**SSO 单点登录看这篇就够了！**](docs/system-design/security/sso-intro.md)
 
 #### 数据脱敏
 
@@ -267,8 +280,8 @@ CAP 也就是 Consistency（一致性）、Availability（可用性）、Partiti
 
 相关阅读：
 
-- [Paxos 算法解读](docs/distributed-system/theorem&algorithm&protocol/paxos-algorithm.md)
-- [Raft 算法解读](docs/distributed-system/theorem&algorithm&protocol/raft-algorithm.md)
+* [Paxos 算法解读](docs/distributed-system/theorem&algorithm&protocol/paxos-algorithm.md)
+* [Raft 算法解读](docs/distributed-system/theorem&algorithm&protocol/raft-algorithm.md)
 
 ### RPC
 
@@ -276,8 +289,8 @@ RPC 让调用远程服务调用像调用本地方法那样简单。
 
 Dubbo 是一款国产的 RPC 框架，由阿里开源。相关阅读：
 
-- [Dubbo 常见问题总结](docs/distributed-system/rpc/dubbo.md)
-- [服务之间的调用为啥不直接用 HTTP 而用 RPC？](docs/distributed-system/rpc/why-use-rpc.md)
+* [Dubbo 常见问题总结](docs/distributed-system/rpc/dubbo.md)
+* [服务之间的调用为啥不直接用 HTTP 而用 RPC？](docs/distributed-system/rpc/why-use-rpc.md)
 
 ### API 网关
 
@@ -285,8 +298,8 @@ Dubbo 是一款国产的 RPC 框架，由阿里开源。相关阅读：
 
 相关阅读：
 
-- [为什么要网关？你知道有哪些常见的网关系统？](docs/distributed-system/api-gateway.md)
-- [百亿规模API网关服务Shepherd的设计与实现](https://tech.meituan.com/2021/05/20/shepherd-api-gateway.html)
+* [为什么要网关？你知道有哪些常见的网关系统？](docs/distributed-system/api-gateway.md)
+* [百亿规模API网关服务Shepherd的设计与实现](https://tech.meituan.com/2021/05/20/shepherd-api-gateway.html)
 
 ### 分布式 id
 
@@ -326,7 +339,7 @@ Dubbo 是一款国产的 RPC 框架，由阿里开源。相关阅读：
 
 分库分表是为了解决由于库、表数据量过大，而导致数据库性能持续下降的问题。
 
-常见的分库分表工具有：`sharding-jdbc`（当当）、`TSharding`（蘑菇街）、`MyCAT`（基于 Cobar）、`Cobar`（阿里巴巴）...。 推荐使用 `sharding-jdbc`。 因为，`sharding-jdbc` 是一款轻量级 `Java` 框架，以 `jar` 包形式提供服务，不要我们做额外的运维工作，并且兼容性也很好。
+常见的分库分表工具有： `sharding-jdbc` （当当）、 `TSharding` （蘑菇街）、 `MyCAT` （基于 Cobar）、 `Cobar` （阿里巴巴）...。 推荐使用 `sharding-jdbc` 。 因为， `sharding-jdbc` 是一款轻量级 `Java` 框架，以 `jar` 包形式提供服务，不要我们做额外的运维工作，并且兼容性也很好。
 
 相关阅读： [读写分离&分库分表常见问题总结](docs/high-performance/read-and-write-separation-and-library-subtable.md)
 
@@ -384,43 +397,43 @@ Dubbo 是一款国产的 RPC 框架，由阿里开源。相关阅读：
 
 **灾备**  = 容灾+备份。
 
-- **备份** ： 将系统所产生的的所有重要数据多备份几份。
-- **容灾** ： 在异地建立两个完全相同的系统。当某个地方的系统突然挂掉，整个应用系统可以切换到另一个，这样系统就可以正常提供服务了。
+* **备份** ： 将系统所产生的的所有重要数据多备份几份。
+* **容灾** ： 在异地建立两个完全相同的系统。当某个地方的系统突然挂掉，整个应用系统可以切换到另一个，这样系统就可以正常提供服务了。
 
 **异地多活** 描述的是将服务部署在异地并且服务同时对外提供服务。和传统的灾备设计的最主要区别在于“多活”，即所有站点都是同时在对外提供服务的。异地多活是为了应对突发状况比如火灾、地震等自然或者人为灾害。
 
 相关阅读：
 
-- [搞懂异地多活，看这篇就够了](https://mp.weixin.qq.com/s/T6mMDdtTfBuIiEowCpqu6Q)
-- [四步构建异地多活](https://mp.weixin.qq.com/s/hMD-IS__4JE5_nQhYPYSTg)
-- [《从零开始学架构》— 28 | 业务高可用的保障：异地多活架构](http://gk.link/a/10pKZ)
+* [搞懂异地多活，看这篇就够了](https://mp.weixin.qq.com/s/T6mMDdtTfBuIiEowCpqu6Q)
+* [四步构建异地多活](https://mp.weixin.qq.com/s/hMD-IS__4JE5_nQhYPYSTg)
+* [《从零开始学架构》— 28 | 业务高可用的保障：异地多活架构](http://gk.link/a/10pKZ)
 
 ## 开发工具
 
 ### 数据库
 
-- [CHINER: 干掉 PowerDesigner，这个国产数据库建模工具很强！](./docs/tools/database/CHINER.md)
-- [DBeaver:开源数据库管理工具。](./docs/tools/database/DBeaver.md)
-- [screw:一键生成数据库文档，堪称数据库界的Swagger](./docs/tools/database/screw.md)
-- [DataGrip:IDEA官方的这个数据库管理神器真香！](./docs/tools/database/datagrip.md)
+* [CHINER: 干掉 PowerDesigner，这个国产数据库建模工具很强！](./docs/tools/database/CHINER.md)
+* [DBeaver: 开源数据库管理工具。](./docs/tools/database/DBeaver.md)
+* [screw: 一键生成数据库文档，堪称数据库界的Swagger](./docs/tools/database/screw.md)
+* [DataGrip: IDEA官方的这个数据库管理神器真香！](./docs/tools/database/datagrip.md)
 
 ### Git
 
-- [Git 入门](./docs/tools/git/git-intro.md)
-- [Github 小技巧](./docs/tools/git/git-intro.md)
+* [Git 入门](./docs/tools/git/git-intro.md)
+* [Github 小技巧](./docs/tools/git/git-intro.md)
 
 ### Docker
 
-- [Docker 基本概念解读](./docs/tools/docker/docker-intro.md)
-- [Docker从入门到上手干事](./docs/tools/docker/docker-in-action.md)
+* [Docker 基本概念解读](./docs/tools/docker/docker-intro.md)
+* [Docker从入门到上手干事](./docs/tools/docker/docker-in-action.md)
 
 ## 关于作者
 
-- [个人介绍 Q&A](https://javaguide.cn/about-the-author/)
-- [我曾经也是网瘾少年](https://javaguide.cn/about-the-author/internet-addiction-teenager/)
-- [入职培训一个月后的感受](https://javaguide.cn/about-the-author/feelings-after-one-month-of-induction-training/)
-- [从毕业到入职半年的感受](https://javaguide.cn/about-the-author/feelings-of-half-a-year-from-graduation-to-entry/)
-- [某培训机构盗我文章做成视频还上了B站热门](https://javaguide.cn/about-the-author/my-article-was-stolen-and-made-into-video-and-it-became-popular/)
+* [个人介绍 Q&A](https://javaguide.cn/about-the-author/)
+* [我曾经也是网瘾少年](https://javaguide.cn/about-the-author/internet-addiction-teenager/)
+* [入职培训一个月后的感受](https://javaguide.cn/about-the-author/feelings-after-one-month-of-induction-training/)
+* [从毕业到入职半年的感受](https://javaguide.cn/about-the-author/feelings-of-half-a-year-from-graduation-to-entry/)
+* [某培训机构盗我文章做成视频还上了B站热门](https://javaguide.cn/about-the-author/my-article-was-stolen-and-made-into-video-and-it-became-popular/)
 
 ## 公众号
 
@@ -433,4 +446,3 @@ Dubbo 是一款国产的 RPC 框架，由阿里开源。相关阅读：
 ![](https://img-blog.csdnimg.cn/7af97d4dccdb4123a541f336a107ca86.png)
 
 ![](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3a2d826918a44bcbaa8d9272db3ad7d2~tplv-k3u1fbpfcp-watermark.image)
-

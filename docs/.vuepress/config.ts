@@ -10,23 +10,6 @@ module.exports = defineHopeConfig({
   // 是否开启默认预加载 js
   shouldPrefetch: (file, type) => false,
   head: [
-    // 百度站点验证
-    ["meta", { name: "baidu-site-verification", content: "code-IZvTs9l2OK" }],
-    [
-      "script",
-      { src: "https://cdn.jsdelivr.net/npm/react/umd/react.production.min.js" },
-    ],
-    [
-      "script",
-      {
-        src: "https://cdn.jsdelivr.net/npm/react-dom/umd/react-dom.production.min.js",
-      },
-    ],
-    ["script", { src: "https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js" }],
-    [
-      "script",
-      { src: "https://cdn.jsdelivr.net/npm/@babel/standalone/babel.min.js" },
-    ],
     // 添加百度统计
     [
       "script", {},
