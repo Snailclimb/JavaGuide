@@ -1,6 +1,6 @@
 >  [JavaGuide 官方知识星球](https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc)来啦！！！如果你需要专属面试小册/一对一交流/简历修改/专属求职指南/学习打卡，不妨花 3 分钟左右看看星球的详细介绍： [JavaGuide 知识星球详细介绍](https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc) （一定要确定自己真的需要再加入，一定要看完详细介绍之后再加我）。
 
-<div align="center">
+<div style="text-align:center">
     <p>
         <a href="https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc">
             <img src="./media/sponsor/xingqiu.png" style="margin: 0 auto; width: 850px;" />
@@ -100,13 +100,12 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 ### 新特性
 
-1.  **Java 8** ：[Java 8 新特性总结（翻译）](docs/java/new-features/java8-tutorial-translate.md)、[Java8常用新特性总结](docs/java/new-features/java8-common-new-features.md)
-2.  **Java9~Java15** : [一文带你看遍 JDK9~15 的重要新特性！](./docs/java/new-features/java新特性总结.md)
-
-### 小技巧
-
-1. [JAD 反编译](docs/java/tips/jad.md)
-2. [手把手教你定位常见 Java 性能问题](./docs/java/tips/locate-performance-problems/手把手教你定位常见Java性能问题.md)
+1.  **Java 8** ：[Java 8 新特性总结（翻译）](docs/java/new-features/java8-tutorial-translate.md)、[Java8常用新特性总结](./docs/java/new-features/java8-common-new-features.md)
+2. [Java 9 新特性概览](./docs/java/new-features/java9.md)
+3. [Java 10 新特性概览](./docs/java/new-features/java10.md)
+4. [Java 11 新特性概览](./docs/java/new-features/java11.md)
+5. [Java 12~13 新特性概览](./docs/java/new-features/java12-13.md)
+6. [Java 14~15 新特性概览](./docs/java/new-features/java14-15.md)
 
 ## 计算机基础
 
@@ -114,7 +113,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 ### 操作系统
 
-1. [操作系统常见问题总结！](docs/cs-basics/operating-system/操作系统常见面试题&知识点总结.md)
+1. [操作系统常见问题总结！](docs/cs-basics/operating-system/operating-system-basic-questions-01.md)
 2. [后端程序员必备的 Linux 基础知识总结](docs/cs-basics/operating-system/linux-intro.md)
 3. [Shell 编程入门](docs/cs-basics/operating-system/shell-intro.md)
 
@@ -130,10 +129,10 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 **图解数据结构：**
 
-1. [线性数据结构 :数组、链表、栈、队列](docs/cs-basics/data-structure/线性数据结构.md)
-2. [图](docs/cs-basics/data-structure/图.md)
-3. [堆](docs/cs-basics/data-structure/堆.md)
-4. [树](docs/cs-basics/data-structure/树.md) ：重点关注[红黑树](docs/cs-basics/data-structure/红黑树.md)、B-，B+，B*树、LSM树
+1. [线性数据结构 :数组、链表、栈、队列](docs/cs-basics/data-structure/linear-data-structure.md)
+2. [图](docs/cs-basics/data-structure/graph.md)
+3. [堆](docs/cs-basics/data-structure/heap.md)
+4. [树](docs/cs-basics/data-structure/tree.md) ：重点关注[红黑树](docs/cs-basics/data-structure/red-black-tree.md)、B-，B+，B*树、LSM树
 
 其他常用数据结构 ：
 
@@ -148,9 +147,9 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 **常见算法问题总结** ：
 
-- [几道常见的字符串算法题总结 ](docs/cs-basics/algorithms/几道常见的字符串算法题.md)
-- [几道常见的链表算法题总结 ](docs/cs-basics/algorithms/几道常见的链表算法题.md)
-- [剑指 offer 部分编程题](docs/cs-basics/algorithms/剑指offer部分编程题.md)
+- [几道常见的字符串算法题总结 ](docs/cs-basics/algorithms/string-algorithm-problems.md)
+- [几道常见的链表算法题总结 ](docs/cs-basics/algorithms/linkedlist-algorithm-problems.md)
+- [剑指 offer 部分编程题](docs/cs-basics/algorithms/the-sword-refers-to-offer.md)
 
 另外，[GeeksforGeeks]( https://www.geeksforgeeks.org/fundamentals-of-algorithms/) 这个网站总结了常见的算法 ，比较全面系统。
 
@@ -160,8 +159,8 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 **总结：**
 
-1. [数据库基础知识总结](docs/database/数据库基础知识.md)
-2. **[MySQL知识点总结](docs/database/mysql/mysql知识点&面试题总结.md)** (必看 :+1:)
+1. [数据库基础知识总结](docs/database/basis.md)
+2. **[MySQL知识点总结](docs/database/mysql/mysql-questions-01.md)** (必看 :+1:)
 4. [一千行 MySQL 学习笔记](docs/database/mysql/a-thousand-lines-of-mysql-study-notes.md)
 5. [MySQL 高性能优化规范建议](docs/database/mysql/mysql-high-performance-optimization-specification-recommendations.md)
 
@@ -172,7 +171,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 3. [MySQL三大日志(binlog、redo log和undo log)详解](docs/database/mysql/mysql-logs.md)
 4. [InnoDB存储引擎对MVCC的实现](docs/database/mysql/innodb-implementation-of-mvcc.md)
 5. [一条 SQL 语句在 MySQL 中如何被执行的?](docs/database/mysql/how-sql-executed-in-mysql.md)
-6. [字符集详解：为什么不建议在MySQL中使用 utf8 ？](docs/database/字符集.md)
+6. [字符集详解：为什么不建议在MySQL中使用 utf8 ？](docs/database/character-set.md)
 7. [关于数据库中如何存储时间的一点思考](docs/database/mysql/some-thoughts-on-database-storage-time.md)
 
 ### Redis
@@ -224,7 +223,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 #### Spring Cloud
 
-[ 大白话入门 Spring Cloud](docs/system-design/framework/springcloud/springcloud-intro.md)
+[大白话入门 Spring Cloud](docs/system-design/framework/springcloud/springcloud-intro.md)
 
 ### 安全
 
@@ -246,11 +245,11 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 系统需要对用户输入的文本进行敏感词过滤如色情、政治、暴力相关的词汇。
 
-相关阅读：[《Java定时任务大揭秘》](./docs/system-design/security/sentive-words-filter.md)
+相关阅读：[《敏感词过滤》](./docs/system-design/security/sentive-words-filter.md)
 
 ### 定时任务
 
-最近有朋友问到定时任务相关的问题。于是，我简单写了一篇文章总结一下定时任务的一些概念以及一些常见的定时任务技术选型：[《Java定时任务大揭秘》](./docs/system-design/定时任务.md)
+最近有朋友问到定时任务相关的问题。于是，我简单写了一篇文章总结一下定时任务的一些概念以及一些常见的定时任务技术选型：[《Java定时任务大揭秘》](./docs/system-design/schedule-task.md)
 
 ## 分布式
 
@@ -317,7 +316,7 @@ Dubbo 是一款国产的 RPC 框架，由阿里开源。相关阅读：
 
 1. **RabbitMQ** : [RabbitMQ 入门](docs/high-performance/message-queue/rabbitmq-intro.md)
 2. **RocketMQ** : [RocketMQ 入门](docs/high-performance/message-queue/rocketmq-intro)、[RocketMQ 的几个简单问题与答案](docs/high-performance/message-queue/rocketmq-questions.md)
-3. **Kafka** ：[Kafka 常见问题总结](docs/high-performance/message-queue/kafka知识点&面试题总结.md)
+3. **Kafka** ：[Kafka 常见问题总结](docs/high-performance/message-queue/kafka-questions-01.md)
 
 ### 读写分离&分库分表
 
@@ -329,7 +328,7 @@ Dubbo 是一款国产的 RPC 框架，由阿里开源。相关阅读：
 
 常见的分库分表工具有：`sharding-jdbc`（当当）、`TSharding`（蘑菇街）、`MyCAT`（基于 Cobar）、`Cobar`（阿里巴巴）...。 推荐使用 `sharding-jdbc`。 因为，`sharding-jdbc` 是一款轻量级 `Java` 框架，以 `jar` 包形式提供服务，不要我们做额外的运维工作，并且兼容性也很好。
 
-相关阅读： [读写分离&分库分表常见问题总结](docs/high-performance/读写分离&分库分表.md)
+相关阅读： [读写分离&分库分表常见问题总结](docs/high-performance/read-and-write-separation-and-library-subtable.md)
 
 ### 负载均衡
 
@@ -345,7 +344,7 @@ Dubbo 是一款国产的 RPC 框架，由阿里开源。相关阅读：
 
 高可用描述的是一个系统在大部分时间都是可用的，可以为我们提供服务的。高可用代表系统即使在发生硬件故障或者系统升级的时候，服务仍然是可用的 。
 
-相关阅读： **《[如何设计一个高可用系统？要考虑哪些地方？](docs/high-availability/高可用系统设计.md)》** 。
+相关阅读： **《[如何设计一个高可用系统？要考虑哪些地方？](docs/high-availability/high-availability-system-design.md)》** 。
 
 ### 限流
 

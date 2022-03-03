@@ -26,8 +26,6 @@ tag:
 
 面试官顶着蓬松的假发向我走来，只见他一手拿着厚重的 Thinkpad ，一手提着他那淡黄的长裙。
 
-<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/ceeb653ely1gd8wj5evc4j20i00n0dh0.jpg" height="300"></img>
-
 ### 1.1 什么是操作系统？
 
 👨‍💻**面试官** ： 先来个简单问题吧！**什么是操作系统？**

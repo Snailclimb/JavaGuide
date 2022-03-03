@@ -393,11 +393,11 @@ ThreadLocalMap(ThreadLocal<?> firstKey, Object firstValue) {
 
 比如我们在同一个线程中声明了两个 `ThreadLocal` 对象的话， `Thread`内部都是使用仅有的那个`ThreadLocalMap` 存放数据的，`ThreadLocalMap`的 key 就是 `ThreadLocal`对象，value 就是 `ThreadLocal` 对象调用`set`方法设置的值。
 
-![ThreadLocal数据结构](images/threadlocal数据结构.png)
+![ThreadLocal数据结构](./images/threadlocal数据结构.png)
 
 `ThreadLocalMap`是`ThreadLocal`的静态内部类。
 
-![ThreadLocal内部类](images/ThreadLocal内部类.png)
+![ThreadLocal内部类](./images/ThreadLocal内部类.png)
 
 ### 3.4. ThreadLocal 内存泄露问题
 
@@ -761,7 +761,7 @@ public void execute(Runnable command) {
 
 通过下图可以更好的对上面这 3 步做一个展示，下图是我为了省事直接从网上找到，原地址不明。
 
-![图解线程池实现原理](images/java-thread-pool-summary/图解线程池实现原理.png)
+![图解线程池实现原理](./images/java-thread-pool-summary/图解线程池实现原理.png)
 
 现在，让我们在回到 4.6 节我们写的 Demo， 现在是不是很容易就可以搞懂它的原理了呢？
 

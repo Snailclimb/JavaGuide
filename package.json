@@ -1,18 +1,27 @@
 {
-  "name": "javaguide-blog",
-  "version": "1.0.0",
-  "description": "A project of vuepress-theme-hope",
+  "name": "javaguide",
+  "version": "2.0.0-alpha.40",
+  "private": true,
+  "description": "javaguide",
   "license": "MIT",
+  "author": "Mr.Hope",
   "scripts": {
-    "build": "vuepress build docs",
-    "clean-dev": "vuepress dev docs --no-cache",
-    "dev": "vuepress dev docs",
-    "eject-theme": "vuepress eject-hope docs"
+    "vite-build": "vuepress-vite build docs",
+    "vite-clean-serve": "vuepress-vite dev docs --clean-cache",
+    "vite-serve": "vuepress-vite dev docs",
+    "webpack-build": "vuepress-webpack build docs",
+    "webpack-clean-serve": "vuepress-webpack dev docs --clean-cache",
+    "webpack-serve": "vuepress-webpack dev docs"
   },
   "devDependencies": {
-    "compression-webpack-plugin": "^5.0.0",
-    "vuepress": "^1.8.2",
-    "vuepress-theme-hope": "^1.20.5"
-  },
-  "dependencies": {}
+    "@vuepress/plugin-docsearch": "2.0.0-beta.36",
+    "@vuepress/plugin-pwa": "2.0.0-beta.36",
+    "@vuepress/plugin-pwa-popup": "2.0.0-beta.36",
+    "@vuepress/plugin-register-components": "2.0.0-beta.36",
+    "@vuepress/plugin-shiki": "2.0.0-beta.36",
+    "cross-env": "7.0.3",
+    "vuepress-theme-hope": "2.0.0-alpha.40",
+    "vuepress-vite": "2.0.0-beta.36",
+    "vuepress-webpack": "2.0.0-beta.36"
+  }
 }

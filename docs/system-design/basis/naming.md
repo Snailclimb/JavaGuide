@@ -222,11 +222,11 @@ Codelf 提供了在线网站版本，网址：[https://unbug.github.io/codelf/](
 
 我选择了 Java 编程语言，然后搜索了“序列化”这个关键词，然后它就返回了很多关于序列化的命名。
 
-![](pictures/Codelf.png)
+![](./pictures/Codelf.png)
 
 并且，Codelf 还提供了 VS code 插件，看这个评价，看来大家还是很喜欢这款命名工具的。
 
-![](pictures/vscode-codelf.png)
+![](./pictures/vscode-codelf.png)
 
 ## 相关阅读推荐
 
