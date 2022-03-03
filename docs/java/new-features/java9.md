@@ -9,6 +9,14 @@ tag:
 
 你可以在 [Archived OpenJDK General-Availability Releases](http://jdk.java.net/archive/) 上下载自己需要的 JDK 版本！官方的新特性说明文档地址： https://openjdk.java.net/projects/jdk/ 。
 
+**概览（精选了一部分）** ：
+
+- [JEP 222: Java 命令行工具](https://openjdk.java.net/jeps/222)
+- [JEP 261: 模块化系统](https://openjdk.java.net/jeps/261)
+- [JEP 248：G1 成为默认垃圾回收器](https://openjdk.java.net/jeps/248)
+- [JEP 193: 变量句柄](https://openjdk.java.net/jeps/193)
+- [JEP 254：字符串存储结构优化](https://openjdk.java.net/jeps/254)
+
 ## JShell
 
 JShell 是 Java 9 新增的一个实用工具。为 Java 提供了类似于 Python 的实时命令行交互工具。
@@ -30,9 +38,9 @@ JShell 是 Java 9 新增的一个实用工具。为 Java 提供了类似于 Pyth
 3. JShell 支持独立的表达式比如普通的加法运算 `1 + 1`。
 4. ......
 
-## Java 平台模块系统
+## 模块化系统
 
-Java 平台模块系统是[Jigsaw Project](https://openjdk.java.net/projects/jigsaw/)的一部分，把模块化开发实践引入到了 Java 平台中，可以让我们的代码可重用性更好！
+模块系统是[Jigsaw Project](https://openjdk.java.net/projects/jigsaw/)的一部分，把模块化开发实践引入到了 Java 平台中，可以让我们的代码可重用性更好！
 
 **什么是模块系统？** 官方的定义是：
 
@@ -44,7 +52,7 @@ Java 平台模块系统是[Jigsaw Project](https://openjdk.java.net/projects/jig
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/module-structure.png)
 
-在引入了模块系统之后，JDK 被重新组织成 94 个模块。Java 应用可以通过新增的 **[jlink](http://openjdk.java.net/jeps/282) 工具** (Java 的新命令行工具)，创建出只包含所依赖的 JDK 模块的自定义运行时镜像。这样可以极大的减少 Java 运行时环境的大小。
+在引入了模块系统之后，JDK 被重新组织成 94 个模块。Java 应用可以通过新增的 **[jlink](http://openjdk.java.net/jeps/282) 工具** (Jlink 是随 Java 9 一起发布的新命令行工具。它允许开发人员为基于模块的 Java 应用程序创建自己的轻量级、定制的 JRE)，创建出只包含所依赖的 JDK 模块的自定义运行时镜像。这样可以极大的减少 Java 运行时环境的大小。
 
 我们可以通过 `exports` 关键词精准控制哪些类可以对外开放使用，哪些类只能内部使用。
 
@@ -65,6 +73,13 @@ module my.module {
 - [《Project Jigsaw: Module System Quick-Start Guide》](https://openjdk.java.net/projects/jigsaw/quick-start)
 - [《Java 9 Modules: part 1》](https://stacktraceguru.com/java9/module-introduction)
 - [[Java 9 揭秘（2. 模块化系统）](https://www.cnblogs.com/IcanFixIt/p/6947763.html)](http://www.cnblogs.com/IcanFixIt/p/6947763.html)
+
+## G1 成为默认垃圾回收器
+
+在 Java 8 的时候，默认垃圾回收器是 Parallel Scavenge（新生代）+Parallel Old（老年代）。到了 Java 9, CMS 垃圾回收器被废弃了，**G1（Garbage-First Garbage Collector）**  成为了默认垃圾回收器。
+
+G1 还是在 Java 7 中被引入的，经过两个版本优异的表现成为成为默认垃圾回收器。
+
 
 ## 快速创建不可变集合
 
@@ -238,6 +253,7 @@ System.out.println(currentProcess.info());
 
 ## 参考
 
+- Java version history：https://en.wikipedia.org/wiki/Java_version_history
 - Release Notes for JDK 9 and JDK 9 Update Releases : https://www.oracle.com/java/technologies/javase/9-all-relnotes.html
 - 《深入剖析 Java 新特性》-极客时间 - JShell：怎么快速验证简单的小问题？
 - New Features in Java 9:https://www.baeldung.com/new-java-9
