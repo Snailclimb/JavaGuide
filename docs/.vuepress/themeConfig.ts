@@ -41,7 +41,7 @@ export default defineThemeConfig({
     // },
     pwa: {
       favicon: "/favicon.ico",
-      cachePic: false,
+      cachePic: true,
       cacheHTML: false,
       apple: {
         icon: "/assets/icon/apple-icon-152.png",
