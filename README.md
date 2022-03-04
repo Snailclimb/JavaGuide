@@ -408,13 +408,6 @@ Dubbo 是一款国产的 RPC 框架，由阿里开源。相关阅读：
 
 ## 开发工具
 
-### 数据库
-
-* [CHINER: 干掉 PowerDesigner，这个国产数据库建模工具很强！](./docs/tools/database/CHINER.md)
-* [DBeaver: 开源数据库管理工具。](./docs/tools/database/DBeaver.md)
-* [screw: 一键生成数据库文档，堪称数据库界的Swagger](./docs/tools/database/screw.md)
-* [DataGrip: IDEA官方的这个数据库管理神器真香！](./docs/tools/database/datagrip.md)
-
 ### Git
 
 * [Git 入门](./docs/tools/git/git-intro.md)
