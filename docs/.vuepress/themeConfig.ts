@@ -5,7 +5,10 @@ import { sidebarConfig } from "./sidebar";
 export default defineThemeConfig({
   logo: "/logo.png",
   hostname: "https://javaguide.cn/",
-  author: "Guide哥",
+  author: {
+    name: "Guide",
+    url: "https://javaguide.cn/",
+  },
   repo: "https://github.com/Snailclimb/JavaGuide",
   docsDir: "docs",
   iconPrefix: "iconfont icon-",
@@ -33,6 +36,9 @@ export default defineThemeConfig({
       presentation: {
         plugins: ["highlight", "math", "search", "notes", "zoom"],
       },
+    },
+    feed: {
+      json: true,
     },
     // docsearch: {
     //   appId: "",
