@@ -77,7 +77,7 @@ Spring 的测试模块对 JUnit（单元测试框架）、TestNG（类似 JUnit�
 
 ### 谈谈自己对于 Spring IoC 的了解
 
-**IoC（Inverse of Control:控制反转）** 是一种设计思想，而不是一个具体的技术实现。IoC 的思想就是将原本在程序中手动创建对象的控制权，交由 Spring 框架来管理。不过， IoC 并非 Spirng 特有，在其他语言中也有应用。
+**IoC（Inverse of Control:控制反转）** 是一种设计思想，而不是一个具体的技术实现。IoC 的思想就是将原本在程序中手动创建对象的控制权，交由 Spring 框架来管理。不过， IoC 并非 Spring 特有，在其他语言中也有应用。
 
 **为什么叫控制反转？**
 

@@ -81,7 +81,7 @@
 2. [ThreadLocal 关键字解析](docs/java/concurrent/threadlocal.md)
 3. [Java 并发容器总结](docs/java/concurrent/java-concurrent-collections.md)
 4. [Atomic 原子类总结](docs/java/concurrent/atomic-classes.md)
-5. [AQS 原理以及 AQS 同步组件总结](docs/java/concurrent/aqs原理以及aqs同步组件总结.md)
+5. [AQS 原理以及 AQS 同步组件总结](docs/java/concurrent/aqs.md)
 6. [CompletableFuture入门](docs/java/concurrent/completablefuture-intro.md)
 
 ### JVM (必看 :+1:)
