@@ -14,9 +14,8 @@
     "webpack-serve": "vuepress-webpack dev docs"
   },
   "devDependencies": {
-    "@vuepress/plugin-docsearch": "2.0.0-beta.36",
-    "cross-env": "7.0.3",
-    "vuepress-theme-hope": "2.0.0-beta.2",
+    "@vuepress/plugin-search": "^2.0.0-beta.36",
+    "vuepress-theme-hope": "2.0.0-beta.5",
     "vuepress-vite": "2.0.0-beta.36",
     "vuepress-webpack": "2.0.0-beta.36"
   }
