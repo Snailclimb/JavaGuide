@@ -3,7 +3,7 @@ title: 星球专属优质专栏概览
 category: 知识星球
 ---
 
-这部分的内容为我的知识星球专属，目前已经更新了下面这些专栏：
+这部分的内容为我的[知识星球](../about-the-author/zhishixingqiu-two-years.md)专属，目前已经更新了下面这些专栏：
 
 - **[《Java 面试指北》](./java-mian-shi-zhi-bei.md)** : 与 JavaGuide 开源版的内容互补！
 - **[《手写 RPC 框架》](./java-mian-shi-zhi-bei.md)** : 从零开始基于 Netty+Kyro+Zookeeper 实现一个简易的 RPC 框架。
@@ -27,9 +27,9 @@ category: 知识星球
 
 随着时间推移，星球积累的干货资源越来越多，我花在星球上的时间也越来越多。于是，我将星球的定价慢慢调整为了 **159/年**！是的，星球的价格会慢慢升高的，想要加入的小伙伴一定要尽早。
 
-你可以添加我的私人微信领取星球专属优惠券，限时 **100 元/年** 加入。一定要备注“**星球优惠券**”！！！
+你可以添加我的微信领取星球专属优惠券，限时 **100 元/年** 加入。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220211231926486.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/IMG_3007.jpg)
 
 如果你经济确实有困难的话，加我的时候说明一下情况就好，莫欺少年穷，可以理解，一定不要去用什么花呗类借贷产品。
 
@@ -38,3 +38,4 @@ category: 知识星球
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220304125403995.png)
 
 不过，还是希望大家也不要利用我的好心，感恩！信任！理解！
+
