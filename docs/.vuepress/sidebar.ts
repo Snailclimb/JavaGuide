@@ -3,6 +3,7 @@ import { defineSidebarConfig } from "vuepress-theme-hope";
 export const sidebarConfig = defineSidebarConfig({
   // 应该把更精确的路径放置在前边
   "/javaguide/": ["intro", "contribution-guideline", "faq", "todo"],
+  "/zhuanlan/": ["java-mian-shi-zhi-bei", "handwritten-rpc-framework"],
   "/about-the-author/": [
     {
       text: "个人经历",
@@ -22,6 +23,7 @@ export const sidebarConfig = defineSidebarConfig({
       children: [
         "my-article-was-stolen-and-made-into-video-and-it-became-popular",
         "dog-that-copies-other-people-essay",
+        "zhishixingqiu-two-years",
       ],
     },
   ],
@@ -45,7 +47,7 @@ export const sidebarConfig = defineSidebarConfig({
     },
     {
       text: "面试",
-      icon: "mianshixinxi-02",
+      icon: "mianshi",
       prefix: "interview/",
       collapsable: false,
       children: [
@@ -64,6 +66,16 @@ export const sidebarConfig = defineSidebarConfig({
   ],
   // 必须放在最后面
   "/": [
+    {
+      text: "面试准备",
+      icon: "mianshi",
+      prefix: "interview-preparation/",
+      collapsable: true,
+      children: [
+        "teach-you-how-to-prepare-for-the-interview-hand-in-hand",
+        "interview-experience",
+      ],
+    },
     {
       text: "Java",
       icon: "java",
@@ -89,7 +101,6 @@ export const sidebarConfig = defineSidebarConfig({
                 "proxy",
                 "io",
                 "bigdecimal",
-                "generics",
               ],
             },
           ],

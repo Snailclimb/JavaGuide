@@ -9,28 +9,22 @@ title: JavaGuide（Java学习&&面试指南）
             <img src="../media/sponsor/xingqiu.png" style="margin: 0 auto; width: 850px;" />
         </a>
     </p>
-    <p>
-        <a href="https://github.com/Snailclimb/JavaGuide" target="_blank">
-            <img src="https://img-blog.csdnimg.cn/img_convert/1c00413c65d1995993bf2b0daf7b4f03.png#pic_center" width="" />
-        </a>
-    </p>
-    <p>
-        <a href="https://javaguide.cn/"><img src="https://img.shields.io/badge/阅读-read-brightgreen.svg" alt="阅读" /></a>
-        <img src="https://img.shields.io/github/stars/Snailclimb/JavaGuide" alt="stars" />
-        <img src="https://img.shields.io/github/forks/Snailclimb/JavaGuide" alt="forks" />
-        <img src="https://img.shields.io/github/issues/Snailclimb/JavaGuide" alt="issues" />
-    </p>
 </div>
 
-> 1. **面试专版** ：准备面试的小伙伴可以考虑面试专版：[《Java 面试进阶指北 》](https://www.yuque.com/docs/share/f37fc804-bfe6-4b0d-b373-9c462188fec7) (质量很高，专为面试打造，配合 JavaGuide 食用)
-> 2. **转载须知** ：以下所有文章如非文首说明为转载皆为我（Guide 哥）的原创，转载在文首注明出处，如发现恶意抄袭/搬运，会动用法律武器维护自己的权益。让我们一起维护一个良好的技术创作环境！⛽️
+> 1. **面试专版** ：准备面试的小伙伴可以考虑面试专版：[《Java 面试指北 》](./zhuanlan/java-mian-shi-zhi-bei.md) (质量很高，专为面试打造，配合 JavaGuide 食用)
+> 2. **转载须知** ：以下所有文章如非文首说明为转载皆为我（Guide 哥）的原创，转载在文首注明出处，如发现恶意抄袭/搬运，会动用法律武器维护自己的权益。让我们一起维护一个良好的技术创作环境！
 
-你可能需要：
+## 必看专栏
 
-- [项目介绍](/javaguide/intro)
-- [贡献指南](/javaguide/contribution-guideline)
-- [常见问题](/javaguide/faq)
-- [项目代办](/javaguide/todo)
+- **[《Java 面试指北》](./zhuanlan/java-mian-shi-zhi-bei.md)** : 与 JavaGuide 开源版的内容互补！
+- **[《手写 RPC 框架》](./zhuanlan/handwritten-rpc-framework.md)** : 从零开始基于 Netty+Kyro+Zookeeper 实现一个简易的 RPC 框架。
+
+## 项目相关
+
+- [项目介绍](./javaguide/intro.md)
+- [贡献指南](./javaguide/contribution-guideline.md)
+- [常见问题](./javaguide/faq.md)
+- [项目代办](./javaguide/todo.md)
 
 ## 面试资源
 

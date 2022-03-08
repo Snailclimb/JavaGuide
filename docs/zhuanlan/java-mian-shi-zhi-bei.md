@@ -1,6 +1,11 @@
+---
+title: 《Java 面试指北》
+category: 知识星球
+---
+
 你好，我是 Guide。
 
-犹豫了很久，还是想借这篇文章来简单介绍以及宣传一下我这两年利用业余时间完成的 [**JavaGuide 开源版**](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247513622&idx=1&sn=2e254f37b6b13206f3397efbe81bd438&chksm=cea1f9ddf9d670cb1443e5fbf11ac272c1c1a46f46ab8cce4eddce11d6843a0e2b77b1ef9510&token=2063686030&lang=zh_CN#rd)的兄弟 — **《Java 面试指北》**。
+犹豫了很久，还是想借这篇文章来简单介绍以及宣传一下我这两年利用业余时间完成的 [**JavaGuide 开源版**](https://javaguide.cn/)的兄弟 — **《Java 面试指北》**。
 
 每次写这种“软文”我还是挺忐忑的，但是转念一想，自己用心做内容，真诚帮助别人，为什么不能宣传一下呢？这内容不比很多几千块钱的训练营强？
 
@@ -12,7 +17,7 @@
 
 ## 介绍
 
-**《Java 面试指北》** 是我的[知识星球](https://mp.weixin.qq.com/s/uAeDhzcN26quyMHDTOxpoQ)的一个内部小册，和 [JavaGuide 开源版](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247517408&idx=1&sn=86e6591a82c0e4e08f6a74a3de981109&chksm=cea1cb2bf9d6423d267fb5988bfd25da36b711c5272cc8ab214948fe0b2089c0774c6f53d12b&scene=21#wechat_redirect)的内容互补。相比于开源版本来说，《Java 面试指北》添加了下面这些内容（不仅仅是这些内容）：
+**《Java 面试指北》** 是我的[知识星球](../about-the-author/zhishixingqiu-two-years.md)的一个内部小册，和 [JavaGuide 开源版](https://javaguide.cn/)的内容互补。相比于开源版本来说，《Java 面试指北》添加了下面这些内容（不仅仅是这些内容）：
 
 - 10+ 篇文章手把手教你如何准备面试。
 - 更全面的八股文面试题（系统设计、常见框架、分布式、高并发 ......）。
@@ -78,7 +83,7 @@
 
 ## 星球限时优惠
 
-两年前，[知识星球](https://mp.weixin.qq.com/s/uAeDhzcN26quyMHDTOxpoQ)的定价是 **50/年** ，这是星球的最低定价，我还附送了优惠券。扣除了星球手续费，发了各种福利之后，几乎就是纯粹做公益。
+两年前，[知识星球](../about-the-author/zhishixingqiu-two-years.md)的定价是 **50/年** ，这是星球的最低定价，我还附送了优惠券。扣除了星球手续费，发了各种福利之后，几乎就是纯粹做公益。
 
 当时的想法真不是为了赚钱，不开玩笑，不打诳语！目前星球有 **8000+** 人，其中有超过 **35%** 的小伙伴都是星球刚开那会就加入了。
 
