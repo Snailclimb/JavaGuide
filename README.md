@@ -177,6 +177,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 1. [Redis 常见问题总结](docs/database/redis/redis-questions-01.md)
 2. [3种常用的缓存读写策略](docs/database/redis/3-commonly-used-cache-read-and-write-strategies.md)
+2. [Redis 内存碎片](./docs/database/redis/redis-memory-fragmentation.md)
 
 ## 搜索引擎
 
