@@ -325,7 +325,7 @@ export const sidebarConfig = defineSidebarConfig({
           prefix: "basis/",
           icon: "basic",
           collapsable: true,
-          children: ["RESTfulAPI", "naming"],
+          children: ["RESTfulAPI", "naming", "refactoring"],
         },
         {
           text: "常用框架",
