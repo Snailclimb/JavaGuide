@@ -143,7 +143,7 @@ SELECT `current_max_id`, `step`,`version` FROM `sequence_id_generator` where `bi
 
 ```
 id	current_max_id	step	version	biz_type
-1	0	100	1	101
+1	0	100	0	101
 ```
 
 **4.不够用的话，更新之后重新 SELECT 即可。**
