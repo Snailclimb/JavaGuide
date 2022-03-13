@@ -393,14 +393,13 @@ Class B {
 
 **3.`TransactionDefinition.PROPAGATION_NESTED`**:
 
-如果当前存在事务，则创建一个事务作为当前事务的嵌套事务来运行；如果当前没有事务，则该取值等价于`TransactionDefinition.PROPAGATION_REQUIRED`。也就是说：
+如果当前存在事务，就在嵌套事务内执行；如果当前没有事务，就执行与`TransactionDefinition.PROPAGATION_REQUIRED`类似的操作。也就是说：
 
-1. 在外部方法未开启事务的情况下`Propagation.NESTED`和`Propagation.REQUIRED`作用相同，修饰的内部方法都会新开启自己的事务，且开启的事务相互独立，互不干扰。
-2. 如果外部方法开启事务的话，`Propagation.NESTED`修饰的内部方法属于外部事务的子事务，外部主事务回滚的话，子事务也会回滚，而内部子事务可以单独回滚而不影响外部主事务和其他子事务。
-
+1. 在外部方法开启事务的情况下,在内部开启一个新的事务，作为嵌套事务存在。
+2. 如果外部方法无事务，则单独开启一个事务与 PROPAGATION_REQUIRED 类似
 这里还是简单举个例子：
 
-如果 `aMethod()` 回滚的话，`bMethod()`和`bMethod2()`都要回滚，而`bMethod()`回滚的话，并不会造成 `aMethod()` 和`bMethod()2`回滚。
+如果 `bMethod()` 回滚的话，`aMethod()`也会回滚。
 
 ```java
 Class A {
@@ -409,17 +408,12 @@ Class A {
         //do something
         B b = new B();
         b.bMethod();
-        b.bMethod2();
     }
 }
 
 Class B {
     @Transactional(propagation=propagation.PROPAGATION_NESTED)
     public void bMethod {
-       //do something
-    }
-    @Transactional(propagation=propagation.PROPAGATION_NESTED)
-    public void bMethod2 {
        //do something
     }
 }
