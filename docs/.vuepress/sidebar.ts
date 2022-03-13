@@ -4,6 +4,15 @@ export const sidebarConfig = defineSidebarConfig({
   // 应该把更精确的路径放置在前边
   "/javaguide/": ["intro", "contribution-guideline", "faq", "todo"],
   "/zhuanlan/": ["java-mian-shi-zhi-bei", "handwritten-rpc-framework"],
+  "/open-source-project/": [
+    "tutorial",
+    "practical-project",
+    "system-design",
+    "tool-library",
+    "tools",
+    "machine-learning",
+    "big-data",
+  ],
   "/about-the-author/": [
     {
       text: "个人经历",
