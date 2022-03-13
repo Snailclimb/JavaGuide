@@ -15,6 +15,14 @@ export default defineThemeConfig({
   pure: true,
   navbar: navbarConfig,
   sidebar: sidebarConfig,
+  pageInfo: [
+    "Author",
+    "Category",
+    "Tag",
+    "Date",
+    "Original",
+    "Word",
+  ],
   blog: {
     intro: "/about-the-author/",
     sidebarDisplay: "mobile",
