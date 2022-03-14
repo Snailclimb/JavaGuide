@@ -3,6 +3,16 @@ import { defineSidebarConfig } from "vuepress-theme-hope";
 export const sidebarConfig = defineSidebarConfig({
   // 应该把更精确的路径放置在前边
   "/javaguide/": ["intro", "contribution-guideline", "faq", "todo"],
+  "/zhuanlan/": ["java-mian-shi-zhi-bei", "handwritten-rpc-framework"],
+  "/open-source-project/": [
+    "tutorial",
+    "practical-project",
+    "system-design",
+    "tool-library",
+    "tools",
+    "machine-learning",
+    "big-data",
+  ],
   "/about-the-author/": [
     {
       text: "个人经历",
@@ -22,37 +32,8 @@ export const sidebarConfig = defineSidebarConfig({
       children: [
         "my-article-was-stolen-and-made-into-video-and-it-became-popular",
         "dog-that-copies-other-people-essay",
+        "zhishixingqiu-two-years",
       ],
-    },
-  ],
-  "/tools/": [
-    {
-      text: "Java",
-      icon: "java",
-      prefix: "java/",
-      collapsable: false,
-      children: ["jadx"],
-    },
-    {
-      text: "Database",
-      icon: "database",
-      prefix: "database/",
-      collapsable: false,
-      children: ["chiner", "dbeaver", "screw", "datagrip"],
-    },
-    {
-      text: "Git",
-      icon: "git",
-      prefix: "git/",
-      collapsable: false,
-      children: ["git-intro", "github-tips"],
-    },
-    {
-      text: "Docker",
-      icon: "docker1",
-      prefix: "docker/",
-      collapsable: false,
-      children: ["docker-intro", "docker-in-action"],
     },
   ],
   "/high-quality-technical-articles/": [
@@ -75,7 +56,7 @@ export const sidebarConfig = defineSidebarConfig({
     },
     {
       text: "面试",
-      icon: "mianshixinxi-02",
+      icon: "mianshi",
       prefix: "interview/",
       collapsable: false,
       children: [
@@ -92,46 +73,18 @@ export const sidebarConfig = defineSidebarConfig({
       children: ["get-into-work-mode-quickly-when-you-join-a-company"],
     },
   ],
-  "/idea-tutorial/": [
-    {
-      text: "IDEA小技巧",
-      icon: "tips",
-      prefix: "idea-tips/",
-      collapsable: false,
-      children: [
-        "idea-refractor-intro",
-        "idea-plug-in-development-intro",
-        "idea-source-code-reading-skills",
-      ],
-    },
-    {
-      text: "IDEA插件推荐",
-      icon: "chajian1",
-      collapsable: false,
-      prefix: "idea-plugins/",
-      children: [
-        "shortcut-key",
-        "idea-themes",
-        "improve-code",
-        "interface-beautification",
-        "camel-case",
-        "code-glance",
-        "code-statistic",
-        "git-commit-template",
-        "gson-format",
-        "idea-features-trainer",
-        "jclasslib",
-        "maven-helper",
-        "rest-devlop",
-        "save-actions",
-        "sequence-diagram",
-        "translation",
-        "others",
-      ],
-    },
-  ],
   // 必须放在最后面
   "/": [
+    {
+      text: "面试准备",
+      icon: "mianshi",
+      prefix: "interview-preparation/",
+      collapsable: true,
+      children: [
+        "teach-you-how-to-prepare-for-the-interview-hand-in-hand",
+        "interview-experience",
+      ],
+    },
     {
       text: "Java",
       icon: "java",
@@ -157,7 +110,6 @@ export const sidebarConfig = defineSidebarConfig({
                 "proxy",
                 "io",
                 "bigdecimal",
-                "generics",
               ],
             },
           ],
@@ -335,8 +287,38 @@ export const sidebarConfig = defineSidebarConfig({
           collapsable: true,
           children: [
             "redis-questions-01",
-            "3-commonly-used-cache-read-and-write-strategies",
+            {
+              text: "重要知识点",
+              icon: "important",
+              collapsable: true,
+              children: [
+                "3-commonly-used-cache-read-and-write-strategies",
+                "redis-memory-fragmentation",
+              ],
+            },
           ],
+        },
+      ],
+    },
+    {
+      text: "开发工具",
+      icon: "Tools",
+      prefix: "tools/",
+      collapsable: true,
+      children: [
+        {
+          text: "Git",
+          icon: "git",
+          prefix: "git/",
+          collapsable: true,
+          children: ["git-intro", "github-tips"],
+        },
+        {
+          text: "Docker",
+          icon: "docker1",
+          prefix: "docker/",
+          collapsable: true,
+          children: ["docker-intro", "docker-in-action"],
         },
       ],
     },
@@ -352,7 +334,7 @@ export const sidebarConfig = defineSidebarConfig({
           prefix: "basis/",
           icon: "basic",
           collapsable: true,
-          children: ["RESTfulAPI", "naming"],
+          children: ["RESTfulAPI", "naming", "refactoring"],
         },
         {
           text: "常用框架",

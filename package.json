@@ -4,7 +4,7 @@
   "private": true,
   "description": "javaguide",
   "license": "MIT",
-  "author": "Mr.Hope",
+  "author": "Guide",
   "scripts": {
     "vite-build": "vuepress-vite build docs",
     "vite-clean-serve": "vuepress-vite dev docs --clean-cache",
@@ -14,14 +14,9 @@
     "webpack-serve": "vuepress-webpack dev docs"
   },
   "devDependencies": {
-    "@vuepress/plugin-docsearch": "2.0.0-beta.36",
-    "@vuepress/plugin-pwa": "2.0.0-beta.36",
-    "@vuepress/plugin-pwa-popup": "2.0.0-beta.36",
-    "@vuepress/plugin-register-components": "2.0.0-beta.36",
-    "@vuepress/plugin-shiki": "2.0.0-beta.36",
-    "cross-env": "7.0.3",
-    "vuepress-theme-hope": "2.0.0-alpha.40",
+    "vuepress-theme-hope": "2.0.0-beta.13",
     "vuepress-vite": "2.0.0-beta.36",
-    "vuepress-webpack": "2.0.0-beta.36"
+    "vuepress-webpack": "2.0.0-beta.36",
+    "@vuepress/plugin-search": "^2.0.0-beta.36"
   }
 }

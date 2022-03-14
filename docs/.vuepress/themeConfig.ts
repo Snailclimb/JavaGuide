@@ -5,13 +5,24 @@ import { sidebarConfig } from "./sidebar";
 export default defineThemeConfig({
   logo: "/logo.png",
   hostname: "https://javaguide.cn/",
-  author: "Guide哥",
+  author: {
+    name: "Guide",
+    url: "https://javaguide.cn/",
+  },
   repo: "https://github.com/Snailclimb/JavaGuide",
   docsDir: "docs",
   iconPrefix: "iconfont icon-",
   pure: true,
   navbar: navbarConfig,
   sidebar: sidebarConfig,
+  pageInfo: [
+    "Author",
+    "Category",
+    "Tag",
+    "Date",
+    "Original",
+    "Word",
+  ],
   blog: {
     intro: "/about-the-author/",
     sidebarDisplay: "mobile",
@@ -34,15 +45,26 @@ export default defineThemeConfig({
         plugins: ["highlight", "math", "search", "notes", "zoom"],
       },
     },
-    // docsearch: {
-    //   appId: "",
-    //   apiKey: "",
-    //   indexName: "",
-    // },
+    feed: {
+      json: true,
+    },
+    search: {
+      // https://v2.vuepress.vuejs.org/zh/reference/plugin/search.html
+      // 排除首页
+      isSearchable: (page) => page.path !== "/",
+      maxSuggestions: 10,
+      hotKeys: ["s", "/"],
+      // 用于在页面的搜索索引中添加额外字段
+      getExtraFields: () => [],
+      locales: {
+        "/": {
+          placeholder: "搜索",
+        },
+      },
+    },
     pwa: {
       favicon: "/favicon.ico",
-      cachePic: false,
-      cacheHTML: false,
+      cachePic: true,
       apple: {
         icon: "/assets/icon/apple-icon-152.png",
         statusBarColor: "black",

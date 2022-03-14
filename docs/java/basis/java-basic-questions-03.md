@@ -213,7 +213,7 @@ JDK 提供了很多内置的注解（比如 `@Override` 、`@Deprecated`），�
 在 Java 中，所有的异常都有一个共同的祖先 `java.lang` 包中的 `Throwable` 类。`Throwable` 类有两个重要的子类:
 
 - **`Exception`** :程序本身可以处理的异常，可以通过 `catch` 来进行捕获。`Exception` 又可以分为 Checked Exception (受检查异常，必须处理) 和 Unchecked Exception (不受检查异常，可以不处理)。
-- **`Error`** ：`Error` 属于程序无法处理的错误 ，我们没办法通过 `catch` 来进行捕获 。例如Java 虚拟机运行错误（`Virtual MachineError`）、虚拟机内存不够错误(`OutOfMemoryError`)、类定义错误（`NoClassDefFoundError`）等 。这些异常发生时，Java 虚拟机（JVM）一般会选择线程终止。
+- **`Error`** ：`Error` 属于程序无法处理的错误 ，~~我们没办法通过 `catch` 来进行捕获~~不建议通过`catch`捕获 。例如Java 虚拟机运行错误（`Virtual MachineError`）、虚拟机内存不够错误(`OutOfMemoryError`)、类定义错误（`NoClassDefFoundError`）等 。这些异常发生时，Java 虚拟机（JVM）一般会选择线程终止。
 
 ### Checked Exception 和 Unchecked Exception 有什么区别？
 
@@ -265,7 +265,17 @@ Catch Exception -> RuntimeException
 Finally
 ```
 
-**注意：不要在 finally 语句块中使用 return!**  当 try 语句和 finally 语句中都有 return 语句时，try 语句块中的 return 语句不会被执行。
+**注意：不要在 finally 语句块中使用 return!**  当 try 语句和 finally 语句中都有 return 语句时，try 语句块中的 return 语句会被忽略。这是因为 try 语句中的 return 返回值会先被暂存在一个本地变量中，当执行到 finally 语句中的 return 之后，这个本地变量的值就变为了 finally 语句中的 return 返回值。
+
+[jvm 官方文档](https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-4.html#jvms-4.10.2.5)中有明确提到：
+
+> If the `try` clause executes a *return*, the compiled code does the following:
+>
+> 1. Saves the return value (if any) in a local variable.
+> 2. Executes a *jsr* to the code for the `finally` clause.
+> 3. Upon return from the `finally` clause, returns the value saved in the local variable.
+
+先执行一部分的，先把返回的结果存到一段内存中；
 
 示例：
 
