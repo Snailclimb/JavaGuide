@@ -22,8 +22,8 @@ actions:
 ## 推荐阅读 
 
 - [Java学习路线](https://zhuanlan.zhihu.com/p/379041500) : 一份涵盖 Java 后端开发必备技能的学习路线！全面且清晰！
-- [Java开源项目精选](https://gitee.com/SnailClimb/awesome-java) ：收集整理了 Gitee/Github 上非常棒的 Java 开源项目集合。Java 开发必备！
-- [Java技术文章精选集](/high-quality-technical-articles/) : 精选一些和 Java 相关的优质技术文章，每一篇都值得你阅读 3 遍以上！
+- [Java开源项目精选](./open-source-project/readme.md) ：收集整理了 Gitee/Github 上非常棒的 Java 开源项目集合。Java 开发必备！
+- [Java技术文章精选](/high-quality-technical-articles/) : 精选一些和 Java 相关的优质技术文章，每一篇都值得你阅读 3 遍以上！
 - [Java书单精选](https://gitee.com/SnailClimb/awesome-cs) : Java 后端开发值得一读的一些书籍。
 
 ## PDF

@@ -17,6 +17,10 @@
         <img src="https://img.shields.io/github/forks/Snailclimb/JavaGuide" alt="forks" />
         <img src="https://img.shields.io/github/issues/Snailclimb/JavaGuide" alt="issues" />
     </p>
+    <p>
+        <a href="https://github.com/Snailclimb/JavaGuide">Github</a> |
+        <a href="https://gitee.com/SnailClimb/JavaGuide">Gitee</a>
+    </p>  
 </div>
 
 > 1. **面试专版** ：准备面试的小伙伴可以考虑面试专版：[《Java 面试进阶指北 》](https://www.yuque.com/docs/share/f37fc804-bfe6-4b0d-b373-9c462188fec7) (质量很高，专为面试打造，配合 JavaGuide 食用)。

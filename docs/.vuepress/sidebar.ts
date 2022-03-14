@@ -320,6 +320,11 @@ export const sidebarConfig = defineSidebarConfig({
           collapsable: true,
           children: ["docker-intro", "docker-in-action"],
         },
+        {
+          text: "IDEA",
+          icon:"intellijidea",
+          link: "https://gitee.com/SnailClimb/awesome-idea-tutorial",
+        },
       ],
     },
     {
