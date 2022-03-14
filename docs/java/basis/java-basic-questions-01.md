@@ -307,8 +307,8 @@ public int f4(int a, int b) {
 
 这个需要结合 JVM 的相关知识，主要原因如下：
 
-1. 静态方法是属于类的，在类加载的时候就会分配内存，可以通过类名直接访问。而非静态成员属于实例对象，只有在对象实例化之后才存在，需要通过类的实例对象去访问。
-2. 在类的非静态成员不存在的时候静态成员就已经存在了，此时调用在内存中还不存在的非静态成员，属于非法操作。
+1. 静态方法是属于**类**的，在类加载的时候就会分配**内存**，可以通过**类名直接访问**。而非静态成员属于实例对象，只有在对象实例化之后才存在，需要通过类的实例对象去访问。
+2. 在类的非静态成员（实例）不存在的时候静态成员就已经存在了，此时调用在内存中还不存在的非静态成员（实例），属于非法操作。
 
 #### 静态方法和实例方法有何不同？
 
@@ -345,13 +345,13 @@ public class Person {
 
 #### 重载和重写的区别
 
-> 重载就是同样的一个方法能够根据输入数据的不同，做出不同的处理
+> **重载**就是同样的一个方法能够根据输入数据的不同，做出不同的处理
 >
-> 重写就是当子类继承自父类的相同方法，输入数据一样，但要做出有别于父类的响应时，你就要覆盖父类方法
+> **重写**就是当子类继承自父类的相同方法，输入数据一样，但要做出有别于父类的响应时，你就要覆盖父类方法
 
 **重载**
 
-发生在同一个类中（或者父类和子类之间），方法名必须相同，参数类型不同、个数不同、顺序不同，方法返回值和访问修饰符可以不同。
+发生在同一个类中（或者父类和子类之间），**方法名必须相同**，**参数类型、不同、不同**，<font style="color: red;">方法返回值和访问修饰符可以不同</font>。
 
 《Java 核心技术》这本书是这样介绍重载的：
 
@@ -362,17 +362,40 @@ public class Person {
 > StringBuilder sb2 = new StringBuilder("HelloWorld");
 > ```
 >
-> 编译器必须挑选出具体执行哪个方法，它通过用各个方法给出的参数类型与特定方法调用所使用的值类型进行匹配来挑选出相应的方法。 如果编译器找不到匹配的参数， 就会产生编译时错误， 因为根本不存在匹配， 或者没有一个比其他的更好(这个过程被称为重载解析(overloading resolution))。
+> 编译器必须挑选出具体执行哪个方法，它通过用各个方法给出的参数类型与特定方法调用所使用的值类型进行匹配来挑选出相应的方法。 如果编译器找不到匹配的参数， 就会产生编译时错误， 因为根本不存在匹配， 或者没有一个比其他的更好(这个过程被称为**重载解析(overloading resolution)**)。
 >
 > Java 允许重载任何方法， 而不只是构造器方法。
 
-综上：重载就是同一个类中多个同名方法根据不同的传参来执行不同的逻辑处理。
+综上：**重载就是同一个类中多个同名方法根据不同的传参来执行不同的逻辑处理**。
+
+
+
+要点：
+
+* 重载是在一个类中的多个同名函数（可以是不同返回值不同访问修饰符）
+
+* 重载发生在编译期（重载方法是会被写入到class文件中的）
+* 重载解析阶段，编译器会根据是否匹配觉得调用哪个被重载的方法。
+* 如何执行重载解析？（完全根据参数个数和参数的类型匹配决定，基本类型和引用类型并不冲突）
+
+
+
+```java
+public int add(int a, int b) {
+  
+}
+private long fun1(int a, int b, int c...) { // 返回值不同也算重载
+                                            // 访问修饰符不同也是重载
+} 
+```
+
+
 
 **重写**
 
-重写发生在运行期，是子类对父类的允许访问的方法的实现过程进行重新编写。
+重写发生在**运行期**，是子类对父类的允许访问的方法的实现过程进行重新编写。
 
-1. 方法名、参数列表必须相同，子类方法返回值类型应比父类方法返回值类型更小或相等，抛出的异常范围小于等于父类，访问修饰符范围大于等于父类。
+1. **方法名、参数列表必须相同，子类方法返回值类型应比父类方法返回值类型更小或相等，抛出的异常范围小于等于父类，访问修饰符范围大于等于父类。**
 2. 如果父类方法访问修饰符为 `private/final/static` 则子类就不能重写该方法，但是被 `static` 修饰的方法能够被再次声明。
 3. 构造方法无法被重写
 
@@ -547,6 +570,64 @@ public native int hashCode();
 如果重写 `equals()` 时没有重写 `hashCode()` 方法的话就可能会导致 `equals` 方法判断是相等的两个对象，`hashCode` 值却不相等。
 
 **思考** ：重写 `equals()` 时没有重写 `hashCode()` 方法的话，使用 `HashMap` 可能会出现什么问题。
+
+```java
+    // HashMap的put方法
+		final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
+                   boolean evict) {
+        Node<K,V>[] tab; // tab = table
+        Node<K,V> p; 
+        int n, i;
+        
+        if ((tab = table) == null || (n = tab.length) == 0)
+            n = (tab = resize()).length;
+        
+        // i = (n - 1) & hash // (n - 1) 按位与 hash值
+	      // 若table数组里有10个元素，就是0～9，用9去按位与hash值
+        // 0&0=0;0&1=0;1&0=0;1&1=1;(只有两个都是1的时候结果才是1)
+        // 0000 1001 & 0101 0000 = 0000 0000 （计算出来的值最大不会超过9）
+	      // 判断table在计算出来的位置上是否为空
+        if ((p = tab[i = (n - 1) & hash]) == null)      // 若为空创建一个新node完事
+            tab[i] = newNode(hash, key, value, null);
+        else {                                          // 若为不为空则说明产生了hash碰撞
+            Node<K,V> e; K k;
+            if (p.hash == hash && // 如果hash值相等
+                // key值也相等
+                ((k = p.key) == key || (key != null && key.equals(k))))
+                e = p;
+            else if (p instanceof TreeNode)
+                e = ((TreeNode<K,V>)p).putTreeVal(this, tab, hash, key, value);
+            else { // 查找node
+                for (int binCount = 0; ; ++binCount) { 
+                    if ((e = p.next) == null) {
+                        p.next = newNode(hash, key, value, null);
+                        if (binCount >= TREEIFY_THRESHOLD - 1) // -1 for 1st
+                            treeifyBin(tab, hash);
+                        break;
+                    }
+                    if (e.hash == hash &&
+                        ((k = e.key) == key || (key != null && key.equals(k))))
+                        break;
+                    p = e;
+                }
+            }
+            if (e != null) { // existing mapping for key
+                V oldValue = e.value;
+                if (!onlyIfAbsent || oldValue == null)
+                    e.value = value;
+                afterNodeAccess(e);
+                return oldValue;
+            }
+        }
+        ++modCount;
+        if (++size > threshold)
+            resize();
+        afterNodeInsertion(evict);
+        return null;
+    }
+```
+
+
 
 **总结** ：
 
