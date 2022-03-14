@@ -601,7 +601,7 @@ public native int hashCode();
                 for (int binCount = 0; ; ++binCount) { 
                     if ((e = p.next) == null) {
                         p.next = newNode(hash, key, value, null);
-                        if (binCount >= TREEIFY_THRESHOLD - 1) // -1 for 1st
+                        if (binCount >= TREEIFY_THRESHOLD - 1) // -1 for 1st 若数量超过阀值
                             treeifyBin(tab, hash);
                         break;
                     }
@@ -635,6 +635,18 @@ public native int hashCode();
 - 两个对象有相同的 `hashCode` 值，他们也不一定是相等的（哈希碰撞）。
 
 更多关于 `hashCode()` 和 `equals()` 的内容可以查看：[Java hashCode() 和 equals()的若干问题解答](https://www.cnblogs.com/skywang12345/p/3324958.html)
+
+
+
+**equals 的性质**：
+
+```
+1. 对称性：如果x.equals(y)返回是"true"，那么y.equals(x)也应该返回是"true"。
+2. 反射性：x.equals(x)必须返回是"true"。
+3. 类推性：如果x.equals(y)返回是"true"，而且y.equals(z)返回是"true"，那么z.equals(x)也应该返回是"true"。
+4. 一致性：如果x.equals(y)返回是"true"，只要x和y内容一直不变，不管你重复x.equals(y)多少次，返回都是"true"。
+5. 非空性，x.equals(null)，永远返回是"false"；x.equals(和x不同类型的对象)永远返回是"false"。
+```
 
 ### 什么是可变长参数？
 
@@ -755,7 +767,10 @@ Java 中有 8 种基本数据类型，分别为：
 
 另外，这个问题建议还可以先从 JVM 层面来分析。
 
-基本数据类型直接存放在 Java 虚拟机栈中的局部变量表中，而包装类型属于对象类型，我们知道对象实例都存在于堆中。相比于对象类型， 基本数据类型占用的空间非常小。
+基本数据类型直接存放在 Java 虚拟机栈中的**局部变量表**中，而包装类型属于对象类型，我们知道对象实例都存在于**堆**中。相比于对象类型， 基本数据类型占用的空间非常小。
+
+* 基本数据类型存放在局部变量表中
+* 对象实例存放在堆中
 
 > 《深入理解 Java 虚拟机》 ：局部变量表主要存放了编译期可知的基本数据类型 **（boolean、byte、char、short、int、float、long、double）**、**对象引用**（reference 类型，它不同于对象本身，可能是一个指向对象起始地址的引用指针，也可能是指向一个代表对象的句柄或其他与此对象相关的位置）。
 
