@@ -48,9 +48,7 @@ category: 开源项目
 
 ## 开源书籍
 
-- **[《Effective Java（第 3 版）各章节的中英文学习参考》](https://github.com/clxering/Effective-Java-3rd-edition-Chinese-English-bilingual)**
-- **[《On Java 8 中文版》](https://github.com/LingCoder/OnJava8)**
-- **[《DDIA（设计数据密集型应用） 中文翻译》](https://github.com/Vonng/ddia)**
-- **[《图说设计模式》](https://github.com/me115/design_patterns)**
-- **[《Java 8 简明教程 中文版》](https://github.com/wizardforcel/modern-java-zh)**
-- **[《凤凰架构》](https://github.com/fenixsoft/awesome-fenix)**
+- **[《Effective Java（第 3 版）》中英对照版](https://github.com/clxering/Effective-Java-3rd-edition-Chinese-English-bilingual)** ：《Effective Java（第 3 版）各章节的中英文学习参考。
+- **[《DDIA（设计数据密集型应用）》中文版](https://github.com/Vonng/ddia)** ：《Designing Data-Intensive Application》DDIA 中文翻译。
+- **[《凤凰架构》](https://github.com/fenixsoft/awesome-fenix)** ：讨论如何构建一套可靠的大型分布式系统。
+- **[《分布式系统模式》中文版](https://github.com/dreamhead/patterns-of-distributed-systems)** ：《Patterns of Distributed Systems》中文翻译。
