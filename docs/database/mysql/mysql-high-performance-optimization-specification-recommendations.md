@@ -285,7 +285,7 @@ select name,phone from customer where id = '111';
 如：
 
 ```
-insert into values ('a','b','c');
+insert into t values ('a','b','c');
 ```
 
 应使用：
