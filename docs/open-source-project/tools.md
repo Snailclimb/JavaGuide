@@ -24,5 +24,5 @@ category: 开源项目
 ## Markdown
 
 - **[MarkText](https://github.com/marktext/marktext)** ：一个简单而优雅的开源 Markdown 编辑器，专注于速度和可用性。Linux、macOS 和 Windows 均适用。
-- **[Typora](https://www.typora.io/)** :我一直用的一款 Markdown 工具，直接文件夹试图和目录试图，支持 Markdown 格式直接导出成 PDF、HTML 等格式。
+- **[Typora](https://www.typora.io/)** :我一直用的一款 Markdown 工具，直接文件夹视图和目录视图，支持 Markdown 格式直接导出成 PDF、HTML 等格式。
 - **[Markdown Here](https://github.com/adam-p/markdown-here)** ：使用 Markdown 语法发邮件，并且提供多种主题，快来拯救你的邮件格式吧！
