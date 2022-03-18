@@ -7,7 +7,6 @@ tag:
 
 > 本文授权转载自 ： https://ken.io/note/sso-design-implement 作者：ken.io
 >
-> 相关推荐阅读：**[系统的讲解 - SSO单点登录](https://www.imooc.com/article/286710)**
 
 ## 一、前言
 
@@ -100,8 +99,6 @@ SSO英文全称Single Sign On，单点登录。SSO是在多个应用系统中，
 ### 5、跨域登录、登出
 
 前面提到过，核心思路是客户端存储AuthToken，服务器端通过Redis存储登录信息。由于客户端是将AuthToken存储在Cookie中的。所以跨域要解决的问题，就是如何解决Cookie的跨域读写问题。
-
-> **Cookie是不能跨域的** ，比如我一个
 
 解决跨域的核心思路就是：
 

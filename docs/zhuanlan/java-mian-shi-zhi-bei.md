@@ -31,11 +31,13 @@ category: 知识星球
 
 ### 面试准备篇
 
-在 **「面试准备篇」** ，我写了 10+ 篇文章手把手教你如何准备面试：
+在 **「面试准备篇」** ，我写了 10+ 篇文章手把手教你如何准备面试，涵盖项目经验、简历编写、源码学习、算法准备、面试资源等内容。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220304120532910.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220316193744532.png)
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220304120629860.png)
+另外，考虑到很多小伙伴缺少项目经历，我还推荐了很多小众但优质的实战项目，有视频也有开源项目，有业务系统，也有各种含金量比较高的轮子类项目。
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220316194712897.png)
 
 ### 技术面试题篇
 
@@ -45,13 +47,13 @@ category: 知识星球
 
 ### 面经篇
 
-**「面经篇」** 这个系列主要分享优质面经。
-
 古人云:“**他山之石，可以攻玉**” 。善于学习借鉴别人的面试的成功经验或者失败的教训，可以让自己少走许多弯路。
+
+**「面经篇」** 这个系列主要分享优质面经。
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220304103521611.png)
 
-星球还有专门分享面经和面试题的专题，里面会分享很多优质的面经和面试题。
+并且，星球还有专门分享面经和面试题的专题，里面会分享很多优质的面经和面试题。
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220304120018731.png)
 
@@ -65,17 +67,15 @@ category: 知识星球
 
 **「练级攻略篇」** 这个系列主要内容一些有助于个人成长的经验分享。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220304102108367.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220316195830678.png)
 
 每一篇内容都非常干货，不少球友看了之后表示收获漫漫。不过，最重要的还是知行合一。
-
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220304102815110.png)
 
 ## 星球其他资源
 
 除了 **《Java 面试指北》** 之外，星球还有 **《Java 必读源码系列》**（目前已经整理了 Dubbo 2.6.x 、Netty 4.x、SpringBoot2.1 的源码）、 **《从零开始写一个 RPC 框架》**（已更新完） 、**《Kafka 常见面试题/知识点总结》** 等多个专属小册。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220211231206733.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220316200015412.png)
 
 另外，星球还会有读书活动、学习打卡、简历修改、免费提问、海量 Java 优质面试资源以及各种不定时的福利。
 
@@ -93,7 +93,7 @@ category: 知识星球
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/IMG_3007.jpg)
 
-如果你经济确实有困难的话，加我的时候说明一下情况就好，莫欺少年穷，可以理解，一定不要去用什么花呗类借贷产品。
+如果你经济确实有困难的话，加我的时候说明一下情况就好。莫欺少年穷，可以理解，一定不要去用什么花呗类借贷产品。
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220304125325364.png)
 

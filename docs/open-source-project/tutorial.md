@@ -9,10 +9,8 @@ category: 开源项目
 - **[interview-guide](https://github.com/csguide-dabai/interview-guide)** ：总结了后端面试八股文中的重点，希望能帮助各位准备互联网开发岗校招面试的同学。
 - **[toBeBetterJavaer](https://github.com/itwanger/toBeBetterJavaer)** ：一份通俗易懂、风趣幽默的 Java 学习指南，内容涵盖 Java 基础、Java 集合框架、Java 并发编程、JVM、Java 企业级开发（Git、SSM、Spring Boot）等知识点。
 - **[advanced-java](https://github.com/doocs/advanced-java "advanced-java")** :互联网 Java 工程师进阶知识完全扫盲：涵盖高并发、分布式、高可用、微服务、海量数据处理等领域知识。
-- **[architect-awesome](https://github.com/xingshaocheng/architect-awesome "architect-awesome")** ：后端架构师技术图谱。
 - **[toBeTopJavaer](https://github.com/hollischuang/toBeTopJavaer "toBeTopJavaer")** ：Java 工程师成神之路 。
 - **[technology-talk](https://github.com/aalansehaiyang/technology-talk)** : 汇总 java 生态圈常用技术框架、开源中间件，系统架构、数据库、大公司架构案例、常用三方类库、项目管理、线上问题排查、个人成长、思考等知识
-- **[tutorials](https://github.com/eugenp/tutorials "tutorials")**：该项目是一系列小而专注的教程 - 每个教程都涵盖 Java 生态系统中单一且定义明确的开发领域。 当然，它们的重点是 Spring Framework - Spring，Spring Boot 和 Spring Securiyt。 除了 Spring 之外，还有以下技术：核心 Java，Jackson，HttpClient，Guava。
 - **[JCSprout](https://github.com/crossoverJie/JCSprout "JCSprout")** :处于萌芽阶段的 Java 核心知识库。
 - **[bestJavaer](https://github.com/crisxuan/bestJavaer)** : 这是一个成为更好的 Java 程序员的系列教程。
 - **[java-design-patterns](https://github.com/iluwatar/java-design-patterns "java-design-patterns")** ： 用 Java 实现的设计模式。
@@ -20,9 +18,11 @@ category: 开源项目
 ## 计算机基础
 
 - **[CS-Notes](https://github.com/CyC2018/CS-Notes "CS-Notes")** ：技术面试必备基础知识、Leetcode 题解、后端面试、Java 面试、春招、秋招、操作系统、计算机网络、系统设计。
-- **[Waking-Up](https://github.com/wolverinn/Waking-Up)** ：计算机基础（计算机网络/操作系统/数据库/Git...）面试问题全面总结，包含详细的 follow-up question 以及答案；全部采用【问题+追问+答案】的形式，即拿即用，直击互联网大厂面试 🚀；可用于模拟面试、面试前复习、短期内快速备战面试...。
+- **[Waking-Up](https://github.com/wolverinn/Waking-Up)** ：计算机基础（计算机网络/操作系统/数据库/Git...）面试问题全面总结。
 
-## SpringBoot
+## 系统设计
+
+### SpringBoot
 
 - **[springboot-guide](https://github.com/Snailclimb/springboot-guide)** ：SpringBoot 核心知识点总结。 基于 Spring Boot 2.19+。
 - **[SpringAll](https://github.com/wuyouzhuguli/SpringAll "SpringAll")** ：循序渐进，学习 Spring Boot、Spring Boot & Shiro、Spring Cloud、Spring Security & Spring Security OAuth2，博客 Spring 系列源码。
@@ -33,13 +33,17 @@ category: 开源项目
 
 相关文章：[Github 点赞接近 100k 的 SpringBoot 学习教程+实战推荐！牛批！](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247488298&idx=3&sn=0a8fd88ec5a050de131c2a3305482ac4&chksm=cea25ce1f9d5d5f7f53a0237d27489326bce4546353b038085c03b086d91ef396bf824d3a155&token=496868067&lang=zh_CN#rd)
 
-## SpringCloud
+### SpringCloud
 
 - **[SpringCloudLearning](https://github.com/forezp/SpringCloudLearning "SpringCloudLearning")** : 方志朋的《史上最简单的 Spring Cloud 教程源码》。
 - **[springcloud-learning](https://github.com/macrozheng/springcloud-learning)** : 一套涵盖大部分核心组件使用的 Spring Cloud 教程。
 - **[SpringCloud](https://github.com/zhoutaoo/SpringCloud "SpringCloud")** ：基于 SpringCloud2.1 的微服务开发脚手架，整合了 spring-security-oauth2、nacos、feign、sentinel、springcloud-gateway 等。
 
 相关文章：[Github 点赞接近 70k 的 Spring Cloud 学习教程+实战项目推荐！牛批！](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247488377&idx=1&sn=0fb33ef330159db5a9c8bc0f029cd739&chksm=cea25cb2f9d5d5a4c7bacc9dcfc90ed86e89f4262e32b40c7aa47af84c747cb6c0429f753e1d&token=496868067&lang=zh_CN#rd)
+
+### Nginx
+
+- **[nginx-tutorial](https://github.com/dunwu/nginx-tutorial)** ：一系列 Nginx 极简教程，包含HTTP 反向代理、HTTPS 反向代理、负载均衡、静态站点、文件服务器搭建等实战内容。
 
 ## 大数据
 
