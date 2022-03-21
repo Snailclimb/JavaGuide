@@ -34,10 +34,10 @@
 
 你可能需要：
 
-* [项目介绍](./docs/javaguide/intro)
-* [贡献指南](./docs/javaguide/contribution-guideline)
-* [常见问题](./docs/javaguide/faq)
-* [项目代办](./docs/javaguide/todo)
+* [项目介绍](./docs/javaguide/intro.md)
+* [贡献指南](./docs/javaguide/contribution-guideline.md)
+* [常见问题](./docs/javaguide/faq.md)
+* [项目代办.md](./docs/javaguide/todo)
 
 ## Java
 
@@ -92,14 +92,14 @@
 
 JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle.com/javase/specs/jvms/se8/html/index.html) 和周志明老师的[《深入理解Java虚拟机（第3版）》](https://book.douban.com/subject/34907497/) （强烈建议阅读多遍！）。
 
-1. **[Java 内存区域](https://javaguide.cn/java/jvm/jvm-garbage-collection/)**
-2. **[JVM 垃圾回收](https://javaguide.cn/java/jvm/jvm-garbage-collection/)**
-3. [JDK 监控和故障处理工具](https://javaguide.cn/java/jvm/jdk-monitoring-and-troubleshooting-tools/)
-4. [类文件结构](https://javaguide.cn/java/jvm/class-file-structure/)
-5. **[类加载过程](https://javaguide.cn/java/jvm/class-loading-process/)**
-6. [类加载器](https://javaguide.cn/java/jvm/classloader/)
-7. **[【待完成】最重要的 JVM 参数总结（翻译完善了一半）](https://javaguide.cn/java/jvm/jvm-parameters-intro/)**
-8. **[【加餐】大白话带你认识 JVM](https://javaguide.cn/java/jvm/jvm-intro/)**
+1. **[Java 内存区域](./docs/java/jvm/memory-area)**
+2. **[JVM 垃圾回收](./docs/java/jvm/jvm-garbage-collection.md)**
+3. [JDK 监控和故障处理工具](./docs/java/jvm/jdk-monitoring-and-troubleshooting-tools.md)
+4. [类文件结构](./docs/java/jvm/class-file-structure.md)
+5. **[类加载过程](./docs/java/jvm/class-loading-process.md)**
+6. [类加载器](./docs/java/jvm/classloader.md)
+7. **[【待完成】最重要的 JVM 参数总结（翻译完善了一半）](./docs/java/jvm/jvm-parameters-intro.md)**
+8. **[【加餐】大白话带你认识 JVM](./docs/java/jvm/jvm-intro.md)**
 
 ### 新特性
 
