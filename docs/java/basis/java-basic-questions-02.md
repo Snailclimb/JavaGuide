@@ -268,6 +268,19 @@ public final class String implements java.io.Serializable, Comparable<String>, C
 >
 > 补充（来自[issue 675](https://github.com/Snailclimb/JavaGuide/issues/675)）：在 Java 9 之后，`String` 、`StringBuilder` 与 `StringBuffer` 的实现改用 `byte` 数组存储字符串。
 >
+> ```java
+> public final class String implements java.io.Serializable,Comparable<String>, CharSequence {
+>     // @Stable 注解表示变量最多被修改一次，称为“稳定的”。
+>     @Stable
+>     private final byte[] value;
+> }
+> 
+> abstract class AbstractStringBuilder implements Appendable, CharSequence {
+>     byte[] value;
+>   
+> }
+> ```
+>
 > **Java 9  为何要将 `String` 的底层实现由 `char[]` 改成了 `byte[]` ?**
 >
 > 新版的 String 其实支持两个编码方案： Latin-1 和 UTF-16。如果字符串中包含的汉字没有超过 Latin-1 可表示范围内的字符，那就会使用 Latin-1 作为编码方案。Latin-1 编码方案下，`byte` 占一个字节(8位)，`char` 占用2个字节（16），`byte` 相较 `char` 节省一半的内存空间。
