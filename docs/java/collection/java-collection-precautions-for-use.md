@@ -254,9 +254,9 @@ JDK 源码对于这个方法的说明：
 
 ```java
 /**
-  *返回由指定数组支持的固定大小的列表。此方法作为基于数组和基于集合的API之间的桥梁，
-  * 与 Collection.toArray()结合使用。返回的List是可序列化并实现RandomAccess接口。
-  */
+ * 返回由指定数组支持的固定大小的列表。此方法作为基于数组和基于集合的API之间的桥梁，
+ * 与 Collection.toArray() 结合使用。返回的 List 是可序列化并实现 RandomAccess 接口。
+ */
 public static <T> List<T> asList(T... a) {
     return new ArrayList<>(a);
 }

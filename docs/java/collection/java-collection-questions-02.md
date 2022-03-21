@@ -42,7 +42,7 @@ tag:
      * Returns a power of two size for the given target capacity.
      */
     static final int tableSizeFor(int cap) {
-        int n = cap - 1;
+        int n = cap - 1; 
         n |= n >>> 1;
         n |= n >>> 2;
         n |= n >>> 4;
