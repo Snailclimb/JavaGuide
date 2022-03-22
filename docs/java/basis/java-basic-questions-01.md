@@ -640,11 +640,11 @@ public class VariableLengthArgument {
 
 Java 中有 8 种基本数据类型，分别为：
 
-1. 6 种数字类型：
+- 6 种数字类型：
    - 4 种整数型：`byte`、`short`、`int`、`long`
    - 2 种浮点型：`float`、`double`
-2. 1 种字符类型：`char`
-3. 1 种布尔型：`boolean`。
+- 1 种字符类型：`char`
+- 1 种布尔型：`boolean`。
 
 这 8 种基本数据类型的默认值以及所占空间的大小如下：
 

@@ -17,6 +17,7 @@ category: 开源项目
 
 ## 计算机基础
 
+- **[cs-self-learning ](https://github.com/PKUFlyingPig/cs-self-learning)** ：计算机自学指南，汇总欧美众多名校高质量计算机课程。
 - **[CS-Notes](https://github.com/CyC2018/CS-Notes "CS-Notes")** ：技术面试必备基础知识、Leetcode 题解、后端面试、Java 面试、春招、秋招、操作系统、计算机网络、系统设计。
 - **[Waking-Up](https://github.com/wolverinn/Waking-Up)** ：计算机基础（计算机网络/操作系统/数据库/Git...）面试问题全面总结。
 

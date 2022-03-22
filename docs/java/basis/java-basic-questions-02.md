@@ -285,6 +285,10 @@ public final class String implements java.io.Serializable, Comparable<String>, C
 >
 > 新版的 String 其实支持两个编码方案： Latin-1 和 UTF-16。如果字符串中包含的汉字没有超过 Latin-1 可表示范围内的字符，那就会使用 Latin-1 作为编码方案。Latin-1 编码方案下，`byte` 占一个字节(8位)，`char` 占用2个字节（16），`byte` 相较 `char` 节省一半的内存空间。
 >
+> JDK 官方就说了绝大部分字符串对象只包含 Latin-1 可表示的字符。
+>
+> ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/jdk9-string-latin1.png)
+>
 > 如果字符串中包含的汉字超过 Latin-1 可表示范围内的字符，`byte` 和 `char` 所占用的空间是一样的。
 >
 > 这是官方的介绍：https://openjdk.java.net/jeps/254 。
