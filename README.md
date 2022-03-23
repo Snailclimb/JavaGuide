@@ -92,7 +92,7 @@
 
 JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle.com/javase/specs/jvms/se8/html/index.html) 和周志明老师的[《深入理解Java虚拟机（第3版）》](https://book.douban.com/subject/34907497/) （强烈建议阅读多遍！）。
 
-1. **[Java 内存区域](./docs/java/jvm/memory-area)**
+1. **[Java 内存区域](./docs/java/jvm/memory-area.md)**
 2. **[JVM 垃圾回收](./docs/java/jvm/jvm-garbage-collection.md)**
 3. [JDK 监控和故障处理工具](./docs/java/jvm/jdk-monitoring-and-troubleshooting-tools.md)
 4. [类文件结构](./docs/java/jvm/class-file-structure.md)
