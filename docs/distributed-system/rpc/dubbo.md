@@ -75,7 +75,7 @@ Dubbo 目前已经有接近 34.4 k 的 Star  。
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/%E6%BA%90%E7%A0%81/dubbo/image-20210107153159545.png)
 
-Dubbo 是由阿里开源，后来加入了 Apache 。正式由于 Dubbo 的出现，才使得越来越多的公司开始使用以及接受分布式架构。
+Dubbo 是由阿里开源，后来加入了 Apache 。正是由于 Dubbo 的出现，才使得越来越多的公司开始使用以及接受分布式架构。
 
 ### 为什么要用 Dubbo?
 
