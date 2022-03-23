@@ -226,7 +226,8 @@ public class AtomicIntegerTest {
 ```java
 class Test {
         private volatile int count = 0;
-        //若要线程安全执行执行count++，需要加锁
+  
+        // 若要线程安全执行执行count++，需要加锁
         public synchronized void increment() {
                   count++;
         }
@@ -243,10 +244,11 @@ class Test {
 class Test2 {
         private AtomicInteger count = new AtomicInteger();
 
+			  // 使用AtomicInteger之后，不需要加锁，也不需要加 volatile，就可以实现线程安全。
         public void increment() {
                   count.incrementAndGet();
         }
-      //使用AtomicInteger之后，不需要加锁，也可以实现线程安全。
+      
        public int getCount() {
                 return count.get();
         }
