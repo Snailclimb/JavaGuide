@@ -283,13 +283,13 @@ https://www.zhihu.com/question/41922036/answer/93079526
 
 针对 HotSpot VM 的实现，它里面的 GC 其实准确分类只有两大种：
 
-部分收集 (Partial GC)：
+**部分收集 (Partial GC)**：
 
 - 新生代收集（Minor GC / Young GC）：只对新生代进行垃圾收集；
 - 老年代收集（Major GC / Old GC）：只对老年代进行垃圾收集。需要注意的是 Major GC 在有的语境中也用于指代整堆收集；
 - 混合收集（Mixed GC）：对整个新生代和部分老年代进行垃圾收集。
 
-整堆收集 (Full GC)：收集整个 Java 堆和方法区。
+**整堆收集 (Full GC)**：收集整个 Java 堆和方法区。
 
 ### 1.6 空间分配担保
 
