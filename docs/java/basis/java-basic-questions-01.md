@@ -549,7 +549,7 @@ Java 中有 8 种基本数据类型，分别为：
 
 ```java
 class BasicTypeVar{
-				private int x;
+  private int x;
 }
 ```
 
