@@ -79,7 +79,6 @@ Java 堆是垃圾收集器管理的主要区域，因此也被称作**GC 堆（G
 -XX:+PrintGCDetails
 -XX:TargetSurvivorRatio=60
 -XX:+PrintTenuringDistribution
--XX:+PrintGCDetails
 -XX:+PrintGCDateStamps
 -XX:MaxTenuringThreshold=3
 -XX:+UseConcMarkSweepGC
