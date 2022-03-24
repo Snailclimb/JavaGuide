@@ -12,14 +12,14 @@ tag:
 问题答案在文中都有提到
 
 - 如何判断对象是否死亡（两种方法）。
-- 简单的介绍一下强引用、软引用、弱引用、虚引用（虚引用与软引用和弱引用的区别、使用软引用能带来的好处）。
+- 简单的介绍一下**强引用**、**软引用**、**弱引用**、**虚引用**（虚引用与软引用和弱引用的区别、使用软引用能带来的好处）。
 - 如何判断一个常量是废弃常量
 - 如何判断一个类是无用的类
 - 垃圾收集有哪些算法，各自的特点？
 - HotSpot 为什么要分为新生代和老年代？
 - 常见的垃圾回收器有哪些？
 - 介绍一下 CMS,G1 收集器。
-- Minor Gc 和 Full GC 有什么不同呢？
+- Minor GC 和 Full GC 有什么不同呢？
 
 ### 本文导火索
 
@@ -31,7 +31,7 @@ tag:
 
 Java 的自动内存管理主要是针对对象内存的回收和对象内存的分配。同时，Java 自动内存管理最核心的功能是 **堆** 内存中对象的分配与回收。
 
-Java 堆是垃圾收集器管理的主要区域，因此也被称作**GC 堆（Garbage Collected Heap）**.从垃圾回收的角度，由于现在收集器基本都采用分代垃圾收集算法，所以 Java 堆还可以细分为：新生代和老年代：再细致一点有：Eden 空间、From Survivor、To Survivor 空间等。**进一步划分的目的是更好地回收内存，或者更快地分配内存。**
+Java 堆是垃圾收集器管理的主要区域，因此也被称作**GC 堆（Garbage Collected Heap）**.从垃圾回收的角度，由于现在收集器基本都采用分代垃圾收集算法，所以 Java 堆还可以细分为：**新生代**和**老年代**：再细致一点有：**Eden 空间**、**From Survivor**、**To Survivor** 空间等。**进一步划分的目的是更好地回收内存，或者更快地分配内存。**
 
 **堆空间的基本结构：**
 
@@ -47,17 +47,17 @@ Java 堆是垃圾收集器管理的主要区域，因此也被称作**GC 堆（G
 >
 > ```c++
 > uint ageTable::compute_tenuring_threshold(size_t survivor_capacity) {
-> //survivor_capacity是survivor空间的大小
+> // survivor_capacity是survivor空间的大小
 > size_t desired_survivor_size = (size_t)((((double)survivor_capacity)*TargetSurvivorRatio)/100);
 > size_t total = 0;
 > uint age = 1;
 > while (age < table_size) {
->   //sizes数组是每个年龄段对象大小
->   total += sizes[age];
->   if (total > desired_survivor_size) {
->       break;
->   }
->   age++;
+>     // sizes数组是每个年龄段对象大小
+>     total += sizes[age];
+>     if (total > desired_survivor_size) {
+>         break;
+>     }
+>     age++;
 > }
 > uint result = age < MaxTenuringThreshold ? age : MaxTenuringThreshold;
 > ...
@@ -72,14 +72,13 @@ Java 堆是垃圾收集器管理的主要区域，因此也被称作**GC 堆（G
 **调试代码参数如下**
 
 ```
--verbose:gc
--Xmx200M
--Xms200M
--Xmn50M
--XX:+PrintGCDetails
+-verbose:gc                         // 在控制台输出 GC 信息
+-Xms200M                            // 最小堆空间大小
+-Xmx200M                            // 最大堆空间大小
+-Xmn50M                             // 设置新生代堆大小
+-XX:+PrintGCDetails                 // 打印 GC 详细信息
 -XX:TargetSurvivorRatio=60
 -XX:+PrintTenuringDistribution
--XX:+PrintGCDetails
 -XX:+PrintGCDateStamps
 -XX:MaxTenuringThreshold=3
 -XX:+UseConcMarkSweepGC
@@ -215,6 +214,16 @@ public class GCTest {
 
 为了避免为大对象分配内存时由于分配担保机制带来的复制而降低效率。
 
+**多大的对象才是大对象呢？**
+
+可以通过参数设置大对象的大小
+
+```
+-XX:PretenureSizeThreshold=3m
+```
+
+
+
 ### 1.3 长期存活的对象将进入老年代
 
 既然虚拟机采用了分代收集的思想来管理内存，那么内存回收时就必须能识别哪些对象应放在新生代，哪些对象应放在老年代中。为了做到这一点，虚拟机给每个对象一个对象年龄（Age）计数器。
@@ -265,6 +274,8 @@ public class GCTest {
 > ~~_“老年代 GC（Major GC/Full GC），指发生在老年代的 GC……”_~~
 
 上面的说法已经在《深入理解 Java 虚拟机》第三版中被改正过来了。感谢 R 大的回答：
+
+https://www.zhihu.com/question/41922036/answer/93079526
 
 ![](./pictures/jvm垃圾回收/rf-hotspot-vm-gc.png)
 
