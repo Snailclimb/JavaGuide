@@ -38,6 +38,12 @@ category: 开源项目
 - **[AJ-Captcha](https://gitee.com/anji-plus/captcha)** ：行为验证码(滑动拼图、点选文字)，前后端(java)交互。
 - **[tianai-captcha](https://gitee.com/tianai/tianai-captcha)** ：好看又好用的滑块验证码。
 
+## 在线支付
+
+- **[jeepay](https://gitee.com/jeequan/jeepay)** ：一套适合互联网企业使用的开源支付系统，已实现交易、退款、转账、分账等接口，支持服务商特约商户和普通商户接口。已对接微信，支付宝，云闪付官方接口，支持聚合码支付。
+- **[YunGouOS-PAY-SDK](https://gitee.com/YunGouOS/YunGouOS-PAY-SDK)** ：YunGouOS 微信支付接口、微信官方个人支付接口、非二维码收款，非第四方清算。个人用户可提交资料开通微信支付商户，完成对接。
+- **[IJPay](https://gitee.com/javen205/IJPay)** ：聚合支付，IJPay 让支付触手可及，封装了微信支付、QQ 支付、支付宝支付、京东支付、银联支付、PayPal 支付等常用的支付方式以及各种常用的接口。
+
 ## 其他
 
 - **[oshi](https://github.com/oshi/oshi "oshi")** ：一款为 Java 语言提供的基于 JNA 的（本机）操作系统和硬件信息库。
