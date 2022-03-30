@@ -39,9 +39,3 @@ actions:
 最新更新会第一时间同步在公众号，强烈推荐大家关注一波！另外，公众号上有很多干货不会同步在线阅读网站。
 
 ![我的公众号](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images/2020-08/167598cd2e17b8ec.png)
-
-## 联系我
-
-交流/加群/互看朋友圈，欢迎添加我的微信（备注“Github”即可）。
-
-![](../media/pictures/weixin.jpeg)
