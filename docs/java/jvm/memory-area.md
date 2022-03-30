@@ -199,11 +199,11 @@ JDK 1.8 的时候，方法区（HotSpot 的永久代）被彻底移除了（JDK1
 
 #### 图解 JDK1.6~JDK1.8 方法区的变化
 
-![方法区-jdk1.6](pictures/java内存区域/method-area-1.6.png)
+![方法区-jdk1.6](./pictures/java内存区域/method-area-1.6.png)
 
-![方法区-jdk1.7](pictures/java内存区域/method-area-jdk1.7.png)
+![方法区-jdk1.7](./pictures/java内存区域/method-area-jdk1.7.png)
 
-![方法区-jdk1.8](pictures/java内存区域/method-area-jdk1.8.png)
+![方法区-jdk1.8](./pictures/java内存区域/method-area-jdk1.8.png)
 
 ### 运行时常量池
 
