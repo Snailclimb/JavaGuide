@@ -250,7 +250,7 @@ If you have not touched Java Web development, you can first look at my summary o
   - [JWT Pros and Cons Analysis and Solutions to Common Problems](docs/system-design/security/jwt优缺点分析以及常见问题解决方案.md)
   - [Demo for beginners to get started with Spring Security With JWT](https://github.com/Snailclimb/spring-security-jwt-guide)
 
-- **SSO(Single Sign On)**: **SSO(Single Sign On)** that is, single sign on means that a user has the right to access other systems related to him/her by logging into one of the multiple subsystems. For example, after we logged into Jingdong Finance, we also successfully logged into Jingdong Supermarket, Jingdong Home Appliances and other subsystems of Jingdong. Related reading: [**SSO Single Sign-On is enough to read this article! **](docs/system-design/security/sso-intro.md)
+- **SSO(Single Sign On)**: **SSO(Single Sign On)** that is, single sign on means that a user has the right to access other systems related to them/them by logging into one of the multiple subsystems. For example, after we logged into Jingdong Finance, we also successfully logged into Jingdong Supermarket, Jingdong Home Appliances and other subsystems of Jingdong. Related reading: [**SSO Single Sign-On is enough to read this article! **](docs/system-design/security/sso-intro.md)
 
 #### Data Desensitization
 
