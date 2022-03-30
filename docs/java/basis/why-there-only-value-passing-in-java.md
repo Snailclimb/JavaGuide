@@ -1,12 +1,9 @@
 ---
+title:  为什么 Java 中只有值传递？
 category: Java
 tag:
   - Java基础
 ---
-
-
-
-# 为什么 Java 中只有值传递？
 
 开始之前，我们先来搞懂下面这两个概念：
 

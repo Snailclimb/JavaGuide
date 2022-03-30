@@ -1,5 +1,5 @@
 ---
-title:  代理详解！静态代理+JDK/CGLIB 动态代理实战
+title:  Java 代理模式详解
 category: Java
 tag:
   - Java基础

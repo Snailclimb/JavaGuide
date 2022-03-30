@@ -1,5 +1,5 @@
 ---
-title: BigDecimal解决浮点数运算精度丢失问题
+title: BigDecimal 详解
 category: Java
 tag:
   - Java基础
