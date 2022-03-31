@@ -173,7 +173,7 @@ public class DebugInvocationHandler implements InvocationHandler {
 
 ## 注解
 
-`Annontation` （注解） 是Java5 开始引入的新特性，可以看作是一种特殊的注释，主要用于修饰类、方法或者变量。
+`Annotation` （注解） 是Java5 开始引入的新特性，可以看作是一种特殊的注释，主要用于修饰类、方法或者变量。
 
 注解本质是一个继承了`Annotation` 的特殊接口：
 
