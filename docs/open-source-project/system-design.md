@@ -83,6 +83,7 @@ category: 开源项目
 - **[Mockito](https://github.com/mockito/mockito)** ：Mockito 是一个模拟测试框架，可以让你用优雅，简洁的接口写出漂亮的单元测试。（对那些不容易构建的对象用一个虚拟对象来代替，使其在调试期间用来作为真实对象的替代品）
 - **[PowerMock](https://github.com/powermock/powermock)** ： 编写单元测试仅靠 Mockito 是不够。因为 Mockito 无法 mock 私有方法、final 方法及静态方法等。PowerMock 这个 framework，主要是为了扩展其他 mock 框架，如 Mockito、EasyMock。它使用一个自定义的类加载器，纂改字节码，突破 Mockito 无法 mock 静态方法、构造方法、final 类、final 方法以及私有方法的限制。
 - **[WireMock](https://github.com/tomakehurst/wiremock)** ：模拟 HTTP 服务的工具（Mock your APIs）。
+- **[Testcontainers](https://github.com/testcontainers/testcontainers-java)** ：一个支持 JUnit 的测试工具库，提供轻量级的且一次性的常见数据库测试支持、Selenium Web 浏览器或者其他任何可以在 Docker 容器中运行的实例支持。
 
 相关阅读：
 
