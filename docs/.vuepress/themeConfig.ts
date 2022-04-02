@@ -15,14 +15,7 @@ export default defineThemeConfig({
   pure: true,
   navbar: navbarConfig,
   sidebar: sidebarConfig,
-  pageInfo: [
-    "Author",
-    "Category",
-    "Tag",
-    "Date",
-    "Original",
-    "Word",
-  ],
+  pageInfo: ["Author", "Category", "Tag", "Date", "Original", "Word"],
   blog: {
     intro: "/about-the-author/",
     sidebarDisplay: "mobile",
@@ -47,6 +40,13 @@ export default defineThemeConfig({
     },
     feed: {
       json: true,
+    },
+    comment: {
+      type: "giscus",
+      repo: "Snailclimb/JavaGuide",
+      repoId: "MDEwOlJlcG9zaXRvcnkxMzI0NjQzOTU=",
+      category: "Announcements",
+      categoryId: "DIC_kwDOB-U_C84COYQF",
     },
     search: {
       // https://v2.vuepress.vuejs.org/zh/reference/plugin/search.html
