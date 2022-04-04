@@ -106,6 +106,7 @@ export const sidebarConfig = defineSidebarConfig({
               collapsable: true,
               children: [
                 "why-there-only-value-passing-in-java",
+                "serialization",
                 "reflection",
                 "proxy",
                 "io",
