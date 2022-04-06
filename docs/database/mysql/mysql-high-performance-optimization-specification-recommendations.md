@@ -252,9 +252,11 @@ Innodb 是按照主键索引的顺序来组织表的
 
 隐式转换会导致索引失效如:
 
-```
+```sql
 select name,phone from customer where id = '111';
 ```
+
+详细解读可以看：[MySQL中的隐式转换造成的索引失效](./index-invalidation-caused-by-implicit-conversion.md) 这篇文章。
 
 ### 3. 充分利用表上已经存在的索引
 
