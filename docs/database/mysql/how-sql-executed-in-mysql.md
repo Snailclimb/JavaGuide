@@ -1,11 +1,11 @@
 ---
-title: 一条 SQL 语句在 MySQL 中如何被执行的?
+title: SQL语句在MySQL中的执行过程
 category: 数据库
 tag:
   - MySQL
 ---
 
-本文来自[木木匠](https://github.com/kinglaw1204)投稿。
+> 本文来自[木木匠](https://github.com/kinglaw1204)投稿。
 
 本篇文章会分析下一个 sql 语句在 MySQL 中的执行流程，包括 sql 的查询在 MySQL 内部会怎么流转，sql 语句的更新是怎么完成的。
 

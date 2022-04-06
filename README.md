@@ -158,30 +158,34 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 ## 数据库
 
+### 基础
+
+- [数据库基础知识总结](docs/database/basis.md)
+- [字符集详解](docs/database/character-set.md)
+
 ### MySQL
 
 **总结：**
 
-1. [数据库基础知识总结](docs/database/basis.md)
-2. **[MySQL知识点总结](docs/database/mysql/mysql-questions-01.md)** (必看 :+1:)
-4. [一千行 MySQL 学习笔记](docs/database/mysql/a-thousand-lines-of-mysql-study-notes.md)
-5. [MySQL 高性能优化规范建议](docs/database/mysql/mysql-high-performance-optimization-specification-recommendations.md)
+- **[MySQL知识点总结](docs/database/mysql/mysql-questions-01.md)** (必看 :+1:)
+- [一千行 MySQL 学习笔记](docs/database/mysql/a-thousand-lines-of-mysql-study-notes.md)
+- [MySQL 高性能优化规范建议](docs/database/mysql/mysql-high-performance-optimization-specification-recommendations.md)
 
 **重要知识点：**
 
-1. [MySQL数据库索引总结](docs/database/mysql/mysql-index.md)
-2. [事务隔离级别(图文详解)](docs/database/mysql/transaction-isolation-level.md)
-3. [MySQL三大日志(binlog、redo log和undo log)详解](docs/database/mysql/mysql-logs.md)
-4. [InnoDB存储引擎对MVCC的实现](docs/database/mysql/innodb-implementation-of-mvcc.md)
-5. [一条 SQL 语句在 MySQL 中如何被执行的?](docs/database/mysql/how-sql-executed-in-mysql.md)
-6. [字符集详解：为什么不建议在MySQL中使用 utf8 ？](docs/database/character-set.md)
-7. [关于数据库中如何存储时间的一点思考](docs/database/mysql/some-thoughts-on-database-storage-time.md)
+- [MySQL数据库索引总结](docs/database/mysql/mysql-index.md)
+- [事务隔离级别(图文详解)](docs/database/mysql/transaction-isolation-level.md)
+- [MySQL三大日志(binlog、redo log和undo log)详解](docs/database/mysql/mysql-logs.md)
+- [InnoDB存储引擎对MVCC的实现](docs/database/mysql/innodb-implementation-of-mvcc.md)
+- [SQL语句在MySQL中的执行过程](docs/database/mysql/how-sql-executed-in-mysql.md)
+- [关于数据库中如何存储时间的一点思考](docs/database/mysql/some-thoughts-on-database-storage-time.md)
+- [MySQL中的隐式转换造成的索引失效](docs/database/mysql/index-invalidation-caused-by-implicit-conversion.md)
 
 ### Redis
 
-1. [Redis 常见问题总结](docs/database/redis/redis-questions-01.md)
-2. [3种常用的缓存读写策略](docs/database/redis/3-commonly-used-cache-read-and-write-strategies.md)
-2. [Redis 内存碎片](./docs/database/redis/redis-memory-fragmentation.md)
+- [Redis 常见问题总结](docs/database/redis/redis-questions-01.md)
+- [3种常用的缓存读写策略](docs/database/redis/3-commonly-used-cache-read-and-write-strategies.md)
+- [Redis 内存碎片](./docs/database/redis/redis-memory-fragmentation.md)
 
 ## 搜索引擎
 

@@ -1,5 +1,5 @@
 ---
-title: MySQL 索引详解
+title: MySQL索引详解
 category: 数据库
 tag:
   - MySQL

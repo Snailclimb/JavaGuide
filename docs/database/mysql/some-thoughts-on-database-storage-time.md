@@ -1,5 +1,5 @@
 ---
-title: 关于数据库中如何存储时间的一点思考
+title: MySQL数据库时间类型数据存储建议
 category: 数据库
 tag:
   - MySQL

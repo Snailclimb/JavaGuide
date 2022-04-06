@@ -277,6 +277,7 @@ export const sidebarConfig = defineSidebarConfig({
                 "innodb-implementation-of-mvcc",
                 "how-sql-executed-in-mysql",
                 "some-thoughts-on-database-storage-time",
+                "index-invalidation-caused-by-implicit-conversion",
               ],
             },
           ],
@@ -323,7 +324,7 @@ export const sidebarConfig = defineSidebarConfig({
         },
         {
           text: "IDEA",
-          icon:"intellijidea",
+          icon: "intellijidea",
           link: "https://gitee.com/SnailClimb/awesome-idea-tutorial",
         },
       ],

@@ -1,5 +1,5 @@
 ---
-title: MySQL 高性能优化规范建议
+title: MySQL高性能优化规范建议
 category: 数据库
 tag:
   - MySQL

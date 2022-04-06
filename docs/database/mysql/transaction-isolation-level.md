@@ -1,5 +1,5 @@
 ---
-title: 事务隔离级别(图文详解)
+title: MySQL事务隔离级别详解
 category: 数据库
 tag:
   - MySQL
