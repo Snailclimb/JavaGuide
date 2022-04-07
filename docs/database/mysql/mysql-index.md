@@ -5,7 +5,7 @@ tag:
   - MySQL
 ---
 
-> 感谢**[WT-AHA](https://github.com/WT-AHA)** 对本人的完善，相关 PR：https://github.com/Snailclimb/JavaGuide/pull/1648 。
+> 感谢[WT-AHA](https://github.com/WT-AHA)对本文的完善，相关 PR：https://github.com/Snailclimb/JavaGuide/pull/1648 。
 
 ## 何为索引？有什么作用？
 
