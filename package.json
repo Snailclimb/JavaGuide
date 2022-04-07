@@ -7,16 +7,16 @@
   "author": "Guide",
   "scripts": {
     "vite-build": "vuepress-vite build docs",
-    "vite-clean-serve": "vuepress-vite dev docs --clean-cache",
     "vite-serve": "vuepress-vite dev docs",
+    "vite-clean-serve": "vuepress-vite dev docs --clean-cache",
     "webpack-build": "vuepress-webpack build docs",
     "webpack-clean-serve": "vuepress-webpack dev docs --clean-cache",
     "webpack-serve": "vuepress-webpack dev docs"
   },
   "devDependencies": {
-    "vuepress-theme-hope": "2.0.0-beta.32",
-    "vuepress-vite": "2.0.0-beta.37",
-    "vuepress-webpack": "2.0.0-beta.37",
-    "@vuepress/plugin-search": "^2.0.0-beta.37"
+    "@vuepress/plugin-search": "^2.0.0-beta.38",
+    "vuepress-theme-hope": "^2.0.0-beta.36",
+    "vuepress-vite": "2.0.0-beta.38",
+    "vuepress-webpack": "2.0.0-beta.38"
   }
 }
