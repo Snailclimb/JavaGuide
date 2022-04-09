@@ -56,7 +56,7 @@ AC 自动机算法使用 Trie 树来存放模式串的前缀，通过失败匹�
 
 ### DFA
 
-**DFA**（Deterministic Finite Automata)即确定有穷自动机，与之对应的是 DFA（Non-Deterministic Finite Automata，有穷自动机)。
+**DFA**（Deterministic Finite Automata)即确定有穷自动机，与之对应的是 NFA（Non-Deterministic Finite Automata，有穷自动机)。
 
 关于 DFA 的详细介绍可以看这篇文章：[有穷自动机 DFA&NFA (学习笔记) - 小蜗牛的文章 - 知乎](https://zhuanlan.zhihu.com/p/30009083) 。
 
