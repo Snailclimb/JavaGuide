@@ -13,6 +13,14 @@ export const sidebarConfig = defineSidebarConfig({
     "machine-learning",
     "big-data",
   ],
+  "/books/": [
+    "cs-basics",
+    "cs-basic-coureses",
+    "database",
+    "java",
+    "software-quality",
+    "q&a",
+  ],
   "/about-the-author/": [
     {
       text: "个人经历",
