@@ -42,5 +42,5 @@ title: JavaGuide（Java学习&&面试指南）
 
 **《Java 面试突击》:** 由本文档衍生的专为面试而生的《Java 面试突击》V4.0 PDF 版本[公众号](#公众号)后台回复 **"面试突击"** 即可领取！
 
-![我的公众号](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images/2020-08/167598cd2e17b8ec.png)
+![我的公众号](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books167598cd2e17b8ec-20220409194658233.png)
 

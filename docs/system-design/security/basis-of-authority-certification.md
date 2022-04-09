@@ -39,7 +39,7 @@ RBAC 即基于角色的权限访问控制（Role-Based Access Control）。这�
 
 简单地说：一个用户可以拥有若干角色，每一个角色又可以被分配若干权限，这样就构造成“用户-角色-权限” 的授权模型。在这种模型中，用户与角色、角色与权限之间构成了多对多的关系，如下图
 
-![RBAC](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images-3@main/11-9/RBAC.png)
+![RBAC](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/booksRBAC.png)
 
 **在 RBAC 中，权限与角色相关联，用户通过成为适当角色的成员而得到这些角色的权限。这就极大地简化了权限的管理。**
 
@@ -49,7 +49,7 @@ RBAC 即基于角色的权限访问控制（Role-Based Access Control）。这�
 
 通过这个权限模型，我们可以创建不同的角色并为不同的角色分配不同的权限范围（菜单）。
 
-![](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images-3@main/11-7/%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E6%A8%A1%E5%9D%97.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E6%A8%A1%E5%9D%97.png)
 
 通常来说，如果系统对于权限控制要求比较严格的话，一般都会选择使用 RBAC 模型来做权限控制。
 

@@ -21,7 +21,7 @@ head:
 
 如果你要系统地学习操作系统的话，最硬核最权威的书籍是 **[《操作系统导论》](https://book.douban.com/subject/33463930/)** 。你可以再配套一个 **[《深入理解计算机系统》](https://book.douban.com/subject/1230413/)** 加深你对计算机系统本质的认识，美滋滋！
 
-![](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images/2020-10-12/image-20201012191645919.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/booksimage-20201012191645919.png)
 
 另外，去年新出的一本国产的操作系统书籍也很不错：**[《现代操作系统：原理与实现》](https://book.douban.com/subject/35208251/)** （夏老师和陈老师团队的力作，值得推荐）。
 
@@ -44,13 +44,13 @@ head:
 
 如果你比较喜欢看视频的话，我建议你可以看看北京交通大学的慕课[《操作系统》](https://www.icourse163.org/course/NJTU-1003245001)。
 
-![](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images-6@main/12-04-1/image-20201204131429567.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/booksimage-20201204131429567.png)
 
 这个视频课程基本把操作系统的体系结构、设计机理及实现方法和技术相关重要的知识点介绍的差不多了。
 
 还有下面这个国外的课程 [《深入理解计算机系统 》](https://www.bilibili.com/video/av31289365?from=search&seid=16298868573410423104) 也很不错。
 
-![](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images-6@main/12-04-1/image-20201204140653318.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/booksimage-20201204140653318.png)
 
 ## 计算机网络
 
@@ -58,7 +58,7 @@ head:
 
 要想学好计算机网络，首先要了解的就是 OSI 七层模型或 TCP/IP 五层模型，即应用层（应用层、表示层、会话层）、传输层、网络层、数据链路层、物理层。
 
-![osi七层模型](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images/2020-10/osi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B2.png)
+![osi七层模型](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/booksosi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B2.png)
 
 关于这门课，首先强烈推荐参考书是**机械工业出版社的《计算机网络——自顶向下方法》**。该书目录清晰，按照 TCP/IP 五层模型逐层讲解，对每层涉及的技术都展开了详细讨论，基本上高校里开设的课程的教学大纲就是这本书的目录了。
 
@@ -69,7 +69,7 @@ head:
 - [《图解 HTTP》](https://book.douban.com/subject/25863515/ "《图解 HTTP》") ： 讲漫画一样的讲 HTTP，很有意思，不会觉得枯燥，大概也涵盖也 HTTP 常见的知识点。因为篇幅问题，内容可能不太全面。不过，如果不是专门做网络方向研究的小伙伴想研究 HTTP 相关知识的话，读这本书的话应该来说就差不多了。
 - [《网络是怎样连接的》](https://book.douban.com/subject/26941639/ "《网络是怎样连接的》") ：从在浏览器中输入网址开始，一路追踪了到显示出网页内容为止的整个过程，以图配文，讲解了网络的全貌，并重点介绍了实际的网络设备和软件是如何工作的。
 
-![](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images/2020-10/image-20201011215144139.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/booksimage-20201011215144139.png)
 
 除了理论知识之外，学习计算机网络非常重要的一点就是：“**动手实践**”。这点和我们编程差不多。
 
@@ -84,11 +84,11 @@ Github 上就有一些名校的计算机网络试验/Project：
 
 **1、[哈工大的计算机网络课程](http://www.icourse163.org/course/HIT-154005)** ：国家精品课程，截止目前已经开了 10 次课了。大家对这门课的评价都非常高！所以，非常推荐大家看一下！
 
-![](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images-6@main/12-15-1/image-20201218141241911.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/booksimage-20201218141241911.png)
 
 **2、[王道考研的计算机网络](https://www.bilibili.com/video/BV19E411D78Q?from=search&seid=17198507506906312317)** ：非常适合 CS 专业考研的小朋友！这个视频目前在哔哩哔哩上已经有 1.6w+的点赞。
 
-![](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images-6@main/12-18-1/image-20201218141652837.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/booksimage-20201218141652837.png)
 
 ## 算法
 

@@ -11,7 +11,7 @@ tag:
 
 另外，关于大学的详细经历我已经在写了。想要知道我是如何从一个普通的不能再普通的少年慢慢成长起来的朋友不要错过~
 
-![](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images/2020-08/0e370ac2-5f96-4e17-9ff4-8cc78ef72f19-20200802173544441.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books0e370ac2-5f96-4e17-9ff4-8cc78ef72f19-20200802173544441.png)
 
 **以下所有内容皆是事实，没有任何夸大的地方，稍微有一点点魔幻。**
 
@@ -21,7 +21,7 @@ tag:
 
 起初的时候，自己就是玩玩流行蝴蝶剑、单机摩托之类的单机游戏。但是，也没有到沉迷的地步，只是觉得这东西确实挺好玩的。
 
-![](https://cdn.jsdelivr.net/gh/javaguide-tech/blog-images/2020-08/2a6021b9-e7a0-41c4-b69e-a652f7bc3e12-20200802173601289.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books2a6021b9-e7a0-41c4-b69e-a652f7bc3e12-20200802173601289.png)
 
 开始有网瘾是在小学毕业的时候，在我玩了一款叫做 **QQ 飞车**的游戏之后（好像是六年级就开始玩了）。我艹，当时真的被这游戏吸引了。**每天上课都幻想自己坐在车里面飘逸，没错，当时就觉得秋名山车神就是我啦！**
 

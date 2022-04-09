@@ -596,7 +596,7 @@ Redis 4.0 开始支持 RDB 和 AOF 的混合持久化（默认关闭，可以通
 
 官方文档地址：https://redis.io/topics/persistence
 
-![](https://cdn.jsdelivr.net/gh/javaguide-tech/image-host-github-stars-01@main/webfunny_monitor/image-20210807145107290.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/booksimage-20210807145107290.png)
 
 **补充内容：AOF 重写**
 
