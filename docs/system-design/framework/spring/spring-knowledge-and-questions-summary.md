@@ -208,6 +208,18 @@ public OneService getService(status) {
 }
 ```
 
+### 注入 Bean 的注解有哪些？
+
+Spring 内置的 `@Autowired` 以及 JDK 内置的 `@Resource` 和 `@Inject` 都可以用于注入 Bean。
+
+| Annotaion    | Package                            | Source       |
+| ------------ | ---------------------------------- | ------------ |
+| `@Autowired` | `org.springframework.bean.factory` | Spring 2.5+  |
+| `@Resource`  | `javax.annotation`                 | Java JSR-250 |
+| `@Inject`    | `javax.inject`                     | Java JSR-330 |
+
+ `@Autowired` 和`@Resource`使用的比较多一些。
+
 ### @Autowired 和 @Resource 的区别是什么？
 
 `Autowired` 属于 Spring 内置的注解，默认的注入方式为`byType`（根据类型进行匹配），也就是说会优先根据接口类型去匹配并注入 Bean （接口的实现类）。
@@ -240,7 +252,7 @@ private SmsService smsService;
 
 我们还是建议通过 `@Qualifier` 注解来显示指定名称而不是依赖变量的名称。
 
-`@Resource`属于 JDK 提供的注解，默认注入方式为 `byName`。如果无法通过名称匹配到对应的实现类的话，注入方式会变为`byType`。
+`@Resource`属于 JDK 提供的注解，默认注入方式为 `byName`。如果无法通过名称匹配到对应的 Bean 的话，注入方式会变为`byType`。
 
 `@Resource` 有两个比较重要且日常开发常用的属性：`name`（名称）、`type`（类型）。
 
@@ -258,10 +270,9 @@ public @interface Resource {
 @Resource
 private SmsService smsService;
 // 正确注入 SmsServiceImpl1 对象对应的 bean
-@Autowired
+@Resource
 private SmsService smsServiceImpl1;
 // 正确注入 SmsServiceImpl1 对象对应的 bean（比较推荐这种方式）
-@Autowired
 @Resource(name = "smsServiceImpl1")
 private SmsService smsService;
 ```
@@ -270,7 +281,7 @@ private SmsService smsService;
 
 - `@Autowired` 是 Spring 提供的注解，`@Resource` 是 JDK 提供的注解。
 - `Autowired` 默认的注入方式为`byType`（根据类型进行匹配），`@Resource`默认注入方式为 `byName`（根据名称进行匹配）。
-- 当一个类存在多个实现类的情况下，`@Autowired` 和`@Resource`都需要通过名称进行匹配才能正确匹配到对应的 Bean。`Autowired` 可以通过 `@Qualifier` 注解来显示指定名称，`@Resource`可以通过 `name` 属性来显示指定名称。
+- 当一个接口存在多个实现类的情况下，`@Autowired` 和`@Resource`都需要通过名称才能正确匹配到对应的 Bean。`Autowired` 可以通过 `@Qualifier` 注解来显示指定名称，`@Resource`可以通过 `name` 属性来显示指定名称。
 
 ### Bean 的作用域有哪些?
 
