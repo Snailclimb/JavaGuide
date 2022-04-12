@@ -1,10 +1,12 @@
+# 一文带你看遍 JDK9~15 的重要新特性！
+
 Java 8 新特性见这里：[Java8 新特性最佳指南](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247484744&idx=1&sn=9db31dca13d327678845054af75efb74&chksm=cea24a83f9d5c3956f4feb9956b068624ab2fdd6c4a75fe52d5df5dca356a016577301399548&token=1082669959&lang=zh_CN&scene=21#wechat_redirect) 。
 
 你可以在 [Archived OpenJDK General-Availability Releases](http://jdk.java.net/archive/) 上下载自己需要的 JDK 版本！
 
 官方的新特性说明文档地址： https://openjdk.java.net/projects/jdk/ 。
 
-_Guide 哥：别人家的特性都用了几年了，我 Java 才出来，哈哈！真实！_
+_Guide ：别人家的特性都用了几年了，我 Java 才出来，哈哈！真实！_
 
 ## Java9
 
@@ -862,7 +864,7 @@ System.out.println(encodedString);
 
 ### 预览新特性
 
-#### record 关键字
+#### 密封类
 
 Java 15 对 Java 14 中引入的预览新特性进行了增强，主要是引入了一个新的概念 **密封类（Sealed Classes）。**
 
@@ -889,11 +891,6 @@ public non-sealed class Manager extends Person {
 ```
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/image-20210820153955587.png)
-
-在 `java.lang.Class` 增加了两个公共方法用于获取 `Record` 类信息：
-
-1. `RecordComponent[] getRecordComponents()`
-2. `boolean isRecord()`
 
 #### instanceof 模式匹配
 

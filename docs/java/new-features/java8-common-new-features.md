@@ -1,4 +1,4 @@
-# 我，一个10年老程序员，最近才开始用 Java 8 新特性
+# Java8新特性实战
 
 > 本文来自[cowbi](https://github.com/cowbi)的投稿~
 

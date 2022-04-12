@@ -1,38 +1,4 @@
-.gradle
-/build/
-/**/build/
-
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-/out/
-/**/out/
-.shelf/
-.ideaDataSources/
-dataSources/
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-/node_modules/
-
-### OS ###
-.DS_Store
-.Ds_Store´
 /node_modules
-
-
+/package-lock.json
+/dist
+.DS_Store
