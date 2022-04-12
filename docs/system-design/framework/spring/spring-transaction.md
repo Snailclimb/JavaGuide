@@ -127,7 +127,7 @@ public void testTransaction() {
 使用 `@Transactional`注解进行事务管理的示例代码如下：
 
 ```java
-@Transactional(propagation=propagation.PROPAGATION_REQUIRED)
+@Transactional(propagation = Propagation.REQUIRED)
 public void aMethod {
   //do something
   B b = new B();
@@ -277,7 +277,7 @@ public interface TransactionStatus{
 
 ```java
 Class A {
-    @Transactional(propagation=propagation.xxx)
+    @Transactional(propagation = Propagation.xxx)
     public void aMethod {
         //do something
         B b = new B();
@@ -286,7 +286,7 @@ Class A {
 }
 
 Class B {
-    @Transactional(propagation=propagation.xxx)
+    @Transactional(propagation = Propagation.xxx)
     public void bMethod {
        //do something
     }
@@ -358,7 +358,7 @@ public enum Propagation {
 
 ```java
 Class A {
-    @Transactional(propagation=propagation.PROPAGATION_REQUIRED)
+    @Transactional(propagation = Propagation.REQUIRED)
     public void aMethod {
         //do something
         B b = new B();
@@ -367,7 +367,7 @@ Class A {
 }
 
 Class B {
-    @Transactional(propagation=propagation.PROPAGATION_REQUIRED)
+    @Transactional(propagation = Propagation.REQUIRED)
     public void bMethod {
        //do something
     }
@@ -382,7 +382,7 @@ Class B {
 
 ```java
 Class A {
-    @Transactional(propagation=propagation.PROPAGATION_REQUIRED)
+    @Transactional(propagation = Propagation.REQUIRED)
     public void aMethod {
         //do something
         B b = new B();
@@ -391,7 +391,7 @@ Class A {
 }
 
 Class B {
-    @Transactional(propagation=propagation.REQUIRES_NEW)
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void bMethod {
        //do something
     }
@@ -409,7 +409,7 @@ Class B {
 
 ```java
 Class A {
-    @Transactional(propagation=propagation.PROPAGATION_REQUIRED)
+    @Transactional(propagation = Propagation.REQUIRED)
     public void aMethod {
         //do something
         B b = new B();
@@ -418,7 +418,7 @@ Class A {
 }
 
 Class B {
-    @Transactional(propagation=propagation.PROPAGATION_NESTED)
+    @Transactional(propagation = Propagation.NESTED)
     public void bMethod {
        //do something
     }
