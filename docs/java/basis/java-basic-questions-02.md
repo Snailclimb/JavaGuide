@@ -211,7 +211,7 @@ System.out.println(person1.getAddress() == person1Copy.getAddress());
 
 ![](./images/shallow&deep-copy.png)
 
-## Java 常见对象
+## Java 常见类
 
 ### Object
 
