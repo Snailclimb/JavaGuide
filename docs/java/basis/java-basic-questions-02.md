@@ -211,7 +211,7 @@ System.out.println(person1.getAddress() == person1Copy.getAddress());
 
 ![](./images/shallow&deep-copy.png)
 
-## Java 常见对象
+## Java 常见类
 
 ### Object
 
@@ -520,50 +520,88 @@ System.out.println(s);
 **字符串常量池** 是 JVM 为了提升性能和减少内存消耗针对字符串（String 类）专门开辟的一块区域，主要目的是为了避免字符串的重复创建。
 
 ```java
-String aa = "ab"; // 放在常量池中
-String bb = "ab"; // 从常量池中查找
+// 在堆中创建字符串对象”ab“
+// 将字符串对象”ab“的引用保存在字符串常量池中
+String aa = "ab";
+// 直接返回字符串常量池中字符串对象”ab“的引用
+String bb = "ab";
 System.out.println(aa==bb);// true
 ```
 
-JDK1.7 之前运行时常量池逻辑包含字符串常量池存放在方法区。JDK1.7 的时候，字符串常量池被从方法区拿到了堆中。
-
-你可以在 JVM 部分找到更多关于字符串常量池的介绍。
+更多关于字符串常量池的介绍可以看一下 [Java 内存区域详解](https://javaguide.cn/java/jvm/memory-area.html) 这篇文章。
 
 #### String s1 = new String("abc");这句话创建了几个字符串对象？
 
-会创建 1 或 2 个字符串：
+会创建 1 或 2 个字符串。
 
-- 如果字符串常量池中已存在字符串常量“abc”，则只会在堆空间创建一个字符串常量“abc”。
-- 如果字符串常量池中没有字符串常量“abc”，那么它将首先在字符串常量池中创建，然后在堆空间中创建，因此将创建总共 2 个字符串对象。
+1、如果字符串常量池中不存在字符串对象“abc”的引用，那么会在堆中创建 2 个字符串对象“abc”。
 
-**验证** ：
+示例代码（JDK 1.8）：
 
 ```java
-String s1 = new String("abc");// 堆内存的地址值
-String s2 = "abc";
-System.out.println(s1 == s2);// 输出 false,因为一个是堆内存，一个是常量池的内存，故两者是不同的。
-System.out.println(s1.equals(s2));// 输出 true
+String s1 = new String("abc");
 ```
 
-**结果** ：
+对应的字节码：
 
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/open-source-project/image-20220413175809959.png)
+
+`ldc` 命令用于判断字符串常量池中是否保存了对应的字符串对象的引用，如果保存了的话直接返回，如果没有保存的话，会在堆中创建对应的字符串对象并将该字符串对象的引用保存到字符串常量池中。
+
+2、如果字符串常量池中已存在字符串对象“abc”的引用，则只会在堆中创建 1 个字符串对象“abc”。
+
+示例代码（JDK 1.8）：
+
+```java
+// 字符串常量池中已存在字符串对象“abc”的引用
+String s1 = "abc";
+// 下面这段代码只会在堆中创建 1 个字符串对象“abc”
+String s2 = new String("abc");
 ```
-false
-true
+
+对应的字节码：
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/open-source-project/image-20220413180021072.png)
+
+这里就不对上面的字节码进行详细注释了，7 这个位置的 `ldc` 命令不会在堆中创建新的字符串对象“abc”，这是因为 0 这个位置已经执行了一次 `ldc` 命令，已经在堆中创建过一次字符串对象“abc”了。7 这个位置执行 `ldc` 命令会直接返回字符串常量池中字符串对象“abc”对应的引用。
+
+#### intern 方法有什么作用?
+
+`String.intern()` 是一个 native（本地）方法，其作用是将指定的字符串对象的引用保存在字符串常量池中，可以简单分为两种情况：
+
+- 如果字符串常量池中保存了对应的字符串对象的引用，就直接返回该引用。
+- 如果字符串常量池中没有保存了对应的字符串对象的引用，那就在常量池中创建一个指向该字符串对象的引用并返回。
+
+示例代码（JDK 1.8） :
+
+```java
+// 在堆中创建字符串对象”Java“
+// 将字符串对象”Java“的引用保存在字符串常量池中
+String s1 = "Java";
+// 直接返回字符串常量池中字符串对象”Java“对应的引用
+String s2 = s1.intern();
+// 会在堆中在单独创建一个字符串对象
+String s3 = new String("Java");
+// 直接返回字符串常量池中字符串对象”Java“对应的引用
+String s4 = s3.intern();
+// s1 和 s2 指向的是堆中的同一个对象
+System.out.println(s1 == s2); // true
+// s3 和 s4 指向的是堆中不同的对象
+System.out.println(s3 == s4); // false
+// s1 和 s4 指向的是堆中不同的对象
+System.out.println(s1 == s4); //true
 ```
 
 #### String 类型的变量和常量做“+”运算时发生了什么？
-
-一个非常常见的面试题。
 
 先来看字符串不加 `final` 关键字拼接的情况（JDK1.8）：
 
 ```java
 String str1 = "str";
 String str2 = "ing";
-String str3 = "str" + "ing";//常量池中的对象
-String str4 = str1 + str2; //在堆上创建的新的对象
-String str5 = "string";//常量池中的对象
+String str3 = "str" + "ing";
+String str4 = str1 + str2;
+String str5 = "string";
 System.out.println(str3 == str4);//false
 System.out.println(str3 == str5);//true
 System.out.println(str4 == str5);//false
@@ -573,39 +611,23 @@ System.out.println(str4 == str5);//false
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/image-20210817123252441.png)
 
-> 对于基本数据类型来说，== 比较的是值。对于引用数据类型来说，==比较的是对象的内存地址。
+**对于编译期可以确定值的字符串，也就是常量字符串 ，jvm 会将其存入字符串常量池。并且，字符串常量拼接得到的字符串常量在编译阶段就已经被存放字符串常量池，这个得益于编译器的优化。**
 
-对于编译期可以确定值的字符串，也就是常量字符串 ，jvm 会将其存入字符串常量池。
+在编译过程中，Javac 编译器（下文中统称为编译器）会进行一个叫做 **常量折叠(Constant Folding)** 的代码优化。《深入理解 Java 虚拟机》中是也有介绍到：
 
-> **字符串常量池** 是 JVM 为了提升性能和减少内存消耗针对字符串（String 类）专门开辟的一块区域，主要目的是为了避免字符串的重复创建。
->
-> ```java
-> String aa = "ab"; // 放在常量池中
-> String bb = "ab"; // 从常量池中查找
-> System.out.println(aa==bb);// true
-> ```
->
-> JDK1.7 之前运行时常量池逻辑包含字符串常量池存放在方法区。JDK1.7 的时候，字符串常量池被从方法区拿到了堆中。
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/image-20210817142715396.png)
 
-并且，字符串常量拼接得到的字符串常量在编译阶段就已经被存放字符串常量池，这个得益于编译器的优化。
+常量折叠会把常量表达式的值求出来作为常量嵌在最终生成的代码中，这是 Javac 编译器会对源代码做的极少量优化措施之一(代码优化几乎都在即时编译器中进行)。
 
-> 在编译过程中，Javac 编译器（下文中统称为编译器）会进行一个叫做 **常量折叠(Constant Folding)** 的代码优化。《深入理解 Java 虚拟机》中是也有介绍到：
->
-> ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/image-20210817142715396.png)
->
-> 常量折叠会把常量表达式的值求出来作为常量嵌在最终生成的代码中，这是 Javac 编译器会对源代码做的极少量优化措施之一(代码优化几乎都在即时编译器中进行)。
->
-> 对于 `String str3 = "str" + "ing";` 编译器会给你优化成 `String str3 = "string";` 。
->
-> 并不是所有的常量都会进行折叠，只有编译器在程序编译期就可以确定值的常量才可以：
->
-> - 基本数据类型( `byte`、`boolean`、`short`、`char`、`int`、`float`、`long`、`double`)以及字符串常量。
-> - `final` 修饰的基本数据类型和字符串变量
-> - 字符串通过 “+”拼接得到的字符串、基本数据类型之间算数运算（加减乘除）、基本数据类型的位运算（<<、\>>、\>>> ）
+对于 `String str3 = "str" + "ing";` 编译器会给你优化成 `String str3 = "string";` 。
 
-因此，`str1` 、 `str2` 、 `str3` 都属于字符串常量池中的对象。
+并不是所有的常量都会进行折叠，只有编译器在程序编译期就可以确定值的常量才可以：
 
-引用的值在程序编译期是无法确定的，编译器无法对其进行优化。
+- 基本数据类型( `byte`、`boolean`、`short`、`char`、`int`、`float`、`long`、`double`)以及字符串常量。
+- `final` 修饰的基本数据类型和字符串变量
+- 字符串通过 “+”拼接得到的字符串、基本数据类型之间算数运算（加减乘除）、基本数据类型的位运算（<<、\>>、\>>> ）
+
+**引用的值在程序编译期是无法确定的，编译器无法对其进行优化。**
 
 对象引用和“+”的字符串拼接方式，实际上是通过 `StringBuilder` 调用 `append()` 方法实现的，拼接完成之后调用 `toString()` 得到一个 `String` 对象 。
 
@@ -613,15 +635,11 @@ System.out.println(str4 == str5);//false
 String str4 = new StringBuilder().append(str1).append(str2).toString();
 ```
 
-因此，`str4` 并不是字符串常量池中存在的对象，属于堆上的新对象。
-
-我画了一个图帮助理解：
-
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5-%E5%B8%B8%E9%87%8F%E6%B1%A0.png)
-
 我们在平时写代码的时候，尽量避免多个字符串对象拼接，因为这样会重新创建对象。如果需要改变字符串的话，可以使用 `StringBuilder` 或者 `StringBuffer`。
 
 不过，字符串使用 `final` 关键字声明之后，可以让编译器当做常量来处理。
+
+示例代码：
 
 ```java
 final String str1 = "str";
@@ -636,7 +654,7 @@ System.out.println(c == d);// true
 
 如果 ，编译器在运行时才能知道其确切值的话，就无法对其优化。
 
-示例代码如下（`str2` 在运行时才能确定其值）：
+示例代码（`str2` 在运行时才能确定其值）：
 
 ```java
 final String str1 = "str";
@@ -648,83 +666,6 @@ public static String getStr() {
       return "ing";
 }
 ```
-
-**我们再来看一个类似的问题！**
-
-```java
-String str1 = "abcd";
-String str2 = new String("abcd");
-String str3 = new String("abcd");
-System.out.println(str1==str2);
-System.out.println(str2==str3);
-```
-
-上面的代码运行之后会输出什么呢？
-
-答案是：
-
-```
-false
-false
-```
-
-**这是为什么呢？**
-
-我们先来看下面这种创建字符串对象的方式：
-
-```java
-// 从字符串常量池中拿对象
-String str1 = "abcd";
-```
-
-这种情况下，jvm 会先检查字符串常量池中有没有"abcd"，如果字符串常量池中没有，则创建一个，然后 str1 指向字符串常量池中的对象，如果有，则直接将 str1 指向"abcd"；
-
-因此，`str1` 指向的是字符串常量池的对象。
-
-我们再来看下面这种创建字符串对象的方式：
-
-```java
-// 直接在堆内存空间创建一个新的对象。
-String str2 = new String("abcd");
-String str3 = new String("abcd");
-```
-
-**只要使用 new 的方式创建对象，便需要创建新的对象** 。
-
-使用 new 的方式创建对象的方式如下，可以简单概括为 3 步：
-
-1. 在堆中创建一个字符串对象
-2. 检查字符串常量池中是否有和 new 的字符串值相等的字符串常量
-3. 如果没有的话需要在字符串常量池中也创建一个值相等的字符串常量，如果有的话，就直接返回堆中的字符串实例对象地址。
-
-因此，`str2` 和 `str3` 都是在堆中新创建的对象。
-
-**字符串常量池比较特殊，它的主要使用方法有两种：**
-
-1. 直接使用双引号声明出来的 `String` 对象会直接存储在常量池中。
-2. 如果不是用双引号声明的 `String` 对象，使用 `String` 提供的 `intern()` 方法也有同样的效果。`String.intern()` 是一个 Native 方法，它的作用是：如果字符串常量池中已经包含一个等于此 String 对象内容的字符串，则返回常量池中该字符串的引用；如果没有，JDK1.7 之前（不包含 1.7）的处理方式是在常量池中创建与此 `String` 内容相同的字符串，并返回常量池中创建的字符串的引用，JDK1.7 以及之后，字符串常量池被从方法区拿到了堆中，jvm 不会在常量池中创建该对象，而是将堆中这个对象的引用直接放到常量池中，减少不必要的内存开销。
-
-示例代码如下（JDK 1.8） :
-
-```java
-String s1 = "Javatpoint";
-String s2 = s1.intern();
-String s3 = new String("Javatpoint");
-String s4 = s3.intern();
-System.out.println(s1==s2); // True
-System.out.println(s1==s3); // False
-System.out.println(s1==s4); // True
-System.out.println(s2==s3); // False
-System.out.println(s2==s4); // True
-System.out.println(s3==s4); // False
-```
-
-**总结** ：
-
-1. 对于基本数据类型来说，==比较的是值。对于引用数据类型来说，==比较的是对象的内存地址。
-2. 在编译过程中，Javac 编译器（下文中统称为编译器）会进行一个叫做 **常量折叠(Constant Folding)** 的代码优化。常量折叠会把常量表达式的值求出来作为常量嵌在最终生成的代码中，这是 Javac 编译器会对源代码做的极少量优化措施之一(代码优化几乎都在即时编译器中进行)。
-3. 一般来说，我们要尽量避免通过 new 的方式创建字符串。使用双引号声明的 `String` 对象（ `String s1 = "java"` ）更利于让编译器有机会优化我们的代码，同时也更易于阅读。
-4. 被 `final` 关键字修改之后的 `String` 会被编译器当做常量来处理，编译器程序编译期就可以确定它的值，其效果就相当于访问常量。
 
 ## 参考
 

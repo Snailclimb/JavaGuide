@@ -50,7 +50,7 @@ Paxos 算法是 Leslie Lamport（[莱斯利·兰伯特](https://zh.wikipedia.org
 
 - Paxos 算法是兰伯特在 **1990** 年提出了一种分布式系统共识算法。
 - 兰伯特当时提出的 Paxos 算法主要包含 2 个部分:Basic Paxos 算法和Multi-Paxos 思想。
-- Raft 算法、ZAB 协议、 Fast Paxos 算法都是基于 Paxos 算法改进而来。。
+- Raft 算法、ZAB 协议、 Fast Paxos 算法都是基于 Paxos 算法改进而来。
 
 ## 一致性（Consistency）与共识（Consensus）
 
