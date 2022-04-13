@@ -74,7 +74,7 @@ Java 虚拟机规范对于运行时数据区域的规定是相当宽松的。以
 
 **操作数栈** 主要作为方法调用的中转站使用，用于存放方法执行过程中产生的中间计算结果。另外，计算过程中产生的临时变量也会放在操作数栈中。
 
-**动态链接** 主要服务一个方法需要调用其他方法的场景。在 Java 源文件被编译成字节码文件时，所有的变量和方法引用都作为符号引用（Symbilic Reference）保存在Class 文件的常量池里。当一个方法要调用其他方法，需要将常量池中指向方法的符号引用转化为其在内存地址中的直接引用。动态链接的作用就是为了将符号引用转换为调用方法的直接引用。
+**动态链接** 主要服务一个方法需要调用其他方法的场景。在 Java 源文件被编译成字节码文件时，所有的变量和方法引用都作为符号引用（Symbilic Reference）保存在 Class 文件的常量池里。当一个方法要调用其他方法，需要将常量池中指向方法的符号引用转化为其在内存地址中的直接引用。动态链接的作用就是为了将符号引用转换为调用方法的直接引用。
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/jvmimage-20220331175738692.png)
 
@@ -195,57 +195,52 @@ JDK 1.8 的时候，方法区（HotSpot 的永久代）被彻底移除了（JDK1
 
 与永久代很大的不同就是，如果不指定大小的话，随着更多类的创建，虚拟机会耗尽所有可用的系统内存。
 
-最后，我画了 3 张图带你看看 JDK1.6 到 JDK1.8 方法区的变化。
-
-![方法区-jdk1.6](./pictures/java内存区域/method-area-1.6.png)
-
-![方法区-jdk1.7](./pictures/java内存区域/method-area-jdk1.7.png)
-
-![方法区-jdk1.8](./pictures/java内存区域/method-area-jdk1.8.png)
-
-多提一嘴，为了完善方法区这部分内容的介绍，我看了很多文档，还特意去扒了一下《深入理解Java虚拟机（第3版）》勘误的 issues，简直看到的脑壳疼。。。
-
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/jvmimage-20220331112415166.png)
-
-讲真，深挖下来的话细节太多，也没太大意义（卷不动了），我上面讲到的这些基本就够面试使用了。
-
 ### 运行时常量池
 
-Class 文件中除了有类的版本、字段、方法、接口等描述信息外，还有用于存放编译期生成的各种字面量（Literal）和符号引用（Symbolic Reference）的常量池表(Constant Pool Table)。常量池表会在类加载后存放到方法区的运行时常量池中。
+Class 文件中除了有类的版本、字段、方法、接口等描述信息外，还有用于存放编译期生成的各种字面量（Literal）和符号引用（Symbolic Reference）的 **常量池表(Constant Pool Table)** 。
 
 字面量是源代码中的固定值的表示法，即通过字面我们就能知道其值的含义。字面量包括整数、浮点数和字符串字面量，符号引用包括类符号引用、字段符号引用、方法符号引用和接口方法符号引用。
+
+常量池表会在类加载后存放到方法区的运行时常量池中。
 
 运行时常量池的功能类似于传统编程语言的符号表，尽管它包含了比典型符号表更广泛的数据。
 
 既然运行时常量池是方法区的一部分，自然受到方法区内存的限制，当常量池无法再申请到内存时会抛出 `OutOfMemoryError` 错误。
 
-~~**JDK1.7 及之后版本的 JVM 已经将运行时常量池从方法区中移了出来，在 Java 堆（Heap）中开辟了一块区域存放运行时常量池。**~~
-
-> **🐛 修正（参见：[issue747](https://github.com/Snailclimb/JavaGuide/issues/747)，[reference](https://blog.csdn.net/q5706503/article/details/84640762)）** ：
->
-> 1. JDK1.7 之前，运行时常量池包含的字符串常量池和静态变量存放在方法区, 此时 HotSpot 虚拟机对方法区的实现为永久代。
-> 2. JDK1.7 字符串常量池和静态变量被从方法区拿到了堆中, 这里没有提到运行时常量池,也就是说字符串常量池被单独拿到堆,运行时常量池剩下的东西还在方法区, 也就是 HotSpot 中的永久代 。
-> 3. JDK1.8 HotSpot 移除了永久代用元空间(Metaspace)取而代之, 这时候字符串常量池和静态变量还在堆, 运行时常量池还在方法区, 只不过方法区的实现从永久代变成了元空间(Metaspace)
-
-**字符串常量池有什么作用？**
+### 字符串常量池
 
 **字符串常量池** 是 JVM 为了提升性能和减少内存消耗针对字符串（String 类）专门开辟的一块区域，主要目的是为了避免字符串的重复创建。
 
 ```java
-String aa = "ab"; // 放在常量池中
-String bb = "ab"; // 从常量池中查找
+// 在堆中创建字符串对象”ab“
+// 将字符串对象”ab“的引用保存在字符串常量池中
+String aa = "ab";
+// 直接返回字符串常量池中字符串对象”ab“的引用
+String bb = "ab";
 System.out.println(aa==bb);// true
 ```
 
-JDK1.7 之前运行时常量池逻辑包含字符串常量池存放在方法区。JDK1.7 的时候，字符串常量池被从方法区拿到了堆中。
+HotSpot 虚拟机中字符串常量池的实现是 `src/hotspot/share/classfile/stringTable.cpp` ,`StringTable` 本质上就是一个`HashSet<String>` ,容量为 `StringTableSize`（可以通过 `-XX:StringTableSize` 参数来设置）。
 
-这里的字符串其实就是我们前面提到的字符串字面量。在声明一个字符串字面量时，如果字符串常量池中能够找到该字符串字面量，则直接返回该引用。如果找不到的话，则在常量池中创建该字符串字面量的对象并返回其引用。
+**`StringTable` 中保存的是字符串对象的引用，字符串对象的引用指向堆中的字符串对象。**
+
+JDK1.7 之前，字符串常量池存放在永久代。JDK1.7 字符串常量池和静态变量从永久代移动了 Java 堆中。
+
+![](pictures/java内存区域/method-area-jdk1.6.png)
+
+![](pictures/java内存区域/method-area-jdk1.7.png)
+
+![](pictures/java内存区域/method-area-jdk1.8.png)
 
 **JDK 1.7 为什么要将字符串常量池移动到堆中？**
 
 主要是因为永久代（方法区实现）的 GC 回收效率太低，只有在整堆收集 (Full GC)的时候才会被执行 GC。Java 程序中通常会有大量的被创建的字符串等待回收，将字符串常量池放到堆中，能够更高效及时地回收字符串内存。
 
 相关问题：[JVM 常量池中存储的是对象还是引用呢？ - RednaxelaFX - 知乎](https://www.zhihu.com/question/57109429/answer/151717241)
+
+最后再来分享一段周志明老师在[《深入理解 Java 虚拟机（第 3 版）》样例代码&勘误](https://github.com/fenixsoft/jvm_book) Github 仓库的 [issue#112](https://github.com/fenixsoft/jvm_book/issues/112) 中说过的话：
+
+> **运行时常量池、方法区、字符串常量池这些都是不随虚拟机实现而改变的逻辑概念，是公共且抽象的，Metaspace、Heap 是与具体某种虚拟机实现相关的物理概念，是私有且具体的。**
 
 ### 直接内存
 
@@ -336,7 +331,9 @@ Java 对象的创建过程我建议最好是能默写出来，并且要掌握每
 - 《深入理解 Java 虚拟机：JVM 高级特性与最佳实践（第二版》
 - 《自己动手写 Java 虚拟机》
 - Chapter 2. The Structure of the Java Virtual Machine：https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-2.html
-- JVM栈帧内部结构-动态链接：https://chenxitag.com/archives/368
+- JVM 栈帧内部结构-动态链接：https://chenxitag.com/archives/368
+- Java 中 new String("字面量") 中 "字面量" 是何时进入字符串常量池的? - 木女孩的回答 - 知乎： https://www.zhihu.com/question/55994121/answer/147296098
+- JVM 常量池中存储的是对象还是引用呢？ - RednaxelaFX 的回答 - 知乎： https://www.zhihu.com/question/57109429/answer/151717241
 - <http://www.pointsoftware.ch/en/under-the-hood-runtime-data-areas-javas-memory-model/>
 - <https://dzone.com/articles/jvm-permgen-%E2%80%93-where-art-thou>
 - <https://stackoverflow.com/questions/9095748/method-area-and-permgen>
