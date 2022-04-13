@@ -64,7 +64,7 @@
 
 1. [Java 集合常见知识点&面试题总结(上)](docs/java/collection/java-collection-questions-01.md) (必看 :+1:)
 2. [Java 集合常见知识点&面试题总结(下)](docs/java/collection/java-collection-questions-02.md) (必看 :+1:)
-2. [Java 容器使用注意事项总结](docs/java/collection/java集合使用注意事项.md)
+2. [Java 容器使用注意事项总结](docs/java/collection/java-collection-precautions-for-use.md)
 
 **源码分析** ：
 
