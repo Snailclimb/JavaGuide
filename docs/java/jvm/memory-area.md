@@ -226,11 +226,11 @@ HotSpot 虚拟机中字符串常量池的实现是 `src/hotspot/share/classfile/
 
 JDK1.7 之前，字符串常量池存放在永久代。JDK1.7 字符串常量池和静态变量从永久代移动了 Java 堆中。
 
-![](pictures/java内存区域/method-area-jdk1.6.png)
+![](./pictures/java内存区域/method-area-jdk1.6.png)
 
-![](pictures/java内存区域/method-area-jdk1.7.png)
+![](./pictures/java内存区域/method-area-jdk1.7.png)
 
-![](pictures/java内存区域/method-area-jdk1.8.png)
+![](./pictures/java内存区域/method-area-jdk1.8.png)
 
 **JDK 1.7 为什么要将字符串常量池移动到堆中？**
 
