@@ -42,11 +42,23 @@ head:
 - **[《操作系统设计与实现》](https://book.douban.com/subject/2044818/)** ：操作系统的权威教学教材。
 - **[《Orange'S:一个操作系统的实现》](https://book.douban.com/subject/3735649/)** ： 从只有二十行的引导扇区代码出发，一步一步地向读者呈现一个操作系统框架的完成过程。配合《操作系统设计与实现》一起食用更佳！
 
-如果你比较喜欢看视频的话，我建议你可以看看北京交通大学的慕课[《操作系统》](https://www.icourse163.org/course/NJTU-1003245001)。
+如果你比较喜欢看视频的话，推荐哈工大李治军老师主讲的慕课 [《操作系统》](https://www.icourse163.org/course/HIT-1002531008)，内容质量吊打一众国家精品课程。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/booksimage-20201204131429567.png)
+课程的大纲如下：
 
-这个视频课程基本把操作系统的体系结构、设计机理及实现方法和技术相关重要的知识点介绍的差不多了。
+![课程大纲](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/image-20220414144527747.png)
+
+主要讲了一个基本操作系统中的六个基本模块： CPU 管理、内存管理、外设管理、磁盘管理与文件系统、用户接口和启动模块 。
+
+课程难度还是比较大的，尤其是课后的 lab。如果大家想要真正搞懂操作系统底层原理的话，对应的 lab 能做尽量做一下。正如李治军老师说的那样：“纸上得来终觉浅，绝知此事要躬行”。
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/image-20220414145210679.png)
+
+如果你能独立完成几个 lab 的话，我相信你对操作系统的理解绝对要上升几个台阶。当然了，如果你仅仅是为了突击面试的话，那就不需要做 lab 了。
+
+说点心里话，我本人非常喜欢李治军老师讲的课，我觉得他是国内不可多得的好老师。他知道我们国内的教程和国外的差距在哪里，也知道国内的学生和国外学生的差距在哪里，他自己在努力着通过自己的方式来缩小这个差距。真心感谢，期待李治军老师的下一个课程。
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/image-20220414145249714.png)
 
 还有下面这个国外的课程 [《深入理解计算机系统 》](https://www.bilibili.com/video/av31289365?from=search&seid=16298868573410423104) 也很不错。
 
