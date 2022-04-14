@@ -574,9 +574,9 @@ class BasicTypeVar{
 }
 ```
 
-### 包装类型的常量池技术了解么？
+### 包装类型的缓存机制了解么？
 
-Java 基本类型的包装类的大部分都实现了常量池技术。
+Java 基本数据类型的包装类型的大部分都用到了缓存机制来提升性能。
 
 `Byte`,`Short`,`Integer`,`Long` 这 4 种包装类默认创建了数值 **[-128，127]** 的相应类型的缓存数据，`Character` 创建了数值在 **[0,127]** 范围的缓存数据，`Boolean` 直接返回 `True` or `False`。
 
@@ -629,7 +629,7 @@ public static Boolean valueOf(boolean b) {
 
 如果超出对应范围仍然会去创建新的对象，缓存的范围区间的大小只是在性能和资源之间的权衡。
 
-两种浮点数类型的包装类 `Float`,`Double` 并没有实现常量池技术。
+两种浮点数类型的包装类 `Float`,`Double` 并没有实现缓存机制。
 
 ```java
 Integer i1 = 33;
@@ -653,7 +653,7 @@ Integer i2 = new Integer(40);
 System.out.println(i1==i2);
 ```
 
-`Integer i1=40` 这一行代码会发生装箱，也就是说这行代码等价于 `Integer i1=Integer.valueOf(40)` 。因此，`i1` 直接使用的是常量池中的对象。而`Integer i2 = new Integer(40)` 会直接创建新的对象。
+`Integer i1=40` 这一行代码会发生装箱，也就是说这行代码等价于 `Integer i1=Integer.valueOf(40)` 。因此，`i1` 直接使用的是缓存中的对象。而`Integer i2 = new Integer(40)` 会直接创建新的对象。
 
 因此，答案是 `false` 。你答对了吗？
 
