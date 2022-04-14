@@ -92,7 +92,7 @@ InnoDB 引擎中，其数据文件本身就是索引文件。相比 MyISAM，索
 
 在 MySQL 的 InnoDB 的表中，当没有显示的指定表的主键时，InnoDB 会自动先检查表中是否有唯一索引且不允许存在null值的字段，如果有，则选择该字段为默认的主键，否则 InnoDB 将会自动创建一个 6Byte 的自增主键。
 
-![](http://101.43.132.98:98/images/cluster-index.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/open-source-project/cluster-index.png)
 
 ### 二级索引(辅助索引)
 
@@ -110,7 +110,7 @@ InnoDB 引擎中，其数据文件本身就是索引文件。相比 MyISAM，索
 
 二级索引:
 
-![](http://101.43.132.98:98/images/no-cluster-index.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/open-source-project/no-cluster-index.png)
 
 ## 聚集索引与非聚集索引
 
