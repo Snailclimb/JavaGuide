@@ -45,18 +45,18 @@
 
 **知识点/面试题** : (必看:+1: )：
 
-* [Java 基础常见知识点&面试题总结(上)](docs/java/basis/java-basic-questions-01.md)
-* [Java 基础常见知识点&面试题总结(中)](docs/java/basis/java-basic-questions-02.md)
-* [Java 基础常见知识点&面试题总结(下)](docs/java/basis/java-basic-questions-03.md)
+1. [Java 基础常见知识点&面试题总结(上)](docs/java/basis/java-basic-questions-01.md)
+2. [Java 基础常见知识点&面试题总结(中)](docs/java/basis/java-basic-questions-02.md)
+3. [Java 基础常见知识点&面试题总结(下)](docs/java/basis/java-basic-questions-03.md)
 
 **重要知识点详解** ：
 
 * [为什么 Java 中只有值传递？](docs/java/basis/why-there-only-value-passing-in-java.md)
-* [什么是反射机制？反射机制的应用场景有哪些？](docs/java/basis/reflection.md)
-* [代理模式详解：静态代理+JDK/CGLIB 动态代理实战](docs/java/basis/proxy.md)
-* [常见的 IO 模型有哪些？Java 中的 BIO、NIO、AIO 有啥区别?](docs/java/basis/io.md)
-* [BigDecimal解决浮点数运算精度丢失问题](docs/java/basis/bigdecimal.md)
-* **[泛型连环炮](docs/java/basis/generics.md)**
+* [Java 序列化详解](docs/java/basis/serialization.md)
+* [反射机制详解](docs/java/basis/reflection.md)
+* [Java 代理模式详解](docs/java/basis/proxy.md)
+* [IO 模型详解](docs/java/basis/io.md)
+* [BigDecimal 详解](docs/java/basis/bigdecimal.md)
 
 ### 集合
 
@@ -64,7 +64,7 @@
 
 1. [Java 集合常见知识点&面试题总结(上)](docs/java/collection/java-collection-questions-01.md) (必看 :+1:)
 2. [Java 集合常见知识点&面试题总结(下)](docs/java/collection/java-collection-questions-02.md) (必看 :+1:)
-2. [Java 容器使用注意事项总结](docs/java/collection/java-collection-precautions-for-use.md)
+3. [Java 容器使用注意事项总结](docs/java/collection/java-collection-precautions-for-use.md)
 
 **源码分析** ：
 
@@ -81,12 +81,12 @@
 
 **重要知识点详解** ：
 
-1. **线程池** ：[Java 线程池详解](./docs/java/concurrent/java-thread-pool-summary.md)、[Java 线程池最佳实践](./docs/java/concurrent/java-thread-pool-best-practices.md)
-2. [ThreadLocal 关键字解析](docs/java/concurrent/threadlocal.md)
-3. [Java 并发容器总结](docs/java/concurrent/java-concurrent-collections.md)
-4. [Atomic 原子类总结](docs/java/concurrent/atomic-classes.md)
-5. [AQS 原理以及 AQS 同步组件总结](docs/java/concurrent/aqs.md)
-6. [CompletableFuture入门](docs/java/concurrent/completablefuture-intro.md)
+- **线程池** ：[Java 线程池详解](./docs/java/concurrent/java-thread-pool-summary.md)、[Java 线程池最佳实践](./docs/java/concurrent/java-thread-pool-best-practices.md)
+- [ThreadLocal 关键字解析](docs/java/concurrent/threadlocal.md)
+- [Java 并发容器总结](docs/java/concurrent/java-concurrent-collections.md)
+- [Atomic 原子类总结](docs/java/concurrent/atomic-classes.md)
+- [AQS 原理以及 AQS 同步组件总结](docs/java/concurrent/aqs.md)
+- [CompletableFuture入门](docs/java/concurrent/completablefuture-intro.md)
 
 ### JVM (必看 :+1:)
 
