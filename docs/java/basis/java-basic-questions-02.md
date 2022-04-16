@@ -588,7 +588,7 @@ String s4 = s3.intern();
 System.out.println(s1 == s2); // true
 // s3 和 s4 指向的是堆中不同的对象
 System.out.println(s3 == s4); // false
-// s1 和 s4 指向的是堆中不同的对象
+// s1 和 s4 指向的是堆中的同一个对象
 System.out.println(s1 == s4); //true
 ```
 
