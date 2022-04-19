@@ -198,7 +198,7 @@ Java 中的注释有三种：
 | 包相关         | import   | package    |          |              |            |           |        |
 | 基本类型     | boolean  | byte       | char     | double       | float      | int       | long   |
 |                      | short    |            |          |              |            |           |        |
-| 变量引用     | super    | this       | void     |              |            |           |        |
+| 变量引用     | super    | this       | void     |   true       |     false  |           |        |
 | 保留字         | goto     | const      |          |              |            |           |        |
 
 > Tips：所有的关键字都是小写的，在 IDE 中会以特殊颜色显示。
