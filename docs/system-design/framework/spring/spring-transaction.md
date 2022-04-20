@@ -251,7 +251,7 @@ public interface TransactionDefinition {
 
 `PlatformTransactionManager.getTransaction(…)`方法返回一个 `TransactionStatus` 对象。
 
-**TransactionStatus 接口接口内容如下：**
+**TransactionStatus 接口内容如下：**
 
 ```java
 public interface TransactionStatus{
