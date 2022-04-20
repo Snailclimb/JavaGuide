@@ -265,7 +265,7 @@ public interface TransactionStatus{
 
 ### 事务属性详解
 
-际业务开发中，大家一般都是使用 `@Transactional` 注解来开启事务，很多人并不清楚这个参数里面的参数是什么意思，有什么用。为了更好的在项目中使用事务管理，强烈推荐好好阅读一下下面的内容。
+实际业务开发中，大家一般都是使用 `@Transactional` 注解来开启事务，但很多人并不清楚这个注解里面的参数是什么意思，有什么用。为了更好的在项目中使用事务管理，强烈推荐好好阅读一下下面的内容。
 
 #### 事务传播行为
 
@@ -273,7 +273,7 @@ public interface TransactionStatus{
 
 当事务方法被另一个事务方法调用时，必须指定事务应该如何传播。例如：方法可能继续在现有事务中运行，也可能开启一个新事务，并在自己的事务中运行。
 
-举个例子：我们在 A 类的`aMethod（）`方法中调用了 B 类的 `bMethod()` 方法。这个时候就涉及到业务层方法之间互相调用的事务问题。如果我们的 `bMethod()`如果发生异常需要回滚，如何配置事务传播行为才能让 `aMethod()`也跟着回滚呢？这个时候就需要事务传播行为的知识了，如果你不知道的话一定要好好看一下。
+举个例子：我们在 A 类的`aMethod()`方法中调用了 B 类的 `bMethod()` 方法。这个时候就涉及到业务层方法之间互相调用的事务问题。如果我们的 `bMethod()`如果发生异常需要回滚，如何配置事务传播行为才能让 `aMethod()`也跟着回滚呢？这个时候就需要事务传播行为的知识了，如果你不知道的话一定要好好看一下。
 
 ```java
 Class A {
@@ -308,7 +308,7 @@ public interface TransactionDefinition {
 }
 ```
 
-不过如此，为了方便使用，Spring 会相应地定义了一个枚举类：`Propagation`
+不过，为了方便使用，Spring 相应地定义了一个枚举类：`Propagation`
 
 ```java
 package org.springframework.transaction.annotation;
@@ -455,7 +455,7 @@ public interface TransactionDefinition {
 }
 ```
 
-和事务传播行为这块一样，为了方便使用，Spring 也相应地定义了一个枚举类：`Isolation`
+和事务传播行为那块一样，为了方便使用，Spring 也相应地定义了一个枚举类：`Isolation`
 
 ```java
 public enum Isolation {
@@ -506,9 +506,9 @@ mysql> SELECT @@tx_isolation;
 
 ~~这里需要注意的是：与 SQL 标准不同的地方在于 InnoDB 存储引擎在 **REPEATABLE-READ（可重读）** 事务隔离级别下使用的是 Next-Key Lock 锁算法，因此可以避免幻读的产生，这与其他数据库系统(如 SQL Server)是不同的。所以说 InnoDB 存储引擎的默认支持的隔离级别是 **REPEATABLE-READ（可重读）** 已经可以完全保证事务的隔离性要求，即达到了 SQL 标准的 **SERIALIZABLE(可串行化)** 隔离级别。~~
 
-🐛 问题更正：**MySQL InnoDB 的 REPEATABLE-READ（可重读）并不保证避免幻读，需要应用使用加锁读来保证。而这个加锁读使用到的机制就是 Next-Key Locks。**
+🐛 问题更正：**MySQL InnoDB 的 REPEATABLE-READ（可重读）并不保证避免幻读，需要使用加锁读来保证。而这个加锁读使用到的机制就是 Next-Key Locks。**
 
-因为隔离级别越低，事务请求的锁越少，所以大部分数据库系统的隔离级别都是 **READ-COMMITTED(读取提交内容)** ，但是你要知道的是 InnoDB 存储引擎默认使用 **REPEAaTABLE-READ（可重读）** 并不会有任何性能损失。
+因为隔离级别越低，事务请求的锁越少，所以大部分数据库系统的隔离级别都是 **READ-COMMITTED(读取提交内容)** ，但是你要知道的是 InnoDB 存储引擎默认使用 **REPEATABLE-READ（可重读）** 并不会有任何性能损失。
 
 InnoDB 存储引擎在 **分布式事务** 的情况下一般会用到 **SERIALIZABLE(可串行化)** 隔离级别。
 
@@ -518,7 +518,7 @@ InnoDB 存储引擎在 **分布式事务** 的情况下一般会用到 **SERIALI
 
 #### 事务超时属性
 
-所谓事务超时，就是指一个事务所允许执行的最长时间，如果超过该时间限制但事务还没有完成，则自动回滚事务。在 `TransactionDefinition` 中以 int 的值来表示超时时间，其单位是秒，默认值为-1。
+所谓事务超时，就是指一个事务所允许执行的最长时间，如果超过该时间限制但事务还没有完成，则自动回滚事务。在 `TransactionDefinition` 中以 int 的值来表示超时时间，其单位是秒，默认值为-1，这表示事务的超时时间取决于底层事务系统或者没有超时时间。
 
 #### 事务只读属性
 
