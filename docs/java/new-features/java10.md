@@ -98,7 +98,7 @@ Java 10 在现有的 CDS 功能基础上再次拓展，以允许应用类放置�
 
 Graal 是一个基于 Java 语言编写的 JIT 编译器，是 JDK 9 中引入的实验性 Ahead-of-Time (AOT) 编译器的基础。
 
-Oracle 的 HotSpot VM 便附带两个用 C++ 实现的 JIT compiler：C1 及 C2。在Java 10 (Linux/x64, macOS/x64) 中，默认情况下HotSpot 仍使用C2，但通过向java 命令添加 `-XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler` 参数便可将 C2 替换成 Graal。
+Oracle 的 HotSpot VM 便附带两个用 C++ 实现的 JIT compiler：C1 及 C2。在Java 10 (Linux/x64, macOS/x64) 中，默认情况下HotSpot 仍使用C2，但通过向 java 命令添加 `-XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler` 参数便可将 C2 替换成 Graal。
 
 相关阅读：[深入浅出 Java 10 的实验性 JIT 编译器 Graal - 郑雨迪](https://www.infoq.cn/article/java-10-jit-compiler-graal)
 

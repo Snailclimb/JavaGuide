@@ -317,3 +317,4 @@ public ReturnT<String> myAnnotationJobHandler(String param) throws Exception {
 这篇文章并没有介绍到实际使用，但是，并不代表实际使用不重要。我在写这篇文章之前，已经动手写过相应的 Demo。像 Quartz，我在大学那会就用过。不过，当时用的是 Spring 。为了能够更好地体验，我自己又在 Spring Boot 上实际体验了一下。如果你并没有实际使用某个框架，就直接说它并不好用的话，是站不住脚的。
 
 最后，这篇文章要感谢艿艿的帮助，写这篇文章的时候向艿艿询问过一些问题。推荐一篇艿艿写的偏实战类型的硬核文章：[《Spring Job？Quartz？XXL-Job？年轻人才做选择，艿艿全莽~》](https://mp.weixin.qq.com/s?__biz=MzUzMTA2NTU2Ng==&mid=2247490679&idx=1&sn=25374dbdcca95311d41be5d7b7db454d&chksm=fa4963c6cd3eead055bb9cd10cca13224bb35d0f7373a27aa22a55495f71e24b8273a7603314&scene=27#wechat_redirect) 。
+

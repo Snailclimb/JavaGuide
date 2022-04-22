@@ -29,23 +29,25 @@ tag:
 - **heap size** 表示要初始化内存的具体大小。
 - **unit** 表示要初始化内存的单位。单位为***“ g”*** (GB) 、***“ m”***（MB）、***“ k”***（KB）。
 
-举个栗子🌰，如果我们要为JVM分配最小2 GB和最大5 GB的堆内存大小，我们的参数应该这样来写：
+举个栗子🌰，如果我们要为JVM分配最小 2 GB 和最大 5 GB 的堆内存大小，我们的参数应该这样来写：
 
 ```
 -Xms2G -Xmx5G
+-Xms10G
+-Xmx100G
 ```
 
 ### 2.2.显式新生代内存(Young Generation)
 
-根据[Oracle官方文档](https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/sizing.html)，在堆总可用内存配置完成之后，第二大影响因素是为 `Young Generation` 在堆内存所占的比例。默认情况下，YG 的最小大小为 1310 *MB*，最大大小为*无限制*。
+根据[Oracle官方文档](https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/sizing.html)，在堆中可用内存配置完成之后，第二大影响因素是为 `Young Generation` 在堆内存所占的比例。默认情况下，YG 的最小大小为 1310 *MB*，最大大小为*无限制*。
 
 一共有两种指定 新生代内存(Young Ceneration)大小的方法：
 
 **1.通过`-XX:NewSize`和`-XX:MaxNewSize`指定**
 
 ```
--XX:NewSize=<young size>[unit] 
--XX:MaxNewSize=<young size>[unit]
+-XX:NewSize=<young size>[unit]     // 新生代的内存大小
+-XX:MaxNewSize=<young size>[unit]  // 新生代的最大内存大小
 ```
 
 举个栗子🌰，如果我们要为 新生代分配 最小256m 的内存，最大 1024m的内存我们的参数应该这样来写：
@@ -57,7 +59,7 @@ tag:
 
 **2.通过`-Xmn<young size>[unit] `指定**
 
-举个栗子🌰，如果我们要为 新生代分配256m的内存（NewSize与MaxNewSize设为一致），我们的参数应该这样来写：
+举个栗子🌰，如果我们要为新生代分配 256M 的内存（NewSize与MaxNewSize设为一致），我们的参数应该这样来写：
 
 ```
 -Xmn256m 
@@ -82,8 +84,8 @@ GC 调优策略中很重要的一条经验总结是这样说的：
 JDK 1.8 之前永久代还没被彻底移除的时候通常通过下面这些参数来调节方法区大小
 
 ```java
--XX:PermSize=N //方法区 (永久代) 初始大小
--XX:MaxPermSize=N //方法区 (永久代) 最大大小,超过这个值将会抛出 OutOfMemoryError 异常:java.lang.OutOfMemoryError: PermGen
+-XX:PermSize=N    // 方法区 (永久代) 初始大小
+-XX:MaxPermSize=N // 方法区 (永久代) 最大大小,超过这个值将会抛出 OutOfMemoryError 异常:java.lang.OutOfMemoryError: PermGen
 ```
 
 相对而言，垃圾收集行为在这个区域是比较少出现的，但并非数据进入方法区后就“永久存在”了。
@@ -93,8 +95,8 @@ JDK 1.8 之前永久代还没被彻底移除的时候通常通过下面这些参
 下面是一些常用参数：
 
 ```java
--XX:MetaspaceSize=N //设置 Metaspace 的初始（和最小大小）
--XX:MaxMetaspaceSize=N //设置 Metaspace 的最大大小，如果不指定大小的话，随着更多类的创建，虚拟机会耗尽所有可用的系统内存。
+-XX:MetaspaceSize=N     // 设置 Metaspace 的初始（和最小大小）
+-XX:MaxMetaspaceSize=N  // 设置 Metaspace 的最大大小，如果不指定大小的话，随着更多类的创建，虚拟机会耗尽所有可用的系统内存。
 ```
 
 ## 3.垃圾收集相关

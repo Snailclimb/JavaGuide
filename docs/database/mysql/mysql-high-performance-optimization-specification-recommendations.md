@@ -228,7 +228,7 @@ Innodb 是按照主键索引的顺序来组织表的
 
 ------
 
-### 8.索引 SET 规范
+### 8. 索引 SET 规范
 
 **尽量避免使用外键约束**
 
@@ -290,8 +290,8 @@ insert into values ('a','b','c');
 
 应使用：
 
-```
-insert into t(c1,c2,c3) values ('a','b','c');
+```sql
+insert into table_name (c1,c2,c3) values ('a','b','c');
 ```
 
 ### 8. 避免使用子查询，可以把子查询优化为 join 操作
