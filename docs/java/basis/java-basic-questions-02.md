@@ -490,9 +490,11 @@ String str3 = "world";
 String str4 = str1 + str2 + str3;
 ```
 
-对象引用和“+”的字符串拼接方式，实际上是通过 `StringBuilder` 调用 `append()` 方法实现的，拼接完成之后调用 `toString()` 得到一个 `String` 对象 。
+上面的代码对应的字节码如下：
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/touzi/image-20220131173604062.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/image-20220422161637929.png)
+
+可以看出，字符串对象通过“+”的字符串拼接方式，实际上是通过 `StringBuilder` 调用 `append()` 方法实现的，拼接完成之后调用 `toString()` 得到一个 `String` 对象 。
 
 不过，在循环内使用“+”进行字符串的拼接的话，存在比较明显的缺陷：**编译器不会创建单个 `StringBuilder` 以复用，会导致创建过多的 `StringBuilder` 对象**。
 
@@ -507,9 +509,22 @@ System.out.println(s);
 
 `StringBuilder` 对象是在循环内部被创建的，这意味着每循环一次就会创建一个 `StringBuilder` 对象。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/touzi/image-20220131175013108.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/image-20220422161320823.png)
 
 如果直接使用 `StringBuilder` 对象进行字符串拼接的话，就不会存在这个问题了。
+
+```java
+String[] arr = {"he", "llo", "world"};
+StringBuilder s = new StringBuilder();
+for (String value : arr) {
+    s.append(value);
+}
+System.out.println(s);
+```
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/image-20220422162327415.png)
+
+如果你使用 IDEA 的话，IDEA 自带的代码检查机制也会提示你修改代码。
 
 #### String#equals() 和 Object#equals() 有何区别？
 
