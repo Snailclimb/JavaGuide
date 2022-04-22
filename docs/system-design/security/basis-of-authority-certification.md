@@ -117,7 +117,7 @@ public String readAllCookies(HttpServletRequest request) {
 }
 ```
 
-更多关于如何在 Spring Boot 中使用 `Cookie` 的内容可以查看这篇文章：[How to use cookies in Spring Boot](https://attacomsian.com/blog/cookies-spring-boot。) 。
+更多关于如何在 Spring Boot 中使用 `Cookie` 的内容可以查看这篇文章：[How to use cookies in Spring Boot](https://attacomsian.com/blog/cookies-spring-boot) 。
 
 ## Cookie 和 Session 有什么区别？
 
