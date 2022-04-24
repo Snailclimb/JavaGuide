@@ -17,9 +17,9 @@ export const sidebarConfig = defineSidebarConfig({
     "cs-basics",
     "cs-basic-coureses",
     "database",
+    "search-engine",
     "java",
     "software-quality",
-    "q&a",
   ],
   "/about-the-author/": [
     {
