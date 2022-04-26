@@ -225,9 +225,11 @@ Linux 文件系统的结构层次鲜明，就像一棵倒立的树，最顶层�
 
 ## 4. Linux 基本命令
 
-下面只是给出了一些比较常用的命令。推荐一个 Linux 命令快查网站，非常不错，大家如果遗忘某些命令或者对某些命令不理解都可以在这里得到解决。
+下面只是给出了一些比较常用的命令。
 
-Linux 命令大全：[http://man.linuxde.net/](http://man.linuxde.net/)
+推荐一个 Linux 命令快查网站，非常不错，大家如果遗忘某些命令或者对某些命令不理解都可以在这里得到解决。Linux 命令在线速查手册：https://www.w3xue.com/manual/linux/ 。
+
+另外，[shell.how](https://www.shell.how/) 这个网站可以用来解释常见命令的意思，对你学习 Linux 基本命令以及其他常用命令（如 Git、NPM）。
 
 ### 4.1. 目录切换命令
 

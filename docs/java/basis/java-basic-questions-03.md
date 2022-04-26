@@ -20,7 +20,7 @@ tag:
 
 ### Checked Exception 和 Unchecked Exception 有什么区别？
 
-**Checked Exception** 即 受检查异常 ，Java 代码在编译过程中，如果受检查异常没有被 `catch`/`throw` 处理的话，就没办法通过编译 。
+**Checked Exception** 即 受检查异常 ，Java 代码在编译过程中，如果受检查异常没有被 `catch`或者`throws` 关键字处理的话，就没办法通过编译。
 
 比如下面这段 IO 操作的代码：
 
