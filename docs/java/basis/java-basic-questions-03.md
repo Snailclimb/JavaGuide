@@ -213,7 +213,7 @@ JDK 提供了很多内置的注解（比如 `@Override` 、`@Deprecated`），�
 
 ### Checked Exception 和 Unchecked Exception 有什么区别？
 
-**Checked Exception** 即受检查异常，Java 代码在编译过程中，如果受检查异常没有被 `catch`/`throw` 处理的话，就没办法通过编译 。
+**Checked Exception** 即受检查异常，Java 代码在编译过程中，如果受检查异常没有被 `catch`/`throws` 处理的话，就没办法通过编译 。
 
 比如下面这段 IO 操作的代码：
 
