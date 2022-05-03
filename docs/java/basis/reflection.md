@@ -87,7 +87,7 @@ Class alunbarClass2 = o.getClass();
 **4. 通过类加载器`xxxClassLoader.loadClass()`传入类路径获取:**
 
 ```java
-Class clazz = ClassLoader.loadClass("cn.javaguide.TargetObject");
+ClassLoader.getSystemClassLoader().loadClass("cn.javaguide.TargetObject");
 ```
 
 通过类加载器获取 Class 对象不会进行初始化，意味着不进行包括初始化等一系列步骤，静态代码块和静态对象不会得到执行
