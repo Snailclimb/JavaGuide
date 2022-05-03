@@ -190,7 +190,7 @@ SpringBoot 解析，不适合初学者。我是去年入手的，现在就看了
 
 **[《跟闪电侠学 Netty：Netty 即时聊天实战与底层原理》](https://book.douban.com/subject/35752082/)**
 
-![](../../../../../Library/Application Support/typora-user-images/image-20220503085034268.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/open-source-project/image-20220503085034268.png)
 
 2022 年 3 月刚刚出版的一本书。这本书分为上下两篇，上篇通过一个即时聊天系统的实战案例带你入门 Netty，下篇通过 Netty 源码分析带你搞清 Netty 比较重要的底层原理。
 
