@@ -123,7 +123,7 @@ AIO 也就是 NIO 2。Java 7 中引入了 NIO 的改进版 NIO 2,它是异步 IO
 ## 参考
 
 - 《深入拆解 Tomcat & Jetty》
-- 如何完成一次 IO：[https://llc687.top/post/如何完成一次-io/](https://llc687.top/post/如何完成一次-io/)
+- 如何完成一次 IO：https://llc687.top/126.html
 - 程序员应该这样理解 IO：[https://www.jianshu.com/p/fa7bdc4f3de7](https://www.jianshu.com/p/fa7bdc4f3de7)
 - 10 分钟看懂， Java NIO 底层原理：https://www.cnblogs.com/crazymakercircle/p/10225159.html
 - IO 模型知多少 | 理论篇：https://www.cnblogs.com/sheng-jie/p/how-much-you-know-about-io-models.html

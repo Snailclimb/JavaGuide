@@ -174,16 +174,6 @@ SpringBoot 解析，不适合初学者。我是去年入手的，现在就看了
 
 ### Netty
 
-但凡涉及到网络通信就必然必然离不开网络编程。 Netty 目前作为 Java 网络编程最热门的框架，毫不夸张地说是每个 Java 程序员必备的技能之一。
-
-**为什么说学好 Netty 很有必要呢？**
-
-1. Netty 基于 NIO （NIO 是一种同步非阻塞的 I/O 模型，在 Java 1.4 中引入了 NIO ）。使用 Netty 可以极大地简化并简化了 TCP 和 UDP 套接字服务器等网络编程,并且性能以及安全性等很多方面都非常优秀。
-2. 我们平常经常接触的 Dubbo、RocketMQ、Elasticsearch、gRPC、Spark、Elasticsearch 等等热门开源项目都用到了 Netty。
-3. 大部分微服务框架底层涉及到网络通信的部分都是基于 Netty 来做的，比如说 Spring Cloud 生态系统中的网关 Spring Cloud Gateway 。
-
-下面是一些比较推荐的书籍/专栏。
-
 **[《Netty 实战》](https://book.douban.com/subject/27038538/)**
 
 ![《Netty 实战》-豆瓣](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/image-20220424113715369.png)
@@ -192,19 +182,17 @@ SpringBoot 解析，不适合初学者。我是去年入手的，现在就看了
 
 这本书基本把 Netty 一些重要的知识点都介绍到了，而且基本都是通过实战的形式讲解。
 
-**《Netty 进阶之路：跟着案例学 Netty》**
+**[《Netty 进阶之路：跟着案例学 Netty》](https://book.douban.com/subject/30381214/)**
 
 ![《Netty 进阶之路：跟着案例学 Netty》-豆瓣](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/image-20220424113747345.png)
 
 内容都是关于使用 Netty 的实践案例比如内存泄露这些东西。如果你觉得你的 Netty 已经完全入门了，并且你想要对 Netty 掌握的更深的话，推荐你看一下这本书。
 
-**《Netty 入门与实战：仿写微信 IM 即时通讯系统》**
+**[《跟闪电侠学 Netty：Netty 即时聊天实战与底层原理》](https://book.douban.com/subject/35752082/)**
 
-![](https://img-blog.csdnimg.cn/20210328174500704.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0MzM3Mjcy,size_16,color_FFFFFF,t_70)
+![](../../../../../Library/Application Support/typora-user-images/image-20220503085034268.png)
 
-_质量很高的一个小册！_
-
-通过一个基于 Netty 框架实现 IM 核心系统为引子，带你学习 Netty。整个小册的质量还是很高的，即使你没有 Netty 使用经验也能看懂。
+2022 年 3 月刚刚出版的一本书。这本书分为上下两篇，上篇通过一个即时聊天系统的实战案例带你入门 Netty，下篇通过 Netty 源码分析带你搞清 Netty 比较重要的底层原理。
 
 ## 性能调优
 
