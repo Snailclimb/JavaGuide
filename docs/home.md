@@ -30,6 +30,10 @@ title: JavaGuide（Java学习&&面试指南）
 
 <a href="https://t.1yb.co/GXLF"><img src="https://img-blog.csdnimg.cn/2f61f3e2d1f2427da977340919e41616.png" style="margin: 0 auto;width:850px" /></a>
 
+## Star 趋势
+
+![](https://api.star-history.com/svg?repos=Snailclimb/JavaGuide&type=Date)
+
 ## 联系我
 
 想要参与项目维护或者学习交流的话，欢迎添加我的微信：“**JavaGuide1996**” 备注“**Github**”即可！

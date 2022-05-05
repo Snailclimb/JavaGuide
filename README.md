@@ -427,6 +427,10 @@ Dubbo 是一款国产的 RPC 框架，由阿里开源。相关阅读：
 * [从毕业到入职半年的感受](https://javaguide.cn/about-the-author/feelings-of-half-a-year-from-graduation-to-entry/)
 * [某培训机构盗我文章做成视频还上了B站热门](https://javaguide.cn/about-the-author/my-article-was-stolen-and-made-into-video-and-it-became-popular/)
 
+## Star 趋势
+
+![](https://api.star-history.com/svg?repos=Snailclimb/JavaGuide&type=Date)
+
 ## 公众号
 
 如果大家想要实时关注我更新的文章以及分享的干货的话，可以关注我的公众号。
