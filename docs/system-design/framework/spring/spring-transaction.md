@@ -276,15 +276,18 @@ public interface TransactionStatus{
 举个例子：我们在 A 类的`aMethod()`方法中调用了 B 类的 `bMethod()` 方法。这个时候就涉及到业务层方法之间互相调用的事务问题。如果我们的 `bMethod()`如果发生异常需要回滚，如何配置事务传播行为才能让 `aMethod()`也跟着回滚呢？这个时候就需要事务传播行为的知识了，如果你不知道的话一定要好好看一下。
 
 ```java
+@Service
 Class A {
+    @Autowired
+    B b;
     @Transactional(propagation = Propagation.xxx)
     public void aMethod {
         //do something
-        B b = new B();
         b.bMethod();
     }
 }
 
+@Service
 Class B {
     @Transactional(propagation = Propagation.xxx)
     public void bMethod {
@@ -357,15 +360,17 @@ public enum Propagation {
 举个例子：如果我们上面的`aMethod()`和`bMethod()`使用的都是`PROPAGATION_REQUIRED`传播行为的话，两者使用的就是同一个事务，只要其中一个方法回滚，整个事务均回滚。
 
 ```java
+@Service
 Class A {
+    @Autowired
+    B b;
     @Transactional(propagation = Propagation.REQUIRED)
     public void aMethod {
         //do something
-        B b = new B();
         b.bMethod();
     }
 }
-
+@Service
 Class B {
     @Transactional(propagation = Propagation.REQUIRED)
     public void bMethod {
@@ -381,15 +386,18 @@ Class B {
 举个例子：如果我们上面的`bMethod()`使用`PROPAGATION_REQUIRES_NEW`事务传播行为修饰，`aMethod`还是用`PROPAGATION_REQUIRED`修饰的话。如果`aMethod()`发生异常回滚，`bMethod()`不会跟着回滚，因为 `bMethod()`开启了独立的事务。但是，如果 `bMethod()`抛出了未被捕获的异常并且这个异常满足事务回滚规则的话,`aMethod()`同样也会回滚，因为这个异常被 `aMethod()`的事务管理机制检测到了。
 
 ```java
+@Service
 Class A {
+    @Autowired
+    B b;
     @Transactional(propagation = Propagation.REQUIRED)
     public void aMethod {
         //do something
-        B b = new B();
         b.bMethod();
     }
 }
 
+@Service
 Class B {
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void bMethod {
@@ -408,15 +416,18 @@ Class B {
 这里还是简单举个例子：如果 `bMethod()` 回滚的话，`aMethod()`也会回滚。
 
 ```java
+@Service
 Class A {
+    @Autowired
+    B b;
     @Transactional(propagation = Propagation.REQUIRED)
     public void aMethod {
         //do something
-        B b = new B();
         b.bMethod();
     }
 }
 
+@Service
 Class B {
     @Transactional(propagation = Propagation.NESTED)
     public void bMethod {
