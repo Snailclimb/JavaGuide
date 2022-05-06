@@ -6,7 +6,6 @@ tag:
   - 大厂面试
 ---
 
-
 ## MySQL 基础
 
 ### 关系型数据库介绍
@@ -124,24 +123,6 @@ MVCC 可以看作是行级锁的一个升级，可以有效减少加锁操作，
 一般情况下我们选择 InnoDB 都是没有问题的，但是某些情况下你并不在乎可扩展能力和并发能力，也不需要事务支持，也不在乎崩溃后的安全恢复问题的话，选择 MyISAM 也是一个不错的选择。但是一般情况下，我们都是需要考虑到这些问题的。
 
 因此，对于咱们日常开发的业务系统来说，你几乎找不到什么理由再使用 MyISAM 作为自己的 MySQL 数据库的存储引擎。
-
-## 锁机制与 InnoDB 锁算法
-
-**MyISAM 和 InnoDB 存储引擎使用的锁：**
-
-- MyISAM 采用表级锁(table-level locking)。
-- InnoDB 支持行级锁(row-level locking)和表级锁,默认为行级锁
-
-**表级锁和行级锁对比：**
-
-- **表级锁：** MySQL 中锁定 **粒度最大** 的一种锁，对当前操作的整张表加锁，实现简单，资源消耗也比较少，加锁快，不会出现死锁。其锁定粒度最大，触发锁冲突的概率最高，并发度最低，MyISAM 和 InnoDB 引擎都支持表级锁。
-- **行级锁：** MySQL 中锁定 **粒度最小** 的一种锁，只针对当前操作的行进行加锁。 行级锁能大大减少数据库操作的冲突。其加锁粒度最小，并发度高，但加锁的开销也最大，加锁慢，会出现死锁。
-
-**InnoDB 存储引擎的锁的算法有三种：**
-
-- Record lock：记录锁，单个行记录上的锁
-- Gap lock：间隙锁，锁定一个范围，不包括记录本身
-- Next-key lock：record+gap 临键锁，锁定一个范围，包含记录本身
 
 ## 查询缓存
 
@@ -261,6 +242,14 @@ SQL 标准定义了四个隔离级别：
 | REPEATABLE-READ  |  ×   |     ×      |  √   |
 |   SERIALIZABLE   |  ×   |     ×      |  ×   |
 
+### MySQL 的隔离级别是基于锁实现的吗？
+
+MySQL 的隔离级别基于锁和 MVCC 机制共同实现的。
+
+SERIALIZABLE 隔离级别，是通过锁来实现的。除了 SERIALIZABLE 隔离级别，其他的隔离级别都是基于 MVCC 实现。
+
+不过， SERIALIZABLE 之外的其他隔离级别可能也需要用到锁机制，就比如 REPEATABLE-READ 在当前读情况下需要使用加锁读来保证不会出现幻读。
+
 ### MySQL 的默认隔离级别是什么?
 
 MySQL InnoDB 存储引擎的默认支持的隔离级别是 **REPEATABLE-READ（可重读）**。我们可以通过`SELECT @@tx_isolation;`命令来查看，MySQL 8.0 该命令改为`SELECT @@transaction_isolation;`
@@ -276,7 +265,10 @@ mysql> SELECT @@tx_isolation;
 
 ~~这里需要注意的是：与 SQL 标准不同的地方在于 InnoDB 存储引擎在 **REPEATABLE-READ（可重读）** 事务隔离级别下使用的是 Next-Key Lock 锁算法，因此可以避免幻读的产生，这与其他数据库系统(如 SQL Server)是不同的。所以说 InnoDB 存储引擎的默认支持的隔离级别是 **REPEATABLE-READ（可重读）** 已经可以完全保证事务的隔离性要求，即达到了 SQL 标准的 **SERIALIZABLE(可串行化)** 隔离级别。~~
 
-🐛 问题更正：**MySQL InnoDB 的 REPEATABLE-READ（可重读）并不保证避免幻读，需要应用使用加锁读来保证。而这个加锁读使用到的机制就是 Next-Key Locks。**
+🐛 问题更正：MySQL 在 REPEATABLE READ 隔离级别下，是可以解决幻读问题发生的，主要有下面两种情况：
+
+- **快照读** ：这种情况下是可以解决幻读的，它是由 MVCC 机制来解决的。
+- **当前读** ： 这种情况下并不保证避免幻读，需要应用使用加锁读来保证，这个加锁读使用到的机制就是 Next-Key Lock（间隙锁）。
 
 因为隔离级别越低，事务请求的锁越少，所以大部分数据库系统的隔离级别都是 **READ-COMMITTED(读取提交内容)** ，但是你要知道的是 InnoDB 存储引擎默认使用 **REPEATABLE-READ（可重读）** 并不会有任何性能损失。
 
@@ -286,7 +278,26 @@ InnoDB 存储引擎在 **分布式事务** 的情况下一般会用到 **SERIALI
 
 > InnoDB 存储引擎提供了对 XA 事务的支持，并通过 XA 事务来支持分布式事务的实现。分布式事务指的是允许多个独立的事务资源（transactional resources）参与到一个全局的事务中。事务资源通常是关系型数据库系统，但也可以是其他类型的资源。全局事务要求在其中的所有参与的事务要么都提交，要么都回滚，这对于事务原有的 ACID 要求又有了提高。另外，在使用分布式事务时，InnoDB 存储引擎的事务隔离级别必须设置为 SERIALIZABLE。
 
+## 锁机制与 InnoDB 锁算法
+
+**MyISAM 和 InnoDB 存储引擎使用的锁：**
+
+- MyISAM 采用表级锁(table-level locking)。
+- InnoDB 支持行级锁(row-level locking)和表级锁,默认为行级锁
+
+**表级锁和行级锁对比：**
+
+- **表级锁：** MySQL 中锁定 **粒度最大** 的一种锁，对当前操作的整张表加锁，实现简单，资源消耗也比较少，加锁快，不会出现死锁。其锁定粒度最大，触发锁冲突的概率最高，并发度最低，MyISAM 和 InnoDB 引擎都支持表级锁。
+- **行级锁：** MySQL 中锁定 **粒度最小** 的一种锁，只针对当前操作的行进行加锁。 行级锁能大大减少数据库操作的冲突。其加锁粒度最小，并发度高，但加锁的开销也最大，加锁慢，会出现死锁。
+
+**InnoDB 存储引擎的锁的算法有三种：**
+
+- Record lock：记录锁，单个行记录上的锁
+- Gap lock：间隙锁，锁定一个范围，不包括记录本身
+- Next-key lock：record+gap 临键锁，锁定一个范围，包含记录本身
+
 ## 参考
 
 - 《高性能 MySQL》
-- https://www.omnisci.com/technical-glossary/relational-database
+- Relational Database：https://www.omnisci.com/technical-glossary/relational-database
+- 技术分享 | 隔离级别：正确理解幻读：https://opensource.actionsky.com/20210818-mysql/
