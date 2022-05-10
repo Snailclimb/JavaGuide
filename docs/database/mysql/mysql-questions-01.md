@@ -32,35 +32,41 @@ MySQL、PostgreSQL、Oracle、SQL Server、SQLite（微信本地的聊天记录�
 
 ## 存储引擎
 
-### 存储引擎相关的命令
+### MySQL 支持哪些存储引擎？默认使用哪个？
 
-**查看 MySQL 提供的所有存储引擎**
+MySQL 支持多种存储引擎，你可以通过 `show engines` 命令来查看 MySQL 支持的所有存储引擎。
 
-```sql
-mysql> show engines;
+![查看 MySQL 提供的所有存储引擎](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/go/books/image-20220510105408703.png)
+
+从上图我们可以查看出， MySQL 当前默认的存储引擎是 InnoDB。并且，所有的存储引擎中只有 InnoDB 是事务性存储引擎，也就是说只有 InnoDB 支持事务。
+
+我这里使用的 MySQL 版本是 8.x，不同的 MySQL 版本之间可能会有差别。
+
+MySQL 5.5 之前，MyISAM 引擎是 MySQL 的默认存储引擎。5.5 版本之后，MySQL 引入了 InnoDB（事务性数据库引擎），MySQL 5.5 版本后默认的存储引擎为 InnoDB。
+
+你可以通过 `select version()` 命令查看你的 MySQL 版本。
+
+```bash
+ mysql> select version();
++-----------+
+| version() |
++-----------+
+| 8.0.27    |
++-----------+
+1 row in set (0.00 sec)
 ```
 
-![查看MySQL提供的所有存储引擎](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/mysql-engines.png)
+你也可以通过 `show variables like '%storage_engine%'` 命令直接查看 MySQL 当前默认的存储引擎。
 
-从上图我们可以查看出 MySQL 当前默认的存储引擎是 InnoDB，并且在 5.7 版本所有的存储引擎中只有 InnoDB 是事务性存储引擎，也就是说只有 InnoDB 支持事务。
+![查看 MySQL 当前默认的存储引擎](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/go/books/image-20220510105837786.png)
 
-**查看 MySQL 当前默认的存储引擎**
+### 如何查看某个表的存储引擎？
 
-我们也可以通过下面的命令查看默认的存储引擎。
+如果你只想查看数据库中某个表使用的存储引擎的话，可以使用 `show table status from db_name where name='table_name'`命令。
 
-```sql
-mysql> show variables like '%storage_engine%';
-```
+![查看表的存储引擎](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/go/books/image-20220510110549140.png)
 
-**查看表的存储引擎**
-
-```sql
-show table status like "table_name" ;
-```
-
-![查看表的存储引擎](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/查看表的存储引擎.png)
-
-### MyISAM 和 InnoDB 的区别
+### MyISAM 和 InnoDB 的区别是什么？
 
 ![](https://img-blog.csdnimg.cn/20210327145248960.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0MzM3Mjcy,size_16,color_FFFFFF,t_70)
 
@@ -82,15 +88,23 @@ MyISAM 只有表级锁(table-level locking)，而 InnoDB 支持行级锁(row-lev
 
 MyISAM 不提供事务支持。
 
-InnoDB 提供事务支持，具有提交(commit)和回滚(rollback)事务的能力。
+InnoDB 提供事务支持，实现了 SQL 标准定义了四个隔离级别，具有提交(commit)和回滚(rollback)事务的能力。并且，InnoDB 默认使用的 REPEATABLE-READ（可重读）隔离级别是可以解决幻读问题发生的（基于 MVCC 和 Next-Key Lock）。
+
+关于 MySQL 事务的详细介绍，可以看看我写的这篇文章：[MySQL 事务隔离级别详解](https://javaguide.cn/database/mysql/transaction-isolation-level.html)。
 
 **3.是否支持外键**
 
 MyISAM 不支持，而 InnoDB 支持。
 
-🌈 拓展一下：
+外键对于维护数据一致性非常有帮助，但是对性能有一定的损耗。因此，通常情况下，我们是不建议在实际生产项目中使用外键的，在业务代码中进行约束即可！
 
-一般我们也是不建议在数据库层面使用外键的，应用层面可以解决。不过，这样会对数据的一致性造成威胁。具体要不要使用外键还是要根据你的项目来决定。
+阿里的《Java 开发手册》也是明确规定禁止使用外键的。
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/go/books/image-20220510090309427.png)
+
+不过，在代码中进行约束的话，对程序员的能力要求更高，具体是否要采用外键还是要根据你的项目实际情况而定。
+
+总结：一般我们也是不建议在数据库层面使用外键的，应用层面可以解决。不过，这样会对数据的一致性造成威胁。具体要不要使用外键还是要根据你的项目来决定。
 
 **4.是否支持数据库异常崩溃后的安全恢复**
 
@@ -98,21 +112,21 @@ MyISAM 不支持，而 InnoDB 支持。
 
 使用 InnoDB 的数据库在异常崩溃后，数据库重新启动的时候会保证数据库恢复到崩溃前的状态。这个恢复的过程依赖于 `redo log` 。
 
-🌈 拓展一下：
-
-- MySQL InnoDB 引擎使用 **redo log(重做日志)** 保证事务的**持久性**，使用 **undo log(回滚日志)** 来保证事务的**原子性**。
-- MySQL InnoDB 引擎通过 **锁机制**、**MVCC** 等手段来保证事务的隔离性（ 默认支持的隔离级别是 **`REPEATABLE-READ`** ）。
-- 保证了事务的持久性、原子性、隔离性之后，一致性才能得到保障。
-
 **5.是否支持 MVCC**
 
 MyISAM 不支持，而 InnoDB 支持。
 
-讲真，这个对比有点废话，毕竟 MyISAM 连行级锁都不支持。
+讲真，这个对比有点废话，毕竟 MyISAM 连行级锁都不支持。MVCC 可以看作是行级锁的一个升级，可以有效减少加锁操作，提高性能。
 
-MVCC 可以看作是行级锁的一个升级，可以有效减少加锁操作，提高性能。
+**6.索引实现不一样。**
 
-### 关于 MyISAM 和 InnoDB 的选择问题
+虽然 MyISAM 引擎和 InnoDB 引擎都是使用 B+Tree 作为索引结构，但是两者的实现方式不太一样。
+
+InnoDB 引擎中，其数据文件本身就是索引文件。相比 MyISAM，索引文件和数据文件是分离的，其表数据文件本身就是按 B+Tree 组织的一个索引结构，树的叶节点 data 域保存了完整的数据记录。
+
+详细区别，推荐你看看我写的这篇文章：[MySQL 索引详解](https://javaguide.cn/database/mysql/mysql-index.html)。
+
+### MyISAM 和 InnoDB 如何选择？
 
 大多数时候我们使用的都是 InnoDB 存储引擎，在某些读密集的情况下，使用 MyISAM 也是合适的。不过，前提是你的项目不介意 MyISAM 不支持事务、崩溃恢复等缺点（可是~我们一般都会介意啊！）。
 
@@ -263,20 +277,7 @@ mysql> SELECT @@tx_isolation;
 +-----------------+
 ```
 
-~~这里需要注意的是：与 SQL 标准不同的地方在于 InnoDB 存储引擎在 **REPEATABLE-READ（可重读）** 事务隔离级别下使用的是 Next-Key Lock 锁算法，因此可以避免幻读的产生，这与其他数据库系统(如 SQL Server)是不同的。所以说 InnoDB 存储引擎的默认支持的隔离级别是 **REPEATABLE-READ（可重读）** 已经可以完全保证事务的隔离性要求，即达到了 SQL 标准的 **SERIALIZABLE(可串行化)** 隔离级别。~~
-
-🐛 问题更正：MySQL 在 REPEATABLE READ 隔离级别下，是可以解决幻读问题发生的，主要有下面两种情况：
-
-- **快照读** ：这种情况下是可以解决幻读的，它是由 MVCC 机制来解决的。
-- **当前读** ： 这种情况下并不保证避免幻读，需要应用使用加锁读来保证，这个加锁读使用到的机制就是 Next-Key Lock（间隙锁）。
-
-因为隔离级别越低，事务请求的锁越少，所以大部分数据库系统的隔离级别都是 **READ-COMMITTED(读取提交内容)** ，但是你要知道的是 InnoDB 存储引擎默认使用 **REPEATABLE-READ（可重读）** 并不会有任何性能损失。
-
-InnoDB 存储引擎在 **分布式事务** 的情况下一般会用到 **SERIALIZABLE(可串行化)** 隔离级别。
-
-🌈 拓展一下(以下内容摘自《MySQL 技术内幕：InnoDB 存储引擎(第 2 版)》7.7 章)：
-
-> InnoDB 存储引擎提供了对 XA 事务的支持，并通过 XA 事务来支持分布式事务的实现。分布式事务指的是允许多个独立的事务资源（transactional resources）参与到一个全局的事务中。事务资源通常是关系型数据库系统，但也可以是其他类型的资源。全局事务要求在其中的所有参与的事务要么都提交，要么都回滚，这对于事务原有的 ACID 要求又有了提高。另外，在使用分布式事务时，InnoDB 存储引擎的事务隔离级别必须设置为 SERIALIZABLE。
+关于 MySQL 事务的详细介绍，可以看看我写的这篇文章：[MySQL 事务隔离级别详解](https://javaguide.cn/database/mysql/transaction-isolation-level.html)。
 
 ## 锁机制与 InnoDB 锁算法
 
@@ -292,12 +293,14 @@ InnoDB 存储引擎在 **分布式事务** 的情况下一般会用到 **SERIALI
 
 **InnoDB 存储引擎的锁的算法有三种：**
 
-- Record lock：记录锁，单个行记录上的锁
-- Gap lock：间隙锁，锁定一个范围，不包括记录本身
-- Next-key lock：record+gap 临键锁，锁定一个范围，包含记录本身
+- 记录锁（Record Lock）：也被称为记录锁，属于单个行记录上的锁。
+- 间隙锁（Gap Lock）：锁定一个范围，不包括记录本身。
+- Next-key Lock：Record Lock+Gap Lock，锁定一个范围，包含记录本身
 
 ## 参考
 
 - 《高性能 MySQL》
 - Relational Database：https://www.omnisci.com/technical-glossary/relational-database
 - 技术分享 | 隔离级别：正确理解幻读：https://opensource.actionsky.com/20210818-mysql/
+- MySQL Server Logs - MySQL 5.7 Reference Manual：https://dev.mysql.com/doc/refman/5.7/en/server-logs.html
+- Redo Log - MySQL 5.7 Reference Manual：https://dev.mysql.com/doc/refman/5.7/en/innodb-redo-log.html
