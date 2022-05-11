@@ -32,7 +32,7 @@ MySQL、PostgreSQL、Oracle、SQL Server、SQLite（微信本地的聊天记录�
 
 ## MySQL 基础架构
 
-下图是 MySQL  的一个简要架构图，从下图你可以很清晰的看到客户端的一条 SQL 语句在 MySQL 内部是如何执行的。
+下图是 MySQL 的一个简要架构图，从下图你可以很清晰的看到客户端的一条 SQL 语句在 MySQL 内部是如何执行的。
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/13526879-3037b144ed09eb88.png)
 
@@ -59,7 +59,7 @@ MySQL 支持多种存储引擎，你可以通过 `show engines` 命令来查看 
 
 我这里使用的 MySQL 版本是 8.x，不同的 MySQL 版本之间可能会有差别。
 
-MySQL 5.5.5 之前，MyISAM 是 MySQL 的默认存储引擎。5.5.5 版本之后，InnoDB  是 MySQL 的默认存储引擎。
+MySQL 5.5.5 之前，MyISAM 是 MySQL 的默认存储引擎。5.5.5 版本之后，InnoDB 是 MySQL 的默认存储引擎。
 
 你可以通过 `select version()` 命令查看你的 MySQL 版本。
 
@@ -98,13 +98,13 @@ MySQL 官方文档也有介绍到如何编写一个自定义存储引擎，地�
 
 ### MyISAM 和 InnoDB 的区别是什么？
 
-![](https://img-blog.csdnimg.cn/20210327145248960.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0MzM3Mjcy,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/20210327145248960.png)
 
 MySQL 5.5 之前，MyISAM 引擎是 MySQL 的默认存储引擎，可谓是风光一时。
 
 虽然，MyISAM 的性能还行，各种特性也还不错（比如全文索引、压缩、空间函数等）。但是，MyISAM 不支持事务和行级锁，而且最大的缺陷就是崩溃后无法安全恢复。
 
-MySQL 5.5.5 之前，MyISAM 是 MySQL 的默认存储引擎。5.5.5 版本之后，InnoDB  是 MySQL 的默认存储引擎。
+MySQL 5.5.5 之前，MyISAM 是 MySQL 的默认存储引擎。5.5.5 版本之后，InnoDB 是 MySQL 的默认存储引擎。
 
 言归正传！咱们下面还是来简单对比一下两者：
 
@@ -218,7 +218,7 @@ select sql_no_cache count(*) from usr;
 
 事务会把这两个操作就可以看成逻辑上的一个整体，这个整体包含的操作要么都成功，要么都要失败。这样就不会出现小明余额减少而小红的余额却并没有增加的情况。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/mysql/%E4%BA%8B%E5%8A%A1%E7%A4%BA%E6%84%8F%E5%9B%BE.png)
+![事务示意图](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/mysql/%E4%BA%8B%E5%8A%A1%E7%A4%BA%E6%84%8F%E5%9B%BE.png)
 
 ### 何谓数据库事务？
 
@@ -319,28 +319,97 @@ mysql> SELECT @@tx_isolation;
 
 关于 MySQL 事务的详细介绍，可以看看我写的这篇文章：[MySQL 事务隔离级别详解](https://javaguide.cn/database/mysql/transaction-isolation-level.html)。
 
-## MySQL 锁机制与 InnoDB 锁算法
+## MySQL 锁
 
-**MyISAM 和 InnoDB 存储引擎使用的锁：**
+### 表级锁和行级锁了解吗？有什么区别？
 
-- MyISAM 采用表级锁(table-level locking)。
-- InnoDB 支持行级锁(row-level locking)和表级锁,默认为行级锁
+MyISAM 仅仅支持表级锁(table-level locking)，一锁就锁整张表，这在并发写的情况下性非常差。
 
-**表级锁和行级锁对比：**
+InnoDB 不光支持表级锁(table-level locking)，还支持行级锁(row-level locking)，默认为行级锁。行级锁的粒度更小，仅对相关的记录上锁即可（对一行或者多行记录加锁），所以对于并发写入操作来说 InnoDB 的性能更高。
 
-- **表级锁：** MySQL 中锁定 **粒度最大** 的一种锁，对当前操作的整张表加锁，实现简单，资源消耗也比较少，加锁快，不会出现死锁。其锁定粒度最大，触发锁冲突的概率最高，并发度最低，MyISAM 和 InnoDB 引擎都支持表级锁。
-- **行级锁：** MySQL 中锁定 **粒度最小** 的一种锁，只针对当前操作的行进行加锁。 行级锁能大大减少数据库操作的冲突。其加锁粒度最小，并发度高，但加锁的开销也最大，加锁慢，会出现死锁。
+**表级锁和行级锁对比** ：
 
-**InnoDB 存储引擎的锁的算法有三种：**
+- **表级锁：** MySQL 中锁定粒度最大的一种锁，是针对索引字段加的锁，对当前操作的整张表加锁，实现简单，资源消耗也比较少，加锁快，不会出现死锁。其锁定粒度最大，触发锁冲突的概率最高，并发度最低，MyISAM 和 InnoDB 引擎都支持表级锁。
+- **行级锁：** MySQL 中锁定粒度最小的一种锁，是针对非索引字段加的锁，只针对当前操作的记录进行加锁。 行级锁能大大减少数据库操作的冲突。其加锁粒度最小，并发度高，但加锁的开销也最大，加锁慢，会出现死锁。
 
-- 记录锁（Record Lock）：也被称为记录锁，属于单个行记录上的锁。
-- 间隙锁（Gap Lock）：锁定一个范围，不包括记录本身。
-- Next-key Lock：Record Lock+Gap Lock，锁定一个范围，包含记录本身
+### 行级锁的使用有什么注意事项？
+
+InnoDB 的行锁是针对索引字段加的锁，表级锁是针对非索引字段加的锁。当我们执行 `UPDATE`、`DELETE` 语句时，如果 `WHERE`条件中字段没有命中索引或者索引失效的话，就会导致扫描全表对表中的所有记录进行加锁。这个在我们日常工作开发中经常会遇到，一定要多多注意！！！
+
+不过，很多时候即使用了索引也有可能会走全表扫描，这是因为 MySQL 优化器的原因。
+
+### 共享锁和排他锁呢？
+
+不论是表级锁还是行级锁，都存在共享锁（Share Lock，S 锁）和排他锁（Exclusive Lock，X 锁）这两类：
+
+- **共享锁（S 锁）** ：又称读锁，事务在读取记录的时候获取共享锁，允许多个事务同时获取（锁兼容）。
+- **排他锁（X 锁）** ：又称写锁/独占锁，事务在修改记录的时候获取排他锁，不允许多个事务同时获取。如果一个记录已经被加了排他锁，那其他事务不能再对这条事务加任何类型的锁（锁不兼容）。
+
+排他锁与任何的锁都不兼容，共享锁仅和共享锁兼容。
+
+|      | S 锁   | X 锁 |
+| :--- | :----- | :--- |
+| S 锁 | 不冲突 | 冲突 |
+| X 锁 | 冲突   | 冲突 |
+
+由于 MVCC 的存在，对于一般的 `SELECT` 语句，InnoDB 不会加任何锁。不过， 你可以通过以下语句显式加共享锁或排他锁。
+
+```sql
+# 共享锁
+SELECT ... LOCK IN SHARE MODE;
+# 排他锁
+SELECT ... FOR UPDATE;
+```
+
+### 意向锁有什么作用？
+
+如果需要用到表锁的话，如何判断表中的记录没有行锁呢？一行一行遍历肯定是不行，性能太差。我们需要用到一个叫做意向锁的东东来快速判断是否可以对某个表使用表锁。
+
+意向锁是表级锁，共有两种：
+
+- **意向共享锁（Intention Shared Lock，IS 锁）**：事务有意向对表中的某些加共享锁（S 锁），加共享锁前必须先取得该表的 IS 锁。
+- **意向排他锁（Intention Exclusive Lock，IX 锁）**：事务有意向对表中的某些记录加排他锁（X 锁），加排他锁之前必须先取得该表的 IX 锁。
+
+意向锁是有数据引擎自己维护的，用户无法手动操作意向锁，在为数据行加共享 / 排他锁之前，InooDB 会先获取该数据行所在在数据表的对应意向锁。
+
+意向锁之间是互相兼容的。
+
+|       | IS 锁 | IX 锁 |
+| ----- | ----- | ----- |
+| IS 锁 | 兼容  | 兼容  |
+| IX 锁 | 兼容  | 兼容  |
+
+意向锁和共享锁和排它锁互斥（这里指的是表级别的共享锁和排他锁，意向锁不会与行级的共享锁和排他锁互斥）。
+
+|      | IS 锁 | IX 锁 |
+| ---- | ----- | ----- |
+| S 锁 | 兼容  | 互斥  |
+| X 锁 | 互斥  | 互斥  |
+
+《MySQL 技术内幕 InnoDB 存储引擎》这本书对应的描述应该是笔误了。
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/mysql/image-20220511171419081.png)
+
+### InnoDB 有哪几类行锁？
+
+MySQL InnoDB 支持三种行锁定方式：
+
+- **记录锁（Record Lock）** ：也被称为记录锁，属于单个行记录上的锁。
+- **间隙锁（Gap Lock）** ：锁定一个范围，不包括记录本身。
+- **临键锁（Next-key Lock）** ：Record Lock+Gap Lock，锁定一个范围，包含记录本身。记录锁只能锁住已经存在的记录，为了避免插入新记录，需要依赖间隙锁。
+
+InnoDB 的默认隔离级别 REPEATABLE-READ（可重读）是可以解决幻读问题发生的，主要有下面两种情况：
+
+- **快照读** ：由 MVCC 机制来保证不出现幻读。
+- **当前读** ： 使用 Next-Key Lock 进行加锁来保证不出现幻读。
 
 ## 参考
 
-- 《高性能 MySQL》
+- 《高性能 MySQL》第 7 章 MySQL 高级特性
+- 《MySQL 技术内幕 InnoDB 存储引擎》第 6 章 锁
 - Relational Database：https://www.omnisci.com/technical-glossary/relational-database
 - 技术分享 | 隔离级别：正确理解幻读：https://opensource.actionsky.com/20210818-mysql/
 - MySQL Server Logs - MySQL 5.7 Reference Manual：https://dev.mysql.com/doc/refman/5.7/en/server-logs.html
 - Redo Log - MySQL 5.7 Reference Manual：https://dev.mysql.com/doc/refman/5.7/en/innodb-redo-log.html
+- 深入理解数据库行锁与表锁 https://zhuanlan.zhihu.com/p/52678870
+- 详解 MySQL InnoDB 中意向锁的作用：https://juejin.cn/post/6844903666332368909
