@@ -338,3 +338,4 @@ synchronizedList(List<T> list)//返回指定列表支持的同步（线程安全
 synchronizedMap(Map<K,V> m) //返回由指定映射支持的同步（线程安全的）Map。
 synchronizedSet(Set<T> s) //返回指定 set 支持的同步（线程安全的）set。
 ```
+lxy
