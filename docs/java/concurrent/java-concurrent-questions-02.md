@@ -5,9 +5,9 @@ tag:
   - Java并发
 ---
 
-## 1.synchronized 关键字
+## synchronized 关键字
 
-### 1.1.说一说自己对于 synchronized 关键字的了解
+### 说一说自己对于 synchronized 关键字的了解
 
 **`synchronized` 关键字解决的是多个线程之间访问资源的同步性，`synchronized`关键字可以保证被它修饰的方法或者代码块在任意时刻只能有一个线程执行。**
 
@@ -21,7 +21,7 @@ tag:
 
 所以，你会发现目前的话，不论是各种开源框架还是 JDK 源码都大量使用了 `synchronized` 关键字。
 
-### 1.2. 说说自己是怎么使用 synchronized 关键字
+### 说说自己是怎么使用 synchronized 关键字
 
 **synchronized 关键字最主要的三种使用方式：**
 
@@ -96,17 +96,17 @@ public class Singleton {
 
 使用 `volatile` 可以禁止 JVM 的指令重排，保证在多线程环境下也能正常运行。
 
-### 1.3. 构造方法可以使用 synchronized 关键字修饰么？
+### 构造方法可以使用 synchronized 关键字修饰么？
 
 先说结论：**构造方法不能使用 synchronized 关键字修饰。**
 
 构造方法本身就属于线程安全的，不存在同步的构造方法一说。
 
-### 1.3. 讲一下 synchronized 关键字的底层原理
+### 讲一下 synchronized 关键字的底层原理
 
 **synchronized 关键字底层原理属于 JVM 层面。**
 
-#### 1.3.1. synchronized 同步语句块的情况
+#### synchronized 同步语句块的情况
 
 ```java
 public class SynchronizedDemo {
@@ -143,7 +143,7 @@ public class SynchronizedDemo {
 
 如果获取对象锁失败，那当前线程就要阻塞等待，直到锁被另外一个线程释放为止。
 
-#### 1.3.2. synchronized 修饰方法的的情况
+#### synchronized 修饰方法的的情况
 
 ```java
 public class SynchronizedDemo2 {
@@ -160,7 +160,7 @@ public class SynchronizedDemo2 {
 
 如果是实例方法，JVM 会尝试获取实例对象的锁。如果是静态方法，JVM 会尝试获取当前 class 的锁。
 
-#### 1.3.3.总结
+#### 总结
 
 `synchronized` 同步语句块的实现使用的是 `monitorenter` 和 `monitorexit` 指令，其中 `monitorenter` 指令指向同步代码块的开始位置，`monitorexit` 指令则指明同步代码块的结束位置。
 
@@ -172,7 +172,7 @@ public class SynchronizedDemo2 {
 
 🧗🏻进阶一下：学有余力的小伙伴可以抽时间详细研究一下对象监视器 `monitor`。
 
-### 1.4. 说说 JDK1.6 之后的 synchronized 关键字底层做了哪些优化，可以详细介绍一下这些优化吗
+### 说说 JDK1.6 之后的 synchronized 关键字底层做了哪些优化，可以详细介绍一下这些优化吗
 
 JDK1.6 对锁的实现引入了大量的优化，如偏向锁、轻量级锁、自旋锁、适应性自旋锁、锁消除、锁粗化等技术来减少锁操作的开销。
 
@@ -180,17 +180,17 @@ JDK1.6 对锁的实现引入了大量的优化，如偏向锁、轻量级锁、�
 
 关于这几种优化的详细信息可以查看下面这篇文章：[Java6 及以上版本对 synchronized 的优化](https://www.cnblogs.com/wuqinglong/p/9945618.html)
 
-### 1.5. 谈谈 synchronized 和 ReentrantLock 的区别
+### 谈谈 synchronized 和 ReentrantLock 的区别
 
-#### 1.5.1. 两者都是可重入锁
+#### 两者都是可重入锁
 
 **“可重入锁”** 指的是自己可以再次获取自己的内部锁。比如一个线程获得了某个对象的锁，此时这个对象锁还没有释放，当其再次想要获取这个对象的锁的时候还是可以获取的，如果是不可重入锁的话，就会造成死锁。同一个线程每次获取锁，锁的计数器都自增 1，所以要等到锁的计数器下降为 0 时才能释放锁。
 
-#### 1.5.2.synchronized 依赖于 JVM 而 ReentrantLock 依赖于 API
+#### synchronized 依赖于 JVM 而 ReentrantLock 依赖于 API
 
 `synchronized` 是依赖于 JVM 实现的，前面我们也讲到了 虚拟机团队在 JDK1.6 为 `synchronized` 关键字进行了很多优化，但是这些优化都是在虚拟机层面实现的，并没有直接暴露给我们。`ReentrantLock` 是 JDK 层面实现的（也就是 API 层面，需要 lock() 和 unlock() 方法配合 try/finally 语句块来完成），所以我们可以通过查看它的源代码，来看它是如何实现的。
 
-#### 1.5.3.ReentrantLock 比 synchronized 增加了一些高级功能
+#### ReentrantLock 比 synchronized 增加了一些高级功能
 
 相比`synchronized`，`ReentrantLock`增加了一些高级功能。主要来说主要有三点：
 
@@ -202,11 +202,11 @@ JDK1.6 对锁的实现引入了大量的优化，如偏向锁、轻量级锁、�
 
 **如果你想使用上述功能，那么选择 ReentrantLock 是一个不错的选择。性能已不是选择标准**
 
-## 2. volatile 关键字
+## volatile 关键字
 
 我们先要从 **CPU 缓存模型** 说起！
 
-### 2.1. CPU 缓存模型
+### CPU 缓存模型
 
 **为什么要弄一个 CPU 高速缓存呢？**
 
@@ -226,7 +226,7 @@ JDK1.6 对锁的实现引入了大量的优化，如偏向锁、轻量级锁、�
 
 **CPU 为了解决内存缓存不一致性问题可以通过制定缓存一致协议或者其他手段来解决。**
 
-### 2.2. 讲一下 JMM(Java 内存模型)
+### 讲一下 JMM(Java 内存模型)
 
 Java 内存模型抽象了线程和主内存之间的关系，就比如说线程之间的共享变量必须存储在主内存中。Java 内存模型主要目的是为了屏蔽系统和硬件的差异，避免一套代码在不同的平台下产生的效果不一致。
 
@@ -243,13 +243,13 @@ Java 内存模型抽象了线程和主内存之间的关系，就比如说线程
 
 ![volatile关键字可见性](./images/interview-questions/jmm2.png)
 
-### 2.3. 并发编程的三个重要特性
+### 并发编程的三个重要特性
 
 1. **原子性** : 一次操作或者多次操作，要么所有的操作全部都得到执行并且不会受到任何因素的干扰而中断，要么都不执行。`synchronized` 可以保证代码片段的原子性。
 2. **可见性** ：当一个线程对共享变量进行了修改，那么另外的线程都是立即可以看到修改后的最新值。`volatile` 关键字可以保证共享变量的可见性。
 3. **有序性** ：代码在执行的过程中的先后顺序，Java 在编译器以及运行期间的优化，代码的执行顺序未必就是编写代码时候的顺序。`volatile` 关键字可以禁止指令进行重排序优化。
 
-### 2.4. 说说 synchronized 关键字和 volatile 关键字的区别
+### 说说 synchronized 关键字和 volatile 关键字的区别
 
 `synchronized` 关键字和 `volatile` 关键字是两个互补的存在，而不是对立的存在！
 
@@ -257,9 +257,9 @@ Java 内存模型抽象了线程和主内存之间的关系，就比如说线程
 - **`volatile` 关键字能保证数据的可见性，但不能保证数据的原子性。`synchronized` 关键字两者都能保证。**
 - **`volatile`关键字主要用于解决变量在多个线程之间的可见性，而 `synchronized` 关键字解决的是多个线程之间访问资源的同步性。**
 
-## 3. ThreadLocal
+## ThreadLocal
 
-### 3.1. ThreadLocal 简介
+### ThreadLocal 简介
 
 通常情况下，我们创建的变量是可以被任何一个线程访问并修改的。**如果想实现每一个线程都有自己的专属本地变量该如何解决呢？** JDK 中提供的`ThreadLocal`类正是为了解决这样的问题。 **`ThreadLocal`类主要解决的就是让每个线程绑定自己的值，可以将`ThreadLocal`类形象的比喻成存放数据的盒子，盒子中可以存储每个线程的私有数据。**
 
@@ -269,7 +269,7 @@ Java 内存模型抽象了线程和主内存之间的关系，就比如说线程
 
 比如有两个人去宝屋收集宝物，这两个共用一个袋子的话肯定会产生争执，但是给他们两个人每个人分配一个袋子的话就不会出现这样的问题。如果把这两个人比作线程的话，那么 ThreadLocal 就是用来避免这两个线程竞争的。
 
-### 3.2. ThreadLocal 示例
+### ThreadLocal 示例
 
 相信看了上面的解释，大家已经搞懂 ThreadLocal 类是个什么东西了。
 
@@ -347,7 +347,7 @@ private static final ThreadLocal<SimpleDateFormat> formatter = new ThreadLocal<S
 };
 ```
 
-### 3.3. ThreadLocal 原理
+### ThreadLocal 原理
 
 从 `Thread`类源代码入手。
 
@@ -399,7 +399,7 @@ ThreadLocalMap(ThreadLocal<?> firstKey, Object firstValue) {
 
 ![ThreadLocal内部类](./images/ThreadLocal内部类.png)
 
-### 3.4. ThreadLocal 内存泄露问题
+### ThreadLocal 内存泄露问题
 
 `ThreadLocalMap` 中使用的 key 为 `ThreadLocal` 的弱引用,而 value 是强引用。所以，如果 `ThreadLocal` 没有被外部强引用的情况下，在垃圾回收的时候，key 会被清理掉，而 value 不会被清理掉。这样一来，`ThreadLocalMap` 中就会出现 key 为 null 的 Entry。假如我们不做任何措施的话，value 永远无法被 GC 回收，这个时候就可能会产生内存泄露。ThreadLocalMap 实现中已经考虑了这种情况，在调用 `set()`、`get()`、`remove()` 方法的时候，会清理掉 key 为 null 的记录。使用完 `ThreadLocal`方法后 最好手动调用`remove()`方法
 
@@ -421,9 +421,9 @@ static class Entry extends WeakReference<ThreadLocal<?>> {
 >
 > 弱引用可以和一个引用队列（ReferenceQueue）联合使用，如果弱引用所引用的对象被垃圾回收，Java 虚拟机就会把这个弱引用加入到与之关联的引用队列中。
 
-## 4. 线程池
+## 线程池
 
-### 4.1. 为什么要用线程池？
+### 为什么要用线程池？
 
 > **池化技术想必大家已经屡见不鲜了，线程池、数据库连接池、Http 连接池等等都是对这个思想的应用。池化技术的思想主要是为了减少每次获取资源的消耗，提高对资源的利用率。**
 
@@ -435,7 +435,7 @@ static class Entry extends WeakReference<ThreadLocal<?>> {
 - **提高响应速度**。当任务到达时，任务可以不需要等到线程创建就能立即执行。
 - **提高线程的可管理性**。线程是稀缺资源，如果无限制的创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可以进行统一的分配，调优和监控。
 
-### 4.2. 实现 Runnable 接口和 Callable 接口的区别
+### 实现 Runnable 接口和 Callable 接口的区别
 
 `Runnable`自 Java 1.0 以来一直存在，但`Callable`仅在 Java 1.5 中引入,目的就是为了来处理`Runnable`不支持的用例。**`Runnable` 接口** 不会返回结果或抛出检查异常，但是 **`Callable` 接口** 可以。所以，如果任务不需要返回结果或抛出异常推荐使用 **`Runnable` 接口** ，这样代码看起来会更加简洁。
 
@@ -467,7 +467,7 @@ public interface Callable<V> {
 }
 ```
 
-### 4.3. 执行 execute()方法和 submit()方法的区别是什么呢？
+### 执行 execute()方法和 submit()方法的区别是什么呢？
 
 1. **`execute()`方法用于提交不需要返回值的任务，所以无法判断任务是否被线程池执行成功与否；**
 2. **`submit()`方法用于提交需要返回值的任务。线程池会返回一个 `Future` 类型的对象，通过这个 `Future` 对象可以判断任务是否执行成功**，并且可以通过 `Future` 的 `get()`方法来获取返回值，`get()`方法会阻塞当前线程直到任务完成，而使用 `get(long timeout，TimeUnit unit)`方法则会阻塞当前线程一段时间后立即返回，这时候有可能任务没有执行完。
@@ -499,7 +499,7 @@ public void execute(Runnable command) {
 }
 ```
 
-### 4.4. 如何创建线程池
+### 如何创建线程池
 
 《阿里巴巴 Java 开发手册》中强制线程池不允许使用 Executors 去创建，而是通过 ThreadPoolExecutor 的方式，这样的处理方式让写的同学更加明确线程池的运行规则，规避资源耗尽的风险
 
@@ -524,7 +524,7 @@ public void execute(Runnable command) {
 
 ![Executor框架的工具类](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/Executor框架的工具类.png)
 
-### 4.5 ThreadPoolExecutor 类分析
+### ThreadPoolExecutor 类分析
 
 `ThreadPoolExecutor` 类中提供的四个构造方法。我们来看最长的那个，其余三个都是在这个构造方法的基础上产生（其他几个构造方法说白点都是给定某些默认参数的构造方法比如默认制定拒绝策略是什么），这里就不贴代码讲了，比较简单。
 
@@ -557,7 +557,7 @@ public ThreadPoolExecutor(int corePoolSize,
 
 **下面这些对创建 非常重要，在后面使用线程池的过程中你一定会用到！所以，务必拿着小本本记清楚。**
 
-#### 4.5.1 `ThreadPoolExecutor`构造函数重要参数分析
+#### `ThreadPoolExecutor`构造函数重要参数分析
 
 **`ThreadPoolExecutor` 3 个最重要的参数：**
 
@@ -572,7 +572,7 @@ public ThreadPoolExecutor(int corePoolSize,
 3. **`threadFactory`** :executor 创建新线程的时候会用到。
 4. **`handler`** :饱和策略。关于饱和策略下面单独介绍一下。
 
-#### 4.5.2 `ThreadPoolExecutor` 饱和策略
+#### `ThreadPoolExecutor` 饱和策略
 
 **`ThreadPoolExecutor` 饱和策略定义:**
 
@@ -585,7 +585,7 @@ public ThreadPoolExecutor(int corePoolSize,
 
 举个例子： Spring 通过 `ThreadPoolTaskExecutor` 或者我们直接通过 `ThreadPoolExecutor` 的构造函数创建线程池的时候，当我们不指定 `RejectedExecutionHandler` 饱和策略的话来配置线程池的时候默认使用的是 `ThreadPoolExecutor.AbortPolicy`。在默认情况下，`ThreadPoolExecutor` 将抛出 `RejectedExecutionException` 来拒绝新来的任务 ，这代表你将丢失对这个任务的处理。 对于可伸缩的应用程序，建议使用 `ThreadPoolExecutor.CallerRunsPolicy`。当最大池被填满时，此策略为我们提供可伸缩队列。（这个直接查看 `ThreadPoolExecutor` 的构造函数源码就可以看出，比较简单的原因，这里就不贴代码了）
 
-### 4.6 一个简单的线程池 Demo
+### 一个简单的线程池 Demo
 
 为了让大家更清楚上面的面试题中的一些概念，我写了一个简单的线程池 Demo。
 
@@ -708,7 +708,7 @@ pool-1-thread-2 End. Time = Sun Apr 12 11:14:47 CST 2020
 
 ```
 
-### 4.7 线程池原理分析
+### 线程池原理分析
 
 承接 4.6 节，我们通过代码输出结果可以看出：**线程池首先会先执行 5 个任务，然后这些任务有任务被执行完的话，就会去拿新的任务执行。** 大家可以先通过上面讲解的内容，分析一下到底是咋回事？（自己独立思考一会）
 
@@ -769,9 +769,9 @@ public void execute(Runnable command) {
 
 > 我们在代码中模拟了 10 个任务，我们配置的核心线程数为 5 、等待队列容量为 100 ，所以每次只可能存在 5 个任务同时执行，剩下的 5 个任务会被放到等待队列中去。当前的5个任务中如果有任务被执行完了，线程池就会去拿新的任务执行。
 
-## 5. Atomic 原子类
+## Atomic 原子类
 
-### 5.1. 介绍一下 Atomic 原子类
+### 介绍一下 Atomic 原子类
 
 `Atomic` 翻译成中文是原子的意思。在化学上，我们知道原子是构成一般物质的最小单位，在化学反应中是不可分割的。在我们这里 Atomic 是指一个操作是不可中断的。即使是在多个线程一起执行的时候，一个操作一旦开始，就不会被其他线程干扰。
 
@@ -781,7 +781,7 @@ public void execute(Runnable command) {
 
 ![JUC原子类概览](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/JUC原子类概览.png)
 
-### 5.2. JUC 包中的原子类是哪 4 类?
+### JUC 包中的原子类是哪 4 类?
 
 **基本类型**
 
@@ -811,7 +811,7 @@ public void execute(Runnable command) {
 - `AtomicLongFieldUpdater`：原子更新长整型字段的更新器
 - `AtomicReferenceFieldUpdater`：原子更新引用类型字段的更新器
 
-### 5.3. 讲讲 AtomicInteger 的使用
+### 讲讲 AtomicInteger 的使用
 
 **AtomicInteger 类常用方法**
 
@@ -844,7 +844,7 @@ class AtomicIntegerTest {
 
 ```
 
-### 5.4. 能不能给我简单介绍一下 AtomicInteger 类的原理
+### 能不能给我简单介绍一下 AtomicInteger 类的原理
 
 AtomicInteger 线程安全原理简单分析
 
@@ -871,9 +871,9 @@ CAS 的原理是拿期望的值和原本的一个值作比较，如果相同则�
 
 关于 Atomic 原子类这部分更多内容可以查看我的这篇文章：并发编程面试必备：[JUC 中的 Atomic 原子类总结](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247484834&idx=1&sn=7d3835091af8125c13fc6db765f4c5bd&source=41#wechat_redirect)
 
-## 6. AQS
+## AQS
 
-### 6.1. AQS 介绍
+### AQS 介绍
 
 AQS 的全称为（`AbstractQueuedSynchronizer`），这个类在` java.util.concurrent.locks `包下面。
 
@@ -881,7 +881,7 @@ AQS 的全称为（`AbstractQueuedSynchronizer`），这个类在` java.util.con
 
 AQS 是一个用来构建锁和同步器的框架，使用 AQS 能简单且高效地构造出大量应用广泛的同步器，比如我们提到的 `ReentrantLock`，`Semaphore`，其他的诸如 `ReentrantReadWriteLock`，`SynchronousQueue`，`FutureTask` 等等皆是基于 AQS 的。当然，我们自己也能利用 AQS 非常轻松容易地构造出符合我们自己需求的同步器。
 
-### 6.2. AQS 原理分析
+### AQS 原理分析
 
 AQS 原理这部分参考了部分博客，在 6.2 节末尾放了链接。
 
@@ -889,7 +889,7 @@ AQS 原理这部分参考了部分博客，在 6.2 节末尾放了链接。
 
 下面大部分内容其实在 AQS 类注释上已经给出了，不过是英语看着比较吃力一点，感兴趣的话可以看看源码。
 
-#### 6.2.1. AQS 原理概览
+#### AQS 原理概览
 
 **AQS 核心思想是，如果被请求的共享资源空闲，则将当前请求资源的线程设置为有效的工作线程，并且将共享资源设置为锁定状态。如果被请求的共享资源被占用，那么就需要一套线程阻塞等待以及被唤醒时锁分配的机制，这个机制 AQS 是用 CLH 队列锁实现的，即将暂时获取不到锁的线程加入到队列中。**
 
@@ -923,7 +923,7 @@ protected final boolean compareAndSetState(int expect, int update) {
 }
 ```
 
-#### 6.2.2. AQS 对资源的共享方式
+#### AQS 对资源的共享方式
 
 **AQS 定义两种资源共享方式**
 
@@ -936,7 +936,7 @@ protected final boolean compareAndSetState(int expect, int update) {
 
 不同的自定义同步器争用共享资源的方式也不同。自定义同步器在实现时只需要实现共享资源 state 的获取与释放方式即可，至于具体线程等待队列的维护（如获取资源失败入队/唤醒出队等），AQS 已经在顶层实现好了。
 
-#### 6.2.3. AQS 底层使用了模板方法模式
+#### AQS 底层使用了模板方法模式
 
 同步器的设计是基于模板方法模式的，如果需要自定义同步器一般的方式是这样（模板方法模式很经典的一个应用）：
 
@@ -970,13 +970,13 @@ protected boolean isHeldExclusively()//该线程是否正在独占资源。只�
 - https://www.cnblogs.com/waterystone/p/4920797.html
 - https://www.cnblogs.com/chengxiao/archive/2017/07/24/7141160.html
 
-### 6.3. AQS 组件总结
+### AQS 组件总结
 
 - **`Semaphore`(信号量)-允许多个线程同时访问：** `synchronized` 和 `ReentrantLock` 都是一次只允许一个线程访问某个资源，`Semaphore`(信号量)可以指定多个线程同时访问某个资源。
 - **`CountDownLatch `（倒计时器）：**  `CountDownLatch` 是一个同步工具类，用来协调多个线程之间的同步。这个工具通常用来控制线程等待，它可以让某一个线程等待直到倒计时结束，再开始执行。
 - **`CyclicBarrier`(循环栅栏)：** `CyclicBarrier` 和 `CountDownLatch` 非常类似，它也可以实现线程间的技术等待，但是它的功能比 `CountDownLatch` 更加复杂和强大。主要应用场景和 `CountDownLatch` 类似。`CyclicBarrier` 的字面意思是可循环使用（`Cyclic`）的屏障（`Barrier`）。它要做的事情是，让一组线程到达一个屏障（也可以叫同步点）时被阻塞，直到最后一个线程到达屏障时，屏障才会开门，所有被屏障拦截的线程才会继续干活。`CyclicBarrier` 默认的构造方法是 `CyclicBarrier(int parties)`，其参数表示屏障拦截的线程数量，每个线程调用 `await()` 方法告诉 `CyclicBarrier` 我已经到达了屏障，然后当前线程被阻塞。
 
-### 6.4. 用过 CountDownLatch 么？什么场景下用的？
+### 用过 CountDownLatch 么？什么场景下用的？
 
 `CountDownLatch` 的作用就是 允许 count 个线程阻塞在一个地方，直至所有线程的任务都执行完毕。之前在项目中，有一个使用多线程读取多个文件处理的场景，我用到了 `CountDownLatch` 。具体场景是下面这样的：
 
@@ -1058,7 +1058,7 @@ CompletableFuture<Void> allFutures = CompletableFuture.allOf(
 
 ```
 
-## 7 Reference
+## Reference
 
 - 《深入理解 Java 虚拟机》
 - 《实战 Java 高并发程序设计》
