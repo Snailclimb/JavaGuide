@@ -5,7 +5,9 @@ tag:
   - Redis
 ---
 
-### 简单介绍一下 Redis 呗!
+## Redis 基础
+
+### 简单介绍一下 Redis!
 
 简单来说 **Redis 就是一个使用 C 语言开发的数据库**，不过与传统数据库不同的是 **Redis 的数据是存在内存中的** ，也就是它是内存数据库，所以读写速度非常快，因此 Redis 被广泛应用于缓存方向。
 
@@ -87,17 +89,29 @@ _简单，来说使用缓存主要是为了提升用户体验以及应对更多�
 
 - **分布式锁** ： 通过 Redis 来做分布式锁是一种比较常见的方式。通常情况下，我们都是基于 Redisson 来实现分布式锁。相关阅读：[《分布式锁中的王者方案 - Redisson》](https://mp.weixin.qq.com/s/CbnPRfvq4m1sqo2uKI6qQw)。
 - **限流** ：一般是通过 Redis + Lua 脚本的方式来实现限流。相关阅读：[《我司用了 6 年的 Redis 分布式限流器，可以说是非常厉害了！》](https://mp.weixin.qq.com/s/kyFAWH3mVNJvurQDt4vchA)。
-- **消息队列** ：Redis 自带的 list 数据结构可以作为一个简单的队列使用。Redis5.0 中增加的 Stream 类型的数据结构更加适合用来做消息队列。它比较类似于 Kafka，有主题和消费组的概念，支持消息持久化以及 ACK 机制。
+- **消息队列** ：Redis 自带的 list 数据结构可以作为一个简单的队列使用。Redis 5.0 中增加的 Stream 类型的数据结构更加适合用来做消息队列。它比较类似于 Kafka，有主题和消费组的概念，支持消息持久化以及 ACK 机制。
 - **复杂业务场景** ：通过 Redis 以及 Redis 扩展（比如 Redisson）提供的数据结构，我们可以很方便地完成很多复杂的业务场景比如通过 bitmap 统计活跃用户、通过 sorted set 维护排行榜。
 - ......
 
-### Redis 常见数据结构以及使用场景分析
+### Redis 可以做消息队列么？
+
+Redis 5.0 新增加的一个数据结构 `Stream` 可以用来做消息队列，`Stream` 支持：
+
+- 发布 / 订阅模式
+- 按照消费者组进行消费
+- 消息持久化（ RDB 和 AOF）
+
+不过，和专业的消息队列相比，还是有很多欠缺的地方比如消息丢失和堆积问题不好解决。因此，我们通常建议是不使用 Redis 来做消息队列的，你完全可以选择市面上比较成熟的一些消息队列比如 RocketMQ、Kafka。
+
+相关文章推荐：[Redis 消息队列的三种方案（List、Streams、Pub/Sub）](https://javakeeper.starfish.ink/data-management/Redis/Redis-MQ.html)。
+
+## Redis 常见数据结构
 
 你可以自己本机安装 redis 或者通过 redis 官网提供的[在线 redis 环境](https://try.redis.io/)。
 
 ![try-redis](./images/redis-all/try-redis.png)
 
-#### string
+### string
 
 1. **介绍** ：string 数据结构是简单的 key-value 类型。虽然 Redis 是用 C 语言写的，但是 Redis 并没有使用 C 的字符串表示，而是自己构建了一种 **简单动态字符串**（simple dynamic string，**SDS**）。相比于 C 的原生字符串，Redis 的 SDS 不光可以保存文本数据还可以保存二进制数据，并且获取字符串长度复杂度为 O(1)（C 字符串为 O(N)）,除此之外，Redis 的 SDS API 是安全的，不会造成缓冲区溢出。
 2. **常用命令：** `set,get,strlen,exists,decr,incr,setex` 等等。
@@ -158,7 +172,7 @@ OK
 (integer) 56
 ```
 
-#### list
+### list
 
 1. **介绍** ：**list** 即是 **链表**。链表是一种非常常见的数据结构，特点是易于数据元素的插入和删除并且可以灵活调整链表长度，但是链表的随机访问困难。许多高级编程语言都内置了链表的实现比如 Java 中的 **LinkedList**，但是 C 语言并没有实现链表，所以 Redis 实现了自己的链表数据结构。Redis 的 list 的实现为一个 **双向链表**，即可以支持反向查找和遍历，更方便操作，不过带来了部分额外的内存开销。
 2. **常用命令:** `rpush,lpop,lpush,rpop,lrange,llen` 等。
@@ -219,7 +233,7 @@ OK
 (integer) 3
 ```
 
-#### hash
+### hash
 
 1. **介绍** ：hash 类似于 JDK1.8 前的 HashMap，内部实现也差不多(数组 + 链表)。不过，Redis 的 hash 做了更多优化。另外，hash 是一个 string 类型的 field 和 value 的映射表，**特别适合用于存储对象**，后续操作的时候，你可以直接仅仅修改这个对象中的某个字段的值。 比如我们可以 hash 数据结构来存储用户信息，商品信息等等。
 2. **常用命令：** `hset,hmset,hexists,hget,hgetall,hkeys,hvals` 等。
@@ -256,7 +270,7 @@ OK
 "GuideGeGe"
 ```
 
-#### set
+### set
 
 1. **介绍 ：** set 类似于 Java 中的 `HashSet` 。Redis 中的 set 类型是一种无序集合，集合中的元素没有先后顺序。当你需要存储一个列表数据，又不希望出现重复数据时，set 是一个很好的选择，并且 set 提供了判断某个成员是否在一个 set 集合内的重要接口，这个也是 list 所不能提供的。可以基于 set 轻易实现交集、并集、差集的操作。比如：你可以将一个用户所有的关注人存在一个集合中，将其所有粉丝存在一个集合。Redis 可以非常方便的实现如共同关注、共同粉丝、共同喜好等功能。这个过程也就是求交集的过程。
 2. **常用命令：** `sadd,spop,smembers,sismember,scard,sinterstore,sunion` 等。
@@ -284,7 +298,7 @@ OK
 1) "value2"
 ```
 
-#### sorted set
+### sorted set
 
 1. **介绍：** 和 set 相比，sorted set 增加了一个权重参数 score，使得集合中的元素能够按 score 进行有序排列，还可以通过 score 的范围来获取元素的列表。有点像是 Java 中 HashMap 和 TreeSet 的结合体。
 2. **常用命令：** `zadd,zcard,zscore,zrange,zrevrange,zrem` 等。
@@ -311,7 +325,7 @@ OK
 2) "value2"
 ```
 
-#### bitmap
+### bitmap
 
 1. **介绍：** bitmap 存储的是连续的二进制数字（0 和 1），通过 bitmap, 只需要一个 bit 位来表示某个元素对应的值或者状态，key 就是对应元素本身 。我们知道 8 个 bit 可以组成一个 byte，所以 bitmap 本身会极大的节省储存空间。
 2. **常用命令：** `setbit` 、`getbit` 、`bitcount`、`bitop`
@@ -391,7 +405,9 @@ BITOP operation destkey key [key ...]
 
 只需要一个 key，然后用户 ID 为 offset，如果在线就设置为 1，不在线就设置为 0。
 
-### Redis 单线程模型详解
+## Redis 线程模型
+
+### Redis 单线程模型了解吗？
 
 **Redis 基于 Reactor 模式来设计开发了自己的一套高效的事件处理模型** （Netty 的线程模型也基于 Reactor 模式，Reactor 模式不愧是高性能 IO 的基石），这套事件处理模型对应的是 Redis 中的文件事件处理器（file event handler）。由于文件事件处理器（file event handler）是单线程方式运行的，所以我们一般都说 Redis 是单线程模型。
 
@@ -424,7 +440,7 @@ Redis 通过**IO 多路复用程序** 来监听来自客户端的大量连接（
 
 <p style="text-align:right; font-size:14px; color:gray">《Redis设计与实现：12章》</p>
 
-### Redis 没有使用多线程？为什么不使用多线程？
+### Redis6.0 之前为什么不使用多线程？
 
 虽然说 Redis 是单线程模型，但是，实际上，**Redis 在 4.0 之后的版本中就已经加入了对多线程的支持。**
 
@@ -434,7 +450,7 @@ Redis 通过**IO 多路复用程序** 来监听来自客户端的大量连接（
 
 大体上来说，**Redis 6.0 之前主要还是单线程处理。**
 
-**那，Redis6.0 之前 为什么不使用多线程？**
+**那，Redis6.0 之前为什么不使用多线程？**
 
 我觉得主要原因有下面 3 个：
 
@@ -464,6 +480,8 @@ io-threads 4 #官网建议4核的机器建议设置为2或3个线程，8核的�
 
 1. [Redis 6.0 新特性-多线程连环 13 问！](https://mp.weixin.qq.com/s/FZu3acwK6zrCBZQ_3HoUgw)
 2. [为什么 Redis 选择单线程模型](https://draveness.me/whys-the-design-redis-single-thread/)
+
+## Redis 内存管理
 
 ### Redis 给缓存数据设置过期时间有啥用？
 
@@ -541,19 +559,21 @@ Redis 提供 6 种数据淘汰策略：
 7. **volatile-lfu（least frequently used）**：从已设置过期时间的数据集（server.db[i].expires）中挑选最不经常使用的数据淘汰
 8. **allkeys-lfu（least frequently used）**：当内存不足以容纳新写入数据时，在键空间中，移除最不经常使用的 key
 
-### Redis 持久化机制(怎么保证 Redis 挂掉之后再重启数据可以进行恢复)
+## Redis 持久化机制
+
+### 怎么保证 Redis 挂掉之后再重启数据可以进行恢复？
 
 很多时候我们需要持久化数据也就是将内存中的数据写入到硬盘里面，大部分原因是为了之后重用数据（比如重启机器、机器故障之后恢复数据），或者是为了防止系统故障而将数据备份到一个远程位置。
 
 Redis 不同于 Memcached 的很重要一点就是，Redis 支持持久化，而且支持两种不同的持久化操作。**Redis 的一种持久化方式叫快照（snapshotting，RDB），另一种方式是只追加文件（append-only file, AOF）**。这两种方法各有千秋，下面我会详细这两种持久化方法是什么，怎么用，如何选择适合自己的持久化方法。
 
-**快照（snapshotting）持久化（RDB）**
+### 什么是 RDB 持久化？
 
 Redis 可以通过创建快照来获得存储在内存里面的数据在某个时间点上的副本。Redis 创建快照之后，可以对快照进行备份，可以将快照复制到其他服务器从而创建具有相同数据的服务器副本（Redis 主从结构，主要用来提高 Redis 性能），还可以将快照留在原地以便重启服务器的时候使用。
 
-快照持久化是 Redis 默认采用的持久化方式，在 Redis.conf 配置文件中默认有此下配置：
+快照持久化是 Redis 默认采用的持久化方式，在 `redis.conf` 配置文件中默认有此下配置：
 
-```conf
+```clojure
 save 900 1           #在900秒(15分钟)之后，如果至少有1个key发生变化，Redis就会自动触发BGSAVE命令创建快照。
 
 save 300 10          #在300秒(5分钟)之后，如果至少有10个key发生变化，Redis就会自动触发BGSAVE命令创建快照。
@@ -561,7 +581,7 @@ save 300 10          #在300秒(5分钟)之后，如果至少有10个key发生�
 save 60 10000        #在60秒(1分钟)之后，如果至少有10000个key发生变化，Redis就会自动触发BGSAVE命令创建快照。
 ```
 
-**AOF（append-only file）持久化**
+### 什么是 AOF 持久化？
 
 与快照持久化相比，AOF 持久化的实时性更好，因此已成为主流的持久化方案。默认情况下 Redis 没有开启 AOF（append only file）方式的持久化，可以通过 appendonly 参数开启：
 
@@ -588,7 +608,15 @@ appendfsync no        #让操作系统决定何时进行同步
 - [Redis 的 AOF 方式 #783](https://github.com/Snailclimb/JavaGuide/issues/783)
 - [Redis AOF 重写描述不准确 #1439](https://github.com/Snailclimb/JavaGuide/issues/1439)
 
-**拓展：Redis 4.0 对于持久化机制的优化**
+### AOF 重写了解吗？
+
+AOF 重写可以产生一个新的 AOF 文件，这个新的 AOF 文件和原有的 AOF 文件所保存的数据库状态一样，但体积更小。
+
+AOF 重写是一个有歧义的名字，该功能是通过读取数据库中的键值对来实现的，程序无须对现有 AOF 文件进行任何读入、分析或者写入操作。
+
+在执行 `BGREWRITEAOF` 命令时，Redis 服务器会维护一个 AOF 重写缓冲区，该缓冲区会在子进程创建新 AOF 文件期间，记录服务器执行的所有写命令。当子进程完成创建新 AOF 文件的工作之后，服务器会将重写缓冲区中的所有内容追加到新 AOF 文件的末尾，使得新的 AOF 文件保存的数据库状态与现有的数据库状态一致。最后，服务器用新的 AOF 文件替换旧的 AOF 文件，以此来完成 AOF 文件重写操作。
+
+### Redis 4.0 对于持久化机制做了什么优化？
 
 Redis 4.0 开始支持 RDB 和 AOF 的混合持久化（默认关闭，可以通过配置项 `aof-use-rdb-preamble` 开启）。
 
@@ -598,68 +626,9 @@ Redis 4.0 开始支持 RDB 和 AOF 的混合持久化（默认关闭，可以通
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/booksimage-20210807145107290.png)
 
-**补充内容：AOF 重写**
+## Redis 事务
 
-AOF 重写可以产生一个新的 AOF 文件，这个新的 AOF 文件和原有的 AOF 文件所保存的数据库状态一样，但体积更小。
-
-AOF 重写是一个有歧义的名字，该功能是通过读取数据库中的键值对来实现的，程序无须对现有 AOF 文件进行任何读入、分析或者写入操作。
-
-在执行 BGREWRITEAOF 命令时，Redis 服务器会维护一个 AOF 重写缓冲区，该缓冲区会在子进程创建新 AOF 文件期间，记录服务器执行的所有写命令。当子进程完成创建新 AOF 文件的工作之后，服务器会将重写缓冲区中的所有内容追加到新 AOF 文件的末尾，使得新的 AOF 文件保存的数据库状态与现有的数据库状态一致。最后，服务器用新的 AOF 文件替换旧的 AOF 文件，以此来完成 AOF 文件重写操作。
-
-### Redis bigkey
-
-#### 什么是 bigkey？
-
-简单来说，如果一个 key 对应的 value 所占用的内存比较大，那这个 key 就可以看作是 bigkey。具体多大才算大呢？有一个不是特别精确的参考标准：string 类型的 value 超过 10 kb，复合类型的 value 包含的元素超过 5000 个（对于复合类型的 value 来说，不一定包含的元素越多，占用的内存就越多）。
-
-#### bigkey 有什么危害？
-
-除了会消耗更多的内存空间，bigkey 对性能也会有比较大的影响。
-
-因此，我们应该尽量避免写入 bigkey！
-
-#### 如何发现 bigkey？
-
-**1、使用 Redis 自带的 `--bigkeys` 参数来查找。**
-
-```bash
-# redis-cli -p 6379 --bigkeys
-
-# Scanning the entire keyspace to find biggest keys as well as
-# average sizes per key type.  You can use -i 0.1 to sleep 0.1 sec
-# per 100 SCAN commands (not usually needed).
-
-[00.00%] Biggest string found so far '"ballcat:oauth:refresh_auth:f6cdb384-9a9d-4f2f-af01-dc3f28057c20"' with 4437 bytes
-[00.00%] Biggest list   found so far '"my-list"' with 17 items
-
--------- summary -------
-
-Sampled 5 keys in the keyspace!
-Total key length in bytes is 264 (avg len 52.80)
-
-Biggest   list found '"my-list"' has 17 items
-Biggest string found '"ballcat:oauth:refresh_auth:f6cdb384-9a9d-4f2f-af01-dc3f28057c20"' has 4437 bytes
-
-1 lists with 17 items (20.00% of keys, avg size 17.00)
-0 hashs with 0 fields (00.00% of keys, avg size 0.00)
-4 strings with 4831 bytes (80.00% of keys, avg size 1207.75)
-0 streams with 0 entries (00.00% of keys, avg size 0.00)
-0 sets with 0 members (00.00% of keys, avg size 0.00)
-0 zsets with 0 members (00.00% of keys, avg size 0.00
-```
-
-从这个命令的运行结果，我们可以看出：这个命令会扫描(Scan) Redis 中的所有 key ，会对 Redis 的性能有一点影响。并且，这种方式只能找出每种数据结构 top 1 bigkey（占用内存最大的 string 数据类型，包含元素最多的复合数据类型）。
-
-**2、分析 RDB 文件**
-
-通过分析 RDB 文件来找出 big key。这种方案的前提是你的 Redis 采用的是 RDB 持久化。
-
-网上有现成的代码/工具可以直接拿来使用：
-
-- [redis-rdb-tools](https://github.com/sripathikrishnan/redis-rdb-tools) ：Python 语言写的用来分析 Redis 的 RDB 快照文件用的工具
-- [rdb_bigkeys](https://github.com/weiyanwei412/rdb_bigkeys) : Go 语言写的用来分析 Redis 的 RDB 快照文件用的工具，性能更好。
-
-### Redis 事务
+### 如何使用 Redis 事务？
 
 Redis 可以通过 **`MULTI`，`EXEC`，`DISCARD` 和 `WATCH`** 等命令来实现事务(transaction)功能。
 
@@ -714,14 +683,16 @@ Redis 官网相关介绍 [https://redis.io/topics/transactions](https://redis.io
 
 ![redis事务](./images/redis-all/redis事务.png)
 
-但是，Redis 的事务和我们平时理解的关系型数据库的事务不同。我们知道事务具有四大特性： **1. 原子性**，**2. 隔离性**，**3. 持久性**，**4. 一致性**。
+### Redis 支持原子性吗？
+
+Redis 的事务和我们平时理解的关系型数据库的事务不同。我们知道事务具有四大特性： **1. 原子性**，**2. 隔离性**，**3. 持久性**，**4. 一致性**。
 
 1. **原子性（Atomicity）：** 事务是最小的执行单位，不允许分割。事务的原子性确保动作要么全部完成，要么完全不起作用；
 2. **隔离性（Isolation）：** 并发访问数据库时，一个用户的事务不被其他事务所干扰，各并发事务之间数据库是独立的；
 3. **持久性（Durability）：** 一个事务被提交之后。它对数据库中数据的改变是持久的，即使数据库发生故障也不应该对其有任何影响。
 4. **一致性（Consistency）：** 执行事务前后，数据保持一致，多个事务对同一个数据读取的结果是相同的；
 
-**Redis 是不支持 roll back 的，因而不满足原子性的（而且不满足持久性）。**
+Redis 事务在运行错误的情况下，除了执行过程中出现错误的命令外，其他命令都能正常执行。并且，Redis 是不支持回滚（roll back）操作的。因此，Redis 事务其实是不满足原子性的（而且不满足持久性）。
 
 Redis 官网也解释了自己为啥不支持回滚。简单来说就是 Redis 开发者们觉得没必要支持回滚，这样更简单便捷并且性能更好。Redis 开发者觉得即使命令执行错误也应该在开发过程中就被发现而不是生产过程中。
 
@@ -729,24 +700,94 @@ Redis 官网也解释了自己为啥不支持回滚。简单来说就是 Redis �
 
 你可以将 Redis 中的事务就理解为 ：**Redis 事务提供了一种将多个命令请求打包的功能。然后，再按顺序执行打包的所有命令，并且不会被中途打断。**
 
+除了不满足原子性之外，事务中的每条命令都会与 Redis 服务器进行网络交互，这是比较浪费资源的行为。明明一次批量执行多个命令就可以了，这种操作实在是看不懂。
+
+因此，Redis 事务是不建议在日常开发中使用的。
+
 **相关 issue** :
 
 - [issue452: 关于 Redis 事务不满足原子性的问题](https://github.com/Snailclimb/JavaGuide/issues/452) 。
 - [Issue491:关于 redis 没有事务回滚？](https://github.com/Snailclimb/JavaGuide/issues/491)
 
-### Redis 可以做消息队列么？
+### 如何解决 Redis 事务的缺陷？
 
-Redis 5.0 新增加的一个数据结构 `Stream` 可以用来做消息队列，`Stream` 支持：
+Redis 从 2.6 版本开始支持执行 Lua 脚本，它的功能和事务非常类似。我们可以利用 Lua 脚本来批量执行多条 Redis 命令，这些 Redis 命令会被提交到 Redis 服务器一次性执行完成，大幅减小了网络开销。
 
-- 发布 / 订阅模式
-- 按照消费者组进行消费
-- 消息持久化（ RDB 和 AOF）
+一段 Lua 脚本可以视作一条命令执行，一段 Lua 脚本执行过程中不会有其他脚本或 Redis 命令同时执行，保证了操作不会被其他指令插入或打扰。
 
-不过，和专业的消息队列相比，还是有很多欠缺的地方比如消息丢失和堆积问题不好解决。
+如果 Lua 脚本运行时出错并中途结束，出错之后的命令是不会被执行的。并且，出错之前执行的命令是无法被撤销的。因此，严格来说，通过 Lua 脚本来批量执行 Redis 命令也是不满足原子性的。
 
-我们通常建议是不需要使用 Redis 来做消息队列的，你完全可以选择市面上比较成熟的一些消息队列比如 RocketMQ、Kafka。
+另外，Redis 7.0 新增了 [Redis functions](https://redis.io/docs/manual/programmability/functions-intro/) 特性，你可以将 Redis functions 看作是比 Lua 更强大的脚本。
 
-相关文章推荐：[Redis 消息队列的三种方案（List、Streams、Pub/Sub）](https://javakeeper.starfish.ink/data-management/Redis/Redis-MQ.html)。
+## Redis 性能优化
+
+### Redis bigkey
+
+#### 什么是 bigkey？
+
+简单来说，如果一个 key 对应的 value 所占用的内存比较大，那这个 key 就可以看作是 bigkey。具体多大才算大呢？有一个不是特别精确的参考标准：string 类型的 value 超过 10 kb，复合类型的 value 包含的元素超过 5000 个（对于复合类型的 value 来说，不一定包含的元素越多，占用的内存就越多）。
+
+#### bigkey 有什么危害？
+
+除了会消耗更多的内存空间，bigkey 对性能也会有比较大的影响。
+
+因此，我们应该尽量避免写入 bigkey！
+
+#### 如何发现 bigkey？
+
+**1、使用 Redis 自带的 `--bigkeys` 参数来查找。**
+
+```bash
+# redis-cli -p 6379 --bigkeys
+
+# Scanning the entire keyspace to find biggest keys as well as
+# average sizes per key type.  You can use -i 0.1 to sleep 0.1 sec
+# per 100 SCAN commands (not usually needed).
+
+[00.00%] Biggest string found so far '"ballcat:oauth:refresh_auth:f6cdb384-9a9d-4f2f-af01-dc3f28057c20"' with 4437 bytes
+[00.00%] Biggest list   found so far '"my-list"' with 17 items
+
+-------- summary -------
+
+Sampled 5 keys in the keyspace!
+Total key length in bytes is 264 (avg len 52.80)
+
+Biggest   list found '"my-list"' has 17 items
+Biggest string found '"ballcat:oauth:refresh_auth:f6cdb384-9a9d-4f2f-af01-dc3f28057c20"' has 4437 bytes
+
+1 lists with 17 items (20.00% of keys, avg size 17.00)
+0 hashs with 0 fields (00.00% of keys, avg size 0.00)
+4 strings with 4831 bytes (80.00% of keys, avg size 1207.75)
+0 streams with 0 entries (00.00% of keys, avg size 0.00)
+0 sets with 0 members (00.00% of keys, avg size 0.00)
+0 zsets with 0 members (00.00% of keys, avg size 0.00
+```
+
+从这个命令的运行结果，我们可以看出：这个命令会扫描(Scan) Redis 中的所有 key ，会对 Redis 的性能有一点影响。并且，这种方式只能找出每种数据结构 top 1 bigkey（占用内存最大的 string 数据类型，包含元素最多的复合数据类型）。
+
+**2、分析 RDB 文件**
+
+通过分析 RDB 文件来找出 big key。这种方案的前提是你的 Redis 采用的是 RDB 持久化。
+
+网上有现成的代码/工具可以直接拿来使用：
+
+- [redis-rdb-tools](https://github.com/sripathikrishnan/redis-rdb-tools) ：Python 语言写的用来分析 Redis 的 RDB 快照文件用的工具
+- [rdb_bigkeys](https://github.com/weiyanwei412/rdb_bigkeys) : Go 语言写的用来分析 Redis 的 RDB 快照文件用的工具，性能更好。
+
+### 大量 key 集中过期问题
+
+我在上面提到过：对于过期 key，Redis 采用的是 **定期删除+惰性/懒汉式删除** 策略。
+
+定期删除执行过程中，如果突然遇到大量过期 key 的话，客户端请求必须等待定期清理过期 key 任务线程执行完成，因为这个这个定期任务线程是在 Redis 主线程中执行的。这就导致客户端请求没办法被及时处理，响应速度会比较慢。
+
+如何解决呢？下面是两种常见的方法：
+
+1. 给 key 设置随机过期时间。
+2. 开启 lazy-free（惰性删除/延迟释放） 。lazy-free 特性是 Redis 4.0 开始引入的，指的是让 Redis 采用异步方式延迟释放 key 使用的内存，将该操作交给单独的子线程处理，避免阻塞主线程。
+
+个人建议不管是否开启 lazy-free，我们都尽量给 key 设置随机过期时间。
+
+## Redis 生产问题
 
 ### 缓存穿透
 
@@ -759,7 +800,6 @@ Redis 5.0 新增加的一个数据结构 `Stream` 可以用来做消息队列，
 如下图所示，用户的请求最终都要跑到数据库中查询一遍。
 
 ![缓存穿透情况](https://img-blog.csdnimg.cn/6358650a9bf742838441d636430c90b9.png)
-
 
 #### 有哪些解决办法？
 
