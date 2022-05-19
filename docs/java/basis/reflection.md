@@ -130,8 +130,8 @@ public class Main {
         /**
          * 获取 TargetObject 类的 Class 对象并且创建 TargetObject 类实例
          */
-        Class<?> tagetClass = Class.forName("cn.javaguide.TargetObject");
-        TargetObject targetObject = (TargetObject) tagetClass.newInstance();
+        Class<?> targetClass = Class.forName("cn.javaguide.TargetObject");
+        TargetObject targetObject = (TargetObject) targetClass.newInstance();
         /**
          * 获取 TargetObject 类中定义的所有方法
          */
