@@ -791,7 +791,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 - `@OneToOne` 声明一对一关系
 - `@OneToMany` 声明一对多关系
 - `@ManyToOne` 声明多对一关系
-- `@MangToMang` 声明多对多关系
+- `@ManyToMany` 声明多对多关系
 
 更多关于 Spring Boot JPA 的文章请看我的这篇文章：[一文搞懂如何在 Spring Boot 正确中使用 JPA](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247485689&idx=1&sn=061b32c2222869932be5631fb0bb5260&chksm=cea24732f9d5ce24a356fb3675170e7843addbfcc79ee267cfdb45c83fc7e90babf0f20d22e1&token=292197051&lang=zh_CN#rd) 。
 
