@@ -174,7 +174,7 @@ protostuff 基于 Google protobuf，但是提供了更多的功能和更简易�
 
 Github 地址：[https://github.com/protostuff/protostuff](https://github.com/protostuff/protostuff)。
 
-### hession
+### hessian
 
 hessian 是一个轻量级的,自定义描述的二进制 RPC 协议。hessian 是一个比较老的序列化实现了，并且同样也是跨语言的。
 
