@@ -478,7 +478,7 @@ Dubbo 中的 `RoundRobinLoadBalance` 的代码实现被修改重建了好几次�
 
 Dubbo 支持多种序列化方式：JDK自带的序列化、hessian2、JSON、Kryo、FST、Protostuff，ProtoBuf等等。
 
-Dubbo 默认使用的序列化方式是 hession2。
+Dubbo 默认使用的序列化方式是 hessian2。
 
 ### 谈谈你对这些序列化协议了解？
 
