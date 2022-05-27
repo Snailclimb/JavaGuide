@@ -253,6 +253,7 @@ export const sidebarConfig = defineSidebarConfig({
             "string-algorithm-problems",
             "linkedlist-algorithm-problems",
             "the-sword-refers-to-offer",
+            "10-classical-sorting-algorithms",
           ],
         },
       ],

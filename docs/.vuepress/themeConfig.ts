@@ -33,10 +33,7 @@ export default defineThemeConfig({
       autoExcerpt: true,
     },
     mdEnhance: {
-      enableAll: true,
-      presentation: {
-        plugins: ["highlight", "math", "search", "notes", "zoom"],
-      },
+      tasklist: true,
     },
     feed: {
       json: true,

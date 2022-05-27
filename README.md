@@ -153,6 +153,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 * [几道常见的字符串算法题总结 ](docs/cs-basics/algorithms/string-algorithm-problems.md)
 * [几道常见的链表算法题总结 ](docs/cs-basics/algorithms/linkedlist-algorithm-problems.md)
 * [剑指 offer 部分编程题](docs/cs-basics/algorithms/the-sword-refers-to-offer.md)
+* [十大经典排序算法](docs/cs-basics/algorithms/10-classical-sorting-algorithms.md)
 
 另外，[GeeksforGeeks]( https://www.geeksforgeeks.org/fundamentals-of-algorithms/) 这个网站总结了常见的算法 ，比较全面系统。
 

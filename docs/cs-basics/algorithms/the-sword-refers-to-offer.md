@@ -1,4 +1,9 @@
-# 剑指offer部分编程题
+---
+title: 剑指offer部分编程题
+category: 计算机基础
+tag:
+  - 算法
+---
 
 ## 斐波那契数列
 
