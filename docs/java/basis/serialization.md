@@ -180,7 +180,7 @@ hessian 是一个轻量级的,自定义描述的二进制 RPC 协议。hessian �
 
 ![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2020-8/8613ec4c-bde5-47bf-897e-99e0f90b9fa3.png)
 
-dubbo RPC 默认启用的序列化方式是 hession2 ,但是，Dubbo 对 hessian2 进行了修改，不过大体结构还是差不多。
+dubbo RPC 默认启用的序列化方式是 hessian2 ,但是，Dubbo 对 hessian2 进行了修改，不过大体结构还是差不多。
 
 ### 总结
 
@@ -188,7 +188,7 @@ Kryo 是专门针对 Java 语言序列化方式并且性能非常好，如果你
 
 ![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2020-8/569e541a-22b2-4846-aa07-0ad479f07440.png)
 
-像 Protobuf、 ProtoStuff、hession 这类都是跨语言的序列化方式，如果有跨语言需求的话可以考虑使用。
+像 Protobuf、 ProtoStuff、hessian 这类都是跨语言的序列化方式，如果有跨语言需求的话可以考虑使用。
 
 除了我上面介绍到的序列化方式的话，还有像 Thrift，Avro 这些。
 
