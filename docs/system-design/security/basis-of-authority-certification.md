@@ -207,30 +207,154 @@ XSS 中攻击者会用各种方式将恶意代码注入到其他用户的页面�
 
 我们在前面的问题中探讨了使用 `Session` 来鉴别用户的身份，并且给出了几个 Spring Session 的案例分享。 我们知道 `Session` 信息需要保存一份在服务器端。这种方式会带来一些麻烦，比如需要我们保证保存 `Session` 信息服务器的可用性、不适合移动端（依赖 `Cookie`）等等。
 
-有没有一种不需要自己存放 `Session` 信息就能实现身份验证的方式呢？使用 `Token` 即可！**JWT** （JSON Web Token） 就是这种方式的实现，通过这种方式服务器端就不需要保存 `Session` 数据了，只用在客户端保存服务端返回给客户的 `Token` 就可以了，扩展性得到提升。
+有没有一种不需要自己存放 `Session` 信息就能实现身份验证的方式呢？
 
-**JWT 本质上就一段签名的 JSON 格式的数据。由于它是带有签名的，因此接收者便可以验证它的真实性。**
+有的！我们基于 `Token` 来做身份验证即可！**JWT** （JSON Web Token） 就是这种方式的实现，通过这种方式服务器端就不需要保存 `Session` 数据了，只用在客户端保存服务端返回给客户的 `Token` 就可以了，扩展性得到提升。
+
+可以看出，**JWT 更符合设计 RESTful API 时的「Stateless（无状态）」原则** 。
+
+**JWT 本质上就一段签名的 JSON 格式的数据。由于它是带有签名的，因此接收者可以验证它的真实性。**
 
 下面是 [RFC 7519](https://tools.ietf.org/html/rfc7519) 对 JWT 做的较为正式的定义。
 
 > JSON Web Token (JWT) is a compact, URL-safe means of representing claims to be transferred between two parties. The claims in a JWT are encoded as a JSON object that is used as the payload of a JSON Web Signature (JWS) structure or as the plaintext of a JSON Web Encryption (JWE) structure, enabling the claims to be digitally signed or integrity protected with a Message Authentication Code (MAC) and/or encrypted. ——[JSON Web Token (JWT)](https://tools.ietf.org/html/rfc7519)
 
-JWT 由 3 部分构成:
+## JWT 由哪些部分组成？
 
-1. **Header** : 描述 JWT 的元数据，定义了生成签名的算法以及 `Token` 的类型。
-2. **Payload** : 用来存放实际需要传递的数据
-3. **Signature（签名）** ：服务器通过`Payload`、`Header`和一个密钥(`secret`)使用 `Header` 里面指定的签名算法（默认是 HMAC SHA256）生成。
+JWT 本质上就是一组字串，通过（`.`）切分成三个为 Base64 编码的部分：
+
+- **Header** : 描述 JWT 的元数据，定义了生成签名的算法以及 `Token` 的类型。
+- **Payload** : 用来存放实际需要传递的数据
+- **Signature（签名）** ：服务器通过`Payload`、`Header`和一个密钥(`secret`)使用 `Header` 里面指定的签名算法（默认是 HMAC SHA256）生成。
+
+JWT 通常是这样的：`xxxxx.yyyyy.zzzzz`。
+
+示例：
+
+```
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
+eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.
+SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+```
+
+你可以在 [jwt.io](https://jwt.io/) 这个网站上对其 JWT 进行解码，解码之后得到的就是 Header、Payload、Signature 这三部分。
+
+Header 和 Payload 都是 JSON 格式的数据，Signature 由 `Payload`、`Header`和 `Secret`(密钥)通过特定的计算公式和加密算法得到。
+
+![](./images/basis-of-authority-certification/jwt.io.png)
+
+### Header
+
+Header 通常由两部分组成：
+
+- `typ`（Type）：令牌类型，也就是JWT。
+- `alg`（Algorithm） ：签名算法，比如 HS256。
+
+示例：
+
+```json
+{ 
+  "alg": "HS256", 
+  "typ": "JWT" 
+}
+```
+
+JSON 形式的 Header 被转换成 Base64 编码，成为 JWT 的第一部分。
+
+### Payload
+
+Payload 也是 JSON 格式数据，其中包含了 Claims(声明，包含 JWT 的相关信息)。
+
+Claims 分为三种类型：
+
+- **Registered Claims（注册声明）** ：预定义的一些声明，建议使用，但不是强制性的。
+- **Public Claims（公有声明）** ：JWT 签发方可以自定义的声明，但是为了避免冲突，应该在 [IANA JSON Web Token Registry](https://www.iana.org/assignments/jwt/jwt.xhtml) 中定义它们。
+- **Private Claims（私有声明）** ：JWT 签发方因为项目需要而自定义的声明，更符合实际项目场景使用。
+
+下面是一些常见的注册声明：
+
+- `iss`（issuer）：JWT 签发方。
+- `iat`（issued at time）：JWT 签发时间。
+- `sub`（subject）：JWT 主题。
+- `aud`（audience）：JWT 接收方。
+- `exp`（expiration time）：JWT 的过期时间。
+- `nbf`（not before time）：JWT 生效时间，早于该定义的时间的JWT不能被接受处理。
+- `jti`（JWT ID）：JWT 唯一标识。
+
+示例：
+
+```json
+{
+  "uid": "ff1212f5-d8d1-4496-bf41-d2dda73de19a",
+  "sub": "1234567890",
+  "name": "John Doe",
+  "exp": 15323232,
+  "iat": 1516239022
+}
+```
+
+Payload 部分默认是不加密的，**一定不要将隐私信息存放在 Payload 当中！！！**
+
+JSON 形式的 Payload 被转换成 Base64 编码，成为 JWT 的第二部分。
+
+### Signature
+
+Signature 部分是对前两部分的签名，作用是防止 Token（主要是 payload） 被篡改。
+
+这个签名的生成需要用到：
+
+- Header + Payload。
+- 存放在服务端的密钥(一定不要泄露出去)。
+- 签名算法。
+
+签名的计算公式如下：
+
+```
+HMACSHA256(
+  base64UrlEncode(header) + "." +
+  base64UrlEncode(payload),
+  secret)
+```
+
+算出签名以后，把 Header、Payload、Signature 三个部分拼成一个字符串，每个部分之间用"点"（`.`）分隔，成为 JWT 的第三部分。
 
 ## 如何基于 Token 进行身份验证？
 
-在基于 Token 进行身份验证的的应用程序中，服务器通过`Payload`、`Header`和一个密钥(`secret`)创建令牌（`Token`）并将 `Token` 发送给客户端，客户端将 `Token` 保存在 Cookie 或者 localStorage 里面，以后客户端发出的所有请求都会携带这个令牌。你可以把它放在 Cookie 里面自动发送，但是这样不能跨域，所以更好的做法是放在 HTTP Header 的 Authorization 字段中：`Authorization: Bearer Token`。
+在基于 Token 进行身份验证的的应用程序中，服务器通过`Payload`、`Header`和 `Secret`(密钥)创建`Token`（令牌）并将 `Token` 发送给客户端。客户端接收到 `Token` 之后，会将其保存在 Cookie 或者 localStorage 里面，以后客户端发出的所有请求都会携带这个令牌。
 
 ![jwt](./images/basis-of-authority-certification/jwt.png)
 
-1. 用户向服务器发送用户名和密码用于登陆系统。
-2. 身份验证服务响应并返回了签名的 JWT，上面包含了用户是谁的内容。
-3. 用户以后每次向后端发请求都在 `Header` 中带上 JWT。
-4. 服务端检查 JWT 并从中获取用户相关信息。
+简化后的步骤如下：
+
+1. 用户向服务器发送用户名、密码以及验证码用于登陆系统。
+2. 如果用户用户名、密码以及验证码校验正确的话，服务端会返回已经签名的 `Token`。
+3. 用户以后每次向后端发请求都在 `Header` 中带上这个 `Token`。
+4. 服务端检查 `Token` 并从中获取用户相关信息。
+
+两点建议：
+
+1. 建议将 `Token` 存放在 localStorage 中，放在 Cookie 中会有 CSRF 风险。
+2. 请求服务端并携带 Token 的常见做法是将 `Token` 放在 HTTP Header 的 `Authorization` 字段中（`Authorization: Bearer Token`）。
+
+## JWT 是如何防止 Token 被篡改的？
+
+有了签名之后，即使 Token 被泄露或者解惑，黑客也没办法同时篡改 Signature 、Header 、Payload。
+
+这是为什么呢？因为服务端拿到 Token 之后，会解析出其中包含的 Header、Payload 以及 Signature 。服务端会根据 Header、Payload、密钥再次生成一个 Signature。拿新生成的 Signature 和 Token 中的 Signature 作对比，如果一样就说明 Header 和 Payload 没有被修改。
+
+不过，如果服务端的秘钥也被泄露的话，黑客就可以同时篡改 Signature 、Header 、Payload 了。黑客直接修改了 Header 和 Payload 之后，再重新生成一个 Signature 就可以了。
+
+**密钥一定保管好，一定不要泄露出去。JWT 安全的核心在于签名，签名安全的核心在密钥。**
+
+## 如何加强 JWT 的安全性？
+
+1. 使用安全系数高的加密算法。
+2. 使用成熟的开源库，没必要造轮子。
+3.  Token 存放在  localStorage 中而不是 Cookie 中，避免CSRF 风险。
+4. 一定不要将隐私信息存放在 Payload 当中。
+5. 密钥一定保管好，一定不要泄露出去。JWT 安全的核心在于签名，签名安全的核心在密钥。
+6. Payload 要加入 `exp` （JWT 的过期时间），永久有效的 JWT 不合理。并且，JWT 的过期时间不易过长。
+7. ......
 
 ## 什么是 SSO?
 
@@ -250,7 +374,7 @@ OAuth 2.0 比较常用的场景就是第三方登录，当你的网站接入了�
 
 微信支付账户相关参数：
 
-![](./images/basis-of-authority-certification/微信支付-fnglfdlgdfj.png)
+![](./images/basis-of-authority-certification/微信支付-fnglfdlgdfj.jpeg)
 
 下图是 [Slack OAuth 2.0 第三方登录](https://api.slack.com/legacy/oauth)的示意图：
 
@@ -262,3 +386,8 @@ OAuth 2.0 比较常用的场景就是第三方登录，当你的网站接入了�
 - [10 分钟理解什么是 OAuth 2.0 协议](https://deepzz.com/post/what-is-oauth2-protocol.html)
 - [OAuth 2.0 的四种方式](http://www.ruanyifeng.com/blog/2019/04/oauth-grant-types.html)
 - [GitHub OAuth 第三方登录示例教程](http://www.ruanyifeng.com/blog/2019/04/github-oauth.html)
+
+## 参考
+
+- Introduction to JSON Web Tokens：https://jwt.io/introduction
+- JSON Web Token Claims：https://auth0.com/docs/secure/tokens/json-web-tokens/json-web-token-claims
