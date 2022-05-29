@@ -15,7 +15,7 @@ Token 自身包含了身份验证所需要的所有信息，因此，我们的�
 
 并且， 使用 Token 认证可以有效避免 CSRF 攻击，因为 Token 一般是存在在 localStorage 中，使用 JWT 进行身份验证的过程中是不会涉及到 Cookie 的。
 
-我在 [JWT 优缺点分析](./advantages&disadvantages-of-jwt)这篇文章中有详细介绍到使用 JWT 做身份认证的优势和劣势。
+我在 [JWT 优缺点分析](./advantages&disadvantages-of-jwt.md)这篇文章中有详细介绍到使用 JWT 做身份认证的优势和劣势。
 
 下面是 [RFC 7519](https://tools.ietf.org/html/rfc7519) 对 JWT 做的较为正式的定义。
 
