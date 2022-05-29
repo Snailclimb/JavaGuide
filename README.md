@@ -242,13 +242,10 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 #### 认证授权
 
-**[《认证授权基础》](docs/system-design/security/basis-of-authority-certification.md)** 这篇文章中我会介绍认证授权常见概念： **Authentication**, **Authorization** 以及 **Cookie**、**Session**、Token、**OAuth 2**、**SSO** 。如果你不清楚这些概念的话，建议好好阅读一下这篇文章。
-
-* **JWT** ：JWT（JSON Web Token）是一种身份认证的方式，JWT 本质上就一段签名的 JSON 格式的数据。由于它是带有签名的，因此接收者便可以验证它的真实性。相关阅读：
-  + [JWT 优缺点分析以及常见问题解决方案](docs/system-design/security/advantages&disadvantages-of-jwt.md)
-  + [适合初学者入门 Spring Security With JWT 的 Demo](https://github.com/Snailclimb/spring-security-jwt-guide)
-
-* **SSO(单点登录)** ：**SSO(Single Sign On)** 即单点登录说的是用户登陆多个子系统的其中一个就有权访问与其相关的其他系统。举个例子我们在登陆了京东金融之后，我们同时也成功登陆京东的京东超市、京东家电等子系统。相关阅读：[**SSO 单点登录看这篇就够了！**](docs/system-design/security/sso-intro.md)
+- [认证授权基础](docs/system-design/security/basis-of-authority-certification.md)
+- [JWT 基本概念详解](docs/system-design/security/jwt-intro.md)
+- [JWT 优缺点分析以及常见问题解决方案](docs/system-design/security/advantages&disadvantages-of-jwt.md)
+- [SSO 单点登录详解](docs/system-design/security/sso-intro.md)
 
 #### 数据脱敏
 
