@@ -386,6 +386,7 @@ export const sidebarConfig = defineSidebarConfig({
           collapsable: true,
           children: [
             "basis-of-authority-certification",
+            "jwt-intro",
             "advantages&disadvantages-of-jwt",
             "sso-intro",
             "sentive-words-filter",
