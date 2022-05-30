@@ -131,7 +131,7 @@ public String readAllCookies(HttpServletRequest request) {
 
 很多时候我们都是通过 `SessionID` 来实现特定的用户，`SessionID` 一般会选择存放在 Redis 中。举个例子：
 
-1. 用户成功登陆系统，然后返回给客户端具有 `SessionID` 的 `Cookie`
+1. 用户成功登陆系统，然后返回给客户端具有 `SessionID` 的 `Cookie` 。
 2. 当用户向后端发起请求的时候会把 `SessionID` 带上，这样后端就知道你的身份状态了。
 
 关于这种认证方式更详细的过程如下：
@@ -146,8 +146,8 @@ public String readAllCookies(HttpServletRequest request) {
 
 使用 `Session` 的时候需要注意下面几个点：
 
-1. 依赖 `Session` 的关键业务一定要确保客户端开启了 `Cookie`。
-2. 注意 `Session` 的过期时间。
+- 依赖 `Session` 的关键业务一定要确保客户端开启了 `Cookie`。
+- 注意 `Session` 的过期时间。
 
 另外，Spring Session 提供了一种跨多个应用程序或实例管理用户会话信息的机制。如果想详细了解可以查看下面几篇很不错的文章：
 

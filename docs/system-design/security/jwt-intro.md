@@ -121,7 +121,7 @@ HMACSHA256(
 
 算出签名以后，把 Header、Payload、Signature 三个部分拼成一个字符串，每个部分之间用"点"（`.`）分隔，成为 JWT 的第三部分。
 
-## 如何基于 Token 进行身份验证？
+## 如何基于 JWT 进行身份验证？
 
 在基于 Token 进行身份验证的的应用程序中，服务器通过 Payload、Header 和 `Secret`(密钥)创建`Token`（令牌）并将 `Token` 发送给客户端。客户端接收到 `Token` 之后，会将其保存在 Cookie 或者 localStorage 里面，以后客户端发出的所有请求都会携带这个令牌。
 
@@ -141,7 +141,7 @@ HMACSHA256(
 
 **[spring-security-jwt-guide](https://github.com/Snailclimb/spring-security-jwt-guide)** 就是一个基于 JWT 来做身份认证的简单案例，感兴趣的可以看看。
 
-## JWT 是如何防止 Token 被篡改的？
+## JWT 如何防止 Token 被篡改？
 
 有了签名之后，即使 Token 被泄露或者解惑，黑客也没办法同时篡改 Signature 、Header 、Payload。
 
