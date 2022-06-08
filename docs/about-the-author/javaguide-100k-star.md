@@ -1,5 +1,5 @@
 ---
-title: 1049天,100K Star！简单复盘
+title: JavaGuide 开源项目 100K Star 了！
 category: 走近作者
 tag:
   - 个人经历

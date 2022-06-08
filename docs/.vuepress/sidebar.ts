@@ -28,6 +28,7 @@ export const sidebarConfig = defineSidebarConfig({
       collapsable: false,
       children: [
         "internet-addiction-teenager",
+        "my-college-life",
         "javaguide-100k-star",
         "feelings-after-one-month-of-induction-training",
         "feelings-of-half-a-year-from-graduation-to-entry",
