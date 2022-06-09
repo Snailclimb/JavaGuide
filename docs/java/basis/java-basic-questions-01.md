@@ -113,7 +113,7 @@ JRE 是 Java 运行时环境。它是运行已编译 Java 程序所需的所有�
 >
 > 基于以上这些原因，OpenJDK 还是有存在的必要的！
 
-   ![oracle-jdk-release-cadence.jpg](./images/oracle-jdk-release-cadence.jpg)
+   ![oracle jdk release cadence](./images/oracle-jdk-release-cadence.jpg)
 
 🌈 拓展一下：
 
