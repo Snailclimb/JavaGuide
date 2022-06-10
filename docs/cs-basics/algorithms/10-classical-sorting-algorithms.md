@@ -77,7 +77,7 @@ tag:
  * @param arr
  * @return arr
  */
-public static int[] BubbleSort(int[] arr) {
+public static int[] bubbleSort(int[] arr) {
     for (int i = 1; i < arr.length; i++) {
         // Set a flag, if true, that means the loop has not been swapped,
         // that is, the sequence has been ordered, the sorting has been completed.
@@ -130,7 +130,7 @@ public static int[] BubbleSort(int[] arr) {
  * @param arr
  * @return arr
  */
-public static int[] SelectionSort(int[] arr) {
+public static int[] selectionSort(int[] arr) {
     for (int i = 0; i < arr.length - 1; i++) {
         int minIndex = i;
         for (int j = i + 1; j < arr.length; j++) {
@@ -184,7 +184,7 @@ public static int[] SelectionSort(int[] arr) {
  * @param arr
  * @return arr
  */
-public static int[] InsertionSort(int[] arr) {
+public static int[] insertionSort(int[] arr) {
     for (int i = 1; i < arr.length; i++) {
         int preIndex = i - 1;
         int current = arr[i];
@@ -234,7 +234,7 @@ public static int[] InsertionSort(int[] arr) {
  * @param arr
  * @return arr
  */
-public static int[] ShellSort(int[] arr) {
+public static int[] shellSort(int[] arr) {
     int n = arr.length;
     int gap = n / 2;
     while (gap > 0) {
@@ -291,14 +291,14 @@ public static int[] ShellSort(int[] arr) {
  * @param arr
  * @return arr
  */
-public static int[] MergeSort(int[] arr) {
+public static int[] mergeSort(int[] arr) {
     if (arr.length <= 1) {
         return arr;
     }
     int middle = arr.length / 2;
     int[] arr_1 = Arrays.copyOfRange(arr, 0, middle);
     int[] arr_2 = Arrays.copyOfRange(arr, middle, arr.length);
-    return Merge(MergeSort(arr_1), MergeSort(arr_2));
+    return merge(mergeSort(arr_1), mergeSort(arr_2));
 }
 
 /**
@@ -308,7 +308,7 @@ public static int[] MergeSort(int[] arr) {
  * @param arr_2
  * @return sorted_arr
  */
-public static int[] Merge(int[] arr_1, int[] arr_2) {
+public static int[] merge(int[] arr_1, int[] arr_2) {
     int[] sorted_arr = new int[arr_1.length + arr_2.length];
     int idx = 0, idx_1 = 0, idx_2 = 0;
     while (idx_1 < arr_1.length && idx_2 < arr_2.length) {
@@ -364,58 +364,32 @@ public static int[] Merge(int[] arr_1, int[] arr_2) {
 
 ### 代码实现
 
+> 来源：[使用 Java 实现快速排序（详解）](https://segmentfault.com/a/1190000040022056)
+
 ```java
-/**
- * Swap the two elements of an array
- * @param array
- * @param i
- * @param j
- */
-private static void swap(int[] arr, int i, int j) {
-    int tmp = arr[i];
-    arr[i] = arr[j];
-    arr[j] = tmp;
-}
-
-/**
- * Partition function
- * @param arr
- * @param left
- * @param right
- * @return small_idx
- */
-private static int Partition(int[] arr, int left, int right) {
-    if (left == right) {
-        return left;
-    }
-    // random pivot
-    int pivot = (int) (left + Math.random() * (right - left + 1));
-    swap(arr, pivot, right);
-    int small_idx = left;
-    for (int i = small_idx; i < right; i++) {
-        if (arr[i] < arr[right]) {
-            swap(arr, i, small_idx);
-            small_idx++;
+public static int partition(int[] array, int low, int high) {
+    int pivot = array[high];
+    int pointer = low;
+    for (int i = low; i < high; i++) {
+        if (array[i] <= pivot) {
+            int temp = array[i];
+            array[i] = array[pointer];
+            array[pointer] = temp;
+            pointer++;
         }
+        System.out.println(Arrays.toString(array));
     }
-    swap(arr, small_idx, right);
-    return small_idx;
+    int temp = array[pointer];
+    array[pointer] = array[high];
+    array[high] = temp;
+    return pointer;
 }
-
-/**
- * Quick sort function
- * @param arr
- * @param left
- * @param right
- * @return arr
- */
-public static int[] QuickSort(int[] arr, int left, int right) {
-    if (left < right) {
-        int pivotIndex = Partition(arr, left, right);
-        sort(arr, left, pivotIndex - 1);
-        sort(arr, pivotIndex + 1, right);
+public static void quickSort(int[] array, int low, int high) {
+    if (low < high) {
+        int position = partition(array, low, high);
+        quickSort(array, low, position - 1);
+        quickSort(array, position + 1, high);
     }
-    return arr;
 }
 ```
 
@@ -493,7 +467,7 @@ private static void heapify(int[] arr, int i) {
  * @param arr
  * @return
  */
-public static int[] HeapSort(int[] arr) {
+public static int[] heapSort(int[] arr) {
     // index at the end of the heap
     heapLen = arr.length;
     // build MaxHeap
@@ -561,7 +535,7 @@ private static int[] getMinAndMax(int[] arr) {
  * @param arr
  * @return
  */
-public static int[] CountingSort(int[] arr) {
+public static int[] countingSort(int[] arr) {
     if (arr.length < 2) {
         return arr;
     }
@@ -640,7 +614,7 @@ private static int[] getMinAndMax(List<Integer> arr) {
  * @param arr
  * @return
  */
-public static List<Integer> BucketSort(List<Integer> arr, int bucket_size) {
+public static List<Integer> bucketSort(List<Integer> arr, int bucket_size) {
     if (arr.size() < 2 || bucket_size == 0) {
         return arr;
     }
@@ -704,7 +678,7 @@ public static List<Integer> BucketSort(List<Integer> arr, int bucket_size) {
  * @param arr
  * @return
  */
-public static int[] RadixSort(int[] arr) {
+public static int[] radixSort(int[] arr) {
     if (arr.length < 2) {
         return arr;
     }
@@ -755,8 +729,6 @@ public static int[] RadixSort(int[] arr) {
 
 ## 参考文章
 
-https://www.cnblogs.com/guoyaohua/p/8600214.html
-
-https://en.wikipedia.org/wiki/Sorting_algorithm
-
-https://sort.hust.cc/
+- https://www.cnblogs.com/guoyaohua/p/8600214.html
+- https://en.wikipedia.org/wiki/Sorting_algorithm
+- https://sort.hust.cc/
