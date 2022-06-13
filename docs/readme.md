@@ -16,17 +16,18 @@ footer: |-
   <a href="https://beian.miit.gov.cn/" target="_blank">鄂ICP备2020015769号-1</a> | 主题: <a href="https://vuepress-theme-hope.github.io/v2/" target="_blank">VuePress Theme Hope</a>
 ---
 
+## 网站概览 
+
+- [Java 面试指南](./home.md) ：一份涵盖大部分 Java 程序员所需要掌握的核心知识。准备 Java 面试，首选 JavaGuide！
+- [Java开源项目精选](./open-source-project/readme.md) ：收集整理了 Gitee/Github 上非常棒的 Java 开源项目集合。Java 开发必备！
+- [Java技术文章精选](/high-quality-technical-articles/) : 精选一些和 Java 相关的优质技术文章，每一篇都值得你阅读 3 遍以上！
+- [Java书单精选](/books/) : Java 后端开发值得一读的一些书籍。
+- [走进作者](/about-the-author/) : 个人经历、闲聊杂谈。
+
 ## 必看专栏
 
 - **[《Java 面试指北》](./zhuanlan/java-mian-shi-zhi-bei.md)** : 与 JavaGuide 开源版的内容互补！
 - **[《手写 RPC 框架》](./zhuanlan/handwritten-rpc-framework.md)** : 从零开始基于 Netty+Kyro+Zookeeper 实现一个简易的 RPC 框架。
-
-## 推荐阅读 
-
-- [Java学习路线](https://zhuanlan.zhihu.com/p/379041500) : 一份涵盖 Java 后端开发必备技能的学习路线！全面且清晰！
-- [Java开源项目精选](./open-source-project/readme.md) ：收集整理了 Gitee/Github 上非常棒的 Java 开源项目集合。Java 开发必备！
-- [Java技术文章精选](/high-quality-technical-articles/) : 精选一些和 Java 相关的优质技术文章，每一篇都值得你阅读 3 遍以上！
-- [Java书单精选](https://gitee.com/SnailClimb/awesome-cs) : Java 后端开发值得一读的一些书籍。
 
 ## PDF
 

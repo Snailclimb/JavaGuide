@@ -1,6 +1,7 @@
 ---
 title: 搜索引擎
 category: 计算机书籍
+icon: search
 ---
 
 ## Lucene

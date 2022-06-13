@@ -1,6 +1,7 @@
 ---
 title: 系统设计
 category: 开源项目
+icon: "xitongsheji"
 ---
 
 ## 基础框架

@@ -1,5 +1,5 @@
 ---
-title:  Spring Boot 自动装配原理
+title:  SpringBoot 自动装配原理详解
 category: 框架
 tag:
   - SpringBoot

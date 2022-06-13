@@ -1,6 +1,7 @@
 ---
 title: 软件质量
 category: 计算机书籍
+icon: highavailable
 head:
   - - meta
     - name: keywords

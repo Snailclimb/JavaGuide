@@ -1,5 +1,5 @@
 ---
-title:  Spring 设计模式总结
+title:  Spring 中的设计模式详解
 category: 框架
 tag:
   - Spring

@@ -1,6 +1,7 @@
 ---
 title: 机器学习
 category: 开源项目
+icon: a-MachineLearning
 ---
 
 - **[Deeplearning4j](https://github.com/eclipse/deeplearning4j)** ： Deeplearning4j 是第一个为 Java 和 Scala 编写的商业级，开源，分布式深度学习库。

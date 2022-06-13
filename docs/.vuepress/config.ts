@@ -48,7 +48,7 @@ module.exports = defineHopeConfig({
       "link",
       {
         rel: "stylesheet",
-        href: "//at.alicdn.com/t/font_2922463_99aa80ii7cf.css",
+        href: "/iconfont/iconfont.css",
       },
     ],
   ],

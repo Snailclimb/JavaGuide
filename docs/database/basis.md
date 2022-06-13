@@ -1,5 +1,5 @@
 ---
-title: 数据库基础知识
+title: 数据库基础知识总结
 category: 数据库
 tag:
   - 数据库基础

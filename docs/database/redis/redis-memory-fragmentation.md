@@ -1,5 +1,5 @@
 ---
-title: Redis 内存碎片
+title: Redis 内存碎片详解
 category: 数据库
 tag:
   - Redis

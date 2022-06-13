@@ -1,6 +1,7 @@
 ---
 title: Java
 category: 计算机书籍
+icon: java
 ---
 
 ## Java 基础

@@ -1,6 +1,7 @@
 ---
-title: 教程
+title: 技术教程
 category: 开源项目
+icon: "book"
 ---
 
 ## Java

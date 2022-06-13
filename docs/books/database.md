@@ -1,6 +1,7 @@
 ---
 title: 数据库
 category: 计算机书籍
+icon: database
 head:
   - - meta
     - name: keywords

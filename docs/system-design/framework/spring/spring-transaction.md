@@ -1,5 +1,5 @@
 ---
-title:  Spring 事务总结
+title:  Spring 事务详解
 category: 框架
 tag:
   - Spring

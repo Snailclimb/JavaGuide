@@ -43,7 +43,7 @@
 
 ### 基础
 
-**知识点/面试题** : (必看:+1: )：
+**知识点/面试题总结** : (必看:+1: )：
 
 1. [Java 基础常见知识点&面试题总结(上)](docs/java/basis/java-basic-questions-01.md)
 2. [Java 基础常见知识点&面试题总结(中)](docs/java/basis/java-basic-questions-02.md)
@@ -53,6 +53,7 @@
 
 * [为什么 Java 中只有值传递？](docs/java/basis/why-there-only-value-passing-in-java.md)
 * [Java 序列化详解](docs/java/basis/serialization.md)
+* [泛型&序列化详解](docs/java/basis/generics-and-wildcards.md)
 * [反射机制详解](docs/java/basis/reflection.md)
 * [Java 代理模式详解](docs/java/basis/proxy.md)
 * [IO 模型详解](docs/java/basis/io.md)
@@ -60,7 +61,7 @@
 
 ### 集合
 
-**知识点/面试题** ：
+**知识点/面试题总结** ：
 
 1. [Java 集合常见知识点&面试题总结(上)](docs/java/collection/java-collection-questions-01.md) (必看 :+1:)
 2. [Java 集合常见知识点&面试题总结(下)](docs/java/collection/java-collection-questions-02.md) (必看 :+1:)
@@ -74,7 +75,7 @@
 
 ### 并发
 
-**知识点/面试题** : (必看 :+1:)
+**知识点/面试题总结** : (必看 :+1:)
 
 1. [Java 并发常见知识点&面试题总结（基础篇）](docs/java/concurrent/java-concurrent-questions-01.md)
 2. [Java 并发常见知识点&面试题总结（进阶篇）](docs/java/concurrent/java-concurrent-questions-02.md)
@@ -111,8 +112,6 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 6. [Java 14~15 新特性概览](./docs/java/new-features/java14-15.md)
 
 ## 计算机基础
-
-👉 **[图解计算机基础 PDF 下载](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=100021725&idx=1&sn=2db9664ca25363139a81691043e9fd8f&chksm=4ea19a1679d61300d8990f7e43bfc7f476577a81b712cf0f9c6f6552a8b219bc081efddb5c54#rd)** 。
 
 ### 操作系统
 
@@ -166,7 +165,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 ### MySQL
 
-**总结：**
+**知识点/面试题总结：**
 
 - **[MySQL知识点总结](docs/database/mysql/mysql-questions-01.md)** (必看 :+1:)
 - [一千行 MySQL 学习笔记](docs/database/mysql/a-thousand-lines-of-mysql-study-notes.md)
@@ -185,8 +184,9 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 ### Redis
 
 - [Redis 常见问题总结](docs/database/redis/redis-questions-01.md)
-- [3种常用的缓存读写策略](docs/database/redis/3-commonly-used-cache-read-and-write-strategies.md)
-- [Redis 内存碎片](./docs/database/redis/redis-memory-fragmentation.md)
+- [3种常用的缓存读写策略详解](docs/database/redis/3-commonly-used-cache-read-and-write-strategies.md)
+- [Redis 内存碎片详解](./docs/database/redis/redis-memory-fragmentation.md)
+- [Redis 集群详解](./docs/database/redis/redis-cluster.md)
 
 ## 搜索引擎
 
@@ -218,17 +218,18 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 #### Spring/SpringBoot (必看 :+1:)
 
-**知识点/面试题** :
+**知识点/面试题总结** :
 
-1. **[Spring 常见知识点&面试题总结](docs/system-design/framework/spring/spring-knowledge-and-questions-summary.md)**
-2. **[SpringBoot 入门指南](https://github.com/Snailclimb/springboot-guide)**
+- [Spring 常见知识点&面试题总结](docs/system-design/framework/spring/spring-knowledge-and-questions-summary.md)
+- [SpringBoot 常见知识点&面试题总结](docs/system-design/framework/spring/springboot-knowledge-and-questions-summary.md)
+- [Spring/Spring Boot 常用注解总结](./docs/system-design/framework/spring/spring-common-annotations.md)
+- [SpringBoot 入门指南](https://github.com/Snailclimb/springboot-guide)
 
 **重要知识点详解** ：
 
-1. **[Spring/Spring Boot 常用注解总结！安排！](./docs/system-design/framework/spring/spring-common-annotations.md)** 
-2. **[Spring 事务总结](docs/system-design/framework/spring/spring-transaction.md)** 
-3. [Spring 中都用到了那些设计模式?](docs/system-design/framework/spring/spring-design-patterns-summary.md)
-4. **[SpringBoot 自动装配原理](docs/system-design/framework/spring/spring-boot-auto-assembly-principles.md)**
+- [Spring 事务详解](docs/system-design/framework/spring/spring-transaction.md)
+- [Spring 中的设计模式详解](docs/system-design/framework/spring/spring-design-patterns-summary.md)
+- [SpringBoot 自动装配原理详解](docs/system-design/framework/spring/spring-boot-auto-assembly-principles.md)
 
 #### MyBatis
 
