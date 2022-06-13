@@ -8,7 +8,7 @@ export const navbarConfig = defineNavbarConfig([
   { text: "技术文章", icon: "article", link: "/high-quality-technical-articles/" },
   {
     text: "网站相关",
-    icon: "info",
+    icon: "about",
     children: [
       { text: "走近作者", icon: "zuozhe", link: "/about-the-author/" },
       {

@@ -54,7 +54,7 @@ export const sidebarConfig = defineSidebarConfig({
     },
     {
       text: "个人经历",
-      icon: "zuozhe",
+      icon: "experience",
       prefix: "personal-experience/",
       collapsable: false,
       children: [
@@ -63,8 +63,18 @@ export const sidebarConfig = defineSidebarConfig({
       ],
     },
     {
+      text: "程序员",
+      icon: "code",
+      prefix: "programmer/",
+      collapsable: false,
+      children: [
+        "how-do-programmers-publish-a-technical-book",
+        "efficient-book-publishing-and-practice-guide",
+      ],
+    },
+    {
       text: "面试",
-      icon: "mianshi",
+      icon: "interview",
       prefix: "interview/",
       collapsable: false,
       children: [
@@ -78,14 +88,17 @@ export const sidebarConfig = defineSidebarConfig({
       icon: "work",
       prefix: "work/",
       collapsable: false,
-      children: ["get-into-work-mode-quickly-when-you-join-a-company"],
+      children: [
+        "get-into-work-mode-quickly-when-you-join-a-company",
+        "employee-performance",
+      ],
     },
   ],
   // 必须放在最后面
   "/": [
     {
       text: "面试准备",
-      icon: "mianshi",
+      icon: "interview",
       prefix: "interview-preparation/",
       collapsable: true,
       children: [
