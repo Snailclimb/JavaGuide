@@ -67,11 +67,3 @@ category: 知识星球
 你可以添加我的微信领取星球专属优惠券，限时 **100 元/年** 加入。
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/IMG_3007.jpg)
-
-如果你经济确实有困难的话，加我的时候说明一下情况就好，莫欺少年穷，可以理解，一定不要去用什么花呗类借贷产品。
-
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220304125325364.png)
-
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220304125403995.png)
-
-不过，还是希望大家也不要利用我的好心，感恩！信任！理解！
