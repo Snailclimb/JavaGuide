@@ -12,6 +12,11 @@ export const navbarConfig = defineNavbarConfig([
     children: [
       { text: "走近作者", icon: "zuozhe", link: "/about-the-author/" },
       {
+        text: "网站历史",
+        icon: "java",
+        link: "/javaguide/history.md",
+      },
+      {
         text: "旧版入口",
         icon: "java",
         link: "https://snailclimb.gitee.io/javaguide/#/",

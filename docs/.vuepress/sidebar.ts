@@ -2,7 +2,7 @@ import { defineSidebarConfig } from "vuepress-theme-hope";
 
 export const sidebarConfig = defineSidebarConfig({
   // 应该把更精确的路径放置在前边
-  "/javaguide/": ["intro", "contribution-guideline", "faq", "todo"],
+  "/javaguide/": ["intro", "history", "contribution-guideline", "faq", "todo"],
   "/zhuanlan/": ["java-mian-shi-zhi-bei", "handwritten-rpc-framework"],
   "/open-source-project/": [
     "tutorial",

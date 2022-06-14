@@ -1,6 +1,7 @@
 ---
 title: 害，毕业三年了！
 category: 走近作者
+star: 1
 tag:
   - 个人经历
 ---

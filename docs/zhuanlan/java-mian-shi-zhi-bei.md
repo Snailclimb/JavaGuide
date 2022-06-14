@@ -1,6 +1,7 @@
 ---
 title: 《Java 面试指北》
 category: 知识星球
+star: 5
 ---
 
 你好，我是 Guide。
