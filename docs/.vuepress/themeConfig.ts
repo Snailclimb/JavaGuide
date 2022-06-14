@@ -7,7 +7,7 @@ export default defineThemeConfig({
   hostname: "https://javaguide.cn/",
   author: {
     name: "Guide",
-    url: "https://javaguide.cn/",
+    url: "https://javaguide.cn/article/",
   },
   repo: "https://github.com/Snailclimb/JavaGuide",
   docsDir: "docs",
