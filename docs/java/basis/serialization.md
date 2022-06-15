@@ -195,4 +195,4 @@ Kryo 是专门针对 Java 语言序列化方式并且性能非常好，如果你
 ## 其他推荐阅读
 
 - 美团技术团队-序列化和反序列化：[https://tech.meituan.com/2015/02/26/serialization-vs-deserialization.html](https://tech.meituan.com/2015/02/26/serialization-vs-deserialization.html)
-- 在 Dubbo 中使用高效的 Java 序列化（Kryo 和 FST）: [https://dubbo.apache.org/zh-cn/docs/user/serialization.html](https://dubbo.apache.org/zh-cn/docs/user/serialization.html)
+- 在 Dubbo 中使用高效的 Java 序列化（Kryo 和 FST）: [https://dubbo.apache.org/zh/docs/v3.0/references/serializations/serialization/](https://dubbo.apache.org/zh/docs/v3.0/references/serializations/serialization/)
