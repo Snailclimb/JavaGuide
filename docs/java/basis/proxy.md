@@ -272,16 +272,15 @@ after method send
 public interface MethodInterceptor
 extends Callback{
     // 拦截被代理类中的方法
-    public Object intercept(Object obj, java.lang.reflect.Method method, Object[] args,
-                               MethodProxy proxy) throws Throwable;
+    public Object intercept(Object obj, java.lang.reflect.Method method, Object[] args,MethodProxy proxy) throws Throwable;
 }
 
 ```
 
-1. **obj** :被代理的对象（需要增强的对象）
-2. **method** :被拦截的方法（需要增强的方法）
-3. **args** :方法入参
-4. **proxy** :用于调用原始方法
+1. **obj** : 动态生成的代理对象
+2. **method** : 被拦截的方法（需要增强的方法）
+3. **args** : 方法入参
+4. **proxy** : 用于调用原始方法
 
 你可以通过 `Enhancer`类来动态获取被代理类，当代理类调用方法的时候，实际调用的是 `MethodInterceptor` 中的 `intercept` 方法。
 
