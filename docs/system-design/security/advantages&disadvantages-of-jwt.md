@@ -165,7 +165,7 @@ JWT 其中一个很重要的优势是无状态，但实际上，我们想要在�
 
 JWT 也不是银弹，也有很多缺陷，具体是选择 JWT 还是 Session 方案还是要看项目的具体需求。万万不可尬吹 JWT，而看不起其他身份认证方案。
 
-另外，不用 JWT 直接使用普通的 Token(随机生成，不包含具体的信息) 结合 Redis 来做身份认证也是可以的。我在 [「优质开源项目推荐」](https://javaguide.cn/open-source-project/)第 8 期推荐过的 [Sa-Token](https://github.com/dromara/sa-JWT) 这个项目是一个比较完善的 基于 JWT 的身份认证解决方案，支持自动续签、踢人下线、账号封禁、同端互斥登录等功能，感兴趣的朋友可以看看。
+另外，不用 JWT 直接使用普通的 Token(随机生成，不包含具体的信息) 结合 Redis 来做身份认证也是可以的。我在 [「优质开源项目推荐」](https://javaguide.cn/open-source-project/)的第 8 期推荐过的 [Sa-Token](https://github.com/dromara/sa-JWT) 这个项目是一个比较完善的 基于 JWT 的身份认证解决方案，支持自动续签、踢人下线、账号封禁、同端互斥登录等功能，感兴趣的朋友可以看看。
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/system-design/jwt/image-20220609170714725.png)
 

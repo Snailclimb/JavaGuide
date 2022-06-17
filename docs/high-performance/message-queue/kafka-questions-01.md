@@ -61,7 +61,7 @@ Kafka 主要有两大应用场景：
 
 Kafka 将生产者发布的消息发送到 **Topic（主题）** 中，需要这些消息的消费者可以订阅这些 **Topic（主题）**，如下图所示：
 
-![Kafka Topic Partition](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/KafkaTopicPartitioning.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/high-performance/message-queue20210507200944439.png)
 
 上面这张图也为我们引出了，Kafka 比较重要的几个概念：
 
