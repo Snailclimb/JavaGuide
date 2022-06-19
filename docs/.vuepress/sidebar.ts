@@ -81,6 +81,7 @@ export const sidebarConfig = defineSidebarConfig({
         "the-experience-and-thinking-of-an-interview-experienced-by-an-older-programmer",
         "technical-preliminary-preparation",
         "screen-candidates-for-packaging",
+        "summary-of-spring-recruitment",
       ],
     },
     {
