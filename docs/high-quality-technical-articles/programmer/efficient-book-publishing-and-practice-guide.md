@@ -1,6 +1,7 @@
 ---
 title: 程序员高效出书避坑和实践指南
 category: 技术文章精选集
+author: hsm_computer
 tag:
   - 程序员
 ---

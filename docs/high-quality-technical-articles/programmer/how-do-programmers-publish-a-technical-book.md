@@ -1,6 +1,7 @@
 ---
 title: 程序员怎样出版一本技术书 
 category: 技术文章精选集
+author: hsm_computer
 tag:
   - 程序员
 ---

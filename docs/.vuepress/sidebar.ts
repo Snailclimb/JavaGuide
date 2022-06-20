@@ -50,7 +50,10 @@ export const sidebarConfig = defineSidebarConfig({
       icon: "et-performance",
       prefix: "advanced-programmer/",
       collapsable: false,
-      children: ["seven-tips-for-becoming-an-advanced-programmer"],
+      children: [
+        "seven-tips-for-becoming-an-advanced-programmer",
+        "20-bad-habits-of-bad-programmers",
+      ],
     },
     {
       text: "个人经历",
@@ -82,6 +85,7 @@ export const sidebarConfig = defineSidebarConfig({
         "technical-preliminary-preparation",
         "screen-candidates-for-packaging",
         "summary-of-spring-recruitment",
+        "how-to-examine-the-technical-ability-of-programmers-in-the-first-test-of-technology",
       ],
     },
     {

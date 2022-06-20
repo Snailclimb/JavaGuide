@@ -1,6 +1,7 @@
 ---
 title: 给想成长为高级别开发同学的七条建议
 category: 技术文章精选集
+author: Kaito
 tag:
   - 练级攻略
 ---

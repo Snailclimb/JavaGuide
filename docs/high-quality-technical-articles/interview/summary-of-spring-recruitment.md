@@ -1,6 +1,7 @@
 ---
 title:  普通人的春招总结（阿里、腾讯offer）
 category: 技术文章精选集
+author: 钟期既遇
 tag:
   - 面试
 ---
@@ -9,7 +10,7 @@ tag:
 >
 > <br/>
 >
-> **原文地址：** https://www.cnblogs.com/lovesqcc/p/15169365.html
+> **原文地址：** https://www.nowcoder.com/discuss/640519
 >
 > <br/>
 >
