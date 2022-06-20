@@ -1,5 +1,5 @@
 
-# Java 技术文章精选集
+# 优质技术文章精选集
 
 在这里我会精选一些和 Java 相关的优质技术文章，每一篇都值得你阅读 3 遍以上！
 
@@ -20,11 +20,13 @@
 
 ## 面试
 
+- [斩获 20+ 大厂 offer 的面试经验分享](./interview/the-experience-of-get-offer-from-over-20-big-companies.md)
 - [一位大龄程序员所经历的面试的历炼和思考](./interview/the-experience-and-thinking-of-an-interview-experienced-by-an-older-programmer.md)
 - [从面试官和候选者的角度谈如何准备技术初试](./interview/technical-preliminary-preparation.md)
 - [包装严重的IT行业，作为面试官，我是如何甄别应聘者的包装程度](./interview/screen-candidates-for-packaging.md)
 - [普通人的春招总结（阿里、腾讯offer）](./interview/summary-of-spring-recruitment.md)
 - [如何在技术初试中考察程序员的技术能力](./interview/how-to-examine-the-technical-ability-of-programmers-in-the-first-test-of-technology.md)
+- [阿里技术面试的一些秘密](./interview/some-secrets-about-alibaba-interview.md)
 
 ## 工作
 
