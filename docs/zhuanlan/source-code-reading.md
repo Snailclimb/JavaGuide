@@ -1,22 +1,22 @@
 ---
-title: 星球专属优质专栏概览
+title: 《Java 必读源码系列》
 category: 知识星球
+star: true
 ---
 
-这部分的内容为我的[知识星球](../about-the-author/zhishixingqiu-two-years.md)专属，目前已经更新了下面这些专栏：
+## 介绍
 
-- **[《Java 面试指北》](./java-mian-shi-zhi-bei.md)** : 与 JavaGuide 开源版的内容互补！
-- **[《手写 RPC 框架》](./java-mian-shi-zhi-bei.md)** : 从零开始基于 Netty+Kyro+Zookeeper 实现一个简易的 RPC 框架。
-- **[《Java 必读源码系列》](./source-code-reading.md)** ：目前已经整理了 Dubbo 2.6.x 、Netty 4.x、SpringBoot 2.1 等框架/中间件的源码
-- ......
+**《Java 必读源码系列》** 是我的[知识星球](../about-the-author/zhishixingqiu-two-years.md)的一个内部小册，目前已经整理了 Dubbo 2.6.x 、Netty 4.x、SpringBoot 2.1 等框架/中间件的源码。
 
-欢迎准备 Java 面试以及学习 Java 的同学加入我的[知识星球](../about-the-author/zhishixingqiu-two-years.md)，干货非常多！收费虽然是白菜价，但星球里的内容比你参加几万的培训班质量还要高。
+结构清晰，内容详细，非常适合想要深入学习框架/中间件源码的同学阅读。
 
-我有自己的原则，不割韭菜，用心做内容，真心希望帮助到你！
+## 内容概览
 
-## 更多专栏
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220621091832348.png)
 
-除了上面介绍的之外，我的[知识星球](../about-the-author/zhishixingqiu-two-years.md)还有  **《Kafka 常见面试题/知识点总结》** 、**《程序员副业赚钱之路》**等多个专栏。
+## 星球其他资源
+
+除了 **《Java 必读源码系列》** 之外，星球还有 **《从零开始写一个 RPC 框架》** 、 **《Java 面试指北》**、 **《Java 必读源码系列》**（目前已经整理了 Dubbo 2.6.x 、Netty 4.x、SpringBoot2.1 的源码） 、**《Kafka 常见面试题/知识点总结》** 等多个专栏。
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220211231206733.png)
 
@@ -45,4 +45,3 @@ category: 知识星球
 **真诚欢迎准备面试的小伙伴加入星球一起交流！真心希望能够帮助到更多小伙伴！**
 
 **加入星球之后记得看置顶主题，你会发现物超所值！**
-

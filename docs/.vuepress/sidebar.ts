@@ -11,7 +11,11 @@ export const sidebarConfig = defineSidebarConfig({
   "/about-the-author/": aboutTheAuthor,
   "/high-quality-technical-articles/": highQualityTechnicalArticles,
   "/javaguide/": ["intro", "history", "contribution-guideline", "faq", "todo"],
-  "/zhuanlan/": ["java-mian-shi-zhi-bei", "handwritten-rpc-framework"],
+  "/zhuanlan/": [
+    "java-mian-shi-zhi-bei",
+    "handwritten-rpc-framework",
+    "source-code-reading",
+  ],
   // 必须放在最后面
   "/": [
     {

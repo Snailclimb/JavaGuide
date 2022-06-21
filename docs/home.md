@@ -18,6 +18,7 @@ title: JavaGuide（Java学习&&面试指南）
 
 - **[《Java 面试指北》](./zhuanlan/java-mian-shi-zhi-bei.md)** : 与 JavaGuide 开源版的内容互补！
 - **[《手写 RPC 框架》](./zhuanlan/handwritten-rpc-framework.md)** : 从零开始基于 Netty+Kyro+Zookeeper 实现一个简易的 RPC 框架。
+- **[《Java 必读源码系列》](./zhuanlan/source-code-reading.md)** ：目前已经整理了 Dubbo 2.6.x 、Netty 4.x、SpringBoot 2.1 等框架/中间件的源码
 
 ## 项目相关
 
