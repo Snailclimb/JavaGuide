@@ -1,5 +1,5 @@
 ---
-title: 超时&重试机制
+title: 超时&重试
 category: 高可用
 ---
 

@@ -406,11 +406,10 @@ export const sidebarConfig = defineSidebarConfig({
       collapsable: true,
       children: [
         "high-availability-system-design",
+        "redundancy",
         "limit-request",
         "fallback&circuit-breaker",
         "timeout-and-retry",
-        "cluster",
-        "disaster-recovery&remote-live",
         "performance-test",
       ],
     },
