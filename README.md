@@ -110,6 +110,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 4. [Java 11 新特性概览](./docs/java/new-features/java11.md)
 5. [Java 12~13 新特性概览](./docs/java/new-features/java12-13.md)
 6. [Java 14~15 新特性概览](./docs/java/new-features/java14-15.md)
+7. [Java 16 新特性概览](./docs/java/new-features/java16.md)
 
 ## 计算机基础
 
