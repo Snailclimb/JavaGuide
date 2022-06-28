@@ -209,7 +209,7 @@ final boolean nonfairTryAcquire(int acquires) {
 ```java
 protected boolean tryAcquire(int)//独占方式。尝试获取资源，成功则返回true，失败则返回false。
 protected boolean tryRelease(int)//独占方式。尝试释放资源，成功则返回true，失败则返回false。
-protected boolean tryAcquireShared(int)//共享方式。尝试获取资源。负数表示失败；0表示成功，但没有剩余可用资源；正数表示成功，且有剩余资源。
+protected int tryAcquireShared(int)//共享方式。尝试获取资源。负数表示失败；0表示成功，但没有剩余可用资源；正数表示成功，且有剩余资源。
 protected boolean tryReleaseShared(int)//共享方式。尝试释放资源，成功则返回true，失败则返回false。
 protected boolean isHeldExclusively()//该线程是否正在独占资源。只有用到condition才需要去实现它。
 ```
