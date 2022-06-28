@@ -26,6 +26,7 @@ export const sidebarConfig = defineSidebarConfig({
       children: [
         "teach-you-how-to-prepare-for-the-interview-hand-in-hand",
         "interview-experience",
+        "self-test-of-common-interview-questions",
       ],
     },
     {

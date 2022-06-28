@@ -60,6 +60,10 @@ star: 5
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220304120018731.png)
 
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220628101743381.png)
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220628101805897.png)
+
 ### 技术面试题自测篇
 
 为了让小伙伴们自测以检查自己的掌握情况，我还推出了 **「技术面试题自测」** 系列。不过，目前只更新了 Java 和数据库的自测，正在持续更新中。

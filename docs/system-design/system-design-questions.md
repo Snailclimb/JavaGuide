@@ -19,6 +19,6 @@ category: Java面试指北
 
 为了帮助更多同学准备 Java 面试以及学习 Java ，我创建了一个纯粹的[知识星球](https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc)。虽然收费只有培训班/训练营的百分之一，但是[知识星球](https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc)里的内容质量更高，提供的服务也更全面。
 
-欢迎准备 Java 面试以及学习 Java 的同学加入我的[知识星球](https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc)，干货非常多！收费虽然是白菜价，但星球里的内容比你参加几万的培训班质量还要高。
+欢迎准备 Java 面试以及学习 Java 的同学加入我的[知识星球](https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc)，干货非常多！收费虽然是白菜价，但星球里的内容或许比你参加上万的培训班质量还要高。
 
 我有自己的原则，不割韭菜，用心做内容，真心希望帮助到你！

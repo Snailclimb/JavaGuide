@@ -14,3 +14,11 @@ category: 知识星球
 并且，[知识星球](../about-the-author/zhishixingqiu-two-years.md)还有专门分享面经和面试题的专题，里面会分享很多优质的面经和面试题。
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220304120018731.png)
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220628101743381.png)
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220628101805897.png)
+
+欢迎准备 Java 面试以及学习 Java 的同学加入我的[知识星球](../about-the-author/zhishixingqiu-two-years.md)，干货非常多！收费虽然是白菜价，但星球里的内容或许比你参加上万的培训班质量还要高。
+
+我有自己的原则，不割韭菜，用心做内容，真心希望帮助到你！
