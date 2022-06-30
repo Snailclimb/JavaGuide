@@ -218,6 +218,33 @@ private volatile int state;
 
 ![](https://p1.meituan.net/travelcube/b8b53a70984668bc68653efe9531573e78636.png)
 
+> 🐛 修正: 图中的一处小错误，(AQS)CAS修改共享资源 State 成功之后应该是获取锁成功(非公平锁)。
+>
+> 对应的源码如下：
+>
+> ```java
+> final boolean nonfairTryAcquire(int acquires) {
+>             final Thread current = Thread.currentThread();//获取当前线程
+>             int c = getState();
+>             if (c == 0) {
+>                 if (compareAndSetState(0, acquires)) {//CAS抢锁
+>                     setExclusiveOwnerThread(current);//设置当前线程为独占线程
+>                     return true;//抢锁成功
+>                 }
+>             }
+>             else if (current == getExclusiveOwnerThread()) {
+>                 int nextc = c + acquires;
+>                 if (nextc < 0) // overflow
+>                     throw new Error("Maximum lock count exceeded");
+>                 setState(nextc);
+>                 return true;
+>             }
+>             return false;
+>         }
+> ```
+>
+> 
+
 为了帮助大家理解 ReentrantLock 和 AQS 之间方法的交互过程，以非公平锁为例，我们将加锁和解锁的交互流程单独拎出来强调一下，以便于对后续内容的理解。
 
 ![](https://p1.meituan.net/travelcube/7aadb272069d871bdee8bf3a218eed8136919.png)
