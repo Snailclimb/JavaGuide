@@ -67,7 +67,7 @@ tag:
 
 `TreeMap` 和`HashMap` 都继承自`AbstractMap` ，但是需要注意的是`TreeMap`它还实现了`NavigableMap`接口和`SortedMap` 接口。
 
-![](./images/TreeMap继承结构.png)
+![](./images/treemap_hierarchy.png)
 
 实现 `NavigableMap` 接口让 `TreeMap` 有了对集合内元素的搜索的能力。
 
@@ -213,13 +213,13 @@ static int hash(int h) {
 
 所谓 **“拉链法”** 就是：将链表和数组相结合。也就是说创建一个链表数组，数组中每一格就是一个链表。若遇到哈希冲突，则将冲突的值加到链表中即可。
 
-![jdk1.8之前的内部结构-HashMap](./images/jdk1.8之前的内部结构-HashMap.png)
+![jdk1.8 之前的内部结构-HashMap](./images/jdk1.7_hashmap.png)
 
 #### JDK1.8 之后
 
 相比于之前的版本， JDK1.8 之后在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为 8）（将链表转换成红黑树前会判断，如果当前数组的长度小于 64，那么会选择先进行数组扩容，而不是转换为红黑树）时，将链表转化为红黑树，以减少搜索时间。
 
-![jdk1.8之后的内部结构-HashMap](./images/jdk1.8之后的内部结构-HashMap.png)
+![jdk1.8之后的内部结构-HashMap](./images/jdk1.8_hashmap.png)
 
 > TreeMap、TreeSet 以及 JDK1.8 之后的 HashMap 底层都用到了红黑树。红黑树就是为了解决二叉查找树的缺陷，因为二叉查找树在某些情况下会退化成一个线性结构。
 
@@ -258,9 +258,7 @@ static int hash(int h) {
 
 **JDK1.7 的 ConcurrentHashMap：**
 
-![JDK1.7的ConcurrentHashMap](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/ConcurrentHashMap分段锁.jpg)
-
-<p style="text-align:right;font-size:13px;color:gray">https://www.cnblogs.com/chengxiao/p/6842045.html></p>
+![Java 7 ConcurrentHashMap 存储结构](./images/java7_concurrenthashmap.png)
 
 **JDK1.8 的 ConcurrentHashMap：**
 
