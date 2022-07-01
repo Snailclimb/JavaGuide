@@ -3,7 +3,7 @@
 <div align="center">
     <p>
         <a href="https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc">
-            <img src="./media/sponsor/xingqiu.png" style="margin: 0 auto; width: 850px;" />
+            <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/xingqiu.png" style="margin: 0 auto; width: 850px;" />
         </a>
     </p>
     <p>
