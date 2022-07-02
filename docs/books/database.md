@@ -8,9 +8,11 @@ head:
       content: 数据库书籍精选
 ---
 
-## 基础
+## 数据库基础
 
-教材的话，强烈推荐 **[《数据库系统概念》](https://book.douban.com/subject/10548379/)** ，这本书涵盖了数据库系统的全套概念，知识体系清晰，是学习数据库系统非常经典的教材！不是参考书！
+**[《数据库系统概念》](https://book.douban.com/subject/10548379/)**
+
+这本书涵盖了数据库系统的全套概念，知识体系清晰，是学习数据库系统非常经典的教材！不是参考书！
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/booksimage-20220409150441742.png)
 
@@ -24,11 +26,11 @@ head:
 
 ![](https://img-blog.csdnimg.cn/20210406154601698.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0MzM3Mjcy,size_16,color_FFFFFF,t_70)
 
-纸上学来终觉浅 绝知此事要躬行！强烈推荐 CS 专业的小伙伴一定要多多实践！！！
+**纸上学来终觉浅 绝知此事要躬行！强烈推荐 CS 专业的小伙伴一定要多多实践！！！**
 
 ## MySQL
 
-我们网站或 者 APP 的数据都是需要使用数据库来存储数据的。
+我们网站或者 APP 的数据都是需要使用数据库来存储数据的。
 
 一般企业项目开发中，使用 MySQL 比较多。如果你要学习 MySQL 的话，可以看下面这 3 本书籍：
 
@@ -40,29 +42,33 @@ head:
 
 视频的话，你可以看看动力节点的 [《MySQL 数据库教程视频》](https://www.bilibili.com/video/BV1fx411X7BD)。这个视频基本上把 MySQL 的相关一些入门知识给介绍完了。
 
-另外，强推一波 [《MySQL 是怎样运行的》](https://book.douban.com/subject/35231266/) 这本书，内容很适合拿来准备面试。讲的很细节，但又不枯燥，内容非常良心！
+另外，强推一波 **[《MySQL 是怎样运行的》](https://book.douban.com/subject/35231266/)** 这本书，内容很适合拿来准备面试。讲的很细节，但又不枯燥，内容非常良心！
 
 ![](https://img-blog.csdnimg.cn/20210703120643370.png)
 
-学习了 MySQL 之后，务必确保自己掌握下面这些知识点：
+## PostgreSQL
 
-1. MySQL 常用命令 ：
+和 MySQL 一样，PostgreSQL 也是开源免费且功能强大的关系型数据库。PostgreSQL 的 Slogan 是“**世界上最先进的开源关系型数据库**” 。
 
-   - 安全：登录、增加/删除用户、备份数据和还原数据
-   - 数据库操作： 建库建表/删库删表、用户权限分配
-   - ......
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/image-20220702144954370.png)
 
-2. MySQL 中常用的数据类型、字符集编码
-3. MySQL 简单查询、条件查询、模糊查询、多表查询以及如何对查询结果排序、过滤、分组......
-4. MySQL 中使用索引、视图、存储过程、游标、触发器
-5. ......
+最近几年，由于 PostgreSQL 的各种新特性过于优秀，使用 PostgreSQL 代替 MySQL 的项目越来越多了。
 
-如果你想让自己更加了解 MySQL ，同时也是为了准备面试的话，下面这些知识点要格外注意：
+如果你还在纠结是否尝试一下 PostgreSQL 的话，建议你看看这个知乎话题：[PostgreSQL 与 MySQL 相比，优势何在？ - 知乎](https://www.zhihu.com/question/20010554) 。
 
-1. 索引：索引优缺点、B 树和 B+树、聚集索引与非聚集索引、覆盖索引
-2. 事务：事务、数据库事务、ACID、并发事务、事务隔离级别
-3. 存储引擎（MyISAM 和 InnoDB）
-4. 锁机制与 InnoDB 锁算法
+**[《PostgreSQL 指南：内幕探索》](https://book.douban.com/subject/33477094/)**
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/PostgreSQL-Guide.png)
+
+这本书主要介绍了 PostgreSQL 内部的工作原理，包括数据库对象的逻辑组织与物理实现，进程与内存的架构。
+
+刚工作那会需要用到 PostgreSQL ，看了大概 1/3 的内容，感觉还不错。
+
+**[《PostgreSQL 技术内幕：查询优化深度探索》](https://book.douban.com/subject/30256561/)**
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/PostgreSQL-TechnologyInsider.png)
+
+这本书主要讲了 PostgreSQL 在查询优化上的一些技术实现细节，可以让你对 PostgreSQL 的查询优化器有深层次的了解。
 
 ## Redis
 
