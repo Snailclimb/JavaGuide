@@ -4,7 +4,7 @@ category: 计算机书籍
 icon: distributed-network
 ---
 
-**[《Designing Data-Intensive Application》](https://book.douban.com/subject/30329536/)**（DDIA，数据密集型应用系统设计）
+**[《Designing Data-Intensive Application》](https://book.douban.com/subject/30329536/)** （DDIA，数据密集型应用系统设计）
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/ddia.png)
 

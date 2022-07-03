@@ -481,7 +481,7 @@ public final class String implements java.io.Serializable, Comparable<String>, C
 
 #### 字符串拼接用“+” 还是 StringBuilder?
 
-Java 语言本身并不支持运算符重载，“+”和“+=”是专门为 String 类重载过的运算符，也是 Java 中仅有的两个重载过的元素符。
+Java 语言本身并不支持运算符重载，“+”和“+=”是专门为 String 类重载过的运算符，也是 Java 中仅有的两个重载过的运算符。
 
 ```java
 String str1 = "he";
