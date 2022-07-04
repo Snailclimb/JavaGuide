@@ -17,6 +17,7 @@ export const highQualityTechnicalArticles = [
     children: [
       "two-years-of-back-end-develop--experience-in-didi&toutiao",
       "8-years-programmer-work-summary",
+      "huawei-od-275-days",
     ],
   },
   {

@@ -12,6 +12,7 @@
 
 - [我在滴滴和头条的两年后端研发工作经验分享](./personal-experience/two-years-of-back-end-develop--experience-in-didi&toutiao.md)
 - [一个中科大差生的 8 年程序员工作总结](./personal-experience/8-years-programmer-work-summary.md)
+- [华为 OD 275 天后，我进了腾讯！](./personal-experience/huawei-od-275-days.md)
 
 ## 程序员
 

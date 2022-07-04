@@ -11,7 +11,7 @@ tag:
 >
 > **原文地址** ：https://www.cnblogs.com/hunternet/p/14675348.html
 
-![新入职一家公司如何快速进入状态](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/%E6%96%B0%E5%85%A5%E8%81%8C%E4%B8%80%E5%AE%B6%E5%85%AC%E5%8F%B8%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E8%BF%9B%E5%85%A5%E7%8A%B6%E6%80%81.png)
+![新入职一家公司如何快速进入状态](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/high-quality-technical-articles/work/%E6%96%B0%E5%85%A5%E8%81%8C%E4%B8%80%E5%AE%B6%E5%85%AC%E5%8F%B8%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E8%BF%9B%E5%85%A5%E7%8A%B6%E6%80%81.png)
 
 一年一度的金三银四跳槽大戏即将落幕，相信很多跳槽的小伙伴们已经找到了心仪的工作，即将或已经有了新的开始。
 
@@ -27,7 +27,7 @@ tag:
 
 新的工作面对着一堆的代码仓库，很多人常常感觉无从下手。但回顾一下自己过往的工作与项目的经验，我们可以发现它们有着异曲同工之处。当开始一个新的项目，一般会经历几个步骤：需求->设计->开发->测试->发布，就这么循环往复，我们完成了一个又一个的项目。
 
-![项目流程](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/%E9%A1%B9%E7%9B%AE%E6%B5%81%E7%A8%8B.png)
+![项目流程](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/high-quality-technical-articles/work/image-20220704191430466.png)
 
 而在这个过程中主要有四个方面的知识那就是业务、技术、项目与团队贯穿始终。新入职一家公司，我们第一阶段的目标就是要具备能够跟着团队做项目的能力，因此我们所应尽快掌握的知识点也要从这四个方面入手。
 
