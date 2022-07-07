@@ -125,7 +125,7 @@ AOP(Aspect-Oriented Programming:面向切面编程)能够将那些与业务无�
 
 Spring AOP 就是基于动态代理的，如果要代理的对象，实现了某个接口，那么 Spring AOP 会使用 **JDK Proxy**，去创建代理对象，而对于没有实现接口的对象，就无法使用 JDK Proxy 去进行代理了，这时候 Spring AOP 会使用 **Cglib** 生成一个被代理对象的子类来作为代理，如下图所示：
 
-![SpringAOPProcess](https://images.xiaozhuanlan.com/photo/2019/926dfc549b06d280a37397f9fd49bf9d.jpg)
+![SpringAOPProcess](https://img-blog.csdnimg.cn/img_convert/230ae587a322d6e4d09510161987d346.jpeg)
 
 当然你也可以使用 **AspectJ** ！Spring AOP 已经集成了 AspectJ ，AspectJ 应该算的上是 Java 生态系统中最完整的 AOP 框架了。
 
