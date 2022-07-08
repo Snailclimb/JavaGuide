@@ -155,6 +155,7 @@ export const sidebarConfig = defineSidebarConfig({
             "osi&tcp-ip-model",
             "http&https",
             "http1.0&http1.1",
+            "http-status-codes",
             "other-network-questions",
           ],
         },
