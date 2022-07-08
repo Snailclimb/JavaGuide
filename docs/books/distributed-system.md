@@ -34,6 +34,8 @@ icon: distributed-network
 
 这本书我之前专门写过知乎回答介绍和推荐，没看过的朋友可以看看：[有哪些你看了以后大呼过瘾的编程书？ ](https://www.zhihu.com/question/50408698/answer/2278198495) 。
 
+另外，如果你在阅读这本书的时候感觉难度比较大，很多地方读不懂的话，我这里推荐一下《深入理解分布式系统》作者写的《DDIA 逐章精读》小册，地址：https://ddia.qtmuniao.com 。
+
 **[《从 Paxos 到 Zookeeper》](https://book.douban.com/subject/26292004/)**
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/image-20211216161350118.png)
