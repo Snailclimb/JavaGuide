@@ -419,7 +419,7 @@ public V get(Object key) {
 private final Node<K,V>[] initTable() {
     Node<K,V>[] tab; int sc;
     while ((tab = table) == null || tab.length == 0) {
-        ／／　如果 sizeCtl < 0 ,说明另外的线程执行CAS 成功，正在进行初始化。
+        //　如果 sizeCtl < 0 ,说明另外的线程执行CAS 成功，正在进行初始化。
         if ((sc = sizeCtl) < 0)
             // 让出 CPU 使用权
             Thread.yield(); // lost initialization race; just spin
