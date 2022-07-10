@@ -7,7 +7,7 @@ tag:
 
 > 本文由 [SnailClimb](https://github.com/Snailclimb) 和 [guang19](https://github.com/guang19) 共同完成。
 
-关于事务基本概览的介绍，请看这篇文章的介绍：[MySQL 常见知识点&面试题总结](./MySQL-questions-01.md#MySQL-事务)
+关于事务基本概览的介绍，请看这篇文章的介绍：[MySQL 常见知识点&面试题总结](./mysql-questions-01.md#MySQL-事务)
 
 ## 事务隔离级别总结
 
@@ -101,11 +101,9 @@ SQL 脚本 1 在第一次查询工资为 500 的记录时只有一条，SQL 脚�
 
 解决幻读的方式有很多，但是它们的核心思想就是一个事务在操作某张表数据的时候，另外一个事务不允许新增或者删除这张表中的数据了。解决幻读的方式主要有以下几种：
 
-1. 将事务隔离级别调整为 `SERIALIZABLE`
-2. 在可重复读的事务级别下，给事务操作的这张表添加表锁
-3. 在可重复读的事务级别下，给事务操作的这张表添加 `Next-key Lock`
-
-> 说明：`Next-key Lock` 相当于行锁 + 间隙锁
+1. 将事务隔离级别调整为 `SERIALIZABLE` 。
+2. 在可重复读的事务级别下，给事务操作的这张表添加表锁。
+3. 在可重复读的事务级别下，给事务操作的这张表添加 `Next-key Lock（Record Lock+Gap Lock）`。
 
 ### 参考
 
