@@ -337,11 +337,11 @@ InnoDB 不光支持表级锁(table-level locking)，还支持行级锁(row-level
 **表级锁和行级锁对比** ：
 
 - **表级锁：** MySQL 中锁定粒度最大的一种锁，是针对非索引字段加的锁，对当前操作的整张表加锁，实现简单，资源消耗也比较少，加锁快，不会出现死锁。其锁定粒度最大，触发锁冲突的概率最高，并发度最低，MyISAM 和 InnoDB 引擎都支持表级锁。
-- **行级锁：** MySQL 中锁定粒度最小的一种锁，是针对索引字段加的锁，只针对当前操作的记录进行加锁。 行级锁能大大减少数据库操作的冲突。其加锁粒度最小，并发度高，但加锁的开销也最大，加锁慢，会出现死锁。
+- **行级锁：** MySQL 中锁定粒度最小的一种锁，是针对索引字段加的锁，只针对当前操作的行记录进行加锁。 行级锁能大大减少数据库操作的冲突。其加锁粒度最小，并发度高，但加锁的开销也最大，加锁慢，会出现死锁。
 
 ### 行级锁的使用有什么注意事项？
 
-InnoDB 的行锁是针对索引字段加的锁，表级锁是针对非索引字段加的锁。当我们执行 `UPDATE`、`DELETE` 语句时，如果 `WHERE`条件中字段没有命中唯一索引或者索引失效的话，就会导致扫描全表对表中的所有记录进行加锁。这个在我们日常工作开发中经常会遇到，一定要多多注意！！！
+InnoDB 的行锁是针对索引字段加的锁，表级锁是针对非索引字段加的锁。当我们执行 `UPDATE`、`DELETE` 语句时，如果 `WHERE`条件中字段没有命中唯一索引或者索引失效的话，就会导致扫描全表对表中的所有行记录进行加锁。这个在我们日常工作开发中经常会遇到，一定要多多注意！！！
 
 不过，很多时候即使用了索引也有可能会走全表扫描，这是因为 MySQL 优化器的原因。
 
@@ -405,10 +405,45 @@ MySQL InnoDB 支持三种行锁定方式：
 - **间隙锁（Gap Lock）** ：锁定一个范围，不包括记录本身。
 - **临键锁（Next-key Lock）** ：Record Lock+Gap Lock，锁定一个范围，包含记录本身。记录锁只能锁住已经存在的记录，为了避免插入新记录，需要依赖间隙锁。
 
-InnoDB 的默认隔离级别 REPEATABLE-READ（可重读）是可以解决幻读问题发生的，主要有下面两种情况：
+InnoDB 的默认隔离级别 RR（可重读）是可以解决幻读问题发生的，主要有下面两种情况：
 
-- **快照读** ：由 MVCC 机制来保证不出现幻读。
-- **当前读** ： 使用 Next-Key Lock 进行加锁来保证不出现幻读。
+- **快照读**（一致性非锁定读） ：由 MVCC 机制来保证不出现幻读。
+- **当前读** （一致性锁定读）： 使用 Next-Key Lock 进行加锁来保证不出现幻读。
+
+### 当前读和快照读有什么区别？
+
+**快照读**（一致性非锁定读）就是单纯的 `SELECT` 语句，但不包括下面这两类 `SELECT` 语句：
+
+```sql
+SELECT ... FOR UPDATE
+SELECT ... LOCK IN SHARE MODE
+```
+
+快照即记录的历史版本，每行记录可能存在多个历史版本（多版本技术）。
+
+快照读的情况下，如果读取的记录正在执行 UPDATE/DELETE 操作，读取操作不会因此去等待记录上 X 锁的释放，而是会去读取行的一个快照。
+
+只有在事务隔离级别 RC(读取已提交) 和 RR（可重读）下，InnoDB 才会使用非一致性锁定读：
+
+- 在 RC 级别下，对于快照数据，非一致性读总是读取被锁定行的最新一份快照数据。
+- 在 RR 级别下，对于快照数据，非一致性读总是读取本事务开始时的行数据版本。
+
+快照读比较适合对于数据一致性要求不是特别高且追求极致性能的业务场景。
+
+**当前读** （一致性锁定读）就是给行记录加 X 锁或 S 锁。
+
+当前读的一些常见 SQL 语句类型如下：
+
+```sql
+# 对读的记录加一个X锁
+SELECT...FOR UPDATE
+# 对读的记录加一个S锁
+SELECT...LOCK IN SHARE MODE
+# 对修改的记录加一个X锁
+INSERT...
+UPDATE...
+DELETE...
+```
 
 ## 参考
 
@@ -418,5 +453,7 @@ InnoDB 的默认隔离级别 REPEATABLE-READ（可重读）是可以解决幻读
 - 技术分享 | 隔离级别：正确理解幻读：https://opensource.actionsky.com/20210818-mysql/
 - MySQL Server Logs - MySQL 5.7 Reference Manual：https://dev.mysql.com/doc/refman/5.7/en/server-logs.html
 - Redo Log - MySQL 5.7 Reference Manual：https://dev.mysql.com/doc/refman/5.7/en/innodb-redo-log.html
+- Locking Reads - MySQL 5.7 Reference Manual：https://dev.mysql.com/doc/refman/5.7/en/innodb-locking-reads.html
 - 深入理解数据库行锁与表锁 https://zhuanlan.zhihu.com/p/52678870
 - 详解 MySQL InnoDB 中意向锁的作用：https://juejin.cn/post/6844903666332368909
+- 在数据库中不可重复读和幻读到底应该怎么分？：https://www.zhihu.com/question/392569386
