@@ -7,13 +7,7 @@ tag:
 
 《阿里巴巴 Java 开发手册》中提到：“为了避免精度丢失，可以使用 `BigDecimal` 来进行浮点数的运算”。
 
-这篇文章，我就简单解释一下浮点数运算出现精度丢失的原因以及 `BigDecimal` 的常见用法，希望对大家有帮助！
-
-## BigDecimal 介绍
-
-`BigDecimal` 可以实现对浮点数的运算，不会造成精度丢失。通常情况下，大部分需要浮点数精确运算结果的业务场景（比如涉及到钱的场景）都是通过 `BigDecimal` 来做的。
-
-纳尼，浮点数的运算竟然还会有精度丢失的风险吗？确实会！
+浮点数的运算竟然还会有精度丢失的风险吗？确实会！
 
 示例代码：
 
@@ -44,25 +38,19 @@ System.out.println(a == b);// false
 
 关于浮点数的更多内容，建议看一下[计算机系统基础（四）浮点数](http://kaito-kidd.com/2018/08/08/computer-system-float-point/)这篇文章。
 
-## BigDecimal 的用处
+## BigDecimal 介绍
 
-《阿里巴巴 Java 开发手册》中提到：**浮点数之间的等值判断，基本数据类型不能用==来比较，包装数据类型不能用 equals 来判断。**
+`BigDecimal` 可以实现对浮点数的运算，不会造成精度丢失。
+
+通常情况下，大部分需要浮点数精确运算结果的业务场景（比如涉及到钱的场景）都是通过 `BigDecimal` 来做的。
+
+《阿里巴巴 Java 开发手册》中提到：**浮点数之间的等值判断，基本数据类型不能用 == 来比较，包装数据类型不能用 equals 来判断。**
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/image-20211213101646884.png)
 
-具体原因我们在上面已经详细介绍了，这里就不多提了，我们下面直接上实例：
+具体原因我们在上面已经详细介绍了，这里就不多提了。
 
-```java
-float a = 1.0f - 0.9f;
-float b = 0.9f - 0.8f;
-System.out.println(a);// 0.100000024
-System.out.println(b);// 0.099999964
-System.out.println(a == b);// false
-```
-
-从输出结果就可以看出发生精度丢失的问题。
-
-想要解决这个问题也很简单，直接使用 `BigDecimal` 来定义浮点数的值，再进行浮点数的运算操作即可。
+想要解决浮点数运算精度丢失这个问题，可以直接使用 `BigDecimal` 来定义浮点数的值，然后再进行浮点数的运算操作即可。
 
 ```java
 BigDecimal a = new BigDecimal("1.0");
@@ -72,12 +60,18 @@ BigDecimal c = new BigDecimal("0.8");
 BigDecimal x = a.subtract(b);
 BigDecimal y = b.subtract(c);
 
-System.out.println(x); /* 0.1 */
-System.out.println(y); /* 0.1 */
-System.out.println(Objects.equals(x, y)); /* true */
+System.out.println(x.compareTo(y));// 0
 ```
 
 ## BigDecimal 常见方法
+
+### 创建
+
+我们在使用 `BigDecimal` 时，为了防止精度丢失，推荐使用它的`BigDecimal(String val)`构造方法或者 `BigDecimal.valueOf(double val)` 静态方法来创建对象。
+
+《阿里巴巴 Java 开发手册》对这部分内容也有提到，如下图所示。
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/image-20211213102222601.png)
 
 ### 加减乘除
 
@@ -144,13 +138,33 @@ BigDecimal n = m.setScale(3,RoundingMode.HALF_DOWN);
 System.out.println(n);// 1.255
 ```
 
-## BigDecimal 的使用注意事项
+## BigDecimal 等值比较问题
 
-注意：我们在使用 `BigDecimal` 时，为了防止精度丢失，推荐使用它的`BigDecimal(String val)`构造方法或者 `BigDecimal.valueOf(double val)` 静态方法来创建对象。
+《阿里巴巴 Java 开发手册》中提到：
 
-《阿里巴巴 Java 开发手册》对这部分内容也有提到，如下图所示。
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/basis/image-20220714161315993.png)
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/image-20211213102222601.png)
+`BigDecimal` 使用 `equals()` 方法进行等值比较出现问题的代码示例：
+
+```java
+BigDecimal a = new BigDecimal("1");
+BigDecimal b = new BigDecimal("1.0");
+System.out.println(a.equals(b));//false
+```
+
+这是因为 `equals()` 方法不仅仅会比较值的大小（value）还会比较精度（scale），而 `compareTo()` 方法比较的时候会忽略精度。
+
+1.0 的 scale 是 1，1 的 scale 是 0，因此 `a.equals(b)` 的结果是 false。
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/basis/image-20220714164706390.png)
+
+`compareTo()` 方法可以比较两个 `BigDecimal` 的值，如果相等就返回 0，如果第 1 个数比第 2 个数大则返回 1，反之返回-1。
+
+```java
+BigDecimal a = new BigDecimal("1");
+BigDecimal b = new BigDecimal("1.0");
+System.out.println(a.compareTo(b));//0
+```
 
 ## BigDecimal 工具类分享
 
@@ -342,4 +356,3 @@ public class BigDecimalUtil {
 浮点数没有办法用二进制精确表示，因此存在精度丢失的风险。
 
 不过，Java 提供了`BigDecimal` 来操作浮点数。`BigDecimal` 的实现利用到了 `BigInteger` （用来操作大整数）, 所不同的是 `BigDecimal` 加入了小数位的概念。
-
