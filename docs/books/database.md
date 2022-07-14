@@ -1,5 +1,5 @@
 ---
-title: 数据库
+title: 数据库必读经典书籍
 category: 计算机书籍
 icon: database
 head:

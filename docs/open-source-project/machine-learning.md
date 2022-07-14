@@ -1,5 +1,5 @@
 ---
-title: 机器学习
+title: Java 优质开源机器学习项目
 category: 开源项目
 icon: a-MachineLearning
 ---

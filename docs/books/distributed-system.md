@@ -1,5 +1,5 @@
 ---
-title: 分布式
+title: 分布式必读经典书籍
 category: 计算机书籍
 icon: distributed-network
 ---
