@@ -26,6 +26,7 @@
 - [从面试官和候选者的角度谈如何准备技术初试](./interview/technical-preliminary-preparation.md)
 - [包装严重的IT行业，作为面试官，我是如何甄别应聘者的包装程度](./interview/screen-candidates-for-packaging.md)
 - [普通人的春招总结（阿里、腾讯offer）](./interview/summary-of-spring-recruitment.md)
+- [2021校招我的个人经历和经验](./interview/my-personal-experience-in-2021.md)
 - [如何在技术初试中考察程序员的技术能力](./interview/how-to-examine-the-technical-ability-of-programmers-in-the-first-test-of-technology.md)
 - [阿里技术面试的一些秘密](./interview/some-secrets-about-alibaba-interview.md)
 

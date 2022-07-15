@@ -41,6 +41,7 @@ export const highQualityTechnicalArticles = [
       "technical-preliminary-preparation",
       "screen-candidates-for-packaging",
       "summary-of-spring-recruitment",
+      "my-personal-experience-in-2021",
       "how-to-examine-the-technical-ability-of-programmers-in-the-first-test-of-technology",
       "some-secrets-about-alibaba-interview",
     ],

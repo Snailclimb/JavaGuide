@@ -1,7 +1,7 @@
 ---
 title: 分布式必读经典书籍
 category: 计算机书籍
-icon: distributed-network
+icon: "distributed-network"
 ---
 
 **[《深入理解分布式系统》](https://book.douban.com/subject/35794814/)**
