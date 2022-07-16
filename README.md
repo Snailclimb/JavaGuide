@@ -56,7 +56,6 @@
 * [泛型&序列化详解](docs/java/basis/generics-and-wildcards.md)
 * [反射机制详解](docs/java/basis/reflection.md)
 * [Java 代理模式详解](docs/java/basis/proxy.md)
-* [IO 模型详解](docs/java/basis/io.md)
 * [BigDecimal 详解](docs/java/basis/bigdecimal.md)
 
 ### 集合
@@ -72,6 +71,12 @@
 * [ArrayList 源码+扩容机制分析](docs/java/collection/arraylist-source-code.md)
 * [HashMap(JDK1.8)源码+底层数据结构分析](docs/java/collection/hashmap-source-code.md)
 * [ConcurrentHashMap 源码+底层数据结构分析](docs/java/collection/concurrent-hash-map-source-code.md)
+
+### IO
+
+* [IO 基础知识总结](docs/java/io/io-basis.md)
+* [IO 设计模式总结](docs/java/io/io-design-patterns.md)
+* [IO 模型详解](docs/java/io/io-model.md)
 
 ### 并发
 

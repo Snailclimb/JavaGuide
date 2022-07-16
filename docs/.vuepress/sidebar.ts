@@ -54,7 +54,6 @@ export const sidebarConfig = defineSidebarConfig({
                 "generics-and-wildcards",
                 "reflection",
                 "proxy",
-                "io",
                 "bigdecimal",
               ],
             },
@@ -80,6 +79,14 @@ export const sidebarConfig = defineSidebarConfig({
               ],
             },
           ],
+        },
+
+        {
+          text: "IO",
+          prefix: "io/",
+          icon: "code",
+          collapsable: true,
+          children: ["io-basis", "io-design-patterns", "io-model"],
         },
         {
           text: "并发编程",
