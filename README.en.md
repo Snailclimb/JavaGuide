@@ -243,7 +243,6 @@ RPC makes calling remote service calls as easy as calling local methods.
 Dubbo is a home-grown RPC framework , open source by Ali . Related reading.
 
 - [Dubbo FAQ Summary](docs/distributed-system/rpc/dubbo.md)
-- [Why don't we use RPC instead of HTTP directly for calls between services?](docs/distributed-system/rpc/why-use-rpc.md)
 
 ### API gateway
 

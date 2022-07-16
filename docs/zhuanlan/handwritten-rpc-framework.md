@@ -5,7 +5,7 @@ category: 知识星球
 
 ## 介绍
 
-**《手写 RPC 框架》** 是我的[知识星球](../about-the-author/zhishixingqiu-two-years.md)的一个内部小册，我写了 12 篇文章来讲解如何从零开始基于 Netty+Kyro+Zookeeper 实现一个简易的 RPC 框架。
+**《手写 RPC 框架》** 是我的[知识星球](https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc)的一个内部小册，我写了 12 篇文章来讲解如何从零开始基于 Netty+Kyro+Zookeeper 实现一个简易的 RPC 框架。
 
 麻雀虽小五脏俱全，项目代码注释详细，结构清晰，并且集成了 Check Style 规范代码结构，非常适合阅读和学习。
 

@@ -364,7 +364,7 @@ export const sidebarConfig = defineSidebarConfig({
           text: "RPC",
           prefix: "rpc/",
           collapsable: true,
-          children: ["dubbo", "why-use-rpc"],
+          children: ["rpc-intro", "dubbo"],
         },
         "distributed-transaction",
         {

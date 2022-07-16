@@ -289,8 +289,8 @@ RPC 让调用远程服务调用像调用本地方法那样简单。
 
 Dubbo 是一款国产的 RPC 框架，由阿里开源。相关阅读：
 
-* [Dubbo 常见问题总结](docs/distributed-system/rpc/dubbo.md)
-* [服务之间的调用为啥不直接用 HTTP 而用 RPC？](docs/distributed-system/rpc/why-use-rpc.md)
+* [RPC 基础常见知识点&面试题总结](docs/distributed-system/rpc/rpc-intro.md)
+* [Dubbo 常见知识点&面试题总结](docs/distributed-system/rpc/dubbo.md)
 
 ### API 网关
 

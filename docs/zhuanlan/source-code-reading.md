@@ -6,7 +6,7 @@ star: true
 
 ## 介绍
 
-**《Java 必读源码系列》** 是我的[知识星球](../about-the-author/zhishixingqiu-two-years.md)的一个内部小册，目前已经整理了 Dubbo 2.6.x 、Netty 4.x、SpringBoot 2.1 等框架/中间件的源码。
+**《Java 必读源码系列》** 是我的[知识星球](https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc)的一个内部小册，目前已经整理了 Dubbo 2.6.x 、Netty 4.x、SpringBoot 2.1 等框架/中间件的源码。
 
 结构清晰，内容详细，非常适合想要深入学习框架/中间件源码的同学阅读。
 

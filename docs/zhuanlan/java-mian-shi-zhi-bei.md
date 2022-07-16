@@ -18,7 +18,7 @@ star: 5
 
 ## 介绍
 
-**《Java 面试指北》** 是我的[知识星球](../about-the-author/zhishixingqiu-two-years.md)的一个内部小册，和 [JavaGuide 开源版](https://javaguide.cn/)的内容互补。相比于开源版本来说，《Java 面试指北》添加了下面这些内容（不仅仅是这些内容）：
+**《Java 面试指北》** 是我的[知识星球](https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc)的一个内部小册，和 [JavaGuide 开源版](https://javaguide.cn/)的内容互补。相比于开源版本来说，《Java 面试指北》添加了下面这些内容（不仅仅是这些内容）：
 
 - 10+ 篇文章手把手教你如何准备面试。
 - 更全面的八股文面试题（系统设计、常见框架、分布式、高并发 ......）。
@@ -56,7 +56,7 @@ star: 5
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/githubjuejinjihua/thinkimage-20220612185810480.png)
 
-并且，[知识星球](../about-the-author/zhishixingqiu-two-years.md)还有专门分享面经和面试题的专题，里面会分享很多优质的面经和面试题。
+并且，[知识星球](https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc)还有专门分享面经和面试题的专题，里面会分享很多优质的面经和面试题。
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220304120018731.png)
 
