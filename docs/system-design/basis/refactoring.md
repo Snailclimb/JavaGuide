@@ -1,5 +1,5 @@
 ---
-title:  重构
+title:  代码重构指南
 category: 代码质量
 ---
 

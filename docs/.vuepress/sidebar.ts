@@ -334,7 +334,24 @@ export const sidebarConfig = defineSidebarConfig({
           prefix: "basis/",
           icon: "basic",
           collapsable: true,
-          children: ["RESTfulAPI", "naming", "refactoring"],
+          children: [
+            {
+              text: "RESTful API",
+              link: "RESTfulAPI",
+            },
+            {
+              text: "编码命名",
+              link: "naming",
+            },
+            {
+              text: "重构",
+              link: "refactoring",
+            },
+            {
+              text: "单元测试",
+              link: "unit-test",
+            },
+          ],
         },
         {
           text: "安全",
