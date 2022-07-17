@@ -1,5 +1,5 @@
 ---
-title:  泛型&序列化详解
+title:  泛型&通配符详解
 category: Java
 tag:
   - Java基础
