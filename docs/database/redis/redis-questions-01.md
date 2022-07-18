@@ -1,8 +1,14 @@
 ---
-title: Redis知识点&面试题总结
+title: Redis常见面试题总结
 category: 数据库
 tag:
   - Redis
+head:
+  - - meta
+    - name: keywords
+      content: Redis基础,Redis常见数据结构,Redis线程模型,Redis内存管理,Redis事务,Redis性能优化
+    - name: description
+      content: 一篇文章总结Redis常见的知识点和面试题，涵盖Redis基础、Redis常见数据结构、Redis线程模型、Redis内存管理、Redis事务、Redis性能优化等内容。
 ---
 
 ## Redis 基础

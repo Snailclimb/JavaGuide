@@ -1,5 +1,5 @@
 ---
-title:  Spring&Spring Boot 常用注解总结！
+title:  Spring&SpringBoot常用注解总结
 category: 框架
 tag:
   - SpringBoot

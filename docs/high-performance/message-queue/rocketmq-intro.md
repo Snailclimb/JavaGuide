@@ -1,8 +1,12 @@
-# RocketMQ入门总结
+---
+title: RocketMQ基础知识总结
+category: 高性能
+tag:
+  - RocketMQ
+  - 消息队列
+---
 
-> 文章很长，点赞再看，养成好习惯😋😋😋
->
-> [本文由 FrancisQ 老哥投稿！](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247485969&idx=1&sn=6bd53abde30d42a778d5a35ec104428c&chksm=cea245daf9d5cccce631f93115f0c2c4a7634e55f5bef9009fd03f5a0ffa55b745b5ef4f0530&token=294077121&lang=zh_CN#rd)
+> [本文由 FrancisQ 投稿！](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247485969&idx=1&sn=6bd53abde30d42a778d5a35ec104428c&chksm=cea245daf9d5cccce631f93115f0c2c4a7634e55f5bef9009fd03f5a0ffa55b745b5ef4f0530&token=294077121&lang=zh_CN#rd)
 
 ## 消息队列扫盲
 

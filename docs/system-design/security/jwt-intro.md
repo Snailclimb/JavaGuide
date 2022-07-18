@@ -1,5 +1,5 @@
 ---
-title: JWT 基本概念详解
+title: JWT 基础概念详解
 category: 系统设计
 tag:
   - 安全

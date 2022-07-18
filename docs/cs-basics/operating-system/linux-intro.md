@@ -4,11 +4,13 @@ category: 计算机基础
 tag:
   - 操作系统
   - Linux
+head:
+  - - meta
+    - name: description
+      content: 简单介绍一下 Java 程序员必知的 Linux 的一些概念以及常见命令。
 ---
 
 简单介绍一下 Java 程序员必知的 Linux 的一些概念以及常见命令。
-
-_如果文章有任何需要改善和完善的地方，欢迎在评论区指出，共同进步！笔芯！_
 
 ## 从认识操作系统开始
 

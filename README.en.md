@@ -198,10 +198,6 @@ If you have not touched Java Web development, you can first look at my summary o
 
 [MyBatis Common Interview Questions Summary](docs/system-design/framework/mybatis/mybatis-interview.md)
 
-#### Spring Cloud
-
-[Getting Started with Spring Cloud in Plain English](docs/system-design/framework/springcloud/springcloud-intro.md)
-
 ### Security
 
 #### Certification Authorization

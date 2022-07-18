@@ -1,8 +1,14 @@
 ---
-title:  Java 并发常见知识点&面试题总结（进阶篇）
+title:  Java 并发常见面试题总结（下）
 category: Java
 tag:
   - Java并发
+head:
+  - - meta
+    - name: keywords
+      content: 多线程,死锁,synchronized,ReentrantLock,volatile,ThreadLocal,线程池,cas,aqs
+    - name: description
+      content: Java并发常见知识点和面试题总结（含详细解答），希望对你有帮助！
 ---
 
 ## synchronized 关键字

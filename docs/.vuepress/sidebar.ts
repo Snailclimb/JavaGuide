@@ -160,11 +160,18 @@ export const sidebarConfig = defineSidebarConfig({
           icon: "network",
           collapsable: true,
           children: [
-            "osi&tcp-ip-model",
-            "http&https",
-            "http1.0&http1.1",
-            "http-status-codes",
             "other-network-questions",
+            {
+              text: "重要知识点",
+              icon: "star",
+              collapsable: true,
+              children: [
+                "osi&tcp-ip-model",
+                "http&https",
+                "http1.0&http1.1",
+                "http-status-codes",
+              ],
+            },
           ],
         },
         {
@@ -320,7 +327,6 @@ export const sidebarConfig = defineSidebarConfig({
         },
         "mybatis/mybatis-interview",
         "netty",
-        "springcloud/springcloud-intro",
       ],
     },
     {
@@ -336,20 +342,11 @@ export const sidebarConfig = defineSidebarConfig({
           icon: "basic",
           collapsable: true,
           children: [
+            "RESTfulAPI",
+            "naming",
+            "refactoring",
             {
-              text: "RESTful API",
-              link: "RESTfulAPI",
-            },
-            {
-              text: "编码命名",
-              link: "naming",
-            },
-            {
-              text: "重构",
-              link: "refactoring",
-            },
-            {
-              text: "单元测试",
+              text: "单元测试指南",
               link: "unit-test",
             },
           ],

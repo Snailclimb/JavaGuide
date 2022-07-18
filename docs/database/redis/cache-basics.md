@@ -1,11 +1,11 @@
 ---
-title: 缓存基础
+title: 缓存基础常见面试题总结
 category: 数据库
 tag:
   - Redis
 ---
 
-**缓存基础** 为我的[知识星球](https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc)专属内容，已经整理到了[《Java 面试指北》](https://www.yuque.com/docs/share/f37fc804-bfe6-4b0d-b373-9c462188fec7)中。
+**缓存基础常见知识点&面试题总结** 为我的[知识星球](https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc)专属内容，已经整理到了[《Java 面试指北》](https://www.yuque.com/docs/share/f37fc804-bfe6-4b0d-b373-9c462188fec7)中。
 
 [《Java 面试指北》](https://www.yuque.com/docs/share/f37fc804-bfe6-4b0d-b373-9c462188fec7) 的部分内容展示如下，你可以将其看作是 [JavaGuide](https://javaguide.cn/#/) 的补充完善，两者可以配合使用。
 

@@ -1,8 +1,14 @@
 ---
-title: Java集合常见知识点&面试题总结(下)
+title: Java容器常见面试题总结(下)
 category: Java
 tag:
   - Java集合
+head:
+  - - meta
+    - name: keywords
+      content: HashMap,ConcurrentHashMap,Hashtable,List,Set
+    - name: description
+      content: Java集合常见知识点和面试题总结，希望对你有帮助！
 ---
 
 ## Map 接口

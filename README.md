@@ -244,10 +244,6 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 [MyBatis 常见面试题总结](docs/system-design/framework/mybatis/mybatis-interview.md)
 
-#### Spring Cloud
-
-[大白话入门 Spring Cloud](docs/system-design/framework/springcloud/springcloud-intro.md)
-
 ### 安全
 
 #### 认证授权

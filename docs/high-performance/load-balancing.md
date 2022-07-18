@@ -1,4 +1,13 @@
-# 负载均衡
+---
+title: 负载均衡
+category: 高性能
+head:
+  - - meta
+    - name: keywords
+      content: 客户端负载均衡,服务负载均衡,Nginx,负载均衡算法,七层负载均衡,DNS解析
+    - name: description
+      content: 负载均衡指的是将用户请求分摊到不同的服务器上处理，以提高系统整体的并发处理能力。负载均衡可以简单分为服务端负载均衡和客户端负载均衡 这两种。服务端负载均衡涉及到的知识点更多，工作中遇到的也比较多，因为，我会花更多时间来介绍。
+---
 
 **负载均衡** 相关的面试题为我的[知识星球](https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc)专属内容，已经整理到了[《Java 面试指北》](https://www.yuque.com/docs/share/f37fc804-bfe6-4b0d-b373-9c462188fec7)中。
 

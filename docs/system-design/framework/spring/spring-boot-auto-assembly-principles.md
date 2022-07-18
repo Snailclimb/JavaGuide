@@ -5,10 +5,6 @@ tag:
   - SpringBoot
 ---
 
-# 
-
-> 本文已经收录进  Github 95k+ Star 的Java项目JavaGuide 。JavaGuide项目地址 : https://github.com/Snailclimb/JavaGuide 。
->
 > 作者：[Miki-byte-1024](https://github.com/Miki-byte-1024) & [Snailclimb](https://github.com/Snailclimb)
 
 每次问到 Spring Boot， 面试官非常喜欢问这个问题：“讲述一下 SpringBoot 自动装配原理？”。

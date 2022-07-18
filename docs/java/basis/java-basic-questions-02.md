@@ -1,8 +1,14 @@
 ---
-title: Java基础常见知识&面试题总结(中)
+title: Java基础常见面试题总结(中)
 category: Java
 tag:
   - Java基础
+head:
+  - - meta
+    - name: keywords
+      content: 面向对象,构造方法,接口,抽象类,String,Object
+    - name: description
+      content: 全网质量最高的Java基础常见知识点和面试题总结，希望对你有帮助！
 ---
 
 ## 面向对象基础
