@@ -258,21 +258,19 @@ class ChangeThread implements Runnable{
 在主线程的`while`循环中，加入内存屏障，测试是否能够感知到`flag`的修改变化：
 
 ```java
-@Getter
-class ChangeThread implements Runnable{
-    /**volatile**/ boolean flag=false;
-    @Override
-    public void run() {
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+public static void main(String[] args){
+    ChangeThread changeThread = new ChangeThread();
+    new Thread(changeThread).start();
+    while (true) {
+        boolean flag = changeThread.isFlag();
+        unsafe.loadFence(); //加入读内存屏障
+        if (flag){
+            System.out.println("detected flag changed");
+            break;
         }
-        System.out.println("subThread change flag to:" + flag);
-        flag = true;
     }
+    System.out.println("main thread end");
 }
-
 ```
 
 运行结果：
