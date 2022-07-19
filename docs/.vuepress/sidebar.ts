@@ -61,7 +61,7 @@ export const sidebarConfig = defineSidebarConfig({
           ],
         },
         {
-          text: "容器",
+          text: "集合",
           prefix: "collection/",
           icon: "container",
           collapsable: true,
