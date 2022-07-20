@@ -258,6 +258,7 @@ export const sidebarConfig = defineSidebarConfig({
           children: [
             "cache-basics",
             "redis-questions-01",
+            "redis-questions-02",
             {
               text: "重要知识点",
               icon: "star",

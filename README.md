@@ -191,7 +191,13 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 ### Redis
 
-- [Redis 常见问题总结](docs/database/redis/redis-questions-01.md)
+**知识点/面试题总结** : (必看:+1: )：
+
+- [Redis 常见问题总结(上)](docs/database/redis/redis-questions-01.md)
+- [Redis 常见问题总结(下)](docs/database/redis/redis-questions-02.md)
+
+**重要知识点：**
+
 - [3种常用的缓存读写策略详解](docs/database/redis/3-commonly-used-cache-read-and-write-strategies.md)
 - [Redis 5 种基本数据结构详解](./docs/database/redis/redis-data-structures-01.md)
 - [Redis 内存碎片详解](./docs/database/redis/redis-memory-fragmentation.md)
