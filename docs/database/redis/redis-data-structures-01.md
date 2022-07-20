@@ -1,3 +1,10 @@
+---
+title: Redis 5 种基本数据结构详解
+category: 数据库
+tag:
+  - Redis
+---
+
 你可以在 Redis 官网上找到 Redis 数据结构非常详细的介绍：[Redis Data Structures](https://redis.com/redis-enterprise/data-structures/) 。未来随着 Redis 新版本的发布，可能会有新的数据结构出现，通过查阅 Redis 官网对应的介绍，你总能获取到最靠谱的信息。
 
 ## String（字符串）
@@ -269,7 +276,7 @@ Redis 中的 Set 类型是一种无序集合，集合中的元素没有先后顺
 | SUNIONSTORE destination key1 key2 ... | 将给定所有集合的并集存储在 destination 中 |
 | SDIFF key1 key2 ...                   | 获取给定所有集合的差集                    |
 | SDIFFSTORE destination key1 key2 ...  | 将给定所有集合的差集存储在 destination 中 |
-| SPOP key                              | 随机移除并获取指定集合中一个或多个元素    |
+| SPOP key count                        | 随机移除并获取指定集合中一个或多个元素    |
 | SRANDMEMBER key count                 | 随机获取指定集合中指定数量的元素          |
 
 更多 Redis Set 命令以及详细使用指南，请查看 Redis 官网对应的介绍：https://redis.io/commands/?group=set 。

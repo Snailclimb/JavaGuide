@@ -264,6 +264,7 @@ export const sidebarConfig = defineSidebarConfig({
               collapsable: true,
               children: [
                 "3-commonly-used-cache-read-and-write-strategies",
+                "redis-data-structures-01",
                 "redis-memory-fragmentation",
                 "redis-cluster",
               ],

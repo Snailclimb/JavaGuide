@@ -117,7 +117,21 @@ Redis 5.0 新增加的一个数据结构 `Stream` 可以用来做消息队列，
 
 ## Redis 数据结构
 
-### Redis 常见的数据结构有哪些？
+### Redis 常用的数据结构有哪些？
+
+- **5 种基础数据类型** ：String（字符串）、List（列表）、Set（集合）、Hash（散列）、Zset（有序集合）。
+- **3 种特殊数据类型** ：HyperLogLogs（基数统计）、Bitmap （位存储）、Geospatial (地理位置)。
+
+关于 5 种基础数据类型的详细介绍请看这篇文章：[Redis 5 种基本数据结构详解](./redis-data-structures-01.md)。
+
+### String 的应用场景有哪些？
+
+- 常规数据（比如 session、token、、序列化后的对象）的缓存；
+- 计数比如用户单位时间的请求数（简单限流可以用到）、页面单位时间的访问数；
+- 分布式锁(利用 `SETNX key value` 命令可以实现一个最简易的分布式锁)；
+- ......
+
+关于 String 的详细介绍请看这篇文章：[Redis 5 种基本数据结构详解](./redis-data-structures-01.md)。
 
 ### String 还是 Hash 存储对象数据更好呢？
 
@@ -134,6 +148,23 @@ Redis 5.0 新增加的一个数据结构 `Stream` 可以用来做消息队列，
 - 商品 id 为 field，商品数量为 value
 
 由于购物车中的商品频繁修改和变动，这个时候 Hash 就非常适合了！
+
+### 使用 Redis 实现一个排行榜怎么做？
+
+Redis 中有一个叫做 `sorted set` 的数据结构经常被用在各种排行榜的场景，比如直播间送礼物的排行榜、朋友圈的微信步数排行榜、王者荣耀中的段位排行榜、话题热度排行榜等等。
+
+相关的一些 Redis 命令: `ZRANGE` (从小到大排序) 、 `ZREVRANGE` （从大到小排序）、`ZREVRANK` (指定元素排名)。
+
+![](https://img-blog.csdnimg.cn/2021060714195385.png)
+
+[《Java 面试指北》](https://www.yuque.com/docs/share/f37fc804-bfe6-4b0d-b373-9c462188fec7) 的「技术面试题篇」就有一篇文章详细介绍如何使用 Sorted Set 来设计制作一个排行榜。
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/image-20220719071115140.png)
+
+### 使用 Set 实现抽奖系统需要用到什么命令？
+
+- `SPOP key count` ： 随机移除并获取指定集合中一个或多个元素，适合不允许重复中奖的场景。
+- `SRANDMEMBER key count` : 随机获取指定集合中指定数量的元素，适合允许重复中奖的场景。
 
 ## Redis 线程模型
 
