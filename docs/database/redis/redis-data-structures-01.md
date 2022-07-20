@@ -5,7 +5,14 @@ tag:
   - Redis
 ---
 
-你可以在 Redis 官网上找到 Redis 数据结构非常详细的介绍：[Redis Data Structures](https://redis.com/redis-enterprise/data-structures/) 。未来随着 Redis 新版本的发布，可能会有新的数据结构出现，通过查阅 Redis 官网对应的介绍，你总能获取到最靠谱的信息。
+你可以在 Redis 官网上找到 Redis 数据结构非常详细的介绍：
+
+- [Redis Data Structures](https://redis.com/redis-enterprise/data-structures/)
+- [Redis Data types tutorial](https://redis.io/docs/manual/data-types/data-types-tutorial/)
+
+未来随着 Redis 新版本的发布，可能会有新的数据结构出现，通过查阅 Redis 官网对应的介绍，你总能获取到最靠谱的信息。 
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/image-20220720181630203.png)
 
 ## String（字符串）
 
@@ -130,7 +137,7 @@ Redis 中的 List 其实就是链表数据结构的实现。我在 [线性数据
 
 更多 Redis List 命令以及详细使用指南，请查看 Redis 官网对应的介绍：https://redis.io/commands/?group=list 。
 
-**通过 `RPUSH/LPOP` 实现队列** ：
+**通过  `RPUSH/LPOP` 或者 ` LPUSH/RPOP`实现队列** ：
 
 ```bash
 > RPUSH myList value1
@@ -147,7 +154,7 @@ Redis 中的 List 其实就是链表数据结构的实现。我在 [线性数据
 2) "value3"
 ```
 
-**通过 `RPUSH/RPOP` 实现栈：**
+**通过 `RPUSH/RPOP`或者`LPUSH/LPOP` 实现栈** ：
 
 ```bash
 > RPUSH myList2 value1 value2 value3
@@ -192,7 +199,7 @@ Redis 中的 List 其实就是链表数据结构的实现。我在 [线性数据
 
 **消息队列**
 
-Redis List 数据结构可以用来做消息队列，只是功能过于简单，不建议这样做。
+Redis List 数据结构可以用来做消息队列，只是功能过于简单且存在很多缺陷，不建议这样做。
 
 相对来说，Redis 5.0 新增加的一个数据结构 `Stream` 更适合做消息队列一些，只是功能依然非常简陋。和专业的消息队列相比，还是有很多欠缺的地方比如消息丢失和堆积问题不好解决。
 
@@ -200,7 +207,7 @@ Redis List 数据结构可以用来做消息队列，只是功能过于简单，
 
 ### 介绍
 
-Hash 是一个 String 类型的 field 和 value 的映射表，特别适合用于存储对象，后续操作的时候，你可以直接仅仅修改这个对象中的某个字段的值。
+Redis 中的 Hash 是一个 String 类型的 field-value（键值对） 的映射表，特别适合用于存储对象，后续操作的时候，你可以直接修改这个对象中的某些字段的值。
 
 Hash 类似于 JDK1.8 前的 `HashMap`，内部实现也差不多(数组 + 链表)。不过，Redis 的 Hash 做了更多优化。
 
@@ -214,7 +221,7 @@ Hash 类似于 JDK1.8 前的 `HashMap`，内部实现也差不多(数组 + 链�
 | HSETNX key field value                    | 只有指定字段不存在时设置指定字段的值                     |
 | HMSET key field1 value1 field2 value2 ... | 同时将一个或多个 field-value (域-值)对设置到指定哈希表中 |
 | HGET key field                            | 获取指定哈希表中指定字段的值                             |
-| HMGET key field1 field2                   | 获取指定哈希表中一个或者多个指定字段的值                 |
+| HMGET key field1 field2 ...               | 获取指定哈希表中一个或者多个指定字段的值                 |
 | HGETALL key                               | 获取指定哈希表中所有的键值对                             |
 | HEXISTS key field                         | 查看指定哈希表中指定的字段是否存在                       |
 | HDEL key field1 field2 ...                | 删除一个或多个哈希表字段                                 |

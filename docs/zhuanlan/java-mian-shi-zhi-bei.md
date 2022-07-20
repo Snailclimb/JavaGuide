@@ -4,21 +4,9 @@ category: 知识星球
 star: 5
 ---
 
-你好，我是 Guide。
-
-犹豫了很久，还是想借这篇文章来简单介绍以及宣传一下我这两年利用业余时间完成的 [**JavaGuide 开源版**](https://javaguide.cn/)的兄弟 — **《Java 面试指北》**。
-
-每次写这种“软文”我还是挺忐忑的，但是转念一想，自己用心做内容，真诚帮助别人，为什么不能宣传一下呢？这内容不比很多几千块钱的训练营强？
-
-一到面试季，熬夜到转点帮忙修改简历回答问题就成了家常便饭。不过，大家也不用心疼我，我做这些事情是有收获的，不仅仅是多了一份可观的副业收入，内心也更加充实开心。不过，也确实是真的累！
-
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220304123156348.png)
-
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/IMG_2975_%E5%89%AF%E6%9C%AC.png)
-
 ## 介绍
 
-**《Java 面试指北》** 是我的[知识星球](https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc)的一个内部小册，和 [JavaGuide 开源版](https://javaguide.cn/)的内容互补。相比于开源版本来说，《Java 面试指北》添加了下面这些内容（不仅仅是这些内容）：
+**《Java 面试指北》** 是我的[知识星球](../about-the-author/zhishixingqiu-two-years.md)的一个内部小册，和 [JavaGuide 开源版](https://javaguide.cn/)的内容互补。相比于开源版本来说，《Java 面试指北》添加了下面这些内容（不仅仅是这些内容）：
 
 - 10+ 篇文章手把手教你如何准备面试。
 - 更全面的八股文面试题（系统设计、常见框架、分布式、高并发 ......）。
@@ -78,11 +66,34 @@ star: 5
 
 每一篇内容都非常干货，不少球友看了之后表示收获漫漫。不过，最重要的还是知行合一。
 
-## 知识星球
+## 星球其他资源
 
-欢迎准备 Java 面试以及学习 Java 的同学加入我的[知识星球](https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc)，干货非常多，学习氛围非常好！收费虽然是白菜价，但星球里的内容或许比你参加上万的培训班质量还要高。
+除了 **《Java 面试指北》** 之外，星球还有 **《Java 必读源码系列》**（目前已经整理了 Dubbo 2.6.x 、Netty 4.x、SpringBoot2.1 的源码）、 **《从零开始写一个 RPC 框架》**（已更新完） 、**《Kafka 常见面试题/知识点总结》** 等多个专属小册。
 
-我有自己的原则，不割韭菜，用心做内容，真心希望帮助到你！
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220316200015412.png)
+另外，星球还会有读书活动、学习打卡、简历修改、免费提问、海量 Java 优质面试资源以及各种不定时的福利。
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220304124333119.png)
 
-如果你感兴趣的话，不妨花 3 分钟左右看看星球的详细介绍： [JavaGuide 知识星球详细介绍](https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc)（文末有优惠券）。
+## 星球限时优惠
 
+欢迎准备 Java 面试以及学习 Java 的同学加入我的[知识星球](../about-the-author/zhishixingqiu-two-years.md)，干货非常多，学习非常好！收费虽然是白菜价，但星球里的内容或许比你参加上万的培训班质量还要高。
+
+两年前，星球的定价是 **50/年** ，这是星球的最低定价，我还附送了 33 元优惠券。扣除了星球手续费，发了各种福利之后，几乎就是纯粹做公益。感兴趣的小伙伴可以看看我在 2020-01-03 发的头条：[做了一个很久没敢做的事情](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247486049&idx=1&sn=e0161b409e8f164251bdaa0c83a476bc&chksm=cea245aaf9d5ccbcafdb95a546d959508814085620aabdbb4385c4b8cea6e50bf157c3697041&token=1614894361&lang=zh_CN#rd)，去考古一下。
+
+随着时间推移，星球积累的干货资源越来越多，我花在星球上的时间也越来越多。于是，星球的定价慢慢被调整为了 **159/年**！
+
+目前已经有 **1.3w+** 人加入星球，随着加入的人数增加，这个定价还会继续调整。
+
+这里再送出一张新人优惠券，使用优惠券 **139/年** 加入（即将调整为 **199/年**）。
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/xingqiuyouhuijuan-20.png)
+
+如果你在犹豫要不要加入的话，我建议你进来体验一下，三天之内知识星球 APP 右上角可以申请全额退款，秒到账！绝对不会坑大家！
+
+进入星球之后，你可以为自己制定一个目标，比如自己想要进入某某还不错的公司或者达成什么成就（一定要是还算有点挑战的目标）。
+
+待你完成目标在星球分享之后，我会将星球的门票费退还给你。
+
+**真诚欢迎准备面试的小伙伴加入星球一起交流！真心希望能够帮助到更多小伙伴！**
+
+**加入星球之后记得看[置顶主题](https://t.zsxq.com/04iiiAqf6)，你会发现物超所值！**
