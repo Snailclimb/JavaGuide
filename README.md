@@ -200,6 +200,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 - [3种常用的缓存读写策略详解](docs/database/redis/3-commonly-used-cache-read-and-write-strategies.md)
 - [Redis 5 种基本数据结构详解](./docs/database/redis/redis-data-structures-01.md)
+- [Redis 3 种特殊数据结构详解](./docs/database/redis/redis-data-structures-02.md)
 - [Redis 内存碎片详解](./docs/database/redis/redis-memory-fragmentation.md)
 - [Redis 集群详解](./docs/database/redis/redis-cluster.md)
 

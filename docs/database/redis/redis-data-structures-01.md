@@ -3,6 +3,12 @@ title: Redis 5 种基本数据结构详解
 category: 数据库
 tag:
   - Redis
+head:
+  - - meta
+    - name: keywords
+      content: Redis常见数据结构
+    - name: description
+      content: Redis基础数据结构总结：String（字符串）、List（列表）、Set（集合）、Hash（散列）、Zset（有序集合）
 ---
 
 你可以在 Redis 官网上找到 Redis 数据结构非常详细的介绍：

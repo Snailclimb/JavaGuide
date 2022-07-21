@@ -122,7 +122,9 @@ Redis 5.0 新增加的一个数据结构 `Stream` 可以用来做消息队列，
 - **5 种基础数据结构** ：String（字符串）、List（列表）、Set（集合）、Hash（散列）、Zset（有序集合）。
 - **3 种特殊数据结构** ：HyperLogLogs（基数统计）、Bitmap （位存储）、Geospatial (地理位置)。
 
-关于 5 种基础数据类型的详细介绍请看这篇文章：[Redis 5 种基本数据结构详解](./redis-data-structures-01.md)。
+关于 5 种基础数据结构的详细介绍请看这篇文章：[Redis 5 种基本数据结构详解](./redis-data-structures-01.md)。
+
+关于 3 种特殊数据结构的详细介绍请看这篇文章：[Redis 3 种特殊数据结构详解](./redis-data-structures-02.md)。
 
 ### String 的应用场景有哪些？
 
@@ -197,6 +199,20 @@ Redis 中有一个叫做 `sorted set` 的数据结构经常被用在各种排行
 (integer) 1
 > BITCOUNT desk2
 (integer) 2
+```
+
+### 使用 HyperLogLog 统计页面 UV 怎么做？
+
+1、将访问指定页面的每个用户 ID 添加到 `HyperLogLog` 中。
+
+```bash
+PFADD PAGE_1:UV USER1 USER2 ...... USERn
+```
+
+2、统计指定页面的 UV。
+
+```bash
+PFCOUNT PAGE_1:UV
 ```
 
 ## Redis 线程模型
