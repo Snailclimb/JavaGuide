@@ -27,12 +27,14 @@ star: 2
 1. 6 个高质量的专栏永久阅读，内容涵盖面试，源码解析，项目实战等内容！价值远超门票！
 2. 多本原创 PDF 版本面试手册。
 3. 免费的简历修改服务（已经累计帮助 4000+ 位球友修改简历）。
-4. 专属求职指南和建议，帮助你逆袭大厂！
-5. 一对一免费提问交流（专属建议，走心回答）。
+4. 一对一免费提问交流（专属建议，走心回答）。
+5. 专属求职指南和建议，帮助你逆袭大厂！
 6. 海量 Java 优质面试资源分享！价值远超门票！
 7. 读书交流，学习交流，让我们一起努力创造一个纯粹的学习交流社区。
 8. 不定期福利：节日抽奖、送书送课、球友线下聚会等等。
 9. ......
+
+其中的任何一项服务单独拎出来，
 
 ### 专属专栏
 
@@ -44,11 +46,29 @@ star: 2
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220304102536445.png)
 
+### PDF 面试手册
+
+免费赠送多本优质的 PDF 面试手册。
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220723120918434.png)
+
 ### 简历修改
 
-星球运行 2 年多，我累计帮助 **2000+** 位球友提供了免费的简历修改服务，回答了 **1000+** 个读者提问，产出了 **3800+** 个主题。
+一到面试季，我平均一天晚上至少要看 15 ~30 份简历。过了面试季的话，找我看简历的话会稍微少一些。要不然的话，是真心顶不住！
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2021-1/image-20210102184923199.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220304123156348.png)
+
+简单统计了一下，到目前为止，我至少帮助 **4000+** 位球友提供了免费的简历修改服务。
+
+我会针对每一份简历给出详细的修改完善建议，用心修改，深受好评！
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/%E7%AE%80%E5%8E%86%E4%BF%AE%E6%94%B92.jpg)
+
+### 一对一提问
+
+你可以和我进行一对一免费提问交流，我会很走心地回答你的问题。到目前为止，已经累计回答了 **1000+** 个读者的提问。
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220211223559179.png)
 
 ### 学习打卡
 
@@ -61,12 +81,6 @@ star: 2
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/%E7%90%83%E5%8F%8B%E6%AF%8F%E6%97%A5%E6%89%93%E5%8D%A1%E4%B9%9F%E8%83%BD%E5%AD%A6%E5%88%B0%E5%BE%88%E5%A4%9A%E4%B8%9C%E8%A5%BF.jpg)
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/%E7%A1%AE%E5%AE%9E%E6%98%AF%E5%AD%A6%E4%B9%A0%E4%BA%A4%E6%B5%81%E7%9A%84%E5%A5%BD%E5%9C%B0%E6%96%B9.jpg)
-
-### 提问交流
-
-你可以和我进行一对一免费提问交流，我会很走心地回答你的问题。
-
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220211223559179.png)
 
 ### 读书活动
 
