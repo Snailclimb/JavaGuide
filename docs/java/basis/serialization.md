@@ -1,5 +1,5 @@
 ---
-title:  Java 序列化详解
+title: Java 序列化详解
 category: Java
 tag:
   - Java基础

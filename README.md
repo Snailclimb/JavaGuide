@@ -54,10 +54,11 @@
 * [为什么 Java 中只有值传递？](docs/java/basis/why-there-only-value-passing-in-java.md)
 * [Java 序列化详解](docs/java/basis/serialization.md)
 * [泛型&序列化详解](docs/java/basis/generics-and-wildcards.md)
-* [反射机制详解](docs/java/basis/reflection.md)
+* [Java 反射机制详解](docs/java/basis/reflection.md)
 * [Java 代理模式详解](docs/java/basis/proxy.md)
 * [BigDecimal 详解](docs/java/basis/bigdecimal.md)
 * [Java 魔法类 Unsafe 详解](docs/java/basis/unsafe.md)
+* [Java SPI 机制详解](docs/java/basis/spi.md)
 
 ### 集合
 

@@ -56,6 +56,7 @@ export const sidebarConfig = defineSidebarConfig({
                 "proxy",
                 "bigdecimal",
                 "unsafe",
+                "spi",
               ],
             },
           ],
