@@ -75,13 +75,11 @@ public boolean isDone() {
 }
 ```
 
-获取异步计算的结果也非常简单，直接调用 `get()` 方法即可！
+获取异步计算的结果也非常简单，直接调用 `get()` 方法即可。调用 `get()` 方法的线程会阻塞直到 `CompletableFuture` 完成运算。
 
 ```java
 rpcResponse = completableFuture.get();
 ```
-
-注意 ： `get()` 方法并不会阻塞，因为我们已经知道异步运算的结果了。
 
 如果你已经知道计算的结果的话，可以使用静态方法 `completedFuture()` 来创建 `CompletableFuture` 。
 

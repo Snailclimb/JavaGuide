@@ -48,7 +48,7 @@ star: 2
 
 ### PDF 面试手册
 
-免费赠送多本优质的 PDF 面试手册。
+免费赠送多本优质 PDF 面试手册。
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220723120918434.png)
 

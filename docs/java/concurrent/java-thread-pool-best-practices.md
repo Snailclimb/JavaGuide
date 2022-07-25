@@ -9,7 +9,7 @@ tag:
 
 ## 线程池知识回顾
 
-开始这篇文章之前还是简单介绍一嘴线程池，之前写的[《新手也能看懂的线程池学习总结》](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247485808&idx=1&sn=1013253533d73450cef673aee13267ab&chksm=cea246bbf9d5cfad1c21316340a0ef1609a7457fea4113a1f8d69e8c91e7d9cd6285f5ee1490&token=510053261&lang=zh_CN&scene=21#wechat_redirect)这篇文章介绍的很详细了。
+开始这篇文章之前还是简单介绍线程池，之前写的[《新手也能看懂的线程池学习总结》](./java-thread-pool-summary.md)这篇文章介绍的很详细了。
 
 ### 为什么要使用线程池？
 
@@ -29,7 +29,7 @@ tag:
 
 假设我们要执行三个不相关的耗时任务，Guide 画图给大家展示了使用线程池前后的区别。
 
-注意：**下面三个任务可能做的是同一件事情，也可能是不一样的事情。** 
+注意：**下面三个任务可能做的是同一件事情，也可能是不一样的事情。**
 
 > 使用多线程前应为：任务 1 --> 任务 2 --> 任务 3（图中把任务 3 画错为 任务 2）
 
@@ -39,7 +39,7 @@ tag:
 
 一般是通过 `ThreadPoolExecutor` 的构造函数来创建线程池，然后提交任务给线程池执行就可以了。
 
- `ThreadPoolExecutor`构造函数如下：
+`ThreadPoolExecutor`构造函数如下：
 
 ```java
     /**
@@ -130,11 +130,11 @@ Finished all threads
 
 简单总结一下我了解的使用线程池的时候应该注意的东西，网上似乎还没有专门写这方面的文章。
 
-因为Guide还比较菜，有补充和完善的地方，可以在评论区告知或者在微信上与我交流。
+因为 Guide 还比较菜，有补充和完善的地方，可以在评论区告知或者在微信上与我交流。
 
-### 1. 使用 `ThreadPoolExecutor ` 的构造函数声明线程池
+### 1. 使用 `ThreadPoolExecutor` 的构造函数声明线程池
 
-**1. 线程池必须手动通过 `ThreadPoolExecutor ` 的构造函数来声明，避免使用`Executors ` 类的 `newFixedThreadPool` 和 `newCachedThreadPool` ，因为可能会有 OOM 的风险。**
+**1. 线程池必须手动通过 `ThreadPoolExecutor` 的构造函数来声明，避免使用`Executors` 类的 `newFixedThreadPool` 和 `newCachedThreadPool` ，因为可能会有 OOM 的风险。**
 
 > Executors 返回线程池对象的弊端如下：
 >
@@ -143,7 +143,7 @@ Finished all threads
 
 说白了就是：**使用有界队列，控制线程创建数量。**
 
-除了避免 OOM 的原因之外，不推荐使用 `Executors `提供的两种快捷的线程池的原因还有：
+除了避免 OOM 的原因之外，不推荐使用 `Executors`提供的两种快捷的线程池的原因还有：
 
 1. 实际使用中需要根据自己机器的性能、业务场景来手动配置线程池的参数比如核心线程数、使用的任务队列、饱和策略等等。
 2. 我们应该显示地给我们的线程池命名，这样有助于我们定位问题。
@@ -152,7 +152,7 @@ Finished all threads
 
 你可以通过一些手段来检测线程池的运行状态比如 SpringBoot 中的 Actuator 组件。
 
-除此之外，我们还可以利用 `ThreadPoolExecutor` 的相关 API做一个简陋的监控。从下图可以看出， `ThreadPoolExecutor`提供了获取线程池当前的线程数和活跃线程数、已经执行完成的任务数、正在排队中的任务数等等。
+除此之外，我们还可以利用 `ThreadPoolExecutor` 的相关 API 做一个简陋的监控。从下图可以看出， `ThreadPoolExecutor`提供了获取线程池当前的线程数和活跃线程数、已经执行完成的任务数、正在排队中的任务数等等。
 
 ![](./images/thread-pool/ddf22709-bff5-45b4-acb7-a3f2e6798608.png)
 
@@ -235,7 +235,7 @@ public final class NamingThreadFactory implements ThreadFactory {
         this.name = name; // TODO consider uniquifying this
     }
 
-    @Override 
+    @Override
     public Thread newThread(Runnable r) {
         Thread t = delegate.newThread(r);
         t.setName(name + " [#" + threadNum.incrementAndGet() + "]");
@@ -263,24 +263,37 @@ public final class NamingThreadFactory implements ThreadFactory {
 >
 > Linux 相比与其他操作系统（包括其他类 Unix 系统）有很多的优点，其中有一项就是，其上下文切换和模式切换的时间消耗非常少。
 
-**类比于实现世界中的人类通过合作做某件事情，我们可以肯定的一点是线程池大小设置过大或者过小都会有问题，合适的才是最好。**
+类比于实现世界中的人类通过合作做某件事情，我们可以肯定的一点是线程池大小设置过大或者过小都会有问题，合适的才是最好。
 
-**如果我们设置的线程池数量太小的话，如果同一时间有大量任务/请求需要处理，可能会导致大量的请求/任务在任务队列中排队等待执行，甚至会出现任务队列满了之后任务/请求无法处理的情况，或者大量任务堆积在任务队列导致 OOM。这样很明显是有问题的！ CPU 根本没有得到充分利用。**
-
-**但是，如果我们设置线程数量太大，大量线程可能会同时在争取 CPU 资源，这样会导致大量的上下文切换，从而增加线程的执行时间，影响了整体执行效率。**
+- 如果我们设置的线程池数量太小的话，如果同一时间有大量任务/请求需要处理，可能会导致大量的请求/任务在任务队列中排队等待执行，甚至会出现任务队列满了之后任务/请求无法处理的情况，或者大量任务堆积在任务队列导致 OOM。这样很明显是有问题的，CPU 根本没有得到充分利用。
+- 如果我们设置线程数量太大，大量线程可能会同时在争取 CPU 资源，这样会导致大量的上下文切换，从而增加线程的执行时间，影响了整体执行效率。
 
 有一个简单并且适用面比较广的公式：
 
-- **CPU 密集型任务(N+1)：** 这种任务消耗的主要是 CPU 资源，可以将线程数设置为 N（CPU 核心数）+1，比 CPU 核心数多出来的一个线程是为了防止线程偶发的缺页中断，或者其它原因导致的任务暂停而带来的影响。一旦任务暂停，CPU 就会处于空闲状态，而在这种情况下多出来的一个线程就可以充分利用 CPU 的空闲时间。
+- **CPU 密集型任务(N+1)：** 这种任务消耗的主要是 CPU 资源，可以将线程数设置为 N（CPU 核心数）+1。比 CPU 核心数多出来的一个线程是为了防止线程偶发的缺页中断，或者其它原因导致的任务暂停而带来的影响。一旦任务暂停，CPU 就会处于空闲状态，而在这种情况下多出来的一个线程就可以充分利用 CPU 的空闲时间。
 - **I/O 密集型任务(2N)：** 这种任务应用起来，系统会用大部分的时间来处理 I/O 交互，而线程在处理 I/O 的时间段内不会占用 CPU 来处理，这时就可以将 CPU 交出给其它线程使用。因此在 I/O 密集型任务的应用中，我们可以多配置一些线程，具体的计算方法是 2N。
 
 **如何判断是 CPU 密集任务还是 IO 密集任务？**
 
 CPU 密集型简单理解就是利用 CPU 计算能力的任务比如你在内存中对大量数据进行排序。但凡涉及到网络读取，文件读取这类都是 IO 密集型，这类任务的特点是 CPU 计算耗费时间相比于等待 IO 操作完成的时间来说很少，大部分时间都花在了等待 IO 操作完成上。
 
+> 🌈 拓展一下（参见：[issue#1737](https://github.com/Snailclimb/JavaGuide/issues/1737)）：
+>
+> 线程数更严谨的计算的方法应该是：`最佳线程数 = N（CPU 核心数）∗（1+WT（线程等待时间）/ST（线程计算时间））`，其中 `WT（线程等待时间）=线程运行总时间 - ST（线程计算时间）`。
+>
+> 线程等待时间所占比例越高，需要越多线程。线程计算时间所占比例越高，需要越少线程。
+>
+> 我们可以通过 JDK 自带的工具 VisualVM 来查看 `WT/ST` 比例。
+>
+> CPU 密集型任务的 `WT/ST` 接近或者等于 0，因此， 线程数可以设置为 N（CPU 核心数）∗（1+0）= N，和我们上面说的 N（CPU 核心数）+1 差不多。
+>
+> IO 密集型任务下，几乎全是线程等待时间，从理论上来说，你就可以将线程数设置为 2N（按道理来说，WT/ST 的结果应该比较大，这里选择 2N 的原因应该是为了避免创建过多线程吧）。
+
+**公示也只是参考，具体还是要根据项目实际线上运行情况来动态调整。我在后面介绍的美团的线程池参数动态配置这种方案就非常不错，很实用！**
+
 #### 美团的骚操作
 
-美团技术团队在[《Java线程池实现原理及其在美团业务中的实践》](https://tech.meituan.com/2020/04/02/java-pooling-pratice-in-meituan.html)这篇文章中介绍到对线程池参数实现可自定义配置的思路和方法。
+美团技术团队在[《Java 线程池实现原理及其在美团业务中的实践》](https://tech.meituan.com/2020/04/02/java-pooling-pratice-in-meituan.html)这篇文章中介绍到对线程池参数实现可自定义配置的思路和方法。
 
 美团技术团队的思路是主要对线程池的核心参数实现自定义可配置。这三个核心参数是：
 
@@ -290,21 +303,18 @@ CPU 密集型简单理解就是利用 CPU 计算能力的任务比如你在内�
 
 **为什么是这三个参数？**
 
-我在这篇[《新手也能看懂的线程池学习总结》](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247485808&idx=1&sn=1013253533d73450cef673aee13267ab&chksm=cea246bbf9d5cfad1c21316340a0ef1609a7457fea4113a1f8d69e8c91e7d9cd6285f5ee1490&token=510053261&lang=zh_CN&scene=21#wechat_redirect) 中就说过这三个参数是 `ThreadPoolExecutor`  最重要的参数，它们基本决定了线程池对于任务的处理策略。
+我在这篇[《新手也能看懂的线程池学习总结》](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247485808&idx=1&sn=1013253533d73450cef673aee13267ab&chksm=cea246bbf9d5cfad1c21316340a0ef1609a7457fea4113a1f8d69e8c91e7d9cd6285f5ee1490&token=510053261&lang=zh_CN&scene=21#wechat_redirect) 中就说过这三个参数是 `ThreadPoolExecutor` 最重要的参数，它们基本决定了线程池对于任务的处理策略。
 
 **如何支持参数动态配置？** 且看 `ThreadPoolExecutor` 提供的下面这些方法。
 
 ![](./images/thread-pool/b6fd95a7-4c9d-4fc6-ad26-890adb3f6c4c.png)
 
-格外需要注意的是`corePoolSize`，   程序运行期间的时候，我们调用 `setCorePoolSize（） `这个方法的话，线程池会首先判断当前工作线程数是否大于`corePoolSize`，如果大于的话就会回收工作线程。
+格外需要注意的是`corePoolSize`， 程序运行期间的时候，我们调用 `setCorePoolSize（）`这个方法的话，线程池会首先判断当前工作线程数是否大于`corePoolSize`，如果大于的话就会回收工作线程。
 
-另外，你也看到了上面并没有动态指定队列长度的方法，美团的方式是自定义了一个叫做 `ResizableCapacityLinkedBlockIngQueue` 的队列（主要就是把`LinkedBlockingQueue`的capacity 字段的final关键字修饰给去掉了，让它变为可变的）。
+另外，你也看到了上面并没有动态指定队列长度的方法，美团的方式是自定义了一个叫做 `ResizableCapacityLinkedBlockIngQueue` 的队列（主要就是把`LinkedBlockingQueue`的 capacity 字段的 final 关键字修饰给去掉了，让它变为可变的）。
 
 最终实现的可动态修改线程池参数效果如下。👏👏👏
 
 ![动态配置线程池参数最终效果](./images/thread-pool/19a0255a-6ef3-4835-98d1-a839d1983332.png)
 
-还没看够？推荐 why神的[《如何设置线程池参数？美团给出了一个让面试官虎躯一震的回答。》](https://mp.weixin.qq.com/s/9HLuPcoWmTqAeFKa1kj-_A)这篇文章，深度剖析，很不错哦！
-
-
-
+还没看够？推荐 why 神的[《如何设置线程池参数？美团给出了一个让面试官虎躯一震的回答。》](https://mp.weixin.qq.com/s/9HLuPcoWmTqAeFKa1kj-_A)这篇文章，深度剖析，很不错哦！
