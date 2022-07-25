@@ -60,9 +60,11 @@ star: 2
 
 简单统计了一下，到目前为止，我至少帮助 **4000+** 位球友提供了免费的简历修改服务。
 
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/%E7%AE%80%E5%8E%86%E4%BF%AE%E6%94%B92.jpg)
+
 我会针对每一份简历给出详细的修改完善建议，用心修改，深受好评！
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/%E7%AE%80%E5%8E%86%E4%BF%AE%E6%94%B92.jpg)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220725093504807.png)
 
 ### 一对一提问
 

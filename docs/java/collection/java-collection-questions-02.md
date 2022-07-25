@@ -18,8 +18,8 @@ head:
 1. **线程是否安全：** `HashMap` 是非线程安全的，`Hashtable` 是线程安全的,因为 `Hashtable` 内部的方法基本都经过`synchronized` 修饰。（如果你要保证线程安全的话就使用 `ConcurrentHashMap` 吧！）；
 2. **效率：** 因为线程安全的问题，`HashMap` 要比 `Hashtable` 效率高一点。另外，`Hashtable` 基本被淘汰，不要在代码中使用它；
 3. **对 Null key 和 Null value 的支持：** `HashMap` 可以存储 null 的 key 和 value，但 null 作为键只能有一个，null 作为值可以有多个；Hashtable 不允许有 null 键和 null 值，否则会抛出 `NullPointerException`。
-4. **初始容量大小和每次扩充容量大小的不同 ：** ① 创建时如果不指定容量初始值，`Hashtable` 默认的初始大小为 11，之后每次扩充，容量变为原来的 2n+1。`HashMap` 默认的初始化大小为 16。之后每次扩充，容量变为原来的 2 倍。② 创建时如果给定了容量初始值，那么 Hashtable 会直接使用你给定的大小，而 `HashMap` 会将其扩充为 2 的幂次方大小（`HashMap` 中的`tableSizeFor()`方法保证，下面给出了源代码）。也就是说 `HashMap` 总是使用 2 的幂作为哈希表的大小,后面会介绍到为什么是 2 的幂次方。
-5. **底层数据结构：** JDK1.8 以后的 `HashMap` 在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为 8）（将链表转换成红黑树前会判断，如果当前数组的长度小于 64，那么会选择先进行数组扩容，而不是转换为红黑树）时，将链表转化为红黑树，以减少搜索时间。Hashtable 没有这样的机制。
+4. **初始容量大小和每次扩充容量大小的不同 ：** ① 创建时如果不指定容量初始值，`Hashtable` 默认的初始大小为 11，之后每次扩充，容量变为原来的 2n+1。`HashMap` 默认的初始化大小为 16。之后每次扩充，容量变为原来的 2 倍。② 创建时如果给定了容量初始值，那么 `Hashtable` 会直接使用你给定的大小，而 `HashMap` 会将其扩充为 2 的幂次方大小（`HashMap` 中的`tableSizeFor()`方法保证，下面给出了源代码）。也就是说 `HashMap` 总是使用 2 的幂作为哈希表的大小,后面会介绍到为什么是 2 的幂次方。
+5. **底层数据结构：** JDK1.8 以后的 `HashMap` 在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为 8）时，将链表转化为红黑树（将链表转换成红黑树前会判断，如果当前数组的长度小于 64，那么会选择先进行数组扩容，而不是转换为红黑树），以减少搜索时间（后文中我会结合源码对这一过程进行分析）。`Hashtable` 没有这样的机制。
 
 **`HashMap` 中带有初始容量的构造函数：**
 
@@ -184,9 +184,9 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
 
 #### JDK1.8 之前
 
-JDK1.8 之前 `HashMap` 底层是 **数组和链表** 结合在一起使用也就是 **链表散列**。**HashMap 通过 key 的 hashCode 经过扰动函数处理过后得到 hash 值，然后通过 (n - 1) & hash 判断当前元素存放的位置（这里的 n 指的是数组的长度），如果当前位置存在元素的话，就判断该元素与要存入的元素的 hash 值以及 key 是否相同，如果相同的话，直接覆盖，不相同就通过拉链法解决冲突。**
+JDK1.8 之前 `HashMap` 底层是 **数组和链表** 结合在一起使用也就是 **链表散列**。HashMap 通过 key 的 `hashCode` 经过扰动函数处理过后得到 hash 值，然后通过 `(n - 1) & hash` 判断当前元素存放的位置（这里的 n 指的是数组的长度），如果当前位置存在元素的话，就判断该元素与要存入的元素的 hash 值以及 key 是否相同，如果相同的话，直接覆盖，不相同就通过拉链法解决冲突。
 
-**所谓扰动函数指的就是 HashMap 的 hash 方法。使用 hash 方法也就是扰动函数是为了防止一些实现比较差的 hashCode() 方法 换句话说使用扰动函数之后可以减少碰撞。**
+所谓扰动函数指的就是 HashMap 的 `hash` 方法。使用 `hash` 方法也就是扰动函数是为了防止一些实现比较差的 `hashCode()` 方法 换句话说使用扰动函数之后可以减少碰撞。
 
 **JDK 1.8 HashMap 的 hash 方法源码:**
 
@@ -228,6 +228,62 @@ static int hash(int h) {
 ![jdk1.8之后的内部结构-HashMap](./images/jdk1.8_hashmap.png)
 
 > TreeMap、TreeSet 以及 JDK1.8 之后的 HashMap 底层都用到了红黑树。红黑树就是为了解决二叉查找树的缺陷，因为二叉查找树在某些情况下会退化成一个线性结构。
+
+我们来结合源码分析一下 `HashMap` 链表到红黑树的转换。
+
+**1、 `putVal` 方法中执行链表转红黑树的判断逻辑。**
+
+链表的长度大于 8 的时候，就执行 `treeifyBin` （转换红黑树）的逻辑。
+
+```java
+// 遍历链表
+for (int binCount = 0; ; ++binCount) {
+    // 遍历到链表最后一个节点
+    if ((e = p.next) == null) {
+        p.next = newNode(hash, key, value, null);
+        // 如果链表元素个数大于等于TREEIFY_THRESHOLD（8）
+        if (binCount >= TREEIFY_THRESHOLD - 1) // -1 for 1st
+            // 红黑树转换（并不会直接转换成红黑树）
+            treeifyBin(tab, hash);
+        break;
+    }
+    if (e.hash == hash &&
+        ((k = e.key) == key || (key != null && key.equals(k))))
+        break;
+    p = e;
+}
+```
+
+**2、`treeifyBin` 方法中判断是否真的转换为红黑树。**
+
+```java
+final void treeifyBin(Node<K,V>[] tab, int hash) {
+    int n, index; Node<K,V> e;
+    // 判断当前数组的长度是否小于 64
+    if (tab == null || (n = tab.length) < MIN_TREEIFY_CAPACITY)
+        // 如果当前数组的长度小于 64，那么会选择先进行数组扩容
+        resize();
+    else if ((e = tab[index = (n - 1) & hash]) != null) {
+        // 否则才将列表转换为红黑树
+
+        TreeNode<K,V> hd = null, tl = null;
+        do {
+            TreeNode<K,V> p = replacementTreeNode(e, null);
+            if (tl == null)
+                hd = p;
+            else {
+                p.prev = tl;
+                tl.next = p;
+            }
+            tl = p;
+        } while ((e = e.next) != null);
+        if ((tab[index] = hd) != null)
+            hd.treeify(tab);
+    }
+}
+```
+
+将链表转换成红黑树前会判断，如果当前数组的长度小于 64，那么会选择先进行数组扩容，而不是转换为红黑树。
 
 ### HashMap 的长度为什么是 2 的幂次方
 
