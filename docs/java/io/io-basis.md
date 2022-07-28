@@ -305,6 +305,57 @@ BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputS
 
 ```java
 @Test
+void copy_pdf_to_another_pdf_buffer_stream() {
+    // 记录开始时间
+    long start = System.currentTimeMillis();
+    try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream("深入理解计算机操作系统.pdf"));
+         BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream("深入理解计算机操作系统-副本.pdf"))) {
+        int content;
+        while ((content = bis.read()) != -1) {
+            bos.write(content);
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    // 记录结束时间
+    long end = System.currentTimeMillis();
+    System.out.println("使用缓冲流复制PDF文件总耗时:" + (end - start) + " 毫秒");
+}
+
+@Test
+void copy_pdf_to_another_pdf_stream() {
+    // 记录开始时间
+    long start = System.currentTimeMillis();
+    try (FileInputStream fis = new FileInputStream("深入理解计算机操作系统.pdf");
+         FileOutputStream fos = new FileOutputStream("深入理解计算机操作系统-副本.pdf")) {
+        int content;
+        while ((content = fis.read()) != -1) {
+            fos.write(content);
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    // 记录结束时间
+    long end = System.currentTimeMillis();
+    System.out.println("使用普通流复制PDF文件总耗时:" + (end - start) + " 毫秒");
+}
+```
+
+如果是调用 `read(byte b[])` 和 `write(byte b[], int off, int len)` 这两个写入一个字节数组的方法的话，只要字节数组的大小合适，两者的性能差距其实不大，基本可以忽略。
+
+这次我们使用 `read(byte b[])` 和 `write(byte b[], int off, int len)` 方法，分别通过字节流和字节缓冲流复制一个 524.9 mb 的 PDF 文件耗时对比如下：
+
+```
+使用缓冲流复制PDF文件总耗时:695 毫秒
+使用普通字节流复制PDF文件总耗时:989 毫秒
+```
+
+两者耗时差别不是很大，缓冲流的性能要略微好一点点。
+
+测试代码如下：
+
+```java
+@Test
 void copy_pdf_to_another_pdf_with_byte_array_buffer_stream() {
     // 记录开始时间
     long start = System.currentTimeMillis();
@@ -333,57 +384,6 @@ void copy_pdf_to_another_pdf_with_byte_array_stream() {
         byte[] bytes = new byte[4 * 1024];
         while ((len = fis.read(bytes)) != -1) {
             fos.write(bytes, 0, len);
-        }
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-    // 记录结束时间
-    long end = System.currentTimeMillis();
-    System.out.println("使用普通流复制PDF文件总耗时:" + (end - start) + " 毫秒");
-}
-```
-
-如果是调用 `read(byte b[])` 和 `write(byte b[], int off, int len)` 这两个写入一个字节数组的方法的话，只要字节数组的大小合适，两者的性能差距其实不大，基本可以忽略。
-
-这次我们使用 `read(byte b[])` 和 `write(byte b[], int off, int len)` 方法，分别通过字节流和字节缓冲流复制一个 524.9 mb 的 PDF 文件耗时对比如下：
-
-```
-使用缓冲流复制PDF文件总耗时:695 毫秒
-使用普通字节流复制PDF文件总耗时:989 毫秒
-```
-
-两者耗时差别不是很大，缓冲流的性能要略微好一点点。
-
-测试代码如下：
-
-```java
-@Test
-void copy_pdf_to_another_pdf_buffer_stream() {
-    // 记录开始时间
-    long start = System.currentTimeMillis();
-    try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream("深入理解计算机操作系统.pdf"));
-         BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream("深入理解计算机操作系统-副本.pdf"))) {
-        int content;
-        while ((content = bis.read()) != -1) {
-            bos.write(content);
-        }
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-    // 记录结束时间
-    long end = System.currentTimeMillis();
-    System.out.println("使用缓冲流复制PDF文件总耗时:" + (end - start) + " 毫秒");
-}
-
-@Test
-void copy_pdf_to_another_pdf_stream() {
-    // 记录开始时间
-    long start = System.currentTimeMillis();
-    try (FileInputStream fis = new FileInputStream("深入理解计算机操作系统.pdf");
-         FileOutputStream fos = new FileOutputStream("深入理解计算机操作系统-副本.pdf")) {
-        int content;
-        while ((content = fis.read()) != -1) {
-            fos.write(content);
         }
     } catch (IOException e) {
         e.printStackTrace();
