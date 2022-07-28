@@ -1,5 +1,5 @@
 ---
-title:  Spring常见面试题总结
+title:  Spring 常见面试题总结
 category: 框架
 tag:
   - Spring
@@ -631,7 +631,9 @@ public enum Isolation {
 
 在 `@Transactional` 注解中如果不配置`rollbackFor`属性,那么事务只会在遇到`RuntimeException`的时候才会回滚，加上 `rollbackFor=Exception.class`,可以让事务在遇到非运行时异常时也回滚。
 
-## JPA
+## Spring Data JPA
+
+JPA 重要的是实战，这里仅对小部分知识点进行总结。
 
 ### 如何使用 JPA 在数据库中非持久化一个字段？
 
@@ -668,6 +670,109 @@ String transient4; // not persistent because of @Transient
 ```
 
 一般使用后面两种方式比较多，我个人使用注解的方式比较多。
+
+###  JPA 的审计功能是做什么的？有什么用？
+
+审计功能主要是帮助我们记录数据库操作的具体行为比如某条记录是谁创建的、什么时间创建的、最后修改人是谁、最后修改时间是什么时候。
+
+```java
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@MappedSuperclass
+@EntityListeners(value = AuditingEntityListener.class)
+public abstract class AbstractAuditBase {
+
+    @CreatedDate
+    @Column(updatable = false)
+    @JsonIgnore
+    private Instant createdAt;
+
+    @LastModifiedDate
+    @JsonIgnore
+    private Instant updatedAt;
+
+    @CreatedBy
+    @Column(updatable = false)
+    @JsonIgnore
+    private String createdBy;
+
+    @LastModifiedBy
+    @JsonIgnore
+    private String updatedBy;
+}
+```
+
+- `@CreatedDate`: 表示该字段为创建时间字段，在这个实体被 insert 的时候，会设置值
+
+- `@CreatedBy` :表示该字段为创建人，在这个实体被 insert 的时候，会设置值
+
+  `@LastModifiedDate`、`@LastModifiedBy`同理。
+
+### 实体之间的关联关系注解有哪些？
+
+- `@OneToOne ` : 一对一。
+- `@ManyToMany` ：多对多。
+- `@OneToMany` : 一对多。
+- `@ManyToOne` ：多对一。
+
+利用 `@ManyToOne` 和 `@OneToMany` 也可以表达多对多的关联关系。
+
+## Spring Security
+
+Spring Security 重要的是实战，这里仅对小部分知识点进行总结。
+
+### 如何对密码进行加密？
+
+如果我们需要保存密码这类敏感数据到数据库的话，需要先加密再保存。
+
+Spring Security 提供了多种加密算法的实现，开箱即用，非常方便。这些加密算法实现类的父类是 `PasswordEncoder` ，如果你想要自己实现一个加密算法的话，也需要继承 `PasswordEncoder`。
+
+`PasswordEncoder`  接口一共也就 3 个必须实现的方法。
+
+```java
+public interface PasswordEncoder {
+    // 加密也就是对原始密码进行编码
+    String encode(CharSequence var1);
+    // 比对原始密码和数据库中保存的密码
+    boolean matches(CharSequence var1, String var2);
+    // 判断加密密码是否需要再次进行加密，默认返回 false
+    default boolean upgradeEncoding(String encodedPassword) {
+        return false;
+    }
+}
+```
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/framework/spring/image-20220728183540954.png)
+
+官方推荐使用基于 bcrypt 强哈希函数的加密算法实现类。
+
+### 如何优雅更换系统使用的加密算法？
+
+如果我们在开发过程中，突然发现现有的加密算法无法满足我们的需求，需要更换成另外一个加密算法，这个时候应该怎么办呢？
+
+推荐的做法是通过 `DelegatingPasswordEncoder` 兼容多种不同的密码加密方案，以适应不同的业务需求。
+
+从名字也能看出来，`DelegatingPasswordEncoder` 其实就是一个代理类，并非是一种全新的加密算法，它做的事情就是代理上面提到的加密算法实现类。在 Spring Security 5.0之后，默认就是基于  `DelegatingPasswordEncoder` 进行密码加密的。
+
+### 有哪些控制请求访问权限的方法？
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/framework/spring/image-20220728201854641.png)
+
+- `permitAll()` ：无条件允许任何形式访问，不管你登录还是没有登录。
+- `anonymous()` ：允许匿名访问，也就是没有登录才可以访问。
+- `denyAll()` ：无条件决绝任何形式的访问。
+- `authenticated()`：只允许已认证的用户访问。
+- `fullyAuthenticated()` ：只允许已经登录或者通过 remember-me 登录的用户访问。
+- `hasRole(String)` : 只允许指定的角色访问。
+- `hasAnyRole(String)	` : 指定一个或者多个角色，满足其一的用户即可访问。
+- `hasAuthority(String)` ：只允许具有指定权限的用户访问
+- `hasAnyAuthority(String)` ：指定一个或者多个权限，满足其一的用户即可访问。
+- `hasIpAddress(String)` : 只允许指定 ip 的用户访问。
+
+### hasRole 和 hasAuthority 有区别吗？
+
+可以看看松哥的这篇文章：[Spring Security 中的 hasRole 和 hasAuthority 有区别吗？](https://mp.weixin.qq.com/s/GTNOa2k9_n_H0w24upClRw)，介绍的比较详细。
 
 ## 参考
 
