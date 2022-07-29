@@ -166,7 +166,7 @@ output.writeObject(person);
 - 字符流是由 Java 虚拟机将字节转换得到的，这个过程还算是比较耗时。
 - 如果我们不知道编码类型就很容易出现乱码问题。
 
-乱码问题这个很容易就可以复现，我们只需要将 上面提到的 `FileInputStream` 代码示例中的 `input.txt` 文件内容改为中文即可，原代码不需要改动。
+乱码问题这个很容易就可以复现，我们只需要将上面提到的 `FileInputStream` 代码示例中的 `input.txt` 文件内容改为中文即可，原代码不需要改动。
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/image-20220419154632551.png)
 

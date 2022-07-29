@@ -312,6 +312,7 @@ String[] stringArray = { "Hello", "World" };
 printArray( intArray  );
 printArray( stringArray  );
 ```
+
 > 注意: `public static < E > void printArray( E[] inputArray )` 一般被称为静态泛型方法;在 java 中泛型只是一个占位符，必须在传递类型后才能使用。类在实例化时才能真正的传递类型参数，由于静态方法的加载先于类的实例化，也就是说类中的泛型还没有传递真正的类型参数，静态的方法的加载就已经完成了，所以静态泛型方法是没有办法使用类上声明的泛型的。只能使用自己声明的 `<E>`
 
 ### 项目中哪里用到了泛型？
@@ -435,7 +436,7 @@ SPI 将服务接口和具体的服务实现分离开来，将服务调用方和�
 
 通过 SPI 机制能够大大地提高接口设计的灵活性，但是 SPI 机制也存在一些缺点，比如：
 
-- 遍历加载所有的实现类，这样效率还是相对较低的；
+- 需要遍历加载所有的实现类，不能做到按需加载，这样效率还是相对较低的。
 - 当多个 `ServiceLoader` 同时 `load` 时，会有并发问题。
 
 ## I/O
@@ -461,7 +462,7 @@ SPI 将服务接口和具体的服务实现分离开来，将服务调用方和�
 
 <p style="text-align:right;font-size:13px;color:gray">https://www.corejavaguru.com/java/serialization/interview-questions-1</p>
 
-### Java 序列化中如果有些字段不想进行序列化，怎么办？
+### 如果有些字段不想进行序列化怎么办？
 
 对于不想进行序列化的变量，使用 `transient` 关键字修饰。
 
@@ -473,47 +474,30 @@ SPI 将服务接口和具体的服务实现分离开来，将服务调用方和�
 - `transient` 修饰的变量，在反序列化后变量值将会被置成类型的默认值。例如，如果是修饰 `int` 类型，那么反序列后结果就是 `0`。
 - `static` 变量因为不属于任何对象(Object)，所以无论有没有 `transient` 关键字修饰，均不会被序列化。
 
-### 获取用键盘输入常用的两种方法
+### Java IO 流了解吗？
 
-方法 1：通过 `Scanner`
+IO 即 `Input/Output`，输入和输出。数据输入到计算机内存的过程即输入，反之输出到外部存储（比如数据库，文件，远程主机）的过程即输出。数据传输过程类似于水流，因此称为 IO 流。IO 流在 Java 中分为输入流和输出流，而根据数据的处理方式又分为字节流和字符流。
 
-```java
-Scanner input = new Scanner(System.in);
-String s  = input.nextLine();
-input.close();
-```
+Java IO 流的 40 多个类都是从如下 4 个抽象类基类中派生出来的。
 
-方法 2：通过 `BufferedReader`
+- `InputStream`/`Reader`: 所有的输入流的基类，前者是字节输入流，后者是字符输入流。
+- `OutputStream`/`Writer`: 所有输出流的基类，前者是字节输出流，后者是字符输出流。
 
-```java
-BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-String s = input.readLine();
-```
+相关阅读：[Java IO 基础知识总结](../io/io-basis.md)。
 
-### Java 中 IO 流分为几种?
-
-- 按照流的流向分，可以分为输入流和输出流；
-- 按照操作单元划分，可以划分为字节流和字符流；
-- 按照流的角色划分为节点流和处理流。
-
-Java IO 流共涉及 40 多个类，这些类看上去很杂乱，但实际上很有规则，而且彼此之间存在非常紧密的联系， Java IO 流的 40 多个类都是从如下 4 个抽象类基类中派生出来的。
-
-- InputStream/Reader: 所有的输入流的基类，前者是字节输入流，后者是字符输入流。
-- OutputStream/Writer: 所有输出流的基类，前者是字节输出流，后者是字符输出流。
-
-按操作方式分类结构图：
-
-![IO-操作方式分类](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/IO-操作方式分类.png)
-
-按操作对象分类结构图：
-
-![IO-操作对象分类](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/IO-操作对象分类.png)
-
-### 既然有了字节流,为什么还要有字符流?
+### I/O 流为什么要分为字节流和字符流呢?
 
 问题本质想问：**不管是文件读写还是网络发送接收，信息的最小存储单元都是字节，那为什么 I/O 流操作要分为字节流操作和字符流操作呢？**
 
-回答：字符流是由 Java 虚拟机将字节转换得到的，问题就出在这个过程还算是非常耗时，并且，如果我们不知道编码类型就很容易出现乱码问题。所以， I/O 流就干脆提供了一个直接操作字符的接口，方便我们平时对字符进行流操作。如果音频文件、图片等媒体文件用字节流比较好，如果涉及到字符的话使用字符流比较好。
+个人认为主要有两点原因：
 
+- 字符流是由 Java 虚拟机将字节转换得到的，这个过程还算是比较耗时；
+- 如果我们不知道编码类型的话，使用字节流的过程中很容易出现乱码问题。
 
+### Java IO 中的设计模式有哪些？
 
+[Java IO 设计模式总结](../io/io-design-patterns.md)
+
+### BIO、NIO 和 AIO 的区别？
+
+[Java IO 模型详解](../io/io-model.md)
