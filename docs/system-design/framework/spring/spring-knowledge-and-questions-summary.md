@@ -529,7 +529,7 @@ public class GlobalExceptionHandler {
 	}
 ```
 
-从源代码看出：**`getMappedMethod()`会首先找到可以匹配处理异常的所有方法信息，然后对其进行从小到大的排序，最后取最小的那一个匹配的方法(即匹配度最高的那个)。**
+从源代码看出： **`getMappedMethod()`会首先找到可以匹配处理异常的所有方法信息，然后对其进行从小到大的排序，最后取最小的那一个匹配的方法(即匹配度最高的那个)。**
 
 ## Spring 框架中用到了哪些设计模式？
 
@@ -722,6 +722,25 @@ public abstract class AbstractAuditBase {
 
 Spring Security 重要的是实战，这里仅对小部分知识点进行总结。
 
+### 有哪些控制请求访问权限的方法？
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/framework/spring/image-20220728201854641.png)
+
+- `permitAll()` ：无条件允许任何形式访问，不管你登录还是没有登录。
+- `anonymous()` ：允许匿名访问，也就是没有登录才可以访问。
+- `denyAll()` ：无条件决绝任何形式的访问。
+- `authenticated()`：只允许已认证的用户访问。
+- `fullyAuthenticated()` ：只允许已经登录或者通过 remember-me 登录的用户访问。
+- `hasRole(String)` : 只允许指定的角色访问。
+- `hasAnyRole(String)	` : 指定一个或者多个角色，满足其一的用户即可访问。
+- `hasAuthority(String)` ：只允许具有指定权限的用户访问
+- `hasAnyAuthority(String)` ：指定一个或者多个权限，满足其一的用户即可访问。
+- `hasIpAddress(String)` : 只允许指定 ip 的用户访问。
+
+### hasRole 和 hasAuthority 有区别吗？
+
+可以看看松哥的这篇文章：[Spring Security 中的 hasRole 和 hasAuthority 有区别吗？](https://mp.weixin.qq.com/s/GTNOa2k9_n_H0w24upClRw)，介绍的比较详细。
+
 ### 如何对密码进行加密？
 
 如果我们需要保存密码这类敏感数据到数据库的话，需要先加密再保存。
@@ -754,25 +773,6 @@ public interface PasswordEncoder {
 推荐的做法是通过 `DelegatingPasswordEncoder` 兼容多种不同的密码加密方案，以适应不同的业务需求。
 
 从名字也能看出来，`DelegatingPasswordEncoder` 其实就是一个代理类，并非是一种全新的加密算法，它做的事情就是代理上面提到的加密算法实现类。在 Spring Security 5.0之后，默认就是基于  `DelegatingPasswordEncoder` 进行密码加密的。
-
-### 有哪些控制请求访问权限的方法？
-
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/framework/spring/image-20220728201854641.png)
-
-- `permitAll()` ：无条件允许任何形式访问，不管你登录还是没有登录。
-- `anonymous()` ：允许匿名访问，也就是没有登录才可以访问。
-- `denyAll()` ：无条件决绝任何形式的访问。
-- `authenticated()`：只允许已认证的用户访问。
-- `fullyAuthenticated()` ：只允许已经登录或者通过 remember-me 登录的用户访问。
-- `hasRole(String)` : 只允许指定的角色访问。
-- `hasAnyRole(String)	` : 指定一个或者多个角色，满足其一的用户即可访问。
-- `hasAuthority(String)` ：只允许具有指定权限的用户访问
-- `hasAnyAuthority(String)` ：指定一个或者多个权限，满足其一的用户即可访问。
-- `hasIpAddress(String)` : 只允许指定 ip 的用户访问。
-
-### hasRole 和 hasAuthority 有区别吗？
-
-可以看看松哥的这篇文章：[Spring Security 中的 hasRole 和 hasAuthority 有区别吗？](https://mp.weixin.qq.com/s/GTNOa2k9_n_H0w24upClRw)，介绍的比较详细。
 
 ## 参考
 
