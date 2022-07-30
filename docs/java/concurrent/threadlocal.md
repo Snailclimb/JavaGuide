@@ -1,11 +1,9 @@
 ---
-title:  万字解析 ThreadLocal 关键字
+title:  ThreadLocal 关键字详解
 category: Java
 tag:
   - Java并发
 ---
-
-
 
 > 本文来自一枝花算不算浪漫投稿， 原文地址：[https://juejin.cn/post/6844904151567040519](https://juejin.cn/post/6844904151567040519)。
 

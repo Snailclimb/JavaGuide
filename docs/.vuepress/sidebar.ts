@@ -98,6 +98,7 @@ export const sidebarConfig = defineSidebarConfig({
           children: [
             "java-concurrent-questions-01",
             "java-concurrent-questions-02",
+            "java-concurrent-questions-03",
             {
               text: "重要知识点",
               icon: "star",

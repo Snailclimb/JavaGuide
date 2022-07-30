@@ -1,5 +1,5 @@
 ---
-title:  AQS 原理以及 AQS 同步组件总结
+title:  AQS 原理&AQS 同步组件总结
 category: Java
 tag:
   - Java并发
