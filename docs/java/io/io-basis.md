@@ -41,7 +41,7 @@ Java IO 流的 40 多个类都是从如下 4 个抽象类基类中派生出来�
 `FileInputStream` 代码示例：
 
 ```java
-try (InputStream fis = new FileInputStream("input.txt)) {
+try (InputStream fis = new FileInputStream("input.txt")) {
     System.out.println("Number of remaining bytes:"
             + fis.available());
     int content;
