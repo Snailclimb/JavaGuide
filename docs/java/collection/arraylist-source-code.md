@@ -922,7 +922,6 @@ public class EnsureCapacityTest {
     public static void main(String[] args) {
         ArrayList<Object> list = new ArrayList<Object>();
         final int N = 10000000;
-        list = new ArrayList<Object>();
         long startTime1 = System.currentTimeMillis();
         list.ensureCapacity(N);
         for (int i = 0; i < N; i++) {
