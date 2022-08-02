@@ -425,6 +425,7 @@ export const sidebarConfig = defineSidebarConfig({
             "rocketmq-intro",
             "rocketmq-questions",
             "rabbitmq-intro",
+            "rabbitmq-questions",
           ],
         },
       ],

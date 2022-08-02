@@ -340,8 +340,8 @@ Dubbo 是一款国产的 RPC 框架，由阿里开源。相关阅读：
 
 消息队列在分布式系统中主要是为了解耦和削峰。相关阅读： [消息队列常见问题总结](docs/high-performance/message-queue/message-queue.md)。
 
-1. **RabbitMQ** : [RabbitMQ 入门](docs/high-performance/message-queue/rabbitmq-intro.md)
-2. **RocketMQ** : [RocketMQ 入门](docs/high-performance/message-queue/rocketmq-intro)、[RocketMQ 的几个简单问题与答案](docs/high-performance/message-queue/rocketmq-questions.md)
+1. **RabbitMQ** : [RabbitMQ 基础知识总结](docs/high-performance/message-queue/rabbitmq-intro.md)、[RabbitMQ 常见面试题](docs/high-performance/message-queue/rabbitmq-questions.md)
+2. **RocketMQ** : [RocketMQ 基础知识总结](docs/high-performance/message-queue/rocketmq-intro)、[RocketMQ 常见面试题总结](docs/high-performance/message-queue/rocketmq-questions.md)
 3. **Kafka** ：[Kafka 常见问题总结](docs/high-performance/message-queue/kafka-questions-01.md)
 
 ### 读写分离&分库分表
