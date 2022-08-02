@@ -25,6 +25,7 @@ category: 开源项目
 7. [一款跨时代的高性能 Java 框架！启动速度快到飞起](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247520633&idx=1&sn=aec35af40e3ed3b1e844addd04e31af5&chksm=cea1deb2f9d657a46a0684bbcbcb2900cebff39a2b2746a4a809b6b5306bce08d4382efd5ca8&scene=178&cur_album_id=1345382825083895808#rd)
 8. [Spring Boot+MyBatis Plus+JWT 问卷系统！开源！](https://mp.weixin.qq.com/s/kRgqHt73ZJGFQ2XmKG4PXw)
 9. [手写一个简化版的 Spring Cloud！](https://mp.weixin.qq.com/s/v3FUp-keswE2EhcTaLpSMQ)
+10. [这个 SpringBoot+ Vue 开源博客系统太酷炫了！](https://mp.weixin.qq.com/s/CCzsX3Sn2Q3vhuBDEmRTlw)
 
 推荐你在我的公众号“**JavaGuide**”回复“**开源**”在线阅读[「优质开源项目推荐」](https://mp.weixin.qq.com/mp/appmsgalbum?__biz=Mzg2OTA0Njk0OA==&action=getalbum&album_id=1345382825083895808&scene=173&from_msgid=2247516459&from_itemidx=1&count=3&nolastread=1#wechat_redirect)系列。
 

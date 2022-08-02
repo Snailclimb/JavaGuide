@@ -1,5 +1,5 @@
 ---
-title: RPC基础常见面试题总结
+title: RPC 基础常见面试题总结
 category: 分布式
 tag:
   - rpc
@@ -137,3 +137,8 @@ Dubbo 也是 Spring Cloud Alibaba 里面的一个组件。
 **内容概览** ：
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/image-20220308100605485.png)
+
+## 既然有了 HTTP 协议，为什么还要有 RPC ？
+
+[HTTP 和 RPC 详细对比](http&rpc.md) 。
+
