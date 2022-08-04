@@ -7,6 +7,7 @@ head:
   - - meta
     - name: keywords
       content: Redis常见数据结构
+  - - meta
     - name: description
       content: Redis基础数据结构总结：String（字符串）、List（列表）、Set（集合）、Hash（散列）、Zset（有序集合）
 ---

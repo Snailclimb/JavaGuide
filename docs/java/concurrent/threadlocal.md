@@ -1,5 +1,5 @@
 ---
-title:  ThreadLocal 关键字详解
+title:  ThreadLocal 详解
 category: Java
 tag:
   - Java并发

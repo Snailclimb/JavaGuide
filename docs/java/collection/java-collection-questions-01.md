@@ -6,7 +6,8 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: Collection,List,Set,Queue,Deque,PriorityQueue,
+      content: Collection,List,Set,Queue,Deque,PriorityQueue
+  - - meta
     - name: description
       content: Java集合常见知识点和面试题总结，希望对你有帮助！
 ---

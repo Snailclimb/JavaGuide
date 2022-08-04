@@ -1,5 +1,5 @@
 ---
-title:  AQS 原理&AQS 同步组件总结
+title:  AQS 详解
 category: Java
 tag:
   - Java并发
@@ -12,6 +12,8 @@ tag:
 - `CountDownLatch` 和 `CyclicBarrier` 了解吗？两者的区别是什么？
 - 用过 `Semaphore` 吗？应用场景了解吗？
 - ......
+
+相关阅读：[从 ReentrantLock 的实现看AQS的原理及应用](./reentrantlock.md)
 
 ## AQS 简单介绍
 

@@ -7,6 +7,7 @@ head:
   - - meta
     - name: keywords
       content: 线程和进程,并发和并行,多线程,死锁,线程的生命周期
+  - - meta
     - name: description
       content: Java并发常见知识点和面试题总结（含详细解答），希望对你有帮助！
 ---

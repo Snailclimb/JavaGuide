@@ -90,11 +90,12 @@
 
 **重要知识点详解** ：
 
+- [JMM（Java 内存模型）详解](./docs/java/concurrent/jmm.md)
 - **线程池** ：[Java 线程池详解](./docs/java/concurrent/java-thread-pool-summary.md)、[Java 线程池最佳实践](./docs/java/concurrent/java-thread-pool-best-practices.md)
-- [ThreadLocal 关键字解析](docs/java/concurrent/threadlocal.md)
+- [ThreadLocal 详解](docs/java/concurrent/threadlocal.md)
 - [Java 并发容器总结](docs/java/concurrent/java-concurrent-collections.md)
 - [Atomic 原子类总结](docs/java/concurrent/atomic-classes.md)
-- [AQS 原理以及 AQS 同步组件总结](docs/java/concurrent/aqs.md)
+- [AQS 详解](docs/java/concurrent/aqs.md)
 - [CompletableFuture入门](docs/java/concurrent/completablefuture-intro.md)
 
 ### JVM (必看 :+1:)
