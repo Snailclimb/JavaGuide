@@ -481,7 +481,7 @@ ThreadLocalMap(ThreadLocal<?> firstKey, Object firstValue) {
 
 `ThreadLocal` 数据结构如下图所示：
 
-![threadlocal-data-structure](images/interview-questions/threadlocal-data-structure.jpg)
+![threadlocal-data-structure](./images/interview-questions/threadlocal-data-structure.jpg)
 
 `ThreadLocalMap`是`ThreadLocal`的静态内部类。
 
