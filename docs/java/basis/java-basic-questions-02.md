@@ -209,7 +209,7 @@ System.out.println(person1.getAddress() == person1Copy.getAddress());
 
 我专门画了一张图来描述浅拷贝、深拷贝、引用拷贝：
 
-![](./images/shallow&deep-copy.png)
+![浅拷贝、深拷贝、引用拷贝示意图](./images/shallow&deep-copy.jpg)
 
 ## Java 常见类
 
