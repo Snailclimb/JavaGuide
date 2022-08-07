@@ -250,7 +250,7 @@ public class ThreadPoolExecutorDemo {
                 new ThreadPoolExecutor.CallerRunsPolicy());
 
         for (int i = 0; i < 10; i++) {
-            //创建WorkerThread对象（WorkerThread类实现了Runnable 接口）
+            //创建 MyRunnable 对象（MyRunnable 类实现了Runnable 接口）
             Runnable worker = new MyRunnable("" + i);
             //执行Runnable
             executor.execute(worker);
