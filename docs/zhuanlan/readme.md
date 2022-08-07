@@ -38,6 +38,10 @@ category: 知识星球
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/IMG_3007.jpg)
 
+或者你也可以直接使用下面这张 **20** 元的优惠券，**139/年** 加入。
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/xingqiuyouhuijuan-20.png)
+
 进入星球之后，你可以为自己制定一个目标，比如自己想要进入某某还不错的公司或者达成什么成就（一定要是还算有点挑战的目标）。待你完成目标在星球分享之后，我会将星球的门票费退还给你。
 
 **真诚欢迎准备面试的小伙伴加入星球一起交流！真心希望能够帮助到更多小伙伴！**
