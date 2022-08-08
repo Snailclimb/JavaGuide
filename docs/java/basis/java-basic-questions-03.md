@@ -7,6 +7,7 @@ head:
   - - meta
     - name: keywords
       content: Java异常,泛型,反射,IO,注解
+  - - meta
     - name: description
       content: 全网质量最高的Java基础常见知识点和面试题总结，希望对你有帮助！
 ---
@@ -377,7 +378,7 @@ public class DebugInvocationHandler implements InvocationHandler {
 
 ### 何谓注解？
 
-`Annotation` （注解） 是 Java5 开始引入的新特性，可以看作是一种特殊的注释，主要用于修饰类、方法或者变量，提供某些
+`Annotation` （注解） 是 Java5 开始引入的新特性，可以看作是一种特殊的注释，主要用于修饰类、方法或者变量，提供某些信息供程序在编译或者运行时使用。
 
 注解本质是一个继承了`Annotation` 的特殊接口：
 

@@ -7,76 +7,30 @@ head:
   - - meta
     - name: keywords
       content: 多线程,死锁,synchronized,ReentrantLock,volatile,ThreadLocal,线程池,CAS,AQS
+  - - meta
     - name: description
       content: Java并发常见知识点和面试题总结（含详细解答），希望对你有帮助！
 ---
 
+## JMM(Java Memory Model)
+
+JMM（Java 内存模型）相关的问题比较多，也比较重要，于是我单独抽了一篇文章来总结 JMM 相关的知识点和问题： [JMM（Java 内存模型）详解](./jmm.md) 。
+
 ## volatile 关键字
-
-要想理解透彻 volatile 关键字，我们先要从 **CPU 缓存模型** 说起！
-
-### CPU 缓存模型了解吗？
-
-**为什么要弄一个 CPU 高速缓存呢？** 类比我们开发网站后台系统使用的缓存（比如 Redis）是为了解决程序处理速度和访问常规关系型数据库速度不对等的问题。 **CPU 缓存则是为了解决 CPU 处理速度和内存处理速度不对等的问题。**
-
-我们甚至可以把 **内存可以看作外存的高速缓存**，程序运行的时候我们把外存的数据复制到内存，由于内存的处理速度远远高于外存，这样提高了处理速度。
-
-总结：**CPU Cache 缓存的是内存数据用于解决 CPU 处理速度和内存不匹配的问题，内存缓存的是硬盘数据用于解决硬盘访问速度过慢的问题。**
-
-为了更好地理解，我画了一个简单的 CPU Cache 示意图如下（实际上，现代的 CPU Cache 通常分为三层，分别叫 L1,L2,L3 Cache）:
-
-![cpu-cache](./images/interview-questions/cpu-cache.png)
-
-**CPU Cache 的工作方式：**
-
-先复制一份数据到 CPU Cache 中，当 CPU 需要用到的时候就可以直接从 CPU Cache 中读取数据，当运算完成后，再将运算得到的数据写回 Main Memory 中。但是，这样存在 **内存缓存不一致性的问题** ！比如我执行一个 i++操作的话，如果两个线程同时执行的话，假设两个线程从 CPU Cache 中读取的 i=1，两个线程做了 1++运算完之后再写回 Main Memory 之后 i=2，而正确结果应该是 i=3。
-
-**CPU 为了解决内存缓存不一致性问题可以通过制定缓存一致协议或者其他手段来解决。**
-
-### 讲一下 JMM(Java 内存模型)
-
-Java 内存模型抽象了线程和主内存之间的关系，就比如说线程之间的共享变量必须存储在主内存中。Java 内存模型主要目的是为了屏蔽系统和硬件的差异，避免一套代码在不同的平台下产生的效果不一致。
-
-在 JDK1.2 之前，Java 的内存模型实现总是从**主存**（即共享内存）读取变量，是不需要进行特别的注意的。而在当前的 Java 内存模型下，线程可以把变量保存**本地内存**（比如机器的寄存器）中，而不是直接在主存中进行读写。这就可能造成一个线程在主存中修改了一个变量的值，而另外一个线程还继续使用它在寄存器中的变量值的拷贝，造成**数据的不一致**。
-
-> - **主内存** ：所有线程创建的实例对象都存放在主内存中，不管该实例对象是成员变量还是方法中的本地变量(也称局部变量)
-> - **本地内存** ：每个线程都有一个私有的本地内存来存储共享变量的副本，并且，每个线程只能访问自己的本地内存，无法访问其他线程的本地内存。本地内存是 JMM 抽象出来的一个概念，存储了主内存中的共享变量副本。
-
-![JMM(Java 内存模型)](./images/interview-questions/jmm.png)
-
-### Java 内存区域和内存模型(JMM)有何区别？
-
-**Java 内存区域和内存模型是完全不一样的两个东西！！！**
-
-- Java 内存区域定义了JVM 在运行时如何分区存储程序数据，就比如说堆主要用于存放对象实例。
-- Java 内存模型抽象了线程和主内存之间的关系，就比如说线程之间的共享变量必须存储在主内存中，其目的是为了屏蔽系统和硬件的差异，避免一套代码在不同的平台下产生的效果不一致。
 
 ### 如何保证变量的可见性？
 
-`volatile` 关键字可以保证变量的可见性，如果我们将变量声明为 **`volatile`** ，这就指示 JVM，这个变量是共享且不稳定的，每次使用它都到主存中进行读取。
+在 Java 中，`volatile` 关键字可以保证变量的可见性，如果我们将变量声明为 **`volatile`** ，这就指示 JVM，这个变量是共享且不稳定的，每次使用它都到主存中进行读取。
 
-![volatile关键字可见性](./images/interview-questions/jmm2.png)
+![JMM(Java 内存模型)](./images/jmm/jmm.png)
 
-### 什么是指令重排序？如何禁止指令重排序？
+`volatile` 关键字其实并非是 Java 语言特有的，在 C 语言里也有，它最原始的意义就是禁用 CPU 缓存。如果我们将一个变量使用 `volatile` 修饰，这就指示 编译器，这个变量是共享且不稳定的，每次使用它都到主存中进行读取。
 
-为了提升执行速度/性能，计算机在执行程序代码的时候，会对指令就行重排序。
+`volatile` 关键字能保证数据的可见性，但不能保证数据的原子性。`synchronized` 关键字两者都能保证。
 
-指令重排序简单来说就是系统在执行代码的时候并不一定是按照你写的代码的顺序依次执行。
+### 如何禁止指令重排序？
 
-常见的重排序有下面 2 种情况：
-
-- **编译器优化重排** ：编译器（包括 JVM、JIT 编译器等）在不改变单线程程序语义的前提下，重新安排语句的执行顺序。
-- **指令并行重排** ：和编译器优化重排类似，
-
-另外，内存系统也会有“重排序”，但有不是真正意义上的重排序。在 JMM 里表现为主存和本地内存，而主存和本地内存的内容可能不一致，所以这也会导致程序表现出乱序的行为。
-
-**指令重排序可以保证串行语义一致，但是没有义务保证多线程间的语义也一致**。所以在多线程下，指令重排序可能会导致一些问题。
-
-**`volatile` 关键字除了可以保证变量的可见性，还有一个重要的作用就是防止 JVM 的指令重排序。**
-
-如果我们将变量声明为 **`volatile`** ，在对这个变量进行读写操作的时候，编译器会通过 **内存屏障** 来禁止指令重排序。
-
-内存屏障（Memory Barrier，或有时叫做内存栅栏，Memory Fence）是一种CPU指令，用于控制特定条件下的重排序和内存可见性问题。Java编译器也会根据内存屏障的规则禁止重排序。
+**在 Java 中，`volatile` 关键字除了可以保证变量的可见性，还有一个重要的作用就是防止 JVM 的指令重排序。** 如果我们将变量声明为 **`volatile`** ，在对这个变量进行读写操作的时候，会通过插入特定的 **内存屏障** 的方式来禁止指令重排序。
 
 在 Java 中，`Unsafe` 类提供了三个开箱即用的内存屏障相关的方法，屏蔽了操作系统底层的差异：
 
@@ -86,7 +40,135 @@ public native void storeFence();
 public native void fullFence();
 ```
 
-理论上来说，你通过这个三个方法也可以实现和`volatile`禁止重排序一样的效果。
+理论上来说，你通过这个三个方法也可以实现和`volatile`禁止重排序一样的效果，只是会麻烦一些。
+
+下面我以一个常见的面试题为例讲解一下 `volatile` 关键字禁止指令重排序的效果。
+
+面试中面试官经常会说：“单例模式了解吗？来给我手写一下！给我解释一下双重检验锁方式实现单例模式的原理呗！”
+
+**双重校验锁实现对象单例（线程安全）** ：
+
+```java
+public class Singleton {
+
+    private volatile static Singleton uniqueInstance;
+
+    private Singleton() {
+    }
+
+    public  static Singleton getUniqueInstance() {
+       //先判断对象是否已经实例过，没有实例化过才进入加锁代码
+        if (uniqueInstance == null) {
+            //类对象加锁
+            synchronized (Singleton.class) {
+                if (uniqueInstance == null) {
+                    uniqueInstance = new Singleton();
+                }
+            }
+        }
+        return uniqueInstance;
+    }
+}
+```
+
+`uniqueInstance` 采用 `volatile` 关键字修饰也是很有必要的， `uniqueInstance = new Singleton();` 这段代码其实是分为三步执行：
+
+1. 为 `uniqueInstance` 分配内存空间
+2. 初始化 `uniqueInstance`
+3. 将 `uniqueInstance` 指向分配的内存地址
+
+但是由于 JVM 具有指令重排的特性，执行顺序有可能变成 1->3->2。指令重排在单线程环境下不会出现问题，但是在多线程环境下会导致一个线程获得还没有初始化的实例。例如，线程 T1 执行了 1 和 3，此时 T2 调用 `getUniqueInstance`() 后发现 `uniqueInstance` 不为空，因此返回 `uniqueInstance`，但此时 `uniqueInstance` 还未被初始化。
+
+### volatile 可以保证原子性么？
+
+**`volatile` 关键字能保证变量的可见性，但不能保证对变量的操作是原子性的。**
+
+我们通过下面的代码即可证明：
+
+```java
+/**
+ * 微信搜 JavaGuide 回复"面试突击"即可免费领取个人原创的 Java 面试手册
+ *
+ * @author Guide哥
+ * @date 2022/08/03 13:40
+ **/
+public class VolatoleAtomicityDemo {
+    public volatile static int inc = 0;
+
+    public void increase() {
+        inc++;
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        ExecutorService threadPool = Executors.newFixedThreadPool(5);
+        VolatoleAtomicityDemo volatoleAtomicityDemo = new VolatoleAtomicityDemo();
+        for (int i = 0; i < 5; i++) {
+            threadPool.execute(() -> {
+                for (int j = 0; j < 500; j++) {
+                    volatoleAtomicityDemo.increase();
+                }
+            });
+        }
+        // 等待1.5秒，保证上面程序执行完成
+        Thread.sleep(1500);
+        System.out.println(inc);
+        threadPool.shutdown();
+    }
+}
+```
+
+正常情况下，运行上面的代码理应输出 `2500`。但你真正运行了上面的代码之后，你会发现每次输出结果都小于 `2500`。
+
+为什么会出现这种情况呢？不是说好了，`volatile` 可以保证变量的可见性嘛！
+
+也就是说，如果 `volatile` 能保证 `inc++` 操作的原子性的话。每个线程中对 `inc` 变量自增完之后，其他线程可以立即看到修改后的值。5 个线程分别进行了 500 次操作，那么最终 inc 的值应该是 5\*500=2500。
+
+很多人会误认为自增操作 `inc++` 是原子性的，实际上，`inc++` 其实是一个复合操作，包括三步：
+
+1. 读取 inc 的值。
+2. 对 inc 加 1。
+3. 将 inc 的值写回内存。
+
+`volatile` 是无法保证这三个操作是具有原子性的，有可能导致下面这种情况出现：
+
+1. 线程 1 对 `inc` 进行读取操作之后，还未对其进行修改。线程 2 又读取了 `inc`的值并对其进行修改（+1），再将`inc` 的值写回内存。
+2. 线程 2 操作完毕后，线程 1 对 `inc`的值进行修改（+1），再将`inc` 的值写回内存。
+
+这也就导致两个线程分别对 `inc` 进行了一次自增操作后，`inc` 实际上只增加了 1。
+
+其实，如果想要保证上面的代码运行正确也非常简单，利用 `synchronized` 、`Lock`或者`AtomicInteger`都可以。
+
+使用 `synchronized` 改进：
+
+```java
+public synchronized void increase() {
+    inc++;
+}
+```
+
+使用 `AtomicInteger` 改进：
+
+```java
+public AtomicInteger inc = new AtomicInteger();
+
+public void increase() {
+    inc.getAndIncrement();
+}
+```
+
+使用 `ReentrantLock` 改进：
+
+```java
+Lock lock = new ReentrantLock();
+public void increase() {
+    lock.lock();
+    try {
+        inc++;
+    } finally {
+        lock.unlock();
+    }
+}
+```
 
 ## synchronized 关键字
 
@@ -149,47 +231,6 @@ synchronized(this) {
 - `synchronized` 关键字加到实例方法上是给对象实例上锁；
 - 尽量不要使用 `synchronized(String a)` 因为 JVM 中，字符串常量池具有缓存功能。
 
-下面我以一个常见的面试题为例讲解一下 `synchronized` 关键字的具体使用。
-
-面试中面试官经常会说：“单例模式了解吗？来给我手写一下！给我解释一下双重检验锁方式实现单例模式的原理呗！”
-
-**双重校验锁实现对象单例（线程安全）**
-
-```java
-public class Singleton {
-
-    private volatile static Singleton uniqueInstance;
-
-    private Singleton() {
-    }
-
-    public  static Singleton getUniqueInstance() {
-       //先判断对象是否已经实例过，没有实例化过才进入加锁代码
-        if (uniqueInstance == null) {
-            //类对象加锁
-            synchronized (Singleton.class) {
-                if (uniqueInstance == null) {
-                    uniqueInstance = new Singleton();
-                }
-            }
-        }
-        return uniqueInstance;
-    }
-}
-```
-
-另外，需要注意 `uniqueInstance` 采用 `volatile` 关键字修饰也是很有必要。
-
-`uniqueInstance` 采用 `volatile` 关键字修饰也是很有必要的， `uniqueInstance = new Singleton();` 这段代码其实是分为三步执行：
-
-1. 为 `uniqueInstance` 分配内存空间
-2. 初始化 `uniqueInstance`
-3. 将 `uniqueInstance` 指向分配的内存地址
-
-但是由于 JVM 具有指令重排的特性，执行顺序有可能变成 1->3->2。指令重排在单线程环境下不会出现问题，但是在多线程环境下会导致一个线程获得还没有初始化的实例。例如，线程 T1 执行了 1 和 3，此时 T2 调用 `getUniqueInstance`() 后发现 `uniqueInstance` 不为空，因此返回 `uniqueInstance`，但此时 `uniqueInstance` 还未被初始化。
-
-使用 `volatile` 可以禁止 JVM 的指令重排，保证在多线程环境下也能正常运行。
-
 ### 构造方法可以使用 synchronized 关键字修饰么？
 
 先说结论：**构造方法不能使用 synchronized 关键字修饰。**
@@ -227,13 +268,11 @@ public class SynchronizedDemo {
 
 在执行`monitorenter`时，会尝试获取对象的锁，如果锁的计数器为 0 则表示锁可以被获取，获取后将锁计数器设为 1 也就是加 1。
 
-![执行 monitorenter 获取锁](./images/interview-questions/synchronized-get-lock-code-block.png)
+![执行 monitorenter 获取锁](./images/interview-questions/synchronized-get-lock-code-block.jpg)
 
 对象锁的的拥有者线程才可以执行 `monitorexit` 指令来释放锁。在执行 `monitorexit` 指令后，将锁计数器设为 0，表明锁被释放，其他线程可以尝试获取锁。
 
-
-
-![执行 monitorexit 释放锁](./images/interview-questions/synchronized-release-lock-block.png)
+![执行 monitorexit 释放锁](./images/interview-questions/synchronized-release-lock-block.jpg)
 
 如果获取对象锁失败，那当前线程就要阻塞等待，直到锁被另外一个线程释放为止。
 
@@ -262,9 +301,9 @@ public class SynchronizedDemo2 {
 
 **不过两者的本质都是对对象监视器 monitor 的获取。**
 
-相关推荐：[Java锁与线程的那些事 - 有赞技术团队](https://tech.youzan.com/javasuo-yu-xian-cheng-de-na-xie-shi/) 。
+相关推荐：[Java 锁与线程的那些事 - 有赞技术团队](https://tech.youzan.com/javasuo-yu-xian-cheng-de-na-xie-shi/) 。
 
-🧗🏻进阶一下：学有余力的小伙伴可以抽时间详细研究一下对象监视器 `monitor`。
+🧗🏻 进阶一下：学有余力的小伙伴可以抽时间详细研究一下对象监视器 `monitor`。
 
 ### JDK1.6 之后的 synchronized 关键字底层做了哪些优化？
 
@@ -274,11 +313,11 @@ JDK1.6 对锁的实现引入了大量的优化，如偏向锁、轻量级锁、�
 
 关于这几种优化的详细信息可以查看下面这篇文章：[Java6 及以上版本对 synchronized 的优化](https://www.cnblogs.com/wuqinglong/p/9945618.html)
 
-###  synchronized 和 volatile 的区别？
+### synchronized 和 volatile 的区别？
 
 `synchronized` 关键字和 `volatile` 关键字是两个互补的存在，而不是对立的存在！
 
-- `volatile` 关键字是线程同步的轻量级实现，所以 `volatile `性能肯定比` synchronized `关键字要好 。但是 `volatile` 关键字只能用于变量而 `synchronized` 关键字可以修饰方法以及代码块 。
+- `volatile` 关键字是线程同步的轻量级实现，所以 `volatile`性能肯定比`synchronized`关键字要好 。但是 `volatile` 关键字只能用于变量而 `synchronized` 关键字可以修饰方法以及代码块 。
 - `volatile` 关键字能保证数据的可见性，但不能保证数据的原子性。`synchronized` 关键字两者都能保证。
 - `volatile`关键字主要用于解决变量在多个线程之间的可见性，而 `synchronized` 关键字解决的是多个线程之间访问资源的同步性。
 
@@ -304,27 +343,21 @@ JDK1.6 对锁的实现引入了大量的优化，如偏向锁、轻量级锁、�
 
 **如果你想使用上述功能，那么选择 ReentrantLock 是一个不错的选择。性能已不是选择标准**
 
-### 并发编程的三个重要特性
-
-1. **原子性** : 一次操作或者多次操作，要么所有的操作全部都得到执行并且不会受到任何因素的干扰而中断，要么都不执行。`synchronized` 可以保证代码片段的原子性。
-2. **可见性** ：当一个线程对共享变量进行了修改，那么另外的线程都是立即可以看到修改后的最新值。`volatile` 关键字可以保证共享变量的可见性。
-3. **有序性** ：代码在执行的过程中的先后顺序，Java 在编译器以及运行期间的优化，代码的执行顺序未必就是编写代码时候的顺序。`volatile` 关键字可以禁止指令进行重排序优化。
-
 ## ThreadLocal
 
-### ThreadLocal 简介
+### ThreadLocal 有什么用？
 
-通常情况下，我们创建的变量是可以被任何一个线程访问并修改的。**如果想实现每一个线程都有自己的专属本地变量该如何解决呢？** JDK 中提供的`ThreadLocal`类正是为了解决这样的问题。 **`ThreadLocal`类主要解决的就是让每个线程绑定自己的值，可以将`ThreadLocal`类形象的比喻成存放数据的盒子，盒子中可以存储每个线程的私有数据。**
+通常情况下，我们创建的变量是可以被任何一个线程访问并修改的。**如果想实现每一个线程都有自己的专属本地变量该如何解决呢？**
 
-**如果你创建了一个`ThreadLocal`变量，那么访问这个变量的每个线程都会有这个变量的本地副本，这也是`ThreadLocal`变量名的由来。他们可以使用 `get（）` 和 `set（）` 方法来获取默认值或将其值更改为当前线程所存的副本的值，从而避免了线程安全问题。**
+JDK 中自带的`ThreadLocal`类正是为了解决这样的问题。 **`ThreadLocal`类主要解决的就是让每个线程绑定自己的值，可以将`ThreadLocal`类形象的比喻成存放数据的盒子，盒子中可以存储每个线程的私有数据。**
 
-再举个简单的例子：
+如果你创建了一个`ThreadLocal`变量，那么访问这个变量的每个线程都会有这个变量的本地副本，这也是`ThreadLocal`变量名的由来。他们可以使用 `get（）` 和 `set（）` 方法来获取默认值或将其值更改为当前线程所存的副本的值，从而避免了线程安全问题。
 
-比如有两个人去宝屋收集宝物，这两个共用一个袋子的话肯定会产生争执，但是给他们两个人每个人分配一个袋子的话就不会出现这样的问题。如果把这两个人比作线程的话，那么 ThreadLocal 就是用来避免这两个线程竞争的。
+再举个简单的例子：两个人去宝屋收集宝物，这两个共用一个袋子的话肯定会产生争执，但是给他们两个人每个人分配一个袋子的话就不会出现这样的问题。如果把这两个人比作线程的话，那么 ThreadLocal 就是用来避免这两个线程竞争的。
 
-### ThreadLocal 示例
+### 如何使用 ThreadLocal？
 
-相信看了上面的解释，大家已经搞懂 ThreadLocal 类是个什么东西了。
+相信看了上面的解释，大家已经搞懂 `ThreadLocal` 类是个什么东西了。下面简单演示一下如何在项目中实际使用 `ThreadLocal` 。
 
 ```java
 import java.text.SimpleDateFormat;
@@ -362,7 +395,7 @@ public class ThreadLocalExample implements Runnable{
 
 ```
 
-Output:
+输出结果 :
 
 ```
 Thread Name= 0 default Formatter = yyyyMMdd HHmm
@@ -387,7 +420,7 @@ Thread Name= 8 formatter = yy-M-d ah:mm
 Thread Name= 9 formatter = yy-M-d ah:mm
 ```
 
-从输出中可以看出，Thread-0 已经改变了 formatter 的值，但仍然是 thread-2 默认格式化程序与初始化值相同，其他线程也一样。
+从输出中可以看出，虽然 `Thread-0` 已经改变了 `formatter` 的值，但 `Thread-1` 默认格式化值与初始化值相同，其他线程也一样。
 
 上面有一段代码用到了创建 `ThreadLocal` 变量的那段代码用到了 Java8 的知识，它等于下面这段代码，如果你写了下面这段代码的话，IDEA 会提示你转换为 Java8 的格式(IDEA 真的不错！)。因为 ThreadLocal 类在 Java 8 中扩展，使用一个新的方法`withInitial()`，将 Supplier 功能接口作为参数。
 
@@ -400,7 +433,7 @@ private static final ThreadLocal<SimpleDateFormat> formatter = new ThreadLocal<S
 };
 ```
 
-### ThreadLocal 原理
+### ThreadLocal 原理了解吗？
 
 从 `Thread`类源代码入手。
 
@@ -446,15 +479,19 @@ ThreadLocalMap(ThreadLocal<?> firstKey, Object firstValue) {
 
 比如我们在同一个线程中声明了两个 `ThreadLocal` 对象的话， `Thread`内部都是使用仅有的那个`ThreadLocalMap` 存放数据的，`ThreadLocalMap`的 key 就是 `ThreadLocal`对象，value 就是 `ThreadLocal` 对象调用`set`方法设置的值。
 
-![ThreadLocal数据结构](./images/threadlocal数据结构.png)
+`ThreadLocal` 数据结构如下图所示：
+
+![threadlocal-data-structure](./images/interview-questions/threadlocal-data-structure.jpg)
 
 `ThreadLocalMap`是`ThreadLocal`的静态内部类。
 
-![ThreadLocal内部类](./images/ThreadLocal内部类.png)
+![ThreadLocal内部类](./images/interview-questions/thread-local-inner-class.png)
 
-### ThreadLocal 内存泄露问题
+### ThreadLocal 内存泄露问题是怎么导致的？
 
-`ThreadLocalMap` 中使用的 key 为 `ThreadLocal` 的弱引用,而 value 是强引用。所以，如果 `ThreadLocal` 没有被外部强引用的情况下，在垃圾回收的时候，key 会被清理掉，而 value 不会被清理掉。这样一来，`ThreadLocalMap` 中就会出现 key 为 null 的 Entry。假如我们不做任何措施的话，value 永远无法被 GC 回收，这个时候就可能会产生内存泄露。ThreadLocalMap 实现中已经考虑了这种情况，在调用 `set()`、`get()`、`remove()` 方法的时候，会清理掉 key 为 null 的记录。使用完 `ThreadLocal`方法后 最好手动调用`remove()`方法
+`ThreadLocalMap` 中使用的 key 为 `ThreadLocal` 的弱引用，而 value 是强引用。所以，如果 `ThreadLocal` 没有被外部强引用的情况下，在垃圾回收的时候，key 会被清理掉，而 value 不会被清理掉。
+
+这样一来，`ThreadLocalMap` 中就会出现 key 为 null 的 Entry。假如我们不做任何措施的话，value 永远无法被 GC 回收，这个时候就可能会产生内存泄露。`ThreadLocalMap` 实现中已经考虑了这种情况，在调用 `set()`、`get()`、`remove()` 方法的时候，会清理掉 key 为 null 的记录。使用完 `ThreadLocal`方法后 最好手动调用`remove()`方法
 
 ```java
 static class Entry extends WeakReference<ThreadLocal<?>> {
@@ -478,9 +515,6 @@ static class Entry extends WeakReference<ThreadLocal<?>> {
 
 - 《深入理解 Java 虚拟机》
 - 《实战 Java 高并发程序设计》
-- 《Java 并发编程的艺术》
-- 《深入浅出Java多线程》：http://concurrent.redspider.group/RedSpider.html
-- Java内存访问重排序的研究：https://tech.meituan.com/2014/09/23/java-memory-reordering.html
-- 嘿，同学，你要的 Java 内存模型 (JMM) 来了：https://xie.infoq.cn/article/739920a92d0d27e2053174ef2
-- Java并发之AQS详解：https://www.cnblogs.com/waterystone/p/4920797.html
-- Java并发包基石-AQS详解：https://www.cnblogs.com/chengxiao/archive/2017/07/24/7141160.html
+- Guide to the Volatile Keyword in Java - Baeldung：https://www.baeldung.com/java-volatile
+- 理解 Java 中的 ThreadLocal - 技术小黑屋：https://droidyue.com/blog/2016/03/13/learning-threadlocal-in-java/
+- ThreadLocal (Java Platform SE 8 ) - Oracle Help Center：https://docs.oracle.com/javase/8/docs/api/java/lang/ThreadLocal.html

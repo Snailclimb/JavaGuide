@@ -7,6 +7,7 @@ head:
   - - meta
     - name: keywords
       content: Redis常见数据结构
+  - - meta
     - name: description
       content: Redis特殊数据结构总结：HyperLogLogs（基数统计）、Bitmap （位存储）、Geospatial (地理位置)。
 ---

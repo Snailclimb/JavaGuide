@@ -75,7 +75,7 @@ num2 = 20
 
 在 `swap()`  方法中，`a`、`b` 的值进行交换，并不会影响到 `num1`、`num2`。因为，`a`、`b` 的值，只是从 `num1`、`num2` 的复制过来的。也就是说，a、b 相当于 `num1`、`num2` 的副本，副本的内容无论怎么修改，都不会影响到原件本身。
 
-![基本数据类型参数](./images/java-value-passing-01.png)
+![基本数据类型参数](./images/java-value-passing-01.jpg)
 
 通过上面例子，我们已经知道了一个方法不能修改一个基本数据类型的参数，而对象引用作为参数就不一样，请看案例2。
 
@@ -106,7 +106,7 @@ num2 = 20
 
 解析：
 
-![引用数据类型参数1](./images/java-value-passing-02.png)
+![引用数据类型参数1](./images/java-value-passing-02.jpg)
 
 看了这个案例很多人肯定觉得 Java 对引用类型的参数采用的是引用传递。
 
@@ -156,7 +156,7 @@ xiaoLi:小李
 
 `swap` 方法的参数 `person1` 和 `person2` 只是拷贝的实参 `xiaoZhang` 和 `xiaoLi` 的地址。因此， `person1` 和 `person2` 的互换只是拷贝的两个地址的互换罢了，并不会影响到实参 `xiaoZhang` 和 `xiaoLi` 。
 
-![引用数据类型参数2](./images/java-value-passing-03.png)
+![引用数据类型参数2](./images/java-value-passing-03.jpg)
 
 ## 总结
 

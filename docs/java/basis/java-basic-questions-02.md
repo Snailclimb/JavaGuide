@@ -7,6 +7,7 @@ head:
   - - meta
     - name: keywords
       content: 面向对象,构造方法,接口,抽象类,String,Object
+  - - meta
     - name: description
       content: 全网质量最高的Java基础常见知识点和面试题总结，希望对你有帮助！
 ---
@@ -208,7 +209,7 @@ System.out.println(person1.getAddress() == person1Copy.getAddress());
 
 我专门画了一张图来描述浅拷贝、深拷贝、引用拷贝：
 
-![](./images/shallow&deep-copy.png)
+![浅拷贝、深拷贝、引用拷贝示意图](./images/shallow&deep-copy.jpg)
 
 ## Java 常见类
 

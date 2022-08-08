@@ -104,11 +104,11 @@ export const sidebarConfig = defineSidebarConfig({
               icon: "star",
               collapsable: true,
               children: [
+                "jmm",
                 "java-thread-pool-summary",
                 "java-thread-pool-best-practices",
                 "java-concurrent-collections",
                 "aqs",
-                "reentrantlock",
                 "atomic-classes",
                 "threadlocal",
                 "completablefuture-intro",
