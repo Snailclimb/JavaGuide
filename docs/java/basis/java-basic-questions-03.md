@@ -16,7 +16,7 @@ head:
 
 **Java 异常类层次结构图概览** ：
 
-![types-of-exceptions-in-java](./images/types-of-exceptions-in-java.png)
+![Java 异常类层次结构图](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/basis/types-of-exceptions-in-java.jpg)
 
 ### Exception 和 Error 有什么区别？
 
@@ -31,7 +31,7 @@ head:
 
 比如下面这段 IO 操作的代码：
 
-![](./images/checked-exception.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/basis/checked-exception.png)
 
 除了`RuntimeException`及其子类以外，其他的`Exception`类及其子类都属于受检查异常 。常见的受检查异常有： IO 相关的异常、`ClassNotFoundException` 、`SQLException`...。
 
@@ -49,7 +49,7 @@ head:
 - `UnsupportedOperationException`(不支持的操作错误比如重复创建同一用户)
 - ......
 
-![](./images/unchecked-exception.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/basis/unchecked-exception.png)
 
 ### Throwable 类常用方法有哪些？
 

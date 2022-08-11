@@ -41,7 +41,7 @@ Java 虚拟机（JVM）是运行 Java 字节码的虚拟机。JVM 有针对不�
 
 除了我们平时最常用的 HotSpot VM 外，还有 J9 VM、Zing VM、JRockit VM 等 JVM 。维基百科上就有常见 JVM 的对比：[Comparison of Java virtual machines](https://en.wikipedia.org/wiki/Comparison_of_Java_virtual_machines) ，感兴趣的可以去看看。并且，你可以在 [Java SE Specifications](https://docs.oracle.com/javase/specs/index.html) 上找到各个版本的 JDK 对应的 JVM 规范。
 
-![Java SE Specifications](./images/java-se-specifications.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/basis/JavaSeSpecifications.jpg)
 
 #### JDK 和 JRE
 
@@ -57,7 +57,7 @@ JRE 是 Java 运行时环境。它是运行已编译 Java 程序所需的所有�
 
 **Java 程序从源代码到运行的过程如下图所示：**
 
-![Java程序转变为机器代码的过程](./images/java程序转变为机器代码的过程.png)
+![Java程序转变为机器代码的过程](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/basis/java-code-to-machine-code.jpg)
 
 我们需要格外注意的是 `.class->机器码` 这一步。在这一步 JVM 类加载器首先加载字节码文件，然后通过解释器逐行解释执行，这种方式的执行速度会相对比较慢。而且，有些方法和代码块是经常需要被调用的(也就是所谓的热点代码)，所以后面引进了 JIT（just-in-time compilation） 编译器，而 JIT 属于运行时编译。当 JIT 编译器完成第一次编译后，其会将字节码对应的机器码保存下来，下次可以直接使用。而我们知道，机器码的运行效率肯定是高于 Java 解释器的。这也解释了我们为什么经常会说 **Java 是编译与解释共存的语言** 。
 
@@ -78,7 +78,7 @@ AOT 可以提前编译节省启动时间，那为什么不全部使用这种编�
 - **编译型** ：[编译型语言](https://zh.wikipedia.org/wiki/%E7%B7%A8%E8%AD%AF%E8%AA%9E%E8%A8%80) 会通过[编译器](https://zh.wikipedia.org/wiki/%E7%B7%A8%E8%AD%AF%E5%99%A8)将源代码一次性翻译成可被该平台执行的机器码。一般情况下，编译语言的执行速度比较快，开发效率比较低。常见的编译性语言有 C、C++、Go、Rust 等等。
 - **解释型** ：[解释型语言](https://zh.wikipedia.org/wiki/%E7%9B%B4%E8%AD%AF%E8%AA%9E%E8%A8%80)会通过[解释器](https://zh.wikipedia.org/wiki/直譯器)一句一句的将代码解释（interpret）为机器代码后再执行。解释型语言开发效率比较快，执行速度比较慢。常见的解释性语言有 Python、JavaScript、PHP 等等。
 
-![编译型语言和解释型语言](./images/编译型语言和解释型语言.png)
+![编译型语言和解释型语言](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/basis/compiled-and-interpreted-languages.jpg)
 
 根据维基百科介绍：
 
@@ -126,7 +126,7 @@ AOT 可以提前编译节省启动时间，那为什么不全部使用这种编�
 >
 > 基于以上这些原因，OpenJDK 还是有存在的必要的！
 
-![oracle jdk release cadence](./images/oracle-jdk-release-cadence.jpg)
+![oracle jdk release cadence](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/basis/oracle-jdk-release-cadence.jpg)
 
 🌈 拓展一下：
 
