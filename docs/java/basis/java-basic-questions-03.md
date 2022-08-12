@@ -16,7 +16,7 @@ head:
 
 **Java 异常类层次结构图概览** ：
 
-![Java 异常类层次结构图](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/basis/types-of-exceptions-in-java.jpg)
+![Java 异常类层次结构图](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/basis/types-of-exceptions-in-java.png)
 
 ### Exception 和 Error 有什么区别？
 
