@@ -25,11 +25,11 @@ Java 虚拟机在执行 Java 程序的过程中会把它管理的内存划分成
 
 **JDK 1.8 之前** ：
 
-![](./pictures/java内存区域/JVM运行时数据区域.png)
+![Java 运行时数据区域（JDK1.8 之前）](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/jvm/java-runtime-data-areas-jdk1.7.png)
 
-**JDK 1.8** ：
+**JDK 1.8 之后** ：
 
-![](./pictures/java内存区域/Java运行时数据区域JDK1.8.png)
+![Java 运行时数据区域（JDK1.8 之后）](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/jvm/java-runtime-data-areas-jdk1.8.png)
 
 **线程私有的：**
 
