@@ -172,6 +172,7 @@ export const sidebarConfig = defineSidebarConfig({
                 "http&https",
                 "http1.0&http1.1",
                 "http-status-codes",
+                "tcp-connection-and-disconnection",
               ],
             },
           ],

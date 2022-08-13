@@ -131,12 +131,13 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 ### 网络
 
-1. [OSI 和 TCP/IP 网络分层模型详解（基础）](./docs/cs-basics/network/osi&tcp-ip-model.md)
-2. [HTTP vs HTTPS（应用层）](./docs/cs-basics/network/http&https.md)
-3. [HTTP 1.0 vs HTTP 1.1（应用层）](./docs/cs-basics/network/http1.0&http1.1.md)
-4. [HTTP 常见状态码（应用层）](./docs/cs-basics/network/http-status-codes.md)
-5. [计算机网络常见知识点&面试题（补充）](./docs/cs-basics/network/other-network-questions.md)
-6. [谢希仁老师的《计算机网络》内容总结（补充）](docs/cs-basics/network/谢希仁老师的《计算机网络》内容总结.md)
+1. [计算机网络常见知识点&面试题总结](./docs/cs-basics/network/other-network-questions.md)
+2. [OSI 和 TCP/IP 网络分层模型详解（基础）](./docs/cs-basics/network/osi&tcp-ip-model.md)
+3. [HTTP vs HTTPS（应用层）](./docs/cs-basics/network/http&https.md)
+4. [HTTP 1.0 vs HTTP 1.1（应用层）](./docs/cs-basics/network/http1.0&http1.1.md)
+5. [HTTP 常见状态码（应用层）](./docs/cs-basics/network/http-status-codes.md)
+6. [TCP 三次握手和四次挥手（传输层）](./docs/cs-basics/network/tcp-connection-and-disconnection.md)
+7. [谢希仁老师的《计算机网络》内容总结（补充）](docs/cs-basics/network/谢希仁老师的《计算机网络》内容总结.md)
 
 ### 数据结构
 
@@ -421,18 +422,6 @@ Dubbo 是一款国产的 RPC 框架，由阿里开源。相关阅读：
 * [搞懂异地多活，看这篇就够了](https://mp.weixin.qq.com/s/T6mMDdtTfBuIiEowCpqu6Q)
 * [四步构建异地多活](https://mp.weixin.qq.com/s/hMD-IS__4JE5_nQhYPYSTg)
 * [《从零开始学架构》— 28 | 业务高可用的保障：异地多活架构](http://gk.link/a/10pKZ)
-
-## 开发工具
-
-### Git
-
-* [Git 入门](./docs/tools/git/git-intro.md)
-* [Github 小技巧](./docs/tools/git/git-intro.md)
-
-### Docker
-
-* [Docker 基本概念解读](./docs/tools/docker/docker-intro.md)
-* [Docker从入门到上手干事](./docs/tools/docker/docker-in-action.md)
 
 ## 关于作者
 
