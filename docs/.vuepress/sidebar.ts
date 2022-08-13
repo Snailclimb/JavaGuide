@@ -163,6 +163,7 @@ export const sidebarConfig = defineSidebarConfig({
           collapsable: true,
           children: [
             "other-network-questions",
+            "computer-network-xiexiren-summary",
             {
               text: "重要知识点",
               icon: "star",
