@@ -1,5 +1,5 @@
 ---
-title:  HTTP 常见状态码（应用层）
+title:  HTTP 常见状态码总结（应用层）
 category: 计算机基础
 tag:
   - 计算机网络
