@@ -5,8 +5,6 @@ tag:
   - 计算机网络
 ---
 
-> 本文由  [SnailClimb](https://github.com/Snailclimb) 和 [csguide-dabai](https://github.com/csguide-dabai) （公众号“CS指南”作者）共同完成。
-
 ## OSI 七层模型
 
 **OSI 七层模型** 是国际标准化组织提出一个网络分层模型，其大体结构以及每一层提供的功能如下图所示：
@@ -59,14 +57,16 @@ OSI 七层模型虽然失败了，但是却提供了很多不错的理论基础�
 
 ![application-layer](./images/osi&tcp-ip-model/application-layer.png)
 
+应用层常见协议总结，请看这篇文章：[应用层常见协议总结（应用层）](./application-layer-protocol.md)。
+
 ### 传输层（Transport layer）
 
 **传输层的主要任务就是负责向两台终端设备进程之间的通信提供通用的数据传输服务。** 应用进程利用该服务传送应用层报文。“通用的”是指并不针对某一个特定的网络应用，而是多种应用可以使用同一个运输层服务。
 
 **运输层主要使用以下两种协议：**
 
-1. **传输控制协议 TCP**（Transmisson Control Protocol）--提供**面向连接**的，**可靠的**数据传输服务。
-2. **用户数据协议 UDP**（User Datagram Protocol）--提供**无连接**的，尽最大努力的数据传输服务（**不保证数据传输的可靠性**）。
+1. **传输控制协议 TCP**（Transmisson Control Protocol）--提供 **面向连接** 的，**可靠的** 数据传输服务。
+2. **用户数据协议 UDP**（User Datagram Protocol）--提供 **无连接** 的，尽最大努力的数据传输服务（不保证数据传输的可靠性）。
 
 ![transport-layer](./images/osi&tcp-ip-model/transport-layer.png)
 
@@ -80,9 +80,16 @@ OSI 七层模型虽然失败了，但是却提供了很多不错的理论基础�
 
 这里强调指出，网络层中的“网络”二字已经不是我们通常谈到的具体网络，而是指计算机网络体系结构模型中第三层的名称。
 
-互联网是由大量的异构（heterogeneous）网络通过路由器（router）相互连接起来的。互联网使用的网络层协议是无连接的网际协议（Intert Prococol）和许多路由选择协议，因此互联网的网络层也叫做**网际层**或**IP 层**。
+互联网是由大量的异构（heterogeneous）网络通过路由器（router）相互连接起来的。互联网使用的网络层协议是无连接的网际协议（Intert Prococol）和许多路由选择协议，因此互联网的网络层也叫做 **网际层** 或 **IP 层**。
 
 ![](./images/osi&tcp-ip-model/nerwork-layer.png)
+
+**网络层常见协议** ：
+
+- **IP:网际协议** ：网际协议 IP 是TCP/IP协议中最重要的协议之一，也是网络层最重要的协议之一，IP协议的作用包括寻址规约、定义数据包的格式等等，是网络层信息传输的主力协议。目前IP协议主要分为两种，一种是过去的IPv4，另一种是较新的IPv6，目前这两种协议都在使用，但后者已经被提议来取代前者。
+- **ARP 协议** ：ARP协议，全称地址解析协议（Address Resolution Protocol），它解决的是网络层地址和链路层地址之间的转换问题。因为一个IP数据报在物理上传输的过程中，总是需要知道下一跳（物理上的下一个目的地）该去往何处，但IP地址属于逻辑地址，而MAC地址才是物理地址，ARP协议解决了IP地址转MAC地址的一些问题。
+- **NAT:网络地址转换协议** ：NAT协议（Network Address Translation）的应用场景如同它的名称——网络地址转换，应用于内部网到外部网的地址转换过程中。具体地说，在一个小的子网（局域网，LAN）内，各主机使用的是同一个LAN下的IP地址，但在该LAN以外，在广域网（WAN）中，需要一个统一的IP地址来标识该LAN在整个Internet上的位置。
+- ......
 
 ### 网络接口层（Network interface layer）
 
@@ -93,7 +100,54 @@ OSI 七层模型虽然失败了，但是却提供了很多不错的理论基础�
 
 ![network-interface-layer](./images/osi&tcp-ip-model/network-interface-layer.png)
 
-## 为什么网络要分层？
+### 总结
+
+简单总结一下每一层包含的协议和核心技术：
+
+![network-protocol-overview](https://gitee.com/SnailClimb/blog-images/raw/master/network//network-protocol-overview.png)
+
+
+
+**应用层协议** :
+
+- HTTP 协议（超文本传输协议，网页浏览常用的协议）
+- DHCP 协议（动态主机配置）
+- DNS 系统原理（域名系统）
+- FTP 协议（文件传输协议）
+- Telnet协议（远程登陆协议）
+- 电子邮件协议等（SMTP、POP3、IMAP）
+- ......
+
+**传输层协议** :
+
+- TCP 协议
+  - 报文段结构
+  - 可靠数据传输
+  - 流量控制
+  - 拥塞控制
+- UDP 协议
+  - 报文段结构
+  - RDT（可靠数据传输协议）
+
+**网络层协议** :
+
+- IP 协议（TCP/IP 协议的基础，分为 IPv4 和 IPv6）
+- ARP 协议（地址解析协议，用于解析 IP 地址和 MAC 地址之间的映射）
+- ICMP 协议（控制报文协议，用于发送控制消息）
+- NAT 协议（网络地址转换协议）
+- RIP 协议、OSPF 协议、BGP 协议（路由选择协议）
+- ......
+
+**网络接口层** :
+
+- 差错检测技术
+- 多路访问协议（信道复用技术）
+- CSMA/CD 协议
+- MAC 协议
+- 以太网技术
+- ......
+
+## 网络分层的原因
 
 在这篇文章的最后，我想聊聊：“为什么网络要分层？”。
 
@@ -114,3 +168,8 @@ OSI 七层模型虽然失败了，但是却提供了很多不错的理论基础�
 我想到了计算机世界非常非常有名的一句话，这里分享一下：
 
 > 计算机科学领域的任何问题都可以通过增加一个间接的中间层来解决，计算机整个体系从上到下都是按照严格的层次结构设计的。
+
+## 参考
+
+- TCP/IP model vs OSI model：https://fiberbit.com.tw/tcpip-model-vs-osi-model/
+- Data Encapsulation and the TCP/IP Protocol Stack：https://docs.oracle.com/cd/E19683-01/806-4075/ipov-32/index.html

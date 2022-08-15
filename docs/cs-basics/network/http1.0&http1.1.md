@@ -5,8 +5,6 @@ tag:
   - 计算机网络
 ---
 
-> 本文由  [SnailClimb](https://github.com/Snailclimb) 和 [csguide-dabai](https://github.com/csguide-dabai) （公众号“CS指南”作者）共同完成。
-
 这篇文章会从下面几个维度来对比 HTTP 1.0 和 HTTP 1.1：
 
 - 响应状态码
