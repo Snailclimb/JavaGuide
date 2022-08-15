@@ -104,7 +104,7 @@ OSI 七层模型虽然失败了，但是却提供了很多不错的理论基础�
 
 简单总结一下每一层包含的协议和核心技术：
 
-![network-protocol-overview](https://gitee.com/SnailClimb/blog-images/raw/master/network//network-protocol-overview.png)
+![network-protocol-overview](./images/osi&tcp-ip-model/network-protocol-overview.png)
 
 
 
