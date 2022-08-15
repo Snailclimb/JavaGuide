@@ -270,11 +270,11 @@ public class SynchronizedDemo {
 
 在执行`monitorenter`时，会尝试获取对象的锁，如果锁的计数器为 0 则表示锁可以被获取，获取后将锁计数器设为 1 也就是加 1。
 
-![执行 monitorenter 获取锁](./images/interview-questions/synchronized-get-lock-code-block.jpg)
+![执行 monitorenter 获取锁](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/concurrent/synchronized-get-lock-code-block.png)
 
 对象锁的的拥有者线程才可以执行 `monitorexit` 指令来释放锁。在执行 `monitorexit` 指令后，将锁计数器设为 0，表明锁被释放，其他线程可以尝试获取锁。
 
-![执行 monitorexit 释放锁](./images/interview-questions/synchronized-release-lock-block.jpg)
+![执行 monitorexit 释放锁](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/concurrent/synchronized-release-lock-block.png)
 
 如果获取对象锁失败，那当前线程就要阻塞等待，直到锁被另外一个线程释放为止。
 
@@ -483,11 +483,11 @@ ThreadLocalMap(ThreadLocal<?> firstKey, Object firstValue) {
 
 `ThreadLocal` 数据结构如下图所示：
 
-![threadlocal-data-structure](./images/interview-questions/threadlocal-data-structure.jpg)
+![ThreadLocal 数据结构](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/concurrent/threadlocal-data-structure.png)
 
 `ThreadLocalMap`是`ThreadLocal`的静态内部类。
 
-![ThreadLocal内部类](./images/interview-questions/thread-local-inner-class.png)
+![ThreadLocal内部类](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/concurrent/thread-local-inner-class.png)
 
 ### ThreadLocal 内存泄露问题是怎么导致的？
 
