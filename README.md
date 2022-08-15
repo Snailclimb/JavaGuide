@@ -269,10 +269,13 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 #### 认证授权
 
-- [认证授权基础](./docs/system-design/security/basis-of-authority-certification.md)
-- [JWT 基本概念详解](./docs/system-design/security/jwt-intro.md)
+- [认证授权基础概念详解](./docs/system-design/security/basis-of-authority-certification.md)
+- [JWT 基础概念详解](./docs/system-design/security/jwt-intro.md)
 - [JWT 优缺点分析以及常见问题解决方案](./docs/system-design/security/advantages&disadvantages-of-jwt.md)
 - [SSO 单点登录详解](./docs/system-design/security/sso-intro.md)
+- [权限系统设计详解](./docs/system-design/security/design-of-authority-system.md)
+- [敏感词过滤方案总结](./docs/system-design/security/sentive-words-filter.md)
+
 
 #### 数据脱敏
 

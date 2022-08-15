@@ -1,5 +1,5 @@
 ---
-title: 敏感词过滤
+title: 敏感词过滤方案总结
 category: 系统设计
 tag:
   - 安全

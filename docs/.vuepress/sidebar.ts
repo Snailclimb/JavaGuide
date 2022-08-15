@@ -370,6 +370,7 @@ export const sidebarConfig = defineSidebarConfig({
             "jwt-intro",
             "advantages&disadvantages-of-jwt",
             "sso-intro",
+            "design-of-authority-system",
             "sentive-words-filter",
             "data-desensitization",
           ],
