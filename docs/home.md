@@ -32,11 +32,12 @@ title: JavaGuide（Java学习&&面试指南）
 
 <div style="text-align:center">
     <p>
-        <a href="https://www.yuque.com/./share/8a30ffb5-83f3-40f9-baf9-38de68b906dc">
+        <a href="https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc">
             <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/gongzhonghaoxuanchuan.png" style="margin: 0 auto;" />
         </a>
     </p>
 </div>
+
 
 ## 项目相关
 
