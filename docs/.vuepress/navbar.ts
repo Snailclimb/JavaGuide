@@ -10,11 +10,11 @@ export const navbarConfig = defineNavbarConfig([
     text: "网站相关",
     icon: "about",
     children: [
-      { text: "走近作者", icon: "zuozhe", link: "/about-the-author/" },
+      { text: "关于作者", icon: "zuozhe", link: "/about-the-author/" },
       {
-        text: "网站历史",
-        icon: "java",
-        link: "/javaguide/history.md",
+        text: "更新历史",
+        icon: "history",
+        link: "/timeline/",
       },
       {
         text: "旧版入口",

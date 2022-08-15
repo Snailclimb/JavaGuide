@@ -16,19 +16,31 @@ footer: |-
   <a href="https://beian.miit.gov.cn/" target="_blank">鄂ICP备2020015769号-1</a> | 主题: <a href="https://vuepress-theme-hope.github.io/v2/" target="_blank">VuePress Theme Hope</a>
 ---
 
-## 网站概览 
+<div align="center">
+    <p>
+        <a href="https://javaguide.cn/"><img src="https://img.shields.io/badge/阅读-read-brightgreen.svg" alt="阅读" /></a>
+        <img src="https://img.shields.io/github/stars/Snailclimb/JavaGuide" alt="stars" />
+        <img src="https://img.shields.io/github/forks/Snailclimb/JavaGuide" alt="forks" />
+        <img src="https://img.shields.io/github/issues/Snailclimb/JavaGuide" alt="issues" />
+    </p>
+    <p>
+        <a href="https://github.com/Snailclimb/JavaGuide">Github</a> |
+        <a href="https://gitee.com/SnailClimb/JavaGuide">Gitee</a>
+    </p>  
+</div>
 
-- [Java 面试指南](./home.md) ：一份涵盖大部分 Java 程序员所需要掌握的核心知识。准备 Java 面试，首选 JavaGuide！
-- [Java开源项目精选](./open-source-project/readme.md) ：收集整理了 Gitee/Github 上非常棒的 Java 开源项目集合。Java 开发必备！
-- [Java技术文章精选](/high-quality-technical-articles/) : 精选一些和 Java 相关的优质技术文章，每一篇都值得你阅读 3 遍以上！
-- [Java书单精选](/books/) : Java 后端开发值得一读的一些书籍。
-- [走进作者](/about-the-author/) : 个人经历、闲聊杂谈。
+## 关于网站
 
-## 必看专栏
+- [项目介绍](./javaguide/intro.md)
+- [网站历史](./javaguide/history.md)
+- [贡献指南](./javaguide/contribution-guideline.md)
+- [常见问题](./javaguide/faq.md)
 
-- **[《Java 面试指北》](./zhuanlan/java-mian-shi-zhi-bei.md)** : 与 JavaGuide 开源版的内容互补！
-- **[《手写 RPC 框架》](./zhuanlan/handwritten-rpc-framework.md)** : 从零开始基于 Netty+Kyro+Zookeeper 实现一个简易的 RPC 框架。
-- **[《Java 必读源码系列》](./zhuanlan/source-code-reading.md)** ：目前已经整理了 Dubbo 2.6.x 、Netty 4.x、SpringBoot 2.1 等框架/中间件的源码
+## 关于作者
+
+- [我曾经也是网瘾少年](./about-the-author/internet-addiction-teenager.md)
+- [害，毕业三年了！](./about-the-author/my-college-life.md)
+- [我的知识星球快 3 岁了！](./about-the-author/zhishixingqiu-two-years.md)
 
 ## PDF
 
@@ -40,6 +52,12 @@ footer: |-
 
 ## 公众号
 
-最新更新会第一时间同步在公众号，强烈推荐大家关注一波！另外，公众号上有很多干货不会同步在线阅读网站。
+最新更新会第一时间同步在公众号，推荐关注！另外，公众号上有很多干货不会同步在线阅读网站。
 
-![我的公众号](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books167598cd2e17b8ec.png)
+<div style="text-align:center">
+    <p>
+        <a href="https://www.yuque.com/./share/8a30ffb5-83f3-40f9-baf9-38de68b906dc">
+            <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/gongzhonghaoxuanchuan.png" style="margin: 0 auto;" />
+        </a>
+    </p>
+</div>

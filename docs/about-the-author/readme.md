@@ -61,3 +61,4 @@ category: 走近作者
 
 生活本就是有苦有甜。共勉！
 
+![JavaGuide 官方公众号](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/gongzhonghaoxuanchuan.png)
