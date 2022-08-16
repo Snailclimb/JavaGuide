@@ -175,7 +175,7 @@ head:
 
 角色与用户管理都是可以直接改变用户权限的核心模块，整个设计思路如下图：
 
-![角色与用户管理模块设计](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/security/design-of-authority-system/role-and-user-management.png)
+![角色与用户管理模块设计](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/security/design-of-authority-system/design-of-authority-system:role-and-user-management.png)
 
 这个模块设计重点是需要考虑到批量操作。无论是通过角色关联用户，还是给用户批量增加/删除/重置权限，批量操作的场景都是系统需要设计好的。
 
