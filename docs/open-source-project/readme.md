@@ -14,7 +14,7 @@ category: 开源项目
 
 另外，我的公众号还会定期分享优质开源项目，每一期我都会精选 5 个高质量的 Java 开源项目。
 
-目前已经更新到了第 9 期：
+目前已经更新到了第 10 期：
 
 1. [一款基于 Spring Boot + Vue 的一站式开源持续测试平台](http://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247515383&idx=1&sn=ba7244020c05d966b483d8c302d54e85&chksm=cea1f33cf9d67a2a111bcf6cadc3cc1c44828ba2302cd3e13bbd88349e43d4254808e6434133&scene=21#wechat_redirect)。
 2. [用 Java 写个沙盒塔防游戏！已上架 Steam,Apple Store](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247515981&idx=1&sn=e4b9c06af65f739bdcdf76bdc35d59f6&chksm=cea1f086f9d679908bd6604b1c42d67580160d9789951f3707ad2f5de4d97aa72121d8fe777e&token=435278690&lang=zh_CN&scene=21#wechat_redirect)

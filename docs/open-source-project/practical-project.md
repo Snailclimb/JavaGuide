@@ -4,21 +4,26 @@ category: 开源项目
 icon: project
 ---
 
-## 博客/论坛/考试系统
+## 博客/论坛系统
 
 下面这几个项目都是非常适合 Spring Boot 初学者学习的，下面的大部分项目的总体代码架构我都看过，个人觉得还算不错，不会误导没有实际做过项目的朋友。
 
+- **[blog](https://github.com/X1192176811/blog)** ：一款基于 SpringBoot + Vue 开发的前后端分离博客，非常精致，功能也比通过类型博客系统更加丰富完善。采用 SpringSecurity 进行权限管理，ElasticSearch 全文搜索，支持 QQ、微博第三方登录、在线聊天、发布说说等功能。相关阅读：[这个 SpringBoot+ Vue 开源博客系统太酷炫了！](https://mp.weixin.qq.com/s/CCzsX3Sn2Q3vhuBDEmRTlw)。
+- **[forest](https://github.com/rymcu)** ：下一代的知识社区系统，可以自定义专题和作品集。后端基于 SpringBoot + Shrio + MyBatis + JWT + Redis，前端基于 Vue + NuxtJS + Element-UI。
 - **[vhr](https://github.com/lenve/vhr "vhr")** ：微人事是一个前后端分离的人力资源管理系统，项目采用 SpringBoot+Vue 开发。
 - **[favorites-web](https://github.com/cloudfavorites/favorites-web)** :云收藏 Spring Boot 2.X 开源项目。云收藏是一个使用 Spring Boot 构建的开源网站，可以让用户在线随时随地收藏的一个网站，在网站上分类整理收藏的网站或者文章。
 - **[community](https://github.com/codedrinker/community)** ：开源论坛、问答系统，现有功能提问、回复、通知、最新、最热、消除零回复功能。功能持续更新中…… 技术栈 Spring、Spring Boot、MyBatis、MySQL/H2、Bootstrap。
 - **[VBlog](https://github.com/lenve/VBlog)** ：V 部落，Vue+SpringBoot 实现的多用户博客管理平台!
 - **[My-Blog](https://github.com/ZHENFENG13/My-Blog)** ： My Blog 是由 SpringBoot + Mybatis + Thymeleaf 等技术实现的 Java 博客系统，页面美观、功能齐全、部署简单及完善的代码，一定会给使用者无与伦比的体验。
+
+## 考试/刷题系统
+
 - **[uexam](https://gitee.com/mindskip/uexam)** ：一个非常不错的考试系统！考试系统应用场景还挺多的，不论是对于在校大学生还是已经工作的小伙伴，并且，类似的私活也有很多。相关阅读：[《好一个 Spring Boot 开源在线考试系统！解决了我的燃眉之急》](http://link.zhihu.com/?target=https%3A//mp.weixin.qq.com/s%3F__biz%3DMzg2OTA0Njk0OA%3D%3D%26mid%3D2247491585%26idx%3D1%26sn%3D8d3c6768c22e72d6bfcbeee9624886a7%26chksm%3Dcea1afcaf9d626dc918760289c37025ad526f6255786bc198d2402203df64c873ad7934f58df%26scene%3D178%26cur_album_id%3D1345382825083895808%23rd) 。
 - **[PassJava-Platform](https://github.com/Jackson0714/PassJava-Platform)** ：一个基于微服务(SpringBoot、Spring Cloud)的面试刷题系统！相关阅读：[《一个基于 Spring Cloud 的面试刷题系统。面试、毕设、项目经验一网打尽》](http://link.zhihu.com/?target=https%3A//mp.weixin.qq.com/s%3F__biz%3DMzg2OTA0Njk0OA%3D%3D%26mid%3D2247497045%26idx%3D1%26sn%3D577175bfd6c040a0df5a494fce6f9758%26chksm%3Dcea1ba9ef9d633883a2e213c0fb9a88bdc87051347d4b3fad2c2befb65d8b16e1ea81d8146dd%26scene%3D178%26cur_album_id%3D1345382825083895808%23rd)。
 
 相关文章：[想要搭建个人博客？我调研了 100 来个 Java 开源博客系统，发现这 5 个最好用！](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247491191&idx=1&sn=fd5efa645c2f2e09f088f6a018cea028&chksm=cea251bcf9d5d8aac8653c686b7a331ffe4e13aa9ffc9beab2c378ea2497a9bd3295ff8d2c51&token=747074901&lang=zh_CN#rd)
 
-## 商城
+## 商城系统
 
 下面的商城系统大多比较复杂比如 mall ,如果没有 Java 基础和 Spring Boot 都还没有摸熟的话不推荐过度研究下面几个项目或者使用这些项目当作毕业设计。
 
@@ -51,7 +56,7 @@ icon: project
 - **[SmartAdmin](https://gitee.com/lab1024/smart-admin)** : 互联网企业级的通用型中后台解决方案！使用最前沿的前后台技术栈 SpringBoot 和 Vue，前后端分离!代码质量非常高！
 - **[BallCat](https://github.com/ballcat-projects/ballcat)** ：一个功能完善的快速开发脚手架！除了最基本的权限管理，定时任务功能之外，还额外支持 XSS 过滤，SQL 防注入、数据脱敏等多种功能
 
-**相关文章** ：
+**相关阅读** ：
 
 - [听说你要接私活？Guide 连夜整理了 5 个开源免费的 Java 项目快速开发脚手架。](https://sourl.cn/cFyLTR)
 - [解放双手，再来推荐 5 个 Java 项目开发快速开发脚手架！项目经验和私活都不愁了！](https://sourl.cn/StkiAv)
@@ -60,5 +65,7 @@ icon: project
 
 - **[guide-rpc-framework](https://github.com/Snailclimb/guide-rpc-framework)** ：一款基于 Netty+Kyro+Zookeeper 实现的自定义 RPC 框架-附详细实现过程和相关教程。
 - **[mini-spring](https://github.com/DerekYRC/mini-spring)** ：简化版的 Spring 框架，能帮助你快速熟悉 Spring 源码和掌握 Spring 的核心原理。代码极度简化，保留了 Spring 的核心功能，如 IoC 和 AOP、资源加载器等核心功能。
+- **[mini-spring-cloud](https://github.com/DerekYRC/mini-spring-cloud)** ：一个手写的简化版的 Spring Cloud，旨在帮助你快速熟悉 Spring Cloud 源码及掌握其核心原理。相关阅读：[手写一个简化版的 Spring Cloud！](https://mp.weixin.qq.com/s/v3FUp-keswE2EhcTaLpSMQ) 。
 - **[itstack-demo-jvm](https://github.com/fuzhengwei/itstack-demo-jvm)** ：通过 Java 代码来实现 JVM 的基础功能（搜索解析 class 文件、字节码命令、运行时数据区等。相关阅读：[《zachaxy 的手写 JVM 系列》](https://zachaxy.github.io/tags/JVM/)
 - **[Freedom](https://github.com/alchemystar/Freedom)** ：自己 DIY 一个具有 ACID 的数据库。相关项目：[MYDB](https://github.com/CN-GuoZiyang/MYDB)（一个简单的数据库实现）、[toyDB](https://github.com/erikgrinaker/toydb)（Rust 实现的分布式 SQL 数据库）。
+- **[lu-raft-kv](https://github.com/stateIs0/lu-raft-kv)** ：一个 Java 版本的 Raft(CP) KV 分布式存储实现，非常适合想要深入学习 Raft 协议的小伙伴研究。lu-raft-kv 已经实现了 Raft 协议其中的两个核心功能：leader 选举和日志复制。如果你想要学习这个项目的话，建议你提前看一下作者写的项目介绍，比较详细，地址：http://thinkinjava.cn/2019/01/12/2019/2019-01-12-lu-raft-kv/ 。
