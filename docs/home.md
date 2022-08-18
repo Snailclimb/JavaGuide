@@ -66,6 +66,7 @@ title: JavaGuide（Java学习&&面试指南）
 - [BigDecimal 详解](./java/basis/bigdecimal.md)
 - [Java 魔法类 Unsafe 详解](./java/basis/unsafe.md)
 - [Java SPI 机制详解](./java/basis/spi.md)
+- [Java 语法糖详解](./java/basis/syntactic-sugar.md)
 
 ### 集合
 

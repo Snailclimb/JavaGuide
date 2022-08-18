@@ -62,6 +62,7 @@
 - [BigDecimal 详解](./docs/java/basis/bigdecimal.md)
 - [Java 魔法类 Unsafe 详解](./docs/java/basis/unsafe.md)
 - [Java SPI 机制详解](./docs/java/basis/spi.md)
+- [Java 语法糖详解](./docs/java/basis/syntactic-sugar.md)
 
 ### 集合
 

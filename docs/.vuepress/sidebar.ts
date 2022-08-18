@@ -57,6 +57,7 @@ export const sidebarConfig = defineSidebarConfig({
                 "bigdecimal",
                 "unsafe",
                 "spi",
+                "syntactic-sugar",
               ],
             },
           ],
