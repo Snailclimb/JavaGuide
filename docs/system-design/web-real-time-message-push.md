@@ -12,7 +12,7 @@ head:
 
 我有一个朋友做了一个小破站，现在要实现一个站内信 Web 消息推送的功能，对，就是下图这个小红点，一个很常用的功能。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/web-real-time-message-push/1460000042192380.png)
+![站内信 Web 消息推送](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/web-real-time-message-push/1460000042192380.png)
 
 不过他还没想好用什么方式做，这里我帮他整理了一下几种方案，并简单做了实现。
 
@@ -26,17 +26,17 @@ head:
 
 移动端消息推送示例 ：
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/web-real-time-message-push/IKleJ9auR1Ojdicyr0bH.png)
+![移动端消息推送示例](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/web-real-time-message-push/IKleJ9auR1Ojdicyr0bH.png)
 
 Web 端消息推送示例：
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/web-real-time-message-push/image-20220819100512941.png)
+![Web 端消息推送示例](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/web-real-time-message-push/image-20220819100512941.png)
 
 在具体实现之前，咱们再来分析一下前边的需求，其实功能很简单，只要触发某个事件（主动分享了资源或者后台主动推送消息），Web 页面的通知小红点就会实时的 `+1` 就可以了。
 
 通常在服务端会有若干张消息推送表，用来记录用户触发不同事件所推送不同类型的消息，前端主动查询（拉）或者被动接收（推）用户所有未读的消息数。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/web-real-time-message-push/1460000042192384.png)
+![消息推送表](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/web-real-time-message-push/1460000042192384.png)
 
 消息推送无非是推（push）和拉（pull）两种形式，下边我们逐个了解下。
 
@@ -198,7 +198,7 @@ SSE 在服务器和客户端之间打开一个单向通道，服务端响应的�
 
 整体的实现思路有点类似于在线视频播放，视频流会连续不断的推送到浏览器，你也可以理解成，客户端在完成一次用时很长（网络不畅）的下载。
 
-![SSE 示例](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/web-real-time-message-push/1460000042192391.png)
+![SSE 示意图](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/web-real-time-message-push/1460000042192391.png)
 
 SSE 与 WebSocket 作用相似，都可以建立服务端与浏览器之间的通信，实现服务端向客户端推送消息，但还是有些许不同：
 
@@ -297,7 +297,7 @@ Websocket 应该是大家都比较熟悉的一种实现消息推送的方式，�
 
 是一种在 TCP 连接上进行全双工通信的协议，建立客户端和服务器之间的通信渠道。浏览器和服务器仅需一次握手，两者之间就直接可以创建持久性的连接，并进行双向数据传输。
 
-![Websocket 示例](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/web-real-time-message-push/1460000042192394.png)
+![Websocket 示意图](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/web-real-time-message-push/1460000042192394.png)
 
 SpringBoot 整合 Websocket，先引入 Websocket 相关的工具包，和 SSE 相比额外的开发成本。
 
