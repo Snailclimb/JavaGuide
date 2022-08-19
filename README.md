@@ -287,11 +287,15 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 #### 敏感词过滤
 
-[《敏感词过滤》](./docs/system-design/security/sentive-words-filter.md)
+[敏感词过滤](./docs/system-design/security/sentive-words-filter.md)
 
 ### 定时任务
 
-[《Java定时任务大揭秘》](./docs/system-design/schedule-task.md)
+[Java 定时任务详解](./docs/system-design/schedule-task.md)
+
+### Web 实时消息推送
+
+[Web 实时消息推送详解](./docs/system-design/web-real-time-message-push.md)
 
 ## 分布式
 

@@ -377,6 +377,7 @@ export const sidebarConfig = defineSidebarConfig({
           ],
         },
         "schedule-task",
+        "web-real-time-message-push",
       ],
     },
     {
