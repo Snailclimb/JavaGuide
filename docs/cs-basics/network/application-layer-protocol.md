@@ -20,6 +20,8 @@ HTTP 协是基于 TCP协议，发送 HTTP 请求之前首先要建立 TCP 连接
 
 **简单邮件传输(发送)协议（SMTP，Simple Mail Transfer Protocol）** 基于 TCP 协议，用来发送电子邮件。
 
+![SMTP 协议](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/cs-basics/network/what-is-smtp.png)
+
 注意⚠️：**接受邮件的协议不是 SMTP 而是 POP3 协议。**
 
 SMTP 协议这块涉及的内容比较多，下面这两个问题比较重要：

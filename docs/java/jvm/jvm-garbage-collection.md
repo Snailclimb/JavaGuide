@@ -41,7 +41,7 @@ Java 堆是垃圾收集器管理的主要区域，因此也被称作 **GC 堆（
 
 下图所示的 Eden 区、两个 Survivor 区 S0 和 S1 都属于新生代，中间一层属于老年代，最下面一层属于永久代。
 
-![hotspot-heap-structure](./pictures/java内存区域/hotspot-heap-structure.png)
+![hotspot-heap-structure](./pictures/hotspot-heap-structure.png)
 
 **JDK 8 版本之后 PermGen(永久) 已被 Metaspace(元空间) 取代，元空间使用的是直接内存** 。
 

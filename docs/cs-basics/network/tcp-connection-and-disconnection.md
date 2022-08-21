@@ -10,7 +10,6 @@ tag:
 
 ##  建立连接-TCP 三次握手
 
-
 ![TCP 三次握手图解](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/cs-basics/network/tcp-shakes-hands-three-times.png)
 
 建立一个 TCP 连接需要“三次握手”，缺一不可 ：

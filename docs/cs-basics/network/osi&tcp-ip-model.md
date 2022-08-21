@@ -9,7 +9,7 @@ tag:
 
 **OSI 七层模型** 是国际标准化组织提出一个网络分层模型，其大体结构以及每一层提供的功能如下图所示：
 
-![osi七层模型](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/osi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B.png)
+![OSI 七层模型](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/cs-basics/network/osi-7-model.png)
 
 每一层都专注做一件事情，并且每一层都需要使用下一层提供的功能比如传输层需要使用网络层提供的路由和寻址功能，这样传输层才知道把数据传输到哪里去。
 
@@ -32,7 +32,7 @@ OSI 七层模型虽然失败了，但是却提供了很多不错的理论基础�
 
 最后再分享一个关于 OSI 七层模型非常不错的总结图片！
 
-![](./images/osi&tcp-ip-model/osi-model-detail.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/cs-basics/network/osi-model-detail.png)
 
 ## TCP/IP 四层模型
 
@@ -45,7 +45,7 @@ OSI 七层模型虽然失败了，但是却提供了很多不错的理论基础�
 
 需要注意的是，我们并不能将 TCP/IP 四层模型 和 OSI 七层模型完全精确地匹配起来，不过可以简单将两者对应起来，如下图所示：
 
-![TCP-IP-4-model](./images/osi&tcp-ip-model/TCP-IP-4-model.png)
+![TCP/IP 四层模型](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/cs-basics/network/tcp-ip-4-model.png)
 
 ### 应用层（Application layer）
 
@@ -55,7 +55,7 @@ OSI 七层模型虽然失败了，但是却提供了很多不错的理论基础�
 
 应用层协议定义了网络通信规则，对于不同的网络应用需要不同的应用层协议。在互联网中应用层协议很多，如支持 Web 应用的 HTTP 协议，支持电子邮件的 SMTP 协议等等。
 
-![application-layer](./images/osi&tcp-ip-model/application-layer.png)
+![应用层重要协议](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/cs-basics/network/application-layer-protocol.png)
 
 应用层常见协议总结，请看这篇文章：[应用层常见协议总结（应用层）](./application-layer-protocol.md)。
 
@@ -68,7 +68,7 @@ OSI 七层模型虽然失败了，但是却提供了很多不错的理论基础�
 1. **传输控制协议 TCP**（Transmisson Control Protocol）--提供 **面向连接** 的，**可靠的** 数据传输服务。
 2. **用户数据协议 UDP**（User Datagram Protocol）--提供 **无连接** 的，尽最大努力的数据传输服务（不保证数据传输的可靠性）。
 
-![transport-layer](./images/osi&tcp-ip-model/transport-layer.png)
+![传输层重要协议](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/cs-basics/network/transport-layer-protocol.png)
 
 ### 网络层（Network layer）
 
@@ -82,7 +82,7 @@ OSI 七层模型虽然失败了，但是却提供了很多不错的理论基础�
 
 互联网是由大量的异构（heterogeneous）网络通过路由器（router）相互连接起来的。互联网使用的网络层协议是无连接的网际协议（Intert Prococol）和许多路由选择协议，因此互联网的网络层也叫做 **网际层** 或 **IP 层**。
 
-![](./images/osi&tcp-ip-model/nerwork-layer.png)
+![网络层重要协议](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/cs-basics/network/nerwork-layer-protocol.png)
 
 **网络层常见协议** ：
 
@@ -98,15 +98,13 @@ OSI 七层模型虽然失败了，但是却提供了很多不错的理论基础�
 1. 数据链路层(data link layer)通常简称为链路层（ 两台主机之间的数据传输，总是在一段一段的链路上传送的）。**数据链路层的作用是将网络层交下来的 IP 数据报组装成帧，在两个相邻节点间的链路上传送帧。每一帧包括数据和必要的控制信息（如同步信息，地址信息，差错控制等）。**
 2. **物理层的作用是实现相邻计算机节点之间比特流的透明传送，尽可能屏蔽掉具体传输介质和物理设备的差异**
 
-![network-interface-layer](./images/osi&tcp-ip-model/network-interface-layer.png)
+![网络接口层重要协议](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/cs-basics/network/network-interface-layer-protocol.png)
 
 ### 总结
 
-简单总结一下每一层包含的协议和核心技术：
+简单总结一下每一层包含的协议和核心技术:
 
-![network-protocol-overview](./images/osi&tcp-ip-model/network-protocol-overview.png)
-
-
+![TCP/IP 各层协议概览](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/cs-basics/network/network-protocol-overview.png)
 
 **应用层协议** :
 

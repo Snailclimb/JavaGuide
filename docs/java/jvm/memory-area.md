@@ -68,9 +68,11 @@ Java 虚拟机规范对于运行时数据区域的规定是相当宽松的。以
 
 栈由一个个栈帧组成，而每个栈帧中都拥有：局部变量表、操作数栈、动态链接、方法返回地址。和数据结构上的栈类似，两者都是先进后出的数据结构，只支持出栈和入栈两种操作。
 
-![栈](./pictures/java内存区域/stack.png)
+![Java 虚拟机栈](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/jvm/stack-area.png)
 
 **局部变量表** 主要存放了编译期可知的各种数据类型（boolean、byte、char、short、int、float、long、double）、对象引用（reference 类型，它不同于对象本身，可能是一个指向对象起始地址的引用指针，也可能是指向一个代表对象的句柄或其他与此对象相关的位置）。
+
+![局部变量表](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/jvm/local-variables-table.png)
 
 **操作数栈** 主要作为方法调用的中转站使用，用于存放方法执行过程中产生的中间计算结果。另外，计算过程中产生的临时变量也会放在操作数栈中。
 
@@ -89,7 +91,7 @@ Java 方法有两种返回方式，一种是 return 语句正常返回，一种�
 - **`StackOverFlowError`：** 若栈的内存大小不允许动态扩展，那么当线程请求栈的深度超过当前 Java 虚拟机栈的最大深度的时候，就抛出 `StackOverFlowError` 错误。
 - **`OutOfMemoryError`：** 如果栈的内存大小可以动态扩展， 如果虚拟机在动态扩展栈时无法申请到足够的内存空间，则抛出`OutOfMemoryError`异常。
 
-![](./pictures/java内存区域/《深入理解虚拟机》第三版的第2章-虚拟机栈.png)
+![](./pictures/memory-area/《深入理解虚拟机》第三版的第2章-虚拟机栈.png)
 
 ### 本地方法栈
 
@@ -115,7 +117,7 @@ Java 堆是垃圾收集器管理的主要区域，因此也被称作 **GC 堆（
 
 下图所示的 Eden 区、两个 Survivor 区 S0 和 S1 都属于新生代，中间一层属于老年代，最下面一层属于永久代。
 
-![hotspot-heap-structure](./pictures/java内存区域/hotspot-heap-structure.png)
+![hotspot-heap-structure](./pictures/hotspot-heap-structure.png)
 
 **JDK 8 版本之后 PermGen(永久) 已被 Metaspace(元空间) 取代，元空间使用的是直接内存** （我会在方法区这部分内容详细介绍到）。
 
@@ -157,7 +159,7 @@ Java 堆是垃圾收集器管理的主要区域，因此也被称作 **GC 堆（
 
 **方法区和永久代以及元空间是什么关系呢？** 方法区和永久代以及元空间的关系很像 Java 中接口和类的关系，类实现了接口，这里的类就可以看作是永久代和元空间，接口可以看作是方法区，也就是说永久代以及元空间是 HotSpot 虚拟机对虚拟机规范中方法区的两种实现方式。并且，永久代是 JDK 1.8 之前的方法区实现，JDK 1.8 及以后方法区的实现变成了元空间。
 
-![HotSpot 虚拟机方法区的两种实现](./pictures/java内存区域/method-area-implementation.png)
+![HotSpot 虚拟机方法区的两种实现](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/jvm/method-area-implementation.png)
 
 **为什么要将永久代 (PermGen) 替换为元空间 (MetaSpace) 呢?**
 
@@ -226,11 +228,11 @@ HotSpot 虚拟机中字符串常量池的实现是 `src/hotspot/share/classfile/
 
 JDK1.7 之前，字符串常量池存放在永久代。JDK1.7 字符串常量池和静态变量从永久代移动了 Java 堆中。
 
-![](./pictures/java内存区域/method-area-jdk1.6.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/jvm/method-area-jdk1.6.png)
 
-![](./pictures/java内存区域/method-area-jdk1.7.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/jvm/method-area-jdk1.7.png)
 
-![](./pictures/java内存区域/method-area-jdk1.8.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/jvm/method-area-jdk1.8.png)
 
 **JDK 1.7 为什么要将字符串常量池移动到堆中？**
 
@@ -314,15 +316,15 @@ Java 对象的创建过程我建议最好是能默写出来，并且要掌握每
 
 #### 句柄
 
-如果使用句柄的话，那么 Java 堆中将会划分出一块内存来作为句柄池，reference 中存储的就是对象的句柄地址，而句柄中包含了对象实例数据与类型数据各自的具体地址信息。
+如果使用句柄的话，那么 Java 堆中将会划分出一块内存来作为句柄池，reference 中存储的就是对象的句柄地址，而句柄中包含了对象实例数据与对象类型数据各自的具体地址信息。
 
-![对象的访问定位-使用句柄](./pictures/java内存区域/对象的访问定位-使用句柄.png)
+![对象的访问定位-使用句柄](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/jvm/access-location-of-object-handle.png)
 
 #### 直接指针
 
-如果使用直接指针访问，那么 Java 堆对象的布局中就必须考虑如何放置访问类型数据的相关信息，而 reference 中存储的直接就是对象的地址。
+如果使用直接指针访问，reference 中存储的直接就是对象的地址。
 
-![对象的访问定位-直接指针](./pictures/java内存区域/对象的访问定位-直接指针.png)
+![对象的访问定位-直接指针](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/jvm/access-location-of-object-handle-direct-pointer.png)
 
 这两种对象访问方式各有优势。使用句柄来访问的最大好处是 reference 中存储的是稳定的句柄地址，在对象被移动时只会改变句柄中的实例数据指针，而 reference 本身不需要修改。使用直接指针访问方式最大的好处就是速度快，它节省了一次指针定位的时间开销。
 
