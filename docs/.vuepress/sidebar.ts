@@ -421,6 +421,7 @@ export const sidebarConfig = defineSidebarConfig({
       children: [
         "read-and-write-separation-and-library-subtable",
         "load-balancing",
+        "cdn",
         {
           text: "消息队列",
           prefix: "message-queue/",

@@ -3,17 +3,16 @@ title: 数据库读写分离和分库分表
 category: 高性能
 head:
   - - meta
+    - name: keywords
+      content: 读写分离,分库分表,主从复制
+  - - meta
     - name: description
-      content: 相信很多小伙伴们对于读写分离和分库分表这两个概念已经比较熟悉了，这篇文章全程都是大白话的形式，希望能够给你带来不一样的感受。
+      content: 读写分离主要是为了将对数据库的读写操作分散到不同的数据库节点上。 这样的话，就能够小幅提升写性能，大幅提升读性能。 读写分离基于主从复制，MySQL 主从复制是依赖于 binlog 。分库就是将数据库中的数据分散到不同的数据库上。分表就是对单表的数据进行拆分，可以是垂直拆分，也可以是水平拆分。引入分库分表之后，需要系统解决事务、分布式 id、无法 join 操作问题。
 ---
 
 相信很多小伙伴们对于这两个概念已经比较熟悉了，这篇文章全程都是大白话的形式，希望能够给你带来不一样的感受。
 
 如果你之前不太了解这两个概念，那我建议你搞懂之后，可以把自己对于读写分离以及分库分表的理解讲给你的同事/朋友听听。
-
-**原创不易，若有帮助，点赞/分享就是对我最大的鼓励！**
-
-_个人能力有限。如果文章有任何需要补充/完善/修改的地方，欢迎在评论区指出，共同进步！_
 
 ## 读写分离
 
@@ -23,7 +22,7 @@ _个人能力有限。如果文章有任何需要补充/完善/修改的地方�
 
 我简单画了一张图来帮助不太清楚读写分离的小伙伴理解。
 
-![读写分离](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/9c624bc130d053860a5089cb9a53310a.png)
+![读写分离示意图](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/high-performance/read-and-write-separation-and-library-subtable/read-and-write-separation.png)
 
 一般情况下，我们都会选择一主多从，也就是一台主数据库负责写，其他的从数据库负责读。主库和从库之间会进行数据同步，以保证从库中数据的准确性。这样的架构实现起来比较简单，并且也符合系统的写少读多的特点。
 
@@ -67,7 +66,7 @@ hintManager.setMasterRouteOnly();
 
 **1.代理方式**
 
-![读写分离-代理层](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/461112716e30db118f4c784adc6e2ff7.png)
+![代理方式实现读写分离](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/high-performance/read-and-write-separation-and-library-subtable/read-and-write-separation-proxy.png)
 
 我们可以在应用和数据中间加了一个代理层。应用程序所有的数据请求都交给代理层处理，代理层负责分离读写请求，将它们路由到对应的数据库中。
 
@@ -79,7 +78,7 @@ hintManager.setMasterRouteOnly();
 
 这也是我比较推荐的一种方式。这种方式目前在各种互联网公司中用的最多的，相关的实际的案例也非常多。如果你要采用这种方式的话，推荐使用 `sharding-jdbc` ，直接引入 jar 包即可使用，非常方便。同时，也节省了很多运维的成本。
 
-你可以在 shardingsphere 官方找到[sharding-jdbc 关于读写分离的操作](https://shardingsphere.apache.org/document/legacy/3.x/document/cn/manual/sharding-jdbc/usage/read-write-splitting/)。
+你可以在 shardingsphere 官方找到 [sharding-jdbc 关于读写分离的操作](https://shardingsphere.apache.org/document/legacy/3.x/document/cn/manual/sharding-jdbc/usage/read-write-splitting/)。
 
 ### 主从复制原理了解么？
 
@@ -193,3 +192,13 @@ ShardingSphere 绝对可以说是当前分库分表的首选！ShardingSphere �
 - 重复上一步的操作，直到老库和新库的数据一致为止。
 
 想要在项目中实施双写还是比较麻烦的，很容易会出现问题。我们可以借助上面提到的数据库同步工具 Canal 做增量数据迁移（还是依赖 binlog，开发和维护成本较低）。
+
+## 总结
+
+- 读写分离主要是为了将对数据库的读写操作分散到不同的数据库节点上。 这样的话，就能够小幅提升写性能，大幅提升读性能。
+- 读写分离基于主从复制，MySQL 主从复制是依赖于 binlog 。
+- **分库** 就是将数据库中的数据分散到不同的数据库上。**分表** 就是对单表的数据进行拆分，可以是垂直拆分，也可以是水平拆分。
+- 引入分库分表之后，需要系统解决事务、分布式 id、无法 join 操作问题。
+- ShardingSphere 绝对可以说是当前分库分表的首选！ShardingSphere 的功能完善，除了支持读写分离和分库分表，还提供分布式事务、数据库治理等功能。另外，ShardingSphere 的生态体系完善，社区活跃，文档完善，更新和发布比较频繁。
+
+

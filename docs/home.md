@@ -355,7 +355,11 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 ### 负载均衡
 
- [负载均衡](./high-performance/load-balancing.md) 
+ [负载均衡](./high-performance/load-balancing.md)
+
+### CDN
+
+[CDN（内容分发网络）](./high-performance/cdn.md)
 
 ## 高可用
 
