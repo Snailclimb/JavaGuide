@@ -73,8 +73,6 @@ CDN 会通过 GSLB 找到最合适的 CDN 节点，更具体点来说是下面�
 
 ![CDN 原理示意图](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/high-performance/cdn/cdn-overview.png)
 
-
-
 为了方便理解，上图其实做了一点简化。GSLB 内部可以看作是 CDN 专用 DNS 服务器和负载均衡系统组合。CDN 专用 DNS 服务器会返回负载均衡系统 IP 地址给浏览器，浏览器使用 IP 地址请求负载均衡系统进而找到对应的 CDN 节点。
 
 **GSLB 是如何选择出最合适的 CDN 节点呢？** GSLB 会根据请求的 IP 地址、CDN 节点状态（比如负载情况、性能、响应时间、带宽）等指标来综合判断具体返回哪一个 CDN 节点的地址。
