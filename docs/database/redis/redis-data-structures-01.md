@@ -172,7 +172,7 @@ Redis 中的 List 其实就是链表数据结构的实现。我在 [线性数据
 
 我专门画了一个图方便大家理解 `RPUSH` , `LPOP` , `lpush` , `RPOP` 命令：
 
-![redis list](./images/redis-all/redis-list.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/redis-list.png)
 
 **通过 `LRANGE` 查看对应下标范围的列表元素** ：
 

@@ -67,7 +67,7 @@ ERR EXEC without MULTI
 
 Redis 官网相关介绍 [https://redis.io/topics/transactions](https://redis.io/topics/transactions) 如下：
 
-![redis事务](./images/redis-all/redis事务.png)
+![Redis 事务](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/redis-transactions.png)
 
 ### Redis 支持原子性吗？
 
@@ -82,7 +82,7 @@ Redis 事务在运行错误的情况下，除了执行过程中出现错误的�
 
 Redis 官网也解释了自己为啥不支持回滚。简单来说就是 Redis 开发者们觉得没必要支持回滚，这样更简单便捷并且性能更好。Redis 开发者觉得即使命令执行错误也应该在开发过程中就被发现而不是生产过程中。
 
-![redis roll back](./images/redis-all/redis-rollBack.png)
+![Redis 为什么不支持回滚](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/redis-rollback.png)
 
 你可以将 Redis 中的事务就理解为 ：**Redis 事务提供了一种将多个命令请求打包的功能。然后，再按顺序执行打包的所有命令，并且不会被中途打断。**
 
@@ -185,7 +185,7 @@ Biggest string found '"ballcat:oauth:refresh_auth:f6cdb384-9a9d-4f2f-af01-dc3f28
 
 如下图所示，用户的请求最终都要跑到数据库中查询一遍。
 
-![缓存穿透情况](https://img-blog.csdnimg.cn/6358650a9bf742838441d636430c90b9.png)
+![缓存穿透情况](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/redis-cache-penetration.png)
 
 #### 有哪些解决办法？
 
@@ -228,7 +228,7 @@ public Object getObjectInclNullById(Integer id) {
 
 加入布隆过滤器之后的缓存处理流程图如下。
 
-![](./images/redis-all/加入布隆过滤器后的缓存处理流程.png)
+![加入布隆过滤器之后的缓存处理流程图](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/redis-cache-penetration-bloom-filter.png)
 
 但是，需要注意的是布隆过滤器可能会存在误判的情况。总结来说就是： **布隆过滤器说某个元素存在，小概率会误判。布隆过滤器说某个元素不在，那么这个元素一定不在。**
 

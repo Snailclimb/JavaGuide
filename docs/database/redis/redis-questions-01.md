@@ -24,7 +24,7 @@ Redis 提供了多种数据类型来支持不同的业务场景。Redis 还支�
 
 你可以自己本机安装 Redis 或者通过 Redis 官网提供的[在线 Redis 环境](https://try.redis.io/)来实际体验 Redis。
 
-![try-redis](./images/redis-all/try-redis.png)
+![try-redis](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/try.redis.io.png)
 
 ### 分布式缓存常见的技术选型方案有哪些？
 
@@ -61,7 +61,7 @@ Memcached 是分布式缓存最开始兴起的那会，比较常用的。后来�
 
 作为暖男一号，我给大家画了一个草图。
 
-![正常缓存处理流程](./images/redis-all/cache-process.png)
+![正常缓存处理流程](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/normal-cache-process.png)
 
 简单来说就是:
 
@@ -76,7 +76,7 @@ _简单，来说使用缓存主要是为了提升用户体验以及应对更多�
 
 下面我们主要从“高性能”和“高并发”这两点来看待这个问题。
 
-![](./images/redis-all/使用缓存之后.png)
+![使用缓存之后](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/after-using-the-cache.png)
 
 **高性能** ：
 
@@ -247,15 +247,13 @@ Redis 通过**IO 多路复用程序** 来监听来自客户端的大量连接（
 - 文件事件分派器（将 socket 关联到相应的事件处理器）
 - 事件处理器（连接应答处理器、命令请求处理器、命令回复处理器）
 
-![](./images/redis-all/redis事件处理器.png)
-
-<p style="text-align:right; font-size:14px; color:gray">《Redis设计与实现：12章》</p>
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/redis-event-handler.png)
 
 ### Redis6.0 之前为什么不使用多线程？
 
 虽然说 Redis 是单线程模型，但是，实际上，**Redis 在 4.0 之后的版本中就已经加入了对多线程的支持。**
 
-![redis4.0 more thread](./images/redis-all/redis4.0-more-thread.png)
+![redis4.0 more thread](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/redis4.0-more-thread.png)
 
 不过，Redis 4.0 增加的多线程主要是针对一些大键值对的删除操作的命令，使用这些命令就会使用主处理之外的其他线程来“异步处理”。
 
@@ -323,7 +321,7 @@ OK
 
 Redis 通过一个叫做过期字典（可以看作是 hash 表）来保存数据过期的时间。过期字典的键指向 Redis 数据库中的某个 key(键)，过期字典的值是一个 long long 类型的整数，这个整数保存了 key 所指向的数据库键的过期时间（毫秒精度的 UNIX 时间戳）。
 
-![redis过期字典](./images/redis-all/redis过期时间.png)
+![redis过期字典](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/redis-expired-dictionary.png)
 
 过期字典是存储在 redisDb 这个结构里的：
 
@@ -435,7 +433,7 @@ Redis 4.0 开始支持 RDB 和 AOF 的混合持久化（默认关闭，可以通
 
 官方文档地址：https://redis.io/topics/persistence
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/booksimage-20210807145107290.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/redis4.0-persitence.png)
 
 ## 参考
 
