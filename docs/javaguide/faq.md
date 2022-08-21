@@ -11,7 +11,6 @@ category: 走近项目
 
 <div align="center">
     <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/gongzhonghaoxuanchuan.png" style="margin: 0 auto;" />
-    </p>
 </div>
 
 ## 如何看待 JavaGuide 的 star 数量很多？
