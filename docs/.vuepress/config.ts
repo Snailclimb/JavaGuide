@@ -10,6 +10,7 @@ module.exports = defineHopeConfig({
   dest: "./dist",
   // 是否开启默认预加载 js
   shouldPrefetch: (file, type) => false,
+  
   head: [
     // meta
     ["meta", { name: "robots", content: "all" }],

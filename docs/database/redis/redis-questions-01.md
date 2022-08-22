@@ -224,11 +224,14 @@ PFCOUNT PAGE_1:UV
 
 **既然是单线程，那怎么监听大量的客户端连接呢？**
 
-Redis 通过**IO 多路复用程序** 来监听来自客户端的大量连接（或者说是监听多个 socket），它会将感兴趣的事件及类型（读、写）注册到内核中并监听每个事件是否发生。
+Redis 通过 **IO 多路复用程序** 来监听来自客户端的大量连接（或者说是监听多个 socket），它会将感兴趣的事件及类型（读、写）注册到内核中并监听每个事件是否发生。
 
 这样的好处非常明显： **I/O 多路复用技术的使用让 Redis 不需要额外创建多余的线程来监听客户端的大量连接，降低了资源的消耗**（和 NIO 中的 `Selector` 组件很像）。
 
-另外， Redis 服务器是一个事件驱动程序，服务器需要处理两类事件：1. 文件事件; 2. 时间事件。
+另外， Redis 服务器是一个事件驱动程序，服务器需要处理两类事件：
+
+- **文件事件(file event)** ：用于处理 Redis 服务器和客户端之间的网络IO。
+- **时间事件(time eveat)** ：Redis 服务器中的一些操作（比如serverCron函数）需要在给定的时间点执行，而时间事件就是处理这类定时操作的。
 
 时间事件不需要多花时间了解，我们接触最多的还是 **文件事件**（客户端进行读取写入等操作，涉及一系列网络通信）。
 
@@ -247,7 +250,9 @@ Redis 通过**IO 多路复用程序** 来监听来自客户端的大量连接（
 - 文件事件分派器（将 socket 关联到相应的事件处理器）
 - 事件处理器（连接应答处理器、命令请求处理器、命令回复处理器）
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/redis-event-handler.png)
+![文件事件处理器](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/redis-event-handler.png)
+
+相关阅读：[Redis 事件机制详解](http://remcarpediem.net/article/1aa2da89/) 。
 
 ### Redis6.0 之前为什么不使用多线程？
 
