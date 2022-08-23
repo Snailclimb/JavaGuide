@@ -394,6 +394,7 @@ export const sidebarConfig = defineSidebarConfig({
         },
         "api-gateway",
         "distributed-id",
+        "distributed-lock",
         {
           text: "RPC",
           prefix: "rpc/",

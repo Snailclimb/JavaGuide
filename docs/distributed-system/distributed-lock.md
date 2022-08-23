@@ -1,3 +1,8 @@
+---
+title: 分布式锁
+category: 分布式
+---
+
 ## 什么是分布式锁？
 
 对于单机多线程，在 Java 中，我们通常使用 `ReetrantLock` 这类 JDK 自带的 **本地锁** 来控制本地多个线程对本地共享资源的访问。对于分布式系统，我们通常使用 **分布式锁** 来控制多个服务对共享资源的访问。
@@ -103,9 +108,10 @@ Redlock 算法的思想是让客户端向 Redis 集群中的多个独立的 Redi
 
 即使部分 Redis 节点出现问题，只要保证 Redis 集群中有半数以上的 Redis 节点可用，分布式锁服务就是正常的。
 
-Redlock 是直接操作 Redis 节点的，并不是通过 Redis 集群操作的，这样才可以避免Redis集群主从切换导致的锁丢失问题。
+Redlock 是直接操作 Redis 节点的，并不是通过 Redis 集群操作的，这样才可以避免 Redis 集群主从切换导致的锁丢失问题。
 
-Redlock 实现比较复杂，性能也比较差。 《数据密集型应用系统设计》一书的作者曾经专门发文 diss 过Redlock。
+Redlock 实现比较复杂，性能比较差，发生时钟变迁的情况下还存在安全性隐患。《数据密集型应用系统设计》一书的作者 Martin Kleppmann 曾经专门发文怼过 Redlock，他认为这是一个很差的分布式锁实现。感兴趣的朋友可以看看[Redis 锁从面试连环炮聊到神仙打架](https://mp.weixin.qq.com/s?__biz=Mzg3NjU3NTkwMQ==&mid=2247505097&idx=1&sn=5c03cb769c4458350f4d4a321ad51f5a&source=41#wechat_redirect)这篇文章，有详细介绍到 antirez 和 Martin Kleppmann 关于 Redlock 的激烈辩论。
 
+实际项目中不建议使用 Redlock 算法，成本和收益不成正比。
 
-
+如果不是非要实现绝对可靠的分布式锁的话，其实单机版 Redis 就完全够了，实现简单，性能也非常高。如果你必须要实现一个绝对可靠的分布式锁的话，可以基于 Zookeeper 来做，只是性能会差一些。

@@ -322,6 +322,10 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 [为什么要分布式 id ？分布式 id 生成方案有哪些？](./docs/distributed-system/distributed-id.md)
 
+### 分布式锁
+
+[分布式锁](./docs/distributed-system/distributed-lock.md)
+
 ### 分布式事务
 
 [分布式事务](./docs/distributed-system/distributed-transaction.md)
