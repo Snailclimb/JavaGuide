@@ -457,9 +457,12 @@ public class Thread implements Runnable {
 
 ```java
 public void set(T value) {
+    //获取当前请求的线程    
     Thread t = Thread.currentThread();
+    //取出 Thread 类内部的 threadLocals 变量(哈希表结构)
     ThreadLocalMap map = getMap(t);
     if (map != null)
+        // 将需要存储的值放入到这个哈希表中
         map.set(this, value);
     else
         createMap(t, value);
