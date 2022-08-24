@@ -184,7 +184,7 @@ Redis 中有一个叫做 `sorted set` 的数据结构经常被用在各种排行
 (integer) 0
 ```
 
-统计 20210308~20210309 总活跃用户数: 
+统计 20210308~20210309 总活跃用户数:
 
 ```bash
 > BITOP and desk1 20210308 20210309
@@ -193,7 +193,7 @@ Redis 中有一个叫做 `sorted set` 的数据结构经常被用在各种排行
 (integer) 1
 ```
 
-统计 20210308~20210309 在线活跃用户数: 
+统计 20210308~20210309 在线活跃用户数:
 
 ```bash
 > BITOP or desk2 20210308 20210309
@@ -218,6 +218,8 @@ PFCOUNT PAGE_1:UV
 
 ## Redis 线程模型
 
+对于读写命令来说，Redis 一直是单线程模型。不过，在 Redis 4.0 版本之后引入了多线程来执行一些大键值对的异步删除操作， Redis 6.0 版本之后引入了多线程来处理网络请求（提高网络 IO 读写性能）。
+
 ### Redis 单线程模型了解吗？
 
 **Redis 基于 Reactor 模式来设计开发了自己的一套高效的事件处理模型** （Netty 的线程模型也基于 Reactor 模式，Reactor 模式不愧是高性能 IO 的基石），这套事件处理模型对应的是 Redis 中的文件事件处理器（file event handler）。由于文件事件处理器（file event handler）是单线程方式运行的，所以我们一般都说 Redis 是单线程模型。
@@ -230,8 +232,8 @@ Redis 通过 **IO 多路复用程序** 来监听来自客户端的大量连接�
 
 另外， Redis 服务器是一个事件驱动程序，服务器需要处理两类事件：
 
-- **文件事件(file event)** ：用于处理 Redis 服务器和客户端之间的网络IO。
-- **时间事件(time eveat)** ：Redis 服务器中的一些操作（比如serverCron函数）需要在给定的时间点执行，而时间事件就是处理这类定时操作的。
+- **文件事件(file event)** ：用于处理 Redis 服务器和客户端之间的网络 IO。
+- **时间事件(time eveat)** ：Redis 服务器中的一些操作（比如 serverCron 函数）需要在给定的时间点执行，而时间事件就是处理这类定时操作的。
 
 时间事件不需要多花时间了解，我们接触最多的还是 **文件事件**（客户端进行读取写入等操作，涉及一系列网络通信）。
 
@@ -258,19 +260,19 @@ Redis 通过 **IO 多路复用程序** 来监听来自客户端的大量连接�
 
 虽然说 Redis 是单线程模型，但是，实际上，**Redis 在 4.0 之后的版本中就已经加入了对多线程的支持。**
 
+不过，Redis 4.0 增加的多线程主要是针对一些大键值对的删除操作的命令，使用这些命令就会使用主线程之外的其他线程来“异步处理”。
+
+为此，Redis 4.0 之后新增了`UNLINK`（可以看作是 `DEL` 的异步版本）、`FLUSHALL ASYNC`（清空数据库）、`FLUSHDB ASYNC`（清空数据库）等异步命令。
+
 ![redis4.0 more thread](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/redis4.0-more-thread.png)
 
-不过，Redis 4.0 增加的多线程主要是针对一些大键值对的删除操作的命令，使用这些命令就会使用主处理之外的其他线程来“异步处理”。
+大体上来说，Redis 6.0 之前主要还是单线程处理。
 
-大体上来说，**Redis 6.0 之前主要还是单线程处理。**
+**那 Redis6.0 之前为什么不使用多线程？** 我觉得主要原因有 3 点：
 
-**那，Redis6.0 之前为什么不使用多线程？**
-
-我觉得主要原因有下面 3 个：
-
-1. 单线程编程容易并且更容易维护；
-2. Redis 的性能瓶颈不在 CPU ，主要在内存和网络；
-3. 多线程就会存在死锁、线程上下文切换等问题，甚至会影响性能。
+- 单线程编程容易并且更容易维护；
+- Redis 的性能瓶颈不在 CPU ，主要在内存和网络；
+- 多线程就会存在死锁、线程上下文切换等问题，甚至会影响性能。
 
 ### Redis6.0 之后为何引入了多线程？
 
@@ -292,8 +294,9 @@ io-threads 4 #官网建议4核的机器建议设置为2或3个线程，8核的�
 
 推荐阅读：
 
-1. [Redis 6.0 新特性-多线程连环 13 问！](https://mp.weixin.qq.com/s/FZu3acwK6zrCBZQ_3HoUgw)
-2. [为什么 Redis 选择单线程模型](https://draveness.me/whys-the-design-redis-single-thread/)
+- [Redis 6.0 新特性-多线程连环 13 问！](https://mp.weixin.qq.com/s/FZu3acwK6zrCBZQ_3HoUgw)
+- [为什么 Redis 选择单线程模型](https://draveness.me/whys-the-design-redis-single-thread/)
+- [Redis 多线程网络模型全面揭秘](https://segmentfault.com/a/1190000039223696)
 
 ## Redis 内存管理
 
@@ -388,18 +391,25 @@ Redis 可以通过创建快照来获得存储在内存里面的数据在某个�
 快照持久化是 Redis 默认采用的持久化方式，在 `redis.conf` 配置文件中默认有此下配置：
 
 ```clojure
-save 900 1           #在900秒(15分钟)之后，如果至少有1个key发生变化，Redis就会自动触发BGSAVE命令创建快照。
+save 900 1           #在900秒(15分钟)之后，如果至少有1个key发生变化，Redis就会自动触发bgsave命令创建快照。
 
-save 300 10          #在300秒(5分钟)之后，如果至少有10个key发生变化，Redis就会自动触发BGSAVE命令创建快照。
+save 300 10          #在300秒(5分钟)之后，如果至少有10个key发生变化，Redis就会自动触发bgsave命令创建快照。
 
-save 60 10000        #在60秒(1分钟)之后，如果至少有10000个key发生变化，Redis就会自动触发BGSAVE命令创建快照。
+save 60 10000        #在60秒(1分钟)之后，如果至少有10000个key发生变化，Redis就会自动触发bgsave命令创建快照。
 ```
+
+### RDB 创建快照时会阻塞主线程吗？
+
+Redis 提供了两个命令来生成 RDB 快照文件：
+
+- `save` : 主线程执行，会阻塞主线程；
+- `bgsave` : 子线程执行，不会阻塞主线程，默认选项。
 
 ### 什么是 AOF 持久化？
 
 与快照持久化相比，AOF 持久化的实时性更好，因此已成为主流的持久化方案。默认情况下 Redis 没有开启 AOF（append only file）方式的持久化，可以通过 appendonly 参数开启：
 
-```conf
+```clojure
 appendonly yes
 ```
 
@@ -409,7 +419,7 @@ AOF 文件的保存位置和 RDB 文件的位置相同，都是通过 dir 参数
 
 在 Redis 的配置文件中存在三种不同的 AOF 持久化方式，它们分别是：
 
-```conf
+```clojure
 appendfsync always    #每次有数据修改发生时都会写入AOF文件,这样会严重降低Redis的速度
 appendfsync everysec  #每秒钟同步一次，显式地将多个写命令同步到硬盘
 appendfsync no        #让操作系统决定何时进行同步
@@ -421,6 +431,22 @@ appendfsync no        #让操作系统决定何时进行同步
 
 - [Redis 的 AOF 方式 #783](https://github.com/Snailclimb/JavaGuide/issues/783)
 - [Redis AOF 重写描述不准确 #1439](https://github.com/Snailclimb/JavaGuide/issues/1439)
+
+### AOF 日志是如何实现的？
+
+关系型数据库（如 MySQL）通常都是执行命令之前记录日志（方便故障恢复），而 Redis AOF 持久化机制是在执行完命令之后再记录日志。
+
+![图片来自《Redis 核心技术与实战》](./images/aof.jpeg)
+
+**为什么是在执行完命令之后记录日志呢？**
+
+- 避免额外的检查开销，AOF 记录日志不会对命令进行语法检查；
+- 在命令执行完之后再记录，不会阻塞当前的命令执行。
+
+这样也带来了风险（我在前面介绍 AOF 持久化的时候也提到过）：
+
+- 如果刚执行完命令 Redis 就宕机会导致对应的修改丢失；
+- 可能会阻塞后续其他命令的执行（AOF 记录日志是在 Redis 主线程中进行的）。
 
 ### AOF 重写了解吗？
 
