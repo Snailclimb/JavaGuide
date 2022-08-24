@@ -56,7 +56,7 @@
 
 - [为什么 Java 中只有值传递？](./docs/java/basis/why-there-only-value-passing-in-java.md)
 - [Java 序列化详解](./docs/java/basis/serialization.md)
-- [泛型&序列化详解](./docs/java/basis/generics-and-wildcards.md)
+- [泛型&通配符详解](./docs/java/basis/generics-and-wildcards.md)
 - [Java 反射机制详解](./docs/java/basis/reflection.md)
 - [Java 代理模式详解](./docs/java/basis/proxy.md)
 - [BigDecimal 详解](./docs/java/basis/bigdecimal.md)
@@ -112,7 +112,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 - **[类加载过程](./docs/java/jvm/class-loading-process.md)**
 - [类加载器](./docs/java/jvm/classloader.md)
 - [【待完成】最重要的 JVM 参数总结（翻译完善了一半）](./docs/java/jvm/jvm-parameters-intro.md)
-- [【加餐】大白话带你认识 JVM](./docs/java/jvm/jvm-intro.md)**
+- [【加餐】大白话带你认识 JVM](./docs/java/jvm/jvm-intro.md)
 - [JDK 监控和故障处理工具](./docs/java/jvm/jdk-monitoring-and-troubleshooting-tools.md)
 
 ### 新特性
@@ -278,7 +278,6 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 - [JWT 优缺点分析以及常见问题解决方案](./docs/system-design/security/advantages&disadvantages-of-jwt.md)
 - [SSO 单点登录详解](./docs/system-design/security/sso-intro.md)
 - [权限系统设计详解](./docs/system-design/security/design-of-authority-system.md)
-- [敏感词过滤方案总结](./docs/system-design/security/sentive-words-filter.md)
 
 
 #### 数据脱敏
@@ -287,7 +286,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 #### 敏感词过滤
 
-[敏感词过滤](./docs/system-design/security/sentive-words-filter.md)
+[敏感词过滤方案总结](./docs/system-design/security/sentive-words-filter.md)
 
 ### 定时任务
 
