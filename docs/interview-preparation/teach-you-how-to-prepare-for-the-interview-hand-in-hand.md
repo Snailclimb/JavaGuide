@@ -21,6 +21,8 @@ category: 知识星球
 
 欢迎准备 Java 面试以及学习 Java 的同学加入我的[知识星球](https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc)，干货非常多，学习氛围非常好！收费虽然是白菜价，但星球里的内容或许比你参加上万的培训班质量还要高。
 
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220311203414600.png)
+
 下面是星球提供的部分服务（点击下方图片即可获取知识星球的详细介绍）：
 
 <div align="center">
@@ -38,4 +40,3 @@ category: 知识星球
     <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/xingqiuyouhuijuanheyi.png" style="margin: 0 auto; " />
   </a>
 </div>
-

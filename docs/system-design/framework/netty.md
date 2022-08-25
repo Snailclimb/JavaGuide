@@ -15,11 +15,11 @@ category: 框架
 
 最近几年，市面上有越来越多的“技术大佬”开始办培训班/训练营，动辄成千上万的学费，却并没有什么干货，单纯的就是割韭菜。
 
-我真的很痛心看到很多没有分辨能力的同学去参加这些培训班/训练营，他们大多都还没有收入，绝大部分都是贷款付的学费。
-
 为了帮助更多同学准备 Java 面试以及学习 Java ，我创建了一个纯粹的[知识星球](https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc)。虽然收费只有培训班/训练营的百分之一，但是[知识星球](https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc)里的内容质量更高，提供的服务也更全面。
 
 欢迎准备 Java 面试以及学习 Java 的同学加入我的[知识星球](https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc)，干货非常多，学习氛围非常好！收费虽然是白菜价，但星球里的内容或许比你参加上万的培训班质量还要高。
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220311203414600.png)
 
 下面是星球提供的部分服务（点击下方图片即可获取知识星球的详细介绍）：
 
