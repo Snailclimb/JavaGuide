@@ -245,6 +245,9 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 ## 系统设计
 
+- [系统设计常见面试题总结](./system-design/system-design-questions.md)
+- [设计模式常见面试题总结](./system-design/design-pattern.md)
+
 ### 基础
 
 - [RestFul API 简明教程](./system-design/basis/RESTfulAPI.md)

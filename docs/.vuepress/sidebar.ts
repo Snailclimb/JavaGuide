@@ -346,6 +346,7 @@ export const sidebarConfig = defineSidebarConfig({
       collapsable: true,
       children: [
         "system-design-questions",
+        "design-pattern",
         {
           text: "基础",
           prefix: "basis/",
