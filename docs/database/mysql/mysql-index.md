@@ -187,6 +187,7 @@ SELECT id FROM table WHERE id=1;
 > 那么直接根据这个索引就可以查到数据，也无需回表。
 
 覆盖索引:
+
 ![](https://img-blog.csdnimg.cn/20210420165341868.png)
 
 ## 联合索引
