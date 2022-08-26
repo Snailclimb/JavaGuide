@@ -452,6 +452,35 @@ UPDATE...
 DELETE...
 ```
 
+## MySQL 性能优化
+
+关于 MySQL 性能优化的建议总结，请看这篇文章：[MySQL高性能优化规范建议总结](./mysql-high-performance-optimization-specification-recommendations.md) 。
+
+### 能用 MySQL 直接存储文件（比如图片）吗？
+
+可以是可以，直接存储文件对应的二进制数据即可。不过，还是建议不要在数据库中存储文件，会严重影响数据库性能，消耗过多存储空间。
+
+可以选择使用云服务厂商提供的开箱即用的文件存储服务，成熟稳定，价格也比较低。
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/mysql/oss-search.png)
+
+也可以选择自建文件存储服务，实现起来也不难，基于FastDFS、MinIO（推荐） 等开源项目就可以实现分布式文件服务。
+
+**数据库只存储文件地址信息，文件由文件存储服务负责存储。**
+
+相关阅读：[Spring Boot 整合 MinIO 实现分布式文件服务，真香！](https://mp.weixin.qq.com/s/xfYCESLOuq3_0e3SFj6ZMQ) 。
+
+### MySQL 如何存储 IP 地址？
+
+可以将 IP 地址转换成整形数据存储，性能更好，占用空间也更小。
+
+MySQL 提供了两个方法来处理 ip 地址
+
+- `INET_ATON()` ： 把 ip 转为无符号整型 (4-8 位)
+- `INET_NTOA()` :把整型的 ip 转为地址
+
+插入数据前，先用 `INET_ATON()` 把 ip 地址转为整型，显示数据时，使用 `INET_NTOA()` 把整型的 ip 地址转为地址显示即可。
+
 ## 参考
 
 - 《高性能 MySQL》第 7 章 MySQL 高级特性
