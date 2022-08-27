@@ -5,35 +5,31 @@ category: 分布式
 
 ## 分布式 ID 介绍
 
-### 何为 ID？
+### 什么是 ID？
 
 日常开发中，我们需要对系统中的各种数据使用 ID 唯一表示，比如用户 ID 对应且仅对应一个人，商品 ID 对应且仅对应一件商品，订单 ID 对应且仅对应一个订单。
-
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/up-79beb853b8319f850638c9708f83039dfda.png)
 
 我们现实生活中也有各种 ID，比如身份证 ID 对应且仅对应一个人、地址 ID 对应且仅对应
 
 简单来说，**ID 就是数据的唯一标识**。
 
-### 何为分布式 ID？
+### 什么是分布式 ID？
 
 分布式 ID 是分布式系统下的 ID。分布式 ID 不存在与现实生活中，属于计算机系统中的一个概念。
 
 我简单举一个分库分表的例子。
 
-我司的一个项目，使用的是单机 MySQL 。但是，没想到的是，项目上线一个月之后，随着使用人数越来越多，整个系统的数据量将越来越大。
-
-单机 MySQL 已经没办法支撑了，需要进行分库分表（推荐 Sharding-JDBC）。
+我司的一个项目，使用的是单机 MySQL 。但是，没想到的是，项目上线一个月之后，随着使用人数越来越多，整个系统的数据量将越来越大。单机 MySQL 已经没办法支撑了，需要进行分库分表（推荐 Sharding-JDBC）。
 
 在分库之后， 数据遍布在不同服务器上的数据库，数据库的自增主键已经没办法满足生成的主键唯一了。**我们如何为不同的数据节点生成全局唯一主键呢？**
 
-![](https://oscimg.oschina.net/oscnet/up-d78d9d5362c71f4713a090baf7ec65d2b6d.png)
-
 这个时候就需要生成**分布式 ID**了。
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/distributed-system/id-after-the-sub-table-not-conflict.png)
 
 ### 分布式 ID 需要满足哪些要求?
 
-![](https://img-blog.csdnimg.cn/20210610082309988.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/distributed-system/distributed-id-requirements.png)
 
 分布式 ID 作为分布式系统中必不可少的一环，很多地方都要用到分布式 ID。
 
@@ -59,7 +55,7 @@ category: 分布式
 
 这种方式就比较简单直白了，就是通过关系型数据库的自增主键产生来唯一的 ID。
 
-![](https://img-blog.csdnimg.cn/20210610081957287.png)
+![数据库主键自增](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/distributed-system/the-primary-key-of-the-database-increases-automatically.png)
 
 以 MySQL 举例，我们通过下面的方式即可。
 
@@ -121,7 +117,7 @@ CREATE TABLE `sequence_id_generator` (
 
 `current_max_id` 字段和`step`字段主要用于获取批量 ID，获取的批量 id 为： `current_max_id ~ current_max_id+step`。
 
-![](https://img-blog.csdnimg.cn/20210610081149228.png)
+![数据库号段模式](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/distributed-system/database-number-segment-mode.png)
 
 `version` 字段主要用于解决并发问题（乐观锁）,`biz_type` 主要用于表示业务类型。
 
@@ -171,7 +167,7 @@ id	current_max_id	step	version	biz_type
 
 #### NoSQL
 
-![](https://img-blog.csdnimg.cn/2021061008245858.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/distributed-system/nosql-distributed-id.png)
 
 一般情况下，NoSQL 方案使用 Redis 多一些。我们通过 Redis 的 `incr` 命令即可实现对 id 原子顺序递增。
 
@@ -199,7 +195,7 @@ OK
 
 除了 Redis 之外，MongoDB ObjectId 经常也会被拿来当做分布式 ID 的解决方案。
 
-![](https://img-blog.csdnimg.cn/20210207103320582.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/distributed-system/mongodb9-objectId-distributed-id.png)
 
 MongoDB ObjectId 一共需要 12 个字节存储：
 
@@ -228,7 +224,7 @@ UUID.randomUUID()
 
 [RFC 4122](https://tools.ietf.org/html/rfc4122) 中关于 UUID 的示例是这样的：
 
-![](https://img-blog.csdnimg.cn/20210202110824430.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0MzM3Mjcy,size_16,color_FFFFFF,t_70)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/distributed-system/rfc-4122-uuid.png)
 
 我们这里重点关注一下这个 Version(版本)，不同的版本对应的 UUID 的生成规则是不同的。
 
@@ -241,7 +237,7 @@ UUID.randomUUID()
 
 下面是 Version 1 版本下生成的 UUID 的示例：
 
-![](https://img-blog.csdnimg.cn/20210202113013477.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0MzM3Mjcy,size_16,color_FFFFFF,t_70)
+![Version 1 版本下生成的 UUID 的示例](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/distributed-system/version1-uuid.png)
 
 JDK 中通过 `UUID` 的 `randomUUID()` 方法生成的 UUID 的版本默认为 4。
 
@@ -277,7 +273,7 @@ Snowflake 是 Twitter 开源的分布式 ID 生成算法。Snowflake 由 64 bit 
 - **第 42~52 位** ：一共 10 位，一般来说，前 5 位表示机房 ID，后 5 位表示机器 ID（实际项目中可以根据实际情况调整）。这样就可以区分不同集群/机房的节点。
 - **第 53~64 位** ：一共 12 位，用来表示序列号。 序列号为自增值，代表单台机器每毫秒能够产生的最大 ID 数(2^12 = 4096),也就是说单台机器每毫秒最多可以生成 4096 个 唯一 ID。
 
-![](https://oscimg.oschina.net/oscnet/up-a7e54a77b5ab1d9fa16d5ae3a3c50c5aee9.png)
+![Snowflake 示意图](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/distributed-system/snowflake-distributed-id-schematic-diagram.png)
 
 如果你想要使用 Snowflake 算法的话，一般不需要你自己再造轮子。有很多基于 Snowflake 算法的开源实现比如美团 的 Leaf、百度的 UidGenerator，并且这些开源实现对原有的 Snowflake 算法进行了优化。
 
@@ -296,13 +292,13 @@ Snowflake 是 Twitter 开源的分布式 ID 生成算法。Snowflake 由 64 bit 
 
 不过，UidGenerator 对 Snowflake(雪花算法)进行了改进，生成的唯一 ID 组成如下。
 
-![](https://oscimg.oschina.net/oscnet/up-ad5b9dd0077a949db923611b2450277e406.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/distributed-system/uidgenerator-distributed-id-schematic-diagram.png)
 
 可以看出，和原始 Snowflake(雪花算法)生成的唯一 ID 的组成不太一样。并且，上面这些参数我们都可以自定义。
 
 UidGenerator 官方文档中的介绍如下：
 
-![](https://oscimg.oschina.net/oscnet/up-358b1a4cddb3675018b8595f66ece9cae88.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/distributed-system/uidgenerator-introduction-official-documents.png)
 
 自 18 年后，UidGenerator 就基本没有再维护了，我这里也不过多介绍。想要进一步了解的朋友，可以看看 [UidGenerator 的官方介绍](https://github.com/baidu/uid-generator/blob/master/README.zh_cn.md)。
 
@@ -353,8 +349,8 @@ Tinyid 的原理比较简单，其架构如下图所示：
 
 Tinyid 的优缺点这里就不分析了，结合数据库号段模式的优缺点和 Tinyid 的原理就能知道。
 
-## 分布式 ID 生成方案总结
+## 总结
 
-这篇文章中，我基本上已经把最常见的分布式 ID 生成方案都总结了一波。
+通过这篇文章，我基本上已经把最常见的分布式 ID 生成方案都总结了一波。
 
 除了上面介绍的方式之外，像 ZooKeeper 这类中间件也可以帮助我们生成唯一 ID。**没有银弹，一定要结合实际项目来选择最适合自己的方案。**

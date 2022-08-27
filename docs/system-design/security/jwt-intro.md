@@ -127,7 +127,7 @@ HMACSHA256(
 
 在基于 JWT 进行身份验证的的应用程序中，服务器通过 Payload、Header 和 Secret(密钥)创建 JWT 并将 JWT 发送给客户端。客户端接收到 JWT 之后，会将其保存在 Cookie 或者 localStorage 里面，以后客户端发出的所有请求都会携带这个令牌。
 
-![jwt](./images/basis-of-authority-certification/jwt.png)
+![ JWT 身份验证示意图](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/jwt/jwt-authentication%20process.png)
 
 简化后的步骤如下：
 
