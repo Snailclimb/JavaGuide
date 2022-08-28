@@ -177,6 +177,7 @@ export const sidebarConfig = defineSidebarConfig({
                 "http-status-codes",
                 "tcp-connection-and-disconnection",
                 "tcp-reliability-guarantee",
+                "arp",
               ],
             },
           ],
