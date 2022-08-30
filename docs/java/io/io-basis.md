@@ -256,7 +256,7 @@ The content read from file:我是Guide。
 
 ```java
 // 字符流转换为字节流的桥梁
-public class InputStreamReader extends Reader {
+public class OutputStreamWriter extends Writer {
 }
 // 用于写入字符到文件
 public class FileWriter extends OutputStreamWriter {
