@@ -149,7 +149,7 @@ dataOutputStream.writeBoolean(true);
 dataOutputStream.writeByte(1);
 ```
 
-`ObjectOutputStream` 用于从输入流中读取 Java 对象（`ObjectInputStream`,反序列化）或者将对象写入到输出流(`ObjectOutputStream`，序列化)。
+`ObjectInputStream` 用于从输入流中读取 Java 对象（`ObjectInputStream`,反序列化），`ObjectOutputStream`将对象写入到输出流(`ObjectOutputStream`，序列化)。
 
 ```java
 ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("file.txt")
