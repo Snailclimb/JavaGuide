@@ -233,13 +233,14 @@ Hash 类似于 JDK1.8 前的 `HashMap`，内部实现也差不多(数组 + 链�
 | HEXISTS key field                         | 查看指定哈希表中指定的字段是否存在                       |
 | HDEL key field1 field2 ...                | 删除一个或多个哈希表字段                                 |
 | HLEN key                                  | 获取指定哈希表中字段的数量                               |
+| HINCRBY key field increment               | 对指定哈希中的指定字段做运算操作（正数为加，负数为减）   |
 
 更多 Redis Hash 命令以及详细使用指南，请查看 Redis 官网对应的介绍：https://redis.io/commands/?group=hash 。
 
 **模拟对象数据存储** ：
 
 ```bash
-> HMSET userInfoKey name "guide" description "dev" age "24"
+> HMSET userInfoKey name "guide" description "dev" age 24
 OK
 > HEXISTS userInfoKey name # 查看 key 对应的 value中指定的字段是否存在。
 (integer) 1
@@ -257,6 +258,8 @@ OK
 > HSET userInfoKey name "GuideGeGe"
 > HGET userInfoKey name
 "GuideGeGe"
+> HINCRBY userInfoKey age 2
+(integer) 26
 ```
 
 ### 应用场景

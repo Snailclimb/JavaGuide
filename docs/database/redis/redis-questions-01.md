@@ -14,25 +14,43 @@ head:
 
 ## Redis 基础
 
-### 简单介绍一下 Redis!
+### 什么是 Redis？
 
-简单来说 **Redis 就是一个使用 C 语言开发的数据库**，不过与传统数据库不同的是 **Redis 的数据是存在内存中的** ，也就是它是内存数据库，所以读写速度非常快，因此 Redis 被广泛应用于缓存方向。
+[Redis](https://redis.io/) 是一个基于 C 语言开发的开源数据库（BSD 许可），与传统数据库不同的是 Redis 的数据是存在内存中的（内存数据库），读写速度非常快，被广泛应用于缓存方向。并且，Redis 存储的是 KV 键值对数据。
 
-另外，Redis 除了做缓存之外，也经常用来做分布式锁，甚至是消息队列。
+为了满足不同的业务场景，Redis 内置了多种数据类型实现（比如 String、Hash、Sorted Set、Bitmap）。并且，Redis 还支持事务 、持久化、Lua 脚本、多种开箱即用的集群方案（Redis Sentinel、Redis Cluster）。
 
-Redis 提供了多种数据类型来支持不同的业务场景。Redis 还支持事务 、持久化、Lua 脚本、多种集群方案。
+Redis 没有外部依赖，Linux 和 OS X 是 Redis 开发和测试最多的两个操作系统，官方推荐生产环境使用  Linux 部署 Redis。
 
-你可以自己本机安装 Redis 或者通过 Redis 官网提供的[在线 Redis 环境](https://try.redis.io/)来实际体验 Redis。
+个人学习的话，你可以自己本机安装 Redis 或者通过 Redis 官网提供的[在线 Redis 环境](https://try.redis.io/)来实际体验 Redis。
 
 ![try-redis](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/try.redis.io.png)
 
+全世界有非常多的网站使用到了 Redis ，[techstacks.io](https://techstacks.io/) 专门维护了一个[使用 Redis 的热门站点列表](https://techstacks.io/tech/redis) ，感兴趣的话可以看看。
+
+### Redis 为什么这么快？
+
+Redis 内部做了非常多的性能优化，比较重要的主要有下面 3 点：
+
+- Redis 基于内存，内存的访问速度是磁盘的上千倍；
+- Redis 基于 Reactor 模式设计开发了一套高效的事件处理模型，主要是单线程事件循环和 IO 多路复用（Redis 线程模式后面会详细介绍到）；
+- Redis 内置了多种优化过后的数据结构实现，性能非常高。
+
+下面这张图片总结的挺不错的，分享一下，出自 [Why is Redis so fast?](https://twitter.com/alexxubyte/status/1498703822528544770)  。
+
+![why-redis-so-fast](./images/why-redis-so-fast.png)
+
 ### 分布式缓存常见的技术选型方案有哪些？
 
-分布式缓存的话，使用的比较多的主要是 **Memcached** 和 **Redis**。不过，现在基本没有看过还有项目使用 **Memcached** 来做缓存，都是直接用 **Redis**。
+分布式缓存的话，比较老牌同时也是使用的比较多的还是 **Memcached** 和 **Redis**。不过，现在基本没有看过还有项目使用 **Memcached** 来做缓存，都是直接用 **Redis**。
 
 Memcached 是分布式缓存最开始兴起的那会，比较常用的。后来，随着 Redis 的发展，大家慢慢都转而使用更加强大的 Redis 了。
 
-分布式缓存主要解决的是单机缓存的容量受服务器限制并且无法保存通用信息的问题。因为，本地缓存只在当前服务里有效，比如如果你部署了两个相同的服务，他们两者之间的缓存数据是无法共同的。
+另外，腾讯也开源了一款类似于 Redis 的分布式高性能 KV 存储数据库，基于知名的开源项目 [RocksDB](https://github.com/facebook/rocksdb) 作为存储引擎 ，100% 兼容 Redis 协议和 Redis4.0 所有数据模型，名为 [Tendis](https://github.com/Tencent/Tendis)。
+
+关于 Redis 和 Tendis 的对比，腾讯官方曾经发过一篇文章：[Redis vs Tendis：冷热混合存储版架构揭秘](https://mp.weixin.qq.com/s/MeYkfOIdnU6LYlsGb24KjQ) ，可以简单参考一下。
+
+从这个项目的 Github 提交记录可以看出，Tendis 开源版几乎已经没有被维护更新了，加上其关注度并不高，使用的公司也比较少。因此，不建议你使用 Tendis 来实现分布式缓存。
 
 ### 说一下 Redis 和 Memcached 的区别和共同点
 
@@ -59,8 +77,6 @@ Memcached 是分布式缓存最开始兴起的那会，比较常用的。后来�
 
 ### 缓存数据的处理流程是怎样的？
 
-作为暖男一号，我给大家画了一个草图。
-
 ![正常缓存处理流程](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/normal-cache-process.png)
 
 简单来说就是:
@@ -72,25 +88,17 @@ Memcached 是分布式缓存最开始兴起的那会，比较常用的。后来�
 
 ### 为什么要用 Redis/为什么要用缓存？
 
-_简单，来说使用缓存主要是为了提升用户体验以及应对更多的用户。_
+下面我们主要从“高性能”和“高并发”这两点来回答这个问题。
 
-下面我们主要从“高性能”和“高并发”这两点来看待这个问题。
-
-![使用缓存之后](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/after-using-the-cache.png)
-
-**高性能** ：
-
-对照上面 👆 我画的图。我们设想这样的场景：
+**高性能**
 
 假如用户第一次访问数据库中的某些数据的话，这个过程是比较慢，毕竟是从硬盘中读取的。但是，如果说，用户访问的数据属于高频数据并且不会经常改变的话，那么我们就可以很放心地将该用户访问的数据存在缓存中。
 
 **这样有什么好处呢？** 那就是保证用户下一次再访问这些数据的时候就可以直接从缓存中获取了。操作缓存就是直接操作内存，所以速度相当快。
 
-不过，要保持数据库和缓存中的数据的一致性。 如果数据库中的对应数据改变的之后，同步改变缓存中相应的数据即可！
+**高并发**
 
-**高并发：**
-
-一般像 MySQL 这类的数据库的 QPS 大概都在 1w 左右（4 核 8g） ，但是使用 Redis 缓存之后很容易达到 10w+，甚至最高能达到 30w+（就单机 redis 的情况，redis 集群的话会更高）。
+一般像 MySQL 这类的数据库的 QPS 大概都在 1w 左右（4 核 8g） ，但是使用 Redis 缓存之后很容易达到 10w+，甚至最高能达到 30w+（就单机 Redis 的情况，Redis 集群的话会更高）。
 
 > QPS（Query Per Second）：服务器每秒可以执行的查询次数；
 
@@ -143,14 +151,24 @@ Redis 5.0 新增加的一个数据结构 `Stream` 可以用来做消息队列，
 
 在绝大部分情况，我们建议使用 String 来存储对象数据即可！
 
-那根据你的介绍，购物车信息用 String 还是 Hash 存储更好呢?
+### 购物车信息用 String 还是 Hash 存储更好呢?
 
-购物车信息建议使用 Hash 存储：
+由于购物车中的商品频繁修改和变动，购物车信息建议使用 Hash 存储：
 
 - 用户 id 为 key
 - 商品 id 为 field，商品数量为 value
 
-由于购物车中的商品频繁修改和变动，这个时候 Hash 就非常适合了！
+![Hash维护简单的购物车信息](./images/hash-shopping-cart.png)
+
+那用户购物车信息的维护具体应该怎么操作呢？
+
+- 用户添加商品就是往 Hash 里面增加新的 field 与 value；
+- 查询购物车信息就是遍历对应的 Hash；
+- 更改商品数量直接修改对应的 value 值（直接 set 或者做运算皆可）；
+- 删除商品就是删除 Hash 中对应的 field；
+- 清空购物车直接删除对应的 key 即可。
+
+这里只是以业务比较简单的购物车场景举例，实际电商场景下，field 只保存一个商品 id 是没办法满足需求的。
 
 ### 使用 Redis 实现一个排行榜怎么做？
 
@@ -222,7 +240,16 @@ PFCOUNT PAGE_1:UV
 
 ### Redis 单线程模型了解吗？
 
-**Redis 基于 Reactor 模式来设计开发了自己的一套高效的事件处理模型** （Netty 的线程模型也基于 Reactor 模式，Reactor 模式不愧是高性能 IO 的基石），这套事件处理模型对应的是 Redis 中的文件事件处理器（file event handler）。由于文件事件处理器（file event handler）是单线程方式运行的，所以我们一般都说 Redis 是单线程模型。
+**Redis 基于 Reactor 模式设计开发了一套高效的事件处理模型** （Netty 的线程模型也基于 Reactor 模式，Reactor 模式不愧是高性能 IO 的基石），这套事件处理模型对应的是 Redis 中的文件事件处理器（file event handler）。由于文件事件处理器（file event handler）是单线程方式运行的，所以我们一般都说 Redis 是单线程模型。
+
+《Redis 设计与实现》有一段话是如是介绍文件事件处理器的，我觉得写得挺不错。
+
+> Redis 基于 Reactor 模式开发了自己的网络事件处理器：这个处理器被称为文件事件处理器（file event handler）。
+>
+> - 文件事件处理器使用 I/O 多路复用（multiplexing）程序来同时监听多个套接字，并根据套接字目前执行的任务来为套接字关联不同的事件处理器。
+> - 当被监听的套接字准备好执行连接应答（accept）、读取（read）、写入（write）、关 闭（close）等操作时，与操作相对应的文件事件就会产生，这时文件事件处理器就会调用套接字之前关联好的事件处理器来处理这些事件。
+>
+> **虽然文件事件处理器以单线程方式运行，但通过使用 I/O 多路复用程序来监听多个套接字**，文件事件处理器既实现了高性能的网络通信模型，又可以很好地与 Redis 服务器中其他同样以单线程方式运行的模块进行对接，这保持了 Redis 内部单线程设计的简单性。
 
 **既然是单线程，那怎么监听大量的客户端连接呢？**
 
@@ -230,22 +257,7 @@ Redis 通过 **IO 多路复用程序** 来监听来自客户端的大量连接�
 
 这样的好处非常明显： **I/O 多路复用技术的使用让 Redis 不需要额外创建多余的线程来监听客户端的大量连接，降低了资源的消耗**（和 NIO 中的 `Selector` 组件很像）。
 
-另外， Redis 服务器是一个事件驱动程序，服务器需要处理两类事件：
-
-- **文件事件(file event)** ：用于处理 Redis 服务器和客户端之间的网络 IO。
-- **时间事件(time eveat)** ：Redis 服务器中的一些操作（比如 serverCron 函数）需要在给定的时间点执行，而时间事件就是处理这类定时操作的。
-
-时间事件不需要多花时间了解，我们接触最多的还是 **文件事件**（客户端进行读取写入等操作，涉及一系列网络通信）。
-
-《Redis 设计与实现》有一段话是如是介绍文件事件的，我觉得写得挺不错。
-
-> Redis 基于 Reactor 模式开发了自己的网络事件处理器：这个处理器被称为文件事件处理器（file event handler）。文件事件处理器使用 I/O 多路复用（multiplexing）程序来同时监听多个套接字，并根据套接字目前执行的任务来为套接字关联不同的事件处理器。
->
-> 当被监听的套接字准备好执行连接应答（accept）、读取（read）、写入（write）、关 闭（close）等操作时，与操作相对应的文件事件就会产生，这时文件事件处理器就会调用套接字之前关联好的事件处理器来处理这些事件。
->
-> **虽然文件事件处理器以单线程方式运行，但通过使用 I/O 多路复用程序来监听多个套接字**，文件事件处理器既实现了高性能的网络通信模型，又可以很好地与 Redis 服务器中其他同样以单线程方式运行的模块进行对接，这保持了 Redis 内部单线程设计的简单性。
-
-可以看出，文件事件处理器（file event handler）主要是包含 4 个部分：
+文件事件处理器（file event handler）主要是包含 4 个部分：
 
 - 多个 socket（客户端连接）
 - IO 多路复用程序（支持多个客户端连接的关键）
@@ -274,6 +286,8 @@ Redis 通过 **IO 多路复用程序** 来监听来自客户端的大量连接�
 - Redis 的性能瓶颈不在 CPU ，主要在内存和网络；
 - 多线程就会存在死锁、线程上下文切换等问题，甚至会影响性能。
 
+相关阅读：[为什么 Redis 选择单线程模型](https://draveness.me/whys-the-design-redis-single-thread/) 。
+
 ### Redis6.0 之后为何引入了多线程？
 
 **Redis6.0 引入多线程主要是为了提高网络 IO 读写性能**，因为这个算是 Redis 中的一个性能瓶颈（Redis 的瓶颈主要受限于内存和网络）。
@@ -292,11 +306,10 @@ io-threads-do-reads yes
 io-threads 4 #官网建议4核的机器建议设置为2或3个线程，8核的建议设置为6个线程
 ```
 
-推荐阅读：
+相关阅读：
 
 - [Redis 6.0 新特性-多线程连环 13 问！](https://mp.weixin.qq.com/s/FZu3acwK6zrCBZQ_3HoUgw)
-- [为什么 Redis 选择单线程模型](https://draveness.me/whys-the-design-redis-single-thread/)
-- [Redis 多线程网络模型全面揭秘](https://segmentfault.com/a/1190000039223696)
+- [Redis 多线程网络模型全面揭秘](https://segmentfault.com/a/1190000039223696)（推荐）
 
 ## Redis 内存管理
 
