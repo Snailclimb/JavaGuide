@@ -67,7 +67,7 @@ else
 end
 ```
 
-![Redis 实现简易分布式锁](images/distributed-lock/distributed-lock-setnx.png)
+![Redis 实现简易分布式锁](./images/distributed-lock/distributed-lock-setnx.png)
 
 这是一种最简易的 Redis 分布式锁实现，实现方式比较简单，性能也很高效。不过，这种方式实现分布式锁存在一些问题。就比如应用程序遇到一些问题比如释放锁的逻辑突然挂掉，可能会导致锁无法被释放，进而造成共享资源无法再被其他线程/进程访问。
 
@@ -100,6 +100,8 @@ OK
 Redisson 是一个开源的 Java 语言 Redis 客户端，提供了很多开箱即用的功能，不仅仅包括多种分布式锁的实现。并且，Redisson 还支持 Redis 单机、Redis Sentinel 、Redis Cluster 等多种部署架构。
 
 Redisson 中的分布式锁自带自动续期机制，使用起来非常简单，原理也比较简单，其提供了一个专门用来监控和续期锁的 **Watch Dog（ 看门狗）**，如果操作共享资源的线程还未执行完成的话，Watch Dog 会不断地延长锁的过期时间，进而保证锁不会因为超时而被释放。
+
+![Redisson 看门狗自动续期](./images/distributed-lock/distributed-lock-redisson-renew-expiration.png)
 
 看门狗名字的由来于 `getLockWatchdogTimeou()` 方法，这个方法返回的是看门狗给锁续期的过期时间，默认为 30 秒（[redisson-3.17.6](https://github.com/redisson/redisson/releases/tag/redisson-3.17.6)）。
 
@@ -158,7 +160,7 @@ Watch Dog 通过调用 `renewExpirationAsync()` 方法实现锁的异步续期�
 ```java
 protected CompletionStage<Boolean> renewExpirationAsync(long threadId) {
     return evalWriteAsync(getRawName(), LongCodec.INSTANCE, RedisCommands.EVAL_BOOLEAN,
-            // 如果指定的锁存在就续期,将其过期时间设置为 30s（默认）
+            // 判断是否为持锁线程，如果是就执行续期操作，就锁的过期时间设置为 30s（默认）
             "if (redis.call('hexists', KEYS[1], ARGV[2]) == 1) then " +
                     "redis.call('pexpire', KEYS[1], ARGV[1]); " +
                     "return 1; " +
