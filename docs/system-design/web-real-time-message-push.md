@@ -10,6 +10,8 @@ head:
       content: 消息推送通常是指网站的运营工作等人员，通过某种工具对用户当前网页或移动设备 APP 进行的主动消息推送。
 ---
 
+> 原文地址：https://juejin.cn/post/7122014462181113887，JavaGuide 对本文进行了完善总结。
+
 我有一个朋友做了一个小破站，现在要实现一个站内信 Web 消息推送的功能，对，就是下图这个小红点，一个很常用的功能。
 
 ![站内信 Web 消息推送](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/web-real-time-message-push/1460000042192380.png)
