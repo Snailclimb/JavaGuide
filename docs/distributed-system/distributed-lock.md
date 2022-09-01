@@ -1,8 +1,6 @@
 ---
 title: 分布式锁
 category: 分布式
-
-
 ---
 
 网上有很多分布式锁相关的文章，写了一个相对简洁易懂的版本，针对面试和工作应该够用了。
@@ -19,7 +17,7 @@ category: 分布式
 
 分布式系统下，不同的服务/客户端通常运行在独立的 JVM 进程上。如果多个 JVM 进程共享同一份资源的话，使用本地锁就没办法实现资源的互斥访问了。于是，**分布式锁** 就诞生了。
 
-举个例子：系统的订单服务一共部署了 3 份，都对外提供服务。用户下订单之前需要检查库存，为了防止超卖，这里需要加锁以实现对检查库存操作的同步访问。由于订单服务位于不同的 JVM 进程中，本地锁在这种情况下就没办法正常工作了。我们需要用到分布式锁，这样的话，即使多个线程不在同一个  JVM 进程中也能获取到同一把锁，进而实现共享资源的互斥访问。
+举个例子：系统的订单服务一共部署了 3 份，都对外提供服务。用户下订单之前需要检查库存，为了防止超卖，这里需要加锁以实现对检查库存操作的同步访问。由于订单服务位于不同的 JVM 进程中，本地锁在这种情况下就没办法正常工作了。我们需要用到分布式锁，这样的话，即使多个线程不在同一个 JVM 进程中也能获取到同一把锁，进而实现共享资源的互斥访问。
 
 下面是我对分布式锁画的一张示意图。
 
@@ -69,6 +67,8 @@ else
 end
 ```
 
+![Redis 实现简易分布式锁](images/distributed-lock/distributed-lock-setnx.png)
+
 这是一种最简易的 Redis 分布式锁实现，实现方式比较简单，性能也很高效。不过，这种方式实现分布式锁存在一些问题。就比如应用程序遇到一些问题比如释放锁的逻辑突然挂掉，可能会导致锁无法被释放，进而造成共享资源无法再被其他线程/进程访问。
 
 ### 为什么要给锁设置一个过期时间？
@@ -91,20 +91,92 @@ OK
 
 你或许在想： **如果操作共享资源的操作还未完成，锁过期时间能够自己续期就好了！**
 
+### 如何实现锁的优雅续期？
+
 对于 Java 开发的小伙伴来说，已经有了现成的解决方案：**[Redisson](https://github.com/redisson/redisson)** 。其他语言的解决方案，可以在 Redis 官方文档中找到，地址：https://redis.io/topics/distlock 。
 
 ![Distributed locks with Redis](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/redis-distributed-lock.png)
 
-Redisson 是一个开源的 Java 语言 Redis 客户端，提供了很多开箱即用的功能，不仅仅包括多种分布式锁的实现。
+Redisson 是一个开源的 Java 语言 Redis 客户端，提供了很多开箱即用的功能，不仅仅包括多种分布式锁的实现。并且，Redisson 还支持 Redis 单机、Redis Sentinel 、Redis Cluster 等多种部署架构。
 
-Redisson 中的分布式锁自带自动续期机制，它提供了一个专门用来监控锁的 **Watch Dog（ 看门狗）**，如果操作共享资源的还未完成的话，Watch Dog 会不断地延长锁的过期时间，进而保证锁不会因为超时而被释放。
+Redisson 中的分布式锁自带自动续期机制，使用起来非常简单，原理也比较简单，其提供了一个专门用来监控和续期锁的 **Watch Dog（ 看门狗）**，如果操作共享资源的线程还未执行完成的话，Watch Dog 会不断地延长锁的过期时间，进而保证锁不会因为超时而被释放。
+
+看门狗名字的由来于 `getLockWatchdogTimeou()` 方法，这个方法返回的是看门狗给锁续期的过期时间，默认为 30 秒（[redisson-3.17.6](https://github.com/redisson/redisson/releases/tag/redisson-3.17.6)）。
+
+```java
+//默认 30秒，支持修改
+private long lockWatchdogTimeout = 30 * 1000;
+
+public Config setLockWatchdogTimeout(long lockWatchdogTimeout) {
+    this.lockWatchdogTimeout = lockWatchdogTimeout;
+    return this;
+}
+public long getLockWatchdogTimeout() {
+  	return lockWatchdogTimeout;
+}
+```
+
+`renewExpiration()` 方法包含了看门狗的主要逻辑：
+
+```java
+private void renewExpiration() {
+         //......
+        Timeout task = commandExecutor.getConnectionManager().newTimeout(new TimerTask() {
+            @Override
+            public void run(Timeout timeout) throws Exception {
+                //......
+                // 异步续期，基于 Lua 脚本
+                CompletionStage<Boolean> future = renewExpirationAsync(threadId);
+                future.whenComplete((res, e) -> {
+                    if (e != null) {
+                        // 无法续期
+                        log.error("Can't update lock " + getRawName() + " expiration", e);
+                        EXPIRATION_RENEWAL_MAP.remove(getEntryName());
+                        return;
+                    }
+
+                    if (res) {
+                        // 递归调用实现续期
+                        renewExpiration();
+                    } else {
+                        // 取消续期
+                        cancelExpirationRenewal(null);
+                    }
+                });
+            }
+         // 延迟 internalLockLeaseTime/3（默认 10s，也就是 30/3） 再调用
+        }, internalLockLeaseTime / 3, TimeUnit.MILLISECONDS);
+
+        ee.setTimeout(task);
+    }
+```
+
+默认情况下，每过 10 秒，看门狗就会执行续期操作，将锁的超时时间设置为 30 秒。看门狗续期前也会先判断是否需要执行续期操作，需要才会执行续期，否则取消续期操作。
+
+Watch Dog 通过调用 `renewExpirationAsync()` 方法实现锁的异步续期：
+
+```java
+protected CompletionStage<Boolean> renewExpirationAsync(long threadId) {
+    return evalWriteAsync(getRawName(), LongCodec.INSTANCE, RedisCommands.EVAL_BOOLEAN,
+            // 如果指定的锁存在就续期,将其过期时间设置为 30s（默认）
+            "if (redis.call('hexists', KEYS[1], ARGV[2]) == 1) then " +
+                    "redis.call('pexpire', KEYS[1], ARGV[1]); " +
+                    "return 1; " +
+                    "end; " +
+                    "return 0;",
+            Collections.singletonList(getRawName()),
+            internalLockLeaseTime, getLockName(threadId));
+}
+```
+
+可以看出， `renewExpirationAsync` 方法其实是调用 Lua 脚本实现的续期，这样做主要是为了保证续期操作的原子性。
 
 我这里以 Redisson 的分布式可重入锁 `RLock` 为例来说明如何使用 Redisson 实现分布式锁：
 
 ```java
 // 1.获取指定的分布式锁对象
 RLock lock = redisson.getLock("lock");
-// 2.拿锁，具有 Watch Dog 自动续期机制
+// 2.拿锁且不设置锁超时时间，具备 Watch Dog 自动续期机制
 lock.lock();
 // 3.执行业务
 ...
@@ -112,7 +184,12 @@ lock.lock();
 lock.unlock();
 ```
 
-可以看出，代码非常简洁直观。
+只有未指定锁超时时间，才会使用到 Watch Dog 自动续期机制。
+
+```java
+// 手动给锁设置过期时间，不具备 Watch Dog 自动续期机制
+lock.lock(10, TimeUnit.SECONDS);
+```
 
 如果使用 Redis 来实现分布式锁的话，还是比较推荐直接基于 Redisson 来做的。
 
@@ -135,4 +212,3 @@ Redlock 实现比较复杂，性能比较差，发生时钟变迁的情况下还
 实际项目中不建议使用 Redlock 算法，成本和收益不成正比。
 
 如果不是非要实现绝对可靠的分布式锁的话，其实单机版 Redis 就完全够了，实现简单，性能也非常高。如果你必须要实现一个绝对可靠的分布式锁的话，可以基于 Zookeeper 来做，只是性能会差一些。
-
