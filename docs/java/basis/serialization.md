@@ -38,10 +38,10 @@ tag:
 
 我们知道网络通信的双方必须要采用和遵守相同的协议。TCP/IP 四层模型是下面这样的，序列化协议属于哪一层呢？
 
-1. 应用层
-2. 传输层
-3. 网络层
-4. 网络接口层
+1. 网络接口层
+2. 网络层
+3. 传输层
+4. 应用层
 
 ![TCP/IP 4层模型](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2020-8/6ecb84cd-4227-4c7b-a2e8-b77054604400-20200802201216504.png)
 
@@ -51,7 +51,7 @@ tag:
 
 ## 常见序列化协议对比
 
-JDK 自带的序列化方式一般不会用 ，因为序列化效率低并且部分版本有安全漏洞。比较常用的序列化协议有 hessian、kyro、protostuff。
+JDK 自带的序列化方式一般不会用 ，因为序列化效率低并且部分版本有安全漏洞。比较常用的序列化协议有 hessian、kryo、protostuff。
 
 下面提到的都是基于二进制的序列化协议，像 JSON 和 XML 这种属于文本类序列化方式。虽然 JSON 和 XML 可读性比较好，但是性能较差，一般不会选择。
 
@@ -76,7 +76,7 @@ public class RpcRequest implements Serializable {
 }
 ```
 
-> 序列化号 serialVersionUID 属于版本控制的作用。序列化的时候 serialVersionUID 也会被写入二级制序列，当反序列化时会检查 serialVersionUID 是否和当前类的 serialVersionUID 一致。如果 serialVersionUID 不一致则会抛出 `InvalidClassException` 异常。强烈推荐每个序列化类都手动指定其 `serialVersionUID`，如果不手动指定，那么编译器会动态生成默认的序列化号
+> 序列化号 serialVersionUID 属于版本控制的作用。序列化的时候 serialVersionUID 也会被写入二进制序列，当反序列化时会检查 serialVersionUID 是否和当前类的 serialVersionUID 一致。如果 serialVersionUID 不一致则会抛出 `InvalidClassException` 异常。强烈推荐每个序列化类都手动指定其 `serialVersionUID`，如果不手动指定，那么编译器会动态生成默认的序列化号
 
 我们很少或者说几乎不会直接使用这个序列化方式，主要原因有两个：
 
@@ -89,7 +89,7 @@ Kryo 是一个高性能的序列化/反序列化工具，由于其变长存储�
 
 另外，Kryo 已经是一种非常成熟的序列化实现了，已经在 Twitter、Groupon、Yahoo 以及多个著名开源项目（如 Hive、Storm）中广泛的使用。
 
-[guide-rpc-framework](https://github.com/Snailclimb/guide-rpc-framework) 就是使用的 kyro 进行序列化，序列化和反序列化相关的代码如下：
+[guide-rpc-framework](https://github.com/Snailclimb/guide-rpc-framework) 就是使用的 kryo 进行序列化，序列化和反序列化相关的代码如下：
 
 ```java
 /**
@@ -130,7 +130,7 @@ public class KryoSerializer implements Serializer {
         try (ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
              Input input = new Input(byteArrayInputStream)) {
             Kryo kryo = kryoThreadLocal.get();
-            // byte->Object:从byte数组中反序列化出对对象
+            // byte->Object:从byte数组中反序列化出对象
             Object o = kryo.readObject(input, clazz);
             kryoThreadLocal.remove();
             return clazz.cast(o);
@@ -146,7 +146,7 @@ Github 地址：[https://github.com/EsotericSoftware/kryo](https://github.com/Es
 
 ### Protobuf
 
-Protobuf 出自于 Google，性能还比较优秀，也支持多种语言，同时还是跨平台的。就是在使用中过于繁琐，因为你需要自己定义 IDL 文件和生成对应的序列化代码。这样虽然不然灵活，但是，另一方面导致 protobuf 没有序列化漏洞的风险。
+Protobuf 出自于 Google，性能还比较优秀，也支持多种语言，同时还是跨平台的。就是在使用中过于繁琐，因为你需要自己定义 IDL 文件和生成对应的序列化代码。这样虽然不灵活，但是，另一方面导致 protobuf 没有序列化漏洞的风险。
 
 > Protobuf 包含序列化格式的定义、各种语言的库以及一个 IDL 编译器。正常情况下你需要定义 proto 文件，然后使用 IDL 编译器编译成你需要的语言
 
@@ -176,7 +176,7 @@ Github 地址：[https://github.com/protostuff/protostuff](https://github.com/pr
 
 ### hessian
 
-hessian 是一个轻量级的,自定义描述的二进制 RPC 协议。hessian 是一个比较老的序列化实现了，并且同样也是跨语言的。
+hessian 是一个轻量级的，自定义描述的二进制 RPC 协议。hessian 是一个比较老的序列化实现了，并且同样也是跨语言的。
 
 ![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2020-8/8613ec4c-bde5-47bf-897e-99e0f90b9fa3.png)
 
