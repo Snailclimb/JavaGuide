@@ -17,7 +17,9 @@ JDK 19 只有 7 个新特性：
 - [JEP 427: Pattern Matching for switch（switch 模式匹配）](https://openjdk.java.net/jeps/427)
 - [JEP 428: Structured Concurrency（结构化并发）](https://openjdk.org/jeps/428)（孵化）
 
-这里只对 424、425、426、428 这 4 个我觉得比较重要的新特性进行介绍。
+这里只对 424、425、426、428 这 4 个我觉得比较重要的新特性进行详细介绍。
+
+相关阅读：[OpenJDK Java 19 文档](https://openjdk.org/projects/jdk/19/)
 
 ## JEP 424: 外部函数和内存 API（预览）
 

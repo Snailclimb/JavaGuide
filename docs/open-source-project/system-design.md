@@ -154,7 +154,7 @@ icon: "xitongsheji"
 
 - **[ShardingSphere](https://github.com/apache/shardingsphere)** ：ShardingSphere 是一套开源的分布式数据库中间件解决方案组成的生态圈，它由 Sharding-JDBC、Sharding-Proxy 和 Sharding-Sidecar（计划中）这 3 款相互独立的产品组成。 他们均提供标准化的数据分片、分布式事务和数据库治理功能，可适用于如 Java 同构、异构语言、云原生等各种多样化的应用场景。中文文档：[https://shardingsphere.apache.org/document/current/cn/overview/](https://shardingsphere.apache.org/document/current/cn/overview/) 。
 - **[MyCat](https://github.com/MyCatApache/MyCat2)** : MyCat 是数据库分库分表的中间件，MyCat 使用最多的两个功能是：读写分离和分库分表。MyCat 是一些社区爱好者在阿里 Cobar 的基础上进行二次开发，解决了 Cobar 当时存 在的一些问题，并且加入了许多新的功能在其中。
-- **[dynamic-datasource-spring-boot-starter](https://github.com/baomidou/dynamic-datasource-spring-boot-starter])** ：dynamic-datasource-spring-boot-starter 是一个基于 springboot 的快速集成多数据源的启动器。如果说你有配置多数据源、读写分离等需求的话，可以了解一下这个项目。
+- **[dynamic-datasource-spring-boot-starter](https://github.com/baomidou/dynamic-datasource-spring-boot-starter)** ：dynamic-datasource-spring-boot-starter 是一个基于 springboot 的快速集成多数据源的启动器。如果说你有配置多数据源、读写分离等需求的话，可以了解一下这个项目。
 
 相关阅读：[数据库中间件详解（精品长文）](https://zhuanlan.zhihu.com/p/87144535)
 
