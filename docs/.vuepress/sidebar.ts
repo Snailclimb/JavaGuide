@@ -147,6 +147,7 @@ export const sidebarConfig = defineSidebarConfig({
             "java12-13",
             "java14-15",
             "java16",
+            "java19",
           ],
         },
       ],

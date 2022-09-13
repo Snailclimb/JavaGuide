@@ -124,6 +124,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 - [Java 12~13 新特性概览](./docs/java/new-features/java12-13.md)
 - [Java 14~15 新特性概览](./docs/java/new-features/java14-15.md)
 - [Java 16 新特性概览](./docs/java/new-features/java16.md)
+- [Java 19 新特性概览](./docs/java/new-features/java19.md)
 
 ![JavaGuide 官方公众号](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/gongzhonghaoxuanchuan.png)
 
