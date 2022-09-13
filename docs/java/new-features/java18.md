@@ -5,9 +5,7 @@ tag:
   - Java新特性
 ---
 
-Java 18 在 2022 年 3 月 22 日正式发布，非长期支持版本。不过，Java 18 中有一些比较重要的新特性值得关注。
-
-Java 18 带来了 9 个新特性：
+Java 18 在 2022 年 3 月 22 日正式发布，非长期支持版本。Java 18 带来了 9 个新特性：
 
 - [JEP 400:UTF-8 by Default（默认字符集为 UTF-8）](https://openjdk.java.net/jeps/400)
 - [JEP 408:Simple Web Server（简易的 Web 服务器）](https://openjdk.java.net/jeps/408)
@@ -49,7 +47,7 @@ URL: http://127.0.0.1:8000/
 
 ## JEP 413:优化 Java API 文档中的代码片段
 
-在 Java 18  之前，如果我们想要在 Javadoc 中引入代码片段可以使用 `<pre>{@code ...}</pre>` 。
+在 Java 18 之前，如果我们想要在 Javadoc 中引入代码片段可以使用 `<pre>{@code ...}</pre>` 。
 
 ```java
 <pre>{@code
@@ -76,7 +74,7 @@ URL: http://127.0.0.1:8000/
 
 ## JEP 416:使用方法句柄重新实现反射核心
 
-Java 18  改进了 `java.lang.reflect.Method`、`Constructor` 的实现逻辑，使之性能更好，速度更快。这项改动不会改动相关 API ，这意味着开发中不需要改动反射相关代码，就可以体验到性能更好反射。
+Java 18 改进了 `java.lang.reflect.Method`、`Constructor` 的实现逻辑，使之性能更好，速度更快。这项改动不会改动相关 API ，这意味着开发中不需要改动反射相关代码，就可以体验到性能更好反射。
 
 OpenJDK 官方给出了新老实现的反射性能基准测试结果。
 
