@@ -128,7 +128,7 @@ public class Main {
 
 	}
 
-	private static boolean chechStrs(String[] strs) {
+	private static boolean checkStrs(String[] strs) {
 		boolean flag = false;
 		if (strs != null) {
 			// 遍历strs检查元素值

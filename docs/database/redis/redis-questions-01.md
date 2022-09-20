@@ -449,7 +449,7 @@ appendfsync no        #让操作系统决定何时进行同步
 
 关系型数据库（如 MySQL）通常都是执行命令之前记录日志（方便故障恢复），而 Redis AOF 持久化机制是在执行完命令之后再记录日志。
 
-![图片来自《Redis 核心技术与实战》](./images/aof.jpeg)
+![AOF 记录日志过程](./images/redis-aof-write-log-disc.png)
 
 **为什么是在执行完命令之后记录日志呢？**
 
