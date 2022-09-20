@@ -186,7 +186,7 @@ public class LambdaClass {
     }
     //函数式接口参数
     static void lambdaInterfaceDemo(LambdaInterface i){
-        System.out.println(i);
+        i.f();
     }
 }
 ```
