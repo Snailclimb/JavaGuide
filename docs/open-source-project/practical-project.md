@@ -50,7 +50,7 @@ icon: project
 - **[ruoyi-vue-pro](https://github.com/YunaiV/ruoyi-vue-pro)** ： 基于 SpringBoot，Spring Security，JWT，Vue & Element 的前后端分离权限管理系统。
 - **[Guns](https://gitee.com/stylefeng/guns)** ： 我在上大学的时候就了解和接触过了这个项目，当时我还是一个 Spring 入门不太久的小菜鸟。一晃，不经意间已经过去快 3 年了。Guns 功能齐全 ，采用主流框架 Spring Boot2.0+开发，并且支持 Spring Cloud Alibaba 微服务）。 适合企业后台管理网站的快速开发场景，不论是对于单体和微服务都有支持。
 - **[JHipster](https://github.com/jhipster/generator-jhipster)** :开源应用程序平台，可在几秒钟内创建 Spring Boot + Angular / React 项目！
-- **[JeecgBoot](https://github.com/zhangdaiscott/jeecg-boot)** :一款基于代码生成器的 JAVA 快速开发平台，开源界“小普元”超越传统商业企业级开发平台！
+- **[JeecgBoot](https://github.com/zhangdaiscott/jeecg-boot)**：一款基于代码生成器的 J2EE 低代码快速开发平台，支持生成前后端分离架构的项目。
 - **[zuihou-admin-cloud](https://github.com/zuihou/zuihou-admin-cloud)** :基于`SpringCloud(Hoxton.SR7)` + `SpringBoot(2.2.9.RELEASE)` 的 SaaS 型微服务快速开发平台，具备用户管理、资源权限管理、网关统一鉴权、Xss 防跨站攻击、自动代码生成、多存储系统、分布式事务、分布式定时任务等多个模块，支持多业务系统并行开发， 支持多服务并行开发，可以作为后端服务的开发脚手架。
 - **[Erupt](https://gitee.com/erupt/erupt)** : 使用 Java 注解，快速开发 Admin 管理后台。零前端代码、零 CURD、不生成任何代码、自动建表、注解式 API，支持所有主流数据库，支持自定义页面，支持多数据源，提供二十几类业务组件，十几种展示形式，支持逻辑删除，动态定时任务，前端后端分离等。 核心技术：Spring Boot、JPA、Reflect、TypeScript、NG-ZORRO 等。
 - **[SmartAdmin](https://gitee.com/lab1024/smart-admin)** : 互联网企业级的通用型中后台解决方案！使用最前沿的前后台技术栈 SpringBoot 和 Vue，前后端分离!代码质量非常高！

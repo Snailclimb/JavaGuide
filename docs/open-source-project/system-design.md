@@ -158,6 +158,11 @@ icon: "xitongsheji"
 
 相关阅读：[数据库中间件详解（精品长文）](https://zhuanlan.zhihu.com/p/87144535)
 
+#### 线程池
+
+- **[Hippo-4J](https://github.com/opengoofy/hippo4j)** ：一款强大的动态线程池框架，解决了传统线程池使用存在的一些痛点比如线程池参数没办法动态修改、不支持运行时变量的传递、无法执行优雅关闭。除了支持动态修改线程池参数、线程池任务传递上下文，还支持通知报警、运行监控等开箱即用的功能。
+- **[Dynamic Tp](https://github.com/dromara/dynamic-tp)** ：一款基于 SpringBoot 的轻量级动态线程池，参考[美团线程池实践](https://tech.meituan.com/2020/04/02/java-pooling-pratice-in-meituan.html)，内置监控告警功能，提供多种报警维度。
+
 ### 高可用
 
 #### 限流
