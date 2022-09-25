@@ -15,20 +15,15 @@ icon: "xitongsheji"
 
 ## 数据库
 
-### 连接池
+### 数据库连接池
 
 - **[Druid](https://github.com/alibaba/druid)** : 阿里巴巴数据库事业部出品，为监控而生的数据库连接池。
 - **[HikariCP](https://github.com/brettwooldridge/HikariCP)** : 一个可靠的高性能 JDBC 连接池。Springboot 2.0 选择 HikariCP 作为默认数据库连接池。
 
-### 框架
+### 数据库框架
 
 - **[MyBatis-Plus](https://github.com/baomidou/mybatis-plus)** : [MyBatis-Plus](https://github.com/baomidou/mybatis-plus)（简称 MP）是一个 [MyBatis](http://www.mybatis.org/mybatis-3/) 的增强工具，在 MyBatis 的基础上只做增强不做改变，为简化开发、提高效率而生。
 - **[Redisson](https://github.com/redisson/redisson "redisson")** ： Redis 基础上的一个 Java 驻内存数据网格（In-Memory Data Grid）,支持超过 30 个对象和服务:`Set`,`SortedSet`, `Map`, `List`, `Queue`, `Deque` ......，并且提供了多种分布式锁的实现。更多介绍请看：[《Redisson 项目介绍》](https://github.com/redisson/redisson/wiki/Redisson%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D "Redisson项目介绍")。
-
-### 缓存
-
-- **[Caffeine](https://github.com/ben-manes/caffeine)** : 一款强大的本地缓存解决方案，性能非常 🐂。
-- **[Redis](https://github.com/redis/redis)** ：一个使用 C 语言开发的内存数据库，分布式缓存首选。
 
 ### 数据同步
 
@@ -36,6 +31,11 @@ icon: "xitongsheji"
 - **[DataX](https://github.com/alibaba/DataX "DataX")** ：DataX 是阿里巴巴集团内被广泛使用的离线数据同步工具/平台，实现包括 MySQL、Oracle、SqlServer、Postgre、HDFS、Hive、ADS、HBase、TableStore(OTS)、MaxCompute(ODPS)、DRDS 等各种异构数据源之间高效的数据同步功能。相关项目：**[DataX-Web](https://github.com/WeiYe-Jing/datax-web)** （DataX 集成可视化页面，选择数据源即可一键生成数据同步任务）。
 
 其他：**[Flinkx](https://github.com/DTStack/flinkx)** （基于 Flink 的分布式数据同步工具）。
+
+### 时序数据库
+
+- **[IoTDB](https://github.com/apache/iotdb)** ：一款 Java 语言编写的国产时序数据库，为用户提供数据收集、存储和分析等服务。与 Hadoop、Spark 和可视化工具(如 Grafana)无缝集成，满足了工业 IoT 领域中海量数据存储、高吞吐量数据写入和复杂数据查询分析的需求。
+- **[KairosDB](https://github.com/kairosdb/kairosdb)** ：一个基于 Cassandra 的快速分布式可扩展时间序列数据库。
 
 ## 搜索引擎
 
@@ -129,11 +129,9 @@ icon: "xitongsheji"
 
 相关阅读： [Skywalking 官网对于主流开源链路追踪系统的对比](https://skywalking.apache.org/zh/blog/2019-03-29-introduction-of-skywalking-and-simple-practice.html)
 
-## 高并发
+## 高性能
 
-### 高性能
-
-#### 消息队列
+### 消息队列
 
 **分布式队列** ：
 
@@ -150,7 +148,7 @@ icon: "xitongsheji"
 1. **[Kafdrop](https://github.com/obsidiandynamics/kafdrop)** : 一个用于查看 Kafka 主题和浏览消费者组的 Web UI。
 2. **[EFAK](https://github.com/smartloli/EFAK)** （Eagle For Apache Kafka，以前叫做 Kafka Eagle） ：一个简单的高性能监控系统，用于对 Kafka 集群进行全面的监控和管理。
 
-#### 多数据源&读写分离&分库分表
+### 数据库中间件
 
 - **[ShardingSphere](https://github.com/apache/shardingsphere)** ：ShardingSphere 是一套开源的分布式数据库中间件解决方案组成的生态圈，它由 Sharding-JDBC、Sharding-Proxy 和 Sharding-Sidecar（计划中）这 3 款相互独立的产品组成。 他们均提供标准化的数据分片、分布式事务和数据库治理功能，可适用于如 Java 同构、异构语言、云原生等各种多样化的应用场景。中文文档：[https://shardingsphere.apache.org/document/current/cn/overview/](https://shardingsphere.apache.org/document/current/cn/overview/) 。
 - **[MyCat](https://github.com/MyCatApache/MyCat2)** : MyCat 是数据库分库分表的中间件，MyCat 使用最多的两个功能是：读写分离和分库分表。MyCat 是一些社区爱好者在阿里 Cobar 的基础上进行二次开发，解决了 Cobar 当时存 在的一些问题，并且加入了许多新的功能在其中。
@@ -158,14 +156,19 @@ icon: "xitongsheji"
 
 相关阅读：[数据库中间件详解（精品长文）](https://zhuanlan.zhihu.com/p/87144535)
 
-#### 线程池
+### 线程池
 
 - **[Hippo-4J](https://github.com/opengoofy/hippo4j)** ：一款强大的动态线程池框架，解决了传统线程池使用存在的一些痛点比如线程池参数没办法动态修改、不支持运行时变量的传递、无法执行优雅关闭。除了支持动态修改线程池参数、线程池任务传递上下文，还支持通知报警、运行监控等开箱即用的功能。
 - **[Dynamic Tp](https://github.com/dromara/dynamic-tp)** ：一款基于 SpringBoot 的轻量级动态线程池，参考[美团线程池实践](https://tech.meituan.com/2020/04/02/java-pooling-pratice-in-meituan.html)，内置监控告警功能，提供多种报警维度。
 
-### 高可用
+### 缓存
 
-#### 限流
+- **[Caffeine](https://github.com/ben-manes/caffeine)** : 一款强大的本地缓存解决方案，性能非常 🐂。
+- **[Redis](https://github.com/redis/redis)** ：一个使用 C 语言开发的内存数据库，分布式缓存首选。
+
+## 高可用
+
+### 限流
 
 **分布式限流** ：
 
@@ -179,12 +182,12 @@ icon: "xitongsheji"
 - **[Bucket4j](https://github.com/vladimir-bukhtoyarov/bucket4j)** ：一个非常不错的基于令牌/漏桶算法的限流库。
 - **[Resilience4j](https://github.com/resilience4j/resilience4j)** ：一个轻量级的容错组件，其灵感来自于 Hystrix。
 
-#### 监控
+### 监控
 
 - **[Spring Boot Admin](https://github.com/codecentric/spring-boot-admin)** ：管理和监控 Spring Boot 应用程序。
 - **[Metrics](https://github.com/dropwizard/metrics)** ：捕获**JVM**和应用程序级别的指标。所以你知道发生了什么事。
 
-## 日志
+### 日志
 
 - **EKL 老三件套** : 最原始的时候，ELK 是由 3 个开源项目的首字母构成，分别是 **E**lasticsearch 、**L**ogstash、**K**ibana。
 - **新一代 ELK 架构** : Elasticsearch+Logstash+Kibana+Beats。
