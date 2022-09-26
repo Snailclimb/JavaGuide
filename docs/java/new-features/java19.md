@@ -80,6 +80,8 @@ assert Arrays.equals(javaStrings, new String[] {"car", "cat", "dog", "mouse"}); 
 
 知乎有一个关于 Java 19 虚拟线程的讨论，感兴趣的可以去看看：https://www.zhihu.com/question/536743167 。
 
+Java 虚拟线程的详细解读可以看这篇文章：[Java19 正式 GA！看虚拟线程如何大幅提高系统吞吐量](https://mp.weixin.qq.com/s/yyApBXxpXxVwttr01Hld6Q)。
+
 ## JEP 426: 向量 API（第四次孵化）
 
 向量（Vector） API 最初由[JEP 338](https://openjdk.java.net/jeps/338)提出，并作为[孵化 API](http://openjdk.java.net/jeps/11)集成到 JDK 16 中。第二轮孵化由[JEP 414](https://openjdk.java.net/jeps/414)提出并集成到 JDK 17 中。第三轮孵化由[JEP 417](https://openjdk.java.net/jeps/417)提出并集成到 JDK 18 中。
