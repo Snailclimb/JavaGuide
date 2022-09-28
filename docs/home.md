@@ -131,8 +131,6 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 - [Java 18 新特性概览](./java/new-features/java18.md)
 - [Java 19 新特性概览](./java/new-features/java19.md)
 
-![JavaGuide 官方公众号](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/gongzhonghaoxuanchuan.png)
-
 ## 计算机基础
 
 ### 操作系统
@@ -345,8 +343,6 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 - [ZooKeeper 相关概念总结(入门)](./distributed-system/distributed-process-coordination/zookeeper/zookeeper-intro.md)
 - [ZooKeeper 相关概念总结(进阶)](./distributed-system/distributed-process-coordination/zookeeper/zookeeper-plus.md)
 - [ZooKeeper 实战](./distributed-system/distributed-process-coordination/zookeeper/zookeeper-in-action.md)
-
-![JavaGuide 官方公众号](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/gongzhonghaoxuanchuan.png)
 
 ## 高性能
 
