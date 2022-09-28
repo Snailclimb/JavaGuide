@@ -1,5 +1,5 @@
 ---
-title: Java 19 新特性概览
+title: Java 18 新特性概览
 category: Java
 tag:
   - Java新特性

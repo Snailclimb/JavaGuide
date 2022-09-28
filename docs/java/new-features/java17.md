@@ -1,3 +1,10 @@
+---
+title: Java 17 新特性概览
+category: Java
+tag:
+  - Java新特性
+---
+
 Java 17 在 2021 年 9 月 14 日正式发布，Java 17 是一个长期支持（LTS）版本，这次更新共带来 14 个新特性：
 
 - [JEP 306:Restore Always-Strict Floating-Point Semantics（恢复始终严格的浮点语义）](https://openjdk.java.net/jeps/306)
