@@ -21,21 +21,21 @@ Redis 可以通过 **`MULTI`，`EXEC`，`DISCARD` 和 `WATCH`** 等命令来实�
 ```bash
 > MULTI
 OK
-> SET USER "Guide哥"
+> SET PROJECT "JavaGuide"
 QUEUED
-> GET USER
+> GET PROJECT
 QUEUED
 > EXEC
 1) OK
-2) "Guide哥"
+2) "JavaGuide"
 ```
 
-使用 [`MULTI`](https://redis.io/commands/multi) 命令后可以输入多个命令。Redis 不会立即执行这些命令，而是将它们放到队列，当调用了 [`EXEC`](https://redis.io/commands/exec) 命令将执行所有命令。
+ [`MULTI`](https://redis.io/commands/multi) 命令后可以输入多个命令，Redis 不会立即执行这些命令，而是将它们放到队列，当调用了 [`EXEC`](https://redis.io/commands/exec) 命令后，再执行所有的命令。
 
 这个过程是这样的：
 
-1. 开始事务（`MULTI`）。
-2. 命令入队(批量操作 Redis 的命令，先进先出（FIFO）的顺序执行)。
+1. 开始事务（`MULTI`）；
+2. 命令入队(批量操作 Redis 的命令，先进先出（FIFO）的顺序执行)；
 3. 执行事务(`EXEC`)。
 
 你也可以通过 [`DISCARD`](https://redis.io/commands/discard) 命令取消一个事务，它会清空事务队列中保存的所有命令。
@@ -43,26 +43,79 @@ QUEUED
 ```bash
 > MULTI
 OK
-> SET USER "Guide哥"
+> SET PROJECT "JavaGuide"
 QUEUED
-> GET USER
+> GET PROJECT
 QUEUED
 > DISCARD
 OK
 ```
 
-[`WATCH`](https://redis.io/commands/watch) 命令用于监听指定的键，当调用 `EXEC` 命令执行事务时，如果一个被 `WATCH` 命令监视的键被修改的话，整个事务都不会执行，直接返回失败。
+你可以通过[`WATCH`](https://redis.io/commands/watch) 命令监听指定的 Key，当调用 `EXEC` 命令执行事务时，如果一个被 `WATCH` 命令监视的 Key 被 **其他客户端/Session** 修改的话，整个事务都不会被执行。
 
 ```bash
-> WATCH USER
+# 客户端 1
+> SET PROJECT "RustGuide"
+OK
+> WATCH PROJECT
 OK
 > MULTI
-> SET USER "Guide哥"
+OK
+> SET PROJECT "JavaGuide"
+QUEUED
+
+# 客户端 2
+# 在客户端 1 执行 EXEC 命令提交事务之前修改 PROJECT 的值
+> SET PROJECT "GoGuide"
+
+# 客户端 1
+# 修改失败，因为 PROJECT 的值被客户端2修改了
+> EXEC
+(nil)
+> GET PROJECT
+"GoGuide"
+```
+
+不过，如果 **WATCH** 与 **事务** 在同一个 Session 里，并且被 **WATCH** 监视的 Key 被修改的操作发生在事务内部，这个事务是可以被执行成功的（相关 issue ：[WATCH 命令碰到 MULTI 命令时的不同效果](https://github.com/Snailclimb/JavaGuide/issues/1714)）。
+
+事务内部修改 WATCH 监视的 Key：
+
+```bash
+> SET PROJECT "JavaGuide"
+OK
+> WATCH PROJECT
+OK
+> MULTI
+OK
+> SET PROJECT "JavaGuide1"
+QUEUED
+> SET PROJECT "JavaGuide2"
+QUEUED
+> SET PROJECT "JavaGuide3"
+QUEUED
+> EXEC
+1) OK
+2) OK
+3) OK
+127.0.0.1:6379> GET PROJECT
+"JavaGuide3"
+```
+
+事务外部修改 WATCH 监视的 Key：
+
+```bash
+> SET PROJECT "JavaGuide"
+OK
+> WATCH PROJECT
+OK
+> SET PROJECT "JavaGuide2"
+OK
+> MULTI
 OK
 > GET USER
-Guide哥
+QUEUED
 > EXEC
-ERR EXEC without MULTI
+(nil)
 ```
 
 Redis 官网相关介绍 [https://redis.io/topics/transactions](https://redis.io/topics/transactions) 如下：
