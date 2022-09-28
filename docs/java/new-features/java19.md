@@ -25,7 +25,7 @@ JDK 19 只有 7 个新特性：
 
 Java 程序可以通过该 API 与 Java 运行时之外的代码和数据进行互操作。通过高效地调用外部函数（即 JVM 之外的代码）和安全地访问外部内存（即不受 JVM 管理的内存），该 API 使 Java 程序能够调用本机库并处理本机数据，而不会像 JNI 那样危险和脆弱。
 
-外部函数和内存 API 之前在 JDK 17 中孵化，在 JDK 18 中重新孵化。
+外部函数和内存 API 在 Java 17 中进行了第一轮孵化，由 [JEP 412](https://openjdk.java.net/jeps/412) 提出。第二轮孵化由[ JEP 419](https://openjdk.org/jeps/419) 提出并集成到了 Java 18 中，预览由 [JEP 424](https://openjdk.org/jeps/424) 提出并集成到了 Java 19 中。
 
 在没有外部函数和内存 API 之前：
 
@@ -84,45 +84,9 @@ Java 虚拟线程的详细解读可以看这篇文章：[Java19 正式 GA！看�
 
 ## JEP 426: 向量 API（第四次孵化）
 
-向量（Vector） API 最初由[JEP 338](https://openjdk.java.net/jeps/338)提出，并作为[孵化 API](http://openjdk.java.net/jeps/11)集成到 JDK 16 中。第二轮孵化由[JEP 414](https://openjdk.java.net/jeps/414)提出并集成到 JDK 17 中。第三轮孵化由[JEP 417](https://openjdk.java.net/jeps/417)提出并集成到 JDK 18 中。
+向量（Vector） API 最初由 [JEP 338](https://openjdk.java.net/jeps/338) 提出，并作为[孵化 API](http://openjdk.java.net/jeps/11)集成到 Java 16 中。第二轮孵化由 [JEP 414](https://openjdk.java.net/jeps/414) 提出并集成到 Java 17 中，第三轮孵化由 [JEP 417](https://openjdk.java.net/jeps/417) 提出并集成到 Java 18 中，第四轮由 [JEP 426](https://openjdk.java.net/jeps/426) 提出并集成到了 Java 19 中。
 
-向量计算由对向量的一系列操作组成。向量 API 用来表达向量计算，该计算可以在运行时可靠地编译为支持的 CPU 架构上的最佳向量指令，从而实现优于等效标量计算的性能。
-
-向量 API 的目标是为用户提供简洁易用且与平台无关的表达范围广泛的向量计算。
-
-这是对数组元素的简单标量计算：
-
-```java
-void scalarComputation(float[] a, float[] b, float[] c) {
-   for (int i = 0; i < a.length; i++) {
-        c[i] = (a[i] * a[i] + b[i] * b[i]) * -1.0f;
-   }
-}
-```
-
-这是使用 Vector API 进行的等效向量计算：
-
-```java
-static final VectorSpecies<Float> SPECIES = FloatVector.SPECIES_PREFERRED;
-
-void vectorComputation(float[] a, float[] b, float[] c) {
-    int i = 0;
-    int upperBound = SPECIES.loopBound(a.length);
-    for (; i < upperBound; i += SPECIES.length()) {
-        // FloatVector va, vb, vc;
-        var va = FloatVector.fromArray(SPECIES, a, i);
-        var vb = FloatVector.fromArray(SPECIES, b, i);
-        var vc = va.mul(va)
-                   .add(vb.mul(vb))
-                   .neg();
-        vc.intoArray(c, i);
-    }
-    for (; i < a.length; i++) {
-        c[i] = (a[i] * a[i] + b[i] * b[i]) * -1.0f;
-    }
-}
-
-```
+在 [Java 18 新特性概览](./java18.md) 中，我有详细介绍到向量 API，这里就不再做额外的介绍了。
 
 ## JEP 428: 结构化并发(孵化)
 

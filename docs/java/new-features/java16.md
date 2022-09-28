@@ -5,9 +5,7 @@ tag:
   - Java新特性
 ---
 
-## Java 16
-
-### 记录类型（转正）
+## 记录类型（转正）
 
 变更历史：
 
@@ -29,7 +27,7 @@ public class Outer {
 
 > 在 JDK 16 之前，如果写上面这种代码，IDE 会提示你静态字段 age 不能在非静态的内部类中定义，除非它用一个常量表达式初始化。（The field age cannot be declared static in a non-static inner type, unless initialized with a constant expression）
 
-### instanceof 模式匹配（转正）
+## instanceof 模式匹配（转正）
 
 | JDK 版本   | 更新类型          | JEP                                     | 更新内容                                 |
 | ---------- | ----------------- | --------------------------------------- | ---------------------------------------- |
@@ -49,13 +47,13 @@ public class Outer {
 	}
 ```
 
-### 预览新特性
+## 预览新特性
 
-#### 密封类
+### 密封类
 
 在 JDK 15 引入的 sealed class（密封类）在 JDK 16 得到了改进：更加严格的引用检查和密封类的继承关系。
 
-### 其他优化与改进
+## 其他优化与改进
 
 - **优化 JavaDoc 的搜索功能** ：对于单词大小写问题的改进，当不知道具体拼写或者大小写的时候很有用。
 - **ZGC 并发线程处理** ：JEP 376 将 ZGC 线程栈处理从安全点转移到一个并发阶段，甚至在大堆上也允许在毫秒内暂停 GC 安全点。消除 ZGC 垃圾收集器中最后一个延迟源可以极大地提高应用程序的性能和效率。
@@ -70,7 +68,7 @@ public class Outer {
 - **启用 C++14 语言特性** ：它允许在 JDK C++ 源代码中使用 C++14 语言特性，并提供在 HotSpot 代码中可以使用哪些特性的具体指导。在 JDK 15 中，JDK 中 C++ 代码使用的语言特性仅限于 C++98/03 语言标准。它要求更新各种平台编译器的最低可接受版本。
 - **AlpineLinux 移植；JEP 388，Windows/AArch64 移植** ：这些 JEP 的重点不是移植工作本身，而是将它们集成到 JDK 主线存储库中；JEP 386 将 JDK 移植到 Alpine Linux 和其他使用 musl 作为 x64 上主要 C 库的发行版上。此外，JEP 388 将 JDK 移植到 Windows AArch64（ARM64）。
 
-### 参考文献
+## 参考文献
 
 - [Java Language Changes](https://docs.oracle.com/en/java/javase/16/language/java-language-changes.html)
 - [Consolidated JDK 16 Release Notes](https://www.oracle.com/java/technologies/javase/16all-relnotes.html)
