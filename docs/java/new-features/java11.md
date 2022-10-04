@@ -113,7 +113,7 @@ Consumer<String> consumer = (String i) -> System.out.println(i);
 
 对于 Java 初学者并希望尝试简单程序的人特别有用，并且能和 jshell 一起使用。一定能程度上增强了使用 Java 来写脚本程序的能力。
 
-## 其他
+## 其他新特性
 
 - **新的垃圾回收器 Epsilon** ：一个完全消极的 GC 实现，分配有限的内存资源，最大限度的降低内存占用和内存吞吐延迟时间
 - **低开销的 Heap Profiling** ：Java 11 中提供一种低开销的 Java 堆分配采样方法，能够得到堆分配的 Java 对象信息，并且能够通过 JVMTI 访问堆信息
