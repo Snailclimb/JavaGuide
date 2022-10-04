@@ -66,7 +66,7 @@ Dubbo 提供了从服务定义、服务发现、服务通信到流量管控等�
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/distributed-system/rpc/image-20220716111545343.png)
 
-Dubbo 是由阿里开源，后来加入了 Apache 。正式由于 Dubbo 的出现，才使得越来越多的公司开始使用以及接受分布式架构。
+Dubbo 是由阿里开源，后来加入了 Apache 。正是由于 Dubbo 的出现，才使得越来越多的公司开始使用以及接受分布式架构。
 
 Dubbo 算的是比较优秀的国产开源项目了，它的源码也是非常值得学习和阅读的！
 
