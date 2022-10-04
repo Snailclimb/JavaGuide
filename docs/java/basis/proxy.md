@@ -277,7 +277,7 @@ extends Callback{
 
 ```
 
-1. **obj** : 动态生成的代理对象
+1. **obj** : 被代理的对象（需要增强的对象）
 2. **method** : 被拦截的方法（需要增强的方法）
 3. **args** : 方法入参
 4. **proxy** : 用于调用原始方法
@@ -330,7 +330,7 @@ public class DebugMethodInterceptor implements MethodInterceptor {
 
 
     /**
-     * @param o           代理对象（增强的对象）
+     * @param o           被代理的对象（需要增强的对象）
      * @param method      被拦截的方法（需要增强的方法）
      * @param args        方法入参
      * @param methodProxy 用于调用原始方法
