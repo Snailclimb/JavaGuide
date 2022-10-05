@@ -123,6 +123,8 @@ public static <T> T requireNonNull(T obj) {
 这就导致 `Iterator` 莫名其妙地发现自己有元素被 `remove/add` ，然后，它就会抛出一个 `ConcurrentModificationException` 来提示用户发生了并发修改异常。这就是单线程状态下产生的 **fail-fast 机制**。
 
 > **fail-fast 机制** ：多个线程对 fail-fast 集合进行修改的时候，可能会抛出`ConcurrentModificationException`。 即使是单线程下也有可能会出现这种情况，上面已经提到过。
+>
+> 相关阅读：[什么是fail-fast](https://www.cnblogs.com/54chensongxia/p/12470446.html) 。
 
 Java8 开始，可以使用 `Collection#removeIf()`方法删除满足特定条件的元素,如
 
