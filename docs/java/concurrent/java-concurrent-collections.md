@@ -63,7 +63,7 @@ implements List<E>, RandomAccess, Cloneable, Serializable
 
 ```
 
-#### 3.3.2 CopyOnWriteArrayList 写入操作的实现
+#### CopyOnWriteArrayList 写入操作的实现
 
 `CopyOnWriteArrayList` 写入操作 `add()`方法在添加集合的时候加了锁，保证了同步，避免了多线程写的时候会 copy 出多个副本出来。
 
