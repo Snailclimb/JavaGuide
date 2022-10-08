@@ -766,8 +766,8 @@ LocalTime.class //时间 format: HH:mm:ss
 
 ```java
 public void oldFormat(){
-		Date now = new Date();
-    //format yyyy-MM-dd HH:mm:ss
+    Date now = new Date();
+    //format yyyy-MM-dd
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     String date  = sdf.format(now);
     System.out.println(String.format("date format : %s", date));
