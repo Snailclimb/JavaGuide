@@ -481,6 +481,14 @@ MySQL 提供了两个方法来处理 ip 地址
 
 插入数据前，先用 `INET_ATON()` 把 ip 地址转为整型，显示数据时，使用 `INET_NTOA()` 把整型的 ip 地址转为地址显示即可。
 
+### 有哪些常见的 SQL 优化手段？
+
+[《Java 面试指北》](https://www.yuque.com/docs/share/f37fc804-bfe6-4b0d-b373-9c462188fec7) 的「技术面试题篇」有一篇文章详细介绍了常见的 SQL 优化手段，非常全面，清晰易懂！
+
+![常见的 SQL 优化手段](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javamianshizhibei/javamianshizhibei-sql-optimization.png)
+
+
+
 ## 参考
 
 - 《高性能 MySQL》第 7 章 MySQL 高级特性

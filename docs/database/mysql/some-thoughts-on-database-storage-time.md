@@ -157,4 +157,4 @@ MySQL 中时间到底怎么存储才好？Datetime?Timestamp? 数值保存的时
 
 每种方式都有各自的优势，根据实际场景才是王道。下面再对这三种方式做一个简单的对比，以供大家实际开发中选择正确的存放时间的数据类型：
 
-<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/总结-常用日期存储方式.jpg" style="zoom:50%;" />
+![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/总结-常用日期存储方式.jpg)
