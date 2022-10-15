@@ -47,7 +47,8 @@ icon: project
 ## 快速开发脚手架
 
 - **[RuoYi](https://gitee.com/y_project/RuoYi)** ：RuoYi 一款基于基于 SpringBoot 的权限管理系统 易读易懂、界面简洁美观，直接运行即可用 。
-- **[ruoyi-vue-pro](https://github.com/YunaiV/ruoyi-vue-pro)** ： 基于 SpringBoot，Spring Security，JWT，Vue & Element 的前后端分离权限管理系统。
+- **[AgileBoot-Back-End](https://github.com/valarchie/AgileBoot-Back-End)** ：基于Ruoyi做了大量重构优化的基础快速开发框架。采用Springboot + Vue 3 + Mybatis Plus + 更面向对象的业务建模 + 面向生产的项目。（非玩具项目）
+- **[RuoYi-Vue-Pro](https://github.com/YunaiV/ruoyi-vue-pro)** ： 基于 SpringBoot，Spring Security，JWT，Vue & Element 的前后端分离权限管理系统。
 - **[Guns](https://gitee.com/stylefeng/guns)** ： 我在上大学的时候就了解和接触过了这个项目，当时我还是一个 Spring 入门不太久的小菜鸟。一晃，不经意间已经过去快 3 年了。Guns 功能齐全 ，采用主流框架 Spring Boot2.0+开发，并且支持 Spring Cloud Alibaba 微服务）。 适合企业后台管理网站的快速开发场景，不论是对于单体和微服务都有支持。
 - **[JHipster](https://github.com/jhipster/generator-jhipster)** :开源应用程序平台，可在几秒钟内创建 Spring Boot + Angular / React 项目！
 - **[JeecgBoot](https://github.com/zhangdaiscott/jeecg-boot)**：一款基于代码生成器的 J2EE 低代码快速开发平台，支持生成前后端分离架构的项目。
