@@ -80,8 +80,8 @@ Java 集合框架如下图所示：
 
 ### ArrayList 和 Vector 的区别?
 
-- `ArrayList` 是 `List` 的主要实现类，底层使用 `Object[ ]`存储，适用于频繁的查找工作，线程不安全 ；
-- `Vector` 是 `List` 的古老实现类，底层使用`Object[ ]` 存储，线程安全的。
+- `ArrayList` 是 `List` 的主要实现类，底层使用 `Object[]`存储，适用于频繁的查找工作，线程不安全 ；
+- `Vector` 是 `List` 的古老实现类，底层使用`Object[]` 存储，线程安全的。
 
 ### ArrayList 与 LinkedList 区别?
 
