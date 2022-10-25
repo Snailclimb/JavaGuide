@@ -20,7 +20,7 @@ JMM（Java 内存模型）相关的问题比较多，也比较重要，于是我
 
 ### 如何保证变量的可见性？
 
-在 Java 中，`volatile` 关键字可以保证变量的可见性，如果我们将变量声明为 **`volatile`** ，这就指示 JVM，这个变量是共享且不稳定的，每次使用它都到主存中进行读取。
+在 Java 中，`volatile` 关键字底层是基于总线嗅探机制和MESI缓存一致性协议保证变量的可见性，如果我们将变量声明为 **volatile** ，这就指示CPU，这个变量是共享且不稳定的，每次使用它时，处理器都会判断这个变量在缓存行中的状态是否因为其他处理器的修改变成无效(Invalid)，若无效则重新从系统内存中把数据读取到处理器缓存。
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/concurrent/jmm.png)
 
