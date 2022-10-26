@@ -1,6 +1,7 @@
 /node_modules
 /package-lock.json
 *.drawio
+*.drawio.bkp
 .DS_Store
 # VS Code Config file
 .vscode/
