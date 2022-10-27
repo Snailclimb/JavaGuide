@@ -325,14 +325,14 @@ pool-1-thread-2 End. Time = Sun Apr 12 11:14:47 CST 2020
         int c = ctl.get();
 
         //  下面会涉及到 3 步 操作
-        // 1.首先判断当前线程池中之行的任务数量是否小于 corePoolSize
+        // 1.首先判断当前线程池中执行的任务数量是否小于 corePoolSize
         // 如果小于的话，通过addWorker(command, true)新建一个线程，并将任务(command)添加到该线程中；然后，启动该线程从而执行任务。
         if (workerCountOf(c) < corePoolSize) {
             if (addWorker(command, true))
                 return;
             c = ctl.get();
         }
-        // 2.如果当前之行的任务数量大于等于 corePoolSize 的时候就会走到这里
+        // 2.如果当前执行的任务数量大于等于 corePoolSize 的时候就会走到这里
         // 通过 isRunning 方法判断线程池状态，线程池处于 RUNNING 状态并且队列可以加入任务，该任务才会被加入进去
         if (isRunning(c) && workQueue.offer(command)) {
             int recheck = ctl.get();
@@ -394,7 +394,7 @@ pool-1-thread-2 End. Time = Sun Apr 12 11:14:47 CST 2020
             for (;;) {
                //获取线程池中工作的线程的数量
                 int wc = workerCountOf(c);
-                // core参数为true的话表明队列也满了，线程池大小变为 maximumPoolSize
+                // core参数为false的话表明队列也满了，线程池大小变为 maximumPoolSize
                 if (wc >= CAPACITY ||
                     wc >= (core ? corePoolSize : maximumPoolSize))
                     return false;
