@@ -16,7 +16,7 @@ head:
 
 ## 读写分离
 
-### 何为读写分离？
+### 什么是读写分离？
 
 见名思意，根据读写分离的名字，我们就可以知道：**读写分离主要是为了将对数据库的读写操作分散到不同的数据库节点上。** 这样的话，就能够小幅提升写性能，大幅提升读性能。
 
@@ -80,7 +80,7 @@ hintManager.setMasterRouteOnly();
 
 你可以在 shardingsphere 官方找到 [sharding-jdbc 关于读写分离的操作](https://shardingsphere.apache.org/document/legacy/3.x/document/cn/manual/sharding-jdbc/usage/read-write-splitting/)。
 
-### 主从复制原理了解么？
+### 主从复制原理是什么？
 
 MySQL binlog(binary log 即二进制日志文件) 主要记录了 MySQL 数据库中数据的所有变化(数据库执行的所有 DDL 和 DML 语句)。因此，我们根据主库的 MySQL binlog 日志就能够将主库的数据同步到从库中。
 
@@ -109,6 +109,8 @@ MySQL binlog(binary log 即二进制日志文件) 主要记录了 MySQL 数据�
 
 **MySQL 主从复制是依赖于 binlog 。另外，常见的一些同步 MySQL 数据到其他数据源的工具（比如 canal）的底层一般也是依赖 binlog 。**
 
+
+
 ## 分库分表
 
 读写分离主要应对的是数据库读并发，没有解决数据库存储问题。试想一下：**如果 MySQL 一张表的数据量过大怎么办?**
@@ -117,7 +119,7 @@ MySQL binlog(binary log 即二进制日志文件) 主要记录了 MySQL 数据�
 
 答案之一就是 **分库分表**。
 
-### 何为分库？
+### 什么是分库？
 
 **分库** 就是将数据库中的数据分散到不同的数据库上。
 
@@ -126,7 +128,7 @@ MySQL binlog(binary log 即二进制日志文件) 主要记录了 MySQL 数据�
 - 你将数据库中的用户表和用户订单表分别放在两个不同的数据库。
 - 由于用户表数据量太大，你对用户表进行了水平切分，然后将切分后的 2 张用户表分别放在两个不同的数据库。
 
-### 何为分表？
+### 什么是分表？
 
 **分表** 就是对单表的数据进行拆分，可以是垂直拆分，也可以是水平拆分。
 
