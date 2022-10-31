@@ -142,8 +142,8 @@ public int compare(Integer o1, Integer o2) {
 //Lambda
 Collections.sort(strings, (Integer o1, Integer o2) -> o1 - o2);
 //分解开
-Comparator<Integer> comperator = (Integer o1, Integer o2) -> o1 - o2;
-Collections.sort(strings, comperator);
+Comparator<Integer> comparator = (Integer o1, Integer o2) -> o1 - o2;
+Collections.sort(strings, comparator);
 ```
 
 **3.`Listener` 接口**
