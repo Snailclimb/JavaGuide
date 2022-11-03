@@ -7,8 +7,8 @@ icon: "book"
 ## Java
 
 - **[JavaGuide](https://github.com/Snailclimb/JavaGuide "JavaGuide")** :【Java 学习+面试指南】 一份涵盖大部分 Java 程序员所需要掌握的核心知识。
-- **[interview-guide](https://github.com/csguide-dabai/interview-guide)** ：总结了后端面试八股文中的重点，希望能帮助各位准备互联网开发岗校招面试的同学。
 - **[toBeBetterJavaer](https://github.com/itwanger/toBeBetterJavaer)** ：一份通俗易懂、风趣幽默的 Java 学习指南，内容涵盖 Java 基础、Java 集合框架、Java 并发编程、JVM、Java 企业级开发（Git、SSM、Spring Boot）等知识点。
+- **[interview-guide](https://github.com/csguide-dabai/interview-guide)** ：总结了后端面试八股文中的重点，希望能帮助各位准备互联网开发岗校招面试的同学。
 - **[advanced-java](https://github.com/doocs/advanced-java "advanced-java")** :互联网 Java 工程师进阶知识完全扫盲：涵盖高并发、分布式、高可用、微服务、海量数据处理等领域知识。
 - **[toBeTopJavaer](https://github.com/hollischuang/toBeTopJavaer "toBeTopJavaer")** ：Java 工程师成神之路 。
 - **[technology-talk](https://github.com/aalansehaiyang/technology-talk)** : 汇总 java 生态圈常用技术框架、开源中间件，系统架构、数据库、大公司架构案例、常用三方类库、项目管理、线上问题排查、个人成长、思考等知识
