@@ -342,6 +342,30 @@ Cache Aside Pattern 中遇到写请求是这样的：更新 DB，然后直接删
 
 相关文章推荐：[缓存和数据库一致性问题，看这篇就够了 - 水滴与银弹](https://mp.weixin.qq.com/s?__biz=MzIyOTYxNDI5OA==&mid=2247487312&idx=1&sn=fa19566f5729d6598155b5c676eee62d&chksm=e8beb8e5dfc931f3e35655da9da0b61c79f2843101c130cf38996446975014f958a6481aacf1&scene=178&cur_album_id=1699766580538032128#rd)
 
+## Redis 集群
+
+**Redis Sentinel** ：
+
+1. 什么是 Sentinel？ 有什么用？
+2. Sentinel 如何检测节点是否下线？主观下线与客观下线的区别?
+3. Sentinel 是如何实现故障转移的？
+4. 为什么建议部署多个 sentinel 节点（哨兵集群）？
+5. Sentinel 如何选择出新的 master（选举机制）?
+6. 如何从 Sentinel 集群中选择出 Leader ？
+7. Sentinel 可以防止脑裂吗？
+
+**Redis Cluster** ：
+
+1. 为什么需要 Redis Cluster？解决了什么问题？有什么优势？
+2. Redis Cluster 是如何分片的？
+3. 为什么 Redis Cluster 的哈希槽是 16384 个?
+4. 如何确定给定 key 的应该分布到哪个哈希槽中？
+5. Redis Cluster 支持重新分配哈希槽吗？
+6. Redis Cluster 扩容缩容期间可以提供服务吗？
+7. Redis Cluster 中的节点是怎么进行通信的？
+
+**参考答案** ：[Redis 集群详解（付费）](redis-cluster.md)。
+
 ## 参考
 
 - 《Redis 开发与运维》

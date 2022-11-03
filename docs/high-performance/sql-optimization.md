@@ -1,16 +1,16 @@
 ---
-title: 负载均衡详解（付费）
+title: 常见 SQL 优化手段总结（付费）
 category: 高性能
 head:
   - - meta
     - name: keywords
-      content: 客户端负载均衡,服务负载均衡,Nginx,负载均衡算法,七层负载均衡,DNS解析
+      content: 分页优化,索引,Show Profile,慢 SQL
   - - meta
     - name: description
-      content: 负载均衡指的是将用户请求分摊到不同的服务器上处理，以提高系统整体的并发处理能力。负载均衡可以简单分为服务端负载均衡和客户端负载均衡 这两种。服务端负载均衡涉及到的知识点更多，工作中遇到的也比较多，因为，我会花更多时间来介绍。
+      content:  SQL 优化是一个大家都比较关注的热门话题，无论你在面试，还是工作中，都很有可能会遇到。如果某天你负责的某个线上接口，出现了性能问题，需要做优化。那么你首先想到的很有可能是优化 SQL 优化，因为它的改造成本相对于代码来说也要小得多。
 ---
 
-**负载均衡** 相关的面试题为我的[知识星球](https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc)（点击链接即可查看详细介绍以及加入方法）专属内容，已经整理到了[《Java 面试指北》](https://www.yuque.com/docs/share/f37fc804-bfe6-4b0d-b373-9c462188fec7)（点击链接即可查看详细介绍以及获取方法）中。
+**常见 SQL 优化手段总结** 为我的[知识星球](https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc)（点击链接即可查看详细介绍以及加入方法）专属内容，已经整理到了[《Java 面试指北》](https://www.yuque.com/docs/share/f37fc804-bfe6-4b0d-b373-9c462188fec7)（点击链接即可查看详细介绍以及获取方法）中。
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javamianshizhibei/sql-optimization.png)
 
@@ -36,6 +36,7 @@ head:
   </a>
 </div>
 
+
 我有自己的原则，不割韭菜，用心做内容，真心希望帮助到你！
 
 如果你感兴趣的话，不妨花 3 分钟左右看看星球的详细介绍： [JavaGuide 知识星球详细介绍](https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc)（文末有优惠券）。
@@ -45,3 +46,4 @@ head:
     <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/xingqiuyouhuijuanheyi.png" style="margin: 0 auto; " />
   </a>
 </div>
+

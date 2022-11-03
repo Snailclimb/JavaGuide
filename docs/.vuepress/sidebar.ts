@@ -25,6 +25,7 @@ export const sidebarConfig = defineSidebarConfig({
       collapsable: true,
       children: [
         "teach-you-how-to-prepare-for-the-interview-hand-in-hand",
+        "project-experience-guide",
         "interview-experience",
         "self-test-of-common-interview-questions",
       ],
@@ -401,15 +402,16 @@ export const sidebarConfig = defineSidebarConfig({
         "api-gateway",
         "distributed-id",
         "distributed-lock",
+        "distributed-transaction",
+        "distributed-configuration-center",
         {
-          text: "RPC",
+          text: "RPC（远程调用）详解",
           prefix: "rpc/",
           collapsable: true,
           children: ["rpc-intro", "dubbo"],
         },
-        "distributed-transaction",
         {
-          text: "分布式协调",
+          text: "ZooKeeper 详解",
           prefix: "distributed-process-coordination/",
           collapsable: true,
           children: [
@@ -429,6 +431,7 @@ export const sidebarConfig = defineSidebarConfig({
         "read-and-write-separation-and-library-subtable",
         "load-balancing",
         "cdn",
+        "sql-optimization",
         {
           text: "消息队列",
           prefix: "message-queue/",

@@ -1,5 +1,5 @@
 ---
-title: 分布式 ID
+title: 分布式 ID 详解
 category: 分布式
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: 冗余
+title: 冗余设计详解
 category: 高可用
 ---
 
