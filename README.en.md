@@ -139,7 +139,6 @@ In addition，[GeeksforGeeks]( https://www.geeksforgeeks.org/fundamentals-of-alg
 
 1. [Database Basics Summary](docs/database/数据库基础知识.md)
 2. **[MySQL Knowledge Summary](docs/database/mysql/mysql知识点&面试题总结.md)** (Must see:+1:)
-4. [One Thousand Lines MySQL Study Notes](docs/database/mysql/a-thousand-lines-of-mysql-study-notes.md)
 5. [MySQL High Performance Optimization Specification Recommendations](docs/database/mysql/mysql-high-performance-optimization-specification-recommendations.md)
 
 **Important knowledge points:**

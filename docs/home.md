@@ -200,8 +200,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 **知识点/面试题总结：**
 
 - **[MySQL知识点总结](./database/mysql/mysql-questions-01.md)** (必看 :+1:)
-- [一千行 MySQL 学习笔记](./database/mysql/a-thousand-lines-of-mysql-study-notes.md)
-- [MySQL 高性能优化规范建议](./database/mysql/mysql-high-performance-optimization-specification-recommendations.md)
+- [MySQL 高性能优化规范建议总结](./database/mysql/mysql-high-performance-optimization-specification-recommendations.md)
 
 **重要知识点：**
 
@@ -390,7 +389,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 ### 超时&重试
 
-[超时&重试详解](./high-vailability/timeout-and-retry.md)
+[超时&重试详解](./high-availability/timeout-and-retry.md)
 
 ### 集群
 

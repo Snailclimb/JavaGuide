@@ -245,7 +245,6 @@ export const sidebarConfig = defineSidebarConfig({
           collapsable: true,
           children: [
             "mysql-questions-01",
-            "a-thousand-lines-of-mysql-study-notes",
             "mysql-high-performance-optimization-specification-recommendations",
             {
               text: "重要知识点",
