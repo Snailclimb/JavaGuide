@@ -243,7 +243,7 @@ private SmsService smsServiceImpl1;
 private SmsService smsService;
 ```
 
-我们还是建议通过 `@Qualifier` 注解来显示指定名称而不是依赖变量的名称。
+我们还是建议通过 `@Qualifier` 注解来显式指定名称而不是依赖变量的名称。
 
 `@Resource`属于 JDK 提供的注解，默认注入方式为 `byName`。如果无法通过名称匹配到对应的 Bean 的话，注入方式会变为`byType`。
 
@@ -274,7 +274,7 @@ private SmsService smsService;
 
 - `@Autowired` 是 Spring 提供的注解，`@Resource` 是 JDK 提供的注解。
 - `Autowired` 默认的注入方式为`byType`（根据类型进行匹配），`@Resource`默认注入方式为 `byName`（根据名称进行匹配）。
-- 当一个接口存在多个实现类的情况下，`@Autowired` 和`@Resource`都需要通过名称才能正确匹配到对应的 Bean。`Autowired` 可以通过 `@Qualifier` 注解来显示指定名称，`@Resource`可以通过 `name` 属性来显示指定名称。
+- 当一个接口存在多个实现类的情况下，`@Autowired` 和`@Resource`都需要通过名称才能正确匹配到对应的 Bean。`Autowired` 可以通过 `@Qualifier` 注解来显式指定名称，`@Resource`可以通过 `name` 属性来显式指定名称。
 
 ### Bean 的作用域有哪些?
 
