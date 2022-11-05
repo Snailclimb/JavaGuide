@@ -1,5 +1,5 @@
 ---
-title: 字符集
+title: 字符集详解
 category: 数据库
 tag:
   - 数据库基础
