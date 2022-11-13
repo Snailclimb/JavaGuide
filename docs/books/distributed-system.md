@@ -36,6 +36,14 @@ icon: "distributed-network"
 
 另外，如果你在阅读这本书的时候感觉难度比较大，很多地方读不懂的话，我这里推荐一下《深入理解分布式系统》作者写的[《DDIA 逐章精读》小册](https://ddia.qtmuniao.com)。
 
+## 《深入理解分布式事务》
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/In-depth-understanding-of-distributed-transactions-xiaoyu.png)
+
+**[《深入理解分布式事务》](https://book.douban.com/subject/35626925/)**  这本书是的其中一位作者是 Apache ShenYu（incubating）网关创始人、Hmily、RainCat、Myth等分布式事务框架的创始人。
+
+学习分布式事务的时候，可以参考一下这本书。虽有一些小错误以及逻辑不通顺的地方，但对于各种分布式事务解决方案的介绍，总体来说还是不错的。
+
 ## 《从 Paxos 到 Zookeeper》
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/image-20211216161350118.png)

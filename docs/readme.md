@@ -17,6 +17,11 @@ footer: |-
 ---
 
 <div align="center">
+     <p>
+        <a href="https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc">
+            <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/xingqiu.png" style="margin: 0 auto; width: 850px;" />
+        </a>
+    </p>
     <p>
         <a href="https://javaguide.cn/"><img src="https://img.shields.io/badge/阅读-read-brightgreen.svg" alt="阅读" /></a>
         <img src="https://img.shields.io/github/stars/Snailclimb/JavaGuide" alt="stars" />
