@@ -1,6 +1,4 @@
 import { hopeTheme } from "vuepress-theme-hope";
-import { searchPlugin } from "@vuepress/plugin-search";
-
 import { navbarConfig } from "./navbar";
 import { sidebarConfig } from "./sidebar";
 
@@ -25,7 +23,6 @@ export const themeConfig = hopeTheme({
     "Word",
     "ReadingTime",
   ],
-
   blog: {
     intro: "/about-the-author/",
     sidebarDisplay: "mobile",
