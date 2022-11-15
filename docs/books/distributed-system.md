@@ -60,7 +60,7 @@ icon: "distributed-network"
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/f5bec14d3b404ac4b041d723153658b5.png)
 
-**[《凤凰架构》](https://book.douban.com/subject/35492898/)**这本书是周志明老师多年架构和研发经验的总结，内容非常干货，深度与广度并存，理论结合实践！
+**[《凤凰架构》](https://book.douban.com/subject/35492898/)** 这本书是周志明老师多年架构和研发经验的总结，内容非常干货，深度与广度并存，理论结合实践！
 
 正如书名的副标题“构建可靠的大型分布式系统”所说的那样，这本书的主要内容就是讲：“如何构建一套可靠的分布式大型软件系统” ，涵盖了下面这些方面的内容：
 

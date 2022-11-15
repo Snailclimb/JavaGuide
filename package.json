@@ -13,10 +13,11 @@
     "webpack-clean-serve": "vuepress-webpack dev docs --clean-cache",
     "webpack-serve": "vuepress-webpack dev docs"
   },
-  "devDependencies": {
-    "@vuepress/plugin-search": "^2.0.0-beta.38",
-    "vuepress-theme-hope": "^2.0.0-beta.36",
-    "vuepress-vite": "2.0.0-beta.38",
-    "vuepress-webpack": "2.0.0-beta.38"
+  "dependencies": {
+    "vuepress": "^2.0.0-beta.53",
+    "vuepress-theme-hope": "^2.0.0-beta.122",
+    "vuepress-vite": "2.0.0-beta.53",
+    "vuepress-webpack": "2.0.0-beta.53",
+    "@vuepress/plugin-search": "^2.0.0-beta.53"
   }
 }
