@@ -9,7 +9,7 @@ head:
       content: 多线程,死锁,synchronized,ReentrantLock,volatile,ThreadLocal,线程池,CAS,AQS
   - - meta
     - name: description
-      content: Java并发常见知识点和面试题总结（含详细解答），希望对你有帮助！
+      content: Java并发常见知识点和面试题总结（含详细解答）。
 ---
 
 ## JMM(Java Memory Model)
@@ -174,17 +174,17 @@ public void increase() {
 
 ## synchronized 关键字
 
-### 说一说自己对于 synchronized 关键字的了解
+### synchronized 是什么？有什么用？
 
-`synchronized` 翻译成中文是同步的的意思，主要解决的是多个线程之间访问资源的同步性，可以保证被它修饰的方法或者代码块在任意时刻只能有一个线程执行。
+`synchronized` 是 Java 中的一个关键字，翻译成中文是同步的意思，主要解决的是多个线程之间访问资源的同步性，可以保证被它修饰的方法或者代码块在任意时刻只能有一个线程执行。
 
-在 Java 早期版本中，`synchronized` 属于 **重量级锁**，效率低下。 因为监视器锁（monitor）是依赖于底层的操作系统的 `Mutex Lock` 来实现的，Java 的线程是映射到操作系统的原生线程之上的。如果要挂起或者唤醒一个线程，都需要操作系统帮忙完成，而操作系统实现线程之间的切换时需要从用户态转换到内核态，这个状态之间的转换需要相对比较长的时间，时间成本相对较高。
+在 Java 早期版本中，`synchronized` 属于 **重量级锁**，效率低下。这是因为监视器锁（monitor）是依赖于底层的操作系统的 `Mutex Lock` 来实现的，Java 的线程是映射到操作系统的原生线程之上的。如果要挂起或者唤醒一个线程，都需要操作系统帮忙完成，而操作系统实现线程之间的切换时需要从用户态转换到内核态，这个状态之间的转换需要相对比较长的时间，时间成本相对较高。
 
-不过，在 Java 6 之后，Java 官方对从 JVM 层面对 `synchronized` 较大优化，所以现在的 `synchronized` 锁效率也优化得很不错了。JDK1.6 对锁的实现引入了大量的优化，如自旋锁、适应性自旋锁、锁消除、锁粗化、偏向锁、轻量级锁等技术来减少锁操作的开销。所以，你会发现目前的话，不论是各种开源框架还是 JDK 源码都大量使用了 `synchronized` 关键字。
+不过，在 Java 6 之后， `synchronized` 引入了大量的优化如自旋锁、适应性自旋锁、锁消除、锁粗化、偏向锁、轻量级锁等技术来减少锁操作的开销，这些优化让  `synchronized` 锁的效率提升了很多。因此， `synchronized` 还是可以在实际项目中使用的，像 JDK 源码、很多开源框架都大量使用了 `synchronized` 。
 
-### 如何使用 synchronized 关键字？
+### 如何使用 synchronized？
 
-synchronized 关键字最主要的三种使用方式：
+`synchronized` 关键字的使用方式主要有下面 3 种：
 
 1. 修饰实例方法
 2. 修饰静态方法
@@ -233,15 +233,15 @@ synchronized(this) {
 - `synchronized` 关键字加到实例方法上是给对象实例上锁；
 - 尽量不要使用 `synchronized(String a)` 因为 JVM 中，字符串常量池具有缓存功能。
 
-### 构造方法可以使用 synchronized 关键字修饰么？
+### 构造方法可以用 synchronized 修饰么？
 
 先说结论：**构造方法不能使用 synchronized 关键字修饰。**
 
 构造方法本身就属于线程安全的，不存在同步的构造方法一说。
 
-### 讲一下 synchronized 关键字的底层原理
+### synchronized 底层原理了解吗？
 
-synchronized 关键字底层原理属于 JVM 层面。
+synchronized 关键字底层原理属于 JVM 层面的东西。
 
 #### synchronized 同步语句块的情况
 
@@ -307,15 +307,15 @@ public class SynchronizedDemo2 {
 
 🧗🏻 进阶一下：学有余力的小伙伴可以抽时间详细研究一下对象监视器 `monitor`。
 
-### JDK1.6 之后的 synchronized 关键字底层做了哪些优化？
+### JDK1.6 之后的 synchronized 底层做了哪些优化？
 
 JDK1.6 对锁的实现引入了大量的优化，如偏向锁、轻量级锁、自旋锁、适应性自旋锁、锁消除、锁粗化等技术来减少锁操作的开销。
 
 锁主要存在四种状态，依次是：无锁状态、偏向锁状态、轻量级锁状态、重量级锁状态，他们会随着竞争的激烈而逐渐升级。注意锁可以升级不可降级，这种策略是为了提高获得锁和释放锁的效率。
 
-关于这几种优化的详细信息可以查看下面这篇文章：[Java6 及以上版本对 synchronized 的优化](https://www.cnblogs.com/wuqinglong/p/9945618.html)
+关于这几种优化的详细信息可以查看下面这篇文章：[Java6 及以上版本对 synchronized 的优化](https://www.cnblogs.com/wuqinglong/p/9945618.html) 。
 
-### synchronized 和 volatile 的区别？
+### synchronized 和 volatile 有什么区别？
 
 `synchronized` 关键字和 `volatile` 关键字是两个互补的存在，而不是对立的存在！
 
@@ -323,15 +323,19 @@ JDK1.6 对锁的实现引入了大量的优化，如偏向锁、轻量级锁、�
 - `volatile` 关键字能保证数据的可见性，但不能保证数据的原子性。`synchronized` 关键字两者都能保证。
 - `volatile`关键字主要用于解决变量在多个线程之间的可见性，而 `synchronized` 关键字解决的是多个线程之间访问资源的同步性。
 
-### synchronized 和 ReentrantLock 的区别
+### synchronized 和 ReentrantLock 有什么区别？
 
 #### 两者都是可重入锁
 
 **“可重入锁”** 指的是自己可以再次获取自己的内部锁。比如一个线程获得了某个对象的锁，此时这个对象锁还没有释放，当其再次想要获取这个对象的锁的时候还是可以获取的，如果是不可重入锁的话，就会造成死锁。同一个线程每次获取锁，锁的计数器都自增 1，所以要等到锁的计数器下降为 0 时才能释放锁。
 
+**JDK 提供的所有现成的 `Lock` 实现类，包括 `synchronized` 关键字锁都是可重入的。**
+
 #### synchronized 依赖于 JVM 而 ReentrantLock 依赖于 API
 
-`synchronized` 是依赖于 JVM 实现的，前面我们也讲到了 虚拟机团队在 JDK1.6 为 `synchronized` 关键字进行了很多优化，但是这些优化都是在虚拟机层面实现的，并没有直接暴露给我们。`ReentrantLock` 是 JDK 层面实现的（也就是 API 层面，需要 lock() 和 unlock() 方法配合 try/finally 语句块来完成），所以我们可以通过查看它的源代码，来看它是如何实现的。
+`synchronized` 是依赖于 JVM 实现的，前面我们也讲到了 虚拟机团队在 JDK1.6 为 `synchronized` 关键字进行了很多优化，但是这些优化都是在虚拟机层面实现的，并没有直接暴露给我们。
+
+`ReentrantLock` 是 JDK 层面实现的（也就是 API 层面，需要 lock() 和 unlock() 方法配合 try/finally 语句块来完成），所以我们可以通过查看它的源代码，来看它是如何实现的。
 
 #### ReentrantLock 比 synchronized 增加了一些高级功能
 
@@ -341,9 +345,16 @@ JDK1.6 对锁的实现引入了大量的优化，如偏向锁、轻量级锁、�
 - **可实现公平锁** : `ReentrantLock`可以指定是公平锁还是非公平锁。而`synchronized`只能是非公平锁。所谓的公平锁就是先等待的线程先获得锁。`ReentrantLock`默认情况是非公平的，可以通过 `ReentrantLock`类的`ReentrantLock(boolean fair)`构造方法来制定是否是公平的。
 - **可实现选择性通知（锁可以绑定多个条件）**: `synchronized`关键字与`wait()`和`notify()`/`notifyAll()`方法相结合可以实现等待/通知机制。`ReentrantLock`类当然也可以实现，但是需要借助于`Condition`接口与`newCondition()`方法。
 
-> `Condition`是 JDK1.5 之后才有的，它具有很好的灵活性，比如可以实现多路通知功能也就是在一个`Lock`对象中可以创建多个`Condition`实例（即对象监视器），**线程对象可以注册在指定的`Condition`中，从而可以有选择性的进行线程通知，在调度线程上更加灵活。 在使用`notify()/notifyAll()`方法进行通知时，被通知的线程是由 JVM 选择的，用`ReentrantLock`类结合`Condition`实例可以实现“选择性通知”** ，这个功能非常重要，而且是 Condition 接口默认提供的。而`synchronized`关键字就相当于整个 Lock 对象中只有一个`Condition`实例，所有的线程都注册在它一个身上。如果执行`notifyAll()`方法的话就会通知所有处于等待状态的线程这样会造成很大的效率问题，而`Condition`实例的`signalAll()`方法 只会唤醒注册在该`Condition`实例中的所有等待线程。
+如果你想使用上述功能，那么选择 `ReentrantLock` 是一个不错的选择。
 
-**如果你想使用上述功能，那么选择 ReentrantLock 是一个不错的选择。性能已不是选择标准**
+关于公平锁和非公平锁的补充：
+
+> - **公平锁** : 锁被释放之后，先申请的线程/进程先得到锁。
+> - **非公平锁** ：锁被释放之后，后申请的线程/进程可能会先获取到锁，是随机或者按照其他优先级排序的。
+
+关于 `Condition`接口的补充：
+
+> `Condition`是 JDK1.5 之后才有的，它具有很好的灵活性，比如可以实现多路通知功能也就是在一个`Lock`对象中可以创建多个`Condition`实例（即对象监视器），**线程对象可以注册在指定的`Condition`中，从而可以有选择性的进行线程通知，在调度线程上更加灵活。 在使用`notify()/notifyAll()`方法进行通知时，被通知的线程是由 JVM 选择的，用`ReentrantLock`类结合`Condition`实例可以实现“选择性通知”** ，这个功能非常重要，而且是 `Condition` 接口默认提供的。而`synchronized`关键字就相当于整个 `Lock` 对象中只有一个`Condition`实例，所有的线程都注册在它一个身上。如果执行`notifyAll()`方法的话就会通知所有处于等待状态的线程，这样会造成很大的效率问题。而`Condition`实例的`signalAll()`方法，只会唤醒注册在该`Condition`实例中的所有等待线程。
 
 ## ThreadLocal
 
@@ -457,7 +468,7 @@ public class Thread implements Runnable {
 
 ```java
 public void set(T value) {
-    //获取当前请求的线程    
+    //获取当前请求的线程
     Thread t = Thread.currentThread();
     //取出 Thread 类内部的 threadLocals 变量(哈希表结构)
     ThreadLocalMap map = getMap(t);
