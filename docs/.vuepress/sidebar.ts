@@ -162,7 +162,6 @@ export const sidebarConfig = sidebar({
           text: "网络",
           prefix: "network/",
           icon: "network",
-          collapsible: true,
           children: [
             "other-network-questions",
             "computer-network-xiexiren-summary",
@@ -187,7 +186,6 @@ export const sidebarConfig = sidebar({
           text: "操作系统",
           prefix: "operating-system/",
           icon: "caozuoxitong",
-          collapsible: true,
           children: [
             "operating-system-basic-questions-01",
             "linux-intro",
@@ -231,14 +229,12 @@ export const sidebarConfig = sidebar({
         {
           text: "基础",
           icon: "basic",
-          collapsible: true,
           children: ["basis", "character-set"],
         },
         {
           text: "MySQL",
           prefix: "mysql/",
           icon: "mysql",
-          collapsible: true,
           children: [
             "mysql-questions-01",
             "mysql-high-performance-optimization-specification-recommendations",
@@ -262,7 +258,6 @@ export const sidebarConfig = sidebar({
           text: "Redis",
           prefix: "redis/",
           icon: "redis",
-          collapsible: true,
           children: [
             "cache-basics",
             "redis-questions-01",
@@ -387,8 +382,8 @@ export const sidebarConfig = sidebar({
       children: [
         {
           text: "理论&算法&协议",
+          icon: "suanfaku",
           prefix: "theorem&algorithm&protocol/",
-          collapsible: true,
           children: ["cap&base-theorem", "paxos-algorithm", "raft-algorithm"],
         },
         "api-gateway",
@@ -399,13 +394,13 @@ export const sidebarConfig = sidebar({
         {
           text: "RPC（远程调用）详解",
           prefix: "rpc/",
-          collapsible: true,
+          icon: "network",
           children: ["rpc-intro", "dubbo"],
         },
         {
           text: "ZooKeeper 详解",
+          icon: "framework",
           prefix: "distributed-process-coordination/",
-          collapsible: true,
           children: [
             "zookeeper/zookeeper-intro",
             "zookeeper/zookeeper-plus",
