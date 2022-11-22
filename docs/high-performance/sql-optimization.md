@@ -1,6 +1,7 @@
 ---
 title: 常见 SQL 优化手段总结（付费）
 category: 高性能
+icon: "mysql"
 head:
   - - meta
     - name: keywords

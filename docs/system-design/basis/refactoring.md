@@ -22,15 +22,13 @@ category: 代码质量
 
 **常见的设计模式如下** ：
 
-![常见的设计模式](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/image-20220311160610999.png)
-
-
+![常见的设计模式](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/basis/common-design-patterns.png)
 
 更全面的设计模式总结，可以看 **[java-design-patterns](https://github.com/iluwatar/java-design-patterns)** 这个开源项目。
 
 **常见的软件设计原则如下** ：
 
-![常见的软件设计原](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/programming-principles%20.png)
+![常见的软件设计原则](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/basis/programming-principles%20.png)
 
 更全面的设计原则总结，可以看 **[java-design-patterns](https://github.com/iluwatar/java-design-patterns)** 和 **[hacker-laws-zh](https://github.com/nusr/hacker-laws-zh)** 这两个开源项目。
 
@@ -136,3 +134,9 @@ Code Review 可以非常有效提高代码的整体质量，它会帮助我们�
 
 - [重构实战练习](https://linesh.gitbook.io/refactoring/) ：通过几个小案例一步一步带你学习重构！
 - [设计模式+重构学习网站](https://refactoringguru.cn/) ：免费在线学习代码重构、 设计模式、 SOLID 原则 （单一职责、 开闭原则、 里氏替换、 接口隔离以及依赖反转） 。
+- [IDEA 官方文档的代码重构教程](https://www.jetbrains.com/help/idea/refactoring-source-code.html#popular-refactorings) ： 教你如何使用 IDEA 进行重构。
+
+## 参考
+
+- [再读《重构》- ThoughtWorks 洞见 - 2020](https://insights.thoughtworks.cn/reread-refactoring/) ：详细介绍了重构的要点比如小步重构、捡垃圾式的重构，主要是重构概念相关的介绍。
+- [常见代码重构技巧 - VectorJin - 2021](https://juejin.cn/post/6954378167947624484) ：从软件设计原则、设计模式、代码分层、命名规范等角度介绍了如何进行重构，比较偏实战。

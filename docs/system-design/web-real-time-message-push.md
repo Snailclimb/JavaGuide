@@ -1,6 +1,7 @@
 ---
 title: Web 实时消息推送详解
 category: 系统设计
+icon: "messages"
 head:
   - - meta
     - name: keywords

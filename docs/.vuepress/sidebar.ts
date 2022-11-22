@@ -311,6 +311,7 @@ export const sidebarConfig = sidebar({
       children: [
         {
           text: "Spring&Spring Boot",
+          icon: "bxl-spring-boot",
           prefix: "spring/",
           children: [
             "spring-knowledge-and-questions-summary",
@@ -338,13 +339,10 @@ export const sidebarConfig = sidebar({
       prefix: "system-design/",
       collapsible: true,
       children: [
-        "system-design-questions",
-        "design-pattern",
         {
           text: "基础",
           prefix: "basis/",
           icon: "basic",
-          collapsible: true,
           children: [
             "RESTfulAPI",
             "naming",
@@ -359,7 +357,6 @@ export const sidebarConfig = sidebar({
           text: "安全",
           prefix: "security/",
           icon: "security-fill",
-          collapsible: true,
           children: [
             "basis-of-authority-certification",
             "jwt-intro",
@@ -370,6 +367,8 @@ export const sidebarConfig = sidebar({
             "data-desensitization",
           ],
         },
+        "system-design-questions",
+        "design-pattern",
         "schedule-task",
         "web-real-time-message-push",
       ],
