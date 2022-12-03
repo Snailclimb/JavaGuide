@@ -12,6 +12,8 @@ head:
       content: Redis特殊数据结构总结：HyperLogLogs（基数统计）、Bitmap （位存储）、Geospatial (地理位置)。
 ---
 
+除了 5 种基本的数据结构之外，Redis 还支持 3 种特殊的数据结构 ：Bitmap、HyperLogLog、GEO。
+
 ## Bitmap
 
 ### 介绍

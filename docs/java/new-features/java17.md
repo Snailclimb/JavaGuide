@@ -5,7 +5,17 @@ tag:
   - Java新特性
 ---
 
-Java 17 在 2021 年 9 月 14 日正式发布，Java 17 是一个长期支持（LTS）版本，这次更新共带来 14 个新特性：
+Java 17 在 2021 年 9 月 14 日正式发布，是一个长期支持（LTS）版本。
+
+下面这张图是 Oracle 官方给出的 Oracle JDK 支持的时间线。可以看得到，Java
+
+ 17 最多可以支持到 2029 年 9 月份。
+
+![](https://img-blog.csdnimg.cn/4c1611fad59449edbbd6e233690e9fa7.png)
+
+Java 17 将是继 Java 8 以来最重要的长期支持（LTS）版本，是 Java 社区八年努力的成果。Spring 6.x 和 Spring Boot 3.x 最低支持的就是 Java 17。
+
+这次更新共带来 14 个新特性：
 
 - [JEP 306:Restore Always-Strict Floating-Point Semantics（恢复始终严格的浮点语义）](https://openjdk.java.net/jeps/306)
 - [JEP 356:Enhanced Pseudo-Random Number Generators（增强的伪随机数生成器）](https://openjdk.java.net/jeps/356)

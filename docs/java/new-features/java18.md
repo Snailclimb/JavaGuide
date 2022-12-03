@@ -5,7 +5,9 @@ tag:
   - Java新特性
 ---
 
-Java 18 在 2022 年 3 月 22 日正式发布，非长期支持版本。Java 18 带来了 9 个新特性：
+Java 18 在 2022 年 3 月 22 日正式发布，非长期支持版本。
+
+Java 18 带来了 9 个新特性：
 
 - [JEP 400:UTF-8 by Default（默认字符集为 UTF-8）](https://openjdk.java.net/jeps/400)
 - [JEP 408:Simple Web Server（简易的 Web 服务器）](https://openjdk.java.net/jeps/408)
