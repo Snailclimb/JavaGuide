@@ -194,7 +194,7 @@ The content read from file:§å®¶å¥½
 
 - `read()` : 从输入流读取一个字符。
 - `read(char[] cbuf)` : 从输入流中读取一些字符，并将它们存储到字符数组 `cbuf`中，等价于 `read(cbuf, 0, cbuf.length)` 。
-- `read(char[] cbuf, int off, int len)` ：在`read(char[] cbuf)` 方法的基础上增加了 `off` 参数（偏移量）和 `len` 参数（要读取的最大字节数）。
+- `read(char[] cbuf, int off, int len)` ：在`read(char[] cbuf)` 方法的基础上增加了 `off` 参数（偏移量）和 `len` 参数（要读取的最大字符数）。
 - `skip(long n)` ：忽略输入流中的 n 个字符 ,返回实际忽略的字符数。
 - `close()` : 关闭输入流并释放相关的系统资源。
 
