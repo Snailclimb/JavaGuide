@@ -5,11 +5,9 @@ tag:
   - Java并发
 ---
 
+## 1 使用线程池的好处
 
-
-## 一 使用线程池的好处
-
-> **池化技术想必大家已经屡见不鲜了，线程池、数据库连接池、Http 连接池等等都是对这个思想的应用。池化技术的思想主要是为了减少每次获取资源的消耗，提高对资源的利用率。**
+池化技术想必大家已经屡见不鲜了，线程池、数据库连接池、HTTP 连接池等等都是对这个思想的应用。池化技术的思想主要是为了减少每次获取资源的消耗，提高对资源的利用率。
 
 **线程池**提供了一种限制和管理资源（包括执行一个任务）的方式。 每个**线程池**还维护一些基本统计信息，例如已完成任务的数量。
 
@@ -19,7 +17,7 @@ tag:
 - **提高响应速度**。当任务到达时，任务可以不需要等到线程创建就能立即执行。
 - **提高线程的可管理性**。线程是稀缺资源，如果无限制的创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可以进行统一的分配，调优和监控。
 
-## 二 Executor 框架
+## 2 Executor 框架
 
 ### 2.1 简介
 
@@ -76,7 +74,7 @@ public class ScheduledThreadPoolExecutor
 3. **如果执行 `ExecutorService.submit（…）`，`ExecutorService` 将返回一个实现`Future`接口的对象**（我们刚刚也提到过了执行 `execute()`方法和 `submit()`方法的区别，`submit()`会返回一个 `FutureTask 对象）。由于 FutureTask` 实现了 `Runnable`，我们也可以创建 `FutureTask`，然后直接交给 `ExecutorService` 执行。
 4. **最后，主线程可以执行 `FutureTask.get()`方法来等待任务执行完成。主线程也可以执行 `FutureTask.cancel（boolean mayInterruptIfRunning）`来取消此任务的执行。**
 
-## 三 (重要)ThreadPoolExecutor 类简单介绍
+## 3 (重要)ThreadPoolExecutor 类简单介绍
 
 **线程池实现类 `ThreadPoolExecutor` 是 `Executor` 框架最核心的类。**
 
@@ -173,7 +171,7 @@ public class ScheduledThreadPoolExecutor
 
 ![通过Executor 框架的工具类Executors来实现](./images/java-thread-pool-summary/Executors工具类.png)
 
-## 四 ThreadPoolExecutor 使用+原理分析
+## 4 ThreadPoolExecutor 使用+原理分析
 
 我们上面讲解了 `Executor`框架以及 `ThreadPoolExecutor` 类，下面让我们实战一下，来通过写一个 `ThreadPoolExecutor` 的小 Demo 来回顾上面的内容。
 
@@ -657,7 +655,7 @@ Wed Nov 13 13:40:43 CST 2019::pool-1-thread-4
 Wed Nov 13 13:40:43 CST 2019::pool-1-thread-5
 ```
 
-## 五 几种常见的线程池详解
+## 5 几种常见的线程池详解
 
 ### 5.1 FixedThreadPool
 
@@ -798,7 +796,7 @@ Wed Nov 13 13:40:43 CST 2019::pool-1-thread-5
 
 `CachedThreadPool`允许创建的线程数量为 `Integer.MAX_VALUE` ，可能会创建大量线程，从而导致 OOM。
 
-## 六 ScheduledThreadPoolExecutor 详解
+## 6 ScheduledThreadPoolExecutor 详解
 
 **`ScheduledThreadPoolExecutor` 主要用来在给定的延迟后运行任务，或者定期执行任务。** 这个在实际项目中基本不会被用到，也不推荐使用，大家只需要简单了解一下它的思想即可。
 
@@ -840,7 +838,7 @@ Wed Nov 13 13:40:43 CST 2019::pool-1-thread-5
 3. 线程 1 修改 `ScheduledFutureTask` 的 time 变量为下次将要被执行的时间；
 4. 线程 1 把这个修改 time 之后的 `ScheduledFutureTask` 放回 `DelayQueue` 中（`DelayQueue.add()`)。
 
-## 七 线程池大小确定
+## 7 线程池大小确定
 
 **线程池数量的确定一直是困扰着程序员的一个难题，大部分程序员在设定线程池大小的时候就是随心而定。**
 
@@ -869,14 +867,9 @@ Wed Nov 13 13:40:43 CST 2019::pool-1-thread-5
 
 CPU 密集型简单理解就是利用 CPU 计算能力的任务比如你在内存中对大量数据进行排序。但凡涉及到网络读取，文件读取这类都是 IO 密集型，这类任务的特点是 CPU 计算耗费时间相比于等待 IO 操作完成的时间来说很少，大部分时间都花在了等待 IO 操作完成上。
 
-## 八 参考
+## 8 参考
 
 - 《Java 并发编程的艺术》
 - [Java Scheduler ScheduledExecutorService ScheduledThreadPoolExecutor Example](https://www.journaldev.com/2340/java-scheduler-scheduledexecutorservice-scheduledthreadpoolexecutor-example "Java Scheduler ScheduledExecutorService ScheduledThreadPoolExecutor Example")
 - [java.util.concurrent.ScheduledThreadPoolExecutor Example](https://examples.javacodegeeks.com/core-java/util/concurrent/scheduledthreadpoolexecutor/java-util-concurrent-scheduledthreadpoolexecutor-example/ "java.util.concurrent.ScheduledThreadPoolExecutor Example")
 - [ThreadPoolExecutor – Java Thread Pool Example](https://www.journaldev.com/1069/threadpoolexecutor-java-thread-pool-example-executorservice "ThreadPoolExecutor – Java Thread Pool Example")
-
-## 九 其他推荐阅读
-
-- [Java 并发（三）线程池原理](https://www.cnblogs.com/warehouse/p/10720781.html "Java并发（三）线程池原理")
-- [如何优雅的使用和理解线程池](https://github.com/crossoverJie/JCSprout/blob/master/MD/ThreadPoolExecutor.md "如何优雅的使用和理解线程池")

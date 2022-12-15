@@ -114,7 +114,20 @@ protected boolean isHeldExclusively()
 
 #### 介绍
 
-`synchronized` 和 `ReentrantLock` 都是一次只允许一个线程访问某个资源，`Semaphore`(信号量)可以指定多个线程同时访问某个资源。
+`synchronized` 和 `ReentrantLock` 都是一次只允许一个线程访问某个资源，而`Semaphore`(信号量)可以用来控制同时访问特定资源的线程数量。
+
+Semaphore 的使用简单，我们这里假设有 N(N>5) 个线程来获取 `Semaphore` 中的共享资源，下面的代码表示同一时刻 N 个线程中只有 5 个线程能获取到共享资源，其他线程都会阻塞，只有获取到贡献资源的线程才能执行。等到有线程释放了共享资源，其他阻塞的线程才能获取到。
+
+```java 
+// 初始共享资源数量
+final Semaphore semaphore = new Semaphore(5);
+// 获取1个许可
+semaphore.acquire();
+// 释放1个许可
+semaphore.release();
+```
+
+当初始的资源个数为 1 的时候，`Semaphore`  退化为排他锁。
 
 `Semaphore` 有两种模式：。
 
@@ -199,7 +212,7 @@ public class SemaphoreExample1 {
   public static void main(String[] args) throws InterruptedException {
     // 创建一个具有固定线程数量的线程池对象（如果这里线程池的线程数量给太少的话你会发现执行的很慢）
     ExecutorService threadPool = Executors.newFixedThreadPool(300);
-    // 一次只能允许执行的线程数量。
+    // 初始许可证数量
     final Semaphore semaphore = new Semaphore(20);
 
     for (int i = 0; i < threadCount; i++) {
