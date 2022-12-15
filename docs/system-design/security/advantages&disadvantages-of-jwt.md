@@ -157,7 +157,8 @@ JWT 认证的话，我们应该如何解决续签问题呢？查阅了很多资�
 
 - 需要客户端来配合；
 - 用户注销的时候需要同时保证两个 JWT 都无效；
-- 重新请求获取 JWT 的过程中会有短暂 JWT 不可用的情况（可以通过在客户端设置定时器，当 accessJWT 快过期的时候，提前去通过 refreshJWT 获取新的 accessJWT）。
+- 重新请求获取 JWT 的过程中会有短暂 JWT 不可用的情况（可以通过在客户端设置定时器，当 accessJWT 快过期的时候，提前去通过 refreshJWT 获取新的 accessJWT）;
+- 存在安全问题，只要拿到了未过期的 refreshJWT 就一直可以获取到 accessJWT。
 
 ## 总结
 
