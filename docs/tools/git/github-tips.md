@@ -1,13 +1,11 @@
 ---
-title:  Github 小技巧
+title: Github 实用小技巧总结
 category: 开发工具
 tag:
   - Git
 ---
 
 我使用 Github 已经有 6 年多了，今天毫无保留地把自己觉得比较有用的 Github 小技巧送给关注 JavaGuide 的各位小伙伴。
-
-这篇文章肝了很久，就挺用心的，大家看内容就知道了。
 
 ## 一键生成 Github 简历 & Github 年报
 

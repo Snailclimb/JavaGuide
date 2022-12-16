@@ -1,11 +1,13 @@
 ---
-title:  Docker从入门到上手干事
+title:  Docker 实战
 category: 开发工具
 tag:
   - Docker
 ---
 
 ## Docker介绍
+
+开始之前，还是简单介绍一下 Docker，更多 Docker 概念介绍可以看前一篇文章[Docker 核心概念总结](./docker-intro.md)。
 
 ### 什么是 Docker？
 

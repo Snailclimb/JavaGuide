@@ -233,20 +233,19 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 ## 开发工具
 
+### Maven
+
+[Maven 核心概念总结](./tools/maven/maven-core-concepts.md)
+
 ### Docker
 
-* [Docker 基本概念解读](./tools/docker/docker-intro.md)
-* [Docker从入门到上手干事](./tools/docker/docker-in-action.md)
+* [Docker 核心概念总结](./tools/docker/docker-intro.md)
+* [Docker 实战](./tools/docker/docker-in-action.md)
 
 ### Git
 
-* [Git 入门](./tools/git/git-intro.md)
-* [Github 小技巧](./tools/git/github-tips.md)
-
-## 系统设计
-
-- [系统设计常见面试题总结](./system-design/system-design-questions.md)
-- [设计模式常见面试题总结](./system-design/design-pattern.md)
+* [Git 核心概念总结](./tools/git/git-intro.md)
+* [Github 实用小技巧总结](./tools/git/github-tips.md)
 
 ### 基础
 

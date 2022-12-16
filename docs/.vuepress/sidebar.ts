@@ -285,6 +285,12 @@ export const sidebarConfig = sidebar({
       collapsible: true,
       children: [
         {
+          text: "Maven",
+          icon: "configuration",
+          prefix: "maven/",
+          children: ["maven-core-concepts"],
+        },
+        {
           text: "Git",
           icon: "git",
           prefix: "git/",
