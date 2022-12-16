@@ -228,6 +228,76 @@ Java 中的注释有三种：
 
 ++ 和 -- 运算符可以放在变量之前，也可以放在变量之后，当运算符放在变量之前时(前缀)，先自增/减，再赋值；当运算符放在变量之后时(后缀)，先赋值，再自增/减。例如，当 `b = ++a` 时，先自增（自己增加 1），再赋值（赋值给 b）；当 `b = a++` 时，先赋值(赋值给 b)，再自增（自己增加 1）。也就是，++a 输出的是 a+1 的值，a++输出的是 a 值。用一句口诀就是：“符号在前就先加/减，符号在后就后加/减”。
 
+### 移位运算符
+
+移位运算符是最基本的运算符之一，几乎每种编程语言都包含这一运算符。移位操作中，被操作的数据被视为二进制数，移位就是将其向左或向右移动若干位的运算。
+
+移位运算符在各种框架以及 JDK 自身的源码中使用还是挺广泛的，`HashMap`（JDK1.8） 中的 `hash` 方法的源码就用到了移位运算符：
+
+```java
+static final int hash(Object key) {
+    int h;
+    // key.hashCode()：返回散列值也就是hashcode
+    // ^ ：按位异或
+    // >>>:无符号右移，忽略符号位，空位都以0补齐
+    return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
+  }
+
+```
+
+在 Java 代码里使用 `<<` 、 `>>` 和`>>>`转换成的指令码运行起来会更高效些。
+
+掌握最基本的移位运算符知识还是很有必要的，这不光可以帮助我们在代码中使用，还可以帮助我们理解源码中涉及到移位运算符的代码。
+
+Java 中有三种移位运算符：
+
+- `<<` :左移运算符，向左移若干位，高位丢弃，低位补零。`x << 1`,相当于 x 乘以 2(不溢出的情况下)。
+- `>>` :带符号右移，向右移若干位，高位补符号位，低位丢弃。正数高位补 0,负数高位补 1。`x >> 1`,相当于 x 除以 2。
+- `>>>` :无符号右移，忽略符号位，空位都以 0 补齐。
+
+由于 `double`，`float` 在二进制中的表现比较特殊，因此不能来进行移位操作。
+
+移位操作符实际上支持的类型只有`int`和`long`，编译器在对`short`、`byte`、`char`类型进行移位前，都会将其转换为`int`类型再操作。
+
+**如果移位的位数超过数值所占有的位数会怎样？**
+
+当 int 类型左移/右移位数大于等于 32 位操作时，会先求余（%）后再进行左移/右移操作。也就是说左移/右移 32 位相当于不进行移位操作（32%32=0），左移/右移 42 位相当于左移/右移 10 位（42%32=10）。当 long 类型进行左移/右移操作时，由于 long 对应的二进制是 64 位，因此求余操作的基数也变成了 64。
+
+也就是说：`x<<42`等同于`x<<10`，`x>>42`等同于`x>>10`，``x >>>42`等同于`i4 >>> 10`。
+
+**左移运算符代码示例** ：
+
+```java
+int i = -1;
+System.out.println("初始数据： " + i);
+System.out.println("初始数据对应的二进制字符串： " + Integer.toBinaryString(i));
+i <<= 10;
+System.out.println("左移 10 位后的数据 " + i);
+System.out.println("左移 10 位后的数据对应的二进制字符 " + Integer.toBinaryString(i));
+```
+
+输出：
+
+```
+初始数据： -1
+初始数据对应的二进制字符串： 11111111111111111111111111111111
+左移 10 位后的数据 -1024
+左移 10 位后的数据对应的二进制字符 11111111111111111111110000000000
+```
+
+由于左移位数大于等于 32 位操作时，会先求余（%）后再进行左移操作，所以下面的代码左移 42 位相当于左移 10 位（42%32=10），输出结果和前面的代码一样。
+
+```java
+int i = -1;
+System.out.println("初始数据： " + i);
+System.out.println("初始数据对应的二进制字符串： " + Integer.toBinaryString(i));
+i <<= 42;
+System.out.println("左移 10 位后的数据 " + i);
+System.out.println("左移 10 位后的数据对应的二进制字符 " + Integer.toBinaryString(i));
+```
+
+右移运算符使用类似，篇幅问题，这里就不做演示了。
+
 ### continue、break 和 return 的区别是什么？
 
 在循环结构中，当循环条件不满足或者循环次数达到要求时，循环会正常结束。但是，有时候可能需要在循环的过程中，当发生了某种条件之后 ，提前终止循环，这就需要用到下面几个关键词：
@@ -826,6 +896,7 @@ System.out.println(l + 1 == Long.MIN_VALUE); // true
 
 ## 参考
 
-- https://stackoverflow.com/questions/1906445/what-is-the-difference-between-jdk-and-jre
-- https://www.educba.com/oracle-vs-openjdk/
-- https://stackoverflow.com/questions/22358071/differences-between-oracle-jdk-and-openjdk
+- What is the difference between JDK and JRE?：https://stackoverflow.com/questions/1906445/what-is-the-difference-between-jdk-and-jre
+- Oracle vs OpenJDK：https://www.educba.com/oracle-vs-openjdk/
+- Differences between Oracle JDK and OpenJDK：https://stackoverflow.com/questions/22358071/differences-between-oracle-jdk-and-openjdk
+- 彻底弄懂Java的移位操作符：https://juejin.cn/post/6844904025880526861
