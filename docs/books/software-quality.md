@@ -68,14 +68,6 @@ Bob 大叔将自己对整洁代码的理解浓缩在了这本书中，真可谓�
 
 ![](https://img-blog.csdnimg.cn/20210314180405396.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0MzM3Mjcy,size_16,color_FFFFFF,t_70)
 
-**[《Effective Java 》](https://book.douban.com/subject/3360807/)**
-
-![](https://img-blog.csdnimg.cn/82d510c951384383b325080428af6c0a.png)
-
-**[《Effective Java 》](https://book.douban.com/subject/30412517/)** 这本书是 Java 领域国宝级别的书，非常经典。Java 程序员必看！
-
-这本书主要介绍了在 Java 编程中很多极具实用价值的经验规则，这些经验规则涵盖了大多数开发人员每天所面临的问题的解决方案。这篇文章能够非常实际地帮助你写出更加清晰、健壮和高效的代码。本书中的每条规则都以简短、独立的小文章形式出现，并通过例子代码加以进一步说明。
-
 ## 程序员职业素养
 
 **[《The Clean Coder》](https://book.douban.com/subject/26919457/)**

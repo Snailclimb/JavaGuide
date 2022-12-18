@@ -88,12 +88,12 @@ head:
 **配置说明** ：
 
 - dependencies： 一个 pom.xml 文件中只能存在一个这样的标签，是用来管理依赖的总标签。
-- dependency：包含在dependencies标签中，可以有多个，每一个表示项目的一个依赖。
+- dependency：包含在 dependencies 标签中，可以有多个，每一个表示项目的一个依赖。
 - groupId,artifactId,version(必要)：依赖的基本坐标，对于任何一个依赖来说，基本坐标是最重要的，Maven 根据坐标才能找到需要的依赖。我们在上面解释过这些元素的具体意思，这里就不重复提了。
-- type(可选)：依赖的类型，对应于项目坐标定义的packaging。大部分情况下，该元素不必声明，其默认值是jar。
+- type(可选)：依赖的类型，对应于项目坐标定义的 packaging。大部分情况下，该元素不必声明，其默认值是 jar。
 - scope(可选)：依赖的范围，默认值是 compile。
 - optional(可选)： 标记依赖是否可选
-- exclusions(可选)：用来排除传递性依赖,例如jar包冲突
+- exclusions(可选)：用来排除传递性依赖,例如 jar 包冲突
 
 ### 依赖范围
 
@@ -384,22 +384,71 @@ site 生命周期的目的是建立和发布项目站点，共包含 4 个阶段
 
 Maven 能够基于 `pom.xml` 所包含的信息，自动生成一个友好的站点，方便团队交流和发布项目信息。
 
-## Maven 多模块管理 
+## Maven 插件
+
+Maven 本质上是一个插件执行框架，所有的执行过程，都是由一个一个插件独立完成的。像咱们日常使用到的 install、clean、deploy 等命令，其实底层都是一个一个的 Maven 插件。关于 Maven 的核心插件可以参考官方的这篇文档：https://maven.apache.org/plugins/index.html 。
+
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/tools/maven/maven-plugins.png)
+
+除了 Maven 自带的插件之外，还有一些三方提供的插件比如单测覆盖率插件 jacoco-maven-plugin、帮助开发检测代码中不合规范的地方的插件 maven-checkstyle-plugin、分析代码质量的 sonar-maven-plugin。并且，我们还可以自定义插件来满足自己的需求。
+
+jacoco-maven-plugin 使用示例：
+
+```xml
+ <build>
+    <plugins>
+        <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.8</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>prepare-agent</goal>
+                    </goals>
+                </execution>
+                <execution>
+                    <id>generate-code-coverage-report</id>
+                    <phase>test</phase>
+                    <goals>
+                        <goal>report</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+        </plugins>
+    </build>
+```
+
+你可以将 Maven 插件理解为一组任务的集合，用户可以通过命令行直接运行指定插件的任务，也可以将插件任务挂载到构建生命周期，随着生命周期运行。
+
+Maven 插件被分为下面两种类型：
+
+- **Build plugins** ：在构建时执行。
+- **Reporting plugins**：在网站生成过程中执行。
+
+## Maven 多模块管理
 
 多模块管理简单地来说就是将一个项目分为多个模块，每个模块只负责单一的功能实现。直观的表现就是一个 Maven 项目中不止有一个 `pom.xml` 文件，会在不同的目录中有多个 `pom.xml` 文件，进而实现多模块管理。
 
 多模块管理除了可以更加便于项目开发和管理，还有如下好处：
 
-1. 降低代码之间的耦合性（从类级别的耦合提升到jar包级别的耦合）；
+1. 降低代码之间的耦合性（从类级别的耦合提升到 jar 包级别的耦合）；
 2. 减少重复，提升复用性；
 3. 每个模块都可以是自解释的（通过模块名或者模块文档）；
 4. 模块还规范了代码边界的划分，开发者很容易通过模块确定自己所负责的内容。
 
-多模块管理下，会有一个父模块，其他的都是子模块。父模块通常只有一个 `pom.xml`，没有其他内容。父模块的 `pom.xml` 一般只定义了各个依赖的版本号、包含哪些子模块以及插件有哪些。不过，要注意的是，如果依赖只在某个子项目中使用，则可以在子项目的pom.xml中直接引入，防止父pom的过于臃肿。
+多模块管理下，会有一个父模块，其他的都是子模块。父模块通常只有一个 `pom.xml`，没有其他内容。父模块的 `pom.xml` 一般只定义了各个依赖的版本号、包含哪些子模块以及插件有哪些。不过，要注意的是，如果依赖只在某个子项目中使用，则可以在子项目的 pom.xml 中直接引入，防止父 pom 的过于臃肿。
 
-如下图所示，Dubbo 项目就被分成了多个子模块比如dubbo-common（公共逻辑模块）、dubbo-remoting（远程通讯模块）、dubbo-rpc（远程调用模块）。
+如下图所示，Dubbo 项目就被分成了多个子模块比如 dubbo-common（公共逻辑模块）、dubbo-remoting（远程通讯模块）、dubbo-rpc（远程调用模块）。
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/tools/maven/dubbo-maven-multi-module.png)
+
+## 文章推荐
+
+- [安全同学讲 Maven 间接依赖场景的仲裁机制 - 阿里开发者 - 2022](https://mp.weixin.qq.com/s/flniMiP-eu3JSBnswfd_Ew)
+- [高效使用 Java 构建工具｜ Maven 篇 - 阿里开发者 - 2022](https://mp.weixin.qq.com/s/Wvq7t2FC58jaCh4UFJ6GGQ)
+- [安全同学讲 Maven 重打包的故事 - 阿里开发者 - 2022](https://mp.weixin.qq.com/s/xsJkB0onUkakrVH0wejcIg)
 
 ## 参考
 
