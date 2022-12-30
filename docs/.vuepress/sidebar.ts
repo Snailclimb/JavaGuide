@@ -351,6 +351,7 @@ export const sidebarConfig = sidebar({
           icon: "basic",
           children: [
             "RESTfulAPI",
+            "software-engineering",
             "naming",
             "refactoring",
             {

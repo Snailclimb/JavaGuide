@@ -252,7 +252,8 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 ### 基础
 
 - [RestFul API 简明教程](./docs/system-design/basis/RESTfulAPI.md)
-- [Java 编码命名之道](./docs/system-design/basis/naming.md) 
+- [软件工程简明教程简明教程](./docs/system-design/basis/software-engineering.md)
+- [代码命名指南](./docs/system-design/basis/naming.md) 
 - [代码重构指南](./docs/system-design/basis/refactoring.md)
 - [单元测试指南](./docs/system-design/basis/unit-test.md)
 

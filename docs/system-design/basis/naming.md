@@ -1,5 +1,5 @@
 ---
-title:  Java 编码命名之道
+title:  代码命名指南
 category: 代码质量
 ---
 
