@@ -36,7 +36,6 @@ title: JavaGuide（Java学习&&面试指南）
     </p>
 </div>
 
-
 ## 项目相关
 
 * [项目介绍](./javaguide/intro.md)
@@ -191,13 +190,14 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 ### 基础
 
 - [数据库基础知识总结](./database/basis.md)
+- [NoSQL基础知识总结](./database/nosql.md)
 - [字符集详解](./database/character-set.md)
 
 ### MySQL
 
 **知识点/面试题总结：**
 
-- **[MySQL知识点总结](./database/mysql/mysql-questions-01.md)** (必看 :+1:)
+- **[MySQL 常见知识点&面试题总结](./database/mysql/mysql-questions-01.md)** (必看 :+1:)
 - [MySQL 高性能优化规范建议总结](./database/mysql/mysql-high-performance-optimization-specification-recommendations.md)
 
 **重要知识点：**
@@ -214,8 +214,8 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 **知识点/面试题总结** : (必看:+1: )：
 
-- [Redis 常见问题总结(上)](./database/redis/redis-questions-01.md)
-- [Redis 常见问题总结(下)](./database/redis/redis-questions-02.md)
+- [Redis 常见知识点&面试题总结(上)](./database/redis/redis-questions-01.md)
+- [Redis 常见知识点&面试题总结(下)](./database/redis/redis-questions-02.md)
 
 **重要知识点：**
 
@@ -224,6 +224,11 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 - [Redis 3 种特殊数据结构详解](./database/redis/redis-data-structures-02.md)
 - [Redis 内存碎片详解](./database/redis/redis-memory-fragmentation.md)
 - [Redis 集群详解](./database/redis/redis-cluster.md)
+
+### MongoDB
+
+- [MongoDB 常见知识点&面试题总结(上)](./database/mongodb/mongodb-questions-01.md)
+- [MongoDB 常见知识点&面试题总结(下)](./database/mongodb/mongodb-questions-02.md)
 
 ## 搜索引擎
 
@@ -246,6 +251,11 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 * [Git 核心概念总结](./tools/git/git-intro.md)
 * [Github 实用小技巧总结](./tools/git/github-tips.md)
+
+## 系统设计
+
+- [系统设计常见面试题总结](./system-design/system-design-questions.md)
+- [设计模式常见面试题总结](./system-design/design-pattern.md)
 
 ### 基础
 
@@ -285,6 +295,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 - [JWT 优缺点分析以及常见问题解决方案](./system-design/security/advantages&disadvantages-of-jwt.md)
 - [SSO 单点登录详解](./system-design/security/sso-intro.md)
 - [权限系统设计详解](./system-design/security/design-of-authority-system.md)
+
 
 #### 数据脱敏
 
@@ -345,9 +356,9 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 ## 高性能
 
-### 读写分离&分库分表
+### 数据库读写分离&分库分表
 
-[读写分离&分库分表详解](./high-performance/read-and-write-separation-and-library-subtable.md)
+[数据库读写分离&分库分表详解](./high-performance/read-and-write-separation-and-library-subtable.md)
 
 ### 负载均衡
 
@@ -405,7 +416,6 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 ## Star 趋势
 
 ![](https://api.star-history.com/svg?repos=Snailclimb/JavaGuide&type=Date)
-
 
 
 ## 公众号

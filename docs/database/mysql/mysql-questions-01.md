@@ -501,7 +501,7 @@ DELETE...
 
 **数据库只存储文件地址信息，文件由文件存储服务负责存储。**
 
-相关阅读：[Spring Boot 整合 MinIO 实现分布式文件服务，真香！](https://mp.weixin.qq.com/s/xfYCESLOuq3_0e3SFj6ZMQ) 。
+相关阅读：[Spring Boot 整合 MinIO 实现分布式文件服务](https://www.51cto.com/article/716978.html) 。
 
 ### MySQL 如何存储 IP 地址？
 

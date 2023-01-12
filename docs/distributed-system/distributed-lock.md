@@ -75,7 +75,7 @@ end
 
 ### 为什么要给锁设置一个过期时间？
 
-为了避免锁无法被释放，我们可以想到的一个解决办法就是：给这个 key（也就是锁） 设置一个过期时间。
+为了避免锁无法被释放，我们可以想到的一个解决办法就是： **给这个 key（也就是锁） 设置一个过期时间** 。
 
 ```bash
 127.0.0.1:6379> SET lockKey uniqueValue EX 3 NX
@@ -197,11 +197,25 @@ lock.lock(10, TimeUnit.SECONDS);
 
 如果使用 Redis 来实现分布式锁的话，还是比较推荐直接基于 Redisson 来做的。
 
+### 如何实现可重入锁？
+
+所谓可重入锁指的是在一个线程中可以多次获取同一把锁，比如一个线程在执行一个带锁的方法，该方法中又调用了另一个需要相同锁的方法，则该线程可以直接执行调用的方法即可重入 ，而无需重新获得锁。像 Java 中的 `synchronized` 和 `ReentrantLock` 都属于可重入锁。
+
+**不可重入的分布式锁基本可以满足绝大部分业务场景了，一些特殊的场景可能会需要使用可重入的分布式锁。**
+
+可重入分布式锁的实现核心思路是线程在获取锁的时候判断是否为自己的锁，如果是的话，就不用再重新获取了。为此，我们可以为每个锁关联一个可重入计数器和一个占有它的线程。当可重入计数器大于 0 时，则锁被占有，需要判断占有该锁的线程和请求获取锁的线程是否为同一个。
+
+实际项目中，我们不需要自己手动实现，推荐使用我们上面提到的 **Redisson** ，其内置了多种类型的锁比如可重入锁（Reentrant Lock）、自旋锁（Spin Lock）、公平锁（Fair Lock）、多重锁（MultiLock）、 红锁（RedLock）、 读写锁（ReadWriteLock）。
+
+![](./images/distributed-lock/redisson-readme-locks.png)
+
 ### Redis 如何解决集群情况下分布式锁的可靠性？
 
 为了避免单点故障，生产环境下的 Redis 服务通常是集群化部署的。
 
 Redis 集群下，上面介绍到的分布式锁的实现会存在一些问题。由于 Redis 集群数据同步到各个节点时是异步的，如果在 Redis 主节点获取到锁后，在没有同步到其他节点时，Redis 主节点宕机了，此时新的 Redis 主节点依然可以获取锁，所以多个应用服务就可以同时获取到锁。
+
+![](./images/distributed-lock/redis-master-slave-distributed-lock.png)
 
 针对这个问题，Redis 之父 antirez 设计了 [Redlock 算法](https://redis.io/topics/distlock) 来解决。
 

@@ -389,7 +389,7 @@ Cache Aside Pattern 中遇到写请求是这样的：更新 DB，然后直接删
 6. Redis Cluster 扩容缩容期间可以提供服务吗？
 7. Redis Cluster 中的节点是怎么进行通信的？
 
-**参考答案** ：[Redis 集群详解（付费）](redis-cluster.md)。
+**参考答案** ：[Redis 集群详解（付费）](https://javaguide.cn/database/redis/redis-cluster.html)。
 
 ## 参考
 

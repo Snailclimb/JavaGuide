@@ -131,6 +131,17 @@ icon: "xitongsheji"
 
 ## 高性能
 
+### 多线程
+
+- **[Hippo-4J](https://github.com/opengoofy/hippo4j)** ：一款强大的动态线程池框架，解决了传统线程池使用存在的一些痛点比如线程池参数没办法动态修改、不支持运行时变量的传递、无法执行优雅关闭。除了支持动态修改线程池参数、线程池任务传递上下文，还支持通知报警、运行监控等开箱即用的功能。
+- **[Dynamic Tp](https://github.com/dromara/dynamic-tp)** ：一款基于 SpringBoot 的轻量级动态线程池，参考[美团线程池实践](https://tech.meituan.com/2020/04/02/java-pooling-pratice-in-meituan.html)，内置监控告警功能，提供多种报警维度。
+- **[asyncTool](https://gitee.com/jd-platform-opensource/asyncTool)** : 京东的一位大佬开源的多线程工具库，里面大量使用到了 `CompletableFuture` ，可以解决任意的多线程并行、串行、阻塞、依赖、回调的并行框架，可以任意组合各线程的执行顺序，带全链路执行结果回调。
+
+### 缓存
+
+- **[Caffeine](https://github.com/ben-manes/caffeine)** : 一款强大的本地缓存解决方案，性能非常 🐂。
+- **[Redis](https://github.com/redis/redis)** ：一个使用 C 语言开发的内存数据库，分布式缓存首选。
+
 ### 消息队列
 
 **分布式队列** ：
@@ -141,12 +152,12 @@ icon: "xitongsheji"
 
 **内存队列** ：
 
-**[Disruptor](https://github.com/LMAX-Exchange/disruptor)** ： Disruptor 是英国外汇交易公司 LMAX 开发的一个高性能队列，研发的初衷是解决内存队列的延迟问题（在性能测试中发现竟然与 I/O 操作处于同样的数量级）。相关阅读 ：[《高性能内存队列——Disruptor》](https://tech.meituan.com/2016/11/18/disruptor.html) 。
+- **[Disruptor](https://github.com/LMAX-Exchange/disruptor)** ： Disruptor 是英国外汇交易公司 LMAX 开发的一个高性能队列，研发的初衷是解决内存队列的延迟问题（在性能测试中发现竟然与 I/O 操作处于同样的数量级）。相关阅读 ：[《高性能内存队列——Disruptor》](https://tech.meituan.com/2016/11/18/disruptor.html) 。
 
-**管理工具** ：
+**可视化管理工具** ：
 
-1. **[Kafdrop](https://github.com/obsidiandynamics/kafdrop)** : 一个用于查看 Kafka 主题和浏览消费者组的 Web UI。
-2. **[EFAK](https://github.com/smartloli/EFAK)** （Eagle For Apache Kafka，以前叫做 Kafka Eagle） ：一个简单的高性能监控系统，用于对 Kafka 集群进行全面的监控和管理。
+- **[Kafdrop](https://github.com/obsidiandynamics/kafdrop)** : 一个用于查看 Kafka 主题和浏览消费者组的 Web UI。
+- **[EFAK](https://github.com/smartloli/EFAK)** （Eagle For Apache Kafka，以前叫做 Kafka Eagle） ：一个简单的高性能监控系统，用于对 Kafka 集群进行全面的监控和管理。
 
 ### 数据库中间件
 
@@ -155,16 +166,6 @@ icon: "xitongsheji"
 - **[dynamic-datasource-spring-boot-starter](https://github.com/baomidou/dynamic-datasource-spring-boot-starter)** ：dynamic-datasource-spring-boot-starter 是一个基于 springboot 的快速集成多数据源的启动器。如果说你有配置多数据源、读写分离等需求的话，可以了解一下这个项目。
 
 相关阅读：[数据库中间件详解（精品长文）](https://zhuanlan.zhihu.com/p/87144535)
-
-### 线程池
-
-- **[Hippo-4J](https://github.com/opengoofy/hippo4j)** ：一款强大的动态线程池框架，解决了传统线程池使用存在的一些痛点比如线程池参数没办法动态修改、不支持运行时变量的传递、无法执行优雅关闭。除了支持动态修改线程池参数、线程池任务传递上下文，还支持通知报警、运行监控等开箱即用的功能。
-- **[Dynamic Tp](https://github.com/dromara/dynamic-tp)** ：一款基于 SpringBoot 的轻量级动态线程池，参考[美团线程池实践](https://tech.meituan.com/2020/04/02/java-pooling-pratice-in-meituan.html)，内置监控告警功能，提供多种报警维度。
-
-### 缓存
-
-- **[Caffeine](https://github.com/ben-manes/caffeine)** : 一款强大的本地缓存解决方案，性能非常 🐂。
-- **[Redis](https://github.com/redis/redis)** ：一个使用 C 语言开发的内存数据库，分布式缓存首选。
 
 ## 高可用
 

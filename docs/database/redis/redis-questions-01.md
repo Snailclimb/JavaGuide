@@ -124,9 +124,9 @@ Redis 5.0 新增加的一个数据结构 `Stream` 可以用来做消息队列，
 - **5 种基础数据结构** ：String（字符串）、List（列表）、Set（集合）、Hash（散列）、Zset（有序集合）。
 - **3 种特殊数据结构** ：HyperLogLogs（基数统计）、Bitmap （位存储）、Geospatial (地理位置)。
 
-关于 5 种基础数据结构的详细介绍请看这篇文章：[Redis 5 种基本数据结构详解](./redis-data-structures-01.md)。
+关于 5 种基础数据结构的详细介绍请看这篇文章：[Redis 5 种基本数据结构详解](https://javaguide.cn/database/redis/redis-data-structures-01.html)。
 
-关于 3 种特殊数据结构的详细介绍请看这篇文章：[Redis 3 种特殊数据结构详解](./redis-data-structures-02.md)。
+关于 3 种特殊数据结构的详细介绍请看这篇文章：[Redis 3 种特殊数据结构详解](https://javaguide.cn/database/redis/redis-data-structures-02.html)。
 
 ### String 的应用场景有哪些？
 
@@ -135,7 +135,7 @@ Redis 5.0 新增加的一个数据结构 `Stream` 可以用来做消息队列，
 - 分布式锁(利用 `SETNX key value` 命令可以实现一个最简易的分布式锁)；
 - ......
 
-关于 String 的详细介绍请看这篇文章：[Redis 5 种基本数据结构详解](./redis-data-structures-01.md)。
+关于 String 的详细介绍请看这篇文章：[Redis 5 种基本数据结构详解](https://javaguide.cn/database/redis/redis-data-structures-01.html)。
 
 ### String 还是 Hash 存储对象数据更好呢？
 

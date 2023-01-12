@@ -229,7 +229,7 @@ export const sidebarConfig = sidebar({
         {
           text: "基础",
           icon: "basic",
-          children: ["basis", "character-set"],
+          children: ["basis", "nosql","character-set"],
         },
         {
           text: "MySQL",
@@ -274,6 +274,15 @@ export const sidebarConfig = sidebar({
                 "redis-cluster",
               ],
             },
+          ],
+        },
+        {
+          text: "MongoDB",
+          prefix: "mongodb/",
+          icon: "mongodb",
+          children: [
+            "mongodb-questions-01",
+            "mongodb-questions-02",
           ],
         },
       ],

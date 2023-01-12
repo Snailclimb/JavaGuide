@@ -125,6 +125,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 - [Java 14 新特性概览](./docs/java/new-features/java14.md)
 - [Java 15 新特性概览](./docs/java/new-features/java15.md)
 - [Java 16 新特性概览](./docs/java/new-features/java16.md)
+- [Java 17 新特性概览](./docs/java/new-features/java17.md)
 - [Java 18 新特性概览](./docs/java/new-features/java18.md)
 - [Java 19 新特性概览](./docs/java/new-features/java19.md)
 
@@ -188,13 +189,14 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 ### 基础
 
 - [数据库基础知识总结](./docs/database/basis.md)
+- [NoSQL基础知识总结](./docs/database/nosql.md)
 - [字符集详解](./docs/database/character-set.md)
 
 ### MySQL
 
 **知识点/面试题总结：**
 
-- **[MySQL知识点总结](./docs/database/mysql/mysql-questions-01.md)** (必看 :+1:)
+- **[MySQL 常见知识点&面试题总结](./docs/database/mysql/mysql-questions-01.md)** (必看 :+1:)
 - [MySQL 高性能优化规范建议总结](./docs/database/mysql/mysql-high-performance-optimization-specification-recommendations.md)
 
 **重要知识点：**
@@ -211,8 +213,8 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 **知识点/面试题总结** : (必看:+1: )：
 
-- [Redis 常见问题总结(上)](./docs/database/redis/redis-questions-01.md)
-- [Redis 常见问题总结(下)](./docs/database/redis/redis-questions-02.md)
+- [Redis 常见知识点&面试题总结(上)](./docs/database/redis/redis-questions-01.md)
+- [Redis 常见知识点&面试题总结(下)](./docs/database/redis/redis-questions-02.md)
 
 **重要知识点：**
 
@@ -221,6 +223,11 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 - [Redis 3 种特殊数据结构详解](./docs/database/redis/redis-data-structures-02.md)
 - [Redis 内存碎片详解](./docs/database/redis/redis-memory-fragmentation.md)
 - [Redis 集群详解](./docs/database/redis/redis-cluster.md)
+
+### MongoDB
+
+- [MongoDB 常见知识点&面试题总结(上)](./docs/database/mongodb/mongodb-questions-01.md)
+- [MongoDB 常见知识点&面试题总结(下)](./docs/database/mongodb/mongodb-questions-02.md)
 
 ## 搜索引擎
 
