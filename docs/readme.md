@@ -22,17 +22,8 @@ footer: |-
             <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/xingqiu.png" style="margin: 0 auto; width: 850px;" />
         </a>
     </p>
-    <p>
-        <a href="https://javaguide.cn/"><img src="https://img.shields.io/badge/阅读-read-brightgreen.svg" alt="阅读" /></a>
-        <img src="https://img.shields.io/github/stars/Snailclimb/JavaGuide" alt="stars" />
-        <img src="https://img.shields.io/github/forks/Snailclimb/JavaGuide" alt="forks" />
-        <img src="https://img.shields.io/github/issues/Snailclimb/JavaGuide" alt="issues" />
-    </p>
-    <p>
-        <a href="https://github.com/Snailclimb/JavaGuide">Github</a> |
-        <a href="https://gitee.com/SnailClimb/JavaGuide">Gitee</a>
-    </p>  
 </div>
+
 
 ## 关于网站
 
