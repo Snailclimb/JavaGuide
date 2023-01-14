@@ -229,7 +229,7 @@ export const sidebarConfig = sidebar({
         {
           text: "基础",
           icon: "basic",
-          children: ["basis", "nosql","character-set"],
+          children: ["basis", "nosql", "character-set"],
         },
         {
           text: "MySQL",
@@ -243,11 +243,15 @@ export const sidebarConfig = sidebar({
               icon: "star",
               collapsible: true,
               children: [
-                "mysql-index",
-                "mysql-logs",
+                "mysql-index",     
+                {
+                  text: "MySQL三大日志详解",
+                  link:  "mysql-logs",
+                },
                 "transaction-isolation-level",
                 "innodb-implementation-of-mvcc",
                 "how-sql-executed-in-mysql",
+                "mysql-query-execution-plan",
                 "some-thoughts-on-database-storage-time",
                 "index-invalidation-caused-by-implicit-conversion",
               ],
@@ -280,10 +284,7 @@ export const sidebarConfig = sidebar({
           text: "MongoDB",
           prefix: "mongodb/",
           icon: "mongodb",
-          children: [
-            "mongodb-questions-01",
-            "mongodb-questions-02",
-          ],
+          children: ["mongodb-questions-01", "mongodb-questions-02"],
         },
       ],
     },

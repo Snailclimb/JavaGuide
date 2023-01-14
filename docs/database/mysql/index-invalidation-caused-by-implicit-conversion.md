@@ -1,5 +1,5 @@
 ---
-title: MySQL中的隐式转换造成的索引失效
+title: MySQL隐式转换造成索引失效
 category: 数据库
 tag:
   - MySQL

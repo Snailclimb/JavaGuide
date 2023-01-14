@@ -202,13 +202,14 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 **重要知识点：**
 
-- [MySQL数据库索引总结](./database/mysql/mysql-index.md)
-- [事务隔离级别(图文详解)](./database/mysql/transaction-isolation-level.md)
+- [MySQL索引详解](./database/mysql/mysql-index.md)
+- [MySQL事务隔离级别图文详解)](./database/mysql/transaction-isolation-level.md)
 - [MySQL三大日志(binlog、redo log和undo log)详解](./database/mysql/mysql-logs.md)
-- [InnoDB存储引擎对MVCC的实现](./database/mysql/innodb-implementation-of-mvcc.md)
-- [SQL语句在MySQL中的执行过程](./database/mysql/how-sql-executed-in-mysql.md)
-- [关于数据库中如何存储时间的一点思考](./database/mysql/some-thoughts-on-database-storage-time.md)
-- [MySQL中的隐式转换造成的索引失效](./database/mysql/index-invalidation-caused-by-implicit-conversion.md)
+- [InnoDB 存储引擎对 MVCC 的实现](./database/mysql/innodb-implementation-of-mvcc.md)
+- [SQL 语句在 MySQL 中的执行过程](./database/mysql/how-sql-executed-in-mysql.md)
+- [MySQL执行计划分析](./database/mysql/mysql-query-execution-plan.md)
+- [MySQL 时间类型数据存储建议](./database/mysql/some-thoughts-on-database-storage-time.md)
+- [MySQL 隐式转换造成索引失效](./database/mysql/index-invalidation-caused-by-implicit-conversion.md)
 
 ### Redis
 

@@ -15,7 +15,7 @@ head:
 
 ## MySQL 基础
 
-### 关系型数据库介绍
+### 什么是关系型数据库？
 
 顾名思义，关系型数据库就是一种建立在关系模型的基础上的数据库。关系模型表明了数据库中所存储的数据之间的联系（一对一、一对多、多对多）。
 
@@ -29,7 +29,7 @@ head:
 
 MySQL、PostgreSQL、Oracle、SQL Server、SQLite（微信本地的聊天记录的存储就是用的 SQLite） ......。
 
-### MySQL 介绍
+### 什么是 MySQL？
 
 ![](https://img-blog.csdnimg.cn/20210327143351823.png)
 
@@ -590,11 +590,56 @@ MySQL 提供了两个方法来处理 ip 地址
 
 ### 有哪些常见的 SQL 优化手段？
 
-[《Java 面试指北》](https://www.yuque.com/docs/share/f37fc804-bfe6-4b0d-b373-9c462188fec7) 的「技术面试题篇」有一篇文章详细介绍了常见的 SQL 优化手段，非常全面，清晰易懂！
+[《Java 面试指北》(付费)](https://javaguide.cn/zhuanlan/java-mian-shi-zhi-bei.html) 的 **「技术面试题篇」** 有一篇文章详细介绍了常见的 SQL 优化手段，非常全面，清晰易懂！
 
 ![常见的 SQL 优化手段](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javamianshizhibei/javamianshizhibei-sql-optimization.png)
 
-## 书籍推荐
+### 如何分析 SQL 的性能？
+
+我们可以使用 `EXPLAIN` 命令来分析 SQL 的 **执行计划** 。执行计划是指一条 SQL 语句在经过 MySQL 查询优化器的优化会后，具体的执行方式。
+
+`EXPLAIN` 并不会真的去执行相关的语句，而是通过 **查询优化器** 对语句进行分析，找出最优的查询方案，并显示对应的信息。
+
+`EXPLAIN` 适用于 `SELECT`, `DELETE`, `INSERT`, `REPLACE`, 和 `UPDATE`语句，我们一般分析 `SELECT` 查询较多。
+
+我们这里简单来演示一下 `EXPLAIN` 的使用。
+
+`EXPLAIN` 的输出格式如下：
+
+```sql
+mysql> EXPLAIN SELECT `score`,`name` FROM `cus_order` ORDER BY `score` DESC;
++----+-------------+-----------+------------+------+---------------+------+---------+------+--------+----------+----------------+
+| id | select_type | table     | partitions | type | possible_keys | key  | key_len | ref  | rows   | filtered | Extra          |
++----+-------------+-----------+------------+------+---------------+------+---------+------+--------+----------+----------------+
+|  1 | SIMPLE      | cus_order | NULL       | ALL  | NULL          | NULL | NULL    | NULL | 997572 |   100.00 | Using filesort |
++----+-------------+-----------+------------+------+---------------+------+---------+------+--------+----------+----------------+
+1 row in set, 1 warning (0.00 sec)
+```
+
+各个字段的含义如下：
+
+| **列名**      | **含义**                                     |
+| ------------- | -------------------------------------------- |
+| id            | SELECT查询的序列标识符                       |
+| select_type   | SELECT关键字对应的查询类型                   |
+| table         | 用到的表名                                   |
+| partitions    | 匹配的分区，对于未分区的表，值为 NULL        |
+| type          | 表的访问方法                                 |
+| possible_keys | 可能用到的索引                               |
+| key           | 实际用到的索引                               |
+| key_len       | 所选索引的长度                               |
+| ref           | 当使用索引等值查询时，与索引作比较的列或常量 |
+| rows          | 预计要读取的行数                             |
+| filtered      | 按表条件过滤后，留存的记录数的百分比         |
+| Extra         | 附加信息                                     |
+
+篇幅问题，我这里只是简单介绍了一下 MySQL 执行计划，详细介绍请看：[SQL 的执行计划](./mysql-query-execution-plan.md)这篇文章。
+
+### 读写分离和分库分表了解吗？
+
+读写分离和分库分表相关的问题比较多，于是，我单独写了一篇文章来介绍： [读写分离和分库分表详解](https://javaguide.cn/high-performance/read-and-write-separation-and-library-subtable.html)。
+
+## MySQL 书籍推荐
 
 参见：[https://javaguide.cn/books/database.html#mysql](https://javaguide.cn/books/database.html#mysql) 。
 
