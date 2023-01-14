@@ -37,6 +37,21 @@ MySQL、PostgreSQL、Oracle、SQL Server、SQLite（微信本地的聊天记录�
 
 由于 MySQL 是开源免费并且比较成熟的数据库，因此，MySQL 被大量使用在各种系统中。任何人都可以在 GPL(General Public License) 的许可下下载并根据个性化的需要对其进行修改。MySQL 的默认端口号是**3306**。
 
+### MySQL 有什么优点？
+
+这个问题本质上是在问 MySQL 如此流行的原因。
+
+MySQL 主要具有下面这些优点：
+
+1. 成熟稳定，功能完善。
+2. 开源免费。
+3. 文档丰富，既有详细的官方文档，又有非常多优质文章可供参考学习。
+4. 开箱即用，操作简单，维护成本低。
+5. 兼容性好，支持常见的操作系统，支持多种开发语言。
+6. 社区活跃，生态完善。
+7. 事务支持优秀， InnoDB 存储引擎默认使用 REPEATABLE-READ 并不会有任何性能损失，并且，InnoDB 实现的 REPEATABLE-READ 隔离级别其实是可以解决幻读问题发生的。
+8. 支持分库分表、读写分离、高可用。
+
 ## MySQL 基础架构
 
 > 建议配合 [SQL 语句在 MySQL 中的执行过程](./how-sql-executed-in-mysql.md) 这篇文章来理解 MySQL 基础架构。另外，“一个 SQL 语句在 MySQL 中的执行流程”也是面试中比较常问的一个问题。
@@ -99,13 +114,13 @@ MySQL 5.5.5 之前，MyISAM 是 MySQL 的默认存储引擎。5.5.5 版本之后
 
 ### MySQL 存储引擎架构了解吗？
 
-MySQL 存储引擎采用的是插件式架构，支持多种存储引擎，我们甚至可以为不同的数据库表设置不同的存储引擎以适应不同场景的需要。**存储引擎是基于表的，而不是数据库。**
+MySQL 存储引擎采用的是 **插件式架构** ，支持多种存储引擎，我们甚至可以为不同的数据库表设置不同的存储引擎以适应不同场景的需要。**存储引擎是基于表的，而不是数据库。**
 
 并且，你还可以根据 MySQL 定义的存储引擎实现标准接口来编写一个属于自己的存储引擎。这些非官方提供的存储引擎可以称为第三方存储引擎，区别于官方存储引擎。像目前最常用的 InnoDB 其实刚开始就是一个第三方存储引擎，后面由于过于优秀，其被 Oracle 直接收购了。
 
 MySQL 官方文档也有介绍到如何编写一个自定义存储引擎，地址：https://dev.mysql.com/doc/internals/en/custom-engine.html 。
 
-### MyISAM 和 InnoDB 的区别是什么？
+### MyISAM 和 InnoDB 有什么区别？
 
 ![](https://img-blog.csdnimg.cn/20210327145248960.png)
 
@@ -113,7 +128,7 @@ MySQL 5.5 之前，MyISAM 引擎是 MySQL 的默认存储引擎，可谓是风�
 
 虽然，MyISAM 的性能还行，各种特性也还不错（比如全文索引、压缩、空间函数等）。但是，MyISAM 不支持事务和行级锁，而且最大的缺陷就是崩溃后无法安全恢复。
 
-MySQL 5.5.5 之前，MyISAM 是 MySQL 的默认存储引擎。5.5.5 版本之后，InnoDB 是 MySQL 的默认存储引擎。
+MySQL 5.5 版本之后，InnoDB 是 MySQL 的默认存储引擎。
 
 言归正传！咱们下面还是来简单对比一下两者：
 
@@ -164,6 +179,26 @@ MyISAM 不支持，而 InnoDB 支持。
 InnoDB 引擎中，其数据文件本身就是索引文件。相比 MyISAM，索引文件和数据文件是分离的，其表数据文件本身就是按 B+Tree 组织的一个索引结构，树的叶节点 data 域保存了完整的数据记录。
 
 详细区别，推荐你看看我写的这篇文章：[MySQL 索引详解](https://javaguide.cn/database/mysql/mysql-index.html)。
+
+**7.性能有差别。**
+
+InnoDB 的性能比 MyISAM 更强大，不管是在读写混合模式下还是只读模式下，随着 CPU 核数的增加，InnoDB 的读写能力呈线性增长。MyISAM 因为读写不能并发，它的处理能力跟核数没关系。
+
+![InnoDB 和 MyISAM 性能对比](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/mysql/innodb-myisam-performance-comparison.png)
+
+**总结** ：
+
+- InnoDB 支持行级别的锁粒度，MyISAM 不支持，只支持表级别的锁粒度。
+- MyISAM 不提供事务支持。InnoDB 提供事务支持，实现了 SQL 标准定义了四个隔离级别。
+- MyISAM 不支持外键，而 InnoDB 支持。
+- MyISAM 不支持 MVVC，而 InnoDB 支持。
+- 虽然 MyISAM 引擎和 InnoDB 引擎都是使用 B+Tree 作为索引结构，但是两者的实现方式不太一样。
+- MyISAM 不支持数据库异常崩溃后的安全恢复，而 InnoDB 支持。
+- InnoDB 的性能比 MyISAM 更强大。
+
+最后，再分享一张图片给你，这张图片详细对比了常见的几种 MySQL 存储引擎。
+
+![常见的几种 MySQL 存储引擎对比](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/mysql/comparison-of-common-mysql-storage-engines.png)
 
 ### MyISAM 和 InnoDB 如何选择？
 
@@ -519,6 +554,10 @@ MySQL 提供了两个方法来处理 ip 地址
 [《Java 面试指北》](https://www.yuque.com/docs/share/f37fc804-bfe6-4b0d-b373-9c462188fec7) 的「技术面试题篇」有一篇文章详细介绍了常见的 SQL 优化手段，非常全面，清晰易懂！
 
 ![常见的 SQL 优化手段](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javamianshizhibei/javamianshizhibei-sql-optimization.png)
+
+## 书籍推荐
+
+参见：[https://javaguide.cn/books/database.html#mysql](https://javaguide.cn/books/database.html#mysql) 。
 
 ## 参考
 
