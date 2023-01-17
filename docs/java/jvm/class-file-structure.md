@@ -35,7 +35,7 @@ ClassFile {
     u2             interfaces_count;//接口
     u2             interfaces[interfaces_count];//一个类可以实现多个接口
     u2             fields_count;//Class 文件的字段属性
-    field_info     fields[fields_count];//一个类会可以有多个字段
+    field_info     fields[fields_count];//一个类可以有多个字段
     u2             methods_count;//Class 文件的方法数量
     method_info    methods[methods_count];//一个类可以有个多个方法
     u2             attributes_count;//此类的属性表中的属性数

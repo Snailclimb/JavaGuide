@@ -1,5 +1,5 @@
 ---
-title:  HashMap源码+底层数据结构分析
+title:  HashMap源码&底层数据结构分析
 category: Java
 tag:
   - Java集合
@@ -85,7 +85,7 @@ public class HashMap<K,V> extends AbstractMap<K,V> implements Map<K,V>, Cloneabl
     static final int TREEIFY_THRESHOLD = 8;
     // 当桶(bucket)上的结点数小于这个值时树转链表
     static final int UNTREEIFY_THRESHOLD = 6;
-    // 桶中结构转化为红黑树对应的table的最小大小
+    // 桶中结构转化为红黑树对应的table的最小容量
     static final int MIN_TREEIFY_CAPACITY = 64;
     // 存储元素的数组，总是2的幂次倍
     transient Node<k,v>[] table;
@@ -95,7 +95,7 @@ public class HashMap<K,V> extends AbstractMap<K,V> implements Map<K,V>, Cloneabl
     transient int size;
     // 每次扩容和更改map结构的计数器
     transient int modCount;
-    // 临界值 当实际大小(容量*填充因子)超过临界值时，会进行扩容
+    // 临界值(容量*填充因子) 当实际大小超过临界值时，会进行扩容
     int threshold;
     // 加载因子
     final float loadFactor;
@@ -274,19 +274,18 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
     // (n - 1) & hash 确定元素存放在哪个桶中，桶为空，新生成结点放入桶中(此时，这个结点是放在数组中)
     if ((p = tab[i = (n - 1) & hash]) == null)
         tab[i] = newNode(hash, key, value, null);
-    // 桶中已经存在元素
+    // 桶中已经存在元素（处理hash冲突）
     else {
         Node<K,V> e; K k;
-        // 比较桶中第一个元素(数组中的结点)的hash值相等，key相等
+        // 判断table[i]中的元素是否与插入的key一样，若相同那就直接使用插入的值p替换掉旧的值e。
         if (p.hash == hash &&
             ((k = p.key) == key || (key != null && key.equals(k))))
-                // 将第一个元素赋值给e，用e来记录
                 e = p;
-        // hash值不相等，即key不相等；为红黑树结点
+        // 判断插入的是否是红黑树节点
         else if (p instanceof TreeNode)
             // 放入树中
             e = ((TreeNode<K,V>)p).putTreeVal(this, tab, hash, key, value);
-        // 为链表结点
+        // 不是红黑树节点则说明为链表结点
         else {
             // 在链表最末插入结点
             for (int binCount = 0; ; ++binCount) {

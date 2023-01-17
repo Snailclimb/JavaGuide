@@ -1,5 +1,10 @@
-
-# RabbitMQ 入门总结
+---
+title: RabbitMQ基础知识总结
+category: 高性能
+tag:
+  - RabbitMQ
+  - 消息队列
+---
 
 ## 一 RabbitMQ 介绍
 

@@ -1,6 +1,12 @@
-# RocketMQ常见问题
+---
+title: RocketMQ常见面试题总结
+category: 高性能
+tag:
+  - RocketMQ
+  - 消息队列
+---
 
-本文来自读者 [PR](https://github.com/Snailclimb/JavaGuide/pull/291)。
+> 本文来自读者 [PR](https://github.com/Snailclimb/JavaGuide/pull/291)。
 
 ## 1 单机版消息中心
 

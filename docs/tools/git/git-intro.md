@@ -1,4 +1,9 @@
-# Git 入门
+---
+title:  Git 核心概念总结
+category: 开发工具
+tag:
+  - Git
+---
 
 ## 版本控制
 
@@ -61,10 +66,7 @@ Linux 内核项目组当时使用分布式版本控制系统 BitKeeper 来管理
 
 具体原理如下图所示，理解起来其实很简单，每当我们提交更新一个文件之后，系统都会记录这个文件做了哪些更新，以增量符号Δ(Delta)表示。
 
-<div align="center">  
-<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3deltas.png" width="500px"/>
-</br>
-</div>
+![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3deltas.png)
 
 **我们怎样才能得到一个文件的最终版本呢？**
 
@@ -76,11 +78,7 @@ Linux 内核项目组当时使用分布式版本控制系统 BitKeeper 来管理
 
 Git 不按照以上方式对待或保存数据。 反之，Git 更像是把数据看作是对小型文件系统的一组快照。 每次你提交更新，或在 Git 中保存项目状态时，它主要对当时的全部文件制作一个快照并保存这个快照的索引。 为了高效，如果文件没有修改，Git 不再重新存储该文件，而是只保留一个链接指向之前存储的文件。 Git 对待数据更像是一个 **快照流**。
 
-<div align="center">  
-<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3snapshots.png" width="500px"/>
-</br>
-</div>
-
+![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3snapshots.png)
 
 ### Git 的三种状态
 
@@ -92,9 +90,8 @@ Git 有三种状态，你的文件可能处于其中之一：
 
 由此引入 Git 项目的三个工作区域的概念：**Git 仓库(.git directory)**、**工作目录(Working Directory)** 以及 **暂存区域(Staging Area)** 。
 
-<div align="center">  
-<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3areas.png" width="500px"/>
-</div>
+![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3areas.png)
+
 
 **基本的 Git 工作流程如下：**
 
@@ -202,9 +199,8 @@ git branch test
 git checkout test
 ```
 
-<div align="center">  
-<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3切换分支.png" width="500px"/>
-</div>
+![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3切换分支.png)
+
 
 你也可以直接这样创建分支并切换过去(上面两条命令的合写)
 

@@ -1,10 +1,9 @@
-
-# RestFul API 简明教程
-
+---
+title: RestFul API 简明教程
+category: 代码质量
+---
 
 ![](https://img-blog.csdnimg.cn/2021050713553862.png)
-
-大家好，我是 Guide哥！
 
 这篇文章简单聊聊后端程序员必备的 RESTful API 相关的知识。
 

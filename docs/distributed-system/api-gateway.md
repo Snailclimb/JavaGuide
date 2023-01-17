@@ -1,13 +1,16 @@
+---
+title: API 网关详解
+category: 分布式
+icon: "gateway"
+---
 
-# 网关
-
-## 何为网关？为什么要网关？
-
-![微服务-网关](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/%E5%BE%AE%E6%9C%8D%E5%8A%A1-%E7%BD%91%E5%85%B3.png)
+## 什么是网关？有什么用？
 
 微服务背景下，一个系统被拆分为多个服务，但是像安全认证，流量控制，日志，监控等功能是每个服务都需要的，没有网关的话，我们就需要在每个服务中单独实现，这使得我们做了很多重复的事情并且没有一个全局的视图来统一管理这些功能。
 
-综上：**一般情况下，网关都会提供请求转发、安全认证（身份/权限认证）、流量控制、负载均衡、容灾、日志、监控这些功能。**
+![网关示意图](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/distributed-system/api-gateway-overview.png)
+
+一般情况下，网关可以为我们提供请求转发、安全认证（身份/权限认证）、流量控制、负载均衡、降级熔断、日志、监控等功能。
 
 上面介绍了这么多功能，实际上，网关主要做了一件事情：**请求过滤** 。
 
@@ -25,7 +28,7 @@ Zuul 主要通过过滤器（类似于 AOP）来过滤请求，从而实现网�
 
 ```xml
 <dependency>
-    <groupId>org.springframework.cloud</groupId>
+  <groupId>org.springframework.cloud</groupId>
     <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
 </dependency>
 <dependency>

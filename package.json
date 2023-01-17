@@ -1,16 +1,23 @@
 {
-  "name": "javaguide-blog",
-  "version": "1.0.0",
-  "description": "A project of vuepress-theme-hope",
+  "name": "javaguide",
+  "version": "2.0.0-alpha.40",
+  "private": true,
+  "description": "javaguide",
   "license": "MIT",
+  "author": "Guide",
   "scripts": {
-    "build": "vuepress build docs",
-    "clean-dev": "vuepress dev docs --no-cache",
-    "dev": "vuepress dev docs",
-    "eject-theme": "vuepress eject-hope docs"
+    "vite-build": "vuepress-vite build docs",
+    "vite-serve": "vuepress-vite dev docs",
+    "vite-clean-serve": "vuepress-vite dev docs --clean-cache",
+    "webpack-build": "vuepress-webpack build docs",
+    "webpack-clean-serve": "vuepress-webpack dev docs --clean-cache",
+    "webpack-serve": "vuepress-webpack dev docs"
   },
-  "devDependencies": {
-    "vuepress": "^1.8.2",
-    "vuepress-theme-hope": "^1.20.5"
+  "dependencies": {
+    "vuepress": "^2.0.0-beta.53",
+    "vuepress-theme-hope": "^2.0.0-beta.122",
+    "vuepress-vite": "2.0.0-beta.53",
+    "vuepress-webpack": "2.0.0-beta.53",
+    "@vuepress/plugin-search": "^2.0.0-beta.53"
   }
 }

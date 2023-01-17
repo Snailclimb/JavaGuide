@@ -1,6 +1,7 @@
-
-
-# Java 命名之道
+---
+title:  代码命名指南
+category: 代码质量
+---
 
 我还记得我刚工作那一段时间， 项目 Code Review 的时候，我经常因为变量命名不规范而被 “diss”!
 
@@ -222,17 +223,17 @@ Codelf 提供了在线网站版本，网址：[https://unbug.github.io/codelf/](
 
 我选择了 Java 编程语言，然后搜索了“序列化”这个关键词，然后它就返回了很多关于序列化的命名。
 
-![](pictures/Codelf.png)
+![](./pictures/Codelf.png)
 
 并且，Codelf 还提供了 VS code 插件，看这个评价，看来大家还是很喜欢这款命名工具的。
 
-![](pictures/vscode-codelf.png)
+![](./pictures/vscode-codelf.png)
 
 ## 相关阅读推荐
 
 1. 《阿里巴巴 Java 开发手册》
 2. 《Clean Code》
-3. Google Java 代码指南：https://google.github.io/styleguide/javaguide.html#s5.1-identifier-name
+3. Google Java 代码指南：https://google.github.io/styleguide/javaguide.html
 4. 告别编码5分钟，命名2小时！史上最全的Java命名规范参考：https://www.cnblogs.com/liqiangchn/p/12000361.html 
 
 ## 总结

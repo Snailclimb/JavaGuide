@@ -1,8 +1,8 @@
-# Java8新特性实战
+# Java8 新特性实战
 
 > 本文来自[cowbi](https://github.com/cowbi)的投稿~
 
-Oracle 于 2014 发布了 Java8（jdk1.8），诸多原因使它成为目前市场上使用最多的 jdk 版本。虽然发布距今已将近 7 年，但很多程序员对其新特性还是不够了解，尤其是用惯了 java8 之前版本的老程序员，比如我。
+Oracle 于 2014 发布了 Java8（jdk1.8），诸多原因使它成为目前市场上使用最多的 jdk 版本。虽然发布距今已将近 7 年，但很多程序员对其新特性还是不够了解，尤其是用惯了 Java8 之前版本的老程序员，比如我。
 
 为了不脱离队伍太远，还是有必要对这些新特性做一些总结梳理。它较 jdk.7 有很多变化或者说是优化，比如 interface 里可以有静态方法，并且可以有方法体，这一点就颠覆了之前的认知；`java.util.HashMap` 数据结构里增加了红黑树；还有众所周知的 Lambda 表达式等等。本文不能把所有的新特性都给大家一一分享，只列出比较常用的新特性给大家做详细讲解。更多相关内容请看[官网关于 Java8 的新特性的介绍](https://www.oracle.com/java/technologies/javase/8-whats-new.html)。
 
@@ -128,7 +128,7 @@ new Thread(new Runnable() {
 new Thread(() -> System.out.println("It's a lambda function!")).start();
 ```
 
-**2.`Comperator` 接口**
+**2.`Comparator` 接口**
 
 ```java
 List<Integer> strings = Arrays.asList(1, 2, 3);
@@ -142,8 +142,8 @@ public int compare(Integer o1, Integer o2) {
 //Lambda
 Collections.sort(strings, (Integer o1, Integer o2) -> o1 - o2);
 //分解开
-Comparator<Integer> comperator = (Integer o1, Integer o2) -> o1 - o2;
-Collections.sort(strings, comperator);
+Comparator<Integer> comparator = (Integer o1, Integer o2) -> o1 - o2;
+Collections.sort(strings, comparator);
 ```
 
 **3.`Listener` 接口**
@@ -186,7 +186,7 @@ public class LambdaClass {
     }
     //函数式接口参数
     static void lambdaInterfaceDemo(LambdaInterface i){
-        System.out.println(i);
+        i.f();
     }
 }
 ```
@@ -766,8 +766,8 @@ LocalTime.class //时间 format: HH:mm:ss
 
 ```java
 public void oldFormat(){
-		Date now = new Date();
-    //format yyyy-MM-dd HH:mm:ss
+    Date now = new Date();
+    //format yyyy-MM-dd
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     String date  = sdf.format(now);
     System.out.println(String.format("date format : %s", date));
@@ -854,8 +854,8 @@ public void afterDay(){
      Date date1 = format.parse(dates1);
      Date date2 = format.parse(dates2);
      int day = (int) ((date1.getTime() - date2.getTime()) / (1000 * 3600 * 24));
-     System.out.println(dates2 + "和" + dates2 + "相差" + day + "天");
-     //结果：2021-12-23和2021-12-23相差300天
+     System.out.println(dates1 + "和" + dates2 + "相差" + day + "天");
+     //结果：2021-02-26和2021-12-23相差300天
 }
 ```
 
@@ -883,8 +883,8 @@ public void pushWeek(){
      //这里period.getDays()得到的天是抛去年月以外的天数，并不是总天数
      //如果要获取纯粹的总天数应该用下面的方法
      long day = date2.toEpochDay() - date1.toEpochDay();
-     System.out.println(date2 + "和" + date2 + "相差" + day + "天");
-     //打印结果：2021-12-23和2021-12-23相差300天
+     System.out.println(date1 + "和" + date2 + "相差" + day + "天");
+     //打印结果：2021-02-26和2021-12-23相差300天
 }
 ```
 

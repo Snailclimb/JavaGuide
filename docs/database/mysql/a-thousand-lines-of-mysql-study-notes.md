@@ -6,28 +6,30 @@ tag:
 ---
 
 > 原文地址：https://shockerli.net/post/1000-line-mysql-note/ ，JavaGuide 对本文进行了简答排版，新增了目录。
-> 作者：格物
 
 非常不错的总结，强烈建议保存下来，需要的时候看一看。
 
 ### 基本操作
 
-```mysql
+```sql
 /* Windows服务 */
--- 启动MySQL
-    net start mysql
+-- 启动 MySQL
+			net start mysql
 -- 创建Windows服务
-    sc create mysql binPath= mysqld_bin_path(注意：等号与值之间有空格)
+				sc create mysql binPath= mysqld_bin_path(注意：等号与值之间有空格)
 /* 连接与断开服务器 */
-mysql -h 地址 -P 端口 -u 用户名 -p 密码
-SHOW PROCESSLIST -- 显示哪些线程正在运行
-SHOW VARIABLES -- 显示系统变量信息
+-- 连接 MySQL
+				mysql -h 地址 -P 端口 -u 用户名 -p 密码
+-- 显示哪些线程正在运行
+				SHOW PROCESSLIST
+-- 显示系统变量信息
+				SHOW VARIABLES
 ```
 
 ### 数据库操作
 
-```mysql
-/* 数据库操作 */ ------------------
+```sql
+/* 数据库操作 */
 -- 查看当前数据库
     SELECT DATABASE();
 -- 显示当前时间、用户名、数据库版本
@@ -50,7 +52,8 @@ SHOW VARIABLES -- 显示系统变量信息
 
 ### 表的操作 
 
-```mysql
+```sql
+/* 表的操作  */
 -- 创建表
     CREATE [TEMPORARY] TABLE[ IF NOT EXISTS] [库名.]表名 ( 表的结构定义 )[ 表选项]
         每个字段必须有数据类型
@@ -131,13 +134,13 @@ SHOW VARIABLES -- 显示系统变量信息
 
 ### 数据操作
 
-```mysql
+```sql
 /* 数据操作 */ ------------------
 -- 增
     INSERT [INTO] 表名 [(字段列表)] VALUES (值列表)[, (值列表), ...]
         -- 如果要插入的值列表包含所有字段并且顺序一致，则可以省略字段列表。
         -- 可同时插入多条数据记录！
-        REPLACE 与 INSERT 完全一样，可互换。
+        REPLACE与INSERT类似，唯一的区别是对于匹配的行，现有行（与主键/唯一键比较）的数据会被替换，如果没有现有行，则插入新行。
     INSERT [INTO] 表名 SET 字段名=值[, 字段名=值, ...]
 -- 查
     SELECT 字段列表 FROM 表名[ 其他子句]
@@ -153,7 +156,7 @@ SHOW VARIABLES -- 显示系统变量信息
 
 ### 字符集编码
 
-```mysql
+```sql
 /* 字符集编码 */ ------------------
 -- MySQL、数据库、表、字段均可设置编码
 -- 数据编码与客户端编码不需一致
@@ -176,7 +179,7 @@ SET NAMES GBK;  -- 相当于完成以上三个设置
 
 ### 数据类型(列类型)
 
-```mysql
+```sql
 /* 数据类型（列类型） */ ------------------
 1. 数值类型
 -- a. 整型 ----------
@@ -278,7 +281,7 @@ set(val1, val2, val3...)
 
 ### 列属性(列约束)
 
-```mysql
+```sql
 /* 列属性（列约束） */ ------------------
 1. PRIMARY 主键
     - 能唯一标识记录的字段，可以作为主键。
@@ -333,7 +336,7 @@ set(val1, val2, val3...)
 
 ### 建表规范
 
-```mysql
+```sql
 /* 建表规范 */ ------------------
     -- Normal Format, NF
         - 每个表保存一个实体信息
@@ -352,7 +355,7 @@ set(val1, val2, val3...)
 
 ### SELECT 
 
-```mysql
+```sql
 /* SELECT */ ------------------
 SELECT [ALL|DISTINCT] select_expr FROM -> WHERE -> GROUP BY [合计函数] -> HAVING -> ORDER BY -> LIMIT
 a. select_expr
@@ -417,20 +420,20 @@ h. DISTINCT, ALL 选项
 
 ###  UNION
 
-```mysql
+```sql
 /* UNION */ ------------------
-    将多个select查询的结果组合成一个结果集合。
-    SELECT ... UNION [ALL|DISTINCT] SELECT ...
-    默认 DISTINCT 方式，即所有返回的行都是唯一的
-    建议，对每个SELECT查询加上小括号包裹。
-    ORDER BY 排序时，需加上 LIMIT 进行结合。
-    需要各select查询的字段数量一样。
-    每个select查询的字段列表(数量、类型)应一致，因为结果中的字段名以第一条select语句为准。
+      将多个select查询的结果组合成一个结果集合。
+      SELECT ... UNION [ALL|DISTINCT] SELECT ...
+      默认 DISTINCT 方式，即所有返回的行都是唯一的
+      建议，对每个SELECT查询加上小括号包裹。
+      ORDER BY 排序时，需加上 LIMIT 进行结合。
+      需要各select查询的字段数量一样。
+      每个select查询的字段列表(数量、类型)应一致，因为结果中的字段名以第一条select语句为准。
 ```
 
 ### 子查询
 
-```mysql
+```sql
 /* 子查询 */ ------------------
     - 子查询需用括号包裹。
 -- from型
@@ -464,7 +467,7 @@ h. DISTINCT, ALL 选项
 
 ### 连接查询(join)
 
-```mysql
+```sql
 /* 连接查询(join) */ ------------------
     将多个表的字段进行连接，可以指定连接条件。
 -- 内连接(inner join)
@@ -493,7 +496,7 @@ select info.id, info.name, info.stu_num, extra_info.hobby, extra_info.sex from i
 
 ### TRUNCATE 
 
-```mysql
+```sql
 /* TRUNCATE */ ------------------
 TRUNCATE [TABLE] tbl_name
 清空数据
@@ -507,7 +510,7 @@ TRUNCATE [TABLE] tbl_name
 
 ### 备份与还原
 
-```mysql
+```sql
 /* 备份与还原 */ ------------------
 备份，将数据的结构与表内数据保存起来。
 利用 mysqldump 指令完成。
@@ -533,7 +536,7 @@ mysqldump [options] --all--database
 
 ### 视图
 
-```mysql
+```sql
 什么是视图：
     视图是一个虚拟表，其内容由查询定义。同真实的表一样，视图包含一系列带有名称的列和行数据。但是，视图并不在数据库中以存储的数据值集形式存在。行和列数据来自由定义视图的查询所引用的表，并且在引用视图时动态生成。
     视图具有表结构文件，但不存在数据文件。
@@ -567,7 +570,7 @@ CREATE [OR REPLACE] [ALGORITHM = {UNDEFINED | MERGE | TEMPTABLE}] VIEW view_name
 
 ### 事务(transaction) 
 
-```mysql
+```sql
 事务是指逻辑上的一组操作，组成这组操作的各个单元，要不全成功要不全失败。
     - 支持连续SQL的集体成功或集体撤销。
     - 事务是数据库在数据完整性方面的一个功能。
