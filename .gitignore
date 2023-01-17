@@ -2,3 +2,4 @@
 /package-lock.json
 /dist
 .DS_Store
+.idea
