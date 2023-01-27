@@ -105,7 +105,7 @@ Redisson 中的分布式锁自带自动续期机制，使用起来非常简单�
 
 ![Redisson 看门狗自动续期](./images/distributed-lock/distributed-lock-redisson-renew-expiration.png)
 
-看门狗名字的由来于 `getLockWatchdogTimeou()` 方法，这个方法返回的是看门狗给锁续期的过期时间，默认为 30 秒（[redisson-3.17.6](https://github.com/redisson/redisson/releases/tag/redisson-3.17.6)）。
+看门狗名字的由来于 `getLockWatchdogTimeout()` 方法，这个方法返回的是看门狗给锁续期的过期时间，默认为 30 秒（[redisson-3.17.6](https://github.com/redisson/redisson/releases/tag/redisson-3.17.6)）。
 
 ```java
 //默认 30秒，支持修改
