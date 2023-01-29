@@ -52,7 +52,7 @@ footer: |-
 
 <div style="text-align:center">
     <p>
-        <a href="https://www.yuque.com/./share/8a30ffb5-83f3-40f9-baf9-38de68b906dc">
+        <a href="https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html">
             <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/gongzhonghaoxuanchuan.png" style="margin: 0 auto;" />
         </a>
     </p>

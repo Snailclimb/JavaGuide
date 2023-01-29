@@ -281,6 +281,12 @@ export const sidebarConfig = sidebar({
           ],
         },
         {
+          text: "Elasticsearch",
+          prefix: "elasticsearch/",
+          icon: "elasticsearch",
+          children: ["elasticsearch-questions-01"],
+        },
+        {
           text: "MongoDB",
           prefix: "mongodb/",
           icon: "mongodb",

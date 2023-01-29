@@ -42,19 +42,21 @@ star: true
 
 随着时间推移，星球积累的干货资源越来越多，我花在星球上的时间也越来越多。于是，我将星球的定价慢慢调整为了 **159/年**！后续会将星球的价格调整为 **199/年**，想要加入的小伙伴一定要尽早。
 
-你可以添加我的微信（没有手机号再申请微信，故使用企业微信。不过，请放心，这个号的消息也是我本人处理，平时最常看这个微信）领取星球专属优惠券，限时 **130/年** 加入(续费半价)！
+这里再送一个 30 元的新人优惠券（续费半价）。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/IMG_3007.jpg)
+<div align="center">
+  <a href="https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html">
+    <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/xingqiuyouhuijuanheyi.png" style="margin: 0 auto; " />
+  </a>
+</div>
 
-或者你也可以直接使用下面这张 **20** 元的优惠券，**139/年** 加入。
+进入星球之后，记得添加微信，我会发你详细的星球使用指南。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/xingqiuyouhuijuan-20.png)
-
-进入星球之后，你可以为自己制定一个目标，比如自己想要进入某某还不错的公司或者达成什么成就（一定要是还算有点挑战的目标）。待你完成目标在星球分享之后，我会将星球的门票费退还给你。
+<div align="center">
+  <a href="https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html">
+    <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/IMG_3007.jpg" style="margin: 0 auto; " />
+  </a>
+</div>
 
 **真诚欢迎准备面试的小伙伴加入星球一起交流！真心希望能够帮助到更多小伙伴！**
-
-**加入星球之后记得看[置顶主题](https://t.zsxq.com/04iiiAqf6)，你会发现物超所值！**
-
-
 
