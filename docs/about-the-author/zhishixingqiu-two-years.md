@@ -4,7 +4,7 @@ category: 知识星球
 star: 2
 ---
 
-时间过的真快，知识星球我已经平稳运行了快 3 年了！
+时间过的真快，知识星球我已经平稳运行了 3 年有余了！
 
 在 2019 年 12 月 29 号，经过了大概一年左右的犹豫期，我正式确定要开始做一个自己的星球。
 
@@ -111,20 +111,18 @@ star: 2
 
 随着时间推移，星球积累的干货资源越来越多，我花在星球上的时间也越来越多。于是，我将星球的定价慢慢调整为了 **159/年**！后续会将星球的价格调整为 **199/年**，想要加入的小伙伴一定要尽早。
 
-这里再送一个 30 元的新人优惠券（续费半价）。
+**这里再送一个 30 元的新人优惠券，数量有限（续费半价）。**
 
 <div align="center">
   <a href="https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html">
     <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/xingqiuyouhuijuanheyi.png" style="margin: 0 auto; " />
   </a>
 </div>
-
-进入星球之后，记得添加微信，我会发你详细的星球使用指南。
+**进入星球之后，记得添加微信，我会发你详细的星球使用指南。**
 
 <div align="center">
   <a href="https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html">
     <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/IMG_3007.jpg" style="margin: 0 auto; " />
   </a>
 </div>
-
 **真诚欢迎准备面试的小伙伴加入星球一起交流！真心希望能够帮助到更多小伙伴！**

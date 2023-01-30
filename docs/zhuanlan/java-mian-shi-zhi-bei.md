@@ -84,15 +84,14 @@ star: 5
 
 随着时间推移，星球积累的干货资源越来越多，我花在星球上的时间也越来越多。于是，我将星球的定价慢慢调整为了 **159/年**！后续会将星球的价格调整为 **199/年**，想要加入的小伙伴一定要尽早。
 
-这里再送一个 30 元的新人优惠券（续费半价）。
+**这里再送一个 30 元的新人优惠券（续费半价）。**
 
 <div align="center">
   <a href="https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html">
     <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/xingqiuyouhuijuanheyi.png" style="margin: 0 auto; " />
   </a>
 </div>
-
-进入星球之后，记得添加微信，我会发你详细的星球使用指南。
+**进入星球之后，记得添加微信，我会发你详细的星球使用指南。**
 
 <div align="center">
   <a href="https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html">
