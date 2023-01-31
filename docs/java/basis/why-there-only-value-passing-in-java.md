@@ -177,7 +177,7 @@ int main()
 {
     int age = 10;
     std::cout << "invoke before: " << age << "\n";
-    incr(age);
+    incr(*age);
     std::cout << "invoke after: " << age << "\n";
 }
 ```
