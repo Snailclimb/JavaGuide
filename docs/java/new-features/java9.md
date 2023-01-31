@@ -64,7 +64,7 @@ module my.module {
 
 module my.module {
      //exports…to 限制访问的成员范围
-    export com.·my.package.name to com.specific.package;
+    export com.my.package.name to com.specific.package;
 }
 ```
 

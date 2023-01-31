@@ -82,7 +82,7 @@ MongoDB 预留了几个特殊的数据库。
 - **admin** : admin 数据库主要是保存 root 用户和角色。例如，system.users 表存储用户，system.roles 表存储角色。一般不建议用户直接操作这个数据库。将一个用户添加到这个数据库，且使它拥有 admin 库上的名为 dbAdminAnyDatabase 的角色权限，这个用户自动继承所有数据库的权限。一些特定的服务器端命令也只能从这个数据库运行，比如关闭服务器。
 - **local** : local 数据库是不会被复制到其他分片的，因此可以用来存储本地单台服务器的任意 collection。一般不建议用户直接使用 local 库存储任何数据，也不建议进行 CRUD 操作，因为数据无法被正常备份与恢复。
 - **config** : 当 MongoDB 使用分片设置时，config 数据库可用来保存分片的相关信息。
-- **test** : 默认创建的测试库，连接 mongod 服务时，如果不指定连接的具体数据库，默认就会连接到 test 数据库。
+- **test** : 默认创建的测试库，连接 [mongod](https://mongoing.com/docs/reference/program/mongod.html) 服务时，如果不指定连接的具体数据库，默认就会连接到 test 数据库。
 
 数据库名可以是满足以下条件的任意 UTF-8 字符串：
 
