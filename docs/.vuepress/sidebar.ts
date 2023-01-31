@@ -102,6 +102,7 @@ export const sidebarConfig = sidebar({
               icon: "star",
               collapsible: true,
               children: [
+                "optimistic-lock-and-pessimistic-lock",
                 "jmm",
                 "java-thread-pool-summary",
                 "java-thread-pool-best-practices",
@@ -243,10 +244,10 @@ export const sidebarConfig = sidebar({
               icon: "star",
               collapsible: true,
               children: [
-                "mysql-index",     
+                "mysql-index",
                 {
                   text: "MySQL三大日志详解",
-                  link:  "mysql-logs",
+                  link: "mysql-logs",
                 },
                 "transaction-isolation-level",
                 "innodb-implementation-of-mvcc",

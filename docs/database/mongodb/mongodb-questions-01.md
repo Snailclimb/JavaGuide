@@ -60,7 +60,7 @@ MongoDB 中的记录就是一个 BSON 文档，它是由键值对组成的数据
 
 #### 集合
 
-MongoDB 集合存在于数据库中，**没有固定的结构**，也就是 **无模式** 的，这意味着可以往集合插入不同格式和类型的数据。不过，通常情况相爱插入集合中的数据都会有一定的关联性。
+MongoDB 集合存在于数据库中，**没有固定的结构**，也就是 **无模式** 的，这意味着可以往集合插入不同格式和类型的数据。不过，通常情况下，插入集合中的数据都会有一定的关联性。
 
 ![MongoDB 集合](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/mongodb/crud-annotated-collection.png)
 
