@@ -421,9 +421,7 @@ SQL 标准定义了四个隔离级别：
 
 MySQL 的隔离级别基于锁和 MVCC 机制共同实现的。
 
-SERIALIZABLE 隔离级别，是通过锁来实现的。除了 SERIALIZABLE 隔离级别，其他的隔离级别都是基于 MVCC 实现。
-
-不过， SERIALIZABLE 之外的其他隔离级别可能也需要用到锁机制，就比如 REPEATABLE-READ 在当前读情况下需要使用加锁读来保证不会出现幻读。
+SERIALIZABLE 隔离级别是通过锁来实现的，READ-COMMITTED 和 REPEATABLE-READ 隔离级别是基于 MVCC 实现的。不过， SERIALIZABLE 之外的其他隔离级别可能也需要用到锁机制，就比如 REPEATABLE-READ 在当前读情况下需要使用加锁读来保证不会出现幻读。
 
 ### MySQL 的默认隔离级别是什么?
 
@@ -442,11 +440,13 @@ mysql> SELECT @@tx_isolation;
 
 ## MySQL 锁
 
+锁是一种常见的并发事务的控制方式。
+
 ### 表级锁和行级锁了解吗？有什么区别？
 
-MyISAM 仅仅支持表级锁(table-level locking)，一锁就锁整张表，这在并发写的情况下性非常差。
+MyISAM 仅仅支持表级锁(table-level locking)，一锁就锁整张表，这在并发写的情况下性非常差。InnoDB 不光支持表级锁(table-level locking)，还支持行级锁(row-level locking)，默认为行级锁。
 
-InnoDB 不光支持表级锁(table-level locking)，还支持行级锁(row-level locking)，默认为行级锁。行级锁的粒度更小，仅对相关的记录上锁即可（对一行或者多行记录加锁），所以对于并发写入操作来说， InnoDB 的性能更高。
+行级锁的粒度更小，仅对相关的记录上锁即可（对一行或者多行记录加锁），所以对于并发写入操作来说， InnoDB 的性能更高。
 
 **表级锁和行级锁对比** ：
 
@@ -458,6 +458,19 @@ InnoDB 不光支持表级锁(table-level locking)，还支持行级锁(row-level
 InnoDB 的行锁是针对索引字段加的锁，表级锁是针对非索引字段加的锁。当我们执行 `UPDATE`、`DELETE` 语句时，如果 `WHERE`条件中字段没有命中唯一索引或者索引失效的话，就会导致扫描全表对表中的所有行记录进行加锁。这个在我们日常工作开发中经常会遇到，一定要多多注意！！！
 
 不过，很多时候即使用了索引也有可能会走全表扫描，这是因为 MySQL 优化器的原因。
+
+### InnoDB 有哪几类行锁？
+
+InnoDB 行锁是通过对索引数据页上的记录加锁实现的。MySQL InnoDB 支持三种行锁定方式：
+
+- **记录锁（Record Lock）** ：也被称为记录锁，属于单个行记录上的锁。
+- **间隙锁（Gap Lock）** ：锁定一个范围，不包括记录本身。
+- **临键锁（Next-key Lock）** ：Record Lock+Gap Lock，锁定一个范围，包含记录本身。记录锁只能锁住已经存在的记录，为了避免插入新记录，需要依赖间隙锁。
+
+InnoDB 的默认隔离级别 RR（可重读）是可以解决幻读问题发生的，主要有下面两种情况：
+
+- **快照读**（一致性非锁定读） ：由 MVCC 机制来保证不出现幻读。
+- **当前读** （一致性锁定读）： 使用 Next-Key Lock 进行加锁来保证不出现幻读。
 
 ### 共享锁和排他锁呢？
 
@@ -484,14 +497,14 @@ SELECT ... FOR UPDATE;
 
 ### 意向锁有什么作用？
 
-如果需要用到表锁的话，如何判断表中的记录没有行锁呢？一行一行遍历肯定是不行，性能太差。我们需要用到一个叫做意向锁的东东来快速判断是否可以对某个表使用表锁。
+如果需要用到表锁的话，如何判断表中的记录没有行锁呢，一行一行遍历肯定是不行，性能太差。我们需要用到一个叫做意向锁的东东来快速判断是否可以对某个表使用表锁。
 
 意向锁是表级锁，共有两种：
 
 - **意向共享锁（Intention Shared Lock，IS 锁）**：事务有意向对表中的某些记录加共享锁（S 锁），加共享锁前必须先取得该表的 IS 锁。
 - **意向排他锁（Intention Exclusive Lock，IX 锁）**：事务有意向对表中的某些记录加排他锁（X 锁），加排他锁之前必须先取得该表的 IX 锁。
 
-意向锁是有数据引擎自己维护的，用户无法手动操作意向锁，在为数据行加共享 / 排他锁之前，InooDB 会先获取该数据行所在在数据表的对应意向锁。
+**意向锁是有数据引擎自己维护的，用户无法手动操作意向锁，在为数据行加共享/排他锁之前，InooDB 会先获取该数据行所在在数据表的对应意向锁。**
 
 意向锁之间是互相兼容的。
 
@@ -510,19 +523,6 @@ SELECT ... FOR UPDATE;
 《MySQL 技术内幕 InnoDB 存储引擎》这本书对应的描述应该是笔误了。
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/mysql/image-20220511171419081.png)
-
-### InnoDB 有哪几类行锁？
-
-MySQL InnoDB 支持三种行锁定方式：
-
-- **记录锁（Record Lock）** ：也被称为记录锁，属于单个行记录上的锁。
-- **间隙锁（Gap Lock）** ：锁定一个范围，不包括记录本身。
-- **临键锁（Next-key Lock）** ：Record Lock+Gap Lock，锁定一个范围，包含记录本身。记录锁只能锁住已经存在的记录，为了避免插入新记录，需要依赖间隙锁。
-
-InnoDB 的默认隔离级别 RR（可重读）是可以解决幻读问题发生的，主要有下面两种情况：
-
-- **快照读**（一致性非锁定读） ：由 MVCC 机制来保证不出现幻读。
-- **当前读** （一致性锁定读）： 使用 Next-Key Lock 进行加锁来保证不出现幻读。
 
 ### 当前读和快照读有什么区别？
 
@@ -558,6 +558,37 @@ INSERT...
 UPDATE...
 DELETE...
 ```
+
+### 自增锁有了解吗？
+
+> 不太重要的一个知识点，简单了解即可。
+
+关系型数据库设计表的时候，通常会有一列作为自增主键。InnoDB 中的自增主键会涉及一种比较特殊的表级锁— **自增锁（AUTO-INC Locks）** 。
+
+```sql
+CREATE TABLE `sequence_id` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `stub` char(10) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `stub` (`stub`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+```
+
+如果一个事务正在插入数据到有自增主键的表时，会先获取自增锁，拿不到就可能会被阻塞住。这里的阻塞行为只是自增锁行为的其中一种，可以理解为自增锁就是一个接口，其具体的实现有多种。具体的配置项为 `innodb_autoinc_lock_mode` ，可以选择的值如下：
+
+| innodb_autoinc_lock_mode | 介绍                           |
+| :----------------------- | :----------------------------- |
+| 0                        | 传统模式                       |
+| 1                        | 连续模式（MySQL 8.0 之前默认） |
+| 2                        | 交错模式(MySQL 8.0 之后默认)   |
+
+交错模式下，所有的“INSERT-LIKE”语句（所有的插入语句，包括： `INSERT`、`REPLACE`、`INSERT…SELECT`、`REPLACE…SELECT`、`LOAD DATA`等）都不使用表级锁，使用的是轻量级互斥锁实现，多条插入语句可以并发执行，速度更快，扩展性也更好。
+
+不过，如果你的 MySQL 数据库有主从同步需求并且 Binlog 存储格式为 Statement 的话，不要将 InnoDB 自增锁模式设置为交叉模式，不然会有数据不一致性问题。这是因为并发情况下插入语句的执行顺序就无法得到保障。
+
+> 如果 MySQL 采用的格式为 Statement ，那么 MySQL 的主从同步实际上同步的就是一条一条的 SQL 语句。
+
+最后，再推荐一篇文章： [为什么 MySQL 的自增主键不单调也不连续](https://draveness.me/whys-the-design-mysql-auto-increment/) 。
 
 ## MySQL 性能优化
 
@@ -620,8 +651,8 @@ mysql> EXPLAIN SELECT `score`,`name` FROM `cus_order` ORDER BY `score` DESC;
 
 | **列名**      | **含义**                                     |
 | ------------- | -------------------------------------------- |
-| id            | SELECT查询的序列标识符                       |
-| select_type   | SELECT关键字对应的查询类型                   |
+| id            | SELECT 查询的序列标识符                      |
+| select_type   | SELECT 关键字对应的查询类型                  |
 | table         | 用到的表名                                   |
 | partitions    | 匹配的分区，对于未分区的表，值为 NULL        |
 | type          | 表的访问方法                                 |
@@ -654,4 +685,5 @@ mysql> EXPLAIN SELECT `score`,`name` FROM `cus_order` ORDER BY `score` DESC;
 - Locking Reads - MySQL 5.7 Reference Manual：https://dev.mysql.com/doc/refman/5.7/en/innodb-locking-reads.html
 - 深入理解数据库行锁与表锁 https://zhuanlan.zhihu.com/p/52678870
 - 详解 MySQL InnoDB 中意向锁的作用：https://juejin.cn/post/6844903666332368909
+- 深入剖析 MySQL 自增锁：https://juejin.cn/post/6968420054287253540
 - 在数据库中不可重复读和幻读到底应该怎么分？：https://www.zhihu.com/question/392569386
