@@ -234,7 +234,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 ## 搜索引擎
 
-用于提高搜索效率，功能和浏览器搜索引擎类似。比较常见的搜索引擎是 Elasticsearch（推荐） 和 Solr。
+[Elasticsearch常见面试题总结(付费)](./database/elasticsearch/elasticsearch-questions-01.md)
 
 ![JavaGuide 官方公众号](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/gongzhonghaoxuanchuan.png)
 
@@ -243,6 +243,10 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 ### Maven
 
 [Maven 核心概念总结](./tools/maven/maven-core-concepts.md)
+
+### Gradle
+
+[Gradle 核心概念总结](./tools/gradle/gradle-core-concepts.md)（可选，目前国内还是使用 Maven 普遍一些）
 
 ### Docker
 

@@ -309,6 +309,12 @@ export const sidebarConfig = sidebar({
           children: ["maven-core-concepts"],
         },
         {
+          text: "Gradle",
+          icon: "gradle",
+          prefix: "gradle/",
+          children: ["gradle-core-concepts"],
+        },
+        {
           text: "Git",
           icon: "git",
           prefix: "git/",
