@@ -253,6 +253,7 @@ export const sidebarConfig = sidebar({
                 "innodb-implementation-of-mvcc",
                 "how-sql-executed-in-mysql",
                 "mysql-query-execution-plan",
+                "mysql-auto-increment-primary-key-continuous",
                 "some-thoughts-on-database-storage-time",
                 "index-invalidation-caused-by-implicit-conversion",
               ],
