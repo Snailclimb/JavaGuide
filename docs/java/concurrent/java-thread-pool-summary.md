@@ -392,6 +392,7 @@ pool-1-thread-2 End. Time = Sun Apr 12 11:14:47 CST 2020
                 addWorker(null, false);
         }
         //3. 通过addWorker(command, false)新建一个线程，并将任务(command)添加到该线程中；然后，启动该线程从而执行任务。
+        // 传入 false 代表增加线程时判断当前线程数是否少于 maxPoolSize
         //如果addWorker(command, false)执行失败，则通过reject()执行相应的拒绝策略的内容。
         else if (!addWorker(command, false))
             reject(command);
@@ -409,7 +410,7 @@ pool-1-thread-2 End. Time = Sun Apr 12 11:14:47 CST 2020
 
 ![图解线程池实现原理](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/%E5%9B%BE%E8%A7%A3%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.png)
 
-`addWorker` 这个方法主要用来创建新的工作线程，如果返回 true 说明创建和启动工作线程成功，否则的话返回的就是 false。
+在 `execute` 方法中，多次调用 `addWorker` 方法。`addWorker` 这个方法主要用来创建新的工作线程，如果返回 true 说明创建和启动工作线程成功，否则的话返回的就是 false。
 
 ```java
     // 全局锁，并发操作必备
