@@ -5,141 +5,17 @@ tag:
   - Java并发
 ---
 
-这篇文章篇幅虽短，但是绝对是干货。标题稍微有点夸张，嘿嘿，实际都是自己使用线程池的时候总结的一些个人感觉比较重要的点。
-
-## 线程池知识回顾
-
-开始这篇文章之前还是简单介绍线程池，之前写的[《新手也能看懂的线程池学习总结》](./java-thread-pool-summary.md)这篇文章介绍的很详细了。
-
-### 为什么要使用线程池？
-
-> **池化技术想必大家已经屡见不鲜了，线程池、数据库连接池、Http 连接池等等都是对这个思想的应用。池化技术的思想主要是为了减少每次获取资源的消耗，提高对资源的利用率。**
-
-**线程池**提供了一种限制和管理资源（包括执行一个任务）的方式。 每个**线程池**还维护一些基本统计信息，例如已完成任务的数量。
-
-这里借用《Java 并发编程的艺术》提到的来说一下**使用线程池的好处**：
-
-- **降低资源消耗**。通过重复利用已创建的线程降低线程创建和销毁造成的消耗。
-- **提高响应速度**。当任务到达时，任务可以不需要等到线程创建就能立即执行。
-- **提高线程的可管理性**。线程是稀缺资源，如果无限制的创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可以进行统一的分配，调优和监控。
-
-### 线程池在实际项目的使用场景
-
-**线程池一般用于执行多个不相关联的耗时任务，没有多线程的情况下，任务顺序执行，使用了线程池的话可让多个不相关联的任务同时执行。**
-
-假设我们要执行三个不相关的耗时任务，Guide 画图给大家展示了使用线程池前后的区别。
-
-注意：**下面三个任务可能做的是同一件事情，也可能是不一样的事情。**
-
-> 使用多线程前应为：任务 1 --> 任务 2 --> 任务 3（图中把任务 3 画错为 任务 2）
-
-![使用线程池前后对比](./images/thread-pool/1bc44c67-26ba-42ab-bcb8-4e29e6fd99b9.png)
-
-### 如何使用线程池？
-
-一般是通过 `ThreadPoolExecutor` 的构造函数来创建线程池，然后提交任务给线程池执行就可以了。
-
-`ThreadPoolExecutor`构造函数如下：
-
-```java
-    /**
-     * 用给定的初始参数创建一个新的ThreadPoolExecutor。
-     */
-    public ThreadPoolExecutor(int corePoolSize,//线程池的核心线程数量
-                              int maximumPoolSize,//线程池的最大线程数
-                              long keepAliveTime,//当线程数大于核心线程数时，多余的空闲线程存活的最长时间
-                              TimeUnit unit,//时间单位
-                              BlockingQueue<Runnable> workQueue,//任务队列，用来储存等待执行任务的队列
-                              ThreadFactory threadFactory,//线程工厂，用来创建线程，一般默认即可
-                              RejectedExecutionHandler handler//拒绝策略，当提交的任务过多而不能及时处理时，我们可以定制策略来处理任务
-                               ) {
-        if (corePoolSize < 0 ||
-            maximumPoolSize <= 0 ||
-            maximumPoolSize < corePoolSize ||
-            keepAliveTime < 0)
-            throw new IllegalArgumentException();
-        if (workQueue == null || threadFactory == null || handler == null)
-            throw new NullPointerException();
-        this.corePoolSize = corePoolSize;
-        this.maximumPoolSize = maximumPoolSize;
-        this.workQueue = workQueue;
-        this.keepAliveTime = unit.toNanos(keepAliveTime);
-        this.threadFactory = threadFactory;
-        this.handler = handler;
-    }
-```
-
-简单演示一下如何使用线程池，更详细的介绍，请看：[《新手也能看懂的线程池学习总结》](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247485808&idx=1&sn=1013253533d73450cef673aee13267ab&chksm=cea246bbf9d5cfad1c21316340a0ef1609a7457fea4113a1f8d69e8c91e7d9cd6285f5ee1490&token=510053261&lang=zh_CN&scene=21#wechat_redirect) 。
-
-```java
-    private static final int CORE_POOL_SIZE = 5;
-    private static final int MAX_POOL_SIZE = 10;
-    private static final int QUEUE_CAPACITY = 100;
-    private static final Long KEEP_ALIVE_TIME = 1L;
-
-    public static void main(String[] args) {
-
-        //使用阿里巴巴推荐的创建线程池的方式
-        //通过ThreadPoolExecutor构造函数自定义参数创建
-        ThreadPoolExecutor executor = new ThreadPoolExecutor(
-                CORE_POOL_SIZE,
-                MAX_POOL_SIZE,
-                KEEP_ALIVE_TIME,
-                TimeUnit.SECONDS,
-                new ArrayBlockingQueue<>(QUEUE_CAPACITY),
-                new ThreadPoolExecutor.CallerRunsPolicy());
-
-        for (int i = 0; i < 10; i++) {
-            executor.execute(() -> {
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                System.out.println("CurrentThread name:" + Thread.currentThread().getName() + "date：" + Instant.now());
-            });
-        }
-        //终止线程池
-        executor.shutdown();
-        try {
-            executor.awaitTermination(5, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println("Finished all threads");
-    }
-```
-
-控制台输出：
-
-```java
-CurrentThread name:pool-1-thread-5date：2020-06-06T11:45:31.639Z
-CurrentThread name:pool-1-thread-3date：2020-06-06T11:45:31.639Z
-CurrentThread name:pool-1-thread-1date：2020-06-06T11:45:31.636Z
-CurrentThread name:pool-1-thread-4date：2020-06-06T11:45:31.639Z
-CurrentThread name:pool-1-thread-2date：2020-06-06T11:45:31.639Z
-CurrentThread name:pool-1-thread-2date：2020-06-06T11:45:33.656Z
-CurrentThread name:pool-1-thread-4date：2020-06-06T11:45:33.656Z
-CurrentThread name:pool-1-thread-1date：2020-06-06T11:45:33.656Z
-CurrentThread name:pool-1-thread-3date：2020-06-06T11:45:33.656Z
-CurrentThread name:pool-1-thread-5date：2020-06-06T11:45:33.656Z
-Finished all threads
-```
-
-## 线程池最佳实践
-
 简单总结一下我了解的使用线程池的时候应该注意的东西，网上似乎还没有专门写这方面的文章。
 
-因为 Guide 还比较菜，有补充和完善的地方，可以在评论区告知或者在微信上与我交流。
+## 1、正确声明线程池
 
-### 1. 使用 `ThreadPoolExecutor` 的构造函数声明线程池
+**线程池必须手动通过 `ThreadPoolExecutor` 的构造函数来声明，避免使用`Executors` 类创建线程池，会有 OOM 风险。**
 
-**1. 线程池必须手动通过 `ThreadPoolExecutor` 的构造函数来声明，避免使用`Executors` 类的 `newFixedThreadPool` 和 `newCachedThreadPool` ，因为可能会有 OOM 的风险。**
+`Executors` 返回线程池对象的弊端如下(后文会详细介绍到)：
 
-> Executors 返回线程池对象的弊端如下：
->
-> - **`FixedThreadPool` 和 `SingleThreadExecutor`** ： 允许请求的队列长度为 `Integer.MAX_VALUE`,可能堆积大量的请求，从而导致 OOM。
-> - **CachedThreadPool 和 ScheduledThreadPool** ： 允许创建的线程数量为 `Integer.MAX_VALUE` ，可能会创建大量线程，从而导致 OOM。
+- **`FixedThreadPool` 和 `SingleThreadExecutor`** ： 使用的是无界的 `LinkedBlockingQueue`，任务队列最大长度为 `Integer.MAX_VALUE`,可能堆积大量的请求，从而导致 OOM。
+- **`CachedThreadPool`** ：使用的是同步队列 `SynchronousQueue`, 允许创建的线程数量为 `Integer.MAX_VALUE` ，可能会创建大量线程，从而导致 OOM。
+- **`ScheduledThreadPool` 和 `SingleThreadScheduledExecutor` ** : 使用的无界的延迟阻塞队列`DelayedWorkQueue`，任务队列最大长度为 `Integer.MAX_VALUE`,可能堆积大量的请求，从而导致 OOM。
 
 说白了就是：**使用有界队列，控制线程创建数量。**
 
@@ -148,7 +24,7 @@ Finished all threads
 1. 实际使用中需要根据自己机器的性能、业务场景来手动配置线程池的参数比如核心线程数、使用的任务队列、饱和策略等等。
 2. 我们应该显示地给我们的线程池命名，这样有助于我们定位问题。
 
-### 2.监测线程池运行状态
+## 2、监测线程池运行状态
 
 你可以通过一些手段来检测线程池的运行状态比如 SpringBoot 中的 Actuator 组件。
 
@@ -159,25 +35,25 @@ Finished all threads
 下面是一个简单的 Demo。`printThreadPoolStatus()`会每隔一秒打印出线程池的线程数、活跃线程数、完成的任务数、以及队列中的任务数。
 
 ```java
-    /**
-     * 打印线程池的状态
-     *
-     * @param threadPool 线程池对象
-     */
-    public static void printThreadPoolStatus(ThreadPoolExecutor threadPool) {
-        ScheduledExecutorService scheduledExecutorService = new ScheduledThreadPoolExecutor(1, createThreadFactory("print-images/thread-pool-status", false));
-        scheduledExecutorService.scheduleAtFixedRate(() -> {
-            log.info("=========================");
-            log.info("ThreadPool Size: [{}]", threadPool.getPoolSize());
-            log.info("Active Threads: {}", threadPool.getActiveCount());
-            log.info("Number of Tasks : {}", threadPool.getCompletedTaskCount());
-            log.info("Number of Tasks in Queue: {}", threadPool.getQueue().size());
-            log.info("=========================");
-        }, 0, 1, TimeUnit.SECONDS);
-    }
+/**
+ * 打印线程池的状态
+ *
+ * @param threadPool 线程池对象
+ */
+public static void printThreadPoolStatus(ThreadPoolExecutor threadPool) {
+    ScheduledExecutorService scheduledExecutorService = new ScheduledThreadPoolExecutor(1, createThreadFactory("print-images/thread-pool-status", false));
+    scheduledExecutorService.scheduleAtFixedRate(() -> {
+        log.info("=========================");
+        log.info("ThreadPool Size: [{}]", threadPool.getPoolSize());
+        log.info("Active Threads: {}", threadPool.getActiveCount());
+        log.info("Number of Tasks : {}", threadPool.getCompletedTaskCount());
+        log.info("Number of Tasks in Queue: {}", threadPool.getQueue().size());
+        log.info("=========================");
+    }, 0, 1, TimeUnit.SECONDS);
+}
 ```
 
-### 3.建议不同类别的业务用不同的线程池
+## 3、建议不同类别的业务用不同的线程池
 
 很多人在实际项目中都会有类似这样的问题：**我的项目中多个业务需要用到线程池，是为每个线程池都定义一个还是说定义一个公共的线程池呢？**
 
@@ -195,15 +71,15 @@ Finished all threads
 
 解决方法也很简单，就是新增加一个用于执行子任务的线程池专门为其服务。
 
-### 4.别忘记给线程池命名
+## 4、别忘记给线程池命名
 
 初始化线程池的时候需要显示命名（设置线程池名称前缀），有利于定位问题。
 
-默认情况下创建的线程名字类似 pool-1-thread-n 这样的，没有业务含义，不利于我们定位问题。
+默认情况下创建的线程名字类似 `pool-1-thread-n` 这样的，没有业务含义，不利于我们定位问题。
 
 给线程池里的线程命名通常有下面两种方式：
 
-**1.利用 guava 的 `ThreadFactoryBuilder` **
+**1、利用 guava 的 `ThreadFactoryBuilder` **
 
 ```java
 ThreadFactory threadFactory = new ThreadFactoryBuilder()
@@ -212,7 +88,7 @@ ThreadFactory threadFactory = new ThreadFactoryBuilder()
 ExecutorService threadPool = new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, TimeUnit.MINUTES, workQueue, threadFactory)
 ```
 
-**2.自己实现 `ThreadFactor`。**
+**2、自己实现 `ThreadFactor`。**
 
 ```java
 import java.util.concurrent.Executors;
@@ -245,13 +121,13 @@ public final class NamingThreadFactory implements ThreadFactory {
 }
 ```
 
-### 5.正确配置线程池参数
+## 5、正确配置线程池参数
 
 说到如何给线程池配置参数，美团的骚操作至今让我难忘（后面会提到）！
 
 我们先来看一下各种书籍和博客上一般推荐的配置线程池参数的方式，可以作为参考！
 
-#### 常规操作
+### 常规操作
 
 很多人甚至可能都会觉得把线程池配置过大一点比较好！我觉得这明显是有问题的。就拿我们生活中非常常见的一例子来说：**并不是人多就能把事情做好，增加了沟通交流成本。你本来一件事情只需要 3 个人做，你硬是拉来了 6 个人，会提升做事效率嘛？我想并不会。** 线程数量过多的影响也是和我们分配多少人做事情一样，对于多线程这个场景来说主要是增加了**上下文切换**成本。不清楚什么是上下文切换的话，可以看我下面的介绍。
 
@@ -291,7 +167,7 @@ CPU 密集型简单理解就是利用 CPU 计算能力的任务比如你在内�
 
 **公示也只是参考，具体还是要根据项目实际线上运行情况来动态调整。我在后面介绍的美团的线程池参数动态配置这种方案就非常不错，很实用！**
 
-#### 美团的骚操作
+### 美团的骚操作
 
 美团技术团队在[《Java 线程池实现原理及其在美团业务中的实践》](https://tech.meituan.com/2020/04/02/java-pooling-pratice-in-meituan.html)这篇文章中介绍到对线程池参数实现可自定义配置的思路和方法。
 
@@ -318,3 +194,8 @@ CPU 密集型简单理解就是利用 CPU 计算能力的任务比如你在内�
 ![动态配置线程池参数最终效果](./images/thread-pool/19a0255a-6ef3-4835-98d1-a839d1983332.png)
 
 还没看够？推荐 why 神的[《如何设置线程池参数？美团给出了一个让面试官虎躯一震的回答。》](https://mp.weixin.qq.com/s/9HLuPcoWmTqAeFKa1kj-_A)这篇文章，深度剖析，很不错哦！
+
+如果我们的项目也想要实现这种效果的话，可以借助现成的开源项目：
+
+- **[Hippo-4](https://github.com/opengoofy/hippo4j)** ：一款强大的动态线程池框架，解决了传统线程池使用存在的一些痛点比如线程池参数没办法动态修改、不支持运行时变量的传递、无法执行优雅关闭。除了支持动态修改线程池参数、线程池任务传递上下文，还支持通知报警、运行监控等开箱即用的功能。
+- **[Dynamic TP](https://github.com/dromara/dynamic-tp)** ：轻量级动态线程池，内置监控告警功能，集成三方中间件线程池管理，基于主流配置中心（已支持Nacos、Apollo，Zookeeper、Consul、Etcd，可通过SPI自定义实现）。

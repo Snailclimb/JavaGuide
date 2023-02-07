@@ -82,7 +82,7 @@ timer.schedule(task, delay);
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/20210607154324712.png)
 
-`ScheduledThreadPoolExecutor` 本身就是一个线程池，支持任务并发执行。并且，其内部使用 `DelayQueue` 作为任务队列。
+`ScheduledThreadPoolExecutor` 本身就是一个线程池，支持任务并发执行。并且，其内部使用 `DelayedWorkQueue` 作为任务队列。
 
 ```java
 // 示例代码：

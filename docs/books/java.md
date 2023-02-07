@@ -64,7 +64,7 @@ _这本书还是非常适合我们用来学习 Java 多线程的。这本书的�
 
 这本书的质量也是非常过硬！给作者们点个赞！这本书有统一的排版规则和语言风格、清晰的表达方式和逻辑。并且每篇文章初稿写完后，作者们就会互相审校，合并到主分支时所有成员会再次审校，最后再通篇修订了三遍。
 
-在线阅读：https://redspider.gitbook.io/concurrent/ 。
+在线阅读：[https://redspider.gitbook.io/concurrent/](https://redspider.gitbook.io/concurrent/ ) 。
 
 **[《Java 并发实现原理：JDK 源码剖析》](https://book.douban.com/subject/35013531/)**
 
