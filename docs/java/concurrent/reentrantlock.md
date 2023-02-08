@@ -9,8 +9,6 @@ tag:
 >
 > 作者：美团技术团队
 
-## 前言
-
 Java 中的大部分同步类（Semaphore、ReentrantLock 等）都是基于 AbstractQueuedSynchronizer（简称为 AQS）实现的。AQS 是一种提供了原子式管理同步状态、阻塞和唤醒线程功能以及队列模型的简单框架。
 
 本文会从应用层逐渐深入到原理层，并通过 ReentrantLock 的基本特性和 ReentrantLock 与 AQS 的关联，来深入解读 AQS 相关独占锁的知识点，同时采取问答的模式来帮助大家理解 AQS。由于篇幅原因，本篇文章主要阐述 AQS 中独占锁的逻辑和 Sync Queue，不讲述包含共享锁和 Condition Queue 的部分（本篇文章核心为 AQS 原理剖析，只是简单介绍了 ReentrantLock，感兴趣同学可以阅读一下 ReentrantLock 的源码）。
@@ -202,7 +200,7 @@ private volatile int state;
 
 对于我们自定义的同步工具，需要自定义获取同步状态和释放状态的方式，也就是 AQS 架构图中的第一层：API 层。
 
-## 2.2 AQS 重要方法与 ReentrantLock 的关联
+### 2.2 AQS 重要方法与 ReentrantLock 的关联
 
 从架构图中可以得知，AQS 提供了大量用于自定义同步器实现的 Protected 方法。自定义同步器实现的相关方法也只是为了通过修改 State 字段来实现多线程的独占模式或者共享模式。自定义同步器需要实现以下方法（ReentrantLock 需要实现的方法如下，并不是全部）：
 
@@ -268,7 +266,7 @@ private volatile int state;
 
 ![](https://p0.meituan.net/travelcube/f30c631c8ebbf820d3e8fcb6eee3c0ef18748.png)
 
-## 2.3 通过 ReentrantLock 理解 AQS
+## 3 通过 ReentrantLock 理解 AQS
 
 ReentrantLock 中公平锁和非公平锁在底层是相同的，这里以非公平锁为例进行分析。
 
@@ -312,13 +310,13 @@ protected boolean tryAcquire(int arg) {
 
 可以看出，这里只是 AQS 的简单实现，具体获取锁的实现方法是由各自的公平锁和非公平锁单独实现的（以 ReentrantLock 为例）。如果该方法返回了 True，则说明当前线程获取锁成功，就不用往后执行了；如果获取失败，就需要加入到等待队列中。下面会详细解释线程是何时以及怎样被加入进等待队列中的。
 
-### 2.3.1 线程加入等待队列
+### 3.1 线程加入等待队列
 
-#### 2.3.1.1 加入队列的时机
+#### 3.1.1 加入队列的时机
 
 当执行 Acquire(1)时，会通过 tryAcquire 获取锁。在这种情况下，如果获取锁失败，就会调用 addWaiter 加入到等待队列中去。
 
-#### 2.3.1.2 如何加入队列
+#### 3.1.2 如何加入队列
 
 获取锁失败后，会执行 addWaiter(Node.EXCLUSIVE)加入等待队列，具体实现方法如下：
 
@@ -395,12 +393,13 @@ private Node enq(final Node node) {
 
 总结一下，线程获取锁的时候，过程大体如下：
 
-1. 当没有线程获取到锁时，线程 1 获取锁成功。
-2. 线程 2 申请锁，但是锁被线程 1 占有。
+1、当没有线程获取到锁时，线程 1 获取锁成功。
+
+2、线程 2 申请锁，但是锁被线程 1 占有。
 
 ![img](https://p0.meituan.net/travelcube/e9e385c3c68f62c67c8d62ab0adb613921117.png)
 
-1. 如果再有线程要获取锁，依次在队列中往后排队即可。
+3、如果再有线程要获取锁，依次在队列中往后排队即可。
 
 回到上边的代码，hasQueuedPredecessors 是公平锁加锁时判断等待队列中是否存在有效节点的方法。如果返回 False，说明当前线程可以争取共享资源；如果返回 True，说明队列中存在有效节点，当前线程必须加入到等待队列中。
 
@@ -439,7 +438,7 @@ if (t == null) { // Must initialize
 
 节点入队不是原子操作，所以会出现短暂的 head != tail，此时 Tail 指向最后一个节点，而且 Tail 指向 Head。如果 Head 没有指向 Tail（可见 5、6、7 行），这种情况下也需要将相关线程加入队列中。所以这块代码是为了解决极端情况下的并发问题。
 
-#### 2.3.1.3 等待队列中线程出队列时机
+#### 3.1.3 等待队列中线程出队列时机
 
 回到最初的源码：
 
@@ -549,7 +548,7 @@ private final boolean parkAndCheckInterrupt() {
 - shouldParkAfterFailedAcquire 中取消节点是怎么生成的呢？什么时候会把一个节点的 waitStatus 设置为-1？
 - 是在什么时间释放节点通知到被挂起的线程呢？
 
-### 2.3.2 CANCELLED 状态节点生成
+### 3.2 CANCELLED 状态节点生成
 
 acquireQueued 方法中的 Finally 代码：
 
@@ -651,7 +650,7 @@ private void cancelAcquire(Node node) {
 > } while (pred.waitStatus > 0);
 > ```
 
-### 2.3.3 如何解锁
+### 3.3 如何解锁
 
 我们已经剖析了加锁过程中的基本流程，接下来再对解锁的基本流程进行分析。由于 ReentrantLock 在解锁的时候，并不区分公平锁和非公平锁，所以我们直接看解锁的源码：
 
@@ -782,7 +781,7 @@ private Node addWaiter(Node mode) {
 
 综上所述，如果是从前往后找，由于极端情况下入队的非原子操作和 CANCELLED 节点产生过程中断开 Next 指针的操作，可能会导致无法遍历所有的节点。所以，唤醒对应的线程后，对应的线程就会继续往下执行。继续执行 acquireQueued 方法以后，中断如何处理？
 
-### 2.3.4 中断恢复后的执行流程
+### 3.4 中断恢复后的执行流程
 
 唤醒后，会执行 return Thread.interrupted();，这个函数返回的是当前执行线程的中断状态，并清除。
 
@@ -839,7 +838,7 @@ static void selfInterrupt() {
 
 这里的处理方式主要是运用线程池中基本运作单元 Worder 中的 runWorker，通过 Thread.interrupted()进行额外的判断处理，感兴趣的同学可以看下 ThreadPoolExecutor 源码。
 
-### 2.3.5 小结
+### 3.5 小结
 
 我们在 1.3 小节中提出了一些问题，现在来回答一下。
 
@@ -863,9 +862,9 @@ static void selfInterrupt() {
 >
 > A：AQS 的 Acquire 会调用 tryAcquire 方法，tryAcquire 由各个自定义同步器实现，通过 tryAcquire 完成加锁过程。
 
-## 3 AQS 应用
+## 4 AQS 应用
 
-### 3.1 ReentrantLock 的可重入应用
+### 4.1 ReentrantLock 的可重入应用
 
 ReentrantLock 的可重入性是 AQS 很好的应用之一，在了解完上述知识点以后，我们很容易得知 ReentrantLock 实现可重入的方法。在 ReentrantLock 里面，不管是公平锁还是非公平锁，都有一段逻辑。
 
@@ -923,7 +922,7 @@ private volatile int state;
 2. 当有线程持有该锁时，值就会在原来的基础上+1，同一个线程多次获得锁是，就会多次+1，这里就是可重入的概念。
 3. 解锁也是对这个字段-1，一直到 0，此线程对锁释放。
 
-### 3.2 JUC 中的应用场景
+### 4.2 JUC 中的应用场景
 
 除了上边 ReentrantLock 的可重入性的应用，AQS 作为并发编程的框架，为很多其他同步工具提供了良好的解决方案。下面列出了 JUC 中的几种同步工具，大体介绍一下 AQS 的应用场景：
 
@@ -935,7 +934,7 @@ private volatile int state;
 | ReentrantReadWriteLock | 使用 AQS 同步状态中的 16 位保存写锁持有的次数，剩下的 16 位用于保存读锁的持有次数。 |
 | ThreadPoolExecutor     | Worker 利用 AQS 同步状态实现对独占线程变量的设置（tryAcquire 和 tryRelease）。 |
 
-### 3.3 自定义同步工具
+### 4.3 自定义同步工具
 
 了解 AQS 基本原理以后，按照上面所说的 AQS 知识点，自己实现一个同步工具。
 
@@ -1011,7 +1010,7 @@ public class LeeMain {
 
 上述代码每次运行结果都会是 20000。通过简单的几行代码就能实现同步功能，这就是 AQS 的强大之处。
 
-## 总结
+## 5 总结
 
 我们日常开发中使用并发的场景太多，但是对并发内部的基本框架原理了解的人却不多。由于篇幅原因，本文仅介绍了可重入锁 ReentrantLock 的原理和 AQS 原理，希望能够成为大家了解 AQS 和 ReentrantLock 等同步器的“敲门砖”。
 

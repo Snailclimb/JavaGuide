@@ -124,7 +124,7 @@ echo $hello
 输出内容：
 
 ```
-Hello, I am SnailClimb!
+Hello, I  am '$name'!
 ```
 
 **双引号字符串：**

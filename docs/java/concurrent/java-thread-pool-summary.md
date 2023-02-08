@@ -47,7 +47,7 @@ tag:
 
 如下图所示，包括任务执行机制的核心接口 **`Executor`** ，以及继承自 `Executor` 接口的 **`ExecutorService` 接口。`ThreadPoolExecutor`** 和 **`ScheduledThreadPoolExecutor`** 这两个关键类实现了 **`ExecutorService`** 接口。
 
-![任务的执行相关接口](./images/java-thread-pool-summary/任务的执行相关接口.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/concurrent/executor-class-diagram.png)
 
 这里提了很多底层的类关系，但是，实际上我们需要更多关注的是 `ThreadPoolExecutor` 这个类，这个类在我们实际使用线程池的过程中，使用频率还是非常高的。
 
@@ -154,20 +154,24 @@ Spring 通过 `ThreadPoolTaskExecutor` 或者我们直接通过 `ThreadPoolExecu
 
 ### 线程池创建两种方式
 
-**方式一：通过`ThreadPoolExecutor`构造函数实现（推荐）**
+**方式一：通过`ThreadPoolExecutor`构造函数来创建（推荐）。**
 
 ![通过构造方法实现](./images/java-thread-pool-summary/threadpoolexecutor构造函数.png)
 
-**方式二：通过 `Executor` 框架的工具类 `Executors` 来实现**
-我们可以创建三种类型的 `ThreadPoolExecutor`：
+**方式二：通过 `Executor` 框架的工具类 `Executors` 来创建。**
+
+我们可以创建多种类型的 `ThreadPoolExecutor`：
 
 - **`FixedThreadPool`** ： 该方法返回一个固定线程数量的线程池。该线程池中的线程数量始终不变。当有一个新的任务提交时，线程池中若有空闲线程，则立即执行。若没有，则新的任务会被暂存在一个任务队列中，待有线程空闲时，便处理在任务队列中的任务。
-- **`SingleThreadExecutor`：** 方法返回一个只有一个线程的线程池。若多余一个任务被提交到该线程池，任务会被保存在一个任务队列中，待线程空闲，按先入先出的顺序执行队列中的任务。
+- **`SingleThreadExecutor`：** 该方法返回一个只有一个线程的线程池。若多余一个任务被提交到该线程池，任务会被保存在一个任务队列中，待线程空闲，按先入先出的顺序执行队列中的任务。
 - **`CachedThreadPool`：** 该方法返回一个可根据实际情况调整线程数量的线程池。线程池的线程数量不确定，但若有空闲线程可以复用，则会优先使用可复用的线程。若所有线程均在工作，又有新的任务提交，则会创建新的线程处理任务。所有线程在当前任务执行完毕后，将返回线程池进行复用。
+- **`ScheduledThreadPool`** ：该返回一个用来在给定的延迟后运行任务或者定期执行任务的线程池。
 
-对应 Executors 工具类中的方法如图所示：
+对应 `Executors` 工具类中的方法如图所示：
 
-![通过Executor 框架的工具类Executors来实现](./images/java-thread-pool-summary/Executors工具类.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/concurrent/executors-inner-threadpool.png)
+
+
 
 《阿里巴巴 Java 开发手册》强制线程池不允许使用 `Executors` 去创建，而是通过 `ThreadPoolExecutor` 构造函数的方式，这样的处理方式让写的同学更加明确线程池的运行规则，规避资源耗尽的风险
 
