@@ -174,7 +174,7 @@ StreamDecoder(InputStream in, Object lock, CharsetDecoder dec) {
 
 适配器和适配者两者不需要继承相同的抽象类或者实现相同的接口。
 
-另外，`FutrueTask` 类使用了适配器模式，`Executors` 的内部类 `RunnableAdapter` 实现属于适配器，用于将 `Runnable` 适配成 `Callable`。
+另外，`FutureTask` 类使用了适配器模式，`Executors` 的内部类 `RunnableAdapter` 实现属于适配器，用于将 `Runnable` 适配成 `Callable`。
 
 `FutureTask`参数包含 `Runnable` 的一个构造方法：
 
