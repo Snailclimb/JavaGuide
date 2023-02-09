@@ -234,7 +234,7 @@ static class Entry extends WeakReference<ThreadLocal<?>> {
 
 - **`FixedThreadPool` 和 `SingleThreadExecutor`** ： 使用的是无界的 `LinkedBlockingQueue`，任务队列最大长度为 `Integer.MAX_VALUE`,可能堆积大量的请求，从而导致 OOM。
 - **`CachedThreadPool`** ：使用的是同步队列 `SynchronousQueue`, 允许创建的线程数量为 `Integer.MAX_VALUE` ，可能会创建大量线程，从而导致 OOM。
-- **`ScheduledThreadPool` 和 `SingleThreadScheduledExecutor` ** : 使用的无界的延迟阻塞队列`DelayedWorkQueue`，任务队列最大长度为 `Integer.MAX_VALUE`,可能堆积大量的请求，从而导致 OOM。
+- **`ScheduledThreadPool` 和 `SingleThreadScheduledExecutor`** : 使用的无界的延迟阻塞队列`DelayedWorkQueue`，任务队列最大长度为 `Integer.MAX_VALUE`,可能堆积大量的请求，从而导致 OOM。
 
 ```java
 // 无界队列 LinkedBlockingQueue
@@ -451,7 +451,7 @@ CPU 密集型简单理解就是利用 CPU 计算能力的任务比如你在内�
 
 **如何支持参数动态配置？** 且看 `ThreadPoolExecutor` 提供的下面这些方法。
 
-![](./images/thread-pool/b6fd95a7-4c9d-4fc6-ad26-890adb3f6c4c.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/concurrent/threadpoolexecutor-methods.png)
 
 格外需要注意的是`corePoolSize`， 程序运行期间的时候，我们调用 `setCorePoolSize（）`这个方法的话，线程池会首先判断当前工作线程数是否大于`corePoolSize`，如果大于的话就会回收工作线程。
 
@@ -459,7 +459,7 @@ CPU 密集型简单理解就是利用 CPU 计算能力的任务比如你在内�
 
 最终实现的可动态修改线程池参数效果如下。👏👏👏
 
-![动态配置线程池参数最终效果](./images/thread-pool/19a0255a-6ef3-4835-98d1-a839d1983332.png)
+![动态配置线程池参数最终效果](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/concurrent/meituan-dynamically-configuring-thread-pool-parameters.png)
 
 还没看够？推荐 why 神的[如何设置线程池参数？美团给出了一个让面试官虎躯一震的回答。](https://mp.weixin.qq.com/s/9HLuPcoWmTqAeFKa1kj-_A)这篇文章，深度剖析，很不错哦！
 

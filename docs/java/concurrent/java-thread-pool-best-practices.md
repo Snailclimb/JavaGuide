@@ -21,8 +21,8 @@ tag:
 
 除了避免 OOM 的原因之外，不推荐使用 `Executors`提供的两种快捷的线程池的原因还有：
 
-1. 实际使用中需要根据自己机器的性能、业务场景来手动配置线程池的参数比如核心线程数、使用的任务队列、饱和策略等等。
-2. 我们应该显示地给我们的线程池命名，这样有助于我们定位问题。
+- 实际使用中需要根据自己机器的性能、业务场景来手动配置线程池的参数比如核心线程数、使用的任务队列、饱和策略等等。
+- 我们应该显示地给我们的线程池命名，这样有助于我们定位问题。
 
 ## 2、监测线程池运行状态
 
@@ -30,7 +30,7 @@ tag:
 
 除此之外，我们还可以利用 `ThreadPoolExecutor` 的相关 API 做一个简陋的监控。从下图可以看出， `ThreadPoolExecutor`提供了获取线程池当前的线程数和活跃线程数、已经执行完成的任务数、正在排队中的任务数等等。
 
-![](./images/thread-pool/ddf22709-bff5-45b4-acb7-a3f2e6798608.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/concurrent/threadpool-methods-information.png)
 
 下面是一个简单的 Demo。`printThreadPoolStatus()`会每隔一秒打印出线程池的线程数、活跃线程数、完成的任务数、以及队列中的任务数。
 
@@ -59,15 +59,15 @@ public static void printThreadPoolStatus(ThreadPoolExecutor threadPool) {
 
 一般建议是不同的业务使用不同的线程池，配置线程池的时候根据当前业务的情况对当前线程池进行配置，因为不同的业务的并发以及对资源的使用情况都不同，重心优化系统性能瓶颈相关的业务。
 
-**我们再来看一个真实的事故案例！** (本案例来源自：[《线程池运用不当的一次线上事故》](https://club.perfma.com/article/646639) ，很精彩的一个案例)
+**我们再来看一个真实的事故案例！** (本案例来源自：[《线程池运用不当的一次线上事故》](https://club.perfma.com/article/646639) ，很精彩的一个案例) 
 
-![案例代码概览](./images/thread-pool/5b9b814d-722a-4116-b066-43dc80fc1dc4.png)
+![案例代码概览](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/concurrent/production-accident-threadpool-sharing-example.png)
 
 上面的代码可能会存在死锁的情况，为什么呢？画个图给大家捋一捋。
 
-试想这样一种极端情况：假如我们线程池的核心线程数为 **n**，父任务（扣费任务）数量为 **n**，父任务下面有两个子任务（扣费任务下的子任务），其中一个已经执行完成，另外一个被放在了任务队列中。由于父任务把线程池核心线程资源用完，所以子任务因为无法获取到线程资源无法正常执行，一直被阻塞在队列中。父任务等待子任务执行完成，而子任务等待父任务释放线程池资源，这也就造成了 **"死锁"**。
+试想这样一种极端情况：假如我们线程池的核心线程数为 **n**，父任务（扣费任务）数量为 **n**，父任务下面有两个子任务（扣费任务下的子任务），其中一个已经执行完成，另外一个被放在了任务队列中。由于父任务把线程池核心线程资源用完，所以子任务因为无法获取到线程资源无法正常执行，一直被阻塞在队列中。父任务等待子任务执行完成，而子任务等待父任务释放线程池资源，这也就造成了 **"死锁"** 。
 
-![线程池使用不当导致死锁](./images/thread-pool/线程池使用不当导致死锁.png)
+![线程池使用不当导致死锁](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/concurrent/production-accident-threadpool-sharing-deadlock.png)
 
 解决方法也很简单，就是新增加一个用于执行子任务的线程池专门为其服务。
 
@@ -79,7 +79,7 @@ public static void printThreadPoolStatus(ThreadPoolExecutor threadPool) {
 
 给线程池里的线程命名通常有下面两种方式：
 
-**1、利用 guava 的 `ThreadFactoryBuilder` **
+**1、利用 guava 的 `ThreadFactoryBuilder`**
 
 ```java
 ThreadFactory threadFactory = new ThreadFactoryBuilder()
@@ -183,7 +183,7 @@ CPU 密集型简单理解就是利用 CPU 计算能力的任务比如你在内�
 
 **如何支持参数动态配置？** 且看 `ThreadPoolExecutor` 提供的下面这些方法。
 
-![](./images/thread-pool/b6fd95a7-4c9d-4fc6-ad26-890adb3f6c4c.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/concurrent/threadpoolexecutor-methods.png)
 
 格外需要注意的是`corePoolSize`， 程序运行期间的时候，我们调用 `setCorePoolSize（）`这个方法的话，线程池会首先判断当前工作线程数是否大于`corePoolSize`，如果大于的话就会回收工作线程。
 
@@ -191,11 +191,77 @@ CPU 密集型简单理解就是利用 CPU 计算能力的任务比如你在内�
 
 最终实现的可动态修改线程池参数效果如下。👏👏👏
 
-![动态配置线程池参数最终效果](./images/thread-pool/19a0255a-6ef3-4835-98d1-a839d1983332.png)
+![动态配置线程池参数最终效果](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/concurrent/meituan-dynamically-configuring-thread-pool-parameters.png)
 
 还没看够？推荐 why 神的[《如何设置线程池参数？美团给出了一个让面试官虎躯一震的回答。》](https://mp.weixin.qq.com/s/9HLuPcoWmTqAeFKa1kj-_A)这篇文章，深度剖析，很不错哦！
 
 如果我们的项目也想要实现这种效果的话，可以借助现成的开源项目：
 
 - **[Hippo-4](https://github.com/opengoofy/hippo4j)** ：一款强大的动态线程池框架，解决了传统线程池使用存在的一些痛点比如线程池参数没办法动态修改、不支持运行时变量的传递、无法执行优雅关闭。除了支持动态修改线程池参数、线程池任务传递上下文，还支持通知报警、运行监控等开箱即用的功能。
-- **[Dynamic TP](https://github.com/dromara/dynamic-tp)** ：轻量级动态线程池，内置监控告警功能，集成三方中间件线程池管理，基于主流配置中心（已支持Nacos、Apollo，Zookeeper、Consul、Etcd，可通过SPI自定义实现）。
+- **[Dynamic TP](https://github.com/dromara/dynamic-tp)** ：轻量级动态线程池，内置监控告警功能，集成三方中间件线程池管理，基于主流配置中心（已支持 Nacos、Apollo，Zookeeper、Consul、Etcd，可通过 SPI 自定义实现）。
+
+## 6、线程池使用的一些小坑
+
+### 重复创建线程池的坑
+
+线程池是可以复用的，一定不要频繁创建线程池比如一个用户请求到了就单独创建一个线程池。
+
+```java
+@GetMapping("wrong")
+public String wrong() throws InterruptedException {
+    // 自定义线程池
+    ThreadPoolExecutor executor = new ThreadPoolExecutor(5,10,1L,TimeUnit.SECONDS,new ArrayBlockingQueue<>(100),new ThreadPoolExecutor.CallerRunsPolicy());
+
+    //  处理任务
+    executor.execute(() -> {
+      // ......
+    }
+    return "OK";
+}
+```
+
+出现这种问题的原因还是对于线程池认识不够，需要加强线程池的基础知识。
+
+### Spring 内部线程池的坑
+
+使用 Spring 内部线程池时，一定要手动自定义线程池，配置合理的参数，不然会出现生产问题（一个请求创建一个线程）。
+
+```java
+@Configuration
+@EnableAsync
+public class ThreadPoolExecutorConfig {
+
+    @Bean(name="threadPoolExecutor")
+    public Executor threadPoolExecutor(){
+        ThreadPoolTaskExecutor threadPoolExecutor = new ThreadPoolTaskExecutor();
+        int processNum = Runtime.getRuntime().availableProcessors(); // 返回可用处理器的Java虚拟机的数量
+        int corePoolSize = (int) (processNum / (1 - 0.2));
+        int maxPoolSize = (int) (processNum / (1 - 0.5));
+        threadPoolExecutor.setCorePoolSize(corePoolSize); // 核心池大小
+        threadPoolExecutor.setMaxPoolSize(maxPoolSize); // 最大线程数
+        threadPoolExecutor.setQueueCapacity(maxPoolSize * 1000); // 队列程度
+        threadPoolExecutor.setThreadPriority(Thread.MAX_PRIORITY);
+        threadPoolExecutor.setDaemon(false);
+        threadPoolExecutor.setKeepAliveSeconds(300);// 线程空闲时间
+        threadPoolExecutor.setThreadNamePrefix("test-Executor-"); // 线程名字前缀
+        return threadPoolExecutor;
+    }
+}
+```
+
+### 线程池和 ThreadLocal 共用的坑
+
+线程池和 `ThreadLocal`共用，可能会导致线程从`ThreadLocal`获取到的是旧值/脏数据。这是因为线程池会复用线程对象，与线程对象绑定的类的静态属性 `ThreadLocal` 变量也会被重用，这就导致一个线程可能获取到其他线程的`ThreadLocal` 值。
+
+不要以为代码中没有显示使用线程池就不存在线程池了，像常用的 Web 服务器 Tomcat 处理任务为了提高并发量，就使用到了线程池，并且使用的是基于原生 Java 线程池改进完善得到的自定义线程池。
+
+当然了，你可以将 Tomcat 设置为单线程处理任务。不过，这并不合适，会严重影响其处理任务的速度。
+
+```properties
+server.tomcat.max-threads=1
+```
+
+解决上述问题比较建议的办法是使用阿里巴巴开源的 `TransmittableThreadLocal`(`TTL`)。`TransmittableThreadLocal`类继承并加强了 JDK 内置的`InheritableThreadLocal`类，在使用线程池等会池化复用线程的执行组件情况下，提供`ThreadLocal`值的传递功能，解决异步执行时上下文传递的问题。
+
+`InheritableThreadLocal` 项目地址： https://github.com/alibaba/transmittable-thread-local 。
+
