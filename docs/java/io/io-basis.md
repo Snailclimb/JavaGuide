@@ -238,7 +238,7 @@ The content read from file:我是Guide。
 
 ### Writer（字符输出流）
 
-`Writer`用于将数据（字符信息）写入到目的地（通常是文件），`java.io.Writer`抽象类是所有字节输出流的父类。
+`Writer`用于将数据（字符信息）写入到目的地（通常是文件），`java.io.Writer`抽象类是所有字符输出流的父类。
 
 `Writer` 常用方法 ：
 
