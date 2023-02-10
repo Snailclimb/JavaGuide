@@ -56,8 +56,14 @@ tag:
 
 ###  HTTP 基于 TCP 还是 UDP？
 
+~~**HTTP 协议是基于 TCP 协议的**，所以发送 HTTP 请求之前首先要建立 TCP 连接也就是要经历 3 次握手。~~
 
-**HTTP3.0之前基于TCP， HTTP3.0基于UDP**。HTTP3.0之前使用TCP协议，所以需要3次握手；HTTP3.0弃用TCP，改用基于UDP的QUIC协议。
+🐛 修正（参见 [issue#1915](https://github.com/Snailclimb/JavaGuide/issues/1915)）：HTTP 3.0 之前是基于 TCP 协议的，而 HTTP3.0 将弃用 TCP，改用 **基于 UDP 的 QUIC 协议** 。此变化主要为了解决 HTTP/2 中存在的队头阻塞问题。由于 HTTP/2 在单个 TCP 连接上使用了多路复用，受到 TCP 拥塞控制的影响，少量的丢包就可能导致整个 TCP 连接上的所有流被阻塞。
+
+相关证明可以参考下面这两个链接：
+
+- https://zh.wikipedia.org/zh/HTTP/3
+- https://datatracker.ietf.org/doc/rfc9114/
 
 ### 使用 TCP 的协议有哪些?使用 UDP 的协议有哪些?
 
