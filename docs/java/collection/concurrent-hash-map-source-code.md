@@ -444,8 +444,8 @@ private final Node<K,V>[] initTable() {
 
 1. -1  说明正在初始化
 2. -N 说明有N-1个线程正在进行扩容
-3. 表示 table 初始化大小，如果 table 没有初始化
-4. 表示 table 容量，如果 table　已经初始化。
+3. 0 表示 table 初始化大小，如果 table 没有初始化
+4. \>0 表示 table 扩容的阈值，如果 table 已经初始化。
 
 ### 3. put
 
