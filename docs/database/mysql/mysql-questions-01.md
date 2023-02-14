@@ -681,7 +681,7 @@ mysql> EXPLAIN SELECT `score`,`name` FROM `cus_order` ORDER BY `score` DESC;
 | filtered      | 按表条件过滤后，留存的记录数的百分比         |
 | Extra         | 附加信息                                     |
 
-篇幅问题，我这里只是简单介绍了一下 MySQL 执行计划，详细介绍请看：[SQL 的执行计划](./mysql-query-execution-plan.md)这篇文章。
+篇幅问题，我这里只是简单介绍了一下 MySQL 执行计划，详细介绍请看：[SQL 的执行计划](https://javaguide.cn/database/mysql/mysql-query-execution-plan.html)这篇文章。
 
 ### 读写分离和分库分表了解吗？
 
