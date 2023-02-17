@@ -280,7 +280,7 @@ SELECT id FROM table WHERE id=1;
 - 使用 `SELECT *` 进行查询;
 - 创建了组合索引，但查询条件未准守最左匹配原则;
 - 在索引列上进行计算、函数、类型转换等操作;
-- 以 `%` 开头的 LIKE 查询比如 `like '%abc';`;
+- 以 `%` 开头的 LIKE 查询比如 `like '%abc'`;
 - 查询条件中使用 or，且 or 的前后条件中有一个列没有索引，涉及的索引都不会被使用到;
 - 发生[隐式转换](https://javaguide.cn/database/mysql/index-invalidation-caused-by-implicit-conversion.html);
 - ......
