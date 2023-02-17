@@ -230,7 +230,18 @@ export const sidebarConfig = sidebar({
         {
           text: "基础",
           icon: "basic",
-          children: ["basis", "nosql", "character-set"],
+          children: [
+            "basis",
+            "nosql",
+            "character-set",
+            {
+              text: "SQL",
+              icon: "SQL",
+              prefix: "sql/",
+              collapsible: true,
+              children: ["sql-syntax-summary", "sql-questions-01"],
+            },
+          ],
         },
         {
           text: "MySQL",

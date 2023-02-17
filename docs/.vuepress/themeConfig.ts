@@ -11,7 +11,7 @@ export const themeConfig = hopeTheme({
   },
   repo: "https://github.com/Snailclimb/JavaGuide",
   docsDir: "docs",
-  iconAssets: "//at.alicdn.com/t/c/font_2922463_st01t0e9sr.css",
+  iconAssets: "//at.alicdn.com/t/c/font_2922463_9ir10garej4.css",
   navbar: navbarConfig,
   sidebar: sidebarConfig,
   pageInfo: [

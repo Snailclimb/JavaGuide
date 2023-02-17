@@ -8,7 +8,6 @@ icon: project
 
 下面这几个项目都是非常适合 Spring Boot 初学者学习的，下面的大部分项目的总体代码架构我都看过，个人觉得还算不错，不会误导没有实际做过项目的朋友。
 
-- **[blog](https://github.com/X1192176811/blog)** ：一款基于 SpringBoot + Vue 开发的前后端分离博客，非常精致，功能也比通过类型博客系统更加丰富完善。采用 SpringSecurity 进行权限管理，ElasticSearch 全文搜索，支持 QQ、微博第三方登录、在线聊天、发布说说等功能。相关阅读：[这个 SpringBoot+ Vue 开源博客系统太酷炫了！](https://mp.weixin.qq.com/s/CCzsX3Sn2Q3vhuBDEmRTlw)。
 - **[forest](https://github.com/rymcu)** ：下一代的知识社区系统，可以自定义专题和作品集。后端基于 SpringBoot + Shrio + MyBatis + JWT + Redis，前端基于 Vue + NuxtJS + Element-UI。
 - **[vhr](https://github.com/lenve/vhr "vhr")** ：微人事是一个前后端分离的人力资源管理系统，项目采用 SpringBoot+Vue 开发。
 - **[favorites-web](https://github.com/cloudfavorites/favorites-web)** :云收藏 Spring Boot 2.X 开源项目。云收藏是一个使用 Spring Boot 构建的开源网站，可以让用户在线随时随地收藏的一个网站，在网站上分类整理收藏的网站或者文章。
