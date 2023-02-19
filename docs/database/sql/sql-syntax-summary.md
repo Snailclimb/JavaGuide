@@ -112,8 +112,12 @@ DCL 以**控制用户的访问权限**为主，因此其指令作法并不复杂
 **插入完整的行**
 
 ```sql
+# 插入一行
 INSERT INTO user
 VALUES (10, 'root', 'root', 'xxxx@163.com');
+# 插入多行
+INSERT INTO user
+VALUES (10, 'root', 'root', 'xxxx@163.com'), (12, 'user1', 'user1', 'xxxx@163.com'), (18, 'user2', 'user2', 'xxxx@163.com');
 ```
 
 **插入行的一部分**
