@@ -5,6 +5,7 @@ export const highQualityTechnicalArticles = [
     prefix: "advanced-programmer/",
     collapsable: false,
     children: [
+      "the-growth-strategy-of-the-technological-giant",
       "seven-tips-for-becoming-an-advanced-programmer",
       "20-bad-habits-of-bad-programmers",
     ],

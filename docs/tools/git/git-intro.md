@@ -25,7 +25,7 @@ tag:
 
 ### 集中化的版本控制系统
 
-接下来人们又遇到一个问题，如何让在不同系统上的开发者协同工作？ 于是，集中化的版本控制系统（Centralized Version Control Systems，简称 CVCS）应运而生。 
+接下来人们又遇到一个问题，如何让在不同系统上的开发者协同工作？ 于是，集中化的版本控制系统（Centralized Version Control Systems，简称 CVCS）应运而生。
 
 集中化的版本控制系统都有一个单一的集中管理的服务器，保存所有文件的修订版本，而协同工作的人们都通过客户端连到这台服务器，取出最新的文件或者提交更新。
 
@@ -52,19 +52,19 @@ tag:
 
 ### Git 简史
 
-Linux 内核项目组当时使用分布式版本控制系统 BitKeeper 来管理和维护代码。但是，后来开发 BitKeeper 的商业公司同 Linux 内核开源社区的合作关系结束，他们收回了 Linux 内核社区免费使用 BitKeeper 的权力。 Linux 开源社区（特别是 Linux 的缔造者 Linus Torvalds）基于使用 BitKeeper 时的经验教训，开发出自己的版本系统，而且对新的版本控制系统做了很多改进。 
+Linux 内核项目组当时使用分布式版本控制系统 BitKeeper 来管理和维护代码。但是，后来开发 BitKeeper 的商业公司同 Linux 内核开源社区的合作关系结束，他们收回了 Linux 内核社区免费使用 BitKeeper 的权力。 Linux 开源社区（特别是 Linux 的缔造者 Linus Torvalds）基于使用 BitKeeper 时的经验教训，开发出自己的版本系统，而且对新的版本控制系统做了很多改进。
 
 ### Git 与其他版本管理系统的主要区别
 
- Git 在保存和对待各种信息的时候与其它版本控制系统有很大差异，尽管操作起来的命令形式非常相近，理解这些差异将有助于防止你使用中的困惑。
+Git 在保存和对待各种信息的时候与其它版本控制系统有很大差异，尽管操作起来的命令形式非常相近，理解这些差异将有助于防止你使用中的困惑。
 
 下面我们主要说一个关于 Git 与其他版本管理系统的主要差别：**对待数据的方式**。
 
-**Git采用的是直接记录快照的方式，而非差异比较。我后面会详细介绍这两种方式的差别。**
+**Git 采用的是直接记录快照的方式，而非差异比较。我后面会详细介绍这两种方式的差别。**
 
 大部分版本控制系统（CVS、Subversion、Perforce、Bazaar 等等）都是以文件变更列表的方式存储信息，这类系统**将它们保存的信息看作是一组基本文件和每个文件随时间逐步累积的差异。**
 
-具体原理如下图所示，理解起来其实很简单，每当我们提交更新一个文件之后，系统都会记录这个文件做了哪些更新，以增量符号Δ(Delta)表示。
+具体原理如下图所示，理解起来其实很简单，每当我们提交更新一个文件之后，系统都会记录这个文件做了哪些更新，以增量符号 Δ(Delta)表示。
 
 ![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3deltas.png)
 
@@ -92,7 +92,6 @@ Git 有三种状态，你的文件可能处于其中之一：
 
 ![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3areas.png)
 
-
 **基本的 Git 工作流程如下：**
 
 1. 在工作目录中修改文件。
@@ -105,20 +104,21 @@ Git 有三种状态，你的文件可能处于其中之一：
 
 有两种取得 Git 项目仓库的方法。
 
-1. 在现有目录中初始化仓库: 进入项目目录运行  `git init`  命令,该命令将创建一个名为 `.git` 的子目录。
+1. 在现有目录中初始化仓库: 进入项目目录运行 `git init` 命令,该命令将创建一个名为 `.git` 的子目录。
 2. 从一个服务器克隆一个现有的 Git 仓库: `git clone [url]` 自定义本地仓库的名字: `git clone [url] directoryname`
 
 ### 记录每次更新到仓库
 
 1. **检测当前文件状态** : `git status`
-2. **提出更改（把它们添加到暂存区**）：`git add filename ` (针对特定文件)、`git add *`(所有文件)、`git add *.txt`（支持通配符，所有 .txt 文件）
+2. **提出更改（把它们添加到暂存区**）：`git add filename` (针对特定文件)、`git add *`(所有文件)、`git add *.txt`（支持通配符，所有 .txt 文件）
 3. **忽略文件**：`.gitignore` 文件
 4. **提交更新:** `git commit -m "代码提交信息"` （每次准备提交前，先用 `git status` 看下，是不是都已暂存起来了， 然后再运行提交命令 `git commit`）
 5. **跳过使用暂存区域更新的方式** : `git commit -a -m "代码提交信息"`。 `git commit` 加上 `-a` 选项，Git 就会自动把所有已经跟踪过的文件暂存起来一并提交，从而跳过 `git add` 步骤。
-6. **移除文件** ：`git rm filename`  （从暂存区域移除，然后提交。）
+6. **移除文件** ：`git rm filename` （从暂存区域移除，然后提交。）
 7. **对文件重命名** ：`git mv README.md README`(这个命令相当于`mv README.md README`、`git rm README.md`、`git add README` 这三条命令的集合)
 
 ### 一个好的 Git 提交消息
+
 一个好的 Git 提交消息如下：
 
     标题行：用这一行来描述和解释你的这次提交
@@ -131,8 +131,8 @@ Git 有三种状态，你的文件可能处于其中之一：
 
 ### 推送改动到远程仓库
 
-- 如果你还没有克隆现有仓库，并欲将你的仓库连接到某个远程服务器，你可以使用如下命令添加：`git remote add origin <server>` ,比如我们要让本地的一个仓库和 Github 上创建的一个仓库关联可以这样`git remote add origin https://github.com/Snailclimb/test.git` 
-- 将这些改动提交到远端仓库：`git push origin master` (可以把 *master* 换成你想要推送的任何分支)
+- 如果你还没有克隆现有仓库，并欲将你的仓库连接到某个远程服务器，你可以使用如下命令添加：`git remote add origin <server>` ,比如我们要让本地的一个仓库和 Github 上创建的一个仓库关联可以这样`git remote add origin https://github.com/Snailclimb/test.git`
+- 将这些改动提交到远端仓库：`git push origin master` (可以把 _master_ 换成你想要推送的任何分支)
 
   如此你就能够将你的改动推送到所添加的服务器上去了。
 
@@ -180,10 +180,9 @@ git fetch origin
 git reset --hard origin/master
 ```
 
-
 ### 分支
 
-分支是用来将特性开发绝缘开来的。在你创建仓库的时候，*master* 是“默认”的分支。在其他分支上进行开发，完成后再将它们合并到主分支上。
+分支是用来将特性开发绝缘开来的。在你创建仓库的时候，_master_ 是“默认”的分支。在其他分支上进行开发，完成后再将它们合并到主分支上。
 
 我们通常在开发新功能、修复一个紧急 bug 等等时候会选择创建分支。单分支开发好还是多分支开发好，还是要看具体场景来说。
 
@@ -200,7 +199,6 @@ git checkout test
 ```
 
 ![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3切换分支.png)
-
 
 你也可以直接这样创建分支并切换过去(上面两条命令的合写)
 
@@ -232,17 +230,16 @@ git branch -d feature_x
 git push origin
 ```
 
-## 推荐
+## 学习资料推荐
 
 **在线演示学习工具：**
 
-「补充，来自[issue729](https://github.com/Snailclimb/JavaGuide/issues/729)」Learn Git Branching https://oschina.gitee.io/learn-git-branching/ 。该网站可以方便的演示基本的git操作，讲解得明明白白。每一个基本命令的作用和结果。
+「补充，来自[issue729](https://github.com/Snailclimb/JavaGuide/issues/729)」Learn Git Branching https://oschina.gitee.io/learn-git-branching/ 。该网站可以方便的演示基本的 git 操作，讲解得明明白白。每一个基本命令的作用和结果。
 
 **推荐阅读：**
 
-- [Git - 简明指南](https://rogerdudler.github.io/git-guide/index.zh.html)
-- [图解Git](https://marklodato.github.io/visual-git-guide/index-zh-cn.html)
-- [猴子都能懂得Git入门](https://backlog.com/git-tutorial/cn/intro/intro1_1.html)
-- https://git-scm.com/book/en/v2
-- [Generating a new SSH key and adding it to the ssh-agent](https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
-- [一个好的 Git 提交消息，出自 Linus 之手](https://github.com/torvalds/subsurface-for-dirk/blob/a48494d2fbed58c751e9b7e8fbff88582f9b2d02/README#L88)
+- [Git 入门图文教程(1.5W 字 40 图) ](https://www.cnblogs.com/anding/p/16987769.html)：超用心的一篇文章，内容全面且附带详细的图解，强烈推荐！
+- [Git - 简明指南](https://rogerdudler.github.io/git-guide/index.zh.html)：涵盖 Git 常见操作，非常清晰。
+- [图解 Git](https://marklodato.github.io/visual-git-guide/index-zh-cn.html)：图解 Git 中的最常用命令。如果你稍微理解 git 的工作原理，这篇文章能够让你理解的更透彻。
+- [猴子都能懂得 Git 入门](https://backlog.com/git-tutorial/cn/intro/intro1_1.html) ：有趣的讲解。
+- [Pro Git book](https://git-scm.com/book/zh/v2) ： 国外的一本 Git 书籍，被翻译成多国语言，质量很高。

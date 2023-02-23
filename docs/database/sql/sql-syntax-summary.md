@@ -251,7 +251,7 @@ ORDER BY cust_name DESC;
 **`having`**：
 
 - `having` 用于对汇总的 `group by` 结果进行过滤。
-- `having` 必须要与 `group by` 连用。
+- `having` 一般都是和 `group by` 连用。
 - `where` 和 `having` 可以在相同的查询中。
 
 **使用 WHERE 和 HAVING 过滤数据**
@@ -266,8 +266,8 @@ HAVING COUNT(*) >= 1;
 
 **`having` vs `where`** ：
 
-- `where`：过滤过滤指定的行，后面不能加聚合函数（分组函数）。
-- `having`：过滤分组，必须要与 `group by` 连用，不能单独使用。
+- `where`：过滤过滤指定的行，后面不能加聚合函数（分组函数）。`where` 在`group by` 前。
+- `having`：过滤分组，一般都是和 `group by` 连用，不能单独使用。`having` 在 `group by` 之后。
 
 ## 子查询
 
@@ -1203,3 +1203,8 @@ SHOW TRIGGERS;
 ```sql
 DROP TRIGGER IF EXISTS trigger_insert_user;
 ```
+
+## 文章推荐
+
+- [后端程序员必备：SQL高性能优化指南！35+条优化建议立马GET!](https://mp.weixin.qq.com/s/I-ZT3zGTNBZ6egS7T09jyQ)
+- [后端程序员必备：书写高质量SQL的30条建议](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247486461&idx=1&sn=60a22279196d084cc398936fe3b37772&chksm=cea24436f9d5cd20a4fa0e907590f3e700d7378b3f608d7b33bb52cfb96f503b7ccb65a1deed&token=1987003517&lang=zh_CN#rd)
