@@ -1,5 +1,5 @@
 ---
-title: 2021校招我的个人经历和经验
+title: 我的个人校招经历和经验
 category: 技术文章精选集
 author: 月色真美
 tag:
