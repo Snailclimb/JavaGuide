@@ -6,7 +6,7 @@ icon: "lock"
 
 网上有很多分布式锁相关的文章，写了一个相对简洁易懂的版本，针对面试和工作应该够用了。
 
-## 什么是分布式锁？
+## 分布式锁介绍
 
 对于单机多线程来说，在 Java 中，我们通常使用 `ReetrantLock` 类、`synchronized` 关键字这类 JDK 自带的 **本地锁** 来控制一个 JVM 进程内的多个线程对本地共享资源的访问。
 
@@ -231,4 +231,169 @@ Redlock 实现比较复杂，性能比较差，发生时钟变迁的情况下还
 
 实际项目中不建议使用 Redlock 算法，成本和收益不成正比。
 
-如果不是非要实现绝对可靠的分布式锁的话，其实单机版 Redis 就完全够了，实现简单，性能也非常高。如果你必须要实现一个绝对可靠的分布式锁的话，可以基于 Zookeeper 来做，只是性能会差一些。
+如果不是非要实现绝对可靠的分布式锁的话，其实单机版 Redis 就完全够了，实现简单，性能也非常高。如果你必须要实现一个绝对可靠的分布式锁的话，可以基于 ZooKeeper 来做，只是性能会差一些。
+
+## 基于 ZooKeeper 实现分布式锁
+
+Redis 实现分布式锁性能较高，ZooKeeper 实现分布式锁可靠性更高。实际项目中，我们应该根据业务的具体需求来选择。
+
+### 如何基于 ZooKeeper 实现分布式锁？
+
+ZooKeeper 分布式锁是基于 **临时顺序节点** 和 **Watcher（事件监听器）** 实现的。
+
+获取锁：
+
+1. 首先我们要有一个持久节点`/locks`，客户端获取锁就是在`locks`下创建临时顺序节点。
+2. 假设客户端 1 创建了`/locks/lock1`节点，创建成功之后，会判断 `lock1`是否是 `/locks` 下最小的子节点。
+3. 如果 `lock1`是最小的子节点，则获取锁成功。否则，获取锁失败。
+4. 如果获取锁失败，则说明有其他的客户端已经成功获取锁。客户端 1 并不会不停地循环去尝试加锁，而是在前一个节点比如`/locks/lock0`上注册一个事件监听器。这个监听器的作用是当前一个节点释放锁之后通知客户端 1（避免无效自旋），这样客户端 1 就加锁成功了。
+
+释放锁：
+
+1. 成功获取锁的客户端在执行完业务流程之后，会将对应的子节点删除。
+2. 成功获取锁的客户端在出现故障之后，对应的子节点由于是临时顺序节点，也会被自动删除，避免了锁无法被释放。
+3. 我们前面说的事件监听器其实监听的就是这个子节点删除事件，子节点删除就意味着锁被释放。
+
+![](./images/distributed-lock/distributed-lock-zookeeper.png)
+
+实际项目中，推荐使用 Curator 来实现 ZooKeeper 分布式锁。Curator 是 Netflix 公司开源的一套 ZooKeeper Java 客户端框架，相比于 ZooKeeper 自带的客户端 zookeeper 来说，Curator 的封装更加完善，各种 API 都可以比较方便地使用。
+
+`Curator`主要实现了下面四种锁：
+
+- `InterProcessMutex`：分布式可重入排它锁
+- `InterProcessSemaphoreMutex`：分布式不可重入排它锁
+- `InterProcessReadWriteLock`：分布式读写锁
+- `InterProcessMultiLock`：将多个锁作为单个实体管理的容器，获取锁的时候获取所有锁，释放锁也会释放所有锁资源（忽略释放失败的锁）。
+
+```java
+CuratorFramework client = ZKUtils.getClient();
+client.start();
+// 分布式可重入排它锁
+InterProcessLock lock1 = new InterProcessMutex(client, lockPath1);
+// 分布式不可重入排它锁
+InterProcessLock lock2 = new InterProcessSemaphoreMutex(client, lockPath2);
+// 锁
+InterProcessMultiLock lock = new InterProcessMultiLock(Arrays.asList(lock1, lock2));
+
+if (!lock.acquire(10, TimeUnit.SECONDS)) {
+  	throw new IllegalStateException("不能获取多锁");
+}
+System.out.println("已获取多锁");
+System.out.println("是否有第一个锁: " + lock1.isAcquiredInThisProcess());
+System.out.println("是否有第二个锁: " + lock2.isAcquiredInThisProcess());
+try {
+    // 资源操作
+ 	 		resource.use(); 
+} finally {
+    System.out.println("释放多个锁");
+    lock.release(); 
+}
+System.out.println("是否有第一个锁: " + lock1.isAcquiredInThisProcess());
+System.out.println("是否有第二个锁: " + lock2.isAcquiredInThisProcess());
+client.close();
+```
+
+### 为什么要用临时顺序节点？
+
+每个数据节点在 ZooKeeper 中被称为 **znode**，它是 ZooKeeper 中数据的最小单元。
+
+我们通常是将 znode 分为 4 大类：
+
+- **持久（PERSISTENT）节点** ：一旦创建就一直存在即使 ZooKeeper 集群宕机，直到将其删除。
+- **临时（EPHEMERAL）节点** ：临时节点的生命周期是与 **客户端会话（session）** 绑定的，**会话消失则节点消失** 。并且，**临时节点只能做叶子节点** ，不能创建子节点。
+- **持久顺序（PERSISTENT_SEQUENTIAL）节点** ：除了具有持久（PERSISTENT）节点的特性之外， 子节点的名称还具有顺序性。比如 `/node1/app0000000001` 、`/node1/app0000000002` 。
+- **临时顺序（EPHEMERAL_SEQUENTIAL）节点** ：除了具备临时（EPHEMERAL）节点的特性之外，子节点的名称还具有顺序性。
+
+可以看出，临时节点相比持久节点，最主要的是对会话失效的情况处理不一样，临时节点会话消失则对应的节点消失。这样的话，如果客户端发生异常导致没来得及释放锁也没关系，会话失效节点自动被删除，不会发生死锁的问题。
+
+使用 Redis 实现分布式锁的时候，我们是通过过期时间来避免锁无法被释放导致死锁问题的，而 ZooKeeper 直接利用临时节点的特性即可。
+
+假设不适用顺序节点的话，所有尝试获取锁的客户端都会对持有锁的子节点加监听器。当该锁被释放之后，势必会造成所有尝试获取锁的客户端来争夺锁，这样对性能不友好。使用顺序节点之后，只需要监听前一个节点就好了，对性能更友好。
+
+### 为什么要设置对前一个节点的监听？
+
+> Watcher（事件监听器），是 ZooKeeper 中的一个很重要的特性。ZooKeeper 允许用户在指定节点上注册一些 Watcher，并且在一些特定事件触发的时候，ZooKeeper 服务端会将事件通知到感兴趣的客户端上去，该机制是 ZooKeeper 实现分布式协调服务的重要特性。
+
+同一时间段内，可能会有很多客户端同时获取锁，但只有一个可以获取成功。如果获取锁失败，则说明有其他的客户端已经成功获取锁。获取锁失败的客户端并不会不停地循环去尝试加锁，而是在前一个节点注册一个事件监听器。
+
+这个事件监听器的作用是： **当前一个节点对应的客户端释放锁之后（也就是前一个节点被删除之后，监听的是删除事件），通知获取锁失败的客户端（唤醒等待的线程，Java 中的 `wait/notifyAll` ），让它尝试去获取锁，然后就成功获取锁了。**
+
+### 如何实现可重入锁？
+
+这里以 Curator 的 `InterProcessMutex` 对可重入锁的实现来介绍（源码地址：[InterProcessMutex.java](https://github.com/apache/curator/blob/master/curator-recipes/src/main/java/org/apache/curator/framework/recipes/locks/InterProcessMutex.java)）。
+
+当我们调用 `InterProcessMutex#acquire`方法获取锁的时候，会调用`InterProcessMutex#internalLock`方法。
+
+```java
+// 获取可重入互斥锁，直到获取成功为止
+@Override
+public void acquire() throws Exception {
+  if (!internalLock(-1, null)) {
+    throw new IOException("Lost connection while trying to acquire lock: " + basePath);
+  }
+}
+```
+
+`internalLock` 方法会先获取当前请求锁的线程，然后从 `threadData`( `ConcurrentMap<Thread, LockData>` 类型)中获取当前线程对应的 `lockData` 。 `lockData` 包含锁的信息和加锁的次数，是实现可重入锁的关键。
+
+第一次获取锁的时候，`lockData`为 `null`。获取锁成功之后，会将当前线程和对应的 `lockData` 放到 `threadData` 中
+
+```java
+private boolean internalLock(long time, TimeUnit unit) throws Exception {
+  // 获取当前请求锁的线程
+  Thread currentThread = Thread.currentThread();
+  // 拿对应的 lockData
+  LockData lockData = threadData.get(currentThread);
+  // 第一次获取锁的话，lockData 为 null
+  if (lockData != null) {
+    // 当前线程获取过一次锁之后
+    // 因为当前线程的锁存在， lockCount 自增后返回，实现锁重入.
+    lockData.lockCount.incrementAndGet();
+    return true;
+  }
+  // 尝试获取锁
+  String lockPath = internals.attemptLock(time, unit, getLockNodeBytes());
+  if (lockPath != null) {
+    LockData newLockData = new LockData(currentThread, lockPath);
+     // 获取锁成功之后，将当前线程和对应的 lockData 放到 threadData 中
+    threadData.put(currentThread, newLockData);
+    return true;
+  }
+
+  return false;
+}
+```
+
+`LockData`是 `InterProcessMutex`中的一个静态内部类。
+
+```java
+
+private final ConcurrentMap<Thread, LockData> threadData = Maps.newConcurrentMap();
+
+private static class LockData
+{
+    // 当前持有锁的线程
+    final Thread owningThread;
+    // 锁对应的子节点
+    final String lockPath;
+    // 加锁的次数
+    final AtomicInteger lockCount = new AtomicInteger(1);
+
+    private LockData(Thread owningThread, String lockPath)
+    {
+      this.owningThread = owningThread;
+      this.lockPath = lockPath;
+    }
+}
+```
+
+如果已经获取过一次锁，后面再来获取锁的话，直接就会在 `if (lockData != null)` 这里被拦下了，然后就会执行`lockData.lockCount.incrementAndGet();` 将加锁次数加 1。
+
+整个可重入锁的实现逻辑非常简单，直接在客户端判断当前线程有没有获取锁，有的话直接将加锁次数加 1 就可以了。
+
+## 总结
+
+这篇文章我们介绍了分布式锁的基本概念以及实现分布式锁的两种常见方式。至于具体选择 Redis 还是 ZooKeeper 来实现分布式锁，还是要看业务的具体需求。如果对性能要求比较高的话，建议使用 Redis 实现分布式锁。如果对可靠性要求比较高的话，建议使用 ZooKeeper 实现分布式锁。
+
+
+
