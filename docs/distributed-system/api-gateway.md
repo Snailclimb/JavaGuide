@@ -32,8 +32,10 @@ icon: "gateway"
 - **监控告警** ：从业务指标、机器指标、JVM 指标等方面进行监控并提供配套的告警机制。
 - **流量控制** ：对请求的流量进行控制，也就是限制某一时刻内的请求数。
 - **熔断降级**：实时监控请求的统计信息，达到配置的失败阈值后，自动熔断，返回默认值。
-- **请求缓存** ： 缓存查询频繁的、数据及时性不敏感的数据以提高性能。
+- **响应缓存**：当用户请求获取的是一些静态的或更新不频繁的数据时，一段时间内多次请求获取到的数据很可能是一样的。对于这种情况可以将响应缓存起来。这样用户请求可以直接在网关层得到响应数据，无需再去访问业务服务，减轻业务服务的负担。
+- **响应聚合**：某些情况下用户请求要获取的响应内容可能会来自于多个业务服务。网关作为业务服务的调用方，可以把多个服务的响应整合起来，再一并返回给用户。
 - **灰度发布** ：将请求动态分流到不同的服务版本（最基本的一种灰度发布）。
+- **异常处理**：对于业务服务返回的异常响应，可以在网关层在返回给用户之前做转换处理。这样可以把一些业务侧返回的异常细节隐藏，转换成用户友好的错误提示返回。
 - **API 文档：**如果计划将 API 暴露给组织以外的开发人员，那么必须考虑使用 API 文档，例如 Swagger 或 OpenAPI。
 - **协议转换** ：通过协议转换整合后台基于 REST、AMQP、Dubbo 等不同风格和实现技术的微服务，面向 Web Mobile、开放平台等特定客户端提供统一服务。
 
@@ -80,7 +82,7 @@ Zuul 主要通过过滤器（类似于 AOP）来过滤请求，从而实现网�
 
 SpringCloud Gateway 属于 Spring Cloud 生态系统中的网关，其诞生的目标是为了替代老牌网关 **Zuul **。准确点来说，应该是 Zuul 1.x。SpringCloud Gateway 起步要比 Zuul 2.x 更早。
 
-为了提升网关的性能，SpringCloud Gateway 基于 Spring WebFlux 。Spring WebFlux 使用 Reactor 库来实现响应式编程模型，底层基于 Netty 实现异步 IO。
+为了提升网关的性能，SpringCloud Gateway 基于 Spring WebFlux 。Spring WebFlux 使用 Reactor 库来实现响应式编程模型，底层基于 Netty 实现同步非阻塞的 I/O。
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/distributed-system/api-gateway/springcloud-gateway-%20demo.png)
 
@@ -167,3 +169,4 @@ Shenyu 通过插件扩展功能，插件是 ShenYu 的灵魂，并且插件也�
 
 - Kong 插件开发教程[通俗易懂]：https://cloud.tencent.com/developer/article/2104299
 - API 网关 Kong 实战：https://xie.infoq.cn/article/10e4dab2de0bdb6f2c3c93da6
+- Spring Cloud Gateway 原理介绍和应用：https://blog.fintopia.tech/60e27b0e2078082a378ec5ed/

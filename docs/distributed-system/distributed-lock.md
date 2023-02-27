@@ -272,7 +272,7 @@ client.start();
 InterProcessLock lock1 = new InterProcessMutex(client, lockPath1);
 // 分布式不可重入排它锁
 InterProcessLock lock2 = new InterProcessSemaphoreMutex(client, lockPath2);
-// 锁
+// 将多个锁作为一个整体
 InterProcessMultiLock lock = new InterProcessMultiLock(Arrays.asList(lock1, lock2));
 
 if (!lock.acquire(10, TimeUnit.SECONDS)) {

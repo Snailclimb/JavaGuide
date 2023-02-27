@@ -87,7 +87,7 @@ head:
 
 **配置说明** ：
 
-- dependencies： 一个 pom.xml 文件中只能存在一个这样的标签，是用来管理依赖的总标签。
+- dependencies ： 一个 pom.xml 文件中只能存在一个这样的标签，是用来管理依赖的总标签。
 - dependency：包含在 dependencies 标签中，可以有多个，每一个表示项目的一个依赖。
 - groupId,artifactId,version(必要)：依赖的基本坐标，对于任何一个依赖来说，基本坐标是最重要的，Maven 根据坐标才能找到需要的依赖。我们在上面解释过这些元素的具体意思，这里就不重复提了。
 - type(可选)：依赖的类型，对应于项目坐标定义的 packaging。大部分情况下，该元素不必声明，其默认值是 jar。
@@ -204,7 +204,7 @@ Maven 在遇到这种问题的时候，会遵循 **路径最短优先** 和 **�
 **如何解决呢？** 我们可以通过`exclusive`标签手动将 X(1.0) 给排除。
 
 ```xml
-<dependencyB>
+<dependencyD>
     ......
     <exclusions>
       <exclusion>

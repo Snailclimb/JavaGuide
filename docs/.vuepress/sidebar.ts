@@ -402,6 +402,7 @@ export const sidebarConfig = sidebar({
           text: "安全",
           prefix: "security/",
           icon: "security-fill",
+          collapsible: true,
           children: [
             "basis-of-authority-certification",
             "jwt-intro",
@@ -439,12 +440,14 @@ export const sidebarConfig = sidebar({
           text: "RPC（远程调用）详解",
           prefix: "rpc/",
           icon: "network",
+          collapsible: true,
           children: ["rpc-intro", "dubbo"],
         },
         {
           text: "ZooKeeper 详解",
           icon: "framework",
           prefix: "distributed-process-coordination/",
+          collapsible: true,
           children: [
             "zookeeper/zookeeper-intro",
             "zookeeper/zookeeper-plus",
