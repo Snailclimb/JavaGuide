@@ -1241,9 +1241,9 @@ SQL 允许在 `JOIN` 左边加上一些修饰性的关键词，从而形成不�
 
 ![](https://img-blog.csdnimg.cn/img_convert/d1794312b448516831369f869814ab39.png)
 
-如果不加任何修饰词，只写 `JOIN`，那么默认为 `INNER JOIIN`
+如果不加任何修饰词，只写 `JOIN`，那么默认为 `INNER JOIN`
 
-对于 `INNER JOIIN` 来说，还有一种隐式的写法，称为 “**隐式内连接**”，也就是没有 `INNER JOIIN` 关键字，使用 `WHERE` 语句实现内连接的功能
+对于 `INNER JOIN` 来说，还有一种隐式的写法，称为 “**隐式内连接**”，也就是没有 `INNER JOIN` 关键字，使用 `WHERE` 语句实现内连接的功能
 
 ```sql
 # 隐式内连接
