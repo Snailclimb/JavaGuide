@@ -70,6 +70,7 @@ Created /node1/node1.1
 `get` 命令可以获取指定节点的数据内容和节点的状态,可以看出我们通过 `set` 命令已经将节点数据内容改为 "set node1"。
 
 ```shell
+[zk: zookeeper(CONNECTED) 12] get -s /node1
 set node1
 cZxid = 0x47
 ctime = Sun Jan 20 10:22:59 CST 2019
