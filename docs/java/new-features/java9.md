@@ -72,7 +72,7 @@ module my.module {
 
 - [《Project Jigsaw: Module System Quick-Start Guide》](https://openjdk.java.net/projects/jigsaw/quick-start)
 - [《Java 9 Modules: part 1》](https://stacktraceguru.com/java9/module-introduction)
-- [[Java 9 揭秘（2. 模块化系统）](https://www.cnblogs.com/IcanFixIt/p/6947763.html)](http://www.cnblogs.com/IcanFixIt/p/6947763.html)
+- [Java 9 揭秘（2. 模块化系统）](http://www.cnblogs.com/IcanFixIt/p/6947763.html)
 
 ## G1 成为默认垃圾回收器
 
