@@ -114,16 +114,17 @@ star: 2
 **这里再送一个 30 元的新人优惠券，数量有限（续费半价）。**
 
 <div align="center">
-  <a href="https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html">
-    <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/xingqiuyouhuijuanheyi.png" style="margin: 0 auto; " />
-  </a>
+    <a href="https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html">
+      <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/xingqiuyouhuijuanheyi.png" style="margin: 0 auto; " />
+    </a>
 </div>
+
 **进入星球之后，记得添加微信，我会发你详细的星球使用指南。**
 
 <div align="center">
-  <a href="https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html">
-    <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/IMG_3007.jpg" style="margin: 0 auto; " />
-  </a>
+      <a href="https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html">
+        <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/IMG_3007.jpg" style="margin: 0 auto; " />
+      </a>
 </div>
 
 **真诚欢迎准备面试的小伙伴加入星球一起交流！真心希望能够帮助到更多小伙伴！**
