@@ -38,7 +38,7 @@ icon: "lock"
 
 ### 如何基于 Redis 实现一个最简易的分布式锁？
 
-不论是实现锁还是分布式锁，核心都在于“互斥”。
+不论是本地锁还是分布式锁，核心都在于“互斥”。
 
 在 Redis 中， `SETNX` 命令是可以帮助我们实现互斥。`SETNX` 即 **SET** if **N**ot e**X**ists (对应 Java 中的 `setIfAbsent` 方法)，如果 key 不存在的话，才会设置 key 的值。如果 key 已经存在， `SETNX` 啥也不做。
 
