@@ -657,7 +657,7 @@ public long tryOptimisticRead() {
 - [AQS 详解](https://javaguide.cn/java/concurrent/aqs.html)
 - [StampedLock 底层原理分析](https://segmentfault.com/a/1190000015808032)
 
-如果你只是准备面试的话，建议多花点经历搞懂 AQS 原理即可，StampedLock 底层原理在面试中遇到的概率非常小。
+如果你只是准备面试的话，建议多花点精力搞懂 AQS 原理即可，StampedLock 底层原理在面试中遇到的概率非常小。
 
 ## Atomic 原子类
 
