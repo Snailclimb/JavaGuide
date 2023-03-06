@@ -427,7 +427,6 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 ![](https://api.star-history.com/svg?repos=Snailclimb/JavaGuide&type=Date)
 
-## 公众号
 
 ![JavaGuide 官方公众号](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/gongzhonghaoxuanchuan.png)
 
