@@ -579,7 +579,7 @@ public ReentrantReadWriteLock(boolean fair) {
 
 ### 读锁为什么不能升级为写锁？
 
-写锁可以降级为读锁，但是读锁却不能升级为写锁。这是因为写锁降级为读锁会引起线程的争夺，毕竟写锁属于是独占锁，这样的话，会影响性能。
+写锁可以降级为读锁，但是读锁却不能升级为写锁。这是因为读锁升级为写锁会引起线程的争夺，毕竟写锁属于是独占锁，这样的话，会影响性能。
 
 另外，还可能会有死锁问题发生。举个例子：假设两个线程的读锁都想升级写锁，则需要对方都释放自己锁，而双方都不释放，就会产生死锁。
 
@@ -657,7 +657,7 @@ public long tryOptimisticRead() {
 - [AQS 详解](https://javaguide.cn/java/concurrent/aqs.html)
 - [StampedLock 底层原理分析](https://segmentfault.com/a/1190000015808032)
 
-如果你只是准备面试的话，建议多花点经历搞懂 AQS 原理即可，StampedLock 底层原理在面试中遇到的概率非常小。
+如果你只是准备面试的话，建议多花点精力搞懂 AQS 原理即可，`StampedLock` 底层原理在面试中遇到的概率非常小。
 
 ## Atomic 原子类
 
