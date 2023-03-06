@@ -429,7 +429,5 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 ## 公众号
 
-如果大家想要实时关注我更新的文章以及分享的干货的话，可以关注我的公众号。
-
 ![JavaGuide 官方公众号](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/gongzhonghaoxuanchuan.png)
 
