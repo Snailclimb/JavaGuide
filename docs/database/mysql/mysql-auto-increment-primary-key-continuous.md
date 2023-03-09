@@ -7,7 +7,7 @@ tag:
 ---
 
 > 作者：飞天小牛肉
-> 
+>
 > 原文：https://mp.weixin.qq.com/s/qci10h9rJx_COZbHV3aygQ
 
 众所周知，自增主键可以让聚集索引尽量地保持递增顺序插入，避免了随机查询，从而提高了查询效率。
@@ -16,17 +16,17 @@ tag:
 
 下面举个例子来看下，如下所示创建一张表：
 
-![](https://img-blog.csdnimg.cn/img_convert/a430d55df72ed9ff6e1af19f8261223c.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3e6b80ba50cb425386b80924e3da0d23~tplv-k3u1fbpfcp-zoom-1.image)
 
 ## 自增值保存在哪里？
 
 使用 `insert into test_pk values(null, 1, 1)` 插入一行数据，再执行 `show create table` 命令来看一下表的结构定义：
 
-![](https://img-blog.csdnimg.cn/img_convert/0469b76c3792818802d6f43cf889d0ad.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c17e46230bd34150966f0d86b2ad5e91~tplv-k3u1fbpfcp-zoom-1.image)
 
 上述表的结构定义存放在后缀名为 `.frm` 的本地文件中，在 MySQL 安装目录下的 data 文件夹下可以找到这个 `.frm` 文件：
 
-![](https://img-blog.csdnimg.cn/img_convert/6a48b796e4426ec51441b57575947441.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3ec0514dd7be423d80b9e7f2d52f5902~tplv-k3u1fbpfcp-zoom-1.image)
 
 从上述表结构可以看到，表定义里面出现了一个 `AUTO_INCREMENT=2`，表示下一次插入数据时，如果需要自动生成自增值，会生成 id = 2。
 
@@ -38,13 +38,13 @@ tag:
 
 举个例子：我们现在表里当前数据行里最大的 id 是 1，AUTO_INCREMENT=2，对吧。这时候，我们删除 id=1 的行，AUTO_INCREMENT 还是 2。
 
-![](https://img-blog.csdnimg.cn/img_convert/ae4667ff97b8dc1d9362d1be31e8a166.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/61b8dc9155624044a86d91c368b20059~tplv-k3u1fbpfcp-zoom-1.image)
 
 但如果马上重启 MySQL 实例，重启后这个表的 AUTO_INCREMENT 就会变成 1。﻿也就是说，MySQL 重启可能会修改一个表的 AUTO_INCREMENT 的值。
 
-![](https://img-blog.csdnimg.cn/img_convert/7c2c8bc3837fa2bca6ae21616aaa2f72.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/27fdb15375664249a31f88b64e6e5e66~tplv-k3u1fbpfcp-zoom-1.image)
 
-![](https://img-blog.csdnimg.cn/img_convert/44d93e6237a4212fe86d334615cee552.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/dee15f93e65d44d384345a03404f3481~tplv-k3u1fbpfcp-zoom-1.image)
 
 以上，是在我本地 MySQL 5.x 版本的实验，实际上，**到了 MySQL 8.0 版本后，自增值的变更记录被放在了 redo log 中，提供了自增值持久化的能力** ，也就是实现了“如果发生重启，表的自增值可以根据 redo  log 恢复为 MySQL 重启前的值”
 
@@ -86,11 +86,11 @@ tag:
 
 举个例子，我们现在往表里插入一条 (null,1,1) 的记录，生成的主键是 1，AUTO_INCREMENT= 2，对吧
 
-![](https://img-blog.csdnimg.cn/img_convert/8f5b9dc2a5a2551280a3cf42c68b1b9c.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c22c4f2cea234c7ea496025eb826c3bc~tplv-k3u1fbpfcp-zoom-1.image)
 
 这时我再执行一条插入 `(null,1,1)` 的命令，很显然会报错 `Duplicate entry`，因为我们设置了一个唯一索引字段 `a`：
 
-![](https://img-blog.csdnimg.cn/img_convert/9681f77c79c1b1bb08d0b7af4b828faa.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c0325e31398d4fa6bb1cbe08ef797b7f~tplv-k3u1fbpfcp-zoom-1.image)
 
 但是，你会惊奇的发现，虽然插入失败了，但自增值仍然从 2 增加到了 3！
 
@@ -119,27 +119,27 @@ tag:
 
 我们现在表里有一行 `(1,1,1)` 的记录，AUTO_INCREMENT = 3：
 
-![](https://img-blog.csdnimg.cn/img_convert/385832cfaf3e138862989a04fc52189b.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6220fcf7dac54299863e43b6fb97de3e~tplv-k3u1fbpfcp-zoom-1.image)
 
 我们先插入一行数据 `(null, 2, 2)`，也就是 (3, 2, 2) 嘛，并且 AUTO_INCREMENT 变为 4：
 
-![](https://img-blog.csdnimg.cn/img_convert/26566c70e17eface82dd6dbb543db13d.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3f02d46437d643c3b3d9f44a004ab269~tplv-k3u1fbpfcp-zoom-1.image)
 
 再去执行这样一段 SQL：
 
-![](https://img-blog.csdnimg.cn/img_convert/e77bd5b426fca9748b9f4c795f525725.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/faf5ce4a2920469cae697f845be717f5~tplv-k3u1fbpfcp-zoom-1.image)
 
 虽然我们插入了一条 (null, 3, 3) 记录，但是使用 rollback 进行回滚了，所以数据库中是没有这条记录的：
 
-![](https://img-blog.csdnimg.cn/img_convert/6e201fea00dcf894d69abdc870dbdf20.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6cb4c02722674dd399939d3d03a431c1~tplv-k3u1fbpfcp-zoom-1.image)
 
 在这种事务回滚的情况下，自增值并没有同样发生回滚！如下图所示，自增值仍然固执地从 4 增加到了 5：
 
-![](https://img-blog.csdnimg.cn/img_convert/66b3931d62ead39d8e0bfc48af2eb04d.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e6eea1c927424ac7bda34a511ca521ae~tplv-k3u1fbpfcp-zoom-1.image)
 
 所以这时候我们再去插入一条数据（null, 3, 3）的时候，主键 id 就会被自动赋为 `5` 了：
 
-![](https://img-blog.csdnimg.cn/img_convert/2ad04576a2bc47b4c6d6eabcae703636.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/80da69dd13b543c4a32d6ed832a3c568~tplv-k3u1fbpfcp-zoom-1.image)
 
 那么，为什么在出现唯一键冲突或者回滚的时候，MySQL 没有把表的自增值改回去呢？回退回去的话不就不会发生自增 id 不连续了吗？
 
@@ -153,7 +153,7 @@ tag:
 2. 事务 B 正确提交了，但事务 A 出现了唯一键冲突，也就是 id = 1 的那行记录插入失败了，那如果允许事务 A 把自增 id 回退，也就是把表的当前自增值改回 1，那么就会出现这样的情况：表里面已经有 id = 2 的行，而当前的自增 id 值是 1。
 3. 接下来，继续执行的其他事务就会申请到 id=2。这时，就会出现插入语句报错“主键冲突”。
 
-![](https://img-blog.csdnimg.cn/img_convert/c98049ae564edae5609b8ec181923f11.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5f26f02e60f643c9a7cab88a9f1bdce9~tplv-k3u1fbpfcp-zoom-1.image)
 
 而为了解决这个主键冲突，有两种方法：
 
@@ -181,21 +181,21 @@ tag:
 
 举个例子，假设我们现在这个表有下面这些数据：
 
-![](https://img-blog.csdnimg.cn/img_convert/f01e0d9d7323af3152287a1dbb2f91fd.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6453cfc107f94e3bb86c95072d443472~tplv-k3u1fbpfcp-zoom-1.image)
 
 我们创建一个和当前表 `test_pk` 有相同结构定义的表 `test_pk2`：
 
-![](https://img-blog.csdnimg.cn/img_convert/0683434e51e6e9b77f7b6b60c8c67de5.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/45248a6dc34f431bba14d434bee2c79e~tplv-k3u1fbpfcp-zoom-1.image)
 
 然后使用 `insert...select` 往 `teset_pk2` 表中批量插入数据：
 
-![](https://img-blog.csdnimg.cn/img_convert/9984a82ce548f13485c2aca89efeca94.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c1b061e86bae484694d15ceb703b10ca~tplv-k3u1fbpfcp-zoom-1.image)
 
 可以看到，成功导入了数据。
 
 再来看下 `test_pk2` 的自增值是多少：
 
-![](https://img-blog.csdnimg.cn/img_convert/6613cf4eafc013b6e43a4a3f196d652e.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0ff9039366154c738331d64ebaf88d3b~tplv-k3u1fbpfcp-zoom-1.image)
 
 如上分析，是 8 而不是 6
 
@@ -207,7 +207,7 @@ tag:
 
 由于这条语句实际只用上了 5 个 id，所以 id=6 和 id=7 就被浪费掉了。之后，再执行 `insert into test_pk2 values(null,6,6)`，实际上插入的数据就是（8,6,6)：
 
-![](https://img-blog.csdnimg.cn/img_convert/fe2de07fbf986b2eeaddea5404761358.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/51612fbac3804cff8c5157df21d6e355~tplv-k3u1fbpfcp-zoom-1.image)
 
 ## 小结
 

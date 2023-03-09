@@ -9,8 +9,6 @@ category: 高可用
 
 现实生活中，处处都有限流的实际应用，就比如排队买票是为了避免大量用户涌入购票而导致售票员无法处理。
 
-![排队示意图](https://img-blog.csdnimg.cn/f9f17071fc4d489d85d2a234fb298df1.png)
-
 ## 常见限流算法有哪些？
 
 简单介绍 4 种非常好理解并且容易实现的限流算法！
@@ -204,7 +202,7 @@ Resilience4j 不仅提供限流，还提供了熔断、负载保护、自动重�
 
 > ShenYu 地址: https://github.com/apache/incubator-shenyu
 
-![](https://img-blog.csdnimg.cn/e1e2a75f489e4854990dabe3b6cec522.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/csdn/e1e2a75f489e4854990dabe3b6cec522.png)
 
 ## 相关阅读
 

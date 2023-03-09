@@ -9,11 +9,10 @@ title: JavaGuide（Java学习&&面试指南）
 - **转载须知** ：以下所有文章如非文首说明为转载皆为 JavaGuide 原创，转载在文首注明出处，如发现恶意抄袭/搬运，会动用法律武器维护自己的权益。让我们一起维护一个良好的技术创作环境！
 :::
 
-
 <div align="center">
     <p>
         <a href="https://github.com/Snailclimb/JavaGuide" target="_blank">
-            <img src="https://img-blog.csdnimg.cn/img_convert/1c00413c65d1995993bf2b0daf7b4f03.png#pic_center" width="" />
+            <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/csdn/1c00413c65d1995993bf2b0daf7b4f03.png" width="" />
         </a>
     </p>
     <p>
@@ -27,6 +26,7 @@ title: JavaGuide（Java学习&&面试指南）
         <a href="https://gitee.com/SnailClimb/JavaGuide">Gitee</a>
     </p>  
 </div>
+
 
 <div style="text-align:center">
     <p>

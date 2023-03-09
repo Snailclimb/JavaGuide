@@ -761,7 +761,7 @@ System.out.println(i1==i2);
 
 记住：**所有整型包装类对象之间值的比较，全部使用 equals 方法比较**。
 
-![](https://img-blog.csdnimg.cn/20210422164544846.png)
+![](https://oscimg.oschina.net/oscnet/up-1ae0425ce8646adfb768b5374951eeb820d.png)
 
 ### 自动装箱与拆箱了解吗？原理是什么？
 

@@ -535,7 +535,7 @@ randomAccessFile.write(new byte[]{'H', 'I', 'J', 'K'});
 
 `RandomAccessFile` 可以帮助我们合并文件分片，示例代码如下：
 
-![](https://img-blog.csdnimg.cn/20210609164749122.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/io/20210609164749122.png)
 
 我在[《Java 面试指北》](https://javaguide.cn/zhuanlan/java-mian-shi-zhi-bei.html)中详细介绍了大文件的上传问题。
 

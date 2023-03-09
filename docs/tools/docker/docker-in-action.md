@@ -38,7 +38,7 @@ Docker 的出现完美地解决了这一问题，我们可以在容器中安装 
 
 另外，[《Docker 从入门到实践》](https://yeasy.gitbook.io/docker_practice/introduction/why) 这本开源书籍中也已经给出了使用 Docker 的原因。
 
-![](https://img-blog.csdnimg.cn/20210412220015698.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/tools/docker/20210412220015698.png)
 
 ## Docker 的安装
 

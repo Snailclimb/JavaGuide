@@ -181,7 +181,7 @@ MySQL binlog(binary log 即二进制日志文件) 主要记录了 MySQL 数据�
 
 ShardingSphere 项目（包括 Sharding-JDBC、Sharding-Proxy 和 Sharding-Sidecar）是当当捐入 Apache 的，目前主要由京东数科的一些巨佬维护。
 
-![](https://img-blog.csdnimg.cn/img_convert/60649996bfc69acb1953063dddf0c2e6.png)
+![](https://oscimg.oschina.net/oscnet/up-0aa05fa5f54e41a44b09619fc0ee597933c.png)
 
 ShardingSphere 绝对可以说是当前分库分表的首选！ShardingSphere 的功能完善，除了支持读写分离和分库分表，还提供分布式事务、数据库治理等功能。
 

@@ -1,6 +1,6 @@
 <p style="text-align:center">
 <a href="https://github.com/Snailclimb/JavaGuide" target="_blank">
-	<img src="https://img-blog.csdnimg.cn/img_convert/1c00413c65d1995993bf2b0daf7b4f03.png#pic_center" width=""/>
+	<img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/csdn/1c00413c65d1995993bf2b0daf7b4f03.png" width=""/>
 </a>
 </p>
 <p style="text-align:center">
@@ -20,6 +20,7 @@
     </tr>
   </tbody>
 </table>
+
 
 ## Java
 
@@ -368,7 +369,5 @@ If you want to follow my updated articles and the dry goods I share in real time
 **《Java Interview Blitz》:** A PDF version of "Java Interview Blitz" derived from this document specifically for interviews [Public](#公众号) Reply back to **"Interview Blitz "** and get it for free!
 
 ![My Public](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/167598cd2e17b8ec.png)
-
-![](https://img-blog.csdnimg.cn/7af97d4dccdb4123a541f336a107ca86.png)
 
 ![](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3a2d826918a44bcbaa8d9272db3ad7d2~tplv-k3u1fbpfcp-watermark.image)

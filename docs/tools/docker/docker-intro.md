@@ -245,7 +245,7 @@ docker rmi f6509bac4980 #  或者 docker rmi mysql
 
 如果你搜索 Docker 官网，会发现如下的字样：**“Docker - Build, Ship, and Run Any App, Anywhere”**。那么 Build, Ship, and Run 到底是在干什么呢？
 
-![](https://img-blog.csdnimg.cn/2419919953764fc690c929d3844f7011.png)
+![](https://oscimg.oschina.net/oscnet/up-4123a5154118e1aaaf6e5a01286f463a1e2.png)
 
 - **Build（构建镜像）** ： 镜像就像是集装箱包括文件以及运行环境等等资源。
 - **Ship（运输镜像）** ：主机和仓库间运输，这里的仓库就像是超级码头一样。

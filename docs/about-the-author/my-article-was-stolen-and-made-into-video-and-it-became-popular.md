@@ -61,7 +61,7 @@ tag:
 
 ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/86f659a93ce5b639526c8d2bd20b2fbe.png)
 
-![](https://img-blog.csdnimg.cn/img_convert/be6e0fd23146de3f6224b4d853c59ce7.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/about-the-author/be6e0fd23146de3f6224b4d853c59ce7.png)
 
 如果他们把账号注销了，我或许还能考虑放一手。但是，文章是肯定不会删的。
 

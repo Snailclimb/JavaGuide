@@ -21,11 +21,11 @@ tag:
 
 认证 ：
 
-![](https://img-blog.csdnimg.cn/20210604160908352.png)
+![认证登录](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/security/authentication-login.png)
 
 授权：
 
-![](https://img-blog.csdnimg.cn/20210604161032412.png)
+![没有权限](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/security/20210604161032412.png)
 
 这两个一般在我们的系统中被结合在一起使用，目的就是为了保护我们系统的安全性。
 
@@ -193,7 +193,7 @@ Session-Cookie 方案在单体环境是一个非常好的身份认证方案。�
 
 但是，我们使用 `Token` 的话就不会存在这个问题，在我们登录成功获得 `Token` 之后，一般会选择存放在 `localStorage` （浏览器本地存储）中。然后我们在前端通过某些方式会给每个发到后端的请求加上这个 `Token`,这样就不会出现 CSRF 漏洞的问题。因为，即使有个你点击了非法链接发送了请求到服务端，这个非法请求是不会携带 `Token` 的，所以这个请求将是非法的。
 
-![](https://img-blog.csdnimg.cn/20210615161108272.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/security/20210615161108272.png)
 
 需要注意的是：不论是 `Cookie` 还是 `Token` 都无法避免 **跨站脚本攻击（Cross Site Scripting）XSS** 。
 
@@ -241,7 +241,7 @@ OAuth 2.0 比较常用的场景就是第三方登录，当你的网站接入了�
 
 下图是 [Slack OAuth 2.0 第三方登录](https://api.slack.com/legacy/oauth)的示意图：
 
-![](https://img-blog.csdnimg.cn/20210615151716340.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/security/20210615151716340.png)
 
 **推荐阅读：**
 

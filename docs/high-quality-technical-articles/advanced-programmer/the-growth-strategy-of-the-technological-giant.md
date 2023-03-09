@@ -36,11 +36,11 @@ tag:
 
 Brendan Gregg 之前是 Netflix 公司的高级性能架构师，在 Netflix 工作近 7 年。2022 年 4 月，他离开了 Netflix 去了 Intel，担任院士职位。
 
-![](https://img-blog.csdnimg.cn/img_convert/cdb11ce2f1c3a69fd19e922a7f5f59bf.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/high-quality-technical-articles/cdb11ce2f1c3a69fd19e922a7f5f59bf.png)
 
 总体上，他已经在系统性能领域深耕超过 10 年，[Brendan Gregg 的过往履历](https://www.linkedin.com/in/brendangregg/)可以在 linkedin 上看到。在这 10 年间，除了书籍以外，Brendan Gregg 还产出了超过上百份和系统性能相关的技术文档，演讲视频/ppt，还有各种工具软件，相关内容都整整齐齐地分享在[他的技术博客](http://www.brendangregg.com/)上，可以说他是一个非常高产的技术大牛。
 
-![性能工具](https://img-blog.csdnimg.cn/img_convert/fcd9e2d4dd351ac3ba1773fb1b50fe9e.webp?x-oss-process=image/format,png)
+![性能工具](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/high-quality-technical-articles/format,png-20230309231802218.png)
 
 上图来自 Brendan Gregg 的新书《BPF Performance Tools: Linux System and Application Observability》。从这个图可以看出，Brendan Gregg 对系统性能领域的掌握程度，已经深挖到了硬件、操作系统和应用的每一个角落，可以说是 360 度无死角，整个计算机系统对他来说几乎都是透明的。波波认为，Brendan Gregg 是名副其实的，世界级的，系统性能领域的大神级人物。
 
@@ -52,7 +52,7 @@ Brendan Gregg 之前是 Netflix 公司的高级性能架构师，在 Netflix 工
 
 到 2014 年底，Kafka 在社区已经非常成功，有了一个比较大的用户群，于是 Jay Kreps 就和几个早期作者一起离开了 Linkedin，成立了[Confluent 公司](https://tech.163.com/14/1107/18/AAFG92LD00094ODU.html)，开始了 Kafka 和周边产品的企业化服务道路。今年(2020.4 月)，Confluent 公司已经获得 E 轮 2.5 亿美金融资，公司估值达到 45 亿美金。从 Kafka 诞生到现在，Jay Kreps 差不多在这个产品和公司上投入了整整 10 年。
 
-![Confluent创始人三人组](https://img-blog.csdnimg.cn/img_convert/7945a18b8d135fa1bb0eb3f0350452dd.webp?x-oss-process=image/format,png)
+![Confluent创始人三人组](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/high-quality-technical-articles/format,png-20230309231805796.png)
 
 上图是 Confluent 创始人三人组，一个非常有意思的组合，一个中国人(左)，一个印度人(右)，中间的 Jay Kreps 是美国人。
 
@@ -64,11 +64,11 @@ Brendan Gregg 之前是 Netflix 公司的高级性能架构师，在 Netflix 工
 
 介绍到这里，有些同学可能会反驳说：波波你讲的这些大牛都是学历背景好，功底扎实起点高，所以他们才更能成功。其实不然，这里我再要介绍一位技术媒体界的大 V 叫 Brad Traversy，大家可以看[他的 Linkedin 简历](https://www.linkedin.com/in/bradtraversy/)，背景很一般，学历差不多是一个非正规的社区大学(相当于大专)，没有正规大厂工作经历，有限几份工作一直是在做网站外包。
 
-![](https://img-blog.csdnimg.cn/img_convert/30d6d67dc6dd5f9251f2f01af4de53fc.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/high-quality-technical-articles/30d6d67dc6dd5f9251f2f01af4de53fc.png)
 
 但是！！！Brad Traversy 目前是技术媒体领域的一个大 V，当前[他在 Youtube 上的频道](https://www.youtube.com/c/TraversyMedia)有 138 万多的订阅量，10 年累计输出 Web 开发和编程相关教学视频超过 800 个。Brad Traversy 也是 [Udemy](https://www.udemy.com/user/brad-traversy/) 上的一个成功讲师，目前已经在 Udemy 上累计输出课程 19 门，购课学生数量近 42 万。
 
-![](https://img-blog.csdnimg.cn/img_convert/160b0bc4f689413757b9b5e2448f940b.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/high-quality-technical-articles/160b0bc4f689413757b9b5e2448f940b.png)
 
 Brad Traversy 目前是自由职业者，他的 Youtube 广告+Udemy 课程的收入相当不错。
 
@@ -76,7 +76,7 @@ Brad Traversy 目前是自由职业者，他的 Youtube 广告+Udemy 课程的�
 
 到结婚后的第一个孩子诞生，他才开始担起责任做出改变，然后凭借对技术的一腔热情，开始在 Youtube 平台上持续输出免费课程。从此他找到了适合自己的战略目标，然后人生开始发生各种积极的变化。。。如果大家对 Brad Traversy 的过往经历感兴趣，推荐观看他在 Youtube 上的自述视频[《My Struggles & Success》](https://www.youtube.com/watch?v=zA9krklwADI)。
 
-![My Struggles & Success](https://img-blog.csdnimg.cn/img_convert/4de1f15cd0a047a3416f76501c26d288.webp?x-oss-process=image/format,png)
+![My Struggles & Success](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/high-quality-technical-articles/format,png-20230309231830686.png)
 
 我粗略浏览了[Brad Traversy 在 Youtube 上的所有视频](https://www.youtube.com/c/TraversyMedia/videos)，10 年总计输出 800+视频，平均每年 80+。第一个视频提交于 2010 年 8 月，刚开始几年几乎没有订阅量，2017 年 1 月订阅量才到 50k，这中间差不多隔了 6 年。2017.10 月订阅量猛增到 200k，2018 年 3 月订阅量到 300k。当前 2021.1 月，订阅量达到 138 万。可以认为从 2017 开始，也就是在积累了 6 ～ 7 年后，他的订阅量开始出现拐点。**如果把这些数据画出来，将会是一条非常漂亮的复利曲线**。
 
@@ -108,13 +108,13 @@ Brendan Gregg，Jay Kreps 和 Brad Traversy 三个人走的技术路线各不相
 
 普通人通常走一步算一步，很少长远规划。牛人通 常是先有远大目标，然后采用倒推法，将大目标细化到每年/月/周的详细落地计划。Brendan Gregg，Jay Kreps 和 Brad Traversy 三人都是以终为始的典型。
 
-![以终为始](https://img-blog.csdnimg.cn/img_convert/b83d495bd6b8765f127bb97e08e1544d.webp?x-oss-process=image/format,png)
+![以终为始](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/high-quality-technical-articles/format,png-20230309231833871.png)
 
 上面总结了几位技术大牛的成长模式，其中一个重点就是：这些大牛的成长都是通过 **持续有价值产出(Persistent Valuable Output)** 来驱动的。持续产出为啥如此重要，这个还要从下面的学习金字塔说起。
 
 ## 三、学习金字塔和刻意训练
 
-![学习金字塔](https://img-blog.csdnimg.cn/img_convert/41489858d0060f26e69c30bc964816bd.webp?x-oss-process=image/format,png)
+![学习金字塔](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/high-quality-technical-articles/format,png-20230309231836811.png)
 
 学习金字塔是美国缅因州国家训练实验室的研究成果，它认为：
 
@@ -134,11 +134,11 @@ Brendan Gregg，Jay Kreps 和 Brad Traversy 三个人走的技术路线各不相
 
 明白这个道理之后，心智成熟和自律的人就会对自己进行持续地 **刻意训练** 。这个刻意训练包括对身体的训练，比如波波现在每天坚持跑步 3km，走 3km，每天做 60 个仰卧起坐，5 分钟平板撑等等，每天保持让身体燃烧一定量的卡路里。刻意训练也包括对大脑的训练，比如波波现在每天做项目写代码 coding(训练脑+手)，平均每天在 B 站上输出十分钟免费视频(训练脑+口头表达)，另外有定期总结输出公众号文章(训练脑+文字表达)，还有每天打半小时左右的平衡球(下图)或古墓丽影游戏(训练小脑+手)，每天保持让大脑燃烧一定量的卡路里，并保持一定强度(适度不适感)。
 
-![平衡球游戏](https://img-blog.csdnimg.cn/img_convert/5806350b9831d3a502ec84d40f81018f.webp?x-oss-process=image/format,png)
+![平衡球游戏](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/high-quality-technical-articles/format,png-20230309231839985.png)
 
 关于刻意训练的专业原理和方法论，推荐看书籍《刻意练习》。
 
-![刻意练习](https://img-blog.csdnimg.cn/img_convert/1707c3755515967caa138533eac3c53a.webp?x-oss-process=image/format,png)
+![刻意练习](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/high-quality-technical-articles/format,png-20230309231842735.png)
 
 注意，如果你平时从来不做举重锻炼的，那么某天突然做举重会很不适应甚至受伤。脑部训练也是一样的，如果你从来没有做过视频输出，那么刚开始做会很不适应，做出来的视频质量会很差。不过没有关系，任何训练都是一个循序渐进，不断强化的过程。等大脑相关区域的"肌肉"长出来以后，会逐步进入正循环，后面会越来越顺畅，相关"肌肉"会越来越发达。所以，和健身一样，健脑也不能遇到困难就放弃，需要循序渐进(Incremental)+持续地(Persistent)刻意训练。
 
@@ -148,7 +148,7 @@ Brendan Gregg，Jay Kreps 和 Brad Traversy 三个人走的技术路线各不相
 
 ## 四、战略思维的诞生
 
-![思考周期和机会点](https://img-blog.csdnimg.cn/img_convert/21f0ef179bea9aa15c1606bdf537f81d.webp?x-oss-process=image/format,png)
+![思考周期和机会点](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/dc87167f53b243d49f9f4e8c7fe530a1~tplv-k3u1fbpfcp-zoom-1.image)
 
 一般毕业生刚进入企业工作的时候，思考大都是以天/星期/月为单位的，基本上都是今天学个什么技术，明天学个什么语言，很少会去思考一年甚至更长的目标。这是个眼前漆黑看不到的懵懂时期，捕捉到机会点的能力和概率都非常小。
 
@@ -204,4 +204,4 @@ Brendan Gregg，Jay Kreps 和 Brad Traversy 三个人走的技术路线各不相
 >
 > 实现战略目标，就像种树一样。刚开始只是一个小根芽，树干还没有长出来；树干长出来了，枝叶才能慢慢长出来；树枝长出来，然后才能开花和结果。刚开始种树的时候，只管栽培灌溉，别老是纠结枝什么时候长出来，花什么时候开，果实什么时候结出来。纠结有什么好处呢？只要你坚持投入栽培，还怕没有枝叶花实吗？
 
-![悬想何益](https://img-blog.csdnimg.cn/img_convert/46cb8c4b3561f382bd5f333ceb5747b1.webp?x-oss-process=image/format,png)
+![悬想何益](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/863dbfa7d8f64123a41cbc1406aa0c46~tplv-k3u1fbpfcp-zoom-1.image)

@@ -83,7 +83,7 @@ RocketMQ 、 Kafka、Pulsar 、QMQ 都提供了事务相关的功能。事务允
 
 详细介绍可以查看 [分布式事务详解(付费)](https://javaguide.cn/distributed-system/distributed-transaction.html) 这篇文章。
 
-![分布式事务详解 - MQ事务](https://img-blog.csdnimg.cn/img_convert/07b338324a7d8894b8aef4b659b76d92.png)
+![分布式事务详解 - MQ事务](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/csdn/07b338324a7d8894b8aef4b659b76d92.png)
 
 ## 使用消息队列会带来哪些问题？
 

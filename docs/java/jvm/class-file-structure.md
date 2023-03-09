@@ -1,12 +1,11 @@
 ---
+title: 类文件结构详解
 category: Java
 tag:
   - JVM
 ---
 
-# 类文件结构详解
-
-## 一 概述
+## 回顾一下字节码
 
 在 Java 中，JVM 可以理解的代码就叫做`字节码`（即扩展名为 `.class` 的文件），它不面向任何特定的处理器，只面向虚拟机。Java 语言通过字节码的方式，在一定程度上解决了传统解释型语言执行效率低的问题，同时又保留了解释型语言可移植的特点。所以 Java 程序运行时比较高效，而且，由于字节码并不针对一种特定的机器，因此，Java 程序无须重新编译便可在多种不同操作系统的计算机上运行。
 
@@ -16,7 +15,7 @@ Clojure（Lisp 语言的一种方言）、Groovy、Scala 等语言都是运行�
 
 可以说`.class`文件是不同的语言在 Java 虚拟机之间的重要桥梁，同时也是支持 Java 跨平台很重要的一个原因。
 
-## 二 Class 文件结构总结
+## Class 文件结构总结
 
 根据 Java 虚拟机规范，Class 文件通过 `ClassFile` 定义，有点类似 C 语言的结构体。
 
@@ -45,7 +44,7 @@ ClassFile {
 
 通过分析 `ClassFile` 的内容，我们便可以知道 class 文件的组成。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/16d5ec47609818fc.jpeg)
+![ClassFile 内容分析](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/16d5ec47609818fc.jpeg)
 
 下面这张图是通过 IDEA 插件 `jclasslib` 查看的，你可以更直观看到 Class 文件结构。
 
@@ -55,7 +54,7 @@ ClassFile {
 
 下面详细介绍一下 Class 文件结构涉及到的一些组件。
 
-### 2.1 魔数（Magic Number）
+### 魔数（Magic Number）
 
 ```java
     u4             magic; //Class 文件的标志
@@ -65,7 +64,7 @@ ClassFile {
 
 程序设计者很多时候都喜欢用一些特殊的数字表示固定的文件类型或者其它特殊的含义。
 
-### 2.2 Class 文件版本号（Minor&Major Version）
+### Class 文件版本号（Minor&Major Version）
 
 ```java
     u2             minor_version;//Class 的小版本号
@@ -78,7 +77,7 @@ ClassFile {
 
 高版本的 Java 虚拟机可以执行低版本编译器生成的 Class 文件，但是低版本的 Java 虚拟机不能执行高版本编译器生成的 Class 文件。所以，我们在实际开发的时候要确保开发的的 JDK 版本和生产环境的 JDK 版本保持一致。
 
-### 2.3 常量池（Constant Pool）
+### 常量池（Constant Pool）
 
 ```java
     u2             constant_pool_count;//常量池的数量
@@ -114,7 +113,11 @@ ClassFile {
 
 `.class` 文件可以通过`javap -v class类名` 指令来看一下其常量池中的信息(`javap -v class类名-> temp.txt` ：将结果输出到 temp.txt 文件)。
 
-### 2.4 访问标志(Access Flags)
+### 访问标志(Access Flags)
+
+```java
+    u2             access_flags;//Class 的访问标记
+```
 
 在常量池结束之后，紧接着的两个字节代表访问标志，这个标志用于识别一些类或者接口层次的访问信息，包括：这个 Class 是类还是接口，是否为 `public` 或者 `abstract` 类型，如果是类的话是否声明为 `final` 等等。
 
@@ -122,7 +125,7 @@ ClassFile {
 
 ![类访问和属性修饰符](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/访问标志.png)
 
-我们定义了一个 Employee 类
+我们定义了一个 `Employee` 类
 
 ```java
 package top.snailclimb.bean;
@@ -135,7 +138,7 @@ public class Employee {
 
 ![查看类的访问标志](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/查看类的访问标志.png)
 
-### 2.5 当前类（This Class）、父类（Super Class）、接口（Interfaces）索引集合
+### 当前类（This Class）、父类（Super Class）、接口（Interfaces）索引集合
 
 ```java
     u2             this_class;//当前类
@@ -144,11 +147,13 @@ public class Employee {
     u2             interfaces[interfaces_count];//一个类可以实现多个接口
 ```
 
-类索引用于确定这个类的全限定名，父类索引用于确定这个类的父类的全限定名，由于 Java 语言的单继承，所以父类索引只有一个，除了 `java.lang.Object` 之外，所有的 java 类都有父类，因此除了 `java.lang.Object` 外，所有 Java 类的父类索引都不为 0。
+Java 类的继承关系由类索引、父类索引和接口索引集合三项确定。类索引、父类索引和接口索引集合按照顺序排在访问标志之后，
+
+类索引用于确定这个类的全限定名，父类索引用于确定这个类的父类的全限定名，由于 Java 语言的单继承，所以父类索引只有一个，除了 `java.lang.Object` 之外，所有的 Java 类都有父类，因此除了 `java.lang.Object` 外，所有 Java 类的父类索引都不为 0。
 
 接口索引集合用来描述这个类实现了那些接口，这些被实现的接口将按 `implements` (如果这个类本身是接口的话则是`extends`) 后的接口顺序从左到右排列在接口索引集合中。
 
-### 2.6 字段表集合（Fields）
+### 字段表集合（Fields）
 
 ```java
     u2             fields_count;//Class 文件的字段的个数
@@ -173,7 +178,7 @@ public class Employee {
 
 ![字段的 access_flag 的取值](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/JVM/image-20201031084342859.png)
 
-### 2.7 方法表集合（Methods）
+### 方法表集合（Methods）
 
 ```java
     u2             methods_count;//Class 文件的方法的数量
@@ -194,7 +199,7 @@ Class 文件存储格式中对方法的描述与对字段的描述几乎采用�
 
 注意：因为`volatile`修饰符和`transient`修饰符不可以修饰方法，所以方法表的访问标志中没有这两个对应的标志，但是增加了`synchronized`、`native`、`abstract`等关键字修饰方法，所以也就多了这些关键字对应的标志。
 
-### 2.8 属性表集合（Attributes）
+### 属性表集合（Attributes）
 
 ```java
    u2             attributes_count;//此类的属性表中的属性数
@@ -205,7 +210,7 @@ Class 文件存储格式中对方法的描述与对字段的描述几乎采用�
 
 ## 参考
 
-- <https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-4.html>
-- <https://coolshell.cn/articles/9229.html>
-- <https://blog.csdn.net/luanlouis/article/details/39960815>
 - 《实战 Java 虚拟机》
+- Chapter 4. The class File Format - Java Virtual Machine Specification:https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-4.html
+- 实例分析JAVA CLASS的文件结构：<https://coolshell.cn/articles/9229.html>
+- 《Java虚拟机原理图解》 1.2.2、Class文件中的常量池详解（上）：<https://blog.csdn.net/luanlouis/article/details/39960815>

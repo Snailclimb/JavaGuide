@@ -47,7 +47,7 @@ void *zmalloc(size_t size) {
 
 另外，Redis 可以使用多种内存分配器来分配内存（ libc、jemalloc、tcmalloc），默认使用 [jemalloc](https://github.com/jemalloc/jemalloc)，而 jemalloc 按照一系列固定的大小（8 字节、16 字节、32 字节......）来分配内存的。jemalloc 划分的内存单元如下图所示：
 
-![jemalloc 内存单元示意图](https://img-blog.csdnimg.cn/6803d3929e3e46c1b1c9d0bb9ee8e717.png)
+![jemalloc 内存单元示意图](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/6803d3929e3e46c1b1c9d0bb9ee8e717.png)
 
 当程序申请的内存最接近某个固定值时，jemalloc 会给它分配相应大小的空间，就比如说程序需要申请 17 字节的内存，jemalloc 会直接给它分配 32 字节的内存，这样会导致有 15 字节内存的浪费。不过，jemalloc 专门针对内存碎片问题做了优化，一般不会存在过度碎片化的问题。
 

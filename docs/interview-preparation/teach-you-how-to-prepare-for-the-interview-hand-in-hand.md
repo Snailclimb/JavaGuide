@@ -57,39 +57,19 @@ category: 知识星球
 
 ## 知道如何获取招聘信息
 
-**1、目标企业的官网/公众号**
+下面是常见的获取招聘信息的渠道：
 
-最及时最权威的获取秋招信息的途径。
+- **目标企业的官网/公众号** ：最及时最权威的获取招聘信息的途径。
+- **招聘网站** ：[BOSS 直聘](https://www.zhipin.com/)、[智联招聘](https://www.zhaopin.com/)、[拉勾招聘](https://www.lagou.com/)......。
+- **牛客网** ：每年秋招/春招，都会有大批量的公司会到牛客网发布招聘信息，并且还会有大量的公司员工来到这里发内推的帖子。地址：https://www.nowcoder.com/jobs/recommend/campus 。
+- **超级简历** ：超级简历目前整合了各大企业的校园招聘入口，地址：https://www.wondercv.com/jobs/。如果你是校招的话，点击“校招网申”就可以直接跳转到各大企业的校园招聘入口的整合页面了。
+- **认识的朋友** ：如果你有认识的朋友在目标企业工作的话，你也可以找他们了解招聘信息，并且可以让他们帮你内推。
+- **宣讲会** ：宣讲会也是一个不错的途径，不过，好的企业通常只会去比较好的学校，可以留意一下意向公司的宣讲会安排或者直接去到一所比较好的学校参加宣讲会。像我当时校招就去参加了几场宣讲会。不过，我是在荆州上学，那边没什么比较好的学校，一般没有公司去开宣讲会。所以，我当时是直接跑到武汉来了，参加了武汉理工大学以及华中科技大学的几场宣讲会。总体感觉还是很不错的！
+- **其他** ：校园就业信息网、学校论坛、班级 or 年级 QQ 群。
 
-**2、招聘网站**
+校招的话，建议以官网为准，有宣讲会、靠谱一点的内推的话更好。社招的话，可以多留意一下各大招聘网站比如 BOSS直聘、拉勾上的职位信息，也可以找被熟人内推，获得面试机会的概率更大一些，进度一般也更快一些。
 
-[BOSS 直聘](https://www.zhipin.com/)、[智联招聘](https://www.zhaopin.com/)、[拉勾招聘](https://www.lagou.com/)......。
-
-**3、牛客网**
-
-每年秋招/春招，都会有大批量的公司会到牛客网发布招聘信息，并且还会有大量的公司员工来到这里发内推的帖子。
-
-地址：https://www.nowcoder.com/jobs/recommend/campus 。
-
-**4、超级简历**
-
-超级简历目前整合了各大企业的校园招聘入口，地址：https://www.wondercv.com/jobs/。
-
-如果你是校招的话，点击“校招网申”就可以直接跳转到各大企业的校园招聘入口的整合页面了。
-
-![](https://img-blog.csdnimg.cn/20210412110352612.png)
-
-**5、认识的朋友**
-
-如果你有认识的朋友在目标企业工作的话，你也可以找他们了解秋招信息，并且可以让他们帮你内推。
-
-**6、宣讲会现场**
-
-Guide 当时也参加了几场宣讲会。不过，我是在荆州上学，那边没什么比较好的学校，一般没有公司去开宣讲会。所以，我当时是直接跑到武汉来了，参加了武汉理工大学以及华中科技大学的几场宣讲会。总体感觉还是很不错的！
-
-**7、其他**
-
-校园就业信息网、学校论坛、班级 or 年级 QQ 群
+一般是只能投递一个岗位，不过，也有极少数投递不同部门两个岗位的情况，这个应该不会有影响，但你的前一次面试情况可能会被记录，也就是说就算你投递成功两个岗位，第一个岗位面试失败的话，对第二个岗位也会有影响，很可能直接就被pass。
 
 ## 多花点时间完善简历
 
@@ -99,15 +79,15 @@ Guide 当时也参加了几场宣讲会。不过，我是在荆州上学，那�
 
 **1.个人介绍没太多实用的信息。**
 
-![](https://img-blog.csdnimg.cn/img_convert/0f02df1ce7f54aa0a8e0c5b2d23da6e9.webp?x-oss-process=image/format,png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/interview-preparation/format,png.png)
 
 技术博客、Github 以及在校获奖经历的话，能写就尽量写在这里。 你可以参考下面 👇 的模板进行修改：
 
-![](https://img-blog.csdnimg.cn/img_convert/b9ca9f520865006ae984301f77256f12.webp?x-oss-process=image/format,png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/interview-preparation/format,png-20230309224235808.png)
 
 **2.项目经历过于简单，完全没有质量可言**
 
-![](https://img-blog.csdnimg.cn/img_convert/0bc891e84c8229c498a1f2b870639196.webp?x-oss-process=image/format,png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/interview-preparation/format,png-20230309224240305.png)
 
 每一个项目经历真的就一两句话可以描述了么？还是自己不想写？还是说不是自己做的，不敢多写。
 
@@ -122,11 +102,11 @@ Guide 当时也参加了几场宣讲会。不过，我是在荆州上学，那�
 
 **3.计算机二级这个证书对于计算机专业完全不用写了，没有含金量的。**
 
-![](https://img-blog.csdnimg.cn/img_convert/ddd2eaea3ae16c94491ae203f579c72b.webp?x-oss-process=image/format,png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/interview-preparation/format,png-20230309224247261.png)
 
 **4.技能介绍问题太大。**
 
-![](https://img-blog.csdnimg.cn/img_convert/93da1096fb02e19071ba13b4f6a7471c.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/interview-preparation/93da1096fb02e19071ba13b4f6a7471c.png)
 
 - 技术名词最好规范大小写比较好，比如 java->Java ，spring boot -> Spring Boot 。这个虽然有些面试官不会介意，但是很多面试官都会在意这个细节的。
 - 技能介绍太杂，没有亮点。不需要全才，某个领域做得好就行了！
@@ -196,7 +176,7 @@ Guide 当时也参加了几场宣讲会。不过，我是在荆州上学，那�
 - 降级
 - 熔断
 
-![](https://img-blog.csdnimg.cn/20210414112925296.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/interview-preparation/20210414112925296.png)
 
 不同类型的公司对于技能的要求侧重点是不同的比如腾讯、字节可能更重视计算机基础比如网络、操作系统这方面的内容。阿里、美团这种可能更重视你的项目经历、实战能力。
 

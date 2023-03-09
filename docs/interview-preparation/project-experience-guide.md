@@ -49,7 +49,7 @@ Github 或者码云上面有很多实战类别项目，你可以选择一个来�
 
 如果参加这种赛事能获奖的话，项目含金量非常高。即使没获奖也没啥，也可以写简历上。
 
-![阿里云天池大赛](https://img-blog.csdnimg.cn/7767035c52854759adf8cff5be8a2a3d.png)
+![阿里云天池大赛](https://oscimg.oschina.net/oscnet/up-673f598477242691900a1e72c5d8b26df2c.png)
 
 ### 参与实际项目
 

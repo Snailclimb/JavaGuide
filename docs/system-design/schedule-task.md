@@ -115,8 +115,6 @@ executor.shutdown();
 
 ### Spring Task
 
-![](https://img-blog.csdnimg.cn/20210528145056880.png)
-
 我们直接通过 Spring 提供的 `@Scheduled` 注解即可定义定时任务，非常方便！
 
 ```java
@@ -171,7 +169,7 @@ Kafka、Dubbo、ZooKeeper、Netty 、Caffeine 、Akka 中都有对时间轮的�
 
 这里在层与层之间的移动也叫做时间轮的升降级。参考手表来理解就好！
 
-![](https://img-blog.csdnimg.cn/20210607195206797.png)
+![](https://oscimg.oschina.net/oscnet/up-c9e9da713a7c05ae3187364deeded318fa9.png)
 
 **时间轮比较适合任务数量比较多的定时任务场景，它的任务写入和执行的时间复杂度都是 0（1）。**
 
@@ -189,8 +187,6 @@ Kafka、Dubbo、ZooKeeper、Netty 、Caffeine 、Akka 中都有对时间轮的�
 
 ### Quartz
 
-![](https://img-blog.csdnimg.cn/2021052814502425.png)
-
 一个很火的开源任务调度框架，完全由`Java`写成。`Quartz` 可以说是 Java 定时任务领域的老大哥或者说参考标准，其他的任务调度框架基本都是基于 `Quartz` 开发的，比如当当网的`elastic-job`就是基于`quartz`二次开发之后的分布式调度解决方案。
 
 使用 `Quartz` 可以很方便地与 `Spring` 集成，并且支持动态添加任务和集群。但是，`Quartz` 使用起来也比较麻烦，API 繁琐。
@@ -206,13 +202,11 @@ Kafka、Dubbo、ZooKeeper、Netty 、Caffeine 、Akka 中都有对时间轮的�
 
 ### Elastic-Job
 
-![](https://img-blog.csdnimg.cn/20210528144508114.png)
-
 `Elastic-Job` 是当当网开源的一个基于`Quartz`和`ZooKeeper`的分布式调度解决方案，由两个相互独立的子项目 `Elastic-Job-Lite` 和 `Elastic-Job-Cloud` 组成，一般我们只要使用 `Elastic-Job-Lite` 就好。
 
 `ElasticJob` 支持任务在分布式场景下的分片和高可用、任务可视化管理等功能。
 
-![](https://img-blog.csdnimg.cn/20210608080437356.png)
+![](https://oscimg.oschina.net/oscnet/up-0042738eb83d32773fd3bf391baaa6951d1.png)
 
 ElasticJob-Lite 的架构设计如下图所示：
 
@@ -247,15 +241,13 @@ public class TestJob implements SimpleJob {
 
 ### XXL-JOB
 
-![](https://img-blog.csdnimg.cn/20210528144611728.png)
-
 `XXL-JOB` 于 2015 年开源，是一款优秀的轻量级分布式任务调度框架，支持任务可视化管理、弹性扩容缩容、任务失败重试和告警、任务分片等功能，
 
-![](https://img-blog.csdnimg.cn/20210608080550433.png)
+![](https://oscimg.oschina.net/oscnet/up-111a63288ee9057f754ca08e3c3ac86a295.png)
 
 根据 `XXL-JOB` 官网介绍，其解决了很多 `Quartz` 的不足。
 
-![](https://img-blog.csdnimg.cn/20210607202503193.png)
+![](https://oscimg.oschina.net/oscnet/up-57071c34a4c57c3ea6084a363c85d645c23.png)
 
 `XXL-JOB` 的架构设计如下图所示：
 
@@ -292,7 +284,7 @@ public ReturnT<String> myAnnotationJobHandler(String param) throws Exception {
 }
 ```
 
-![](https://img-blog.csdnimg.cn/20210607200728212.png)
+![](https://oscimg.oschina.net/oscnet/up-07715bc445ef1db927bc6ec101dace5028e.png)
 
 **相关地址：**
 
@@ -305,8 +297,6 @@ public ReturnT<String> myAnnotationJobHandler(String param) throws Exception {
 - 缺点：不支持动态添加任务（如果一定想要动态创建任务也是支持的，参见：[xxl-job issue277](https://github.com/xuxueli/xxl-job/issues/277)）。
 
 ### PowerJob
-
-![](https://img-blog.csdnimg.cn/20210528145009701.png)
 
 非常值得关注的一个分布式任务调度框架，分布式任务调度领域的新星。目前，已经有很多公司接入比如 OPPO、京东、中通、思科。
 

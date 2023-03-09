@@ -9,7 +9,7 @@ tag:
 
 下面这张图是 Oracle 官方给出的 Oracle JDK 支持的时间线。
 
-![](https://img-blog.csdnimg.cn/4c1611fad59449edbbd6e233690e9fa7.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/new-features/4c1611fad59449edbbd6e233690e9fa7.png)
 
 **概览（精选了一部分）** ：
 

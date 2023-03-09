@@ -17,7 +17,7 @@ Spring 是一款开源的轻量级 Java 开发框架，旨在提高开发人员�
 
 我们一般说 Spring 框架指的都是 Spring Framework，它是很多模块的集合，使用这些模块可以很方便地协助我们进行开发，比如说 Spring 支持 IoC（Inversion of Control:控制反转） 和 AOP(Aspect-Oriented Programming:面向切面编程)、可以很方便地对数据库进行访问、可以很方便地集成第三方组件（电子邮件，任务，调度，缓存等等）、对单元测试支持比较好、支持 RESTful Java 应用程序的开发。
 
-![](https://img-blog.csdnimg.cn/38ef122122de4375abcd27c3de8f60b4.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/framework/spring/38ef122122de4375abcd27c3de8f60b4.png)
 
 Spring 最核心的思想就是不重新造轮子，开箱即用，提高开发效率。
 
@@ -147,7 +147,7 @@ Spring 时代我们一般通过 XML 文件来配置 Bean，后来开发人员觉
 
 下图简单地展示了 IoC 容器如何使用配置元数据来管理对象。
 
-![](https://img-blog.csdnimg.cn/062b422bd7ac4d53afd28fb74b2bc94d.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/framework/spring/062b422bd7ac4d53afd28fb74b2bc94d.png)
 
 `org.springframework.beans`和 `org.springframework.context` 这两个包是 IoC 实现的基础，如果想要研究 IoC 相关的源码的话，可以去看看
 
@@ -350,7 +350,7 @@ AOP(Aspect-Oriented Programming:面向切面编程)能够将那些与业务无�
 
 Spring AOP 就是基于动态代理的，如果要代理的对象，实现了某个接口，那么 Spring AOP 会使用 **JDK Proxy**，去创建代理对象，而对于没有实现接口的对象，就无法使用 JDK Proxy 去进行代理了，这时候 Spring AOP 会使用 **Cglib** 生成一个被代理对象的子类来作为代理，如下图所示：
 
-![SpringAOPProcess](https://img-blog.csdnimg.cn/img_convert/230ae587a322d6e4d09510161987d346.jpeg)
+![SpringAOPProcess](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/framework/spring/230ae587a322d6e4d09510161987d346.jpeg)
 
 当然你也可以使用 **AspectJ** ！Spring AOP 已经集成了 AspectJ ，AspectJ 应该算的上是 Java 生态系统中最完整的 AOP 框架了。
 
@@ -421,7 +421,7 @@ MVC 是模型(Model)、视图(View)、控制器(Controller)的简写，其核心
 
 网上有很多人说 MVC 不是设计模式，只是软件设计规范，我个人更倾向于 MVC 同样是众多设计模式中的一种。**[java-design-patterns](https://github.com/iluwatar/java-design-patterns)** 项目中就有关于 MVC 的相关介绍。
 
-![](https://img-blog.csdnimg.cn/159b3d3e70dd45e6afa81bf06d09264e.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/framework/spring/159b3d3e70dd45e6afa81bf06d09264e.png)
 
 想要真正理解 Spring MVC，我们先来看看 Model 1 和 Model 2 这两个没有 Spring MVC 的时代。
 
@@ -469,7 +469,7 @@ MVC 是一种设计模式，Spring MVC 是一款很优秀的 MVC 框架。Spring
 
 > SpringMVC 工作原理的图解我没有自己画，直接图省事在网上找了一个非常清晰直观的，原出处不明。
 
-![](https://img-blog.csdnimg.cn/img_convert/de6d2b213f112297298f3e223bf08f28.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/framework/spring/de6d2b213f112297298f3e223bf08f28.png)
 
 **流程说明（重要）：**
 

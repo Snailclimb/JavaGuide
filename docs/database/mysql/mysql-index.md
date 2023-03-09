@@ -48,11 +48,11 @@ hash = hashfunc(key)
 index = hash % array_size
 ```
 
-![](https://img-blog.csdnimg.cn/20210513092328171.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/mysql20210513092328171.png)
 
 但是！哈希算法有个 **Hash 冲突** 问题，也就是说多个不同的 key 最后得到的 index 相同。通常情况下，我们常用的解决办法是 **链地址法**。链地址法就是将哈希冲突数据存放在链表中。就比如 JDK1.8 之前 `HashMap` 就是通过链地址法来解决哈希冲突的。不过，JDK1.8 以后`HashMap`为了减少链表过长的时候搜索时间过长引入了红黑树。
 
-![](https://img-blog.csdnimg.cn/20210513092224836.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/mysql20210513092224836.png)
 
 为了减少 Hash 冲突的发生，一个好的哈希函数应该“均匀地”将数据分布在整个可能的哈希值集合中。
 
@@ -184,11 +184,11 @@ PS: 不懂的同学可以暂存疑，慢慢往下看，后面会有答案的，�
 
 这是 MySQL 的表的文件截图:
 
-![](https://img-blog.csdnimg.cn/20210420165311654.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/mysql20210420165311654.png)
 
 聚簇索引和非聚簇索引:
 
-![](https://img-blog.csdnimg.cn/20210420165326946.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/mysql20210420165326946.png)
 
 #### 非聚簇索引一定回表查询吗(覆盖索引)?
 
@@ -223,7 +223,7 @@ SELECT id FROM table WHERE id=1;
 > 再如普通索引，如果一条 SQL 需要查询 name，name 字段正好有索引，
 > 那么直接根据这个索引就可以查到数据，也无需回表。
 
-![覆盖索引](https://img-blog.csdnimg.cn/20210420165341868.png)
+![覆盖索引](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/mysql20210420165341868.png)
 
 ### 联合索引
 

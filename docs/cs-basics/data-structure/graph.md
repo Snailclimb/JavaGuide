@@ -23,7 +23,7 @@ tag:
 
 下图所展示的就是图这种数据结构，并且还是一张有向图。
 
-![](https://img-blog.csdnimg.cn/7f232c9660c54ee1ac182b7c0bf267a3.png)
+![](https://oscimg.oschina.net/oscnet/up-74c4ca0f71209f6f97201519ff85c23e274.png)
 
 图在我们日常生活中的例子很多！比如我们在社交软件上好友关系就可以用图来表示。
 

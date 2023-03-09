@@ -47,7 +47,7 @@ SQL 可以帮助我们：
 
 ### 什么是 MySQL？
 
-![](https://img-blog.csdnimg.cn/20210327143351823.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/csdn/20210327143351823.png)
 
 **MySQL 是一种关系型数据库，主要用于持久化存储我们的系统中的一些数据比如用户信息。**
 
@@ -137,8 +137,6 @@ MySQL 存储引擎采用的是 **插件式架构** ，支持多种存储引擎�
 MySQL 官方文档也有介绍到如何编写一个自定义存储引擎，地址：https://dev.mysql.com/doc/internals/en/custom-engine.html 。
 
 ### MyISAM 和 InnoDB 有什么区别？
-
-![](https://img-blog.csdnimg.cn/20210327145248960.png)
 
 MySQL 5.5 之前，MyISAM 引擎是 MySQL 的默认存储引擎，可谓是风光一时。
 
@@ -348,7 +346,7 @@ COMMIT;
 
 《Designing Data-Intensive Application（数据密集型应用系统设计）》这本书强推一波，值得读很多遍！豆瓣有接近 90% 的人看了这本书之后给了五星好评。另外，中文翻译版本已经在 Github 开源，地址：[https://github.com/Vonng/ddia](https://github.com/Vonng/ddia) 。
 
-![](https://img-blog.csdnimg.cn/20210526162552353.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/ddia.png)
 
 ### 并发事务带来了哪些问题?
 

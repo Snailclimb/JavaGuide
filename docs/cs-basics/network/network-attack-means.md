@@ -21,7 +21,7 @@ tag:
 
 **IP 头部格式** :
 
-![](https://img-blog.csdnimg.cn/img_convert/121f4f0c88f51a309a2c0566c0508034.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/843fd07074874ee0b695eca659411b42~tplv-k3u1fbpfcp-zoom-1.image)
 
 ### IP 欺骗技术是什么？
 
@@ -33,7 +33,7 @@ IP 欺骗技术就是**伪造**某台主机的 IP 地址的技术。通过 IP �
 
 这时，如果合法用户 **1.1.1.1** 再发送合法数据，服务器就已经没有这样的连接了，该用户就必须从新开始建立连接。攻击时，伪造大量的 IP 地址，向目标发送 RST 数据，使服务器不对合法用户服务。虽然 IP 地址欺骗攻击有着相当难度，但我们应该清醒地意识到，这种攻击非常广泛，入侵往往从这种攻击开始。
 
-![IP 欺骗 DDoS 攻击](https://img-blog.csdnimg.cn/img_convert/d0a3525fc3a55bf129aee9dea14db967.png)
+![IP 欺骗 DDoS 攻击](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7547a145adf9404aa3a05f01f5ca2e32~tplv-k3u1fbpfcp-zoom-1.image)
 
 ### 如何缓解 IP 欺骗？
 
@@ -48,13 +48,13 @@ SYN Flood 是互联网上最原始、最经典的 DDoS（Distributed Denial of S
 SYN Flood 利用了 TCP 协议的三次握手机制，攻击者通常利用工具或者控制僵尸主机向服务器发送海量的变源 IP 地址或变源端口的 TCP SYN 报文，服务器响应了这些报文后就会生成大量的半连接，当系统资源被耗尽后，服务器将无法提供正常的服务。
 增加服务器性能，提供更多的连接能力对于 SYN Flood 的海量报文来说杯水车薪，防御 SYN Flood 的关键在于判断哪些连接请求来自于真实源，屏蔽非真实源的请求以保障正常的业务请求能得到服务。
 
-![](https://img-blog.csdnimg.cn/20210608152327406.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2b3d2d4dc8f24890b5957df1c7d6feb8~tplv-k3u1fbpfcp-zoom-1.image)
 
 ### TCP SYN Flood 攻击原理是什么？
 
 **TCP SYN Flood** 攻击利用的是 **TCP** 的三次握手（**SYN -> SYN/ACK -> ACK**），假设连接发起方是 A，连接接受方是 B，即 B 在某个端口（**Port**）上监听 A 发出的连接请求，过程如下图所示，左边是 A，右边是 B。
 
-![](https://img-blog.csdnimg.cn/img_convert/fb84988f23bf0130426386316ad3d394.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a39355a1ea404323a11ca6644e009183~tplv-k3u1fbpfcp-zoom-1.image)
 
 A 首先发送 **SYN**（Synchronization）消息给 B，要求 B 做好接收数据的准备；B 收到后反馈 **SYN-ACK**（Synchronization-Acknowledgement） 消息给 A，这个消息的目的有两个：
 
@@ -71,7 +71,7 @@ A 首先发送 **SYN**（Synchronization）消息给 B，要求 B 做好接收�
 
 假设 B 通过某 **TCP** 端口提供服务，B 在收到 A 的 **SYN** 消息时，积极的反馈了 **SYN-ACK** 消息，使连接进入**半开状态**，因为 B 不确定自己发给 A 的 **SYN-ACK** 消息或 A 反馈的 ACK 消息是否会丢在半路，所以会给每个待完成的半开连接都设一个**Timer**，如果超过时间还没有收到 A 的 **ACK** 消息，则重新发送一次 **SYN-ACK** 消息给 A，直到重试超过一定次数时才会放弃。
 
-![图片](https://img-blog.csdnimg.cn/img_convert/78bc8b670709adcc9de07622b6a9e5be.png)
+![图片](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7ff1daddcec44d61994f254e664987b4~tplv-k3u1fbpfcp-zoom-1.image)
 
 B 为帮助 A 能顺利连接，需要**分配内核资源**维护半开连接，那么当 B 面临海量的连接 A 时，如上图所示，**SYN Flood** 攻击就形成了。攻击方 A 可以控制肉鸡向 B 发送大量 SYN 消息但不响应 ACK 消息，或者干脆伪造 SYN 消息中的 **Source IP**，使 B 反馈的 **SYN-ACK** 消息石沉大海，导致 B 被大量注定不能完成的半开连接占据，直到资源耗尽，停止响应正常的连接请求。
 
@@ -118,7 +118,7 @@ B 为帮助 A 能顺利连接，需要**分配内核资源**维护半开连接�
 
 由于目标服务器利用资源检查并响应每个接收到的 **UDP** 数据包的结果，当接收到大量 **UDP** 数据包时，目标的资源可能会迅速耗尽，导致对正常流量的拒绝服务。
 
-![](https://img-blog.csdnimg.cn/img_convert/7d0ff60a34c001a0806c46070b421a5b.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/23dbbc8243a84ed181e088e38bffb37a~tplv-k3u1fbpfcp-zoom-1.image)
 
 ### 如何缓解 UDP Flooding？
 
@@ -130,7 +130,7 @@ B 为帮助 A 能顺利连接，需要**分配内核资源**维护半开连接�
 
 HTTP Flood 是一种大规模的 DDoS（Distributed Denial of Service，分布式拒绝服务）攻击，旨在利用 HTTP 请求使目标服务器不堪重负。目标因请求而达到饱和，且无法响应正常流量后，将出现拒绝服务，拒绝来自实际用户的其他请求。
 
-![HTTP 洪水攻击](https://img-blog.csdnimg.cn/img_convert/4a388ae54275436d123a4179033ef148.png)
+![HTTP 洪水攻击](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/aa64869551d94c8d89fa80eaf4395bfa~tplv-k3u1fbpfcp-zoom-1.image)
 
 ### HTTP Flood 的攻击原理是什么？
 
@@ -157,7 +157,7 @@ HTTP 洪水攻击有两种：
 
 ### DNS Flood 的攻击原理是什么？
 
-![](https://img-blog.csdnimg.cn/img_convert/85f7e18d5f9d8c40c3bf3650060fac61.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/97ea11a212924900b10d159226783887~tplv-k3u1fbpfcp-zoom-1.image)
 
 域名系统的功能是将易于记忆的名称（例如example.com）转换成难以记住的网站服务器地址（例如192.168.0.1），因此成功攻击 DNS 基础设施将导致大多数人无法使用互联网。DNS Flood攻击是一种相对较新的基于 DNS 的攻击，这种攻击是在高带宽[物联网（IoT）](https://www.cloudflare.com/learning/ddos/glossary/internet-of-things-iot/)[僵尸网络](https://www.cloudflare.com/learning/ddos/what-is-a-ddos-botnet/)（如 [Mirai](https://www.cloudflare.com/learning/ddos/glossary/mirai-botnet/)）兴起后激增的。DNS Flood攻击使用 IP 摄像头、DVR 盒和其他 IoT 设备的高带宽连接直接淹没主要提供商的 DNS 服务器。来自 IoT 设备的大量请求淹没 DNS 提供商的服务，阻止合法用户访问提供商的 DNS 服务器。
 
@@ -210,13 +210,13 @@ $ nc 127.0.0.1 8000
 
 该命令会尝试与上面的服务建立连接，在其中一个窗口输入一些字符，就会通过 TCP 连接发送给另一个窗口并打印出来。
 
-![](https://img-blog.csdnimg.cn/img_convert/344d0433aa812121907b7dbe4ceef81f.gif)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/df0508cbf26446708cf98f8ad514dbea~tplv-k3u1fbpfcp-zoom-1.image)
 
 > 嗅探流量
 
 编写一个攻击程序，使用 Python 网络库 `scapy` 来读取两个终端窗口之间交换的数据，并将其打印到终端上。代码比较长，下面为一部份，完整代码后台回复 TCP 攻击，代码的核心是调用 `scapy` 的嗅探方法：
 
-![](https://img-blog.csdnimg.cn/img_convert/1700a7e27b6eaa3e72a730236d52edce.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/27feb834aa9d4b629fd938611ac9972e~tplv-k3u1fbpfcp-zoom-1.image)
 
 这段代码告诉 `scapy` 在 `lo0` 网络接口上嗅探数据包，并记录所有 TCP 连接的详细信息。
 
@@ -252,7 +252,7 @@ $ nc 127.0.0.1 8000
 
 攻击中间人攻击英文名叫 Man-in-the-MiddleAttack，简称「MITM 攻击」。指攻击者与通讯的两端分别创建独立的联系，并交换其所收到的数据，使通讯的两端认为他们正在通过一个私密的连接与对方 直接对话，但事实上整个会话都被攻击者完全控制。我们画一张图：
 
-![图片](https://img-blog.csdnimg.cn/img_convert/53969bbd535dec6abadf76f57b3128c5.png)
+![图片](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d69b74e63981472b852797f2fa08976f~tplv-k3u1fbpfcp-zoom-1.image)
 
 从这张图可以看到，中间人其实就是攻击者。通过这种原理，有很多实现的用途，比如说，你在手机上浏览不健康网站的时候，手机就会提示你，此网站可能含有病毒，是否继续访问还是做其他的操作等等。
 
@@ -292,7 +292,7 @@ $ nc 127.0.0.1 8000
 
 同样的，举个例子。Sum 和 Mike 两个人签合同。Sum 首先用 **SHA** 算法计算合同的摘要，然后用自己私钥将摘要加密，得到数字签名。Sum 将合同原文、签名，以及公钥三者都交给 Mike
 
-![](https://img-blog.csdnimg.cn/img_convert/d1f08fdee50f6eb3dca93bff83f3884c.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e4b7d6fca78b45c8840c12411b717f2f~tplv-k3u1fbpfcp-zoom-1.image)
 
 如果 Sum 想要证明合同是 Mike 的，那么就要使用 Mike 的公钥，将这个签名解密得到摘要 x，然后 Mike 计算原文的 sha 摘要 Y，随后对比 x 和 y，如果两者相等，就认为数据没有被篡改
 
@@ -308,7 +308,7 @@ $ nc 127.0.0.1 8000
 
 对称加密，顾名思义，加密方与解密方使用同一钥匙(秘钥)。具体一些就是，发送方通过使用相应的加密算法和秘钥，对将要发送的信息进行加密；对于接收方而言，使用解密算法和相同的秘钥解锁信息，从而有能力阅读信息。
 
-![图片](https://img-blog.csdnimg.cn/img_convert/e72950f066af5db93023acb8d723a73b.png)
+![图片](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ef81cb5e2f0a4d3d9ac5a44ecf97e3cc~tplv-k3u1fbpfcp-zoom-1.image)
 
 #### 常见的对称加密算法有哪些？
 
@@ -316,7 +316,7 @@ $ nc 127.0.0.1 8000
 
 DES 使用的密钥表面上是 64 位的，然而只有其中的 56 位被实际用于算法，其余 8 位可以被用于奇偶校验，并在算法中被丢弃。因此，**DES** 的有效密钥长度为 56 位，通常称 **DES** 的密钥长度为 56 位。假设秘钥为 56 位，采用暴力破 Jie 的方式，其秘钥个数为 2 的 56 次方，那么每纳秒执行一次解密所需要的时间差不多 1 年的样子。当然，没人这么干。**DES** 现在已经不是一种安全的加密方法，主要因为它使用的 56 位密钥过短。
 
-![](https://img-blog.csdnimg.cn/img_convert/c0b1c4844b8748edee698c11d9e76736.jpeg)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9eb3a2bf6cf14132a890bc3447480eeb~tplv-k3u1fbpfcp-zoom-1.image)
 
 **IDEA**
 
@@ -332,13 +332,13 @@ DES 使用的密钥表面上是 64 位的，然而只有其中的 56 位被实�
 
 **总结** ：
 
-![](https://img-blog.csdnimg.cn/img_convert/9e78eb3563d288234fcca7d8e918e798.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/578961e3175540e081e1432c409b075a~tplv-k3u1fbpfcp-zoom-1.image)
 
 #### 常见的非对称加密算法有哪些？
 
 在对称加密中，发送方与接收方使用相同的秘钥。那么在非对称加密中则是发送方与接收方使用的不同的秘钥。其主要解决的问题是防止在秘钥协商的过程中发生泄漏。比如在对称加密中，小蓝将需要发送的消息加密，然后告诉你密码是 123balala,ok,对于其他人而言，很容易就能劫持到密码是 123balala。那么在非对称的情况下，小蓝告诉所有人密码是 123balala,对于中间人而言，拿到也没用，因为没有私钥。所以，非对称密钥其实主要解决了密钥分发的难题。如下图
 
-![](https://img-blog.csdnimg.cn/img_convert/9da412ceb3b69c26403064b2f68c489b.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/153cf04a0ecc43c38003f3a1ab198cc0~tplv-k3u1fbpfcp-zoom-1.image)
 
 其实我们经常都在使用非对称加密，比如使用多台服务器搭建大数据平台 hadoop，为了方便多台机器设置免密登录，是不是就会涉及到秘钥分发。再比如搭建 docker 集群也会使用相关非对称加密算法。
 
@@ -351,7 +351,7 @@ DES 使用的密钥表面上是 64 位的，然而只有其中的 56 位被实�
 
 总结：
 
-![](https://img-blog.csdnimg.cn/img_convert/b99d66ac3f012643bb56d7ea36e3ddad.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/28b96fb797904d4b818ee237cdc7614c~tplv-k3u1fbpfcp-zoom-1.image)
 
 #### 常见的散列算法有哪些？
 
@@ -371,7 +371,7 @@ MD5 可以用来生成一个 128 位的消息摘要，它是目前应用比较�
 
 **总结** ：
 
-![图片](https://img-blog.csdnimg.cn/img_convert/d8cca76a1e4998c9cad701ccf3fc7647.png)
+![图片](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/79c3c2f72d2f44c7abf2d73a49024495~tplv-k3u1fbpfcp-zoom-1.image)
 
 **大部分情况下使用对称加密，具有比较不错的安全性。如果需要分布式进行秘钥分发，考虑非对称。如果不需要可逆计算则散列算法。** 因为这段时间有这方面需求，就看了一些这方面的资料，入坑信息安全，就怕以后洗发水都不用买。谢谢大家查看！
 
@@ -383,7 +383,7 @@ MD5 可以用来生成一个 128 位的消息摘要，它是目前应用比较�
 
 证书之所以会有信用，是因为证书的签发方拥有信用。所以如果 Sum 想让 Mike 承认自己的公钥，Sum 不会直接将公钥给 Mike ，而是提供由第三方机构，含有公钥的证书。如果 Mike 也信任这个机构，法律都认可，那 ik，信任关系成立
 
-![](https://img-blog.csdnimg.cn/img_convert/26a967ce97a857168e76c2d30c054ad3.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b1a3dbf87e3e41ff894f39512a10f66d~tplv-k3u1fbpfcp-zoom-1.image)
 
 如上图所示，Sum 将自己的申请提交给机构，产生证书的原文。机构用自己的私钥签名 Sum 的申请原文（先根据原文内容计算摘要，再用私钥加密），得到带有签名信息的证书。Mike 拿到带签名信息的证书，通过第三方机构的公钥进行解密，获得 Sum 证书的摘要、证书的原文。有了 Sum 证书的摘要和原文，Mike 就可以进行验签。验签通过，Mike 就可以确认 Sum 的证书的确是第三方机构签发的。
 
@@ -391,7 +391,7 @@ MD5 可以用来生成一个 128 位的消息摘要，它是目前应用比较�
 
 为了让这个信任条更加稳固，就需要环环相扣，打造更长的信任链，避免单点信任风险
 
-![](https://img-blog.csdnimg.cn/img_convert/64b9a566e397675dc948d3f34b57c412.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1481f0409da94ba6bb0fee69bf0996f8~tplv-k3u1fbpfcp-zoom-1.image)
 
 上图中，由信誉最好的根证书机构提供根证书，然后根证书机构去签发二级机构的证书；二级机构去签发三级机构的证书；最后有由三级机构去签发 Sum 证书。
 
@@ -407,7 +407,7 @@ MD5 可以用来生成一个 128 位的消息摘要，它是目前应用比较�
 
 既然知道了中间人攻击的原理也知道了他的危险，现在我们看看如何避免。相信我们都遇到过下面这种状况：
 
-![](https://img-blog.csdnimg.cn/img_convert/c310fc8ccb7a1574a44e0a08d524df0b.png)
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0dde4b76be6240699312d822a3fe1ed3~tplv-k3u1fbpfcp-zoom-1.image)
 
 出现这个界面的很多情况下，都是遇到了中间人攻击的现象，需要对安全证书进行及时地监测。而且大名鼎鼎的 github 网站，也曾遭遇过中间人攻击：
 

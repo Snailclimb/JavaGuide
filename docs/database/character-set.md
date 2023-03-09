@@ -41,7 +41,7 @@ ASCII 字符集至今为止共定义了 128 个字符，其中有 33 个控制�
 
 由于，ASCII 码可以表示的字符实在是太少了。后来，人们对其进行了扩展得到了 **ASCII 扩展字符集** 。ASCII 扩展字符集使用 8 位（bits）表示一个字符，所以，ASCII 扩展字符集可以定义 256（2^8）个字符。
 
-![ASCII字符编码](https://img-blog.csdnimg.cn/img_convert/c1c6375d08ca268690cef2b13591a5b4.png)
+![ASCII字符编码](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/csdn/c1c6375d08ca268690cef2b13591a5b4.png)
 
 ### GB2312
 
@@ -75,7 +75,7 @@ BIG5 主要针对的是繁体中文，收录了 13000 多个汉字。
 
 你可以通过这个网站在线进行编码和解码：https://www.haomeili.net/HanZi/ZiFuBianMaZhuanHuan
 
-![](https://img-blog.csdnimg.cn/836c49b117ee4408871b0020b74c991d.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/csdn/836c49b117ee4408871b0020b74c991d.png)
 
 这样我们就搞懂了乱码的本质： **编码和解码时用了不同或者不兼容的字符集** 。
 

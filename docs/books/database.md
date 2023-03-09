@@ -14,13 +14,13 @@ head:
 
 [《数据库系统原理》](https://www.icourse163.org/course/BNU-1002842007)这个课程的老师讲的非常详细，而且每一小节的作业设计的也与所讲知识很贴合，后面还有很多配套实验。
 
-![](https://img-blog.csdnimg.cn/20210406154403673.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0MzM3Mjcy,size_16,color_FFFFFF,t_70)
+![](https://oscimg.oschina.net/oscnet/up-e113c726a41874ef5fb19f7ac14e38e16ce.png)
 
 
 
 如果你比较喜欢动手，对于理论知识比较抵触的话，推荐你看看[《如何开发一个简单的数据库》](https://cstack.github.io/db_tutorial/) ，这个 project 会手把手教你编写一个简单的数据库。
 
-![](https://img-blog.csdnimg.cn/20210406154601698.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0MzM3Mjcy,size_16,color_FFFFFF,t_70)
+![](https://oscimg.oschina.net/oscnet/up-11de8cb239aa7201cc8d78fa28928b9ec7d.png)
 
 Github上也已经有大佬用 Java 实现过一个简易的数据库，介绍的挺详细的，感兴趣的朋友可以去看看。地址：[https://github.com/alchemystar/Freedom](https://github.com/alchemystar/Freedom) 。
 
@@ -66,7 +66,7 @@ Github上也已经有大佬用 Java 实现过一个简易的数据库，介绍�
 
 另外，强推一波 **[《MySQL 是怎样运行的》](https://book.douban.com/subject/35231266/)** 这本书，内容很适合拿来准备面试。讲的很细节，但又不枯燥，内容非常良心！
 
-![](https://img-blog.csdnimg.cn/20210703120643370.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/csdn/20210703120643370.png)
 
 ## PostgreSQL
 

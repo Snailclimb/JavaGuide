@@ -26,7 +26,7 @@ head:
 
 另外，去年新出的一本国产的操作系统书籍也很不错：**[《现代操作系统：原理与实现》](https://book.douban.com/subject/35208251/)** （夏老师和陈老师团队的力作，值得推荐）。
 
-![](https://img-blog.csdnimg.cn/20210406132050845.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/20210406132050845.png)
 
 如果你比较喜欢动手，对于理论知识比较抵触的话，我推荐你看看 **[《30 天自制操作系统》](https://book.douban.com/subject/11530329/)** ，这本书会手把手教你编写一个操作系统。
 
@@ -163,7 +163,7 @@ Github 上就有一些名校的计算机网络试验/Project：
 
 视频的话，推荐北京大学的国家精品课程—**[程序设计与算法（二）算法基础](https://www.icourse163.org/course/PKU-1001894005)**，讲的非常好！
 
-![](https://img-blog.csdnimg.cn/22ce4a17dc0c40f6a3e0d58002261b7a.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/22ce4a17dc0c40f6a3e0d58002261b7a.png)
 
 这个课程把七种基本的通用算法（枚举、二分、递归、分治、动态规划、搜索、贪心）都介绍到了。各种复杂算法问题的解决，都可能用到这些基本的思想。并且，这个课程的一部分的例题和 ACM 国际大学生程序设计竞赛中的中等题相当，如果你能够解决这些问题，那你的算法能力将超过绝大部分的高校计算机专业本科毕业生。
 
@@ -187,7 +187,7 @@ Github 上就有一些名校的计算机网络试验/Project：
 
 类似的还有 **[《数据结构与算法分析 ：C 语言描述》](https://book.douban.com/subject/1139426/)** 、**[《数据结构与算法分析：C++ 描述》](https://book.douban.com/subject/1971825/)**
 
-![](https://img-blog.csdnimg.cn/d9c450ccc5224a5fba77f4fa937f7b9c.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/d9c450ccc5224a5fba77f4fa937f7b9c.png)
 
 视频的话推荐你看浙江大学的国家精品课程—**[《数据结构》](https://www.icourse163.org/course/ZJU-93001#/info)** 。
 
@@ -262,7 +262,7 @@ Github 上就有一些名校的计算机网络试验/Project：
 
 总的来说，这门课对于各位程序员的职业发展来说，相对不那么重要，但是从难度上来说，学习这门课可以对编程思想有一个较好的巩固。学习资源的话，除了课堂上的幻灯片课件以外，还可以把 《编译原理》 这本书作为参考书，用以辅助自己学不懂的地方（大家口中的龙书，想要啃下来还是有一定难度的）。
 
-![](https://img-blog.csdnimg.cn/20210406152148373.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/20210406152148373.png)
 
 其他书籍推荐:
 
@@ -271,4 +271,4 @@ Github 上就有一些名校的计算机网络试验/Project：
 
 我上面推荐的书籍的难度还是比较高的，真心很难坚持看完。这里强烈推荐[哈工大的编译原理视频课程](https://www.icourse163.org/course/HIT-1002123007)，真心不错，还是国家精品课程，关键还是又漂亮有温柔的美女老师讲的！
 
-![](https://img-blog.csdnimg.cn/20210406152847824.png)
+![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/20210406152847824.png)
