@@ -105,7 +105,7 @@ public non-sealed class Manager extends Person {
 }
 ```
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/image-20210820153955587.png)
+![](https://oss.javaguide.cn/javaguide/image-20210820153955587.png)
 
 如果允许扩展的子类和封闭类在同一个源代码文件里，封闭类可以不使用 permits 语句，Java 编译器将检索源文件，在编译期为封闭类添加上许可的子类。
 

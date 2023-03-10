@@ -13,7 +13,7 @@ tag:
 
 举个例子：新娘找来了自己的姨妈来代替自己处理新郎的提问，新娘收到的提问都是经过姨妈处理过滤之后的。姨妈在这里就可以看作是代理你的代理对象，代理的行为（方法）是接收和回复新郎的提问。
 
-![Understanding the Proxy Design Pattern | by Mithun Sasidharan | Medium](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-8/1*DjWCgTFm-xqbhbNQVsaWQw.png)
+![Understanding the Proxy Design Pattern | by Mithun Sasidharan | Medium](https://oss.javaguide.cn/2020-8/1*DjWCgTFm-xqbhbNQVsaWQw.png)
 
 <p style="text-align:right;font-size:13px;color:gray">https://medium.com/@mithunsasidharan/understanding-the-proxy-design-pattern-5e63fe38052a</p>
 

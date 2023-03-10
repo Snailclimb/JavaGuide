@@ -80,7 +80,7 @@ Java 18 改进了 `java.lang.reflect.Method`、`Constructor` 的实现逻辑，�
 
 OpenJDK 官方给出了新老实现的反射性能基准测试结果。
 
-![新老实现的反射性能基准测试结果](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/new-features/JEP416Benchmark.png)
+![新老实现的反射性能基准测试结果](https://oss.javaguide.cn/github/javaguide/java/new-features/JEP416Benchmark.png)
 
 ## JEP 417: 向量 API（第三次孵化）
 

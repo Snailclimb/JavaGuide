@@ -26,11 +26,11 @@ icon: "id"
 
 这个时候就需要生成**分布式 ID**了。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/distributed-system/id-after-the-sub-table-not-conflict.png)
+![](https://oss.javaguide.cn/github/javaguide/system-design/distributed-system/id-after-the-sub-table-not-conflict.png)
 
 ### 分布式 ID 需要满足哪些要求?
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/distributed-system/distributed-id-requirements.png)
+![](https://oss.javaguide.cn/github/javaguide/system-design/distributed-system/distributed-id-requirements.png)
 
 分布式 ID 作为分布式系统中必不可少的一环，很多地方都要用到分布式 ID。
 
@@ -56,7 +56,7 @@ icon: "id"
 
 这种方式就比较简单直白了，就是通过关系型数据库的自增主键产生来唯一的 ID。
 
-![数据库主键自增](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/distributed-system/the-primary-key-of-the-database-increases-automatically.png)
+![数据库主键自增](https://oss.javaguide.cn/github/javaguide/system-design/distributed-system/the-primary-key-of-the-database-increases-automatically.png)
 
 以 MySQL 举例，我们通过下面的方式即可。
 
@@ -118,7 +118,7 @@ CREATE TABLE `sequence_id_generator` (
 
 `current_max_id` 字段和`step`字段主要用于获取批量 ID，获取的批量 id 为： `current_max_id ~ current_max_id+step`。
 
-![数据库号段模式](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/distributed-system/database-number-segment-mode.png)
+![数据库号段模式](https://oss.javaguide.cn/github/javaguide/system-design/distributed-system/database-number-segment-mode.png)
 
 `version` 字段主要用于解决并发问题（乐观锁）,`biz_type` 主要用于表示业务类型。
 
@@ -168,7 +168,7 @@ id	current_max_id	step	version	biz_type
 
 #### NoSQL
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/distributed-system/nosql-distributed-id.png)
+![](https://oss.javaguide.cn/github/javaguide/system-design/distributed-system/nosql-distributed-id.png)
 
 一般情况下，NoSQL 方案使用 Redis 多一些。我们通过 Redis 的 `incr` 命令即可实现对 id 原子顺序递增。
 
@@ -196,7 +196,7 @@ OK
 
 除了 Redis 之外，MongoDB ObjectId 经常也会被拿来当做分布式 ID 的解决方案。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/distributed-system/mongodb9-objectId-distributed-id.png)
+![](https://oss.javaguide.cn/github/javaguide/system-design/distributed-system/mongodb9-objectId-distributed-id.png)
 
 MongoDB ObjectId 一共需要 12 个字节存储：
 
@@ -225,7 +225,7 @@ UUID.randomUUID()
 
 [RFC 4122](https://tools.ietf.org/html/rfc4122) 中关于 UUID 的示例是这样的：
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/distributed-system/rfc-4122-uuid.png)
+![](https://oss.javaguide.cn/github/javaguide/system-design/distributed-system/rfc-4122-uuid.png)
 
 我们这里重点关注一下这个 Version(版本)，不同的版本对应的 UUID 的生成规则是不同的。
 
@@ -238,7 +238,7 @@ UUID.randomUUID()
 
 下面是 Version 1 版本下生成的 UUID 的示例：
 
-![Version 1 版本下生成的 UUID 的示例](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/distributed-system/version1-uuid.png)
+![Version 1 版本下生成的 UUID 的示例](https://oss.javaguide.cn/github/javaguide/system-design/distributed-system/version1-uuid.png)
 
 JDK 中通过 `UUID` 的 `randomUUID()` 方法生成的 UUID 的版本默认为 4。
 
@@ -274,7 +274,7 @@ Snowflake 是 Twitter 开源的分布式 ID 生成算法。Snowflake 由 64 bit 
 - **第 42~52 位** ：一共 10 位，一般来说，前 5 位表示机房 ID，后 5 位表示机器 ID（实际项目中可以根据实际情况调整）。这样就可以区分不同集群/机房的节点。
 - **第 53~64 位** ：一共 12 位，用来表示序列号。 序列号为自增值，代表单台机器每毫秒能够产生的最大 ID 数(2^12 = 4096),也就是说单台机器每毫秒最多可以生成 4096 个 唯一 ID。
 
-![Snowflake 示意图](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/distributed-system/snowflake-distributed-id-schematic-diagram.png)
+![Snowflake 示意图](https://oss.javaguide.cn/github/javaguide/system-design/distributed-system/snowflake-distributed-id-schematic-diagram.png)
 
 如果你想要使用 Snowflake 算法的话，一般不需要你自己再造轮子。有很多基于 Snowflake 算法的开源实现比如美团 的 Leaf、百度的 UidGenerator，并且这些开源实现对原有的 Snowflake 算法进行了优化。
 
@@ -293,13 +293,13 @@ Snowflake 是 Twitter 开源的分布式 ID 生成算法。Snowflake 由 64 bit 
 
 不过，UidGenerator 对 Snowflake(雪花算法)进行了改进，生成的唯一 ID 组成如下。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/distributed-system/uidgenerator-distributed-id-schematic-diagram.png)
+![](https://oss.javaguide.cn/github/javaguide/system-design/distributed-system/uidgenerator-distributed-id-schematic-diagram.png)
 
 可以看出，和原始 Snowflake(雪花算法)生成的唯一 ID 的组成不太一样。并且，上面这些参数我们都可以自定义。
 
 UidGenerator 官方文档中的介绍如下：
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/distributed-system/uidgenerator-introduction-official-documents.png)
+![](https://oss.javaguide.cn/github/javaguide/system-design/distributed-system/uidgenerator-introduction-official-documents.png)
 
 自 18 年后，UidGenerator 就基本没有再维护了，我这里也不过多介绍。想要进一步了解的朋友，可以看看 [UidGenerator 的官方介绍](https://github.com/baidu/uid-generator/blob/master/README.zh_cn.md)。
 

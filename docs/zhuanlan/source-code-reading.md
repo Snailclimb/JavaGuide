@@ -12,25 +12,25 @@ star: true
 
 ## 内容概览
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220621091832348.png)
+![](https://oss.javaguide.cn/xingqiu/image-20220621091832348.png)
 
 ## 星球其他资源
 
 除了 **《Java 必读源码系列》** 之外，星球还有 **《从零开始写一个 RPC 框架》** 、 **《Java 面试指北》**、 **《Java 必读源码系列》**（目前已经整理了 Dubbo 2.6.x 、Netty 4.x、SpringBoot2.1 的源码） 、**《Kafka 常见面试题/知识点总结》** 等多个专栏。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220211231206733.png)
+![](https://oss.javaguide.cn/xingqiu/image-20220211231206733.png)
 
 另外，星球还会有读书活动、学习打卡、简历修改、免费提问、海量 Java 优质面试资源以及各种不定时的福利。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220304124333119.png)
+![](https://oss.javaguide.cn/xingqiu/image-20220304124333119.png)
 
 ## 星球其他资源
 
 除了 **《Java 必读源码系列》** 之外，星球还有 **《手写 RPC 框架》**、 **《Java 面试指北》** 、**《Kafka 常见面试题/知识点总结》** 等多个专属小册。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220316200015412.png)
+![](https://oss.javaguide.cn/xingqiu/image-20220316200015412.png)
 另外，星球还会有读书活动、学习打卡、简历修改、免费提问、海量 Java 优质面试资源以及各种不定时的福利。
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220304124333119.png)
+![](https://oss.javaguide.cn/xingqiu/image-20220304124333119.png)
 
 ## 星球限时优惠
 
@@ -38,7 +38,7 @@ star: true
 
 感兴趣的小伙伴可以看看我在 2020-01-03 发的头条：[做了一个很久没敢做的事情](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247486049&idx=1&sn=e0161b409e8f164251bdaa0c83a476bc&chksm=cea245aaf9d5ccbcafdb95a546d959508814085620aabdbb4385c4b8cea6e50bf157c3697041&token=1614894361&lang=zh_CN#rd)，去考古一下。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220311203414600.png)
+![](https://oss.javaguide.cn/xingqiu/image-20220311203414600.png)
 
 随着时间推移，星球积累的干货资源越来越多，我花在星球上的时间也越来越多。于是，我将星球的定价慢慢调整为了 **159/年**！后续会将星球的价格调整为 **199/年**，想要加入的小伙伴一定要尽早。
 
@@ -46,7 +46,7 @@ star: true
 
 <div align="center">
   <a href="https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html">
-    <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/xingqiuyouhuijuanheyi.png" style="margin: 0 auto; " />
+    <img src="https://oss.javaguide.cn/xingqiu/xingqiuyouhuijuanheyi.png" style="margin: 0 auto; " />
   </a>
 </div>
 
@@ -54,7 +54,7 @@ star: true
 
 <div align="center">
   <a href="https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html">
-    <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/IMG_3007.jpg" style="margin: 0 auto; " />
+    <img src="https://oss.javaguide.cn/github/javaguide/IMG_3007.jpg" style="margin: 0 auto; " />
   </a>
 </div>
 

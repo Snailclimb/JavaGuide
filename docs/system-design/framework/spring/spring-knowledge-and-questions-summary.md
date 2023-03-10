@@ -17,7 +17,7 @@ Spring 是一款开源的轻量级 Java 开发框架，旨在提高开发人员�
 
 我们一般说 Spring 框架指的都是 Spring Framework，它是很多模块的集合，使用这些模块可以很方便地协助我们进行开发，比如说 Spring 支持 IoC（Inversion of Control:控制反转） 和 AOP(Aspect-Oriented Programming:面向切面编程)、可以很方便地对数据库进行访问、可以很方便地集成第三方组件（电子邮件，任务，调度，缓存等等）、对单元测试支持比较好、支持 RESTful Java 应用程序的开发。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/framework/spring/38ef122122de4375abcd27c3de8f60b4.png)
+![](https://oss.javaguide.cn/github/javaguide/system-design/framework/spring/38ef122122de4375abcd27c3de8f60b4.png)
 
 Spring 最核心的思想就是不重新造轮子，开箱即用，提高开发效率。
 
@@ -34,17 +34,17 @@ Spring 提供的核心功能主要是 IoC 和 AOP。学习 Spring ，一定要�
 
 **Spring4.x 版本** ：
 
-![Spring4.x主要模块](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/framework/spring/jvme0c60b4606711fc4a0b6faf03230247a.png)
+![Spring4.x主要模块](https://oss.javaguide.cn/github/javaguide/system-design/framework/spring/jvme0c60b4606711fc4a0b6faf03230247a.png)
 
 **Spring5.x 版本** ：
 
-![Spring5.x主要模块](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/framework/spring/20200831175708.png)
+![Spring5.x主要模块](https://oss.javaguide.cn/github/javaguide/system-design/framework/spring/20200831175708.png)
 
 Spring5.x 版本中 Web 模块的 Portlet 组件已经被废弃掉，同时增加了用于异步响应式处理的 WebFlux 组件。
 
 Spring 各个模块的依赖关系如下：
 
-![Spring 各个模块的依赖关系](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/framework/spring/20200902100038.png)
+![Spring 各个模块的依赖关系](https://oss.javaguide.cn/github/javaguide/system-design/framework/spring/20200902100038.png)
 
 #### Core Container
 
@@ -94,11 +94,11 @@ Spring 包含了多个功能模块（上面刚刚提到过），其中最重要�
 
 下图对应的是 Spring4.x 版本。目前最新的 5.x 版本中 Web 模块的 Portlet 组件已经被废弃掉，同时增加了用于异步响应式处理的 WebFlux 组件。
 
-![Spring主要模块](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/jvme0c60b4606711fc4a0b6faf03230247a.png)
+![Spring主要模块](https://oss.javaguide.cn/github/javaguide/jvme0c60b4606711fc4a0b6faf03230247a.png)
 
 Spring MVC 是 Spring 中的一个很重要的模块，主要赋予 Spring 快速构建 MVC 架构的 Web 程序的能力。MVC 是模型(Model)、视图(View)、控制器(Controller)的简写，其核心思想是通过将业务逻辑、数据、显示分离来组织代码。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/image-20210809181452421.png)
+![](https://oss.javaguide.cn/java-guide-blog/image-20210809181452421.png)
 
 使用 Spring 进行开发各种配置过于麻烦比如开启某些 Spring 特性时，需要用 XML 或 Java 进行显式配置。于是，Spring Boot 诞生了！
 
@@ -117,7 +117,7 @@ Spring Boot 只是简化了配置，如果你需要构建 MVC 架构的 Web 程�
 - **控制** ：指的是对象创建（实例化、管理）的权力
 - **反转** ：控制权交给外部环境（Spring 框架、IoC 容器）
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/frc-365faceb5697f04f31399937c059c162.png)
+![](https://oss.javaguide.cn/java-guide-blog/frc-365faceb5697f04f31399937c059c162.png)
 
 将对象之间的相互依赖关系交给 IoC 容器来管理，并由 IoC 容器完成对象的注入。这样可以很大程度上简化应用的开发，把应用从复杂的依赖关系中解放出来。 IoC 容器就像是一个工厂一样，当我们需要创建一个对象的时候，只需要配置好配置文件/注解即可，完全不用考虑对象是如何被创建出来的。
 
@@ -147,7 +147,7 @@ Spring 时代我们一般通过 XML 文件来配置 Bean，后来开发人员觉
 
 下图简单地展示了 IoC 容器如何使用配置元数据来管理对象。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/framework/spring/062b422bd7ac4d53afd28fb74b2bc94d.png)
+![](https://oss.javaguide.cn/github/javaguide/system-design/framework/spring/062b422bd7ac4d53afd28fb74b2bc94d.png)
 
 `org.springframework.beans`和 `org.springframework.context` 这两个包是 IoC 实现的基础，如果想要研究 IoC 相关的源码的话，可以去看看
 
@@ -350,7 +350,7 @@ AOP(Aspect-Oriented Programming:面向切面编程)能够将那些与业务无�
 
 Spring AOP 就是基于动态代理的，如果要代理的对象，实现了某个接口，那么 Spring AOP 会使用 **JDK Proxy**，去创建代理对象，而对于没有实现接口的对象，就无法使用 JDK Proxy 去进行代理了，这时候 Spring AOP 会使用 **Cglib** 生成一个被代理对象的子类来作为代理，如下图所示：
 
-![SpringAOPProcess](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/framework/spring/230ae587a322d6e4d09510161987d346.jpeg)
+![SpringAOPProcess](https://oss.javaguide.cn/github/javaguide/system-design/framework/spring/230ae587a322d6e4d09510161987d346.jpeg)
 
 当然你也可以使用 **AspectJ** ！Spring AOP 已经集成了 AspectJ ，AspectJ 应该算的上是 Java 生态系统中最完整的 AOP 框架了。
 
@@ -417,11 +417,11 @@ public class LoggingAspect implements Ordered {
 
 MVC 是模型(Model)、视图(View)、控制器(Controller)的简写，其核心思想是通过将业务逻辑、数据、显示分离来组织代码。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/image-20210809181452421.png)
+![](https://oss.javaguide.cn/java-guide-blog/image-20210809181452421.png)
 
 网上有很多人说 MVC 不是设计模式，只是软件设计规范，我个人更倾向于 MVC 同样是众多设计模式中的一种。**[java-design-patterns](https://github.com/iluwatar/java-design-patterns)** 项目中就有关于 MVC 的相关介绍。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/framework/spring/159b3d3e70dd45e6afa81bf06d09264e.png)
+![](https://oss.javaguide.cn/github/javaguide/system-design/framework/spring/159b3d3e70dd45e6afa81bf06d09264e.png)
 
 想要真正理解 Spring MVC，我们先来看看 Model 1 和 Model 2 这两个没有 Spring MVC 的时代。
 
@@ -431,7 +431,7 @@ MVC 是模型(Model)、视图(View)、控制器(Controller)的简写，其核心
 
 这个模式下 JSP 即是控制层（Controller）又是表现层（View）。显而易见，这种模式存在很多问题。比如控制逻辑和表现逻辑混杂在一起，导致代码重用率极低；再比如前端和后端相互依赖，难以进行测试维护并且开发效率极低。
 
-![mvc-mode1](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/mvc-mode1.png)
+![mvc-mode1](https://oss.javaguide.cn/java-guide-blog/mvc-mode1.png)
 
 **Model 2 时代**
 
@@ -441,7 +441,7 @@ MVC 是模型(Model)、视图(View)、控制器(Controller)的简写，其核心
 - View：展示模型中的数据，只是用来展示。
 - Controller：处理用户请求都发送给 ，返回数据给 JSP 并展示给用户。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/mvc-model2.png)
+![](https://oss.javaguide.cn/java-guide-blog/mvc-model2.png)
 
 Model2 模式下还存在很多问题，Model2 的抽象和封装程度还远远不够，使用 Model2 进行开发时不可避免地会重复造轮子，这就大大降低了程序的可维护性和复用性。
 
@@ -469,7 +469,7 @@ MVC 是一种设计模式，Spring MVC 是一款很优秀的 MVC 框架。Spring
 
 > SpringMVC 工作原理的图解我没有自己画，直接图省事在网上找了一个非常清晰直观的，原出处不明。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/framework/spring/de6d2b213f112297298f3e223bf08f28.png)
+![](https://oss.javaguide.cn/github/javaguide/system-design/framework/spring/de6d2b213f112297298f3e223bf08f28.png)
 
 **流程说明（重要）：**
 
@@ -724,7 +724,7 @@ Spring Security 重要的是实战，这里仅对小部分知识点进行总结�
 
 ### 有哪些控制请求访问权限的方法？
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/framework/spring/image-20220728201854641.png)
+![](https://oss.javaguide.cn/github/javaguide/system-design/framework/spring/image-20220728201854641.png)
 
 - `permitAll()` ：无条件允许任何形式访问，不管你登录还是没有登录。
 - `anonymous()` ：允许匿名访问，也就是没有登录才可以访问。
@@ -762,7 +762,7 @@ public interface PasswordEncoder {
 }
 ```
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/framework/spring/image-20220728183540954.png)
+![](https://oss.javaguide.cn/github/javaguide/system-design/framework/spring/image-20220728183540954.png)
 
 官方推荐使用基于 bcrypt 强哈希函数的加密算法实现类。
 

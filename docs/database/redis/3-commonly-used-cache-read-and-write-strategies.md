@@ -29,7 +29,7 @@ Cache Aside Pattern 中服务端需要同时维系 db 和 cache，并且是以 d
 
 简单画了一张图帮助大家理解写的步骤。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/cache-aside-write.png)
+![](https://oss.javaguide.cn/github/javaguide/database/redis/cache-aside-write.png)
 
 **读** :
 
@@ -39,7 +39,7 @@ Cache Aside Pattern 中服务端需要同时维系 db 和 cache，并且是以 d
 
 简单画了一张图帮助大家理解读的步骤。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/cache-aside-read.png)
+![](https://oss.javaguide.cn/github/javaguide/database/redis/cache-aside-read.png)
 
 你仅仅了解了上面这些内容的话是远远不够的，我们还要搞懂其中的原理。
 
@@ -89,7 +89,7 @@ Read/Write Through Pattern 中服务端把 cache 视为主要数据存储，从�
 
 简单画了一张图帮助大家理解写的步骤。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/write-through.png)
+![](https://oss.javaguide.cn/github/javaguide/database/redis/write-through.png)
 
 **读(Read Through)：**
 
@@ -98,7 +98,7 @@ Read/Write Through Pattern 中服务端把 cache 视为主要数据存储，从�
 
 简单画了一张图帮助大家理解读的步骤。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/read-through.png)
+![](https://oss.javaguide.cn/github/javaguide/database/redis/read-through.png)
 
 Read-Through Pattern 实际只是在 Cache-Aside Pattern 之上进行了封装。在 Cache-Aside Pattern 下，发生读请求的时候，如果 cache 中不存在对应的数据，是由客户端自己负责把数据写入 cache，而 Read Through Pattern 则是 cache 服务自己来写入缓存的，这对客户端是透明的。
 

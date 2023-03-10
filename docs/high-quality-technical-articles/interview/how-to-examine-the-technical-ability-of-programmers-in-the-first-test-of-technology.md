@@ -152,7 +152,7 @@ tag:
 
 设计一个初始问题，比如说查找算法，然后从这个初始问题出发，串联起各个知识点。比如：
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/open-source-project/502996-20220211115505399-72788909.png)
+![](https://oss.javaguide.cn/github/javaguide/open-source-project/502996-20220211115505399-72788909.png)
 
 在每一个技术点上，都可以应用以上发问技巧，导向不同的问题分支。同时考察面试者的深度、广度和应用能力。
 

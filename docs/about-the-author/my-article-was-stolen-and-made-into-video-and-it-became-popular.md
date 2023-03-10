@@ -49,9 +49,9 @@ tag:
 
 谁能想到，培训机构的人竟然找人来让我删文章了！讲真，这俩人是真的奇葩啊！
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/8f8ccafcf5b764a2289a9c276c30728d.png)
+![](https://oss.javaguide.cn/javaguide/8f8ccafcf5b764a2289a9c276c30728d.png)
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/a0a4a45d7ec7b1a2622b2a38629e9b09.png)
+![](https://oss.javaguide.cn/javaguide/a0a4a45d7ec7b1a2622b2a38629e9b09.png)
 
 还让我格局大点？我去你丫的！明明就是我的原创，你自己不删，反而找人联系我删除！有脑子不？
 
@@ -59,9 +59,9 @@ tag:
 
 搞笑的是！他们在让我删文的同时，他们 B 站盗发的视频还都在，还在继续为他们引流。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/86f659a93ce5b639526c8d2bd20b2fbe.png)
+![](https://oss.javaguide.cn/javaguide/86f659a93ce5b639526c8d2bd20b2fbe.png)
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/about-the-author/be6e0fd23146de3f6224b4d853c59ce7.png)
+![](https://oss.javaguide.cn/github/javaguide/about-the-author/be6e0fd23146de3f6224b4d853c59ce7.png)
 
 如果他们把账号注销了，我或许还能考虑放一手。但是，文章是肯定不会删的。
 

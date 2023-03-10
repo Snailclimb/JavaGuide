@@ -24,7 +24,7 @@ Redis 没有外部依赖，Linux 和 OS X 是 Redis 开发和测试最多的两�
 
 个人学习的话，你可以自己本机安装 Redis 或者通过 Redis 官网提供的[在线 Redis 环境](https://try.redis.io/)来实际体验 Redis。
 
-![try-redis](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/try.redis.io.png)
+![try-redis](https://oss.javaguide.cn/github/javaguide/database/redis/try.redis.io.png)
 
 全世界有非常多的网站使用到了 Redis ，[techstacks.io](https://techstacks.io/) 专门维护了一个[使用 Redis 的热门站点列表](https://techstacks.io/tech/redis) ，感兴趣的话可以看看。
 
@@ -246,11 +246,11 @@ Redis 中有一个叫做 `sorted set` 的数据结构经常被用在各种排行
 
 相关的一些 Redis 命令: `ZRANGE` (从小到大排序) 、 `ZREVRANGE` （从大到小排序）、`ZREVRANK` (指定元素排名)。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/2021060714195385.png)
+![](https://oss.javaguide.cn/github/javaguide/database/redis/2021060714195385.png)
 
 [《Java 面试指北》](https://javaguide.cn/zhuanlan/java-mian-shi-zhi-bei.html) 的「技术面试题篇」就有一篇文章详细介绍如何使用 Sorted Set 来设计制作一个排行榜。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/image-20220719071115140.png)
+![](https://oss.javaguide.cn/github/javaguide/database/redis/image-20220719071115140.png)
 
 ### 使用 Set 实现抽奖系统需要用到什么命令？
 
@@ -334,7 +334,7 @@ Redis 通过 **IO 多路复用程序** 来监听来自客户端的大量连接�
 - 文件事件分派器（将 socket 关联到相应的事件处理器）
 - 事件处理器（连接应答处理器、命令请求处理器、命令回复处理器）
 
-![文件事件处理器](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/redis-event-handler.png)
+![文件事件处理器](https://oss.javaguide.cn/github/javaguide/database/redis/redis-event-handler.png)
 
 相关阅读：[Redis 事件机制详解](http://remcarpediem.net/article/1aa2da89/) 。
 
@@ -346,7 +346,7 @@ Redis 通过 **IO 多路复用程序** 来监听来自客户端的大量连接�
 
 为此，Redis 4.0 之后新增了`UNLINK`（可以看作是 `DEL` 的异步版本）、`FLUSHALL ASYNC`（清空所有数据库的所有 key，不仅仅是当前 `SELECT` 的数据库）、`FLUSHDB ASYNC`（清空当前 `SELECT` 数据库中的所有 key）等异步命令。
 
-![redis4.0 more thread](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/redis4.0-more-thread.png)
+![redis4.0 more thread](https://oss.javaguide.cn/github/javaguide/database/redis/redis4.0-more-thread.png)
 
 大体上来说，Redis 6.0 之前主要还是单线程处理。
 
@@ -416,7 +416,7 @@ OK
 
 Redis 通过一个叫做过期字典（可以看作是 hash 表）来保存数据过期的时间。过期字典的键指向 Redis 数据库中的某个 key(键)，过期字典的值是一个 long long 类型的整数，这个整数保存了 key 所指向的数据库键的过期时间（毫秒精度的 UNIX 时间戳）。
 
-![redis过期字典](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/redis-expired-dictionary.png)
+![redis过期字典](https://oss.javaguide.cn/github/javaguide/database/redis/redis-expired-dictionary.png)
 
 过期字典是存储在 redisDb 这个结构里的：
 
@@ -568,7 +568,7 @@ Redis 7.0 版本之前，如果在重写期间有写入命令，AOF 可能会使
 
 官方文档地址：https://redis.io/topics/persistence
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/redis4.0-persitence.png)
+![](https://oss.javaguide.cn/github/javaguide/database/redis/redis4.0-persitence.png)
 
 ## 参考
 

@@ -19,7 +19,7 @@ footer: |-
 <div align="center">
      <p>
         <a href="https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc">
-            <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/xingqiu.png" style="margin: 0 auto; width: 850px;" />
+            <img src="https://oss.javaguide.cn/xingqiu/xingqiu.png" style="margin: 0 auto; width: 850px;" />
         </a>
     </p>
 </div>
@@ -53,7 +53,7 @@ footer: |-
 <div style="text-align:center">
     <p>
         <a href="https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html">
-            <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/gongzhonghaoxuanchuan.png" style="margin: 0 auto;" />
+            <img src="https://oss.javaguide.cn/github/javaguide/gongzhonghaoxuanchuan.png" style="margin: 0 auto;" />
         </a>
     </p>
 </div>

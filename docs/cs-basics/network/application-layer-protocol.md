@@ -9,7 +9,7 @@ tag:
 
 **超文本传输协议（HTTP，HyperText Transfer Protocol)** 主要是为 Web 浏览器与 Web 服务器之间的通信而设计的。当我们使用浏览器浏览网页的时候，我们网页就是通过 HTTP 请求进行加载的，整个过程如下图所示。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/450px-HTTP-Header.png)
+![](https://oss.javaguide.cn/github/javaguide/450px-HTTP-Header.png)
 
 HTTP 协是基于 TCP协议，发送 HTTP 请求之前首先要建立 TCP 连接也就是要经历 3 次握手。目前使用的 HTTP 协议大部分都是 1.1。在 1.1 的协议里面，默认是开启了 Keep-Alive 的，这样的话建立的连接就可以在多次请求中被复用了。
 
@@ -20,7 +20,7 @@ HTTP 协是基于 TCP协议，发送 HTTP 请求之前首先要建立 TCP 连接
 
 **简单邮件传输(发送)协议（SMTP，Simple Mail Transfer Protocol）** 基于 TCP 协议，用来发送电子邮件。
 
-![SMTP 协议](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/cs-basics/network/what-is-smtp.png)
+![SMTP 协议](https://oss.javaguide.cn/github/javaguide/cs-basics/network/what-is-smtp.png)
 
 注意⚠️：**接受邮件的协议不是 SMTP 而是 POP3 协议。**
 
@@ -71,7 +71,7 @@ FTP 是基于客户—服务器（C/S）模型而设计的，在客户端与 FTP
 >
 > 这种将命令和数据分开传送的思想大大提高了 FTP 的效率。
 
-![FTP工作过程](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/ftp.png)
+![FTP工作过程](https://oss.javaguide.cn/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/ftp.png)
 
 
 ## Telnet:远程登陆协议
@@ -84,4 +84,4 @@ FTP 是基于客户—服务器（C/S）模型而设计的，在客户端与 FTP
 
 **Telnet 和 SSH 之间的主要区别在于 SSH 协议会对传输的数据进行加密保证数据安全性。**
 
-![TCP和UDP](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/TCP%E5%92%8CUDP.png)
+![TCP和UDP](https://oss.javaguide.cn/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/TCP%E5%92%8CUDP.png)

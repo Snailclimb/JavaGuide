@@ -8,4 +8,4 @@ icon: "configuration"
 
 
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javamianshizhibei/distributed-system.png)
+![](https://oss.javaguide.cn/javamianshizhibei/distributed-system.png)

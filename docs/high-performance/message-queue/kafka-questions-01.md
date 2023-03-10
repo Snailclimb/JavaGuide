@@ -51,7 +51,7 @@ Kafka 主要有两大应用场景：
 
 发布-订阅模型主要是为了解决队列模型存在的问题。
 
-![发布订阅模型](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%9E%8B.png)
+![发布订阅模型](https://oss.javaguide.cn/java-guide-blog/%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%9E%8B.png)
 
 发布订阅模型（Pub-Sub） 使用**主题（Topic）** 作为消息通信载体，类似于**广播模式**；发布者发布一条消息，该消息通过主题传递给所有的订阅者，**在一条消息广播之后才订阅的用户则是收不到该条消息的**。
 
@@ -65,7 +65,7 @@ Kafka 主要有两大应用场景：
 
 Kafka 将生产者发布的消息发送到 **Topic（主题）** 中，需要这些消息的消费者可以订阅这些 **Topic（主题）**，如下图所示：
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/high-performance/message-queue20210507200944439.png)
+![](https://oss.javaguide.cn/github/javaguide/high-performance/message-queue20210507200944439.png)
 
 上面这张图也为我们引出了，Kafka 比较重要的几个概念：
 

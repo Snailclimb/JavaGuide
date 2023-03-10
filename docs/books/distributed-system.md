@@ -6,7 +6,7 @@ icon: "distributed-network"
 
 ## 《深入理解分布式系统》
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/deep-understanding-of-distributed-system.png)
+![](https://oss.javaguide.cn/github/javaguide/books/deep-understanding-of-distributed-system.png)
 
 **[《深入理解分布式系统》](https://book.douban.com/subject/35794814/)** 是今年 3 月份刚出的一本分布式中文原创书籍，主要讲的是分布式领域的基本概念、常见挑战以及共识算法。
 
@@ -16,7 +16,7 @@ icon: "distributed-network"
 
 作者从 2019 年开始构思《深入理解分布式系统》，2020 年开始动笔，花了接近两年的时间才最终交稿。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/image-20220706121952258.png)
+![](https://oss.javaguide.cn/github/javaguide/books/image-20220706121952258.png)
 
 作者专门写了一篇文章来介绍这本书的背后的故事，感兴趣的小伙伴可以自行查阅：https://zhuanlan.zhihu.com/p/487534882 。
 
@@ -24,7 +24,7 @@ icon: "distributed-network"
 
 ## 《数据密集型应用系统设计》
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/ddia.png)
+![](https://oss.javaguide.cn/github/javaguide/books/ddia.png)
 
 强推一波 **[《Designing Data-Intensive Application》](https://book.douban.com/subject/30329536/)** （DDIA，数据密集型应用系统设计），值得读很多遍！豆瓣有接近 90% 的人看了这本书之后给了五星好评。
 
@@ -38,7 +38,7 @@ icon: "distributed-network"
 
 ## 《深入理解分布式事务》
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/In-depth-understanding-of-distributed-transactions-xiaoyu.png)
+![](https://oss.javaguide.cn/github/javaguide/books/In-depth-understanding-of-distributed-transactions-xiaoyu.png)
 
 **[《深入理解分布式事务》](https://book.douban.com/subject/35626925/)**  这本书是的其中一位作者是 Apache ShenYu（incubating）网关创始人、Hmily、RainCat、Myth等分布式事务框架的创始人。
 
@@ -46,19 +46,19 @@ icon: "distributed-network"
 
 ## 《从 Paxos 到 Zookeeper》
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/image-20211216161350118.png)
+![](https://oss.javaguide.cn/github/javaguide/books/image-20211216161350118.png)
 
 **[《从 Paxos 到 Zookeeper》](https://book.douban.com/subject/26292004/)** 是一本带你入门分布式理论的好书。这本书主要介绍几种典型的分布式一致性协议，以及解决分布式一致性问题的思路，其中重点讲解了 Paxos 和 ZAB 协议。
 
 ## 《微服务架构设计模式》
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/microservices-patterns.png)
+![](https://oss.javaguide.cn/github/javaguide/books/microservices-patterns.png)
 
 **[《微服务架构设计模式》](https://book.douban.com/subject/33425123/)** 的作者 Chris Richardson 被评为世界十大软件架构师之一、微服务架构先驱。这本书主要讲的是如何开发和部署生产级别的微服务架构应用，示例代码使用 Java 语言和 Spring 框架。
 
 ## 《凤凰架构》
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/f5bec14d3b404ac4b041d723153658b5.png)
+![](https://oss.javaguide.cn/github/javaguide/books/f5bec14d3b404ac4b041d723153658b5.png)
 
 **[《凤凰架构》](https://book.douban.com/subject/35492898/)** 这本书是周志明老师多年架构和研发经验的总结，内容非常干货，深度与广度并存，理论结合实践！
 
@@ -77,7 +77,7 @@ icon: "distributed-network"
 
 ## 《架构解密》
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/jiagoujiemi.png)
+![](https://oss.javaguide.cn/github/javaguide/books/jiagoujiemi.png)
 
 [《架构解密》](https://book.douban.com/subject/35093373/)这本书和我渊源颇深，在大三的时候，我曾经在图书馆借阅过这本书的第一版，大概了花了不到一周就看完了。
 

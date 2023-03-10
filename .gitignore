@@ -13,3 +13,4 @@
 dist/
 # Build files
 packages/*/lib/
+traversal-folder-replace-string.py

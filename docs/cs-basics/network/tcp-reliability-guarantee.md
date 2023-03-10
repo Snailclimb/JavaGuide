@@ -36,7 +36,7 @@ TCP 为全双工(Full-Duplex, FDX)通信，双方可以进行双向通信，客�
 
 **TCP发送窗口结构图示** ：
 
-![TCP发送窗口结构](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/cs-basics/network/tcp-send-window.png)
+![TCP发送窗口结构](https://oss.javaguide.cn/github/javaguide/cs-basics/network/tcp-send-window.png)
 
 - **SND.WND** ：发送窗口。
 - **SND.UNA**：Send Unacknowledged 指针，指向发送窗口的第一个字节。
@@ -52,7 +52,7 @@ TCP 为全双工(Full-Duplex, FDX)通信，双方可以进行双向通信，客�
 
 **TCP 接收窗口结构图示** ：
 
-![TCP接收窗口结构](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/cs-basics/network/tcp-receive-window.png)
+![TCP接收窗口结构](https://oss.javaguide.cn/github/javaguide/cs-basics/network/tcp-receive-window.png)
 
 **接收窗口的大小是根据接收端处理数据的速度动态调整的。** 如果接收端读取数据快，接收窗口可能会扩大。 否则，它可能会缩小。
 
@@ -63,7 +63,7 @@ TCP 为全双工(Full-Duplex, FDX)通信，双方可以进行双向通信，客�
 
 在某段时间，若对网络中某一资源的需求超过了该资源所能提供的可用部分，网络的性能就要变坏。这种情况就叫拥塞。拥塞控制就是为了防止过多的数据注入到网络中，这样就可以使网络中的路由器或链路不致过载。拥塞控制所要做的都有一个前提，就是网络能够承受现有的网络负荷。拥塞控制是一个全局性的过程，涉及到所有的主机，所有的路由器，以及与降低网络传输性能有关的所有因素。相反，流量控制往往是点对点通信量的控制，是个端到端的问题。流量控制所要做到的就是抑制发送端发送数据的速率，以便使接收端来得及接收。
 
-![TCP的拥塞控制](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/cs-basics/network/tcp-congestion-control.png)
+![TCP的拥塞控制](https://oss.javaguide.cn/github/javaguide/cs-basics/network/tcp-congestion-control.png)
 
 为了进行拥塞控制，TCP 发送方要维持一个 **拥塞窗口(cwnd)** 的状态变量。拥塞控制窗口的大小取决于网络的拥塞程度，并且动态变化。发送方让自己的发送窗口取为拥塞窗口和接收方的接受窗口中较小的一个。
 

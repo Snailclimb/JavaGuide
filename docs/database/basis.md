@@ -38,7 +38,7 @@ ER 图由下面 3 个要素组成：
 
 下图是一个学生选课的 ER 图，每个学生可以选若干门课程，同一门课程也可以被若干人选择，所以它们之间的关系是多对多（M: N）。另外，还有其他两种实体之间的关系是：1 对 1（1:1）、1 对多（1: N）。
 
-![学生与课程之间联系的E-R图](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/csdn/c745c87f6eda9a439e0eea52012c7f4a.png)
+![学生与课程之间联系的E-R图](https://oss.javaguide.cn/github/javaguide/csdn/c745c87f6eda9a439e0eea52012c7f4a.png)
 
 ## 数据库范式了解吗?
 
@@ -56,7 +56,7 @@ ER 图由下面 3 个要素组成：
 
 2NF 在 1NF 的基础之上，消除了非主属性对于码的部分函数依赖。如下图所示，展示了第一范式到第二范式的过渡。第二范式在第一范式的基础上增加了一个列，这个列称为主键，非主属性都依赖于主键。
 
-![第二范式](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/csdn/bd1d31be3779342427fc9e462bf7f05c.png)
+![第二范式](https://oss.javaguide.cn/github/javaguide/csdn/bd1d31be3779342427fc9e462bf7f05c.png)
 
 一些重要的概念：
 
@@ -105,7 +105,7 @@ ER 图由下面 3 个要素组成：
 
 阿里巴巴 Java 开发手册里要求禁止使用存储过程。
 
-![阿里巴巴Java开发手册: 禁止存储过程](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/csdn/0fa082bc4d4f919065767476a41b2156.png)
+![阿里巴巴Java开发手册: 禁止存储过程](https://oss.javaguide.cn/github/javaguide/csdn/0fa082bc4d4f919065767476a41b2156.png)
 
 ## drop、delete 与 truncate 区别？
 

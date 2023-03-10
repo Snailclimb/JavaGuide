@@ -31,7 +31,7 @@ Redis 3.2 之前，List 底层实现是 LinkedList 或者 ZipList。 Redis 3.2 �
 
 未来随着 Redis 新版本的发布，可能会有新的数据结构出现，通过查阅 Redis 官网对应的介绍，你总能获取到最靠谱的信息。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/image-20220720181630203.png)
+![](https://oss.javaguide.cn/github/javaguide/database/redis/image-20220720181630203.png)
 
 ## String（字符串）
 
@@ -41,7 +41,7 @@ String 是 Redis 中最简单同时也是最常用的一个数据结构。
 
 String 是一种二进制安全的数据结构，可以用来存储任何类型的数据比如字符串、整数、浮点数、图片（图片的 base64 编码或者解码或者图片的路径）、序列化后的对象。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/image-20220719124403897.png)
+![](https://oss.javaguide.cn/github/javaguide/database/redis/image-20220719124403897.png)
 
 虽然 Redis 是用 C 语言写的，但是 Redis 并没有使用 C 的字符串表示，而是自己构建了一种 **简单动态字符串**（Simple Dynamic String，**SDS**）。相比于 C 的原生字符串，Redis 的 SDS 不光可以保存文本数据还可以保存二进制数据，并且获取字符串长度复杂度为 O(1)（C 字符串为 O(N)）,除此之外，Redis 的 SDS API 是安全的，不会造成缓冲区溢出。
 
@@ -140,7 +140,7 @@ Redis 中的 List 其实就是链表数据结构的实现。我在 [线性数据
 
 许多高级编程语言都内置了链表的实现比如 Java 中的 `LinkedList`，但是 C 语言并没有实现链表，所以 Redis 实现了自己的链表数据结构。Redis 的 List 的实现为一个 **双向链表**，即可以支持反向查找和遍历，更方便操作，不过带来了部分额外的内存开销。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/image-20220719124413287.png)
+![](https://oss.javaguide.cn/github/javaguide/database/redis/image-20220719124413287.png)
 
 ### 常用命令
 
@@ -184,7 +184,7 @@ Redis 中的 List 其实就是链表数据结构的实现。我在 [线性数据
 
 我专门画了一个图方便大家理解 `RPUSH` , `LPOP` , `lpush` , `RPOP` 命令：
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/redis-list.png)
+![](https://oss.javaguide.cn/github/javaguide/database/redis/redis-list.png)
 
 **通过 `LRANGE` 查看对应下标范围的列表元素** ：
 
@@ -230,7 +230,7 @@ Redis 中的 Hash 是一个 String 类型的 field-value（键值对） 的映�
 
 Hash 类似于 JDK1.8 前的 `HashMap`，内部实现也差不多(数组 + 链表)。不过，Redis 的 Hash 做了更多优化。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/image-20220719124421703.png)
+![](https://oss.javaguide.cn/github/javaguide/database/redis/image-20220719124421703.png)
 
 ### 常用命令
 
@@ -289,7 +289,7 @@ Redis 中的 Set 类型是一种无序集合，集合中的元素没有先后顺
 
 你可以基于 Set 轻易实现交集、并集、差集的操作，比如你可以将一个用户所有的关注人存在一个集合中，将其所有粉丝存在一个集合。这样的话，Set 可以非常方便的实现如共同关注、共同粉丝、共同喜好等功能。这个过程也就是求交集的过程。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/image-20220719124430264.png)
+![](https://oss.javaguide.cn/github/javaguide/database/redis/image-20220719124430264.png)
 
 ### 常用命令
 
@@ -363,14 +363,14 @@ Redis 中的 Set 类型是一种无序集合，集合中的元素没有先后顺
 - 举例：网站 UV 统计（数据量巨大的场景还是 `HyperLogLog`更适合一些）、文章点赞、动态点赞等场景。
 - 相关命令：`SCARD`（获取集合数量） 。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/image-20220719073733851.png)
+![](https://oss.javaguide.cn/github/javaguide/database/redis/image-20220719073733851.png)
 
 **需要获取多个数据源交集、并集和差集的场景**
 
 - 举例 ：共同好友(交集)、共同粉丝(交集)、共同关注(交集)、好友推荐（差集）、音乐推荐（差集） 、订阅号推荐（差集+交集） 等场景。
 - 相关命令：`SINTER`（交集）、`SINTERSTORE` （交集）、`SUNION` （并集）、`SUNIONSTORE`（并集）、`SDIFF`（差集）、`SDIFFSTORE` （差集）。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/image-20220719074543513.png)
+![](https://oss.javaguide.cn/github/javaguide/database/redis/image-20220719074543513.png)
 
 **需要随机获取数据源中的元素的场景**
 
@@ -383,7 +383,7 @@ Redis 中的 Set 类型是一种无序集合，集合中的元素没有先后顺
 
 Sorted Set 类似于 Set，但和 Set 相比，Sorted Set 增加了一个权重参数 `score`，使得集合中的元素能够按 `score` 进行有序排列，还可以通过 `score` 的范围来获取元素的列表。有点像是 Java 中 `HashMap` 和 `TreeSet` 的结合体。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/image-20220719124437791.png)
+![](https://oss.javaguide.cn/github/javaguide/database/redis/image-20220719124437791.png)
 
 ### 常用命令
 
@@ -472,11 +472,11 @@ value1
 - 举例 ：各种排行榜比如直播间送礼物的排行榜、朋友圈的微信步数排行榜、王者荣耀中的段位排行榜、话题热度排行榜等等。
 - 相关命令 ：`ZRANGE` (从小到大排序) 、 `ZREVRANGE` （从大到小排序）、`ZREVRANK` (指定元素排名)。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/2021060714195385.png)
+![](https://oss.javaguide.cn/github/javaguide/database/redis/2021060714195385.png)
 
 [《Java 面试指北》](https://www.yuque.com/docs/share/f37fc804-bfe6-4b0d-b373-9c462188fec7) 的「技术面试题篇」就有一篇文章详细介绍如何使用 Sorted Set 来设计制作一个排行榜。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/image-20220719071115140.png)
+![](https://oss.javaguide.cn/github/javaguide/database/redis/image-20220719071115140.png)
 
 **需要存储的数据有优先级或者重要程度的场景** 比如优先级任务队列。
 

@@ -89,7 +89,7 @@ Gossip 设计了两种可能的消息传播模式：**反熵（Anti-Entropy）**
 
 伪代码如下：
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/csdn/20210605170707933.png)
+![](https://oss.javaguide.cn/github/javaguide/csdn/20210605170707933.png)
 
 谣言传播比较适合节点数量比较多的情况，不过，这种模式下要尽量避免传播的信息包不能太大，避免网络消耗太大。
 

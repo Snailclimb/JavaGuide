@@ -20,7 +20,7 @@ Java 集合， 也叫作容器，主要是由两大接口派生而来：一个�
 
 Java 集合框架如下图所示：
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/collection/java-collection-hierarchy.png)
+![](https://oss.javaguide.cn/github/javaguide/java/collection/java-collection-hierarchy.png)
 
 
 注：图中只列举了主要的继承派生关系，并没有列举所有关系。比方省略了`AbstractList`, `NavigableSet`等抽象类以及其他的一些辅助类，如想深入了解，可自行查看源码。
@@ -95,7 +95,7 @@ Java 集合框架如下图所示：
 
 我们在项目中一般是不会使用到 `LinkedList` 的，需要用到 `LinkedList` 的场景几乎都可以使用  `ArrayList`  来代替，并且，性能通常会更好！就连 `LinkedList` 的作者约书亚 · 布洛克（Josh Bloch）自己都说从来不会使用 `LinkedList` 。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/redisimage-20220412110853807.png)
+![](https://oss.javaguide.cn/github/javaguide/redisimage-20220412110853807.png)
 
 另外，不要下意识地认为 `LinkedList`  作为链表就最适合元素增删的场景。我在上面也说了，`LinkedList`  仅仅在头尾插入或者删除元素的时候时间复杂度近似 O(1)，其他情况增删元素的时间复杂度都是 O(n) 。
 

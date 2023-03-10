@@ -36,13 +36,13 @@ Github上也已经有大佬用 Java 实现过一个简易的数据库，介绍�
 
 [《数据库系统概念》](https://book.douban.com/subject/10548379/)这本书涵盖了数据库系统的全套概念，知识体系清晰，是学习数据库系统非常经典的教材！不是参考书！
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/booksimage-20220409150441742.png)
+![](https://oss.javaguide.cn/github/javaguide/booksimage-20220409150441742.png)
 
 ### 《数据库系统实现》
 
 如果你也想要研究 MySQL 底层原理的话，我推荐你可以先阅读一下[《数据库系统实现》](https://book.douban.com/subject/4838430/)。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/database-system-implementation.png)
+![](https://oss.javaguide.cn/github/javaguide/books/database-system-implementation.png)
 
 不管是 MySQL 还是Oracle ，它们总体的架子是差不多的，不同的是其内部的实现比如数据库索引的数据结构、存储引擎的实现方式等等。
 
@@ -66,13 +66,13 @@ Github上也已经有大佬用 Java 实现过一个简易的数据库，介绍�
 
 另外，强推一波 **[《MySQL 是怎样运行的》](https://book.douban.com/subject/35231266/)** 这本书，内容很适合拿来准备面试。讲的很细节，但又不枯燥，内容非常良心！
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/csdn/20210703120643370.png)
+![](https://oss.javaguide.cn/github/javaguide/csdn/20210703120643370.png)
 
 ## PostgreSQL
 
 和 MySQL 一样，PostgreSQL 也是开源免费且功能强大的关系型数据库。PostgreSQL 的 Slogan 是“**世界上最先进的开源关系型数据库**” 。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/image-20220702144954370.png)
+![](https://oss.javaguide.cn/github/javaguide/books/image-20220702144954370.png)
 
 最近几年，由于 PostgreSQL 的各种新特性过于优秀，使用 PostgreSQL 代替 MySQL 的项目越来越多了。
 
@@ -84,13 +84,13 @@ Github上也已经有大佬用 Java 实现过一个简易的数据库，介绍�
 
 刚工作那会需要用到 PostgreSQL ，看了大概 1/3 的内容，感觉还不错。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/PostgreSQL-Guide.png)
+![](https://oss.javaguide.cn/github/javaguide/books/PostgreSQL-Guide.png)
 
 ### 《PostgreSQL 技术内幕：查询优化深度探索》
 
 [《PostgreSQL 技术内幕：查询优化深度探索》](https://book.douban.com/subject/30256561/)这本书主要讲了 PostgreSQL 在查询优化上的一些技术实现细节，可以让你对 PostgreSQL 的查询优化器有深层次的了解。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/PostgreSQL-TechnologyInsider.png)
+![](https://oss.javaguide.cn/github/javaguide/books/PostgreSQL-TechnologyInsider.png)
 
 ## Redis
 

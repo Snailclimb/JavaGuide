@@ -7,11 +7,11 @@ tag:
 
 **缓存基础** 相关的面试题为我的[知识星球](https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html)（点击链接即可查看详细介绍以及加入方法）专属内容，已经整理到了[《Java 面试指北》](https://javaguide.cn/zhuanlan/java-mian-shi-zhi-bei.html)中。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javamianshizhibei/database-questions.png)
+![](https://oss.javaguide.cn/javamianshizhibei/database-questions.png)
 
 [《Java 面试指北》](https://javaguide.cn/zhuanlan/java-mian-shi-zhi-bei.html)（点击链接即可查看详细介绍）的部分内容展示如下，你可以将其看作是 [JavaGuide](https://javaguide.cn) 的补充完善，两者可以配合使用。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220304102536445.png)
+![](https://oss.javaguide.cn/xingqiu/image-20220304102536445.png)
 
 最近几年，市面上有越来越多的“技术大佬”开始办培训班/训练营，动辄成千上万的学费，却并没有什么干货，单纯的就是割韭菜。
 
@@ -21,7 +21,7 @@ tag:
 
 <div align="center">
   <a href="https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html">
-    <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220311203414600.png" style="margin: 0 auto; " />
+    <img src="https://oss.javaguide.cn/xingqiu/image-20220311203414600.png" style="margin: 0 auto; " />
   </a>
 </div>
 
@@ -29,7 +29,7 @@ tag:
 
 <div align="center">
   <a href="https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html">
-    <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/xingqiufuwu.png" style="margin: 0 auto; " />
+    <img src="https://oss.javaguide.cn/xingqiu/xingqiufuwu.png" style="margin: 0 auto; " />
   </a>
 </div>
 
@@ -41,7 +41,7 @@ tag:
 
 <div align="center">
   <a href="https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html">
-    <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/xingqiuyouhuijuanheyi.png" style="margin: 0 auto; " />
+    <img src="https://oss.javaguide.cn/xingqiu/xingqiuyouhuijuanheyi.png" style="margin: 0 auto; " />
   </a>
 </div>
 
@@ -49,6 +49,6 @@ tag:
 
 <div align="center">
   <a href="https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html">
-    <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/IMG_3007.jpg" style="margin: 0 auto; " />
+    <img src="https://oss.javaguide.cn/github/javaguide/IMG_3007.jpg" style="margin: 0 auto; " />
   </a>
 </div>

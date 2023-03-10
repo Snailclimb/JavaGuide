@@ -12,7 +12,7 @@ tag:
 - 类加载过程：**加载->连接->初始化**。
 - 连接过程又可分为三步：**验证->准备->解析**。
 
-![类加载过程](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/jvm/class-loading-procedure.png)
+![类加载过程](https://oss.javaguide.cn/github/javaguide/java/jvm/class-loading-procedure.png)
 
 加载是类加载过程的第一步，主要完成下面 3 件事情：
 
@@ -97,7 +97,7 @@ JVM 中内置了三个重要的 `ClassLoader`：
 
 除了这三种类加载器之外，用户还可以加入自定义的类加载器来进行拓展，以满足自己的特殊需求。就比如说，我们可以对 Java 类的字节码（ `.class` 文件）进行加密，加载时再利用自定义的类加载器对其解密。
 
-![类加载器层次关系图](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/jvm/class-loader-parents-delegation-model.png)
+![类加载器层次关系图](https://oss.javaguide.cn/github/javaguide/java/jvm/class-loader-parents-delegation-model.png)
 
 除了 `BootstrapClassLoader` 是 JVM 自身的一部分之外，其他所有的类加载器都是在 JVM 外部实现的，并且全都继承自 `ClassLoader`抽象类。这样做的好处是用户可以自定义类加载器，以便让应用程序自己决定如何去获取所需的类。
 
@@ -197,7 +197,7 @@ public class PrintClassLoaderTree {
 
 下图展示的各种类加载器之间的层次关系被称为类加载器的“**双亲委派模型(Parents Delegation Model)**”。
 
-![类加载器层次关系图](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/jvm/class-loader-parents-delegation-model.png)
+![类加载器层次关系图](https://oss.javaguide.cn/github/javaguide/java/jvm/class-loader-parents-delegation-model.png)
 
 注意⚠️：双亲委派模型并不是一种强制性的约束，只是 JDK 官方推荐的一种方式。如果我们因为某些特殊需求想要打破双亲委派模型，也是可以的，后文会介绍具体的方法。
 
@@ -298,7 +298,7 @@ protected Class<?> loadClass(String name, boolean resolve)
 
 Tomcat 的类加载器的层次结构如下：
 
-![Tomcat 的类加载器的层次结构](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/jvm/tomcat-class-loader-parents-delegation-model.png)
+![Tomcat 的类加载器的层次结构](https://oss.javaguide.cn/github/javaguide/java/jvm/tomcat-class-loader-parents-delegation-model.png)
 
 感兴趣的小伙伴可以自行研究一下 Tomcat 类加载器的层次结构，这有助于我们搞懂 Tomcat 隔离 Web 应用的原理，推荐资料是[《深入拆解 Tomcat & Jetty》](http://gk.link/a/10Egr)。
 

@@ -153,11 +153,11 @@ ThreadLocalMap(ThreadLocal<?> firstKey, Object firstValue) {
 
 `ThreadLocal` 数据结构如下图所示：
 
-![ThreadLocal 数据结构](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/concurrent/threadlocal-data-structure.png)
+![ThreadLocal 数据结构](https://oss.javaguide.cn/github/javaguide/java/concurrent/threadlocal-data-structure.png)
 
 `ThreadLocalMap`是`ThreadLocal`的静态内部类。
 
-![ThreadLocal内部类](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/concurrent/thread-local-inner-class.png)
+![ThreadLocal内部类](https://oss.javaguide.cn/github/javaguide/java/concurrent/thread-local-inner-class.png)
 
 ### ThreadLocal 内存泄露问题是怎么导致的？
 
@@ -218,7 +218,7 @@ static class Entry extends WeakReference<ThreadLocal<?>> {
 
 对应 `Executors` 工具类中的方法如图所示：
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/concurrent/executors-inner-threadpool.png)
+![](https://oss.javaguide.cn/github/javaguide/java/concurrent/executors-inner-threadpool.png)
 
 ### 为什么不推荐使用内置线程池？
 
@@ -338,7 +338,7 @@ public ScheduledThreadPoolExecutor(int corePoolSize) {
 
 ### 线程池处理任务的流程了解吗？
 
-![图解线程池实现原理](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/%E5%9B%BE%E8%A7%A3%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.png)
+![图解线程池实现原理](https://oss.javaguide.cn/javaguide/%E5%9B%BE%E8%A7%A3%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.png)
 
 1. 如果当前运行的线程数小于核心线程数，那么就会新建一个线程来执行任务。
 2. 如果当前运行的线程数等于或大于核心线程数，但是小于最大线程数，那么就把该任务放入到任务队列里等待执行。
@@ -451,7 +451,7 @@ CPU 密集型简单理解就是利用 CPU 计算能力的任务比如你在内�
 
 **如何支持参数动态配置？** 且看 `ThreadPoolExecutor` 提供的下面这些方法。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/concurrent/threadpoolexecutor-methods.png)
+![](https://oss.javaguide.cn/github/javaguide/java/concurrent/threadpoolexecutor-methods.png)
 
 格外需要注意的是`corePoolSize`， 程序运行期间的时候，我们调用 `setCorePoolSize（）`这个方法的话，线程池会首先判断当前工作线程数是否大于`corePoolSize`，如果大于的话就会回收工作线程。
 
@@ -459,7 +459,7 @@ CPU 密集型简单理解就是利用 CPU 计算能力的任务比如你在内�
 
 最终实现的可动态修改线程池参数效果如下。👏👏👏
 
-![动态配置线程池参数最终效果](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/concurrent/meituan-dynamically-configuring-thread-pool-parameters.png)
+![动态配置线程池参数最终效果](https://oss.javaguide.cn/github/javaguide/java/concurrent/meituan-dynamically-configuring-thread-pool-parameters.png)
 
 还没看够？推荐 why 神的[如何设置线程池参数？美团给出了一个让面试官虎躯一震的回答。](https://mp.weixin.qq.com/s/9HLuPcoWmTqAeFKa1kj-_A)这篇文章，深度剖析，很不错哦！
 
@@ -518,7 +518,7 @@ Future<?> submit(Runnable task);
 
 `FutureTask` 不光实现了 `Future`接口，还实现了`Runnable` 接口，因此可以作为任务直接被线程执行。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/concurrent/completablefuture-class-diagram.jpg)
+![](https://oss.javaguide.cn/github/javaguide/java/concurrent/completablefuture-class-diagram.jpg)
 
 `FutureTask` 有两个构造函数，可传入 `Callable` 或者 `Runnable` 对象。实际上，传入 `Runnable` 对象也会在方法内部转换为`Callable` 对象。
 
@@ -553,13 +553,13 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
 
 可以看到，`CompletableFuture` 同时实现了 `Future` 和 `CompletionStage` 接口。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/concurrent/completablefuture-class-diagram.jpg)
+![](https://oss.javaguide.cn/github/javaguide/java/concurrent/completablefuture-class-diagram.jpg)
 
 `CompletionStage` 接口描述了一个异步计算的阶段。很多计算可以分成多个阶段或步骤，此时可以通过它将所有步骤组合起来，形成异步计算的流水线。
 
 `CompletionStage` 接口中的方法比较多，`CompletableFuture` 的函数式能力就是这个接口赋予的。从这个接口的方法参数你就可以发现其大量使用了 Java8 引入的函数式编程。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/image-20210902093026059.png)
+![](https://oss.javaguide.cn/javaguide/image-20210902093026059.png)
 
 ## AQS
 

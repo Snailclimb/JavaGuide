@@ -131,7 +131,7 @@ SSL/TLS 介绍到这里，了解信息安全的朋友又会想到一个安全隐
 
 对于数字签名，我这里讲的比较简单，如果你没有搞清楚的话，强烈推荐你看看[数字签名及数字证书原理](https://www.bilibili.com/video/BV18N411X7ty/)这个视频，这是我看过最清晰的讲解。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/image-20220321121814946.png)
+![](https://oss.javaguide.cn/github/javaguide/image-20220321121814946.png)
 
 ## 总结
 

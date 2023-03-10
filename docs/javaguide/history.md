@@ -7,7 +7,7 @@ category: 走近项目
 
 你可以通过 [RSS 订阅](https://javaguide.cn/feed.json)获取网站的最新更新，你还可以通过 [https://javaguide.cn/article/](https://javaguide.cn/article/)获取到网站最新更新的文章。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguideimage-20220614172338606.png)
+![](https://oss.javaguide.cn/github/javaguideimage-20220614172338606.png)
 
 这里只记录一些比较重要的一些节点：
 

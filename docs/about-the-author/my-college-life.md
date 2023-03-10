@@ -28,7 +28,7 @@ tag:
 
 这一年，我和班里的一群新同学去逛了荆州的很多地方比如荆州博物馆、长江大桥、张居正故居、关帝庙。
 
-![大一的一次班级出行](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/about-the-author/college-life/41239dd7d18642f7af201292ead94f1a~tplv-k3u1fbpfcp-zoom-1.image.png)
+![大一的一次班级出行](https://oss.javaguide.cn/about-the-author/college-life/41239dd7d18642f7af201292ead94f1a~tplv-k3u1fbpfcp-zoom-1.image.png)
 
 即使如此，我当时还是对未来充满了希望，憧憬着工作之后的生活。
 
@@ -42,21 +42,21 @@ tag:
 
 下面这些都是我和社团的小伙伴利用课外时间自己做的，在圣诞节那周基本都卖完了。我记得，为了能够多卖一些，我们还挨个去每一个寝室推销了一遍。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/about-the-author/college-life/7cf1a2da505249a58e1f29834dbac435~tplv-k3u1fbpfcp-zoom-1.image.png)
+![](https://oss.javaguide.cn/about-the-author/college-life/7cf1a2da505249a58e1f29834dbac435~tplv-k3u1fbpfcp-zoom-1.image.png)
 
 我还参加了大一元旦晚会，不过，那次演出我还是没放开，说实话，感觉没有表现出应该有的那味。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/about-the-author/college-life/850cae1f8c644c5d920140f66ae9303d~tplv-k3u1fbpfcp-zoom-1.image.png)
+![](https://oss.javaguide.cn/about-the-author/college-life/850cae1f8c644c5d920140f66ae9303d~tplv-k3u1fbpfcp-zoom-1.image.png)
 
 经过这次演出之后，我发现我是真的没有表演的天赋，很僵硬。并且，这种僵硬呆板是自己付出努力之后也没办法改变的。
 
 下图是某一次社团聚餐，我喝的有点小醉之后，被朋友拍下的。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/about-the-author/college-life/82a503e365354bd1bf190540fbf1039a~tplv-k3u1fbpfcp-zoom-1.image.png)
+![](https://oss.javaguide.cn/about-the-author/college-life/82a503e365354bd1bf190540fbf1039a~tplv-k3u1fbpfcp-zoom-1.image.png)
 
 那时候，还经常和和社团的几位小伙伴一起去夜走荆州古城墙。
 
-![某一次要去夜走古城墙的路上我拍的](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/about-the-author/college-life/007a83e6d26c43b9aa6e0b0266c3314b~tplv-k3u1fbpfcp-zoom-1.image.png)
+![某一次要去夜走古城墙的路上我拍的](https://oss.javaguide.cn/about-the-author/college-life/007a83e6d26c43b9aa6e0b0266c3314b~tplv-k3u1fbpfcp-zoom-1.image.png)
 
 不知道社团的大家现在过得怎么样呢？
 
@@ -76,25 +76,25 @@ tag:
 
 每个周末我都会从荆州坐车跑到孝感，在各个县城之间来回跑。绝大部分时候，只有我一个人，偶尔也会有几个社团的小伙伴陪我一起。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/about-the-author/college-life/6ee6358c236144d8a8a205cc6bc99b9b~tplv-k3u1fbpfcp-zoom-1.image.png)
+![](https://oss.javaguide.cn/about-the-author/college-life/6ee6358c236144d8a8a205cc6bc99b9b~tplv-k3u1fbpfcp-zoom-1.image.png)
 
 记忆犹新，那一年孝感也是闹洪水，还挺严重的。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/image-20210820201908759.png)
+![](https://oss.javaguide.cn/javaguide/image-20210820201908759.png)
 
 有一次我差点回不去学校参加期末考试。虽然没有备考，但是也没有挂过任何一门课，甚至很多科目考的还不错。不过，这还是对我绩点产生了比较大的影响，导致我后面没有机会拿到奖学金。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/about-the-author/college-life/3c5fe7af43ba4e348244df1692500fce~tplv-k3u1fbpfcp-zoom-1.image.png)
+![](https://oss.javaguide.cn/about-the-author/college-life/3c5fe7af43ba4e348244df1692500fce~tplv-k3u1fbpfcp-zoom-1.image.png)
 
 这次比较赶时间，所以就坐的是火车回学校。在火车上竟然还和别人撞箱子了！
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/about-the-author/college-life/570f5791aeb54fa1a76892b69e46fec2~tplv-k3u1fbpfcp-zoom-1.image.png)
+![](https://oss.javaguide.cn/about-the-author/college-life/570f5791aeb54fa1a76892b69e46fec2~tplv-k3u1fbpfcp-zoom-1.image.png)
 
 当时去小乡镇上的时候，自己最差的时候住过 15 元的旅馆。真的是 15 元，你没看错。就那种老旧民房的小破屋，没有独卫，床上用品也很不卫生，还不能洗澡。
 
 下面这个还是我住过最豪华的一个，因为当时坐客车去了孝感之后，突然下大雨，我就在车站附近找了一个相对便宜点的。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/about-the-author/college-life/687c3ede3f094c65a72d812ca0f06bb4~tplv-k3u1fbpfcp-zoom-1.image.png)
+![](https://oss.javaguide.cn/about-the-author/college-life/687c3ede3f094c65a72d812ca0f06bb4~tplv-k3u1fbpfcp-zoom-1.image.png)
 
 为了以更低的价钱租到房子，我经常和房东砍价砍的面红耳赤。
 
@@ -106,7 +106,7 @@ tag:
 
 我一个人给 6 个老师加上 10 来个学生和房东们一家做了一个多月的饭，我的厨艺也因此得到了很大的锻炼。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/about-the-author/college-life/2e3b6101abcd46a8a213c08782aeac33~tplv-k3u1fbpfcp-zoom-1.image.png)
+![](https://oss.javaguide.cn/about-the-author/college-life/2e3b6101abcd46a8a213c08782aeac33~tplv-k3u1fbpfcp-zoom-1.image.png)
 
 这些学生有小学的，也有初中的，都比较听话。有很多还是留守儿童，爸爸妈妈在外打工，跟着爷爷奶奶一起生活。
 
@@ -114,11 +114,11 @@ tag:
 
 学生们都挺听话，没有出现和我们几个老师闹过矛盾。只有两个调皮的小学生被我训斥之后，怀恨在心，写下了一些让我忍俊不禁的话！哈哈哈哈！太可爱了！
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/about-the-author/college-life/3680cead2c0f4165bb4865f038326b61~tplv-k3u1fbpfcp-zoom-1.image.png)
+![](https://oss.javaguide.cn/about-the-author/college-life/3680cead2c0f4165bb4865f038326b61~tplv-k3u1fbpfcp-zoom-1.image.png)
 
 离开之前的前一天的晚上，我和老师们商量请一些近点的同学们来吃饭。我们一大早就出去买菜了，下图是做成后的成品。虽然是比较简单的一顿饭，但我们吃的特别香。
 
-![补习班的最后一顿晚餐](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/about-the-author/college-life/f36bfd719b9b4463b2f1d3edc51faa97~tplv-k3u1fbpfcp-zoom-1.image.png)
+![补习班的最后一顿晚餐](https://oss.javaguide.cn/about-the-author/college-life/f36bfd719b9b4463b2f1d3edc51faa97~tplv-k3u1fbpfcp-zoom-1.image.png)
 
 那天晚上还有几个家长专门跑过来看我做饭，家长们说他们的孩子非常喜欢我做的饭，哈哈哈！我表面淡然说自己做的不好，实则内心暗暗自喜，就很“闷骚”的一个人，哈哈哈！
 
@@ -130,25 +130,25 @@ tag:
 
 大一尾声的时候，还做了一件非常有意义的事情。我和我的朋友们去了一次孤儿院（荆州私立孤儿教养院）。这个孤儿院曾经还被多家电视台报道过，目前也被百度百科收录。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/about-the-author/college-life/db8f5c276f4d4a7c9d7bd1e6100de301~tplv-k3u1fbpfcp-zoom-1.image.png)
+![](https://oss.javaguide.cn/about-the-author/college-life/db8f5c276f4d4a7c9d7bd1e6100de301~tplv-k3u1fbpfcp-zoom-1.image.png)
 
 孤儿院的孩子们，大多是一些无父无母或者本身有一些疾病被父母遗弃的孩子。
 
 去之前，我们买了很多小孩子的玩具、文具、零食这些东西。这些钱的来源也比较有意义，都是我和社团的一些小伙伴自己去外面兼职赚的一些钱。
 
-![离开之前和创建孤儿院的老爷爷的一张合照](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/about-the-author/college-life/cf43853c49bd489a9fc0ee437a2af432~tplv-k3u1fbpfcp-zoom-1.image.png)
+![离开之前和创建孤儿院的老爷爷的一张合照](https://oss.javaguide.cn/about-the-author/college-life/cf43853c49bd489a9fc0ee437a2af432~tplv-k3u1fbpfcp-zoom-1.image.png)
 
 勿以善小而不为！引用《爱的风险》这首歌的一句歌词：“只要人人都献出一点爱，世界将变成美好的人间” 。
 
 我想看看这个孤儿院的现状，于是在网上有搜了一下，看到了去年 1 月份荆州新闻网的一份报道。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/about-the-author/college-life/0ac27206389c498882dd7f6f440c6abb~tplv-k3u1fbpfcp-zoom-1.image.png)
+![](https://oss.javaguide.cn/about-the-author/college-life/0ac27206389c498882dd7f6f440c6abb~tplv-k3u1fbpfcp-zoom-1.image.png)
 
 孤儿教养院创办 33 年来，累计收养孤儿 85 人，其中有 5 人参军入伍报效祖国，20 人上大学，有的早已参加工作并成家立业。
 
 叔叔也慢慢老了，白发越来越多。有点心酸，想哭，希望有机会再回去看看您！一定会的！
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/about-the-author/college-life/ea803a99c08149f892ca29e784653503~tplv-k3u1fbpfcp-zoom-1.image.png)
+![](https://oss.javaguide.cn/about-the-author/college-life/ea803a99c08149f892ca29e784653503~tplv-k3u1fbpfcp-zoom-1.image.png)
 
 ### 徒步旅行
 
@@ -156,7 +156,7 @@ tag:
 
 我和一群社团的小伙伴，徒步走了接近 45 公里。我们从学校的西校区，徒步走到了枝江那边的一个沙滩。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/about-the-author/college-life/94ca5b6c5ea84dfb9e12b7a718587ea3~tplv-k3u1fbpfcp-zoom-1.image.png)
+![](https://oss.javaguide.cn/about-the-author/college-life/94ca5b6c5ea84dfb9e12b7a718587ea3~tplv-k3u1fbpfcp-zoom-1.image.png)
 
 是真的全程步行，这还是我第一次走这么远。
 
@@ -164,7 +164,7 @@ tag:
 
 我们在沙滩上露营，烧烤，唱歌跳舞，一直到第二天早上才踏上回学校的路程。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/about-the-author/college-life/8120d45d30254c908f9db20b3c00f514~tplv-k3u1fbpfcp-zoom-1.image.png)
+![](https://oss.javaguide.cn/about-the-author/college-life/8120d45d30254c908f9db20b3c00f514~tplv-k3u1fbpfcp-zoom-1.image.png)
 
 ## 大二
 
@@ -182,19 +182,19 @@ tag:
 
 比如我们一起去了长江边上烧烤露营。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/about-the-author/college-life/8a6945ccc087017c1f96ee93f3af8178-20220608154206500.png)
+![](https://oss.javaguide.cn/about-the-author/college-life/8a6945ccc087017c1f96ee93f3af8178-20220608154206500.png)
 
 再比如我们一起去环跑了古城墙。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/about-the-author/college-life/2cfba22049e8b99e11955bcb7662d790.png)
+![](https://oss.javaguide.cn/about-the-author/college-life/2cfba22049e8b99e11955bcb7662d790.png)
 
 大学那会，我还是非常热爱运动的！
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/about-the-author/college-life/2dd503a60f814a7a953816bc3b5194cd~tplv-k3u1fbpfcp-zoom-1.image.png)
+![](https://oss.javaguide.cn/about-the-author/college-life/2dd503a60f814a7a953816bc3b5194cd~tplv-k3u1fbpfcp-zoom-1.image.png)
 
 大二那会，我就已经环跑了 3 次古城墙。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/about-the-author/college-life/949543b550e847d5a7314b7e1842489b~tplv-k3u1fbpfcp-zoom-1.image.png)
+![](https://oss.javaguide.cn/about-the-author/college-life/949543b550e847d5a7314b7e1842489b~tplv-k3u1fbpfcp-zoom-1.image.png)
 
 ### 加入长大在线
 
@@ -202,11 +202,11 @@ tag:
 
 在百度上，还能搜索到长大在线的词条。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/about-the-author/college-life/34ecf650120a4289a68b7549eb7d00cc~tplv-k3u1fbpfcp-zoom-1.image.png)
+![](https://oss.javaguide.cn/about-the-author/college-life/34ecf650120a4289a68b7549eb7d00cc~tplv-k3u1fbpfcp-zoom-1.image.png)
 
 莫名其妙还被发了一个记者证，哈哈哈！
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/about-the-author/college-life/image-20220606121111042.png)
+![](https://oss.javaguide.cn/about-the-author/college-life/image-20220606121111042.png)
 
 我选的是安卓组，然后我就开始了学习安卓开发的旅程。
 
@@ -214,7 +214,7 @@ tag:
 
 再到后面，我留下来当了副站长，继续为组织服务了大半年多。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/about-the-author/college-life/image-20220608121413761.png)
+![](https://oss.javaguide.cn/about-the-author/college-life/image-20220608121413761.png)
 
 ### 第一次参加比赛
 
@@ -222,7 +222,7 @@ tag:
 
 参加比赛之前，自己也是一个 PPT 小白，苦心学了一周多之后，我的一个作品竟然顺利获得了第一名。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/about-the-author/college-life/image-20220608121446529.png)
+![](https://oss.javaguide.cn/about-the-author/college-life/image-20220608121446529.png)
 
 也正是因为这次比赛，我免费拥有了自己的第一个机械键盘，这个键盘陪我度过了后面的大学生活。
 
@@ -232,7 +232,7 @@ tag:
 
 每次忙到很晚，一个人走在校园的时候还是很爽的！非常喜欢这种安静的感觉。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/about-the-author/college-life/336fd489ce314d259d6090194f237e1b~tplv-k3u1fbpfcp-zoom-1.image.png)
+![](https://oss.javaguide.cn/about-the-author/college-life/336fd489ce314d259d6090194f237e1b~tplv-k3u1fbpfcp-zoom-1.image.png)
 
 当时身体素质真好，熬夜之后第二天照常起来上课学习。现在熬个夜，后面两天直接就废了！
 
@@ -242,13 +242,13 @@ tag:
 
 那个时候还贼自恋，没事就喜欢自拍一张。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/about-the-author/college-life/image-20210820202341008.png)
+![](https://oss.javaguide.cn/about-the-author/college-life/image-20210820202341008.png)
 
 国庆节的时候也不回家，继续在学校刷 Java 视频和书籍。
 
 我记得那次国庆节的时候效率还是非常高的，学习起来也特别有动力。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/about-the-author/college-life/WX20210820-203458.png)
+![](https://oss.javaguide.cn/about-the-author/college-life/WX20210820-203458.png)
 
 ## 大三
 
@@ -262,11 +262,11 @@ tag:
 
 我的开源项目 JavaGuide 和公众号都是这一年启动的。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/about-the-author/college-life/the-birth-of-javaguide.jpeg)
+![](https://oss.javaguide.cn/about-the-author/college-life/the-birth-of-javaguide.jpeg)
 
 目前的话，JavaGuide 也已经 100k star ，我的公众号也已经有 15w+ 的关注。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/about-the-author/college-life/image-20210820211926742.png)
+![](https://oss.javaguide.cn/about-the-author/college-life/image-20210820211926742.png)
 
 ### 接私活赚钱
 
@@ -280,7 +280,7 @@ tag:
 
 商城类型的项目大概的架构图如下（没有找到当时自己画的原图）：
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/about-the-author/college-life/206fab84bf5b4c048f8a88bc68c942f6~tplv-k3u1fbpfcp-zoom-1.image.png)
+![](https://oss.javaguide.cn/about-the-author/college-life/206fab84bf5b4c048f8a88bc68c942f6~tplv-k3u1fbpfcp-zoom-1.image.png)
 
 那会商城项目貌似也已经烂大街了，用的人比较多。为了让自己的商城项目更有竞争力，对照着视频教程做完之后，我加入了很多自己的元素比如更换消息队列 ActiveMQ 为 Kafka、增加二级缓存。
 
@@ -338,7 +338,7 @@ tag:
 
 到了武汉之后，我花了一天时间找了一个蛋壳公寓住下。第二天，我就跑去武汉理工大学参加宣讲会。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/about-the-author/college-life/image-20210820204919942.png)
+![](https://oss.javaguide.cn/about-the-author/college-life/image-20210820204919942.png)
 
 当天，我就面试了自己求职过程中的第一家公司—**玄武科技**。
 
@@ -356,7 +356,7 @@ tag:
 
 不过，我最终如愿以偿获得了 ThoughtWorks 的 offer。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/about-the-author/college-life/9ad97dcc5038499b96239dd826c471b7~tplv-k3u1fbpfcp-zoom-1.image.png)
+![](https://oss.javaguide.cn/about-the-author/college-life/9ad97dcc5038499b96239dd826c471b7~tplv-k3u1fbpfcp-zoom-1.image.png)
 
 面试 ThoughtWorks 的过程就不多说了，我在[《结束了我短暂的秋招，说点自己的感受》](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247484842&idx=1&sn=4489dfab0ef2479122b71407855afc71&chksm=cea24a61f9d5c3774a8ed67c5fcc3234cb0741fbe831152986e5d1c8fb4f36a003f4fb2f247e&scene=178&cur_album_id=1323354342556057602#rd)这篇文章中有提到。
 

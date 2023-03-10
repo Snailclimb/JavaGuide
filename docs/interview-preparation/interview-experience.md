@@ -9,21 +9,21 @@ category: 知识星球
 
 如果你是非科班的同学，也能在这些文章中找到对应的非科班的同学写的面经。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/githubjuejinjihua/thinkimage-20220612185810480.png)
+![](https://oss.javaguide.cn/githubjuejinjihua/thinkimage-20220612185810480.png)
 
 并且，[知识星球](https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html)还有专门分享面经和面试题的专题，里面会分享很多优质的面经和面试题。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220304120018731.png)
+![](https://oss.javaguide.cn/xingqiu/image-20220304120018731.png)
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220628101743381.png)
+![](https://oss.javaguide.cn/xingqiu/image-20220628101743381.png)
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220628101805897.png)
+![](https://oss.javaguide.cn/xingqiu/image-20220628101805897.png)
 
 欢迎准备 Java 面试以及学习 Java 的同学加入我的[知识星球](https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html)，干货非常多，学习氛围也很不错！收费虽然是白菜价，但星球里的内容或许比你参加上万的培训班质量还要高。
 
 <div align="center">
   <a href="https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html">
-    <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220311203414600.png" style="margin: 0 auto; " />
+    <img src="https://oss.javaguide.cn/xingqiu/image-20220311203414600.png" style="margin: 0 auto; " />
   </a>
 </div>
 
@@ -31,7 +31,7 @@ category: 知识星球
 
 <div align="center">
   <a href="https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html">
-    <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/xingqiufuwu.png" style="margin: 0 auto; " />
+    <img src="https://oss.javaguide.cn/xingqiu/xingqiufuwu.png" style="margin: 0 auto; " />
   </a>
 </div>
 
@@ -43,7 +43,7 @@ category: 知识星球
 
 <div align="center">
   <a href="https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html">
-    <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/xingqiuyouhuijuanheyi.png" style="margin: 0 auto; " />
+    <img src="https://oss.javaguide.cn/xingqiu/xingqiuyouhuijuanheyi.png" style="margin: 0 auto; " />
   </a>
 </div>
 
@@ -51,7 +51,7 @@ category: 知识星球
 
 <div align="center">
   <a href="https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html">
-    <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/IMG_3007.jpg" style="margin: 0 auto; " />
+    <img src="https://oss.javaguide.cn/github/javaguide/IMG_3007.jpg" style="margin: 0 auto; " />
   </a>
 </div>
 

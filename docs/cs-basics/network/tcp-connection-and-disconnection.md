@@ -10,7 +10,7 @@ tag:
 
 ##  建立连接-TCP 三次握手
 
-![TCP 三次握手图解](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/cs-basics/network/tcp-shakes-hands-three-times.png)
+![TCP 三次握手图解](https://oss.javaguide.cn/github/javaguide/cs-basics/network/tcp-shakes-hands-three-times.png)
 
 建立一个 TCP 连接需要“三次握手”，缺一不可 ：
 
@@ -40,7 +40,7 @@ tag:
 
 ##  断开连接-TCP 四次挥手
 
-![TCP 四次挥手图解](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/cs-basics/network/tcp-waves-four-times.png)
+![TCP 四次挥手图解](https://oss.javaguide.cn/github/javaguide/cs-basics/network/tcp-waves-four-times.png)
 
 断开一个 TCP 连接则需要“四次挥手”，缺一不可 ：
 

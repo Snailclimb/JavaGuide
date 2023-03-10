@@ -20,7 +20,7 @@ tag:
 
 另外，`Unsafe` 提供的这些功能的实现需要依赖本地方法（Native Method）。你可以将本地方法看作是 Java 中使用其他编程语言编写的方法。本地方法使用 **`native`** 关键字修饰，Java 代码中只是声明方法头，具体的实现则交给 **本地代码**。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/basis/unsafe/image-20220717115231125.png)
+![](https://oss.javaguide.cn/github/javaguide/java/basis/unsafe/image-20220717115231125.png)
 
 **为什么要使用本地方法呢？**
 
@@ -163,11 +163,11 @@ addr3: 2433733894944
 
 你可以通过下图理解这个过程：
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/basis/unsafe/image-20220717144344005.png)
+![](https://oss.javaguide.cn/github/javaguide/java/basis/unsafe/image-20220717144344005.png)
 
 在代码中调用`reallocateMemory`方法重新分配了一块 8 字节长度的内存空间，通过比较`addr`和`addr3`可以看到和之前申请的内存地址是不同的。在代码中的第二个 for 循环里，调用`copyMemory`方法进行了两次内存的拷贝，每次拷贝内存地址`addr`开始的 4 个字节，分别拷贝到以`addr3`和`addr3+4`开始的内存空间上：
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/basis/unsafe/image-20220717144354582.png)
+![](https://oss.javaguide.cn/github/javaguide/java/basis/unsafe/image-20220717144354582.png)
 
 拷贝完成后，使用`getLong`方法一次性读取 8 个字节，得到`long`类型的值为 72340172838076673。
 
@@ -283,7 +283,7 @@ main thread end
 
 而如果删掉上面代码中的`loadFence`方法，那么主线程将无法感知到`flag`发生的变化，会一直在`while`中循环。可以用图来表示上面的过程：
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/basis/unsafe/image-20220717144703446.png)
+![](https://oss.javaguide.cn/github/javaguide/java/basis/unsafe/image-20220717144703446.png)
 
 了解 Java 内存模型（`JMM`）的小伙伴们应该清楚，运行中的线程不是直接读取主内存中的变量的，只能操作自己工作内存中的变量，然后同步到主内存中，并且线程的工作内存是不能共享的。上面的图中的流程就是子线程借助于主内存，将修改后的结果同步给了主线程，进而修改主线程中的工作空间，跳出循环。
 
@@ -341,7 +341,7 @@ public native void putOrderedLong(Object o, long offset, long x);
 
 顺序写入与`volatile`写入的差别在于，在顺序写时加入的内存屏障类型为`StoreStore`类型，而在`volatile`写入时加入的内存屏障是`StoreLoad`类型，如下图所示：
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/basis/unsafe/image-20220717144834132.png)
+![](https://oss.javaguide.cn/github/javaguide/java/basis/unsafe/image-20220717144834132.png)
 
 在有序写入方法中，使用的是`StoreStore`屏障，该屏障确保`Store1`立刻刷新数据到内存，这一操作先于`Store2`以及后续的存储指令操作。而在`volatile`写入中，使用的是`StoreLoad`屏障，该屏障确保`Store1`立刻刷新数据到内存，这一操作先于`Load2`及后续的装载指令，并且，`StoreLoad`屏障会使该屏障之前的所有内存访问指令，包括存储指令和访问指令全部完成之后，才执行该屏障之后的内存访问指令。
 
@@ -398,7 +398,7 @@ public native int arrayIndexScale(Class<?> arrayClass);
 
 这两个与数据操作相关的方法，在 `java.util.concurrent.atomic` 包下的 `AtomicIntegerArray`（可以实现对 `Integer` 数组中每个元素的原子性操作）中有典型的应用，如下图 `AtomicIntegerArray` 源码所示，通过 `Unsafe` 的 `arrayBaseOffset` 、`arrayIndexScale` 分别获取数组首元素的偏移地址 `base` 及单个元素大小因子 `scale` 。后续相关原子性操作，均依赖于这两个值进行数组中元素的定位，如下图二所示的 `getAndAdd` 方法即通过 `checkedByteOffset` 方法获取某数组元素的偏移地址，而后通过 CAS 实现原子性操作。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/basis/unsafe/image-20220717144927257.png)
+![](https://oss.javaguide.cn/github/javaguide/java/basis/unsafe/image-20220717144927257.png)
 
 ### CAS 操作
 
@@ -473,7 +473,7 @@ private void increment(int x){
 
 在上面的例子中，使用两个线程去修改`int`型属性`a`的值，并且只有在`a`的值等于传入的参数`x`减一时，才会将`a`的值变为`x`，也就是实现对`a`的加一的操作。流程如下所示：
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/basis/unsafe/image-20220717144939826.png)
+![](https://oss.javaguide.cn/github/javaguide/java/basis/unsafe/image-20220717144939826.png)
 
 需要注意的是，在调用`compareAndSwapInt`方法后，会直接返回`true`或`false`的修改结果，因此需要我们在代码中手动添加自旋的逻辑。在`AtomicInteger`类的设计中，也是采用了将`compareAndSwapInt`的结果作为循环条件，直至修改成功才退出死循环的方式来实现的原子性的自增操作。
 
@@ -565,7 +565,7 @@ unpark mainThread success
 
 程序运行的流程也比较容易看懂，子线程开始运行后先进行睡眠，确保主线程能够调用`park`方法阻塞自己，子线程在睡眠 5 秒后，调用`unpark`方法唤醒主线程，使主线程能继续向下执行。整个流程如下图所示：
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/basis/unsafe/image-20220717144950116.png)
+![](https://oss.javaguide.cn/github/javaguide/java/basis/unsafe/image-20220717144950116.png)
 
 ### Class 操作
 
@@ -644,7 +644,7 @@ private static void defineTest() {
 
 在上面的代码中，首先读取了一个`class`文件并通过文件流将它转化为字节数组，之后使用`defineClass`方法动态的创建了一个类，并在后续完成了它的实例化工作，流程如下图所示，并且通过这种方式创建的类，会跳过 JVM 的所有安全检查。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/basis/unsafe/image-20220717145000710.png)
+![](https://oss.javaguide.cn/github/javaguide/java/basis/unsafe/image-20220717145000710.png)
 
 除了`defineClass`方法外，Unsafe 还提供了一个`defineAnonymousClass`方法：
 

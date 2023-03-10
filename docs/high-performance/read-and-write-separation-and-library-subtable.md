@@ -19,7 +19,7 @@ head:
 
 我简单画了一张图来帮助不太清楚读写分离的小伙伴理解。
 
-![读写分离示意图](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/high-performance/read-and-write-separation-and-library-subtable/read-and-write-separation.png)
+![读写分离示意图](https://oss.javaguide.cn/github/javaguide/high-performance/read-and-write-separation-and-library-subtable/read-and-write-separation.png)
 
 一般情况下，我们都会选择一主多从，也就是一台主数据库负责写，其他的从数据库负责读。主库和从库之间会进行数据同步，以保证从库中数据的准确性。这样的架构实现起来比较简单，并且也符合系统的写少读多的特点。
 
@@ -63,7 +63,7 @@ hintManager.setMasterRouteOnly();
 
 **1.代理方式**
 
-![代理方式实现读写分离](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/high-performance/read-and-write-separation-and-library-subtable/read-and-write-separation-proxy.png)
+![代理方式实现读写分离](https://oss.javaguide.cn/github/javaguide/high-performance/read-and-write-separation-and-library-subtable/read-and-write-separation-proxy.png)
 
 我们可以在应用和数据中间加了一个代理层。应用程序所有的数据请求都交给代理层处理，代理层负责分离读写请求，将它们路由到对应的数据库中。
 
@@ -83,7 +83,7 @@ MySQL binlog(binary log 即二进制日志文件) 主要记录了 MySQL 数据�
 
 更具体和详细的过程是这个样子的（图片来自于：[《MySQL Master-Slave Replication on the Same Machine》](https://www.toptal.com/mysql/mysql-master-slave-replication-tutorial)）：
 
-![MySQL主从复制](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/78816271d3ab52424bfd5ad3086c1a0f.png)
+![MySQL主从复制](https://oss.javaguide.cn/java-guide-blog/78816271d3ab52424bfd5ad3086c1a0f.png)
 
 1. 主库将数据库中数据的变化写入到 binlog
 2. 从库连接主库

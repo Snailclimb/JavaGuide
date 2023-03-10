@@ -9,11 +9,11 @@ tag:
 
 [《Java 面试指北》](https://www.yuque.com/docs/share/f37fc804-bfe6-4b0d-b373-9c462188fec7) 的部分内容展示如下，你可以将其看作是 [JavaGuide](https://javaguide.cn/#/) 的补充完善，两者可以配合使用。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220304102536445.png)
+![](https://oss.javaguide.cn/xingqiu/image-20220304102536445.png)
 
 [《Java 面试指北》](https://www.yuque.com/docs/share/f37fc804-bfe6-4b0d-b373-9c462188fec7)只是星球内部众多资料中的一个，星球还有很多其他优质资料比如[专属专栏](https://javaguide.cn/zhuanlan/)、Java 编程视频、PDF 资料。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/image-20220211231206733.png)
+![](https://oss.javaguide.cn/xingqiu/image-20220211231206733.png)
 
 最近几年，市面上有越来越多的“技术大佬”开始办培训班/训练营，动辄成千上万的学费，却并没有什么干货，单纯的就是割韭菜。
 
@@ -25,7 +25,7 @@ tag:
 
 <div align="center">
   <a href="https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html">
-    <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/xingqiufuwu.png" style="margin: 0 auto; " />
+    <img src="https://oss.javaguide.cn/xingqiu/xingqiufuwu.png" style="margin: 0 auto; " />
   </a>
 </div>
 
@@ -35,6 +35,6 @@ tag:
 
 <div align="center">
   <a href="https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html">
-    <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/xingqiuyouhuijuanheyi.png" style="margin: 0 auto; " />
+    <img src="https://oss.javaguide.cn/xingqiu/xingqiuyouhuijuanheyi.png" style="margin: 0 auto; " />
   </a>
 </div>

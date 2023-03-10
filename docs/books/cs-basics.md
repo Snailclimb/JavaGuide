@@ -22,17 +22,17 @@ head:
 
 如果你要系统地学习操作系统的话，最硬核最权威的书籍是 **[《操作系统导论》](https://book.douban.com/subject/33463930/)** 。你可以再配套一个 **[《深入理解计算机系统》](https://book.douban.com/subject/1230413/)** 加深你对计算机系统本质的认识，美滋滋！
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/booksimage-20201012191645919.png)
+![](https://oss.javaguide.cn/github/javaguide/booksimage-20201012191645919.png)
 
 另外，去年新出的一本国产的操作系统书籍也很不错：**[《现代操作系统：原理与实现》](https://book.douban.com/subject/35208251/)** （夏老师和陈老师团队的力作，值得推荐）。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/20210406132050845.png)
+![](https://oss.javaguide.cn/github/javaguide/books/20210406132050845.png)
 
 如果你比较喜欢动手，对于理论知识比较抵触的话，我推荐你看看 **[《30 天自制操作系统》](https://book.douban.com/subject/11530329/)** ，这本书会手把手教你编写一个操作系统。
 
 纸上学来终觉浅 绝知此事要躬行！强烈推荐 CS 专业的小伙伴一定要多多实践！！！
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/booksimage-20220409123802972.png)
+![](https://oss.javaguide.cn/github/javaguide/booksimage-20220409123802972.png)
 
 其他相关书籍推荐：
 
@@ -47,23 +47,23 @@ head:
 
 课程的大纲如下：
 
-![课程大纲](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/image-20220414144527747.png)
+![课程大纲](https://oss.javaguide.cn/github/javaguide/books/image-20220414144527747.png)
 
 主要讲了一个基本操作系统中的六个基本模块： CPU 管理、内存管理、外设管理、磁盘管理与文件系统、用户接口和启动模块 。
 
 课程难度还是比较大的，尤其是课后的 lab。如果大家想要真正搞懂操作系统底层原理的话，对应的 lab 能做尽量做一下。正如李治军老师说的那样：“纸上得来终觉浅，绝知此事要躬行”。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/image-20220414145210679.png)
+![](https://oss.javaguide.cn/github/javaguide/books/image-20220414145210679.png)
 
 如果你能独立完成几个 lab 的话，我相信你对操作系统的理解绝对要上升几个台阶。当然了，如果你仅仅是为了突击面试的话，那就不需要做 lab 了。
 
 说点心里话，我本人非常喜欢李治军老师讲的课，我觉得他是国内不可多得的好老师。他知道我们国内的教程和国外的差距在哪里，也知道国内的学生和国外学生的差距在哪里，他自己在努力着通过自己的方式来缩小这个差距。真心感谢，期待李治军老师的下一个课程。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/image-20220414145249714.png)
+![](https://oss.javaguide.cn/github/javaguide/books/image-20220414145249714.png)
 
 还有下面这个国外的课程 [《深入理解计算机系统 》](https://www.bilibili.com/video/av31289365?from=search&seid=16298868573410423104) 也很不错。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/booksimage-20201204140653318.png)
+![](https://oss.javaguide.cn/github/javaguide/booksimage-20201204140653318.png)
 
 ## 计算机网络
 
@@ -71,18 +71,18 @@ head:
 
 要想学好计算机网络，首先要了解的就是 OSI 七层模型或 TCP/IP 五层模型，即应用层（应用层、表示层、会话层）、传输层、网络层、数据链路层、物理层。
 
-![osi七层模型](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/booksosi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B2.png)
+![osi七层模型](https://oss.javaguide.cn/github/javaguide/booksosi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B2.png)
 
 关于这门课，首先强烈推荐参考书是**机械工业出版社的《计算机网络——自顶向下方法》**。该书目录清晰，按照 TCP/IP 五层模型逐层讲解，对每层涉及的技术都展开了详细讨论，基本上高校里开设的课程的教学大纲就是这本书的目录了。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/booksimage-20220409123250570.png)
+![](https://oss.javaguide.cn/github/javaguide/booksimage-20220409123250570.png)
 
 如果你觉得上面这本书看着比较枯燥的话，我强烈推荐+安利你看看下面这两本非常有趣的网络相关的书籍：
 
 - [《图解 HTTP》](https://book.douban.com/subject/25863515/ "《图解 HTTP》") ： 讲漫画一样的讲 HTTP，很有意思，不会觉得枯燥，大概也涵盖也 HTTP 常见的知识点。因为篇幅问题，内容可能不太全面。不过，如果不是专门做网络方向研究的小伙伴想研究 HTTP 相关知识的话，读这本书的话应该来说就差不多了。
 - [《网络是怎样连接的》](https://book.douban.com/subject/26941639/ "《网络是怎样连接的》") ：从在浏览器中输入网址开始，一路追踪了到显示出网页内容为止的整个过程，以图配文，讲解了网络的全貌，并重点介绍了实际的网络设备和软件是如何工作的。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/booksimage-20201011215144139.png)
+![](https://oss.javaguide.cn/github/javaguide/booksimage-20201011215144139.png)
 
 除了理论知识之外，学习计算机网络非常重要的一点就是：“**动手实践**”。这点和我们编程差不多。
 
@@ -97,11 +97,11 @@ Github 上就有一些名校的计算机网络试验/Project：
 
 **1、[哈工大的计算机网络课程](http://www.icourse163.org/course/HIT-154005)** ：国家精品课程，截止目前已经开了 10 次课了。大家对这门课的评价都非常高！所以，非常推荐大家看一下！
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/booksimage-20201218141241911.png)
+![](https://oss.javaguide.cn/github/javaguide/booksimage-20201218141241911.png)
 
 **2、[王道考研的计算机网络](https://www.bilibili.com/video/BV19E411D78Q?from=search&seid=17198507506906312317)** ：非常适合 CS 专业考研的小朋友！这个视频目前在哔哩哔哩上已经有 1.6w+的点赞。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/booksimage-20201218141652837.png)
+![](https://oss.javaguide.cn/github/javaguide/booksimage-20201218141652837.png)
 
 ## 算法
 
@@ -111,7 +111,7 @@ Github 上就有一些名校的计算机网络试验/Project：
 2. [《算法图解》](https://book.douban.com/subject/26979890/)
 3. [《啊哈!算法》](https://book.douban.com/subject/25894685/)
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/image-20210327104418851.png)
+![](https://oss.javaguide.cn/java-guide-blog/image-20210327104418851.png)
 
 我个人比较倾向于 **[《我的第一本算法书》](https://book.douban.com/subject/30357170/)** 这本书籍，虽然它相比于其他两本书集它的豆瓣评分略低一点。我觉得它的配图以及讲解是这三本书中最优秀，唯一比较明显的问题就是没有代码示例。但是，我觉得这不影响它是一本好的算法书籍。因为本身下面这三本入门书籍的目的就不是通过代码来让你的算法有多厉害，只是作为一本很好的入门书籍让你进入算法学习的大门。
 
@@ -119,7 +119,7 @@ Github 上就有一些名校的计算机网络试验/Project：
 
 **[《算法》](https://book.douban.com/subject/19952400/)**
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/booksimage-20220409123422140.png)
+![](https://oss.javaguide.cn/github/javaguide/booksimage-20220409123422140.png)
 
 这本书内容非常清晰易懂，适合数据结构和算法小白阅读。书中把一些常用的数据结构和算法都介绍到了！
 
@@ -131,7 +131,7 @@ Github 上就有一些名校的计算机网络试验/Project：
 
 **[《编程珠玑》](https://book.douban.com/subject/3227098/)**
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/booksimage-20220409145334093.png)
+![](https://oss.javaguide.cn/github/javaguide/booksimage-20220409145334093.png)
 
 经典名著，ACM 冠军、亚军这种算法巨佬都强烈推荐的一本书籍。这本书的作者也非常厉害，Java 之父 James Gosling 就是他的学生。
 
@@ -139,7 +139,7 @@ Github 上就有一些名校的计算机网络试验/Project：
 
 **[《算法设计手册》](https://book.douban.com/subject/4048566/)**
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/booksimage-20220409145411049.png)
+![](https://oss.javaguide.cn/github/javaguide/booksimage-20220409145411049.png)
 
 这是一本被 Github 上的爆火的计算机自学项目 [Teach Yourself Computer Science](https://link.zhihu.com/?target=https%3A//teachyourselfcs.com/) 强烈推荐的一本算法书籍。
 
@@ -149,7 +149,7 @@ Github 上就有一些名校的计算机网络试验/Project：
 
 **[《剑指 Offer》](https://book.douban.com/subject/6966465/)**
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/booksimage-20220409145506482.png)
+![](https://oss.javaguide.cn/github/javaguide/booksimage-20220409145506482.png)
 
 这本面试宝典上面涵盖了很多经典的算法面试题，如果你要准备大厂面试的话一定不要错过这本书。
 
@@ -157,13 +157,13 @@ Github 上就有一些名校的计算机网络试验/Project：
 
 **[《程序员代码面试指南（第 2 版）》](https://book.douban.com/subject/30422021/)**
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/booksimage-20220409145622758.png)
+![](https://oss.javaguide.cn/github/javaguide/booksimage-20220409145622758.png)
 
 《程序员代码面试指南（第 2 版）》里的大部分题目相比于《剑指 offer》 来说要难很多，题目涵盖面相比于《剑指 offer》也更加全面。全书一共有将近 300 道真实出现过的经典代码面试题。
 
 视频的话，推荐北京大学的国家精品课程—**[程序设计与算法（二）算法基础](https://www.icourse163.org/course/PKU-1001894005)**，讲的非常好！
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/22ce4a17dc0c40f6a3e0d58002261b7a.png)
+![](https://oss.javaguide.cn/github/javaguide/books/22ce4a17dc0c40f6a3e0d58002261b7a.png)
 
 这个课程把七种基本的通用算法（枚举、二分、递归、分治、动态规划、搜索、贪心）都介绍到了。各种复杂算法问题的解决，都可能用到这些基本的思想。并且，这个课程的一部分的例题和 ACM 国际大学生程序设计竞赛中的中等题相当，如果你能够解决这些问题，那你的算法能力将超过绝大部分的高校计算机专业本科毕业生。
 
@@ -175,19 +175,19 @@ Github 上就有一些名校的计算机网络试验/Project：
 
 **[《大话数据结构》](https://book.douban.com/subject/6424904/)**
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/booksimage-20220409145803440.png)
+![](https://oss.javaguide.cn/github/javaguide/booksimage-20220409145803440.png)
 
 入门类型的书籍，读起来比较浅显易懂，适合没有数据结构基础或者说数据结构没学好的小伙伴用来入门数据结构。
 
 **[《数据结构与算法分析：Java 语言描述》](https://book.douban.com/subject/3351237/)**
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/booksimage-20220409145823973.png)
+![](https://oss.javaguide.cn/github/javaguide/booksimage-20220409145823973.png)
 
 质量很高，介绍了常用的数据结构和算法。
 
 类似的还有 **[《数据结构与算法分析 ：C 语言描述》](https://book.douban.com/subject/1139426/)** 、**[《数据结构与算法分析：C++ 描述》](https://book.douban.com/subject/1971825/)**
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/d9c450ccc5224a5fba77f4fa937f7b9c.png)
+![](https://oss.javaguide.cn/github/javaguide/books/d9c450ccc5224a5fba77f4fa937f7b9c.png)
 
 视频的话推荐你看浙江大学的国家精品课程—**[《数据结构》](https://www.icourse163.org/course/ZJU-93001#/info)** 。
 
@@ -207,17 +207,17 @@ Github 上就有一些名校的计算机网络试验/Project：
 
 书籍的话，推荐《普林斯顿微积分读本》。这本书详细讲解了微积分基础、极限、连续、微分、导数的应用、积分、无穷级数、泰勒级数与幂级数等内容。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/booksimage-20220409155056751.png)
+![](https://oss.javaguide.cn/github/javaguide/booksimage-20220409155056751.png)
 
 #### 线性代数（高等代数）
 
 线性代数的思维模式就更加复杂了一些，它定义了一个全新的数学世界，所有的符号、定理都是全新的，唯一能尝试的去理解的方式，大概就是用几何的方式去理解线性代数了。由于线性代数和几何学有着密不可分的关系，比如空间变换的理论支撑就是线性代数，因此，网上有着各种“可视化学习线性代数”的学习资源，帮助理解线性代数的意义，有助于公式的记忆。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/booksimage-20220409153940473.png)
+![](https://oss.javaguide.cn/github/javaguide/booksimage-20220409153940473.png)
 
 书籍的话，推荐中科大李尚志老师的 **[《线性代数学习指导》](https://book.douban.com/subject/26390093/)** 。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/booksimage-20220409155325251.png)
+![](https://oss.javaguide.cn/github/javaguide/booksimage-20220409155325251.png)
 
 #### 概率论与数理统计
 
@@ -225,7 +225,7 @@ Github 上就有一些名校的计算机网络试验/Project：
 
 书籍的话，推荐 **[《概率论与数理统计教程》](https://book.douban.com/subject/34897672/)** 。这本书共八章，前四章为概率论部分，主要叙述各种概率分布及其性质，后四章为数理统计部分，主要叙述各种参数估计与假设检验。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/booksimage-20220409155738505.png)
+![](https://oss.javaguide.cn/github/javaguide/booksimage-20220409155738505.png)
 
 #### 离散数学（集合论、图论、近世代数等）
 
@@ -262,7 +262,7 @@ Github 上就有一些名校的计算机网络试验/Project：
 
 总的来说，这门课对于各位程序员的职业发展来说，相对不那么重要，但是从难度上来说，学习这门课可以对编程思想有一个较好的巩固。学习资源的话，除了课堂上的幻灯片课件以外，还可以把 《编译原理》 这本书作为参考书，用以辅助自己学不懂的地方（大家口中的龙书，想要啃下来还是有一定难度的）。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/20210406152148373.png)
+![](https://oss.javaguide.cn/github/javaguide/books/20210406152148373.png)
 
 其他书籍推荐:
 
@@ -271,4 +271,4 @@ Github 上就有一些名校的计算机网络试验/Project：
 
 我上面推荐的书籍的难度还是比较高的，真心很难坚持看完。这里强烈推荐[哈工大的编译原理视频课程](https://www.icourse163.org/course/HIT-1002123007)，真心不错，还是国家精品课程，关键还是又漂亮有温柔的美女老师讲的！
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/books/20210406152847824.png)
+![](https://oss.javaguide.cn/github/javaguide/books/20210406152847824.png)

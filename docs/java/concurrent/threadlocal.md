@@ -312,7 +312,7 @@ public class ThreadLocal<T> {
 
 从当前节点`staleSlot`向后查找`key`值相等的`Entry`元素，找到后更新`Entry`的值并交换`staleSlot`元素的位置(`staleSlot`位置为过期元素)，更新`Entry`数据，然后开始进行过期`Entry`的清理工作，如下图所示：
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/view.png)向后遍历过程中，如果没有找到相同 key 值的 Entry 数据：
+![](https://oss.javaguide.cn/java-guide-blog/view.png)向后遍历过程中，如果没有找到相同 key 值的 Entry 数据：
 
 ![](./images/thread-local/15.png)
 

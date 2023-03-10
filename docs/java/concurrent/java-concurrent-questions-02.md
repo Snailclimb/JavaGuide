@@ -22,9 +22,9 @@ JMM（Java 内存模型）相关的问题比较多，也比较重要，于是我
 
 在 Java 中，`volatile` 关键字可以保证变量的可见性，如果我们将变量声明为 **`volatile`** ，这就指示 JVM，这个变量是共享且不稳定的，每次使用它都到主存中进行读取。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/concurrent/jmm.png)
+![](https://oss.javaguide.cn/github/javaguide/java/concurrent/jmm.png)
 
-![JMM(Java 内存模型)强制在主存中进行读取](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/concurrent/jmm2.png)
+![JMM(Java 内存模型)强制在主存中进行读取](https://oss.javaguide.cn/github/javaguide/java/concurrent/jmm2.png)
 
 `volatile` 关键字其实并非是 Java 语言特有的，在 C 语言里也有，它最原始的意义就是禁用 CPU 缓存。如果我们将一个变量使用 `volatile` 修饰，这就指示 编译器，这个变量是共享且不稳定的，每次使用它都到主存中进行读取。
 
@@ -390,11 +390,11 @@ public class SynchronizedDemo {
 
 在执行`monitorenter`时，会尝试获取对象的锁，如果锁的计数器为 0 则表示锁可以被获取，获取后将锁计数器设为 1 也就是加 1。
 
-![执行 monitorenter 获取锁](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/concurrent/synchronized-get-lock-code-block.png)
+![执行 monitorenter 获取锁](https://oss.javaguide.cn/github/javaguide/java/concurrent/synchronized-get-lock-code-block.png)
 
 对象锁的的拥有者线程才可以执行 `monitorexit` 指令来释放锁。在执行 `monitorexit` 指令后，将锁计数器设为 0，表明锁被释放，其他线程可以尝试获取锁。
 
-![执行 monitorexit 释放锁](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/concurrent/synchronized-release-lock-block.png)
+![执行 monitorexit 释放锁](https://oss.javaguide.cn/github/javaguide/java/concurrent/synchronized-release-lock-block.png)
 
 如果获取对象锁失败，那当前线程就要阻塞等待，直到锁被另外一个线程释放为止。
 
@@ -455,7 +455,7 @@ public class ReentrantLock implements Lock, java.io.Serializable {}
 
 `ReentrantLock` 里面有一个内部类 `Sync`，`Sync` 继承 AQS（`AbstractQueuedSynchronizer`），添加锁和释放锁的大部分操作实际上都是在 `Sync` 中实现的。`Sync` 有公平锁 `FairSync` 和非公平锁 `NonfairSync` 两个子类。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/concurrent/reentrantlock-class-diagram.png)
+![](https://oss.javaguide.cn/github/javaguide/java/concurrent/reentrantlock-class-diagram.png)
 
 `ReentrantLock` 默认使用非公平锁，也可以通过构造器来显示的指定使用公平锁。
 
@@ -548,7 +548,7 @@ public interface ReadWriteLock {
 
 和 `ReentrantLock` 一样，`ReentrantReadWriteLock` 底层也是基于 AQS 实现的。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/concurrent/reentrantreadwritelock-class-diagram.png)
+![](https://oss.javaguide.cn/github/javaguide/java/concurrent/reentrantreadwritelock-class-diagram.png)
 
 `ReentrantReadWriteLock` 也支持公平锁和非公平锁，默认使用非公平锁，可以通过构造器来显示的指定。
 

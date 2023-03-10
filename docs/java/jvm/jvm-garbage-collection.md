@@ -121,7 +121,7 @@ public class GCTest {
 >
 > jdk8 官方文档引用 ：https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html 。
 >
-> ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/image-20210523201742303.png)
+> ![](https://oss.javaguide.cn/java-guide-blog/image-20210523201742303.png)
 >
 > **动态年龄计算的代码如下：**
 >

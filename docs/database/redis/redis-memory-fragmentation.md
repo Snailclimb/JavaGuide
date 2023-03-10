@@ -11,7 +11,7 @@ tag:
 
 举个例子：操作系统为你分配了 32 字节的连续内存空间，而你存储数据实际只需要使用 24 字节内存空间，那这多余出来的 8 字节内存空间如果后续没办法再被分配存储其他数据的话，就可以被称为内存碎片。
 
-![内存碎片](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/memory-fragmentation.png)
+![内存碎片](https://oss.javaguide.cn/github/javaguide/memory-fragmentation.png)
 
 Redis 内存碎片虽然不会影响 Redis 性能，但是会增加内存消耗。
 
@@ -47,7 +47,7 @@ void *zmalloc(size_t size) {
 
 另外，Redis 可以使用多种内存分配器来分配内存（ libc、jemalloc、tcmalloc），默认使用 [jemalloc](https://github.com/jemalloc/jemalloc)，而 jemalloc 按照一系列固定的大小（8 字节、16 字节、32 字节......）来分配内存的。jemalloc 划分的内存单元如下图所示：
 
-![jemalloc 内存单元示意图](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/6803d3929e3e46c1b1c9d0bb9ee8e717.png)
+![jemalloc 内存单元示意图](https://oss.javaguide.cn/github/javaguide/database/redis/6803d3929e3e46c1b1c9d0bb9ee8e717.png)
 
 当程序申请的内存最接近某个固定值时，jemalloc 会给它分配相应大小的空间，就比如说程序需要申请 17 字节的内存，jemalloc 会直接给它分配 32 字节的内存，这样会导致有 15 字节内存的浪费。不过，jemalloc 专门针对内存碎片问题做了优化，一般不会存在过度碎片化的问题。
 
@@ -57,7 +57,7 @@ void *zmalloc(size_t size) {
 
 这个在 Redis 官方文档中也有对应的原话:
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/redis-docs-memory-optimization.png)
+![](https://oss.javaguide.cn/github/javaguide/redis-docs-memory-optimization.png)
 
 文档地址：https://redis.io/topics/memory-optimization 。
 
@@ -65,7 +65,7 @@ void *zmalloc(size_t size) {
 
 使用 `info memory` 命令即可查看 Redis 内存相关的信息。下图中每个参数具体的含义，Redis 官方文档有详细的介绍：https://redis.io/commands/INFO 。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/redis-info-memory.png)
+![](https://oss.javaguide.cn/github/javaguide/redis-info-memory.png)
 
 Redis 内存碎片率的计算公式：`mem_fragmentation_ratio` （内存碎片率）= `used_memory_rss` (操作系统实际分配给 Redis 的物理内存空间大小)/ `used_memory`(Redis 内存分配器为了存储数据实际申请使用的内存空间大小)
 

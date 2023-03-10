@@ -46,7 +46,7 @@ System.out.println(a == b);// false
 
 《阿里巴巴 Java 开发手册》中提到：**浮点数之间的等值判断，基本数据类型不能用 == 来比较，包装数据类型不能用 equals 来判断。**
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/image-20211213101646884.png)
+![](https://oss.javaguide.cn/javaguide/image-20211213101646884.png)
 
 具体原因我们在上面已经详细介绍了，这里就不多提了。
 
@@ -71,7 +71,7 @@ System.out.println(x.compareTo(y));// 0
 
 《阿里巴巴 Java 开发手册》对这部分内容也有提到，如下图所示。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/image-20211213102222601.png)
+![](https://oss.javaguide.cn/javaguide/image-20211213102222601.png)
 
 ### 加减乘除
 
@@ -142,7 +142,7 @@ System.out.println(n);// 1.255
 
 《阿里巴巴 Java 开发手册》中提到：
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/basis/image-20220714161315993.png)
+![](https://oss.javaguide.cn/github/javaguide/java/basis/image-20220714161315993.png)
 
 `BigDecimal` 使用 `equals()` 方法进行等值比较出现问题的代码示例：
 
@@ -156,7 +156,7 @@ System.out.println(a.equals(b));//false
 
 1.0 的 scale 是 1，1 的 scale 是 0，因此 `a.equals(b)` 的结果是 false。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/basis/image-20220714164706390.png)
+![](https://oss.javaguide.cn/github/javaguide/java/basis/image-20220714164706390.png)
 
 `compareTo()` 方法可以比较两个 `BigDecimal` 的值，如果相等就返回 0，如果第 1 个数比第 2 个数大则返回 1，反之返回-1。
 

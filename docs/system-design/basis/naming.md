@@ -19,11 +19,11 @@ category: 代码质量
 
 大名鼎鼎的《重构》的作者老马（Martin Fowler）曾经在[TwoHardThings](https://martinfowler.com/bliki/TwoHardThings.html)这篇文章中提到过CS 领域有两大最难的事情：一是 **缓存失效** ，一是 **程序命名** 。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/marting-naming.png)
+![](https://oss.javaguide.cn/java-guide-blog/marting-naming.png)
 
 这个句话实际上也是老马引用别人的，类似的表达还有很多。比如分布式系统领域有两大最难的事情：一是 **保证消息顺序** ，一是 **严格一次传递** 。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/20210629104844645.png)
+![](https://oss.javaguide.cn/java-guide-blog/20210629104844645.png)
 
 今天咱们就单独拎出 “**命名**” 来聊聊！
 
@@ -138,7 +138,7 @@ void shouldGet200StatusCodeWhenRequestIsValid() {
 
 建议项目文件夹名称使用串式命名法（kebab-case），比如 dubbo 项目的各个模块的命名是下面这样的。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/dubbo-naming.png)
+![](https://oss.javaguide.cn/java-guide-blog/dubbo-naming.png)
 
 ## 常见命名规范
 

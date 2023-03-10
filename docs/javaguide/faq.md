@@ -10,7 +10,7 @@ category: 走近项目
 《JavaGuide 面试突击版》在我的公众号后台回复“**PDF**”即可获取，免费的。除了 《JavaGuide 面试突击版》之外，还会免费送你多本优质面试 PDF 手册。
 
 <div align="center">
-    <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/gongzhonghaoxuanchuan.png" style="margin: 0 auto;" />
+    <img src="https://oss.javaguide.cn/github/javaguide/gongzhonghaoxuanchuan.png" style="margin: 0 auto;" />
 </div>
 
 ## 如何看待 JavaGuide 的 star 数量很多？

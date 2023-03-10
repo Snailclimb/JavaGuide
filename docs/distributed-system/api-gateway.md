@@ -8,7 +8,7 @@ icon: "gateway"
 
 微服务背景下，一个系统被拆分为多个服务，但是像安全认证，流量控制，日志，监控等功能是每个服务都需要的，没有网关的话，我们就需要在每个服务中单独实现，这使得我们做了很多重复的事情并且没有一个全局的视图来统一管理这些功能。
 
-![网关示意图](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/distributed-system/api-gateway-overview.png)
+![网关示意图](https://oss.javaguide.cn/github/javaguide/system-design/distributed-system/api-gateway-overview.png)
 
 一般情况下，网关可以为我们提供请求转发、安全认证（身份/权限认证）、流量控制、负载均衡、降级熔断、日志、监控、参数校验、协议转换等功能。
 
@@ -18,7 +18,7 @@ icon: "gateway"
 
 如下图所示，网关服务外层通过 Nginx（其他负载均衡设备/软件也行） 进⾏负载转发以达到⾼可⽤。Nginx 在部署的时候，尽量也要考虑高可用，避免单点风险。
 
-![基于 Nginx 的服务端负载均衡](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/high-performance/load-balancing/server-load-balancing.png)
+![基于 Nginx 的服务端负载均衡](https://oss.javaguide.cn/github/javaguide/high-performance/load-balancing/server-load-balancing.png)
 
 ## 网关能提供哪些功能？
 
@@ -51,11 +51,11 @@ Zuul 是 Netflix 开发的一款提供动态路由、监控、弹性、安全的
 
 Zuul 核心架构如下：
 
-![Zuul 核心架构](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/distributed-system/api-gateway/zuul-core-architecture.webp)
+![Zuul 核心架构](https://oss.javaguide.cn/github/javaguide/system-design/distributed-system/api-gateway/zuul-core-architecture.webp)
 
 Zuul 主要通过过滤器（类似于 AOP）来过滤请求，从而实现网关必备的各种功能。
 
-![Zuul 请求声明周期](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/distributed-system/api-gateway/zuul-request-lifecycle.webp)
+![Zuul 请求声明周期](https://oss.javaguide.cn/github/javaguide/system-design/distributed-system/api-gateway/zuul-request-lifecycle.webp)
 
 我们可以自定义过滤器来处理请求，并且，Zuul 生态本身就有很多现成的过滤器供我们使用。就比如限流可以直接用国外朋友写的 [spring-cloud-zuul-ratelimit](https://github.com/marcosbarbero/spring-cloud-zuul-ratelimit) (这里只是举例说明，一般是配合 hystrix 来做限流)：
 
@@ -84,7 +84,7 @@ SpringCloud Gateway 属于 Spring Cloud 生态系统中的网关，其诞生的�
 
 为了提升网关的性能，SpringCloud Gateway 基于 Spring WebFlux 。Spring WebFlux 使用 Reactor 库来实现响应式编程模型，底层基于 Netty 实现同步非阻塞的 I/O。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/distributed-system/api-gateway/springcloud-gateway-%20demo.png)
+![](https://oss.javaguide.cn/github/javaguide/system-design/distributed-system/api-gateway/springcloud-gateway-%20demo.png)
 
 Spring Cloud Gateway 不仅提供统一的路由方式，并且基于 Filter 链的方式提供了网关基本的功能，例如：安全，监控/指标，限流。
 
@@ -103,7 +103,7 @@ Kong 是一款基于 [OpenResty](https://github.com/openresty/) （Nginx + Lua�
 
 > OpenResty 是一个基于 Nginx 与 Lua 的高性能 Web 平台，其内部集成了大量精良的 Lua 库、第三方模块以及大多数的依赖项。用于方便地搭建能够处理超高并发、扩展性极高的动态 Web 应用、Web 服务和动态网关。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/distributed-system/api-gateway/kong-way.webp)
+![](https://oss.javaguide.cn/github/javaguide/system-design/distributed-system/api-gateway/kong-way.webp)
 
 Kong 提供了插件机制来扩展其功能，插件在 API 请求响应循环的生命周期中被执行。比如在服务上启用 Zipkin 插件：
 
@@ -116,7 +116,7 @@ $ curl -X POST http://kong:8001/services/{service}/plugins \
 
 > Kong 本身就是一个 Lua 应用程序，并且是在 Openresty 的基础之上做了一层封装的应用。归根结底就是利用 Lua 嵌入 Nginx 的方式，赋予了 Nginx 可编程的能力，这样以插件的形式在 Nginx 这一层能够做到无限想象的事情。例如限流、安全访问策略、路由、负载均衡等等。编写一个 Kong 插件，就是按照 Kong 插件编写规范，写一个自己自定义的 Lua 脚本，然后加载到 Kong 中，最后引用即可。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/distributed-system/api-gateway/kong-gateway-overview.png)
+![](https://oss.javaguide.cn/github/javaguide/system-design/distributed-system/api-gateway/kong-gateway-overview.png)
 
 - Github 地址： https://github.com/Kong/kong
 - 官网地址 ： https://konghq.com/kong

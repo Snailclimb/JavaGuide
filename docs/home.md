@@ -12,7 +12,7 @@ title: JavaGuide（Java学习&&面试指南）
 <div align="center">
     <p>
         <a href="https://github.com/Snailclimb/JavaGuide" target="_blank">
-            <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/csdn/1c00413c65d1995993bf2b0daf7b4f03.png" width="" />
+            <img src="https://oss.javaguide.cn/github/javaguide/csdn/1c00413c65d1995993bf2b0daf7b4f03.png" width="" />
         </a>
     </p>
     <p>
@@ -31,7 +31,7 @@ title: JavaGuide（Java学习&&面试指南）
 <div style="text-align:center">
     <p>
         <a href="https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html">
-            <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/gongzhonghaoxuanchuan.png" style="margin: 0 auto;" />
+            <img src="https://oss.javaguide.cn/github/javaguide/gongzhonghaoxuanchuan.png" style="margin: 0 auto;" />
         </a>
     </p>
 </div>
@@ -240,7 +240,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 [Elasticsearch常见面试题总结(付费)](./database/elasticsearch/elasticsearch-questions-01.md)
 
-![JavaGuide 官方公众号](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/gongzhonghaoxuanchuan.png)
+![JavaGuide 官方公众号](https://oss.javaguide.cn/github/javaguide/gongzhonghaoxuanchuan.png)
 
 ## 开发工具
 
@@ -432,5 +432,5 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 如果大家想要实时关注我更新的文章以及分享的干货的话，可以关注我的公众号“**JavaGuide**”。
 
-![JavaGuide 官方公众号](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/gongzhonghaoxuanchuan.png)
+![JavaGuide 官方公众号](https://oss.javaguide.cn/github/javaguide/gongzhonghaoxuanchuan.png)
 

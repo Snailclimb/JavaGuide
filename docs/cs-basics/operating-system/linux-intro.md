@@ -14,7 +14,7 @@ head:
 
 ## 从认识操作系统开始
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-8/image-20200807161118901.png)
+![](https://oss.javaguide.cn/2020-8/image-20200807161118901.png)
 
 正式开始 Linux 之前，简单花一点点篇幅科普一下操作系统相关的内容。
 
@@ -29,7 +29,7 @@ head:
 
 > 内核（Kernel）在后文中会提到。
 
-![Kernel_Layout](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-8/Kernel_Layout.png)
+![Kernel_Layout](https://oss.javaguide.cn/2020-8/Kernel_Layout.png)
 
 ### 操作系统简单分类
 
@@ -95,7 +95,7 @@ _玩玩电脑游戏还是必须要有 Windows 的，所以我现在是一台 Win
 
 下图清晰说明了应用程序、内核、CPU 这三者的关系。
 
-![Kernel_Layout](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-8/Kernel_Layout.png)
+![Kernel_Layout](https://oss.javaguide.cn/2020-8/Kernel_Layout.png)
 
 ### 系统调用
 
@@ -122,7 +122,7 @@ _玩玩电脑游戏还是必须要有 Windows 的，所以我现在是一台 Win
 
 我在网上找了一个图，通过这个图可以很清晰的说明用户程序、系统调用、内核和硬件之间的关系。（_太难了~木有自己画_）
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-8/L181kk2Eou-compress.jpg)
+![](https://oss.javaguide.cn/2020-8/L181kk2Eou-compress.jpg)
 
 ## 初探 Linux
 

@@ -1,6 +1,6 @@
 <p style="text-align:center">
 <a href="https://github.com/Snailclimb/JavaGuide" target="_blank">
-	<img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/csdn/1c00413c65d1995993bf2b0daf7b4f03.png" width=""/>
+	<img src="https://oss.javaguide.cn/github/javaguide/csdn/1c00413c65d1995993bf2b0daf7b4f03.png" width=""/>
 </a>
 </p>
 <p style="text-align:center">
@@ -15,7 +15,7 @@
     <tr>
        <td style="text-align:center" valign="middle">
         <a href="https://sourl.cn/e7ee87">
-         <img src="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/xingqiu/xingqiu.png" style="margin: 0 auto;width:850px" /></a>
+         <img src="https://oss.javaguide.cn/xingqiu/xingqiu.png" style="margin: 0 auto;width:850px" /></a>
       </td>       
     </tr>
   </tbody>

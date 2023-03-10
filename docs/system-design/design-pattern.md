@@ -13,8 +13,8 @@ head:
 
 **设计模式** 相关的面试题已经整理到了 PDF 手册中，你可以在我的公众号“**JavaGuide**”后台回复“**PDF**” 获取。
 
-![JavaGuide 官方公众号](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/gongzhonghaoxuanchuan.png)
+![JavaGuide 官方公众号](https://oss.javaguide.cn/github/javaguide/gongzhonghaoxuanchuan.png)
 
 **《设计模式》PDF 电子书内容概览** ：
 
-![《设计模式》PDF文档概览](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/design-pattern-pdf.png)
+![《设计模式》PDF文档概览](https://oss.javaguide.cn/github/javaguide/system-design/design-pattern-pdf.png)

@@ -42,7 +42,7 @@ MongoDB 的存储结构区别于传统的关系型数据库，主要由如下三
 
 MongoDB 中的记录就是一个 BSON 文档，它是由键值对组成的数据结构，类似于 JSON 对象，是 MongoDB 中的基本数据单元。字段的值可能包括其他文档、数组和文档数组。
 
-![MongoDB 文档](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/mongodb/crud-annotated-document..png)
+![MongoDB 文档](https://oss.javaguide.cn/github/javaguide/database/mongodb/crud-annotated-document..png)
 
 文档的键是字符串。除了少数例外情况，键可以使用任意 UTF-8 字符。
 
@@ -56,13 +56,13 @@ MongoDB 中的记录就是一个 BSON 文档，它是由键值对组成的数据
 
 > 与 JSON 相比，BSON 着眼于提高存储和扫描效率。BSON 文档中的大型元素以长度字段为前缀以便于扫描。在某些情况下，由于长度前缀和显式数组索引的存在，BSON 使用的空间会多于 JSON。
 
-![BSON 官网首页](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/mongodb/bsonspec.org.png)
+![BSON 官网首页](https://oss.javaguide.cn/github/javaguide/database/mongodb/bsonspec.org.png)
 
 #### 集合
 
 MongoDB 集合存在于数据库中，**没有固定的结构**，也就是 **无模式** 的，这意味着可以往集合插入不同格式和类型的数据。不过，通常情况下，插入集合中的数据都会有一定的关联性。
 
-![MongoDB 集合](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/mongodb/crud-annotated-collection.png)
+![MongoDB 集合](https://oss.javaguide.cn/github/javaguide/database/mongodb/crud-annotated-collection.png)
 
 集合不需要事先创建，当第一个文档插入或者第一个索引创建时，如果该集合不存在，则会创建一个新的集合。
 
@@ -159,7 +159,7 @@ WiredTiger maintains a table's data in memory using a data structure called a B-
 
 其整体结构如下图所示：
 
-![WiredTiger B+树整体结构](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/mongodb/mongodb-b-plus-tree-integral-structure.png)
+![WiredTiger B+树整体结构](https://oss.javaguide.cn/github/javaguide/database/mongodb/mongodb-b-plus-tree-integral-structure.png)
 
 如果想要深入研究学习 WiredTiger 存储引擎，推荐阅读 MongoDB 中文社区的 [WiredTiger存储引擎系列](https://mongoing.com/archives/category/wiredtiger%e5%ad%98%e5%82%a8%e5%bc%95%e6%93%8e%e7%b3%bb%e5%88%97)。
 
@@ -192,7 +192,7 @@ MongoDB 聚合管道由多个阶段组成，每个阶段在文档通过管道时
 2. 对这些文档进行一系列运算
 3. 结果文档输出给下一个阶段
 
-![管道的工作流程](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/mongodb/mongodb-aggregation-stage.png)
+![管道的工作流程](https://oss.javaguide.cn/github/javaguide/database/mongodb/mongodb-aggregation-stage.png)
 
 **常用阶段操作符** ：
 

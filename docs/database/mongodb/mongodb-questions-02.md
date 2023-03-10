@@ -32,7 +32,7 @@ tag:
 
 复合索引中字段的顺序非常重要，例如下图中的复合索引由`{userid:1, score:-1}`组成，则该复合索引首先按照`userid`升序排序；然后再每个`userid`的值内，再按照`score`降序排序。
 
-![复合索引](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/mongodb/mongodb-composite-index.png)
+![复合索引](https://oss.javaguide.cn/github/javaguide/database/mongodb/mongodb-composite-index.png)
 
 在复合索引中，按照何种方式排序，决定了该索引在查询中是否能被应用到。
 
@@ -137,13 +137,13 @@ MongoDB 的复制集群又称为副本集群，是一组维护相同数据集合
 
 下图是一个典型的三成员副本集群：
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/mongodb/replica-set-read-write-operations-primary.png)
+![](https://oss.javaguide.cn/github/javaguide/database/mongodb/replica-set-read-write-operations-primary.png)
 
 主节点与备节点之间是通过 **oplog（操作日志）** 来同步数据的。oplog 是 local 库下的一个特殊的 **上限集合(Capped Collection)** ，用来保存写操作所产生的增量日志，类似于 MySQL 中 的 Binlog。
 
 > 上限集合类似于定长的循环队列，数据顺序追加到集合的尾部，当集合空间达到上限时，它会覆盖集合中最旧的文档。上限集合的数据将会被顺序写入到磁盘的固定空间内，所以，I/O 速度非常快，如果不建立索引，性能更好。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/mongodb/replica-set-primary-with-two-secondaries.png)
+![](https://oss.javaguide.cn/github/javaguide/database/mongodb/replica-set-primary-with-two-secondaries.png)
 
 当主节点上的一个写操作完成后，会向 oplog 集合写入一条对应的日志，而从节点则通过这个 oplog 不断拉取到新的日志，在本地进行回放以达到数据同步的目的。
 
@@ -162,7 +162,7 @@ MongoDB 的复制集群又称为副本集群，是一组维护相同数据集合
 
 MongoDB 的分片集群由如下三个部分组成（下图来源于[官方文档对分片集群的介绍](https://www.mongodb.com/docs/manual/sharding/)）：
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/mongodb/sharded-cluster-production-architecture.png)
+![](https://oss.javaguide.cn/github/javaguide/database/mongodb/sharded-cluster-production-architecture.png)
 
 - **Config Servers**：配置服务器，本质上是一个 MongoDB 的副本集，负责存储集群的各种元数据和配置，如分片地址、Chunks 等
 - **Mongos**：路由服务，不存具体数据，从 Config 获取集群配置讲请求转发到特定的分片，并且整合分片结果返回给客户端。
@@ -209,7 +209,7 @@ MongoDB 支持两种分片算法来满足不同的查询需求（摘自[MongoDB 
 
 **1、基于范围的分片** ：
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/mongodb/example-of-scope-based-sharding.png)
+![](https://oss.javaguide.cn/github/javaguide/database/mongodb/example-of-scope-based-sharding.png)
 
 MongoDB 按照分片键（Shard Key）的值的范围将数据拆分为不同的块（Chunk），每个块包含了一段范围内的数据。当分片键的基数大、频率低且值非单调变更时，范围分片更高效。
 
@@ -219,7 +219,7 @@ MongoDB 按照分片键（Shard Key）的值的范围将数据拆分为不同的
 
 **2、基于 Hash 值的分片**
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/mongodb/example-of-hash-based-sharding.png)
+![](https://oss.javaguide.cn/github/javaguide/database/mongodb/example-of-hash-based-sharding.png)
 
 MongoDB 计算单个字段的哈希值作为索引值，并以哈希值的范围将数据拆分为不同的块（Chunk）。
 
@@ -237,13 +237,13 @@ MongoDB 计算单个字段的哈希值作为索引值，并以哈希值的范围
 
 默认情况下，一个 Chunk 的最大值默认为 64MB（可调整，取值范围为 1~1024 MB。如无特殊需求，建议保持默认值），进行数据插入、更新、删除时，如果此时 Mongos 感知到了目标 Chunk 的大小或者其中的数据量超过上限，则会触发 **Chunk 分裂**。
 
-![Chunk 分裂](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/mongodb/chunk-splitting-shard-a.png)
+![Chunk 分裂](https://oss.javaguide.cn/github/javaguide/database/mongodb/chunk-splitting-shard-a.png)
 
 数据的增长会让 Chunk 分裂得越来越多。这个时候，各个分片上的 Chunk 数量可能会不平衡。Mongos 中的 **均衡器(Balancer)** 组件就会执行自动平衡，尝试使各个 Shard 上 Chunk 的数量保持均衡，这个过程就是 **再平衡（Rebalance）**。默认情况下，数据库和集合的 Rebalance 是开启的。
 
 如下图所示，随着数据插入，导致 Chunk 分裂，让 AB 两个分片有 3 个 Chunk，C 分片只有一个，这个时候就会把 B 分配的迁移一个到 C 分片实现集群数据均衡。
 
-![Chunk 迁移](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/mongodb/mongo-reblance-three-shards.png)
+![Chunk 迁移](https://oss.javaguide.cn/github/javaguide/database/mongodb/mongo-reblance-three-shards.png)
 
 > Balancer 是 MongoDB 的一个运行在 Config Server 的 Primary 节点上(自 MongoDB 3.4 版本起)的后台进程，它监控每个分片上 Chunk 数量，并在某个分片上 Chunk 数量达到阈值进行迁移。
 

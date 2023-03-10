@@ -62,7 +62,7 @@ Gradle 官方文档是这样介绍的 Gradle Wrapper 的：
 
 Gradle Wrapper 的工作流程图如下（图源[Gradle Wrapper 官方文档介绍](https://docs.gradle.org/current/userguide/gradle_wrapper.html)）：
 
-![包装器工作流程](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/csdn/efa7a0006b04051e2b84cd116c6ccdfc.png)
+![包装器工作流程](https://oss.javaguide.cn/github/javaguide/csdn/efa7a0006b04051e2b84cd116c6ccdfc.png)
 
 整个流程主要分为下面 3 步：
 
@@ -272,11 +272,11 @@ Gradle 插件主要分为两类：
 
 Gradle 构建的生命周期有三个阶段：**初始化阶段，配置阶段**和**运行阶段**。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/csdn/dadbdf59fccd9a2ebf60a2d018541e52.png)
+![](https://oss.javaguide.cn/github/javaguide/csdn/dadbdf59fccd9a2ebf60a2d018541e52.png)
 
 在初始化阶段与配置阶段之间、配置阶段结束之后、执行阶段结束之后，我们都可以加一些定制化的 Hook。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/csdn/5c297ccc4dac83229ff3e19caee9d1d2.png)
+![](https://oss.javaguide.cn/github/javaguide/csdn/5c297ccc4dac83229ff3e19caee9d1d2.png)
 
 ### 初始化阶段
 

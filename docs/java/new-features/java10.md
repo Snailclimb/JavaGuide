@@ -69,7 +69,7 @@ static <E> List<E> copyOf(Collection<? extends E> coll) {
 
 使用 `copyOf()` 创建的集合为不可变集合，不能进行添加、删除、替换、 排序等操作，不然会报 `java.lang.UnsupportedOperationException` 异常。 IDEA 也会有相应的提示。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/image-20210816154125579.png)
+![](https://oss.javaguide.cn/java-guide-blog/image-20210816154125579.png)
 
 并且，`java.util.stream.Collectors` 中新增了静态方法，用于将流中的元素收集为不可变的集合。
 
