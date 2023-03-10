@@ -202,7 +202,7 @@ Resilience4j 不仅提供限流，还提供了熔断、负载保护、自动重�
 
 > ShenYu 地址: https://github.com/apache/incubator-shenyu
 
-![](https://oss.javaguide.cn/github/javaguide/csdn/e1e2a75f489e4854990dabe3b6cec522.png)
+![ShenYu 限流脚本](https://oss.javaguide.cn/github/javaguide/csdn/e1e2a75f489e4854990dabe3b6cec522.jpg)
 
 ## 相关阅读
 

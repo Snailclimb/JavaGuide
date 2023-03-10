@@ -108,7 +108,7 @@ tag:
 
 图解（图片来源：《图解 HTTP》）：
 
-<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/url输入到展示出来的过程.jpg" style="zoom:50%; " />
+<img src="https://oss.javaguide.cn/github/javaguide/url%E8%BE%93%E5%85%A5%E5%88%B0%E5%B1%95%E7%A4%BA%E5%87%BA%E6%9D%A5%E7%9A%84%E8%BF%87%E7%A8%8B.jpg" style="zoom:50%; " />
 
 > 上图有一个错误，请注意，是 OSPF 不是 OPSF。 OSPF（Open Shortest Path First，ospf）开放最短路径优先协议, 是由 Internet 工程任务组开发的路由选择协议
 
@@ -130,7 +130,7 @@ tag:
 
 HTTP 状态码用于描述 HTTP 请求的结果，比如2xx 就代表请求被成功处理。
 
-![HTTP 状态码](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019/7/状态码.png)
+![HTTP 状态码](https://oss.javaguide.cn/github/javaguide/%E7%8A%B6%E6%80%81%E7%A0%81.png)
 
 关于 HTTP 状态码更详细的总结，可以看我写的这篇文章：[HTTP 常见状态码总结（应用层）](./http-status-codes.md)。
 

@@ -29,7 +29,7 @@ tag:
 
 综上：**序列化的主要目的是通过网络传输对象或者说是将对象存储到文件系统、数据库、内存中。**
 
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2020-8/a478c74d-2c48-40ae-9374-87aacf05188c.png)
+![](https://oss.javaguide.cn/github/javaguide/a478c74d-2c48-40ae-9374-87aacf05188c.png)
 
 <p style="text-align:right;font-size:13px;color:gray">https://www.corejavaguru.com/java/serialization/interview-questions-1</p>
 
@@ -198,7 +198,7 @@ Github 地址：[https://github.com/protostuff/protostuff](https://github.com/pr
 
 Hessian 是一个轻量级的，自定义描述的二进制 RPC 协议。Hessian 是一个比较老的序列化实现了，并且同样也是跨语言的。
 
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2020-8/8613ec4c-bde5-47bf-897e-99e0f90b9fa3.png)
+![](https://oss.javaguide.cn/github/javaguide/8613ec4c-bde5-47bf-897e-99e0f90b9fa3.png)
 
 Dubbo2.x 默认启用的序列化方式是 Hessian2 ,但是，Dubbo 对 Hessian2 进行了修改，不过大体结构还是差不多。
 

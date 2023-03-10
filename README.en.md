@@ -368,6 +368,8 @@ If you want to follow my updated articles and the dry goods I share in real time
 
 **《Java Interview Blitz》:** A PDF version of "Java Interview Blitz" derived from this document specifically for interviews [Public](#公众号) Reply back to **"Interview Blitz "** and get it for free!
 
-![My Public](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/167598cd2e17b8ec.png)
+<div align="center">   
+    <img src="https://oss.javaguide.cn/github/javaguide/gongzhonghaoxuanchuan.png" style="margin: 0 auto;" />  
+</div>
 
 ![](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3a2d826918a44bcbaa8d9272db3ad7d2~tplv-k3u1fbpfcp-watermark.image)

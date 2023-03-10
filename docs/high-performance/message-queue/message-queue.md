@@ -45,7 +45,7 @@ tag:
 
 ### 通过异步处理提高系统性能（减少响应所需时间）
 
-![通过异步处理提高系统性能](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/Asynchronous-message-queue.png)
+![通过异步处理提高系统性能](https://oss.javaguide.cn/github/javaguide/Asynchronous-message-queue.png)
 
 将用户的请求数据存储到消息队列之后就立即返回结果。随后，系统再对消息进行消费。
 
@@ -57,7 +57,7 @@ tag:
 
 举例：在电子商务一些秒杀、促销活动中，合理使用消息队列可以有效抵御促销活动刚开始大量订单涌入对系统的冲击。如下图所示：
 
-![削峰](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/削峰-消息队列.png)
+![削峰](https://oss.javaguide.cn/github/javaguide/%E5%89%8A%E5%B3%B0-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97.png)
 
 ### 降低系统耦合性
 

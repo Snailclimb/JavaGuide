@@ -9,7 +9,7 @@ tag:
 
 AQS 的全称为 `AbstractQueuedSynchronizer` ，翻译过来的意思就是抽象队列同步器。这个类在 `java.util.concurrent.locks` 包下面。
 
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/Java%20%E7%A8%8B%E5%BA%8F%E5%91%98%E5%BF%85%E5%A4%87%EF%BC%9A%E5%B9%B6%E5%8F%91%E7%9F%A5%E8%AF%86%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BB%93/AQS.png)
+![](https://oss.javaguide.cn/github/javaguide/AQS.png)
 
 AQS 就是一个抽象类，主要用来构建锁和同步器。
 
@@ -38,7 +38,7 @@ CLH 队列锁结构如下图所示：
 
 AQS(`AbstractQueuedSynchronizer`)的核心原理图（图源[Java 并发之 AQS 详解](https://www.cnblogs.com/waterystone/p/4920797.html)）如下：
 
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/Java%20%E7%A8%8B%E5%BA%8F%E5%91%98%E5%BF%85%E5%A4%87%EF%BC%9A%E5%B9%B6%E5%8F%91%E7%9F%A5%E8%AF%86%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BB%93/CLH.png)
+![](https://oss.javaguide.cn/github/javaguide/CLH.png)
 
 AQS 使用 **int 成员变量 `state` 表示同步状态**，通过内置的 **线程等待队列** 来完成获取资源线程的排队工作。
 
