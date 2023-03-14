@@ -394,7 +394,7 @@ Sorted Set 类似于 Set，但和 Set 相比，Sorted Set 增加了一个权重�
 | ZSCORE key member                             | 获取指定有序集合中指定元素的 score 值                        |
 | ZINTERSTORE destination numkeys key1 key2 ... | 将给定所有有序集合的交集存储在 destination 中，对相同元素对应的 score 值进行 SUM 聚合操作，numkeys 为集合数量 |
 | ZUNIONSTORE destination numkeys key1 key2 ... | 求并集，其它和 ZINTERSTORE 类似                              |
-| ZDIFF destination numkeys key1 key2 ...       | 求差集，其它和 ZINTERSTORE 类似                              |
+| ZDIFFSTORE destination numkeys key1 key2 ...  | 求差集，其它和 ZINTERSTORE 类似                              |
 | ZRANGE key start end                          | 获取指定有序集合 start 和 end 之间的元素（score 从低到高）   |
 | ZREVRANGE key start end                       | 获取指定有序集合 start 和 end 之间的元素（score 从高到底）   |
 | ZREVRANK key member                           | 获取指定有序集合中指定元素的排名(score 从大到小排序)         |
