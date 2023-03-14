@@ -130,7 +130,7 @@ tag:
 
 HTTP 状态码用于描述 HTTP 请求的结果，比如2xx 就代表请求被成功处理。
 
-![HTTP 状态码](https://oss.javaguide.cn/github/javaguide/%E7%8A%B6%E6%80%81%E7%A0%81.png)
+![常见 HTTP 状态码](https://oss.javaguide.cn/github/javaguide/cs-basics/network/http-status-code.png)
 
 关于 HTTP 状态码更详细的总结，可以看我写的这篇文章：[HTTP 常见状态码总结（应用层）](./http-status-codes.md)。
 
@@ -161,8 +161,6 @@ HTTP 是一种不保存状态，即无状态（stateless）协议。也就是说
 **Cookie 被禁用怎么办?**
 
 最常用的就是利用 URL 重写把 Session ID 直接附加在 URL 路径的后面。
-
-![HTTP是无状态协议](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/HTTP是无状态的.png)
 
 ### URI 和 URL 的区别是什么?
 

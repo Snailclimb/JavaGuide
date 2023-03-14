@@ -71,7 +71,7 @@ FTP 是基于客户—服务器（C/S）模型而设计的，在客户端与 FTP
 >
 > 这种将命令和数据分开传送的思想大大提高了 FTP 的效率。
 
-![FTP工作过程](https://oss.javaguide.cn/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/ftp.png)
+![FTP工作过程](https://oss.javaguide.cn/github/javaguide/cs-basics/network/ftp.png)
 
 
 ## Telnet:远程登陆协议
@@ -84,4 +84,4 @@ FTP 是基于客户—服务器（C/S）模型而设计的，在客户端与 FTP
 
 **Telnet 和 SSH 之间的主要区别在于 SSH 协议会对传输的数据进行加密保证数据安全性。**
 
-![TCP和UDP](https://oss.javaguide.cn/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93/TCP%E5%92%8CUDP.png)
+![](https://oss.javaguide.cn/github/javaguide/cs-basics/network/tcp-udp-overview.png)

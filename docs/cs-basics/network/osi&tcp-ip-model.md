@@ -51,7 +51,7 @@ OSI 七层模型虽然失败了，但是却提供了很多不错的理论基础�
 
 **应用层位于传输层之上，主要提供两个终端设备上的应用程序之间信息交换的服务，它定义了信息交换的格式，消息会交给下一层传输层来传输。** 我们把应用层交互的数据单元称为报文。
 
-![](https://oss.javaguide.cn/github/javaguide/5971-2-7I1-20220111095024771-20220111201807861.png)
+![](https://oss.javaguide.cn/github/javaguide/cs-basics/network/network-five-layer-sample-diagram.png)
 
 应用层协议定义了网络通信规则，对于不同的网络应用需要不同的应用层协议。在互联网中应用层协议很多，如支持 Web 应用的 HTTP 协议，支持电子邮件的 SMTP 协议等等。
 

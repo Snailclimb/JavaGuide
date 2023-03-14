@@ -95,9 +95,37 @@ JDK 1.8 之前永久代还没被彻底移除的时候通常通过下面这些参
 下面是一些常用参数：
 
 ```bash
--XX:MetaspaceSize=N #设置 Metaspace 的初始（和最小大小）
--XX:MaxMetaspaceSize=N #设置 Metaspace 的最大大小，如果不指定大小的话，随着更多类的创建，虚拟机会耗尽所有可用的系统内存。
+-XX:MetaspaceSize=N #设置 Metaspace 的初始大小（是一个常见的误区，后面会解释）
+-XX:MaxMetaspaceSize=N #设置 Metaspace 的最大大小
 ```
+
+**🐛 修正（参见： [issue#1947](https://github.com/Snailclimb/JavaGuide/issues/1947)）**：
+
+1、Metaspace 的初始容量并不是 `-XX:MetaspaceSize` 设置，无论 `-XX:MetaspaceSize` 配置什么值，对于 64 位 JVM 来说，Metaspace 的初始容量都是 21807104（约 20.8m）。
+
+可以参考 Oracle 官方文档 [Other Considerations](https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/considerations.html) 中提到的：
+
+> Specify a higher value for the option MetaspaceSize to avoid early garbage collections induced for class metadata. The amount of class metadata allocated for an application is application-dependent and general guidelines do not exist for the selection of MetaspaceSize. The default size of MetaspaceSize is platform-dependent and ranges from 12 MB to about 20 MB.
+>
+> MetaspaceSize 的默认大小取决于平台，范围从 12 MB 到大约 20 MB。
+
+另外，还可以看一下这个试验：[JVM 参数 MetaspaceSize 的误解](https://mp.weixin.qq.com/s/jqfppqqd98DfAJHZhFbmxA)。
+
+2、Metaspace 由于使用不断扩容到`-XX:MetaspaceSize`参数指定的量，就会发生 FGC，且之后每次 Metaspace 扩容都会发生 Full GC。
+
+也就是说，MetaspaceSize 表示 Metaspace 使用过程中触发 Full GC 的阈值，只对触发起作用。
+
+垃圾搜集器内部是根据变量 `_capacity_until_GC`来判断 Metaspace 区域是否达到阈值的，初始化代码如下所示：
+
+```c
+void MetaspaceGC::initialize() {
+  // Set the high-water mark to MaxMetapaceSize during VM initializaton since
+  // we can't do a GC during initialization.
+  _capacity_until_GC = MaxMetaspaceSize;
+}
+```
+
+相关阅读： [issue 更正：MaxMetaspaceSize如果不指定大小的话，不会耗尽内存 #1204 ](https://github.com/Snailclimb/JavaGuide/issues/1204) 。
 
 ## 3.垃圾收集相关
 
@@ -194,11 +222,11 @@ JVM 具有四种类型的 GC 实现：
 
 这里推荐了非常多优质的 JVM 实践相关的文章，推荐阅读，尤其是 JVM 性能优化和问题排查相关的文章。
 
-- [JVM参数配置说明 - 阿里云官方文档 - 2022](https://help.aliyun.com/document_detail/148851.html)
-- [JVM内存配置最佳实践 - 阿里云官方文档 - 2022](https://help.aliyun.com/document_detail/383255.html)
+- [JVM 参数配置说明 - 阿里云官方文档 - 2022](https://help.aliyun.com/document_detail/148851.html)
+- [JVM 内存配置最佳实践 - 阿里云官方文档 - 2022](https://help.aliyun.com/document_detail/383255.html)
 - [求你了，GC 日志打印别再瞎配置了 - 思否 - 2022](https://segmentfault.com/a/1190000039806436)
 - [一次大量 JVM Native 内存泄露的排查分析（64M 问题） - 掘金 - 2022](https://juejin.cn/post/7078624931826794503)
-- [一次线上JVM调优实践，FullGC40次/天到10天一次的优化过程 - HeadpDump - 2021](https://heapdump.cn/article/1859160)
+- [一次线上 JVM 调优实践，FullGC40 次/天到 10 天一次的优化过程 - HeadpDump - 2021](https://heapdump.cn/article/1859160)
 - [听说 JVM 性能优化很难？今天我小试了一把！ - 陈树义 - 2021](https://shuyi.tech/archives/have-a-try-in-jvm-combat)
 - [你们要的线上 GC 问题案例来啦 - 编了个程 - 2021](https://mp.weixin.qq.com/s/df1uxHWUXzhErxW1sZ6OvQ)
 - [Java 中 9 种常见的 CMS GC 问题分析与解决 - 美团技术团队 - 2020](https://tech.meituan.com/2020/11/12/java-9-cms-gc.html)
