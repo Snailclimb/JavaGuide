@@ -264,6 +264,7 @@ export const sidebarConfig = sidebar({
                 "transaction-isolation-level",
                 "innodb-implementation-of-mvcc",
                 "how-sql-executed-in-mysql",
+                "mysql-query-cache",
                 "mysql-query-execution-plan",
                 "mysql-auto-increment-primary-key-continuous",
                 "some-thoughts-on-database-storage-time",

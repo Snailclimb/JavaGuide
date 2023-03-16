@@ -211,6 +211,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 - [MySQL三大日志(binlog、redo log和undo log)详解](./database/mysql/mysql-logs.md)
 - [InnoDB 存储引擎对 MVCC 的实现](./database/mysql/innodb-implementation-of-mvcc.md)
 - [SQL 语句在 MySQL 中的执行过程](./database/mysql/how-sql-executed-in-mysql.md)
+- [MySQL 查询缓存详解](./database/mysql/mysql-query-cache.md)
 - [MySQL执行计划分析](./database/mysql/mysql-query-execution-plan.md)
 - [MySQL自增主键一定是连续的吗](./database/mysql/mysql-auto-increment-primary-key-continuous.md)
 - [MySQL 时间类型数据存储建议](./database/mysql/some-thoughts-on-database-storage-time.md)

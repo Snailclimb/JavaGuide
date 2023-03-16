@@ -43,13 +43,8 @@ export default defineUserConfig({
           s.parentNode.insertBefore(hm, s);
         })();`,
     ],
-    [
-      "link",
-      {
-        rel: "stylesheet",
-        href: "/iconfont/iconfont.css",
-      },
-    ],
+    ["link", { rel: "stylesheet", href: "/iconfont/iconfont.css" }],
+    ["link", { rel: "icon", href: "/favicon.ico" }],
   ],
   locales: {
     "/": {
