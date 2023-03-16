@@ -1292,13 +1292,13 @@ order by c.cust_name;
 select c.cust_name, o.order_num
 from Customers c, Orders o
 where c.cust_id = o.cust_id
-order by c.cust_name;
+order by c.cust_name,o.order_num;
 
 # 显式内连接
 select c.cust_name, o.order_num
 from Customers c inner join Orders o
 using(cust_id)
-order by c.cust_name;
+order by c.cust_name,o.order_num;
 ```
 
 ### 返回顾客名称和相关订单号以及每个订单的总价
