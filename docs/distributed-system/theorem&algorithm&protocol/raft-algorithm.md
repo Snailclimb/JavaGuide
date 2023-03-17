@@ -1,5 +1,5 @@
 ---
-title: Raft 算法
+title: Raft 算法详解
 category: 分布式
 tag:
   - 分布式协议&算法

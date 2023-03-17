@@ -1,3 +1,10 @@
+---
+title: CAP & BASE理论详解
+category: 分布式
+tag:
+  - 分布式协议&算法
+---
+
 ## 背景
 
 在分布式系统中，不同的节点进行数据/信息共享是一个基本的需求。
@@ -12,7 +19,7 @@ Gossip 直译过来就是闲话、流言蜚语的意思。流言蜚语有什么�
 
 ![](./images/gossip/gossip.png)
 
-Gossip 协议也叫 Epidemic 协议（流行病协议）或者 Epidemic propagation 算法（疫情传播算法），别名很多。不过，这些名字的特点都具有 **随机传播特性** （联想一下病毒传播、癌细胞扩散等生活中常见的情景），这也正是 Gossip 协议最主要的特点。
+**Gossip 协议** 也叫 Epidemic 协议（流行病协议）或者 Epidemic propagation 算法（疫情传播算法），别名很多。不过，这些名字的特点都具有 **随机传播特性** （联想一下病毒传播、癌细胞扩散等生活中常见的情景），这也正是 Gossip 协议最主要的特点。
 
 Gossip 协议最早是在 ACM 上的一篇 1987 年发表的论文 [《Epidemic Algorithms for Replicated Database Maintenance》](https://dl.acm.org/doi/10.1145/41840.41841)中被提出的。根据论文标题，我们大概就能知道 Gossip 协议当时提出的主要应用是在分布式数据库系统中各个副本节点同步数据。
 
@@ -24,23 +31,34 @@ Gossip 协议最早是在 ACM 上的一篇 1987 年发表的论文 [《Epidemic 
 
 ## Gossip 协议应用
 
-1、我们经常使用的分布式缓存 Redis 的官方集群解决方案（3.0 版本引入） Redis Cluster 就是基于 Gossip 协议来实现集群中各个节点数据的最终一致性。
+**1、Redis Cluster 基于 Gossip 协议通信共享信息**
+
+我们经常使用的分布式缓存 Redis 的官方集群解决方案（3.0 版本引入） Redis Cluster 就是基于 Gossip 协议来实现集群中各个节点数据的最终一致性。
 
 ![](https://oscimg.oschina.net/oscnet/up-fcacc1eefca6e51354a5f1fc9f2919f51ec.png)
 
-Redis Cluster 中的每个 Redis 节点都维护了一份集群的状态信息，各个节点利用 Gossip 协议传递的信息就是集群的状态信息。
+Redis Cluster 是一个典型的分布式系统，分布式系统中的各个节点需要互相通信。既然要相互通信就要遵循一致的通信协议，Redis Cluster 中的各个节点基于 **Gossip 协议** 来进行通信共享信息，每个 Redis 节点都维护了一份集群的状态信息。
+
+Redis Cluster 的节点之间会相互发送多种 Gossip 消息：
+
+- **MEET** ：在 Redis Cluster 中的某个 Redis 节点上执行 `CLUSTER MEET ip port` 命令，可以向指定的 Redis 节点发送一条 MEET 信息，用于将其添加进 Redis Cluster 成为新的 Redis 节点。
+- **PING/PONG** ：Redis Cluster 中的节点都会定时地向其他节点发送 PING 消息，来交换各个节点状态信息，检查各个节点状态，包括在线状态、疑似下线状态 PFAIL 和已下线状态 FAIL。
+- **FAIL** ：Redis Cluster 中的节点 A 发现 B 节点 PFAIL ，并且在下线报告的有效期限内集群中半数以上的节点将 B 节点标记为 PFAIL，节点 A 就会向集群广播一条 FAIL 消息，通知其他节点将故障节点 B 标记为 FAIL 。
+- ......
 
 下图就是主从架构的 Redis Cluster 的示意图，图中的虚线代表的就是各个节点之间使用 Gossip 进行通信 ，实线表示主从复制。
 
 ![](./images/gossip/redis-cluster-gossip.png)
 
-2、NoSQL 数据库 Apache Cassandra 集群通过 Gossip 协议来进行动态管理集群节点状态（节点故障检测和恢复）。
+有了 Redis Cluster 之后，不需要专门部署 Sentinel 集群服务了。Redis Cluster 相当于是内置了 Sentinel 机制，Redis Cluster 内部的各个 Redis 节点通过 Gossip 协议互相探测健康状态，在故障时可以自动切换。
 
-3、服务网格解决方案 Consul 使用 Gossip 协议网络内可靠有效地传输新服务和事件的信息。
+关于 Redis Cluster  的详细介绍，可以查看这篇文章 [Redis 集群详解(付费)](https://javaguide.cn/database/redis/redis-cluster.html) 。
 
-4、Bitcoin 使用 Gossip 协议来传播交易和区块信息。不过，为了提供更好的隐私保护，CMU 的研究人员提出 **蒲公英协议**。
+**2、NoSQL 数据库 Apache Cassandra 集群通过 Gossip 协议来进行动态管理集群节点状态（节点故障检测和恢复）。**
 
-5、......
+**3、服务网格解决方案 Consul 使用 Gossip 协议网络内可靠有效地传输新服务和事件的信息。**
+
+**4、Bitcoin 使用 Gossip 协议来传播交易和区块信息。不过，为了提供更好的隐私保护，CMU 的研究人员提出 蒲公英协议。**
 
 还有非常多使用 Gossip 协议的应用，学习 Gossip 协议有助于我们搞清很多技术的底层原理。
 

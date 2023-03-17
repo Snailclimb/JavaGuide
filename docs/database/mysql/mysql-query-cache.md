@@ -76,10 +76,10 @@ mysql> show variables like '%query_cache%';
 我们这里对 8.0 版本之前`show variables like '%query_cache%';`命令打印出来的信息进行解释。
 
 - **`have_query_cache`：** 该 MySQL Server 是否支持查询缓存，如果是 YES 表示支持，否则则是不支持。
-- **`query_cache_limit`：**MySQL 查询缓存的最大查询结果，查询结果大于该值时不会被缓存。
-- **`query_cache_min_res_unit`：**查询缓存分配的最小块的大小(字节)。当查询进行的时候，MySQL 把查询结果保存在查询缓存中，但如果要保存的结果比较大，超过 `query_cache_min_res_unit` 的值 ，这时候 MySQL 将一边检索结果，一边进行保存结果，也就是说，有可能在一次查询中，MySQL 要进行多次内存分配的操作。适当的调节 `query_cache_min_res_unit` 可以优化内存。
-- **`query_cache_size`：**为缓存查询结果分配的内存的数量，单位是字节，且数值必须是 1024 的整数倍。默认值是 0，即禁用查询缓存。
-- **`query_cache_type`：**设置查询缓存类型，默认为 ON。设置 GLOBAL 值可以设置后面的所有客户端连接的类型。客户端可以设置 SESSION 值以影响他们自己对查询缓存的使用。
+- **`query_cache_limit`：** MySQL 查询缓存的最大查询结果，查询结果大于该值时不会被缓存。
+- **`query_cache_min_res_unit`：** 查询缓存分配的最小块的大小(字节)。当查询进行的时候，MySQL 把查询结果保存在查询缓存中，但如果要保存的结果比较大，超过 `query_cache_min_res_unit` 的值 ，这时候 MySQL 将一边检索结果，一边进行保存结果，也就是说，有可能在一次查询中，MySQL 要进行多次内存分配的操作。适当的调节 `query_cache_min_res_unit` 可以优化内存。
+- **`query_cache_size`：** 为缓存查询结果分配的内存的数量，单位是字节，且数值必须是 1024 的整数倍。默认值是 0，即禁用查询缓存。
+- **`query_cache_type`：** 设置查询缓存类型，默认为 ON。设置 GLOBAL 值可以设置后面的所有客户端连接的类型。客户端可以设置 SESSION 值以影响他们自己对查询缓存的使用。
 - **`query_cache_wlock_invalidate`** ：如果某个表被锁住，是否返回缓存中的数据，默认关闭，也是建议的。
 
 `query_cache_type` 可能的值(修改 `query_cache_type` 需要重启 MySQL Server)：

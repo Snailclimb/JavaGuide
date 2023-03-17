@@ -1,5 +1,5 @@
 ---
-title: CAP & BASE理论
+title: CAP & BASE理论详解
 category: 分布式
 tag:
   - 分布式协议&算法

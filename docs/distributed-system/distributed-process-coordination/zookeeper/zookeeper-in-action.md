@@ -36,7 +36,7 @@ root@eaf70fc620cb:/apache-zookeeper-3.5.8-bin# cd bin
 
 如果你看到控制台成功打印出如下信息的话，说明你已经成功连接 ZooKeeper 服务。
 
-![](./images/连接ZooKeeper服务.png)
+![连接 ZooKeeper 服务](https://oss.javaguide.cn/github/javaguide/distributed-system/zookeeper/connect-zooKeeper-service.png)
 
 ### 2.3. 常用命令演示
 
@@ -163,7 +163,7 @@ numChildren = 1
 
 Curator 是Netflix公司开源的一套 ZooKeeper Java客户端框架，相比于 Zookeeper 自带的客户端 zookeeper 来说，Curator 的封装更加完善，各种 API 都可以比较方便地使用。
 
-![](./images/curator.png)
+![](https://oss.javaguide.cn/github/javaguide/distributed-system/zookeeper/curator.png)
 
 下面我们就来简单地演示一下 Curator 的使用吧！
 

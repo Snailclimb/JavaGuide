@@ -1,5 +1,5 @@
 ---
-title: Paxos 算法
+title: Paxos 算法详细
 category: 分布式
 tag:
   - 分布式协议&算法
