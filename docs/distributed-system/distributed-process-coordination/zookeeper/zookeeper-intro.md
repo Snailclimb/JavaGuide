@@ -1,3 +1,5 @@
+
+
 # ZooKeeper 相关概念总结(入门)
 
 相信大家对 ZooKeeper 应该不算陌生。但是你真的了解 ZooKeeper 到底有啥用不？如果别人/面试官让你给他讲讲对于 ZooKeeper 的认识，你能回答到什么地步呢？
@@ -182,7 +184,7 @@ Session 有一个属性叫做：`sessionTimeout` ，`sessionTimeout` 代表会�
 
 为了保证高可用，最好是以集群形态来部署 ZooKeeper，这样只要集群中大部分机器是可用的（能够容忍一定的机器故障），那么 ZooKeeper 本身仍然是可用的。通常 3 台服务器就可以构成一个 ZooKeeper 集群了。ZooKeeper 官方提供的架构图就是一个 ZooKeeper 集群整体对外提供服务。
 
-![](https://oss.javaguide.cn/github/javaguide/distributed-system/zookeeper/zookeeper-cluster.png)
+![ZooKeeper 集群架构](https://oss.javaguide.cn/github/javaguide/distributed-system/zookeeper/zookeeper-cluster.png)
 
 上图中每一个 Server 代表一个安装 ZooKeeper 服务的服务器。组成 ZooKeeper 服务的服务器都会在内存中维护当前的服务器状态，并且每台服务器之间都互相保持着通信。集群间通过 ZAB 协议（ZooKeeper Atomic Broadcast）来保持数据的一致性。
 
@@ -202,17 +204,18 @@ ZooKeeper 集群中的所有机器通过一个 **Leader 选举过程** 来选定
 | Follower | 为客户端提供读服务，如果是写服务则转发给 Leader。参与选举过程中的投票。 |
 | Observer | 为客户端提供读服务，如果是写服务则转发给 Leader。不参与选举过程中的投票，也不参与“过半写成功”策略。在不影响写性能的情况下提升集群的读性能。此角色于 ZooKeeper3.3 系列新增的角色。 |
 
+### ZooKeeper 集群 Leader 选举过程
+
 当 Leader 服务器出现网络中断、崩溃退出与重启等异常情况时，就会进入 Leader 选举过程，这个过程会选举产生新的 Leader 服务器。
 
 这个过程大致是这样的：
 
 1. **Leader election（选举阶段）**：节点在一开始都处于选举阶段，只要有一个节点得到超半数节点的票数，它就可以当选准 leader。
 2. **Discovery（发现阶段）** ：在这个阶段，followers 跟准 leader 进行通信，同步 followers 最近接收的事务提议。
-3. **Synchronization（同步阶段）** :同步阶段主要是利用 leader 前一阶段获得的最新提议历史，同步集群中所有的副本。同步完成之后
-   准 leader 才会成为真正的 leader。
+3. **Synchronization（同步阶段）** :同步阶段主要是利用 leader 前一阶段获得的最新提议历史，同步集群中所有的副本。同步完成之后准 leader 才会成为真正的 leader。
 4. **Broadcast（广播阶段）** :到了这个阶段，ZooKeeper 集群才能正式对外提供事务服务，并且 leader 可以进行消息广播。同时如果有新的节点加入，还需要对新节点进行同步。
 
-### ZooKeeper 集群中的服务器状态
+ZooKeeper 集群中的服务器状态有下面几种：
 
 - **LOOKING** ：寻找 Leader。
 - **LEADING** ：Leader 状态，对应的节点为 Leader。

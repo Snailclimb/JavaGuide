@@ -93,6 +93,12 @@ Memcached 是分布式缓存最开始兴起的那会，比较常用的。后来�
 
 由此可见，直接操作缓存能够承受的数据库请求数量是远远大于直接访问数据库的，所以我们可以考虑把数据库中的部分数据转移到缓存中去，这样用户的一部分请求会直接到缓存这里而不用经过数据库。进而，我们也就提高了系统整体的并发。
 
+### 常见的缓存读写策略有哪些？
+
+关于常见的缓存读写策略的详细介绍，可以看我写的这篇文章：[3 种常用的缓存读写策略详解](https://javaguide.cn/database/redis/3-commonly-used-cache-read-and-write-strategies.html) 。
+
+## Redis 应用
+
 ### Redis 除了做缓存，还能做什么？
 
 - **分布式锁** ： 通过 Redis 来做分布式锁是一种比较常见的方式。通常情况下，我们都是基于 Redisson 来实现分布式锁。关于 Redis 实现分布式锁的详细介绍，可以看我写的这篇文章：[分布式锁详解](https://javaguide.cn/distributed-system/distributed-lock.html) 。
@@ -101,32 +107,80 @@ Memcached 是分布式缓存最开始兴起的那会，比较常用的。后来�
 - **复杂业务场景** ：通过 Redis 以及 Redis 扩展（比如 Redisson）提供的数据结构，我们可以很方便地完成很多复杂的业务场景比如通过 bitmap 统计活跃用户、通过 sorted set 维护排行榜。
 - ......
 
+### 如何基于 Redis 实现分布式锁？
+
+关于 Redis 实现分布式锁的详细介绍，可以看我写的这篇文章：[分布式锁详解](https://javaguide.cn/distributed-system/distributed-lock.html) 。
+
 ### Redis 可以做消息队列么？
 
-Redis 5.0 新增加的一个数据结构 `Stream` 可以用来做消息队列，`Stream` 支持：
+> 实际项目中也没见谁使用 Redis 来做消息队列，对于这部分知识点大家了解就好了。
+
+**Redis 2.0 之前，如果想要使用 Redis 来做消息队列的话，只能通过 List 来实现。**
+
+通过 `RPUSH/LPOP` 或者 `LPUSH/RPOP`即可实现简易版消息队列 ：
+
+```bash
+# 生产者生产消息
+> RPUSH myList msg1 msg2
+(integer) 2
+> RPUSH myList msg3
+(integer) 3
+# 消费者消费消息
+> LPOP myList
+"msg1"
+```
+
+不过，通过 `RPUSH/LPOP` 或者 `LPUSH/RPOP`这样的方式存在性能问题，我们需要不断轮询去调用 `RPOP` 或 `LPOP` 来消费消息。当 List 为空时，大部分的轮询的请求都是无效请求，这种方式大量浪费了系统资源。
+
+因此，Redis 还提供了 `BLPOP`、`BRPOP` 这种阻塞式读取的命令（带 B-Bloking 的都是阻塞式），并且还支持一个超时参数。如果 List 为空，Redis 服务端不会立刻返回结果，它会等待 List 中有新数据后在返回或者是等待最多一个超时时间后返回空。如果将超时时间设置为 0 时，即可无限等待，直到弹出消息
+
+```bash
+# 超时时间为 10s
+# 如果有数据立刻返回，否则最多等待10秒
+> BRPOP myList 10
+null
+```
+
+**List 实现消息队列功能太简单，像消息确认机制等功能还需要我们自己实现，最要命的是没有广播机制，消息也只能被消费一次。**
+
+**Redis 2.0 引入了 发布订阅 (pub/sub) 解决了 List 实现消息队列没有广播机制的问题。**
+
+pub/sub 中引入了一个概念叫 channel（频道），发布订阅机制的实现就是基于这个 channel 来做的。
+
+pub/sub 涉及发布者和订阅者（也叫消费者）两个角色：
+
+- 发布者通过 `PUBLISH` 投递消息给指定 channel。
+- 订阅者通过`SUBSCRIBE`订阅它关心的 channel。并且，订阅者可以订阅一个或者多个 channel。
+
+我们这里启动 3 个 Redis 客户端来简单演示一下：
+
+![pub/sub 实现消息队列演示](https://oss.javaguide.cn/github/javaguide/database/redis/redis-pubsub-message-queue.png)
+
+pub/sub 既能单播又能广播，还支持 channel 的简单正则匹配。不过，消息丢失（客户端断开连接或者 Redis 宕机都会导致消息丢失）、消息堆积（发布者发布消息的时候不会管消费者的具体消费能力如何）等问题依然没有一个比较好的解决办法。
+
+为此，Redis 5.0 新增加的一个数据结构 `Stream` 来做消息队列。`Stream` 支持：
 
 - 发布 / 订阅模式
 - 按照消费者组进行消费
 - 消息持久化（ RDB 和 AOF）
 
-不过，和专业的消息队列相比，还是有很多欠缺的地方比如消息丢失和堆积问题不好解决。因此，我们通常建议是不使用 Redis 来做消息队列的，你完全可以选择市面上比较成熟的一些消息队列比如 RocketMQ、Kafka。
+`Stream` 使用起来相对要麻烦一些，这里就不演示了。而且，`Stream` 在实际使用中依然会有一些小问题不太好解决比如在 Redis 发生故障恢复后不能保证消息至少被消费一次。
 
-相关文章推荐：[Redis 消息队列的三种方案（List、Streams、Pub/Sub）](https://javakeeper.starfish.ink/data-management/Redis/Redis-MQ.html)。
+综上，和专业的消息队列相比，使用 Redis 来实现消息队列还是有很多欠缺的地方比如消息丢失和堆积问题不好解决。因此，我们通常建议不要使用 Redis 来做消息队列，你完全可以选择市面上比较成熟的一些消息队列比如 RocketMQ、Kafka。
 
-### 如何基于 Redis 实现分布式锁？
-
-关于 Redis 实现分布式锁的详细介绍，可以看我写的这篇文章：[分布式锁详解](https://javaguide.cn/distributed-system/distributed-lock.html) 。
+相关阅读：[Redis 消息队列发展历程 - 阿里开发者 - 2022](https://mp.weixin.qq.com/s/gCUT5TcCQRAxYkTJfTRjJw)。
 
 ## Redis 数据结构
+
+> 关于 Redis 5 种基础数据结构和 3 种特殊数据结构的详细介绍请看下面这两篇文章：
+>
+> - [Redis 5 种基本数据结构详解](https://javaguide.cn/database/redis/redis-data-structures-01.html)
+> - [Redis 3 种特殊数据结构详解](https://javaguide.cn/database/redis/redis-data-structures-02.html)
 
 ### Redis 常用的数据结构有哪些？
 
 - **5 种基础数据结构** ：String（字符串）、List（列表）、Set（集合）、Hash（散列）、Zset（有序集合）。
 - **3 种特殊数据结构** ：HyperLogLogs（基数统计）、Bitmap （位存储）、Geospatial (地理位置)。
-
-关于 5 种基础数据结构的详细介绍请看这篇文章：[Redis 5 种基本数据结构详解](https://javaguide.cn/database/redis/redis-data-structures-01.html)。
-
-关于 3 种特殊数据结构的详细介绍请看这篇文章：[Redis 3 种特殊数据结构详解](https://javaguide.cn/database/redis/redis-data-structures-02.html)。
 
 ### String 的应用场景有哪些？
 
@@ -364,20 +418,23 @@ Redis 通过 **IO 多路复用程序** 来监听来自客户端的大量连接�
 
 虽然，Redis6.0 引入了多线程，但是 Redis 的多线程只是在网络数据的读写这类耗时操作上使用了，执行命令仍然是单线程顺序执行。因此，你也不需要担心线程安全问题。
 
-Redis6.0 的多线程默认是禁用的，只使用主线程。如需开启需要设置IO线程数 > 1，需要修改 redis 配置文件 `redis.conf` ：
+Redis6.0 的多线程默认是禁用的，只使用主线程。如需开启需要设置 IO 线程数 > 1，需要修改 redis 配置文件 `redis.conf` ：
 
 ```bash
 io-threads 4 #设置1的话只会开启主线程，官网建议4核的机器建议设置为2或3个线程，8核的建议设置为6个线程
 ```
-另外：
-- io-threads的个数一旦设置，不能通过config动态设置
-- 当设置ssl后，io-threads将不工作
 
-开启多线程后，默认只会使用多线程进行IO写入writes，即发送数据给客户端，如果需要开启多线程IO读取reads，同样需要修改 redis 配置文件 `redis.conf` :
+另外：
+
+- io-threads 的个数一旦设置，不能通过 config 动态设置。
+- 当设置 ssl 后，io-threads 将不工作。
+
+开启多线程后，默认只会使用多线程进行 IO 写入 writes，即发送数据给客户端，如果需要开启多线程 IO 读取 reads，同样需要修改 redis 配置文件 `redis.conf` :
 
 ```bash
 io-threads-do-reads yes
 ```
+
 但是官网描述开启多线程读并不能有太大提升，因此一般情况下并不建议开启
 
 相关阅读：
