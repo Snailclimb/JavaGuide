@@ -3,6 +3,7 @@ title: Raft 算法详解
 category: 分布式
 tag:
   - 分布式协议&算法
+  - 共识算法
 ---
 
 > 本文由 [SnailClimb](https://github.com/Snailclimb) 和 [Xieqijun](https://github.com/jun0315) 共同完成。

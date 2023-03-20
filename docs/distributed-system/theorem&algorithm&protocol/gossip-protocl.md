@@ -1,8 +1,9 @@
 ---
-title: CAP & BASE理论详解
+title: Gossip 协议详解
 category: 分布式
 tag:
   - 分布式协议&算法
+  - 共识算法
 ---
 
 ## 背景
@@ -31,7 +32,9 @@ Gossip 协议最早是在 ACM 上的一篇 1987 年发表的论文 [《Epidemic 
 
 ## Gossip 协议应用
 
-**1、Redis Cluster 基于 Gossip 协议通信共享信息**
+NoSQL 数据库 Redis 和 Apache Cassandra、服务网格解决方案 Consul 等知名项目都用到了  Gossip 协议，学习 Gossip 协议有助于我们搞清很多技术的底层原理。
+
+我们这里以 Redis Cluster 为例说明 Gossip 协议的实际应用。
 
 我们经常使用的分布式缓存 Redis 的官方集群解决方案（3.0 版本引入） Redis Cluster 就是基于 Gossip 协议来实现集群中各个节点数据的最终一致性。
 
@@ -53,14 +56,6 @@ Redis Cluster 的节点之间会相互发送多种 Gossip 消息：
 有了 Redis Cluster 之后，不需要专门部署 Sentinel 集群服务了。Redis Cluster 相当于是内置了 Sentinel 机制，Redis Cluster 内部的各个 Redis 节点通过 Gossip 协议互相探测健康状态，在故障时可以自动切换。
 
 关于 Redis Cluster  的详细介绍，可以查看这篇文章 [Redis 集群详解(付费)](https://javaguide.cn/database/redis/redis-cluster.html) 。
-
-**2、NoSQL 数据库 Apache Cassandra 集群通过 Gossip 协议来进行动态管理集群节点状态（节点故障检测和恢复）。**
-
-**3、服务网格解决方案 Consul 使用 Gossip 协议网络内可靠有效地传输新服务和事件的信息。**
-
-**4、Bitcoin 使用 Gossip 协议来传播交易和区块信息。不过，为了提供更好的隐私保护，CMU 的研究人员提出 蒲公英协议。**
-
-还有非常多使用 Gossip 协议的应用，学习 Gossip 协议有助于我们搞清很多技术的底层原理。
 
 ## Gossip 协议消息传播模式
 
@@ -95,7 +90,7 @@ Gossip 设计了两种可能的消息传播模式：**反熵（Anti-Entropy）**
 3. 节点 C 推送数据给 A，节点 A 获取到节点 B，C 中的最新数据。
 4. 节点 A 再推送数据给 B 形成闭环，这样节点 B 就获取到节点 C 中的最新数据。
 
-虽然反熵很简单实用，但是，节点过多或者节点动态变化的话，反熵就不太适用了。这个时候，我们想要实现最终一致性就要靠 **谣言传播(Rumor mongering) ** 。
+虽然反熵很简单实用，但是，节点过多或者节点动态变化的话，反熵就不太适用了。这个时候，我们想要实现最终一致性就要靠 **谣言传播(Rumor mongering)** 。
 
 ### 谣言传播(Rumor mongering)
 

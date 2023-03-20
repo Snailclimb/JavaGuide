@@ -1,8 +1,9 @@
 ---
-title: Paxos 算法详细
+title: Paxos 算法详解
 category: 分布式
 tag:
   - 分布式协议&算法
+  - 共识算法
 ---
 
 ## 背景

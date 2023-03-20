@@ -331,6 +331,8 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 - [CAP 理论和 BASE 理论解读](./distributed-system/theorem&algorithm&protocol/cap&base-theorem.md)
 - [Paxos 算法解读](./distributed-system/theorem&algorithm&protocol/paxos-algorithm.md)
 - [Raft 算法解读](./distributed-system/theorem&algorithm&protocol/raft-algorithm.md)
+- [Gossip 协议详解](./distributed-system/theorem&algorithm&protocol/gossip-protocl.md)
+
 
 ### API 网关
 

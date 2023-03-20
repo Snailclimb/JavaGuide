@@ -1,6 +1,9 @@
-
-
-# ZooKeeper 相关概念总结(入门)
+---
+title: ZooKeeper 相关概念总结(入门)
+category: 分布式
+tag:
+  - ZooKeeper
+---
 
 相信大家对 ZooKeeper 应该不算陌生。但是你真的了解 ZooKeeper 到底有啥用不？如果别人/面试官让你给他讲讲对于 ZooKeeper 的认识，你能回答到什么地步呢？
 
