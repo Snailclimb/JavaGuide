@@ -1,5 +1,5 @@
 ---
-title: MySQL 查询缓存详解
+title: MySQL查询缓存详解
 category: 数据库
 tag:
   - MySQL

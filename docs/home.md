@@ -101,7 +101,7 @@ title: JavaGuide（Java学习&&面试指南）
 - [Java 并发容器总结](./java/concurrent/java-concurrent-collections.md)
 - [Atomic 原子类总结](./java/concurrent/atomic-classes.md)
 - [AQS 详解](./java/concurrent/aqs.md)
-- [CompletableFuture入门](./java/concurrent/completablefuture-intro.md)
+- [CompletableFuture详解](./java/concurrent/completablefuture-intro.md)
 
 ### JVM (必看 :+1:)
 

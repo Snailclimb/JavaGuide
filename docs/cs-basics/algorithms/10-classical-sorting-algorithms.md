@@ -257,7 +257,7 @@ public static int[] shellSort(int[] arr) {
 
 ### 算法分析
 
-- **稳定性**：稳定
+- **稳定性**：不稳定
 - **时间复杂度** ：最佳：O(nlogn)， 最差：O(n2) 平均：O(nlogn)
 - **空间复杂度** ：`O(1)`
 

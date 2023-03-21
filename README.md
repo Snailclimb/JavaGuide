@@ -99,7 +99,7 @@
 - [Java 并发容器总结](./docs/java/concurrent/java-concurrent-collections.md)
 - [Atomic 原子类总结](./docs/java/concurrent/atomic-classes.md)
 - [AQS 详解](./docs/java/concurrent/aqs.md)
-- [CompletableFuture入门](./docs/java/concurrent/completablefuture-intro.md)
+- [CompletableFuture详解](./docs/java/concurrent/completablefuture-intro.md)
 
 ### JVM (必看 :+1:)
 
