@@ -190,8 +190,8 @@ FROM products;
 
 **查询所有列**
 
-```css
-ELECT *
+```sql
+SELECT *
 FROM products;
 ```
 
