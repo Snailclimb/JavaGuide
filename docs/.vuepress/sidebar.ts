@@ -290,6 +290,7 @@ export const sidebarConfig = sidebar({
                 "redis-data-structures-01",
                 "redis-data-structures-02",
                 "redis-memory-fragmentation",
+                "redis-common-blocking-problems-summary",
                 "redis-cluster",
               ],
             },

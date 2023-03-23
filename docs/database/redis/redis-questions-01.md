@@ -524,9 +524,13 @@ Redis 提供 6 种数据淘汰策略：
 
 ### 怎么保证 Redis 挂掉之后再重启数据可以进行恢复？
 
-很多时候我们需要持久化数据也就是将内存中的数据写入到硬盘里面，大部分原因是为了之后重用数据（比如重启机器、机器故障之后恢复数据），或者是为了防止系统故障而将数据备份到一个远程位置。
+使用缓存的时候，我们经常需要对内容中的数据进行持久化也就是将内存中的数据写入到硬盘里面。大部分原因是为了之后重用数据（比如重启机器、机器故障之后恢复数据），或者是为了防止系统故障而将数据备份到一个远程位置。
 
-Redis 不同于 Memcached 的很重要一点就是，Redis 支持持久化，而且支持两种不同的持久化操作。**Redis 的一种持久化方式叫快照（snapshotting，RDB），另一种方式是只追加文件（append-only file, AOF）**。这两种方法各有千秋，下面我会详细这两种持久化方法是什么，怎么用，如何选择适合自己的持久化方法。
+Redis 不同于 Memcached 的很重要一点就是，Redis 支持持久化，而且支持 3 种持久化方式:
+
+- 快照（snapshotting，RDB）
+- 只追加文件（append-only file, AOF）
+-  RDB 和 AOF 的混合持久化(Redis 4.0 新增)
 
 ### 什么是 RDB 持久化？
 
@@ -553,36 +557,52 @@ Redis 提供了两个命令来生成 RDB 快照文件：
 
 ### 什么是 AOF 持久化？
 
-与快照持久化相比，AOF 持久化的实时性更好，因此已成为主流的持久化方案。默认情况下 Redis 没有开启 AOF（append only file）方式的持久化，可以通过 appendonly 参数开启：
+与快照持久化相比，AOF 持久化的实时性更好。默认情况下 Redis 没有开启 AOF（append only file）方式的持久化（Redis 6.0 之后已经默认是开启了），可以通过 appendonly 参数开启：
 
 ```bash
 appendonly yes
 ```
 
-开启 AOF 持久化后每执行一条会更改 Redis 中的数据的命令，Redis 就会将该命令写入到内存缓存 `server.aof_buf` 中，然后再根据 `appendfsync` 配置来决定何时将其同步到硬盘中的 AOF 文件。
+开启 AOF 持久化后每执行一条会更改 Redis 中的数据的命令，Redis 就会将该命令写入到AOF 缓冲区 `server.aof_buf` 中，然后再根据 `appendfsync` 配置来决定何时将其同步到硬盘中的 AOF 文件。
 
 AOF 文件的保存位置和 RDB 文件的位置相同，都是通过 dir 参数设置的，默认的文件名是 `appendonly.aof`。
 
-在 Redis 的配置文件中存在三种不同的 AOF 持久化方式，它们分别是：
+在 Redis 的配置文件中存在三种不同的 AOF 持久化方式（ `fsync`策略），它们分别是：
 
 ```bash
-appendfsync always    #每次有数据修改发生时都会写入AOF文件,这样会严重降低Redis的速度
-appendfsync everysec  #每秒钟同步一次，显式地将多个写命令同步到硬盘
-appendfsync no        #让操作系统决定何时进行同步
+appendfsync always    #每次有数据修改发生时都会调用fsync函数同步AOF文件,fsync完成后线程返回,这样会严重降低Redis的速度
+appendfsync everysec  #每秒钟调用fsync函数同步一次AOF文件
+appendfsync no        #让操作系统决定何时进行同步，一般为30秒一次
 ```
 
-为了兼顾数据和写入性能，用户可以考虑 `appendfsync everysec` 选项 ，让 Redis 每秒同步一次 AOF 文件，Redis 性能几乎没受到任何影响。而且这样即使出现系统崩溃，用户最多只会丢失一秒之内产生的数据。当硬盘忙于执行写入操作的时候，Redis 还会优雅的放慢自己的速度以便适应硬盘的最大写入速度。
+为了兼顾数据和写入性能，可以考虑 `appendfsync everysec` 选项 ，让 Redis 每秒同步一次 AOF 文件，Redis 性能几乎没受到任何影响。而且这样即使出现系统崩溃，用户最多只会丢失一秒之内产生的数据。当硬盘忙于执行写入操作的时候，Redis 还会优雅的放慢自己的速度以便适应硬盘的最大写入速度。
 
-**相关 issue** ：
+从 Redis 7.0.0 开始，Redis 使用了 **Multi Part AOF** 机制。顾名思义，Multi Part AOF 就是将原来的单个 AOF 文件拆分成多个 AOF 文件。在 Multi Part AOF 中，AOF 文件被分为三种类型，分别为：
 
-- [Redis 的 AOF 方式 #783](https://github.com/Snailclimb/JavaGuide/issues/783)
-- [Redis AOF 重写描述不准确 #1439](https://github.com/Snailclimb/JavaGuide/issues/1439)
+- BASE：表示基础 AOF 文件，它一般由子进程通过重写产生，该文件最多只有一个。
+- INCR：表示增量 AOF 文件，它一般会在 AOFRW 开始执行时被创建，该文件可能存在多个。
+- HISTORY：表示历史 AOF 文件，它由 BASE 和 INCR AOF 变化而来，每次 AOFRW 成功完成时，本次 AOFRW 之前对应的 BASE 和 INCR AOF 都将变为 HISTORY，HISTORY 类型的 AOF 会被 Redis 自动删除。
 
-### AOF 日志是如何实现的？
+Multi Part AOF 不是重点，了解即可，详细介绍可以看看阿里开发者的[Redis 7.0 Multi Part AOF 的设计和实现](https://zhuanlan.zhihu.com/p/467217082) 这篇文章。
+
+**相关 issue** ：[Redis 的 AOF 方式 #783](https://github.com/Snailclimb/JavaGuide/issues/783)。
+
+### AOF工作基本流程是怎样的？
+
+AOF 持久化功能的实现可以简单分为 4 步：
+
+1. 命令写入（append）：所有的写命令会追加到 AOF 缓冲区中。
+2. 文件同步（sync）：AOF缓冲区根据对应的 fsync 策略向硬盘做同步操作。
+3. 文件重写（rewrite）：随着AOF文件越来越大，需要定期对AOF文件进行重写，达到压缩的目的。
+4. 重启加载（load）：当 Redis 重启时，可以加载 AOF 文件进行数据恢复。
+
+![](https://oss.javaguide.cn/github/javaguide/database/redis/aof-work-process.png)
+
+### AOF 为什么是在执行完命令之后记录日志？
 
 关系型数据库（如 MySQL）通常都是执行命令之前记录日志（方便故障恢复），而 Redis AOF 持久化机制是在执行完命令之后再记录日志。
 
-![AOF 记录日志过程](./images/redis-aof-write-log-disc.png)
+![AOF 记录日志过程](https://oss.javaguide.cn/github/javaguide/database/redis/redis-aof-write-log-disc.png)
 
 **为什么是在执行完命令之后记录日志呢？**
 
@@ -604,6 +624,18 @@ AOF 重写是一个有歧义的名字，该功能是通过读取数据库中的�
 
 Redis 7.0 版本之前，如果在重写期间有写入命令，AOF 可能会使用大量内存，重写期间到达的所有写入命令都会写入磁盘两次。
 
+**相关 issue** ：[Redis AOF 重写描述不准确 #1439](https://github.com/Snailclimb/JavaGuide/issues/1439)
+
+### Redis 4.0 对于持久化机制做了什么优化？
+
+由于 RDB 和 AOF 各有优势，于是，Redis 4.0 开始支持 RDB 和 AOF 的混合持久化（默认关闭，可以通过配置项 `aof-use-rdb-preamble` 开启）。
+
+如果把混合持久化打开，AOF 重写的时候就直接把 RDB 的内容写到 AOF 文件开头。这样做的好处是可以结合 RDB 和 AOF 的优点, 快速加载同时避免丢失过多的数据。当然缺点也是有的， AOF 里面的 RDB 部分是压缩格式不再是 AOF 格式，可读性较差。
+
+官方文档地址：https://redis.io/topics/persistence
+
+![](https://oss.javaguide.cn/github/javaguide/database/redis/redis4.0-persitence.png)
+
 ### 如何选择 RDB 和 AOF？
 
 关于 RDB 和 AOF 的优缺点，官网上面也给了比较详细的说明[Redis persistence](https://redis.io/docs/manual/persistence/)，这里结合自己的理解简单总结一下。
@@ -619,15 +651,11 @@ Redis 7.0 版本之前，如果在重写期间有写入命令，AOF 可能会使
 - RDB 文件是以特定的二进制格式保存的，并且在 Redis 版本演进中有多个版本的 RDB，所以存在老版本的 Redis 服务不兼容新版本的 RDB 格式的问题。
 - AOF 以一种易于理解和解析的格式包含所有操作的日志。你可以轻松地导出 AOF 文件进行分析，你也可以直接操作 AOF 文件来解决一些问题。比如，如果执行`FLUSHALL`命令意外地刷新了所有内容后，只要 AOF 文件没有被重写，删除最新命令并重启即可恢复之前的状态。
 
-### Redis 4.0 对于持久化机制做了什么优化？
+综上：
 
-由于 RDB 和 AOF 各有优势，于是，Redis 4.0 开始支持 RDB 和 AOF 的混合持久化（默认关闭，可以通过配置项 `aof-use-rdb-preamble` 开启）。
-
-如果把混合持久化打开，AOF 重写的时候就直接把 RDB 的内容写到 AOF 文件开头。这样做的好处是可以结合 RDB 和 AOF 的优点, 快速加载同时避免丢失过多的数据。当然缺点也是有的， AOF 里面的 RDB 部分是压缩格式不再是 AOF 格式，可读性较差。
-
-官方文档地址：https://redis.io/topics/persistence
-
-![](https://oss.javaguide.cn/github/javaguide/database/redis/redis4.0-persitence.png)
+- Redis 保存的数据丢失一些也没什么影响的话，可以选择使用 RDB。
+- 不建议单独使用 AOF，因为时不时地创建一个 RDB 快照可以进行数据库备份、更快的重启以及解决 AOF 引擎错误。
+- 如果保存的数据要求安全性比较高的话，建议同时开启 RDB 和 AOF 持久化或者开启 RDB 和 AOF 混合持久化。
 
 ## 参考
 
@@ -636,3 +664,4 @@ Redis 7.0 版本之前，如果在重写期间有写入命令，AOF 可能会使
 - Redis 命令手册：https://www.redis.com.cn/commands.html
 - WHY Redis choose single thread (vs multi threads): [https://medium.com/@jychen7/sharing-redis-single-thread-vs-multi-threads-5870bd44d153](https://medium.com/@jychen7/sharing-redis-single-thread-vs-multi-threads-5870bd44d153)
 - The difference between AOF and RDB persistence：https://www.sobyte.net/post/2022-04/redis-rdb-and-aof/
+- Redis AOF 持久化详解 - 程序员历小冰：http://remcarpediem.net/article/376c55d8/
