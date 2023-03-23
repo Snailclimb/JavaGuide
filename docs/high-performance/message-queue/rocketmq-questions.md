@@ -183,23 +183,19 @@ class Broker {
 
 #### 2.1.11 其它
 
-![][1]
+![](https://leran2deeplearnjavawebtech.oss-cn-beijing.aliyuncs.com/somephoto/RocketMQ%E6%B5%81%E7%A8%8B.png)
 
 加分项咯 
 1. 包括组件通信间使用 Netty 的自定义协议
 2. 消息重试负载均衡策略（具体参考 Dubbo 负载均衡策略）
 3. 消息过滤器（Producer 发送消息到 Broker，Broker 存储消息信息，Consumer 消费时请求 Broker 端从磁盘文件查询消息文件时,在 Broker 端就使用过滤服务器进行过滤）  
 4. Broker 同步双写和异步双写中 Master 和 Slave 的交互
-5. Broker 在 4.5.0 版本更新中引入了基于 Raft 协议的多副本选举，之前这是商业版才有的特性 [ISSUE-1046][2]
+5. Broker 在 4.5.0 版本更新中引入了基于 Raft 协议的多副本选举，之前这是商业版才有的特性。
 
 ## 3 参考
 
 1. 《RocketMQ技术内幕》：https://blog.csdn.net/prestigeding/article/details/85233529
-2. 关于 RocketMQ 对 MappedByteBuffer 的一点优化：https://lishoubo.github.io/2017/09/27/MappedByteBuffer%E7%9A%84%E4%B8%80%E7%82%B9%E4%BC%98%E5%8C%96/
 3. 十分钟入门RocketMQ：https://developer.aliyun.com/article/66101
 4. 分布式事务的种类以及 RocketMQ 支持的分布式消息：https://www.infoq.cn/article/2018/08/rocketmq-4.3-release
 5. 滴滴出行基于RocketMQ构建企业级消息队列服务的实践：https://yq.aliyun.com/articles/664608
 6. 基于《RocketMQ技术内幕》源码注释：https://github.com/LiWenGu/awesome-rocketmq
-
-[1]: https://leran2deeplearnjavawebtech.oss-cn-beijing.aliyuncs.com/somephoto/RocketMQ%E6%B5%81%E7%A8%8B.png
-[2]: http://rocketmq.apache.org/release_notes/release-notes-4.5.0/

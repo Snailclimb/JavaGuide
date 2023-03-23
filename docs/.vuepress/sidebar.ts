@@ -289,6 +289,7 @@ export const sidebarConfig = sidebar({
                 "3-commonly-used-cache-read-and-write-strategies",
                 "redis-data-structures-01",
                 "redis-data-structures-02",
+                "redis-persistence",
                 "redis-memory-fragmentation",
                 "redis-common-blocking-problems-summary",
                 "redis-cluster",

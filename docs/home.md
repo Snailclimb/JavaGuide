@@ -229,7 +229,9 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 - [3种常用的缓存读写策略详解](./database/redis/3-commonly-used-cache-read-and-write-strategies.md)
 - [Redis 5 种基本数据结构详解](./database/redis/redis-data-structures-01.md)
 - [Redis 3 种特殊数据结构详解](./database/redis/redis-data-structures-02.md)
+- [Redis 持久化机制详解](./database/redis/redis-persistence.md)
 - [Redis 内存碎片详解](./database/redis/redis-memory-fragmentation.md)
+- [Redis 常见阻塞原因总结](./database/redis/redis-common-blocking-problems-summary.md)
 - [Redis 集群详解](./database/redis/redis-cluster.md)
 
 ### MongoDB
