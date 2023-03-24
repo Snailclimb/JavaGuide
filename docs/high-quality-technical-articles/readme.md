@@ -1,5 +1,5 @@
 
-# 技术文章精选
+# 程序人生
 
 ::: tip 这是一则或许对你有用的小广告
 👉 欢迎准备 Java 面试以及学习 Java 的同学加入我的[知识星球](./../about-the-author/zhishixingqiu-two-years.md)，干货很多！收费虽然是白菜价，但星球里的内容或许比你参加上万的培训班质量还要高。
@@ -7,7 +7,7 @@
 👉 [《Java 面试指北》](./../zhuanlan/java-mian-shi-zhi-bei.md)持续更新完善中！这是一份教你如何更高效地准备面试的小册，涵盖常见八股文（系统设计、常见框架、分布式、高并发 ......）、优质面经等内容。
 :::
 
-这里主要会收录一些我看到的优质技术文章，每一篇都值得你阅读 3 遍以上！
+这里主要会收录一些我看到的和程序员密切相关的非技术类的优质文章，每一篇都值得你阅读 3 遍以上！常看常新！
 
 ## 练级攻略
 
@@ -17,6 +17,7 @@
 
 ## 个人经历
 
+- [从校招入职腾讯的四年工作总结](./personal-experience/four-year-work-in-tencent-summary.md)
 - [我在滴滴和头条的两年后端研发工作经验分享](./personal-experience/two-years-of-back-end-develop--experience-in-didi&toutiao.md)
 - [一个中科大差生的 8 年程序员工作总结](./personal-experience/8-years-programmer-work-summary.md)
 - [华为 OD 275 天后，我进了腾讯！](./personal-experience/huawei-od-275-days.md)

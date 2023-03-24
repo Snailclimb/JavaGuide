@@ -9,7 +9,7 @@ category: 开源项目
 👉 [《Java 面试指北》](./../zhuanlan/java-mian-shi-zhi-bei.md)持续更新完善中！这是一份教你如何更高效地准备面试的小册，涵盖常见八股文（系统设计、常见框架、分布式、高并发 ......）、优质面经等内容。
 :::
 
-精选 Github 和 Gitee 上优质的 Java 开源项目.
+精选 Github 和 Gitee 上优质的 Java 开源项目。
 
 欢迎大家在项目 [issues 区](https://github.com/CodingDocs/awesome-java/issues)推荐自己认可的 Java 开源项目，让我们共同维护一个优质的 Java 开源项目精选集！
 
@@ -18,7 +18,7 @@ category: 开源项目
 
 如果内容对你有帮助的话，欢迎给本项目点个 Star。我会用我的业余时间持续完善这份名单，感谢！
 
-另外，我的公众号还会定期分享优质开源项目，每一期我都会精选 5 个高质量的 Java 开源项目。
+另外，我的公众号还会定期分享优质开源项目，每月一期，每一期我都会精选 5 个高质量的 Java 开源项目。
 
 目前已经更新到了第 16 期：
 
@@ -38,6 +38,7 @@ category: 开源项目
 14. [8.8k star，这可能是我见过最强的开源支付系统！！](https://mp.weixin.qq.com/s/vfPSXtOgefwonbnP53KlOQ)
 15. [31.2k！这是我见过最强的后台管理系统 ！！](https://mp.weixin.qq.com/s/esaivn2z_66CcrRJlDYLEA)
 16. [14.3k star，这是我见过最强的第三方登录工具库！！](https://mp.weixin.qq.com/s/6-TnCHUMEIFWQVl-pIWBOA)
+17. [3.2k！这是我见过最强的消息推送平台！！](https://mp.weixin.qq.com/s/heag76H4UwZmr8oBY_2gcw)
 
 推荐你在我的公众号“**JavaGuide**”回复“**开源**”在线阅读[「优质开源项目推荐」](https://mp.weixin.qq.com/mp/appmsgalbum?__biz=Mzg2OTA0Njk0OA==&action=getalbum&album_id=1345382825083895808&scene=173&from_msgid=2247516459&from_itemidx=1&count=3&nolastread=1#wechat_redirect)系列。
 
