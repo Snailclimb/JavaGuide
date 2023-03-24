@@ -59,7 +59,7 @@ Redis 提供了两个命令来生成 RDB 快照文件：
 appendonly yes
 ```
 
-开启 AOF 持久化后每执行一条会更改 Redis 中的数据的命令，Redis 就会将该命令写入到 AOF 缓冲区 `server.aof_buf` 中，然后再根据 `appendfsync` 配置来决定何时将其同步到硬盘中的 AOF 文件。
+开启 AOF 持久化后每执行一条会更改 Redis 中的数据的命令，Redis 就会将该命令写入到 AOF 缓冲区 `server.aof_buf` 中，然后再根据持久化方式（ `fsync`策略）的配置来决定何时将其同步到硬盘中的 AOF 文件。
 
 AOF 文件的保存位置和 RDB 文件的位置相同，都是通过 dir 参数设置的，默认的文件名是 `appendonly.aof`。
 
@@ -120,6 +120,12 @@ AOF 重写是一个有歧义的名字，该功能是通过读取数据库中的�
 
 Redis 7.0 版本之前，如果在重写期间有写入命令，AOF 可能会使用大量内存，重写期间到达的所有写入命令都会写入磁盘两次。
 
+Redis 7.0 版本之后，AOF 重写机制得到了优化改进。下面这段内容摘自阿里开发者的[从Redis7.0发布看Redis的过去与未来](https://mp.weixin.qq.com/s/RnoPPL7jiFSKkx3G4p57Pg) 这篇文章。
+
+> AOF 重写期间的增量数据如何处理一直是个问题，在过去写期间的增量数据需要在内存中保留，写结束后再把这部分增量数据写入新的AOF文件中以保证数据完整性。可以看出来AOF 写会额外消耗内存和磁盘IO，这也是Redis AOF 写的痛点，虽然之前也进行过多次改进但是资源消耗的本质问题一直没有解决。
+>
+> 阿里云的Redis企业版在最初也遇到了这个问题，在内部经过多次迭代开发，实现了Multi-part AOF机制来解决，同时也贡献给了社区并随此次7.0发布。具体方法是采用base（全量数据）+inc（增量数据）独立文件存储的方式，彻底解决内存和IO资源的浪费，同时也支持对历史AOF文件的保存管理，结合AOF文件中的时间信息还可以实现PITR按时间点恢复（阿里云企业版Tair已支持），这进一步增强了Redis的数据可靠性，满足用户数据回档等需求。
+
 **相关 issue** ：[Redis AOF 重写描述不准确 #1439](https://github.com/Snailclimb/JavaGuide/issues/1439)
 
 ## Redis 4.0 对于持久化机制做了什么优化？
@@ -152,3 +158,9 @@ Redis 7.0 版本之前，如果在重写期间有写入命令，AOF 可能会使
 - Redis 保存的数据丢失一些也没什么影响的话，可以选择使用 RDB。
 - 不建议单独使用 AOF，因为时不时地创建一个 RDB 快照可以进行数据库备份、更快的重启以及解决 AOF 引擎错误。
 - 如果保存的数据要求安全性比较高的话，建议同时开启 RDB 和 AOF 持久化或者开启 RDB 和 AOF 混合持久化。
+
+## 参考
+
+- Redis persistence - Redis 官方文档：https://redis.io/docs/management/persistence/
+- The difference between AOF and RDB persistence：https://www.sobyte.net/post/2022-04/redis-rdb-and-aof/
+- Redis AOF 持久化详解 - 程序员历小冰：http://remcarpediem.net/article/376c55d8/

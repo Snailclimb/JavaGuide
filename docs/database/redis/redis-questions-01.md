@@ -18,11 +18,11 @@ head:
 
 [Redis](https://redis.io/) 是一个基于 C 语言开发的开源数据库（BSD 许可），与传统数据库不同的是 Redis 的数据是存在内存中的（内存数据库），读写速度非常快，被广泛应用于缓存方向。并且，Redis 存储的是 KV 键值对数据。
 
-为了满足不同的业务场景，Redis 内置了多种数据类型实现（比如 String、Hash、Sorted Set、Bitmap）。并且，Redis 还支持事务 、持久化、Lua 脚本、多种开箱即用的集群方案（Redis Sentinel、Redis Cluster）。
+为了满足不同的业务场景，Redis 内置了多种数据类型实现（比如 String、Hash、Sorted Set、Bitmap、HyperLogLog、GEO）。并且，Redis 还支持事务 、持久化、Lua 脚本、多种开箱即用的集群方案（Redis Sentinel、Redis Cluster）。
 
 Redis 没有外部依赖，Linux 和 OS X 是 Redis 开发和测试最多的两个操作系统，官方推荐生产环境使用 Linux 部署 Redis。
 
-个人学习的话，你可以自己本机安装 Redis 或者通过 Redis 官网提供的[在线 Redis 环境](https://try.redis.io/)来实际体验 Redis。
+个人学习的话，你可以自己本机安装 Redis 或者通过 Redis 官网提供的[在线 Redis 环境](https://try.redis.io/)（少部分命令无法使用）来实际体验 Redis。
 
 ![try-redis](https://oss.javaguide.cn/github/javaguide/database/redis/try.redis.io.png)
 
@@ -30,11 +30,11 @@ Redis 没有外部依赖，Linux 和 OS X 是 Redis 开发和测试最多的两�
 
 ### Redis 为什么这么快？
 
-Redis 内部做了非常多的性能优化，比较重要的主要有下面 3 点：
+Redis 内部做了非常多的性能优化，比较重要的有下面 3 点：
 
-- Redis 基于内存，内存的访问速度是磁盘的上千倍；
-- Redis 基于 Reactor 模式设计开发了一套高效的事件处理模型，主要是单线程事件循环和 IO 多路复用（Redis 线程模式后面会详细介绍到）；
-- Redis 内置了多种优化过后的数据结构实现，性能非常高。
+1. Redis 基于内存，内存的访问速度是磁盘的上千倍；
+2. Redis 基于 Reactor 模式设计开发了一套高效的事件处理模型，主要是单线程事件循环和 IO 多路复用（Redis 线程模式后面会详细介绍到）；
+3. Redis 内置了多种优化过后的数据结构实现，性能非常高。
 
 下面这张图片总结的挺不错的，分享一下，出自 [Why is Redis so fast?](https://twitter.com/alexxubyte/status/1498703822528544770) 。
 
@@ -69,7 +69,7 @@ Memcached 是分布式缓存最开始兴起的那会，比较常用的。后来�
 3. **Redis 有灾难恢复机制。** 因为可以把缓存中的数据持久化到磁盘上。
 4. **Redis 在服务器内存使用完之后，可以将不用的数据放到磁盘上。但是，Memcached 在服务器内存使用完之后，就会直接报异常。**
 5. **Memcached 没有原生的集群模式，需要依靠客户端来实现往集群中分片写入数据；但是 Redis 目前是原生支持 cluster 模式的。**
-6. **Memcached 是多线程，非阻塞 IO 复用的网络模型；Redis 使用单线程的多路 IO 复用模型。** （Redis 6.0 引入了多线程 IO ）
+6. **Memcached 是多线程，非阻塞 IO 复用的网络模型；Redis 使用单线程的多路 IO 复用模型。** （Redis 6.0 针对网络数据的读写引入了多线程）
 7. **Redis 支持发布订阅模型、Lua 脚本、事务等功能，而 Memcached 不支持。并且，Redis 支持更多的编程语言。**
 8. **Memcached 过期数据的删除策略只用了惰性删除，而 Redis 同时使用了惰性删除与定期删除。**
 
@@ -79,13 +79,13 @@ Memcached 是分布式缓存最开始兴起的那会，比较常用的。后来�
 
 下面我们主要从“高性能”和“高并发”这两点来回答这个问题。
 
-**高性能**
+**1、高性能**
 
 假如用户第一次访问数据库中的某些数据的话，这个过程是比较慢，毕竟是从硬盘中读取的。但是，如果说，用户访问的数据属于高频数据并且不会经常改变的话，那么我们就可以很放心地将该用户访问的数据存在缓存中。
 
 **这样有什么好处呢？** 那就是保证用户下一次再访问这些数据的时候就可以直接从缓存中获取了。操作缓存就是直接操作内存，所以速度相当快。
 
-**高并发**
+**2、高并发**
 
 一般像 MySQL 这类的数据库的 QPS 大概都在 1w 左右（4 核 8g） ，但是使用 Redis 缓存之后很容易达到 10w+，甚至最高能达到 30w+（就单机 Redis 的情况，Redis 集群的话会更高）。
 
@@ -114,6 +114,8 @@ Memcached 是分布式缓存最开始兴起的那会，比较常用的。后来�
 ### Redis 可以做消息队列么？
 
 > 实际项目中也没见谁使用 Redis 来做消息队列，对于这部分知识点大家了解就好了。
+
+先说结论：可以是可以，但不建议使用 Redis 来做消息队列。和专业的消息队列相比，还是有很多欠缺的地方。
 
 **Redis 2.0 之前，如果想要使用 Redis 来做消息队列的话，只能通过 List 来实现。**
 
@@ -145,7 +147,7 @@ null
 
 **Redis 2.0 引入了 发布订阅 (pub/sub) 解决了 List 实现消息队列没有广播机制的问题。**
 
-pub/sub 中引入了一个概念叫 channel（频道），发布订阅机制的实现就是基于这个 channel 来做的。
+pub/sub 中引入了一个概念叫 **channel（频道）**，发布订阅机制的实现就是基于这个 channel 来做的。
 
 pub/sub 涉及发布者和订阅者（也叫消费者）两个角色：
 
@@ -184,7 +186,11 @@ pub/sub 既能单播又能广播，还支持 channel 的简单正则匹配。不
 
 ### String 的应用场景有哪些？
 
-- 常规数据（比如 session、token、、序列化后的对象）的缓存；
+String 是 Redis 中最简单同时也是最常用的一个数据结构。String 是一种二进制安全的数据结构，可以用来存储任何类型的数据比如字符串、整数、浮点数、图片（图片的 base64 编码或者解码或者图片的路径）、序列化后的对象。
+
+String 的常见应用场景如下：
+
+- 常规数据（比如 session、token、序列化后的对象、图片的路径）的缓存；
 - 计数比如用户单位时间的请求数（简单限流可以用到）、页面单位时间的访问数；
 - 分布式锁(利用 `SETNX key value` 命令可以实现一个最简易的分布式锁)；
 - ......
@@ -282,7 +288,7 @@ struct sdshdr {
 - 用户 id 为 key
 - 商品 id 为 field，商品数量为 value
 
-![Hash维护简单的购物车信息](./images/hash-shopping-cart.png)
+![Hash维护简单的购物车信息](https://oss.javaguide.cn/github/javaguide/database/redis/hash-shopping-cart.png)
 
 那用户购物车信息的维护具体应该怎么操作呢？
 
@@ -302,18 +308,37 @@ Redis 中有一个叫做 `sorted set` 的数据结构经常被用在各种排行
 
 ![](https://oss.javaguide.cn/github/javaguide/database/redis/2021060714195385.png)
 
-[《Java 面试指北》](https://javaguide.cn/zhuanlan/java-mian-shi-zhi-bei.html) 的「技术面试题篇」就有一篇文章详细介绍如何使用 Sorted Set 来设计制作一个排行榜。
+[《Java 面试指北》](https://javaguide.cn/zhuanlan/java-mian-shi-zhi-bei.html) 的「技术面试题篇」就有一篇文章详细介绍如何使用 Sorted Set 来设计制作一个排行榜，感兴趣的小伙伴可以看看。
 
 ![](https://oss.javaguide.cn/github/javaguide/database/redis/image-20220719071115140.png)
 
-### 使用 Set 实现抽奖系统需要用到什么命令？
+### Set 的应用场景是什么？
 
+Redis 中 `Set` 是一种无序集合，集合中的元素没有先后顺序但都唯一，有点类似于 Java 中的 `HashSet` 。
+
+Set 的常见应用场景如下：
+
+- 存放的数据不能重复的场景：网站 UV 统计（数据量巨大的场景还是 `HyperLogLog`更适合一些）、文章点赞、动态点赞等等。
+- 需要获取多个数据源交集、并集和差集的场景：共同好友(交集)、共同粉丝(交集)、共同关注(交集)、好友推荐（差集）、音乐推荐（差集） 、订阅号推荐（差集+交集） 等等。
+- 需要随机获取数据源中的元素的场景：抽奖系统、随机点名等等。
+
+### 使用 Set 实现抽奖系统怎么做？
+
+如果想要使用 Set 实现一个简单的抽奖系统的话，直接使用下面这几个命令就可以了：
+
+- `SADD key member1 member2 ...`：向指定集合添加一个或多个元素。
 - `SPOP key count` ： 随机移除并获取指定集合中一个或多个元素，适合不允许重复中奖的场景。
 - `SRANDMEMBER key count` : 随机获取指定集合中指定数量的元素，适合允许重复中奖的场景。
 
 ### 使用 Bitmap 统计活跃用户怎么做？
 
-使用日期（精确到天）作为 key，然后用户 ID 为 offset，如果当日活跃过就设置为 1。
+Bitmap 存储的是连续的二进制数字（0 和 1），通过 Bitmap, 只需要一个 bit 位来表示某个元素对应的值或者状态，key 就是对应元素本身 。我们知道 8 个 bit 可以组成一个 byte，所以 Bitmap 本身会极大的节省储存空间。
+
+你可以将 Bitmap 看作是一个存储二进制数字（0 和 1）的数组，数组中每个元素的下标叫做 offset（偏移量）。
+
+![img](https://oss.javaguide.cn/github/javaguide/database/redis/image-20220720194154133.png)
+
+如果想要使用 Bitmap 统计活跃用户的话，可以使用日期（精确到天）作为 key，然后用户 ID 为 offset，如果当日活跃过就设置为 1。
 
 初始化数据：
 
@@ -346,6 +371,11 @@ Redis 中有一个叫做 `sorted set` 的数据结构经常被用在各种排行
 
 ### 使用 HyperLogLog 统计页面 UV 怎么做？
 
+使用 HyperLogLog 统计页面 UV主要需要用到下面这两个命令：
+
+- `PFADD key element1 element2 ...`：添加一个或多个元素到 HyperLogLog 中。
+- `PFCOUNT key1 key2`：获取一个或者多个 HyperLogLog 的唯一计数。
+
 1、将访问指定页面的每个用户 ID 添加到 `HyperLogLog` 中。
 
 ```bash
@@ -358,7 +388,11 @@ PFADD PAGE_1:UV USER1 USER2 ...... USERn
 PFCOUNT PAGE_1:UV
 ```
 
-## Redis 线程模型
+## Redis 持久化机制（重要）
+
+Redis 持久化机制（RDB 持久化、AOF 持久化、RDB 和 AOF 的混合持久化） 相关的问题比较多，也比较重要，于是我单独抽了一篇文章来总结 Redis 持久化机制相关的知识点和问题： [Redis 持久化机制详解](./redis-persistence.md) 。
+
+## Redis 线程模型（重要）
 
 对于读写命令来说，Redis 一直是单线程模型。不过，在 Redis 4.0 版本之后引入了多线程来执行一些大键值对的异步删除操作， Redis 6.0 版本之后引入了多线程来处理网络请求（提高网络 IO 读写性能）。
 
@@ -388,7 +422,7 @@ Redis 通过 **IO 多路复用程序** 来监听来自客户端的大量连接�
 - 文件事件分派器（将 socket 关联到相应的事件处理器）
 - 事件处理器（连接应答处理器、命令请求处理器、命令回复处理器）
 
-![文件事件处理器](https://oss.javaguide.cn/github/javaguide/database/redis/redis-event-handler.png)
+![文件事件处理器（file event handler）](https://oss.javaguide.cn/github/javaguide/database/redis/redis-event-handler.png)
 
 相关阅读：[Redis 事件机制详解](http://remcarpediem.net/article/1aa2da89/) 。
 
@@ -520,15 +554,10 @@ Redis 提供 6 种数据淘汰策略：
 7. **volatile-lfu（least frequently used）**：从已设置过期时间的数据集（`server.db[i].expires`）中挑选最不经常使用的数据淘汰。
 8. **allkeys-lfu（least frequently used）**：当内存不足以容纳新写入数据时，在键空间中，移除最不经常使用的 key。
 
-## Redis 持久化机制
-
-Redis 持久化机制（RDB 持久化、AOF 持久化、RDB 和 AOF 的混合持久化） 相关的问题比较多，也比较重要，于是我单独抽了一篇文章来总结 Redis 持久化机制相关的知识点和问题： [Redis 持久化机制详解](./redis-persistence.md) 。
-
 ## 参考
 
 - 《Redis 开发与运维》
 - 《Redis 设计与实现》
 - Redis 命令手册：https://www.redis.com.cn/commands.html
 - WHY Redis choose single thread (vs multi threads): [https://medium.com/@jychen7/sharing-redis-single-thread-vs-multi-threads-5870bd44d153](https://medium.com/@jychen7/sharing-redis-single-thread-vs-multi-threads-5870bd44d153)
-- The difference between AOF and RDB persistence：https://www.sobyte.net/post/2022-04/redis-rdb-and-aof/
-- Redis AOF 持久化详解 - 程序员历小冰：http://remcarpediem.net/article/376c55d8/
+
