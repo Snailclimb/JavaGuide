@@ -444,7 +444,7 @@ Redis 通过 **IO 多路复用程序** 来监听来自客户端的大量连接�
 - Redis 的性能瓶颈不在 CPU ，主要在内存和网络；
 - 多线程就会存在死锁、线程上下文切换等问题，甚至会影响性能。
 
-相关阅读：[为什么 Redis 选择单线程模型](https://draveness.me/whys-the-design-redis-single-thread/) 。
+相关阅读：[为什么 Redis 选择单线程模型？](https://draveness.me/whys-the-design-redis-single-thread/)  。
 
 ### Redis6.0 之后为何引入了多线程？
 
@@ -475,6 +475,39 @@ io-threads-do-reads yes
 
 - [Redis 6.0 新特性-多线程连环 13 问！](https://mp.weixin.qq.com/s/FZu3acwK6zrCBZQ_3HoUgw)
 - [Redis 多线程网络模型全面揭秘](https://segmentfault.com/a/1190000039223696)（推荐）
+
+### Redis 后台线程了解吗？
+
+我们虽然经常说 Redis 是单线程模型（主要逻辑是单线程完成的），但实际还有一些后台线程用于执行一些比较耗时的操作：
+
+- 通过 `bio_close_file` 后台线程来释放 AOF / RDB 等过程中产生的临时文件资源。
+- 通过 `bio_aof_fsync` 后台线程调用 `fsync` 函数将系统内核缓冲区还未同步到到磁盘的数据强制刷到磁盘（ AOF 文件）。
+- 通过 `bio_lazy_free`后台线程释放大对象（已删除）占用的内存空间.
+
+在`bio.h` 文件中有定义（Redis 6.0 版本，源码地址：https://github.com/redis/redis/blob/6.0/src/bio.h）：
+
+```java
+#ifndef __BIO_H
+#define __BIO_H
+
+/* Exported API */
+void bioInit(void);
+void bioCreateBackgroundJob(int type, void *arg1, void *arg2, void *arg3);
+unsigned long long bioPendingJobsOfType(int type);
+unsigned long long bioWaitStepOfType(int type);
+time_t bioOlderJobOfType(int type);
+void bioKillThreads(void);
+
+/* Background job opcodes */
+#define BIO_CLOSE_FILE    0 /* Deferred close(2) syscall. */
+#define BIO_AOF_FSYNC     1 /* Deferred AOF fsync. */
+#define BIO_LAZY_FREE     2 /* Deferred objects freeing. */
+#define BIO_NUM_OPS       3
+
+#endif
+```
+
+关于 Redis 后台线程的详细介绍可以查看 [Redis 6.0 后台线程有哪些？](https://juejin.cn/post/7102780434739626014) 这篇就文章。
 
 ## Redis 内存管理
 
