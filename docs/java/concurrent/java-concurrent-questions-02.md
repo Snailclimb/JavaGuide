@@ -487,7 +487,7 @@ public class ReentrantLock implements Lock, java.io.Serializable {}
 
 ![](https://oss.javaguide.cn/github/javaguide/java/concurrent/reentrantlock-class-diagram.png)
 
-`ReentrantLock` 默认使用非公平锁，也可以通过构造器来显示的指定使用公平锁。
+`ReentrantLock` 默认使用非公平锁，也可以通过构造器来显式的指定使用公平锁。
 
 ```java
 // 传入一个 boolean 值，true 时为公平锁，false 时为非公平锁
