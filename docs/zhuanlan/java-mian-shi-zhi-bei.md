@@ -91,6 +91,7 @@ star: 5
     <img src="https://oss.javaguide.cn/xingqiu/xingqiuyouhuijuanheyi.png" style="margin: 0 auto; " />
   </a>
 </div>
+
 **进入星球之后，记得添加微信，我会发你详细的星球使用指南。**
 
 <div align="center">

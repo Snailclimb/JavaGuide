@@ -54,6 +54,7 @@ icon: "book"
 
 ## 开源书籍
 
+- **[《高并发的哲学原理》](https://github.com/johnlui/PPHC)**：本书的目标是在作者有限的认知范围内，讨论一下高并发问题背后隐藏的一个哲学原理——找出单点，进行拆分。
 - **[《Effective Java（第 3 版）》中英对照版](https://github.com/clxering/Effective-Java-3rd-edition-Chinese-English-bilingual)** ：《Effective Java（第 3 版）各章节的中英文学习参考。
 - **[《DDIA（设计数据密集型应用）》中文版](https://github.com/Vonng/ddia)** ：《Designing Data-Intensive Application》DDIA 中文翻译。
 - **[《凤凰架构》](https://github.com/fenixsoft/awesome-fenix)** ：讨论如何构建一套可靠的大型分布式系统。

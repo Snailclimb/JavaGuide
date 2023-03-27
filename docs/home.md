@@ -122,13 +122,13 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 - [Java 9 新特性概览](./java/new-features/java9.md)
 - [Java 10 新特性概览](./java/new-features/java10.md)
 - [Java 11 新特性概览](./java/new-features/java11.md)
-- [Java 12~13 新特性概览](./java/new-features/java12-13.md)
-- [Java 14 新特性概览](./java/new-features/java14.md)
-- [Java 15 新特性概览](./java/new-features/java15.md)
+- [Java 12 & 13 新特性概览](./java/new-features/java12-13.md)
+- [Java 14 & 15 新特性概览](./java/new-features/java14-15.md)
 - [Java 16 新特性概览](./java/new-features/java16.md)
 - [Java 17 新特性概览](./java/new-features/java17.md)
 - [Java 18 新特性概览](./java/new-features/java18.md)
 - [Java 19 新特性概览](./java/new-features/java19.md)
+- [Java 20 新特性概览](./java/new-features/java20.md)
 
 ## 计算机基础
 
