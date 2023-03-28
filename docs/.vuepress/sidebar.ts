@@ -82,13 +82,6 @@ export const sidebarConfig = sidebar({
             },
           ],
         },
-
-        {
-          text: "IO",
-          prefix: "io/",
-          icon: "code",
-          children: ["io-basis", "io-design-patterns", "io-model"],
-        },
         {
           text: "并发编程",
           prefix: "concurrent/",
@@ -114,6 +107,13 @@ export const sidebarConfig = sidebar({
               ],
             },
           ],
+        },
+        {
+          text: "IO",
+          prefix: "io/",
+          icon: "code",
+          collapsible: true,
+          children: ["io-basis", "io-design-patterns", "io-model"],
         },
         {
           text: "JVM",

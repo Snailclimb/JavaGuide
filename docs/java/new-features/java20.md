@@ -38,6 +38,8 @@ ScopedValue.where(V, <value>)
 
 作用域值允许在大型程序中的组件之间安全有效地共享数据，而无需求助于方法参数。
 
+关于作用域值的详细介绍，推荐阅读[作用域值常见问题解答](https://www.happycoders.eu/java/scoped-values/)。
+
 ## JEP 432：记录模式（第二次预览）
 
 记录模式（Record Patterns） 可对 record 的值进行解构，可以嵌套记录模式和类型模式，实现强大的、声明性的和可组合的数据导航和处理形式。
