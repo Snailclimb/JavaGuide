@@ -414,7 +414,7 @@ Class B {
 - 在外部方法开启事务的情况下,在内部开启一个新的事务，作为嵌套事务存在。
 - 如果外部方法无事务，则单独开启一个事务，与 `PROPAGATION_REQUIRED` 类似。
 
-这里还是简单举个例子：如果 `bMethod()` 回滚的话，`aMethod()`也会回滚。
+这里还是简单举个例子：如果 `bMethod()` 回滚的话，`aMethod()`不会回滚。如果 `aMethod()` 回滚的话，`bMethod()`会回滚。
 
 ```java
 @Service
