@@ -1,5 +1,5 @@
 ---
-title: Java 17 新特性概览
+title: Java 17 新特性概览（重要）
 category: Java
 tag:
   - Java新特性
@@ -143,7 +143,7 @@ static void testFooBar(String s) {
 
 密封类由 [JEP 360](https://openjdk.java.net/jeps/360) 提出预览，集成到了 Java 15 中。在 JDK 16 中， 密封类得到了改进（更加严格的引用检查和密封类的继承关系），由 [JEP 397](https://openjdk.java.net/jeps/397) 提出了再次预览。
 
-在 [Java 15 新特性概览](./java15.md) 中，我有详细介绍到密封类，这里就不再做额外的介绍了。
+在 [Java 14  & 15 新特性概览](./java14-15.md) 中，我有详细介绍到密封类，这里就不再做额外的介绍了。
 
 ## JEP 410:删除实验性的 AOT 和 JIT 编译器
 
