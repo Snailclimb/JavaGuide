@@ -473,6 +473,14 @@ JDK1.6 对锁的实现引入了大量的优化，如偏向锁、轻量级锁、�
 - `volatile` 关键字能保证数据的可见性，但不能保证数据的原子性。`synchronized` 关键字两者都能保证。
 - `volatile`关键字主要用于解决变量在多个线程之间的可见性，而 `synchronized` 关键字解决的是多个线程之间访问资源的同步性。
 
+### Lock和synchronized
+
+1. Lock是一个接口，而synchronized是Java中的关键字，synchronized是内置的语言实现；
+2. synchronized在发生异常时，会自动释放线程占有的锁，因此不会导致死锁现象发生；而Lock在发生异常时，如果没有主动通过unLock()去释放锁，则很可能造成死锁现象，因此使用Lock时需要在finally块中释放锁
+3. Lock可以让等待锁的线程响应中断，而synchronized却不行，使用synchrnized时，等待的线程会一直等待下去，不能够响应中断
+4. 通过Lock可以知道有没有成功获取锁，而synchronized却无法办到
+5. Lock可以提高多个线程进行读操作的效率
+
 ## ReentrantLock
 
 ### ReentrantLock 是什么？
