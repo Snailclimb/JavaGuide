@@ -190,6 +190,7 @@ export const sidebarConfig = sidebar({
           icon: "caozuoxitong",
           children: [
             "operating-system-basic-questions-01",
+            "operating-system-basic-questions-02",
             "linux-intro",
             "shell-intro",
           ],

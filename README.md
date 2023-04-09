@@ -132,7 +132,8 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 ### 操作系统
 
-- [操作系统常见问题总结！](./docs/cs-basics/operating-system/operating-system-basic-questions-01.md)
+- [操作系统常见面试题总结(上)](./docs/cs-basics/operating-system/operating-system-basic-questions-01.md)
+- [操作系统常见面试题总结(下)](./docs/cs-basics/operating-system/operating-system-basic-questions-02.md)
 - [后端程序员必备的 Linux 基础知识总结](./docs/cs-basics/operating-system/linux-intro.md)
 - [Shell 编程基础知识总结](./docs/cs-basics/operating-system/shell-intro.md)
 
