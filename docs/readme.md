@@ -37,6 +37,7 @@ footer: |-
 - [我曾经也是网瘾少年](./about-the-author/internet-addiction-teenager.md)
 - [害，毕业三年了！](./about-the-author/my-college-life.md)
 - [我的知识星球快 3 岁了！](./about-the-author/zhishixingqiu-two-years.md)
+- [坚持写技术博客六年了](./about-the-author/writing-technology-blog-six-years.md)
 
 ## PDF
 

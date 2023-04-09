@@ -16,6 +16,7 @@ export const aboutTheAuthor = [
     icon: "chat",
     collapsable: false,
     children: [
+      "writing-technology-blog-six-years",
       "my-article-was-stolen-and-made-into-video-and-it-became-popular",
       "dog-that-copies-other-people-essay",
       "zhishixingqiu-two-years",
