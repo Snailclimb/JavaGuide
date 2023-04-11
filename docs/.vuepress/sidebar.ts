@@ -176,6 +176,7 @@ export const sidebarConfig = sidebar({
                 "http&https",
                 "http1.0&http1.1",
                 "http-status-codes",
+                "dns",
                 "tcp-connection-and-disconnection",
                 "tcp-reliability-guarantee",
                 "arp",
