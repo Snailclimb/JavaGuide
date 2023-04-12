@@ -19,99 +19,41 @@ tag:
 
 ### 应用层有哪些常见的协议？
 
-- **HTTP（超文本传输协议）** ：基于 TCP协议，是一种用于传输超文本和多媒体内容的协议，主要是为 Web 浏览器与 Web 服务器之间的通信而设计的。当我们使用浏览器浏览网页的时候，我们网页就是通过 HTTP 请求进行加载的。
-- **SMTP（简单邮件传输(发送)协议）** ：基于 TCP 协议，是一种用于发送电子邮件的协议。注意⚠️：SMTP协议只负责邮件的发送，而不是接收。要从邮件服务器接收邮件，需要使用POP3或IMAP协议。
-- **POP3/IMAP（邮件接收的协议）** ：基于 TCP 协议，两者都是负责邮件接收的协议。IMAP协议是比POP3更新的协议，它在功能和性能上都更加强大。IMAP支持邮件搜索、标记、分类、归档等高级功能，而且可以在多个设备之间同步邮件状态。几乎所有现代电子邮件客户端和服务器都支持 IMAP。
-- **FTP（文件传输协议）** : 基于 TCP 协议，是一种用于在计算机之间传输文件的协议，可以屏蔽操作系统和文件存储方式。注意⚠️：FTP 是一种不安全的协议，因为它在传输过程中不会对数据进行加密。建议在传输敏感数据时使用更安全的协议，如SFTP。
-- **Telnet（远程登陆协议）** ：基于 TCP 协议，用于通过一个终端登陆到其他服务器。Telnet 协议的最大缺点之一是所有数据（包括用户名和密码）均以明文形式发送，这有潜在的安全风险。这就是为什么如今很少使用Telnet，而是使用一种称为SSH的非常安全的网络传输协议的主要原因。
-- **SSH（安全的网络传输协议）** ：基于  TCP 协议，通过加密和认证机制实现安全的访问和文件传输等业务
-- **RTP（实时传输协议）**：通常基于 UDP 协议，但也支持 TCP 协议。它提供了端到端的实时传输数据的功能，但不包含资源预留存、不保证实时传输质量，这些功能由 WebRTC 实现。
-- **DNS（域名管理系统）**: 基于 UDP 协议，用于解决域名和 IP 地址的映射问题。
+![应用层常见协议](https://oss.javaguide.cn/github/javaguide/cs-basics/network/application-layer-protocol.png)
 
-关于这些协议的详细介绍请看 [应用层常见协议总结（应用层）](./application-layer-protocol.md)  这篇文章。
+- **HTTP（Hypertext Transfer Protocol，超文本传输协议）** ：基于 TCP 协议，是一种用于传输超文本和多媒体内容的协议，主要是为 Web 浏览器与 Web 服务器之间的通信而设计的。当我们使用浏览器浏览网页的时候，我们网页就是通过 HTTP 请求进行加载的。
+- **SMTP（Simple Mail Transfer Protocol，简单邮件发送协议）** ：基于 TCP 协议，是一种用于发送电子邮件的协议。注意 ⚠️：SMTP 协议只负责邮件的发送，而不是接收。要从邮件服务器接收邮件，需要使用 POP3 或 IMAP 协议。
+- **POP3/IMAP（邮件接收协议）** ：基于 TCP 协议，两者都是负责邮件接收的协议。IMAP 协议是比 POP3 更新的协议，它在功能和性能上都更加强大。IMAP 支持邮件搜索、标记、分类、归档等高级功能，而且可以在多个设备之间同步邮件状态。几乎所有现代电子邮件客户端和服务器都支持 IMAP。
+- **FTP（File Transfer Protocol，文件传输协议）** : 基于 TCP 协议，是一种用于在计算机之间传输文件的协议，可以屏蔽操作系统和文件存储方式。注意 ⚠️：FTP 是一种不安全的协议，因为它在传输过程中不会对数据进行加密。建议在传输敏感数据时使用更安全的协议，如 SFTP。
+- **Telnet（远程登陆协议）** ：基于 TCP 协议，用于通过一个终端登陆到其他服务器。Telnet 协议的最大缺点之一是所有数据（包括用户名和密码）均以明文形式发送，这有潜在的安全风险。这就是为什么如今很少使用 Telnet，而是使用一种称为 SSH 的非常安全的网络传输协议的主要原因。
+- **SSH（Secure Shell Protocol，安全的网络传输协议）** ：基于 TCP 协议，通过加密和认证机制实现安全的访问和文件传输等业务
+- **RTP（Real-time Transport Protocol，实时传输协议）**：通常基于 UDP 协议，但也支持 TCP 协议。它提供了端到端的实时传输数据的功能，但不包含资源预留存、不保证实时传输质量，这些功能由 WebRTC 实现。
+- **DNS（Domain Name System，域名管理系统）**: 基于 UDP 协议，用于解决域名和 IP 地址的映射问题。
 
-## TCP 与 UDP
+关于这些协议的详细介绍请看 [应用层常见协议总结（应用层）](./application-layer-protocol.md) 这篇文章。
 
+### 传输层有哪些常见的协议？
 
-###  TCP 与 UDP 的区别（重要）
+![传输层常见协议](https://oss.javaguide.cn/github/javaguide/cs-basics/network/transport-layer-protocol.png)
 
-1. **是否面向连接** ：UDP 在传送数据之前不需要先建立连接。而 TCP 提供面向连接的服务，在传送数据之前必须先建立连接，数据传送结束后要释放连接。
-2. **是否是可靠传输**：远地主机在收到 UDP 报文后，不需要给出任何确认，并且不保证数据不丢失，不保证是否顺序到达。TCP 提供可靠的传输服务，TCP 在传递数据之前，会有三次握手来建立连接，而且在数据传递时，有确认、窗口、重传、拥塞控制机制。通过 TCP 连接传输的数据，无差错、不丢失、不重复、并且按序到达。
-3. **是否有状态** ：这个和上面的“是否可靠传输”相对应。TCP 传输是有状态的，这个有状态说的是 TCP 会去记录自己发送消息的状态比如消息是否发送了、是否被接收了等等。为此 ，TCP 需要维持复杂的连接状态表。而 UDP 是无状态服务，简单来说就是不管发出去之后的事情了（**这很渣男！**）。
-4. **传输效率** ：由于使用 TCP 进行传输的时候多了连接、确认、重传等机制，所以 TCP 的传输效率要比 UDP 低很多。
-5. **传输形式** ： TCP 是面向字节流的，UDP 是面向报文的。
-6. **首部开销** ：TCP 首部开销（20 ～ 60 字节）比 UDP 首部开销（8 字节）要大。
-7. **是否提供广播或多播服务** ：TCP 只支持点对点通信，UDP 支持一对一、一对多、多对一、多对多；
-8. ......
+- **TCP（Transmisson Control Protocol，传输控制协议 ）**：提供 **面向连接** 的，**可靠** 的数据传输服务。
+- **UDP（User Datagram Protocol，用户数据协议）**：提供 **无连接** 的，**尽最大努力** 的数据传输服务（不保证数据传输的可靠性），简单高效。
 
+### 网络层有哪些常见的协议？
 
-我把上面总结的内容通过表格形式展示出来了！确定不点个赞嘛？
+![网络层常见协议](https://oss.javaguide.cn/github/javaguide/cs-basics/network/nerwork-layer-protocol.png)
 
-|                        | TCP            | UDP        |
-| ---------------------- | -------------- | ---------- |
-| 是否面向连接           | 是             | 否         |
-| 是否可靠               | 是             | 否         |
-| 是否有状态             | 是             | 否         |
-| 传输效率               | 较慢           | 较快       |
-| 传输形式               | 字节流         | 数据报文段 |
-| 首部开销               | 20 ～ 60 bytes | 8 bytes    |
-| 是否提供广播或多播服务 | 否             | 是         |
-
-###  什么时候选择 TCP,什么时候选 UDP?
-
-
-- **UDP 一般用于即时通信**，比如： 语音、 视频 、直播等等。这些场景对传输数据的准确性要求不是特别高，比如你看视频即使少个一两帧，实际给人的感觉区别也不大。
-- **TCP 用于对传输准确性要求特别高的场景**，比如文件传输、发送和接收邮件、远程登录等等。
-
-###  HTTP 基于 TCP 还是 UDP？
-
-~~**HTTP 协议是基于 TCP 协议的**，所以发送 HTTP 请求之前首先要建立 TCP 连接也就是要经历 3 次握手。~~
-
-🐛 修正（参见 [issue#1915](https://github.com/Snailclimb/JavaGuide/issues/1915)）：HTTP 3.0 之前是基于 TCP 协议的，而 HTTP3.0 将弃用 TCP，改用 **基于 UDP 的 QUIC 协议** 。此变化主要为了解决 HTTP/2 中存在的队头阻塞问题。由于 HTTP/2 在单个 TCP 连接上使用了多路复用，受到 TCP 拥塞控制的影响，少量的丢包就可能导致整个 TCP 连接上的所有流被阻塞。
-
-相关证明可以参考下面这两个链接：
-
-- https://zh.wikipedia.org/zh/HTTP/3
-- https://datatracker.ietf.org/doc/rfc9114/
-
-### 使用 TCP 的协议有哪些?使用 UDP 的协议有哪些?
-
-**运行于 TCP 协议之上的协议** ：
-
-1. **HTTP 协议** ：超文本传输协议（HTTP，HyperText Transfer Protocol)主要是为 Web 浏览器与 Web 服务器之间的通信而设计的。当我们使用浏览器浏览网页的时候，我们网页就是通过 HTTP 请求进行加载的。
-2. **HTTPS 协议** ：更安全的超文本传输协议(HTTPS,Hypertext Transfer Protocol Secure)，身披 SSL 外衣的 HTTP 协议
-3. **FTP 协议**：文件传输协议 FTP（File Transfer Protocol），提供文件传输服务，**基于 TCP** 实现可靠的传输。使用 FTP 传输文件的好处是可以屏蔽操作系统和文件存储方式。
-4. **SMTP 协议**：简单邮件传输协议（SMTP，Simple Mail Transfer Protocol）的缩写，**基于 TCP 协议**，用来发送电子邮件。注意 ⚠️：接受邮件的协议不是 SMTP 而是 POP3 协议。
-5. **POP3/IMAP 协议**： POP3 和 IMAP 两者都是负责邮件接收的协议。
-6. **Telnet 协议**：远程登陆协议，通过一个终端登陆到其他服务器。被一种称为 SSH 的非常安全的协议所取代。
-7. **SSH 协议** : SSH（ Secure Shell）是目前较可靠，专为远程登录会话和其他网络服务提供安全性的协议。利用 SSH 协议可以有效防止远程管理过程中的信息泄露问题。SSH 建立在可靠的传输协议 TCP 之上。
-8. ......
-
-**运行于 UDP 协议之上的协议** ：
-
-1. **DHCP 协议**：动态主机配置协议，动态配置 IP 地址
-2. **DNS** ： **域名系统（DNS，Domain Name System）将人类可读的域名 (例如，www.baidu.com) 转换为机器可读的 IP 地址 (例如，220.181.38.148)。** 我们可以将其理解为专为互联网设计的电话薄。实际上 DNS 同时支持 UDP 和 TCP 协议。
-
-### TCP 三次握手和四次挥手（非常重要）
-
-**相关面试题** ：
-
-- 为什么要三次握手?
-- 第 2 次握手传回了ACK，为什么还要传回SYN？
-- 为什么要四次挥手？
-- 为什么不能把服务器发送的 ACK 和 FIN 合并起来，变成三次挥手？
-- 如果第二次挥手时服务器的 ACK 没有送达客户端，会怎样？
-- 为什么第四次挥手客户端需要等待 2\*MSL（报文段最长寿命）时间后才进入 CLOSED 状态？
-
-**参考答案** ：[TCP 三次握手和四次挥手（传输层）](./tcp-connection-and-disconnection.md) 。
-
-### TCP 如何保证传输的可靠性？（重要）
-
-[TCP 传输可靠性保障（传输层）](./tcp-reliability-guarantee.md)
+- **IP（Internet Protocol，网际协议）** ： TCP/IP 协议中最重要的协议之一，属于网络层的协议，主要作用是定义数据包的格式、对数据包进行路由和寻址，以便它们可以跨网络传播并到达正确的目的地。目前 IP 协议主要分为两种，一种是过去的 IPv4，另一种是较新的 IPv6，目前这两种协议都在使用，但后者已经被提议来取代前者。
+- **ARP（Address Resolution Protocol，地址解析协议）** ：ARP 协议解决的是网络层地址和链路层地址之间的转换问题。因为一个 IP 数据报在物理上传输的过程中，总是需要知道下一跳（物理上的下一个目的地）该去往何处，但 IP 地址属于逻辑地址，而 MAC 地址才是物理地址，ARP 协议解决了 IP 地址转 MAC 地址的一些问题。
+- **ICMP（Internet Control Message Protocol，互联网控制报文协议）** ：一种用于传输网络状态和错误消息的协议，常用于网络诊断和故障排除。例如，Ping 工具就使用了 ICMP 协议来测试网络连通性。
+- **NAT（Network Address Translation，网络地址转换协议）** ：NAT 协议的应用场景如同它的名称——网络地址转换，应用于内部网到外部网的地址转换过程中。具体地说，在一个小的子网（局域网，LAN）内，各主机使用的是同一个 LAN 下的 IP 地址，但在该 LAN 以外，在广域网（WAN）中，需要一个统一的 IP 地址来标识该 LAN 在整个 Internet 上的位置。
+- **OSPF（Open Shortest Path First，开放式最短路径优先）** ）：一种内部网关协议（Interior Gateway Protocol，IGP），也是广泛使用的一种动态路由协议，基于链路状态算法，考虑了链路的带宽、延迟等因素来选择最佳路径。
+- **RIP(Routing Information Protocol，路由信息协议）** ：一种内部网关协议（Interior Gateway Protocol，IGP），也是一种动态路由协议，基于距离向量算法，使用固定的跳数作为度量标准，选择跳数最少的路径作为最佳路径。
+- **BGP（Border Gateway Protocol，边界网关协议）** ：一种用来在路由选择域之间交换网络层可达性信息（Network Layer Reachability Information，NLRI）的路由选择协议，具有高度的灵活性和可扩展性。
 
 ## HTTP
 
-### 从输入URL 到页面展示到底发生了什么？（非常重要）
+### 从输入 URL 到页面展示到底发生了什么？（非常重要）
 
 > 类似的问题：打开一个网页，整个过程会使用哪些协议？
 
@@ -132,12 +74,12 @@ tag:
 
 具体可以参考下面这两篇文章：
 
-- [从输入URL到页面加载发生了什么？](https://segmentfault.com/a/1190000006879700)
+- [从输入 URL 到页面加载发生了什么？](https://segmentfault.com/a/1190000006879700)
 - [浏览器从输入网址到页面展示的过程](https://cloud.tencent.com/developer/article/1879758)
 
 ### HTTP 状态码有哪些？
 
-HTTP 状态码用于描述 HTTP 请求的结果，比如2xx 就代表请求被成功处理。
+HTTP 状态码用于描述 HTTP 请求的结果，比如 2xx 就代表请求被成功处理。
 
 ![常见 HTTP 状态码](https://oss.javaguide.cn/github/javaguide/cs-basics/network/http-status-code.png)
 
@@ -150,29 +92,29 @@ HTTP 状态码用于描述 HTTP 请求的结果，比如2xx 就代表请求被�
 | Accept              | 能够接受的回应内容类型（Content-Types）。                    | Accept: text/plain                                           |
 | Accept-Charset      | 能够接受的字符集                                             | Accept-Charset: utf-8                                        |
 | Accept-Datetime     | 能够接受的按照时间来表示的版本                               | Accept-Datetime: Thu, 31 May 2007 20:35:00 GMT               |
-| Accept-Encoding     | 能够接受的编码方式列表。参考HTTP压缩。                       | Accept-Encoding: gzip, deflate                               |
+| Accept-Encoding     | 能够接受的编码方式列表。参考 HTTP 压缩。                     | Accept-Encoding: gzip, deflate                               |
 | Accept-Language     | 能够接受的回应内容的自然语言列表。                           | Accept-Language: en-US                                       |
 | Authorization       | 用于超文本传输协议的认证的认证信息                           | Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==            |
 | Cache-Control       | 用来指定在这次的请求/响应链中的所有缓存机制 都必须 遵守的指令 | Cache-Control: no-cache                                      |
 | Connection          | 该浏览器想要优先使用的连接类型                               | Connection: keep-alive Connection: Upgrade                   |
-| Content-Length      | 以 八位字节数组 （8位的字节）表示的请求体的长度              | Content-Length: 348                                          |
+| Content-Length      | 以 八位字节数组 （8 位的字节）表示的请求体的长度             | Content-Length: 348                                          |
 | Content-MD5         | 请求体的内容的二进制 MD5 散列值，以 Base64 编码的结果        | Content-MD5: Q2hlY2sgSW50ZWdyaXR5IQ==                        |
-| Content-Type        | 请求体的 多媒体类型 （用于POST和PUT请求中）                  | Content-Type: application/x-www-form-urlencoded              |
-| Cookie              | 之前由服务器通过 Set- Cookie （下文详述）发送的一个 超文本传输协议Cookie | Cookie: $Version=1; Skin=new;                                |
+| Content-Type        | 请求体的 多媒体类型 （用于 POST 和 PUT 请求中）              | Content-Type: application/x-www-form-urlencoded              |
+| Cookie              | 之前由服务器通过 Set- Cookie （下文详述）发送的一个 超文本传输协议 Cookie | Cookie: \$Version=1; Skin=new;                               |
 | Date                | 发送该消息的日期和时间(按照 RFC 7231 中定义的"超文本传输协议日期"格式来发送) | Date: Tue, 15 Nov 1994 08:12:31 GMT                          |
 | Expect              | 表明客户端要求服务器做出特定的行为                           | Expect: 100-continue                                         |
 | From                | 发起此请求的用户的邮件地址                                   | From: [user@example.com](mailto:user@example.com)            |
 | Host                | 服务器的域名(用于虚拟主机 )，以及服务器所监听的传输控制协议端口号。如果所请求的端口是对应的服务的标准端口，则端口号可被省略。 | Host: en.wikipedia.org:80                                    |
 | If-Match            | 仅当客户端提供的实体与服务器上对应的实体相匹配时，才进行对应的操作。主要作用时，用作像 PUT 这样的方法中，仅当从用户上次更新某个资源以来，该资源未被修改的情况下，才更新该资源。 | If-Match: “737060cd8c284d8af7ad3082f209582d”                 |
-| If-Modified-Since   | 允许在对应的内容未被修改的情况下返回304未修改（ 304 Not Modified ） | If-Modified-Since: Sat, 29 Oct 1994 19:43:31 GMT             |
-| If-None-Match       | 允许在对应的内容未被修改的情况下返回304未修改（ 304 Not Modified ） | If-None-Match: “737060cd8c284d8af7ad3082f209582d”            |
+| If-Modified-Since   | 允许在对应的内容未被修改的情况下返回 304 未修改（ 304 Not Modified ） | If-Modified-Since: Sat, 29 Oct 1994 19:43:31 GMT             |
+| If-None-Match       | 允许在对应的内容未被修改的情况下返回 304 未修改（ 304 Not Modified ） | If-None-Match: “737060cd8c284d8af7ad3082f209582d”            |
 | If-Range            | 如果该实体未被修改过，则向我发送我所缺少的那一个或多个部分；否则，发送整个新的实体 | If-Range: “737060cd8c284d8af7ad3082f209582d”                 |
 | If-Unmodified-Since | 仅当该实体自某个特定时间已来未被修改的情况下，才发送回应。   | If-Unmodified-Since: Sat, 29 Oct 1994 19:43:31 GMT           |
 | Max-Forwards        | 限制该消息可被代理及网关转发的次数。                         | Max-Forwards: 10                                             |
 | Origin              | 发起一个针对 跨来源资源共享 的请求。                         | Origin: [http://www.example-social-network.com](http://www.example-social-network.com/) |
 | Pragma              | 与具体的实现相关，这些字段可能在请求/回应链中的任何时候产生多种效果。 | Pragma: no-cache                                             |
 | Proxy-Authorization | 用来向代理进行认证的认证信息。                               | Proxy-Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==      |
-| Range               | 仅请求某个实体的一部分。字节偏移以0开始。参见字节服务。      | Range: bytes=500-999                                         |
+| Range               | 仅请求某个实体的一部分。字节偏移以 0 开始。参见字节服务。    | Range: bytes=500-999                                         |
 | Referer             | 表示浏览器所访问的前一个页面，正是那个页面上的某个链接将浏览器带到了当前所请求的这个页面。 | Referer: [http://en.wikipedia.org/wiki/Main_Page](https://en.wikipedia.org/wiki/Main_Page) |
 | TE                  | 浏览器预期接受的传输编码方式：可使用回应协议头 Transfer-Encoding 字段中的值； | TE: trailers, deflate                                        |
 | Upgrade             | 要求服务器升级到另一个协议。                                 | Upgrade: HTTP/2.0, SHTTP/1.3, IRC/6.9, RTA/x11               |
@@ -187,39 +129,40 @@ HTTP 状态码用于描述 HTTP 请求的结果，比如2xx 就代表请求被�
 - **端口号** ：HTTP 默认是 80，HTTPS 默认是 443。
 - **URL 前缀** ：HTTP 的 URL 前缀是 `http://`，HTTPS 的 URL 前缀是 `https://`。
 - **安全性和资源消耗** ： HTTP 协议运行在 TCP 之上，所有传输的内容都是明文，客户端和服务器端都无法验证对方的身份。HTTPS 是运行在 SSL/TLS 之上的 HTTP 协议，SSL/TLS 运行在 TCP 之上。所有传输的内容都经过加密，加密采用对称加密，但对称加密的密钥用服务器方的证书进行了非对称加密。所以说，HTTP 安全性没有 HTTPS 高，但是 HTTPS 比 HTTP 耗费更多服务器资源。
-- **SEO（搜索引擎优化）** ：搜索引擎通常会更青睐使用HTTPS协议的网站，因为HTTPS能够提供更高的安全性和用户隐私保护。使用HTTPS协议的网站在搜索结果中可能会被优先显示，从而对SEO产生影响。
+- **SEO（搜索引擎优化）** ：搜索引擎通常会更青睐使用 HTTPS 协议的网站，因为 HTTPS 能够提供更高的安全性和用户隐私保护。使用 HTTPS 协议的网站在搜索结果中可能会被优先显示，从而对 SEO 产生影响。
 
 关于 HTTP 和 HTTPS 更详细的对比总结，可以看我写的这篇文章：[HTTP vs HTTPS（应用层）](./http&https.md) 。
 
-### HTTP 1.0 和 HTTP 1.1 有什么区别？
+### HTTP/1.0 和 HTTP/1.1 有什么区别？
 
-![HTTP 1.0 和 HTTP 1.1 对比](https://oss.javaguide.cn/github/javaguide/cs-basics/network/http1.0-vs-http1.1.png)
+![HTTP/1.0 和 HTTP/1.1 对比](https://oss.javaguide.cn/github/javaguide/cs-basics/network/http1.0-vs-http1.1.png)
 
-- **连接方式** : HTTP 1.0 为短连接，HTTP 1.1 支持长连接。
-- **状态响应码** : HTTP/1.1中新加入了大量的状态码，光是错误响应状态码就新增了24种。比如说，`100 (Continue)`——在请求大资源前的预热请求，`206 (Partial Content)`——范围请求的标识码，`409 (Conflict)`——请求与当前资源的规定冲突，`410 (Gone)`——资源已被永久转移，而且没有任何已知的转发地址。
-- **缓存机制** : 在 HTTP1.0 中主要使用 Header 里的 If-Modified-Since,Expires 来做为缓存判断的标准，HTTP1.1 则引入了更多的缓存控制策略例如 Entity tag，If-Unmodified-Since, If-Match, If-None-Match 等更多可供选择的缓存头来控制缓存策略。
-- **带宽** ：HTTP1.0 中，存在一些浪费带宽的现象，例如客户端只是需要某个对象的一部分，而服务器却将整个对象送过来了，并且不支持断点续传功能，HTTP1.1 则在请求头引入了 range 头域，它允许只请求资源的某个部分，即返回码是 206（Partial Content），这样就方便了开发者自由的选择以便于充分利用带宽和连接。
-- **Host 头（Host Header）处理** :HTTP 1.1 引入了 Host 头字段，允许在同一 IP 地址上托管多个域名，从而支持虚拟主机的功能。而 HTTP 1.0 没有 Host 头字段，无法实现虚拟主机。
+- **连接方式** : HTTP/1.0 为短连接，HTTP/1.1 支持长连接。
+- **状态响应码** : HTTP/1.1 中新加入了大量的状态码，光是错误响应状态码就新增了 24 种。比如说，`100 (Continue)`——在请求大资源前的预热请求，`206 (Partial Content)`——范围请求的标识码，`409 (Conflict)`——请求与当前资源的规定冲突，`410 (Gone)`——资源已被永久转移，而且没有任何已知的转发地址。
+- **缓存机制** : 在 HTTP/1.0 中主要使用 Header 里的 If-Modified-Since,Expires 来做为缓存判断的标准，HTTP/1.1 则引入了更多的缓存控制策略例如 Entity tag，If-Unmodified-Since, If-Match, If-None-Match 等更多可供选择的缓存头来控制缓存策略。
+- **带宽** ：HTTP/1.0 中，存在一些浪费带宽的现象，例如客户端只是需要某个对象的一部分，而服务器却将整个对象送过来了，并且不支持断点续传功能，HTTP/1.1 则在请求头引入了 range 头域，它允许只请求资源的某个部分，即返回码是 206（Partial Content），这样就方便了开发者自由的选择以便于充分利用带宽和连接。
+- **Host 头（Host Header）处理** :HTTP/1.1 引入了 Host 头字段，允许在同一 IP 地址上托管多个域名，从而支持虚拟主机的功能。而 HTTP/1.0 没有 Host 头字段，无法实现虚拟主机。
 
-关于 HTTP 1.0 和 HTTP 1.1 更详细的对比总结，可以看我写的这篇文章：[HTTP 1.0 vs HTTP 1.1（应用层）](./http1.0&http1.1.md) 。
+关于 HTTP/1.0 和 HTTP/1.1 更详细的对比总结，可以看我写的这篇文章：[HTTP/1.0 vs HTTP/1.1（应用层）](./http1.0&HTTP/1.1.md) 。
 
-### HTTP 1.1 和 HTTP 2.0 有什么区别？
+### HTTP/1.1 和 HTTP/2.0 有什么区别？
 
-![HTTP 1.1 和 HTTP 2.0 对比](https://oss.javaguide.cn/github/javaguide/cs-basics/network/http1.1-vs-http2.0.png)
+![HTTP/1.0 和 HTTP/1.1 对比](https://oss.javaguide.cn/github/javaguide/cs-basics/network/http1.1-vs-http2.0.png)
 
-- **IO多路复用（Multiplexing）** ：HTTP2.0 在同一连接上可以同时传输多个请求和响应（可以看作是 HTTP 1.1 中长链接的升级版本）。HTTP1.1 则使用串行方式，每个请求和响应都需要独立的连接。这使得 HTTP2 在处理多个请求时更加高效，减少了网络延迟和提高了性能。
-- **二进制帧（Binary Frames）** ：HTTP2 使用二进制帧进行数据传输，而 HTTP1.1 则使用文本格式的报文。二进制帧更加紧凑和高效，减少了传输的数据量和带宽消耗。
-- **头部压缩（Header Compression）** ：HTTP 1.1支持`Body`压缩，`Header`不支持压缩。HTTP2.0 支持对`Header`压缩，减少了网络开销。
-- **服务器推送（Server Push）**：HTTP 2.0  支持服务器推送，可以在客户端请求一个资源时，将其他相关资源一并推送给客户端，从而减少了客户端的请求次数和延迟。而 HTTP1.1 需要客户端自己发送请求来获取相关资源。
+- **IO 多路复用（Multiplexing）** ：HTTP/2.0 在同一连接上可以同时传输多个请求和响应（可以看作是 HTTP/1.1 中长链接的升级版本）。HTTP/1.1 则使用串行方式，每个请求和响应都需要独立的连接。这使得 HTTP/2.0 在处理多个请求时更加高效，减少了网络延迟和提高了性能。
+- **二进制帧（Binary Frames）** ：HTTP/2.0 使用二进制帧进行数据传输，而 HTTP/1.1 则使用文本格式的报文。二进制帧更加紧凑和高效，减少了传输的数据量和带宽消耗。
+- **头部压缩（Header Compression）** ：HTTP/1.1 支持`Body`压缩，`Header`不支持压缩。HTTP/2.0 支持对`Header`压缩，减少了网络开销。
+- **服务器推送（Server Push）**：HTTP/2.0 支持服务器推送，可以在客户端请求一个资源时，将其他相关资源一并推送给客户端，从而减少了客户端的请求次数和延迟。而 HTTP/1.1 需要客户端自己发送请求来获取相关资源。
 
-### HTTP 2.0 和 HTTP 3.0 有什么区别？
+### HTTP/2.0 和 HTTP/3.0 有什么区别？
 
-![HTTP 2.0 和 HTTP 3.0 对比](https://oss.javaguide.cn/github/javaguide/cs-basics/network/http2.0-vs-http3.0.png)
+![HTTP/2.0 和 HTTP/3.0 对比](https://oss.javaguide.cn/github/javaguide/cs-basics/network/http2.0-vs-http3.0.png)
 
-- **传输协议** ：HTTP 2.0 是基于 TCP 协议实现的，HTTP 3.0是基于 UDP协议实现的。
-- **传输方式** ：HTTP3.0 新增了 QUIC（Quick UDP Internet Connections） 协议来实现可靠的传输，提供与TLS/SSL相当的安全性，具有较低的连接和传输延迟。
-- **错误恢复** ：HTTP3 具有更好的错误恢复机制，当出现丢包、延迟等网络问题时，可以更快地进行恢复和重传。而 HTTP2 则需要依赖于 TCP 的错误恢复机制。
-- **握手过程** ：HTTP3 的握手过程相较于 HTTP2 更加简洁，减少了握手次数和握手延迟，从而提高了连接建立速度和性能。
+- **传输协议** ：HTTP/2.0 是基于 TCP 协议实现的，HTTP/3.0 新增了 QUIC（Quick UDP Internet Connections） 协议来实现可靠的传输，提供与 TLS/SSL 相当的安全性，具有较低的连接和传输延迟。你可以将 QUIC 看作是 UDP 的升级版本，在其基础上新增了很多功能比如加密、重传等等。HTTP/3.0 之前名为 HTTP-over-QUIC，从这个名字中我们也可以发现，HTTP/3 最大的改造就是使用了 QUIC。
+- **连接建立** ：HTTP/2.0 需要经过经典的 TCP 三次握手过程（一般是 3 个 RTT）。由于 QUIC 协议的特性，HTTP/3.0 可以避免 TCP 三次握手的延迟，允许在第一次连接时发送数据（0 个 RTT ，零往返时间）。
+- **队头阻塞** ：HTTP/2.0 多请求复用一个 TCP 连接，一旦发生丢包，就会阻塞住所有的 HTTP 请求。由于 QUIC 协议的特性，HTTP/3.0 在一定程度上解决了队头阻塞（Head-of-Line blocking, 简写：HOL blocking）问题，一个连接建立多个不同的数据流，这些数据流之间独立互不影响，某个数据流发生丢包了，其数据流不受影响（本质上是多路复用+轮询）。
+- **错误恢复** ：HTTP/3.0 具有更好的错误恢复机制，当出现丢包、延迟等网络问题时，可以更快地进行恢复和重传。而 HTTP/2.0 则需要依赖于 TCP 的错误恢复机制。
+- **安全性** ：HTTP/2.0 和 HTTP/3.0 在安全性上都有较高的要求，支持加密通信，但在实现上有所不同。HTTP/2.0 使用 TLS 协议进行加密，而 HTTP/3.0 基于 QUIC 协议，包含了内置的加密和身份验证机制，可以提供更强的安全性。
 
 ### HTTP 是不保存状态的协议, 如何保存用户状态?
 
@@ -233,8 +176,8 @@ HTTP 是一种不保存状态，即无状态（stateless）协议。也就是说
 
 ### URI 和 URL 的区别是什么?
 
-* URI(Uniform Resource Identifier) 是统一资源标志符，可以唯一标识一个资源。
-* URL(Uniform Resource Locator) 是统一资源定位符，可以提供该资源的路径。它是一种具体的 URI，即 URL 可以用来标识一个资源，而且还指明了如何 locate 这个资源。
+- URI(Uniform Resource Identifier) 是统一资源标志符，可以唯一标识一个资源。
+- URL(Uniform Resource Locator) 是统一资源定位符，可以提供该资源的路径。它是一种具体的 URI，即 URL 可以用来标识一个资源，而且还指明了如何 locate 这个资源。
 
 URI 的作用像身份证号一样，URL 的作用更像家庭住址一样。URL 是一种具体的 URI，它不仅唯一标识资源，而且还提供了定位该资源的信息。
 
@@ -244,9 +187,9 @@ URI 的作用像身份证号一样，URL 的作用更像家庭住址一样。URL
 
 ## PING
 
-### PING命令的作用是什么？
+### PING 命令的作用是什么？
 
-PING命令是一种常用的网络诊断工具，经常用来测试网络中主机之间的连通性和网络延迟。
+PING 命令是一种常用的网络诊断工具，经常用来测试网络中主机之间的连通性和网络延迟。
 
 这里简单举一个例子，我们来 PING 一下百度。
 
@@ -268,25 +211,25 @@ round-trip min/avg/max/stddev = 27.571/27.938/28.732/0.474 ms
 PING 命令的输出结果通常包括以下几部分信息：
 
 1. **ICMP Echo Request（请求报文）信息** ：序列号、TTL（Time to Live）值。
-2. **目标主机的域名或IP地址** ：输出结果的第一行。
-3. **往返时间（RTT，Round-Trip Time）** ：从发送 ICMP Echo Request（请求报文）到接收到ICMP Echo Reply（响应报文）的总时间，用来衡量网络连接的延迟。
-4. **统计结果（Statistics）** ：包括发送的ICMP请求数据包数量、接收到的ICMP响应数据包数量、丢包率、往返时间（RTT）的最小、平均、最大和标准偏差值。
+2. **目标主机的域名或 IP 地址** ：输出结果的第一行。
+3. **往返时间（RTT，Round-Trip Time）** ：从发送 ICMP Echo Request（请求报文）到接收到 ICMP Echo Reply（响应报文）的总时间，用来衡量网络连接的延迟。
+4. **统计结果（Statistics）** ：包括发送的 ICMP 请求数据包数量、接收到的 ICMP 响应数据包数量、丢包率、往返时间（RTT）的最小、平均、最大和标准偏差值。
 
-如果PING对应的目标主机无法得到正确的响应，则表明这两个主机之间的连通性存在问题。如果往返时间（RTT）过高，则表明网络延迟过高。
+如果 PING 对应的目标主机无法得到正确的响应，则表明这两个主机之间的连通性存在问题。如果往返时间（RTT）过高，则表明网络延迟过高。
 
-### PING命令的工作原理是什么？
+### PING 命令的工作原理是什么？
 
-PING 基于 **ICMP（Internet Control Message Protocol，互联网控制报文协议）**，其主要原理就是通过在网络上发送和接收 ICMP 报文实现的。
+PING 基于网络层的 **ICMP（Internet Control Message Protocol，互联网控制报文协议）**，其主要原理就是通过在网络上发送和接收 ICMP 报文实现的。
 
 ICMP 报文中包含了类型字段，用于标识 ICMP 报文类型。ICMP 报文的类型有很多种，但大致可以分为两类：
 
 - **查询报文类型** ：向目标主机发送请求并期望得到响应。
 - **差错报文类型** ：向源主机发送错误信息，用于报告网络中的错误情况。
 
-PING 用到的ICMP Echo Request（类型为 8 ） 和 ICMP Echo Reply（类型为 0） 属于查询报文类型 。
+PING 用到的 ICMP Echo Request（类型为 8 ） 和 ICMP Echo Reply（类型为 0） 属于查询报文类型 。
 
-- PING命令会向目标主机发送ICMP Echo Request。
-- 如果两个主机的连通性正常，目标主机会返回一个对应的ICMP Echo Reply。
+- PING 命令会向目标主机发送 ICMP Echo Request。
+- 如果两个主机的连通性正常，目标主机会返回一个对应的 ICMP Echo Reply。
 
 ## DNS
 
@@ -312,6 +255,124 @@ DNS 服务器自底向上可以依次分为以下几个层级(所有 DNS 服务�
 ### DNS 解析的过程是什么样的？
 
 整个过程的步骤比较多，我单独写了一篇文章详细介绍：[DNS 域名系统详解（应用层）](./dns.md) 。
+
+## TCP 与 UDP
+
+### TCP 与 UDP 的区别（重要）
+
+1. **是否面向连接** ：UDP 在传送数据之前不需要先建立连接。而 TCP 提供面向连接的服务，在传送数据之前必须先建立连接，数据传送结束后要释放连接。
+2. **是否是可靠传输**：远地主机在收到 UDP 报文后，不需要给出任何确认，并且不保证数据不丢失，不保证是否顺序到达。TCP 提供可靠的传输服务，TCP 在传递数据之前，会有三次握手来建立连接，而且在数据传递时，有确认、窗口、重传、拥塞控制机制。通过 TCP 连接传输的数据，无差错、不丢失、不重复、并且按序到达。
+3. **是否有状态** ：这个和上面的“是否可靠传输”相对应。TCP 传输是有状态的，这个有状态说的是 TCP 会去记录自己发送消息的状态比如消息是否发送了、是否被接收了等等。为此 ，TCP 需要维持复杂的连接状态表。而 UDP 是无状态服务，简单来说就是不管发出去之后的事情了（**这很渣男！**）。
+4. **传输效率** ：由于使用 TCP 进行传输的时候多了连接、确认、重传等机制，所以 TCP 的传输效率要比 UDP 低很多。
+5. **传输形式** ： TCP 是面向字节流的，UDP 是面向报文的。
+6. **首部开销** ：TCP 首部开销（20 ～ 60 字节）比 UDP 首部开销（8 字节）要大。
+7. **是否提供广播或多播服务** ：TCP 只支持点对点通信，UDP 支持一对一、一对多、多对一、多对多；
+8. ......
+
+我把上面总结的内容通过表格形式展示出来了！确定不点个赞嘛？
+
+|                        | TCP            | UDP        |
+| ---------------------- | -------------- | ---------- |
+| 是否面向连接           | 是             | 否         |
+| 是否可靠               | 是             | 否         |
+| 是否有状态             | 是             | 否         |
+| 传输效率               | 较慢           | 较快       |
+| 传输形式               | 字节流         | 数据报文段 |
+| 首部开销               | 20 ～ 60 bytes | 8 bytes    |
+| 是否提供广播或多播服务 | 否             | 是         |
+
+### 什么时候选择 TCP，什么时候选 UDP?
+
+- **UDP 一般用于即时通信**，比如： 语音、 视频 、直播等等。这些场景对传输数据的准确性要求不是特别高，比如你看视频即使少个一两帧，实际给人的感觉区别也不大。
+- **TCP 用于对传输准确性要求特别高的场景**，比如文件传输、发送和接收邮件、远程登录等等。
+
+### HTTP 基于 TCP 还是 UDP？
+
+~~**HTTP 协议是基于 TCP 协议的**，所以发送 HTTP 请求之前首先要建立 TCP 连接也就是要经历 3 次握手。~~
+
+🐛 修正（参见 [issue#1915](https://github.com/Snailclimb/JavaGuide/issues/1915)）：HTTP/3.0 之前是基于 TCP 协议的，而 HTTP/3.0 将弃用 TCP，改用 **基于 UDP 的 QUIC 协议** 。此变化解决了 HTTP/2 中存在的队头阻塞问题。由于 HTTP/2 在单个 TCP 连接上使用了多路复用，受到 TCP 拥塞控制的影响，少量的丢包就可能导致整个 TCP 连接上的所有流被阻塞。另外，HTTP/2.0 需要经过经典的 TCP 三次握手过程（一般是 3 个 RTT）。由于 QUIC 协议的特性，HTTP/3.0 可以避免 TCP 三次握手的延迟，允许在第一次连接时发送数据（0 个 RTT ，零往返时间）。
+
+相关证明可以参考下面这两个链接：
+
+- https://zh.wikipedia.org/zh/HTTP/3
+- https://datatracker.ietf.org/doc/rfc9114/
+
+### 使用 TCP 的协议有哪些?使用 UDP 的协议有哪些?
+
+**运行于 TCP 协议之上的协议** ：
+
+1. **HTTP 协议** ：超文本传输协议（HTTP，HyperText Transfer Protocol)是一种用于传输超文本和多媒体内容的协议，主要是为 Web 浏览器与 Web 服务器之间的通信而设计的。当我们使用浏览器浏览网页的时候，我们网页就是通过 HTTP 请求进行加载的。
+2. **HTTPS 协议** ：更安全的超文本传输协议(HTTPS,Hypertext Transfer Protocol Secure)，身披 SSL 外衣的 HTTP 协议
+3. **FTP 协议**：文件传输协议 FTP（File Transfer Protocol）是一种用于在计算机之间传输文件的协议，可以屏蔽操作系统和文件存储方式。注意 ⚠️：FTP 是一种不安全的协议，因为它在传输过程中不会对数据进行加密。建议在传输敏感数据时使用更安全的协议，如 SFTP。
+4. **SMTP 协议**：简单邮件传输协议（SMTP，Simple Mail Transfer Protocol）的缩写，是一种用于发送电子邮件的协议。注意 ⚠️：SMTP 协议只负责邮件的发送，而不是接收。要从邮件服务器接收邮件，需要使用 POP3 或 IMAP 协议。
+5. **POP3/IMAP 协议**： 两者都是负责邮件接收的协议。IMAP 协议是比 POP3 更新的协议，它在功能和性能上都更加强大。IMAP 支持邮件搜索、标记、分类、归档等高级功能，而且可以在多个设备之间同步邮件状态。几乎所有现代电子邮件客户端和服务器都支持 IMAP。
+6. **Telnet 协议**：用于通过一个终端登陆到其他服务器。Telnet 协议的最大缺点之一是所有数据（包括用户名和密码）均以明文形式发送，这有潜在的安全风险。这就是为什么如今很少使用 Telnet，而是使用一种称为 SSH 的非常安全的网络传输协议的主要原因。
+7. **SSH 协议** : SSH（ Secure Shell）是目前较可靠，专为远程登录会话和其他网络服务提供安全性的协议。利用 SSH 协议可以有效防止远程管理过程中的信息泄露问题。SSH 建立在可靠的传输协议 TCP 之上。
+8. ......
+
+**运行于 UDP 协议之上的协议** ：
+
+1. **DHCP 协议**：动态主机配置协议，动态配置 IP 地址
+2. **DNS** ： **域名系统（DNS，Domain Name System）将人类可读的域名 (例如，www.baidu.com) 转换为机器可读的 IP 地址 (例如，220.181.38.148)。** 我们可以将其理解为专为互联网设计的电话薄。实际上 DNS 同时支持 UDP 和 TCP 协议。
+3. ......
+
+### TCP 三次握手和四次挥手（非常重要）
+
+**相关面试题** ：
+
+- 为什么要三次握手?
+- 第 2 次握手传回了 ACK，为什么还要传回 SYN？
+- 为什么要四次挥手？
+- 为什么不能把服务器发送的 ACK 和 FIN 合并起来，变成三次挥手？
+- 如果第二次挥手时服务器的 ACK 没有送达客户端，会怎样？
+- 为什么第四次挥手客户端需要等待 2\*MSL（报文段最长寿命）时间后才进入 CLOSED 状态？
+
+**参考答案** ：[TCP 三次握手和四次挥手（传输层）](./tcp-connection-and-disconnection.md) 。
+
+### TCP 如何保证传输的可靠性？（重要）
+
+[TCP 传输可靠性保障（传输层）](./tcp-reliability-guarantee.md)
+
+## IP
+
+### IP 协议的作用是什么？
+
+**IP（Internet Protocol，网际协议）** 是 TCP/IP 协议中最重要的协议之一，属于网络层的协议，主要作用是定义数据包的格式、对数据包进行路由和寻址，以便它们可以跨网络传播并到达正确的目的地。
+
+目前 IP 协议主要分为两种，一种是过去的 IPv4，另一种是较新的 IPv6，目前这两种协议都在使用，但后者已经被提议来取代前者。
+
+### 什么是 IP 地址？IP 寻址如何工作？
+
+每个连入互联网的设备或域（如计算机、服务器、路由器等）都被分配一个 IP 地址，作为唯一标识符。每个 IP 地址都是一个字符序列，如 192.168.1.1。每个 IP 数据包都同时包含发送数据包的设备或域的 IP 地址以及预期接收方的 IP 地址，这与一封邮件中同时包含目的地地址和回邮地址一样。
+
+![IP 地址使数据包到达其目的地](https://oss.javaguide.cn/github/javaguide/cs-basics/network/internet_protocol_ip_address_diagram.png)
+
+### IPv4 和 IPv6 有什么区别？
+
+**IPv4（Internet Protocol version 4）** 是目前广泛使用的 IP 地址版本，其格式是四组由点分隔的数字，例如：123.89.46.72。IPv4 使用 32 位地址作为其 Internet 地址，这意味着共有约 42 亿（ 2^32）个可用 IP 地址。
+
+![IPv4](https://oss.javaguide.cn/github/javaguide/cs-basics/network/Figure-1-IPv4Addressformatwithdotteddecimalnotation-29c824f6a451d48d8c27759799f0c995.png)
+
+这么少当然不够用啦！为了解决 IP 地址耗尽的问题，最根本的办法是采用具有更大地址空间的新版本 IP 协议 - **IPv6（Internet Protocol version 6）**。IPv6 地址使用更复杂的格式，该格式使用由单或双冒号分隔的一组数字和字母，例如：2001:0db8:85a3:0000:0000:8a2e:0370:7334 。IPv4 使用 128 位互联网地址，这意味着越有 2^128（3 开头的 39 位数字，恐怖如斯） 个可用 IP 地址。
+
+![IPv6](https://oss.javaguide.cn/github/javaguide/cs-basics/network/Figure-2-IPv6Addressformatwithhexadecimalnotation-7da3a419bd81627a9b2cef3b0efb4940.png)
+
+除了更大的地址空间之外，IPv6 的优势还包括：
+
+- **无状态地址自动配置（Stateless Address Autoconfiguration，简称 SLAAC）** ：主机可以直接通过根据接口标识和网络前缀生成全局唯一的 IPv6 地址，而无需依赖 DHCP（Dynamic Host Configuration Protocol）服务器，简化了网络配置和管理。
+- **NAT（Network Address Translation，网络地址转换） 成为可选项** ：IPv6 地址资源充足，可以给全球每个设备一个独立的地址。
+- **对标头结构进行了改进** ：IPv6 标头结构相较于 IPv4 更加简化和高效，减少了处理开销，提高了网络性能。
+- **可选的扩展头** ：允许在 IPv6 标头中添加不同的扩展头（Extension Headers），用于实现不同类型的功能和选项。
+- **ICMPv6（Internet Control Message Protocol for IPv6）** ：IPv6 中的 ICMPv6 相较于 IPv4 中的 ICMP 有了一些改进，如邻居发现、路径 MTU 发现等功能的改进，从而提升了网络的可靠性和性能。
+- ......
+
+### NAT 的作用是什么？
+
+**NAT（Network Address Translation，网络地址转换）** 主要用于在不同网络之间转换 IP 地址。它允许将私有 IP 地址（如在局域网中使用的 IP 地址）映射为公有 IP 地址（在互联网中使用的 IP 地址）或者反向映射，从而实现局域网内的多个设备通过单一公有 IP 地址访问互联网。
+
+NAT 不光可以缓解 IPv4 地址资源短缺的问题，还可以隐藏内部网络的实际拓扑结构，使得外部网络无法直接访问内部网络中的设备，从而提高了内部网络的安全性。
+
+![NAT 实现 IP地址转换](https://oss.javaguide.cn/github/javaguide/cs-basics/network/network-address-translation.png)
 
 ## ARP
 
@@ -347,5 +408,7 @@ ARP 协议，全称 **地址解析协议（Address Resolution Protocol）**，�
 
 - 《图解 HTTP》
 - 《计算机网络自顶向下方法》（第七版）
-- 详解 HTTP2.0 及 HTTPS 协议：https://juejin.cn/post/7034668672262242318
+- 详解 HTTP/2.0 及 HTTPS 协议：https://juejin.cn/post/7034668672262242318
 - HTTP 请求头字段大全| HTTP Request Headers：https://www.flysnow.org/tools/table/http-request-headers/
+- 什么是 Internet 协议（IP）？：https://www.cloudflare.com/zh-cn/learning/network-layer/internet-protocol/
+- What Is NAT and What Are the Benefits of NAT Firewalls?：https://community.fs.com/blog/what-is-nat-and-what-are-the-benefits-of-nat-firewalls.html

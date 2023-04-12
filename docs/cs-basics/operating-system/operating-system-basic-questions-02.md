@@ -227,7 +227,7 @@ MMU 将虚拟地址翻译为物理地址的主要机制有 3 种:
 
 #### TLB 有什么用？使用 TLB 之后的地址翻译流程是怎样的？
 
-为了提高虚拟地址到物理地址的转换速度，操作系统在 **页表方案** 基础之上引入了 **转址旁路缓存(Translation Lookasjde Buffer，TLB，也被称为快表) ** 。
+为了提高虚拟地址到物理地址的转换速度，操作系统在 **页表方案** 基础之上引入了 **转址旁路缓存(Translation Lookasjde Buffer，TLB，也被称为快表)** 。
 
 ![加入 TLB 之后的地址翻译](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/physical-virtual-address-translation-mmu.png)
 
@@ -306,7 +306,6 @@ LRU 算法是实际使用中应用的比较多，也被认为是最接近 OPT �
 
 - 都是非连续内存管理的方式。
 - 都采用了地址映射的方法，将虚拟地址映射到物理地址，以实现对内存的管理和保护。
--
 
 **区别** ：
 

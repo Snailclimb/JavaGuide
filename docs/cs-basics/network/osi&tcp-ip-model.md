@@ -55,26 +55,37 @@ OSI 七层模型虽然失败了，但是却提供了很多不错的理论基础�
 
 应用层协议定义了网络通信规则，对于不同的网络应用需要不同的应用层协议。在互联网中应用层协议很多，如支持 Web 应用的 HTTP 协议，支持电子邮件的 SMTP 协议等等。
 
-![应用层重要协议](https://oss.javaguide.cn/github/javaguide/cs-basics/network/application-layer-protocol.png)
+**应用层常见协议** ：
 
-应用层常见协议总结，请看这篇文章：[应用层常见协议总结（应用层）](./application-layer-protocol.md)。
+![应用层常见协议](https://oss.javaguide.cn/github/javaguide/cs-basics/network/application-layer-protocol.png)
+
+- **HTTP（Hypertext Transfer Protocol，超文本传输协议）** ：基于 TCP 协议，是一种用于传输超文本和多媒体内容的协议，主要是为 Web 浏览器与 Web 服务器之间的通信而设计的。当我们使用浏览器浏览网页的时候，我们网页就是通过 HTTP 请求进行加载的。
+- **SMTP（Simple Mail Transfer Protocol，简单邮件发送协议）** ：基于 TCP 协议，是一种用于发送电子邮件的协议。注意 ⚠️：SMTP 协议只负责邮件的发送，而不是接收。要从邮件服务器接收邮件，需要使用 POP3 或 IMAP 协议。
+- **POP3/IMAP（邮件接收协议）** ：基于 TCP 协议，两者都是负责邮件接收的协议。IMAP 协议是比 POP3 更新的协议，它在功能和性能上都更加强大。IMAP 支持邮件搜索、标记、分类、归档等高级功能，而且可以在多个设备之间同步邮件状态。几乎所有现代电子邮件客户端和服务器都支持 IMAP。
+- **FTP（File Transfer Protocol，文件传输协议）** : 基于 TCP 协议，是一种用于在计算机之间传输文件的协议，可以屏蔽操作系统和文件存储方式。注意 ⚠️：FTP 是一种不安全的协议，因为它在传输过程中不会对数据进行加密。建议在传输敏感数据时使用更安全的协议，如 SFTP。
+- **Telnet（远程登陆协议）** ：基于 TCP 协议，用于通过一个终端登陆到其他服务器。Telnet 协议的最大缺点之一是所有数据（包括用户名和密码）均以明文形式发送，这有潜在的安全风险。这就是为什么如今很少使用 Telnet，而是使用一种称为 SSH 的非常安全的网络传输协议的主要原因。
+- **SSH（Secure Shell Protocol，安全的网络传输协议）** ：基于 TCP 协议，通过加密和认证机制实现安全的访问和文件传输等业务
+- **RTP（Real-time Transport Protocol，实时传输协议）**：通常基于 UDP 协议，但也支持 TCP 协议。它提供了端到端的实时传输数据的功能，但不包含资源预留存、不保证实时传输质量，这些功能由 WebRTC 实现。
+- **DNS（Domain Name System，域名管理系统）**: 基于 UDP 协议，用于解决域名和 IP 地址的映射问题。
+
+关于这些协议的详细介绍请看 [应用层常见协议总结（应用层）](https://javaguide.cn/cs-basics/network/application-layer-protocol.html) 这篇文章。
 
 ### 传输层（Transport layer）
 
 **传输层的主要任务就是负责向两台终端设备进程之间的通信提供通用的数据传输服务。** 应用进程利用该服务传送应用层报文。“通用的”是指并不针对某一个特定的网络应用，而是多种应用可以使用同一个运输层服务。
 
-**运输层主要使用以下两种协议：**
+**传输层常见协议** ：
 
-1. **传输控制协议 TCP**（Transmisson Control Protocol）--提供 **面向连接** 的，**可靠的** 数据传输服务。
-2. **用户数据协议 UDP**（User Datagram Protocol）--提供 **无连接** 的，尽最大努力的数据传输服务（不保证数据传输的可靠性）。
+![传输层常见协议](https://oss.javaguide.cn/github/javaguide/cs-basics/network/transport-layer-protocol.png)
 
-![传输层重要协议](https://oss.javaguide.cn/github/javaguide/cs-basics/network/transport-layer-protocol.png)
+- **TCP（Transmisson Control Protocol，传输控制协议 ）**：提供 **面向连接** 的，**可靠** 的数据传输服务。
+- **UDP（User Datagram Protocol，用户数据协议）**：提供 **无连接** 的，**尽最大努力** 的数据传输服务（不保证数据传输的可靠性），简单高效。
 
 ### 网络层（Network layer）
 
 **网络层负责为分组交换网上的不同主机提供通信服务。** 在发送数据时，网络层把运输层产生的报文段或用户数据报封装成分组和包进行传送。在 TCP/IP 体系结构中，由于网络层使用 IP 协议，因此分组也叫 IP 数据报，简称数据报。
 
-⚠️注意 ：**不要把运输层的“用户数据报 UDP”和网络层的“IP 数据报”弄混**。
+⚠️ 注意 ：**不要把运输层的“用户数据报 UDP”和网络层的“IP 数据报”弄混**。
 
 **网络层的还有一个任务就是选择合适的路由，使源主机运输层所传下来的分组，能通过网络层中的路由器找到目的主机。**
 
@@ -82,14 +93,17 @@ OSI 七层模型虽然失败了，但是却提供了很多不错的理论基础�
 
 互联网是由大量的异构（heterogeneous）网络通过路由器（router）相互连接起来的。互联网使用的网络层协议是无连接的网际协议（Internet Prococol）和许多路由选择协议，因此互联网的网络层也叫做 **网际层** 或 **IP 层**。
 
-![网络层重要协议](https://oss.javaguide.cn/github/javaguide/cs-basics/network/nerwork-layer-protocol.png)
-
 **网络层常见协议** ：
 
-- **IP:网际协议** ：网际协议 IP 是TCP/IP协议中最重要的协议之一，也是网络层最重要的协议之一，IP协议的作用包括寻址规约、定义数据包的格式等等，是网络层信息传输的主力协议。目前IP协议主要分为两种，一种是过去的IPv4，另一种是较新的IPv6，目前这两种协议都在使用，但后者已经被提议来取代前者。
-- **ARP 协议** ：ARP协议，全称地址解析协议（Address Resolution Protocol），它解决的是网络层地址和链路层地址之间的转换问题。因为一个IP数据报在物理上传输的过程中，总是需要知道下一跳（物理上的下一个目的地）该去往何处，但IP地址属于逻辑地址，而MAC地址才是物理地址，ARP协议解决了IP地址转MAC地址的一些问题。
-- **NAT:网络地址转换协议** ：NAT协议（Network Address Translation）的应用场景如同它的名称——网络地址转换，应用于内部网到外部网的地址转换过程中。具体地说，在一个小的子网（局域网，LAN）内，各主机使用的是同一个LAN下的IP地址，但在该LAN以外，在广域网（WAN）中，需要一个统一的IP地址来标识该LAN在整个Internet上的位置。
-- ......
+![网络层常见协议](https://oss.javaguide.cn/github/javaguide/cs-basics/network/nerwork-layer-protocol.png)
+
+- **IP（Internet Protocol，网际协议）** ：TCP/IP 协议中最重要的协议之一，主要作用是定义数据包的格式、对数据包进行路由和寻址，以便它们可以跨网络传播并到达正确的目的地。目前 IP 协议主要分为两种，一种是过去的 IPv4，另一种是较新的 IPv6，目前这两种协议都在使用，但后者已经被提议来取代前者。
+- **ARP（Address Resolution Protocol，地址解析协议）** ：ARP 协议解决的是网络层地址和链路层地址之间的转换问题。因为一个 IP 数据报在物理上传输的过程中，总是需要知道下一跳（物理上的下一个目的地）该去往何处，但 IP 地址属于逻辑地址，而 MAC 地址才是物理地址，ARP 协议解决了 IP 地址转 MAC 地址的一些问题。
+- **ICMP（Internet Control Message Protocol，互联网控制报文协议）** ：一种用于传输网络状态和错误消息的协议，常用于网络诊断和故障排除。例如，Ping 工具就使用了 ICMP 协议来测试网络连通性。
+- **NAT（Network Address Translation，网络地址转换协议）** ：NAT 协议的应用场景如同它的名称——网络地址转换，应用于内部网到外部网的地址转换过程中。具体地说，在一个小的子网（局域网，LAN）内，各主机使用的是同一个 LAN 下的 IP 地址，但在该 LAN 以外，在广域网（WAN）中，需要一个统一的 IP 地址来标识该 LAN 在整个 Internet 上的位置。
+- **OSPF（Open Shortest Path First，开放式最短路径优先）** ）：一种内部网关协议（Interior Gateway Protocol，IGP），也是广泛使用的一种动态路由协议，基于链路状态算法，考虑了链路的带宽、延迟等因素来选择最佳路径。
+- **RIP(Routing Information Protocol，路由信息协议）** ：一种内部网关协议（Interior Gateway Protocol，IGP），也是一种动态路由协议，基于距离向量算法，使用固定的跳数作为度量标准，选择跳数最少的路径作为最佳路径。
+- **BGP（Border Gateway Protocol，边界网关协议）** ：一种用来在路由选择域之间交换网络层可达性信息（Network Layer Reachability Information，NLRI）的路由选择协议，具有高度的灵活性和可扩展性。
 
 ### 网络接口层（Network interface layer）
 
@@ -98,7 +112,9 @@ OSI 七层模型虽然失败了，但是却提供了很多不错的理论基础�
 1. 数据链路层(data link layer)通常简称为链路层（ 两台主机之间的数据传输，总是在一段一段的链路上传送的）。**数据链路层的作用是将网络层交下来的 IP 数据报组装成帧，在两个相邻节点间的链路上传送帧。每一帧包括数据和必要的控制信息（如同步信息，地址信息，差错控制等）。**
 2. **物理层的作用是实现相邻计算机节点之间比特流的透明传送，尽可能屏蔽掉具体传输介质和物理设备的差异**
 
-![网络接口层重要协议](https://oss.javaguide.cn/github/javaguide/cs-basics/network/network-interface-layer-protocol.png)
+网络接口层重要功能和协议如下图所示：
+
+![网络接口层重要功能和协议](https://oss.javaguide.cn/github/javaguide/cs-basics/network/network-interface-layer-protocol.png)
 
 ### 总结
 
@@ -112,7 +128,7 @@ OSI 七层模型虽然失败了，但是却提供了很多不错的理论基础�
 - DHCP 协议（动态主机配置）
 - DNS 系统原理（域名系统）
 - FTP 协议（文件传输协议）
-- Telnet协议（远程登陆协议）
+- Telnet 协议（远程登陆协议）
 - 电子邮件协议等（SMTP、POP3、IMAP）
 - ......
 
