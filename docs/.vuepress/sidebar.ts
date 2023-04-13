@@ -165,6 +165,7 @@ export const sidebarConfig = sidebar({
           icon: "network",
           children: [
             "other-network-questions",
+            "other-network-questions2",
             "computer-network-xiexiren-summary",
             {
               text: "重要知识点",
@@ -192,8 +193,15 @@ export const sidebarConfig = sidebar({
           children: [
             "operating-system-basic-questions-01",
             "operating-system-basic-questions-02",
-            "linux-intro",
-            "shell-intro",
+            {
+              text: "Linux",
+              collapsible: true,
+              icon: "linux",
+              children: [
+                "linux-intro",
+                "shell-intro",
+              ],
+            },
           ],
         },
         {

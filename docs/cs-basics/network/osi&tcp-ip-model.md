@@ -124,12 +124,14 @@ OSI 七层模型虽然失败了，但是却提供了很多不错的理论基础�
 
 **应用层协议** :
 
-- HTTP 协议（超文本传输协议，网页浏览常用的协议）
-- DHCP 协议（动态主机配置）
-- DNS 系统原理（域名系统）
-- FTP 协议（文件传输协议）
-- Telnet 协议（远程登陆协议）
-- 电子邮件协议等（SMTP、POP3、IMAP）
+- HTTP（Hypertext Transfer Protocol，超文本传输协议）
+- SMTP（Simple Mail Transfer Protocol，简单邮件发送协议）
+- POP3/IMAP（邮件接收协议）
+- FTP（File Transfer Protocol，文件传输协议）
+- Telnet（远程登陆协议）
+- SSH（Secure Shell Protocol，安全的网络传输协议）
+- RTP（Real-time Transport Protocol，实时传输协议）
+- DNS（Domain Name System，域名管理系统）
 - ......
 
 **传输层协议** :
@@ -145,11 +147,13 @@ OSI 七层模型虽然失败了，但是却提供了很多不错的理论基础�
 
 **网络层协议** :
 
-- IP 协议（TCP/IP 协议的基础，分为 IPv4 和 IPv6）
-- ARP 协议（地址解析协议，用于解析 IP 地址和 MAC 地址之间的映射）
+- IP（Internet Protocol，网际协议）
+- ARP（Address Resolution Protocol，地址解析协议）
 - ICMP 协议（控制报文协议，用于发送控制消息）
-- NAT 协议（网络地址转换协议）
-- RIP 协议、OSPF 协议、BGP 协议（路由选择协议）
+- NAT（Network Address Translation，网络地址转换协议）
+- OSPF（Open Shortest Path First，开放式最短路径优先）
+- RIP(Routing Information Protocol，路由信息协议）
+- BGP（Border Gateway Protocol，边界网关协议）
 - ......
 
 **网络接口层** :
