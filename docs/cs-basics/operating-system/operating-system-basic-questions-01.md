@@ -84,7 +84,7 @@ _玩玩电脑游戏还是必须要有 Windows 的，所以我现在是一台 Win
 >
 > **很多人更倾向使用 “GNU/Linux” 一词来表达人们通常所说的 “Linux”。**
 
-![linux](./images/linux.png)
+![Linux 操作系统](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/linux/linux.png)
 
 #### Mac OS
 
