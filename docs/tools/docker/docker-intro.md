@@ -173,7 +173,7 @@ Docker 设计时，就充分利用 **Union FS** 的技术，将其设计为**分
 
 - **OFFICIAL Image** ：代表镜像为 Docker 官方提供和维护，相对来说稳定性和安全性较高。
 - **Stars** ：和点赞差不多的意思，类似 GitHub 的 Star。
-- **Dowloads** ：代表镜像被拉取的次数，基本上能够表示镜像被使用的频度。
+- **Downloads** ：代表镜像被拉取的次数，基本上能够表示镜像被使用的频度。
 
 当然，除了直接通过 Docker Hub 网站搜索镜像这种方式外，我们还可以通过 `docker search` 这个命令搜索 Docker Hub 中的镜像，搜索的结果是一致的。
 

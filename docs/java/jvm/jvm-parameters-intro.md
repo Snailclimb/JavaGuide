@@ -41,7 +41,7 @@ tag:
 
 根据[Oracle 官方文档](https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/sizing.html)，在堆总可用内存配置完成之后，第二大影响因素是为 `Young Generation` 在堆内存所占的比例。默认情况下，YG 的最小大小为 1310 _MB_，最大大小为*无限制*。
 
-一共有两种指定 新生代内存(Young Ceneration)大小的方法：
+一共有两种指定 新生代内存(Young Generation)大小的方法：
 
 **1.通过`-XX:NewSize`和`-XX:MaxNewSize`指定**
 
@@ -226,7 +226,7 @@ JVM 具有四种类型的 GC 实现：
 - [JVM 内存配置最佳实践 - 阿里云官方文档 - 2022](https://help.aliyun.com/document_detail/383255.html)
 - [求你了，GC 日志打印别再瞎配置了 - 思否 - 2022](https://segmentfault.com/a/1190000039806436)
 - [一次大量 JVM Native 内存泄露的排查分析（64M 问题） - 掘金 - 2022](https://juejin.cn/post/7078624931826794503)
-- [一次线上 JVM 调优实践，FullGC40 次/天到 10 天一次的优化过程 - HeadpDump - 2021](https://heapdump.cn/article/1859160)
+- [一次线上 JVM 调优实践，FullGC40 次/天到 10 天一次的优化过程 - HeapDump - 2021](https://heapdump.cn/article/1859160)
 - [听说 JVM 性能优化很难？今天我小试了一把！ - 陈树义 - 2021](https://shuyi.tech/archives/have-a-try-in-jvm-combat)
 - [你们要的线上 GC 问题案例来啦 - 编了个程 - 2021](https://mp.weixin.qq.com/s/df1uxHWUXzhErxW1sZ6OvQ)
 - [Java 中 9 种常见的 CMS GC 问题分析与解决 - 美团技术团队 - 2020](https://tech.meituan.com/2020/11/12/java-9-cms-gc.html)

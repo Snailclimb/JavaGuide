@@ -96,7 +96,7 @@ public ConcurrentHashMap(int initialCapacity,float loadFactor, int concurrencyLe
 }
 ```
 
-总结一下在 Java 7 中 ConcurrnetHashMap 的初始化逻辑。
+总结一下在 Java 7 中 ConcurrentHashMap 的初始化逻辑。
 
 1. 必要参数校验。
 2. 校验并发级别 `concurrencyLevel` 大小，如果大于最大值，重置为最大值。无参构造**默认值是 16.**
