@@ -35,7 +35,7 @@ MongoDB 的存储结构区别于传统的关系型数据库，主要由如下三
 | 列（Col）               | 字段（Field）                  |
 | 主键（Primary Key）     | 对象 ID（Objectid）            |
 | 索引（Index）           | 索引（Index）                  |
-| 嵌套表（Embeded Table） | 嵌入式文档（Embeded Document） |
+| 嵌套表（Embedded Table） | 嵌入式文档（Embedded Document） |
 | 数组（Array）           | 数组（Array）                  |
 
 #### 文档
