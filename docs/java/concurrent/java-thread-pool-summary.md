@@ -21,14 +21,6 @@ tag:
 
 **线程池一般用于执行多个不相关联的耗时任务，没有多线程的情况下，任务顺序执行，使用了线程池的话可让多个不相关联的任务同时执行。**
 
-假设我们要执行三个不相关的耗时任务，画图给大家展示了使用线程池前后的区别。
-
-注意：**下面三个任务可能做的是同一件事情，也可能是不一样的事情。**
-
-> 使用多线程前应为：任务 1 --> 任务 2 --> 任务 3（图中把任务 3 画错为 任务 2）
-
-![使用线程池前后对比](./images/thread-pool/1bc44c67-26ba-42ab-bcb8-4e29e6fd99b9.png)
-
 ## Executor 框架介绍
 
 `Executor` 框架是 Java5 之后引进的，在 Java 5 之后，通过 `Executor` 来启动线程比使用 `Thread` 的 `start` 方法更好，除了更易管理，效率更好（用线程池实现，节约开销）外，还有关键的一点：有助于避免 this 逃逸问题。
@@ -408,9 +400,7 @@ pool-1-thread-2 End. Time = Sun Apr 12 11:14:47 CST 2020
 3. 如果向任务队列投放任务失败（任务队列已经满了），但是当前运行的线程数是小于最大线程数的，就新建一个线程来执行任务。
 4. 如果当前运行的线程数已经等同于最大线程数了，新建线程将会使当前运行的线程超出最大线程数，那么当前任务会被拒绝，饱和策略会调用`RejectedExecutionHandler.rejectedExecution()`方法。
 
-下图是我为了省事直接从网上找到，原地址不明。
-
-![图解线程池实现原理](https://oss.javaguide.cn/javaguide/%E5%9B%BE%E8%A7%A3%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.png)
+![图解线程池实现原理](https://oss.javaguide.cn/github/javaguide/java/concurrent/thread-pool-principle.png)
 
 在 `execute` 方法中，多次调用 `addWorker` 方法。`addWorker` 这个方法主要用来创建新的工作线程，如果返回 true 说明创建和启动工作线程成功，否则的话返回的就是 false。
 
@@ -716,6 +706,7 @@ Exception in thread "main" java.util.concurrent.TimeoutException
 #### 执行任务过程介绍
 
 `SingleThreadExecutor` 的运行示意图（该图片来源：《Java 并发编程的艺术》）：
+
 ![SingleThreadExecutor的运行示意图](./images/java-thread-pool-summary/SingleThreadExecutor.png)
 
 **上图说明** :
@@ -760,6 +751,7 @@ Exception in thread "main" java.util.concurrent.TimeoutException
 #### 执行任务过程介绍
 
 `CachedThreadPool` 的 `execute()` 方法的执行示意图（该图片来源：《Java 并发编程的艺术》）：
+
 ![CachedThreadPool的execute()方法的执行示意图](./images/java-thread-pool-summary/CachedThreadPool-execute.png)
 
 **上图说明：**

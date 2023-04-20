@@ -103,7 +103,21 @@ TDD 在很多人眼中是不实用的，一来他们并不理解测试“驱动�
 3. 由于测试用例在未进行代码设计前写；很有可能限制开发者对代码整体设计；
 4. 可能引起开发人员不满情绪，我觉得这点很严重，毕竟不是人人都喜欢单元测试，尽管单元测试会带给我们相当多的好处。
 
-相关阅读：[如何用正确的姿势打开 TDD？ - 陈天 - 2017](https://zhuanlan.zhihu.com/p/24997923)  。
+相关阅读：[如何用正确的姿势打开 TDD？ - 陈天 - 2017](https://zhuanlan.zhihu.com/p/24997923) 。
+
+## 单测框架如何选择？
+
+对于单测来说，目前常用的单测框架有：JUnit、Mockito、Spock、PowerMock、JMockit、TestableMock 等等。
+
+JUnit 几乎是默认选择，但是其不支持 Mock，因此我们还需要选择一个 Mock 工具。Mockito 和 Spock 是最主流的两款 Mock 工具，一般都是在这两者中选择。
+
+究竟是选择 Mockito 还是 Spock 呢？我这里做了一些简单的对比分析：
+
+- Spock 没办法 Mock 静态方法和私有方法 ，Mockito 3.4.0 以后，支持静态方法的 Mock，具体可以看这个 issue：https://github.com/mockito/mockito/issues/1013，具体教程可以看这篇文章：https://www.baeldung.com/mockito-mock-static-methods。
+- Spock 基于 Groovy，写出来的测试代码更清晰易读，比较规范(自带 given-when-then 的常用测试结构规范)。Mockito 没有具体的结构规范，需要项目组自己约定一个或者遵守比较好的测试代码实践。通常来说，同样的测试用例，Spock 的代码要更简洁。
+- Mockito 使用的人群更广泛，稳定可靠。并且，Mockito 是 SpringBoot Test 默认集成的 Mock 工具。
+
+Mockito 和 Spock 都是非常不错的 Mock 工具，相对来说，Mockito 的适用性更强一些。
 
 ## 总结
 
