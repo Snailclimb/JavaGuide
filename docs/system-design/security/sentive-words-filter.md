@@ -19,14 +19,14 @@ tag:
 
 假如我们的敏感词库中有以下敏感词：
 
-- 高清有码
-- 高清 AV
+- 高清视频
+- 高清CV
 - 东京冷
 - 东京热
 
 我们构造出来的敏感词 Trie 树就是下面这样的：
 
-![](./images/sentive-words-filter/trie.png)
+![敏感词 Trie 树](https://oss.javaguide.cn/github/javaguide/system-design/security/sensitive-word-trie.png)
 
 当我们要查找对应的字符串“东京热”的话，我们会把这个字符串切割成单个的字符“东”、“京”、“热”，然后我们从 Trie 树的根节点开始匹配。
 
