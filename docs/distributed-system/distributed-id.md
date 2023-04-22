@@ -1,5 +1,5 @@
 ---
-title: 分布式 ID 详解
+title: 分布式ID详解
 category: 分布式
 icon: "id"
 ---

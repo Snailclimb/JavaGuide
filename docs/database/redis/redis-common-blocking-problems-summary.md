@@ -1,5 +1,5 @@
 ---
-title: Redis 常见阻塞原因总结
+title: Redis常见阻塞原因总结
 category: 数据库
 tag:
   - Redis

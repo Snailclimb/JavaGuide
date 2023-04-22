@@ -1,5 +1,5 @@
 ---
-title:  类加载器详解（重点）
+title: 类加载器详解（重点）
 category: Java
 tag:
   - JVM

@@ -1,5 +1,5 @@
 ---
-title:  Atomic 原子类总结
+title: Atomic 原子类总结
 category: Java
 tag:
   - Java并发

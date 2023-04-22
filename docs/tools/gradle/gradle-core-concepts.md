@@ -1,5 +1,5 @@
 ---
-title: Gradle 核心概念总结
+title: Gradle核心概念总结
 category: 开发工具
 head:
   - - meta

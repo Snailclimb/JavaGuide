@@ -1,5 +1,5 @@
 ---
-title: API 网关详解
+title: API网关详解
 category: 分布式
 icon: "gateway"
 ---

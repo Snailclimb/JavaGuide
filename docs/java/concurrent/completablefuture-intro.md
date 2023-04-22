@@ -1,5 +1,5 @@
 ---
-title:  CompletableFuture详解
+title: CompletableFuture 详解
 category: Java
 tag:
   - Java并发

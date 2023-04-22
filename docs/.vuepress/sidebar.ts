@@ -25,6 +25,7 @@ export const sidebarConfig = sidebar({
       prefix: "interview-preparation/",
       children: [
         "teach-you-how-to-prepare-for-the-interview-hand-in-hand",
+        "key-points-of-interview",
         "project-experience-guide",
         "interview-experience",
         "self-test-of-common-interview-questions",

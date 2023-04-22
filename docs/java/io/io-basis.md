@@ -1,5 +1,5 @@
 ---
-title:  Java IO基础知识总结
+title: Java IO 基础知识总结
 category: Java
 tag:
   - Java IO

@@ -1,5 +1,5 @@
 ---
-title: Redis 集群详解(付费)
+title: Redis集群详解(付费)
 category: 数据库
 tag:
   - Redis

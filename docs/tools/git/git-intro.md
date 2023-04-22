@@ -1,5 +1,5 @@
 ---
-title:  Git 核心概念总结
+title: Git核心概念总结
 category: 开发工具
 tag:
   - Git

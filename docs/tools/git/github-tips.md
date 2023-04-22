@@ -1,5 +1,5 @@
 ---
-title: Github 实用小技巧总结
+title: Github实用小技巧总结
 category: 开发工具
 tag:
   - Git

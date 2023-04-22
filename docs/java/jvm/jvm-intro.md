@@ -1,5 +1,5 @@
 ---
-title:  大白话带你认识 JVM
+title: 大白话带你认识 JVM
 category: Java
 tag:
   - JVM

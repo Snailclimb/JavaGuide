@@ -1,5 +1,5 @@
 ---
-title:  AQS 详解
+title: AQS 详解
 category: Java
 tag:
   - Java并发

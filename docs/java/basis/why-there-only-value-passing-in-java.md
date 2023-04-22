@@ -1,5 +1,5 @@
 ---
-title:  为什么 Java 中只有值传递？
+title: Java 值传递详解
 category: Java
 tag:
   - Java基础

@@ -1,5 +1,5 @@
 ---
-title:  Java IO设计模式总结
+title: Java IO 设计模式总结
 category: Java
 tag:
   - Java IO

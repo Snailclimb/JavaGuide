@@ -1,5 +1,5 @@
 ---
-title:  最重要的 JVM 参数总结
+title: 最重要的 JVM 参数总结
 category: Java
 tag:
   - JVM
