@@ -243,7 +243,7 @@ Maven 远程仓库可以分为：
 
 - **中央仓库** ：这个仓库是由 Maven 社区来维护的，里面存放了绝大多数开源软件的包，并且是作为 Maven 的默认配置，不需要开发者额外配置。另外为了方便查询，还提供了一个[查询地址](https://search.maven.org/)，开发者可以通过这个地址更快的搜索需要构件的坐标。
 - **私服** ：私服是一种特殊的远程 Maven 仓库，它是架设在局域网内的仓库服务，私服一般被配置为互联网远程仓库的镜像，供局域网内的 Maven 用户使用。
-- **其他的公共仓库** ：有一些公共仓库是未来加速访问（比如阿里云 Maven 镜像仓库）或者部分构件不存在于中央仓库中。
+- **其他的公共仓库** ：有一些公共仓库是为了加速访问（比如阿里云 Maven 镜像仓库）或者部分构件不存在于中央仓库中。
 
 Maven 依赖包寻找顺序：
 
@@ -387,6 +387,7 @@ Maven 能够基于 `pom.xml` 所包含的信息，自动生成一个友好的站
 ## Maven 插件
 
 Maven 本质上是一个插件执行框架，所有的执行过程，都是由一个一个插件独立完成的。像咱们日常使用到的 install、clean、deploy 等命令，其实底层都是一个一个的 Maven 插件。关于 Maven 的核心插件可以参考官方的这篇文档：https://maven.apache.org/plugins/index.html 。
+本地默认插件路径: `${user.home}/.m2/repository/org/apache/maven/plugins`
 
 ![](https://oss.javaguide.cn/github/javaguide/tools/maven/maven-plugins.png)
 
