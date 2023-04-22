@@ -83,6 +83,14 @@ public class RpcRequest implements Serializable {
 
 `static` 修饰的变量是静态变量，位于方法区，本身是不会被序列化的。 `static` 变量是属于类的而不是对象。你反序列之后，`static` 变量的值就像是默认赋予给了对象一样，看着就像是 `static` 变量被序列化，实际只是假象罢了。
 
+官方说明如下：
+
+> A serializable class can declare its own serialVersionUID explicitly by declaring a field named `"serialVersionUID"` that must be `static`, `final`, and of type `long`; 
+>
+> 如果想显式指定 `serialVersionUID` ，则需要在类中使用 `static` 和 `final` 关键字来修饰一个 `long` 类型的变量，变量名字必须为 `"serialVersionUID"` 。
+
+也就是说，`serialVersionUID` 只是用来被 JVM 识别，实际并没有被序列化。
+
 **如果有些字段不想进行序列化怎么办？**
 
 对于不想进行序列化的变量，可以使用 `transient` 关键字修饰。
