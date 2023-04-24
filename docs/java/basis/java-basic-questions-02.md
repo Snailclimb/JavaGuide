@@ -29,7 +29,8 @@ head:
 
 new 运算符，new 创建对象实例（对象实例在堆内存中），对象引用指向对象实例（对象引用存放在栈内存中）。
 
-一个对象引用可以指向 0 个或 1 个对象（一根绳子可以不系气球，也可以系一个气球）;一个对象可以有 n 个引用指向它（可以用 n 条绳子系住一个气球）。
+- 一个对象引用可以指向 0 个或 1 个对象（一根绳子可以不系气球，也可以系一个气球）；
+- 一个对象可以有 n 个引用指向它（可以用 n 条绳子系住一个气球）。
 
 ### 对象的相等和引用相等的区别
 
@@ -42,7 +43,9 @@ new 运算符，new 创建对象实例（对象实例在堆内存中），对象
 
 ### 如果一个类没有声明构造方法，该程序能正确执行吗?
 
-如果一个类没有声明构造方法，也可以执行！因为一个类即使没有声明构造方法也会有默认的不带参数的构造方法。如果我们自己添加了类的构造方法（无论是否有参），Java 就不会再添加默认的无参数的构造方法了，我们一直在不知不觉地使用构造方法，这也是为什么我们在创建对象的时候后面要加一个括号（因为要调用无参的构造方法）。如果我们重载了有参的构造方法，记得都要把无参的构造方法也写出来（无论是否用到），因为这可以帮助我们在创建对象的时候少踩坑。
+如果一个类没有声明构造方法，也可以执行！因为一个类即使没有声明构造方法也会有默认的不带参数的构造方法。如果我们自己添加了类的构造方法（无论是否有参），Java 就不会添加默认的无参数的构造方法了。
+
+我们一直在不知不觉地使用构造方法，这也是为什么我们在创建对象的时候后面要加一个括号（因为要调用无参的构造方法）。如果我们重载了有参的构造方法，记得都要把无参的构造方法也写出来（无论是否用到），因为这可以帮助我们在创建对象的时候少踩坑。
 
 ### 构造方法有哪些特点？是否可被 override?
 
@@ -131,7 +134,7 @@ public class Student {
 
 上面的结论没有完全理解的话也没关系，我们来看一个具体的案例！
 
-**浅拷贝**
+#### 浅拷贝
 
 浅拷贝的示例代码如下，我们这里实现了 `Cloneable` 接口，并重写了 `clone()` 方法。
 
@@ -177,7 +180,7 @@ System.out.println(person1.getAddress() == person1Copy.getAddress());
 
 从输出结构就可以看出， `person1` 的克隆对象和 `person1` 使用的仍然是同一个 `Address` 对象。
 
-**深拷贝**
+#### 深拷贝
 
 这里我们简单对 `Person` 类的 `clone()` 方法进行修改，连带着要把 `Person` 对象内部的 `Address` 对象一起复制。
 
@@ -211,11 +214,9 @@ System.out.println(person1.getAddress() == person1Copy.getAddress());
 
 ![浅拷贝、深拷贝、引用拷贝示意图](https://oss.javaguide.cn/github/javaguide/java/basis/shallow&deep-copy.png)
 
-## Java 常见类
+## Object
 
-### Object
-
-#### Object 类的常见方法有哪些？
+### Object 类的常见方法有哪些？
 
 Object 类是一个特殊的类，是所有类的父类。它主要提供了以下 11 个方法：
 
@@ -266,7 +267,7 @@ public final void wait() throws InterruptedException
 protected void finalize() throws Throwable { }
 ```
 
-#### == 和 equals() 的区别
+### == 和 equals() 的区别
 
 **`==`** 对于基本类型和引用类型的作用效果是不同的：
 
@@ -333,9 +334,11 @@ public boolean equals(Object anObject) {
 }
 ```
 
-#### hashCode() 有什么用？
+### hashCode() 有什么用？
 
 `hashCode()` 的作用是获取哈希码（`int` 整数），也称为散列码。这个哈希码的作用是确定该对象在哈希表中的索引位置。
+
+![hashCode() 方法](https://oss.javaguide.cn/github/javaguide/java/basis/java-hashcode-method.png)
 
 `hashCode()`定义在 JDK 的 `Object` 类中，这就意味着 Java 中的任何类都包含有 `hashCode()` 函数。另外需要注意的是： `Object` 的 `hashCode()` 方法是本地方法，也就是用 C 语言或 C++ 实现的，该方法通常用来将对象的内存地址转换为整数之后返回。
 
@@ -345,7 +348,7 @@ public native int hashCode();
 
 散列表存储的是键值对(key-value)，它的特点是：**能根据“键”快速的检索出对应的“值”。这其中就利用到了散列码！（可以快速找到所需要的对象）**
 
-#### 为什么要有 hashCode？
+### 为什么要有 hashCode？
 
 我们以“`HashSet` 如何检查重复”为例子来说明为什么要有 `hashCode`？
 
@@ -377,7 +380,7 @@ public native int hashCode();
 
 相信大家看了我前面对 `hashCode()` 和 `equals()` 的介绍之后，下面这个问题已经难不倒你们了。
 
-#### 为什么重写 equals() 时必须重写 hashCode() 方法？
+### 为什么重写 equals() 时必须重写 hashCode() 方法？
 
 因为两个相等的对象的 `hashCode` 值必须是相等。也就是说如果 `equals` 方法判断两个对象是相等的，那这两个对象的 `hashCode` 值也要相等。
 
@@ -392,9 +395,9 @@ public native int hashCode();
 
 更多关于 `hashCode()` 和 `equals()` 的内容可以查看：[Java hashCode() 和 equals()的若干问题解答](https://www.cnblogs.com/skywang12345/p/3324958.html)
 
-### String
+## String
 
-#### String、StringBuffer、StringBuilder 的区别？
+### String、StringBuffer、StringBuilder 的区别？
 
 **可变性**
 
@@ -432,7 +435,7 @@ abstract class AbstractStringBuilder implements Appendable, CharSequence {
 2. 单线程操作字符串缓冲区下操作大量数据: 适用 `StringBuilder`
 3. 多线程操作字符串缓冲区下操作大量数据: 适用 `StringBuffer`
 
-#### String 为什么是不可变的?
+### String 为什么是不可变的?
 
 `String` 类中使用 `final` 关键字修饰字符数组来保存字符串，~~所以`String` 对象是不可变的。~~
 
@@ -479,7 +482,7 @@ public final class String implements java.io.Serializable, Comparable<String>, C
 >
 > 这是官方的介绍：https://openjdk.java.net/jeps/254 。
 
-#### 字符串拼接用“+” 还是 StringBuilder?
+### 字符串拼接用“+” 还是 StringBuilder?
 
 Java 语言本身并不支持运算符重载，“+”和“+=”是专门为 String 类重载过的运算符，也是 Java 中仅有的两个重载过的运算符。
 
@@ -528,11 +531,11 @@ System.out.println(s);
 
 不过，使用 “+” 进行字符串拼接会产生大量的临时对象的问题在 JDK9 中得到了解决。在 JDK9 当中，字符串相加 “+”  改为了用动态方法 `makeConcatWithConstants()` 来实现，而不是大量的 `StringBuilder` 了。这个改进是 JDK9 的 [JEP 280](https://openjdk.org/jeps/280) 提出的，这也意味着 JDK 9 之后，你可以放心使用“+” 进行字符串拼接了。关于这部分改进的详细介绍，推荐阅读这篇文章：还在无脑用 [StringBuilder？来重温一下字符串拼接吧](https://juejin.cn/post/7182872058743750715) 。
 
-#### String#equals() 和 Object#equals() 有何区别？
+### String#equals() 和 Object#equals() 有何区别？
 
 `String` 中的 `equals` 方法是被重写过的，比较的是 String 字符串的值是否相等。 `Object` 的 `equals` 方法是比较的对象的内存地址。
 
-#### 字符串常量池的作用了解吗？
+### 字符串常量池的作用了解吗？
 
 **字符串常量池** 是 JVM 为了提升性能和减少内存消耗针对字符串（String 类）专门开辟的一块区域，主要目的是为了避免字符串的重复创建。
 
@@ -547,7 +550,7 @@ System.out.println(aa==bb);// true
 
 更多关于字符串常量池的介绍可以看一下 [Java 内存区域详解](https://javaguide.cn/java/jvm/memory-area.html) 这篇文章。
 
-#### String s1 = new String("abc");这句话创建了几个字符串对象？
+### String s1 = new String("abc");这句话创建了几个字符串对象？
 
 会创建 1 或 2 个字符串对象。
 
@@ -582,7 +585,7 @@ String s2 = new String("abc");
 
 这里就不对上面的字节码进行详细注释了，7 这个位置的 `ldc` 命令不会在堆中创建新的字符串对象“abc”，这是因为 0 这个位置已经执行了一次 `ldc` 命令，已经在堆中创建过一次字符串对象“abc”了。7 这个位置执行 `ldc` 命令会直接返回字符串常量池中字符串对象“abc”对应的引用。
 
-#### intern 方法有什么作用?
+### String#intern 方法有什么作用?
 
 `String.intern()` 是一个 native（本地）方法，其作用是将指定的字符串对象的引用保存在字符串常量池中，可以简单分为两种情况：
 
@@ -609,7 +612,7 @@ System.out.println(s3 == s4); // false
 System.out.println(s1 == s4); //true
 ```
 
-#### String 类型的变量和常量做“+”运算时发生了什么？
+### String 类型的变量和常量做“+”运算时发生了什么？
 
 先来看字符串不加 `final` 关键字拼接的情况（JDK1.8）：
 

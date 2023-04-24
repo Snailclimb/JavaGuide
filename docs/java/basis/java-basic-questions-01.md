@@ -12,6 +12,13 @@ head:
       content: 全网质量最高的Java基础常见知识点和面试题总结，希望对你有帮助！
 ---
 
+::: tip 这是一则或许对你有用的小广告
+
+- **面试专版** ：准备 Java 面试的小伙伴可以考虑面试专版：**[《Java 面试指北 》](https://javaguide.cn/zhuanlan/java-mian-shi-zhi-bei.html)** (质量很高，专为面试打造，配合 JavaGuide 食用)。
+- **知识星球** ：专属面试小册/一对一交流/简历修改/专属求职指南，欢迎加入 **[JavaGuide 知识星球](https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html)**（点击链接即可查看星球的详细介绍，一定一定一定确定自己真的需要再加入，一定一定要看完详细介绍之后再加我）。
+
+:::
+
 ## 基础概念与常识
 
 ### Java 语言有哪些特点?
@@ -37,6 +44,8 @@ head:
 
 Java 虚拟机（JVM）是运行 Java 字节码的虚拟机。JVM 有针对不同系统的特定实现（Windows，Linux，macOS），目的是使用相同的字节码，它们都会给出相同的结果。字节码和不同系统的 JVM 实现是 Java 语言“一次编译，随处可以运行”的关键所在。
 
+![运行在 Java 虚拟机之上的编程语言](https://oss.javaguide.cn/github/javaguide/java/basis/java-virtual-machine-program-language-os.png)
+
 **JVM 并不是只有一种！只要满足 JVM 规范，每个公司、组织或者个人都可以开发自己的专属 JVM。** 也就是说我们平时接触到的 HotSpot VM 仅仅是是 JVM 规范的一种实现而已。
 
 除了我们平时最常用的 HotSpot VM 外，还有 J9 VM、Zing VM、JRockit VM 等 JVM 。维基百科上就有常见 JVM 的对比：[Comparison of Java virtual machines](https://en.wikipedia.org/wiki/Comparison_of_Java_virtual_machines) ，感兴趣的可以去看看。并且，你可以在 [Java SE Specifications](https://docs.oracle.com/javase/specs/index.html) 上找到各个版本的 JDK 对应的 JVM 规范。
@@ -45,11 +54,13 @@ Java 虚拟机（JVM）是运行 Java 字节码的虚拟机。JVM 有针对不�
 
 #### JDK 和 JRE
 
-JDK 是 Java Development Kit 缩写，它是功能齐全的 Java SDK。它拥有 JRE 所拥有的一切（包含了 JRE），还有编译器（javac）和工具（如 javadoc 和 jdb）。它能够创建和编译 Java 程序。
+JDK（Java Development Kit），它是功能齐全的 Java SDK，是提供给开发者使用的，能够创建和编译 Java 程序。他包含了 JRE，同时还包含了编译 java 源码的编译器 javac 以及一些其他工具比如 javadoc（文档注释工具）、jdb（调试器）、jconsole（基于 JMX 的可视化监控⼯具）、javap（反编译工具）等等。
 
-JRE 是 Java 运行时环境。它是运行已编译 Java 程序所需的所有内容的集合，包括 Java 虚拟机（JVM），Java 类库，java 命令和其他的一些基础构件。但是，它不能用于创建新程序。
+JRE（Java Runtime Environment） 是 Java 运行时环境。它是运行已编译 Java 程序所需的所有内容的集合，主要包括 Java 虚拟机（JVM）、Java 基础类库（Class Library）。
 
-如果你只是为了运行一下 Java 程序的话，那么你只需要安装 JRE 就可以了。如果你需要进行一些 Java 编程方面的工作，那么你就需要安装 JDK 了。但是，这不是绝对的。有时，即使您不打算在计算机上进行任何 Java 开发，仍然需要安装 JDK。例如，如果要使用 JSP 部署 Web 应用程序，那么从技术上讲，您只是在应用程序服务器中运行 Java 程序。那你为什么需要 JDK 呢？因为应用程序服务器会将 JSP 转换为 Java servlet，并且需要使用 JDK 来编译 servlet。
+也就是说，JRE 是 Java 运行时环境，仅包含 Java 应用程序的运行时环境和必要的类库。而 JDK 则包含了 JRE，同时还包括了 javac、javadoc、jdb、jconsole、javap 等工具，可以用于 Java 应用程序的开发和调试。如果需要进行 Java 编程工作，比如编写和编译 Java 程序、使用 Java API 文档等，就需要安装 JDK。而对于某些需要使用 Java 特性的应用程序，如 JSP 转换为 Java Servlet、使用反射等，也需要 JDK 来编译和运行 Java 代码。因此，即使不打算进行 Java 应用程序的开发工作，也有可能需要安装 JDK。
+
+![JDK 包含 JRE](https://oss.javaguide.cn/github/javaguide/java/basis/jdk-include-jre.png)
 
 ### 什么是字节码?采用字节码的好处是什么?
 
@@ -68,6 +79,10 @@ JRE 是 Java 运行时环境。它是运行已编译 Java 程序所需的所有�
 JDK、JRE、JVM、JIT 这四者的关系如下图所示。
 
 ![JDK、JRE、JVM、JIT 这四者的关系](https://oss.javaguide.cn/github/javaguide/java/basis/jdk-jre-jvm-jit.png)
+
+下面这张图是 JVM 的大致结构模型。
+
+![JVM 的大致结构模型](https://oss.javaguide.cn/github/javaguide/java/basis/jvm-rough-structure-model.png)
 
 ### 为什么不全部使用 AOT 呢？
 
@@ -259,6 +274,8 @@ static final int hash(Object key) {
 
 Java 中有三种移位运算符：
 
+![Java 移位运算符总结](https://oss.javaguide.cn/github/javaguide/java/basis/shift-operator.png)
+
 - `<<` :左移运算符，向左移若干位，高位丢弃，低位补零。`x << 1`,相当于 x 乘以 2(不溢出的情况下)。
 - `>>` :带符号右移，向右移若干位，高位补符号位，低位丢弃。正数高位补 0,负数高位补 1。`x >> 1`,相当于 x 除以 2。
 - `>>>` :无符号右移，忽略符号位，空位都以 0 补齐。
@@ -360,277 +377,6 @@ xixi
 haha
 ```
 
-### 变量
-
-#### 成员变量与局部变量的区别？
-
-- **语法形式** ：从语法形式上看，成员变量是属于类的，而局部变量是在代码块或方法中定义的变量或是方法的参数；成员变量可以被 `public`,`private`,`static` 等修饰符所修饰，而局部变量不能被访问控制修饰符及 `static` 所修饰；但是，成员变量和局部变量都能被 `final` 所修饰。
-- **存储方式** ：从变量在内存中的存储方式来看,如果成员变量是使用 `static` 修饰的，那么这个成员变量是属于类的，如果没有使用 `static` 修饰，这个成员变量是属于实例的。而对象存在于堆内存，局部变量则存在于栈内存。
-- **生存时间** ：从变量在内存中的生存时间上看，成员变量是对象的一部分，它随着对象的创建而存在，而局部变量随着方法的调用而自动生成，随着方法的调用结束而消亡。
-- **默认值** ：从变量是否有默认值来看，成员变量如果没有被赋初始值，则会自动以类型的默认值而赋值（一种情况例外:被 `final` 修饰的成员变量也必须显式地赋值），而局部变量则不会自动赋值。
-
-#### 静态变量有什么作用？
-
-静态变量可以被类的所有实例共享。无论一个类创建了多少个对象，它们都共享同一份静态变量。
-
-通常情况下，静态变量会被 `final` 关键字修饰成为常量。
-
-#### 字符型常量和字符串常量的区别?
-
-1. **形式** : 字符常量是单引号引起的一个字符，字符串常量是双引号引起的 0 个或若干个字符。
-2. **含义** : 字符常量相当于一个整型值( ASCII 值),可以参加表达式运算; 字符串常量代表一个地址值(该字符串在内存中存放位置)。
-3. **占内存大小** ： 字符常量只占 2 个字节; 字符串常量占若干个字节。
-
-(**注意： `char` 在 Java 中占两个字节**)
-
-### 方法
-
-#### 什么是方法的返回值?方法有哪几种类型？
-
-**方法的返回值** 是指我们获取到的某个方法体中的代码执行后产生的结果！（前提是该方法可能产生结果）。返回值的作用是接收出结果，使得它可以用于其他的操作！
-
-我们可以按照方法的返回值和参数类型将方法分为下面这几种：
-
-**1.无参数无返回值的方法**
-
-```java
-public void f1() {
-    //......
-}
-// 下面这个方法也没有返回值，虽然用到了 return
-public void f(int a) {
-    if (...) {
-        // 表示结束方法的执行,下方的输出语句不会执行
-        return;
-    }
-    System.out.println(a);
-}
-```
-
-**2.有参数无返回值的方法**
-
-```java
-public void f2(Parameter 1, ..., Parameter n) {
-    //......
-}
-```
-
-**3.有返回值无参数的方法**
-
-```java
-public int f3() {
-    //......
-    return x;
-}
-```
-
-**4.有返回值有参数的方法**
-
-```java
-public int f4(int a, int b) {
-    return a * b;
-}
-```
-
-#### 静态方法为什么不能调用非静态成员?
-
-这个需要结合 JVM 的相关知识，主要原因如下：
-
-1. 静态方法是属于类的，在类加载的时候就会分配内存，可以通过类名直接访问。而非静态成员属于实例对象，只有在对象实例化之后才存在，需要通过类的实例对象去访问。
-2. 在类的非静态成员不存在的时候静态方法就已经存在了，此时调用在内存中还不存在的非静态成员，属于非法操作。
-
-#### 静态方法和实例方法有何不同？
-
-**1、调用方式**
-
-在外部调用静态方法时，可以使用 `类名.方法名` 的方式，也可以使用 `对象.方法名` 的方式，而实例方法只有后面这种方式。也就是说，**调用静态方法可以无需创建对象** 。
-
-不过，需要注意的是一般不建议使用 `对象.方法名` 的方式来调用静态方法。这种方式非常容易造成混淆，静态方法不属于类的某个对象而是属于这个类。
-
-因此，一般建议使用 `类名.方法名` 的方式来调用静态方法。
-
-```java
-public class Person {
-    public void method() {
-      //......
-    }
-
-    public static void staicMethod(){
-      //......
-    }
-    public static void main(String[] args) {
-        Person person = new Person();
-        // 调用实例方法
-        person.method();
-        // 调用静态方法
-        Person.staicMethod()
-    }
-}
-```
-
-**2、访问类成员是否存在限制**
-
-静态方法在访问本类的成员时，只允许访问静态成员（即静态成员变量和静态方法），不允许访问实例成员（即实例成员变量和实例方法），而实例方法不存在这个限制。
-
-#### 重载和重写有什么区别？
-
-> 重载就是同样的一个方法能够根据输入数据的不同，做出不同的处理
->
-> 重写就是当子类继承自父类的相同方法，输入数据一样，但要做出有别于父类的响应时，你就要覆盖父类方法
-
-**重载**
-
-发生在同一个类中（或者父类和子类之间），方法名必须相同，参数类型不同、个数不同、顺序不同，方法返回值和访问修饰符可以不同。
-
-《Java 核心技术》这本书是这样介绍重载的：
-
-> 如果多个方法(比如 `StringBuilder` 的构造方法)有相同的名字、不同的参数， 便产生了重载。
->
-> ```java
-> StringBuilder sb = new StringBuilder();
-> StringBuilder sb2 = new StringBuilder("HelloWorld");
-> ```
->
-> 编译器必须挑选出具体执行哪个方法，它通过用各个方法给出的参数类型与特定方法调用所使用的值类型进行匹配来挑选出相应的方法。 如果编译器找不到匹配的参数， 就会产生编译时错误， 因为根本不存在匹配， 或者没有一个比其他的更好(这个过程被称为重载解析(overloading resolution))。
->
-> Java 允许重载任何方法， 而不只是构造器方法。
-
-综上：重载就是同一个类中多个同名方法根据不同的传参来执行不同的逻辑处理。
-
-**重写**
-
-重写发生在运行期，是子类对父类的允许访问的方法的实现过程进行重新编写。
-
-1. 方法名、参数列表必须相同，子类方法返回值类型应比父类方法返回值类型更小或相等，抛出的异常范围小于等于父类，访问修饰符范围大于等于父类。
-2. 如果父类方法访问修饰符为 `private/final/static` 则子类就不能重写该方法，但是被 `static` 修饰的方法能够被再次声明。
-3. 构造方法无法被重写
-
-综上：**重写就是子类对父类方法的重新改造，外部样子不能改变，内部逻辑可以改变。**
-
-| 区别点     | 重载方法 | 重写方法                                                     |
-| :--------- | :------- | :----------------------------------------------------------- |
-| 发生范围   | 同一个类 | 子类                                                         |
-| 参数列表   | 必须修改 | 一定不能修改                                                 |
-| 返回类型   | 可修改   | 子类方法返回值类型应比父类方法返回值类型更小或相等           |
-| 异常       | 可修改   | 子类方法声明抛出的异常类应比父类方法声明抛出的异常类更小或相等； |
-| 访问修饰符 | 可修改   | 一定不能做更严格的限制（可以降低限制）                       |
-| 发生阶段   | 编译期   | 运行期                                                       |
-
-**方法的重写要遵循“两同两小一大”**（以下内容摘录自《疯狂 Java 讲义》，[issue#892](https://github.com/Snailclimb/JavaGuide/issues/892) ）：
-
-- “两同”即方法名相同、形参列表相同；
-- “两小”指的是子类方法返回值类型应比父类方法返回值类型更小或相等，子类方法声明抛出的异常类应比父类方法声明抛出的异常类更小或相等；
-- “一大”指的是子类方法的访问权限应比父类方法的访问权限更大或相等。
-
-⭐️ 关于 **重写的返回值类型** 这里需要额外多说明一下，上面的表述不太清晰准确：如果方法的返回类型是 void 和基本数据类型，则返回值重写时不可修改。但是如果方法的返回值是引用类型，重写时是可以返回该引用类型的子类的。
-
-```java
-public class Hero {
-    public String name() {
-        return "超级英雄";
-    }
-}
-public class SuperMan extends Hero{
-    @Override
-    public String name() {
-        return "超人";
-    }
-    public Hero hero() {
-        return new Hero();
-    }
-}
-
-public class SuperSuperMan extends SuperMan {
-    public String name() {
-        return "超级超级英雄";
-    }
-
-    @Override
-    public SuperMan hero() {
-        return new SuperMan();
-    }
-}
-```
-
-#### 什么是可变长参数？
-
-从 Java5 开始，Java 支持定义可变长参数，所谓可变长参数就是允许在调用方法时传入不定长度的参数。就比如下面的这个 `printVariable` 方法就可以接受 0 个或者多个参数。
-
-```java
-public static void method1(String... args) {
-   //......
-}
-```
-
-另外，可变参数只能作为函数的最后一个参数，但其前面可以有也可以没有任何其他参数。
-
-```java
-public static void method2(String arg1, String... args) {
-   //......
-}
-```
-
-**遇到方法重载的情况怎么办呢？会优先匹配固定参数还是可变参数的方法呢？**
-
-答案是会优先匹配固定参数的方法，因为固定参数的方法匹配度更高。
-
-我们通过下面这个例子来证明一下。
-
-```java
-/**
- * 微信搜 JavaGuide 回复"面试突击"即可免费领取个人原创的 Java 面试手册
- *
- * @author Guide哥
- * @date 2021/12/13 16:52
- **/
-public class VariableLengthArgument {
-
-    public static void printVariable(String... args) {
-        for (String s : args) {
-            System.out.println(s);
-        }
-    }
-
-    public static void printVariable(String arg1, String arg2) {
-        System.out.println(arg1 + arg2);
-    }
-
-    public static void main(String[] args) {
-        printVariable("a", "b");
-        printVariable("a", "b", "c", "d");
-    }
-}
-```
-
-输出：
-
-```
-ab
-a
-b
-c
-d
-```
-
-另外，Java 的可变参数编译后实际会被转换成一个数组，我们看编译后生成的 `class`文件就可以看出来了。
-
-```java
-public class VariableLengthArgument {
-
-    public static void printVariable(String... args) {
-        String[] var1 = args;
-        int var2 = args.length;
-
-        for(int var3 = 0; var3 < var2; ++var3) {
-            String s = var1[var3];
-            System.out.println(s);
-        }
-
-    }
-    // ......
-}
-```
-
 ## 基本数据类型
 
 ### Java 中的几种基本数据类型了解么？
@@ -669,12 +415,15 @@ Java 中有 8 种基本数据类型，分别为：
 
 ### 基本类型和包装类型的区别？
 
-- 成员变量包装类型不赋值就是 `null` ，而基本类型有默认值且不是 `null`。
-- 包装类型可用于泛型，而基本类型不可以。
-- 基本数据类型的局部变量存放在 Java 虚拟机栈中的局部变量表中，基本数据类型的成员变量（未被 `static` 修饰 ）存放在 Java 虚拟机的堆中。包装类型属于对象类型，我们知道几乎所有对象实例都存在于堆中。
-- 相比于对象类型， 基本数据类型占用的空间非常小。
+![基本类型 vs 包装类型](https://oss.javaguide.cn/github/javaguide/java/basis/primitive-type-vs-packaging-type.png)
 
-**为什么说是几乎所有对象实例呢？** 这是因为 HotSpot 虚拟机引入了 JIT 优化之后，会对对象进行逃逸分析，如果发现某一个对象并没有逃逸到方法外部，那么就可能通过标量替换来实现栈上分配，而避免堆上分配内存
+- **用途** ：除了定义一些常量和局部变量之外，我们在其他地方比如方法参数、对象属性中很少会使用基本类型来定义变量。并且，包装类型可用于泛型，而基本类型不可以。
+- **存储方式** ：基本数据类型的局部变量存放在 Java 虚拟机栈中的局部变量表中，基本数据类型的成员变量（未被 `static` 修饰 ）存放在 Java 虚拟机的堆中。包装类型属于对象类型，我们知道几乎所有对象实例都存在于堆中。
+- **占用空间** ：相比于包装类型（对象类型）， 基本数据类型占用的空间往往非常小。
+- **默认值** ：成员变量包装类型不赋值就是 `null` ，而基本类型有默认值且不是 `null`。
+- **比较方式** ：对于基本数据类型来说，`==` 比较的是值。对于包装数据类型来说，`==` 比较的是对象的内存地址。所有整型包装类对象之间值的比较，全部使用 `equals()` 方法。
+
+**为什么说是几乎所有对象实例都存在于堆中呢？** 这是因为 HotSpot 虚拟机引入了 JIT 优化之后，会对对象进行逃逸分析，如果发现某一个对象并没有逃逸到方法外部，那么就可能通过标量替换来实现栈上分配，而避免堆上分配内存
 
 ⚠️ 注意 ： **基本数据类型存放在栈中是一个常见的误区！** 基本数据类型的成员变量如果没有被 `static` 修饰的话（不建议这么使用，应该要使用基本数据类型对应的包装类型），就存放在堆中。
 
@@ -902,9 +651,284 @@ System.out.println(l + 1 == Long.MIN_VALUE); // true
 
 相对于常规整数类型的运算来说，`BigInteger` 运算的效率会相对较低。
 
+## 变量
+
+### 成员变量与局部变量的区别？
+
+![成员变量 vs 局部变量](https://oss.javaguide.cn/github/javaguide/java/basis/member-var-vs-local-var.png)
+
+- **语法形式** ：从语法形式上看，成员变量是属于类的，而局部变量是在代码块或方法中定义的变量或是方法的参数；成员变量可以被 `public`,`private`,`static` 等修饰符所修饰，而局部变量不能被访问控制修饰符及 `static` 所修饰；但是，成员变量和局部变量都能被 `final` 所修饰。
+- **存储方式** ：从变量在内存中的存储方式来看，如果成员变量是使用 `static` 修饰的，那么这个成员变量是属于类的，如果没有使用 `static` 修饰，这个成员变量是属于实例的。而对象存在于堆内存，局部变量则存在于栈内存。
+- **生存时间** ：从变量在内存中的生存时间上看，成员变量是对象的一部分，它随着对象的创建而存在，而局部变量随着方法的调用而自动生成，随着方法的调用结束而消亡。
+- **默认值** ：从变量是否有默认值来看，成员变量如果没有被赋初始值，则会自动以类型的默认值而赋值（一种情况例外:被 `final` 修饰的成员变量也必须显式地赋值），而局部变量则不会自动赋值。
+
+### 静态变量有什么作用？
+
+静态变量可以被类的所有实例共享。无论一个类创建了多少个对象，它们都共享同一份静态变量。
+
+通常情况下，静态变量会被 `final` 关键字修饰成为常量。
+
+### 字符型常量和字符串常量的区别?
+
+1. **形式** : 字符常量是单引号引起的一个字符，字符串常量是双引号引起的 0 个或若干个字符。
+2. **含义** : 字符常量相当于一个整型值( ASCII 值),可以参加表达式运算; 字符串常量代表一个地址值(该字符串在内存中存放位置)。
+3. **占内存大小** ： 字符常量只占 2 个字节; 字符串常量占若干个字节。
+
+⚠️ 注意 `char` 在 Java 中占两个字节。
+
+## 方法
+
+### 什么是方法的返回值?方法有哪几种类型？
+
+**方法的返回值** 是指我们获取到的某个方法体中的代码执行后产生的结果！（前提是该方法可能产生结果）。返回值的作用是接收出结果，使得它可以用于其他的操作！
+
+我们可以按照方法的返回值和参数类型将方法分为下面这几种：
+
+**1、无参数无返回值的方法**
+
+```java
+public void f1() {
+    //......
+}
+// 下面这个方法也没有返回值，虽然用到了 return
+public void f(int a) {
+    if (...) {
+        // 表示结束方法的执行,下方的输出语句不会执行
+        return;
+    }
+    System.out.println(a);
+}
+```
+
+**2、有参数无返回值的方法**
+
+```java
+public void f2(Parameter 1, ..., Parameter n) {
+    //......
+}
+```
+
+**3、有返回值无参数的方法**
+
+```java
+public int f3() {
+    //......
+    return x;
+}
+```
+
+**4、有返回值有参数的方法**
+
+```java
+public int f4(int a, int b) {
+    return a * b;
+}
+```
+
+### 静态方法为什么不能调用非静态成员?
+
+这个需要结合 JVM 的相关知识，主要原因如下：
+
+1. 静态方法是属于类的，在类加载的时候就会分配内存，可以通过类名直接访问。而非静态成员属于实例对象，只有在对象实例化之后才存在，需要通过类的实例对象去访问。
+2. 在类的非静态成员不存在的时候静态方法就已经存在了，此时调用在内存中还不存在的非静态成员，属于非法操作。
+
+### 静态方法和实例方法有何不同？
+
+**1、调用方式**
+
+在外部调用静态方法时，可以使用 `类名.方法名` 的方式，也可以使用 `对象.方法名` 的方式，而实例方法只有后面这种方式。也就是说，**调用静态方法可以无需创建对象** 。
+
+不过，需要注意的是一般不建议使用 `对象.方法名` 的方式来调用静态方法。这种方式非常容易造成混淆，静态方法不属于类的某个对象而是属于这个类。
+
+因此，一般建议使用 `类名.方法名` 的方式来调用静态方法。
+
+```java
+public class Person {
+    public void method() {
+      //......
+    }
+
+    public static void staicMethod(){
+      //......
+    }
+    public static void main(String[] args) {
+        Person person = new Person();
+        // 调用实例方法
+        person.method();
+        // 调用静态方法
+        Person.staicMethod()
+    }
+}
+```
+
+**2、访问类成员是否存在限制**
+
+静态方法在访问本类的成员时，只允许访问静态成员（即静态成员变量和静态方法），不允许访问实例成员（即实例成员变量和实例方法），而实例方法不存在这个限制。
+
+### 重载和重写有什么区别？
+
+> 重载就是同样的一个方法能够根据输入数据的不同，做出不同的处理
+>
+> 重写就是当子类继承自父类的相同方法，输入数据一样，但要做出有别于父类的响应时，你就要覆盖父类方法
+
+#### 重载
+
+发生在同一个类中（或者父类和子类之间），方法名必须相同，参数类型不同、个数不同、顺序不同，方法返回值和访问修饰符可以不同。
+
+《Java 核心技术》这本书是这样介绍重载的：
+
+> 如果多个方法(比如 `StringBuilder` 的构造方法)有相同的名字、不同的参数， 便产生了重载。
+>
+> ```java
+> StringBuilder sb = new StringBuilder();
+> StringBuilder sb2 = new StringBuilder("HelloWorld");
+> ```
+>
+> 编译器必须挑选出具体执行哪个方法，它通过用各个方法给出的参数类型与特定方法调用所使用的值类型进行匹配来挑选出相应的方法。 如果编译器找不到匹配的参数， 就会产生编译时错误， 因为根本不存在匹配， 或者没有一个比其他的更好(这个过程被称为重载解析(overloading resolution))。
+>
+> Java 允许重载任何方法， 而不只是构造器方法。
+
+综上：重载就是同一个类中多个同名方法根据不同的传参来执行不同的逻辑处理。
+
+#### 重写
+
+重写发生在运行期，是子类对父类的允许访问的方法的实现过程进行重新编写。
+
+1. 方法名、参数列表必须相同，子类方法返回值类型应比父类方法返回值类型更小或相等，抛出的异常范围小于等于父类，访问修饰符范围大于等于父类。
+2. 如果父类方法访问修饰符为 `private/final/static` 则子类就不能重写该方法，但是被 `static` 修饰的方法能够被再次声明。
+3. 构造方法无法被重写
+
+#### 总结
+
+综上：**重写就是子类对父类方法的重新改造，外部样子不能改变，内部逻辑可以改变。**
+
+| 区别点     | 重载方法 | 重写方法                                                     |
+| :--------- | :------- | :----------------------------------------------------------- |
+| 发生范围   | 同一个类 | 子类                                                         |
+| 参数列表   | 必须修改 | 一定不能修改                                                 |
+| 返回类型   | 可修改   | 子类方法返回值类型应比父类方法返回值类型更小或相等           |
+| 异常       | 可修改   | 子类方法声明抛出的异常类应比父类方法声明抛出的异常类更小或相等； |
+| 访问修饰符 | 可修改   | 一定不能做更严格的限制（可以降低限制）                       |
+| 发生阶段   | 编译期   | 运行期                                                       |
+
+**方法的重写要遵循“两同两小一大”**（以下内容摘录自《疯狂 Java 讲义》，[issue#892](https://github.com/Snailclimb/JavaGuide/issues/892) ）：
+
+- “两同”即方法名相同、形参列表相同；
+- “两小”指的是子类方法返回值类型应比父类方法返回值类型更小或相等，子类方法声明抛出的异常类应比父类方法声明抛出的异常类更小或相等；
+- “一大”指的是子类方法的访问权限应比父类方法的访问权限更大或相等。
+
+⭐️ 关于 **重写的返回值类型** 这里需要额外多说明一下，上面的表述不太清晰准确：如果方法的返回类型是 void 和基本数据类型，则返回值重写时不可修改。但是如果方法的返回值是引用类型，重写时是可以返回该引用类型的子类的。
+
+```java
+public class Hero {
+    public String name() {
+        return "超级英雄";
+    }
+}
+public class SuperMan extends Hero{
+    @Override
+    public String name() {
+        return "超人";
+    }
+    public Hero hero() {
+        return new Hero();
+    }
+}
+
+public class SuperSuperMan extends SuperMan {
+    public String name() {
+        return "超级超级英雄";
+    }
+
+    @Override
+    public SuperMan hero() {
+        return new SuperMan();
+    }
+}
+```
+
+### 什么是可变长参数？
+
+从 Java5 开始，Java 支持定义可变长参数，所谓可变长参数就是允许在调用方法时传入不定长度的参数。就比如下面的这个 `printVariable` 方法就可以接受 0 个或者多个参数。
+
+```java
+public static void method1(String... args) {
+   //......
+}
+```
+
+另外，可变参数只能作为函数的最后一个参数，但其前面可以有也可以没有任何其他参数。
+
+```java
+public static void method2(String arg1, String... args) {
+   //......
+}
+```
+
+**遇到方法重载的情况怎么办呢？会优先匹配固定参数还是可变参数的方法呢？**
+
+答案是会优先匹配固定参数的方法，因为固定参数的方法匹配度更高。
+
+我们通过下面这个例子来证明一下。
+
+```java
+/**
+ * 微信搜 JavaGuide 回复"面试突击"即可免费领取个人原创的 Java 面试手册
+ *
+ * @author Guide哥
+ * @date 2021/12/13 16:52
+ **/
+public class VariableLengthArgument {
+
+    public static void printVariable(String... args) {
+        for (String s : args) {
+            System.out.println(s);
+        }
+    }
+
+    public static void printVariable(String arg1, String arg2) {
+        System.out.println(arg1 + arg2);
+    }
+
+    public static void main(String[] args) {
+        printVariable("a", "b");
+        printVariable("a", "b", "c", "d");
+    }
+}
+```
+
+输出：
+
+```
+ab
+a
+b
+c
+d
+```
+
+另外，Java 的可变参数编译后实际会被转换成一个数组，我们看编译后生成的 `class`文件就可以看出来了。
+
+```java
+public class VariableLengthArgument {
+
+    public static void printVariable(String... args) {
+        String[] var1 = args;
+        int var2 = args.length;
+
+        for(int var3 = 0; var3 < var2; ++var3) {
+            String s = var1[var3];
+            System.out.println(s);
+        }
+
+    }
+    // ......
+}
+```
+
 ## 参考
 
 - What is the difference between JDK and JRE?：https://stackoverflow.com/questions/1906445/what-is-the-difference-between-jdk-and-jre
 - Oracle vs OpenJDK：https://www.educba.com/oracle-vs-openjdk/
 - Differences between Oracle JDK and OpenJDK：https://stackoverflow.com/questions/22358071/differences-between-oracle-jdk-and-openjdk
-- 彻底弄懂Java的移位操作符：https://juejin.cn/post/6844904025880526861
+- 彻底弄懂 Java 的移位操作符：https://juejin.cn/post/6844904025880526861

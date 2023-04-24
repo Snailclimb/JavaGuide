@@ -387,6 +387,7 @@ Maven 能够基于 `pom.xml` 所包含的信息，自动生成一个友好的站
 ## Maven 插件
 
 Maven 本质上是一个插件执行框架，所有的执行过程，都是由一个一个插件独立完成的。像咱们日常使用到的 install、clean、deploy 等命令，其实底层都是一个一个的 Maven 插件。关于 Maven 的核心插件可以参考官方的这篇文档：https://maven.apache.org/plugins/index.html 。
+
 本地默认插件路径: `${user.home}/.m2/repository/org/apache/maven/plugins`
 
 ![](https://oss.javaguide.cn/github/javaguide/tools/maven/maven-plugins.png)
