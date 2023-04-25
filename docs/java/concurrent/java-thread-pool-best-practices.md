@@ -261,5 +261,5 @@ server.tomcat.max-threads=1
 
 解决上述问题比较建议的办法是使用阿里巴巴开源的 `TransmittableThreadLocal`(`TTL`)。`TransmittableThreadLocal`类继承并加强了 JDK 内置的`InheritableThreadLocal`类，在使用线程池等会池化复用线程的执行组件情况下，提供`ThreadLocal`值的传递功能，解决异步执行时上下文传递的问题。
 
-`InheritableThreadLocal` 项目地址： https://github.com/alibaba/transmittable-thread-local 。
+`TransmittableThreadLocal` 项目地址： https://github.com/alibaba/transmittable-thread-local 。
 
