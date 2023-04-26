@@ -59,7 +59,7 @@ public static void printThreadPoolStatus(ThreadPoolExecutor threadPool) {
 
 一般建议是不同的业务使用不同的线程池，配置线程池的时候根据当前业务的情况对当前线程池进行配置，因为不同的业务的并发以及对资源的使用情况都不同，重心优化系统性能瓶颈相关的业务。
 
-**我们再来看一个真实的事故案例！** (本案例来源自：[《线程池运用不当的一次线上事故》](https://club.perfma.com/article/646639) ，很精彩的一个案例) 
+**我们再来看一个真实的事故案例！** (本案例来源自：[《线程池运用不当的一次线上事故》](https://club.perfma.com/article/646639) ，很精彩的一个案例)
 
 ![案例代码概览](https://oss.javaguide.cn/github/javaguide/java/concurrent/production-accident-threadpool-sharing-example.png)
 
@@ -198,7 +198,41 @@ CPU 密集型简单理解就是利用 CPU 计算能力的任务比如你在内�
 - **[Hippo-4](https://github.com/opengoofy/hippo4j)** ：一款强大的动态线程池框架，解决了传统线程池使用存在的一些痛点比如线程池参数没办法动态修改、不支持运行时变量的传递、无法执行优雅关闭。除了支持动态修改线程池参数、线程池任务传递上下文，还支持通知报警、运行监控等开箱即用的功能。
 - **[Dynamic TP](https://github.com/dromara/dynamic-tp)** ：轻量级动态线程池，内置监控告警功能，集成三方中间件线程池管理，基于主流配置中心（已支持 Nacos、Apollo，Zookeeper、Consul、Etcd，可通过 SPI 自定义实现）。
 
-## 6、线程池使用的一些小坑
+## 6、别忘记关闭线程池
+
+当线程池不再需要使用时，应该显式地关闭线程池，释放线程资源。
+
+线程池提供了两个关闭方法：
+
+- **`shutdown（）`** :关闭线程池，线程池的状态变为 `SHUTDOWN`。线程池不再接受新任务了，但是队列里的任务得执行完毕。
+- **`shutdownNow（）`** :关闭线程池，线程的状态变为 `STOP`。线程池会终止当前正在运行的任务，并停止处理排队的任务并返回正在等待执行的 List。
+
+调用完 `shutdownNow` 和 `shuwdown` 方法后，并不代表线程池已经完成关闭操作，它只是异步的通知线程池进行关闭处理。如果要同步等待线程池彻底关闭后才继续往下执行，需要调用`awaitTermination`方法进行同步等待。
+
+在调用 `awaitTermination()` 方法时，应该设置合理的超时时间，以避免程序长时间阻塞而导致性能问题。另外。由于线程池中的任务可能会被取消或抛出异常，因此在使用 `awaitTermination()` 方法时还需要进行异常处理。`awaitTermination()` 方法会抛出 `InterruptedException` 异常，需要捕获并处理该异常，以避免程序崩溃或者无法正常退出。
+
+```java
+// ...
+// 关闭线程池
+executor.shutdown();
+try {
+    // 等待线程池关闭，最多等待5分钟
+    if (!executor.awaitTermination(5, TimeUnit.MINUTES)) {
+        // 如果等待超时，则打印日志
+        System.err.println("线程池未能在5分钟内完全关闭");
+    }
+} catch (InterruptedException e) {
+    // 异常处理
+}
+```
+
+## 7、线程池尽量不要放耗时任务
+
+线程池本身的目的是为了提高任务执行效率，避免因频繁创建和销毁线程而带来的性能开销。如果将耗时任务提交到线程池中执行，可能会导致线程池中的线程被长时间占用，无法及时响应其他任务，甚至会导致线程池崩溃或者程序假死。
+
+因此，在使用线程池时，我们应该尽量避免将耗时任务提交到线程池中执行。对于一些比较耗时的操作，如网络请求、文件读写等，可以采用异步操作的方式来处理，以避免阻塞线程池中的线程。
+
+## 8、线程池使用的一些小坑
 
 ### 重复创建线程池的坑
 
@@ -262,4 +296,3 @@ server.tomcat.max-threads=1
 解决上述问题比较建议的办法是使用阿里巴巴开源的 `TransmittableThreadLocal`(`TTL`)。`TransmittableThreadLocal`类继承并加强了 JDK 内置的`InheritableThreadLocal`类，在使用线程池等会池化复用线程的执行组件情况下，提供`ThreadLocal`值的传递功能，解决异步执行时上下文传递的问题。
 
 `TransmittableThreadLocal` 项目地址： https://github.com/alibaba/transmittable-thread-local 。
-

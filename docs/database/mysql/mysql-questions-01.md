@@ -91,7 +91,7 @@ MySQL 核心在于存储引擎，想要深入学习 MySQL，必定要深入研�
 
 ### MySQL 支持哪些存储引擎？默认使用哪个？
 
-MySQL 支持多种存储引擎，你可以通过 `show engines` 命令来查看 MySQL 支持的所有存储引擎。
+MySQL 支持多种存储引擎，你可以通过 `SHOW ENGINES` 命令来查看 MySQL 支持的所有存储引擎。
 
 ![查看 MySQL 提供的所有存储引擎](https://oss.javaguide.cn/github/javaguide/mysql/image-20220510105408703.png)
 
@@ -101,25 +101,32 @@ MySQL 支持多种存储引擎，你可以通过 `show engines` 命令来查看 
 
 MySQL 5.5.5 之前，MyISAM 是 MySQL 的默认存储引擎。5.5.5 版本之后，InnoDB 是 MySQL 的默认存储引擎。
 
-你可以通过 `select version()` 命令查看你的 MySQL 版本。
+你可以通过 `SELECT VERSION()` 命令查看你的 MySQL 版本。
 
 ```bash
- mysql> select version();
+mysql> SELECT VERSION();
 +-----------+
-| version() |
+| VERSION() |
 +-----------+
 | 8.0.27    |
 +-----------+
 1 row in set (0.00 sec)
 ```
 
-你也可以通过 `show variables like '%storage_engine%'` 命令直接查看 MySQL 当前默认的存储引擎。
+你也可以通过 `SHOW VARIABLES  LIKE '%storage_engine%'` 命令直接查看 MySQL 当前默认的存储引擎。
 
-![查看 MySQL 当前默认的存储引擎](https://oss.javaguide.cn/github/javaguide/mysql/image-20220510105837786.png)
-
-如果你只想查看数据库中某个表使用的存储引擎的话，可以使用 `show table status from db_name where name='table_name'`命令。
-
-![查看表的存储引擎](https://oss.javaguide.cn/github/javaguide/mysql/image-20220510110549140.png)
+```bash
+mysql> SHOW VARIABLES  LIKE '%storage_engine%';
++---------------------------------+-----------+
+| Variable_name                   | Value     |
++---------------------------------+-----------+
+| default_storage_engine          | InnoDB    |
+| default_tmp_storage_engine      | InnoDB    |
+| disabled_storage_engines        |           |
+| internal_tmp_mem_storage_engine | TempTable |
++---------------------------------+-----------+
+4 rows in set (0.00 sec)
+```
 
 如果你想要深入了解每个存储引擎以及它们之间的区别，推荐你去阅读以下 MySQL 官方文档对应的介绍(面试不会问这么细，了解即可)：
 
@@ -259,7 +266,7 @@ set global  query_cache_size=600000;
 **缓存虽然能够提升数据库的查询性能，但是缓存同时也带来了额外的开销，每次查询后都要做一次缓存操作，失效后还要销毁。** 因此，开启查询缓存要谨慎，尤其对于写密集的应用来说更是如此。如果开启，要注意合理控制缓存空间大小，一般来说其大小设置为几十 MB 比较合适。此外，**还可以通过 `sql_cache` 和 `sql_no_cache` 来控制某个查询语句是否需要缓存：**
 
 ```sql
-select sql_no_cache count(*) from usr;
+SELECT sql_no_cache COUNT(*) FROM usr;
 ```
 
 ## MySQL 日志
