@@ -662,19 +662,94 @@ System.out.println(l + 1 == Long.MIN_VALUE); // true
 - **生存时间** ：从变量在内存中的生存时间上看，成员变量是对象的一部分，它随着对象的创建而存在，而局部变量随着方法的调用而自动生成，随着方法的调用结束而消亡。
 - **默认值** ：从变量是否有默认值来看，成员变量如果没有被赋初始值，则会自动以类型的默认值而赋值（一种情况例外:被 `final` 修饰的成员变量也必须显式地赋值），而局部变量则不会自动赋值。
 
+成员变量与局部变量代码示例：
+
+```java
+public class VariableExample {
+
+    // 成员变量
+    private String name;
+    private int age;
+
+    // 方法中的局部变量
+    public void method() {
+        int num1 = 10; // 栈中分配的局部变量
+        String str = "Hello, world!"; // 栈中分配的局部变量
+        System.out.println(num1);
+        System.out.println(str);
+    }
+
+    // 带参数的方法中的局部变量
+    public void method2(int num2) {
+        int sum = num2 + 10; // 栈中分配的局部变量
+        System.out.println(sum);
+    }
+
+    // 构造方法中的局部变量
+    public VariableExample(String name, int age) {
+        this.name = name; // 对成员变量进行赋值
+        this.age = age; // 对成员变量进行赋值
+        int num3 = 20; // 栈中分配的局部变量
+        String str2 = "Hello, " + this.name + "!"; // 栈中分配的局部变量
+        System.out.println(num3);
+        System.out.println(str2);
+    }
+}
+
+```
+
 ### 静态变量有什么作用？
 
-静态变量可以被类的所有实例共享。无论一个类创建了多少个对象，它们都共享同一份静态变量。
+静态变量也就是被 `static` 关键字修饰的变量。它可以被类的所有实例共享，无论一个类创建了多少个对象，它们都共享同一份静态变量。也就是说，静态变量只会被分配一次内存，即使创建多个对象，这样可以节省内存。
+
+静态变量是通过类名来访问的，例如`StaticVariableExample.staticVar`（如果被 `private`关键字修饰就无法这样访问了）。
+
+```java
+public class StaticVariableExample {
+    // 静态变量
+    public static int staticVar = 0;
+}
+```
 
 通常情况下，静态变量会被 `final` 关键字修饰成为常量。
 
+```java
+public class ConstantVariableExample {
+    // 常量
+    public static final int constantVar = 0;
+}
+```
+
 ### 字符型常量和字符串常量的区别?
 
-1. **形式** : 字符常量是单引号引起的一个字符，字符串常量是双引号引起的 0 个或若干个字符。
-2. **含义** : 字符常量相当于一个整型值( ASCII 值),可以参加表达式运算; 字符串常量代表一个地址值(该字符串在内存中存放位置)。
-3. **占内存大小** ： 字符常量只占 2 个字节; 字符串常量占若干个字节。
+- **形式** : 字符常量是单引号引起的一个字符，字符串常量是双引号引起的 0 个或若干个字符。
+- **含义** : 字符常量相当于一个整型值( ASCII 值),可以参加表达式运算; 字符串常量代表一个地址值(该字符串在内存中存放位置)。
+- **占内存大小** ： 字符常量只占 2 个字节; 字符串常量占若干个字节。
 
 ⚠️ 注意 `char` 在 Java 中占两个字节。
+
+字符型常量和字符串常量代码示例：
+
+```java
+public class StringExample {
+    // 字符型常量
+    public static final char LETTER_A = 'A';
+
+    // 字符串常量
+    public static final String GREETING_MESSAGE = "Hello, world!";
+    public static void main(String[] args) {
+        System.out.println("字符型常量占用的字节数为："+Character.BYTES);
+        System.out.println("字符串常量占用的字节数为："+GREETING_MESSAGE.getBytes().length);
+    }
+}
+```
+
+输出：
+
+```
+字符型常量占用的字节数为：2
+字符串常量占用的字节数为：13
+```
 
 ## 方法
 
@@ -731,6 +806,26 @@ public int f4(int a, int b) {
 
 1. 静态方法是属于类的，在类加载的时候就会分配内存，可以通过类名直接访问。而非静态成员属于实例对象，只有在对象实例化之后才存在，需要通过类的实例对象去访问。
 2. 在类的非静态成员不存在的时候静态方法就已经存在了，此时调用在内存中还不存在的非静态成员，属于非法操作。
+
+```java
+public class Example {
+    // 定义一个字符型常量
+    public static final char LETTER_A = 'A';
+
+    // 定义一个字符串常量
+    public static final String GREETING_MESSAGE = "Hello, world!";
+
+    public static void main(String[] args) {
+        // 输出字符型常量的值
+        System.out.println("字符型常量的值为：" + LETTER_A);
+
+        // 输出字符串常量的值
+        System.out.println("字符串常量的值为：" + GREETING_MESSAGE);
+    }
+}
+```
+
+
 
 ### 静态方法和实例方法有何不同？
 
