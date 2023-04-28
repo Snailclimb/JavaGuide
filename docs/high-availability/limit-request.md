@@ -63,7 +63,7 @@ category: 高可用
 
 单机限流可以直接使用 Google Guava 自带的限流工具类 `RateLimiter` 。 `RateLimiter` 基于令牌桶算法，可以应对突发流量。
 
-> Guava 地址：https://github.com/google/guava
+> Guava 地址：<https://github.com/google/guava>
 
 除了最基本的令牌桶算法(平滑突发限流)实现之外，Guava 的`RateLimiter`还提供了 **平滑预热限流** 的算法实现。
 
@@ -164,7 +164,7 @@ get 1 tokens: 0.198359s
 
 另外，**Bucket4j** 是一个非常不错的基于令牌/漏桶算法的限流库。
 
-> Bucket4j 地址：https://github.com/vladimir-bukhtoyarov/bucket4j
+> Bucket4j 地址：<https://github.com/vladimir-bukhtoyarov/bucket4j>
 
 相对于，Guava 的限流工具类来说，Bucket4j 提供的限流功能更加全面。不仅支持单机限流和分布式限流，还可以集成监控，搭配 Prometheus 和 Grafana 使用。
 
@@ -174,7 +174,7 @@ Spring Cloud Gateway 中自带的单机限流的早期版本就是基于 Bucket4
 
 Resilience4j 是一个轻量级的容错组件，其灵感来自于 Hystrix。自[Netflix 宣布不再积极开发 Hystrix](https://github.com/Netflix/Hystrix/commit/a7df971cbaddd8c5e976b3cc5f14013fe6ad00e6) 之后，Spring 官方和 Netflix 都更推荐使用 Resilience4j 来做限流熔断。
 
-> Resilience4j 地址: https://github.com/resilience4j/resilience4j
+> Resilience4j 地址: <https://github.com/resilience4j/resilience4j>
 
 一般情况下，为了保证系统的高可用，项目的限流和熔断都是要一起做的。
 
@@ -200,12 +200,12 @@ Resilience4j 不仅提供限流，还提供了熔断、负载保护、自动重�
 
 我这里就不放具体的限流脚本代码了，网上也有很多现成的优秀的限流脚本供你参考，就比如 Apache 网关项目 ShenYu 的 RateLimiter 限流插件就基于 Redis + Lua 实现了令牌桶算法/并发令牌桶算法、漏桶算法、滑动窗口算法。
 
-> ShenYu 地址: https://github.com/apache/incubator-shenyu
+> ShenYu 地址: <https://github.com/apache/incubator-shenyu>
 
 ![ShenYu 限流脚本](https://oss.javaguide.cn/github/javaguide/csdn/e1e2a75f489e4854990dabe3b6cec522.jpg)
 
 ## 相关阅读
 
-- 服务治理之轻量级熔断框架 Resilience4j ：https://xie.infoq.cn/article/14786e571c1a4143ad1ef8f19
-- 超详细的 Guava RateLimiter 限流原理解析：https://cloud.tencent.com/developer/article/1408819
-- 实战 Spring Cloud Gateway 之限流篇 👍：https://www.aneasystone.com/archives/2020/08/spring-cloud-gateway-current-limiting.html
+- 服务治理之轻量级熔断框架 Resilience4j ：<https://xie.infoq.cn/article/14786e571c1a4143ad1ef8f19>
+- 超详细的 Guava RateLimiter 限流原理解析：<https://cloud.tencent.com/developer/article/1408819>
+- 实战 Spring Cloud Gateway 之限流篇 👍：<https://www.aneasystone.com/archives/2020/08/spring-cloud-gateway-current-limiting.html>
