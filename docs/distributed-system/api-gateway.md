@@ -75,12 +75,12 @@ Zuul 主要通过过滤器（类似于 AOP）来过滤请求，从而实现网�
 
 ![Zuul2 架构](https://oscimg.oschina.net/oscnet/up-4f9047dc9109e27f9fced1b365e2b976e9d.png)
 
-- Github 地址 ： https://github.com/Netflix/zuul
-- 官方 Wiki ： https://github.com/Netflix/zuul/wiki
+- Github 地址 ： <https://github.com/Netflix/zuul>
+- 官方 Wiki ： <https://github.com/Netflix/zuul/wiki>
 
 ### Spring Cloud Gateway
 
-SpringCloud Gateway 属于 Spring Cloud 生态系统中的网关，其诞生的目标是为了替代老牌网关 **Zuul **。准确点来说，应该是 Zuul 1.x。SpringCloud Gateway 起步要比 Zuul 2.x 更早。
+SpringCloud Gateway 属于 Spring Cloud 生态系统中的网关，其诞生的目标是为了替代老牌网关 **Zuul**。准确点来说，应该是 Zuul 1.x。SpringCloud Gateway 起步要比 Zuul 2.x 更早。
 
 为了提升网关的性能，SpringCloud Gateway 基于 Spring WebFlux 。Spring WebFlux 使用 Reactor 库来实现响应式编程模型，底层基于 Netty 实现同步非阻塞的 I/O。
 
@@ -90,8 +90,8 @@ Spring Cloud Gateway 不仅提供统一的路由方式，并且基于 Filter 链
 
 Spring Cloud Gateway 和 Zuul 2.x 的差别不大，也是通过过滤器来处理请求。不过，目前更加推荐使用 Spring Cloud Gateway 而非 Zuul，Spring Cloud 生态对其支持更加友好。
 
-- Github 地址 ： https://github.com/spring-cloud/spring-cloud-gateway
-- 官网 ： https://spring.io/projects/spring-cloud-gateway
+- Github 地址 ： <https://github.com/spring-cloud/spring-cloud-gateway>
+- 官网 ： <https://spring.io/projects/spring-cloud-gateway>
 
 ### Kong
 
@@ -118,8 +118,8 @@ $ curl -X POST http://kong:8001/services/{service}/plugins \
 
 ![](https://oss.javaguide.cn/github/javaguide/system-design/distributed-system/api-gateway/kong-gateway-overview.png)
 
-- Github 地址： https://github.com/Kong/kong
-- 官网地址 ： https://konghq.com/kong
+- Github 地址： <https://github.com/Kong/kong>
+- 官网地址 ： <https://konghq.com/kong>
 
 ### APISIX
 
@@ -144,8 +144,8 @@ APISIX 同样支持定制化的插件开发。开发者除了能够使用 Lua �
 
 ![](https://oscimg.oschina.net/oscnet/up-a240d3b113cde647f5850f4c7cc55d4ff5c.png)
 
-- Github 地址 ：https://github.com/apache/apisix
-- 官网地址： https://apisix.apache.org/zh/
+- Github 地址 ：<https://github.com/apache/apisix>
+- 官网地址： <https://apisix.apache.org/zh/>
 
 相关阅读：
 
@@ -162,11 +162,11 @@ Shenyu 是一款基于 WebFlux 的可扩展、高性能、响应式网关，Apac
 
 Shenyu 通过插件扩展功能，插件是 ShenYu 的灵魂，并且插件也是可扩展和热插拔的。不同的插件实现不同的功能。Shenyu 自带了诸如限流、熔断、转发 、重写、重定向、和路由监控等插件。
 
-- Github 地址： https://github.com/apache/incubator-shenyu
-- 官网地址 ： https://shenyu.apache.org/
+- Github 地址： <https://github.com/apache/incubator-shenyu>
+- 官网地址 ： <https://shenyu.apache.org/>
 
 ## 参考
 
-- Kong 插件开发教程[通俗易懂]：https://cloud.tencent.com/developer/article/2104299
-- API 网关 Kong 实战：https://xie.infoq.cn/article/10e4dab2de0bdb6f2c3c93da6
-- Spring Cloud Gateway 原理介绍和应用：https://blog.fintopia.tech/60e27b0e2078082a378ec5ed/
+- Kong 插件开发教程[通俗易懂]：<https://cloud.tencent.com/developer/article/2104299>
+- API 网关 Kong 实战：<https://xie.infoq.cn/article/10e4dab2de0bdb6f2c3c93da6>
+- Spring Cloud Gateway 原理介绍和应用：<https://blog.fintopia.tech/60e27b0e2078082a378ec5ed/>

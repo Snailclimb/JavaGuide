@@ -61,7 +61,7 @@ hintManager.setMasterRouteOnly();
 
 落实到项目本身的话，常用的方式有两种：
 
-**1.代理方式**
+**1. 代理方式**
 
 ![代理方式实现读写分离](https://oss.javaguide.cn/github/javaguide/high-performance/read-and-write-separation-and-library-subtable/read-and-write-separation-proxy.png)
 
@@ -69,7 +69,7 @@ hintManager.setMasterRouteOnly();
 
 提供类似功能的中间件有 **MySQL Router**（官方）、**Atlas**（基于 MySQL Proxy）、**MaxScale**、**MyCat**。
 
-**2.组件方式**
+**2. 组件方式**
 
 在这种方式中，我们可以通过引入第三方组件来帮助我们读写请求。
 
