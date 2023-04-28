@@ -1,32 +1,23 @@
-<p style="text-align:center">
-<a href="https://github.com/Snailclimb/JavaGuide" target="_blank">
-	<img src="https://oss.javaguide.cn/github/javaguide/csdn/1c00413c65d1995993bf2b0daf7b4f03.png" width=""/>
-</a>
-</p>
-<p style="text-align:center">
-  <a href="https://javaguide.cn/"><img src="https://img.shields.io/badge/阅读-read-brightgreen.svg" alt="阅读"></a>
-  <img src="https://img.shields.io/github/stars/Snailclimb/JavaGuide" alt="stars"/>
-  <img src="https://img.shields.io/github/forks/Snailclimb/JavaGuide" alt="forks"/>
-  <img src="https://img.shields.io/github/issues/Snailclimb/JavaGuide" alt="issues"/>
-</p>
-<h3 style="text-align:center">Recommended</h3>
-<table>
-  <tbody>
-    <tr>
-       <td style="text-align:center" valign="middle">
-        <a href="https://sourl.cn/e7ee87">
-         <img src="https://oss.javaguide.cn/xingqiu/xingqiu.png" style="margin: 0 auto;width:850px" /></a>
-      </td>       
-    </tr>
-  </tbody>
-</table>
+<div style="text-align:center">
 
+[![logo](https://oss.javaguide.cn/github/javaguide/csdn/1c00413c65d1995993bf2b0daf7b4f03.png)](https://github.com/Snailclimb/JavaGuide)
+
+[![阅读](https://img.shields.io/badge/阅读-read-brightgreen.svg)](https://javaguide.cn/)
+![Stars](https://img.shields.io/github/stars/Snailclimb/JavaGuide)
+![forks](https://img.shields.io/github/forks/Snailclimb/JavaGuide)
+![issues](https://img.shields.io/github/issues/Snailclimb/JavaGuide)
+
+### Recommended
+
+[<img src="https://oss.javaguide.cn/xingqiu/xingqiu.png" style="width:850px;margin: 0 auto" />](https://sourl.cn/e7ee87)
+
+</div>
 
 ## Java
 
 ### Basis
 
-**Knowledge points/interview questions**: (Must see:+1: ): 
+**Knowledge points/interview questions**: (Must see:+1: ):
 
 - [Java Basics Knowledge Points/Interview Questions Summary(1)](docs/java/basis/java-basic-questions-01.md)
 - [Java Basics Knowledge Points/Interview Questions Summary(2)](docs/java/basis/java-basic-questions-01.md)
@@ -45,8 +36,8 @@
 1. **[Java collection FAQ summary](docs/java/collection/java集合框架基础知识&面试题总结.md)** (must see :+1:)
 2. [Summary of considerations for using Java containers](docs/java/collection/java集合使用注意事项.md)
 3. **source code analysis** : [ArrayList source code + expansion mechanism analysis](docs/java/collection/arraylist-source-code.md),
-[HashMap(JDK1.8) source code + underlying data structure analysis](docs/java/collection/ hashmap-source-code.md), 
-[ConcurrentHashMap source code + underlying data structure analysis](docs/java/collection/concurrent-hash-map-source-code.md)
+   [HashMap(JDK1.8) source code + underlying data structure analysis](docs/java/collection/ hashmap-source-code.md),
+   [ConcurrentHashMap source code + underlying data structure analysis](docs/java/collection/concurrent-hash-map-source-code.md)
 
 ### Concurrency
 
@@ -87,7 +78,6 @@ This part of JVM mainly refers to [JVM Virtual Machine Specification-Java8 ](htt
 1. [JAD decompile](docs/java/tips/JAD反编译tricks.md)
 2. [Handy for locating common Java performance problems](./docs/java/tips/locate-performance-problems/手把手教你定位常见Java性能问题.md)
 
-
 ## Computer Basics
 
 👉 **[Illustrated Computer Fundamentals PDF Download](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=100021725&idx=1&sn=2db9664ca25363139a81691043e9fd8f&chksm=4ea19a1679d61300d8990f7e43bfc7f476577a81b712cf0f9c6f6552a8b219bc081efddb5c54#rd)** .
@@ -110,19 +100,18 @@ This part of JVM mainly refers to [JVM Virtual Machine Specification-Java8 ](htt
 1. [Linear data structure :array, chain table, stack, queue](docs/cs-basics/data-structure/线性数据结构.md)
 2. [diagram](docs/cs-basics/data-structure/图.md)
 3. [heap](docs/cs-basics/data-structure/堆.md)
-4. [tree](docs/cs-basics/data-structure/树.md) : focus on [red-black-tree](docs/cs-basics/data-structure/红黑树.md), B-, B+, B* tree, LSM tree
+4. [tree](docs/cs-basics/data-structure/树.md) : focus on [red-black-tree](docs/cs-basics/data-structure/红黑树.md), B-, B+, B\* tree, LSM tree
 
 Other common data structures : 1.
 
 1. [Bloom filter](docs/cs-basics/data-structure/bloom-filter.md)
-
 
 ### Algorithm
 
 This part of the algorithm is very important, if you do not know how to learn the algorithm, you can look at what I wrote.
 
 - [Recommended Algorithm Learning Books + Resources](https://www.zhihu.com/question/323359308/answer/1545320858) 。
-- [如何刷Leetcode?](https://www.zhihu.com/question/31092580/answer/1534887374) 
+- [如何刷 Leetcode?](https://www.zhihu.com/question/31092580/answer/1534887374)
 
 **Summary of common algorithm problems** :
 
@@ -130,7 +119,7 @@ This part of the algorithm is very important, if you do not know how to learn th
 - [Summary of several common algorithm problems of the chain table ](docs/cs-basics/algorithms/几道常见的链表算法题.md)
 - [Link offer some programming questions](docs/cs-basics/algorithms/剑指offer部分编程题.md)
 
-In addition，[GeeksforGeeks]( https://www.geeksforgeeks.org/fundamentals-of-algorithms/) This site summarizes the common algorithms, which are more comprehensive and systematic.
+In addition，[GeeksforGeeks](https://www.geeksforgeeks.org/fundamentals-of-algorithms/) This site summarizes the common algorithms, which are more comprehensive and systematic.
 
 ## Database
 
@@ -140,7 +129,7 @@ In addition，[GeeksforGeeks]( https://www.geeksforgeeks.org/fundamentals-of-alg
 
 1. [Database Basics Summary](docs/database/数据库基础知识.md)
 2. **[MySQL Knowledge Summary](docs/database/mysql/mysql知识点&面试题总结.md)** (Must see:+1:)
-5. [MySQL High Performance Optimization Specification Recommendations](docs/database/mysql/mysql-high-performance-optimization-specification-recommendations.md)
+3. [MySQL High Performance Optimization Specification Recommendations](docs/database/mysql/mysql-high-performance-optimization-specification-recommendations.md)
 
 **Important knowledge points:**
 
@@ -182,15 +171,15 @@ If you have not touched Java Web development, you can first look at my summary o
 
 #### Spring/SpringBoot (must see :+1:)
 
-**Knowledge/Interview Questions:** 
+**Knowledge/Interview Questions:**
 
 1. **[Spring FAQ Summary](docs/system-design/framework/spring/Spring常见问题总结.md)**
 2. **[SpringBoot Getting Started Guide](https://github.com/Snailclimb/springboot-guide)**
 
 **Important Knowledge Points Explained:** 1.
 
-1. **[Spring/Spring Boot common annotations summary! Arrangement!](./docs/system-design/framework/spring/Spring&SpringBoot常用注解总结.md)** 
-2. **[Spring Transaction Summary](docs/system-design/framework/spring/Spring事务总结.md)** 
+1. **[Spring/Spring Boot common annotations summary! Arrangement!](./docs/system-design/framework/spring/Spring&SpringBoot常用注解总结.md)**
+2. **[Spring Transaction Summary](docs/system-design/framework/spring/Spring事务总结.md)**
 3. [What design patterns are used in Spring?](docs/system-design/framework/spring/Spring设计模式总结.md)
 4. **[SpringBoot auto-assembly principle?"](docs/system-design/framework/spring/SpringBoot自动装配原理.md)**
 
@@ -205,6 +194,7 @@ If you have not touched Java Web development, you can first look at my summary o
 **[Fundamentals of Certification Authorization](docs/system-design/security/basis-of-authority-certification.md)** In this article I will introduce the common concepts of authentication and authorization: **Authentication**, **Authorization** and **Cookie**, **Session**, Token, **OAuth 2**, **SSO**. If you are not clear about these concepts, we suggest you read this article properly.
 
 - **JWT** : JWT (JSON Web Token) is a form of authentication, where a JWT is essentially a signed piece of data in JSON format. Since it is signed, the recipient can verify its authenticity. Related reading.
+
   - [JWT Pros and Cons Analysis and Solutions to Common Problems](docs/system-design/security/jwt优缺点分析以及常见问题解决方案.md)
   - [Demo for beginners to get started with Spring Security With JWT](https://github.com/Snailclimb/spring-security-jwt-guide)
 
@@ -212,7 +202,7 @@ If you have not touched Java Web development, you can first look at my summary o
 
 #### Data Desensitization
 
-Data desensitization means that we deform sensitive information data according to specific rules, for example, we replace certain digits of cell phone numbers and ID numbers with *.
+Data desensitization means that we deform sensitive information data according to specific rules, for example, we replace certain digits of cell phone numbers and ID numbers with \*.
 
 ### Timed tasks
 
