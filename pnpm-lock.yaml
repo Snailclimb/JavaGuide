@@ -5,13 +5,13 @@ dependencies:
     specifier: 2.0.0-beta.61
     version: 2.0.0-beta.61
   husky:
-    specifier: ^8.0.3
+    specifier: 8.0.3
     version: 8.0.3
   markdownlint-cli:
     specifier: 0.33.0
     version: 0.33.0
   nano-staged:
-    specifier: ^0.8.0
+    specifier: 0.8.0
     version: 0.8.0
   prettier:
     specifier: 2.8.8
