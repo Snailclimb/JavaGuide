@@ -23,7 +23,65 @@ head:
 
 另外，面向对象开发的程序一般更易维护、易复用、易扩展。
 
-相关 issue : [面向过程 ：面向过程性能比面向对象高？？](https://github.com/Snailclimb/JavaGuide/issues/431)
+相关 issue : [面向过程 ：面向过程性能比面向对象高？？](https://github.com/Snailclimb/JavaGuide/issues/431) 。
+
+下面是一个求圆的面积和周长的示例，简单分别展示了面向对象和面向过程两种不同的解决方案。
+
+**面向对象** ：
+
+```java
+public class Circle {
+    // 定义圆的半径
+    private double radius;
+
+    // 构造函数
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+
+    // 计算圆的面积
+    public double getArea() {
+        return Math.PI * radius * radius;
+    }
+
+    // 计算圆的周长
+    public double getPerimeter() {
+        return 2 * Math.PI * radius;
+    }
+
+    public static void main(String[] args) {
+        // 创建一个半径为3的圆
+        Circle circle = new Circle(3.0);
+
+        // 输出圆的面积和周长
+        System.out.println("圆的面积为：" + circle.getArea());
+        System.out.println("圆的周长为：" + circle.getPerimeter());
+    }
+}
+```
+
+我们定义了一个 `Circle` 类来表示圆，该类包含了圆的半径属性和计算面积、周长的方法。
+
+**面向过程** ：
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        // 定义圆的半径
+        double radius = 3.0;
+
+        // 计算圆的面积和周长
+        double area = Math.PI * radius * radius;
+        double perimeter = 2 * Math.PI * radius;
+
+        // 输出圆的面积和周长
+        System.out.println("圆的面积为：" + area);
+        System.out.println("圆的周长为：" + perimeter);
+    }
+}
+```
+
+我们直接定义了圆的半径，并使用该半径直接计算出圆的面积和周长。
 
 ### 创建一个对象用什么运算符?对象实体与对象引用有何不同?
 
@@ -37,11 +95,38 @@ new 运算符，new 创建对象实例（对象实例在堆内存中），对象
 - 对象的相等一般比较的是内存中存放的内容是否相等。
 - 引用相等一般比较的是他们指向的内存地址是否相等。
 
-### 类的构造方法的作用是什么?
+这里举一个例子：
 
-构造方法是一种特殊的方法，主要作用是完成对象的初始化工作。
+```java
+String str1 = "hello";
+String str2 = new String("hello");
+String str3 = "hello";
+// 使用 == 比较字符串的引用相等
+System.out.println(str1 == str2); 
+System.out.println(str1 == str3); 
+// 使用 equals 方法比较字符串的相等
+System.out.println(str1.equals(str2));
+System.out.println(str1.equals(str3)); 
+
+```
+
+输出结果：
+
+```
+false
+true
+true
+true
+```
+
+从上面的代码输出结果可以看出：
+
+-  `str1` 和 `str2` 不相等，而 `str1` 和 `str3` 相等。这是因为 `==` 运算符比较的是字符串的引用是否相等。
+-  `str1` 、 `str2` 、`str3` 三者的内容都相等。这是因为`equals` 方法比较的是字符串的内容，即使这些字符串的对象引用不同，只要它们的内容相等，就认为它们是相等的。
 
 ### 如果一个类没有声明构造方法，该程序能正确执行吗?
+
+构造方法是一种特殊的方法，主要作用是完成对象的初始化工作。
 
 如果一个类没有声明构造方法，也可以执行！因为一个类即使没有声明构造方法也会有默认的不带参数的构造方法。如果我们自己添加了类的构造方法（无论是否有参），Java 就不会添加默认的无参数的构造方法了。
 
