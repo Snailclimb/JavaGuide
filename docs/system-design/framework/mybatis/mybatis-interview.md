@@ -48,23 +48,23 @@ Mybatis 版本 3.3.0，亲测如下：
  */
 public interface StuMapper {
 
-	List<Student> getAllStu();
+ List<Student> getAllStu();
 
-	List<Student> getAllStu(@Param("id") Integer id);
+ List<Student> getAllStu(@Param("id") Integer id);
 }
 ```
 
 然后在 `StuMapper.xml` 中利用 Mybatis 的动态 sql 就可以实现。
 
-```java
-	<select id="getAllStu" resultType="com.pojo.Student">
- 		select * from student
-		<where>
-			<if test="id != null">
-				id = #{id}
-			</if>
-		</where>
- 	</select>
+```xml
+<select id="getAllStu" resultType="com.pojo.Student">
+  select * from student
+  <where>
+    <if test="id != null">
+      id = #{id}
+    </if>
+  </where>
+</select>
 ```
 
 能正常运行，并能得到相应的结果，这样就实现了在 Dao 接口中写重载方法。
@@ -160,7 +160,7 @@ public V get(Object key) {
 
 举例： `select _ from student` ，拦截 sql 后重写为： `select t._ from （select \* from student）t limit 0，10`
 
-### 简述 MyBatis 的插件运行原理，以及如何编写一个插件。
+### 简述 MyBatis 的插件运行原理，以及如何编写一个插件
 
 注：我出的。
 
@@ -200,7 +200,7 @@ MyBatis 提供了 9 种动态 sql 标签:
 
 有了列名与属性名的映射关系后，MyBatis 通过反射创建对象，同时使用反射给对象的属性逐一赋值并返回，那些找不到映射关系的属性，是无法完成赋值的。
 
-### MyBatis 能执行一对一、一对多的关联查询吗？都有哪些实现方式，以及它们之间的区别。
+### MyBatis 能执行一对一、一对多的关联查询吗？都有哪些实现方式，以及它们之间的区别
 
 注：我出的。
 

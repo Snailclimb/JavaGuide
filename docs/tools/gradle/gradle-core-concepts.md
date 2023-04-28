@@ -129,7 +129,7 @@ zipStorePath=wrapper/dists
 下面的命令会将 Gradle 版本升级为 7.6。
 
 ```shell
-$ gradlew wrapper --gradle-version 7.6
+gradlew wrapper --gradle-version 7.6
 ```
 
 `gradle-wrapper.properties` 文件中的 `distributionUrl` 属性也发生了改变。
@@ -200,26 +200,26 @@ Task 声明依赖的关键字是`dependsOn`，支持声明一个或多个依赖�
 
 ```groovy
 task first {
-	doLast {
+ doLast {
         println "+++++first+++++"
     }
 }
 task second {
-	doLast {
+ doLast {
         println "+++++second+++++"
     }
 }
 
 // 指定多个 task 依赖
 task print(dependsOn :[second,first]) {
-	doLast {
+ doLast {
       logger.quiet "指定多个task依赖"
     }
 }
 
 // 指定一个 task 依赖
 task third(dependsOn : print) {
-	doLast {
+ doLast {
       println '+++++third+++++'
     }
 }
@@ -296,9 +296,9 @@ Gradle 支持单项目和多项目构建。在初始化阶段，Gradle 确定哪
 
 ## 参考
 
-- Gradle 官方文档：https://docs.gradle.org/current/userguide/userguide.html
-- Gradle 入门教程：https://www.imooc.com/wiki/gradlebase
-- Groovy 快速入门看这篇就够了：https://cloud.tencent.com/developer/article/1358357
-- 【Gradle】Gradle 的生命周期详解：https://juejin.cn/post/7067719629874921508
-- 手把手带你自定义 Gradle 插件 —— Gradle 系列(2)：https://www.cnblogs.com/pengxurui/p/16281537.html
-- Gradle 爬坑指南 -- 理解 Plugin、Task、构建流程：https://juejin.cn/post/6889090530593112077
+- Gradle 官方文档：<https://docs.gradle.org/current/userguide/userguide.html>
+- Gradle 入门教程：<https://www.imooc.com/wiki/gradlebase>
+- Groovy 快速入门看这篇就够了：<https://cloud.tencent.com/developer/article/1358357>
+- 【Gradle】Gradle 的生命周期详解：<https://juejin.cn/post/7067719629874921508>
+- 手把手带你自定义 Gradle 插件 —— Gradle 系列(2)：<https://www.cnblogs.com/pengxurui/p/16281537.html>
+- Gradle 爬坑指南 -- 理解 Plugin、Task、构建流程：<https://juejin.cn/post/6889090530593112077>
