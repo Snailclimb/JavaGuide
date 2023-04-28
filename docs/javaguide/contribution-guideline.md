@@ -1,5 +1,5 @@
 ---
-title:  贡献指南
+title: 贡献指南
 category: 走近项目
 ---
 

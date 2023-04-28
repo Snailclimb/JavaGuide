@@ -511,11 +511,11 @@ JDK 自带的序列化方式一般不会用 ，因为序列化效率低并且存
 
 - **不支持跨语言调用** : 如果调用的是其他语言开发的服务的时候就不支持了。
 - **性能差** ：相比于其他序列化框架性能更低，主要原因是序列化之后的字节数组体积较大，导致传输成本加大。
-- **存在安全问题** ：序列化和反序列化本身并不存在问题。但当输入的反序列化的数据可被用户控制，那么攻击者即可通过构造恶意输入，让反序列化产生非预期的对象，在此过程中执行构造的任意代码。相关阅读：[应用安全：JAVA反序列化漏洞之殇](https://cryin.github.io/blog/secure-development-java-deserialization-vulnerability/) 。
+- **存在安全问题** ：序列化和反序列化本身并不存在问题。但当输入的反序列化的数据可被用户控制，那么攻击者即可通过构造恶意输入，让反序列化产生非预期的对象，在此过程中执行构造的任意代码。相关阅读：[应用安全：JAVA 反序列化漏洞之殇](https://cryin.github.io/blog/secure-development-java-deserialization-vulnerability/) 。
 
 ## I/O
 
-关于I/O的详细解读，请看下面这几篇文章，里面涉及到的知识点和面试题更全面。
+关于 I/O 的详细解读，请看下面这几篇文章，里面涉及到的知识点和面试题更全面。
 
 - [Java IO 基础知识总结](../io/io-basis.md)
 - [Java IO 设计模式总结](../io/io-design-patterns.md)
@@ -569,8 +569,3 @@ for (String s : strs) {
 Java 中最常用的语法糖主要有泛型、自动拆装箱、变长参数、枚举、内部类、增强 for 循环、try-with-resources 语法、lambda 表达式等。
 
 关于这些语法糖的详细解读，请看这篇文章 [Java 语法糖详解](./syntactic-sugar.md) 。
-
-
-
-
-

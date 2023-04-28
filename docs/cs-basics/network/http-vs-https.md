@@ -1,5 +1,5 @@
 ---
-title:  HTTP vs HTTPS（应用层）
+title: HTTP vs HTTPS（应用层）
 category: 计算机基础
 tag:
   - 计算机网络
@@ -39,7 +39,7 @@ HTTPS 协议中，SSL 通道通常使用基于密钥的加密算法，密钥长�
 
 保密性好、信任度高。
 
-## HTTPS 的核心—SSL/TLS协议
+## HTTPS 的核心—SSL/TLS 协议
 
 HTTPS 之所以能达到较高的安全性要求，就是结合了 SSL/TLS 和 TCP 协议，对通信数据进行加密，解决了 HTTP 数据透明的问题。接下来重点介绍一下 SSL/TLS 的工作原理。
 
@@ -138,6 +138,3 @@ SSL/TLS 介绍到这里，了解信息安全的朋友又会想到一个安全隐
 - **端口号** ：HTTP 默认是 80，HTTPS 默认是 443。
 - **URL 前缀** ：HTTP 的 URL 前缀是 `http://`，HTTPS 的 URL 前缀是 `https://`。
 - **安全性和资源消耗** ： HTTP 协议运行在 TCP 之上，所有传输的内容都是明文，客户端和服务器端都无法验证对方的身份。HTTPS 是运行在 SSL/TLS 之上的 HTTP 协议，SSL/TLS 运行在 TCP 之上。所有传输的内容都经过加密，加密采用对称加密，但对称加密的密钥用服务器方的证书进行了非对称加密。所以说，HTTP 安全性没有 HTTPS 高，但是 HTTPS 比 HTTP 耗费更多服务器资源。
-
-
-

@@ -9,7 +9,7 @@ Java 17 在 2021 年 9 月 14 日正式发布，是一个长期支持（LTS）�
 
 下面这张图是 Oracle 官方给出的 Oracle JDK 支持的时间线。可以看得到，Java
 
- 17 最多可以支持到 2029 年 9 月份。
+17 最多可以支持到 2029 年 9 月份。
 
 ![](https://oss.javaguide.cn/github/javaguide/java/new-features/4c1611fad59449edbbd6e233690e9fa7.png)
 
@@ -143,7 +143,7 @@ static void testFooBar(String s) {
 
 密封类由 [JEP 360](https://openjdk.java.net/jeps/360) 提出预览，集成到了 Java 15 中。在 JDK 16 中， 密封类得到了改进（更加严格的引用检查和密封类的继承关系），由 [JEP 397](https://openjdk.java.net/jeps/397) 提出了再次预览。
 
-在 [Java 14  & 15 新特性概览](./java14-15.md) 中，我有详细介绍到密封类，这里就不再做额外的介绍了。
+在 [Java 14 & 15 新特性概览](./java14-15.md) 中，我有详细介绍到密封类，这里就不再做额外的介绍了。
 
 ## JEP 410:删除实验性的 AOT 和 JIT 编译器
 

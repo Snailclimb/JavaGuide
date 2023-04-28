@@ -105,11 +105,11 @@ if (o instanceof String s) {
 
 记录类型变更历史：
 
-| JDK 版本   | 更新类型          | JEP                                          | 更新内容                                                     |
-| ---------- | ----------------- | -------------------------------------------- | ------------------------------------------------------------ |
+| JDK 版本   | 更新类型          | JEP                                          | 更新内容                                                                  |
+| ---------- | ----------------- | -------------------------------------------- | ------------------------------------------------------------------------- |
 | Java SE 14 | Preview           | [JEP 359](https://openjdk.java.net/jeps/359) | 引入 `record` 关键字，`record` 提供一种紧凑的语法来定义类中的不可变数据。 |
-| Java SE 15 | Second Preview    | [JEP 384](https://openjdk.org/jeps/384)      | 支持在局部方法和接口中使用 `record`。                        |
-| Java SE 16 | Permanent Release | [JEP 395](https://openjdk.org/jeps/395)      | 非静态内部类可以定义非常量的静态成员。                       |
+| Java SE 15 | Second Preview    | [JEP 384](https://openjdk.org/jeps/384)      | 支持在局部方法和接口中使用 `record`。                                     |
+| Java SE 16 | Permanent Release | [JEP 395](https://openjdk.org/jeps/395)      | 非静态内部类可以定义非常量的静态成员。                                    |
 
 从 Java SE 16 开始，非静态内部类可以定义非常量的静态成员。
 
@@ -131,7 +131,7 @@ public class Outer {
 
 密封类由 [JEP 360](https://openjdk.java.net/jeps/360) 提出预览，集成到了 Java 15 中。在 JDK 16 中， 密封类得到了改进（更加严格的引用检查和密封类的继承关系），由 [JEP 397](https://openjdk.java.net/jeps/397) 提出了再次预览。
 
-在 [Java 14  & 15 新特性概览](./java14-15.md) 中，我有详细介绍到密封类，这里就不再做额外的介绍了。
+在 [Java 14 & 15 新特性概览](./java14-15.md) 中，我有详细介绍到密封类，这里就不再做额外的介绍了。
 
 ## 其他优化与改进
 

@@ -40,13 +40,13 @@ tag:
 
 ![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/61b8dc9155624044a86d91c368b20059~tplv-k3u1fbpfcp-zoom-1.image)
 
-但如果马上重启 MySQL 实例，重启后这个表的 AUTO_INCREMENT 就会变成 1。﻿也就是说，MySQL 重启可能会修改一个表的 AUTO_INCREMENT 的值。
+但如果马上重启 MySQL 实例，重启后这个表的 AUTO_INCREMENT 就会变成 1。﻿ 也就是说，MySQL 重启可能会修改一个表的 AUTO_INCREMENT 的值。
 
 ![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/27fdb15375664249a31f88b64e6e5e66~tplv-k3u1fbpfcp-zoom-1.image)
 
 ![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/dee15f93e65d44d384345a03404f3481~tplv-k3u1fbpfcp-zoom-1.image)
 
-以上，是在我本地 MySQL 5.x 版本的实验，实际上，**到了 MySQL 8.0 版本后，自增值的变更记录被放在了 redo log 中，提供了自增值持久化的能力** ，也就是实现了“如果发生重启，表的自增值可以根据 redo  log 恢复为 MySQL 重启前的值”
+以上，是在我本地 MySQL 5.x 版本的实验，实际上，**到了 MySQL 8.0 版本后，自增值的变更记录被放在了 redo log 中，提供了自增值持久化的能力** ，也就是实现了“如果发生重启，表的自增值可以根据 redo log 恢复为 MySQL 重启前的值”
 
 也就是说对于上面这个例子来说，重启实例后这个表的 AUTO_INCREMENT 仍然是 2。
 
@@ -76,7 +76,7 @@ tag:
 
 这个奇数偶数其实是通过 `auto_increment_offset` 和 `auto_increment_increment` 这两个参数来决定的，这俩分别用来表示自增的初始值和步长，默认值都是 1。
 
-所以，上面的例子中生成新的自增值的步骤实际是这样的：从 `auto_increment_offset` 开始，以 `auto_increment_increment` 为步长，持续叠加，直到找到第一个大于 100  的值，作为新的自增值。
+所以，上面的例子中生成新的自增值的步骤实际是这样的：从 `auto_increment_offset` 开始，以 `auto_increment_increment` 为步长，持续叠加，直到找到第一个大于 100 的值，作为新的自增值。
 
 所以，这种情况下，自增值可能会是 102，103 等等之类的，就会导致不连续的主键 id。
 
@@ -149,7 +149,7 @@ tag:
 
 现在有两个并行执行的事务 A 和 B，在申请自增值的时候，为了避免两个事务申请到相同的自增 id，肯定要加锁，然后顺序申请，对吧。
 
-1. 假设事务 A 申请到了 id = 1， 事务 B 申请到 id=2，那么这时候表 t 的自增值是3，之后继续执行。
+1. 假设事务 A 申请到了 id = 1， 事务 B 申请到 id=2，那么这时候表 t 的自增值是 3，之后继续执行。
 2. 事务 B 正确提交了，但事务 A 出现了唯一键冲突，也就是 id = 1 的那行记录插入失败了，那如果允许事务 A 把自增 id 回退，也就是把表的当前自增值改回 1，那么就会出现这样的情况：表里面已经有 id = 2 的行，而当前的自增 id 值是 1。
 3. 接下来，继续执行的其他事务就会申请到 id=2。这时，就会出现插入语句报错“主键冲突”。
 

@@ -752,7 +752,7 @@ Optional.ofNullable(zoo).map(o -> o.getDog()).map(d -> d.getAge()).filter(v->v==
 
 ### java.time 主要类
 
-`java.util.Date` 既包含日期又包含时间，而  `java.time` 把它们进行了分离
+`java.util.Date` 既包含日期又包含时间，而 `java.time` 把它们进行了分离
 
 ```java
 LocalDateTime.class //日期+时间 format: yyyy-MM-ddTHH:mm:ss.SSS
@@ -829,7 +829,7 @@ LocalTime time = LocalTime.of(12, 12, 22);
 LocalTime.parse("12:12:22");
 ```
 
-**Java 8 之前** 转换都需要借助 `SimpleDateFormat` 类，而**Java 8 之后**只需要 `LocalDate`、`LocalTime`、`LocalDateTime`的  `of` 或 `parse` 方法。
+**Java 8 之前** 转换都需要借助 `SimpleDateFormat` 类，而**Java 8 之后**只需要 `LocalDate`、`LocalTime`、`LocalDateTime`的 `of` 或 `parse` 方法。
 
 ### 日期计算
 
@@ -976,7 +976,7 @@ System.out.println(date);
 //Wed Jan 27 14:05:29 CST 2021
 ```
 
-在新特性中引入了  `java.time.ZonedDateTime ` 来表示带时区的时间。它可以看成是 `LocalDateTime + ZoneId`。
+在新特性中引入了 `java.time.ZonedDateTime ` 来表示带时区的时间。它可以看成是 `LocalDateTime + ZoneId`。
 
 ```java
 //当前时区时间

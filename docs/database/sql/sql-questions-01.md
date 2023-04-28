@@ -102,8 +102,8 @@ FROM Customers
 答案：
 
 ```sql
-SELECT cust_name 
-FROM Customers 
+SELECT cust_name
+FROM Customers
 ORDER BY cust_name DESC
 ```
 
@@ -617,15 +617,15 @@ ORDER BY order_date
 | `DATE()`        | 返回日期时间的日期部分         |
 | `DATEDIFF`      | 计算两个日期之差               |
 | `DATE_FORMAT()` | 返回一个格式化的日期或时间串   |
-| `DAY()`       | 返回一个日期的天数部分         |
-| `DAYOFWEEK()` | 对于一个日期，返回对应的星期几 |
-| `HOUR()`      | 返回一个时间的小时部分         |
-| `MINUTE()`    | 返回一个时间的分钟部分         |
-| `MONTH()`     | 返回一个日期的月份部分         |
-| `NOW()`       | 返回当前日期和时间             |
-| `SECOND()`    | 返回一个时间的秒部分           |
-| `TIME()`      | 返回一个日期时间的时间部分     |
-| `YEAR()`      | 返回一个日期的年份部分         |
+| `DAY()`         | 返回一个日期的天数部分         |
+| `DAYOFWEEK()`   | 对于一个日期，返回对应的星期几 |
+| `HOUR()`        | 返回一个时间的小时部分         |
+| `MINUTE()`      | 返回一个时间的分钟部分         |
+| `MONTH()`       | 返回一个日期的月份部分         |
+| `NOW()`         | 返回当前日期和时间             |
+| `SECOND()`      | 返回一个时间的秒部分           |
+| `TIME()`        | 返回一个日期时间的时间部分     |
+| `YEAR()`        | 返回一个日期的年份部分         |
 
 ## 汇总数据
 
@@ -1181,8 +1181,8 @@ ON table1.common_column1 = table2.common_column2;
 ```sql
 # join....on
 SELECT c.cust_name, o.order_num
-FROM Customers c 
-INNER JOIN Orders o 
+FROM Customers c
+INNER JOIN Orders o
 ON c.cust_id = o.cust_id
 ORDER BY c.cust_name
 
@@ -1203,14 +1203,14 @@ ORDER BY c.cust_name
 
 SQL 允许在 `JOIN` 左边加上一些修饰性的关键词，从而形成不同类型的连接，如下表所示：
 
-| 连接类型                                 | 说明                                                         |
-| ---------------------------------------- | ------------------------------------------------------------ |
-| INNER JOIN 内连接                        | （默认连接方式）只有当两个表都存在满足条件的记录时才会返回行。 |
-| LEFT JOIN / LEFT OUTER JOIN 左(外)连接   | 返回左表中的所有行，即使右表中没有满足条件的行也是如此。     |
-| RIGHT JOIN / RIGHT OUTER JOIN 右(外)连接 | 返回右表中的所有行，即使左表中没有满足条件的行也是如此。     |
-| FULL JOIN / FULL OUTER JOIN 全(外)连接   | 只要其中有一个表存在满足条件的记录，就返回行。               |
+| 连接类型                                 | 说明                                                                                          |
+| ---------------------------------------- | --------------------------------------------------------------------------------------------- |
+| INNER JOIN 内连接                        | （默认连接方式）只有当两个表都存在满足条件的记录时才会返回行。                                |
+| LEFT JOIN / LEFT OUTER JOIN 左(外)连接   | 返回左表中的所有行，即使右表中没有满足条件的行也是如此。                                      |
+| RIGHT JOIN / RIGHT OUTER JOIN 右(外)连接 | 返回右表中的所有行，即使左表中没有满足条件的行也是如此。                                      |
+| FULL JOIN / FULL OUTER JOIN 全(外)连接   | 只要其中有一个表存在满足条件的记录，就返回行。                                                |
 | SELF JOIN                                | 将一个表连接到自身，就像该表是两个表一样。为了区分两个表，在 SQL 语句中需要至少重命名一个表。 |
-| CROSS JOIN                               | 交叉连接，从两个或者多个连接表中返回记录集的笛卡尔积。       |
+| CROSS JOIN                               | 交叉连接，从两个或者多个连接表中返回记录集的笛卡尔积。                                        |
 
 下图展示了 LEFT JOIN、RIGHT JOIN、INNER JOIN、OUTER JOIN 相关的 7 种用法。
 
@@ -1229,7 +1229,7 @@ ORDER BY c.cust_name
 
 # 显式内连接
 SELECT c.cust_name, o.order_num
-FROM Customers c 
+FROM Customers c
 INNER JOIN Orders o
 USING(cust_id)
 ORDER BY c.cust_name;
@@ -1272,7 +1272,7 @@ ORDER BY c.cust_name,o.order_num
 
 # 显式内连接
 SELECT c.cust_name, o.order_num
-FROM Customers c 
+FROM Customers c
 INNER JOIN Orders o
 USING(cust_id)
 ORDER BY c.cust_name,o.order_num;

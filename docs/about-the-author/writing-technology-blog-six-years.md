@@ -122,7 +122,7 @@ tag:
 
 最重要的是一定要重视 Markdown 规范，不然内容再好也会显得不专业。
 
-Markdown 规范请参考：**https://javaguide.cn/javaguide/contribution-guideline.html** （很重要，尽量按照规范来，对你工作中写文档会非常有帮助）
+Markdown 规范请参考：**<https://javaguide.cn/javaguide/contribution-guideline.html>** （很重要，尽量按照规范来，对你工作中写文档会非常有帮助）
 
 ## 有没有什么写作技巧分享？
 

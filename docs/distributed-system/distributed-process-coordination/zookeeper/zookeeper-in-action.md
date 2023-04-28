@@ -5,13 +5,13 @@ tag:
   - ZooKeeper
 ---
 
-这篇文章简单给演示一下 ZooKeeper 常见命令的使用以及 ZooKeeper Java客户端 Curator 的基本使用。介绍到的内容都是最基本的操作，能满足日常工作的基本需要。
+这篇文章简单给演示一下 ZooKeeper 常见命令的使用以及 ZooKeeper Java 客户端 Curator 的基本使用。介绍到的内容都是最基本的操作，能满足日常工作的基本需要。
 
 如果文章有任何需要改善和完善的地方，欢迎在评论区指出，共同进步！
 
 ## ZooKeeper 安装
 
-### 使用Docker 安装 zookeeper
+### 使用 Docker 安装 zookeeper
 
 **a.使用 Docker 下载 ZooKeeper**
 
@@ -27,11 +27,11 @@ docker run -d --name zookeeper -p 2181:2181 zookeeper:3.5.8
 
 ### 连接 ZooKeeper 服务
 
-**a.进入ZooKeeper容器中**
+**a.进入 ZooKeeper 容器中**
 
 先使用 `docker ps` 查看 ZooKeeper 的 ContainerID，然后使用 `docker exec -it ContainerID /bin/bash` 命令进入容器中。
 
-**b.先进入 bin 目录,然后通过  `./zkCli.sh -server 127.0.0.1:2181`命令连接ZooKeeper 服务**
+**b.先进入 bin 目录,然后通过 `./zkCli.sh -server 127.0.0.1:2181`命令连接 ZooKeeper 服务**
 
 ```bash
 root@eaf70fc620cb:/apache-zookeeper-3.5.8-bin# cd bin
@@ -130,9 +130,9 @@ numChildren = 1
 
 ### 查看节点信息和状态(ls2 命令)
 
-`ls2` 命令更像是  `ls` 命令和 `stat` 命令的结合。 `ls2` 命令返回的信息包括 2 部分：
+`ls2` 命令更像是 `ls` 命令和 `stat` 命令的结合。 `ls2` 命令返回的信息包括 2 部分：
 
-1. 子节点列表 
+1. 子节点列表
 2. 当前节点的 stat 信息。
 
 ```shell
@@ -162,15 +162,15 @@ numChildren = 1
 
 在后面我会介绍到 Java 客户端 API 的使用以及开源 ZooKeeper 客户端 ZkClient 和 Curator 的使用。
 
-## ZooKeeper Java客户端 Curator简单使用
+## ZooKeeper Java 客户端 Curator 简单使用
 
-Curator 是Netflix公司开源的一套 ZooKeeper Java客户端框架，相比于 Zookeeper 自带的客户端 zookeeper 来说，Curator 的封装更加完善，各种 API 都可以比较方便地使用。
+Curator 是 Netflix 公司开源的一套 ZooKeeper Java 客户端框架，相比于 Zookeeper 自带的客户端 zookeeper 来说，Curator 的封装更加完善，各种 API 都可以比较方便地使用。
 
 ![](https://oss.javaguide.cn/github/javaguide/distributed-system/zookeeper/curator.png)
 
 下面我们就来简单地演示一下 Curator 的使用吧！
 
-Curator4.0+版本对ZooKeeper 3.5.x支持比较好。开始之前，请先将下面的依赖添加进你的项目。
+Curator4.0+版本对 ZooKeeper 3.5.x 支持比较好。开始之前，请先将下面的依赖添加进你的项目。
 
 ```xml
 <dependency>
@@ -187,7 +187,7 @@ Curator4.0+版本对ZooKeeper 3.5.x支持比较好。开始之前，请先将下
 
 ### 连接 ZooKeeper 客户端
 
-通过 `CuratorFrameworkFactory` 创建 `CuratorFramework` 对象，然后再调用  `CuratorFramework` 对象的 `start()` 方法即可！
+通过 `CuratorFrameworkFactory` 创建 `CuratorFramework` 对象，然后再调用 `CuratorFramework` 对象的 `start()` 方法即可！
 
 ```java
 private static final int BASE_SLEEP_TIME = 1000;
@@ -214,14 +214,14 @@ zkClient.start();
 
 #### 创建节点
 
-我们在 [ZooKeeper常见概念解读](./zookeeper-intro.md) 中介绍到，我们通常是将 znode 分为 4 大类：
+我们在 [ZooKeeper 常见概念解读](./zookeeper-intro.md) 中介绍到，我们通常是将 znode 分为 4 大类：
 
 - **持久（PERSISTENT）节点** ：一旦创建就一直存在即使 ZooKeeper 集群宕机，直到将其删除。
 - **临时（EPHEMERAL）节点** ：临时节点的生命周期是与 **客户端会话（session）** 绑定的，**会话消失则节点消失** 。并且，临时节点 **只能做叶子节点** ，不能创建子节点。
 - **持久顺序（PERSISTENT_SEQUENTIAL）节点** ：除了具有持久（PERSISTENT）节点的特性之外， 子节点的名称还具有顺序性。比如 `/node1/app0000000001` 、`/node1/app0000000002` 。
 - **临时顺序（EPHEMERAL_SEQUENTIAL）节点** ：除了具备临时（EPHEMERAL）节点的特性之外，子节点的名称还具有顺序性。
 
-你在使用的ZooKeeper 的时候，会发现  `CreateMode` 类中实际有 7种 znode 类型 ，但是用的最多的还是上面介绍的 4 种。
+你在使用的 ZooKeeper 的时候，会发现 `CreateMode` 类中实际有 7 种 znode 类型 ，但是用的最多的还是上面介绍的 4 种。
 
 **a.创建持久化节点**
 
@@ -293,8 +293,3 @@ zkClient.setData().forPath("/node1/00001","c++".getBytes());//更新节点数据
 ```java
 List<String> childrenPaths = zkClient.getChildren().forPath("/node1");
 ```
-
-
-
-
-

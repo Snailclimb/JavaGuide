@@ -125,7 +125,7 @@ void MetaspaceGC::initialize() {
 }
 ```
 
-相关阅读： [issue 更正：MaxMetaspaceSize如果不指定大小的话，不会耗尽内存 #1204 ](https://github.com/Snailclimb/JavaGuide/issues/1204) 。
+相关阅读： [issue 更正：MaxMetaspaceSize 如果不指定大小的话，不会耗尽内存 #1204 ](https://github.com/Snailclimb/JavaGuide/issues/1204) 。
 
 ## 3.垃圾收集相关
 

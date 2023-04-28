@@ -95,7 +95,7 @@ OK
 
 ### 如何实现锁的优雅续期？
 
-对于 Java 开发的小伙伴来说，已经有了现成的解决方案：**[Redisson](https://github.com/redisson/redisson)** 。其他语言的解决方案，可以在 Redis 官方文档中找到，地址：https://redis.io/topics/distlock 。
+对于 Java 开发的小伙伴来说，已经有了现成的解决方案：**[Redisson](https://github.com/redisson/redisson)** 。其他语言的解决方案，可以在 Redis 官方文档中找到，地址：<https://redis.io/topics/distlock> 。
 
 ![Distributed locks with Redis](https://oss.javaguide.cn/github/javaguide/redis-distributed-lock.png)
 
@@ -116,7 +116,7 @@ public Config setLockWatchdogTimeout(long lockWatchdogTimeout) {
     return this;
 }
 public long getLockWatchdogTimeout() {
-  	return lockWatchdogTimeout;
+   return lockWatchdogTimeout;
 }
 ```
 
@@ -276,17 +276,17 @@ InterProcessLock lock2 = new InterProcessSemaphoreMutex(client, lockPath2);
 InterProcessMultiLock lock = new InterProcessMultiLock(Arrays.asList(lock1, lock2));
 
 if (!lock.acquire(10, TimeUnit.SECONDS)) {
-  	throw new IllegalStateException("不能获取多锁");
+   throw new IllegalStateException("不能获取多锁");
 }
 System.out.println("已获取多锁");
 System.out.println("是否有第一个锁: " + lock1.isAcquiredInThisProcess());
 System.out.println("是否有第二个锁: " + lock2.isAcquiredInThisProcess());
 try {
     // 资源操作
- 	 		resource.use(); 
+    resource.use();
 } finally {
     System.out.println("释放多个锁");
-    lock.release(); 
+    lock.release();
 }
 System.out.println("是否有第一个锁: " + lock1.isAcquiredInThisProcess());
 System.out.println("是否有第二个锁: " + lock2.isAcquiredInThisProcess());
@@ -394,6 +394,3 @@ private static class LockData
 ## 总结
 
 这篇文章我们介绍了分布式锁的基本概念以及实现分布式锁的两种常见方式。至于具体选择 Redis 还是 ZooKeeper 来实现分布式锁，还是要看业务的具体需求。如果对性能要求比较高的话，建议使用 Redis 实现分布式锁。如果对可靠性要求比较高的话，建议使用 ZooKeeper 实现分布式锁。
-
-
-

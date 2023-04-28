@@ -52,7 +52,7 @@ head:
 </dependency>
 ```
 
-你可以在 https://mvnrepository.com/ 这个网站上找到几乎所有可用的构件，如果你的项目使用的是 Maven 作为构建工具，那这个网站你一定会经常接触。
+你可以在 <https://mvnrepository.com/> 这个网站上找到几乎所有可用的构件，如果你的项目使用的是 Maven 作为构建工具，那这个网站你一定会经常接触。
 
 ![Maven 仓库](https://oss.javaguide.cn/github/javaguide/tools/maven/mvnrepository.com.png)
 
@@ -386,7 +386,7 @@ Maven 能够基于 `pom.xml` 所包含的信息，自动生成一个友好的站
 
 ## Maven 插件
 
-Maven 本质上是一个插件执行框架，所有的执行过程，都是由一个一个插件独立完成的。像咱们日常使用到的 install、clean、deploy 等命令，其实底层都是一个一个的 Maven 插件。关于 Maven 的核心插件可以参考官方的这篇文档：https://maven.apache.org/plugins/index.html 。
+Maven 本质上是一个插件执行框架，所有的执行过程，都是由一个一个插件独立完成的。像咱们日常使用到的 install、clean、deploy 等命令，其实底层都是一个一个的 Maven 插件。关于 Maven 的核心插件可以参考官方的这篇文档：<https://maven.apache.org/plugins/index.html> 。
 
 本地默认插件路径: `${user.home}/.m2/repository/org/apache/maven/plugins`
 
@@ -455,8 +455,8 @@ Maven 插件被分为下面两种类型：
 ## 参考
 
 - 《Maven 实战》
-- Introduction to Repositories - Maven 官方文档：https://maven.apache.org/guides/introduction/introduction-to-repositories.html
-- Introduction to the Build Lifecycle - Maven 官方文档：https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#Lifecycle_Reference
-- Maven 依赖范围：http://www.mvnbook.com/maven-dependency.html
-- 解决 maven 依赖冲突，这篇就够了！：https://www.cnblogs.com/qdhxhz/p/16363532.html
-- Multi-Module Project with Maven：https://www.baeldung.com/maven-multi-module
+- Introduction to Repositories - Maven 官方文档：<https://maven.apache.org/guides/introduction/introduction-to-repositories.html>
+- Introduction to the Build Lifecycle - Maven 官方文档：<https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#Lifecycle_Reference>
+- Maven 依赖范围：<http://www.mvnbook.com/maven-dependency.html>
+- 解决 maven 依赖冲突，这篇就够了！：<https://www.cnblogs.com/qdhxhz/p/16363532.html>
+- Multi-Module Project with Maven：<https://www.baeldung.com/maven-multi-module>

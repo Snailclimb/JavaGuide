@@ -31,7 +31,7 @@ tag:
 
 CSDN 我就不想多说了，就一大型文章垃圾场，都是各种不规范转载，各种收费下载的垃圾资源。这号称国内流量最大的技术网站贼恶心，吃香太难看，能不用就不要用吧！
 
-像我自己平时用 Google 搜索的时候，都是直接屏蔽掉 CSDN 这个站点的。只需要下载一个叫做 Personal Blocklist  的 Chrome 插件，然后将 blog.csdn.net 添加进黑名单就可以了。
+像我自己平时用 Google 搜索的时候，都是直接屏蔽掉 CSDN 这个站点的。只需要下载一个叫做 Personal Blocklist 的 Chrome 插件，然后将 blog.csdn.net 添加进黑名单就可以了。
 
 ![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/be151d93cd024c6e911d1a694212d91c~tplv-k3u1fbpfcp-zoom-1.image)
 

@@ -247,13 +247,13 @@ struct __attribute__ ((__packed__)) sdshdr64 {
 
 通过源码可以看出，SDS 共有五种实现方式 SDS_TYPE_5（并未用到）、SDS_TYPE_8、SDS_TYPE_16、SDS_TYPE_32、SDS_TYPE_64，其中只有后四种实际用到。Redis 会根据初始化的长度决定使用哪种类型，从而减少内存的使用。
 
-| 类型     | 字节 | 位   |
-| -------- | ---- | ---- |
-| sdshdr5  | < 1  | <8   |
-| sdshdr8  | 1    | 8    |
-| sdshdr16 | 2    | 16   |
-| sdshdr32 | 4    | 32   |
-| sdshdr64 | 8    | 64   |
+| 类型     | 字节 | 位  |
+| -------- | ---- | --- |
+| sdshdr5  | < 1  | <8  |
+| sdshdr8  | 1    | 8   |
+| sdshdr16 | 2    | 16  |
+| sdshdr32 | 4    | 32  |
+| sdshdr64 | 8    | 64  |
 
 对于后四种实现都包含了下面这 4 个属性：
 
@@ -371,7 +371,7 @@ Bitmap 存储的是连续的二进制数字（0 和 1），通过 Bitmap, 只需
 
 ### 使用 HyperLogLog 统计页面 UV 怎么做？
 
-使用 HyperLogLog 统计页面 UV主要需要用到下面这两个命令：
+使用 HyperLogLog 统计页面 UV 主要需要用到下面这两个命令：
 
 - `PFADD key element1 element2 ...`：添加一个或多个元素到 HyperLogLog 中。
 - `PFCOUNT key1 key2`：获取一个或者多个 HyperLogLog 的唯一计数。
@@ -444,7 +444,7 @@ Redis 通过 **IO 多路复用程序** 来监听来自客户端的大量连接�
 - Redis 的性能瓶颈不在 CPU ，主要在内存和网络；
 - 多线程就会存在死锁、线程上下文切换等问题，甚至会影响性能。
 
-相关阅读：[为什么 Redis 选择单线程模型？](https://draveness.me/whys-the-design-redis-single-thread/)  。
+相关阅读：[为什么 Redis 选择单线程模型？](https://draveness.me/whys-the-design-redis-single-thread/) 。
 
 ### Redis6.0 之后为何引入了多线程？
 
@@ -593,4 +593,3 @@ Redis 提供 6 种数据淘汰策略：
 - 《Redis 设计与实现》
 - Redis 命令手册：https://www.redis.com.cn/commands.html
 - WHY Redis choose single thread (vs multi threads): [https://medium.com/@jychen7/sharing-redis-single-thread-vs-multi-threads-5870bd44d153](https://medium.com/@jychen7/sharing-redis-single-thread-vs-multi-threads-5870bd44d153)
-

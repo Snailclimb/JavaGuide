@@ -5,7 +5,7 @@ tag:
   - rpc
 ---
 
-> 本文来自[小白debug](https://juejin.cn/user/4001878057422087)投稿，原文：https://juejin.cn/post/7121882245605883934 。
+> 本文来自[小白 debug](https://juejin.cn/user/4001878057422087)投稿，原文：https://juejin.cn/post/7121882245605883934 。
 
 我想起了我刚工作的时候，第一次接触 RPC 协议，当时就很懵，我 HTTP 协议用的好好的，为什么还要用 RPC 协议？
 

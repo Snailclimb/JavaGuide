@@ -20,7 +20,7 @@ title: JavaGuide（Java学习&&面试指南）
 
 [GitHub](https://github.com/Snailclimb/JavaGuide) | [Gitee](https://gitee.com/SnailClimb/JavaGuide)
 
-<!-- @include: ./banner.snippet.md -->
+<!-- @include: @banner.snippet.md -->
 
 ## 项目相关
 
@@ -91,7 +91,7 @@ title: JavaGuide（Java学习&&面试指南）
 
 ### JVM (必看 :+1:)
 
-JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle.com/javase/specs/jvms/se8/html/index.html) 和周志明老师的[《深入理解 Java 虚拟机（第 3 版）》](https://book.douban.com/subject/34907497/) （强烈建议阅读多遍！）。
+JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.com/javase/specs/jvms/se8/html/index.html) 和周志明老师的[《深入理解 Java 虚拟机（第 3 版）》](https://book.douban.com/subject/34907497/) （强烈建议阅读多遍！）。
 
 - **[Java 内存区域](./java/jvm/memory-area.md)**
 - **[JVM 垃圾回收](./java/jvm/jvm-garbage-collection.md)**
@@ -167,8 +167,8 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 **常见算法问题总结** ：
 
-- [几道常见的字符串算法题总结 ](./cs-basics/algorithms/string-algorithm-problems.md)
-- [几道常见的链表算法题总结 ](./cs-basics/algorithms/linkedlist-algorithm-problems.md)
+- [几道常见的字符串算法题总结](./cs-basics/algorithms/string-algorithm-problems.md)
+- [几道常见的链表算法题总结](./cs-basics/algorithms/linkedlist-algorithm-problems.md)
 - [剑指 offer 部分编程题](./cs-basics/algorithms/the-sword-refers-to-offer.md)
 - [十大经典排序算法](./cs-basics/algorithms/10-classical-sorting-algorithms.md)
 

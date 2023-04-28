@@ -40,7 +40,7 @@ void sayHello(String str) {
 
 **为什么说 Java 只有值传递呢？** 不需要太多废话，我通过 3 个例子来给大家证明。
 
-### 案例1：传递基本类型参数
+### 案例 1：传递基本类型参数
 
 代码：
 
@@ -73,13 +73,13 @@ num2 = 20
 
 解析：
 
-在 `swap()`  方法中，`a`、`b` 的值进行交换，并不会影响到 `num1`、`num2`。因为，`a`、`b` 的值，只是从 `num1`、`num2` 的复制过来的。也就是说，a、b 相当于 `num1`、`num2` 的副本，副本的内容无论怎么修改，都不会影响到原件本身。
+在 `swap()` 方法中，`a`、`b` 的值进行交换，并不会影响到 `num1`、`num2`。因为，`a`、`b` 的值，只是从 `num1`、`num2` 的复制过来的。也就是说，a、b 相当于 `num1`、`num2` 的副本，副本的内容无论怎么修改，都不会影响到原件本身。
 
 ![](https://oss.javaguide.cn/github/javaguide/java/basis/java-value-passing-01.png)
 
-通过上面例子，我们已经知道了一个方法不能修改一个基本数据类型的参数，而对象引用作为参数就不一样，请看案例2。
+通过上面例子，我们已经知道了一个方法不能修改一个基本数据类型的参数，而对象引用作为参数就不一样，请看案例 2。
 
-### 案例2：传递引用类型参数1
+### 案例 2：传递引用类型参数 1
 
 代码：
 
@@ -116,7 +116,7 @@ num2 = 20
 
 为了更强有力地反驳 Java 对引用类型的参数采用的不是引用传递，我们再来看下面这个案例！
 
-### 案例3 ：传递引用类型参数2
+### 案例 3 ：传递引用类型参数 2
 
 ```java
 public class Person {
@@ -141,7 +141,7 @@ public static void swap(Person person1, Person person2) {
 }
 ```
 
-输出: 
+输出:
 
 ```
 person1:小李
@@ -183,6 +183,7 @@ int main()
 ```
 
 输出结果：
+
 ```
 invoke before: 10
 incr before: 10
@@ -211,6 +212,6 @@ Java 中将实参传递给方法（或函数）的方式是 **值传递** ：
 ## 参考
 
 - 《Java 核心技术卷 Ⅰ》基础知识第十版第四章 4.5 小节
-- [Java 到底是值传递还是引用传递？ - Hollis的回答 - 知乎](https://www.zhihu.com/question/31203609/answer/576030121) 
+- [Java 到底是值传递还是引用传递？ - Hollis 的回答 - 知乎](https://www.zhihu.com/question/31203609/answer/576030121)
 - [Oracle Java Tutorials - Passing Information to a Method or a Constructor](https://docs.oracle.com/javase/tutorial/java/javaOO/arguments.html)
 - [Interview with James Gosling, Father of Java](https://mappingthejourney.com/single-post/2017/06/29/episode-3-interview-with-james-gosling-father-of-java/)

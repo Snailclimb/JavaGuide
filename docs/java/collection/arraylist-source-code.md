@@ -5,7 +5,6 @@ tag:
   - Java集合
 ---
 
-
 ## ArrayList 简介
 
 `ArrayList` 的底层是数组队列，相当于动态数组。与 Java 中的数组相比，它的容量能动态增长。在添加大量元素前，应用程序可以使用`ensureCapacity`操作来增加 `ArrayList` 实例的容量。这可以减少递增式再分配的数量。
@@ -603,7 +602,7 @@ public class ArrayList<E> extends AbstractList<E>
 
 ```
 
-细心的同学一定会发现 ：**以无参数构造方法创建 ``ArrayList`` 时，实际上初始化赋值的是一个空数组。当真正对数组进行添加元素操作时，才真正分配容量。即向数组中添加第一个元素时，数组容量扩为 10。** 下面在我们分析 ArrayList 扩容时会讲到这一点内容！
+细心的同学一定会发现 ：**以无参数构造方法创建 `ArrayList` 时，实际上初始化赋值的是一个空数组。当真正对数组进行添加元素操作时，才真正分配容量。即向数组中添加第一个元素时，数组容量扩为 10。** 下面在我们分析 ArrayList 扩容时会讲到这一点内容！
 
 > 补充：JDK6 new 无参构造的 `ArrayList` 对象时，直接创建了长度是 10 的 `Object[]` 数组 elementData 。
 
@@ -891,7 +890,7 @@ public class ArrayscopyOfTest {
 
 ```
 
-理论上来说，最好在向 `ArrayList`   添加大量元素之前用 `ensureCapacity` 方法，以减少增量重新分配的次数
+理论上来说，最好在向 `ArrayList` 添加大量元素之前用 `ensureCapacity` 方法，以减少增量重新分配的次数
 
 我们通过下面的代码实际测试以下这个方法的效果：
 
@@ -940,6 +939,3 @@ public class EnsureCapacityTest {
 ```
 
 通过运行结果，我们可以看出向 `ArrayList` 添加大量元素之前使用`ensureCapacity` 方法可以提升性能。不过，这个性能差距几乎可以忽略不计。而且，实际项目根本也不可能往 `ArrayList` 里面添加这么多元素。
-
-
-

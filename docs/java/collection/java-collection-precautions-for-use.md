@@ -124,7 +124,7 @@ public static <T> T requireNonNull(T obj) {
 
 > **fail-fast 机制** ：多个线程对 fail-fast 集合进行修改的时候，可能会抛出`ConcurrentModificationException`。 即使是单线程下也有可能会出现这种情况，上面已经提到过。
 >
-> 相关阅读：[什么是fail-fast](https://www.cnblogs.com/54chensongxia/p/12470446.html) 。
+> 相关阅读：[什么是 fail-fast](https://www.cnblogs.com/54chensongxia/p/12470446.html) 。
 
 Java8 开始，可以使用 `Collection#removeIf()`方法删除满足特定条件的元素,如
 

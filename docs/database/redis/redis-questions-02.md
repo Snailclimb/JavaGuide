@@ -518,5 +518,5 @@ Cache Aside Pattern 中遇到写请求是这样的：更新 DB，然后直接删
 
 - 《Redis 开发与运维》
 - 《Redis 设计与实现》
-- Redis Transactions : https://redis.io/docs/manual/transactions/ 
+- Redis Transactions : https://redis.io/docs/manual/transactions/
 - What is Redis Pipeline：https://buildatscale.tech/what-is-redis-pipeline/

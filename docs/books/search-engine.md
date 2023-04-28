@@ -8,7 +8,7 @@ icon: "search"
 
 Elasticsearch 在 Apache Lucene 的基础上开发而成，学习 ES 之前，建议简单了解一下 Lucene 的相关概念。
 
-**[《Lucene实战》](https://book.douban.com/subject/6440615/)** 是国内为数不多的中文版本讲 Lucene 的书籍，适合用来学习和了解 Lucene 相关的概念和常见操作。
+**[《Lucene 实战》](https://book.douban.com/subject/6440615/)** 是国内为数不多的中文版本讲 Lucene 的书籍，适合用来学习和了解 Lucene 相关的概念和常见操作。
 
 ![《Lucene实战》-实战](https://oss.javaguide.cn/github/javaguide/books/vAJkdYEyol4e6Nr.png)
 

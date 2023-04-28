@@ -1,0 +1,4 @@
+**/node_modules/**
+
+# markdown snippets
+*.snippet.md

@@ -1,5 +1,5 @@
 ---
-title:  项目待办
+title: 项目待办
 category: 走近项目
 ---
 
@@ -11,4 +11,3 @@ category: 走近项目
 - [ ] 分布式常见理论和算法总结完善
 
 欢迎参与 JavaGuide 的维护工作，这是一件非常有意义的事情。详细信息请看：[JavaGuide 贡献指南](./contribution-guideline.md) 。
-

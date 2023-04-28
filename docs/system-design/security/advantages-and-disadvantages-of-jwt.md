@@ -36,7 +36,9 @@ JWT 自身包含了身份验证所需要的所有信息，因此，我们的服�
 举个简单的例子：小壮登录了某网上银行，他来到了网上银行的帖子区，看到一个帖子下面有一个链接写着“科学理财，年盈利率过万”，小壮好奇的点开了这个链接，结果发现自己的账户少了 10000 元。这是这么回事呢？原来黑客在链接中藏了一个请求，这个请求直接利用小壮的身份给银行发送了一个转账请求，也就是通过你的 Cookie 向银行发出请求。
 
 ```html
-<a src="http://www.mybank.com/Transfer?bankId=11&money=10000">科学理财，年盈利率过万</a>
+<a src="http://www.mybank.com/Transfer?bankId=11&money=10000"
+  >科学理财，年盈利率过万</a
+>
 ```
 
 CSRF 攻击需要依赖 Cookie ，Session 认证中 Cookie 中的 `SessionID` 是由浏览器发送到服务端的，只要发出请求，Cookie 就会被携带。借助这个特性，即使黑客无法获取你的 `SessionID`，只要让你误点攻击链接，就可以达到攻击效果。
@@ -172,7 +174,7 @@ JWT 也不是银弹，也有很多缺陷，具体是选择 JWT 还是 Session �
 
 ## 参考
 
-- JWT 超详细分析：https://learnku.com/articles/17883
-- How to log out when using JWT：https://medium.com/devgorilla/how-to-log-out-when-using-jwt-a8c7823e8a6
-- CSRF protection with JSON Web JWTs：https://medium.com/@agungsantoso/csrf-protection-with-json-web-JWTs-83e0f2fcbcc
-- Invalidating JSON Web JWTs：https://stackoverflow.com/questions/21978658/invalidating-json-web-JWTs
+- JWT 超详细分析：<https://learnku.com/articles/17883>
+- How to log out when using JWT：<https://medium.com/devgorilla/how-to-log-out-when-using-jwt-a8c7823e8a6>
+- CSRF protection with JSON Web JWTs：<https://medium.com/@agungsantoso/csrf-protection-with-json-web-JWTs-83e0f2fcbcc>
+- Invalidating JSON Web JWTs：<https://stackoverflow.com/questions/21978658/invalidating-json-web-JWTs>

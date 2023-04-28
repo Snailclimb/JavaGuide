@@ -165,7 +165,6 @@ Spring 框架中，事务管理相关最重要的 3 个接口如下：
 
 **Spring 并不直接管理事务，而是提供了多种事务管理器** 。Spring 事务管理器的接口是： **`PlatformTransactionManager`** 。
 
-
 通过这个接口，Spring 为各个平台如：JDBC(`DataSourceTransactionManager`)、Hibernate(`HibernateTransactionManager`)、JPA(`JpaTransactionManager`)等都提供了对应的事务管理器，但是具体的实现就是各个平台自己的事情了。
 
 **`PlatformTransactionManager` 接口的具体实现如下:**
@@ -202,8 +201,7 @@ public interface PlatformTransactionManager {
 >
 > 举个例子，我上个项目有发送短信的需求，为此，我们定了一个接口，接口只有两个方法:
 >
-> 1.发送短信
-> 2.处理发送结果的方法。
+> 1.发送短信 2.处理发送结果的方法。
 >
 > 刚开始我们用的是阿里云短信服务，然后我们实现这个接口完成了一个阿里云短信的服务。后来，我们突然又换到了别的短信服务平台，我们这个时候只需要再实现这个接口即可。这样保证了我们提供给外部的行为不变。几乎不需要改变什么代码，我们就轻松完成了需求的转变，提高了代码的灵活性和可扩展性。
 >
@@ -515,7 +513,7 @@ public enum Isolation {
 - **`TransactionDefinition.ISOLATION_REPEATABLE_READ`** : 对同一字段的多次读取结果都是一致的，除非数据是被本身事务自己所修改，**可以阻止脏读和不可重复读，但幻读仍有可能发生。**
 - **`TransactionDefinition.ISOLATION_SERIALIZABLE`** : 最高的隔离级别，完全服从 ACID 的隔离级别。所有的事务依次逐个执行，这样事务之间就完全不可能产生干扰，也就是说，**该级别可以防止脏读、不可重复读以及幻读**。但是这将严重影响程序的性能。通常情况下也不会用到该级别。
 
-相关阅读：[MySQL事务隔离级别详解](https://javaguide.cn/database/mysql/transaction-isolation-level.html)。
+相关阅读：[MySQL 事务隔离级别详解](https://javaguide.cn/database/mysql/transaction-isolation-level.html)。
 
 #### 事务超时属性
 
@@ -611,13 +609,13 @@ public @interface Transactional {
 
 **`@Transactional` 的常用配置参数总结（只列出了 5 个我平时比较常用的）：**
 
-| 属性名      | 说明                                                         |
-| :---------- | :----------------------------------------------------------- |
-| propagation | 事务的传播行为，默认值为 REQUIRED，可选的值在上面介绍过      |
-| isolation   | 事务的隔离级别，默认值采用 DEFAULT，可选的值在上面介绍过     |
+| 属性名      | 说明                                                                                         |
+| :---------- | :------------------------------------------------------------------------------------------- |
+| propagation | 事务的传播行为，默认值为 REQUIRED，可选的值在上面介绍过                                      |
+| isolation   | 事务的隔离级别，默认值采用 DEFAULT，可选的值在上面介绍过                                     |
 | timeout     | 事务的超时时间，默认值为-1（不会超时）。如果超过该时间限制但事务还没有完成，则自动回滚事务。 |
-| readOnly    | 指定事务是否为只读事务，默认值为 false。                     |
-| rollbackFor | 用于指定能够触发事务回滚的异常类型，并且可以指定多个异常类型。 |
+| readOnly    | 指定事务是否为只读事务，默认值为 false。                                                     |
+| rollbackFor | 用于指定能够触发事务回滚的异常类型，并且可以指定多个异常类型。                               |
 
 #### `@Transactional` 事务注解原理
 

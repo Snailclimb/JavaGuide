@@ -5,10 +5,9 @@ tag:
   - 数据库基础
 ---
 
-
 MySQL 字符编码集中有两套 UTF-8 编码实现：**`utf8`** 和 **`utf8mb4`**。
 
-如果使用 **`utf8`**  的话，存储emoji 符号和一些比较复杂的汉字、繁体字就会出错。
+如果使用 **`utf8`** 的话，存储 emoji 符号和一些比较复杂的汉字、繁体字就会出错。
 
 为什么会这样呢？这篇文章可以从源头给你解答。
 
@@ -65,7 +64,7 @@ GB18030 完全兼容 GB2312 和 GBK 字符集，纳入中国国内少数民族�
 
 BIG5 主要针对的是繁体中文，收录了 13000 多个汉字。
 
-### Unicode & UTF-8编码
+### Unicode & UTF-8 编码
 
 为了更加适合本国语言，诞生了很多种字符集。
 
@@ -73,7 +72,7 @@ BIG5 主要针对的是繁体中文，收录了 13000 多个汉字。
 
 就比如说你使用 UTF-8 编码方式打开 GB2312 编码格式的文件就会出现乱码。示例：“牛”这个汉字 GB2312 编码后的十六进制数值为 “C5A3”，而 “C5A3” 用 UTF-8 解码之后得到的却是 “ţ”。
 
-你可以通过这个网站在线进行编码和解码：https://www.haomeili.net/HanZi/ZiFuBianMaZhuanHuan
+你可以通过这个网站在线进行编码和解码：<https://www.haomeili.net/HanZi/ZiFuBianMaZhuanHuan>
 
 ![](https://oss.javaguide.cn/github/javaguide/csdn/836c49b117ee4408871b0020b74c991d.png)
 
@@ -140,7 +139,7 @@ CREATE TABLE `user` (
 ```sql
 INSERT INTO `user` (`id`, `name`, `phone`, `password`)
 VALUES
-	('A00003', 'guide哥😘😘😘', '181631312312', '123456');
+ ('A00003', 'guide哥😘😘😘', '181631312312', '123456');
 
 ```
 
@@ -152,9 +151,9 @@ Incorrect string value: '\xF0\x9F\x98\x98\xF0\x9F...' for column 'name' at row 1
 
 ## 参考
 
-- 字符集和字符编码（Charset & Encoding）： https://www.cnblogs.com/skynet/archive/2011/05/03/2035105.html
-- 十分钟搞清字符集和字符编码：http://cenalulu.github.io/linux/character-encoding/
-- Unicode-维基百科：https://zh.wikipedia.org/wiki/Unicode
-- GB2312-维基百科：https://zh.wikipedia.org/wiki/GB_2312
-- UTF-8-维基百科：https://zh.wikipedia.org/wiki/UTF-8
-- GB18030-维基百科: https://zh.wikipedia.org/wiki/GB_18030
+- 字符集和字符编码（Charset & Encoding）： <https://www.cnblogs.com/skynet/archive/2011/05/03/2035105.html>
+- 十分钟搞清字符集和字符编码：<http://cenalulu.github.io/linux/character-encoding/>
+- Unicode-维基百科：<https://zh.wikipedia.org/wiki/Unicode>
+- GB2312-维基百科：<https://zh.wikipedia.org/wiki/GB_2312>
+- UTF-8-维基百科：<https://zh.wikipedia.org/wiki/UTF-8>
+- GB18030-维基百科: <https://zh.wikipedia.org/wiki/GB_18030>

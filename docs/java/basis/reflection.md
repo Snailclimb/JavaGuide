@@ -1,5 +1,5 @@
 ---
-title:  Java 反射机制详解
+title: Java 反射机制详解
 category: Java
 tag:
   - Java基础
@@ -182,4 +182,3 @@ value is JavaGuide
 ```java
 Class<?> targetClass = Class.forName("cn.javaguide.TargetObject");
 ```
-

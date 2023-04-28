@@ -1,5 +1,5 @@
 ---
-title:  JDK 监控和故障处理工具总结
+title: JDK 监控和故障处理工具总结
 category: Java
 tag:
   - JVM
@@ -10,7 +10,7 @@ tag:
 这些命令在 JDK 安装目录下的 bin 目录下：
 
 - **`jps`** (JVM Process Status）: 类似 UNIX 的 `ps` 命令。用于查看所有 Java 进程的启动类、传入参数和 Java 虚拟机参数等信息；
-- **`jstat`**（JVM Statistics Monitoring Tool）:  用于收集 HotSpot 虚拟机各方面的运行数据;
+- **`jstat`**（JVM Statistics Monitoring Tool）: 用于收集 HotSpot 虚拟机各方面的运行数据;
 - **`jinfo`** (Configuration Info for Java) : Configuration Info for Java,显示虚拟机配置信息;
 - **`jmap`** (Memory Map for Java) : 生成堆转储快照;
 - **`jhat`** (JVM Heap Dump Browser) : 用于分析 heapdump 文件，它会建立一个 HTTP/HTML 服务器，让用户可以在浏览器上查看分析结果;
@@ -66,9 +66,9 @@ jstat -<option> [-t] [-h<lines>] <vmid> [<interval> [<count>]]
 - `jstat -gccapacity vmid` ：显示各个代的容量及使用情况；
 - `jstat -gcnew vmid` ：显示新生代信息；
 - `jstat -gcnewcapcacity vmid` ：显示新生代大小与使用情况；
-- `jstat -gcold vmid` ：显示老年代和永久代的行为统计，从jdk1.8开始,该选项仅表示老年代，因为永久代被移除了；
+- `jstat -gcold vmid` ：显示老年代和永久代的行为统计，从 jdk1.8 开始,该选项仅表示老年代，因为永久代被移除了；
 - `jstat -gcoldcapacity vmid` ：显示老年代的大小；
-- `jstat -gcpermcapacity vmid` ：显示永久代大小，从jdk1.8开始,该选项不存在了，因为永久代被移除了；
+- `jstat -gcpermcapacity vmid` ：显示永久代大小，从 jdk1.8 开始,该选项不存在了，因为永久代被移除了；
 - `jstat -gcutil vmid` ：显示垃圾收集信息；
 
 另外，加上 `-t`参数可以在输出信息上加一个 Timestamp 列，显示程序的运行时间。
@@ -116,7 +116,7 @@ Heap dump file created
 
 ### **`jhat`**: 分析 heapdump 文件
 
- **`jhat`** 用于分析 heapdump 文件，它会建立一个 HTTP/HTML 服务器，让用户可以在浏览器上查看分析结果。
+**`jhat`** 用于分析 heapdump 文件，它会建立一个 HTTP/HTML 服务器，让用户可以在浏览器上查看分析结果。
 
 ```powershell
 C:\Users\SnailClimb>jhat C:\Users\SnailClimb\Desktop\heap.hprof
@@ -252,7 +252,7 @@ JConsole 是基于 JMX 的可视化监视、管理工具。可以很方便的监
 如果需要使用 JConsole 连接远程进程，可以在远程 Java 程序启动时加上下面这些参数:
 
 ```properties
--Djava.rmi.server.hostname=外网访问 ip 地址 
+-Djava.rmi.server.hostname=外网访问 ip 地址
 -Dcom.sun.management.jmxremote.port=60001   //监控的端口号
 -Dcom.sun.management.jmxremote.authenticate=false   //关闭认证
 -Dcom.sun.management.jmxremote.ssl=false
@@ -261,7 +261,7 @@ JConsole 是基于 JMX 的可视化监视、管理工具。可以很方便的监
 在使用 JConsole 连接时，远程进程地址如下：
 
 ```
-外网访问 ip 地址:60001 
+外网访问 ip 地址:60001
 ```
 
 #### 查看 Java 程序概况
@@ -295,7 +295,7 @@ VisualVM 提供在 Java 虚拟机 (Java Virtual Machine, JVM) 上运行的 Java 
 
 > VisualVM（All-in-One Java Troubleshooting Tool）是到目前为止随 JDK 发布的功能最强大的运行监视和故障处理程序，官方在 VisualVM 的软件说明中写上了“All-in-One”的描述字样，预示着他除了运行监视、故障处理外，还提供了很多其他方面的功能，如性能分析（Profiling）。VisualVM 的性能分析功能甚至比起 JProfiler、YourKit 等专业且收费的 Profiling 工具都不会逊色多少，而且 VisualVM 还有一个很大的优点：不需要被监视的程序基于特殊 Agent 运行，因此他对应用程序的实际性能的影响很小，使得他可以直接应用在生产环境中。这个优点是 JProfiler、YourKit 等工具无法与之媲美的。
 
- VisualVM 基于 NetBeans 平台开发，因此他一开始就具备了插件扩展功能的特性，通过插件扩展支持，VisualVM 可以做到：
+VisualVM 基于 NetBeans 平台开发，因此他一开始就具备了插件扩展功能的特性，通过插件扩展支持，VisualVM 可以做到：
 
 - **显示虚拟机进程以及进程的配置、环境信息（jps、jinfo）。**
 - **监视应用程序的 CPU、GC、堆、方法区以及线程的信息（jstat、jstack）。**

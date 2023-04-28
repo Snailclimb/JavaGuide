@@ -8,7 +8,7 @@ head:
       content: 定时任务,Quartz,Elastic-Job,XXL-JOB,PowerJob
   - - meta
     - name: description
-      content:  XXL-JOB 2015 年推出，已经经过了很多年的考验。XXL-JOB 轻量级，并且使用起来非常简单。虽然存在性能瓶颈，但是，在绝大多数情况下，对于企业的基本需求来说是没有影响的。PowerJob 属于分布式任务调度领域里的新星，其稳定性还有待继续考察。ElasticJob 由于在架构设计上是基于 Zookeeper ，而 XXL-JOB 是基于数据库，性能方面的话，ElasticJob 略胜一筹。
+      content: XXL-JOB 2015 年推出，已经经过了很多年的考验。XXL-JOB 轻量级，并且使用起来非常简单。虽然存在性能瓶颈，但是，在绝大多数情况下，对于企业的基本需求来说是没有影响的。PowerJob 属于分布式任务调度领域里的新星，其稳定性还有待继续考察。ElasticJob 由于在架构设计上是基于 Zookeeper ，而 XXL-JOB 是基于数据库，性能方面的话，ElasticJob 略胜一筹。
 ---
 
 ## 为什么需要定时任务？
@@ -231,8 +231,8 @@ public class TestJob implements SimpleJob {
 
 **相关地址：**
 
-- Github 地址：https://github.com/apache/shardingsphere-elasticjob。
-- 官方网站：https://shardingsphere.apache.org/elasticjob/index_zh.html 。
+- Github 地址：<https://github.com/apache/shardingsphere-elasticjob。>
+- 官方网站：<https://shardingsphere.apache.org/elasticjob/index_zh.html> 。
 
 **优缺点总结：**
 
@@ -288,8 +288,8 @@ public ReturnT<String> myAnnotationJobHandler(String param) throws Exception {
 
 **相关地址：**
 
-- Github 地址：https://github.com/xuxueli/xxl-job/。
-- 官方介绍：https://www.xuxueli.com/xxl-job/ 。
+- Github 地址：<https://github.com/xuxueli/xxl-job/。>
+- 官方介绍：<https://www.xuxueli.com/xxl-job/> 。
 
 **优缺点总结：**
 

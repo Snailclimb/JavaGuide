@@ -1,5 +1,5 @@
 ---
-title:  DNS 域名系统详解（应用层）
+title: DNS 域名系统详解（应用层）
 category: 计算机基础
 tag:
   - 计算机网络

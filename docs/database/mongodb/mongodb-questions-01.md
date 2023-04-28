@@ -28,15 +28,15 @@ MongoDB 的存储结构区别于传统的关系型数据库，主要由如下三
 
 **SQL 与 MongoDB 常见术语对比** ：
 
-| SQL                     | MongoDB                        |
-| ----------------------- | ------------------------------ |
-| 表（Table）             | 集合（Collection）             |
-| 行（Row）               | 文档（Document）               |
-| 列（Col）               | 字段（Field）                  |
-| 主键（Primary Key）     | 对象 ID（Objectid）            |
-| 索引（Index）           | 索引（Index）                  |
+| SQL                      | MongoDB                         |
+| ------------------------ | ------------------------------- |
+| 表（Table）              | 集合（Collection）              |
+| 行（Row）                | 文档（Document）                |
+| 列（Col）                | 字段（Field）                   |
+| 主键（Primary Key）      | 对象 ID（Objectid）             |
+| 索引（Index）            | 索引（Index）                   |
 | 嵌套表（Embedded Table） | 嵌入式文档（Embedded Document） |
-| 数组（Array）           | 数组（Array）                  |
+| 数组（Array）            | 数组（Array）                   |
 
 #### 文档
 
@@ -126,7 +126,7 @@ MongoDB 预留了几个特殊的数据库。
 
 与 MySQL 一样，MongoDB 采用的也是 **插件式的存储引擎架构** ，支持不同类型的存储引擎，不同的存储引擎解决不同场景的问题。在创建数据库或集合时，可以指定存储引擎。
 
-> 插件式的存储引擎架构可以实现 Server 层和存储引擎层的解耦，可以支持多种存储引擎，如MySQL既可以支持B-Tree结构的InnoDB存储引擎，还可以支持LSM结构的RocksDB存储引擎。
+> 插件式的存储引擎架构可以实现 Server 层和存储引擎层的解耦，可以支持多种存储引擎，如 MySQL 既可以支持 B-Tree 结构的 InnoDB 存储引擎，还可以支持 LSM 结构的 RocksDB 存储引擎。
 
 在存储引擎刚出来的时候，默认是使用 MMAPV1 存储引擎，MongoDB4.x 版本不再支持 MMAPv1 存储引擎。
 
@@ -141,13 +141,13 @@ MongoDB 预留了几个特殊的数据库。
 
 目前绝大部分流行的数据库存储引擎都是基于 B/B+ Tree 或者 LSM(Log Structured Merge) Tree 来实现的。对于 NoSQL 数据库来说，绝大部分（比如 HBase、Cassandra、RocksDB）都是基于 LSM 树，MongoDB 不太一样。
 
-上面也说了，自 MongoDB 3.2 以后，默认的存储引擎为WiredTiger 存储引擎。在 WiredTiger 引擎官网上，我们发现 WiredTiger 使用的是 B+ 树作为其存储结构：
+上面也说了，自 MongoDB 3.2 以后，默认的存储引擎为 WiredTiger 存储引擎。在 WiredTiger 引擎官网上，我们发现 WiredTiger 使用的是 B+ 树作为其存储结构：
 
 ```
 WiredTiger maintains a table's data in memory using a data structure called a B-Tree ( B+ Tree to be specific), referring to the nodes of a B-Tree as pages. Internal pages carry only keys. The leaf pages store both keys and values.
 ```
 
-此外，WiredTiger 还支持 [LSM(Log Structured Merge)](https://source.wiredtiger.com/3.1.0/lsm.html) 树作为存储结构，MongoDB 在使用WiredTiger 作为存储引擎时，默认使用的是 B+ 树。
+此外，WiredTiger 还支持 [LSM(Log Structured Merge)](https://source.wiredtiger.com/3.1.0/lsm.html) 树作为存储结构，MongoDB 在使用 WiredTiger 作为存储引擎时，默认使用的是 B+ 树。
 
 如果想要了解 MongoDB 使用 B 树的原因，可以看看这篇文章：[为什么 MongoDB 使用 B 树？](https://mp.weixin.qq.com/s/mMWdpbYRiT6LQcdaj4hgXQ)。
 
@@ -155,13 +155,13 @@ WiredTiger maintains a table's data in memory using a data structure called a B-
 
 - **root page（根节点）** ： B+ 树的根节点。
 - **internal page（内部节点）** ：不实际存储数据的中间索引节点。
-- **leaf page（叶子节点）**：真正存储数据的叶子节点，包含一个页头（page header）、块头（block header）和真正的数据（key/value），其中页头定义了页的类型、页中实际载荷数据的大小、页中记录条数等信息；块头定义了此页的checksum、块在磁盘上的寻址位置等信息。
+- **leaf page（叶子节点）**：真正存储数据的叶子节点，包含一个页头（page header）、块头（block header）和真正的数据（key/value），其中页头定义了页的类型、页中实际载荷数据的大小、页中记录条数等信息；块头定义了此页的 checksum、块在磁盘上的寻址位置等信息。
 
 其整体结构如下图所示：
 
 ![WiredTiger B+树整体结构](https://oss.javaguide.cn/github/javaguide/database/mongodb/mongodb-b-plus-tree-integral-structure.png)
 
-如果想要深入研究学习 WiredTiger 存储引擎，推荐阅读 MongoDB 中文社区的 [WiredTiger存储引擎系列](https://mongoing.com/archives/category/wiredtiger%e5%ad%98%e5%82%a8%e5%bc%95%e6%93%8e%e7%b3%bb%e5%88%97)。
+如果想要深入研究学习 WiredTiger 存储引擎，推荐阅读 MongoDB 中文社区的 [WiredTiger 存储引擎系列](https://mongoing.com/archives/category/wiredtiger%e5%ad%98%e5%82%a8%e5%bc%95%e6%93%8e%e7%b3%bb%e5%88%97)。
 
 ## MongoDB 聚合
 
@@ -196,17 +196,17 @@ MongoDB 聚合管道由多个阶段组成，每个阶段在文档通过管道时
 
 **常用阶段操作符** ：
 
-| 操作符    | 简述                                                         |
-| --------- | ------------------------------------------------------------ |
-| \$match   | 匹配操作符，用于对文档集合进行筛选                           |
+| 操作符    | 简述                                                                                                 |
+| --------- | ---------------------------------------------------------------------------------------------------- |
+| \$match   | 匹配操作符，用于对文档集合进行筛选                                                                   |
 | \$project | 投射操作符，用于重构每一个文档的字段，可以提取字段，重命名字段，甚至可以对原有字段进行操作后新增字段 |
-| \$sort    | 排序操作符，用于根据一个或多个字段对文档进行排序             |
-| \$limit   | 限制操作符，用于限制返回文档的数量                           |
-| \$skip    | 跳过操作符，用于跳过指定数量的文档                           |
-| \$count   | 统计操作符，用于统计文档的数量                               |
-| \$group   | 分组操作符，用于对文档集合进行分组                           |
-| \$unwind  | 拆分操作符，用于将数组中的每一个值拆分为单独的文档           |
-| \$lookup  | 连接操作符，用于连接同一个数据库中另一个集合，并获取指定的文档，类似于 populate |
+| \$sort    | 排序操作符，用于根据一个或多个字段对文档进行排序                                                     |
+| \$limit   | 限制操作符，用于限制返回文档的数量                                                                   |
+| \$skip    | 跳过操作符，用于跳过指定数量的文档                                                                   |
+| \$count   | 统计操作符，用于统计文档的数量                                                                       |
+| \$group   | 分组操作符，用于对文档集合进行分组                                                                   |
+| \$unwind  | 拆分操作符，用于将数组中的每一个值拆分为单独的文档                                                   |
+| \$lookup  | 连接操作符，用于连接同一个数据库中另一个集合，并获取指定的文档，类似于 populate                      |
 
 更多操作符介绍详见官方文档：https://docs.mongodb.com/manual/reference/operator/aggregation/
 
@@ -246,7 +246,7 @@ db.orders.aggregate([
 - **隔离性**（`Isolation`）： 并发访问数据库时，一个用户的事务不被其他事务所干扰，各并发事务之间数据库是独立的。WiredTiger 存储引擎支持读未提交（ read-uncommitted ）、读已提交（ read-committed ）和快照（ snapshot ）隔离，MongoDB 启动时默认选快照隔离。在不同隔离级别下，一个事务的生命周期内，可能出现脏读、不可重复读、幻读等现象。
 - **持久性**（`Durability`）： 一个事务被提交之后。它对数据库中数据的改变是持久的，即使数据库发生故障也不应该对其有任何影响。
 
-关于事务的详细介绍这篇文章就不多说了，感兴趣的可以看看我写的[MySQL常见面试题总结](https://javaguide.cn/database/mysql/mysql-questions-01.html)这篇文章，里面有详细介绍到。
+关于事务的详细介绍这篇文章就不多说了，感兴趣的可以看看我写的[MySQL 常见面试题总结](https://javaguide.cn/database/mysql/mysql-questions-01.html)这篇文章，里面有详细介绍到。
 
 MongoDB 单文档原生支持原子性，也具备事务的特性。当谈论 MongoDB 事务的时候，通常指的是 **多文档** 。MongoDB 4.0 加入了对多文档 ACID 事务的支持，但只支持复制集部署模式下的 ACID 事务，也就是说事务的作用域限制为一个副本集内。MongoDB 4.2 引入了 **分布式事务** ，增加了对分片集群上多文档事务的支持，并合并了对副本集上多文档事务的现有支持。
 
@@ -258,8 +258,8 @@ MongoDB 单文档原生支持原子性，也具备事务的特性。当谈论 Mo
 
 **注意** ：
 
-- 从MongoDB 4.2开始，多文档事务支持副本集和分片集群，其中：主节点使用WiredTiger存储引擎，同时从节点使用WiredTiger存储引擎或In-Memory存储引擎。在MongoDB 4.0中，只有使用WiredTiger存储引擎的副本集支持事务。
-- 在MongoDB 4.2及更早版本中，你无法在事务中创建集合。从 MongoDB 4.4 开始，您可以在事务中创建集合和索引。有关详细信息，请参阅 [在事务中创建集合和索引](https://www.mongodb.com/docs/upcoming/core/transactions/#std-label-transactions-create-collections-indexes)。
+- 从 MongoDB 4.2 开始，多文档事务支持副本集和分片集群，其中：主节点使用 WiredTiger 存储引擎，同时从节点使用 WiredTiger 存储引擎或 In-Memory 存储引擎。在 MongoDB 4.0 中，只有使用 WiredTiger 存储引擎的副本集支持事务。
+- 在 MongoDB 4.2 及更早版本中，你无法在事务中创建集合。从 MongoDB 4.4 开始，您可以在事务中创建集合和索引。有关详细信息，请参阅 [在事务中创建集合和索引](https://www.mongodb.com/docs/upcoming/core/transactions/#std-label-transactions-create-collections-indexes)。
 
 ## MongoDB 数据压缩
 
@@ -281,4 +281,4 @@ WiredTiger 日志也会被压缩，默认使用的也是 Snappy 压缩算法。�
 - 技术干货| MongoDB 事务原理 - MongoDB 中文社区：https://mongoing.com/archives/82187
 - Transactions - MongoDB 官方文档：https://www.mongodb.com/docs/manual/core/transactions/
 - WiredTiger Storage Engine - MongoDB 官方文档：https://www.mongodb.com/docs/manual/core/wiredtiger/
-- WiredTiger存储引擎之一：基础数据结构分析：https://mongoing.com/topic/archives-35143
+- WiredTiger 存储引擎之一：基础数据结构分析：https://mongoing.com/topic/archives-35143

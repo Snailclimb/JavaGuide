@@ -38,7 +38,7 @@ category: 高可用
 
 没有银弹！超时值具体该设置多大，还是要根据实际项目的需求和情况慢慢调整优化得到。
 
-更上一层，参考[美团的Java线程池参数动态配置](https://tech.meituan.com/2020/04/02/java-pooling-pratice-in-meituan.html)思想，我们也可以将超时弄成可配置化的参数而不是固定的，比较简单的一种办法就是将超时的值放在配置中心中。这样的话，我们就可以根据系统或者服务的状态动态调整超时值了。
+更上一层，参考[美团的 Java 线程池参数动态配置](https://tech.meituan.com/2020/04/02/java-pooling-pratice-in-meituan.html)思想，我们也可以将超时弄成可配置化的参数而不是固定的，比较简单的一种办法就是将超时的值放在配置中心中。这样的话，我们就可以根据系统或者服务的状态动态调整超时值了。
 
 ## 重试机制
 
@@ -66,6 +66,5 @@ category: 高可用
 
 ## 参考
 
-- 微服务之间调用超时的设置治理：https://www.infoq.cn/article/eyrslar53l6hjm5yjgyx
-- 超时、重试和抖动回退：https://aws.amazon.com/cn/builders-library/timeouts-retries-and-backoff-with-jitter/
-
+- 微服务之间调用超时的设置治理：<https://www.infoq.cn/article/eyrslar53l6hjm5yjgyx>
+- 超时、重试和抖动回退：<https://aws.amazon.com/cn/builders-library/timeouts-retries-and-backoff-with-jitter/>

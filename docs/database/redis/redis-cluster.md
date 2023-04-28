@@ -9,7 +9,6 @@ tag:
 
 ![](https://oss.javaguide.cn/github/javaguide/database/redis/redis-cluster-javamianshizhibei.png)
 
-
 [《Java 面试指北》](https://javaguide.cn/zhuanlan/java-mian-shi-zhi-bei.html)（点击链接即可查看详细介绍）的部分内容展示如下，你可以将其看作是 [JavaGuide](https://javaguide.cn) 的补充完善，两者可以配合使用。
 
 ![](https://oss.javaguide.cn/xingqiu/image-20220304102536445.png)

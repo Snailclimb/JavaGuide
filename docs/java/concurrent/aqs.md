@@ -34,7 +34,7 @@ CLH 队列锁结构如下图所示：
 
 ![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/40cb932a64694262993907ebda6a0bfe~tplv-k3u1fbpfcp-zoom-1.image)
 
-关于AQS 核心数据结构-CLH 锁的详细解读，强烈推荐阅读 [Java AQS 核心数据结构-CLH 锁 - Qunar技术沙龙](https://mp.weixin.qq.com/s/jEx-4XhNGOFdCo4Nou5tqg) 这篇文章。
+关于 AQS 核心数据结构-CLH 锁的详细解读，强烈推荐阅读 [Java AQS 核心数据结构-CLH 锁 - Qunar 技术沙龙](https://mp.weixin.qq.com/s/jEx-4XhNGOFdCo4Nou5tqg) 这篇文章。
 
 AQS(`AbstractQueuedSynchronizer`)的核心原理图（图源[Java 并发之 AQS 详解](https://www.cnblogs.com/waterystone/p/4920797.html)）如下：
 
@@ -127,7 +127,7 @@ semaphore.acquire();
 semaphore.release();
 ```
 
-当初始的资源个数为 1 的时候，`Semaphore`  退化为排他锁。
+当初始的资源个数为 1 的时候，`Semaphore` 退化为排他锁。
 
 `Semaphore` 有两种模式：。
 

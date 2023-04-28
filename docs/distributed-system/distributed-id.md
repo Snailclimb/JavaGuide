@@ -84,9 +84,9 @@ COMMIT;
 
 插入数据这里，我们没有使用 `insert into` 而是使用 `replace into` 来插入数据，具体步骤是这样的：
 
-1)第一步： 尝试把数据插入到表中。
+- 第一步： 尝试把数据插入到表中。
 
-2)第二步： 如果主键或唯一索引字段出现重复数据错误而插入失败时，先从表中删除含有重复关键字值的冲突行，然后再次尝试把数据插入到表中。
+- 第二步： 如果主键或唯一索引字段出现重复数据错误而插入失败时，先从表中删除含有重复关键字值的冲突行，然后再次尝试把数据插入到表中。
 
 这种方式的优缺点也比较明显：
 
@@ -103,7 +103,7 @@ COMMIT;
 
 以 MySQL 举例，我们通过下面的方式即可。
 
-**1.创建一个数据库表。**
+**1. 创建一个数据库表。**
 
 ```sql
 CREATE TABLE `sequence_id_generator` (
@@ -122,15 +122,15 @@ CREATE TABLE `sequence_id_generator` (
 
 `version` 字段主要用于解决并发问题（乐观锁）,`biz_type` 主要用于表示业务类型。
 
-**2.先插入一行数据。**
+**2. 先插入一行数据。**
 
 ```sql
 INSERT INTO `sequence_id_generator` (`id`, `current_max_id`, `step`, `version`, `biz_type`)
 VALUES
-	(1, 0, 100, 0, 101);
+ (1, 0, 100, 0, 101);
 ```
 
-**3.通过 SELECT 获取指定业务下的批量唯一 ID**
+**3. 通过 SELECT 获取指定业务下的批量唯一 ID**
 
 ```sql
 SELECT `current_max_id`, `step`,`version` FROM `sequence_id_generator` where `biz_type` = 101
@@ -139,11 +139,11 @@ SELECT `current_max_id`, `step`,`version` FROM `sequence_id_generator` where `bi
 结果：
 
 ```
-id	current_max_id	step	version	biz_type
-1	0	100	0	101
+id current_max_id step version biz_type
+1 0 100 0 101
 ```
 
-**4.不够用的话，更新之后重新 SELECT 即可。**
+**4. 不够用的话，更新之后重新 SELECT 即可。**
 
 ```sql
 UPDATE sequence_id_generator SET current_max_id = 0+100, version=version+1 WHERE version = 0  AND `biz_type` = 101
@@ -153,8 +153,8 @@ SELECT `current_max_id`, `step`,`version` FROM `sequence_id_generator` where `bi
 结果：
 
 ```
-id	current_max_id	step	version	biz_type
-1	100	100	1	101
+id current_max_id step version biz_type
+1 100 100 1 101
 ```
 
 相比于数据库主键自增的方式，**数据库的号段模式对于数据库的访问次数更少，数据库压力更小。**
