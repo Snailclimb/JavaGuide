@@ -22,7 +22,6 @@ export default sidebar({
     {
       text: "面试准备",
       icon: "interview",
-      collapsible: true,
       prefix: "interview-preparation/",
       children: [
         "teach-you-how-to-prepare-for-the-interview-hand-in-hand",
@@ -174,10 +173,10 @@ export default sidebar({
               icon: "star",
               collapsible: true,
               children: [
-                "osi&tcp-ip-model",
+                "osi-and-tcp-ip-model",
                 "application-layer-protocol",
-                "http&https",
-                "http1.0&http1.1",
+                "http-vs-https",
+                "http1.0-vs-http1.1",
                 "http-status-codes",
                 "dns",
                 "tcp-connection-and-disconnection",
@@ -418,7 +417,7 @@ export default sidebar({
           children: [
             "basis-of-authority-certification",
             "jwt-intro",
-            "advantages&disadvantages-of-jwt",
+            "advantages-and-disadvantages-of-jwt",
             "sso-intro",
             "design-of-authority-system",
             "sentive-words-filter",
@@ -440,9 +439,9 @@ export default sidebar({
         {
           text: "理论&算法&协议",
           icon: "suanfaku",
-          prefix: "theorem&algorithm&protocol/",
+          prefix: "protocol/",
           children: [
-            "cap&base-theorem",
+            "cap-and-base-theorem",
             "paxos-algorithm",
             "raft-algorithm",
             "gossip-protocl",
