@@ -12,9 +12,9 @@ head:
       content: 执行计划是指一条 SQL 语句在经过MySQL 查询优化器的优化会后，具体的执行方式。优化 SQL 的第一步应该是读懂 SQL 的执行计划。
 ---
 
-> 本文来自公号 MySQL 技术，JavaGuide 对其做了补充完善。原文地址：https://mp.weixin.qq.com/s/d5OowNLtXBGEAbT31sSH4g 
+> 本文来自公号 MySQL 技术，JavaGuide 对其做了补充完善。原文地址：https://mp.weixin.qq.com/s/d5OowNLtXBGEAbT31sSH4g
 
-优化 SQL 的第一步应该是读懂 SQL 的执行计划。本篇文章，我们一起来学习下 MySQL   `EXPLAIN` 执行计划相关知识。
+优化 SQL 的第一步应该是读懂 SQL 的执行计划。本篇文章，我们一起来学习下 MySQL `EXPLAIN` 执行计划相关知识。
 
 ## 什么是执行计划？
 
@@ -24,7 +24,7 @@ head:
 
 ## 如何获取执行计划？
 
-MySQL 为我们提供了  `EXPLAIN` 命令，来获取执行计划的相关信息。
+MySQL 为我们提供了 `EXPLAIN` 命令，来获取执行计划的相关信息。
 
 需要注意的是，`EXPLAIN` 语句并不会真的去执行相关的语句，而是通过查询优化器对语句进行分析，找出最优的查询方案，并显示对应的信息。
 
@@ -50,8 +50,8 @@ mysql> explain SELECT * FROM dept_emp WHERE emp_no IN (SELECT emp_no FROM dept_e
 
 | **列名**      | **含义**                                     |
 | ------------- | -------------------------------------------- |
-| id            | SELECT查询的序列标识符                       |
-| select_type   | SELECT关键字对应的查询类型                   |
+| id            | SELECT 查询的序列标识符                      |
+| select_type   | SELECT 关键字对应的查询类型                  |
 | table         | 用到的表名                                   |
 | partitions    | 匹配的分区，对于未分区的表，值为 NULL        |
 | type          | 表的访问方法                                 |
@@ -89,8 +89,7 @@ id 如果相同，从上往下依次执行。id 不同，id 值越大，执行�
 查询用到的表名，每行都有对应的表名，表名除了正常的表之外，也可能是以下列出的值：
 
 - **`<unionM,N>`** : 本行引用了 id 为 M 和 N 的行的 UNION 结果；
-- **`<derivedN>`** : 本行引用了 id 为 N 的表所产生的的派生表结果。派生表有可能产生自 FROM 语句中的子查询。
--**`<subqueryN>`** : 本行引用了 id 为 N 的表所产生的的物化子查询结果。
+- **`<derivedN>`** : 本行引用了 id 为 N 的表所产生的的派生表结果。派生表有可能产生自 FROM 语句中的子查询。 -**`<subqueryN>`** : 本行引用了 id 为 N 的表所产生的的物化子查询结果。
 
 ### type（重要）
 

@@ -489,14 +489,14 @@ order by c.cust_name;
 
 SQL 允许在 `JOIN` 左边加上一些修饰性的关键词，从而形成不同类型的连接，如下表所示：
 
-| 连接类型                                 | 说明                                                         |
-| ---------------------------------------- | ------------------------------------------------------------ |
-| INNER JOIN 内连接                        | （默认连接方式）只有当两个表都存在满足条件的记录时才会返回行。 |
-| LEFT JOIN / LEFT OUTER JOIN 左(外)连接   | 返回左表中的所有行，即使右表中没有满足条件的行也是如此。     |
-| RIGHT JOIN / RIGHT OUTER JOIN 右(外)连接 | 返回右表中的所有行，即使左表中没有满足条件的行也是如此。     |
-| FULL JOIN / FULL OUTER JOIN 全(外)连接   | 只要其中有一个表存在满足条件的记录，就返回行。               |
+| 连接类型                                 | 说明                                                                                          |
+| ---------------------------------------- | --------------------------------------------------------------------------------------------- |
+| INNER JOIN 内连接                        | （默认连接方式）只有当两个表都存在满足条件的记录时才会返回行。                                |
+| LEFT JOIN / LEFT OUTER JOIN 左(外)连接   | 返回左表中的所有行，即使右表中没有满足条件的行也是如此。                                      |
+| RIGHT JOIN / RIGHT OUTER JOIN 右(外)连接 | 返回右表中的所有行，即使左表中没有满足条件的行也是如此。                                      |
+| FULL JOIN / FULL OUTER JOIN 全(外)连接   | 只要其中有一个表存在满足条件的记录，就返回行。                                                |
 | SELF JOIN                                | 将一个表连接到自身，就像该表是两个表一样。为了区分两个表，在 SQL 语句中需要至少重命名一个表。 |
-| CROSS JOIN                               | 交叉连接，从两个或者多个连接表中返回记录集的笛卡尔积。       |
+| CROSS JOIN                               | 交叉连接，从两个或者多个连接表中返回记录集的笛卡尔积。                                        |
 
 下图展示了 LEFT JOIN、RIGHT JOIN、INNER JOIN、OUTER JOIN 相关的 7 种用法。
 
@@ -555,7 +555,7 @@ SELECT column_name(s) FROM table2;
 | -------------------- | ---------------------- |
 | `LEFT()`、`RIGHT()`  | 左边或者右边的字符     |
 | `LOWER()`、`UPPER()` | 转换为小写或者大写     |
-| `LTRIM()`、`RTRIM()`  | 去除左边或者右边的空格 |
+| `LTRIM()`、`RTRIM()` | 去除左边或者右边的空格 |
 | `LENGTH()`           | 长度                   |
 | `SOUNDEX()`          | 转换为语音值           |
 
@@ -918,41 +918,41 @@ SELECT user FROM user;
 
 下表说明了可用于`GRANT`和`REVOKE`语句的所有允许权限：
 
-| **特权**                | **说明**                                                     | **级别** |        |          |          |      |      |
-| ----------------------- | ------------------------------------------------------------ | -------- | ------ | -------- | -------- | ---- | ---- |
-| **全局**                | 数据库                                                       | **表**   | **列** | **程序** | **代理** |      |      |
-| ALL [PRIVILEGES]        | 授予除 GRANT OPTION 之外的指定访问级别的所有权限             |          |        |          |          |      |      |
-| ALTER                   | 允许用户使用 ALTER TABLE 语句                                | X        | X      | X        |          |      |      |
-| ALTER ROUTINE           | 允许用户更改或删除存储的例程                                 | X        | X      |          |          | X    |      |
-| CREATE                  | 允许用户创建数据库和表                                       | X        | X      | X        |          |      |      |
-| CREATE ROUTINE          | 允许用户创建存储的例程                                       | X        | X      |          |          |      |      |
-| CREATE TABLESPACE       | 允许用户创建，更改或删除表空间和日志文件组                   | X        |        |          |          |      |      |
-| CREATE TEMPORARY TABLES | 允许用户使用 CREATE TEMPORARY TABLE 创建临时表               | X        | X      |          |          |      |      |
-| CREATE USER             | 允许用户使用 CREATE USER，DROP USER，RENAME USER 和 REVOKE ALL PRIVILEGES 语句。 | X        |        |          |          |      |      |
-| CREATE VIEW             | 允许用户创建或修改视图。                                     | X        | X      | X        |          |      |      |
-| DELETE                  | 允许用户使用 DELETE                                          | X        | X      | X        |          |      |      |
-| DROP                    | 允许用户删除数据库，表和视图                                 | X        | X      | X        |          |      |      |
-| EVENT                   | 启用事件计划程序的事件使用。                                 | X        | X      |          |          |      |      |
-| EXECUTE                 | 允许用户执行存储的例程                                       | X        | X      | X        |          |      |      |
-| FILE                    | 允许用户读取数据库目录中的任何文件。                         | X        |        |          |          |      |      |
-| GRANT OPTION            | 允许用户拥有授予或撤消其他帐户权限的权限。                   | X        | X      | X        |          | X    | X    |
-| INDEX                   | 允许用户创建或删除索引。                                     | X        | X      | X        |          |      |      |
-| INSERT                  | 允许用户使用 INSERT 语句                                     | X        | X      | X        | X        |      |      |
-| LOCK TABLES             | 允许用户对具有 SELECT 权限的表使用 LOCK TABLES               | X        | X      |          |          |      |      |
-| PROCESS                 | 允许用户使用 SHOW PROCESSLIST 语句查看所有进程。             | X        |        |          |          |      |      |
-| PROXY                   | 启用用户代理。                                               |          |        |          |          |      |      |
-| REFERENCES              | 允许用户创建外键                                             | X        | X      | X        | X        |      |      |
-| RELOAD                  | 允许用户使用 FLUSH 操作                                      | X        |        |          |          |      |      |
-| REPLICATION CLIENT      | 允许用户查询以查看主服务器或从属服务器的位置                 | X        |        |          |          |      |      |
-| REPLICATION SLAVE       | 允许用户使用复制从属从主服务器读取二进制日志事件。           | X        |        |          |          |      |      |
-| SELECT                  | 允许用户使用 SELECT 语句                                     | X        | X      | X        | X        |      |      |
-| SHOW DATABASES          | 允许用户显示所有数据库                                       | X        |        |          |          |      |      |
-| SHOW VIEW               | 允许用户使用 SHOW CREATE VIEW 语句                           | X        | X      | X        |          |      |      |
-| SHUTDOWN                | 允许用户使用 mysqladmin shutdown 命令                        | X        |        |          |          |      |      |
-| SUPER                   | 允许用户使用其他管理操作，例如 CHANGE MASTER TO，KILL，PURGE BINARY LOGS，SET GLOBAL 和 mysqladmin 命令 | X        |        |          |          |      |      |
-| TRIGGER                 | 允许用户使用 TRIGGER 操作。                                  | X        | X      | X        |          |      |      |
-| UPDATE                  | 允许用户使用 UPDATE 语句                                     | X        | X      | X        | X        |      |      |
-| USAGE                   | 相当于“没有特权”                                             |          |        |          |          |      |      |
+| **特权**                | **说明**                                                                                                | **级别** |        |          |          |     |     |
+| ----------------------- | ------------------------------------------------------------------------------------------------------- | -------- | ------ | -------- | -------- | --- | --- |
+| **全局**                | 数据库                                                                                                  | **表**   | **列** | **程序** | **代理** |     |     |
+| ALL [PRIVILEGES]        | 授予除 GRANT OPTION 之外的指定访问级别的所有权限                                                        |          |        |          |          |     |     |
+| ALTER                   | 允许用户使用 ALTER TABLE 语句                                                                           | X        | X      | X        |          |     |     |
+| ALTER ROUTINE           | 允许用户更改或删除存储的例程                                                                            | X        | X      |          |          | X   |     |
+| CREATE                  | 允许用户创建数据库和表                                                                                  | X        | X      | X        |          |     |     |
+| CREATE ROUTINE          | 允许用户创建存储的例程                                                                                  | X        | X      |          |          |     |     |
+| CREATE TABLESPACE       | 允许用户创建，更改或删除表空间和日志文件组                                                              | X        |        |          |          |     |     |
+| CREATE TEMPORARY TABLES | 允许用户使用 CREATE TEMPORARY TABLE 创建临时表                                                          | X        | X      |          |          |     |     |
+| CREATE USER             | 允许用户使用 CREATE USER，DROP USER，RENAME USER 和 REVOKE ALL PRIVILEGES 语句。                        | X        |        |          |          |     |     |
+| CREATE VIEW             | 允许用户创建或修改视图。                                                                                | X        | X      | X        |          |     |     |
+| DELETE                  | 允许用户使用 DELETE                                                                                     | X        | X      | X        |          |     |     |
+| DROP                    | 允许用户删除数据库，表和视图                                                                            | X        | X      | X        |          |     |     |
+| EVENT                   | 启用事件计划程序的事件使用。                                                                            | X        | X      |          |          |     |     |
+| EXECUTE                 | 允许用户执行存储的例程                                                                                  | X        | X      | X        |          |     |     |
+| FILE                    | 允许用户读取数据库目录中的任何文件。                                                                    | X        |        |          |          |     |     |
+| GRANT OPTION            | 允许用户拥有授予或撤消其他帐户权限的权限。                                                              | X        | X      | X        |          | X   | X   |
+| INDEX                   | 允许用户创建或删除索引。                                                                                | X        | X      | X        |          |     |     |
+| INSERT                  | 允许用户使用 INSERT 语句                                                                                | X        | X      | X        | X        |     |     |
+| LOCK TABLES             | 允许用户对具有 SELECT 权限的表使用 LOCK TABLES                                                          | X        | X      |          |          |     |     |
+| PROCESS                 | 允许用户使用 SHOW PROCESSLIST 语句查看所有进程。                                                        | X        |        |          |          |     |     |
+| PROXY                   | 启用用户代理。                                                                                          |          |        |          |          |     |     |
+| REFERENCES              | 允许用户创建外键                                                                                        | X        | X      | X        | X        |     |     |
+| RELOAD                  | 允许用户使用 FLUSH 操作                                                                                 | X        |        |          |          |     |     |
+| REPLICATION CLIENT      | 允许用户查询以查看主服务器或从属服务器的位置                                                            | X        |        |          |          |     |     |
+| REPLICATION SLAVE       | 允许用户使用复制从属从主服务器读取二进制日志事件。                                                      | X        |        |          |          |     |     |
+| SELECT                  | 允许用户使用 SELECT 语句                                                                                | X        | X      | X        | X        |     |     |
+| SHOW DATABASES          | 允许用户显示所有数据库                                                                                  | X        |        |          |          |     |     |
+| SHOW VIEW               | 允许用户使用 SHOW CREATE VIEW 语句                                                                      | X        | X      | X        |          |     |     |
+| SHUTDOWN                | 允许用户使用 mysqladmin shutdown 命令                                                                   | X        |        |          |          |     |     |
+| SUPER                   | 允许用户使用其他管理操作，例如 CHANGE MASTER TO，KILL，PURGE BINARY LOGS，SET GLOBAL 和 mysqladmin 命令 | X        |        |          |          |     |     |
+| TRIGGER                 | 允许用户使用 TRIGGER 操作。                                                                             | X        | X      | X        |          |     |     |
+| UPDATE                  | 允许用户使用 UPDATE 语句                                                                                | X        | X      | X        | X        |     |     |
+| USAGE                   | 相当于“没有特权”                                                                                        |          |        |          |          |     |     |
 
 ### 创建账户
 
@@ -1206,5 +1206,5 @@ DROP TRIGGER IF EXISTS trigger_insert_user;
 
 ## 文章推荐
 
-- [后端程序员必备：SQL高性能优化指南！35+条优化建议立马GET!](https://mp.weixin.qq.com/s/I-ZT3zGTNBZ6egS7T09jyQ)
-- [后端程序员必备：书写高质量SQL的30条建议](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247486461&idx=1&sn=60a22279196d084cc398936fe3b37772&chksm=cea24436f9d5cd20a4fa0e907590f3e700d7378b3f608d7b33bb52cfb96f503b7ccb65a1deed&token=1987003517&lang=zh_CN#rd)
+- [后端程序员必备：SQL 高性能优化指南！35+条优化建议立马 GET!](https://mp.weixin.qq.com/s/I-ZT3zGTNBZ6egS7T09jyQ)
+- [后端程序员必备：书写高质量 SQL 的 30 条建议](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247486461&idx=1&sn=60a22279196d084cc398936fe3b37772&chksm=cea24436f9d5cd20a4fa0e907590f3e700d7378b3f608d7b33bb52cfb96f503b7ccb65a1deed&token=1987003517&lang=zh_CN#rd)

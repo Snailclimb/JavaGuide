@@ -1,5 +1,5 @@
 ---
-title:  JVM 垃圾回收详解（重点）
+title: JVM 垃圾回收详解（重点）
 category: Java
 tag:
   - JVM
@@ -142,7 +142,7 @@ public class GCTest {
 > uint result = age < MaxTenuringThreshold ? age : MaxTenuringThreshold;
 > ...
 > }
-> 
+>
 > ```
 >
 > 额外补充说明([issue672](https://github.com/Snailclimb/JavaGuide/issues/672))：**关于默认的晋升年龄是 15，这个说法的来源大部分都是《深入理解 Java 虚拟机》这本书。**

@@ -1,12 +1,12 @@
 ---
-title:  Java 语法糖详解
+title: Java 语法糖详解
 category: Java
 tag:
   - Java基础
 head:
   - - meta
     - name: keywords
-      content:  Java 语法糖
+      content: Java 语法糖
   - - meta
     - name: description
       content: 这篇文章介绍了 12 种 Java 中常用的语法糖。所谓语法糖就是提供给开发人员便于开发的一种语法而已。但是这种语法只有开发人员认识。要想被执行，需要进行解糖，即转成 JVM 认识的语法。当我们把语法糖解糖之后，你就会发现其实我们日常使用的这些方便的语法，其实都是一些其他更简单的语法构成的。有了这些语法糖，我们在日常开发的时候可以大大提升效率，但是同时也要避免过渡使用。使用之前最好了解下原理，避免掉坑。
@@ -15,7 +15,6 @@ head:
 > 作者：Hollis
 >
 > 原文：https://mp.weixin.qq.com/s/o4XdEMq1DL-nBS-f8Za5Aw
->
 
 语法糖是大厂 Java 面试常问的一个知识点。
 

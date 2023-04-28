@@ -94,8 +94,8 @@ ClassFile {
 
 常量池中每一项常量都是一个表，这 14 种表有一个共同的特点：**开始的第一位是一个 u1 类型的标志位 -tag 来标识常量的类型，代表当前这个常量属于哪种常量类型．**
 
-|                类型                | 标志（tag） |          描述          |
-|:--------------------------------:| :---------: | :--------------------: |
+|               类型               | 标志（tag） |          描述          |
+| :------------------------------: | :---------: | :--------------------: |
 |        CONSTANT_utf8_info        |      1      |   UTF-8 编码的字符串   |
 |      CONSTANT_Integer_info       |      3      |       整形字面量       |
 |       CONSTANT_Float_info        |      4      |      浮点型字面量      |
@@ -212,5 +212,5 @@ Class 文件存储格式中对方法的描述与对字段的描述几乎采用�
 
 - 《实战 Java 虚拟机》
 - Chapter 4. The class File Format - Java Virtual Machine Specification:https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-4.html
-- 实例分析JAVA CLASS的文件结构：<https://coolshell.cn/articles/9229.html>
-- 《Java虚拟机原理图解》 1.2.2、Class文件中的常量池详解（上）：<https://blog.csdn.net/luanlouis/article/details/39960815>
+- 实例分析 JAVA CLASS 的文件结构：<https://coolshell.cn/articles/9229.html>
+- 《Java 虚拟机原理图解》 1.2.2、Class 文件中的常量池详解（上）：<https://blog.csdn.net/luanlouis/article/details/39960815>

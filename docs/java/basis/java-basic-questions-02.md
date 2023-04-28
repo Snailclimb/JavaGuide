@@ -102,11 +102,11 @@ String str1 = "hello";
 String str2 = new String("hello");
 String str3 = "hello";
 // 使用 == 比较字符串的引用相等
-System.out.println(str1 == str2); 
-System.out.println(str1 == str3); 
+System.out.println(str1 == str2);
+System.out.println(str1 == str3);
 // 使用 equals 方法比较字符串的相等
 System.out.println(str1.equals(str2));
-System.out.println(str1.equals(str3)); 
+System.out.println(str1.equals(str3));
 
 ```
 
@@ -121,8 +121,8 @@ true
 
 从上面的代码输出结果可以看出：
 
--  `str1` 和 `str2` 不相等，而 `str1` 和 `str3` 相等。这是因为 `==` 运算符比较的是字符串的引用是否相等。
--  `str1` 、 `str2` 、`str3` 三者的内容都相等。这是因为`equals` 方法比较的是字符串的内容，即使这些字符串的对象引用不同，只要它们的内容相等，就认为它们是相等的。
+- `str1` 和 `str2` 不相等，而 `str1` 和 `str3` 相等。这是因为 `==` 运算符比较的是字符串的引用是否相等。
+- `str1` 、 `str2` 、`str3` 三者的内容都相等。这是因为`equals` 方法比较的是字符串的内容，即使这些字符串的对象引用不同，只要它们的内容相等，就认为它们是相等的。
 
 ### 如果一个类没有声明构造方法，该程序能正确执行吗?
 
@@ -548,10 +548,10 @@ public final class String implements java.io.Serializable, Comparable<String>, C
 >     @Stable
 >     private final byte[] value;
 > }
-> 
+>
 > abstract class AbstractStringBuilder implements Appendable, CharSequence {
 >     byte[] value;
-> 
+>
 > }
 > ```
 >
@@ -614,7 +614,7 @@ System.out.println(s);
 
 如果你使用 IDEA 的话，IDEA 自带的代码检查机制也会提示你修改代码。
 
-不过，使用 “+” 进行字符串拼接会产生大量的临时对象的问题在 JDK9 中得到了解决。在 JDK9 当中，字符串相加 “+”  改为了用动态方法 `makeConcatWithConstants()` 来实现，而不是大量的 `StringBuilder` 了。这个改进是 JDK9 的 [JEP 280](https://openjdk.org/jeps/280) 提出的，这也意味着 JDK 9 之后，你可以放心使用“+” 进行字符串拼接了。关于这部分改进的详细介绍，推荐阅读这篇文章：还在无脑用 [StringBuilder？来重温一下字符串拼接吧](https://juejin.cn/post/7182872058743750715) 。
+不过，使用 “+” 进行字符串拼接会产生大量的临时对象的问题在 JDK9 中得到了解决。在 JDK9 当中，字符串相加 “+” 改为了用动态方法 `makeConcatWithConstants()` 来实现，而不是大量的 `StringBuilder` 了。这个改进是 JDK9 的 [JEP 280](https://openjdk.org/jeps/280) 提出的，这也意味着 JDK 9 之后，你可以放心使用“+” 进行字符串拼接了。关于这部分改进的详细介绍，推荐阅读这篇文章：还在无脑用 [StringBuilder？来重温一下字符串拼接吧](https://juejin.cn/post/7182872058743750715) 。
 
 ### String#equals() 和 Object#equals() 有何区别？
 

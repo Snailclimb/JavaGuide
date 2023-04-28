@@ -2,7 +2,11 @@ import { navbar } from "vuepress-theme-hope";
 
 export default navbar([
   { text: "面试指南", icon: "java", link: "/home.md" },
-  { text: "知识星球", icon: "code", link: "/about-the-author/zhishixingqiu-two-years.md" },
+  {
+    text: "知识星球",
+    icon: "code",
+    link: "/about-the-author/zhishixingqiu-two-years.md",
+  },
   { text: "开源项目", icon: "github", link: "/open-source-project/" },
   { text: "技术书籍", icon: "book", link: "/books/" },
   {

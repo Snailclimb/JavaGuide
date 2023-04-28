@@ -5,7 +5,6 @@ tag:
   - Java并发
 ---
 
-
 自己在项目中使用 `CompletableFuture` 比较多，看到很多开源框架中也大量使用到了 `CompletableFuture` 。
 
 因此，专门写一篇文章来介绍这个 Java 8 才被引入的一个非常有用的用于异步编程的类。
@@ -525,4 +524,4 @@ abc
 
 如果想要深入学习的话，可以多找一些书籍和博客看。
 
-另外，建议G友们可以看看京东的 [asyncTool](https://gitee.com/jd-platform-opensource/asyncTool) 这个并发框架，里面大量使用到了  `CompletableFuture`  。
+另外，建议 G 友们可以看看京东的 [asyncTool](https://gitee.com/jd-platform-opensource/asyncTool) 这个并发框架，里面大量使用到了 `CompletableFuture` 。

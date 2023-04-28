@@ -1,5 +1,5 @@
 ---
-title:  Spring 中的设计模式详解
+title: Spring 中的设计模式详解
 category: 框架
 tag:
   - Spring
@@ -305,7 +305,7 @@ Spring 预定义的通知要通过对应的适配器，适配成 `MethodIntercep
 
 在 Spring MVC 中，`DispatcherServlet` 根据请求信息调用 `HandlerMapping`，解析请求对应的 `Handler`。解析到对应的 `Handler`（也就是我们平常说的 `Controller` 控制器）后，开始由`HandlerAdapter` 适配器处理。`HandlerAdapter` 作为期望接口，具体的适配器实现类用于对目标类进行适配，`Controller` 作为需要适配的类。
 
-**为什么要在 Spring MVC 中使用适配器模式？** 
+**为什么要在 Spring MVC 中使用适配器模式？**
 
 Spring MVC 中的 `Controller` 种类众多，不同类型的 `Controller` 通过不同的方法来对请求进行处理。如果不利用适配器模式的话，`DispatcherServlet` 直接获取对应类型的 `Controller`，需要的自行来判断，像下面这段代码一样：
 

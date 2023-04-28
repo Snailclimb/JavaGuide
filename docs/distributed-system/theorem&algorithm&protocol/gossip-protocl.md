@@ -26,13 +26,13 @@ Gossip 协议最早是在 ACM 上的一篇 1987 年发表的论文 [《Epidemic 
 
 正如 Gossip 协议其名一样，这是一种随机且带有传染性的方式将信息传播到整个网络中，并在一定时间内，使得系统内的所有节点数据一致。
 
-在 Gossip 协议下，没有所谓的中心节点，每个节点周期性地随机找一个节点互相同步彼此的信息，理论上来说，各个节点的状态最终会保持一致。 
+在 Gossip 协议下，没有所谓的中心节点，每个节点周期性地随机找一个节点互相同步彼此的信息，理论上来说，各个节点的状态最终会保持一致。
 
 下面我们来对 Gossip 协议的定义做一个总结： **Gossip 协议是一种允许在分布式系统中共享状态的去中心化通信协议，通过这种通信协议，我们可以将信息传播给网络或集群中的所有成员。**
 
 ## Gossip 协议应用
 
-NoSQL 数据库 Redis 和 Apache Cassandra、服务网格解决方案 Consul 等知名项目都用到了  Gossip 协议，学习 Gossip 协议有助于我们搞清很多技术的底层原理。
+NoSQL 数据库 Redis 和 Apache Cassandra、服务网格解决方案 Consul 等知名项目都用到了 Gossip 协议，学习 Gossip 协议有助于我们搞清很多技术的底层原理。
 
 我们这里以 Redis Cluster 为例说明 Gossip 协议的实际应用。
 
@@ -55,7 +55,7 @@ Redis Cluster 的节点之间会相互发送多种 Gossip 消息：
 
 有了 Redis Cluster 之后，不需要专门部署 Sentinel 集群服务了。Redis Cluster 相当于是内置了 Sentinel 机制，Redis Cluster 内部的各个 Redis 节点通过 Gossip 协议互相探测健康状态，在故障时可以自动切换。
 
-关于 Redis Cluster  的详细介绍，可以查看这篇文章 [Redis 集群详解(付费)](https://javaguide.cn/database/redis/redis-cluster.html) 。
+关于 Redis Cluster 的详细介绍，可以查看这篇文章 [Redis 集群详解(付费)](https://javaguide.cn/database/redis/redis-cluster.html) 。
 
 ## Gossip 协议消息传播模式
 

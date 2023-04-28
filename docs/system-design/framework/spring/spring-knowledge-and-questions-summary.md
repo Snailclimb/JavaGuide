@@ -356,15 +356,15 @@ Spring AOP 就是基于动态代理的，如果要代理的对象，实现了某
 
 AOP 切面编程设计到的一些专业术语：
 
-| 术语              |                             含义                             |
-| :---------------- | :----------------------------------------------------------: |
-| 目标(Target)      |                         被通知的对象                         |
-| 代理(Proxy)       |             向目标对象应用通知之后创建的代理对象             |
-| 连接点(JoinPoint) |         目标对象的所属类中，定义的所有方法均为连接点         |
+| 术语              |                                 含义                                  |
+| :---------------- | :-------------------------------------------------------------------: |
+| 目标(Target)      |                             被通知的对象                              |
+| 代理(Proxy)       |                 向目标对象应用通知之后创建的代理对象                  |
+| 连接点(JoinPoint) |             目标对象的所属类中，定义的所有方法均为连接点              |
 | 切入点(Pointcut)  | 被切面拦截 / 增强的连接点（切入点一定是连接点，连接点不一定是切入点） |
-| 通知(Advice)      | 增强的逻辑 / 代码，也即拦截到目标对象的连接点之后要做的事情  |
-| 切面(Aspect)      |                切入点(Pointcut)+通知(Advice)                 |
-| Weaving(织入)     |       将通知应用到目标对象，进而生成代理对象的过程动作       |
+| 通知(Advice)      |      增强的逻辑 / 代码，也即拦截到目标对象的连接点之后要做的事情      |
+| 切面(Aspect)      |                     切入点(Pointcut)+通知(Advice)                     |
+| Weaving(织入)     |           将通知应用到目标对象，进而生成代理对象的过程动作            |
 
 ### Spring AOP 和 AspectJ AOP 有什么区别？
 
@@ -671,7 +671,7 @@ String transient4; // not persistent because of @Transient
 
 一般使用后面两种方式比较多，我个人使用注解的方式比较多。
 
-###  JPA 的审计功能是做什么的？有什么用？
+### JPA 的审计功能是做什么的？有什么用？
 
 审计功能主要是帮助我们记录数据库操作的具体行为比如某条记录是谁创建的、什么时间创建的、最后修改人是谁、最后修改时间是什么时候。
 
@@ -747,7 +747,7 @@ Spring Security 重要的是实战，这里仅对小部分知识点进行总结�
 
 Spring Security 提供了多种加密算法的实现，开箱即用，非常方便。这些加密算法实现类的父类是 `PasswordEncoder` ，如果你想要自己实现一个加密算法的话，也需要继承 `PasswordEncoder`。
 
-`PasswordEncoder`  接口一共也就 3 个必须实现的方法。
+`PasswordEncoder` 接口一共也就 3 个必须实现的方法。
 
 ```java
 public interface PasswordEncoder {
@@ -772,7 +772,7 @@ public interface PasswordEncoder {
 
 推荐的做法是通过 `DelegatingPasswordEncoder` 兼容多种不同的密码加密方案，以适应不同的业务需求。
 
-从名字也能看出来，`DelegatingPasswordEncoder` 其实就是一个代理类，并非是一种全新的加密算法，它做的事情就是代理上面提到的加密算法实现类。在 Spring Security 5.0之后，默认就是基于  `DelegatingPasswordEncoder` 进行密码加密的。
+从名字也能看出来，`DelegatingPasswordEncoder` 其实就是一个代理类，并非是一种全新的加密算法，它做的事情就是代理上面提到的加密算法实现类。在 Spring Security 5.0 之后，默认就是基于 `DelegatingPasswordEncoder` 进行密码加密的。
 
 ## 参考
 

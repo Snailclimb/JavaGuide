@@ -211,13 +211,11 @@ XSS 中攻击者会用各种方式将恶意代码注入到其他用户的页面�
 
 [JWT 基础概念详解](./jwt-intro.md)
 
-## 什么是 SSO? 
+## 什么是 SSO?
 
 SSO(Single Sign On)即单点登录说的是用户登陆多个子系统的其中一个就有权访问与其相关的其他系统。举个例子我们在登陆了京东金融之后，我们同时也成功登陆京东的京东超市、京东国际、京东生鲜等子系统。
 
 ![SSO 示意图](https://oss.javaguide.cn/github/javaguide/system-design/security/sso.png)
-
-
 
 ## SSO 有什么好处？
 

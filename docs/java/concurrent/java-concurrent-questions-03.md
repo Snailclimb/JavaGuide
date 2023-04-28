@@ -1,5 +1,5 @@
 ---
-title:  Java并发常见面试题总结（下）
+title: Java并发常见面试题总结（下）
 category: Java
 tag:
   - Java并发
@@ -238,21 +238,21 @@ static class Entry extends WeakReference<ThreadLocal<?>> {
 
 ```java
 // 无界队列 LinkedBlockingQueue
-public static ExecutorService newFixedThreadPool(int nThreads) { 
+public static ExecutorService newFixedThreadPool(int nThreads) {
 
     return new ThreadPoolExecutor(nThreads, nThreads,0L, TimeUnit.MILLISECONDS,new LinkedBlockingQueue<Runnable>());
 
 }
 
 // 无界队列 LinkedBlockingQueue
-public static ExecutorService newSingleThreadExecutor() { 
+public static ExecutorService newSingleThreadExecutor() {
 
     return new FinalizableDelegatedExecutorService (new ThreadPoolExecutor(1, 1,0L, TimeUnit.MILLISECONDS,new LinkedBlockingQueue<Runnable>()));
 
 }
 
 // 同步队列 SynchronousQueue，没有容量，最大线程数是 Integer.MAX_VALUE`
-public static ExecutorService newCachedThreadPool() { 
+public static ExecutorService newCachedThreadPool() {
 
     return new ThreadPoolExecutor(0, Integer.MAX_VALUE,60L, TimeUnit.SECONDS,new SynchronousQueue<Runnable>());
 
@@ -328,7 +328,7 @@ public ScheduledThreadPoolExecutor(int corePoolSize) {
 
 ```java
 public static class CallerRunsPolicy implements RejectedExecutionHandler {
-  
+
         public CallerRunsPolicy() { }
 
         public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
@@ -480,7 +480,7 @@ CPU 密集型简单理解就是利用 CPU 计算能力的任务比如你在内�
 如果我们的项目也想要实现这种效果的话，可以借助现成的开源项目：
 
 - **[Hippo-4](https://github.com/opengoofy/hippo4j)** ：一款强大的动态线程池框架，解决了传统线程池使用存在的一些痛点比如线程池参数没办法动态修改、不支持运行时变量的传递、无法执行优雅关闭。除了支持动态修改线程池参数、线程池任务传递上下文，还支持通知报警、运行监控等开箱即用的功能。
-- **[Dynamic TP](https://github.com/dromara/dynamic-tp)** ：轻量级动态线程池，内置监控告警功能，集成三方中间件线程池管理，基于主流配置中心（已支持Nacos、Apollo，Zookeeper、Consul、Etcd，可通过SPI自定义实现）。
+- **[Dynamic TP](https://github.com/dromara/dynamic-tp)** ：轻量级动态线程池，内置监控告警功能，集成三方中间件线程池管理，基于主流配置中心（已支持 Nacos、Apollo，Zookeeper、Consul、Etcd，可通过 SPI 自定义实现）。
 
 ## Future
 
@@ -949,6 +949,6 @@ public int await() throws InterruptedException, BrokenBarrierException {
 - 《实战 Java 高并发程序设计》
 - 带你了解下 SynchronousQueue（并发队列专题）：https://juejin.cn/post/7031196740128768037
 - 阻塞队列 — DelayedWorkQueue 源码分析：https://zhuanlan.zhihu.com/p/310621485
-- Java多线程（三）——FutureTask/CompletableFuture：https://www.cnblogs.com/iwehdio/p/14285282.html
+- Java 多线程（三）——FutureTask/CompletableFuture：https://www.cnblogs.com/iwehdio/p/14285282.html
 - Java 并发之 AQS 详解：https://www.cnblogs.com/waterystone/p/4920797.html
 - Java 并发包基石-AQS 详解：https://www.cnblogs.com/chengxiao/archive/2017/07/24/7141160.html

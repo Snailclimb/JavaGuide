@@ -16,7 +16,7 @@ tag:
 - [JEP 321：HTTP Client 标准化](https://openjdk.java.net/jeps/321)
 - [JEP 333：ZGC(可伸缩低延迟垃圾收集器)](https://openjdk.java.net/jeps/333)
 - [JEP 323：Lambda 参数的局部变量语法](https://openjdk.java.net/jeps/323)
-- [JEP 330：启动单文件源代码程序](https://openjdk.java.net/jeps/330) 
+- [JEP 330：启动单文件源代码程序](https://openjdk.java.net/jeps/330)
 
 ## HTTP Client 标准化
 

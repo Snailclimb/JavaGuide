@@ -1,5 +1,5 @@
 ---
-title:  Spring&SpringBoot常用注解总结
+title: Spring&SpringBoot常用注解总结
 category: 框架
 tag:
   - SpringBoot
@@ -265,7 +265,7 @@ public class UserRegisterRequest {
 我们发送 post 请求到这个接口，并且 body 携带 JSON 数据：
 
 ```json
-{"userName":"coder","fullName":"shuangkou","password":"123456"}
+{ "userName": "coder", "fullName": "shuangkou", "password": "123456" }
 ```
 
 这样我们的后端就可以直接把 json 格式的数据映射到我们的 `UserRegisterRequest` 类上。
@@ -364,7 +364,7 @@ class WebSite {
 
 SpringBoot 项目的 spring-boot-starter-web 依赖中已经有 hibernate-validator 包，不需要引用相关依赖。如下图所示（通过 idea 插件—Maven Helper 生成）：
 
-**注**：更新版本的 spring-boot-starter-web 依赖中不再有 hibernate-validator 包（如2.3.11.RELEASE），需要自己引入 `spring-boot-starter-validation` 依赖。
+**注**：更新版本的 spring-boot-starter-web 依赖中不再有 hibernate-validator 包（如 2.3.11.RELEASE），需要自己引入 `spring-boot-starter-validation` 依赖。
 
 ![](https://oss.javaguide.cn/2021/03/c7bacd12-1c1a-4e41-aaaf-4cad840fc073.png)
 
@@ -892,14 +892,14 @@ public class Account {
 
 ```json
 {
-    "location": {
-        "provinceName":"湖北",
-        "countyName":"武汉"
-    },
-    "personInfo": {
-        "userName": "coder1234",
-        "fullName": "shaungkou"
-    }
+  "location": {
+    "provinceName": "湖北",
+    "countyName": "武汉"
+  },
+  "personInfo": {
+    "userName": "coder1234",
+    "fullName": "shaungkou"
+  }
 }
 ```
 
@@ -920,8 +920,8 @@ public class Account {
 
 ```json
 {
-  "provinceName":"湖北",
-  "countyName":"武汉",
+  "provinceName": "湖北",
+  "countyName": "武汉",
   "userName": "coder1234",
   "fullName": "shaungkou"
 }

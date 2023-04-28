@@ -83,7 +83,7 @@ assert Arrays.equals(javaStrings, new String[] {"car", "cat", "dog", "mouse"}); 
 Java 虚拟线程的详细解读和原理可以看下面这两篇文章：
 
 - [Java19 正式 GA！看虚拟线程如何大幅提高系统吞吐量](https://mp.weixin.qq.com/s/yyApBXxpXxVwttr01Hld6Q)
-- [虚拟线程 - VirtualThread源码透视](https://www.cnblogs.com/throwable/p/16758997.html)
+- [虚拟线程 - VirtualThread 源码透视](https://www.cnblogs.com/throwable/p/16758997.html)
 
 ## JEP 426: 向量 API（第四次孵化）
 

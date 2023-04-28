@@ -50,7 +50,7 @@ tag:
         同时删除该数据库相关的目录及其目录内容
 ```
 
-### 表的操作 
+### 表的操作
 
 ```sql
 /* 表的操作  */
@@ -353,7 +353,7 @@ set(val1, val2, val3...)
         将一个实体信息的数据放在一个表内实现。
 ```
 
-### SELECT 
+### SELECT
 
 ```sql
 /* SELECT */ ------------------
@@ -418,7 +418,7 @@ h. DISTINCT, ALL 选项
     默认为 all, 全部记录
 ```
 
-###  UNION
+### UNION
 
 ```sql
 /* UNION */ ------------------
@@ -494,7 +494,7 @@ h. DISTINCT, ALL 选项
 select info.id, info.name, info.stu_num, extra_info.hobby, extra_info.sex from info, extra_info where info.stu_num = extra_info.stu_id;
 ```
 
-### TRUNCATE 
+### TRUNCATE
 
 ```sql
 /* TRUNCATE */ ------------------
@@ -568,7 +568,7 @@ CREATE [OR REPLACE] [ALGORITHM = {UNDEFINED | MERGE | TEMPTABLE}] VIEW view_name
     UNDEFINED   未定义(默认)，指的是MySQL自主去选择相应的算法。
 ```
 
-### 事务(transaction) 
+### 事务(transaction)
 
 ```sql
 事务是指逻辑上的一组操作，组成这组操作的各个单元，要不全成功要不全失败。
@@ -684,7 +684,7 @@ end
 3. Replace 语法 如果有记录，则执行 before insert, before delete, after delete, after insert
 ```
 
-### SQL编程
+### SQL 编程
 
 ```mysql
 /* SQL编程 */ ------------------
@@ -713,7 +713,7 @@ select into 可以将表中查询获得的数据赋给变量。
 --// 控制结构 ----------
 -- if语句
 if search_condition then
-    statement_list   
+    statement_list
 [elseif search_condition then
     statement_list]
 ...
@@ -953,4 +953,3 @@ OPTIMIZE [LOCAL | NO_WRITE_TO_BINLOG] TABLE tbl_name [, tbl_name] ...
 6. SQL对大小写不敏感
 7. 清除已有语句：\c
 ```
-

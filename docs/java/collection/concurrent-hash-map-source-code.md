@@ -5,10 +5,9 @@ tag:
   - Java集合
 ---
 
+> 本文来自公众号：末读代码的投稿，原文地址：https://mp.weixin.qq.com/s/AHWzboztt53ZfFZmsSnMSw 。
 
-> 本文来自公众号：末读代码的投稿，原文地址：https://mp.weixin.qq.com/s/AHWzboztt53ZfFZmsSnMSw  。
-
-上一篇文章介绍了 HashMap 源码，反响不错，也有很多同学发表了自己的观点，这次又来了，这次是 `ConcurrentHashMap ` 了，作为线程安全的HashMap ，它的使用频率也是很高。那么它的存储结构和实现原理是怎么样的呢？
+上一篇文章介绍了 HashMap 源码，反响不错，也有很多同学发表了自己的观点，这次又来了，这次是 `ConcurrentHashMap ` 了，作为线程安全的 HashMap ，它的使用频率也是很高。那么它的存储结构和实现原理是怎么样的呢？
 
 ## 1. ConcurrentHashMap 1.7
 
@@ -16,7 +15,7 @@ tag:
 
 ![Java 7 ConcurrentHashMap 存储结构](https://oss.javaguide.cn/github/javaguide/java/collection/java7_concurrenthashmap.png)
 
-Java 7 中 `ConcurrentHashMap` 的存储结构如上图，`ConcurrnetHashMap` 由很多个 `Segment`  组合，而每一个 `Segment` 是一个类似于 `HashMap` 的结构，所以每一个 `HashMap` 的内部可以进行扩容。但是 `Segment` 的个数一旦**初始化就不能改变**，默认 `Segment` 的个数是 16 个，你也可以认为 `ConcurrentHashMap` 默认支持最多 16 个线程并发。
+Java 7 中 `ConcurrentHashMap` 的存储结构如上图，`ConcurrnetHashMap` 由很多个 `Segment` 组合，而每一个 `Segment` 是一个类似于 `HashMap` 的结构，所以每一个 `HashMap` 的内部可以进行扩容。但是 `Segment` 的个数一旦**初始化就不能改变**，默认 `Segment` 的个数是 16 个，你也可以认为 `ConcurrentHashMap` 默认支持最多 16 个线程并发。
 
 ### 2. 初始化
 
@@ -101,9 +100,9 @@ public ConcurrentHashMap(int initialCapacity,float loadFactor, int concurrencyLe
 1. 必要参数校验。
 2. 校验并发级别 `concurrencyLevel` 大小，如果大于最大值，重置为最大值。无参构造**默认值是 16.**
 3. 寻找并发级别 `concurrencyLevel` 之上最近的 **2 的幂次方**值，作为初始化容量大小，**默认是 16**。
-4. 记录 `segmentShift` 偏移量，这个值为【容量 =  2 的N次方】中的 N，在后面 Put 时计算位置时会用到。**默认是 32 - sshift = 28**.
+4. 记录 `segmentShift` 偏移量，这个值为【容量 = 2 的 N 次方】中的 N，在后面 Put 时计算位置时会用到。**默认是 32 - sshift = 28**.
 5. 记录 `segmentMask`，默认是 ssize - 1 = 16 -1 = 15.
-6. **初始化 `segments[0]`**，**默认大小为 2**，**负载因子 0.75**，**扩容阀值是 2*0.75=1.5**，插入第二个值时才会进行扩容。
+6. **初始化 `segments[0]`**，**默认大小为 2**，**负载因子 0.75**，**扩容阀值是 2\*0.75=1.5**，插入第二个值时才会进行扩容。
 
 ### 3. put
 
@@ -185,11 +184,11 @@ private Segment<K,V> ensureSegment(int k) {
 
    **初始化 Segment 流程：**
 
-   1. 检查计算得到的位置的 `Segment` 是否为null.
+   1. 检查计算得到的位置的 `Segment` 是否为 null.
    2. 为 null 继续初始化，使用 `Segment[0]` 的容量和负载因子创建一个 `HashEntry` 数组。
-   3. 再次检查计算得到的指定位置的 `Segment` 是否为null.
+   3. 再次检查计算得到的指定位置的 `Segment` 是否为 null.
    4. 使用创建的 `HashEntry` 数组初始化这个 Segment.
-   5. 自旋判断计算得到的指定位置的 `Segment` 是否为null，使用 CAS 在这个位置赋值为 `Segment`.
+   5. 自旋判断计算得到的指定位置的 `Segment` 是否为 null，使用 CAS 在这个位置赋值为 `Segment`.
 
 3. `Segment.put` 插入 key,value 值。
 
@@ -249,7 +248,7 @@ final V put(K key, int hash, V value, boolean onlyIfAbsent) {
 
 由于 `Segment` 继承了 `ReentrantLock`，所以 `Segment` 内部可以很方便的获取锁，put 流程就用到了这个功能。
 
-1. `tryLock()` 获取锁，获取不到使用  **`scanAndLockForPut`** 方法继续获取。
+1. `tryLock()` 获取锁，获取不到使用 **`scanAndLockForPut`** 方法继续获取。
 
 2. 计算 put 的数据要放入的 index 位置，然后获取这个位置上的 `HashEntry` 。
 
@@ -318,7 +317,7 @@ private void rehash(HashEntry<K,V> node) {
     int oldCapacity = oldTable.length;
     // 新容量，扩大两倍
     int newCapacity = oldCapacity << 1;
-    // 新的扩容阀值 
+    // 新的扩容阀值
     threshold = (int)(newCapacity * loadFactor);
     // 创建新的数组
     HashEntry<K,V>[] newTable = (HashEntry<K,V>[]) new HashEntry[newCapacity];
@@ -406,7 +405,7 @@ public V get(Object key) {
 
 ![Java8 ConcurrentHashMap 存储结构（图片来自 javadoop）](https://oss.javaguide.cn/github/javaguide/java/collection/java8_concurrenthashmap.png)
 
-可以发现 Java8 的 ConcurrentHashMap  相对于 Java7 来说变化比较大，不再是之前的 **Segment 数组 + HashEntry 数组 + 链表**，而是 **Node 数组 + 链表 / 红黑树**。当冲突链表达到一定长度时，链表会转换成红黑树。
+可以发现 Java8 的 ConcurrentHashMap 相对于 Java7 来说变化比较大，不再是之前的 **Segment 数组 + HashEntry 数组 + 链表**，而是 **Node 数组 + 链表 / 红黑树**。当冲突链表达到一定长度时，链表会转换成红黑树。
 
 ### 2. 初始化 initTable
 
@@ -442,8 +441,8 @@ private final Node<K,V>[] initTable() {
 
 从源码中可以发现 `ConcurrentHashMap` 的初始化是通过**自旋和 CAS** 操作完成的。里面需要注意的是变量 `sizeCtl` ，它的值决定着当前的初始化状态。
 
-1. -1  说明正在初始化
-2. -N 说明有N-1个线程正在进行扩容
+1. -1 说明正在初始化
+2. -N 说明有 N-1 个线程正在进行扩容
 3. 0 表示 table 初始化大小，如果 table 没有初始化
 4. \>0 表示 table 扩容的阈值，如果 table 已经初始化。
 
@@ -539,7 +538,7 @@ final V putVal(K key, V value, boolean onlyIfAbsent) {
 
 5. 如果都不满足，则利用 synchronized 锁写入数据。
 
-6. 如果数量大于 `TREEIFY_THRESHOLD` 则要执行树化方法，在 `treeifyBin` 中会首先判断当前数组长度≥64时才会将链表转换为红黑树。
+6. 如果数量大于 `TREEIFY_THRESHOLD` 则要执行树化方法，在 `treeifyBin` 中会首先判断当前数组长度 ≥64 时才会将链表转换为红黑树。
 
 ### 4. get
 
@@ -583,10 +582,10 @@ public V get(Object key) {
 
 总的来说 `ConcurrentHashMap` 在 Java8 中相对于 Java7 来说变化还是挺大的，
 
-## 3.  总结
+## 3. 总结
 
 Java7 中 `ConcurrentHashMap` 使用的分段锁，也就是每一个 Segment 上同时只有一个线程可以操作，每一个 `Segment` 都是一个类似 `HashMap` 数组的结构，它可以扩容，它的冲突会转化为链表。但是 `Segment` 的个数一但初始化就不能改变。
 
-Java8 中的 `ConcurrentHashMap`  使用的 `Synchronized` 锁加 CAS 的机制。结构也由 Java7 中的 **`Segment` 数组 + `HashEntry` 数组 + 链表** 进化成了  **Node 数组 + 链表 / 红黑树**，Node 是类似于一个 HashEntry 的结构。它的冲突再达到一定大小时会转化成红黑树，在冲突小于一定数量时又退回链表。
+Java8 中的 `ConcurrentHashMap` 使用的 `Synchronized` 锁加 CAS 的机制。结构也由 Java7 中的 **`Segment` 数组 + `HashEntry` 数组 + 链表** 进化成了 **Node 数组 + 链表 / 红黑树**，Node 是类似于一个 HashEntry 的结构。它的冲突再达到一定大小时会转化成红黑树，在冲突小于一定数量时又退回链表。
 
 有些同学可能对 `Synchronized` 的性能存在疑问，其实 `Synchronized` 锁自从引入锁升级策略后，性能不再是问题，有兴趣的同学可以自己了解下 `Synchronized` 的**锁升级**。

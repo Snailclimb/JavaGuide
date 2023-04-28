@@ -45,8 +45,6 @@ head:
 
 ![Kernel_Layout](https://oss.javaguide.cn/2020-8/Kernel_Layout.png)
 
-
-
 ### 操作系统主要有哪些功能？
 
 从资源管理的角度来看，操作系统有 6 大功能：
