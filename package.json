@@ -8,8 +8,8 @@
   "packageManager": "pnpm@8.3.1",
   "scripts": {
     "docs:build": "vuepress build docs",
-    "docs:serve": "vuepress dev docs",
-    "docs:clean-serve": "vuepress dev docs --clean-cache"
+    "docs:dev": "vuepress dev docs",
+    "docs:clean-dev": "vuepress dev docs --clean-cache"
   },
   "dependencies": {
     "@vuepress/client": "2.0.0-beta.61",
