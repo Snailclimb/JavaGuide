@@ -25,17 +25,18 @@
 
 **Important Knowledge Points Explained:**
 
-- [Why only value passing in Java?](docs/java/basis/why-thereis-only-value-passing-in-java.md)
-- [What is the reflection mechanism? What are the application scenarios of reflection mechanism?](docs/java/basis/反射机制详解.md)
-- (docs/java/basis/proxy-model-detail.md) [proxy-model-detail: static proxy + JDK/CGLIB dynamic proxy practice](docs/java/basis/代理模式详解.md)
+- [Why only value passing in Java?](./docs/java/basis/why-there-only-value-passing-in-java.md)
+- [What is the reflection mechanism? What are the application scenarios of reflection mechanism?](./docs/java/basis/reflection.md)
+- (docs/java/basis/proxy-model-detail.md) [proxy-model-detail: static proxy + JDK/CGLIB dynamic proxy practice](./docs/java/basis/proxy.md)
 - [What are the common IO models and what is the difference between BIO, NIO, AIO in Java?](docs/java/basis/io模型详解.md)
 - [BigDecimal solve floating point problem](docs/java/basis/bigdecimal.md)
 
 ### Collection
 
-1. **[Java collection FAQ summary](docs/java/collection/java集合框架基础知识&面试题总结.md)** (must see :+1:)
-2. [Summary of considerations for using Java containers](docs/java/collection/java集合使用注意事项.md)
-3. **source code analysis** : [ArrayList source code + expansion mechanism analysis](docs/java/collection/arraylist-source-code.md),
+1. **[Java collection FAQ summary 1](./docs/java/collection/java-collection-questions-01.md)** (must see :+1:)
+1. **[Java collection FAQ summary 2](./docs/java/collection/java-collection-questions-02.md)** (must see :+1:)
+1. [Summary of considerations for using Java containers](./docs/java/collection/java-collection-precautions-for-use.md)
+1. **source code analysis** : [ArrayList source code + expansion mechanism analysis](docs/java/collection/arraylist-source-code.md),
    [HashMap(JDK1.8) source code + underlying data structure analysis](docs/java/collection/ hashmap-source-code.md),
    [ConcurrentHashMap source code + underlying data structure analysis](docs/java/collection/concurrent-hash-map-source-code.md)
 
@@ -195,7 +196,7 @@ If you have not touched Java Web development, you can first look at my summary o
 
 - **JWT** : JWT (JSON Web Token) is a form of authentication, where a JWT is essentially a signed piece of data in JSON format. Since it is signed, the recipient can verify its authenticity. Related reading.
 
-  - [JWT Pros and Cons Analysis and Solutions to Common Problems](docs/system-design/security/jwt优缺点分析以及常见问题解决方案.md)
+  - [JWT Pros and Cons Analysis and Solutions to Common Problems](./docs/system-design/security/advantages&disadvantages-of-jwt.md)
   - [Demo for beginners to get started with Spring Security With JWT](https://github.com/Snailclimb/spring-security-jwt-guide)
 
 - **SSO(Single Sign On)**: **SSO(Single Sign On)** that is, single sign on means that a user has the right to access other systems related to him/her by logging into one of the multiple subsystems. For example, after we logged into Jingdong Finance, we also successfully logged into Jingdong Supermarket, Jingdong Home Appliances and other subsystems of Jingdong. Related reading: [**SSO Single Sign-On is enough to read this article! **](docs/system-design/security/sso-intro.md)
@@ -245,7 +246,7 @@ In complex distributed systems, a large amount of data and messages often need t
 
 ### Distributed transactions
 
-** A distributed transaction is one in which the participants of the transaction, the server supporting the transaction, the resource server, and the transaction manager are located on different nodes of different distributed systems. **
+**A distributed transaction is one in which the participants of the transaction, the server supporting the transaction, the resource server, and the transaction manager are located on different nodes of different distributed systems.**
 
 Simply put, a large operation consists of different small operations that are distributed across different servers and belong to different applications, and the distributed transaction needs to guarantee that all of these small operations either succeed or fail. Essentially, distributed transactions are about ensuring data consistency across different databases.
 
@@ -257,7 +258,7 @@ Simply put, a large operation consists of different small operations that are di
 
 1. [[Getting Started] Summary of ZooKeeper-related concepts](docs/distributed-system/分布式协调/zookeeper/zookeeper-intro.md)
 2. [[Advanced] Summary of ZooKeeper Related Concepts](docs/distributed-system/分布式协调/zookeeper/zookeeper-plus.md)
-3. [[Hands-on] ZooKeeper hands-on](docs/distributed-system/分布式协调/zookeeper/zookeeper-in-action.md)
+3. [[Hands-on] ZooKeeper hands-on](./docs/distributed-system/distributed-process-coordination/zookeeper/zookeeper-in-action.md)
 
 ## High performance
 
@@ -267,7 +268,7 @@ Message queues are used in distributed systems primarily for decoupling and peak
 
 1. **RabbitMQ** : [Getting Started with RabbitMQ](docs/high-performance/message-queue/rabbitmq-intro.md)
 2. **RocketMQ** : [Getting Started with RocketMQ](docs/high-performance/message-queue/rocketmq-intro)、[A few simple questions and answers for RocketMQ](docs/high-performance/message-queue/rocketmq-questions.md)
-3. **Kafka** : [Kafka FAQ Summary](docs/high-performance/message-queue/kafka知识点&面试题总结.md)
+3. **Kafka** : [Kafka FAQ Summary](./docs/high-performance/message-queue/kafka-questions-01.md)
 
 ### Read-write separation & split database and split table
 
@@ -295,7 +296,7 @@ Common load balancing systems include 3 types.
 
 Highly available describes a system that is available most of the time and can provide services to us. High availability means that the system is available even in the event of a hardware failure or system upgrade.
 
-Related reading: **"[How to design a highly available system? What are the areas to consider?](docs/high-availability/高可用系统设计.md)》** 。
+Related reading: **"[How to design a highly available system? What are the areas to consider?](docs/high-availability/high-availability-system-design.md)"**.
 
 ### Flow limiting
 
@@ -358,8 +359,8 @@ If you want to follow my updated articles and the dry goods I share in real time
 
 **《Java Interview Blitz》:** A PDF version of "Java Interview Blitz" derived from this document specifically for interviews [Public](#公众号) Reply back to **"Interview Blitz "** and get it for free!
 
-<div align="center">   
-    <img src="https://oss.javaguide.cn/github/javaguide/gongzhonghaoxuanchuan.png" style="margin: 0 auto;" />  
+<div style="text-align:center">
+  <img src="https://oss.javaguide.cn/github/javaguide/gongzhonghaoxuanchuan.png" style="margin: 0 auto;" />  
 </div>
 
 ![](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3a2d826918a44bcbaa8d9272db3ad7d2~tplv-k3u1fbpfcp-watermark.image)
