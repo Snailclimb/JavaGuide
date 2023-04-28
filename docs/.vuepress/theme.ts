@@ -50,6 +50,7 @@ export default hopeTheme({
       align: true,
       codetabs: true,
       container: true,
+      figure: true,
       include: true,
       tasklist: true,
     },
