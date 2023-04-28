@@ -10,7 +10,7 @@
     "docs:build": "vuepress build docs",
     "docs:dev": "vuepress dev docs",
     "docs:clean-dev": "vuepress dev docs --clean-cache",
-    "lint": "prettier --check --write . && markdownlint **/*.md"
+    "lint": "prettier --check --write . && markdownlint docs/**/*.md"
   },
   "dependencies": {
     "@vuepress/client": "2.0.0-beta.61",

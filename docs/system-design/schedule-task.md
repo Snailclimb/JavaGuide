@@ -231,8 +231,8 @@ public class TestJob implements SimpleJob {
 
 **相关地址：**
 
-- Github 地址：https://github.com/apache/shardingsphere-elasticjob。
-- 官方网站：https://shardingsphere.apache.org/elasticjob/index_zh.html 。
+- Github 地址：<https://github.com/apache/shardingsphere-elasticjob。>
+- 官方网站：<https://shardingsphere.apache.org/elasticjob/index_zh.html> 。
 
 **优缺点总结：**
 
@@ -288,8 +288,8 @@ public ReturnT<String> myAnnotationJobHandler(String param) throws Exception {
 
 **相关地址：**
 
-- Github 地址：https://github.com/xuxueli/xxl-job/。
-- 官方介绍：https://www.xuxueli.com/xxl-job/ 。
+- Github 地址：<https://github.com/xuxueli/xxl-job/。>
+- 官方介绍：<https://www.xuxueli.com/xxl-job/> 。
 
 **优缺点总结：**
 

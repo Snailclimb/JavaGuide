@@ -4,7 +4,7 @@
 
 ## 阐述 Servlet 和 CGI 的区别?
 
-### CGI 的不足之处:
+### CGI 的不足之处
 
 1，需要为每个请求启动一个操作 CGI 程序的系统进程。如果请求频繁，这将会带来很大的开销。
 
@@ -12,7 +12,7 @@
 
 3，需要重复编写处理网络协议的代码以及编码，这些工作都是非常耗时的。
 
-### Servlet 的优点:
+### Servlet 的优点
 
 1，只需要启动一个操作系统进程以及加载一个 JVM，大大降低了系统的开销
 
@@ -48,8 +48,8 @@ get 和 post 请求实际上是没有区别，大家可以自行查询相关文�
 
 推荐阅读：
 
-- https://www.zhihu.com/question/28586791
-- https://mp.weixin.qq.com/s?__biz=MzI3NzIzMzg3Mw==&mid=100000054&idx=1&sn=71f6c214f3833d9ca20b9f7dcd9d33e4#rd
+- <https://www.zhihu.com/question/28586791>
+- <https://mp.weixin.qq.com/s?__biz=MzI3NzIzMzg3Mw==&mid=100000054&idx=1&sn=71f6c214f3833d9ca20b9f7dcd9d33e4#rd>
 
 ## 什么情况下调用 doGet()和 doPost()
 
@@ -70,23 +70,23 @@ Form 标签里的 method 的属性为 get 时调用 doGet()，为 post 时调用
 
 1. **从地址栏显示来说**
 
-forward 是服务器请求资源,服务器直接访问目标地址的 URL,把那个 URL 的响应内容读取过来,然后把这些内容再发给浏览器.浏览器根本不知道服务器发送的内容从哪里来的,所以它的地址栏还是原来的地址.
-redirect 是服务端根据逻辑,发送一个状态码,告诉浏览器重新去请求那个地址.所以地址栏显示的是新的 URL.
+   forward 是服务器请求资源,服务器直接访问目标地址的 URL,把那个 URL 的响应内容读取过来,然后把这些内容再发给浏览器.浏览器根本不知道服务器发送的内容从哪里来的,所以它的地址栏还是原来的地址.
+   redirect 是服务端根据逻辑,发送一个状态码,告诉浏览器重新去请求那个地址.所以地址栏显示的是新的 URL.
 
 2. **从数据共享来说**
 
-forward:转发页面和转发到的页面可以共享 request 里面的数据.
-redirect:不能共享数据.
+   forward:转发页面和转发到的页面可以共享 request 里面的数据.
+   redirect:不能共享数据.
 
 3. **从运用地方来说**
 
-forward:一般用于用户登陆的时候,根据角色转发到相应的模块.
-redirect:一般用于用户注销登陆时返回主页面和跳转到其它的网站等
+   forward:一般用于用户登陆的时候,根据角色转发到相应的模块.
+   redirect:一般用于用户注销登陆时返回主页面和跳转到其它的网站等
 
 4. 从效率来说
 
-forward:高.
-redirect:低.
+   forward:高.
+   redirect:低.
 
 ## 自动刷新(Refresh)
 
@@ -125,7 +125,7 @@ JSP 是一种 Servlet，但是与 HttpServlet 的工作方式不太一样。Http
 
 ## JSP 有哪些内置对象、作用分别是什么
 
-[JSP 内置对象 - CSDN 博客 ](http://blog.csdn.net/qq_34337272/article/details/64310849)
+[JSP 内置对象 - CSDN 博客](http://blog.csdn.net/qq_34337272/article/details/64310849)
 
 JSP 有 9 个内置对象：
 

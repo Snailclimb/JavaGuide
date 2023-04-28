@@ -127,5 +127,5 @@ Bob 大叔将自己对整洁代码的理解浓缩在了这本书中，真可谓�
 
 最后再推荐两个相关的文档：
 
-- **阿里巴巴 Java 开发手册** ：https://github.com/alibaba/p3c
-- **Google Java 编程风格指南：** http://www.hawstein.com/posts/google-java-style.html
+- **阿里巴巴 Java 开发手册** ：<https://github.com/alibaba/p3c>
+- **Google Java 编程风格指南**： <http://www.hawstein.com/posts/google-java-style.html>
