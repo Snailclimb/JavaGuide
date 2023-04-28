@@ -16,7 +16,7 @@ footer: |-
   <a href="https://beian.miit.gov.cn/" target="_blank">鄂ICP备2020015769号-1</a> | 主题: <a href="https://vuepress-theme-hope.github.io/v2/" target="_blank">VuePress Theme Hope</a>
 ---
 
-<!-- @include: ./banner.snippet.md -->
+<!-- @include: @banner.snippet.md -->
 
 ## 关于网站
 
@@ -44,4 +44,4 @@ footer: |-
 
 最新更新会第一时间同步在公众号，推荐关注！另外，公众号上有很多干货不会同步在线阅读网站。
 
-<!-- @include: ./gzh.snippet.md -->
+<!-- @include: @gzh.snippet.md -->

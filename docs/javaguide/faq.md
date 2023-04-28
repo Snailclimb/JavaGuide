@@ -9,7 +9,7 @@ category: 走近项目
 
 《JavaGuide 面试突击版》在我的公众号后台回复“**PDF**”即可获取，免费的。除了 《JavaGuide 面试突击版》之外，还会免费送你多本优质面试 PDF 手册。
 
-<!-- @include: ./gzh.md -->
+<!-- @include: @gzh.md -->
 
 ## 如何看待 JavaGuide 的 star 数量很多？
 

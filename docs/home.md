@@ -20,7 +20,7 @@ title: JavaGuide（Java学习&&面试指南）
 
 [GitHub](https://github.com/Snailclimb/JavaGuide) | [Gitee](https://gitee.com/SnailClimb/JavaGuide)
 
-<!-- @include: ./banner.snippet.md -->
+<!-- @include: @banner.snippet.md -->
 
 ## 项目相关
 

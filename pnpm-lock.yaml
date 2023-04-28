@@ -4,6 +4,9 @@ dependencies:
   '@vuepress/client':
     specifier: 2.0.0-beta.61
     version: 2.0.0-beta.61
+  '@vuepress/utils':
+    specifier: 2.0.0-beta.61
+    version: 2.0.0-beta.61
   husky:
     specifier: 8.0.3
     version: 8.0.3

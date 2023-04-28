@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@vuepress/client": "2.0.0-beta.61",
+    "@vuepress/utils": "2.0.0-beta.61",
     "husky": "8.0.3",
     "markdownlint-cli": "0.33.0",
     "nano-staged": "0.8.0",

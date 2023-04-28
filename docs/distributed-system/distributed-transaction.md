@@ -12,4 +12,4 @@ icon: "transanction"
 
 ![](https://oss.javaguide.cn/xingqiu/image-20220304102536445.png)
 
-<!-- @include: ../planet.snippet.md -->
+<!-- @include: @planet.snippet.md -->

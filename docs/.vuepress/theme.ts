@@ -1,7 +1,10 @@
+import { getDirname, path } from "@vuepress/utils";
 import { hopeTheme } from "vuepress-theme-hope";
 
 import navbar from "./navbar.js";
 import sidebar from "./sidebar/index.js";
+
+const __dirname = getDirname(import.meta.url);
 
 export default hopeTheme({
   logo: "/logo.png",
@@ -51,7 +54,18 @@ export default hopeTheme({
       codetabs: true,
       container: true,
       figure: true,
-      include: true,
+      include: {
+        resolvePath: (file, cwd) => {
+          if (file.startsWith("@"))
+            return path.resolve(
+              __dirname,
+              "../snippets",
+              file.replace("@", "./")
+            );
+
+          return path.resolve(cwd, file);
+        },
+      },
       tasklist: true,
     },
     feed: {

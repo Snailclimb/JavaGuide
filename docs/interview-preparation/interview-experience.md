@@ -19,4 +19,4 @@ category: 知识星球
 
 ![](https://oss.javaguide.cn/xingqiu/image-20220628101805897.png)
 
-<!-- @include: ./planet.snippet.md -->
+<!-- @include: @planet.snippet.md -->
