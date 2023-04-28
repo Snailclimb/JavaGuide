@@ -32,7 +32,7 @@ head:
 
 Bob 大叔将自己对整洁代码的理解浓缩在了这本书中，真可谓是对后生的一大馈赠。
 
-**[《Effective Java 》](https://book.douban.com/subject/30412517/)** 
+**[《Effective Java 》](https://book.douban.com/subject/30412517/)**
 
 ![](https://oss.javaguide.cn/github/javaguide/books/82d510c951384383b325080428af6c0a.png)
 

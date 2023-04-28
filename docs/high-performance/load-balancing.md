@@ -158,7 +158,7 @@ Nginx 就是最常用的反向代理服务器，它可以将接收到的客户�
 
 **Netflix Ribbon** 和 **Spring Cloud Load Balancer** 就是目前 Java 生态最流行的两个负载均衡组件。
 
-Ribbon 是老牌负载均衡组件，由 Netflix 开发，功能比较全面，支持的负载均衡策略也比较多。 Spring Cloud Load Balancer 是  Spring 官方为了取代 Ribbon 而推出的，功能相对更简单一些，支持的负载均衡也少一些。
+Ribbon 是老牌负载均衡组件，由 Netflix 开发，功能比较全面，支持的负载均衡策略也比较多。 Spring Cloud Load Balancer 是 Spring 官方为了取代 Ribbon 而推出的，功能相对更简单一些，支持的负载均衡也少一些。
 
 Ribbon 支持的 7 种负载均衡策略：
 
@@ -170,7 +170,7 @@ Ribbon 支持的 7 种负载均衡策略：
 - `AvailabilityFilteringRule` ：可用敏感性策略（先过滤掉非健康的服务实例，然后再选择连接数较小的服务实例）
 - `ZoneAvoidanceRule` ：区域敏感性策略（根据服务所在区域的性能和服务的可用性来选择服务实例）
 
-Spring Cloud Load Balancer  支持的 2 种负载均衡策略：
+Spring Cloud Load Balancer 支持的 2 种负载均衡策略：
 
 - `RandomLoadBalancer` ：随机策略
 - `RoundRobinLoadBalancer`（默认） ：轮询策略
@@ -189,7 +189,7 @@ public class CustomLoadBalancerConfiguration {
 }
 ```
 
-不过，Spring Cloud Load Balancer  支持的负载均衡策略其实不止这两种，`ServiceInstanceListSupplier` 的实现类同样可以让其支持类似于 Ribbon 的负载均衡策略。这个应该是后续慢慢完善引入的，不看官方文档还真发现不了，所以说阅读官方文档真的很重要！
+不过，Spring Cloud Load Balancer 支持的负载均衡策略其实不止这两种，`ServiceInstanceListSupplier` 的实现类同样可以让其支持类似于 Ribbon 的负载均衡策略。这个应该是后续慢慢完善引入的，不看官方文档还真发现不了，所以说阅读官方文档真的很重要！
 
 这里举两个官方的例子：
 
@@ -211,9 +211,9 @@ public class CustomLoadBalancerConfiguration {
 }
 ```
 
-关于Spring Cloud Load Balancer更详细更新的介绍，推荐大家看看官方文档：https://docs.spring.io/spring-cloud-commons/docs/current/reference/html/#spring-cloud-loadbalancer ，一切以官方文档为主。
+关于 Spring Cloud Load Balancer 更详细更新的介绍，推荐大家看看官方文档：<https://docs.spring.io/spring-cloud-commons/docs/current/reference/html/#spring-cloud-loadbalancer> ，一切以官方文档为主。
 
-轮询策略基本可以满足绝大部分项目的需求，我们的实际项目中如果没有特殊需求的话，通常使用的就是默认的轮询策略。并且，Ribbon 和 Spring Cloud Load Balancer  都支持自定义负载均衡策略。
+轮询策略基本可以满足绝大部分项目的需求，我们的实际项目中如果没有特殊需求的话，通常使用的就是默认的轮询策略。并且，Ribbon 和 Spring Cloud Load Balancer 都支持自定义负载均衡策略。
 
 个人建议如非必需 Ribbon 某个特有的功能或者负载均衡策略的话，就优先选择 Spring 官方提供的 Spring Cloud Load Balancer。
 
@@ -231,6 +231,6 @@ Spring Cloud 2020.0.0 版本移除了 Netflix 除 Eureka 外的所有组件。Sp
 
 ## 参考
 
-- 干货 | eBay 的 4 层软件负载均衡实现：https://mp.weixin.qq.com/s/bZMxLTECOK3mjdgiLbHj-g
-- HTTP Load Balancing（Nginx 官方文档）：https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/
-- 深入浅出负载均衡 - vivo 互联网技术：https://www.cnblogs.com/vivotech/p/14859041.html
+- 干货 | eBay 的 4 层软件负载均衡实现：<https://mp.weixin.qq.com/s/bZMxLTECOK3mjdgiLbHj-g>
+- HTTP Load Balancing（Nginx 官方文档）：<https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/>
+- 深入浅出负载均衡 - vivo 互联网技术：<https://www.cnblogs.com/vivotech/p/14859041.html>

@@ -1,5 +1,5 @@
 ---
-title:  MyBatis常见面试题总结
+title: MyBatis常见面试题总结
 category: 框架
 icon: "database"
 tag:

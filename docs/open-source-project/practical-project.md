@@ -8,9 +8,9 @@ icon: project
 
 - [Snowy](https://gitee.com/xiaonuobase/snowy)：国内首个国密前后端分离快速开发平台，定位不是深度封装的框架，也不是无代码平台，更不是某个领域的产品。详细介绍：[5.1k！这是我见过最强的前后端分离快速开发脚手架！！](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247534316&idx=1&sn=69938397674fc33ecda43c8c9d0a4039&chksm=cea10927f9d68031bc862485c6be984ade5af233d4d871d498c38f22164a84314678c0c67cd7&token=1464380539&lang=zh_CN#rd)。
 - [RuoYi](https://gitee.com/y_project/RuoYi) ：RuoYi 一款基于基于 SpringBoot 的权限管理系统 易读易懂、界面简洁美观，直接运行即可用 。
-- [AgileBoot-Back-End](https://github.com/valarchie/AgileBoot-Back-End) ：基于Ruoyi做了大量重构优化的基础快速开发框架。
+- [AgileBoot-Back-End](https://github.com/valarchie/AgileBoot-Back-End) ：基于 Ruoyi 做了大量重构优化的基础快速开发框架。
 - [RuoYi-Vue-Pro](https://github.com/YunaiV/ruoyi-vue-pro) ： RuoYi-Vue 全新 Pro 版本，优化重构所有功能。
-- [Guns](https://gitee.com/stylefeng/guns) ： 现代化的Java应用开发基础框架。
+- [Guns](https://gitee.com/stylefeng/guns) ： 现代化的 Java 应用开发基础框架。
 - [JeecgBoot](https://github.com/zhangdaiscott/jeecg-boot)：一款基于代码生成器的 J2EE 低代码快速开发平台，支持生成前后端分离架构的项目。
 - [Erupt](https://gitee.com/erupt/erupt) : 低代码全栈类框架，它使用 Java 注解 动态生成页面以及增、删、改、查、权限控制等后台功能。
 - [SmartAdmin](https://gitee.com/lab1024/smart-admin) : 一套简洁、易用的低代码中后台解决方案。

@@ -31,7 +31,7 @@ tag:
 
 不知道其他公司的程序员是怎么样的？我感觉技术积累很大程度在乎平时，单纯依靠工作绝大部分情况只会加快自己做需求的熟练度，当然，写多了之后或多或少也会提升你对代码质量的认识（前提是你有这个意识）。
 
-工作之余，我会利用业余时间来学习自己想学的东西。工作中的例子就是我刚进公司的第一个项目用到了 Spring Security+JWT ,因为当时自己对于这个技术不太了解，然后就在工作之外大概花了一周的时间学习写了一个 Demo 分享了出来,Github 地址：https://github.com/Snailclimb/spring-security-jwt-guide 。以次为契机，我还分享了
+工作之余，我会利用业余时间来学习自己想学的东西。工作中的例子就是我刚进公司的第一个项目用到了 Spring Security+JWT ,因为当时自己对于这个技术不太了解，然后就在工作之外大概花了一周的时间学习写了一个 Demo 分享了出来,Github 地址：<https://github.com/Snailclimb/spring-security-jwt-guide> 。以次为契机，我还分享了
 
 - [《一问带你区分清楚 Authentication,Authorization 以及 Cookie、Session、Token》](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247485626&idx=1&sn=3247aa9000693dd692de8a04ccffeec1&chksm=cea24771f9d5ce675ea0203633a95b68bfe412dc6a9d05f22d221161147b76161d1b470d54b3&token=684071313&lang=zh_CN&scene=21#wechat_redirect)
 - [JWT 身份认证优缺点分析以及常见问题解决方案](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247485655&idx=1&sn=583eeeb081ea21a8ec6347c72aa223d6&chksm=cea2471cf9d5ce0aa135f2fb9aa32d98ebb3338292beaccc1aae43d1178b16c0125eb4139ca4&token=1737409938&lang=zh_CN#rd)

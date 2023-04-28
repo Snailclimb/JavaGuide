@@ -6,7 +6,7 @@ icon: "java"
 
 ## Java 基础
 
-**[《Head First Java》](https://book.douban.com/subject/2000732/)** 
+**[《Head First Java》](https://book.douban.com/subject/2000732/)**
 
 ![《Head First Java》-豆瓣](https://oss.javaguide.cn/github/javaguide/books/image-20220424103035793.png)
 
@@ -18,7 +18,7 @@ icon: "java"
 
 我个人觉得这本书还是挺适合编程新手阅读的，毕竟是 “Head First” 系列。
 
-**[《Java 核心技术卷 1+卷 2》](https://book.douban.com/subject/34898994/)** 
+**[《Java 核心技术卷 1+卷 2》](https://book.douban.com/subject/34898994/)**
 
 ![《Java 核心技术卷 1》-豆瓣](https://oss.javaguide.cn/github/javaguide/books/image-20220424101217849.png)
 
@@ -26,7 +26,7 @@ icon: "java"
 
 我当时在大学的时候就买了两本放在寝室，没事的时候就翻翻。建议有点 Java 基础之后再读，介绍的还是比较深入和全面的，非常推荐。
 
-**[《Java 编程思想》](https://book.douban.com/subject/2130190/)** 
+**[《Java 编程思想》](https://book.douban.com/subject/2130190/)**
 
 ![《Java 编程思想》-豆瓣](https://oss.javaguide.cn/github/javaguide/books/image-20220424103124893.png)
 
@@ -34,7 +34,7 @@ icon: "java"
 
 我第一次看的时候还觉得有点枯燥，那时候还在上大二，看了 1/3 就没看下去了。
 
-**[《Java 8实战》](https://book.douban.com/subject/26772632/)**
+**[《Java 8 实战》](https://book.douban.com/subject/26772632/)**
 
 ![《Java 8实战》-豆瓣](https://oss.javaguide.cn/github/javaguide/books/image-20220424103202625.png)
 
@@ -64,7 +64,7 @@ _这本书还是非常适合我们用来学习 Java 多线程的。这本书的�
 
 这本书的质量也是非常过硬！给作者们点个赞！这本书有统一的排版规则和语言风格、清晰的表达方式和逻辑。并且每篇文章初稿写完后，作者们就会互相审校，合并到主分支时所有成员会再次审校，最后再通篇修订了三遍。
 
-在线阅读：[https://redspider.gitbook.io/concurrent/](https://redspider.gitbook.io/concurrent/ ) 。
+在线阅读：[https://redspider.gitbook.io/concurrent/](https://redspider.gitbook.io/concurrent/) 。
 
 **[《Java 并发实现原理：JDK 源码剖析》](https://book.douban.com/subject/35013531/)**
 
@@ -78,7 +78,7 @@ _这本书还是非常适合我们用来学习 Java 多线程的。这本书的�
 
 ## JVM
 
-**[《深入理解 Java 虚拟机》](https://book.douban.com/subject/34907497/)** 
+**[《深入理解 Java 虚拟机》](https://book.douban.com/subject/34907497/)**
 
 ![《深入理解 Java 虚拟机》-豆瓣](https://oss.javaguide.cn/github/javaguide/books/20210710104655705.png)
 

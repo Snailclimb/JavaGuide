@@ -5,7 +5,7 @@ tag:
   - 个人经历
 ---
 
-2021-03-21，晚上12点，肝完了我正在做的一个项目的前端的某块功能，我随手打开了[我的 Github 主页](https://github.com/Snailclimb)。
+2021-03-21，晚上 12 点，肝完了我正在做的一个项目的前端的某块功能，我随手打开了[我的 Github 主页](https://github.com/Snailclimb)。
 
 好家伙！几天没注意，[JavaGuide](https://github.com/Snailclimb/JavaGuide) 这个项目直接上了 100K star。
 
@@ -15,7 +15,7 @@ tag:
 
 ![](https://oss.javaguide.cn/github/javaguide/about-the-author/20210323132635635.png)
 
-维护这个项目的过程中，也被某些人 diss 过：“md项目，没啥含金量，给国人丢脸！”。
+维护这个项目的过程中，也被某些人 diss 过：“md 项目，没啥含金量，给国人丢脸！”。
 
 对于说这类话的人，我觉得对我没啥影响，就持续完善，把 JavaGuide 做的更好吧！其实，国外的很多项目也是纯 MD 啊！就比如外国的朋友发起的 awesome 系列、求职面试系列。无需多说，行动自证！凎！
 
@@ -23,19 +23,19 @@ tag:
 
 我的公号的小伙伴都是通过这个项目关注我的，趁着午休，简单复盘一下，也算是对关注这个项目的小伙伴负责。
 
-我在大三开始准备秋招面试的时候，创建了 JavaGuide 这个项目，**2018-05-07**  这一天我提交了**第 1 个 commit**。
+我在大三开始准备秋招面试的时候，创建了 JavaGuide 这个项目，**2018-05-07** 这一天我提交了**第 1 个 commit**。
 
 到今天（2021-03-23）为止，这个仓库已经累计有 **2933** 次 commit，累计有 **207** 位朋友参与到了项目中来。
 
 ![](https://oss.javaguide.cn/github/javaguide/about-the-author/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0MzM3Mjcy,size_16,color_FFFFFF,t_70.png)
 
-累计有 **511** 个 **issue** 和 **575** 个 **pr**。所有的 pr 都已经被处理，仅有15 个左右的 issue 我还未抽出时间处理。
+累计有 **511** 个 **issue** 和 **575** 个 **pr**。所有的 pr 都已经被处理，仅有 15 个左右的 issue 我还未抽出时间处理。
 
 ![](https://oss.javaguide.cn/github/javaguide/about-the-author/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0MzM3Mjcy,size_16,color_FFFFFF,t_70-20230309224044850.png)
 
 其实，相比于 star 数量，你看看仓库的 issue 和 pr 更能说明你的项目是否有价值。
 
-那些到处骗 star 甚至是 刷 star 的行为，我就不多说了，有点丢人。人家觉得你的项目还不错，能提供价值，自然就给你点 star 了。 
+那些到处骗 star 甚至是 刷 star 的行为，我就不多说了，有点丢人。人家觉得你的项目还不错，能提供价值，自然就给你点 star 了。
 
 **未来几年，我还是会持续完善 JavaGuide。**
 

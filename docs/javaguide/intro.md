@@ -1,5 +1,5 @@
 ---
-title:  项目介绍
+title: 项目介绍
 category: 走近项目
 ---
 

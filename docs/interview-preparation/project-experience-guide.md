@@ -71,7 +71,7 @@ Github 或者码云上面有很多实战类别项目，你可以选择一个来�
 
 ## 有没有还不错的项目推荐？
 
- **[《Java 面试指北》](../zhuanlan/java-mian-shi-zhi-bei.md)** 的「面试准备篇」中有一篇文章专门整理了一些比较高质量的实战项目，非常适合用来学习或者作为项目经验。
+**[《Java 面试指北》](../zhuanlan/java-mian-shi-zhi-bei.md)** 的「面试准备篇」中有一篇文章专门整理了一些比较高质量的实战项目，非常适合用来学习或者作为项目经验。
 
 ![](https://oss.javaguide.cn/javamianshizhibei/project-experience-guide.png)
 
@@ -111,4 +111,3 @@ Github 或者码云上面有很多实战类别项目，你可以选择一个来�
 并且，你还可以自定义检查规则。
 
 ![](https://oscimg.oschina.net/oscnet/up-6b618ad3bad0bc3f76e6066d90c8cd2f255.png)
-

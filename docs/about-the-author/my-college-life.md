@@ -6,7 +6,7 @@ tag:
   - 个人经历
 ---
 
-> 关于初高中的生活，可以看 2020年我写的[我曾经也是网瘾少年](https://javaguide.cn/about-the-author/internet-addiction-teenager.html)这篇文章。
+> 关于初高中的生活，可以看 2020 年我写的[我曾经也是网瘾少年](https://javaguide.cn/about-the-author/internet-addiction-teenager.html)这篇文章。
 
 2019 年 6 月份毕业，距今已经过去了 3 年。趁着高考以及应届生毕业之际，简单聊聊自己的大学生活。
 

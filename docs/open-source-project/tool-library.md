@@ -21,8 +21,8 @@ icon: codelibrary-fill
 ### Excel
 
 - [easyexcel](https://github.com/alibaba/easyexcel) :快速、简单避免 OOM 的 Java 处理 Excel 工具。
-- [excel-streaming-reader](https://github.com/monitorjbl/excel-streaming-reader)：Excel 流式代码风格读取工具（只支持读取 XLSX 文件），基于  Apache POI 封装，同时保留标准 POI API 的语法。
-- [myexcel](https://github.com/liaochong/myexcel)：一个集导入、导出、加密Excel等多项功能的工具包。
+- [excel-streaming-reader](https://github.com/monitorjbl/excel-streaming-reader)：Excel 流式代码风格读取工具（只支持读取 XLSX 文件），基于 Apache POI 封装，同时保留标准 POI API 的语法。
+- [myexcel](https://github.com/liaochong/myexcel)：一个集导入、导出、加密 Excel 等多项功能的工具包。
 
 ### JSON
 

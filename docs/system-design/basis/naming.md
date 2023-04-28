@@ -1,5 +1,5 @@
 ---
-title:  代码命名指南
+title: 代码命名指南
 category: 代码质量
 ---
 
@@ -17,7 +17,7 @@ category: 代码质量
 
 据说之前在 Quora 网站，由接近 5000 名程序员票选出来的最难的事情就是“命名”。
 
-大名鼎鼎的《重构》的作者老马（Martin Fowler）曾经在[TwoHardThings](https://martinfowler.com/bliki/TwoHardThings.html)这篇文章中提到过CS 领域有两大最难的事情：一是 **缓存失效** ，一是 **程序命名** 。
+大名鼎鼎的《重构》的作者老马（Martin Fowler）曾经在[TwoHardThings](https://martinfowler.com/bliki/TwoHardThings.html)这篇文章中提到过 CS 领域有两大最难的事情：一是 **缓存失效** ，一是 **程序命名** 。
 
 ![](https://oss.javaguide.cn/java-guide-blog/marting-naming.png)
 
@@ -233,8 +233,8 @@ Codelf 提供了在线网站版本，网址：[https://unbug.github.io/codelf/](
 
 1. 《阿里巴巴 Java 开发手册》
 2. 《Clean Code》
-3. Google Java 代码指南：https://google.github.io/styleguide/javaguide.html
-4. 告别编码5分钟，命名2小时！史上最全的Java命名规范参考：https://www.cnblogs.com/liqiangchn/p/12000361.html 
+3. Google Java 代码指南：<https://google.github.io/styleguide/javaguide.html>
+4. 告别编码 5 分钟，命名 2 小时！史上最全的 Java 命名规范参考：<https://www.cnblogs.com/liqiangchn/p/12000361.html>
 
 ## 总结
 
@@ -247,4 +247,3 @@ Codelf 提供了在线网站版本，网址：[https://unbug.github.io/codelf/](
 另外，国人开发的一个叫做 Codelf 的网站被很多人称为“变量命名神器”，当你为命名而头疼的时候，你可以去参考一下上面提供的一些命名示例。
 
 最后，祝愿大家都不用再为命名而困扰!
-

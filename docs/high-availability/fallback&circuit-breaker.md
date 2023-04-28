@@ -21,7 +21,6 @@ category: 高可用
   </a>
 </div>
 
-
 下面是星球提供的部分服务（点击下方图片即可获取知识星球的详细介绍）：
 
 <div align="center">
@@ -29,7 +28,6 @@ category: 高可用
     <img src="https://oss.javaguide.cn/xingqiu/xingqiufuwu.png" style="margin: 0 auto; " />
   </a>
 </div>
-
 
 **我有自己的原则，不割韭菜，用心做内容，真心希望帮助到你！**
 
@@ -42,7 +40,6 @@ category: 高可用
     <img src="https://oss.javaguide.cn/xingqiu/xingqiuyouhuijuanheyi.png" style="margin: 0 auto; " />
   </a>
 </div>
-
 
 进入星球之后，记得添加微信，我会发你详细的星球使用指南。
 

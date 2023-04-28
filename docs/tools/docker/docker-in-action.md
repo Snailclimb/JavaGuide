@@ -18,7 +18,7 @@ tag:
 - 用户可以方便地创建和使用容器，把自己的应用放入容器。容器还可以进行版本管理、复制、分享、修改，就像管理普通的代码一样。
 - Docker 可以**对进程进行封装隔离，属于操作系统层面的虚拟化技术。** 由于隔离的进程独立于宿主和其它的隔离的进程，因此也称其为容器。
 
-官网地址：https://www.docker.com/ 。
+官网地址：<https://www.docker.com/> 。
 
 ![认识容器](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/container.png)
 

@@ -63,7 +63,7 @@ head:
 
 ### 如何找到最合适的 CDN 节点？
 
-GSLB （Global Server Load Balance，全局负载均衡）是 CDN 的大脑，负责多个CDN节点之间相互协作，最常用的是基于 DNS 的 GSLB。
+GSLB （Global Server Load Balance，全局负载均衡）是 CDN 的大脑，负责多个 CDN 节点之间相互协作，最常用的是基于 DNS 的 GSLB。
 
 CDN 会通过 GSLB 找到最合适的 CDN 节点，更具体点来说是下面这样的：
 
@@ -92,15 +92,15 @@ CDN 服务提供商几乎都提供了这种比较基础的防盗链机制。
 
 通常情况下，我们会配合其他机制来确保静态资源被盗用，一种常用的机制是 **时间戳防盗链** 。相比之下，**时间戳防盗链** 的安全性更强一些。时间戳防盗链加密的 URL 具有时效性，过期之后就无法再被允许访问。
 
-时间戳防盗链的 URL 通常会有两个参数一个是签名字符串，一个是过期时间。签名字符串一般是通过对用户设定的加密字符串、请求路径、过期时间通过  MD5 哈希算法取哈希的方式获得。
+时间戳防盗链的 URL 通常会有两个参数一个是签名字符串，一个是过期时间。签名字符串一般是通过对用户设定的加密字符串、请求路径、过期时间通过 MD5 哈希算法取哈希的方式获得。
 
-时间戳防盗链 URL示例：
+时间戳防盗链 URL 示例：
 
 ```
 http://cdn.wangsu.com/4/123.mp3? wsSecret=79aead3bd7b5db4adeffb93a010298b5&wsTime=1601026312
 ```
 
--  `wsSecret` ：签名字符串。
+- `wsSecret` ：签名字符串。
 - `wsTime`: 过期时间。
 
 ![](https://oss.javaguide.cn/github/javaguide/high-performance/cdn/timestamp-anti-theft.png)
@@ -120,9 +120,6 @@ http://cdn.wangsu.com/4/123.mp3? wsSecret=79aead3bd7b5db4adeffb93a010298b5&wsTim
 
 ## 参考
 
-- 时间戳防盗链 - 七牛云 CDN：https://developer.qiniu.com/fusion/kb/1670/timestamp-hotlinking-prevention
-- CDN是个啥玩意？一文说个明白：https://mp.weixin.qq.com/s/Pp0C8ALUXsmYCUkM5QnkQw
-- 《透视 HTTP 协议》- 37 | CDN：加速我们的网络服务：http://gk.link/a/11yOG
-
-
-
+- 时间戳防盗链 - 七牛云 CDN：<https://developer.qiniu.com/fusion/kb/1670/timestamp-hotlinking-prevention>
+- CDN 是个啥玩意？一文说个明白：<https://mp.weixin.qq.com/s/Pp0C8ALUXsmYCUkM5QnkQw>
+- 《透视 HTTP 协议》- 37 | CDN：加速我们的网络服务：<http://gk.link/a/11yOG>

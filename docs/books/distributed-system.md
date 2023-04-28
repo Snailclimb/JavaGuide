@@ -40,7 +40,7 @@ icon: "distributed-network"
 
 ![](https://oss.javaguide.cn/github/javaguide/books/In-depth-understanding-of-distributed-transactions-xiaoyu.png)
 
-**[《深入理解分布式事务》](https://book.douban.com/subject/35626925/)**  这本书是的其中一位作者是 Apache ShenYu（incubating）网关创始人、Hmily、RainCat、Myth等分布式事务框架的创始人。
+**[《深入理解分布式事务》](https://book.douban.com/subject/35626925/)** 这本书是的其中一位作者是 Apache ShenYu（incubating）网关创始人、Hmily、RainCat、Myth 等分布式事务框架的创始人。
 
 学习分布式事务的时候，可以参考一下这本书。虽有一些小错误以及逻辑不通顺的地方，但对于各种分布式事务解决方案的介绍，总体来说还是不错的。
 

@@ -45,7 +45,7 @@ icon: "book"
 
 ### Nginx
 
-- **[nginx-tutorial](https://github.com/dunwu/nginx-tutorial)** ：一系列 Nginx 极简教程，包含HTTP 反向代理、HTTPS 反向代理、负载均衡、静态站点、文件服务器搭建等实战内容。
+- **[nginx-tutorial](https://github.com/dunwu/nginx-tutorial)** ：一系列 Nginx 极简教程，包含 HTTP 反向代理、HTTPS 反向代理、负载均衡、静态站点、文件服务器搭建等实战内容。
 
 ## 大数据
 

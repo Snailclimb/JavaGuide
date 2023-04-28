@@ -8,4 +8,3 @@ icon: a-MachineLearning
 - **[Smile](https://github.com/haifengl/smile)** ：基于 Java 和 Scala 的机器学习库。
 
 相关阅读：[Java 能用于机器学习和数据科学吗？-InfoQ](https://www.infoq.cn/article/GA9UeYlv8ohBzBso9eph)
-
