@@ -4,9 +4,15 @@ dependencies:
   '@vuepress/client':
     specifier: 2.0.0-beta.61
     version: 2.0.0-beta.61
+  husky:
+    specifier: ^8.0.3
+    version: 8.0.3
   markdownlint-cli:
     specifier: 0.33.0
     version: 0.33.0
+  nano-staged:
+    specifier: ^0.8.0
+    version: 0.8.0
   prettier:
     specifier: 2.8.8
     version: 2.8.8
@@ -3726,6 +3732,12 @@ packages:
     engines: {node: '>=14.18.0'}
     dev: false
 
+  /husky@8.0.3:
+    resolution: {integrity: sha512-+dQSyqPh4x1hlO1swXBiNb2HzTDN1I2IGLQx1GrBuiqFJfoMrnZWwVmatvSiO+Iz8fBUnf+lekwNo4c2LlXItg==}
+    engines: {node: '>=14'}
+    hasBin: true
+    dev: false
+
   /iconv-lite@0.6.3:
     resolution: {integrity: sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==}
     engines: {node: '>=0.10.0'}
@@ -4362,6 +4374,14 @@ packages:
 
   /ms@2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
+    dev: false
+
+  /nano-staged@0.8.0:
+    resolution: {integrity: sha512-QSEqPGTCJbkHU2yLvfY6huqYPjdBrOaTMKatO1F8nCSrkQGXeKwtCiCnsdxnuMhbg3DTVywKaeWLGCE5oJpq0g==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    hasBin: true
+    dependencies:
+      picocolors: 1.0.0
     dev: false
 
   /nanoid@3.3.6:
