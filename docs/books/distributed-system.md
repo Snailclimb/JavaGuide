@@ -18,9 +18,9 @@ icon: "distributed-network"
 
 ![](https://oss.javaguide.cn/github/javaguide/books/image-20220706121952258.png)
 
-作者专门写了一篇文章来介绍这本书的背后的故事，感兴趣的小伙伴可以自行查阅：https://zhuanlan.zhihu.com/p/487534882 。
+作者专门写了一篇文章来介绍这本书的背后的故事，感兴趣的小伙伴可以自行查阅：<https://zhuanlan.zhihu.com/p/487534882> 。
 
-最后，放上这本书的代码仓库和勘误地址：https://github.com/tangwz/DistSysDeepDive 。
+最后，放上这本书的代码仓库和勘误地址：<https://github.com/tangwz/DistSysDeepDive> 。
 
 ## 《数据密集型应用系统设计》
 
@@ -32,7 +32,7 @@ icon: "distributed-network"
 
 书中介绍的大部分概念你可能之前都听过，但是在看了书中的内容之后，你可能会豁然开朗：“哇塞！原来是这样的啊！这不是某技术的原理么？”。
 
-这本书我之前专门写过知乎回答介绍和推荐，没看过的朋友可以看看：[有哪些你看了以后大呼过瘾的编程书？ ](https://www.zhihu.com/question/50408698/answer/2278198495) 。
+这本书我之前专门写过知乎回答介绍和推荐，没看过的朋友可以看看：[有哪些你看了以后大呼过瘾的编程书？](https://www.zhihu.com/question/50408698/answer/2278198495) 。
 
 另外，如果你在阅读这本书的时候感觉难度比较大，很多地方读不懂的话，我这里推荐一下《深入理解分布式系统》作者写的[《DDIA 逐章精读》小册](https://ddia.qtmuniao.com)。
 

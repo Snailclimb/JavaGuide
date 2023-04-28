@@ -95,7 +95,7 @@ OK
 
 ### 如何实现锁的优雅续期？
 
-对于 Java 开发的小伙伴来说，已经有了现成的解决方案：**[Redisson](https://github.com/redisson/redisson)** 。其他语言的解决方案，可以在 Redis 官方文档中找到，地址：https://redis.io/topics/distlock 。
+对于 Java 开发的小伙伴来说，已经有了现成的解决方案：**[Redisson](https://github.com/redisson/redisson)** 。其他语言的解决方案，可以在 Redis 官方文档中找到，地址：<https://redis.io/topics/distlock> 。
 
 ![Distributed locks with Redis](https://oss.javaguide.cn/github/javaguide/redis-distributed-lock.png)
 
@@ -116,7 +116,7 @@ public Config setLockWatchdogTimeout(long lockWatchdogTimeout) {
     return this;
 }
 public long getLockWatchdogTimeout() {
-  	return lockWatchdogTimeout;
+   return lockWatchdogTimeout;
 }
 ```
 
@@ -276,7 +276,7 @@ InterProcessLock lock2 = new InterProcessSemaphoreMutex(client, lockPath2);
 InterProcessMultiLock lock = new InterProcessMultiLock(Arrays.asList(lock1, lock2));
 
 if (!lock.acquire(10, TimeUnit.SECONDS)) {
-  	throw new IllegalStateException("不能获取多锁");
+   throw new IllegalStateException("不能获取多锁");
 }
 System.out.println("已获取多锁");
 System.out.println("是否有第一个锁: " + lock1.isAcquiredInThisProcess());

@@ -66,4 +66,4 @@ icon: project
 - [mini-spring-cloud](https://github.com/DerekYRC/mini-spring-cloud) ：一个手写的简化版的 Spring Cloud，旨在帮助你快速熟悉 Spring Cloud 源码及掌握其核心原理。相关阅读：[手写一个简化版的 Spring Cloud！](https://mp.weixin.qq.com/s/v3FUp-keswE2EhcTaLpSMQ) 。
 - [itstack-demo-jvm](https://github.com/fuzhengwei/itstack-demo-jvm) ：通过 Java 代码来实现 JVM 的基础功能（搜索解析 class 文件、字节码命令、运行时数据区等。相关阅读：[《zachaxy 的手写 JVM 系列》](https://zachaxy.github.io/tags/JVM/)。
 - [Freedom](https://github.com/alchemystar/Freedom) ：自己 DIY 一个具有 ACID 的数据库。相关项目：[MYDB](https://github.com/CN-GuoZiyang/MYDB)（一个简单的数据库实现）、[toyDB](https://github.com/erikgrinaker/toydb)（Rust 实现的分布式 SQL 数据库）。
-- [lu-raft-kv](https://github.com/stateIs0/lu-raft-kv) ：一个 Java 版本的 Raft(CP) KV 分布式存储实现，非常适合想要深入学习 Raft 协议的小伙伴研究。lu-raft-kv 已经实现了 Raft 协议其中的两个核心功能：leader 选举和日志复制。如果你想要学习这个项目的话，建议你提前看一下作者写的项目介绍，比较详细，地址：http://thinkinjava.cn/2019/01/12/2019/2019-01-12-lu-raft-kv/ 。
+- [lu-raft-kv](https://github.com/stateIs0/lu-raft-kv) ：一个 Java 版本的 Raft(CP) KV 分布式存储实现，非常适合想要深入学习 Raft 协议的小伙伴研究。lu-raft-kv 已经实现了 Raft 协议其中的两个核心功能：leader 选举和日志复制。如果你想要学习这个项目的话，建议你提前看一下作者写的项目介绍，比较详细，地址：<http://thinkinjava.cn/2019/01/12/2019/2019-01-12-lu-raft-kv/> 。

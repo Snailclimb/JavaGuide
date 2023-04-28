@@ -66,5 +66,5 @@ category: 高可用
 
 ## 参考
 
-- 微服务之间调用超时的设置治理：https://www.infoq.cn/article/eyrslar53l6hjm5yjgyx
-- 超时、重试和抖动回退：https://aws.amazon.com/cn/builders-library/timeouts-retries-and-backoff-with-jitter/
+- 微服务之间调用超时的设置治理：<https://www.infoq.cn/article/eyrslar53l6hjm5yjgyx>
+- 超时、重试和抖动回退：<https://aws.amazon.com/cn/builders-library/timeouts-retries-and-backoff-with-jitter/>
