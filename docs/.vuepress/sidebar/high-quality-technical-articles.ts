@@ -19,7 +19,7 @@ export const highQualityTechnicalArticles = arraySidebar([
     collapsible: false,
     children: [
       "four-year-work-in-tencent-summary",
-      "two-years-of-back-end-develop--experience-in-didi&toutiao",
+      "two-years-of-back-end-develop--experience-in-didi-and-toutiao",
       "8-years-programmer-work-summary",
       "huawei-od-275-days",
     ],

@@ -134,10 +134,10 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 
 **重要知识点详解** ：
 
-- [OSI 和 TCP/IP 网络分层模型详解（基础）](./cs-basics/network/osi&tcp-ip-model.md)
+- [OSI 和 TCP/IP 网络分层模型详解（基础）](./cs-basics/network/osi-and-tcp-ip-model.md)
 - [应用层常见协议总结（应用层）](./cs-basics/network/application-layer-protocol.md)
-- [HTTP vs HTTPS（应用层）](./cs-basics/network/http&https.md)
-- [HTTP 1.0 vs HTTP 1.1（应用层）](./cs-basics/network/http1.0&http1.1.md)
+- [HTTP vs HTTPS（应用层）](./cs-basics/network/http-vs-https.md)
+- [HTTP 1.0 vs HTTP 1.1（应用层）](./cs-basics/network/http1.0-vs-http1.1.md)
 - [HTTP 常见状态码（应用层）](./cs-basics/network/http-status-codes.md)
 - [DNS 域名系统详解（应用层）](./cs-basics/network/dns.md)
 - [TCP 三次握手和四次挥手（传输层）](./cs-basics/network/tcp-connection-and-disconnection.md)
@@ -293,7 +293,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 
 - [认证授权基础概念详解](./system-design/security/basis-of-authority-certification.md)
 - [JWT 基础概念详解](./system-design/security/jwt-intro.md)
-- [JWT 优缺点分析以及常见问题解决方案](./system-design/security/advantages&disadvantages-of-jwt.md)
+- [JWT 优缺点分析以及常见问题解决方案](./system-design/security/advantages-and-disadvantages-of-jwt.md)
 - [SSO 单点登录详解](./system-design/security/sso-intro.md)
 - [权限系统设计详解](./system-design/security/design-of-authority-system.md)
 
@@ -317,10 +317,10 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 
 ### 理论&算法&协议
 
-- [CAP 理论和 BASE 理论解读](./distributed-system/theorem&algorithm&protocol/cap&base-theorem.md)
-- [Paxos 算法解读](./distributed-system/theorem&algorithm&protocol/paxos-algorithm.md)
-- [Raft 算法解读](./distributed-system/theorem&algorithm&protocol/raft-algorithm.md)
-- [Gossip 协议详解](./distributed-system/theorem&algorithm&protocol/gossip-protocl.md)
+- [CAP 理论和 BASE 理论解读](./distributed-system/protocol/cap-and-base-theorem.md)
+- [Paxos 算法解读](./distributed-system/protocol/paxos-algorithm.md)
+- [Raft 算法解读](./distributed-system/protocol/raft-algorithm.md)
+- [Gossip 协议详解](./distributed-system/protocol/gossip-protocl.md)
 
 ### API 网关
 
