@@ -26,6 +26,7 @@ export default sidebar({
       prefix: "interview-preparation/",
       children: [
         "teach-you-how-to-prepare-for-the-interview-hand-in-hand",
+        "resume-guide",
         "key-points-of-interview",
         "project-experience-guide",
         "interview-experience",

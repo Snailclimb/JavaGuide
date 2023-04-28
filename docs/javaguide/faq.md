@@ -9,7 +9,7 @@ category: 走近项目
 
 《JavaGuide 面试突击版》在我的公众号后台回复“**PDF**”即可获取，免费的。除了 《JavaGuide 面试突击版》之外，还会免费送你多本优质面试 PDF 手册。
 
-<!-- @include: @gzh.md -->
+<div align="center">  <img src="https://oss.javaguide.cn/github/javaguide/gongzhonghaoxuanchuan.png" style="margin: 0 auto;" />  </div>
 
 ## 如何看待 JavaGuide 的 star 数量很多？
 
@@ -34,7 +34,7 @@ JavaGuide 这个项目诞生一年左右就有出版社的老师联系我了，�
 - JavaGuide 的很多内容我还不是很满意，也一直在维护中，细心的小伙伴看我的提交记录就明白了。
 - 开源版本更容易维护和修改，也能让更多人更方便地参与到项目的建设中，这也是我最初做这个项目的初衷。
 - 我觉得出书是一件神圣的事情，自认能力还不够。
-- 个人精力有限，不光有本职工作，还弄了一个[知识星球](https://sourl.cn/psyWaE)赚点外快，还要维护完善 JavaGuide。
+- 个人精力有限，不光有本职工作，还弄了一个[知识星球](http://localhost:8080/about-the-author/zhishixingqiu-two-years.html)赚点外快，还要维护完善 JavaGuide。
 - ......
 
 这几年一直在默默完善，真心希望 JavaGuide 越来越好，帮助到更多朋友！也欢迎大家参与进来！

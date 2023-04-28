@@ -5,6 +5,8 @@ tag:
   - 计算机网络
 ---
 
+<!-- @include: @small-advertisement.snippet.md -->
+
 上篇主要是计算机网络基础和应用层相关的内容。
 
 ## 计算机网络基础
