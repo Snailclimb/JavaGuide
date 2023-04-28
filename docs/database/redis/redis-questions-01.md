@@ -12,6 +12,8 @@ head:
       content: 一篇文章总结Redis常见的知识点和面试题，涵盖Redis基础、Redis常见数据结构、Redis线程模型、Redis内存管理、Redis事务、Redis性能优化等内容。
 ---
 
+<!-- @include: @small-advertisement.snippet.md -->
+
 ## Redis 基础
 
 ### 什么是 Redis？

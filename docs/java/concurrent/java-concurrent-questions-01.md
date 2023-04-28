@@ -12,6 +12,8 @@ head:
       content: Java并发常见知识点和面试题总结（含详细解答），希望对你有帮助！
 ---
 
+<!-- @include: @small-advertisement.snippet.md -->
+
 ## 什么是线程和进程?
 
 ### 何为进程?

@@ -3,6 +3,8 @@ title: 个人介绍 Q&A
 category: 走近作者
 ---
 
+<!-- @include: @small-advertisement.snippet.md -->
+
 这篇文章我会通过 Q&A 的形式简单介绍一下我自己。
 
 ## 我是什么时候毕业的？
@@ -45,11 +47,11 @@ category: 走近作者
 
 ![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2020-8/1d38ea3b-da2a-41df-9ac4-087356e9b5b4-20200802185910087.png)
 
-## 为什么自称 Guide 哥？
+## 为什么自称 Guide？
 
-可能是因为我的项目名字叫做 JavaGuide , 所以导致有很多人称呼我为 **Guide 哥**。
+可能是因为我的项目名字叫做 JavaGuide , 所以导致有很多人称呼我为 **Guide哥**。
 
-后面，为了读者更方便称呼，我就将自己的笔名改成了 **Guide 哥**。
+后面，为了读者更方便称呼，我就将自己的笔名改成了 **Guide**。
 
 我早期写文章用的笔名是 SnailClimb 。很多人不知道这个名字是啥意思，给大家拆解一下就清楚了。SnailClimb=Snail（蜗牛）+Climb(攀登)。我从小就非常喜欢听周杰伦的歌曲，特别是他的《蜗牛》🐌 这首歌曲，另外，当年我高考发挥的算是比较失常，上了大学之后还算是比较“奋青”，所以，我就给自己起的笔名叫做 SnailClimb ，寓意自己要不断向上攀登，嘿嘿 😁
 

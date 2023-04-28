@@ -13,6 +13,8 @@ head:
       content: 一篇文章总结MySQL常见的知识点和面试题，涵盖MySQL基础、MySQL基础架构、MySQL存储引擎、MySQL查询缓存、MySQL事务、MySQL锁等内容。
 ---
 
+<!-- @include: @small-advertisement.snippet.md -->
+
 ## MySQL 基础
 
 ### 什么是关系型数据库？

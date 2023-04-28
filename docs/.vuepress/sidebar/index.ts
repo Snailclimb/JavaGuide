@@ -22,6 +22,7 @@ export default sidebar({
     {
       text: "面试准备",
       icon: "interview",
+      collapsible: true,
       prefix: "interview-preparation/",
       children: [
         "teach-you-how-to-prepare-for-the-interview-hand-in-hand",

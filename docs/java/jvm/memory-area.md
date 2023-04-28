@@ -5,6 +5,8 @@ tag:
   - JVM
 ---
 
+<!-- @include: @small-advertisement.snippet.md -->
+
 > 如果没有特殊说明，都是针对的是 HotSpot 虚拟机。
 >
 > 本文基于《深入理解 Java 虚拟机：JVM 高级特性与最佳实践》进行总结补充。

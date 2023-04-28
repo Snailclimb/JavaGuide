@@ -4,6 +4,8 @@ category: 知识星球
 star: 2
 ---
 
+<!-- @include: @small-advertisement.snippet.md -->
+
 时间过的真快，知识星球我已经平稳运行了 3 年有余了！
 
 在 2019 年 12 月 29 号，经过了大概一年左右的犹豫期，我正式确定要开始做一个自己的星球。
