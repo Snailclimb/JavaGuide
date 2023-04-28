@@ -52,7 +52,9 @@ export default hopeTheme({
       tasklist: true,
     },
     feed: {
+      atom: true,
       json: true,
+      rss: true,
     },
   },
 });
