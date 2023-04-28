@@ -5,19 +5,17 @@
   "description": "javaguide",
   "license": "MIT",
   "author": "Guide",
+  "packageManager": "pnpm@8.3.1",
   "scripts": {
-    "vite-build": "vuepress-vite build docs",
-    "vite-serve": "vuepress-vite dev docs",
-    "vite-clean-serve": "vuepress-vite dev docs --clean-cache",
-    "webpack-build": "vuepress-webpack build docs",
-    "webpack-clean-serve": "vuepress-webpack dev docs --clean-cache",
-    "webpack-serve": "vuepress-webpack dev docs"
+    "docs:build": "vuepress build docs",
+    "docs:dev": "vuepress dev docs",
+    "docs:clean-dev": "vuepress dev docs --clean-cache"
   },
   "dependencies": {
-    "vuepress": "^2.0.0-beta.53",
-    "vuepress-theme-hope": "^2.0.0-beta.122",
-    "vuepress-vite": "2.0.0-beta.53",
-    "vuepress-webpack": "2.0.0-beta.53",
-    "@vuepress/plugin-search": "^2.0.0-beta.53"
+    "@vuepress/client": "2.0.0-beta.61",
+    "vue": "3.2.47",
+    "vuepress": "2.0.0-beta.61",
+    "vuepress-plugin-search-pro": "2.0.0-beta.206",
+    "vuepress-theme-hope": "2.0.0-beta.206"
   }
 }

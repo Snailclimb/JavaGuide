@@ -1,10 +1,11 @@
 import { sidebar } from "vuepress-theme-hope";
-import { highQualityTechnicalArticles } from "./sidebar/high-quality-technical-articles";
-import { aboutTheAuthor } from "./sidebar/about-the-author";
-import { books } from "./sidebar/books";
-import { openSourceProject } from "./sidebar/open-source-project";
 
-export const sidebarConfig = sidebar({
+import { aboutTheAuthor } from "./about-the-author.js";
+import { books } from "./books.js";
+import { highQualityTechnicalArticles } from "./high-quality-technical-articles.js";
+import { openSourceProject } from "./open-source-project.js";
+
+export default sidebar({
   // 应该把更精确的路径放置在前边
   "/open-source-project/": openSourceProject,
   "/books/": books,
@@ -198,10 +199,7 @@ export const sidebarConfig = sidebar({
               text: "Linux",
               collapsible: true,
               icon: "linux",
-              children: [
-                "linux-intro",
-                "shell-intro",
-              ],
+              children: ["linux-intro", "shell-intro"],
             },
           ],
         },

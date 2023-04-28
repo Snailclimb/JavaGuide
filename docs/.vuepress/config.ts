@@ -1,14 +1,15 @@
 import { defineUserConfig } from "vuepress";
-import { themeConfig } from "./themeConfig";
-import { searchPlugin } from "@vuepress/plugin-search";
+import { searchProPlugin } from "vuepress-plugin-search-pro";
+
+import theme from "./theme.js";
 
 export default defineUserConfig({
   dest: "./dist",
-  theme: themeConfig,
-  shouldPrefetch: false,
+
   title: "JavaGuide(Java面试+学习指南)",
   description:
     "「Java学习指北+Java面试指南」一份涵盖大部分 Java 程序员所需要掌握的核心知识。准备 Java 面试，复习 Java 知识点，首选 JavaGuide！  ",
+
   head: [
     // meta
     ["meta", { name: "robots", content: "all" }],
@@ -43,28 +44,18 @@ export default defineUserConfig({
           s.parentNode.insertBefore(hm, s);
         })();`,
     ],
-    ["link", { rel: "stylesheet", href: "/iconfont/iconfont.css" }],
     ["link", { rel: "icon", href: "/favicon.ico" }],
   ],
+
   locales: {
     "/": {
       lang: "zh-CN",
     },
   },
-  plugins: [
-    searchPlugin({
-      // https://v2.vuepress.vuejs.org/zh/reference/plugin/search.html
-      // 排除首页
-      isSearchable: (page) => page.path !== "/",
-      maxSuggestions: 10,
-      hotKeys: ["s", "/"],
-      // 用于在页面的搜索索引中添加额外字段
-      getExtraFields: () => [],
-      locales: {
-        "/": {
-          placeholder: "搜索",
-        },
-      },
-    }),
-  ],
+
+  theme,
+
+  plugins: [searchProPlugin({ indexContent: true })],
+
+  shouldPrefetch: false,
 });
