@@ -1,0 +1,29 @@
+name: Docs Test
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  test-docs:
+    name: Test docs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          run_install: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: pnpm
+
+      - name: Build test
+        env:
+          NODE_OPTIONS: --max_old_space_size=4096
+        run: pnpm docs:build
