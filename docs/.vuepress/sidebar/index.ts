@@ -508,7 +508,7 @@ export default sidebar({
         "high-availability-system-design",
         "redundancy",
         "limit-request",
-        "fallback&circuit-breaker",
+        "fallback-and-circuit-breaker",
         "timeout-and-retry",
         "performance-test",
       ],

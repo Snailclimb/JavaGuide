@@ -402,7 +402,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 ### 降级&熔断
 
-[降级&熔断详解](./docs/high-availability/fallback&circuit-breaker.md)
+[降级&熔断详解](./docs/high-availability/fallback-and-circuit-breaker.md)
 
 ### 超时&重试
 
