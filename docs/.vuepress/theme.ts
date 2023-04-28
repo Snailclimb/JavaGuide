@@ -1,19 +1,28 @@
 import { hopeTheme } from "vuepress-theme-hope";
-import { navbarConfig } from "./navbar";
-import { sidebarConfig } from "./sidebar";
 
-export const themeConfig = hopeTheme({
+import navbar from "./navbar.js";
+import sidebar from "./sidebar/index.js";
+
+export default hopeTheme({
   logo: "/logo.png",
   hostname: "https://javaguide.cn/",
+
+  iconAssets: "//at.alicdn.com/t/c/font_2922463_9aayheyb3v7.css",
+
   author: {
     name: "Guide",
     url: "https://javaguide.cn/article/",
   },
+
   repo: "https://github.com/Snailclimb/JavaGuide",
   docsDir: "docs",
-  iconAssets: "//at.alicdn.com/t/c/font_2922463_9aayheyb3v7.css",
-  navbar: navbarConfig,
-  sidebar: sidebarConfig,
+
+  navbar,
+  sidebar,
+  footer:
+    '<a href="https://beian.miit.gov.cn/" target="_blank">鄂ICP备2020015769号-1</a>',
+  displayFooter: true,
+
   pageInfo: [
     "Author",
     "Category",
@@ -23,6 +32,7 @@ export const themeConfig = hopeTheme({
     "Word",
     "ReadingTime",
   ],
+
   blog: {
     intro: "/about-the-author/",
     sidebarDisplay: "mobile",
@@ -32,9 +42,7 @@ export const themeConfig = hopeTheme({
       Gitee: "https://gitee.com/SnailClimb",
     },
   },
-  footer:
-    '<a href="https://beian.miit.gov.cn/" target="_blank">鄂ICP备2020015769号-1</a>',
-  displayFooter: true,
+
   plugins: {
     blog: true,
     copyright: true,

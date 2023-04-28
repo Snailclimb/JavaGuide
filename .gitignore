@@ -1,15 +1,14 @@
-/node_modules
-/package-lock.json
+node_modules/
 # *.drawio
 *.drawio.bkp
 .DS_Store
 # VS Code Config file
 .vscode/
-# Vuepress Cache
-.cache/
-# Vuepress Temp
-.temp/
-# Vuepress Output
+# VuePress Cache
+**/.vuepress/.cache/
+# VuePress Temp
+**/.vuepress/.temp/
+# VuePress Output
 dist/
 # Build files
 packages/*/lib/

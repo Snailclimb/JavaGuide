@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 2922463 */
-  src: url('iconfont.woff2?t=1660530571134') format('woff2'),
-       url('iconfont.woff?t=1660530571134') format('woff'),
-       url('iconfont.ttf?t=1660530571134') format('truetype');
+  src: url("iconfont.woff2?t=1660530571134") format("woff2"),
+    url("iconfont.woff?t=1660530571134") format("woff"),
+    url("iconfont.ttf?t=1660530571134") format("truetype");
 }
 
 .iconfont {
@@ -220,4 +220,3 @@
 .icon-intellijidea:before {
   content: "\ebd1";
 }
-
