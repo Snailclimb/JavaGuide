@@ -27,8 +27,6 @@ tag:
 
 ![认识容器](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/container.png)
 
-
-
 ### 1.2 图解物理机,虚拟机与容器
 
 关于虚拟机与容器的对比在后面会详细介绍到，这里只是通过网上的图片加深大家对于物理机、虚拟机与容器这三者的理解(下面的图片来源于网络)。
@@ -70,7 +68,7 @@ tag:
 
 ### 2.3 Docker 容器的特点
 
-- **轻量** :  在一台机器上运行的多个 Docker 容器可以共享这台机器的操作系统内核；它们能够迅速启动，只需占用很少的计算和内存资源。镜像是通过文件系统层进行构造的，并共享一些公共文件。这样就能尽量降低磁盘用量，并能更快地下载镜像。
+- **轻量** : 在一台机器上运行的多个 Docker 容器可以共享这台机器的操作系统内核；它们能够迅速启动，只需占用很少的计算和内存资源。镜像是通过文件系统层进行构造的，并共享一些公共文件。这样就能尽量降低磁盘用量，并能更快地下载镜像。
 - **标准** : Docker 容器基于开放式标准，能够在所有主流 Linux 版本、Microsoft Windows 以及包括 VM、裸机服务器和云在内的任何基础设施上运行。
 - **安全** : Docker 赋予应用的隔离性不仅限于彼此隔离，还独立于底层的基础设施。Docker 默认提供最强的隔离，因此应用出现问题，也只是单个容器的问题，而不会波及到整台机器。
 
@@ -215,7 +213,7 @@ docker image ls # 查看所有已下载镜像
 
 比如我们要删除我们下载的 mysql 镜像。
 
-通过 `docker rmi [image]` （等价于`docker image rm [image]`）删除镜像之前首先要确保这个镜像没有被容器引用（可以通过标签名称或者镜像 ID删除）。通过我们前面讲的` docker ps`命令即可查看。
+通过 `docker rmi [image]` （等价于`docker image rm [image]`）删除镜像之前首先要确保这个镜像没有被容器引用（可以通过标签名称或者镜像 ID 删除）。通过我们前面讲的` docker ps`命令即可查看。
 
 ```shell
 ➜  ~ docker ps
@@ -233,10 +231,10 @@ REPOSITORY              TAG                 IMAGE ID            CREATED         
 mysql                   5.7                 f6509bac4980        3 months ago        373MB
 ```
 
-通过 IMAGE ID  或者 REPOSITORY 名字即可删除
+通过 IMAGE ID 或者 REPOSITORY 名字即可删除
 
 ```shell
-docker rmi f6509bac4980 #  或者 docker rmi mysql 
+docker rmi f6509bac4980 #  或者 docker rmi mysql
 ```
 
 ## 六 Build Ship and Run

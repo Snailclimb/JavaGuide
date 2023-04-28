@@ -7,7 +7,7 @@ head:
       content: Gradle,Groovy,Gradle Wrapper,Gradle 包装器,Gradle 插件
   - - meta
     - name: description
-      content:  Gradle 就是一个运行在 JVM 上的自动化的项目构建工具，用来帮助我们自动构建项目。
+      content: Gradle 就是一个运行在 JVM 上的自动化的项目构建工具，用来帮助我们自动构建项目。
 ---
 
 > 这部分内容主要根据 Gradle 官方文档整理，做了对应的删减，主要保留比较重要的部分，不涉及实战，主要是一些重要概念的介绍。

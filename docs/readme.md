@@ -16,14 +16,7 @@ footer: |-
   <a href="https://beian.miit.gov.cn/" target="_blank">鄂ICP备2020015769号-1</a> | 主题: <a href="https://vuepress-theme-hope.github.io/v2/" target="_blank">VuePress Theme Hope</a>
 ---
 
-<div align="center">
-     <p>
-        <a href="https://www.yuque.com/docs/share/8a30ffb5-83f3-40f9-baf9-38de68b906dc">
-            <img src="https://oss.javaguide.cn/xingqiu/xingqiu.png" style="margin: 0 auto; width: 850px;" />
-        </a>
-    </p>
-</div>
-
+<!-- @include: ./banner.snippet.md -->
 
 ## 关于网站
 
@@ -51,10 +44,4 @@ footer: |-
 
 最新更新会第一时间同步在公众号，推荐关注！另外，公众号上有很多干货不会同步在线阅读网站。
 
-<div style="text-align:center">
-    <p>
-        <a href="https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html">
-            <img src="https://oss.javaguide.cn/github/javaguide/gongzhonghaoxuanchuan.png" style="margin: 0 auto;" />
-        </a>
-    </p>
-</div>
+<!-- @include: ./gzh.snippet.md -->

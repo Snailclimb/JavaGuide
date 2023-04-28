@@ -47,8 +47,10 @@ export default hopeTheme({
     blog: true,
     copyright: true,
     mdEnhance: {
+      align: true,
       codetabs: true,
       container: true,
+      include: true,
       tasklist: true,
     },
     feed: {

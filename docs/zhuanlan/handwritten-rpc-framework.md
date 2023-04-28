@@ -19,6 +19,7 @@ category: 知识星球
 - Gitee 地址：[https://gitee.com/SnailClimb/guide-rpc-framework](https://gitee.com/SnailClimb/guide-rpc-framework) 。
 
 ## 星球其他资源
+
 除了 **《手写 RPC 框架》** 之外，星球还有 **《Java 必读源码系列》**（目前已经整理了 Dubbo 2.6.x 、Netty 4.x、SpringBoot2.1 的源码）、 **《Java 面试指北》** 、**《Kafka 常见面试题/知识点总结》** 等多个专属小册。
 
 ![](https://oss.javaguide.cn/xingqiu/image-20220316200015412.png)
@@ -46,8 +47,3 @@ category: 知识星球
 不过， **一定要确定需要再进** 。并且， **三天之内觉得内容不满意可以全额退款** 。
 
 **星球提供的服务质量还是很高的，非常适合准备面试的同学。我有自己的原则，不割韭菜，用心做内容，真心希望帮助到你！**
-
-
-
-
-
