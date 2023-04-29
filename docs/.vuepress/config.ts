@@ -57,7 +57,7 @@ export default defineUserConfig({
 
   plugins: [searchProPlugin({ indexContent: true })],
 
-  pagePatterns: ["**/*.md", "!*.snippet.md", "!.vuepress", "!node_modules"],
+  pagePatterns: ["**/*.md", "!**/*.snippet.md", "!.vuepress", "!node_modules"],
 
   shouldPrefetch: false,
 });

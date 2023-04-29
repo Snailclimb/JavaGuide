@@ -25,11 +25,10 @@ export default navbar([
         link: "/timeline/",
       },
       {
-        text: "旧版入口",
+        text: "旧版入口（不推荐）",
         icon: "java",
         link: "https://snailclimb.gitee.io/javaguide/#/",
       },
-      { text: "RSS", icon: "rss", link: "https://javaguide.cn/feed.json" },
     ],
   },
 ]);
