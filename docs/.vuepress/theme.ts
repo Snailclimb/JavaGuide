@@ -19,7 +19,9 @@ export default hopeTheme({
 
   repo: "https://github.com/Snailclimb/JavaGuide",
   docsDir: "docs",
-
+  // 纯净模式：https://theme-hope.vuejs.press/zh/guide/interface/pure.html
+  pure: true,
+  breadcrumb: false,
   navbar,
   sidebar,
   footer:

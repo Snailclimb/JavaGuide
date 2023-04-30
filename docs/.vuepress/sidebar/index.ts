@@ -184,6 +184,7 @@ export default sidebar({
                 "tcp-connection-and-disconnection",
                 "tcp-reliability-guarantee",
                 "arp",
+                "nat",
                 "network-attack-means",
               ],
             },
