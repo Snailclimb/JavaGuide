@@ -1,6 +1,7 @@
 ---
 title: 贡献指南
 category: 走近项目
+icon: guide
 ---
 
 欢迎参与 JavaGuide 的维护工作，这是一件非常有意义的事情。详细信息请看：[JavaGuide 贡献指南](https://zhuanlan.zhihu.com/p/464832264) 。

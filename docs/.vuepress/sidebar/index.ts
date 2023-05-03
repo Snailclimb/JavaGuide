@@ -11,7 +11,6 @@ export default sidebar({
   "/books/": books,
   "/about-the-author/": aboutTheAuthor,
   "/high-quality-technical-articles/": highQualityTechnicalArticles,
-  "/javaguide/": ["intro", "history", "contribution-guideline", "faq", "todo"],
   "/zhuanlan/": [
     "java-mian-shi-zhi-bei",
     "handwritten-rpc-framework",
@@ -19,6 +18,17 @@ export default sidebar({
   ],
   // 必须放在最后面
   "/": [
+    {
+      text: "必看",
+      icon: "star",
+      collapsible: true,
+      prefix: "javaguide/",
+      children: [
+        "intro",
+        "contribution-guideline",
+        "faq",
+      ],
+    },
     {
       text: "面试准备",
       icon: "interview",
@@ -364,7 +374,7 @@ export default sidebar({
     {
       text: "常用框架",
       prefix: "system-design/framework/",
-      icon: "framework",
+      icon: "component",
       collapsible: true,
       children: [
         {
@@ -393,7 +403,7 @@ export default sidebar({
     },
     {
       text: "系统设计",
-      icon: "xitongsheji",
+      icon: "design",
       prefix: "system-design/",
       collapsible: true,
       children: [
@@ -443,6 +453,7 @@ export default sidebar({
           text: "理论&算法&协议",
           icon: "suanfaku",
           prefix: "protocol/",
+          collapsible: true,
           children: [
             "cap-and-base-theorem",
             "paxos-algorithm",
@@ -450,13 +461,8 @@ export default sidebar({
             "gossip-protocl",
           ],
         },
-        "api-gateway",
-        "distributed-id",
-        "distributed-lock",
-        "distributed-transaction",
-        "distributed-configuration-center",
         {
-          text: "RPC（远程调用）详解",
+          text: "RPC详解",
           prefix: "rpc/",
           icon: "network",
           collapsible: true,
@@ -473,6 +479,11 @@ export default sidebar({
             "zookeeper/zookeeper-in-action",
           ],
         },
+        "api-gateway",
+        "distributed-id",
+        "distributed-lock",
+        "distributed-transaction",
+        "distributed-configuration-center",
       ],
     },
     {

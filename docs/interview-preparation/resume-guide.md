@@ -1,6 +1,7 @@
 ---
-title: 程序员简历编写指南
+title: 程序员简历编写指南(重要)
 category: 面试准备
+icon: jianli
 ---
 
 ::: tip 友情提示

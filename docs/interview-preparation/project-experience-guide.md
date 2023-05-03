@@ -1,6 +1,7 @@
 ---
 title: 项目经验指南
 category: 面试准备
+icon: project
 ---
 
 ::: tip 友情提示

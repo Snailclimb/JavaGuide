@@ -14,7 +14,7 @@ export const openSourceProject = arraySidebar([
   {
     text: "系统设计",
     link: "system-design",
-    icon: "xitongsheji",
+    icon: "design",
   },
   {
     text: "工具类库",

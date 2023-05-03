@@ -3,7 +3,7 @@ import { arraySidebar } from "vuepress-theme-hope";
 export const aboutTheAuthor = arraySidebar([
   {
     text: "个人经历",
-    icon: "zuozhe",
+    icon: "experience",
     collapsible: false,
     children: [
       "internet-addiction-teenager",

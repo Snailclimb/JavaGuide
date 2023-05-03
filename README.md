@@ -33,7 +33,6 @@
 - [项目介绍](./docs/javaguide/intro.md)
 - [贡献指南](./docs/javaguide/contribution-guideline.md)
 - [常见问题](./docs/javaguide/faq.md)
-- [项目待办](./docs/javaguide/todo.md)
 
 ## Java
 

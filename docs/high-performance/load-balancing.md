@@ -1,7 +1,7 @@
 ---
 title: 负载均衡详解
 category: 高性能
-icon: "fuzaijunheng"
+icon: fuzaijunheng
 head:
   - - meta
     - name: keywords

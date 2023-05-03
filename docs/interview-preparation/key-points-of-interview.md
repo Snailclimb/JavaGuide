@@ -1,6 +1,7 @@
 ---
-title: Java面试重点总结
+title: Java面试重点总结(重要)
 category: 面试准备
+icon: star
 ---
 
 ::: tip 友情提示

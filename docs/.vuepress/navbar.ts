@@ -4,7 +4,7 @@ export default navbar([
   { text: "面试指南", icon: "java", link: "/home.md" },
   {
     text: "知识星球",
-    icon: "code",
+    icon: "planet",
     link: "/about-the-author/zhishixingqiu-two-years.md",
   },
   { text: "开源项目", icon: "github", link: "/open-source-project/" },
@@ -23,12 +23,7 @@ export default navbar([
         text: "更新历史",
         icon: "history",
         link: "/timeline/",
-      },
-      {
-        text: "旧版入口（不推荐）",
-        icon: "java",
-        link: "https://snailclimb.gitee.io/javaguide/#/",
-      },
+      }
     ],
   },
 ]);

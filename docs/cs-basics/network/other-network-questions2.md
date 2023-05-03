@@ -137,6 +137,8 @@ NAT 不光可以缓解 IPv4 地址资源短缺的问题，还可以隐藏内部�
 
 ![NAT 实现 IP地址转换](https://oss.javaguide.cn/github/javaguide/cs-basics/network/network-address-translation.png)
 
+相关阅读：[NAT 协议详解（网络层）](./nat.md)。
+
 ## ARP
 
 ### 什么是 Mac 地址？

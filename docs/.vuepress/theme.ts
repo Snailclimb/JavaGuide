@@ -10,7 +10,7 @@ export default hopeTheme({
   logo: "/logo.png",
   hostname: "https://javaguide.cn/",
 
-  iconAssets: "//at.alicdn.com/t/c/font_2922463_9aayheyb3v7.css",
+  iconAssets: "//at.alicdn.com/t/c/font_2922463_kweia6fbo9.css",
 
   author: {
     name: "Guide",

@@ -21,7 +21,6 @@ footer: |-
 ## 关于网站
 
 - [项目介绍](./javaguide/intro.md)
-- [网站历史](./javaguide/history.md)
 - [贡献指南](./javaguide/contribution-guideline.md)
 - [常见问题](./javaguide/faq.md)
 
@@ -32,13 +31,13 @@ footer: |-
 - [我的知识星球快 3 岁了！](./about-the-author/zhishixingqiu-two-years.md)
 - [坚持写技术博客六年了](./about-the-author/writing-technology-blog-six-years.md)
 
-## PDF
+## 知识星球
 
-- [《JavaGuide 面试突击版》](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=100029614&idx=1&sn=62993c5cf10265cb7018db7f1ec67250&chksm=4ea1fb6579d67273499b7243641d4ef372decd08047bfbb6dfb5843ef81c7ccba209086cf345#rd)
-- [《消息队列常见知识点&面试题总结》](https://t.1yb.co/Fy0u)
-- [《Java 工程师进阶知识完全扫盲》](https://t.1yb.co/GXLF)
-- [《分布式相关面试题汇总》](https://t.1yb.co/GXLF)
-- [《图解计算机基础》](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=100021725&idx=1&sn=2db9664ca25363139a81691043e9fd8f&chksm=4ea19a1679d61300d8990f7e43bfc7f476577a81b712cf0f9c6f6552a8b219bc081efddb5c54#rd)
+对于准备面试的同学来说，强烈推荐我创建的一个纯粹的[Java 面试知识星球](../about-the-author/zhishixingqiu-two-years.md)，干货非常多，学习氛围也很不错！
+
+下面是星球提供的部分服务（点击下方图片即可获取知识星球的详细介绍）：
+
+[![星球服务](https://oss.javaguide.cn/xingqiu/xingqiufuwu.png)](../about-the-author/zhishixingqiu-two-years.md)
 
 ## 公众号
 

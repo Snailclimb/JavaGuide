@@ -1,6 +1,7 @@
 ---
-title: 手把手教你如何准备Java面试
+title: 手把手教你如何准备Java面试(重要)
 category: 知识星球
+icon: path
 ---
 
 ::: tip 友情提示
