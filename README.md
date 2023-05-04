@@ -324,22 +324,22 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 ### 理论&算法&协议
 
-- [CAP 理论和 BASE 理论解读](./docs/distributed-system/protocol/cap-and-base-theorem.md)
-- [Paxos 算法解读](./docs/distributed-system/protocol/paxos-algorithm.md)
-- [Raft 算法解读](./docs/distributed-system/protocol/raft-algorithm.md)
-- [Gossip 协议详解](./docs/distributed-system/protocol/gossip-protocl.md)
+- [CAP 理论和 BASE 理论解读](https://javaguide.cn/distributed-system/protocol/cap-and-base-theorem.html)
+- [Paxos 算法解读](https://javaguide.cn/distributed-system/protocol/paxos-algorithm.html)
+- [Raft 算法解读](https://javaguide.cn/distributed-system/protocol/raft-algorithm.html)
+- [Gossip 协议详解](https://javaguide.cn/distributed-system/protocol/gossip-protocl.html)
 
 ### RPC
 
-- [RPC 基础知识总结](./docs/distributed-system/rpc/rpc-intro.md)
-- [Dubbo 常见知识点&面试题总结](./docs/distributed-system/rpc/dubbo.md)
+- [RPC 基础知识总结](https://javaguide.cn/distributed-system/rpc/rpc-intro.html)
+- [Dubbo 常见知识点&面试题总结](https://javaguide.cn/distributed-system/rpc/dubbo.html)
 
 ### ZooKeeper
 
 > 这两篇文章可能有内容重合部分，推荐都看一遍。
 
-- [ZooKeeper 相关概念总结(入门)](./docs/distributed-system/distributed-process-coordination/zookeeper/zookeeper-intro.md)
-- [ZooKeeper 相关概念总结(进阶)](./docs/distributed-system/distributed-process-coordination/zookeeper/zookeeper-plus.md)
+- [ZooKeeper 相关概念总结(入门)](https://javaguide.cn/distributed-system/distributed-process-coordination/zookeeper/zookeeper-intro.html)
+- [ZooKeeper 相关概念总结(进阶)](https://javaguide.cn/distributed-system/distributed-process-coordination/zookeeper/zookeeper-plus.html)
 
 ### API 网关
 
@@ -348,29 +348,29 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 ### 分布式 ID
 
-[分布式 ID 详解](./docs/distributed-system/distributed-id.md)
+[分布式 ID 常见知识点&面试题总结](https://javaguide.cn/distributed-system/distributed-id.html)
 
 ### 分布式锁
 
-[分布式锁详解](./docs/distributed-system/distributed-lock.md)
+[分布式锁常见知识点&面试题总结](https://javaguide.cn/distributed-system/distributed-lock.html)
 
 ### 分布式事务
 
-[分布式事务详解](./docs/distributed-system/distributed-transaction.md)
+[分布式事务常见知识点&面试题总结](https://javaguide.cn/distributed-system/distributed-transaction.html)
 
 ### 分布式配置中心
 
-[分布式配置中心详解](./docs/distributed-system/distributed-configuration-center.md)
+[分布式配置中心常见知识点&面试题总结](./docs/distributed-system/distributed-configuration-center.md)
 
 ## 高性能
 
 ### 数据库读写分离&分库分表
 
-[数据库读写分离&分库分表详解](./docs/high-performance/read-and-write-separation-and-library-subtable.md)
+[数据库读写分离和分库分表常见知识点&面试题总结](./docs/high-performance/read-and-write-separation-and-library-subtable.md)
 
 ### 负载均衡
 
-[负载均衡详解](./docs/high-performance/load-balancing.md)
+[负载均衡常见知识点&面试题总结](./docs/high-performance/load-balancing.md)
 
 ### SQL 优化
 
@@ -378,15 +378,15 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 ### CDN
 
-[CDN（内容分发网络）详解](./docs/high-performance/cdn.md)
+[CDN（内容分发网络）常见知识点&面试题总结](./docs/high-performance/cdn.md)
 
 ### 消息队列
 
 - [消息队列基础知识总结](./docs/high-performance/message-queue/message-queue.md)
-- [Disruptor 常见面试题](./docs/high-performance/message-queue/disruptor-questions.md)
-- [RabbitMQ 常见面试题](./docs/high-performance/message-queue/rabbitmq-questions.md)
-- [RocketMQ 常见面试题总结](./docs/high-performance/message-queue/rocketmq-questions.md)
-- [Kafka 常见问题总结](./docs/high-performance/message-queue/kafka-questions-01.md)
+- [Disruptor 常见知识点&面试题总结](./docs/high-performance/message-queue/disruptor-questions.md)
+- [RabbitMQ 常见知识点&面试题总结](./docs/high-performance/message-queue/rabbitmq-questions.md)
+- [RocketMQ 常见知识点&面试题总结](./docs/high-performance/message-queue/rocketmq-questions.md)
+- [Kafka 常见知识点&面试题总结](./docs/high-performance/message-queue/kafka-questions-01.md)
 
 ## 高可用
 

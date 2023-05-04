@@ -1,5 +1,5 @@
 ---
-title: Disruptor常见面试题总结
+title: Disruptor常见问题总结
 category: 高性能
 tag:
   - 消息队列

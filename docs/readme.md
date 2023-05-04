@@ -33,11 +33,11 @@ footer: |-
 
 ## 知识星球
 
-对于准备面试的同学来说，强烈推荐我创建的一个纯粹的[Java 面试知识星球](../about-the-author/zhishixingqiu-two-years.md)，干货非常多，学习氛围也很不错！
+对于准备面试的同学来说，强烈推荐我创建的一个纯粹的[Java 面试知识星球](./about-the-author/zhishixingqiu-two-years.md)，干货非常多，学习氛围也很不错！
 
 下面是星球提供的部分服务（点击下方图片即可获取知识星球的详细介绍）：
 
-[![星球服务](https://oss.javaguide.cn/xingqiu/xingqiufuwu.png)](../about-the-author/zhishixingqiu-two-years.md)
+[![星球服务](https://oss.javaguide.cn/xingqiu/xingqiufuwu.png)](./about-the-author/zhishixingqiu-two-years.md)
 
 ## 公众号
 

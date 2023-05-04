@@ -1,5 +1,5 @@
 ---
-title: RocketMQ常见面试题总结
+title: RocketMQ常见问题总结
 category: 高性能
 tag:
   - RocketMQ

@@ -339,29 +339,29 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 
 ### 分布式 ID
 
-[分布式 ID 详解](./distributed-system/distributed-id.md)
+[分布式 ID 常见知识点&面试题总结](./distributed-system/distributed-id.md)
 
 ### 分布式锁
 
-[分布式锁详解](./distributed-system/distributed-lock.md)
+[分布式锁常见知识点&面试题总结](./distributed-system/distributed-lock.md)
 
 ### 分布式事务
 
-[分布式事务详解](./distributed-system/distributed-transaction.md)
+[分布式事务常见知识点&面试题总结](./distributed-system/distributed-transaction.md)
 
 ### 分布式配置中心
 
-[分布式配置中心详解](./distributed-system/distributed-configuration-center.md)
+[分布式配置中心常见知识点&面试题总结](./distributed-system/distributed-configuration-center.md)
 
 ## 高性能
 
 ### 数据库读写分离&分库分表
 
-[数据库读写分离&分库分表详解](./high-performance/read-and-write-separation-and-library-subtable.md)
+[数据库读写分离和分库分表常见知识点&面试题总结](./high-performance/read-and-write-separation-and-library-subtable.md)
 
 ### 负载均衡
 
-[负载均衡详解](./high-performance/load-balancing.md)
+[负载均衡常见知识点&面试题总结](./high-performance/load-balancing.md)
 
 ### SQL 优化
 
@@ -369,15 +369,15 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 
 ### CDN
 
-[CDN（内容分发网络）详解](./high-performance/cdn.md)
+[CDN（内容分发网络）常见知识点&面试题总结](./high-performance/cdn.md)
 
 ### 消息队列
 
 - [消息队列基础知识总结](./high-performance/message-queue/message-queue.md)
-- [Disruptor 常见面试题](./high-performance/message-queue/disruptor-questions.md)
-- [RabbitMQ 常见面试题](./high-performance/message-queue/rabbitmq-questions.md)
-- [RocketMQ 常见面试题总结](./high-performance/message-queue/rocketmq-questions.md)
-- [Kafka 常见问题总结](./high-performance/message-queue/kafka-questions-01.md)
+- [Disruptor 常见知识点&面试题总结](./high-performance/message-queue/disruptor-questions.md)
+- [RabbitMQ 常见知识点&面试题总结](./high-performance/message-queue/rabbitmq-questions.md)
+- [RocketMQ 常见知识点&面试题总结](./high-performance/message-queue/rocketmq-questions.md)
+- [Kafka 常常见知识点&面试题总结](./high-performance/message-queue/kafka-questions-01.md)
 
 ## 高可用
 

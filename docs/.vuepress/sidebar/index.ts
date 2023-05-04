@@ -490,11 +490,13 @@ export default sidebar({
         {
           text: "分布式事务",
           icon: "transanction",
+          collapsible: true,
           children: ["distributed-transaction"],
         },
         {
           text: "分布式配置中心",
           icon: "configuration",
+          collapsible: true,
           children: ["distributed-configuration-center"],
         },
       ],
