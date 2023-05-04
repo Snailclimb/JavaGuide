@@ -320,9 +320,22 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 - [Raft 算法解读](./distributed-system/protocol/raft-algorithm.md)
 - [Gossip 协议详解](./distributed-system/protocol/gossip-protocl.md)
 
+### RPC
+
+- [RPC 基础知识总结](./distributed-system/rpc/rpc-intro.md)
+- [Dubbo 常见知识点&面试题总结](./distributed-system/rpc/dubbo.md)
+
+### ZooKeeper
+
+> 这两篇文章可能有内容重合部分，推荐都看一遍。
+
+- [ZooKeeper 相关概念总结(入门)](./distributed-system/distributed-process-coordination/zookeeper/zookeeper-intro.md)
+- [ZooKeeper 相关概念总结(进阶)](./distributed-system/distributed-process-coordination/zookeeper/zookeeper-plus.md)
+
 ### API 网关
 
-[API 网关详解](./distributed-system/api-gateway.md)
+- [API 网关基础知识总结](./distributed-system/api-gateway.md)
+- [Spring Cloud Gateway 常见知识点&面试题总结](./distributed-system/spring-cloud-gateway-questions.md)
 
 ### 分布式 ID
 
@@ -339,19 +352,6 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 ### 分布式配置中心
 
 [分布式配置中心详解](./distributed-system/distributed-configuration-center.md)
-
-### RPC
-
-- [RPC 基础常见知识点&面试题总结](./distributed-system/rpc/rpc-intro.md)
-- [Dubbo 常见知识点&面试题总结](./distributed-system/rpc/dubbo.md)
-
-### ZooKeeper
-
-> 前两篇文章可能有内容重合部分，推荐都看一遍。
-
-- [ZooKeeper 相关概念总结(入门)](./distributed-system/distributed-process-coordination/zookeeper/zookeeper-intro.md)
-- [ZooKeeper 相关概念总结(进阶)](./distributed-system/distributed-process-coordination/zookeeper/zookeeper-plus.md)
-- [ZooKeeper 实战](./distributed-system/distributed-process-coordination/zookeeper/zookeeper-in-action.md)
 
 ## 高性能
 
@@ -373,8 +373,8 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 
 ### 消息队列
 
-消息队列在分布式系统中主要是为了解耦和削峰。相关阅读： [消息队列常见问题总结](./high-performance/message-queue/message-queue.md)。
-
+- [消息队列基础知识总结](./high-performance/message-queue/message-queue.md)
+- [Disruptor 常见面试题](./high-performance/message-queue/disruptor-questions.md)
 - [RabbitMQ 常见面试题](./high-performance/message-queue/rabbitmq-questions.md)
 - [RocketMQ 常见面试题总结](./high-performance/message-queue/rocketmq-questions.md)
 - [Kafka 常见问题总结](./high-performance/message-queue/kafka-questions-01.md)

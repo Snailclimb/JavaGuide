@@ -1,5 +1,5 @@
 ---
-title: ZooKeeper 相关概念总结(进阶)
+title: ZooKeeper相关概念总结(进阶)
 category: 分布式
 tag:
   - ZooKeeper

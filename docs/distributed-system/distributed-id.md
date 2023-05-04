@@ -1,7 +1,6 @@
 ---
-title: 分布式ID详解
+title: 分布式ID常见问题总结
 category: 分布式
-icon: "id"
 ---
 
 ## 分布式 ID 介绍

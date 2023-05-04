@@ -23,11 +23,7 @@ export default sidebar({
       icon: "star",
       collapsible: true,
       prefix: "javaguide/",
-      children: [
-        "intro",
-        "contribution-guideline",
-        "faq",
-      ],
+      children: ["intro", "contribution-guideline", "faq"],
     },
     {
       text: "面试准备",
@@ -462,28 +458,45 @@ export default sidebar({
           ],
         },
         {
-          text: "RPC详解",
+          text: "RPC",
           prefix: "rpc/",
           icon: "network",
-          collapsible: true,
           children: ["rpc-intro", "dubbo"],
         },
         {
-          text: "ZooKeeper 详解",
+          text: "ZooKeeper",
           icon: "framework",
-          prefix: "distributed-process-coordination/",
-          collapsible: true,
+          prefix: "distributed-process-coordination/zookeeper/",
           children: [
-            "zookeeper/zookeeper-intro",
-            "zookeeper/zookeeper-plus",
-            "zookeeper/zookeeper-in-action",
+            "zookeeper-intro",
+            "zookeeper-plus",
           ],
         },
-        "api-gateway",
-        "distributed-id",
-        "distributed-lock",
-        "distributed-transaction",
-        "distributed-configuration-center",
+        {
+          text: "API网关",
+          icon: "gateway",
+          children: ["api-gateway","spring-cloud-gateway-questions"],
+        },
+        {
+          text: "分布式ID",
+          icon: "id",
+          children: ["distributed-id"],
+        },
+        {
+          text: "分布式锁",
+          icon: "lock",
+          children: ["distributed-lock"],
+        },
+        {
+          text: "分布式事务",
+          icon: "transanction",
+          children: ["distributed-transaction"],
+        },
+        {
+          text: "分布式配置中心",
+          icon: "configuration",
+          children: ["distributed-configuration-center"],
+        },
       ],
     },
     {
@@ -492,10 +505,24 @@ export default sidebar({
       prefix: "high-performance/",
       collapsible: true,
       children: [
-        "read-and-write-separation-and-library-subtable",
-        "load-balancing",
-        "cdn",
-        "sql-optimization",
+        {
+          text: "CDN",
+          icon: "cdn",
+          children: ["cdn"],
+        },
+        {
+          text: "负载均衡",
+          icon: "fuzaijunheng",
+          children: ["load-balancing"],
+        },
+        {
+          text: "数据库优化",
+          icon: "mysql",
+          children: [
+            "read-and-write-separation-and-library-subtable",
+            "sql-optimization",
+          ],
+        },
         {
           text: "消息队列",
           prefix: "message-queue/",
@@ -503,6 +530,7 @@ export default sidebar({
           collapsible: true,
           children: [
             "message-queue",
+            "disruptor-questions",
             "kafka-questions-01",
             "rocketmq-questions",
             "rabbitmq-questions",

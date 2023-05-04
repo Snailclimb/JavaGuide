@@ -1,5 +1,5 @@
 ---
-title: RPC 基础常见面试题总结
+title: RPC基础知识总结
 category: 分布式
 tag:
   - rpc

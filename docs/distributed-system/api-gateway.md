@@ -1,7 +1,6 @@
 ---
-title: API网关详解
+title: API网关基础知识总结
 category: 分布式
-icon: "gateway"
 ---
 
 ## 什么是网关？

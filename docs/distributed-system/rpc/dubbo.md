@@ -1,5 +1,5 @@
 ---
-title: Dubbo 常见面试题总结
+title: Dubbo常见问题总结
 category: 分布式
 tag:
   - rpc

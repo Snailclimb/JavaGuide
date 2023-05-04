@@ -1,7 +1,6 @@
 ---
 title: CDN（内容分发网络）详解
 category: 高性能
-icon: cdn
 head:
   - - meta
     - name: keywords
