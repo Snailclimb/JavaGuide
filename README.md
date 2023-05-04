@@ -384,9 +384,9 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 消息队列在分布式系统中主要是为了解耦和削峰。相关阅读： [消息队列常见问题总结](./docs/high-performance/message-queue/message-queue.md)。
 
-- **RabbitMQ** : [RabbitMQ 基础知识总结](./docs/high-performance/message-queue/rabbitmq-intro.md)、[RabbitMQ 常见面试题](./docs/high-performance/message-queue/rabbitmq-questions.md)
-- **RocketMQ** : [RocketMQ 基础知识总结](./docs/high-performance/message-queue/rocketmq-intro.md)、[RocketMQ 常见面试题总结](./docs/high-performance/message-queue/rocketmq-questions.md)
-- **Kafka** ：[Kafka 常见问题总结](./docs/high-performance/message-queue/kafka-questions-01.md)
+- [RabbitMQ 常见面试题](./docs/high-performance/message-queue/rabbitmq-questions.md)
+- [RocketMQ 常见面试题总结](./docs/high-performance/message-queue/rocketmq-questions.md)
+- [Kafka 常见问题总结](./docs/high-performance/message-queue/kafka-questions-01.md)
 
 ## 高可用
 

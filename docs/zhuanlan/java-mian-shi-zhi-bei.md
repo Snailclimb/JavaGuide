@@ -64,7 +64,7 @@ star: 5
 
 ![《Java 面试指北》练级攻略篇](https://oss.javaguide.cn/javamianshizhibei/training-strategy-articles.png)
 
-每一篇内容都非常干货，不少球友看了之后表示收获漫漫。不过，最重要的还是知行合一。
+每一篇内容都非常干货，不少球友看了之后表示收获满满。不过，最重要的还是知行合一。
 
 ## 星球其他资源
 

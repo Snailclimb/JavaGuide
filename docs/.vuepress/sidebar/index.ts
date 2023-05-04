@@ -504,9 +504,7 @@ export default sidebar({
           children: [
             "message-queue",
             "kafka-questions-01",
-            "rocketmq-intro",
             "rocketmq-questions",
-            "rabbitmq-intro",
             "rabbitmq-questions",
           ],
         },
