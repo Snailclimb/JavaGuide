@@ -29,11 +29,11 @@ tag:
 
 ![](https://oss.javaguide.cn/github/javaguide/about-the-author/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0MzM3Mjcy,size_16,color_FFFFFF,t_70.png)
 
-累计有 **511** 个 **issue** 和 **575** 个 **pr**。所有的 pr 都已经被处理，仅有 15 个左右的 issue 我还未抽出时间处理。
+累计有 **511** 个 **issue** 和 **575** 个 **PR**。所有的 PR 都已经被处理，仅有 15 个左右的 issue 我还未抽出时间处理。
 
 ![](https://oss.javaguide.cn/github/javaguide/about-the-author/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0MzM3Mjcy,size_16,color_FFFFFF,t_70-20230309224044850.png)
 
-其实，相比于 star 数量，你看看仓库的 issue 和 pr 更能说明你的项目是否有价值。
+其实，相比于 star 数量，你看看仓库的 issue 和 PR 更能说明你的项目是否有价值。
 
 那些到处骗 star 甚至是 刷 star 的行为，我就不多说了，有点丢人。人家觉得你的项目还不错，能提供价值，自然就给你点 star 了。
 
