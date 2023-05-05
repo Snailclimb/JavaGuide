@@ -5,9 +5,9 @@ title: JavaGuide（Java学习&&面试指南）
 
 ::: tip 友情提示
 
-- **面试专版** ：准备 Java 面试的小伙伴可以考虑面试专版：**[《Java 面试指北 》](./zhuanlan/java-mian-shi-zhi-bei.md)** (质量很高，专为面试打造，配合 JavaGuide 食用)。
-- **知识星球** ：专属面试小册/一对一交流/简历修改/专属求职指南，欢迎加入 **[JavaGuide 知识星球](./about-the-author/zhishixingqiu-two-years.md)**（点击链接即可查看星球的详细介绍，一定确定自己真的需要再加入）。
-- **转载须知** ：以下所有文章如非文首说明为转载皆为 JavaGuide 原创，转载在文首注明出处，如发现恶意抄袭/搬运，会动用法律武器维护自己的权益。让我们一起维护一个良好的技术创作环境！
+- **面试专版**：准备 Java 面试的小伙伴可以考虑面试专版：**[《Java 面试指北 》](./zhuanlan/java-mian-shi-zhi-bei.md)** (质量很高，专为面试打造，配合 JavaGuide 食用)。
+- **知识星球**：专属面试小册/一对一交流/简历修改/专属求职指南，欢迎加入 **[JavaGuide 知识星球](./about-the-author/zhishixingqiu-two-years.md)**（点击链接即可查看星球的详细介绍，一定确定自己真的需要再加入）。
+- **转载须知**：以下所有文章如非文首说明为转载皆为 JavaGuide 原创，转载在文首注明出处，如发现恶意抄袭/搬运，会动用法律武器维护自己的权益。让我们一起维护一个良好的技术创作环境！
 
 :::
 
@@ -36,7 +36,7 @@ title: JavaGuide（Java学习&&面试指南）
 - [Java 基础常见知识点&面试题总结(中)](./java/basis/java-basic-questions-02.md)
 - [Java 基础常见知识点&面试题总结(下)](./java/basis/java-basic-questions-03.md)
 
-**重要知识点详解** ：
+**重要知识点详解**：
 
 - [为什么 Java 中只有值传递？](./java/basis/why-there-only-value-passing-in-java.md)
 - [Java 序列化详解](./java/basis/serialization.md)
@@ -50,13 +50,13 @@ title: JavaGuide（Java学习&&面试指南）
 
 ### 集合
 
-**知识点/面试题总结** ：
+**知识点/面试题总结**：
 
 - [Java 集合常见知识点&面试题总结(上)](./java/collection/java-collection-questions-01.md) (必看 :+1:)
 - [Java 集合常见知识点&面试题总结(下)](./java/collection/java-collection-questions-02.md) (必看 :+1:)
 - [Java 容器使用注意事项总结](./java/collection/java-collection-precautions-for-use.md)
 
-**源码分析** ：
+**源码分析**：
 
 - [ArrayList 源码+扩容机制分析](./java/collection/arraylist-source-code.md)
 - [HashMap(JDK1.8)源码+底层数据结构分析](./java/collection/hashmap-source-code.md)
@@ -76,10 +76,10 @@ title: JavaGuide（Java学习&&面试指南）
 - [Java 并发常见知识点&面试题总结（中）](./java/concurrent/java-concurrent-questions-02.md)
 - [Java 并发常见知识点&面试题总结（下）](./java/concurrent/java-concurrent-questions-03.md)
 
-**重要知识点详解** ：
+**重要知识点详解**：
 
 - [JMM（Java 内存模型）详解](./java/concurrent/jmm.md)
-- **线程池** ：[Java 线程池详解](./java/concurrent/java-thread-pool-summary.md)、[Java 线程池最佳实践](./java/concurrent/java-thread-pool-best-practices.md)
+- **线程池**：[Java 线程池详解](./java/concurrent/java-thread-pool-summary.md)、[Java 线程池最佳实践](./java/concurrent/java-thread-pool-best-practices.md)
 - [ThreadLocal 详解](./java/concurrent/threadlocal.md)
 - [Java 并发容器总结](./java/concurrent/java-concurrent-collections.md)
 - [Atomic 原子类总结](./java/concurrent/atomic-classes.md)
@@ -101,7 +101,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 
 ### 新特性
 
-- **Java 8** ：[Java 8 新特性总结（翻译）](./java/new-features/java8-tutorial-translate.md)、[Java8 常用新特性总结](./java/new-features/java8-common-new-features.md)
+- **Java 8**：[Java 8 新特性总结（翻译）](./java/new-features/java8-tutorial-translate.md)、[Java8 常用新特性总结](./java/new-features/java8-common-new-features.md)
 - [Java 9 新特性概览](./java/new-features/java9.md)
 - [Java 10 新特性概览](./java/new-features/java10.md)
 - [Java 11 新特性概览](./java/new-features/java11.md)
@@ -119,20 +119,19 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 
 - [操作系统常见知识点&面试题总结(上)](./cs-basics/operating-system/operating-system-basic-questions-01.md)
 - [操作系统常见知识点&面试题总结(下)](./cs-basics/operating-system/operating-system-basic-questions-02.md)
-- **Linux** ：
+- **Linux**：
   - [后端程序员必备的 Linux 基础知识总结](./cs-basics/operating-system/linux-intro.md)
   - [Shell 编程基础知识总结](./cs-basics/operating-system/shell-intro.md)
 
-
 ### 网络
 
-**知识点/面试题总结** ：
+**知识点/面试题总结**：
 
 - [计算机网络常见知识点&面试题总结(上)](./cs-basics/network/other-network-questions.md)
 - [计算机网络常见知识点&面试题总结(下)](./cs-basics/network/other-network-questions2.md)
 - [谢希仁老师的《计算机网络》内容总结（补充）](./cs-basics/network/computer-network-xiexiren-summary.md)
 
-**重要知识点详解** ：
+**重要知识点详解**：
 
 - [OSI 和 TCP/IP 网络分层模型详解（基础）](./cs-basics/network/osi-and-tcp-ip-model.md)
 - [应用层常见协议总结（应用层）](./cs-basics/network/application-layer-protocol.md)
@@ -153,9 +152,9 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 - [线性数据结构 :数组、链表、栈、队列](./cs-basics/data-structure/linear-data-structure.md)
 - [图](./cs-basics/data-structure/graph.md)
 - [堆](./cs-basics/data-structure/heap.md)
-- [树](./cs-basics/data-structure/tree.md) ：重点关注[红黑树](./cs-basics/data-structure/red-black-tree.md)、B-，B+，B\*树、LSM 树
+- [树](./cs-basics/data-structure/tree.md)：重点关注[红黑树](./cs-basics/data-structure/red-black-tree.md)、B-，B+，B\*树、LSM 树
 
-其他常用数据结构 ：
+其他常用数据结构：
 
 - [布隆过滤器](./cs-basics/data-structure/bloom-filter.md)
 
@@ -166,7 +165,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 - [算法学习书籍+资源推荐](https://www.zhihu.com/question/323359308/answer/1545320858) 。
 - [如何刷 Leetcode?](https://www.zhihu.com/question/31092580/answer/1534887374)
 
-**常见算法问题总结** ：
+**常见算法问题总结**：
 
 - [几道常见的字符串算法题总结](./cs-basics/algorithms/string-algorithm-problems.md)
 - [几道常见的链表算法题总结](./cs-basics/algorithms/linkedlist-algorithm-problems.md)
@@ -278,7 +277,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 - [Spring/Spring Boot 常用注解总结](./system-design/framework/spring/spring-common-annotations.md)
 - [SpringBoot 入门指南](https://github.com/Snailclimb/springboot-guide)
 
-**重要知识点详解** ：
+**重要知识点详解**：
 
 - [Spring 事务详解](./system-design/framework/spring/spring-transaction.md)
 - [Spring 中的设计模式详解](./system-design/framework/spring/spring-design-patterns-summary.md)
@@ -409,10 +408,10 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 
 ### 灾备设计和异地多活
 
-**灾备** = 容灾+备份。
+**灾备** = 容灾 + 备份。
 
-- **备份** ： 将系统所产生的的所有重要数据多备份几份。
-- **容灾** ： 在异地建立两个完全相同的系统。当某个地方的系统突然挂掉，整个应用系统可以切换到另一个，这样系统就可以正常提供服务了。
+- **备份**：将系统所产生的的所有重要数据多备份几份。
+- **容灾**：在异地建立两个完全相同的系统。当某个地方的系统突然挂掉，整个应用系统可以切换到另一个，这样系统就可以正常提供服务了。
 
 **异地多活** 描述的是将服务部署在异地并且服务同时对外提供服务。和传统的灾备设计的最主要区别在于“多活”，即所有站点都是同时在对外提供服务的。异地多活是为了应对突发状况比如火灾、地震等自然或者人为灾害。
 

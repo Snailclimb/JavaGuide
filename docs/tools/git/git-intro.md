@@ -114,8 +114,8 @@ Git 有三种状态，你的文件可能处于其中之一：
 3. **忽略文件**：`.gitignore` 文件
 4. **提交更新:** `git commit -m "代码提交信息"` （每次准备提交前，先用 `git status` 看下，是不是都已暂存起来了， 然后再运行提交命令 `git commit`）
 5. **跳过使用暂存区域更新的方式** : `git commit -a -m "代码提交信息"`。 `git commit` 加上 `-a` 选项，Git 就会自动把所有已经跟踪过的文件暂存起来一并提交，从而跳过 `git add` 步骤。
-6. **移除文件** ：`git rm filename` （从暂存区域移除，然后提交。）
-7. **对文件重命名** ：`git mv README.md README`(这个命令相当于`mv README.md README`、`git rm README.md`、`git add README` 这三条命令的集合)
+6. **移除文件**：`git rm filename` （从暂存区域移除，然后提交。）
+7. **对文件重命名**：`git mv README.md README`(这个命令相当于`mv README.md README`、`git rm README.md`、`git add README` 这三条命令的集合)
 
 ### 一个好的 Git 提交消息
 
@@ -243,5 +243,5 @@ git push origin
 - [Git 入门图文教程(1.5W 字 40 图)](https://www.cnblogs.com/anding/p/16987769.html)：超用心的一篇文章，内容全面且附带详细的图解，强烈推荐！
 - [Git - 简明指南](https://rogerdudler.github.io/git-guide/index.zh.html)：涵盖 Git 常见操作，非常清晰。
 - [图解 Git](https://marklodato.github.io/visual-git-guide/index-zh-cn.html)：图解 Git 中的最常用命令。如果你稍微理解 git 的工作原理，这篇文章能够让你理解的更透彻。
-- [猴子都能懂得 Git 入门](https://backlog.com/git-tutorial/cn/intro/intro1_1.html) ：有趣的讲解。
-- [Pro Git book](https://git-scm.com/book/zh/v2) ： 国外的一本 Git 书籍，被翻译成多国语言，质量很高。
+- [猴子都能懂得 Git 入门](https://backlog.com/git-tutorial/cn/intro/intro1_1.html)：有趣的讲解。
+- [Pro Git book](https://git-scm.com/book/zh/v2)：国外的一本 Git 书籍，被翻译成多国语言，质量很高。

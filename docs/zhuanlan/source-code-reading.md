@@ -6,7 +6,7 @@ star: true
 
 ## 介绍
 
-**《Java 必读源码系列》** 是我的[知识星球](../about-the-author/zhishixingqiu-two-years.md)的一个内部小册，目前已经整理了 Dubbo 2.6.x 、Netty 4.x、SpringBoot 2.1 等框架/中间件的源码。
+**《Java 必读源码系列》** 是我的[知识星球](../about-the-author/zhishixingqiu-two-years.md)的一个内部小册，目前已经整理了 Dubbo 2.6.x、Netty 4.x、SpringBoot 2.1 等框架/中间件的源码。
 
 结构清晰，内容详细，非常适合想要深入学习框架/中间件源码的同学阅读。
 
@@ -16,7 +16,7 @@ star: true
 
 ## 星球其他资源
 
-除了 **《Java 必读源码系列》** 之外，星球还有 **《从零开始写一个 RPC 框架》** 、 **《Java 面试指北》**、 **《Java 必读源码系列》**（目前已经整理了 Dubbo 2.6.x 、Netty 4.x、SpringBoot2.1 的源码） 、**《Kafka 常见面试题/知识点总结》** 等多个专栏。
+除了 **《Java 必读源码系列》** 之外，星球还有 **《从零开始写一个 RPC 框架》**、 **《Java 面试指北》**、 **《Java 必读源码系列》**（目前已经整理了 Dubbo 2.6.x、Netty 4.x、SpringBoot2.1 的源码）、**《Kafka 常见面试题/知识点总结》** 等多个专栏。
 
 ![](https://oss.javaguide.cn/xingqiu/image-20220211231206733.png)
 
@@ -26,11 +26,11 @@ star: true
 
 ## 星球限时优惠
 
-**方式一** ：扫描下面的二维码原价加入（续费半价）。
+**方式一**：扫描下面的二维码原价加入（续费半价）。
 
 ![知识星球](https://oss.javaguide.cn/xingqiu/image-20220311203414600.png)
 
-**方式二（推荐）** ：添加我的个人微信（**guidege666**）领取一个 **30** 元的星球专属优惠券（一定要备注“优惠卷”）。
+**方式二（推荐）**：添加我的个人微信（**guidege666**）领取一个 **30** 元的星球专属优惠券（一定要备注“优惠卷”）。
 
 **一定要备注“优惠卷”**，不然通过不了。
 

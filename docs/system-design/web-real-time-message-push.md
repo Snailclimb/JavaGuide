@@ -27,7 +27,7 @@ head:
 
 消息推送一般又分为 Web 端消息推送和移动端消息推送。
 
-移动端消息推送示例 ：
+移动端消息推送示例：
 
 ![移动端消息推送示例](https://oss.javaguide.cn/github/javaguide/system-design/web-real-time-message-push/IKleJ9auR1Ojdicyr0bH.png)
 

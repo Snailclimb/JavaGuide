@@ -80,7 +80,7 @@ category: 高可用
 1. QPS（Query Per Second）：服务器每秒可以执行的查询次数；
 2. TPS（Transaction Per Second）：服务器每秒处理的事务数（这里的一个事务可以理解为客户发出请求到收到服务器的过程）；
 3. 并发数；系统能同时处理请求的数目即同时提交请求的用户数目。
-4. 响应时间： 一般取多次请求的平均响应时间
+4. 响应时间：一般取多次请求的平均响应时间
 
 理清他们的概念，就很容易搞清楚他们之间的关系了。
 
@@ -125,10 +125,10 @@ category: 高可用
 
 没记错的话，除了 LoadRunner 其他几款性能测试工具都是开源免费的。
 
-1. Jmeter ：Apache JMeter 是 JAVA 开发的性能测试工具。
+1. Jmeter：Apache JMeter 是 JAVA 开发的性能测试工具。
 2. LoadRunner：一款商业的性能测试工具。
-3. Galtling ：一款基于 Scala 开发的高性能服务器性能测试工具。
-4. ab ：全称为 Apache Bench 。Apache 旗下的一款测试工具，非常实用。
+3. Galtling：一款基于 Scala 开发的高性能服务器性能测试工具。
+4. ab：全称为 Apache Bench 。Apache 旗下的一款测试工具，非常实用。
 
 ### 5.2 前端常用
 

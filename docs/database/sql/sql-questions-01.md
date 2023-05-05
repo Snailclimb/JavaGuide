@@ -203,7 +203,7 @@ ORDER BY vend_name DESC
 
 ### 返回固定价格的产品
 
-有表 `Products` ：
+有表 `Products`：
 
 | prod_id | prod_name      | prod_price |
 | ------- | -------------- | ---------- |
@@ -223,7 +223,7 @@ WHERE prod_price = 9.49
 
 ### 返回更高价格的产品
 
-有表 `Products` ：
+有表 `Products`：
 
 | prod_id | prod_name      | prod_price |
 | ------- | -------------- | ---------- |
@@ -243,7 +243,7 @@ WHERE prod_price >= 9
 
 ### 返回产品并且按照价格排序
 
-有表 `Products` ：
+有表 `Products`：
 
 | prod_id | prod_name | prod_price |
 | ------- | --------- | ---------- |
@@ -565,7 +565,7 @@ FROM Customers
 知识点：
 
 - 截取函数`SUBSTRING()`：截取字符串，`substring(str ,n ,m)`：返回字符串 str 从第 n 个字符截取到第 m 个字符（左闭右闭）；
-- 拼接函数`CONCAT()`：将两个或多个字符串连接成一个字符串，select concat(A,B) ：连接字符串 A 和 B。
+- 拼接函数`CONCAT()`：将两个或多个字符串连接成一个字符串，select concat(A,B)：连接字符串 A 和 B。
 
 - 大写函数 `UPPER()`：将指定字符串转换为大写。
 

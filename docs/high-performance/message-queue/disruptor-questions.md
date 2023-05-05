@@ -25,13 +25,13 @@ LMAX 公司 2010 年在 QCon 演讲后，Disruptor 获得了业界关注，并�
 
 > “Duke 选择大奖”旨在表彰过去一年里全球个人或公司开发的、最具影响力的 Java 技术应用，由甲骨文公司主办。含金量非常高！
 
-我专门找到了 Oracle 官方当年颁布获得 Duke's Choice Awards 项目的那篇文章（文章地址：https://blogs.oracle.com/java/post/and-the-winners-arethe-dukes-choice-award） 。从文中可以看出，同年获得此大奖荣誉的还有大名鼎鼎的 Netty 、JRebel 等项目。
+我专门找到了 Oracle 官方当年颁布获得 Duke's Choice Awards 项目的那篇文章（文章地址：https://blogs.oracle.com/java/post/and-the-winners-arethe-dukes-choice-award） 。从文中可以看出，同年获得此大奖荣誉的还有大名鼎鼎的 Netty、JRebel 等项目。
 
 ![2011 年的 Oracle 官方的 Duke's Choice Awards](https://oss.javaguide.cn/javaguide/image-20211015152323898.png)
 
 Disruptor 提供的功能优点类似于 Kafka、RocketMQ 这类分布式队列，不过，其作为范围是 JVM(内存)。
 
-- GitHub 地址：<https://github.com/LMAX-Exchange/disruptor>
+- Github 地址：<https://github.com/LMAX-Exchange/disruptor>
 - 官方教程： <https://lmax-exchange.github.io/disruptor/user-guide/index.html>
 
 关于如何在 Spring Boot 项目中使用 Disruptor，可以看这篇文章：[Spring Boot + Disruptor 实战入门](https://mp.weixin.qq.com/s/0iG5brK3bYF0BgSjX4jRiA) 。
@@ -40,7 +40,7 @@ Disruptor 提供的功能优点类似于 Kafka、RocketMQ 这类分布式队列�
 
 Disruptor 主要解决了 JDK 内置线程安全队列的性能和内存安全问题。
 
-**JDK 中常见的线程安全的队列如下** ：
+**JDK 中常见的线程安全的队列如下**：
 
 | 队列名字                | 锁                      | 是否有界 |
 | ----------------------- | ----------------------- | -------- |
@@ -65,31 +65,31 @@ Disruptor 真的很快，关于它为什么这么快这个问题，会在后文�
 
 ## Kafka 和 Disruptor 什么区别？
 
-- **Kafka** ：分布式消息队列，一般用在系统或者服务之间的消息传递，还可以被用作流式处理平台。
-- **Disruptor** ：内存级别的消息队列，一般用在系统内部中线程间的消息传递。
+- **Kafka**：分布式消息队列，一般用在系统或者服务之间的消息传递，还可以被用作流式处理平台。
+- **Disruptor**：内存级别的消息队列，一般用在系统内部中线程间的消息传递。
 
 ## 哪些组件用到了 Disruptor？
 
 用到 Disruptor 的开源项目还是挺多的，这里简单举几个例子：
 
-- **Log4j2** ：Log4j2 是一款常用的日志框架，它基于 Disruptor 来实现异步日志。
-- **SOFATracer** ：SOFATracer 是蚂蚁金服开源的分布式应用链路追踪工具，它基于 Disruptor 来实现异步日志。
+- **Log4j2**：Log4j2 是一款常用的日志框架，它基于 Disruptor 来实现异步日志。
+- **SOFATracer**：SOFATracer 是蚂蚁金服开源的分布式应用链路追踪工具，它基于 Disruptor 来实现异步日志。
 - **Storm** : Storm 是一个开源的分布式实时计算系统，它基于 Disruptor 来实现工作进程内发生的消息传递（同一 Storm 节点上的线程间，无需网络通信）。
-- **HBase** ：HBase 是一个分布式列存储数据库系统，它基于 Disruptor 来提高写并发性能。
+- **HBase**：HBase 是一个分布式列存储数据库系统，它基于 Disruptor 来提高写并发性能。
 - ......
 
 ## Disruptor 核心概念有哪些？
 
-- **Event** ：你可以把 Event 理解为存放在队列中等待消费的消息对象。
-- **EventFactory** ：事件工厂用于生产事件，我们在初始化 `Disruptor` 类的时候需要用到。
-- **EventHandler** ：Event 在对应的 Handler 中被处理，你可以将其理解为生产消费者模型中的消费者。
-- **EventProcessor** ：EventProcessor 持有特定消费者(Consumer)的 Sequence，并提供用于调用事件处理实现的事件循环(Event Loop)。
-- **Disruptor** ：事件的生产和消费需要用到 `Disruptor` 对象。
-- **RingBuffer** ：RingBuffer（环形数组）用于保存事件。
-- **WaitStrategy** ：等待策略。决定了没有事件可以消费的时候，事件消费者如何等待新事件的到来。
-- **Producer** ：生产者，只是泛指调用 `Disruptor` 对象发布事件的用户代码，Disruptor 没有定义特定接口或类型。
-- **ProducerType** ：指定是单个事件发布者模式还是多个事件发布者模式（发布者和生产者的意思类似，我个人比较喜欢用发布者）。
-- **Sequencer** ：Sequencer 是 Disruptor 的真正核心。此接口有两个实现类 `SingleProducerSequencer`、`MultiProducerSequencer` ，它们定义在生产者和消费者之间快速、正确地传递数据的并发算法。
+- **Event**：你可以把 Event 理解为存放在队列中等待消费的消息对象。
+- **EventFactory**：事件工厂用于生产事件，我们在初始化 `Disruptor` 类的时候需要用到。
+- **EventHandler**：Event 在对应的 Handler 中被处理，你可以将其理解为生产消费者模型中的消费者。
+- **EventProcessor**：EventProcessor 持有特定消费者(Consumer)的 Sequence，并提供用于调用事件处理实现的事件循环(Event Loop)。
+- **Disruptor**：事件的生产和消费需要用到 `Disruptor` 对象。
+- **RingBuffer**：RingBuffer（环形数组）用于保存事件。
+- **WaitStrategy**：等待策略。决定了没有事件可以消费的时候，事件消费者如何等待新事件的到来。
+- **Producer**：生产者，只是泛指调用 `Disruptor` 对象发布事件的用户代码，Disruptor 没有定义特定接口或类型。
+- **ProducerType**：指定是单个事件发布者模式还是多个事件发布者模式（发布者和生产者的意思类似，我个人比较喜欢用发布者）。
+- **Sequencer**：Sequencer 是 Disruptor 的真正核心。此接口有两个实现类 `SingleProducerSequencer`、`MultiProducerSequencer` ，它们定义在生产者和消费者之间快速、正确地传递数据的并发算法。
 
 下面这张图摘自 Disruptor 官网，展示了 LMAX 系统使用 Disruptor 的示例。
 
@@ -115,14 +115,14 @@ Disruptor 真的很快，关于它为什么这么快这个问题，会在后文�
 ## Disruptor 为什么这么快？
 
 - **RingBuffer（环形数组）** : Disruptor 内部的 RingBuffer 是通过数组实现的。由于这个数组中的所有元素在初始化时一次性全部创建，因此这些元素的内存地址一般来说是连续的。这样做的好处是，当生产者不断往 RingBuffer 中插入新的事件对象时，这些事件对象的内存地址就能够保持连续，从而利用 CPU 缓存的局部性原理，将相邻的事件对象一起加载到缓存中，提高程序的性能。这类似于 MySQL 的预读机制，将连续的几个页预读到内存里。除此之外，RingBuffer 基于数组还支持批量操作（一次处理多个元素）、还可以避免频繁的内存分配和垃圾回收（RingBuffer 是一个固定大小的数组，当向数组中添加新元素时，如果数组已满，则新元素将覆盖掉最旧的元素）。
-- **避免了伪共享问题** ：CPU 缓存内部是按照 Cache Line（缓存行）管理的，一般的 Cache Line 大小在 64 字节左右。Disruptor 为了确保目标字段独占一个 Cache Line，会在目标字段前后增加了 64 个字节的填充（前 56 个字节和后 8 个字节），这样可以避免 Cache Line 的伪共享（False Sharing）问题。
-- **无锁设计** ：Disruptor 采用无锁设计，避免了传统锁机制带来的竞争和延迟。Disruptor 的无锁实现起来比较复杂，主要是基于 CAS 、内存屏障（Memory Barrier）、RingBuffer 等技术实现的。
+- **避免了伪共享问题**：CPU 缓存内部是按照 Cache Line（缓存行）管理的，一般的 Cache Line 大小在 64 字节左右。Disruptor 为了确保目标字段独占一个 Cache Line，会在目标字段前后增加了 64 个字节的填充（前 56 个字节和后 8 个字节），这样可以避免 Cache Line 的伪共享（False Sharing）问题。
+- **无锁设计**：Disruptor 采用无锁设计，避免了传统锁机制带来的竞争和延迟。Disruptor 的无锁实现起来比较复杂，主要是基于 CAS、内存屏障（Memory Barrier）、RingBuffer 等技术实现的。
 
 综上所述，Disruptor 之所以能够如此快，是基于一系列优化策略的综合作用，既充分利用了现代 CPU 缓存结构的特点，又避免了常见的并发问题和性能瓶颈。
 
 关于 Disruptor 高性能队列原理的详细介绍，可以查看这篇文章：[Disruptor 高性能队列原理浅析](https://qin.news/disruptor/) （参考了美团技术团队的[高性能队列——Disruptor](https://tech.meituan.com/2016/11/18/disruptor.html)这篇文章）。
 
-🌈 这里额外补充一点 ： **数组中对象元素地址连续为什么可以提高性能？**
+🌈 这里额外补充一点：**数组中对象元素地址连续为什么可以提高性能？**
 
 CPU 缓存是通过将最近使用的数据存储在高速缓存中来实现更快的读取速度，并使用预取机制提前加载相邻内存的数据以利用局部性原理。
 

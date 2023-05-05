@@ -25,7 +25,7 @@ Spring 最核心的思想就是不重新造轮子，开箱即用，提高开发�
 
 Spring 翻译过来就是春天的意思，可见其目标和使命就是为 Java 程序员带来春天啊！感动！
 
-🤐 多提一嘴 ： **语言的流行通常需要一个杀手级的应用，Spring 就是 Java 生态的一个杀手级的应用框架。**
+🤐 多提一嘴：**语言的流行通常需要一个杀手级的应用，Spring 就是 Java 生态的一个杀手级的应用框架。**
 
 Spring 提供的核心功能主要是 IoC 和 AOP。学习 Spring ，一定要把 IoC 和 AOP 的核心思想搞懂！
 
@@ -34,11 +34,11 @@ Spring 提供的核心功能主要是 IoC 和 AOP。学习 Spring ，一定要�
 
 ### Spring 包含的模块有哪些？
 
-**Spring4.x 版本** ：
+**Spring4.x 版本**：
 
 ![Spring4.x主要模块](https://oss.javaguide.cn/github/javaguide/system-design/framework/spring/jvme0c60b4606711fc4a0b6faf03230247a.png)
 
-**Spring5.x 版本** ：
+**Spring5.x 版本**：
 
 ![Spring5.x主要模块](https://oss.javaguide.cn/github/javaguide/system-design/framework/spring/20200831175708.png)
 
@@ -52,31 +52,31 @@ Spring 各个模块的依赖关系如下：
 
 Spring 框架的核心模块，也可以说是基础模块，主要提供 IoC 依赖注入功能的支持。Spring 其他所有的功能基本都需要依赖于该模块，我们从上面那张 Spring 各个模块的依赖关系图就可以看出来。
 
-- **spring-core** ：Spring 框架基本的核心工具类。
-- **spring-beans** ：提供对 bean 的创建、配置和管理等功能的支持。
-- **spring-context** ：提供对国际化、事件传播、资源加载等功能的支持。
-- **spring-expression** ：提供对表达式语言（Spring Expression Language） SpEL 的支持，只依赖于 core 模块，不依赖于其他模块，可以单独使用。
+- **spring-core**：Spring 框架基本的核心工具类。
+- **spring-beans**：提供对 bean 的创建、配置和管理等功能的支持。
+- **spring-context**：提供对国际化、事件传播、资源加载等功能的支持。
+- **spring-expression**：提供对表达式语言（Spring Expression Language） SpEL 的支持，只依赖于 core 模块，不依赖于其他模块，可以单独使用。
 
 #### AOP
 
-- **spring-aspects** ：该模块为与 AspectJ 的集成提供支持。
-- **spring-aop** ：提供了面向切面的编程实现。
-- **spring-instrument** ：提供了为 JVM 添加代理（agent）的功能。 具体来讲，它为 Tomcat 提供了一个织入代理，能够为 Tomcat 传递类文 件，就像这些文件是被类加载器加载的一样。没有理解也没关系，这个模块的使用场景非常有限。
+- **spring-aspects**：该模块为与 AspectJ 的集成提供支持。
+- **spring-aop**：提供了面向切面的编程实现。
+- **spring-instrument**：提供了为 JVM 添加代理（agent）的功能。 具体来讲，它为 Tomcat 提供了一个织入代理，能够为 Tomcat 传递类文 件，就像这些文件是被类加载器加载的一样。没有理解也没关系，这个模块的使用场景非常有限。
 
 #### Data Access/Integration
 
-- **spring-jdbc** ：提供了对数据库访问的抽象 JDBC。不同的数据库都有自己独立的 API 用于操作数据库，而 Java 程序只需要和 JDBC API 交互，这样就屏蔽了数据库的影响。
-- **spring-tx** ：提供对事务的支持。
-- **spring-orm** ： 提供对 Hibernate、JPA 、iBatis 等 ORM 框架的支持。
-- **spring-oxm** ：提供一个抽象层支撑 OXM(Object-to-XML-Mapping)，例如：JAXB、Castor、XMLBeans、JiBX 和 XStream 等。
+- **spring-jdbc**：提供了对数据库访问的抽象 JDBC。不同的数据库都有自己独立的 API 用于操作数据库，而 Java 程序只需要和 JDBC API 交互，这样就屏蔽了数据库的影响。
+- **spring-tx**：提供对事务的支持。
+- **spring-orm**：提供对 Hibernate、JPA、iBatis 等 ORM 框架的支持。
+- **spring-oxm**：提供一个抽象层支撑 OXM(Object-to-XML-Mapping)，例如：JAXB、Castor、XMLBeans、JiBX 和 XStream 等。
 - **spring-jms** : 消息服务。自 Spring Framework 4.1 以后，它还提供了对 spring-messaging 模块的继承。
 
 #### Spring Web
 
-- **spring-web** ：对 Web 功能的实现提供一些最基础的支持。
-- **spring-webmvc** ： 提供对 Spring MVC 的实现。
-- **spring-websocket** ： 提供了对 WebSocket 的支持，WebSocket 可以让客户端和服务端进行双向通信。
-- **spring-webflux** ：提供对 WebFlux 的支持。WebFlux 是 Spring Framework 5.0 中引入的新的响应式框架。与 Spring MVC 不同，它不需要 Servlet API，是完全异步。
+- **spring-web**：对 Web 功能的实现提供一些最基础的支持。
+- **spring-webmvc**：提供对 Spring MVC 的实现。
+- **spring-websocket**：提供了对 WebSocket 的支持，WebSocket 可以让客户端和服务端进行双向通信。
+- **spring-webflux**：提供对 WebFlux 的支持。WebFlux 是 Spring Framework 5.0 中引入的新的响应式框架。与 Spring MVC 不同，它不需要 Servlet API，是完全异步。
 
 #### Messaging
 
@@ -116,8 +116,8 @@ Spring Boot 只是简化了配置，如果你需要构建 MVC 架构的 Web 程�
 
 **为什么叫控制反转？**
 
-- **控制** ：指的是对象创建（实例化、管理）的权力
-- **反转** ：控制权交给外部环境（Spring 框架、IoC 容器）
+- **控制**：指的是对象创建（实例化、管理）的权力
+- **反转**：控制权交给外部环境（Spring 框架、IoC 容器）
 
 ![](https://oss.javaguide.cn/java-guide-blog/frc-365faceb5697f04f31399937c059c162.png)
 
@@ -155,7 +155,7 @@ Spring 时代我们一般通过 XML 文件来配置 Bean，后来开发人员觉
 
 ### 将一个类声明为 Bean 的注解有哪些?
 
-- `@Component` ：通用的注解，可标注任意类为 `Spring` 组件。如果一个 Bean 不知道属于哪个层，可以使用`@Component` 注解标注。
+- `@Component`：通用的注解，可标注任意类为 `Spring` 组件。如果一个 Bean 不知道属于哪个层，可以使用`@Component` 注解标注。
 - `@Repository` : 对应持久层即 Dao 层，主要用于数据库相关操作。
 - `@Service` : 对应服务层，主要涉及一些复杂的逻辑，需要用到 Dao 层。
 - `@Controller` : 对应 Spring MVC 控制层，主要用于接受用户请求并调用 `Service` 层返回数据给前端页面。
@@ -286,7 +286,7 @@ Spring 中 Bean 的作用域通常有下面几种：
 - **prototype** : 每次获取都会创建一个新的 bean 实例。也就是说，连续 `getBean()` 两次，得到的是不同的 Bean 实例。
 - **request** （仅 Web 应用可用）: 每一次 HTTP 请求都会产生一个新的 bean（请求 bean），该 bean 仅在当前 HTTP request 内有效。
 - **session** （仅 Web 应用可用） : 每一次来自新 session 的 HTTP 请求都会产生一个新的 bean（会话 bean），该 bean 仅在当前 HTTP session 内有效。
-- **application/global-session** （仅 Web 应用可用）： 每个 Web 应用在启动时创建一个 Bean（应用 Bean），该 bean 仅在当前应用启动时间内有效。
+- **application/global-session** （仅 Web 应用可用）：每个 Web 应用在启动时创建一个 Bean（应用 Bean），该 bean 仅在当前应用启动时间内有效。
 - **websocket** （仅 Web 应用可用）：每一次 WebSocket 会话产生一个新的 bean。
 
 **如何配置 bean 的作用域呢？**
@@ -320,7 +320,7 @@ public Person personPrototype() {
 
 ### Bean 的生命周期了解么?
 
-> 下面的内容整理自：<https://yemengying.com/2016/07/14/spring-bean-life-cycle/> ，除了这篇文章，再推荐一篇很不错的文章 ：<https://www.cnblogs.com/zrtqsk/p/3735273.html> 。
+> 下面的内容整理自：<https://yemengying.com/2016/07/14/spring-bean-life-cycle/> ，除了这篇文章，再推荐一篇很不错的文章：<https://www.cnblogs.com/zrtqsk/p/3735273.html> 。
 
 - Bean 容器找到配置文件中 Spring Bean 的定义。
 - Bean 容器利用 Java Reflection API 创建一个 Bean 的实例。
@@ -381,7 +381,7 @@ Spring AOP 已经集成了 AspectJ ，AspectJ 应该算的上是 Java 生态系�
 - **Before**（前置通知）：目标对象的方法调用之前触发
 - **After** （后置通知）：目标对象的方法调用之后触发
 - **AfterReturning**（返回通知）：目标对象的方法调用完成，在返回结果值之后触发
-- **AfterThrowing**（异常通知） ：目标对象的方法运行中抛出 / 触发异常后触发。AfterReturning 和 AfterThrowing 两者互斥。如果方法调用成功无异常，则会有返回值；如果方法抛出了异常，则不会有返回值。
+- **AfterThrowing**（异常通知）：目标对象的方法运行中抛出 / 触发异常后触发。AfterReturning 和 AfterThrowing 两者互斥。如果方法调用成功无异常，则会有返回值；如果方法抛出了异常，则不会有返回值。
 - **Around** （环绕通知）：编程式控制目标对象的方法调用。环绕通知是所有通知类型中可操作范围最大的一种，因为它可以直接拿到目标对象，以及要执行的方法，所以环绕通知可以任意的在目标对象的方法调用前后搞事，甚至不调用目标对象的方法
 
 ### 多个切面的执行顺序如何控制？
@@ -459,11 +459,11 @@ MVC 是一种设计模式，Spring MVC 是一款很优秀的 MVC 框架。Spring
 
 记住了下面这些组件，也就记住了 SpringMVC 的工作原理。
 
-- **`DispatcherServlet`** ：**核心的中央处理器**，负责接收请求、分发，并给予客户端响应。
-- **`HandlerMapping`** ：**处理器映射器**，根据 uri 去匹配查找能处理的 `Handler` ，并会将请求涉及到的拦截器和 `Handler` 一起封装。
-- **`HandlerAdapter`** ：**处理器适配器**，根据 `HandlerMapping` 找到的 `Handler` ，适配执行对应的 `Handler`；
-- **`Handler`** ：**请求处理器**，处理实际请求的处理器。
-- **`ViewResolver`** ：**视图解析器**，根据 `Handler` 返回的逻辑视图 / 视图，解析并渲染真正的视图，并传递给 `DispatcherServlet` 响应客户端
+- **`DispatcherServlet`**：**核心的中央处理器**，负责接收请求、分发，并给予客户端响应。
+- **`HandlerMapping`**：**处理器映射器**，根据 uri 去匹配查找能处理的 `Handler` ，并会将请求涉及到的拦截器和 `Handler` 一起封装。
+- **`HandlerAdapter`**：**处理器适配器**，根据 `HandlerMapping` 找到的 `Handler` ，适配执行对应的 `Handler`；
+- **`Handler`**：**请求处理器**，处理实际请求的处理器。
+- **`ViewResolver`**：**视图解析器**，根据 `Handler` 返回的逻辑视图 / 视图，解析并渲染真正的视图，并传递给 `DispatcherServlet` 响应客户端
 
 ### SpringMVC 工作原理了解吗?
 
@@ -531,7 +531,7 @@ public class GlobalExceptionHandler {
 	}
 ```
 
-从源代码看出： **`getMappedMethod()`会首先找到可以匹配处理异常的所有方法信息，然后对其进行从小到大的排序，最后取最小的那一个匹配的方法(即匹配度最高的那个)。**
+从源代码看出：**`getMappedMethod()`会首先找到可以匹配处理异常的所有方法信息，然后对其进行从小到大的排序，最后取最小的那一个匹配的方法(即匹配度最高的那个)。**
 
 ## Spring 框架中用到了哪些设计模式？
 
@@ -552,8 +552,8 @@ public class GlobalExceptionHandler {
 
 ### Spring 管理事务的方式有几种？
 
-- **编程式事务** ： 在代码中硬编码(不推荐使用) : 通过 `TransactionTemplate`或者 `TransactionManager` 手动管理事务，实际应用中很少使用，但是对于你理解 Spring 事务管理原理有帮助。
-- **声明式事务** ： 在 XML 配置文件中配置或者直接基于注解（推荐使用） : 实际是通过 AOP 实现（基于`@Transactional` 的全注解方式使用最多）
+- **编程式事务**：在代码中硬编码(不推荐使用) : 通过 `TransactionTemplate`或者 `TransactionManager` 手动管理事务，实际应用中很少使用，但是对于你理解 Spring 事务管理原理有帮助。
+- **声明式事务**：在 XML 配置文件中配置或者直接基于注解（推荐使用） : 实际是通过 AOP 实现（基于`@Transactional` 的全注解方式使用最多）
 
 ### Spring 事务中哪几种事务传播行为?
 
@@ -714,9 +714,9 @@ public abstract class AbstractAuditBase {
 ### 实体之间的关联关系注解有哪些？
 
 - `@OneToOne ` : 一对一。
-- `@ManyToMany` ：多对多。
+- `@ManyToMany`：多对多。
 - `@OneToMany` : 一对多。
-- `@ManyToOne` ：多对一。
+- `@ManyToOne`：多对一。
 
 利用 `@ManyToOne` 和 `@OneToMany` 也可以表达多对多的关联关系。
 
@@ -728,15 +728,15 @@ Spring Security 重要的是实战，这里仅对小部分知识点进行总结�
 
 ![](https://oss.javaguide.cn/github/javaguide/system-design/framework/spring/image-20220728201854641.png)
 
-- `permitAll()` ：无条件允许任何形式访问，不管你登录还是没有登录。
-- `anonymous()` ：允许匿名访问，也就是没有登录才可以访问。
-- `denyAll()` ：无条件决绝任何形式的访问。
+- `permitAll()`：无条件允许任何形式访问，不管你登录还是没有登录。
+- `anonymous()`：允许匿名访问，也就是没有登录才可以访问。
+- `denyAll()`：无条件决绝任何形式的访问。
 - `authenticated()`：只允许已认证的用户访问。
-- `fullyAuthenticated()` ：只允许已经登录或者通过 remember-me 登录的用户访问。
+- `fullyAuthenticated()`：只允许已经登录或者通过 remember-me 登录的用户访问。
 - `hasRole(String)` : 只允许指定的角色访问。
 - `hasAnyRole(String)	` : 指定一个或者多个角色，满足其一的用户即可访问。
-- `hasAuthority(String)` ：只允许具有指定权限的用户访问
-- `hasAnyAuthority(String)` ：指定一个或者多个权限，满足其一的用户即可访问。
+- `hasAuthority(String)`：只允许具有指定权限的用户访问
+- `hasAnyAuthority(String)`：指定一个或者多个权限，满足其一的用户即可访问。
 - `hasIpAddress(String)` : 只允许指定 ip 的用户访问。
 
 ### hasRole 和 hasAuthority 有区别吗？

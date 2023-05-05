@@ -32,7 +32,7 @@ InnoDB 支持事务，支持行级锁，更好的恢复性，高并发下性能�
 参考文章：
 
 - [MySQL 字符集不一致导致索引失效的一个真实案例](https://blog.csdn.net/horses/article/details/107243447)
-- [MySQL 字符集详解](https://javaguide.cn/database/character-set.html)
+- [MySQL 字符集详解](../character-set.md)
 
 ### 所有表和字段都需要添加注释
 
@@ -90,7 +90,7 @@ InnoDB 支持事务，支持行级锁，更好的恢复性，高并发下性能�
 
 MySQL 提供了两个方法来处理 ip 地址
 
-- `INET_ATON()` ： 把 ip 转为无符号整型 (4-8 位)
+- `INET_ATON()`：把 ip 转为无符号整型 (4-8 位)
 - `INET_NTOA()` :把整型的 ip 转为地址
 
 插入数据前，先用 `INET_ATON()` 把 ip 地址转为整型，显示数据时，使用 `INET_NTOA()` 把整型的 ip 地址转为地址显示即可。
@@ -150,8 +150,8 @@ TIMESTAMP 占用 4 字节和 INT 相同，但比 INT 可读性高
 
 ### 同财务相关的金额类数据必须使用 decimal 类型
 
-- **非精准浮点** ：float,double
-- **精准浮点** ：decimal
+- **非精准浮点**：float,double
+- **精准浮点**：decimal
 
 decimal 类型为精准浮点数，在计算时不会丢失精度。占用空间由定义的宽度决定，每 4 个字节可以存储 9 位数字，并且小数点要占用一个字节。并且，decimal 可用于存储比 bigint 更大的整型数据
 

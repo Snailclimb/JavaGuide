@@ -733,7 +733,7 @@ public Optional<T> filter(Predicate<? super T> predicate) {
 
 ### 小结
 
-看完 `Optional` 源码，`Optional` 的方法真的非常简单，值得注意的是如果坚决不想看见 `NPE`，就不要用 `of() `、 `get()` 、`flatMap(..)`。最后再综合用一下 `Optional` 的高频方法。
+看完 `Optional` 源码，`Optional` 的方法真的非常简单，值得注意的是如果坚决不想看见 `NPE`，就不要用 `of() `、 `get()`、`flatMap(..)`。最后再综合用一下 `Optional` 的高频方法。
 
 ```java
 Optional.ofNullable(zoo).map(o -> o.getDog()).map(d -> d.getAge()).filter(v->v==1).orElse(3);

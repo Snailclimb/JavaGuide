@@ -5,11 +5,11 @@ tag:
   - 工作
 ---
 
-> **推荐语** ：强烈建议每一位即将入职/在职的小伙伴看看这篇文章，看完之后可以帮助你少踩很多坑。整篇文章逻辑清晰，内容全面！
+> **推荐语**：强烈建议每一位即将入职/在职的小伙伴看看这篇文章，看完之后可以帮助你少踩很多坑。整篇文章逻辑清晰，内容全面！
 >
 > <br/>
 >
-> **原文地址** ：https://www.cnblogs.com/hunternet/p/14675348.html
+> **原文地址**：https://www.cnblogs.com/hunternet/p/14675348.html
 
 ![新入职一家公司如何快速进入状态](https://oss.javaguide.cn/github/javaguide/high-quality-technical-articles/work/%E6%96%B0%E5%85%A5%E8%81%8C%E4%B8%80%E5%AE%B6%E5%85%AC%E5%8F%B8%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E8%BF%9B%E5%85%A5%E7%8A%B6%E6%80%81.png)
 

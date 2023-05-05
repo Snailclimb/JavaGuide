@@ -12,7 +12,7 @@ icon: guide
 - 很多知识点我可能没有涉及到，所以你可以对其他知识点进行补充。
 - 现有的知识点难免存在不完善或者错误，所以你可以对已有知识点进行修改/补充。
 
-一定一定一定要注意 **排版规范** ：
+一定一定一定要注意 **排版规范**：
 
 - [中文文案排版指北 - GitHub](https://github.com/sparanoid/chinese-copywriting-guidelines)
 - [写给大家看的中文排版指南 - 知乎](https://zhuanlan.zhihu.com/p/20506092)

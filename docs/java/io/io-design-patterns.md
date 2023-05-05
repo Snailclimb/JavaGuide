@@ -262,7 +262,7 @@ WatchKey register(WatchService watcher,
 
 常用的监听事件有 3 种：
 
-- `StandardWatchEventKinds.ENTRY_CREATE` ：文件创建。
+- `StandardWatchEventKinds.ENTRY_CREATE`：文件创建。
 - `StandardWatchEventKinds.ENTRY_DELETE` : 文件删除。
 - `StandardWatchEventKinds.ENTRY_MODIFY` : 文件修改。
 

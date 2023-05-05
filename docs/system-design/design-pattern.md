@@ -15,6 +15,6 @@ head:
 
 ![JavaGuide 官方公众号](https://oss.javaguide.cn/github/javaguide/gongzhonghaoxuanchuan.png)
 
-**《设计模式》PDF 电子书内容概览** ：
+**《设计模式》PDF 电子书内容概览**：
 
 ![《设计模式》PDF文档概览](https://oss.javaguide.cn/github/javaguide/system-design/design-pattern-pdf.png)
