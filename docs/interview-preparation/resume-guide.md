@@ -36,14 +36,14 @@ icon: jianli
 
 下面是我收集的一些还不错的简历模板：
 
-- 适合中文的简历模板收集（推荐，免费）：https://github.com/dyweb/awesome-resume-for-chinese
-- 木及简历（部分收费）：https://www.mujicv.com/。
-- 简单简历（付费）：https://easycv.cn/
-- 站长简历：https://jianli.chinaz.com/
-- typora+markdown+css 自定义简历模板：https://github.com/Snailclimb/typora-markdown-resume
-- 极简简历：https://www.polebrief.com/index
-- Markdown 简历排版工具：https://resume.mdnice.com/
-- 超级简历（部分收费）：https://www.wondercv.com/
+- 适合中文的简历模板收集（推荐，免费）：<https://github.com/dyweb/awesome-resume-for-chinese>
+- 木及简历（部分收费）：<https://www.mujicv.com/。>
+- 简单简历（付费）：<https://easycv.cn/>
+- 站长简历：<https://jianli.chinaz.com/>
+- typora+markdown+css 自定义简历模板：<https://github.com/Snailclimb/typora-markdown-resume>
+- 极简简历：<https://www.polebrief.com/index>
+- Markdown 简历排版工具：<https://resume.mdnice.com/>
+- 超级简历（部分收费）：<https://www.wondercv.com/>
 
 上面这些简历模板大多是只有 1 页内容，很难展现足够的信息量。如果你不是顶级大牛（比如 ACM 大赛获奖）的话，我建议还是尽可能多写一点可以突出你自己能力的内容（校招生 2 页之内，社招生 3 页之内，记得精炼语言，不要过多废话）。
 

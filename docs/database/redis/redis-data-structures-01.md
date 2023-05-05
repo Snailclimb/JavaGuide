@@ -61,7 +61,7 @@ String 是一种二进制安全的数据结构，可以用来存储任何类型�
 | DEL key（通用）                | 删除指定的 key                   |
 | EXPIRE key seconds（通用）     | 给指定 key 设置过期时间          |
 
-更多 Redis String 命令以及详细使用指南，请查看 Redis 官网对应的介绍：https://redis.io/commands/?group=string 。
+更多 Redis String 命令以及详细使用指南，请查看 Redis 官网对应的介绍：<https://redis.io/commands/?group=string> 。
 
 **基本操作**：
 
@@ -154,7 +154,7 @@ Redis 中的 List 其实就是链表数据结构的实现。我在 [线性数据
 | LLEN key                    | 获取列表元素数量                           |
 | LRANGE key start end        | 获取列表 start 和 end 之间 的元素          |
 
-更多 Redis List 命令以及详细使用指南，请查看 Redis 官网对应的介绍：https://redis.io/commands/?group=list 。
+更多 Redis List 命令以及详细使用指南，请查看 Redis 官网对应的介绍：<https://redis.io/commands/?group=list> 。
 
 **通过 `RPUSH/LPOP` 或者 `LPUSH/RPOP`实现队列**：
 
@@ -247,7 +247,7 @@ Hash 类似于 JDK1.8 前的 `HashMap`，内部实现也差不多(数组 + 链�
 | HLEN key                                  | 获取指定哈希表中字段的数量                               |
 | HINCRBY key field increment               | 对指定哈希中的指定字段做运算操作（正数为加，负数为减）   |
 
-更多 Redis Hash 命令以及详细使用指南，请查看 Redis 官网对应的介绍：https://redis.io/commands/?group=hash 。
+更多 Redis Hash 命令以及详细使用指南，请查看 Redis 官网对应的介绍：<https://redis.io/commands/?group=hash> 。
 
 **模拟对象数据存储**：
 
@@ -308,7 +308,7 @@ Redis 中的 Set 类型是一种无序集合，集合中的元素没有先后顺
 | SPOP key count                        | 随机移除并获取指定集合中一个或多个元素    |
 | SRANDMEMBER key count                 | 随机获取指定集合中指定数量的元素          |
 
-更多 Redis Set 命令以及详细使用指南，请查看 Redis 官网对应的介绍：https://redis.io/commands/?group=set 。
+更多 Redis Set 命令以及详细使用指南，请查看 Redis 官网对应的介绍：<https://redis.io/commands/?group=set> 。
 
 **基本操作**：
 
@@ -399,7 +399,7 @@ Sorted Set 类似于 Set，但和 Set 相比，Sorted Set 增加了一个权重�
 | ZREVRANGE key start end                       | 获取指定有序集合 start 和 end 之间的元素（score 从高到底）                                                    |
 | ZREVRANK key member                           | 获取指定有序集合中指定元素的排名(score 从大到小排序)                                                          |
 
-更多 Redis Sorted Set 命令以及详细使用指南，请查看 Redis 官网对应的介绍：https://redis.io/commands/?group=sorted-set 。
+更多 Redis Sorted Set 命令以及详细使用指南，请查看 Redis 官网对应的介绍：<https://redis.io/commands/?group=sorted-set> 。
 
 **基本操作**：
 
@@ -485,7 +485,7 @@ value1
 
 ## 参考
 
-- Redis Data Structures：https://redis.com/redis-enterprise/data-structures/ 。
-- Redis Commands：https://redis.io/commands/ 。
-- Redis Data types tutorial：https://redis.io/docs/manual/data-types/data-types-tutorial/ 。
-- Redis 存储对象信息是用 Hash 还是 String : https://segmentfault.com/a/1190000040032006
+- Redis Data Structures：<https://redis.com/redis-enterprise/data-structures/> 。
+- Redis Commands：<https://redis.io/commands/> 。
+- Redis Data types tutorial：<https://redis.io/docs/manual/data-types/data-types-tutorial/> 。
+- Redis 存储对象信息是用 Hash 还是 String : <https://segmentfault.com/a/1190000040032006>

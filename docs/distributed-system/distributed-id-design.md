@@ -168,6 +168,6 @@ span 是层的意思，比如在第一个实例算是第一层， 请求代理�
 
 实际是在 dwz.cn 域名后面拼接新产生的数字类型 ID，直接用数字 ID，网址长度也有些长，服务可以通过数字 ID 转更高进制的方式压缩长度。这种算法在短网址的技术实现上越来越多了起来，它可以进一步压缩网址长度。转进制的压缩算法在生活中有广泛的应用场景，举例：
 
-- 客户的长网址：https://wenku.baidu.com/ndbusiness/browse/wenkuvipcashier?cashier_code=PCoperatebanner
-- ID 映射的短网址：https://dwz.cn/2047601319t66 (演示使用，可能无法正确打开)
-- 转进制后的短网址：https://dwz.cn/2ezwDJ0(演示使用，可能无法正确打开)
+- 客户的长网址：<https://wenku.baidu.com/ndbusiness/browse/wenkuvipcashier?cashier_code=PCoperatebanner>
+- ID 映射的短网址：<https://dwz.cn/2047601319t66> (演示使用，可能无法正确打开)
+- 转进制后的短网址：<https://dwz.cn/2ezwDJ0> (演示使用，可能无法正确打开)
