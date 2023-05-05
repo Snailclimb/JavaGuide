@@ -29,7 +29,7 @@ JWT 本质上就是一组字串，通过（`.`）切分成三个为 Base64 编�
 
 - **Header** : 描述 JWT 的元数据，定义了生成签名的算法以及 `Token` 的类型。
 - **Payload** : 用来存放实际需要传递的数据
-- **Signature（签名）** ：服务器通过 Payload、Header 和一个密钥(Secret)使用 Header 里面指定的签名算法（默认是 HMAC SHA256）生成。
+- **Signature（签名）**：服务器通过 Payload、Header 和一个密钥(Secret)使用 Header 里面指定的签名算法（默认是 HMAC SHA256）生成。
 
 JWT 通常是这样的：`xxxxx.yyyyy.zzzzz`。
 
@@ -52,7 +52,7 @@ Header 和 Payload 都是 JSON 格式的数据，Signature 由 Payload、Header 
 Header 通常由两部分组成：
 
 - `typ`（Type）：令牌类型，也就是 JWT。
-- `alg`（Algorithm） ：签名算法，比如 HS256。
+- `alg`（Algorithm）：签名算法，比如 HS256。
 
 示例：
 
@@ -71,9 +71,9 @@ Payload 也是 JSON 格式数据，其中包含了 Claims(声明，包含 JWT �
 
 Claims 分为三种类型：
 
-- **Registered Claims（注册声明）** ：预定义的一些声明，建议使用，但不是强制性的。
-- **Public Claims（公有声明）** ：JWT 签发方可以自定义的声明，但是为了避免冲突，应该在 [IANA JSON Web Token Registry](https://www.iana.org/assignments/jwt/jwt.xhtml) 中定义它们。
-- **Private Claims（私有声明）** ：JWT 签发方因为项目需要而自定义的声明，更符合实际项目场景使用。
+- **Registered Claims（注册声明）**：预定义的一些声明，建议使用，但不是强制性的。
+- **Public Claims（公有声明）**：JWT 签发方可以自定义的声明，但是为了避免冲突，应该在 [IANA JSON Web Token Registry](https://www.iana.org/assignments/jwt/jwt.xhtml) 中定义它们。
+- **Private Claims（私有声明）**：JWT 签发方因为项目需要而自定义的声明，更符合实际项目场景使用。
 
 下面是一些常见的注册声明：
 

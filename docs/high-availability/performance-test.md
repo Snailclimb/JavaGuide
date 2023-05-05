@@ -125,10 +125,10 @@ category: 高可用
 
 没记错的话，除了 LoadRunner 其他几款性能测试工具都是开源免费的。
 
-1. Jmeter ：Apache JMeter 是 JAVA 开发的性能测试工具。
+1. Jmeter：Apache JMeter 是 JAVA 开发的性能测试工具。
 2. LoadRunner：一款商业的性能测试工具。
-3. Galtling ：一款基于 Scala 开发的高性能服务器性能测试工具。
-4. ab ：全称为 Apache Bench 。Apache 旗下的一款测试工具，非常实用。
+3. Galtling：一款基于 Scala 开发的高性能服务器性能测试工具。
+4. ab：全称为 Apache Bench 。Apache 旗下的一款测试工具，非常实用。
 
 ### 5.2 前端常用
 

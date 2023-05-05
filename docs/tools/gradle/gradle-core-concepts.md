@@ -26,9 +26,9 @@ Gradle 官方文档是这样介绍的 Gradle 的：
 
 对于开发者来说，Gradle 的主要作用主要有 3 个：
 
-1. **项目构建** ：提供标准的、跨平台的自动化项目构建方式。
-2. **依赖管理** ：方便快捷的管理项目依赖的资源（jar 包），避免资源间的版本冲突问题。
-3. **统一开发结构** ：提供标准的、统一的项目结构。
+1. **项目构建**：提供标准的、跨平台的自动化项目构建方式。
+2. **依赖管理**：方便快捷的管理项目依赖的资源（jar 包），避免资源间的版本冲突问题。
+3. **统一开发结构**：提供标准的、统一的项目结构。
 
 Gradle 构建脚本是使用 Groovy 或 Kotlin 语言编写的，表达能力非常强，也足够灵活。
 
@@ -99,7 +99,7 @@ Gradle Wrapper 会给我们带来下面这些好处：
 每个文件的含义如下：
 
 - `gradle-wrapper.jar`：包含了 Gradle 运行时的逻辑代码。
-- `gradle-wrapper.properties` ：定义了 Gradle 的版本号和 Gradle 运行时的行为属性。
+- `gradle-wrapper.properties`：定义了 Gradle 的版本号和 Gradle 运行时的行为属性。
 - `gradlew`：Linux 平台下，用于执行 Gralde 命令的包装器脚本。
 - `gradlew.bat`：Windows 平台下，用于执行 Gralde 命令的包装器脚本。
 

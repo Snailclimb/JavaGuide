@@ -91,8 +91,8 @@ System.out.println(matchStrList2);
 
 ## 开源项目
 
-- [ToolGood.Words](https://github.com/toolgood/ToolGood.Words) ：一款高性能敏感词(非法词/脏字)检测过滤组件，附带繁体简体互换，支持全角半角互换，汉字转拼音，模糊搜索等功能。
-- [sensitive-words-filter](https://github.com/hooj0/sensitive-words-filter) ：敏感词过滤项目，提供 TTMP、DFA、DAT、hash bucket、Tire 算法支持过滤。可以支持文本的高亮、过滤、判词、替换的接口支持。
+- [ToolGood.Words](https://github.com/toolgood/ToolGood.Words)：一款高性能敏感词(非法词/脏字)检测过滤组件，附带繁体简体互换，支持全角半角互换，汉字转拼音，模糊搜索等功能。
+- [sensitive-words-filter](https://github.com/hooj0/sensitive-words-filter)：敏感词过滤项目，提供 TTMP、DFA、DAT、hash bucket、Tire 算法支持过滤。可以支持文本的高亮、过滤、判词、替换的接口支持。
 
 ## 论文
 

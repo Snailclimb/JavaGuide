@@ -23,11 +23,11 @@ head:
 
 另外，面向对象开发的程序一般更易维护、易复用、易扩展。
 
-相关 issue : [面向过程 ：面向过程性能比面向对象高？？](https://github.com/Snailclimb/JavaGuide/issues/431) 。
+相关 issue : [面向过程：面向过程性能比面向对象高？？](https://github.com/Snailclimb/JavaGuide/issues/431) 。
 
 下面是一个求圆的面积和周长的示例，简单分别展示了面向对象和面向过程两种不同的解决方案。
 
-**面向对象** ：
+**面向对象**：
 
 ```java
 public class Circle {
@@ -62,7 +62,7 @@ public class Circle {
 
 我们定义了一个 `Circle` 类来表示圆，该类包含了圆的半径属性和计算面积、周长的方法。
 
-**面向过程** ：
+**面向过程**：
 
 ```java
 public class Main {
@@ -198,13 +198,13 @@ public class Student {
 
 ### 接口和抽象类有什么共同点和区别？
 
-**共同点** ：
+**共同点**：
 
 - 都不能被实例化。
 - 都可以包含抽象方法。
 - 都可以有默认实现的方法（Java 8 可以用 `default` 关键字在接口中定义默认方法）。
 
-**区别** ：
+**区别**：
 
 - 接口主要用于对类的行为进行约束，你实现了某个接口就具有了对应的行为。抽象类主要用于代码复用，强调的是所属关系。
 - 一个类只能继承一个类，但是可以实现多个接口。
@@ -215,7 +215,7 @@ public class Student {
 关于深拷贝和浅拷贝区别，我这里先给结论：
 
 - **浅拷贝**：浅拷贝会在堆上创建一个新的对象（区别于引用拷贝的一点），不过，如果原对象内部的属性是引用类型的话，浅拷贝会直接复制内部对象的引用地址，也就是说拷贝对象和原对象共用同一个内部对象。
-- **深拷贝** ：深拷贝会完全复制整个对象，包括这个对象所包含的内部对象。
+- **深拷贝**：深拷贝会完全复制整个对象，包括这个对象所包含的内部对象。
 
 上面的结论没有完全理解的话也没关系，我们来看一个具体的案例！
 
@@ -254,7 +254,7 @@ public class Person implements Cloneable {
 }
 ```
 
-测试 ：
+测试：
 
 ```java
 Person person1 = new Person(new Address("武汉"));
@@ -282,7 +282,7 @@ public Person clone() {
 }
 ```
 
-测试 ：
+测试：
 
 ```java
 Person person1 = new Person(new Address("武汉"));
@@ -373,8 +373,8 @@ public boolean equals(Object obj) {
 
 `equals()` 方法存在两种使用情况：
 
-- **类没有重写 `equals()`方法** ：通过`equals()`比较该类的两个对象时，等价于通过“==”比较这两个对象，使用的默认是 `Object`类`equals()`方法。
-- **类重写了 `equals()`方法** ：一般我们都重写 `equals()`方法来比较两个对象中的属性是否相等；若它们的属性相等，则返回 true(即，认为这两个对象相等)。
+- **类没有重写 `equals()`方法**：通过`equals()`比较该类的两个对象时，等价于通过“==”比较这两个对象，使用的默认是 `Object`类`equals()`方法。
+- **类重写了 `equals()`方法**：一般我们都重写 `equals()`方法来比较两个对象中的属性是否相等；若它们的属性相等，则返回 true(即，认为这两个对象相等)。
 
 举个例子（这里只是为了举例。实际上，你按照下面这种写法的话，像 IDEA 这种比较智能的 IDE 都会提示你将 `==` 换成 `equals()` ）：
 
@@ -427,7 +427,7 @@ public boolean equals(Object anObject) {
 
 `hashCode()` 定义在 JDK 的 `Object` 类中，这就意味着 Java 中的任何类都包含有 `hashCode()` 函数。另外需要注意的是：`Object` 的 `hashCode()` 方法是本地方法，也就是用 C 语言或 C++ 实现的。
 
-> ⚠️ 注意 ：该方法在 **Oracle OpenJDK8** 中默认是 "使用线程局部状态来实现 Marsaglia's xor-shift 随机数生成", 并不是 "地址" 或者 "地址转换而来", 不同 JDK/VM 可能不同在 **Oracle OpenJDK8** 中有六种生成方式 (其中第五种是返回地址), 通过添加 VM 参数: -XX:hashCode=4 启用第五种。参考源码:
+> ⚠️ 注意：该方法在 **Oracle OpenJDK8** 中默认是 "使用线程局部状态来实现 Marsaglia's xor-shift 随机数生成", 并不是 "地址" 或者 "地址转换而来", 不同 JDK/VM 可能不同在 **Oracle OpenJDK8** 中有六种生成方式 (其中第五种是返回地址), 通过添加 VM 参数: -XX:hashCode=4 启用第五种。参考源码:
 >
 > - https://hg.openjdk.org/jdk8u/jdk8u/hotspot/file/87ee5ee27509/src/share/vm/runtime/globals.hpp（1127行）
 > - https://hg.openjdk.org/jdk8u/jdk8u/hotspot/file/87ee5ee27509/src/share/vm/runtime/synchronizer.cpp（537行开始）
@@ -462,7 +462,7 @@ public native int hashCode();
 
 因为 `hashCode()` 所使用的哈希算法也许刚好会让多个对象传回相同的哈希值。越糟糕的哈希算法越容易碰撞，但这也与数据值域分布的特性有关（所谓哈希碰撞也就是指的是不同的对象得到相同的 `hashCode` )。
 
-总结下来就是 ：
+总结下来就是：
 
 - 如果两个对象的`hashCode` 值相等，那这两个对象不一定相等（哈希碰撞）。
 - 如果两个对象的`hashCode` 值相等并且`equals()`方法也返回 `true`，我们才认为这两个对象相等。
@@ -476,9 +476,9 @@ public native int hashCode();
 
 如果重写 `equals()` 时没有重写 `hashCode()` 方法的话就可能会导致 `equals` 方法判断是相等的两个对象，`hashCode` 值却不相等。
 
-**思考** ：重写 `equals()` 时没有重写 `hashCode()` 方法的话，使用 `HashMap` 可能会出现什么问题。
+**思考**：重写 `equals()` 时没有重写 `hashCode()` 方法的话，使用 `HashMap` 可能会出现什么问题。
 
-**总结** ：
+**总结**：
 
 - `equals` 方法判断两个对象是相等的，那这两个对象的 `hashCode` 值也要相等。
 - 两个对象有相同的 `hashCode` 值，他们也不一定是相等的（哈希碰撞）。
@@ -536,7 +536,7 @@ public final class String implements java.io.Serializable, Comparable<String>, C
 }
 ```
 
-> 🐛 修正 ：我们知道被 `final` 关键字修饰的类不能被继承，修饰的方法不能被重写，修饰的变量是基本数据类型则值不能改变，修饰的变量是引用类型则不能再指向其他对象。因此，`final` 关键字修饰的数组保存字符串并不是 `String` 不可变的根本原因，因为这个数组保存的字符串是可变的（`final` 修饰引用类型变量的情况）。
+> 🐛 修正：我们知道被 `final` 关键字修饰的类不能被继承，修饰的方法不能被重写，修饰的变量是基本数据类型则值不能改变，修饰的变量是引用类型则不能再指向其他对象。因此，`final` 关键字修饰的数组保存字符串并不是 `String` 不可变的根本原因，因为这个数组保存的字符串是可变的（`final` 修饰引用类型变量的情况）。
 >
 > `String` 真正不可变有下面几点原因：
 >
@@ -717,7 +717,7 @@ System.out.println(str3 == str5);//true
 System.out.println(str4 == str5);//false
 ```
 
-> **注意** ：比较 String 字符串的值是否相等，可以使用 `equals()` 方法。 `String` 中的 `equals` 方法是被重写过的。 `Object` 的 `equals` 方法是比较的对象的内存地址，而 `String` 的 `equals` 方法比较的是字符串的值是否相等。如果你使用 `==` 比较两个字符串是否相等的话，IDEA 还是提示你使用 `equals()` 方法替换。
+> **注意**：比较 String 字符串的值是否相等，可以使用 `equals()` 方法。 `String` 中的 `equals` 方法是被重写过的。 `Object` 的 `equals` 方法是比较的对象的内存地址，而 `String` 的 `equals` 方法比较的是字符串的值是否相等。如果你使用 `==` 比较两个字符串是否相等的话，IDEA 还是提示你使用 `equals()` 方法替换。
 
 ![](https://oss.javaguide.cn/java-guide-blog/image-20210817123252441.png)
 

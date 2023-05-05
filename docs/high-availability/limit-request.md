@@ -188,15 +188,15 @@ Resilience4j 不仅提供限流，还提供了熔断、负载保护、自动重�
 
 分布式限流常见的方案：
 
-- **借助中间件架限流** ：可以借助 Sentinel 或者使用 Redis 来自己实现对应的限流逻辑。
-- **网关层限流** ：比较常用的一种方案，直接在网关层把限流给安排上了。不过，通常网关层限流通常也需要借助到中间件/框架。就比如 Spring Cloud Gateway 的分布式限流实现`RedisRateLimiter`就是基于 Redis+Lua 来实现的，再比如 Spring Cloud Gateway 还可以整合 Sentinel 来做限流。
+- **借助中间件架限流**：可以借助 Sentinel 或者使用 Redis 来自己实现对应的限流逻辑。
+- **网关层限流**：比较常用的一种方案，直接在网关层把限流给安排上了。不过，通常网关层限流通常也需要借助到中间件/框架。就比如 Spring Cloud Gateway 的分布式限流实现`RedisRateLimiter`就是基于 Redis+Lua 来实现的，再比如 Spring Cloud Gateway 还可以整合 Sentinel 来做限流。
 
 如果你要基于 Redis 来手动实现限流逻辑的话，建议配合 Lua 脚本来做。
 
 **为什么建议 Redis+Lua 的方式？** 主要有两点原因：
 
-- **减少了网络开销** ：我们可以利用 Lua 脚本来批量执行多条 Redis 命令，这些 Redis 命令会被提交到 Redis 服务器一次性执行完成，大幅减小了网络开销。
-- **原子性** ：一段 Lua 脚本可以视作一条命令执行，一段 Lua 脚本执行过程中不会有其他脚本或 Redis 命令同时执行，保证了操作不会被其他指令插入或打扰。
+- **减少了网络开销**：我们可以利用 Lua 脚本来批量执行多条 Redis 命令，这些 Redis 命令会被提交到 Redis 服务器一次性执行完成，大幅减小了网络开销。
+- **原子性**：一段 Lua 脚本可以视作一条命令执行，一段 Lua 脚本执行过程中不会有其他脚本或 Redis 命令同时执行，保证了操作不会被其他指令插入或打扰。
 
 我这里就不放具体的限流脚本代码了，网上也有很多现成的优秀的限流脚本供你参考，就比如 Apache 网关项目 ShenYu 的 RateLimiter 限流插件就基于 Redis + Lua 实现了令牌桶算法/并发令牌桶算法、漏桶算法、滑动窗口算法。
 
@@ -206,6 +206,6 @@ Resilience4j 不仅提供限流，还提供了熔断、负载保护、自动重�
 
 ## 相关阅读
 
-- 服务治理之轻量级熔断框架 Resilience4j ：<https://xie.infoq.cn/article/14786e571c1a4143ad1ef8f19>
+- 服务治理之轻量级熔断框架 Resilience4j：<https://xie.infoq.cn/article/14786e571c1a4143ad1ef8f19>
 - 超详细的 Guava RateLimiter 限流原理解析：<https://cloud.tencent.com/developer/article/1408819>
 - 实战 Spring Cloud Gateway 之限流篇 👍：<https://www.aneasystone.com/archives/2020/08/spring-cloud-gateway-current-limiting.html>

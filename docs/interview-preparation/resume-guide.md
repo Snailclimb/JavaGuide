@@ -37,13 +37,13 @@ icon: jianli
 下面是我收集的一些还不错的简历模板：
 
 - 适合中文的简历模板收集（推荐，免费）：https://github.com/dyweb/awesome-resume-for-chinese
-- 木及简历（部分收费） ：https://www.mujicv.com/。
+- 木及简历（部分收费）：https://www.mujicv.com/。
 - 简单简历（付费）：https://easycv.cn/
 - 站长简历：https://jianli.chinaz.com/
-- typora+markdown+css 自定义简历模板 ：https://github.com/Snailclimb/typora-markdown-resume
-- 极简简历 ：https://www.polebrief.com/index
+- typora+markdown+css 自定义简历模板：https://github.com/Snailclimb/typora-markdown-resume
+- 极简简历：https://www.polebrief.com/index
 - Markdown 简历排版工具：https://resume.mdnice.com/
-- 超级简历（部分收费） ：https://www.wondercv.com/
+- 超级简历（部分收费）：https://www.wondercv.com/
 
 上面这些简历模板大多是只有 1 页内容，很难展现足够的信息量。如果你不是顶级大牛（比如 ACM 大赛获奖）的话，我建议还是尽可能多写一点可以突出你自己能力的内容（校招生 2 页之内，社招生 3 页之内，记得精炼语言，不要过多废话）。
 
@@ -57,7 +57,7 @@ icon: jianli
 
 ### 个人信息
 
-- 最基本的 ：姓名（身份证上的那个）、年龄、电话、籍贯、联系方式、邮箱地址
+- 最基本的：姓名（身份证上的那个）、年龄、电话、籍贯、联系方式、邮箱地址
 - 潜在加分项： GitHub 地址、博客地址（如果技术博客和 GitHub 上没有什么内容的话，就不要写了）
 
 示例：
@@ -129,7 +129,7 @@ icon: jianli
 > 2017-05~2018-06 淘宝 Java 后端开发工程师
 >
 > - **项目描述** : 简单描述项目是做什么的。
-> - **技术栈** ：用了什么技术（如 Spring Boot + MySQL + Redis + Mybatis-plus + Spring Security + Oauth2）
+> - **技术栈**：用了什么技术（如 Spring Boot + MySQL + Redis + Mybatis-plus + Spring Security + Oauth2）
 > - **工作内容/个人职责** : 简单描述自己做了什么，解决了什么问题，带来了什么实质性的改善。突出自己的能力，不要过于平淡的叙述。
 > - **个人收获（可选）** : 从这个项目中你学会了那些东西，使用到了那些技术，学会了那些新技术的使用。通常是可以不用写个人收获的，因为你在个人职责介绍中写的东西已经表明了自己的主要收获。
 > - **项目成果（可选）** :简单描述这个项目取得了什么成绩。

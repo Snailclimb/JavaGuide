@@ -87,5 +87,5 @@ icon: "distributed-network"
 
 ## 其他
 
-- [《分布式系统 : 概念与设计》](https://book.douban.com/subject/21624776/) ：偏教材类型，内容全而无趣，可作为参考书籍；
-- [《分布式架构原理与实践》](https://book.douban.com/subject/35689350/) ：2021 年出版的，没什么热度，我也还没看过。
+- [《分布式系统 : 概念与设计》](https://book.douban.com/subject/21624776/)：偏教材类型，内容全而无趣，可作为参考书籍；
+- [《分布式架构原理与实践》](https://book.douban.com/subject/35689350/)：2021 年出版的，没什么热度，我也还没看过。

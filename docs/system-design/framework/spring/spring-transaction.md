@@ -59,7 +59,7 @@ public class OrdersService {
 
 ## 事务的特性（ACID）了解么?
 
-1. **原子性**（`Atomicity`） ：事务是最小的执行单位，不允许分割。事务的原子性确保动作要么全部完成，要么完全不起作用；
+1. **原子性**（`Atomicity`）：事务是最小的执行单位，不允许分割。事务的原子性确保动作要么全部完成，要么完全不起作用；
 2. **一致性**（`Consistency`）：执行事务前后，数据保持一致，例如转账业务中，无论事务是否成功，转账者和收款人的总额应该是不变的；
 3. **隔离性**（`Isolation`）：并发访问数据库时，一个用户的事务不被其他事务所干扰，各并发事务之间数据库是独立的；
 4. **持久性**（`Durability`）：一个事务被提交之后。它对数据库中数据的改变是持久的，即使数据库发生故障也不应该对其有任何影响。
@@ -359,7 +359,7 @@ public enum Propagation {
 
 ```
 
-**正确的事务传播行为可能的值如下** ：
+**正确的事务传播行为可能的值如下**：
 
 **1.`TransactionDefinition.PROPAGATION_REQUIRED`**
 
@@ -567,9 +567,9 @@ public interface TransactionDefinition {
 
 #### `@Transactional` 的作用范围
 
-1. **方法** ：推荐将注解使用于方法上，不过需要注意的是：**该注解只能应用到 public 方法上，否则不生效。**
-2. **类** ：如果这个注解使用在类上的话，表明该注解对该类中所有的 public 方法都生效。
-3. **接口** ：不推荐在接口上使用。
+1. **方法**：推荐将注解使用于方法上，不过需要注意的是：**该注解只能应用到 public 方法上，否则不生效。**
+2. **类**：如果这个注解使用在类上的话，表明该注解对该类中所有的 public 方法都生效。
+3. **接口**：不推荐在接口上使用。
 
 #### `@Transactional` 的常用配置参数
 
@@ -694,5 +694,5 @@ private void method1() {
 - 《Spring5 高级编程》
 - 透彻的掌握 Spring 中@transactional 的使用: [https://www.ibm.com/developerworks/cn/java/j-master-spring-transactional-use/index.html](https://www.ibm.com/developerworks/cn/java/j-master-spring-transactional-use/index.html)
 - Spring 事务的传播特性：[https://github.com/love-somnus/Spring/wiki/Spring 事务的传播特性](https://github.com/love-somnus/Spring/wiki/Spring事务的传播特性)
-- [Spring 事务传播行为详解](https://segmentfault.com/a/1190000013341344) ：[https://segmentfault.com/a/1190000013341344](https://segmentfault.com/a/1190000013341344)
+- [Spring 事务传播行为详解](https://segmentfault.com/a/1190000013341344)：[https://segmentfault.com/a/1190000013341344](https://segmentfault.com/a/1190000013341344)
 - 全面分析 Spring 的编程式事务管理及声明式事务管理：[https://www.ibm.com/developerworks/cn/education/opensource/os-cn-spring-trans/index.html](https://www.ibm.com/developerworks/cn/education/opensource/os-cn-spring-trans/index.html)

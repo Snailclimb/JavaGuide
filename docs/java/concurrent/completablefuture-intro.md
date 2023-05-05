@@ -26,11 +26,11 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
 
 `Future` 接口有 5 个方法：
 
-- `boolean cancel(boolean mayInterruptIfRunning)` ：尝试取消执行任务。
-- `boolean isCancelled()` ：判断任务是否被取消。
-- `boolean isDone()` ：判断任务是否已经被执行完成。
-- `get()` ：等待任务执行完成并获取运算结果。
-- `get(long timeout, TimeUnit unit)` ：多了一个超时时间。
+- `boolean cancel(boolean mayInterruptIfRunning)`：尝试取消执行任务。
+- `boolean isCancelled()`：判断任务是否被取消。
+- `boolean isDone()`：判断任务是否已经被执行完成。
+- `get()`：等待任务执行完成并获取运算结果。
+- `get(long timeout, TimeUnit unit)`：多了一个超时时间。
 
 `CompletionStage` 接口描述了一个异步计算的阶段。很多计算可以分成多个阶段或步骤，此时可以通过它将所有步骤组合起来，形成异步计算的流水线。
 

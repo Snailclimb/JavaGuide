@@ -65,7 +65,7 @@ Github 目前支持在个人主页自定义展示一些内容。展示效果如�
 
 ![Github表情](https://oss.javaguide.cn/2020-11/image-20201107162254582.png)
 
-如果你想要在 Github 使用表情的话，可以在这里找找 ：[www.webfx.com/tools/emoji-cheat-sheet/](https://www.webfx.com/tools/emoji-cheat-sheet/)。
+如果你想要在 Github 使用表情的话，可以在这里找找：[www.webfx.com/tools/emoji-cheat-sheet/](https://www.webfx.com/tools/emoji-cheat-sheet/)。
 
 ![在线Github表情](https://oss.javaguide.cn/2020-11/image-20201107162432941.png)
 

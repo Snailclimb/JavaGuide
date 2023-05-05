@@ -14,12 +14,12 @@ tag:
 - **认证 (Authentication)：** 你是谁。
 - **授权 (Authorization)：** 你有权限干什么。
 
-稍微正式点（啰嗦点）的说法就是 ：
+稍微正式点（啰嗦点）的说法就是：
 
 - **Authentication（认证）** 是验证您的身份的凭据（例如用户名/用户 ID 和密码），通过这个凭据，系统得以知道你就是你，也就是说系统存在你这个用户。所以，Authentication 被称为身份/用户验证。
 - **Authorization（授权）** 发生在 **Authentication（认证）** 之后。授权嘛，光看意思大家应该就明白，它主要掌管我们访问系统的权限。比如有些特定资源只能具有特定权限的人才能访问比如 admin，有些对系统资源操作比如删除、添加、更新只能特定人才具有。
 
-认证 ：
+认证：
 
 ![认证登录](https://oss.javaguide.cn/github/javaguide/system-design/security/authentication-login.png)
 

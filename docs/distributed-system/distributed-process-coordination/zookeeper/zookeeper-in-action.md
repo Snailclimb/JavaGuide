@@ -206,9 +206,9 @@ zkClient.start();
 对于一些基本参数的说明：
 
 - `baseSleepTimeMs`：重试之间等待的初始时间
-- `maxRetries` ：最大重试次数
-- `connectString` ：要连接的服务器列表
-- `retryPolicy` ：重试策略
+- `maxRetries`：最大重试次数
+- `connectString`：要连接的服务器列表
+- `retryPolicy`：重试策略
 
 ### 数据节点的增删改查
 
@@ -216,10 +216,10 @@ zkClient.start();
 
 我们在 [ZooKeeper 常见概念解读](./zookeeper-intro.md) 中介绍到，我们通常是将 znode 分为 4 大类：
 
-- **持久（PERSISTENT）节点** ：一旦创建就一直存在即使 ZooKeeper 集群宕机，直到将其删除。
-- **临时（EPHEMERAL）节点** ：临时节点的生命周期是与 **客户端会话（session）** 绑定的，**会话消失则节点消失** 。并且，临时节点 **只能做叶子节点** ，不能创建子节点。
-- **持久顺序（PERSISTENT_SEQUENTIAL）节点** ：除了具有持久（PERSISTENT）节点的特性之外， 子节点的名称还具有顺序性。比如 `/node1/app0000000001`、`/node1/app0000000002` 。
-- **临时顺序（EPHEMERAL_SEQUENTIAL）节点** ：除了具备临时（EPHEMERAL）节点的特性之外，子节点的名称还具有顺序性。
+- **持久（PERSISTENT）节点**：一旦创建就一直存在即使 ZooKeeper 集群宕机，直到将其删除。
+- **临时（EPHEMERAL）节点**：临时节点的生命周期是与 **客户端会话（session）** 绑定的，**会话消失则节点消失** 。并且，临时节点 **只能做叶子节点** ，不能创建子节点。
+- **持久顺序（PERSISTENT_SEQUENTIAL）节点**：除了具有持久（PERSISTENT）节点的特性之外， 子节点的名称还具有顺序性。比如 `/node1/app0000000001`、`/node1/app0000000002` 。
+- **临时顺序（EPHEMERAL_SEQUENTIAL）节点**：除了具备临时（EPHEMERAL）节点的特性之外，子节点的名称还具有顺序性。
 
 你在使用的 ZooKeeper 的时候，会发现 `CreateMode` 类中实际有 7 种 znode 类型 ，但是用的最多的还是上面介绍的 4 种。
 
