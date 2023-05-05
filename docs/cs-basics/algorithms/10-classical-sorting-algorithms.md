@@ -5,7 +5,7 @@ tag:
   - 算法
 ---
 
-> 本文转自：http://www.guoyaohua.com/sorting.html，JavaGuide 对其做了补充完善。
+> 本文转自：<http://www.guoyaohua.com/sorting.html>，JavaGuide 对其做了补充完善。
 
 ## 引言
 
@@ -87,7 +87,7 @@ public static int[] bubbleSort(int[] arr) {
                 int tmp = arr[j];
                 arr[j] = arr[j + 1];
                 arr[j + 1] = tmp;
-			    // Change flag
+       // Change flag
                 flag = false;
             }
         }
@@ -729,6 +729,6 @@ public static int[] radixSort(int[] arr) {
 
 ## 参考文章
 
-- https://www.cnblogs.com/guoyaohua/p/8600214.html
-- https://en.wikipedia.org/wiki/Sorting_algorithm
-- https://sort.hust.cc/
+- <https://www.cnblogs.com/guoyaohua/p/8600214.html>
+- <https://en.wikipedia.org/wiki/Sorting_algorithm>
+- <https://sort.hust.cc/>
