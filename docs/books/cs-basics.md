@@ -99,7 +99,7 @@ Github 上就有一些名校的计算机网络试验/Project：
 
 ![](https://oss.javaguide.cn/github/javaguide/booksimage-20201218141241911.png)
 
-**2、[王道考研的计算机网络](https://www.bilibili.com/video/BV19E411D78Q?from=search&seid=17198507506906312317)** ：非常适合 CS 专业考研的小朋友！这个视频目前在哔哩哔哩上已经有 1.6w+的点赞。
+**2、[王道考研的计算机网络](https://www.bilibili.com/video/BV19E411D78Q?from=search&seid=17198507506906312317)** ：非常适合 CS 专业考研的小朋友！这个视频目前在哔哩哔哩上已经有 1.6w+ 的点赞。
 
 ![](https://oss.javaguide.cn/github/javaguide/booksimage-20201218141652837.png)
 

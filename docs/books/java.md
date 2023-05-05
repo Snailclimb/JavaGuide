@@ -18,7 +18,7 @@ icon: "java"
 
 我个人觉得这本书还是挺适合编程新手阅读的，毕竟是 “Head First” 系列。
 
-**[《Java 核心技术卷 1+卷 2》](https://book.douban.com/subject/34898994/)**
+**[《Java 核心技术卷 1 + 卷 2》](https://book.douban.com/subject/34898994/)**
 
 ![《Java 核心技术卷 1》-豆瓣](https://oss.javaguide.cn/github/javaguide/books/image-20220424101217849.png)
 
