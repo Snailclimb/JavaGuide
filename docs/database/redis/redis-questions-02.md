@@ -16,7 +16,7 @@ head:
 
 ### 什么是 Redis 事务？
 
-你可以将 Redis 中的事务理解为 ：**Redis 事务提供了一种将多个命令请求打包的功能。然后，再按顺序执行打包的所有命令，并且不会被中途打断。**
+你可以将 Redis 中的事务理解为：**Redis 事务提供了一种将多个命令请求打包的功能。然后，再按顺序执行打包的所有命令，并且不会被中途打断。**
 
 Redis 事务实际开发中使用的非常少，功能比较鸡肋，不要将其和我们平时理解的关系型数据库的事务混淆了。
 
@@ -86,7 +86,7 @@ QUEUED
 "GoGuide"
 ```
 
-不过，如果 **WATCH** 与 **事务** 在同一个 Session 里，并且被 **WATCH** 监视的 Key 被修改的操作发生在事务内部，这个事务是可以被执行成功的（相关 issue ：[WATCH 命令碰到 MULTI 命令时的不同效果](https://github.com/Snailclimb/JavaGuide/issues/1714)）。
+不过，如果 **WATCH** 与 **事务** 在同一个 Session 里，并且被 **WATCH** 监视的 Key 被修改的操作发生在事务内部，这个事务是可以被执行成功的（相关 issue：[WATCH 命令碰到 MULTI 命令时的不同效果](https://github.com/Snailclimb/JavaGuide/issues/1714)）。
 
 事务内部修改 WATCH 监视的 Key：
 
@@ -134,7 +134,7 @@ Redis 官网相关介绍 [https://redis.io/topics/transactions](https://redis.io
 
 ### Redis 事务支持原子性吗？
 
-Redis 的事务和我们平时理解的关系型数据库的事务不同。我们知道事务具有四大特性： **1. 原子性**，**2. 隔离性**，**3. 持久性**，**4. 一致性**。
+Redis 的事务和我们平时理解的关系型数据库的事务不同。我们知道事务具有四大特性：**1. 原子性**，**2. 隔离性**，**3. 持久性**，**4. 一致性**。
 
 1. **原子性（Atomicity）：** 事务是最小的执行单位，不允许分割。事务的原子性确保动作要么全部完成，要么完全不起作用；
 2. **隔离性（Isolation）：** 并发访问数据库时，一个用户的事务不被其他事务所干扰，各并发事务之间数据库是独立的；
@@ -168,7 +168,7 @@ appendfsync everysec  #每秒钟调用fsync函数同步一次AOF文件
 appendfsync no        #让操作系统决定何时进行同步，一般为30秒一次
 ```
 
-AOF 持久化的`fsync`策略为 no 、everysec 时都会存在数据丢失的情况 。always 下可以基本是可以满足持久性要求的，但性能太差，实际开发过程中不会使用。
+AOF 持久化的`fsync`策略为 no、everysec 时都会存在数据丢失的情况 。always 下可以基本是可以满足持久性要求的，但性能太差，实际开发过程中不会使用。
 
 因此，Redis 事务的持久性也是没办法保证的。
 
@@ -319,17 +319,17 @@ Biggest string found '"ballcat:oauth:refresh_auth:f6cdb384-9a9d-4f2f-af01-dc3f28
 
 网上有现成的代码/工具可以直接拿来使用：
 
-- [redis-rdb-tools](https://github.com/sripathikrishnan/redis-rdb-tools) ：Python 语言写的用来分析 Redis 的 RDB 快照文件用的工具
+- [redis-rdb-tools](https://github.com/sripathikrishnan/redis-rdb-tools)：Python 语言写的用来分析 Redis 的 RDB 快照文件用的工具
 - [rdb_bigkeys](https://github.com/weiyanwei412/rdb_bigkeys) : Go 语言写的用来分析 Redis 的 RDB 快照文件用的工具，性能更好。
 
 ### Redis 内存碎片
 
-**相关问题** ：
+**相关问题**：
 
 1. 什么是内存碎片?为什么会有 Redis 内存碎片?
 2. 如何清理 Redis 内存碎片？
 
-**参考答案** ：[Redis 内存碎片详解](https://javaguide.cn/database/redis/redis-memory-fragmentation.html)。
+**参考答案**：[Redis 内存碎片详解](https://javaguide.cn/database/redis/redis-memory-fragmentation.html)。
 
 ## Redis 生产问题（重要）
 
@@ -349,9 +349,9 @@ Biggest string found '"ballcat:oauth:refresh_auth:f6cdb384-9a9d-4f2f-af01-dc3f28
 
 **1）缓存无效 key**
 
-如果缓存和数据库都查不到某个 key 的数据就写一个到 Redis 中去并设置过期时间，具体命令如下： `SET key value EX 10086` 。这种方式可以解决请求的 key 变化不频繁的情况，如果黑客恶意攻击，每次构建不同的请求 key，会导致 Redis 中缓存大量无效的 key 。很明显，这种方案并不能从根本上解决此问题。如果非要用这种方式来解决穿透问题的话，尽量将无效的 key 的过期时间设置短一点比如 1 分钟。
+如果缓存和数据库都查不到某个 key 的数据就写一个到 Redis 中去并设置过期时间，具体命令如下：`SET key value EX 10086` 。这种方式可以解决请求的 key 变化不频繁的情况，如果黑客恶意攻击，每次构建不同的请求 key，会导致 Redis 中缓存大量无效的 key 。很明显，这种方案并不能从根本上解决此问题。如果非要用这种方式来解决穿透问题的话，尽量将无效的 key 的过期时间设置短一点比如 1 分钟。
 
-另外，这里多说一嘴，一般情况下我们是这样设计 key 的： `表名:列名:主键名:主键值` 。
+另外，这里多说一嘴，一般情况下我们是这样设计 key 的：`表名:列名:主键名:主键值` 。
 
 如果用 Java 代码展示的话，差不多是下面这样的：
 
@@ -386,7 +386,7 @@ public Object getObjectInclNullById(Integer id) {
 
 ![加入布隆过滤器之后的缓存处理流程图](https://oss.javaguide.cn/github/javaguide/database/redis/redis-cache-penetration-bloom-filter.png)
 
-但是，需要注意的是布隆过滤器可能会存在误判的情况。总结来说就是： **布隆过滤器说某个元素存在，小概率会误判。布隆过滤器说某个元素不在，那么这个元素一定不在。**
+但是，需要注意的是布隆过滤器可能会存在误判的情况。总结来说就是：**布隆过滤器说某个元素存在，小概率会误判。布隆过滤器说某个元素不在，那么这个元素一定不在。**
 
 _为什么会出现误判的情况呢? 我们还要从布隆过滤器的原理来说！_
 
@@ -412,7 +412,7 @@ _为什么会出现误判的情况呢? 我们还要从布隆过滤器的原理�
 
 ![缓存击穿](https://oss.javaguide.cn/github/javaguide/database/redis/redis-cache-breakdown.png)
 
-举个例子 ：秒杀进行过程中，缓存中的某个秒杀商品的数据突然过期，这就导致瞬时大量对该商品的请求直接落到数据库上，对数据库造成了巨大的压力。
+举个例子：秒杀进行过程中，缓存中的某个秒杀商品的数据突然过期，这就导致瞬时大量对该商品的请求直接落到数据库上，对数据库造成了巨大的压力。
 
 #### 有哪些解决办法？
 
@@ -438,7 +438,7 @@ _为什么会出现误判的情况呢? 我们还要从布隆过滤器的原理�
 
 ![缓存雪崩](https://oss.javaguide.cn/github/javaguide/database/redis/redis-cache-avalanche.png)
 
-举个例子 ：数据库中的大量数据在同一时间过期，这个时候突然有大量的请求需要访问这些过期的数据。这就导致大量的请求直接落到数据库上，对数据库造成了巨大的压力。
+举个例子：数据库中的大量数据在同一时间过期，这个时候突然有大量的请求需要访问这些过期的数据。这就导致大量的请求直接落到数据库上，对数据库造成了巨大的压力。
 
 #### 有哪些解决办法？
 
@@ -467,8 +467,8 @@ Cache Aside Pattern 中遇到写请求是这样的：更新 DB，然后直接删
 
 如果更新数据库成功，而删除缓存这一步失败的情况的话，简单说两个解决方案：
 
-1. **缓存失效时间变短（不推荐，治标不治本）** ：我们让缓存数据的过期时间变短，这样的话缓存就会从数据库中加载数据。另外，这种解决办法对于先操作缓存后操作数据库的场景不适用。
-2. **增加 cache 更新重试机制（常用）**： 如果 cache 服务当前不可用导致缓存删除失败的话，我们就隔一段时间进行重试，重试次数可以自己定。如果多次重试还是失败的话，我们可以把当前更新失败的 key 存入队列中，等缓存服务可用之后，再将缓存中对应的 key 删除即可。
+1. **缓存失效时间变短（不推荐，治标不治本）**：我们让缓存数据的过期时间变短，这样的话缓存就会从数据库中加载数据。另外，这种解决办法对于先操作缓存后操作数据库的场景不适用。
+2. **增加 cache 更新重试机制（常用）**：如果 cache 服务当前不可用导致缓存删除失败的话，我们就隔一段时间进行重试，重试次数可以自己定。如果多次重试还是失败的话，我们可以把当前更新失败的 key 存入队列中，等缓存服务可用之后，再将缓存中对应的 key 删除即可。
 
 相关文章推荐：[缓存和数据库一致性问题，看这篇就够了 - 水滴与银弹](https://mp.weixin.qq.com/s?__biz=MzIyOTYxNDI5OA==&mid=2247487312&idx=1&sn=fa19566f5729d6598155b5c676eee62d&chksm=e8beb8e5dfc931f3e35655da9da0b61c79f2843101c130cf38996446975014f958a6481aacf1&scene=178&cur_album_id=1699766580538032128#rd)。
 
@@ -478,7 +478,7 @@ Cache Aside Pattern 中遇到写请求是这样的：更新 DB，然后直接删
 
 ## Redis 集群
 
-**Redis Sentinel** ：
+**Redis Sentinel**：
 
 1. 什么是 Sentinel？ 有什么用？
 2. Sentinel 如何检测节点是否下线？主观下线与客观下线的区别?
@@ -488,7 +488,7 @@ Cache Aside Pattern 中遇到写请求是这样的：更新 DB，然后直接删
 6. 如何从 Sentinel 集群中选择出 Leader ？
 7. Sentinel 可以防止脑裂吗？
 
-**Redis Cluster** ：
+**Redis Cluster**：
 
 1. 为什么需要 Redis Cluster？解决了什么问题？有什么优势？
 2. Redis Cluster 是如何分片的？
@@ -498,21 +498,21 @@ Cache Aside Pattern 中遇到写请求是这样的：更新 DB，然后直接删
 6. Redis Cluster 扩容缩容期间可以提供服务吗？
 7. Redis Cluster 中的节点是怎么进行通信的？
 
-**参考答案** ：[Redis 集群详解（付费）](https://javaguide.cn/database/redis/redis-cluster.html)。
+**参考答案**：[Redis 集群详解（付费）](https://javaguide.cn/database/redis/redis-cluster.html)。
 
 ## Redis 使用规范
 
 实际使用 Redis 的过程中，我们尽量要准守一些常见的规范，比如：
 
 1. 使用连接池：避免频繁创建关闭客户端连接。
-2. 尽量不使用 O(n)指令，使用 O(N)命令时要关注 N 的数量 ：例如 `hgetall`、`lrange`、`smembers`、`zrange`、`sinter` 、`sunion` 命令并非不能使用，但是需要明确 N 的值。有遍历的需求可以使用 `hscan`、`sscan`、`zscan` 代替。
-3. 使用批量操作减少网络传输 ：原生批量操作命令（比如 `mget`、`mset`等等）、pipeline、Lua 脚本。
+2. 尽量不使用 O(n)指令，使用 O(N)命令时要关注 N 的数量：例如 `hgetall`、`lrange`、`smembers`、`zrange`、`sinter`、`sunion` 命令并非不能使用，但是需要明确 N 的值。有遍历的需求可以使用 `hscan`、`sscan`、`zscan` 代替。
+3. 使用批量操作减少网络传输：原生批量操作命令（比如 `mget`、`mset`等等）、pipeline、Lua 脚本。
 4. 尽量不适用 Redis 事务：Redis 事务实现的功能比较鸡肋，可以使用 Lua 脚本代替。
 5. 禁止长时间开启 monitor：对性能影响比较大。
 6. 控制 key 的生命周期：避免 Redis 中存放了太多不经常被访问的数据。
 7. ......
 
-相关文章推荐 ：[阿里云 Redis 开发规范](https://developer.aliyun.com/article/531067) 。
+相关文章推荐：[阿里云 Redis 开发规范](https://developer.aliyun.com/article/531067) 。
 
 ## 参考
 

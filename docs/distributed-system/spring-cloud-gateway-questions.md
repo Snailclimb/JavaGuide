@@ -17,8 +17,8 @@ Spring Cloud Gateway 不仅提供统一的路由方式，并且基于 Filter 链
 
 Spring Cloud Gateway 和 Zuul 2.x 的差别不大，也是通过过滤器来处理请求。不过，目前更加推荐使用 Spring Cloud Gateway 而非 Zuul，Spring Cloud 生态对其支持更加友好。
 
-- Github 地址 ： <https://github.com/spring-cloud/spring-cloud-gateway>
-- 官网 ： <https://spring.io/projects/spring-cloud-gateway>
+- GitHub 地址： <https://github.com/spring-cloud/spring-cloud-gateway>
+- 官网： <https://spring.io/projects/spring-cloud-gateway>
 
 ## Spring Cloud Gateway 的工作流程？
 
@@ -30,7 +30,7 @@ Spring Cloud Gateway 的工作流程如下图所示：
 
 具体的流程分析：
 
-1. **路由判断** ：客户端的请求到达网关后，先经过 Gateway Handler Mapping 处理，这里面会做断言（Predicate）判断，看下符合哪个路由规则，这个路由映射后端的某个服务。
+1. **路由判断**：客户端的请求到达网关后，先经过 Gateway Handler Mapping 处理，这里面会做断言（Predicate）判断，看下符合哪个路由规则，这个路由映射后端的某个服务。
 2. **请求过滤**：然后请求到达 Gateway Web Handler，这里面有很多过滤器，组成过滤器链（Filter Chain），这些过滤器可以对请求进行拦截和修改，比如添加请求头、参数校验等等，有点像净化污水。然后将请求转发到实际的后端服务。这些过滤器逻辑上可以称作 Pre-Filters，Pre 可以理解为“在...之前”。
 3. **服务处理**：后端服务会对请求进行处理。
 4. **响应过滤**：后端处理完结果后，返回给 Gateway 的过滤器再次做处理，逻辑上可以称作 Post-Filters，Post 可以理解为“在...之后”。
@@ -94,7 +94,7 @@ Spring Cloud Gateway 作为微服务的入口，需要尽量避免重启，而�
 
 ```yaml
 filters: #过滤器
-   - RewritePath=/api/(?<segment>.*),/$\{segment} # 将跳转路径中包含的 “api” 替换成空
+  - RewritePath=/api/(?<segment>.*),/$\{segment} # 将跳转路径中包含的 “api” 替换成空
 ```
 
 当然我们也可以自定义过滤器，本篇不做展开。

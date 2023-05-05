@@ -23,20 +23,20 @@ category: 分布式
 
 绝大部分网关可以提供下面这些功能：
 
-- **请求转发** ：将请求转发到目标微服务。
-- **负载均衡** ：根据各个微服务实例的负载情况或者具体的负载均衡策略配置对请求实现动态的负载均衡。
-- **安全认证** ：对用户请求进行身份验证并仅允许可信客户端访问 API，并且还能够使用类似 RBAC 等方式来授权。
-- **参数校验** ：支持参数映射与校验逻辑。
-- **日志记录** ：记录所有请求的行为日志供后续使用。
-- **监控告警** ：从业务指标、机器指标、JVM 指标等方面进行监控并提供配套的告警机制。
-- **流量控制** ：对请求的流量进行控制，也就是限制某一时刻内的请求数。
+- **请求转发**：将请求转发到目标微服务。
+- **负载均衡**：根据各个微服务实例的负载情况或者具体的负载均衡策略配置对请求实现动态的负载均衡。
+- **安全认证**：对用户请求进行身份验证并仅允许可信客户端访问 API，并且还能够使用类似 RBAC 等方式来授权。
+- **参数校验**：支持参数映射与校验逻辑。
+- **日志记录**：记录所有请求的行为日志供后续使用。
+- **监控告警**：从业务指标、机器指标、JVM 指标等方面进行监控并提供配套的告警机制。
+- **流量控制**：对请求的流量进行控制，也就是限制某一时刻内的请求数。
 - **熔断降级**：实时监控请求的统计信息，达到配置的失败阈值后，自动熔断，返回默认值。
 - **响应缓存**：当用户请求获取的是一些静态的或更新不频繁的数据时，一段时间内多次请求获取到的数据很可能是一样的。对于这种情况可以将响应缓存起来。这样用户请求可以直接在网关层得到响应数据，无需再去访问业务服务，减轻业务服务的负担。
 - **响应聚合**：某些情况下用户请求要获取的响应内容可能会来自于多个业务服务。网关作为业务服务的调用方，可以把多个服务的响应整合起来，再一并返回给用户。
-- **灰度发布** ：将请求动态分流到不同的服务版本（最基本的一种灰度发布）。
+- **灰度发布**：将请求动态分流到不同的服务版本（最基本的一种灰度发布）。
 - **异常处理**：对于业务服务返回的异常响应，可以在网关层在返回给用户之前做转换处理。这样可以把一些业务侧返回的异常细节隐藏，转换成用户友好的错误提示返回。
 - **API 文档：** 如果计划将 API 暴露给组织以外的开发人员，那么必须考虑使用 API 文档，例如 Swagger 或 OpenAPI。
-- **协议转换** ：通过协议转换整合后台基于 REST、AMQP、Dubbo 等不同风格和实现技术的微服务，面向 Web Mobile、开放平台等特定客户端提供统一服务。
+- **协议转换**：通过协议转换整合后台基于 REST、AMQP、Dubbo 等不同风格和实现技术的微服务，面向 Web Mobile、开放平台等特定客户端提供统一服务。
 
 下图来源于[百亿规模 API 网关服务 Shepherd 的设计与实现 - 美团技术团队 - 2021](https://mp.weixin.qq.com/s/iITqdIiHi3XGKq6u6FRVdg)这篇文章。
 
@@ -74,8 +74,8 @@ Zuul 主要通过过滤器（类似于 AOP）来过滤请求，从而实现网�
 
 ![Zuul2 架构](https://oscimg.oschina.net/oscnet/up-4f9047dc9109e27f9fced1b365e2b976e9d.png)
 
-- Github 地址 ： <https://github.com/Netflix/zuul>
-- 官方 Wiki ： <https://github.com/Netflix/zuul/wiki>
+- GitHub 地址： <https://github.com/Netflix/zuul>
+- 官方 Wiki： <https://github.com/Netflix/zuul/wiki>
 
 ### Spring Cloud Gateway
 
@@ -89,15 +89,15 @@ Spring Cloud Gateway 不仅提供统一的路由方式，并且基于 Filter 链
 
 Spring Cloud Gateway 和 Zuul 2.x 的差别不大，也是通过过滤器来处理请求。不过，目前更加推荐使用 Spring Cloud Gateway 而非 Zuul，Spring Cloud 生态对其支持更加友好。
 
-- Github 地址 ： <https://github.com/spring-cloud/spring-cloud-gateway>
-- 官网 ： <https://spring.io/projects/spring-cloud-gateway>
+- Github 地址： <https://github.com/spring-cloud/spring-cloud-gateway>
+- 官网： <https://spring.io/projects/spring-cloud-gateway>
 
 ### Kong
 
 Kong 是一款基于 [OpenResty](https://github.com/openresty/) （Nginx + Lua）的高性能、云原生、可扩展的网关系统，主要由 3 个组件组成：
 
-- Kong Server ：基于 Nginx 的服务器，用来接收 API 请求。
-- Apache Cassandra/PostgreSQL ：用来存储操作数据。
+- Kong Server：基于 Nginx 的服务器，用来接收 API 请求。
+- Apache Cassandra/PostgreSQL：用来存储操作数据。
 - Kong Dashboard：官方推荐 UI 管理工具，当然，也可以使用 RESTful 方式 管理 Admin api。
 
 > OpenResty 是一个基于 Nginx 与 Lua 的高性能 Web 平台，其内部集成了大量精良的 Lua 库、第三方模块以及大多数的依赖项。用于方便地搭建能够处理超高并发、扩展性极高的动态 Web 应用、Web 服务和动态网关。
@@ -118,7 +118,7 @@ $ curl -X POST http://kong:8001/services/{service}/plugins \
 ![](https://oss.javaguide.cn/github/javaguide/system-design/distributed-system/api-gateway/kong-gateway-overview.png)
 
 - Github 地址： <https://github.com/Kong/kong>
-- 官网地址 ： <https://konghq.com/kong>
+- 官网地址： <https://konghq.com/kong>
 
 ### APISIX
 
@@ -143,7 +143,7 @@ APISIX 同样支持定制化的插件开发。开发者除了能够使用 Lua �
 
 ![](https://oscimg.oschina.net/oscnet/up-a240d3b113cde647f5850f4c7cc55d4ff5c.png)
 
-- Github 地址 ：<https://github.com/apache/apisix>
+- Github 地址：<https://github.com/apache/apisix>
 - 官网地址： <https://apisix.apache.org/zh/>
 
 相关阅读：
@@ -159,10 +159,10 @@ Shenyu 是一款基于 WebFlux 的可扩展、高性能、响应式网关，Apac
 
 ![Shenyu 架构](https://oscimg.oschina.net/oscnet/up-1c2b39f22e5a0bb1730531429c4147bfbf8.png)
 
-Shenyu 通过插件扩展功能，插件是 ShenYu 的灵魂，并且插件也是可扩展和热插拔的。不同的插件实现不同的功能。Shenyu 自带了诸如限流、熔断、转发 、重写、重定向、和路由监控等插件。
+Shenyu 通过插件扩展功能，插件是 ShenYu 的灵魂，并且插件也是可扩展和热插拔的。不同的插件实现不同的功能。Shenyu 自带了诸如限流、熔断、转发、重写、重定向、和路由监控等插件。
 
 - Github 地址： <https://github.com/apache/incubator-shenyu>
-- 官网地址 ： <https://shenyu.apache.org/>
+- 官网地址： <https://shenyu.apache.org/>
 
 ## 参考
 

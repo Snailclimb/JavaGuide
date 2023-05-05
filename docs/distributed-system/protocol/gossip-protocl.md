@@ -28,7 +28,7 @@ Gossip 协议最早是在 ACM 上的一篇 1987 年发表的论文 [《Epidemic 
 
 在 Gossip 协议下，没有所谓的中心节点，每个节点周期性地随机找一个节点互相同步彼此的信息，理论上来说，各个节点的状态最终会保持一致。
 
-下面我们来对 Gossip 协议的定义做一个总结： **Gossip 协议是一种允许在分布式系统中共享状态的去中心化通信协议，通过这种通信协议，我们可以将信息传播给网络或集群中的所有成员。**
+下面我们来对 Gossip 协议的定义做一个总结：**Gossip 协议是一种允许在分布式系统中共享状态的去中心化通信协议，通过这种通信协议，我们可以将信息传播给网络或集群中的所有成员。**
 
 ## Gossip 协议应用
 
@@ -44,9 +44,9 @@ Redis Cluster 是一个典型的分布式系统，分布式系统中的各个节
 
 Redis Cluster 的节点之间会相互发送多种 Gossip 消息：
 
-- **MEET** ：在 Redis Cluster 中的某个 Redis 节点上执行 `CLUSTER MEET ip port` 命令，可以向指定的 Redis 节点发送一条 MEET 信息，用于将其添加进 Redis Cluster 成为新的 Redis 节点。
-- **PING/PONG** ：Redis Cluster 中的节点都会定时地向其他节点发送 PING 消息，来交换各个节点状态信息，检查各个节点状态，包括在线状态、疑似下线状态 PFAIL 和已下线状态 FAIL。
-- **FAIL** ：Redis Cluster 中的节点 A 发现 B 节点 PFAIL ，并且在下线报告的有效期限内集群中半数以上的节点将 B 节点标记为 PFAIL，节点 A 就会向集群广播一条 FAIL 消息，通知其他节点将故障节点 B 标记为 FAIL 。
+- **MEET**：在 Redis Cluster 中的某个 Redis 节点上执行 `CLUSTER MEET ip port` 命令，可以向指定的 Redis 节点发送一条 MEET 信息，用于将其添加进 Redis Cluster 成为新的 Redis 节点。
+- **PING/PONG**：Redis Cluster 中的节点都会定时地向其他节点发送 PING 消息，来交换各个节点状态信息，检查各个节点状态，包括在线状态、疑似下线状态 PFAIL 和已下线状态 FAIL。
+- **FAIL**：Redis Cluster 中的节点 A 发现 B 节点 PFAIL ，并且在下线报告的有效期限内集群中半数以上的节点将 B 节点标记为 PFAIL，节点 A 就会向集群广播一条 FAIL 消息，通知其他节点将故障节点 B 标记为 FAIL 。
 - ......
 
 下图就是主从架构的 Redis Cluster 的示意图，图中的虚线代表的就是各个节点之间使用 Gossip 进行通信 ，实线表示主从复制。
@@ -133,7 +133,7 @@ Gossip 设计了两种可能的消息传播模式：**反熵（Anti-Entropy）**
 ## 总结
 
 - Gossip 协议是一种允许在分布式系统中共享状态的通信协议，通过这种通信协议，我们可以将信息传播给网络或集群中的所有成员。
-- Gossip 协议被 Redis 、Apache Cassandra、Consul 等项目应用。
+- Gossip 协议被 Redis、Apache Cassandra、Consul 等项目应用。
 - 谣言传播（Rumor-Mongering）比较适合节点数量比较多或者节点动态变化的场景。
 
 ## 参考

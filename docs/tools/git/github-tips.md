@@ -65,7 +65,7 @@ Github 目前支持在个人主页自定义展示一些内容。展示效果如�
 
 ![Github表情](https://oss.javaguide.cn/2020-11/image-20201107162254582.png)
 
-如果你想要在 Github 使用表情的话，可以在这里找找 ：[www.webfx.com/tools/emoji-cheat-sheet/](https://www.webfx.com/tools/emoji-cheat-sheet/)。
+如果你想要在 Github 使用表情的话，可以在这里找找：[www.webfx.com/tools/emoji-cheat-sheet/](https://www.webfx.com/tools/emoji-cheat-sheet/)。
 
 ![在线Github表情](https://oss.javaguide.cn/2020-11/image-20201107162432941.png)
 
@@ -133,7 +133,7 @@ Github 前段时间推出的 Codespaces 可以提供类似 VS Code 的在线 IDE
 
 ## GitHub Actions 很强大
 
-你可以简单地将 GitHub Actions 理解为 Github 自带的 CI/CD ，通过 GitHub Actions 你可以直接在 GitHub 构建、测试和部署代码，你还可以对代码进行审查、管理 API 、分析项目依赖项。总之，GitHub Actions 可以自动化地帮你完成很多事情。
+你可以简单地将 GitHub Actions 理解为 Github 自带的 CI/CD ，通过 GitHub Actions 你可以直接在 GitHub 构建、测试和部署代码，你还可以对代码进行审查、管理 API、分析项目依赖项。总之，GitHub Actions 可以自动化地帮你完成很多事情。
 
 关于 GitHub Actions 的详细介绍，推荐看一下阮一峰老师写的 [GitHub Actions 入门教程](https://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html) 。
 

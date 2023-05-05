@@ -152,9 +152,9 @@ void shouldGet200StatusCodeWhenRequestIsValid() {
 
 **4、包名统一使用小写，尽量使用单个名词作为包名，各个单词通过 "." 分隔符连接，并且各个单词必须为单数。**
 
-正例： `org.apache.dubbo.common.threadlocal`
+正例：`org.apache.dubbo.common.threadlocal`
 
-反例： ~~`org.apache_dubbo.Common.threadLocals`~~
+反例：~~`org.apache_dubbo.Common.threadLocals`~~
 
 **5、抽象类命名使用 Abstract 开头**。
 
@@ -209,7 +209,7 @@ POJO 类中布尔类型的变量，都不要加 is 前缀，否则部分框架�
 
 **4、避免命名过长（50 个字符以内最好），过长的命名难以阅读并且丑陋。**
 
-**5、不要使用拼音，更不要使用中文。** 不过像 alibaba 、wuhan、taobao 这种国际通用名词可以当做英文来看待。
+**5、不要使用拼音，更不要使用中文。** 不过像 alibaba、wuhan、taobao 这种国际通用名词可以当做英文来看待。
 
 正例：discount
 

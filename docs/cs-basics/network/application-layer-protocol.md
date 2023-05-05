@@ -98,8 +98,8 @@ RTP（Real-time Transport Protocol，实时传输协议）通常基于 UDP 协�
 
 RTP 协议分为两种子协议：
 
-- **RTP（Real-time Transport Protocol，实时传输协议）** ：传输具有实时特性的数据。
-- **RTCP（RTP Control Protocol，RTP 控制协议）** ：提供实时传输过程中的统计信息（如网络延迟、丢包率等），WebRTC 正是根据这些信息处理丢包
+- **RTP（Real-time Transport Protocol，实时传输协议）**：传输具有实时特性的数据。
+- **RTCP（RTP Control Protocol，RTP 控制协议）**：提供实时传输过程中的统计信息（如网络延迟、丢包率等），WebRTC 正是根据这些信息处理丢包
 
 ## DNS:域名系统
 

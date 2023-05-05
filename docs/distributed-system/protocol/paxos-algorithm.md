@@ -36,14 +36,14 @@ Paxos 算法是第一个被证明完备的分布式系统共识算法。共识�
 
 兰伯特当时提出的 Paxos 算法主要包含 2 个部分:
 
-- **Basic Paxos 算法** ： 描述的是多节点之间如何就某个值(提案 Value)达成共识。
-- **Multi-Paxos 思想** ： 描述的是执行多个 Basic Paxos 实例，就一系列值达成共识。Multi-Paxos 说白了就是执行多次 Basic Paxos ，核心还是 Basic Paxos 。
+- **Basic Paxos 算法**：描述的是多节点之间如何就某个值(提案 Value)达成共识。
+- **Multi-Paxos 思想**：描述的是执行多个 Basic Paxos 实例，就一系列值达成共识。Multi-Paxos 说白了就是执行多次 Basic Paxos ，核心还是 Basic Paxos 。
 
 由于 Paxos 算法在国际上被公认的非常难以理解和实现，因此不断有人尝试简化这一算法。到了 2013 年才诞生了一个比 Paxos 算法更易理解和实现的共识算法—[Raft 算法](https://javaguide.cn/distributed-system/theorem&algorithm&protocol/raft-algorithm.html) 。更具体点来说，Raft 是 Multi-Paxos 的一个变种，其简化了 Multi-Paxos 的思想，变得更容易被理解以及工程实现。
 
-针对没有恶意节点的情况，除了 Raft 算法之外，当前最常用的一些共识算法比如 **ZAB 协议** 、 **Fast Paxos** 算法都是基于 Paxos 算法改进的。
+针对没有恶意节点的情况，除了 Raft 算法之外，当前最常用的一些共识算法比如 **ZAB 协议**、 **Fast Paxos** 算法都是基于 Paxos 算法改进的。
 
-针对存在恶意节点的情况，一般使用的是 **工作量证明（POW，Proof-of-Work）** 、 **权益证明（PoS，Proof-of-Stake ）** 等共识算法。这类共识算法最典型的应用就是区块链，就比如说前段时间以太坊官方宣布其共识机制正在从工作量证明(PoW)转变为权益证明(PoS)。
+针对存在恶意节点的情况，一般使用的是 **工作量证明（POW，Proof-of-Work）**、 **权益证明（PoS，Proof-of-Stake ）** 等共识算法。这类共识算法最典型的应用就是区块链，就比如说前段时间以太坊官方宣布其共识机制正在从工作量证明(PoW)转变为权益证明(PoS)。
 
 区块链系统使用的共识算法需要解决的核心问题是 **拜占庭将军问题** ，这和我们日常接触到的 ZooKeeper、Etcd、Consul 等分布式中间件不太一样。
 
@@ -69,7 +69,7 @@ Basic Paxos 中存在 3 个重要的角色：
 
 Basic Paxos 算法的仅能就单个值达成共识，为了能够对一系列的值达成共识，我们需要用到 Basic Paxos 思想。
 
-⚠️**注意** ： Multi-Paxos 只是一种思想，这种思想的核心就是通过多个 Basic Paxos 实例就一系列值达成共识。也就是说，Basic Paxos 是 Multi-Paxos 思想的核心，Multi-Paxos 就是多执行几次 Basic Paxos。
+⚠️**注意**：Multi-Paxos 只是一种思想，这种思想的核心就是通过多个 Basic Paxos 实例就一系列值达成共识。也就是说，Basic Paxos 是 Multi-Paxos 思想的核心，Multi-Paxos 就是多执行几次 Basic Paxos。
 
 由于兰伯特提到的 Multi-Paxos 思想缺少代码实现的必要细节(比如怎么选举领导者)，所以在理解和实现上比较困难。
 

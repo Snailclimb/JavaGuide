@@ -20,7 +20,7 @@ head:
 
 ![](https://oscimg.oschina.net/oscnet/up-11de8cb239aa7201cc8d78fa28928b9ec7d.png)
 
-Github 上也已经有大佬用 Java 实现过一个简易的数据库，介绍的挺详细的，感兴趣的朋友可以去看看。地址：[https://github.com/alchemystar/Freedom](https://github.com/alchemystar/Freedom) 。
+GitHub 上也已经有大佬用 Java 实现过一个简易的数据库，介绍的挺详细的，感兴趣的朋友可以去看看。地址：[https://github.com/alchemystar/Freedom](https://github.com/alchemystar/Freedom) 。
 
 除了这个用 Java 写的之外，**[db_tutorial](https://github.com/cstack/db_tutorial)** 这个项目是国外的一个大佬用 C 语言写的，朋友们也可以去瞅瞅。
 
@@ -54,9 +54,9 @@ Github 上也已经有大佬用 Java 实现过一个简易的数据库，介绍�
 
 一般企业项目开发中，使用 MySQL 比较多。如果你要学习 MySQL 的话，可以看下面这 3 本书籍：
 
-- **[《MySQL 必知必会》](https://book.douban.com/subject/3354490/)** ：非常薄！非常适合 MySQL 新手阅读，很棒的入门教材。
-- **[《高性能 MySQL》](https://book.douban.com/subject/23008813/)** ： MySQL 领域的经典之作！学习 MySQL 必看！属于进阶内容，主要教你如何更好地使用 MySQL 。既有有理论，又有实践！如果你没时间都看一遍的话，我建议第 5 章（创建高性能的索引） 、第 6 章（查询性能优化） 你一定要认真看一下。
-- **[《MySQL 技术内幕》](https://book.douban.com/subject/24708143/)** ：你想深入了解 MySQL 存储引擎的话，看这本书准没错！
+- **[《MySQL 必知必会》](https://book.douban.com/subject/3354490/)**：非常薄！非常适合 MySQL 新手阅读，很棒的入门教材。
+- **[《高性能 MySQL》](https://book.douban.com/subject/23008813/)**：MySQL 领域的经典之作！学习 MySQL 必看！属于进阶内容，主要教你如何更好地使用 MySQL 。既有有理论，又有实践！如果你没时间都看一遍的话，我建议第 5 章（创建高性能的索引）、第 6 章（查询性能优化） 你一定要认真看一下。
+- **[《MySQL 技术内幕》](https://book.douban.com/subject/24708143/)**：你想深入了解 MySQL 存储引擎的话，看这本书准没错！
 
 ![](https://oscimg.oschina.net/oscnet/up-3d31e762933f9e50cc7170b2ebd8433917b.png)
 

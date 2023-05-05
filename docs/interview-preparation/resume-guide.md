@@ -23,7 +23,7 @@ icon: jianli
 
 **2、简历上的内容很大程度上决定了面试官提问的侧重点。**
 
-- 一般情况下你的简历上注明你会的东西才会被问到（Java 基础、集合、并发、MySQL、Redis 、Spring、Spring Boot 这些算是每个人必问的），比如写了你熟练使用 Redis,那面试官就很大概率会问你 Redis 的一些问题，再比如你写了你在项目中使用了消息队列，那面试官大概率问很多消息队列相关的问题。
+- 一般情况下你的简历上注明你会的东西才会被问到（Java 基础、集合、并发、MySQL、Redis、Spring、Spring Boot 这些算是每个人必问的），比如写了你熟练使用 Redis,那面试官就很大概率会问你 Redis 的一些问题，再比如你写了你在项目中使用了消息队列，那面试官大概率问很多消息队列相关的问题。
 - 技能熟练度在很大程度上也决定了面试官提问的深度。
 
 在不夸大自己能力的情况下，写出一份好的简历也是一项很棒的能力。
@@ -36,14 +36,14 @@ icon: jianli
 
 下面是我收集的一些还不错的简历模板：
 
-- 适合中文的简历模板收集（推荐，免费）：https://github.com/dyweb/awesome-resume-for-chinese
-- 木及简历（部分收费） ： https://www.mujicv.com/。
-- 简单简历（付费）：https://easycv.cn/
-- 站长简历：https://jianli.chinaz.com/
-- typora+markdown+css 自定义简历模板 ：https://github.com/Snailclimb/typora-markdown-resume
-- 极简简历 ： https://www.polebrief.com/index
-- Markdown 简历排版工具：https://resume.mdnice.com/
-- 超级简历（部分收费） ： https://www.wondercv.com/
+- 适合中文的简历模板收集（推荐，免费）：<https://github.com/dyweb/awesome-resume-for-chinese>
+- 木及简历（部分收费）：<https://www.mujicv.com/。>
+- 简单简历（付费）：<https://easycv.cn/>
+- 站长简历：<https://jianli.chinaz.com/>
+- typora+markdown+css 自定义简历模板：<https://github.com/Snailclimb/typora-markdown-resume>
+- 极简简历：<https://www.polebrief.com/index>
+- Markdown 简历排版工具：<https://resume.mdnice.com/>
+- 超级简历（部分收费）：<https://www.wondercv.com/>
 
 上面这些简历模板大多是只有 1 页内容，很难展现足够的信息量。如果你不是顶级大牛（比如 ACM 大赛获奖）的话，我建议还是尽可能多写一点可以突出你自己能力的内容（校招生 2 页之内，社招生 3 页之内，记得精炼语言，不要过多废话）。
 
@@ -57,8 +57,8 @@ icon: jianli
 
 ### 个人信息
 
-- 最基本的 ：姓名（身份证上的那个）、年龄、电话、籍贯、联系方式、邮箱地址
-- 潜在加分项 ： Github 地址、博客地址（如果技术博客和 Github 上没有什么内容的话，就不要写了）
+- 最基本的：姓名（身份证上的那个）、年龄、电话、籍贯、联系方式、邮箱地址
+- 潜在加分项： GitHub 地址、博客地址（如果技术博客和 GitHub 上没有什么内容的话，就不要写了）
 
 示例：
 
@@ -129,7 +129,7 @@ icon: jianli
 > 2017-05~2018-06 淘宝 Java 后端开发工程师
 >
 > - **项目描述** : 简单描述项目是做什么的。
-> - **技术栈** ：用了什么技术（如 Spring Boot + MySQL + Redis + Mybatis-plus + Spring Security + Oauth2）
+> - **技术栈**：用了什么技术（如 Spring Boot + MySQL + Redis + Mybatis-plus + Spring Security + Oauth2）
 > - **工作内容/个人职责** : 简单描述自己做了什么，解决了什么问题，带来了什么实质性的改善。突出自己的能力，不要过于平淡的叙述。
 > - **个人收获（可选）** : 从这个项目中你学会了那些东西，使用到了那些技术，学会了那些新技术的使用。通常是可以不用写个人收获的，因为你在个人职责介绍中写的东西已经表明了自己的主要收获。
 > - **项目成果（可选）** :简单描述这个项目取得了什么成绩。
@@ -233,7 +233,7 @@ FAB 法则由下面 3 个单词组成（FAB 法则的名字就是由它们的首
 - 尽量避免主观表述，少一点语义模糊的形容词。表述要简洁明了，简历结构要清晰。
 - 精简表述，突出亮点。校招简历建议不要超过 2 页，社招简历建议不要超过 3 页。如果内容过多的话，不需要非把内容压缩到一页，保持排版干净整洁就可以了。
 - 不会的东西就不要写在简历上了。注意简历真实性，适当润色没有问题。
-- 技术博客、Github 以及获奖经历等可以直接证明自己能力的东西，能写就尽量写在这里。不过，如果技术博客和 Github 上没有什么内容的话，就不要写了。
+- 技术博客、GitHub 以及获奖经历等可以直接证明自己能力的东西，能写就尽量写在这里。不过，如果技术博客和 GitHub 上没有什么内容的话，就不要写了。
 - 技术名词最好规范大小写比较好，比如 java->Java ，spring boot -> Spring Boot 。这个虽然有些面试官不会介意，但是很多面试官都会在意这个细节的。
 - 工作经历建议采用时间倒序的方式来介绍，实习经历建议将最有价值的放在最前面。
 - 将自己的项目经历完美的展示出来非常重要，重点是突出自己做了什么（挖掘亮点），而不是介绍项目是做什么的。

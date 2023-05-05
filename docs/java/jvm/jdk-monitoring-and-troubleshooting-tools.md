@@ -20,7 +20,7 @@ tag:
 
 `jps`(JVM Process Status) 命令类似 UNIX 的 `ps` 命令。
 
-`jps`：显示虚拟机执行主类名称以及这些进程的本地虚拟机唯一 ID（Local Virtual Machine Identifier,LVMID）。`jps -q` ：只输出进程的本地虚拟机唯一 ID。
+`jps`：显示虚拟机执行主类名称以及这些进程的本地虚拟机唯一 ID（Local Virtual Machine Identifier,LVMID）。`jps -q`：只输出进程的本地虚拟机唯一 ID。
 
 ```powershell
 C:\Users\SnailClimb>jps
@@ -60,16 +60,16 @@ jstat -<option> [-t] [-h<lines>] <vmid> [<interval> [<count>]]
 
 **常见的 option 如下：**
 
-- `jstat -class vmid` ：显示 ClassLoader 的相关信息；
-- `jstat -compiler vmid` ：显示 JIT 编译的相关信息；
-- `jstat -gc vmid` ：显示与 GC 相关的堆信息；
-- `jstat -gccapacity vmid` ：显示各个代的容量及使用情况；
-- `jstat -gcnew vmid` ：显示新生代信息；
-- `jstat -gcnewcapcacity vmid` ：显示新生代大小与使用情况；
-- `jstat -gcold vmid` ：显示老年代和永久代的行为统计，从 jdk1.8 开始,该选项仅表示老年代，因为永久代被移除了；
-- `jstat -gcoldcapacity vmid` ：显示老年代的大小；
-- `jstat -gcpermcapacity vmid` ：显示永久代大小，从 jdk1.8 开始,该选项不存在了，因为永久代被移除了；
-- `jstat -gcutil vmid` ：显示垃圾收集信息；
+- `jstat -class vmid`：显示 ClassLoader 的相关信息；
+- `jstat -compiler vmid`：显示 JIT 编译的相关信息；
+- `jstat -gc vmid`：显示与 GC 相关的堆信息；
+- `jstat -gccapacity vmid`：显示各个代的容量及使用情况；
+- `jstat -gcnew vmid`：显示新生代信息；
+- `jstat -gcnewcapcacity vmid`：显示新生代大小与使用情况；
+- `jstat -gcold vmid`：显示老年代和永久代的行为统计，从 jdk1.8 开始,该选项仅表示老年代，因为永久代被移除了；
+- `jstat -gcoldcapacity vmid`：显示老年代的大小；
+- `jstat -gcpermcapacity vmid`：显示永久代大小，从 jdk1.8 开始,该选项不存在了，因为永久代被移除了；
+- `jstat -gcutil vmid`：显示垃圾收集信息；
 
 另外，加上 `-t`参数可以在输出信息上加一个 Timestamp 列，显示程序的运行时间。
 

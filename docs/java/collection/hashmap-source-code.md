@@ -35,7 +35,7 @@ JDK 1.8 的 hash 方法 相比于 JDK 1.7 hash 方法更加简化，但是原理
     static final int hash(Object key) {
       int h;
       // key.hashCode()：返回散列值也就是hashcode
-      // ^ ：按位异或
+      // ^：按位异或
       // >>>:无符号右移，忽略符号位，空位都以0补齐
       return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
   }

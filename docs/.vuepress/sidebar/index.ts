@@ -467,20 +467,17 @@ export default sidebar({
           text: "ZooKeeper",
           icon: "framework",
           prefix: "distributed-process-coordination/zookeeper/",
-          children: [
-            "zookeeper-intro",
-            "zookeeper-plus",
-          ],
+          children: ["zookeeper-intro", "zookeeper-plus"],
         },
         {
           text: "API网关",
           icon: "gateway",
-          children: ["api-gateway","spring-cloud-gateway-questions"],
+          children: ["api-gateway", "spring-cloud-gateway-questions"],
         },
         {
           text: "分布式ID",
           icon: "id",
-          children: ["distributed-id"],
+          children: ["distributed-id", "distributed-id-design"],
         },
         {
           text: "分布式锁",

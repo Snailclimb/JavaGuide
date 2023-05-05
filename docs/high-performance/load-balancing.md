@@ -161,18 +161,18 @@ Ribbon 是老牌负载均衡组件，由 Netflix 开发，功能比较全面，�
 
 Ribbon 支持的 7 种负载均衡策略：
 
-- `RandomRule` ：随机策略。
-- `RoundRobinRule`（默认） ：轮询策略
-- `WeightedResponseTimeRule` ：权重（根据响应时间决定权重）策略
-- `BestAvailableRule` ：最小连接数策略
+- `RandomRule`：随机策略。
+- `RoundRobinRule`（默认）：轮询策略
+- `WeightedResponseTimeRule`：权重（根据响应时间决定权重）策略
+- `BestAvailableRule`：最小连接数策略
 - `RetryRule`：重试策略（按照轮询策略来获取服务，如果获取的服务实例为 null 或已经失效，则在指定的时间之内不断地进行重试来获取服务，如果超过指定时间依然没获取到服务实例则返回 null）
-- `AvailabilityFilteringRule` ：可用敏感性策略（先过滤掉非健康的服务实例，然后再选择连接数较小的服务实例）
-- `ZoneAvoidanceRule` ：区域敏感性策略（根据服务所在区域的性能和服务的可用性来选择服务实例）
+- `AvailabilityFilteringRule`：可用敏感性策略（先过滤掉非健康的服务实例，然后再选择连接数较小的服务实例）
+- `ZoneAvoidanceRule`：区域敏感性策略（根据服务所在区域的性能和服务的可用性来选择服务实例）
 
 Spring Cloud Load Balancer 支持的 2 种负载均衡策略：
 
-- `RandomLoadBalancer` ：随机策略
-- `RoundRobinLoadBalancer`（默认） ：轮询策略
+- `RandomLoadBalancer`：随机策略
+- `RoundRobinLoadBalancer`（默认）：轮询策略
 
 ```java
 public class CustomLoadBalancerConfiguration {
@@ -192,8 +192,8 @@ public class CustomLoadBalancerConfiguration {
 
 这里举两个官方的例子：
 
-- `ZonePreferenceServiceInstanceListSupplier` ：实现基于区域的负载平衡
-- `HintBasedServiceInstanceListSupplier` ：实现基于 hint 提示的负载均衡
+- `ZonePreferenceServiceInstanceListSupplier`：实现基于区域的负载平衡
+- `HintBasedServiceInstanceListSupplier`：实现基于 hint 提示的负载均衡
 
 ```java
 public class CustomLoadBalancerConfiguration {

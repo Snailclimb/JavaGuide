@@ -36,12 +36,12 @@ head:
 
 其他相关书籍推荐：
 
-- **[《自己动手写操作系统》](https://book.douban.com/subject/1422377/)** ： 不光会带着你详细分析操作系统原理的基础，还会用丰富的实例代码，一步一步地指导你用 C 语言和汇编语言编写出一个具备操作系统基本功能的操作系统框架。
-- **[《现代操作系统》](https://book.douban.com/subject/3852290/)** ： 内容很不错，不过，翻译的一般。如果你是精读本书的话，建议把课后习题都做了。
-- **[《操作系统真象还原》](https://book.douban.com/subject/26745156/)** ： 这本书的作者毕业于北京大学，前百度运维高级工程师。因为在大学期间曾重修操作系统这一科，后对操作系统进行深入研究，著下此书。
-- **[《深度探索 Linux 操作系统》](https://book.douban.com/subject/25743846/)** ：跟着这本书的内容走，可以让你对如何制作一套完善的 GNU/Linux 系统有了清晰的认识。
-- **[《操作系统设计与实现》](https://book.douban.com/subject/2044818/)** ：操作系统的权威教学教材。
-- **[《Orange'S:一个操作系统的实现》](https://book.douban.com/subject/3735649/)** ： 从只有二十行的引导扇区代码出发，一步一步地向读者呈现一个操作系统框架的完成过程。配合《操作系统设计与实现》一起食用更佳！
+- **[《自己动手写操作系统》](https://book.douban.com/subject/1422377/)**：不光会带着你详细分析操作系统原理的基础，还会用丰富的实例代码，一步一步地指导你用 C 语言和汇编语言编写出一个具备操作系统基本功能的操作系统框架。
+- **[《现代操作系统》](https://book.douban.com/subject/3852290/)**：内容很不错，不过，翻译的一般。如果你是精读本书的话，建议把课后习题都做了。
+- **[《操作系统真象还原》](https://book.douban.com/subject/26745156/)**：这本书的作者毕业于北京大学，前百度运维高级工程师。因为在大学期间曾重修操作系统这一科，后对操作系统进行深入研究，著下此书。
+- **[《深度探索 Linux 操作系统》](https://book.douban.com/subject/25743846/)**：跟着这本书的内容走，可以让你对如何制作一套完善的 GNU/Linux 系统有了清晰的认识。
+- **[《操作系统设计与实现》](https://book.douban.com/subject/2044818/)**：操作系统的权威教学教材。
+- **[《Orange'S:一个操作系统的实现》](https://book.douban.com/subject/3735649/)**：从只有二十行的引导扇区代码出发，一步一步地向读者呈现一个操作系统框架的完成过程。配合《操作系统设计与实现》一起食用更佳！
 
 如果你比较喜欢看视频的话，推荐哈工大李治军老师主讲的慕课 [《操作系统》](https://www.icourse163.org/course/HIT-1002531008)，内容质量吊打一众国家精品课程。
 
@@ -49,7 +49,7 @@ head:
 
 ![课程大纲](https://oss.javaguide.cn/github/javaguide/books/image-20220414144527747.png)
 
-主要讲了一个基本操作系统中的六个基本模块： CPU 管理、内存管理、外设管理、磁盘管理与文件系统、用户接口和启动模块 。
+主要讲了一个基本操作系统中的六个基本模块：CPU 管理、内存管理、外设管理、磁盘管理与文件系统、用户接口和启动模块 。
 
 课程难度还是比较大的，尤其是课后的 lab。如果大家想要真正搞懂操作系统底层原理的话，对应的 lab 能做尽量做一下。正如李治军老师说的那样：“纸上得来终觉浅，绝知此事要躬行”。
 
@@ -79,14 +79,14 @@ head:
 
 如果你觉得上面这本书看着比较枯燥的话，我强烈推荐+安利你看看下面这两本非常有趣的网络相关的书籍：
 
-- [《图解 HTTP》](https://book.douban.com/subject/25863515/ "《图解 HTTP》") ： 讲漫画一样的讲 HTTP，很有意思，不会觉得枯燥，大概也涵盖也 HTTP 常见的知识点。因为篇幅问题，内容可能不太全面。不过，如果不是专门做网络方向研究的小伙伴想研究 HTTP 相关知识的话，读这本书的话应该来说就差不多了。
-- [《网络是怎样连接的》](https://book.douban.com/subject/26941639/ "《网络是怎样连接的》") ：从在浏览器中输入网址开始，一路追踪了到显示出网页内容为止的整个过程，以图配文，讲解了网络的全貌，并重点介绍了实际的网络设备和软件是如何工作的。
+- [《图解 HTTP》](https://book.douban.com/subject/25863515/ "《图解 HTTP》")：讲漫画一样的讲 HTTP，很有意思，不会觉得枯燥，大概也涵盖也 HTTP 常见的知识点。因为篇幅问题，内容可能不太全面。不过，如果不是专门做网络方向研究的小伙伴想研究 HTTP 相关知识的话，读这本书的话应该来说就差不多了。
+- [《网络是怎样连接的》](https://book.douban.com/subject/26941639/ "《网络是怎样连接的》")：从在浏览器中输入网址开始，一路追踪了到显示出网页内容为止的整个过程，以图配文，讲解了网络的全貌，并重点介绍了实际的网络设备和软件是如何工作的。
 
 ![](https://oss.javaguide.cn/github/javaguide/booksimage-20201011215144139.png)
 
 除了理论知识之外，学习计算机网络非常重要的一点就是：“**动手实践**”。这点和我们编程差不多。
 
-Github 上就有一些名校的计算机网络试验/Project：
+GitHub 上就有一些名校的计算机网络试验/Project：
 
 - [哈工大计算机网络实验](https://github.com/rccoder/HIT-Computer-Network)
 - [《计算机网络－自顶向下方法(原书第 6 版)》编程作业，Wireshark 实验文档的翻译和解答。](https://github.com/moranzcw/Computer-Networking-A-Top-Down-Approach-NOTES)
@@ -95,11 +95,11 @@ Github 上就有一些名校的计算机网络试验/Project：
 
 我知道，还有很多小伙伴可能比较喜欢边看视频边学习。所以，我这里再推荐几个顶好的计算机网络视频讲解。
 
-**1、[哈工大的计算机网络课程](http://www.icourse163.org/course/HIT-154005)** ：国家精品课程，截止目前已经开了 10 次课了。大家对这门课的评价都非常高！所以，非常推荐大家看一下！
+**1、[哈工大的计算机网络课程](http://www.icourse163.org/course/HIT-154005)**：国家精品课程，截止目前已经开了 10 次课了。大家对这门课的评价都非常高！所以，非常推荐大家看一下！
 
 ![](https://oss.javaguide.cn/github/javaguide/booksimage-20201218141241911.png)
 
-**2、[王道考研的计算机网络](https://www.bilibili.com/video/BV19E411D78Q?from=search&seid=17198507506906312317)** ：非常适合 CS 专业考研的小朋友！这个视频目前在哔哩哔哩上已经有 1.6w+的点赞。
+**2、[王道考研的计算机网络](https://www.bilibili.com/video/BV19E411D78Q?from=search&seid=17198507506906312317)**：非常适合 CS 专业考研的小朋友！这个视频目前在哔哩哔哩上已经有 1.6w+ 的点赞。
 
 ![](https://oss.javaguide.cn/github/javaguide/booksimage-20201218141652837.png)
 
@@ -141,7 +141,7 @@ Github 上就有一些名校的计算机网络试验/Project：
 
 ![](https://oss.javaguide.cn/github/javaguide/booksimage-20220409145411049.png)
 
-这是一本被 Github 上的爆火的计算机自学项目 [Teach Yourself Computer Science](https://link.zhihu.com/?target=https%3A//teachyourselfcs.com/) 强烈推荐的一本算法书籍。
+这是一本被 GitHub 上的爆火的计算机自学项目 [Teach Yourself Computer Science](https://link.zhihu.com/?target=https%3A//teachyourselfcs.com/) 强烈推荐的一本算法书籍。
 
 类似的神书还有 [《算法导论》](https://book.douban.com/subject/20432061/)、[《计算机程序设计艺术（第 1 卷）》](https://book.douban.com/subject/1130500/) 。
 
@@ -185,7 +185,7 @@ Github 上就有一些名校的计算机网络试验/Project：
 
 质量很高，介绍了常用的数据结构和算法。
 
-类似的还有 **[《数据结构与算法分析 ：C 语言描述》](https://book.douban.com/subject/1139426/)** 、**[《数据结构与算法分析：C++ 描述》](https://book.douban.com/subject/1971825/)**
+类似的还有 **[《数据结构与算法分析：C 语言描述》](https://book.douban.com/subject/1139426/)**、**[《数据结构与算法分析：C++ 描述》](https://book.douban.com/subject/1971825/)**
 
 ![](https://oss.javaguide.cn/github/javaguide/books/d9c450ccc5224a5fba77f4fa937f7b9c.png)
 
@@ -266,8 +266,8 @@ Github 上就有一些名校的计算机网络试验/Project：
 
 其他书籍推荐:
 
-- **[《现代编译原理》](https://book.douban.com/subject/30191414/)** ：编译原理的入门书。
-- **[《编译器设计》](https://book.douban.com/subject/20436488/)** ： 覆盖了编译器从前端到后端的全部主题。
+- **[《现代编译原理》](https://book.douban.com/subject/30191414/)**：编译原理的入门书。
+- **[《编译器设计》](https://book.douban.com/subject/20436488/)**：覆盖了编译器从前端到后端的全部主题。
 
 我上面推荐的书籍的难度还是比较高的，真心很难坚持看完。这里强烈推荐[哈工大的编译原理视频课程](https://www.icourse163.org/course/HIT-1002123007)，真心不错，还是国家精品课程，关键还是又漂亮有温柔的美女老师讲的！
 

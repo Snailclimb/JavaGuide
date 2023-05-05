@@ -14,15 +14,15 @@
 
 **我有自己的原则，不割韭菜，用心做内容，真心希望帮助到你！**
 
-如果你感兴趣的话，不妨花 3 分钟左右看看星球的详细介绍： [JavaGuide 知识星球详细介绍](https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html)。
+如果你感兴趣的话，不妨花 3 分钟左右看看星球的详细介绍：[JavaGuide 知识星球详细介绍](https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html)。
 
 ## 如何加入？
 
-**方式一** ：扫描下面的二维码原价加入（续费半价）。
+**方式一**：扫描下面的二维码原价加入（续费半价）。
 
 ![知识星球](https://oss.javaguide.cn/xingqiu/image-20220311203414600.png)
 
-**方式二（推荐）** ：添加我的个人微信（**javaguide1024**）领取一个 **30** 元的星球专属优惠券（一定要备注“优惠卷”）。
+**方式二（推荐）**：添加我的个人微信（**javaguide1024**）领取一个 **30** 元的星球专属优惠券（一定要备注“优惠卷”）。
 
 **一定要备注“优惠卷”**，不然通过不了。
 

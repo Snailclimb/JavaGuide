@@ -27,7 +27,7 @@ head:
 7. 支持网络编程并且很方便（ Java 语言诞生本身就是为简化网络编程设计的，因此 Java 语言不仅支持网络编程而且很方便）；
 8. 编译与解释并存；
 
-> **🐛 修正（参见： [issue#544](https://github.com/Snailclimb/JavaGuide/issues/544)）** ：C++11 开始（2011 年的时候）,C++就引入了多线程库，在 windows、linux、macos 都可以使用`std::thread`和`std::async`来创建线程。参考链接：http://www.cplusplus.com/reference/thread/thread/?kw=thread
+> **🐛 修正（参见：[issue#544](https://github.com/Snailclimb/JavaGuide/issues/544)）**：C++11 开始（2011 年的时候）,C++就引入了多线程库，在 windows、linux、macos 都可以使用`std::thread`和`std::async`来创建线程。参考链接：http://www.cplusplus.com/reference/thread/thread/?kw=thread
 
 🌈 拓展一下：
 
@@ -61,7 +61,7 @@ JRE（Java Runtime Environment） 是 Java 运行时环境。它是运行已编�
 
 在 Java 中，JVM 可以理解的代码就叫做字节码（即扩展名为 `.class` 的文件），它不面向任何特定的处理器，只面向虚拟机。Java 语言通过字节码的方式，在一定程度上解决了传统解释型语言执行效率低的问题，同时又保留了解释型语言可移植的特点。所以， Java 程序运行时相对来说还是高效的（不过，和 C++，Rust，Go 等语言还是有一定差距的），而且，由于字节码并不针对一种特定的机器，因此，Java 程序无须重新编译便可在多种不同操作系统的计算机上运行。
 
-**Java 程序从源代码到运行的过程如下图所示** ：
+**Java 程序从源代码到运行的过程如下图所示**：
 
 ![Java程序转变为机器代码的过程](https://oss.javaguide.cn/github/javaguide/java/basis/java-code-to-machine-code.png)
 
@@ -91,8 +91,8 @@ AOT 可以提前编译节省启动时间，那为什么不全部使用这种编�
 
 我们可以将高级编程语言按照程序的执行方式分为两种：
 
-- **编译型** ：[编译型语言](https://zh.wikipedia.org/wiki/%E7%B7%A8%E8%AD%AF%E8%AA%9E%E8%A8%80) 会通过[编译器](https://zh.wikipedia.org/wiki/%E7%B7%A8%E8%AD%AF%E5%99%A8)将源代码一次性翻译成可被该平台执行的机器码。一般情况下，编译语言的执行速度比较快，开发效率比较低。常见的编译性语言有 C、C++、Go、Rust 等等。
-- **解释型** ：[解释型语言](https://zh.wikipedia.org/wiki/%E7%9B%B4%E8%AD%AF%E8%AA%9E%E8%A8%80)会通过[解释器](https://zh.wikipedia.org/wiki/直譯器)一句一句的将代码解释（interpret）为机器代码后再执行。解释型语言开发效率比较快，执行速度比较慢。常见的解释性语言有 Python、JavaScript、PHP 等等。
+- **编译型**：[编译型语言](https://zh.wikipedia.org/wiki/%E7%B7%A8%E8%AD%AF%E8%AA%9E%E8%A8%80) 会通过[编译器](https://zh.wikipedia.org/wiki/%E7%B7%A8%E8%AD%AF%E5%99%A8)将源代码一次性翻译成可被该平台执行的机器码。一般情况下，编译语言的执行速度比较快，开发效率比较低。常见的编译性语言有 C、C++、Go、Rust 等等。
+- **解释型**：[解释型语言](https://zh.wikipedia.org/wiki/%E7%9B%B4%E8%AD%AF%E8%AA%9E%E8%A8%80)会通过[解释器](https://zh.wikipedia.org/wiki/直譯器)一句一句的将代码解释（interpret）为机器代码后再执行。解释型语言开发效率比较快，执行速度比较慢。常见的解释性语言有 Python、JavaScript、PHP 等等。
 
 ![编译型语言和解释型语言](https://oss.javaguide.cn/github/javaguide/java/basis/compiled-and-interpreted-languages.png)
 
@@ -122,11 +122,11 @@ AOT 可以提前编译节省启动时间，那为什么不全部使用这种编�
 
 最后，简单总结一下 Oracle JDK 和 OpenJDK 的区别：
 
-1. **是否开源** ：OpenJDK 是一个参考模型并且是完全开源的，而 Oracle JDK 是基于 OpenJDK 实现的，并不是完全开源的（个人观点：众所周知，JDK 原来是 SUN 公司开发的，后来 SUN 公司又卖给了 Oracle 公司，Oracle 公司以 Oracle 数据库而著名，而 Oracle 数据库又是闭源的，这个时候 Oracle 公司就不想完全开源了，但是原来的 SUN 公司又把 JDK 给开源了，如果这个时候 Oracle 收购回来之后就把他给闭源，必然会引起很多 Java 开发者的不满，导致大家对 Java 失去信心，那 Oracle 公司收购回来不就把 Java 烂在手里了吗！然后，Oracle 公司就想了个骚操作，这样吧，我把一部分核心代码开源出来给你们玩，并且我要和你们自己搞的 JDK 区分下，你们叫 OpenJDK，我叫 Oracle JDK，我发布我的，你们继续玩你们的，要是你们搞出来什么好玩的东西，我后续发布 Oracle JDK 也会拿来用一下，一举两得！）OpenJDK 开源项目：[https://github.com/openjdk/jdk](https://github.com/openjdk/jdk) 。
-2. **是否免费** ：Oracle JDK 会提供免费版本，但一般有时间限制。JDK17 之后的版本可以免费分发和商用，但是仅有 3 年时间，3 年后无法免费商用。不过，JDK8u221 之前只要不升级可以无限期免费。OpenJDK 是完全免费的。
-3. **功能性** ：Oracle JDK 在 OpenJDK 的基础上添加了一些特有的功能和工具，比如 Java Flight Recorder（JFR，一种监控工具）、Java Mission Control（JMC，一种监控工具）等工具。不过，在 Java 11 之后，OracleJDK 和 OpenJDK 的功能基本一致，之前 OracleJDK 中的私有组件大多数也已经被捐赠给开源组织。
-4. **稳定性** ：OpenJDK 不提供 LTS 服务，而 OracleJDK 大概每三年都会推出一个 LTS 版进行长期支持。不过，很多公司都基于 OpenJDK 提供了对应的和 OracleJDK 周期相同的 LTS 版。因此，两者稳定性其实也是差不多的。
-5. **协议** ： Oracle JDK 使用 BCL/OTN 协议获得许可，而 OpenJDK 根据 GPL v2 许可获得许可。
+1. **是否开源**：OpenJDK 是一个参考模型并且是完全开源的，而 Oracle JDK 是基于 OpenJDK 实现的，并不是完全开源的（个人观点：众所周知，JDK 原来是 SUN 公司开发的，后来 SUN 公司又卖给了 Oracle 公司，Oracle 公司以 Oracle 数据库而著名，而 Oracle 数据库又是闭源的，这个时候 Oracle 公司就不想完全开源了，但是原来的 SUN 公司又把 JDK 给开源了，如果这个时候 Oracle 收购回来之后就把他给闭源，必然会引起很多 Java 开发者的不满，导致大家对 Java 失去信心，那 Oracle 公司收购回来不就把 Java 烂在手里了吗！然后，Oracle 公司就想了个骚操作，这样吧，我把一部分核心代码开源出来给你们玩，并且我要和你们自己搞的 JDK 区分下，你们叫 OpenJDK，我叫 Oracle JDK，我发布我的，你们继续玩你们的，要是你们搞出来什么好玩的东西，我后续发布 Oracle JDK 也会拿来用一下，一举两得！）OpenJDK 开源项目：[https://github.com/openjdk/jdk](https://github.com/openjdk/jdk) 。
+2. **是否免费**：Oracle JDK 会提供免费版本，但一般有时间限制。JDK17 之后的版本可以免费分发和商用，但是仅有 3 年时间，3 年后无法免费商用。不过，JDK8u221 之前只要不升级可以无限期免费。OpenJDK 是完全免费的。
+3. **功能性**：Oracle JDK 在 OpenJDK 的基础上添加了一些特有的功能和工具，比如 Java Flight Recorder（JFR，一种监控工具）、Java Mission Control（JMC，一种监控工具）等工具。不过，在 Java 11 之后，OracleJDK 和 OpenJDK 的功能基本一致，之前 OracleJDK 中的私有组件大多数也已经被捐赠给开源组织。
+4. **稳定性**：OpenJDK 不提供 LTS 服务，而 OracleJDK 大概每三年都会推出一个 LTS 版进行长期支持。不过，很多公司都基于 OpenJDK 提供了对应的和 OracleJDK 周期相同的 LTS 版。因此，两者稳定性其实也是差不多的。
+5. **协议**：Oracle JDK 使用 BCL/OTN 协议获得许可，而 OpenJDK 根据 GPL v2 许可获得许可。
 
 > 既然 Oracle JDK 这么好，那为什么还要有 OpenJDK？
 >
@@ -148,8 +148,8 @@ AOT 可以提前编译节省启动时间，那为什么不全部使用这种编�
 
 🌈 拓展一下：
 
-- BCL 协议（Oracle Binary Code License Agreement）： 可以使用 JDK（支持商用），但是不能进行修改。
-- OTN 协议（Oracle Technology Network License Agreement）： 11 及之后新发布的 JDK 用的都是这个协议，可以自己私下用，但是商用需要付费。
+- BCL 协议（Oracle Binary Code License Agreement）：可以使用 JDK（支持商用），但是不能进行修改。
+- OTN 协议（Oracle Technology Network License Agreement）：11 及之后新发布的 JDK 用的都是这个协议，可以自己私下用，但是商用需要付费。
 
 ![](https://oscimg.oschina.net/oscnet/up-5babce06ef8fad5c4df5d7a6cf53d4a7901.png)
 
@@ -173,11 +173,11 @@ Java 中的注释有三种：
 
 ![Java 注释类型总结](https://oss.javaguide.cn/github/javaguide/java/basis/java-annotation-types.png)
 
-1. **单行注释** ：通常用于解释方法内某单行代码的作用。
+1. **单行注释**：通常用于解释方法内某单行代码的作用。
 
-2. **多行注释** ：通常用于解释一段代码的作用。
+2. **多行注释**：通常用于解释一段代码的作用。
 
-3. **文档注释** ：通常用于生成 Java 开发文档。
+3. **文档注释**：通常用于生成 Java 开发文档。
 
 用的比较多的还是单行注释和文档注释，多行注释在实际开发中使用的相对较少。
 
@@ -236,7 +236,7 @@ Java 中的注释有三种：
 > - 在类，方法和变量修饰符中，从 JDK8 开始引入了默认方法，可以使用 `default` 关键字来定义一个方法的默认实现。
 > - 在访问控制中，如果一个方法前没有任何修饰符，则默认会有一个修饰符 `default`，但是这个修饰符加上了就会报错。
 
-⚠️ 注意 ：虽然 `true`, `false`, 和 `null` 看起来像关键字但实际上他们是字面值，同时你也不可以作为标识符来使用。
+⚠️ 注意：虽然 `true`, `false`, 和 `null` 看起来像关键字但实际上他们是字面值，同时你也不可以作为标识符来使用。
 
 官方文档：[https://docs.oracle.com/javase/tutorial/java/nutsandbolts/\_keywords.html](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html)
 
@@ -256,14 +256,14 @@ Java 中的注释有三种：
 static final int hash(Object key) {
     int h;
     // key.hashCode()：返回散列值也就是hashcode
-    // ^ ：按位异或
+    // ^：按位异或
     // >>>:无符号右移，忽略符号位，空位都以0补齐
     return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
   }
 
 ```
 
-在 Java 代码里使用 `<<` 、 `>>` 和`>>>`转换成的指令码运行起来会更高效些。
+在 Java 代码里使用 `<<`、 `>>` 和`>>>`转换成的指令码运行起来会更高效些。
 
 掌握最基本的移位运算符知识还是很有必要的，这不光可以帮助我们在代码中使用，还可以帮助我们理解源码中涉及到移位运算符的代码。
 
@@ -285,12 +285,12 @@ Java 中有三种移位运算符：
 
 也就是说：`x<<42`等同于`x<<10`，`x>>42`等同于`x>>10`，`x >>>42`等同于`x >>> 10`。
 
-**左移运算符代码示例** ：
+**左移运算符代码示例**：
 
 ```java
 int i = -1;
-System.out.println("初始数据： " + i);
-System.out.println("初始数据对应的二进制字符串： " + Integer.toBinaryString(i));
+System.out.println("初始数据：" + i);
+System.out.println("初始数据对应的二进制字符串：" + Integer.toBinaryString(i));
 i <<= 10;
 System.out.println("左移 10 位后的数据 " + i);
 System.out.println("左移 10 位后的数据对应的二进制字符 " + Integer.toBinaryString(i));
@@ -299,8 +299,8 @@ System.out.println("左移 10 位后的数据对应的二进制字符 " + Intege
 输出：
 
 ```
-初始数据： -1
-初始数据对应的二进制字符串： 11111111111111111111111111111111
+初始数据：-1
+初始数据对应的二进制字符串：11111111111111111111111111111111
 左移 10 位后的数据 -1024
 左移 10 位后的数据对应的二进制字符 11111111111111111111110000000000
 ```
@@ -309,8 +309,8 @@ System.out.println("左移 10 位后的数据对应的二进制字符 " + Intege
 
 ```java
 int i = -1;
-System.out.println("初始数据： " + i);
-System.out.println("初始数据对应的二进制字符串： " + Integer.toBinaryString(i));
+System.out.println("初始数据：" + i);
+System.out.println("初始数据对应的二进制字符串：" + Integer.toBinaryString(i));
 i <<= 42;
 System.out.println("左移 10 位后的数据 " + i);
 System.out.println("左移 10 位后的数据对应的二进制字符 " + Integer.toBinaryString(i));
@@ -322,13 +322,13 @@ System.out.println("左移 10 位后的数据对应的二进制字符 " + Intege
 
 在循环结构中，当循环条件不满足或者循环次数达到要求时，循环会正常结束。但是，有时候可能需要在循环的过程中，当发生了某种条件之后 ，提前终止循环，这就需要用到下面几个关键词：
 
-1. `continue` ：指跳出当前的这一次循环，继续下一次循环。
-2. `break` ：指跳出整个循环体，继续执行循环下面的语句。
+1. `continue`：指跳出当前的这一次循环，继续下一次循环。
+2. `break`：指跳出整个循环体，继续执行循环下面的语句。
 
 `return` 用于跳出所在方法，结束该方法的运行。return 一般有两种用法：
 
-1. `return;` ：直接使用 return 结束方法执行，用于没有返回值函数的方法
-2. `return value;` ：return 一个特定值，用于有返回值函数的方法
+1. `return;`：直接使用 return 结束方法执行，用于没有返回值函数的方法
+2. `return value;`：return 一个特定值，用于有返回值函数的方法
 
 思考一下：下列语句的运行结果是什么？
 
@@ -412,15 +412,15 @@ Java 中有 8 种基本数据类型，分别为：
 
 ![基本类型 vs 包装类型](https://oss.javaguide.cn/github/javaguide/java/basis/primitive-type-vs-packaging-type.png)
 
-- **用途** ：除了定义一些常量和局部变量之外，我们在其他地方比如方法参数、对象属性中很少会使用基本类型来定义变量。并且，包装类型可用于泛型，而基本类型不可以。
-- **存储方式** ：基本数据类型的局部变量存放在 Java 虚拟机栈中的局部变量表中，基本数据类型的成员变量（未被 `static` 修饰 ）存放在 Java 虚拟机的堆中。包装类型属于对象类型，我们知道几乎所有对象实例都存在于堆中。
-- **占用空间** ：相比于包装类型（对象类型）， 基本数据类型占用的空间往往非常小。
-- **默认值** ：成员变量包装类型不赋值就是 `null` ，而基本类型有默认值且不是 `null`。
-- **比较方式** ：对于基本数据类型来说，`==` 比较的是值。对于包装数据类型来说，`==` 比较的是对象的内存地址。所有整型包装类对象之间值的比较，全部使用 `equals()` 方法。
+- **用途**：除了定义一些常量和局部变量之外，我们在其他地方比如方法参数、对象属性中很少会使用基本类型来定义变量。并且，包装类型可用于泛型，而基本类型不可以。
+- **存储方式**：基本数据类型的局部变量存放在 Java 虚拟机栈中的局部变量表中，基本数据类型的成员变量（未被 `static` 修饰 ）存放在 Java 虚拟机的堆中。包装类型属于对象类型，我们知道几乎所有对象实例都存在于堆中。
+- **占用空间**：相比于包装类型（对象类型）， 基本数据类型占用的空间往往非常小。
+- **默认值**：成员变量包装类型不赋值就是 `null` ，而基本类型有默认值且不是 `null`。
+- **比较方式**：对于基本数据类型来说，`==` 比较的是值。对于包装数据类型来说，`==` 比较的是对象的内存地址。所有整型包装类对象之间值的比较，全部使用 `equals()` 方法。
 
 **为什么说是几乎所有对象实例都存在于堆中呢？** 这是因为 HotSpot 虚拟机引入了 JIT 优化之后，会对对象进行逃逸分析，如果发现某一个对象并没有逃逸到方法外部，那么就可能通过标量替换来实现栈上分配，而避免堆上分配内存
 
-⚠️ 注意 ： **基本数据类型存放在栈中是一个常见的误区！** 基本数据类型的成员变量如果没有被 `static` 修饰的话（不建议这么使用，应该要使用基本数据类型对应的包装类型），就存放在堆中。
+⚠️ 注意：**基本数据类型存放在栈中是一个常见的误区！** 基本数据类型的成员变量如果没有被 `static` 修饰的话（不建议这么使用，应该要使用基本数据类型对应的包装类型），就存放在堆中。
 
 ```java
 class BasicTypeVar{
@@ -652,10 +652,10 @@ System.out.println(l + 1 == Long.MIN_VALUE); // true
 
 ![成员变量 vs 局部变量](https://oss.javaguide.cn/github/javaguide/java/basis/member-var-vs-local-var.png)
 
-- **语法形式** ：从语法形式上看，成员变量是属于类的，而局部变量是在代码块或方法中定义的变量或是方法的参数；成员变量可以被 `public`,`private`,`static` 等修饰符所修饰，而局部变量不能被访问控制修饰符及 `static` 所修饰；但是，成员变量和局部变量都能被 `final` 所修饰。
-- **存储方式** ：从变量在内存中的存储方式来看，如果成员变量是使用 `static` 修饰的，那么这个成员变量是属于类的，如果没有使用 `static` 修饰，这个成员变量是属于实例的。而对象存在于堆内存，局部变量则存在于栈内存。
-- **生存时间** ：从变量在内存中的生存时间上看，成员变量是对象的一部分，它随着对象的创建而存在，而局部变量随着方法的调用而自动生成，随着方法的调用结束而消亡。
-- **默认值** ：从变量是否有默认值来看，成员变量如果没有被赋初始值，则会自动以类型的默认值而赋值（一种情况例外:被 `final` 修饰的成员变量也必须显式地赋值），而局部变量则不会自动赋值。
+- **语法形式**：从语法形式上看，成员变量是属于类的，而局部变量是在代码块或方法中定义的变量或是方法的参数；成员变量可以被 `public`,`private`,`static` 等修饰符所修饰，而局部变量不能被访问控制修饰符及 `static` 所修饰；但是，成员变量和局部变量都能被 `final` 所修饰。
+- **存储方式**：从变量在内存中的存储方式来看，如果成员变量是使用 `static` 修饰的，那么这个成员变量是属于类的，如果没有使用 `static` 修饰，这个成员变量是属于实例的。而对象存在于堆内存，局部变量则存在于栈内存。
+- **生存时间**：从变量在内存中的生存时间上看，成员变量是对象的一部分，它随着对象的创建而存在，而局部变量随着方法的调用而自动生成，随着方法的调用结束而消亡。
+- **默认值**：从变量是否有默认值来看，成员变量如果没有被赋初始值，则会自动以类型的默认值而赋值（一种情况例外:被 `final` 修饰的成员变量也必须显式地赋值），而局部变量则不会自动赋值。
 
 成员变量与局部变量代码示例：
 
@@ -719,7 +719,7 @@ public class ConstantVariableExample {
 
 - **形式** : 字符常量是单引号引起的一个字符，字符串常量是双引号引起的 0 个或若干个字符。
 - **含义** : 字符常量相当于一个整型值( ASCII 值),可以参加表达式运算; 字符串常量代表一个地址值(该字符串在内存中存放位置)。
-- **占内存大小** ： 字符常量只占 2 个字节; 字符串常量占若干个字节。
+- **占内存大小**：字符常量只占 2 个字节; 字符串常量占若干个字节。
 
 ⚠️ 注意 `char` 在 Java 中占两个字节。
 

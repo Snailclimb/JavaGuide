@@ -23,7 +23,7 @@ export default navbar([
         text: "更新历史",
         icon: "history",
         link: "/timeline/",
-      }
+      },
     ],
   },
 ]);

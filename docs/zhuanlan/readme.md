@@ -7,7 +7,7 @@ category: 知识星球
 
 - **[《Java 面试指北》](./java-mian-shi-zhi-bei.md)** : 与 JavaGuide 开源版的内容互补！
 - **[《手写 RPC 框架》](./java-mian-shi-zhi-bei.md)** : 从零开始基于 Netty+Kyro+Zookeeper 实现一个简易的 RPC 框架。
-- **[《Java 必读源码系列》](./source-code-reading.md)** ：目前已经整理了 Dubbo 2.6.x 、Netty 4.x、SpringBoot 2.1 等框架/中间件的源码
+- **[《Java 必读源码系列》](./source-code-reading.md)**：目前已经整理了 Dubbo 2.6.x、Netty 4.x、SpringBoot 2.1 等框架/中间件的源码
 - ......
 
 欢迎准备 Java 面试以及学习 Java 的同学加入我的[知识星球](../about-the-author/zhishixingqiu-two-years.md)，干货非常多！收费虽然是白菜价，但星球里的内容比你参加几万的培训班质量还要高。
@@ -16,7 +16,7 @@ category: 知识星球
 
 ## 更多专栏
 
-除了上面介绍的之外，我的[知识星球](../about-the-author/zhishixingqiu-two-years.md)还有 **《Kafka 常见面试题/知识点总结》** 、**《程序员副业赚钱之路》**等多个专栏。
+除了上面介绍的之外，我的[知识星球](../about-the-author/zhishixingqiu-two-years.md)还有 **《Kafka 常见面试题/知识点总结》**、**《程序员副业赚钱之路》**等多个专栏。
 
 ![](https://oss.javaguide.cn/xingqiu/image-20220211231206733.png)
 
@@ -26,11 +26,11 @@ category: 知识星球
 
 ## 星球限时优惠
 
-**方式一** ：扫描下面的二维码原价加入（续费半价）。
+**方式一**：扫描下面的二维码原价加入（续费半价）。
 
 ![知识星球](https://oss.javaguide.cn/xingqiu/image-20220311203414600.png)
 
-**方式二（推荐）** ：添加我的个人微信（**guidege666**）领取一个 **30** 元的星球专属优惠券（一定要备注“优惠卷”）。
+**方式二（推荐）**：添加我的个人微信（**guidege666**）领取一个 **30** 元的星球专属优惠券（一定要备注“优惠卷”）。
 
 **一定要备注“优惠卷”**，不然通过不了。
 

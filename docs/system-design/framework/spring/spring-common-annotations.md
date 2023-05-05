@@ -14,7 +14,7 @@ tag:
 
 最近看到网上有一篇关于 SpringBoot 常用注解的文章被转载的比较多，我看了文章内容之后属实觉得质量有点低，并且有点会误导没有太多实际使用经验的人（这些人又占据了大多数）。所以，自己索性花了大概 两天时间简单总结一下了。
 
-**因为我个人的能力和精力有限，如果有任何不对或者需要完善的地方，请帮忙指出！Guide感激不尽！**
+**因为我个人的能力和精力有限，如果有任何不对或者需要完善的地方，请帮忙指出！Guide 感激不尽！**
 
 ### 1. `@SpringBootApplication`
 
@@ -61,7 +61,7 @@ public @interface SpringBootConfiguration {
 根据 SpringBoot 官网，这三个注解的作用分别是：
 
 - `@EnableAutoConfiguration`：启用 SpringBoot 的自动配置机制
-- `@ComponentScan`： 扫描被`@Component` (`@Repository`,`@Service`,`@Controller`)注解的 bean，注解默认会扫描该类所在的包下所有的类。
+- `@ComponentScan`：扫描被`@Component` (`@Repository`,`@Service`,`@Controller`)注解的 bean，注解默认会扫描该类所在的包下所有的类。
 - `@Configuration`：允许在 Spring 上下文中注册额外的 bean 或导入其他配置类
 
 ### 2. Spring Bean 相关
@@ -89,7 +89,7 @@ public class UserController {
 
 我们一般使用 `@Autowired` 注解让 Spring 容器帮我们自动装配 bean。要想把类标识成可用于 `@Autowired` 注解自动装配的 bean 的类,可以采用以下注解实现：
 
-- `@Component` ：通用的注解，可标注任意类为 `Spring` 组件。如果一个 Bean 不知道属于哪个层，可以使用`@Component` 注解标注。
+- `@Component`：通用的注解，可标注任意类为 `Spring` 组件。如果一个 Bean 不知道属于哪个层，可以使用`@Component` 注解标注。
 - `@Repository` : 对应持久层即 Dao 层，主要用于数据库相关操作。
 - `@Service` : 对应服务层，主要涉及一些复杂的逻辑，需要用到 Dao 层。
 - `@Controller` : 对应 Spring MVC 控制层，主要用于接受用户请求并调用 Service 层返回数据给前端页面。
@@ -142,11 +142,11 @@ public class AppConfig {
 
 **5 种常见的请求类型:**
 
-- **GET** ：请求从服务器获取特定资源。举个例子：`GET /users`（获取所有学生）
-- **POST** ：在服务器上创建一个新的资源。举个例子：`POST /users`（创建学生）
-- **PUT** ：更新服务器上的资源（客户端提供更新后的整个资源）。举个例子：`PUT /users/12`（更新编号为 12 的学生）
-- **DELETE** ：从服务器删除特定的资源。举个例子：`DELETE /users/12`（删除编号为 12 的学生）
-- **PATCH** ：更新服务器上的资源（客户端提供更改的属性，可以看做作是部分更新），使用的比较少，这里就不举例子了。
+- **GET**：请求从服务器获取特定资源。举个例子：`GET /users`（获取所有学生）
+- **POST**：在服务器上创建一个新的资源。举个例子：`POST /users`（创建学生）
+- **PUT**：更新服务器上的资源（客户端提供更新后的整个资源）。举个例子：`PUT /users/12`（更新编号为 12 的学生）
+- **DELETE**：从服务器删除特定的资源。举个例子：`DELETE /users/12`（删除编号为 12 的学生）
+- **PATCH**：更新服务器上的资源（客户端提供更改的属性，可以看做作是部分更新），使用的比较少，这里就不举例子了。
 
 #### 3.1. GET 请求
 
@@ -370,7 +370,7 @@ SpringBoot 项目的 spring-boot-starter-web 依赖中已经有 hibernate-valida
 
 非 SpringBoot 项目需要自行引入相关依赖包，这里不多做讲解，具体可以查看我的这篇文章：《[如何在 Spring/Spring Boot 中做参数校验？你需要了解的都在这里！](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247485783&idx=1&sn=a407f3b75efa17c643407daa7fb2acd6&chksm=cea2469cf9d5cf8afbcd0a8a1c9cc4294d6805b8e01bee6f76bb2884c5bc15478e91459def49&token=292197051&lang=zh_CN#rd)》。
 
-👉 需要注意的是： **所有的注解，推荐使用 JSR 注解，即`javax.validation.constraints`，而不是`org.hibernate.validator.constraints`**
+👉 需要注意的是：**所有的注解，推荐使用 JSR 注解，即`javax.validation.constraints`，而不是`org.hibernate.validator.constraints`**
 
 #### 6.1. 一些常用的字段验证的注解
 
@@ -505,7 +505,7 @@ public class Role {
 
 #### 8.2. 创建主键
 
-`@Id` ：声明一个字段为主键。
+`@Id`：声明一个字段为主键。
 
 使用`@Id`声明之后，我们还需要定义主键的生成策略。我们可以使用 `@GeneratedValue` 指定主键生成策略。
 
@@ -635,7 +635,7 @@ private Boolean enabled;
 
 #### 8.4. 指定不持久化特定字段
 
-`@Transient` ：声明不需要与数据库映射的字段，在保存的时候不需要保存进数据库 。
+`@Transient`：声明不需要与数据库映射的字段，在保存的时候不需要保存进数据库 。
 
 如果我们想让`secrect` 这个字段不被持久化，可以使用 `@Transient`关键字声明。
 

@@ -111,7 +111,7 @@ ClassFile {
 |    CONSTANT_MethodHandle_info    |     15      |      表示方法句柄      |
 |   CONSTANT_InvokeDynamic_info    |     18      | 表示一个动态方法调用点 |
 
-`.class` 文件可以通过`javap -v class类名` 指令来看一下其常量池中的信息(`javap -v class类名-> temp.txt` ：将结果输出到 temp.txt 文件)。
+`.class` 文件可以通过`javap -v class类名` 指令来看一下其常量池中的信息(`javap -v class类名-> temp.txt`：将结果输出到 temp.txt 文件)。
 
 ### 访问标志(Access Flags)
 
