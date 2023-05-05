@@ -32,7 +32,7 @@ https://leetcode-cn.com/problems/add-two-numbers/solution/
 我们使用变量来跟踪进位，并从包含最低有效位的表头开始模拟逐
 位相加的过程。
 
-![图1，对两数相加方法的可视化: 342 + 465 = 807342+465=807， 每个结点都包含一个数字，并且数字按位逆序存储。](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-20/34910956.jpg)
+![图1，对两数相加方法的可视化: 342 + 465 = 807， 每个结点都包含一个数字，并且数字按位逆序存储。](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-20/34910956.jpg)
 
 ### Solution
 
@@ -289,18 +289,13 @@ public class Solution {
     return dummy.next;
   }
 }
-```
-
-**复杂度分析：**
-
-- **时间复杂度 O(L)**：该算法对列表进行了两次遍历，首先计算了列表的长度 LL 其次找到第 (L - n)(L−n) 个结点。 操作执行了 2L-n2L−n 步，时间复杂度为 O(L)O(L)。
-- **空间复杂度 O(1)**：我们只用了常量级的额外空间。
+``
 
 **进阶——一次遍历法：**
 
-> 链表中倒数第 N 个节点也就是正数第(L-N+1)个节点。
+> 链表中倒数第 N 个节点也就是正数第(L - n + 1)个节点。
 
-其实这种方法就和我们上面第四题找“链表中倒数第 k 个节点”所用的思想是一样的。**基本思路就是：** 定义两个节点 node1、node2;node1 节点先跑，node1 节点 跑到第 n+1 个节点的时候,node2 节点开始跑.当 node1 节点跑到最后一个节点时，node2 节点所在的位置就是第 （L-n ） 个节点（L 代表总链表长度，也就是倒数第 n+1 个节点）
+其实这种方法就和我们上面第四题找“链表中倒数第 k 个节点”所用的思想是一样的。**基本思路就是：** 定义两个节点 node1、node2;node1 节点先跑，node1 节点 跑到第 n+1 个节点的时候,node2 节点开始跑.当 node1 节点跑到最后一个节点时，node2 节点所在的位置就是第 （L - n ） 个节点（L 代表总链表长度，也就是倒数第 n + 1 个节点）
 
 ```java
 /**
@@ -371,20 +366,20 @@ public class ListNode {
 }*/
 //https://www.nowcoder.com/practice/d8b6b4358f774294a89de2a6ac4d9337?tpId=13&tqId=11169&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking
 public class Solution {
-public ListNode Merge(ListNode list1,ListNode list2) {
-       if(list1 == null){
-           return list2;
-       }
-       if(list2 == null){
-           return list1;
-       }
-       if(list1.val <= list2.val){
-           list1.next = Merge(list1.next, list2);
-           return list1;
-       }else{
-           list2.next = Merge(list1, list2.next);
-           return list2;
-       }
-   }
+  public ListNode Merge(ListNode list1, ListNode list2) {
+    if (list1 == null) {
+      return list2;
+    }
+    if (list2 == null) {
+      return list1;
+    }
+    if (list1.val <= list2.val) {
+      list1.next = Merge(list1.next, list2);
+      return list1;
+    } else {
+      list2.next = Merge(list1, list2.next);
+      return list2;
+    }
+  }
 }
 ```
