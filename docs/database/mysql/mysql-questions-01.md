@@ -132,8 +132,8 @@ mysql> SHOW VARIABLES  LIKE '%storage_engine%';
 
 如果你想要深入了解每个存储引擎以及它们之间的区别，推荐你去阅读以下 MySQL 官方文档对应的介绍(面试不会问这么细，了解即可)：
 
-- InnoDB 存储引擎详细介绍：https://dev.mysql.com/doc/refman/8.0/en/innodb-storage-engine.html 。
-- 其他存储引擎详细介绍：https://dev.mysql.com/doc/refman/8.0/en/storage-engines.html 。
+- InnoDB 存储引擎详细介绍：<https://dev.mysql.com/doc/refman/8.0/en/innodb-storage-engine.html> 。
+- 其他存储引擎详细介绍：<https://dev.mysql.com/doc/refman/8.0/en/storage-engines.html> 。
 
 ![](https://oss.javaguide.cn/github/javaguide/mysql/image-20220510155143458.png)
 
@@ -143,7 +143,7 @@ MySQL 存储引擎采用的是 **插件式架构** ，支持多种存储引擎�
 
 并且，你还可以根据 MySQL 定义的存储引擎实现标准接口来编写一个属于自己的存储引擎。这些非官方提供的存储引擎可以称为第三方存储引擎，区别于官方存储引擎。像目前最常用的 InnoDB 其实刚开始就是一个第三方存储引擎，后面由于过于优秀，其被 Oracle 直接收购了。
 
-MySQL 官方文档也有介绍到如何编写一个自定义存储引擎，地址：https://dev.mysql.com/doc/internals/en/custom-engine.html 。
+MySQL 官方文档也有介绍到如何编写一个自定义存储引擎，地址：<https://dev.mysql.com/doc/internals/en/custom-engine.html> 。
 
 ### MyISAM 和 InnoDB 有什么区别？
 
@@ -167,7 +167,7 @@ MyISAM 不提供事务支持。
 
 InnoDB 提供事务支持，实现了 SQL 标准定义了四个隔离级别，具有提交(commit)和回滚(rollback)事务的能力。并且，InnoDB 默认使用的 REPEATABLE-READ（可重读）隔离级别是可以解决幻读问题发生的（基于 MVCC 和 Next-Key Lock）。
 
-关于 MySQL 事务的详细介绍，可以看看我写的这篇文章：[MySQL 事务隔离级别详解](https://javaguide.cn/database/mysql/transaction-isolation-level.html)。
+关于 MySQL 事务的详细介绍，可以看看我写的这篇文章：[MySQL 事务隔离级别详解](./transaction-isolation-level.md)。
 
 **3.是否支持外键**
 
@@ -201,7 +201,7 @@ MyISAM 不支持，而 InnoDB 支持。
 
 InnoDB 引擎中，其数据文件本身就是索引文件。相比 MyISAM，索引文件和数据文件是分离的，其表数据文件本身就是按 B+Tree 组织的一个索引结构，树的叶节点 data 域保存了完整的数据记录。
 
-详细区别，推荐你看看我写的这篇文章：[MySQL 索引详解](https://javaguide.cn/database/mysql/mysql-index.html)。
+详细区别，推荐你看看我写的这篇文章：[MySQL 索引详解](./mysql-index.md)。
 
 **7.性能有差别。**
 
@@ -237,7 +237,7 @@ InnoDB 的性能比 MyISAM 更强大，不管是在读写混合模式下还是�
 
 ## MySQL 索引
 
-MySQL 索引相关的问题比较多，对于面试和工作都比较重要，于是，我单独抽了一篇文章专门来总结 MySQL 索引相关的知识点和问题：[MySQL 索引详解](https://javaguide.cn/database/mysql/mysql-index.html) 。
+MySQL 索引相关的问题比较多，对于面试和工作都比较重要，于是，我单独抽了一篇文章专门来总结 MySQL 索引相关的知识点和问题：[MySQL 索引详解](./mysql-index.md) 。
 
 ## MySQL 查询缓存
 
@@ -282,7 +282,7 @@ SELECT sql_no_cache COUNT(*) FROM usr;
 - undo log 如何保证事务的原子性？
 - ......
 
-上诉问题的答案可以在[《Java 面试指北》(付费)](https://javaguide.cn/zhuanlan/java-mian-shi-zhi-bei.html) 的 **「技术面试题篇」** 中找到。
+上诉问题的答案可以在[《Java 面试指北》(付费)](../../zhuanlan/java-mian-shi-zhi-bei.md) 的 **「技术面试题篇」** 中找到。
 
 ![《Java 面试指北》技术面试题篇](https://oss.javaguide.cn/javamianshizhibei/technical-interview-questions.png)
 
@@ -420,7 +420,7 @@ MVCC 在 MySQL 中实现所依赖的手段主要是: **隐藏字段、read view�
 - undo log : undo log 用于记录某行数据的多个版本的数据。
 - read view 和 隐藏字段 : 用来判断当前版本数据的可见性。
 
-关于 InnoDB 对 MVCC 的具体实现可以看这篇文章：[InnoDB 存储引擎对 MVCC 的实现](https://javaguide.cn/database/mysql/innodb-implementation-of-mvcc.html) 。
+关于 InnoDB 对 MVCC 的具体实现可以看这篇文章：[InnoDB 存储引擎对 MVCC 的实现](./innodb-implementation-of-mvcc.md) 。
 
 ### SQL 标准定义了哪些事务隔离级别?
 
@@ -459,7 +459,7 @@ mysql> SELECT @@tx_isolation;
 +-----------------+
 ```
 
-关于 MySQL 事务隔离级别的详细介绍，可以看看我写的这篇文章：[MySQL 事务隔离级别详解](https://javaguide.cn/database/mysql/transaction-isolation-level.html)。
+关于 MySQL 事务隔离级别的详细介绍，可以看看我写的这篇文章：[MySQL 事务隔离级别详解](./transaction-isolation-level.md)。
 
 ## MySQL 锁
 
@@ -645,7 +645,7 @@ MySQL 提供了两个方法来处理 ip 地址
 
 ### 有哪些常见的 SQL 优化手段？
 
-[《Java 面试指北》(付费)](https://javaguide.cn/zhuanlan/java-mian-shi-zhi-bei.html) 的 **「技术面试题篇」** 有一篇文章详细介绍了常见的 SQL 优化手段，非常全面，清晰易懂！
+[《Java 面试指北》(付费)](../../zhuanlan/java-mian-shi-zhi-bei.md) 的 **「技术面试题篇」** 有一篇文章详细介绍了常见的 SQL 优化手段，非常全面，清晰易懂！
 
 ![常见的 SQL 优化手段](https://oss.javaguide.cn/javamianshizhibei/javamianshizhibei-sql-optimization.png)
 
@@ -688,15 +688,15 @@ mysql> EXPLAIN SELECT `score`,`name` FROM `cus_order` ORDER BY `score` DESC;
 | filtered      | 按表条件过滤后，留存的记录数的百分比         |
 | Extra         | 附加信息                                     |
 
-篇幅问题，我这里只是简单介绍了一下 MySQL 执行计划，详细介绍请看：[SQL 的执行计划](https://javaguide.cn/database/mysql/mysql-query-execution-plan.html)这篇文章。
+篇幅问题，我这里只是简单介绍了一下 MySQL 执行计划，详细介绍请看：[SQL 的执行计划](./mysql-query-execution-plan.md)这篇文章。
 
 ### 读写分离和分库分表了解吗？
 
-读写分离和分库分表相关的问题比较多，于是，我单独写了一篇文章来介绍：[读写分离和分库分表详解](https://javaguide.cn/high-performance/read-and-write-separation-and-library-subtable.html)。
+读写分离和分库分表相关的问题比较多，于是，我单独写了一篇文章来介绍：[读写分离和分库分表详解](../../high-performance/read-and-write-separation-and-library-subtable.md)。
 
 ## MySQL 学习资料推荐
 
-**书籍推荐**：参见：[https://javaguide.cn/books/database.html#mysql](https://javaguide.cn/books/database.html#mysql) 。
+[**书籍推荐**](../../books/database.md#mysql) 。
 
 **文章推荐** :
 
@@ -711,12 +711,12 @@ mysql> EXPLAIN SELECT `score`,`name` FROM `cus_order` ORDER BY `score` DESC;
 
 - 《高性能 MySQL》第 7 章 MySQL 高级特性
 - 《MySQL 技术内幕 InnoDB 存储引擎》第 6 章 锁
-- Relational Database：https://www.omnisci.com/technical-glossary/relational-database
-- 技术分享 | 隔离级别：正确理解幻读：https://opensource.actionsky.com/20210818-mysql/
-- MySQL Server Logs - MySQL 5.7 Reference Manual：https://dev.mysql.com/doc/refman/5.7/en/server-logs.html
-- Redo Log - MySQL 5.7 Reference Manual：https://dev.mysql.com/doc/refman/5.7/en/innodb-redo-log.html
-- Locking Reads - MySQL 5.7 Reference Manual：https://dev.mysql.com/doc/refman/5.7/en/innodb-locking-reads.html
-- 深入理解数据库行锁与表锁 https://zhuanlan.zhihu.com/p/52678870
-- 详解 MySQL InnoDB 中意向锁的作用：https://juejin.cn/post/6844903666332368909
-- 深入剖析 MySQL 自增锁：https://juejin.cn/post/6968420054287253540
-- 在数据库中不可重复读和幻读到底应该怎么分？：https://www.zhihu.com/question/392569386
+- Relational Database：<https://www.omnisci.com/technical-glossary/relational-database>
+- 技术分享 | 隔离级别：正确理解幻读：<https://opensource.actionsky.com/20210818-mysql/>
+- MySQL Server Logs - MySQL 5.7 Reference Manual：<https://dev.mysql.com/doc/refman/5.7/en/server-logs.html>
+- Redo Log - MySQL 5.7 Reference Manual：<https://dev.mysql.com/doc/refman/5.7/en/innodb-redo-log.html>
+- Locking Reads - MySQL 5.7 Reference Manual：<https://dev.mysql.com/doc/refman/5.7/en/innodb-locking-reads.html>
+- 深入理解数据库行锁与表锁 <https://zhuanlan.zhihu.com/p/52678870>
+- 详解 MySQL InnoDB 中意向锁的作用：<https://juejin.cn/post/6844903666332368909>
+- 深入剖析 MySQL 自增锁：<https://juejin.cn/post/6968420054287253540>
+- 在数据库中不可重复读和幻读到底应该怎么分？：<https://www.zhihu.com/question/392569386>

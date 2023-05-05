@@ -208,7 +208,7 @@ MongoDB 聚合管道由多个阶段组成，每个阶段在文档通过管道时
 | \$unwind  | 拆分操作符，用于将数组中的每一个值拆分为单独的文档                                                   |
 | \$lookup  | 连接操作符，用于连接同一个数据库中另一个集合，并获取指定的文档，类似于 populate                      |
 
-更多操作符介绍详见官方文档：https://docs.mongodb.com/manual/reference/operator/aggregation/
+更多操作符介绍详见官方文档：<https://docs.mongodb.com/manual/reference/operator/aggregation/>
 
 阶段操作符用于 `db.collection.aggregate` 方法里面，数组参数中的第一层。
 
@@ -246,7 +246,7 @@ db.orders.aggregate([
 - **隔离性**（`Isolation`）：并发访问数据库时，一个用户的事务不被其他事务所干扰，各并发事务之间数据库是独立的。WiredTiger 存储引擎支持读未提交（ read-uncommitted ）、读已提交（ read-committed ）和快照（ snapshot ）隔离，MongoDB 启动时默认选快照隔离。在不同隔离级别下，一个事务的生命周期内，可能出现脏读、不可重复读、幻读等现象。
 - **持久性**（`Durability`）：一个事务被提交之后。它对数据库中数据的改变是持久的，即使数据库发生故障也不应该对其有任何影响。
 
-关于事务的详细介绍这篇文章就不多说了，感兴趣的可以看看我写的[MySQL 常见面试题总结](https://javaguide.cn/database/mysql/mysql-questions-01.html)这篇文章，里面有详细介绍到。
+关于事务的详细介绍这篇文章就不多说了，感兴趣的可以看看我写的[MySQL 常见面试题总结](../mysql/mysql-questions-01.md)这篇文章，里面有详细介绍到。
 
 MongoDB 单文档原生支持原子性，也具备事务的特性。当谈论 MongoDB 事务的时候，通常指的是 **多文档** 。MongoDB 4.0 加入了对多文档 ACID 事务的支持，但只支持复制集部署模式下的 ACID 事务，也就是说事务的作用域限制为一个副本集内。MongoDB 4.2 引入了 **分布式事务** ，增加了对分片集群上多文档事务的支持，并合并了对副本集上多文档事务的现有支持。
 
@@ -276,9 +276,9 @@ WiredTiger 日志也会被压缩，默认使用的也是 Snappy 压缩算法。�
 
 ## 参考
 
-- MongoDB 官方文档（主要参考资料，以官方文档为准）：https://www.mongodb.com/docs/manual/
+- MongoDB 官方文档（主要参考资料，以官方文档为准）：<https://www.mongodb.com/docs/manual/>
 - 《MongoDB 权威指南》
-- 技术干货| MongoDB 事务原理 - MongoDB 中文社区：https://mongoing.com/archives/82187
-- Transactions - MongoDB 官方文档：https://www.mongodb.com/docs/manual/core/transactions/
-- WiredTiger Storage Engine - MongoDB 官方文档：https://www.mongodb.com/docs/manual/core/wiredtiger/
-- WiredTiger 存储引擎之一：基础数据结构分析：https://mongoing.com/topic/archives-35143
+- 技术干货| MongoDB 事务原理 - MongoDB 中文社区：<https://mongoing.com/archives/82187>
+- Transactions - MongoDB 官方文档：<https://www.mongodb.com/docs/manual/core/transactions/>
+- WiredTiger Storage Engine - MongoDB 官方文档：<https://www.mongodb.com/docs/manual/core/wiredtiger/>
+- WiredTiger 存储引擎之一：基础数据结构分析：<https://mongoing.com/topic/archives-35143>

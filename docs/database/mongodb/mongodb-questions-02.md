@@ -263,11 +263,11 @@ Rebalance 操作是比较耗费系统资源的，我们可以通过在业务低�
 
 ## 参考
 
-- MongoDB 官方文档（主要参考资料，以官方文档为准）：https://www.mongodb.com/docs/manual/
+- MongoDB 官方文档（主要参考资料，以官方文档为准）：<https://www.mongodb.com/docs/manual/>
 - 《MongoDB 权威指南》
-- Indexes - MongoDB 官方文档：https://www.mongodb.com/docs/manual/indexes/
-- MongoDB - 索引知识 - 程序员翔仔 - 2022：https://fatedeity.cn/posts/database/mongodb-index-knowledge.html
-- MongoDB - 索引: https://www.cnblogs.com/Neeo/articles/14325130.html
-- Sharding - MongoDB 官方文档：https://www.mongodb.com/docs/manual/sharding/
-- MongoDB 分片集群介绍 - 阿里云文档：https://help.aliyun.com/document_detail/64561.html
-- 分片集群使用注意事项 - - 腾讯云文档：https://cloud.tencent.com/document/product/240/44611
+- Indexes - MongoDB 官方文档：<https://www.mongodb.com/docs/manual/indexes/>
+- MongoDB - 索引知识 - 程序员翔仔 - 2022：<https://fatedeity.cn/posts/database/mongodb-index-knowledge.html>
+- MongoDB - 索引: <https://www.cnblogs.com/Neeo/articles/14325130.html>
+- Sharding - MongoDB 官方文档：<https://www.mongodb.com/docs/manual/sharding/>
+- MongoDB 分片集群介绍 - 阿里云文档：<https://help.aliyun.com/document_detail/64561.html>
+- 分片集群使用注意事项 - - 腾讯云文档：<https://cloud.tencent.com/document/product/240/44611>

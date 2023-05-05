@@ -68,7 +68,7 @@ OSI 七层模型虽然失败了，但是却提供了很多不错的理论基础�
 - **RTP（Real-time Transport Protocol，实时传输协议）**：通常基于 UDP 协议，但也支持 TCP 协议。它提供了端到端的实时传输数据的功能，但不包含资源预留存、不保证实时传输质量，这些功能由 WebRTC 实现。
 - **DNS（Domain Name System，域名管理系统）**: 基于 UDP 协议，用于解决域名和 IP 地址的映射问题。
 
-关于这些协议的详细介绍请看 [应用层常见协议总结（应用层）](https://javaguide.cn/cs-basics/network/application-layer-protocol.html) 这篇文章。
+关于这些协议的详细介绍请看 [应用层常见协议总结（应用层）](./application-layer-protocol.md) 这篇文章。
 
 ### 传输层（Transport layer）
 

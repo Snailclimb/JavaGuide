@@ -286,7 +286,7 @@ ALTER TABLE `cus_order` ADD INDEX id_score_name(score, name);
 
 通过 `Extra` 这一列的 `Using index` ，说明这条 SQL 语句成功使用了覆盖索引。
 
-关于 `EXPLAIN` 命令的详细介绍请看：[MySQL 执行计划分析](https://javaguide.cn/database/mysql/mysql-query-execution-plan.html)这篇文章。
+关于 `EXPLAIN` 命令的详细介绍请看：[MySQL 执行计划分析](./mysql-query-execution-plan.md)这篇文章。
 
 ### 联合索引
 
@@ -351,7 +351,7 @@ ALTER TABLE `cus_order` ADD INDEX id_score_name(score, name);
 - 在索引列上进行计算、函数、类型转换等操作;
 - 以 `%` 开头的 LIKE 查询比如 `like '%abc'`;
 - 查询条件中使用 or，且 or 的前后条件中有一个列没有索引，涉及的索引都不会被使用到;
-- 发生[隐式转换](https://javaguide.cn/database/mysql/index-invalidation-caused-by-implicit-conversion.html);
+- 发生[隐式转换](./index-invalidation-caused-by-implicit-conversion.md);
 - ......
 
 ### 删除长期未使用的索引
@@ -395,4 +395,4 @@ mysql> EXPLAIN SELECT `score`,`name` FROM `cus_order` ORDER BY `score` DESC;
 | filtered      | 按表条件过滤后，留存的记录数的百分比         |
 | Extra         | 附加信息                                     |
 
-篇幅问题，我这里只是简单介绍了一下 MySQL 执行计划，详细介绍请看：[MySQL 执行计划分析](https://javaguide.cn/database/mysql/mysql-query-execution-plan.html)这篇文章。
+篇幅问题，我这里只是简单介绍了一下 MySQL 执行计划，详细介绍请看：[MySQL 执行计划分析](./mysql-query-execution-plan.md)这篇文章。
