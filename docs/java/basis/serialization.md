@@ -170,7 +170,7 @@ public class KryoSerializer implements Serializer {
 }
 ```
 
-Github 地址：[https://github.com/EsotericSoftware/kryo](https://github.com/EsotericSoftware/kryo) 。
+GitHub 地址：[https://github.com/EsotericSoftware/kryo](https://github.com/EsotericSoftware/kryo) 。
 
 ### Protobuf
 
@@ -192,7 +192,7 @@ message Person {
 }
 ```
 
-Github 地址：[https://github.com/protocolbuffers/protobuf](https://github.com/protocolbuffers/protobuf)。
+GitHub 地址：[https://github.com/protocolbuffers/protobuf](https://github.com/protocolbuffers/protobuf)。
 
 ### ProtoStuff
 
@@ -200,7 +200,7 @@ Github 地址：[https://github.com/protocolbuffers/protobuf](https://github.com
 
 protostuff 基于 Google protobuf，但是提供了更多的功能和更简易的用法。虽然更加易用，但是不代表 ProtoStuff 性能更差。
 
-Github 地址：[https://github.com/protostuff/protostuff](https://github.com/protostuff/protostuff)。
+GitHub 地址：[https://github.com/protostuff/protostuff](https://github.com/protostuff/protostuff)。
 
 ### Hessian
 

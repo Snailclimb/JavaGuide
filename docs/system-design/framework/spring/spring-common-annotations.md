@@ -14,7 +14,7 @@ tag:
 
 最近看到网上有一篇关于 SpringBoot 常用注解的文章被转载的比较多，我看了文章内容之后属实觉得质量有点低，并且有点会误导没有太多实际使用经验的人（这些人又占据了大多数）。所以，自己索性花了大概 两天时间简单总结一下了。
 
-**因为我个人的能力和精力有限，如果有任何不对或者需要完善的地方，请帮忙指出！Guide感激不尽！**
+**因为我个人的能力和精力有限，如果有任何不对或者需要完善的地方，请帮忙指出！Guide 感激不尽！**
 
 ### 1. `@SpringBootApplication`
 
@@ -955,6 +955,6 @@ public abstract class TestBase {
     }
 ```
 
-_暂时总结到这里吧！虽然花了挺长时间才写完，不过可能还是会一些常用的注解的被漏掉，所以，我将文章也同步到了 Github 上去，Github 地址： 欢迎完善！_
+_暂时总结到这里吧！虽然花了挺长时间才写完，不过可能还是会一些常用的注解的被漏掉，所以，我将文章也同步到了 GitHub 上去，GitHub 地址： 欢迎完善！_
 
 本文已经收录进我的 75K Star 的 Java 开源项目 JavaGuide：[https://github.com/Snailclimb/JavaGuide](https://github.com/Snailclimb/JavaGuide)。

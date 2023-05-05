@@ -33,7 +33,7 @@ icon: "book"
 - **[spring-boot-demo](https://github.com/xkcoding/spring-boot-demo "spring-boot-demo")** ：spring boot demo 是一个用来深度学习并实战 spring boot 的项目，目前总共包含 63 个集成 demo，已经完成 52 个。
 - **[SpringBoot-Labs](https://github.com/YunaiV/SpringBoot-Labs)** ：Spring Boot 系列教程。
 
-相关文章：[Github 点赞接近 100k 的 SpringBoot 学习教程+实战推荐！牛批！](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247488298&idx=3&sn=0a8fd88ec5a050de131c2a3305482ac4&chksm=cea25ce1f9d5d5f7f53a0237d27489326bce4546353b038085c03b086d91ef396bf824d3a155&token=496868067&lang=zh_CN#rd)
+相关文章：[GitHub 点赞接近 100k 的 SpringBoot 学习教程+实战推荐！牛批！](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247488298&idx=3&sn=0a8fd88ec5a050de131c2a3305482ac4&chksm=cea25ce1f9d5d5f7f53a0237d27489326bce4546353b038085c03b086d91ef396bf824d3a155&token=496868067&lang=zh_CN#rd)
 
 ### SpringCloud
 
@@ -41,7 +41,7 @@ icon: "book"
 - **[springcloud-learning](https://github.com/macrozheng/springcloud-learning)** : 一套涵盖大部分核心组件使用的 Spring Cloud 教程。
 - **[SpringCloud](https://github.com/zhoutaoo/SpringCloud "SpringCloud")** ：基于 SpringCloud2.1 的微服务开发脚手架，整合了 spring-security-oauth2、nacos、feign、sentinel、springcloud-gateway 等。
 
-相关文章：[Github 点赞接近 70k 的 Spring Cloud 学习教程+实战项目推荐！牛批！](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247488377&idx=1&sn=0fb33ef330159db5a9c8bc0f029cd739&chksm=cea25cb2f9d5d5a4c7bacc9dcfc90ed86e89f4262e32b40c7aa47af84c747cb6c0429f753e1d&token=496868067&lang=zh_CN#rd)
+相关文章：[GitHub 点赞接近 70k 的 Spring Cloud 学习教程+实战项目推荐！牛批！](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247488377&idx=1&sn=0fb33ef330159db5a9c8bc0f029cd739&chksm=cea25cb2f9d5d5a4c7bacc9dcfc90ed86e89f4262e32b40c7aa47af84c747cb6c0429f753e1d&token=496868067&lang=zh_CN#rd)
 
 ### Nginx
 

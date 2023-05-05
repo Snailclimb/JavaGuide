@@ -20,7 +20,7 @@ head:
 
 ![](https://oscimg.oschina.net/oscnet/up-11de8cb239aa7201cc8d78fa28928b9ec7d.png)
 
-Github 上也已经有大佬用 Java 实现过一个简易的数据库，介绍的挺详细的，感兴趣的朋友可以去看看。地址：[https://github.com/alchemystar/Freedom](https://github.com/alchemystar/Freedom) 。
+GitHub 上也已经有大佬用 Java 实现过一个简易的数据库，介绍的挺详细的，感兴趣的朋友可以去看看。地址：[https://github.com/alchemystar/Freedom](https://github.com/alchemystar/Freedom) 。
 
 除了这个用 Java 写的之外，**[db_tutorial](https://github.com/cstack/db_tutorial)** 这个项目是国外的一个大佬用 C 语言写的，朋友们也可以去瞅瞅。
 

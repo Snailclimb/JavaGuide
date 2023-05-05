@@ -14,7 +14,7 @@ icon: guide
 
 一定一定一定要注意 **排版规范** ：
 
-- [中文文案排版指北 - Github](https://github.com/sparanoid/chinese-copywriting-guidelines)
+- [中文文案排版指北 - GitHub](https://github.com/sparanoid/chinese-copywriting-guidelines)
 - [写给大家看的中文排版指南 - 知乎](https://zhuanlan.zhihu.com/p/20506092)
 - [中文文案排版细则 - Dawner](https://dawner.top/posts/chinese-copywriting-rules/)
 - [中文技术文档写作风格指南](https://github.com/yikeke/zh-style-guide/)
