@@ -18,7 +18,7 @@ icon: help
 
 ## 如何看待 JavaGuide 的 star 数量很多？
 
-[JavaGuide](https://github.com/Snailclimb) 目前已经是 Java 领域 star 数量最多的几个项目之一，登顶过很多次 Github Trending。
+[JavaGuide](https://github.com/Snailclimb) 目前已经是 Java 领域 star 数量最多的几个项目之一，登顶过很多次 GitHub Trending。
 
 不过，这个真心没啥好嘚瑟的。因为，教程类的含金量其实是比较低的，star 数量比较多主要也是因为受众面比较广，大家觉得不错，点个 star 就相当于收藏了。很多特别优秀的框架，star 数量可能只有几 K。所以，单纯看 star 数量没啥意思，就当看个笑话吧！
 

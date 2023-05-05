@@ -249,7 +249,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 ### Git
 
 - [Git 核心概念总结](./tools/git/git-intro.md)
-- [Github 实用小技巧总结](./tools/git/github-tips.md)
+- [GitHub 实用小技巧总结](./tools/git/github-tips.md)
 
 ## 系统设计
 

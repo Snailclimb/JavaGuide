@@ -66,7 +66,7 @@ Dubbo 是由阿里开源，后来加入了 Apache 。正是由于 Dubbo 的出�
 
 Dubbo 算的是比较优秀的国产开源项目了，它的源码也是非常值得学习和阅读的！
 
-- Github ：[https://github.com/apache/incubator-dubbo](https://github.com/apache/incubator-dubbo "https://github.com/apache/incubator-dubbo")
+- GitHub ：[https://github.com/apache/incubator-dubbo](https://github.com/apache/incubator-dubbo "https://github.com/apache/incubator-dubbo")
 - 官网：https://dubbo.apache.org/zh/
 
 ### Motan
@@ -94,7 +94,7 @@ gRPC 是 Google 开源的一个高性能、通用的开源 RPC 框架。其由�
 
 不过，gRPC 的设计导致其几乎没有服务治理能力。如果你想要解决这个问题的话，就需要依赖其他组件比如腾讯的 PolarisMesh（北极星）了。
 
-- Github：[https://github.com/grpc/grpc](https://github.com/grpc/grpc "https://github.com/grpc/grpc")
+- GitHub：[https://github.com/grpc/grpc](https://github.com/grpc/grpc "https://github.com/grpc/grpc")
 - 官网：[https://grpc.io/](https://grpc.io/ "https://grpc.io/")
 
 ### Thrift

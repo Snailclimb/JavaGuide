@@ -17,7 +17,7 @@ Disruptor 是一个相对冷门一些的知识点，不过，如果你的项目�
 
 Disruptor 是一个开源的高性能内存队列，诞生初衷是为了解决内存队列的性能和内存安全问题，由英国外汇交易公司 LMAX 开发。
 
-根据 Disruptor 官方介绍，基于 Disruptor 开发的系统 LMAX（新的零售金融交易平台），单线程就能支撑每秒 600 万订单。Martin Fowler 在 2011年写的一篇文章 [The LMAX Architecture](https://martinfowler.com/articles/lmax.html) 中专门介绍过这个 LMAX 系统的架构，感兴趣的可以看看这篇文章。。
+根据 Disruptor 官方介绍，基于 Disruptor 开发的系统 LMAX（新的零售金融交易平台），单线程就能支撑每秒 600 万订单。Martin Fowler 在 2011 年写的一篇文章 [The LMAX Architecture](https://martinfowler.com/articles/lmax.html) 中专门介绍过这个 LMAX 系统的架构，感兴趣的可以看看这篇文章。。
 
 LMAX 公司 2010 年在 QCon 演讲后，Disruptor 获得了业界关注，并获得了 2011 年的 Oracle 官方的 Duke's Choice Awards(Duke 选择大奖)。
 
@@ -31,7 +31,7 @@ LMAX 公司 2010 年在 QCon 演讲后，Disruptor 获得了业界关注，并�
 
 Disruptor 提供的功能优点类似于 Kafka、RocketMQ 这类分布式队列，不过，其作为范围是 JVM(内存)。
 
-- Github 地址：<https://github.com/LMAX-Exchange/disruptor>
+- GitHub 地址：<https://github.com/LMAX-Exchange/disruptor>
 - 官方教程： <https://lmax-exchange.github.io/disruptor/user-guide/index.html>
 
 关于如何在 Spring Boot 项目中使用 Disruptor，可以看这篇文章：[Spring Boot + Disruptor 实战入门](https://mp.weixin.qq.com/s/0iG5brK3bYF0BgSjX4jRiA) 。
@@ -91,7 +91,7 @@ Disruptor 真的很快，关于它为什么这么快这个问题，会在后文�
 - **ProducerType** ：指定是单个事件发布者模式还是多个事件发布者模式（发布者和生产者的意思类似，我个人比较喜欢用发布者）。
 - **Sequencer** ：Sequencer 是 Disruptor 的真正核心。此接口有两个实现类 `SingleProducerSequencer`、`MultiProducerSequencer` ，它们定义在生产者和消费者之间快速、正确地传递数据的并发算法。
 
-下面这张图摘自Disruptor 官网，展示了 LMAX 系统使用 Disruptor 的示例。
+下面这张图摘自 Disruptor 官网，展示了 LMAX 系统使用 Disruptor 的示例。
 
 ![LMAX 系统使用 Disruptor 的示例](https://oss.javaguide.cn/github/javaguide/high-performance/message-queue/disruptor-models.png)
 
@@ -126,7 +126,7 @@ Disruptor 真的很快，关于它为什么这么快这个问题，会在后文�
 
 CPU 缓存是通过将最近使用的数据存储在高速缓存中来实现更快的读取速度，并使用预取机制提前加载相邻内存的数据以利用局部性原理。
 
-在计算机系统中，CPU 主要访问高速缓存和内存。高速缓存是一种速度非常快、容量相对较小的内存，通常被分为多级缓存，其中L1、L2、L3 分别表示一级缓存、二级缓存、三级缓存。越靠近 CPU 的缓存，速度越快，容量也越小。相比之下，内存容量相对较大，但速度较慢。
+在计算机系统中，CPU 主要访问高速缓存和内存。高速缓存是一种速度非常快、容量相对较小的内存，通常被分为多级缓存，其中 L1、L2、L3 分别表示一级缓存、二级缓存、三级缓存。越靠近 CPU 的缓存，速度越快，容量也越小。相比之下，内存容量相对较大，但速度较慢。
 
 ![CPU 缓存模型示意图](https://oss.javaguide.cn/github/javaguide/java/concurrent/cpu-cache.png)
 
@@ -135,4 +135,4 @@ CPU 缓存是通过将最近使用的数据存储在高速缓存中来实现更�
 ## 参考
 
 - Disruptor 高性能之道-等待策略：<http://wuwenliang.net/2022/02/28/Disruptor高性能之道-等待策略/>
-- 《Java 并发编程实战》- 40 | 案例分析（三）：高性能队列Disruptor：https://time.geekbang.org/column/article/98134
+- 《Java 并发编程实战》- 40 | 案例分析（三）：高性能队列 Disruptor：https://time.geekbang.org/column/article/98134
