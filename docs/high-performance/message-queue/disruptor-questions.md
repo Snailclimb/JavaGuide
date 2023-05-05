@@ -32,7 +32,7 @@ LMAX 公司 2010 年在 QCon 演讲后，Disruptor 获得了业界关注，并�
 Disruptor 提供的功能优点类似于 Kafka、RocketMQ 这类分布式队列，不过，其作为范围是 JVM(内存)。
 
 - Github 地址：<https://github.com/LMAX-Exchange/disruptor>
-- 官方教程：<https://lmax-exchange.github.io/disruptor/user-guide/index.html>
+- 官方教程： <https://lmax-exchange.github.io/disruptor/user-guide/index.html>
 
 关于如何在 Spring Boot 项目中使用 Disruptor，可以看这篇文章：[Spring Boot + Disruptor 实战入门](https://mp.weixin.qq.com/s/0iG5brK3bYF0BgSjX4jRiA) 。
 

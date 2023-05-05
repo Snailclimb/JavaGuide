@@ -86,7 +86,7 @@ head:
 
 除了理论知识之外，学习计算机网络非常重要的一点就是：“**动手实践**”。这点和我们编程差不多。
 
-Github 上就有一些名校的计算机网络试验/Project：
+GitHub 上就有一些名校的计算机网络试验/Project：
 
 - [哈工大计算机网络实验](https://github.com/rccoder/HIT-Computer-Network)
 - [《计算机网络－自顶向下方法(原书第 6 版)》编程作业，Wireshark 实验文档的翻译和解答。](https://github.com/moranzcw/Computer-Networking-A-Top-Down-Approach-NOTES)
@@ -141,7 +141,7 @@ Github 上就有一些名校的计算机网络试验/Project：
 
 ![](https://oss.javaguide.cn/github/javaguide/booksimage-20220409145411049.png)
 
-这是一本被 Github 上的爆火的计算机自学项目 [Teach Yourself Computer Science](https://link.zhihu.com/?target=https%3A//teachyourselfcs.com/) 强烈推荐的一本算法书籍。
+这是一本被 GitHub 上的爆火的计算机自学项目 [Teach Yourself Computer Science](https://link.zhihu.com/?target=https%3A//teachyourselfcs.com/) 强烈推荐的一本算法书籍。
 
 类似的神书还有 [《算法导论》](https://book.douban.com/subject/20432061/)、[《计算机程序设计艺术（第 1 卷）》](https://book.douban.com/subject/1130500/) 。
 

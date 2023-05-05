@@ -69,7 +69,7 @@ tag:
 
 ![网易的课程合作](https://oss.javaguide.cn/about-the-author/college-life/image-20230408115720135.png)
 
-老粉应该大部分都是通过 JavaGuide 这个项目认识我的，这是我在大三开始准备秋招面试时创建的一个项目。没想到这个项目竟然火了一把，一度霸占了 Github 榜单。可能当时国内这类开源文档教程类项目太少了，所以这个项目受欢迎程度非常高。
+老粉应该大部分都是通过 JavaGuide 这个项目认识我的，这是我在大三开始准备秋招面试时创建的一个项目。没想到这个项目竟然火了一把，一度霸占了 GitHub 榜单。可能当时国内这类开源文档教程类项目太少了，所以这个项目受欢迎程度非常高。
 
 ![JavaGuide Star 趋势](https://oss.javaguide.cn/about-the-author/college-life/image-20230408131849198.png)
 

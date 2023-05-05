@@ -30,7 +30,7 @@ Spring 翻译过来就是春天的意思，可见其目标和使命就是为 Jav
 Spring 提供的核心功能主要是 IoC 和 AOP。学习 Spring ，一定要把 IoC 和 AOP 的核心思想搞懂！
 
 - Spring 官网：<https://spring.io/>
-- Github 地址：https://github.com/spring-projects/spring-framework
+- GitHub 地址： https://github.com/spring-projects/spring-framework
 
 ### Spring 包含的模块有哪些？
 

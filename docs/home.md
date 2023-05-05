@@ -117,9 +117,12 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 
 ### 操作系统
 
-- [操作系统常见问题总结！](./cs-basics/operating-system/operating-system-basic-questions-01.md)
-- [后端程序员必备的 Linux 基础知识总结](./cs-basics/operating-system/linux-intro.md)
-- [Shell 编程基础知识总结](./cs-basics/operating-system/shell-intro.md)
+- [操作系统常见知识点&面试题总结(上)](./cs-basics/operating-system/operating-system-basic-questions-01.md)
+- [操作系统常见知识点&面试题总结(下)](./cs-basics/operating-system/operating-system-basic-questions-02.md)
+- **Linux** ：
+  - [后端程序员必备的 Linux 基础知识总结](./cs-basics/operating-system/linux-intro.md)
+  - [Shell 编程基础知识总结](./cs-basics/operating-system/shell-intro.md)
+
 
 ### 网络
 
@@ -249,7 +252,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 ### Git
 
 - [Git 核心概念总结](./tools/git/git-intro.md)
-- [Github 实用小技巧总结](./tools/git/github-tips.md)
+- [GitHub 实用小技巧总结](./tools/git/github-tips.md)
 
 ## 系统设计
 
@@ -339,7 +342,8 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 
 ### 分布式 ID
 
-[分布式 ID 常见知识点&面试题总结](./distributed-system/distributed-id.md)
+- [分布式 ID 常见知识点&面试题总结](./distributed-system/distributed-id.md)
+- [分布式 ID 设计指南](./distributed-system/distributed-id-design.md)
 
 ### 分布式锁
 

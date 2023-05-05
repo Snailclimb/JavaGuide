@@ -17,8 +17,8 @@ Spring Cloud Gateway 不仅提供统一的路由方式，并且基于 Filter 链
 
 Spring Cloud Gateway 和 Zuul 2.x 的差别不大，也是通过过滤器来处理请求。不过，目前更加推荐使用 Spring Cloud Gateway 而非 Zuul，Spring Cloud 生态对其支持更加友好。
 
-- Github 地址 ：<https://github.com/spring-cloud/spring-cloud-gateway>
-- 官网 ：<https://spring.io/projects/spring-cloud-gateway>
+- GitHub 地址： <https://github.com/spring-cloud/spring-cloud-gateway>
+- 官网 ： <https://spring.io/projects/spring-cloud-gateway>
 
 ## Spring Cloud Gateway 的工作流程？
 

@@ -133,7 +133,7 @@ Git 有三种状态，你的文件可能处于其中之一：
 
 ### 推送改动到远程仓库
 
-- 如果你还没有克隆现有仓库，并欲将你的仓库连接到某个远程服务器，你可以使用如下命令添加：`git remote add origin <server>` ,比如我们要让本地的一个仓库和 Github 上创建的一个仓库关联可以这样`git remote add origin https://github.com/Snailclimb/test.git`
+- 如果你还没有克隆现有仓库，并欲将你的仓库连接到某个远程服务器，你可以使用如下命令添加：`git remote add origin <server>` ,比如我们要让本地的一个仓库和 GitHub 上创建的一个仓库关联可以这样`git remote add origin https://github.com/Snailclimb/test.git`
 - 将这些改动提交到远端仓库：`git push origin master` (可以把 _master_ 换成你想要推送的任何分支)
 
   如此你就能够将你的改动推送到所添加的服务器上去了。

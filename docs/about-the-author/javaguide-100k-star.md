@@ -5,7 +5,7 @@ tag:
   - 个人经历
 ---
 
-2021-03-21，晚上 12 点，肝完了我正在做的一个项目的前端的某块功能，我随手打开了[我的 Github 主页](https://github.com/Snailclimb)。
+2021-03-21，晚上 12 点，肝完了我正在做的一个项目的前端的某块功能，我随手打开了[我的 GitHub 主页](https://github.com/Snailclimb)。
 
 好家伙！几天没注意，[JavaGuide](https://github.com/Snailclimb/JavaGuide) 这个项目直接上了 100K star。
 

@@ -125,10 +125,11 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 ### 操作系统
 
-- [操作系统常见面试题总结(上)](./docs/cs-basics/operating-system/operating-system-basic-questions-01.md)
-- [操作系统常见面试题总结(下)](./docs/cs-basics/operating-system/operating-system-basic-questions-02.md)
-- [后端程序员必备的 Linux 基础知识总结](./docs/cs-basics/operating-system/linux-intro.md)
-- [Shell 编程基础知识总结](./docs/cs-basics/operating-system/shell-intro.md)
+- [操作系统常见知识点&面试题总结(上)](./docs/cs-basics/operating-system/operating-system-basic-questions-01.md)
+- [操作系统常见知识点&面试题总结(下)](./docs/cs-basics/operating-system/operating-system-basic-questions-02.md)
+- **Linux** ：
+  - [后端程序员必备的 Linux 基础知识总结](./docs/cs-basics/operating-system/linux-intro.md)
+  - [Shell 编程基础知识总结](./docs/cs-basics/operating-system/shell-intro.md)
 
 ### 网络
 
@@ -258,7 +259,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 ### Git
 
 - [Git 核心概念总结](./docs/tools/git/git-intro.md)
-- [Github 实用小技巧总结](./docs/tools/git/github-tips.md)
+- [GitHub 实用小技巧总结](./docs/tools/git/github-tips.md)
 
 ## 系统设计
 
@@ -343,12 +344,13 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 ### API 网关
 
-- [API 网关基础知识总结](./docs/distributed-system/api-gateway.md)
+- [API 网关基础知识总结](https://javaguide.cn/distributed-system/api-gateway.html)
 - [Spring Cloud Gateway 常见知识点&面试题总结](./docs/distributed-system/spring-cloud-gateway-questions.md)
 
 ### 分布式 ID
 
-[分布式 ID 常见知识点&面试题总结](https://javaguide.cn/distributed-system/distributed-id.html)
+- [分布式 ID 常见知识点&面试题总结](https://javaguide.cn/distributed-system/distributed-id.html)
+- [分布式 ID 设计指南](https://javaguide.cn/distributed-system/distributed-id-design.html)
 
 ### 分布式锁
 

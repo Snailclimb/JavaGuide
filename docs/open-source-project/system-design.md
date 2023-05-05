@@ -46,7 +46,7 @@ icon: "xitongsheji"
 
 - [WxJava](https://github.com/Wechat-Group/WxJava) : WxJava （微信开发 Java SDK），支持包括微信支付、开放平台、小程序、企业微信/企业号和公众号等的后端开发。
 - [Sa-Token](https://github.com/dromara/sa-token) ：轻量级 Java 权限认证框架。支持认证授权、单点登录、踢人下线、自动续签等功能。
-- [JustAuth](https://github.com/justauth/JustAuth) ：小而全而美的第三方登录开源组件。目前已经集成了诸如：Github、Gitee、支付宝、新浪微博、微信、Google、Facebook、Twitter、StackOverflow 等国内外数十家第三方平台。
+- [JustAuth](https://github.com/justauth/JustAuth) ：小而全而美的第三方登录开源组件。目前已经集成了诸如：GitHub、Gitee、支付宝、新浪微博、微信、Google、Facebook、Twitter、StackOverflow 等国内外数十家第三方平台。
 
 ## 网络通讯
 
