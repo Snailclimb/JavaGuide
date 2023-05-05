@@ -68,7 +68,7 @@ star: 5
 
 ## 星球其他资源
 
-除了 **《Java 面试指北》** 之外，星球还有 **《Java 必读源码系列》**（目前已经整理了 Dubbo 2.6.x 、Netty 4.x、SpringBoot2.1 的源码）、 **《从零开始写一个 RPC 框架》**（已更新完） 、**《Kafka 常见面试题/知识点总结》** 等多个专属小册。
+除了 **《Java 面试指北》** 之外，星球还有 **《Java 必读源码系列》**（目前已经整理了 Dubbo 2.6.x、Netty 4.x、SpringBoot2.1 的源码）、 **《从零开始写一个 RPC 框架》**（已更新完）、**《Kafka 常见面试题/知识点总结》** 等多个专属小册。
 
 ![](https://oss.javaguide.cn/xingqiu/image-20220316200015412.png)
 

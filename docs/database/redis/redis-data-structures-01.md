@@ -121,7 +121,7 @@ OK
 **需要存储常规数据的场景**
 
 - 举例 ：缓存 session、token、图片地址、序列化后的对象(相比较于 Hash 存储更节省内存)。
-- 相关命令 ： `SET`、`GET`。
+- 相关命令 ：`SET`、`GET`。
 
 **需要计数的场景**
 
@@ -214,7 +214,7 @@ Redis 中的 List 其实就是链表数据结构的实现。我在 [线性数据
 **信息流展示**
 
 - 举例 ：最新文章、最新动态。
-- 相关命令 ： `LPUSH`、`LRANGE`。
+- 相关命令 ：`LPUSH`、`LRANGE`。
 
 **消息队列**
 
@@ -329,7 +329,7 @@ Redis 中的 Set 类型是一种无序集合，集合中的元素没有先后顺
 ```
 
 - `mySet` : `value1`、`value2` 。
-- `mySet2` ： `value2` 、`value3` 。
+- `mySet2` ：`value2`、`value3` 。
 
 **求交集** ：
 
@@ -367,7 +367,7 @@ Redis 中的 Set 类型是一种无序集合，集合中的元素没有先后顺
 
 **需要获取多个数据源交集、并集和差集的场景**
 
-- 举例 ：共同好友(交集)、共同粉丝(交集)、共同关注(交集)、好友推荐（差集）、音乐推荐（差集） 、订阅号推荐（差集+交集） 等场景。
+- 举例 ：共同好友(交集)、共同粉丝(交集)、共同关注(交集)、好友推荐（差集）、音乐推荐（差集）、订阅号推荐（差集+交集） 等场景。
 - 相关命令：`SINTER`（交集）、`SINTERSTORE` （交集）、`SUNION` （并集）、`SUNIONSTORE`（并集）、`SDIFF`（差集）、`SDIFFSTORE` （差集）。
 
 ![](https://oss.javaguide.cn/github/javaguide/database/redis/image-20220719074543513.png)
@@ -422,7 +422,7 @@ Sorted Set 类似于 Set，但和 Set 相比，Sorted Set 增加了一个权重�
 ```
 
 - `myZset` : `value1`(2.0)、`value2`(1.0) 。
-- `myZset2` ： `value2` （4.0）、`value3`(3.0) 。
+- `myZset2` ：`value2` （4.0）、`value3`(3.0) 。
 
 **获取指定元素的排名** ：
 
@@ -470,7 +470,7 @@ value1
 **需要随机获取数据源中的元素根据某个权重进行排序的场景**
 
 - 举例 ：各种排行榜比如直播间送礼物的排行榜、朋友圈的微信步数排行榜、王者荣耀中的段位排行榜、话题热度排行榜等等。
-- 相关命令 ：`ZRANGE` (从小到大排序) 、 `ZREVRANGE` （从大到小排序）、`ZREVRANK` (指定元素排名)。
+- 相关命令 ：`ZRANGE` (从小到大排序)、 `ZREVRANGE` （从大到小排序）、`ZREVRANK` (指定元素排名)。
 
 ![](https://oss.javaguide.cn/github/javaguide/database/redis/2021060714195385.png)
 
@@ -481,11 +481,11 @@ value1
 **需要存储的数据有优先级或者重要程度的场景** 比如优先级任务队列。
 
 - 举例 ：优先级任务队列。
-- 相关命令 ：`ZRANGE` (从小到大排序) 、 `ZREVRANGE` （从大到小排序）、`ZREVRANK` (指定元素排名)。
+- 相关命令 ：`ZRANGE` (从小到大排序)、 `ZREVRANGE` （从大到小排序）、`ZREVRANK` (指定元素排名)。
 
 ## 参考
 
 - Redis Data Structures ：https://redis.com/redis-enterprise/data-structures/ 。
-- Redis Commands ： https://redis.io/commands/ 。
+- Redis Commands ：https://redis.io/commands/ 。
 - Redis Data types tutorial：https://redis.io/docs/manual/data-types/data-types-tutorial/ 。
 - Redis 存储对象信息是用 Hash 还是 String : https://segmentfault.com/a/1190000040032006

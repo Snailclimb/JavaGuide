@@ -11,7 +11,7 @@ tag:
 
 ## O(n) 命令
 
-使用` O(n)` 命令可能会导致阻塞，例如`keys *` 、`hgetall`、`lrange`、`smembers`、`zrange`、`sinter` 、`sunion` 命令。这些命令时间复杂度是 O(n)，有时候也会全表扫描，随着 n 的增大耗时也会越大从而导致客户端阻塞。
+使用` O(n)` 命令可能会导致阻塞，例如`keys *`、`hgetall`、`lrange`、`smembers`、`zrange`、`sinter`、`sunion` 命令。这些命令时间复杂度是 O(n)，有时候也会全表扫描，随着 n 的增大耗时也会越大从而导致客户端阻塞。
 
 不过， 这些命令并不是一定不能使用，但是需要明确 N 的值。有遍历的需求可以使用 `hscan`、`sscan`、`zscan` 代替。
 

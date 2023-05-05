@@ -53,7 +53,7 @@ public class DebugInvocationHandler implements InvocationHandler {
 
 ## 谈谈反射机制的优缺点
 
-**优点** ： 可以让咱们的代码更加灵活、为各种框架提供开箱即用的功能提供了便利
+**优点** ：可以让咱们的代码更加灵活、为各种框架提供开箱即用的功能提供了便利
 
 **缺点** ：让我们在运行时有了分析操作类的能力，这同样也增加了安全问题。比如可以无视泛型参数的安全检查（泛型参数的安全检查发生在编译时）。另外，反射的性能也要稍差点，不过，对于框架来说实际是影响不大的。相关阅读：[Java Reflection: Why is it so slow?](https://stackoverflow.com/questions/1392351/java-reflection-why-is-it-so-slow)
 

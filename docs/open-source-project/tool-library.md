@@ -10,7 +10,7 @@ icon: codelibrary-fill
 - [guava](https://github.com/google/guava "guava") ：Guava 是一组核心库，其中包括新的集合类型（例如 multimap 和 multiset），不可变集合，图形库以及用于并发、I / O、哈希、原始类型、字符串等的实用程序！
 - [hutool](https://github.com/looly/hutool "hutool") : Hutool 是一个 Java 工具包，也只是一个工具包，它帮助我们简化每一行代码，减少每一个方法，让 Java 语言也可以“甜甜的”。
 - [p3c](https://github.com/alibaba/p3c "p3c") ：Alibaba Java Coding Guidelines pmd implements and IDE plugin。Eclipse 和 IDEA 上都有该插件，推荐使用！
-- [arthas](https://github.com/alibaba/arthas "arthas") ： Arthas 是 Alibaba 开源的 Java 诊断工具。
+- [arthas](https://github.com/alibaba/arthas "arthas") ：Arthas 是 Alibaba 开源的 Java 诊断工具。
 - [sonarqube](https://github.com/SonarSource/sonarqube "sonarqube") ：SonarQube 支持所有开发人员编写更干净，更安全的代码。
 - [checkstyle](https://github.com/checkstyle/checkstyle "checkstyle") :Checkstyle 是一种开发工具，可帮助程序员编写符合编码标准的 Java 代码。它使检查 Java 代码的过程自动化，从而使人们不必执行这项无聊（但很重要）的任务。这使其成为想要实施编码标准的项目的理想选择。
 - [pmd](https://github.com/pmd/pmd "pmd") : 可扩展的多语言静态代码分析器。

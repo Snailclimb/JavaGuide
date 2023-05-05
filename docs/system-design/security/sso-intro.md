@@ -5,7 +5,7 @@ tag:
   - 安全
 ---
 
-> 本文授权转载自 ： https://ken.io/note/sso-design-implement 作者：ken.io
+> 本文授权转载自 ：https://ken.io/note/sso-design-implement 作者：ken.io
 
 ## SSO 介绍
 

@@ -7,7 +7,7 @@ icon: tool
 ## Java
 
 - [JADX](https://github.com/skylot/jadx) ：一款功能强大的反编译工具。
-- [Recaf](https://github.com/Col-E/Recaf) ： Java 字节码编辑器，基于 ASM（Java 字节码操作框架） 来修改字节码，可简化编辑已编译 Java 应用程序的过程。
+- [Recaf](https://github.com/Col-E/Recaf) ：Java 字节码编辑器，基于 ASM（Java 字节码操作框架） 来修改字节码，可简化编辑已编译 Java 应用程序的过程。
 
 ## 数据库
 
@@ -42,8 +42,8 @@ icon: tool
 
 ## ZooKeeper
 
-- [PrettyZoo](https://github.com/vran-dev/PrettyZoo) ： 一个基于 Apache Curator 和 JavaFX 实现的 ZooKeeper 图形化管理客户端，颜值非常高，支持 Mac / Windows / Linux 。你可以使用 PrettyZoo 来实现对 ZooKeeper 的可视化增删改查。
-- [zktools](https://zktools.readthedocs.io/en/latest/#installing) ： 一个低延迟的 ZooKeeper 图形化管理客户端，颜值非常高，支持 Mac / Windows / Linux 。你可以使用 zktools 来实现对 ZooKeeper 的可视化增删改查。
+- [PrettyZoo](https://github.com/vran-dev/PrettyZoo) ：一个基于 Apache Curator 和 JavaFX 实现的 ZooKeeper 图形化管理客户端，颜值非常高，支持 Mac / Windows / Linux 。你可以使用 PrettyZoo 来实现对 ZooKeeper 的可视化增删改查。
+- [zktools](https://zktools.readthedocs.io/en/latest/#installing) ：一个低延迟的 ZooKeeper 图形化管理客户端，颜值非常高，支持 Mac / Windows / Linux 。你可以使用 zktools 来实现对 ZooKeeper 的可视化增删改查。
 
 ## Markdown
 

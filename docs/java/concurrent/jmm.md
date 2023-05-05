@@ -26,7 +26,7 @@ JMM(Java 内存模型)主要定义了对于一个共享变量，当另一个线�
 
 为了更好地理解，我画了一个简单的 CPU Cache 示意图如下所示。
 
-> **🐛 修正（参见： [issue#1848](https://github.com/Snailclimb/JavaGuide/issues/1848)）**：对 CPU 缓存模型绘图不严谨的地方进行完善。
+> **🐛 修正（参见：[issue#1848](https://github.com/Snailclimb/JavaGuide/issues/1848)）**：对 CPU 缓存模型绘图不严谨的地方进行完善。
 
 ![CPU 缓存模型示意图](https://oss.javaguide.cn/github/javaguide/java/concurrent/cpu-cache.png)
 
@@ -199,7 +199,7 @@ happens-before 与 JMM 的关系用《Java 并发编程的艺术》这本书中�
 
 一次操作或者多次操作，要么所有的操作全部都得到执行并且不会受到任何因素的干扰而中断，要么都不执行。
 
-在 Java 中，可以借助`synchronized` 、各种 `Lock` 以及各种原子类实现原子性。
+在 Java 中，可以借助`synchronized`、各种 `Lock` 以及各种原子类实现原子性。
 
 `synchronized` 和各种 `Lock` 可以保证任一时刻只有一个线程访问该代码块，因此可以保障原子性。各种原子类是利用 CAS (compare and swap) 操作（可能也会用到 `volatile`或者`final`关键字）来保证原子操作。
 
@@ -207,7 +207,7 @@ happens-before 与 JMM 的关系用《Java 并发编程的艺术》这本书中�
 
 当一个线程对共享变量进行了修改，那么另外的线程都是立即可以看到修改后的最新值。
 
-在 Java 中，可以借助`synchronized` 、`volatile` 以及各种 `Lock` 实现可见性。
+在 Java 中，可以借助`synchronized`、`volatile` 以及各种 `Lock` 实现可见性。
 
 如果我们将变量声明为 `volatile` ，这就指示 JVM，这个变量是共享且不稳定的，每次使用它都到主存中进行读取。
 

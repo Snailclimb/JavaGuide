@@ -290,9 +290,9 @@ final void treeifyBin(Node<K,V>[] tab, int hash) {
 
 [HashMap 的 7 种遍历方式与性能分析！](https://mp.weixin.qq.com/s/zQBN3UvJDhRTKP6SzcZFKw)
 
-**🐛 修正（参见： [issue#1411](https://github.com/Snailclimb/JavaGuide/issues/1411)）** ：
+**🐛 修正（参见：[issue#1411](https://github.com/Snailclimb/JavaGuide/issues/1411)）** ：
 
-这篇文章对于 parallelStream 遍历方式的性能分析有误，先说结论： **存在阻塞时 parallelStream 性能最高, 非阻塞时 parallelStream 性能最低** 。
+这篇文章对于 parallelStream 遍历方式的性能分析有误，先说结论：**存在阻塞时 parallelStream 性能最高, 非阻塞时 parallelStream 性能最低** 。
 
 当遍历不存在阻塞时, parallelStream 的性能是最低的：
 

@@ -14,7 +14,7 @@ icon: "book"
 - **[technology-talk](https://github.com/aalansehaiyang/technology-talk)** : 汇总 java 生态圈常用技术框架、开源中间件，系统架构、数据库、大公司架构案例、常用三方类库、项目管理、线上问题排查、个人成长、思考等知识
 - **[JCSprout](https://github.com/crossoverJie/JCSprout "JCSprout")** :处于萌芽阶段的 Java 核心知识库。
 - **[bestJavaer](https://github.com/crisxuan/bestJavaer)** : 这是一个成为更好的 Java 程序员的系列教程。
-- **[java-design-patterns](https://github.com/iluwatar/java-design-patterns "java-design-patterns")** ： 用 Java 实现的设计模式。
+- **[java-design-patterns](https://github.com/iluwatar/java-design-patterns "java-design-patterns")** ：用 Java 实现的设计模式。
 
 ## 计算机基础
 
@@ -28,7 +28,7 @@ icon: "book"
 
 - **[springboot-guide](https://github.com/Snailclimb/springboot-guide)** ：SpringBoot 核心知识点总结。 基于 Spring Boot 2.19+。
 - **[SpringAll](https://github.com/wuyouzhuguli/SpringAll "SpringAll")** ：循序渐进，学习 Spring Boot、Spring Boot & Shiro、Spring Cloud、Spring Security & Spring Security OAuth2，博客 Spring 系列源码。
-- **[Springboot-Notebook](https://github.com/chengxy-nds/Springboot-Notebook)** :一系列以 Spring Boot 为基础开发框架，整合 Redis 、 Rabbitmq 、ES 、MongoDB 、Spring Cloud、Kafka、Skywalking 等互联网主流技术，实现各种常见功能点的综合性案例。
+- **[Springboot-Notebook](https://github.com/chengxy-nds/Springboot-Notebook)** :一系列以 Spring Boot 为基础开发框架，整合 Redis、 Rabbitmq、ES、MongoDB、Spring Cloud、Kafka、Skywalking 等互联网主流技术，实现各种常见功能点的综合性案例。
 - **[springboot-learning-example](https://github.com/JeffLi1993/springboot-learning-example "springboot-learning-example")** ：Spring Boot 实践学习案例，是 Spring Boot 初学者及核心技术巩固的最佳实践。
 - **[spring-boot-demo](https://github.com/xkcoding/spring-boot-demo "spring-boot-demo")** ：spring boot demo 是一个用来深度学习并实战 spring boot 的项目，目前总共包含 63 个集成 demo，已经完成 52 个。
 - **[SpringBoot-Labs](https://github.com/YunaiV/SpringBoot-Labs)** ：Spring Boot 系列教程。

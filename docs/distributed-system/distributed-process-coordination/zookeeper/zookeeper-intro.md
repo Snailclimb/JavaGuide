@@ -66,7 +66,7 @@ ZooKeeper 概览中，我们介绍到使用其通常被用于实现诸如数据�
 
 1. **命名服务** ：可以通过 ZooKeeper 的顺序节点生成全局唯一 ID。
 2. **数据发布/订阅** ：通过 **Watcher 机制** 可以很方便地实现数据发布/订阅。当你将数据发布到 ZooKeeper 被监听的节点上，其他机器可通过监听 ZooKeeper 上节点的变化来实现配置的动态更新。
-3. **分布式锁** ： 通过创建唯一节点获得分布式锁，当获得锁的一方执行完相关代码或者是挂掉之后就释放锁。分布式锁的实现也需要用到 **Watcher 机制** ，我在 [分布式锁详解](https://javaguide.cn/distributed-system/distributed-lock.html) 这篇文章中有详细介绍到如何基于 ZooKeeper 实现分布式锁。
+3. **分布式锁** ：通过创建唯一节点获得分布式锁，当获得锁的一方执行完相关代码或者是挂掉之后就释放锁。分布式锁的实现也需要用到 **Watcher 机制** ，我在 [分布式锁详解](https://javaguide.cn/distributed-system/distributed-lock.html) 这篇文章中有详细介绍到如何基于 ZooKeeper 实现分布式锁。
 
 实际上，这些功能的实现基本都得益于 ZooKeeper 可以保存数据的功能，但是 ZooKeeper 不适合保存大量数据，这一点需要注意。
 
@@ -92,13 +92,13 @@ ZooKeeper 数据模型采用层次化的多叉树形结构，每个节点上都�
 
 - **持久（PERSISTENT）节点** ：一旦创建就一直存在即使 ZooKeeper 集群宕机，直到将其删除。
 - **临时（EPHEMERAL）节点** ：临时节点的生命周期是与 **客户端会话（session）** 绑定的，**会话消失则节点消失** 。并且，**临时节点只能做叶子节点** ，不能创建子节点。
-- **持久顺序（PERSISTENT_SEQUENTIAL）节点** ：除了具有持久（PERSISTENT）节点的特性之外， 子节点的名称还具有顺序性。比如 `/node1/app0000000001` 、`/node1/app0000000002` 。
+- **持久顺序（PERSISTENT_SEQUENTIAL）节点** ：除了具有持久（PERSISTENT）节点的特性之外， 子节点的名称还具有顺序性。比如 `/node1/app0000000001`、`/node1/app0000000002` 。
 - **临时顺序（EPHEMERAL_SEQUENTIAL）节点** ：除了具备临时（EPHEMERAL）节点的特性之外，子节点的名称还具有顺序性
 
 每个 znode 由 2 部分组成:
 
 - **stat** ：状态信息
-- **data** ： 节点存放的数据的具体内容
+- **data** ：节点存放的数据的具体内容
 
 如下所示，我通过 get 命令来获取 根目录下的 dubbo 节点的内容。（get 命令在下面会介绍到）。
 
@@ -143,8 +143,8 @@ Stat 类中包含了一个数据节点的所有状态信息的字段，包括事
 在前面我们已经提到，对应于每个 znode，ZooKeeper 都会为其维护一个叫作 **Stat** 的数据结构，Stat 中记录了这个 znode 的三个相关的版本：
 
 - **dataVersion** ：当前 znode 节点的版本号
-- **cversion** ： 当前 znode 子节点的版本
-- **aclVersion** ： 当前 znode 的 ACL 的版本。
+- **cversion** ：当前 znode 子节点的版本
+- **aclVersion** ：当前 znode 的 ACL 的版本。
 
 ### ACL（权限控制）
 
@@ -162,9 +162,9 @@ ZooKeeper 采用 ACL（AccessControlLists）策略来进行权限控制，类似
 
 对于身份认证，提供了以下几种方式：
 
-- **world** ： 默认方式，所有用户都可无条件访问。
+- **world** ：默认方式，所有用户都可无条件访问。
 - **auth** :不使用任何 id，代表任何已认证的用户。
-- **digest** :用户名:密码认证方式： _username:password_ 。
+- **digest** :用户名:密码认证方式：_username:password_ 。
 - **ip** : 对指定 ip 进行限制。
 
 ### Watcher（事件监听器）
@@ -191,7 +191,7 @@ Session 有一个属性叫做：`sessionTimeout` ，`sessionTimeout` 代表会�
 
 上图中每一个 Server 代表一个安装 ZooKeeper 服务的服务器。组成 ZooKeeper 服务的服务器都会在内存中维护当前的服务器状态，并且每台服务器之间都互相保持着通信。集群间通过 ZAB 协议（ZooKeeper Atomic Broadcast）来保持数据的一致性。
 
-**最典型集群模式： Master/Slave 模式（主备模式）**。在这种模式中，通常 Master 服务器作为主服务器提供写服务，其他的 Slave 服务器从服务器通过异步复制的方式获取 Master 服务器最新的数据提供读服务。
+**最典型集群模式：Master/Slave 模式（主备模式）**。在这种模式中，通常 Master 服务器作为主服务器提供写服务，其他的 Slave 服务器从服务器通过异步复制的方式获取 Master 服务器最新的数据提供读服务。
 
 ### ZooKeeper 集群角色
 

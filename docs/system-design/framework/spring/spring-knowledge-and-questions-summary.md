@@ -25,12 +25,12 @@ Spring 最核心的思想就是不重新造轮子，开箱即用，提高开发�
 
 Spring 翻译过来就是春天的意思，可见其目标和使命就是为 Java 程序员带来春天啊！感动！
 
-🤐 多提一嘴 ： **语言的流行通常需要一个杀手级的应用，Spring 就是 Java 生态的一个杀手级的应用框架。**
+🤐 多提一嘴 ：**语言的流行通常需要一个杀手级的应用，Spring 就是 Java 生态的一个杀手级的应用框架。**
 
 Spring 提供的核心功能主要是 IoC 和 AOP。学习 Spring ，一定要把 IoC 和 AOP 的核心思想搞懂！
 
 - Spring 官网：<https://spring.io/>
-- Github 地址： https://github.com/spring-projects/spring-framework
+- Github 地址：https://github.com/spring-projects/spring-framework
 
 ### Spring 包含的模块有哪些？
 
@@ -67,15 +67,15 @@ Spring 框架的核心模块，也可以说是基础模块，主要提供 IoC �
 
 - **spring-jdbc** ：提供了对数据库访问的抽象 JDBC。不同的数据库都有自己独立的 API 用于操作数据库，而 Java 程序只需要和 JDBC API 交互，这样就屏蔽了数据库的影响。
 - **spring-tx** ：提供对事务的支持。
-- **spring-orm** ： 提供对 Hibernate、JPA 、iBatis 等 ORM 框架的支持。
+- **spring-orm** ：提供对 Hibernate、JPA、iBatis 等 ORM 框架的支持。
 - **spring-oxm** ：提供一个抽象层支撑 OXM(Object-to-XML-Mapping)，例如：JAXB、Castor、XMLBeans、JiBX 和 XStream 等。
 - **spring-jms** : 消息服务。自 Spring Framework 4.1 以后，它还提供了对 spring-messaging 模块的继承。
 
 #### Spring Web
 
 - **spring-web** ：对 Web 功能的实现提供一些最基础的支持。
-- **spring-webmvc** ： 提供对 Spring MVC 的实现。
-- **spring-websocket** ： 提供了对 WebSocket 的支持，WebSocket 可以让客户端和服务端进行双向通信。
+- **spring-webmvc** ：提供对 Spring MVC 的实现。
+- **spring-websocket** ：提供了对 WebSocket 的支持，WebSocket 可以让客户端和服务端进行双向通信。
 - **spring-webflux** ：提供对 WebFlux 的支持。WebFlux 是 Spring Framework 5.0 中引入的新的响应式框架。与 Spring MVC 不同，它不需要 Servlet API，是完全异步。
 
 #### Messaging
@@ -286,7 +286,7 @@ Spring 中 Bean 的作用域通常有下面几种：
 - **prototype** : 每次获取都会创建一个新的 bean 实例。也就是说，连续 `getBean()` 两次，得到的是不同的 Bean 实例。
 - **request** （仅 Web 应用可用）: 每一次 HTTP 请求都会产生一个新的 bean（请求 bean），该 bean 仅在当前 HTTP request 内有效。
 - **session** （仅 Web 应用可用） : 每一次来自新 session 的 HTTP 请求都会产生一个新的 bean（会话 bean），该 bean 仅在当前 HTTP session 内有效。
-- **application/global-session** （仅 Web 应用可用）： 每个 Web 应用在启动时创建一个 Bean（应用 Bean），该 bean 仅在当前应用启动时间内有效。
+- **application/global-session** （仅 Web 应用可用）：每个 Web 应用在启动时创建一个 Bean（应用 Bean），该 bean 仅在当前应用启动时间内有效。
 - **websocket** （仅 Web 应用可用）：每一次 WebSocket 会话产生一个新的 bean。
 
 **如何配置 bean 的作用域呢？**
@@ -531,7 +531,7 @@ public class GlobalExceptionHandler {
 	}
 ```
 
-从源代码看出： **`getMappedMethod()`会首先找到可以匹配处理异常的所有方法信息，然后对其进行从小到大的排序，最后取最小的那一个匹配的方法(即匹配度最高的那个)。**
+从源代码看出：**`getMappedMethod()`会首先找到可以匹配处理异常的所有方法信息，然后对其进行从小到大的排序，最后取最小的那一个匹配的方法(即匹配度最高的那个)。**
 
 ## Spring 框架中用到了哪些设计模式？
 
@@ -552,8 +552,8 @@ public class GlobalExceptionHandler {
 
 ### Spring 管理事务的方式有几种？
 
-- **编程式事务** ： 在代码中硬编码(不推荐使用) : 通过 `TransactionTemplate`或者 `TransactionManager` 手动管理事务，实际应用中很少使用，但是对于你理解 Spring 事务管理原理有帮助。
-- **声明式事务** ： 在 XML 配置文件中配置或者直接基于注解（推荐使用） : 实际是通过 AOP 实现（基于`@Transactional` 的全注解方式使用最多）
+- **编程式事务** ：在代码中硬编码(不推荐使用) : 通过 `TransactionTemplate`或者 `TransactionManager` 手动管理事务，实际应用中很少使用，但是对于你理解 Spring 事务管理原理有帮助。
+- **声明式事务** ：在 XML 配置文件中配置或者直接基于注解（推荐使用） : 实际是通过 AOP 实现（基于`@Transactional` 的全注解方式使用最多）
 
 ### Spring 事务中哪几种事务传播行为?
 

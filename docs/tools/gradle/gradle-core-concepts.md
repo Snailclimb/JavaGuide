@@ -36,7 +36,7 @@ Gradle 构建脚本是使用 Groovy 或 Kotlin 语言编写的，表达能力非
 
 Gradle 是运行在 JVM 上的一个程序，它可以使用 Groovy 来编写构建脚本。
 
-Groovy 是运行在 JVM 上的脚本语言，是基于 Java 扩展的动态语言，它的语法和 Java 非常的相似，可以使用 Java 的类库。Groovy 可以用于面向对象编程，也可以用作纯粹的脚本语言。在语言的设计上它吸纳了 Java 、Python、Ruby 和 Smalltalk 语言的优秀特性，比如动态类型转换、闭包和元编程支持。
+Groovy 是运行在 JVM 上的脚本语言，是基于 Java 扩展的动态语言，它的语法和 Java 非常的相似，可以使用 Java 的类库。Groovy 可以用于面向对象编程，也可以用作纯粹的脚本语言。在语言的设计上它吸纳了 Java、Python、Ruby 和 Smalltalk 语言的优秀特性，比如动态类型转换、闭包和元编程支持。
 
 我们可以用学习 Java 的方式去学习 Groovy ，学习成本相对来说还是比较低的，即使开发过程中忘记 Groovy 语法，也可以用 Java 语法继续编码。
 
@@ -99,7 +99,7 @@ Gradle Wrapper 会给我们带来下面这些好处：
 每个文件的含义如下：
 
 - `gradle-wrapper.jar`：包含了 Gradle 运行时的逻辑代码。
-- `gradle-wrapper.properties` ： 定义了 Gradle 的版本号和 Gradle 运行时的行为属性。
+- `gradle-wrapper.properties` ：定义了 Gradle 的版本号和 Gradle 运行时的行为属性。
 - `gradlew`：Linux 平台下，用于执行 Gralde 命令的包装器脚本。
 - `gradlew.bat`：Windows 平台下，用于执行 Gralde 命令的包装器脚本。
 
@@ -113,11 +113,11 @@ zipStoreBase=GRADLE_USER_HOME
 zipStorePath=wrapper/dists
 ```
 
-- `distributionBase`： Gradle 解包后存储的父目录。
-- `distributionPath`： `distributionBase`指定目录的子目录。`distributionBase+distributionPath`就是 Gradle 解包后的存放的具体目录。
-- `distributionUrl`： Gradle 指定版本的压缩包下载地址。
-- `zipStoreBase`： Gradle 压缩包下载后存储父目录。
-- `zipStorePath`： `zipStoreBase`指定目录的子目录。`zipStoreBase+zipStorePath`就是 Gradle 压缩包的存放位置。
+- `distributionBase`：Gradle 解包后存储的父目录。
+- `distributionPath`：`distributionBase`指定目录的子目录。`distributionBase+distributionPath`就是 Gradle 解包后的存放的具体目录。
+- `distributionUrl`：Gradle 指定版本的压缩包下载地址。
+- `zipStoreBase`：Gradle 压缩包下载后存储父目录。
+- `zipStorePath`：`zipStoreBase`指定目录的子目录。`zipStoreBase+zipStorePath`就是 Gradle 压缩包的存放位置。
 
 ### 更新 Gradle Wrapper
 
@@ -259,7 +259,7 @@ Gradle 提供的是一套核心的构建机制，而 Gradle 插件则是运行�
 
 Gradle 插件主要分为两类：
 
-- 脚本插件： 脚本插件就是一个普通的脚本文件，它可以被导入都其他构建脚本中。
+- 脚本插件：脚本插件就是一个普通的脚本文件，它可以被导入都其他构建脚本中。
 - 二进制插件 / 对象插件：在一个单独的插件模块中定义，其他模块通过 Plugin ID 应用插件。因为这种方式发布和复用更加友好，我们一般接触到的 Gradle 插件都是指二进制插件的形式。
 
 虽然 Gradle 插件与 .gradle 文件本质上没有区别，`.gradle` 文件也能实现 Gradle 插件类似的功能。但是，Gradle 插件使用了独立模块封装构建逻辑，无论是从开发开始使用来看，Gradle 插件的整体体验都更友好。

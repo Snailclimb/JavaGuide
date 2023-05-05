@@ -6,7 +6,7 @@ tag:
   - 面试
 ---
 
-> **推荐语** ： 牛客网热帖，写的很全面！暑期实习，投了阿里、腾讯、字节，拿到了阿里和腾讯的 offer。
+> **推荐语** ：牛客网热帖，写的很全面！暑期实习，投了阿里、腾讯、字节，拿到了阿里和腾讯的 offer。
 >
 > <br/>
 >
@@ -63,7 +63,7 @@ tag:
 
 我上面谈到的学习路线，我建议是跟着视频学，尚硅谷和黑马的教程都可以，一定要手敲一遍。
 
-- [2021 南京大学 “操作系统：设计与实现” (蒋炎岩)](https://www.bilibili.com/video/BV1HN41197Ko)： 我不多说了，看评论就知道了。
+- [2021 南京大学 “操作系统：设计与实现” (蒋炎岩)](https://www.bilibili.com/video/BV1HN41197Ko)：我不多说了，看评论就知道了。
 - [SpringSecurity-Social-OAuth2 社交登录接口授权鉴权系列课程](https://www.bilibili.com/video/BV16J41127jq) ：字母哥讲的 Spring Security 也很好，Spring Security 或者 Shiro 是做项目必备的，会一个就好，根据实际场景以及个人喜好（笑）来选型。
 - [清华大学邓俊辉数据结构与算法](https://www.bilibili.com/video/BV1jt4y117KR) ：清华不解释了。
 - [MySQL 实战 45 讲](https://time.geekbang.org/column/intro/100020801)：前 27 讲多看几遍基本可以秒杀面试中遇到的 MySQL 问题了。

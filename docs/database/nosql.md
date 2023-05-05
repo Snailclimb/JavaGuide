@@ -13,7 +13,7 @@ NoSQL（Not Only SQL 的缩写）泛指非关系型的数据库，主要针对�
 
 一个常见的误解是 NoSQL 数据库或非关系型数据库不能很好地存储关系型数据。NoSQL 数据库可以存储关系型数据—它们与关系型数据库的存储方式不同。
 
-NoSQL 数据库代表：HBase 、Cassandra、MongoDB、Redis。
+NoSQL 数据库代表：HBase、Cassandra、MongoDB、Redis。
 
 ![](https://oss.javaguide.cn/github/javaguide/database/mongodb/sql-nosql-tushi.png)
 
@@ -23,7 +23,7 @@ NoSQL 数据库代表：HBase 、Cassandra、MongoDB、Redis。
 | :----------- | -------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | 数据存储模型 | 结构化存储，具有固定行和列的表格                                           | 非结构化存储。文档：JSON 文档，键值：键值对，宽列：包含行和动态列的表，图：节点和边                                                     |
 | 发展历程     | 开发于 1970 年代，重点是减少数据重复                                       | 开发于 2000 年代后期，重点是提升可扩展性，减少大规模数据的存储成本                                                                      |
-| 例子         | Oracle、MySQL、Microsoft SQL Server 、PostgreSQL                           | 文档：MongoDB、CouchDB，键值：Redis 、DynamoDB，宽列：Cassandra 、 HBase，图表：Neo4j 、 Amazon Neptune、Giraph                         |
+| 例子         | Oracle、MySQL、Microsoft SQL Server、PostgreSQL                            | 文档：MongoDB、CouchDB，键值：Redis、DynamoDB，宽列：Cassandra、 HBase，图表：Neo4j、 Amazon Neptune、Giraph                            |
 | ACID 属性    | 提供原子性、一致性、隔离性和持久性 (ACID) 属性                             | 通常不支持 ACID 事务，为了可扩展、高性能进行了权衡，少部分支持比如 MongoDB 。不过，MongoDB 对 ACID 事务 的支持和 MySQL 还是有所区别的。 |
 | 性能         | 性能通常取决于磁盘子系统。要获得最佳性能，通常需要优化查询、索引和表结构。 | 性能通常由底层硬件集群大小、网络延迟以及调用应用程序来决定。                                                                            |
 | 扩展         | 垂直（使用性能更强大的服务器进行扩展）、读写分离、分库分表                 | 横向（增加服务器的方式横向扩展，通常是基于分片机制）                                                                                    |

@@ -88,7 +88,7 @@ ZGC 目前 **处在实验阶段**，只支持 Linux/x64 平台。
 
 在 ZGC 中出现 Stop The World 的情况会更少！
 
-详情可以看 ： [《新一代垃圾回收器 ZGC 的探索与实践》](https://tech.meituan.com/2020/08/06/new-zgc-practice-in-meituan.html)
+详情可以看 ：[《新一代垃圾回收器 ZGC 的探索与实践》](https://tech.meituan.com/2020/08/06/new-zgc-practice-in-meituan.html)
 
 ## Lambda 参数的局部变量语法
 
@@ -126,4 +126,4 @@ Consumer<String> consumer = (String i) -> System.out.println(i);
 ## 参考
 
 - JDK 11 Release Notes：https://www.oracle.com/java/technologies/javase/11-relnote-issues.html
-- Java 11 – Features and Comparison： <https://www.geeksforgeeks.org/java-11-features-and-comparison/>
+- Java 11 – Features and Comparison：<https://www.geeksforgeeks.org/java-11-features-and-comparison/>

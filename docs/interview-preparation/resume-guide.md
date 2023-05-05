@@ -23,7 +23,7 @@ icon: jianli
 
 **2、简历上的内容很大程度上决定了面试官提问的侧重点。**
 
-- 一般情况下你的简历上注明你会的东西才会被问到（Java 基础、集合、并发、MySQL、Redis 、Spring、Spring Boot 这些算是每个人必问的），比如写了你熟练使用 Redis,那面试官就很大概率会问你 Redis 的一些问题，再比如你写了你在项目中使用了消息队列，那面试官大概率问很多消息队列相关的问题。
+- 一般情况下你的简历上注明你会的东西才会被问到（Java 基础、集合、并发、MySQL、Redis、Spring、Spring Boot 这些算是每个人必问的），比如写了你熟练使用 Redis,那面试官就很大概率会问你 Redis 的一些问题，再比如你写了你在项目中使用了消息队列，那面试官大概率问很多消息队列相关的问题。
 - 技能熟练度在很大程度上也决定了面试官提问的深度。
 
 在不夸大自己能力的情况下，写出一份好的简历也是一项很棒的能力。
@@ -37,13 +37,13 @@ icon: jianli
 下面是我收集的一些还不错的简历模板：
 
 - 适合中文的简历模板收集（推荐，免费）：https://github.com/dyweb/awesome-resume-for-chinese
-- 木及简历（部分收费） ： https://www.mujicv.com/。
+- 木及简历（部分收费） ：https://www.mujicv.com/。
 - 简单简历（付费）：https://easycv.cn/
 - 站长简历：https://jianli.chinaz.com/
 - typora+markdown+css 自定义简历模板 ：https://github.com/Snailclimb/typora-markdown-resume
-- 极简简历 ： https://www.polebrief.com/index
+- 极简简历 ：https://www.polebrief.com/index
 - Markdown 简历排版工具：https://resume.mdnice.com/
-- 超级简历（部分收费） ： https://www.wondercv.com/
+- 超级简历（部分收费） ：https://www.wondercv.com/
 
 上面这些简历模板大多是只有 1 页内容，很难展现足够的信息量。如果你不是顶级大牛（比如 ACM 大赛获奖）的话，我建议还是尽可能多写一点可以突出你自己能力的内容（校招生 2 页之内，社招生 3 页之内，记得精炼语言，不要过多废话）。
 
@@ -58,7 +58,7 @@ icon: jianli
 ### 个人信息
 
 - 最基本的 ：姓名（身份证上的那个）、年龄、电话、籍贯、联系方式、邮箱地址
-- 潜在加分项 ： Github 地址、博客地址（如果技术博客和 Github 上没有什么内容的话，就不要写了）
+- 潜在加分项 ：Github 地址、博客地址（如果技术博客和 Github 上没有什么内容的话，就不要写了）
 
 示例：
 

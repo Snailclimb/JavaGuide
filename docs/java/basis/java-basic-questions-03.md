@@ -33,7 +33,7 @@ head:
 
 ![](https://oss.javaguide.cn/github/javaguide/java/basis/checked-exception.png)
 
-除了`RuntimeException`及其子类以外，其他的`Exception`类及其子类都属于受检查异常 。常见的受检查异常有： IO 相关的异常、`ClassNotFoundException` 、`SQLException`...。
+除了`RuntimeException`及其子类以外，其他的`Exception`类及其子类都属于受检查异常 。常见的受检查异常有：IO 相关的异常、`ClassNotFoundException`、`SQLException`...。
 
 **Unchecked Exception** 即 **不受检查异常** ，Java 代码在编译过程中 ，我们即使不处理不受检查异常也可以正常通过编译。
 
@@ -60,9 +60,9 @@ head:
 
 ### try-catch-finally 如何使用？
 
-- `try`块 ： 用于捕获异常。其后可接零个或多个 `catch` 块，如果没有 `catch` 块，则必须跟一个 `finally` 块。
-- `catch`块 ： 用于处理 try 捕获到的异常。
-- `finally` 块 ： 无论是否捕获或处理异常，`finally` 块里的语句都会被执行。当在 `try` 块或 `catch` 块中遇到 `return` 语句时，`finally` 语句块将在方法返回之前被执行。
+- `try`块 ：用于捕获异常。其后可接零个或多个 `catch` 块，如果没有 `catch` 块，则必须跟一个 `finally` 块。
+- `catch`块 ：用于处理 try 捕获到的异常。
+- `finally` 块 ：无论是否捕获或处理异常，`finally` 块里的语句都会被执行。当在 `try` 块或 `catch` 块中遇到 `return` 语句时，`finally` 语句块将在方法返回之前被执行。
 
 代码示例：
 
@@ -150,7 +150,7 @@ Catch Exception -> RuntimeException
 1. 程序所在的线程死亡。
 2. 关闭 CPU。
 
-相关 issue： <https://github.com/Snailclimb/JavaGuide/issues/190>。
+相关 issue：<https://github.com/Snailclimb/JavaGuide/issues/190>。
 
 🧗🏻 进阶一下：从字节码角度分析`try catch finally`这个语法糖背后的实现原理。
 
@@ -163,7 +163,7 @@ Catch Exception -> RuntimeException
 
 > 面对必须要关闭的资源，我们总是应该优先使用 `try-with-resources` 而不是`try-finally`。随之产生的代码更简短，更清晰，产生的异常对我们也更有用。`try-with-resources`语句让我们更容易编写必须要关闭的资源的代码，若采用`try-finally`则几乎做不到这点。
 
-Java 中类似于`InputStream`、`OutputStream` 、`Scanner` 、`PrintWriter`等的资源都需要我们调用`close()`方法来手动关闭，一般情况下我们都是通过`try-catch-finally`语句来实现这个需求，如下：
+Java 中类似于`InputStream`、`OutputStream`、`Scanner`、`PrintWriter`等的资源都需要我们调用`close()`方法来手动关闭，一般情况下我们都是通过`try-catch-finally`语句来实现这个需求，如下：
 
 ```java
 //读取文本文件的内容
@@ -307,7 +307,7 @@ class GeneratorImpl<T> implements Generator<String>{
 使用：
 
 ```java
-// 创建不同类型数组： Integer, Double 和 Character
+// 创建不同类型数组：Integer, Double 和 Character
 Integer[] intArray = { 1, 2, 3 };
 String[] stringArray = { "Hello", "World" };
 printArray( intArray  );
@@ -394,14 +394,14 @@ public interface Override extends Annotation{
 }
 ```
 
-JDK 提供了很多内置的注解（比如 `@Override` 、`@Deprecated`），同时，我们还可以自定义注解。
+JDK 提供了很多内置的注解（比如 `@Override`、`@Deprecated`），同时，我们还可以自定义注解。
 
 ### 注解的解析方法有哪几种？
 
 注解只有被解析之后才会生效，常见的解析方法有两种：
 
 - **编译期直接扫描** ：编译器在编译 Java 代码的时候扫描对应的注解并处理，比如某个方法使用`@Override` 注解，编译器在编译的时候就会检测当前的方法是否重写了父类对应的方法。
-- **运行期通过反射处理** ：像框架中自带的注解(比如 Spring 框架的 `@Value` 、`@Component`)都是通过反射来进行处理的。
+- **运行期通过反射处理** ：像框架中自带的注解(比如 Spring 框架的 `@Value`、`@Component`)都是通过反射来进行处理的。
 
 ## SPI
 
@@ -450,7 +450,7 @@ SPI 将服务接口和具体的服务实现分离开来，将服务调用方和�
 
 简单来说：
 
-- **序列化**： 将数据结构或对象转换成二进制字节流的过程
+- **序列化**：将数据结构或对象转换成二进制字节流的过程
 - **反序列化**：将在序列化过程中所生成的二进制字节流转换成数据结构或者对象的过程
 
 对于 Java 这种面向对象编程语言来说，我们序列化的都是对象（Object）也就是实例化后的类(Class)，但是在 C++这种半面向对象的语言中，struct(结构体)定义的是数据结构类型，而 class 对应的是对象类型。

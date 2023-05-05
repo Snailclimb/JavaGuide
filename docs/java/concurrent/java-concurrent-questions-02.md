@@ -14,7 +14,7 @@ head:
 
 ## JMM(Java 内存模型)
 
-JMM（Java 内存模型）相关的问题比较多，也比较重要，于是我单独抽了一篇文章来总结 JMM 相关的知识点和问题： [JMM（Java 内存模型）详解](./jmm.md) 。
+JMM（Java 内存模型）相关的问题比较多，也比较重要，于是我单独抽了一篇文章来总结 JMM 相关的知识点和问题：[JMM（Java 内存模型）详解](./jmm.md) 。
 
 ## volatile 关键字
 
@@ -138,7 +138,7 @@ public class VolatoleAtomicityDemo {
 
 这也就导致两个线程分别对 `inc` 进行了一次自增操作后，`inc` 实际上只增加了 1。
 
-其实，如果想要保证上面的代码运行正确也非常简单，利用 `synchronized` 、`Lock`或者`AtomicInteger`都可以。
+其实，如果想要保证上面的代码运行正确也非常简单，利用 `synchronized`、`Lock`或者`AtomicInteger`都可以。
 
 使用 `synchronized` 改进：
 
@@ -692,7 +692,7 @@ public long tryOptimisticRead() {
 
 ## Atomic 原子类
 
-Atomic 原子类部分的内容我单独写了一篇文章来总结： [Atomic 原子类总结](./atomic-classes.md) 。
+Atomic 原子类部分的内容我单独写了一篇文章来总结：[Atomic 原子类总结](./atomic-classes.md) 。
 
 ## 参考
 

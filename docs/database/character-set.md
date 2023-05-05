@@ -76,7 +76,7 @@ BIG5 主要针对的是繁体中文，收录了 13000 多个汉字。
 
 ![](https://oss.javaguide.cn/github/javaguide/csdn/836c49b117ee4408871b0020b74c991d.png)
 
-这样我们就搞懂了乱码的本质： **编码和解码时用了不同或者不兼容的字符集** 。
+这样我们就搞懂了乱码的本质：**编码和解码时用了不同或者不兼容的字符集** 。
 
 ![](https://oss.javaguide.cn/javaguide/a8808cbabeea49caa3af27d314fa3c02-1.jpg)
 
@@ -112,8 +112,8 @@ MySQL 支持很多种字符编码的方式，比如 UTF-8、GB2312、GBK、BIG5�
 
 MySQL 字符编码集中有两套 UTF-8 编码实现：
 
-- **`utf8`** ： `utf8`编码只支持`1-3`个字节 。 在 `utf8` 编码中，中文是占 3 个字节，其他数字、英文、符号占一个字节。但 emoji 符号占 4 个字节，一些较复杂的文字、繁体字也是 4 个字节。
-- **`utf8mb4`** ： UTF-8 的完整实现，正版！最多支持使用 4 个字节表示字符，因此，可以用来存储 emoji 符号。
+- **`utf8`** ：`utf8`编码只支持`1-3`个字节 。 在 `utf8` 编码中，中文是占 3 个字节，其他数字、英文、符号占一个字节。但 emoji 符号占 4 个字节，一些较复杂的文字、繁体字也是 4 个字节。
+- **`utf8mb4`** ：UTF-8 的完整实现，正版！最多支持使用 4 个字节表示字符，因此，可以用来存储 emoji 符号。
 
 **为什么有两套 UTF-8 编码实现呢？** 原因如下：
 
@@ -151,7 +151,7 @@ Incorrect string value: '\xF0\x9F\x98\x98\xF0\x9F...' for column 'name' at row 1
 
 ## 参考
 
-- 字符集和字符编码（Charset & Encoding）： <https://www.cnblogs.com/skynet/archive/2011/05/03/2035105.html>
+- 字符集和字符编码（Charset & Encoding）：<https://www.cnblogs.com/skynet/archive/2011/05/03/2035105.html>
 - 十分钟搞清字符集和字符编码：<http://cenalulu.github.io/linux/character-encoding/>
 - Unicode-维基百科：<https://zh.wikipedia.org/wiki/Unicode>
 - GB2312-维基百科：<https://zh.wikipedia.org/wiki/GB_2312>

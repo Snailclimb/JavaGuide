@@ -27,7 +27,7 @@ head:
 7. 支持网络编程并且很方便（ Java 语言诞生本身就是为简化网络编程设计的，因此 Java 语言不仅支持网络编程而且很方便）；
 8. 编译与解释并存；
 
-> **🐛 修正（参见： [issue#544](https://github.com/Snailclimb/JavaGuide/issues/544)）** ：C++11 开始（2011 年的时候）,C++就引入了多线程库，在 windows、linux、macos 都可以使用`std::thread`和`std::async`来创建线程。参考链接：http://www.cplusplus.com/reference/thread/thread/?kw=thread
+> **🐛 修正（参见：[issue#544](https://github.com/Snailclimb/JavaGuide/issues/544)）** ：C++11 开始（2011 年的时候）,C++就引入了多线程库，在 windows、linux、macos 都可以使用`std::thread`和`std::async`来创建线程。参考链接：http://www.cplusplus.com/reference/thread/thread/?kw=thread
 
 🌈 拓展一下：
 
@@ -126,7 +126,7 @@ AOT 可以提前编译节省启动时间，那为什么不全部使用这种编�
 2. **是否免费** ：Oracle JDK 会提供免费版本，但一般有时间限制。JDK17 之后的版本可以免费分发和商用，但是仅有 3 年时间，3 年后无法免费商用。不过，JDK8u221 之前只要不升级可以无限期免费。OpenJDK 是完全免费的。
 3. **功能性** ：Oracle JDK 在 OpenJDK 的基础上添加了一些特有的功能和工具，比如 Java Flight Recorder（JFR，一种监控工具）、Java Mission Control（JMC，一种监控工具）等工具。不过，在 Java 11 之后，OracleJDK 和 OpenJDK 的功能基本一致，之前 OracleJDK 中的私有组件大多数也已经被捐赠给开源组织。
 4. **稳定性** ：OpenJDK 不提供 LTS 服务，而 OracleJDK 大概每三年都会推出一个 LTS 版进行长期支持。不过，很多公司都基于 OpenJDK 提供了对应的和 OracleJDK 周期相同的 LTS 版。因此，两者稳定性其实也是差不多的。
-5. **协议** ： Oracle JDK 使用 BCL/OTN 协议获得许可，而 OpenJDK 根据 GPL v2 许可获得许可。
+5. **协议** ：Oracle JDK 使用 BCL/OTN 协议获得许可，而 OpenJDK 根据 GPL v2 许可获得许可。
 
 > 既然 Oracle JDK 这么好，那为什么还要有 OpenJDK？
 >
@@ -148,8 +148,8 @@ AOT 可以提前编译节省启动时间，那为什么不全部使用这种编�
 
 🌈 拓展一下：
 
-- BCL 协议（Oracle Binary Code License Agreement）： 可以使用 JDK（支持商用），但是不能进行修改。
-- OTN 协议（Oracle Technology Network License Agreement）： 11 及之后新发布的 JDK 用的都是这个协议，可以自己私下用，但是商用需要付费。
+- BCL 协议（Oracle Binary Code License Agreement）：可以使用 JDK（支持商用），但是不能进行修改。
+- OTN 协议（Oracle Technology Network License Agreement）：11 及之后新发布的 JDK 用的都是这个协议，可以自己私下用，但是商用需要付费。
 
 ![](https://oscimg.oschina.net/oscnet/up-5babce06ef8fad5c4df5d7a6cf53d4a7901.png)
 
@@ -263,7 +263,7 @@ static final int hash(Object key) {
 
 ```
 
-在 Java 代码里使用 `<<` 、 `>>` 和`>>>`转换成的指令码运行起来会更高效些。
+在 Java 代码里使用 `<<`、 `>>` 和`>>>`转换成的指令码运行起来会更高效些。
 
 掌握最基本的移位运算符知识还是很有必要的，这不光可以帮助我们在代码中使用，还可以帮助我们理解源码中涉及到移位运算符的代码。
 
@@ -289,8 +289,8 @@ Java 中有三种移位运算符：
 
 ```java
 int i = -1;
-System.out.println("初始数据： " + i);
-System.out.println("初始数据对应的二进制字符串： " + Integer.toBinaryString(i));
+System.out.println("初始数据：" + i);
+System.out.println("初始数据对应的二进制字符串：" + Integer.toBinaryString(i));
 i <<= 10;
 System.out.println("左移 10 位后的数据 " + i);
 System.out.println("左移 10 位后的数据对应的二进制字符 " + Integer.toBinaryString(i));
@@ -299,8 +299,8 @@ System.out.println("左移 10 位后的数据对应的二进制字符 " + Intege
 输出：
 
 ```
-初始数据： -1
-初始数据对应的二进制字符串： 11111111111111111111111111111111
+初始数据：-1
+初始数据对应的二进制字符串：11111111111111111111111111111111
 左移 10 位后的数据 -1024
 左移 10 位后的数据对应的二进制字符 11111111111111111111110000000000
 ```
@@ -309,8 +309,8 @@ System.out.println("左移 10 位后的数据对应的二进制字符 " + Intege
 
 ```java
 int i = -1;
-System.out.println("初始数据： " + i);
-System.out.println("初始数据对应的二进制字符串： " + Integer.toBinaryString(i));
+System.out.println("初始数据：" + i);
+System.out.println("初始数据对应的二进制字符串：" + Integer.toBinaryString(i));
 i <<= 42;
 System.out.println("左移 10 位后的数据 " + i);
 System.out.println("左移 10 位后的数据对应的二进制字符 " + Integer.toBinaryString(i));
@@ -420,7 +420,7 @@ Java 中有 8 种基本数据类型，分别为：
 
 **为什么说是几乎所有对象实例都存在于堆中呢？** 这是因为 HotSpot 虚拟机引入了 JIT 优化之后，会对对象进行逃逸分析，如果发现某一个对象并没有逃逸到方法外部，那么就可能通过标量替换来实现栈上分配，而避免堆上分配内存
 
-⚠️ 注意 ： **基本数据类型存放在栈中是一个常见的误区！** 基本数据类型的成员变量如果没有被 `static` 修饰的话（不建议这么使用，应该要使用基本数据类型对应的包装类型），就存放在堆中。
+⚠️ 注意 ：**基本数据类型存放在栈中是一个常见的误区！** 基本数据类型的成员变量如果没有被 `static` 修饰的话（不建议这么使用，应该要使用基本数据类型对应的包装类型），就存放在堆中。
 
 ```java
 class BasicTypeVar{
@@ -719,7 +719,7 @@ public class ConstantVariableExample {
 
 - **形式** : 字符常量是单引号引起的一个字符，字符串常量是双引号引起的 0 个或若干个字符。
 - **含义** : 字符常量相当于一个整型值( ASCII 值),可以参加表达式运算; 字符串常量代表一个地址值(该字符串在内存中存放位置)。
-- **占内存大小** ： 字符常量只占 2 个字节; 字符串常量占若干个字节。
+- **占内存大小** ：字符常量只占 2 个字节; 字符串常量占若干个字节。
 
 ⚠️ 注意 `char` 在 Java 中占两个字节。
 

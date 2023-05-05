@@ -121,11 +121,11 @@ Bob 大叔将自己对整洁代码的理解浓缩在了这本书中，真可谓�
 ## 其他
 
 - [《代码的未来》](https://book.douban.com/subject/24536403/) ：这本书的作者是 Ruby 之父松本行弘，算是一本年代比较久远的书籍（13 年出版），不过，还是非常值得一读。这本书的内容主要介绍是编程/编程语言的本质。我个人还是比较喜欢松本行弘的文字风格，并且，你看他的文章也确实能够有所收获。
-- [《深入浅出设计模式》](https://book.douban.com/subject/1488876/) ： 比较有趣的风格，适合设计模式入门。
-- [《软件架构设计:大型网站技术架构与业务架构融合之道》](https://book.douban.com/subject/30443578/) ： 内容非常全面。适合面试前突击一些比较重要的理论知识，也适合拿来扩充/完善自己的技术广度。
+- [《深入浅出设计模式》](https://book.douban.com/subject/1488876/) ：比较有趣的风格，适合设计模式入门。
+- [《软件架构设计:大型网站技术架构与业务架构融合之道》](https://book.douban.com/subject/30443578/) ：内容非常全面。适合面试前突击一些比较重要的理论知识，也适合拿来扩充/完善自己的技术广度。
 - [《微服务架构设计模式》](https://book.douban.com/subject/33425123/) ：这本书是世界十大软件架构师之一、微服务架构先驱 Chris Richardson 亲笔撰写，豆瓣评分 9.6。示例代码使用 Java 语言和 Spring 框架。帮助你设计、实现、测试和部署基于微服务的应用程序。
 
 最后再推荐两个相关的文档：
 
 - **阿里巴巴 Java 开发手册** ：<https://github.com/alibaba/p3c>
-- **Google Java 编程风格指南**： <http://www.hawstein.com/posts/google-java-style.html>
+- **Google Java 编程风格指南**：<http://www.hawstein.com/posts/google-java-style.html>

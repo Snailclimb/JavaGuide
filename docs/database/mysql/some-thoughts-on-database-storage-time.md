@@ -103,7 +103,7 @@ SET GLOBAL time_zone = 'Europe/Helsinki';
 Timestamp 只需要使用 4 个字节的存储空间，但是 DateTime 需要耗费 8 个字节的存储空间。但是，这样同样造成了一个问题，Timestamp 表示的时间范围更小。
 
 - DateTime ：1000-01-01 00:00:00 ~ 9999-12-31 23:59:59
-- Timestamp： 1970-01-01 00:00:01 ~ 2037-12-31 23:59:59
+- Timestamp：1970-01-01 00:00:01 ~ 2037-12-31 23:59:59
 
 > Timestamp 在不同版本的 MySQL 中有细微差别。
 

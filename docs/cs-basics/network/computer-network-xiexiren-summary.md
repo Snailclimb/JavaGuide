@@ -22,7 +22,7 @@ tag:
 
 ![ISP (Internet Service Provider) Definition](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e77e26123d404d438d0c5943e3c65893~tplv-k3u1fbpfcp-zoom-1.image)
 
-5. **IXP（Internet eXchange Point）** ： 互联网交换点 IXP 的主要作用就是允许两个网络直接相连并交换分组，而不需要再通过第三个网络来转发分组。
+5. **IXP（Internet eXchange Point）** ：互联网交换点 IXP 的主要作用就是允许两个网络直接相连并交换分组，而不需要再通过第三个网络来转发分组。
 
 ![IXP Traffic Levels During the Stratos Skydive — RIPE Labs](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7f9a6ddaa09441ceac11cb77f7a69d8f~tplv-k3u1fbpfcp-zoom-1.image)
 
@@ -31,7 +31,7 @@ tag:
 6. **RFC(Request For Comments)** ：意思是“请求评议”，包含了关于 Internet 几乎所有的重要的文字资料。
 7. **广域网 WAN（Wide Area Network）** ：任务是通过长距离运送主机发送的数据。
 8. **城域网 MAN（Metropolitan Area Network）**：用来将多个局域网进行互连。
-9. **局域网 LAN（Local Area Network）** ： 学校或企业大多拥有多个互连的局域网。
+9. **局域网 LAN（Local Area Network）** ：学校或企业大多拥有多个互连的局域网。
 
 ![MAN & WMAN | Red de área metropolitana, Redes informaticas, Par trenzado](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/eb48d21b2e984a63a26250010d7adac4~tplv-k3u1fbpfcp-zoom-1.image)
 
@@ -128,7 +128,7 @@ tag:
 1. **频分复用(FDM)** ：所有用户在同样的时间占用不同的带宽资源。
 2. **时分复用（TDM）** ：所有用户在不同的时间占用同样的频带宽度（分时不分频）。
 3. **统计时分复用 (Statistic TDM)** ：改进的时分复用，能够明显提高信道的利用率。
-4. **码分复用(CDM)** ： 用户使用经过特殊挑选的不同码型，因此各用户之间不会造成干扰。这种系统发送的信号有很强的抗干扰能力，其频谱类似于白噪声，不易被敌人发现。
+4. **码分复用(CDM)** ：用户使用经过特殊挑选的不同码型，因此各用户之间不会造成干扰。这种系统发送的信号有很强的抗干扰能力，其频谱类似于白噪声，不易被敌人发现。
 5. **波分复用( WDM)** ：波分复用就是光的频分复用。
 
 #### 2.3.3. 几种常用的宽带接入技术，主要是 ADSL 和 FTTx
@@ -289,7 +289,7 @@ HTTP 协议的本质就是一种浏览器与服务器之间约定好的通信格
 
 ![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8e3efca026654874bde8be88c96e1783~tplv-k3u1fbpfcp-zoom-1.image)
 
-10. **代理服务器（Proxy Server）** ： 代理服务器（Proxy Server）是一种网络实体，它又称为万维网高速缓存。 代理服务器把最近的一些请求和响应暂存在本地磁盘中。当新请求到达时，若代理服务器发现这个请求与暂时存放的的请求相同，就返回暂存的响应，而不需要按 URL 的地址再次去互联网访问该资源。代理服务器可在客户端或服务器工作，也可以在中间系统工作。
+10. **代理服务器（Proxy Server）** ：代理服务器（Proxy Server）是一种网络实体，它又称为万维网高速缓存。 代理服务器把最近的一些请求和响应暂存在本地磁盘中。当新请求到达时，若代理服务器发现这个请求与暂时存放的的请求相同，就返回暂存的响应，而不需要按 URL 的地址再次去互联网访问该资源。代理服务器可在客户端或服务器工作，也可以在中间系统工作。
 11. **简单邮件传输协议(SMTP)** : SMTP（Simple Mail Transfer Protocol）即简单邮件传输协议,它是一组用于由源地址到目的地址传送邮件的规则，由它来控制信件的中转方式。 SMTP 协议属于 TCP/IP 协议簇，它帮助每台计算机在发送或中转信件时找到下一个目的地。 通过 SMTP 协议所指定的服务器,就可以把 E-mail 寄到收信人的服务器上了，整个过程只要几分钟。SMTP 服务器则是遵循 SMTP 协议的发送邮件服务器，用来发送或中转发出的电子邮件。
 
 ![一个电子邮件被发送的过程](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2bdccb760474435aae52559f2ef9652f~tplv-k3u1fbpfcp-zoom-1.image)

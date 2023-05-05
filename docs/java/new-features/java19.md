@@ -37,7 +37,7 @@ Java 程序可以通过该 API 与 Java 运行时之外的代码和数据进行�
 Foreign Function & Memory API (FFM API) 定义了类和接口：
 
 - 分配外部内存 ：`MemorySegment`、、`MemoryAddress`和`SegmentAllocator`）；
-- 操作和访问结构化的外部内存： `MemoryLayout`, `VarHandle`；
+- 操作和访问结构化的外部内存：`MemoryLayout`, `VarHandle`；
 - 控制外部内存的分配和释放：`MemorySession`；
 - 调用外部函数：`Linker`、`FunctionDescriptor`和`SymbolLookup`。
 

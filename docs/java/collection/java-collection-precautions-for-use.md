@@ -17,7 +17,7 @@ tag:
 
 这是因为 `isEmpty()` 方法的可读性更好，并且时间复杂度为 O(1)。
 
-绝大部分我们使用的集合的 `size()` 方法的时间复杂度也是 O(1)，不过，也有很多复杂度不是 O(1) 的，比如 `java.util.concurrent` 包下的某些集合（`ConcurrentLinkedQueue` 、`ConcurrentHashMap`...）。
+绝大部分我们使用的集合的 `size()` 方法的时间复杂度也是 O(1)，不过，也有很多复杂度不是 O(1) 的，比如 `java.util.concurrent` 包下的某些集合（`ConcurrentLinkedQueue`、`ConcurrentHashMap`...）。
 
 下面是 `ConcurrentHashMap` 的 `size()` 方法和 `isEmpty()` 方法的源码。
 

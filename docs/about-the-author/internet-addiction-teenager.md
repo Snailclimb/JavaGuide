@@ -125,7 +125,7 @@ QQ 飞车这款戏当时还挺火的，很多 90 后的小伙伴应该比较熟�
 
 大学生活过的还是挺丰富的，我会偶尔通宵敲代码，也会偶尔半夜发疯跑出去和同学一起走走古城墙、去网吧锤一夜的 LOL。
 
-大学生活专门写过一篇文章介绍： [害，毕业三年了！](https://javaguide.cn/about-the-author/my-college-life.html) 。
+大学生活专门写过一篇文章介绍：[害，毕业三年了！](https://javaguide.cn/about-the-author/my-college-life.html) 。
 
 ## 总结
 
