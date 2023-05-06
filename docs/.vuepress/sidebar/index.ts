@@ -458,18 +458,6 @@ export default sidebar({
           ],
         },
         {
-          text: "RPC",
-          prefix: "rpc/",
-          icon: "network",
-          children: ["rpc-intro", "dubbo"],
-        },
-        {
-          text: "ZooKeeper",
-          icon: "framework",
-          prefix: "distributed-process-coordination/zookeeper/",
-          children: ["zookeeper-intro", "zookeeper-plus"],
-        },
-        {
           text: "API网关",
           icon: "gateway",
           children: ["api-gateway", "spring-cloud-gateway-questions"],
@@ -483,6 +471,20 @@ export default sidebar({
           text: "分布式锁",
           icon: "lock",
           children: ["distributed-lock"],
+        },
+        {
+          text: "RPC",
+          prefix: "rpc/",
+          icon: "network",
+          collapsible: true,
+          children: ["rpc-intro", "dubbo"],
+        },
+        {
+          text: "ZooKeeper",
+          prefix: "distributed-process-coordination/zookeeper/",
+          icon: "framework",
+          collapsible: true,
+          children: ["zookeeper-intro", "zookeeper-plus"],
         },
         {
           text: "分布式事务",
