@@ -88,14 +88,19 @@ GitHub 上也已经有大佬用 Java 实现过一个简易的数据库，介绍�
 
 [《PostgreSQL 技术内幕：查询优化深度探索》](https://book.douban.com/subject/30256561/)这本书主要讲了 PostgreSQL 在查询优化上的一些技术实现细节，可以让你对 PostgreSQL 的查询优化器有深层次的了解。
 
-![](https://oss.javaguide.cn/github/javaguide/books/PostgreSQL-TechnologyInsider.png)
+![《PostgreSQL 技术内幕：查询优化深度探索》](https://oss.javaguide.cn/github/javaguide/books/PostgreSQL-TechnologyInsider.png)
 
 ## Redis
 
 **Redis 就是一个使用 C 语言开发的数据库**，不过与传统数据库不同的是 **Redis 的数据是存在内存中的** ，也就是它是内存数据库，所以读写速度非常快，因此 Redis 被广泛应用于缓存方向。
 
-如果你要学习 Redis 的话，强烈推荐 **[《Redis 设计与实现》](https://book.douban.com/subject/25900156/)** 和 **[《Redis 实战》](https://book.douban.com/subject/26612779/)** 这两本书。
+如果你要学习 Redis 的话，强烈推荐下面这两本书：
 
-另外，**[《Redis 开发与运维》](https://book.douban.com/subject/26971561/)** 这本书也非常不错，既有基础介绍，又有一线开发运维经验分享。
+- [《Redis 设计与实现》](https://book.douban.com/subject/25900156/) ：主要是 Redis 理论知识相关的内容，比较全面。我之前写过一篇文章 [《7 年前，24 岁，出版了一本 Redis 神书》](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247507030&idx=1&sn=0a5fd669413991b30163ab6f5834a4ad&chksm=cea1939df9d61a8b93925fae92f4cee0838c449534e60731cfaf533369831192e296780b32a6&token=709354671&lang=zh_CN&scene=21#wechat_redirect) 来介绍这本书。
+-  [《Redis核心原理与实践》 ](https://book.douban.com/subject/26612779/)：主要是结合源码来分析 Redis 的重要知识点比如各种数据结构和高级特性。
 
-![](https://oscimg.oschina.net/oscnet/up-9f20f5e860d143181bd27343abfef3af2ce.png)
+![《Redis 设计与实现》和《Redis 设计与实现》](https://oss.javaguide.cn/github/javaguide/books/redis-books.png) 
+
+另外，[《Redis 开发与运维》](https://book.douban.com/subject/26971561/) 这本书也非常不错，既有基础介绍，又有一线开发运维经验分享。
+
+![《Redis 开发与运维》](https://oss.javaguide.cn/github/javaguide/books/redis-kaifa-yu-yunwei.png)
