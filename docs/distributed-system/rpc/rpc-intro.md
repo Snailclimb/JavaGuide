@@ -5,9 +5,9 @@ tag:
   - rpc
 ---
 
-简单介绍一下 RPC 相关的基础概念。
+这篇文章会简单介绍一下 RPC 相关的基础概念。
 
-## 何为 RPC?
+## RPC 是什么?
 
 **RPC（Remote Procedure Call）** 即远程过程调用，通过名字我们就能看出 RPC 关注的是远程调用而非本地调用。
 
@@ -136,4 +136,5 @@ Dubbo 也是 Spring Cloud Alibaba 里面的一个组件。
 
 ## 既然有了 HTTP 协议，为什么还要有 RPC ？
 
-[HTTP 和 RPC 详细对比](http&rpc.md) 。
+关于这个问题的详细答案，请看这篇文章：[有了 HTTP 协议，为什么还要有 RPC ？](http&rpc.md) 。
+
