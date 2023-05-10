@@ -136,8 +136,8 @@ export default sidebar({
             "class-loading-process",
             "classloader",
             "jvm-parameters-intro",
-            "jvm-intro",
             "jdk-monitoring-and-troubleshooting-tools",
+            "jvm-in-action",
           ],
         },
         {
