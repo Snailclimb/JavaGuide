@@ -564,7 +564,7 @@ FROM Customers
 
 知识点：
 
-- 截取函数`SUBSTRING()`：截取字符串，`substring(str ,n ,m)`：返回字符串 str 从第 n 个字符截取到第 m 个字符（左闭右闭）；
+- 截取函数`SUBSTRING()`：截取字符串，`substring(str ,n ,m)`（n 表示起始截取位置，m 表示要截取的字符个数）表示返回字符串 str 从第 n 个字符开始截取 m 个字符；
 - 拼接函数`CONCAT()`：将两个或多个字符串连接成一个字符串，select concat(A,B)：连接字符串 A 和 B。
 
 - 大写函数 `UPPER()`：将指定字符串转换为大写。
