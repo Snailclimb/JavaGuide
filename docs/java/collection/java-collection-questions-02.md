@@ -12,7 +12,7 @@ head:
       content: Java集合常见知识点和面试题总结，希望对你有帮助！
 ---
 
-## Map 接口
+## Map
 
 ### HashMap 和 Hashtable 的区别
 
