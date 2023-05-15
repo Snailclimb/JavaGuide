@@ -11,6 +11,7 @@
 ## 练级攻略
 
 - [程序员的技术成长战略](./advanced-programmer/the-growth-strategy-of-the-technological-giant.md)
+- [十年大厂成长之路](./advanced-programmer/ten-years-of-dachang-growth-road.md)
 - [给想成长为高级别开发同学的七条建议](./advanced-programmer/seven-tips-for-becoming-an-advanced-programmer.md)
 - [糟糕程序员的 20 个坏习惯](./advanced-programmer/20-bad-habits-of-bad-programmers.md)
 
@@ -40,4 +41,5 @@
 ## 工作
 
 - [新入职一家公司如何快速进入工作状态](./work/get-into-work-mode-quickly-when-you-join-a-company.md)
+- [32条总结教你提升职场经验](./work/32-tips-improving-career.md)
 - [聊聊大厂的绩效考核](./work/employee-performance.md)

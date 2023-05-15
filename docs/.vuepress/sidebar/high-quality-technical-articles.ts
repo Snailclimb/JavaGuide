@@ -8,6 +8,7 @@ export const highQualityTechnicalArticles = arraySidebar([
     collapsible: false,
     children: [
       "the-growth-strategy-of-the-technological-giant",
+      "ten-years-of-dachang-growth-road",
       "seven-tips-for-becoming-an-advanced-programmer",
       "20-bad-habits-of-bad-programmers",
     ],
@@ -38,7 +39,7 @@ export const highQualityTechnicalArticles = arraySidebar([
     text: "面试",
     icon: "interview",
     prefix: "interview/",
-    collapsible: false,
+    collapsible: true,
     children: [
       "the-experience-of-get-offer-from-over-20-big-companies",
       "the-experience-and-thinking-of-an-interview-experienced-by-an-older-programmer",
@@ -54,9 +55,10 @@ export const highQualityTechnicalArticles = arraySidebar([
     text: "工作",
     icon: "work",
     prefix: "work/",
-    collapsible: false,
+    collapsible: true,
     children: [
       "get-into-work-mode-quickly-when-you-join-a-company",
+      "32-tips-improving-career",
       "employee-performance",
     ],
   },

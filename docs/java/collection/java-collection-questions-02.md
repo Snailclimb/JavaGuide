@@ -12,7 +12,7 @@ head:
       content: Java集合常见知识点和面试题总结，希望对你有帮助！
 ---
 
-## Map
+## Map（重要）
 
 ### HashMap 和 Hashtable 的区别
 
@@ -63,11 +63,11 @@ head:
 
 如果你看过 `HashSet` 源码的话就应该知道：`HashSet` 底层就是基于 `HashMap` 实现的。（`HashSet` 的源码非常非常少，因为除了 `clone()`、`writeObject()`、`readObject()`是 `HashSet` 自己不得不实现之外，其他方法都是直接调用 `HashMap` 中的方法。
 
-|               `HashMap`                |                                                        `HashSet`                                                         |
-| :------------------------------------: | :----------------------------------------------------------------------------------------------------------------------: |
-|           实现了 `Map` 接口            |                                                     实现 `Set` 接口                                                      |
-|               存储键值对               |                                                        仅存储对象                                                        |
-|     调用 `put()`向 map 中添加元素      |                                           调用 `add()`方法向 `Set` 中添加元素                                            |
+|               `HashMap`                |                          `HashSet`                           |
+| :------------------------------------: | :----------------------------------------------------------: |
+|           实现了 `Map` 接口            |                       实现 `Set` 接口                        |
+|               存储键值对               |                          仅存储对象                          |
+|     调用 `put()`向 map 中添加元素      |             调用 `add()`方法向 `Set` 中添加元素              |
 | `HashMap` 使用键（Key）计算 `hashcode` | `HashSet` 使用成员对象来计算 `hashcode` 值，对于两个对象来说 `hashcode` 可能相同，所以`equals()`方法用来判断对象的相等性 |
 
 ### HashMap 和 TreeMap 区别
@@ -282,11 +282,69 @@ final void treeifyBin(Node<K,V>[] tab, int hash) {
 
 ### HashMap 多线程操作导致死循环问题
 
-主要原因在于并发下的 Rehash 会造成元素之间会形成一个循环链表。不过，jdk 1.8 后解决了这个问题，但是还是不建议在多线程下使用 HashMap,因为多线程下使用 HashMap 还是会存在其他问题比如数据丢失。并发环境下推荐使用 ConcurrentHashMap 。
+JDK1.7 及之前版本的 `HashMap` 在多线程环境下扩容操作可能存在死循环问题，这是由于当一个桶位中有多个元素需要进行扩容时，多个线程同时对链表进行操作，头插法可能会导致链表中的节点指向错误的位置，从而形成一个环形链表，进而使得查询元素的操作陷入死循环无法结束。
 
-详情请查看：<https://coolshell.cn/articles/9606.html>
+为了解决这个问题，JDK1.8 版本的 HashMap 采用了尾插法而不是头插法来避免链表倒置，使得插入的节点永远都是放在链表的末尾，避免了链表中的环形结构。但是还是不建议在多线程下使用 `HashMap`，因为多线程下使用 `HashMap` 还是会存在数据覆盖的问题。并发环境下，推荐使用 `ConcurrentHashMap` 。
 
-### HashMap 有哪几种常见的遍历方式?
+一般面试中这样介绍就差不多，不需要记各种细节，个人觉得也没必要记。如果想要详细了解  `HashMap`  扩容导致死循环问题，可以看看耗子叔的这篇文章：[Java HashMap 的死循环](https://coolshell.cn/articles/9606.html)。
+
+### HashMap 为什么线程不安全？
+
+JDK1.7 及之前版本，在多线程环境下，`HashMap`  扩容时会造成死循环和数据丢失的问题。
+
+数据丢失这个在 JDK1.7 和 JDK 1.8 中都存在，这里以 JDK 1.8 为例进行介绍。
+
+JDK 1.8 后，在 `HashMap` 中，多个键值对可能会被分配到同一个桶（bucket），并以链表或红黑树的形式存储。多个线程对 `HashMap` 的 `put` 操作会导致线程不安全，具体来说会有数据覆盖的风险。
+
+举个例子：
+
+- 两个线程 1,2 同时进行 put 操作，并且发生了哈希冲突（hash 函数计算出的插入下标是相同的）。
+- 不同的线程可能在不同的时间片获得 CPU 执行的机会，当前线程 1 执行完哈希冲突判断后，由于时间片耗尽挂起。线程 2 先完成了插入操作。
+- 随后，线程 1 获得时间片，由于之前已经进行过 hash 碰撞的判断，所有此时会直接进行插入，这就导致线程 2 插入的数据被线程 1 覆盖了。
+
+```java
+public V put(K key, V value) {
+    return putVal(hash(key), key, value, false, true);
+}
+
+final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
+                   boolean evict) {
+    // ...
+    // 判断是否出现 hash 碰撞
+    // (n - 1) & hash 确定元素存放在哪个桶中，桶为空，新生成结点放入桶中(此时，这个结点是放在数组中)
+    if ((p = tab[i = (n - 1) & hash]) == null)
+        tab[i] = newNode(hash, key, value, null);
+    // 桶中已经存在元素（处理hash冲突）
+    else {
+    // ...
+}
+```
+
+还有一种情况是这两个线程同时 `put` 操作导致 `size` 的值不正确，进而导致数据覆盖的问题：
+
+1. 线程 1 执行 `if(++size > threshold)` 判断时，假设获得 `size` 的值为 10，由于时间片耗尽挂起。
+2. 线程 2 也执行 `if(++size > threshold)` 判断，获得 `size` 的值也为 10，并将元素插入到该桶位中，并将 `size` 的值更新为 11。
+3. 随后，线程 1 获得时间片，它也将元素放入桶位中，并将 size 的值更新为 11。
+4. 线程 1、2 都执行了一次 `put` 操作，但是 `size` 的值只增加了 1，也就导致实际上只有一个元素被添加到了 `HashMap` 中。
+
+```java
+public V put(K key, V value) {
+    return putVal(hash(key), key, value, false, true);
+}
+
+final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
+                   boolean evict) {
+    // ...
+    // 实际大小大于阈值则扩容
+    if (++size > threshold)
+        resize();
+    // 插入后回调
+    afterNodeInsertion(evict);
+    return null;
+}
+```
+
+### HashMap 常见的遍历方式?
 
 [HashMap 的 7 种遍历方式与性能分析！](https://mp.weixin.qq.com/s/zQBN3UvJDhRTKP6SzcZFKw)
 
