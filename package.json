@@ -5,7 +5,7 @@
   "description": "javaguide",
   "license": "MIT",
   "author": "Guide",
-  "packageManager": "pnpm@8.3.1",
+  "packageManager": "pnpm@8.5.1",
   "scripts": {
     "docs:build": "vuepress build docs",
     "docs:dev": "vuepress dev docs",
@@ -21,15 +21,15 @@
     ]
   },
   "dependencies": {
-    "@vuepress/client": "2.0.0-beta.61",
-    "@vuepress/utils": "2.0.0-beta.61",
+    "@vuepress/client": "2.0.0-beta.62",
+    "@vuepress/utils": "2.0.0-beta.62",
     "husky": "8.0.3",
-    "markdownlint-cli": "0.33.0",
+    "markdownlint-cli": "0.34.0",
     "nano-staged": "0.8.0",
     "prettier": "2.8.8",
-    "vue": "3.2.47",
-    "vuepress": "2.0.0-beta.61",
-    "vuepress-plugin-search-pro": "2.0.0-beta.206",
-    "vuepress-theme-hope": "2.0.0-beta.206"
+    "vue": "3.3.2",
+    "vuepress": "2.0.0-beta.62",
+    "vuepress-plugin-search-pro": "2.0.0-beta.211",
+    "vuepress-theme-hope": "2.0.0-beta.211"
   }
 }
