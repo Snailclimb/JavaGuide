@@ -51,7 +51,7 @@ RandomGeneratorFactory<RandomGenerator> l128X256MixRandom = RandomGeneratorFacto
 // 使用时间戳作为随机数种子
 RandomGenerator randomGenerator = l128X256MixRandom.create(System.currentTimeMillis());
 // 生成随机数
-randomGenerator.nextInt(10));
+randomGenerator.nextInt(10);
 ```
 
 ## JEP 398:弃用 Applet API 以进行删除
