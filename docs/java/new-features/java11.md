@@ -63,7 +63,7 @@ Java 11 增加了一系列的字符串处理方法：
 
 ## Optional 增强
 
-新增了`empty()`方法来判断指定的 `Optional` 对象是否为空。
+新增了`isEmpty()`方法来判断指定的 `Optional` 对象是否为空。
 
 ```java
 var op = Optional.empty();
