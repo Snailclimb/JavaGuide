@@ -14,3 +14,4 @@ dist/
 packages/*/lib/
 traversal-folder-replace-string.py
 format-markdown.py
+package-lock.json
