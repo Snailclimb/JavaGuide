@@ -119,7 +119,7 @@ Spring Boot 只是简化了配置，如果你需要构建 MVC 架构的 Web 程�
 - **控制**：指的是对象创建（实例化、管理）的权力
 - **反转**：控制权交给外部环境（Spring 框架、IoC 容器）
 
-![](https://oss.javaguide.cn/java-guide-blog/frc-365faceb5697f04f31399937c059c162.png)
+![IoC 图解](https://oss.javaguide.cn/java-guide-blog/frc-365faceb5697f04f31399937c059c162.png)
 
 将对象之间的相互依赖关系交给 IoC 容器来管理，并由 IoC 容器完成对象的注入。这样可以很大程度上简化应用的开发，把应用从复杂的依赖关系中解放出来。 IoC 容器就像是一个工厂一样，当我们需要创建一个对象的时候，只需要配置好配置文件/注解即可，完全不用考虑对象是如何被创建出来的。
 
