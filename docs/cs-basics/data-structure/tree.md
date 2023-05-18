@@ -176,8 +176,8 @@ public void postOrder(TreeNode root){
 	if(root == null){
 		return;
 	}
-	postOrder(root.left);
 	postOrder(root.right);
+	postOrder(root.left);
 	system.out.println(root.data);
 }
 ```
