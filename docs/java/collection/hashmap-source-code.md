@@ -13,7 +13,7 @@ HashMap 主要用来存放键值对，它基于哈希表的 Map 接口实现，�
 
 `HashMap` 可以存储 null 的 key 和 value，但 null 作为键只能有一个，null 作为值可以有多个
 
-JDK1.8 之前 HashMap 由 数组+链表 组成的，数组是 HashMap 的主体，链表则是主要为了解决哈希冲突而存在的（“拉链法”解决冲突）。 JDK1.8 以后的 `HashMap` 在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为 8）（将链表转换成红黑树前会判断，如果当前数组的长度小于 64，那么会选择先进行数组扩容，而不是转换为红黑树）时，将链表转化为红黑树，以减少搜索时间。
+JDK1.8 之前 HashMap 由 数组+链表 组成的，数组是 HashMap 的主体，链表则是主要为了解决哈希冲突而存在的（“拉链法”解决冲突）。 JDK1.8 以后的 `HashMap` 在解决哈希冲突时有了较大的变化，当链表长度大于等于阈值（默认为 8）（将链表转换成红黑树前会判断，如果当前数组的长度小于 64，那么会选择先进行数组扩容，而不是转换为红黑树）时，将链表转化为红黑树，以减少搜索时间。
 
 `HashMap` 默认的初始化大小为 16。之后每次扩充，容量变为原来的 2 倍。并且， `HashMap` 总是使用 2 的幂作为哈希表的大小。
 
@@ -78,11 +78,11 @@ public class HashMap<K,V> extends AbstractMap<K,V> implements Map<K,V>, Cloneabl
     static final int DEFAULT_INITIAL_CAPACITY = 1 << 4;
     // 最大容量
     static final int MAXIMUM_CAPACITY = 1 << 30;
-    // 默认的填充因子
+    // 默认的负载因子
     static final float DEFAULT_LOAD_FACTOR = 0.75f;
-    // 当桶(bucket)上的结点数大于这个值时会转成红黑树
+    // 当桶(bucket)上的结点数大于等于这个值时会转成红黑树
     static final int TREEIFY_THRESHOLD = 8;
-    // 当桶(bucket)上的结点数小于这个值时树转链表
+    // 当桶(bucket)上的结点数小于等于这个值时树转链表
     static final int UNTREEIFY_THRESHOLD = 6;
     // 桶中结构转化为红黑树对应的table的最小容量
     static final int MIN_TREEIFY_CAPACITY = 64;
@@ -94,24 +94,24 @@ public class HashMap<K,V> extends AbstractMap<K,V> implements Map<K,V>, Cloneabl
     transient int size;
     // 每次扩容和更改map结构的计数器
     transient int modCount;
-    // 临界值(容量*填充因子) 当实际大小超过临界值时，会进行扩容
+    // 阈值(容量*负载因子) 当实际大小超过阈值时，会进行扩容
     int threshold;
-    // 加载因子
+    // 负载因子
     final float loadFactor;
 }
 ```
 
-- **loadFactor 加载因子**
+- **loadFactor 负载因子**
 
-  loadFactor 加载因子是控制数组存放数据的疏密程度，loadFactor 越趋近于 1，那么 数组中存放的数据(entry)也就越多，也就越密，也就是会让链表的长度增加，loadFactor 越小，也就是趋近于 0，数组中存放的数据(entry)也就越少，也就越稀疏。
+  loadFactor 负载因子是控制数组存放数据的疏密程度，loadFactor 越趋近于 1，那么 数组中存放的数据(entry)也就越多，也就越密，也就是会让链表的长度增加，loadFactor 越小，也就是趋近于 0，数组中存放的数据(entry)也就越少，也就越稀疏。
 
   **loadFactor 太大导致查找元素效率低，太小导致数组的利用率低，存放的数据会很分散。loadFactor 的默认值为 0.75f 是官方给出的一个比较好的临界值**。
 
-  给定的默认容量为 16，负载因子为 0.75。Map 在使用过程中不断的往里面存放数据，当数量达到了 16 \* 0.75 = 12 就需要将当前 16 的容量进行扩容，而扩容这个过程涉及到 rehash、复制数据等操作，所以非常消耗性能。
+  给定的默认容量为 16，负载因子为 0.75。Map 在使用过程中不断的往里面存放数据，当数量超过了 16 \* 0.75 = 12 就需要将当前 16 的容量进行扩容，而扩容这个过程涉及到 rehash、复制数据等操作，所以非常消耗性能。
 
 - **threshold**
 
-  **threshold = capacity \* loadFactor**，**当 Size>=threshold**的时候，那么就要考虑对数组的扩增了，也就是说，这个的意思就是 **衡量数组是否需要扩增的一个标准**。
+  **threshold = capacity \* loadFactor**，**当 Size>threshold**的时候，那么就要考虑对数组的扩增了，也就是说，这个的意思就是 **衡量数组是否需要扩增的一个标准**。
 
 **Node 节点类源码:**
 
@@ -201,7 +201,7 @@ HashMap 中有四个构造方法，它们分别如下：
          this(initialCapacity, DEFAULT_LOAD_FACTOR);
      }
 
-     // 指定“容量大小”和“加载因子”的构造函数
+     // 指定“容量大小”和“负载因子”的构造函数
      public HashMap(int initialCapacity, float loadFactor) {
          if (initialCapacity < 0)
              throw new IllegalArgumentException("Illegal initial capacity: " + initialCapacity);
@@ -210,9 +210,12 @@ HashMap 中有四个构造方法，它们分别如下：
          if (loadFactor <= 0 || Float.isNaN(loadFactor))
              throw new IllegalArgumentException("Illegal load factor: " + loadFactor);
          this.loadFactor = loadFactor;
+         // 初始容量暂时存放到 threshold ，在resize中再赋值给 newCap 进行table初始化
          this.threshold = tableSizeFor(initialCapacity);
      }
 ```
+
+> 值得注意的是上述四个构造方法中，都初始化了负载因子 loadFactor，由于HashMap中没有 capacity 这样的字段，即使指定了初始化容量 initialCapacity ，也只是通过 tableSizeFor 将其扩容到与 initialCapacity 最接近的2的幂次方大小，然后暂时赋值给 threshold ，后续通过 resize 方法将 threshold 赋值给 newCap 进行 table 的初始化。
 
 **putMapEntries 方法：**
 
@@ -222,18 +225,25 @@ final void putMapEntries(Map<? extends K, ? extends V> m, boolean evict) {
     if (s > 0) {
         // 判断table是否已经初始化
         if (table == null) { // pre-size
-            // 未初始化，s为m的实际元素个数
+            /*
+             * 未初始化，s为m的实际元素个数，ft=s/loadFactor => s=ft*loadFactor, 跟我们前面提到的
+             * 阈值=容量*负载因子 是不是很像，是的，ft指的是要添加s个元素所需的最小的容量
+             */
             float ft = ((float)s / loadFactor) + 1.0F;
             int t = ((ft < (float)MAXIMUM_CAPACITY) ?
                     (int)ft : MAXIMUM_CAPACITY);
-            // 计算得到的t大于阈值，则初始化阈值
+            /*
+             * 根据构造函数可知，table未初始化，threshold实际上是存放的初始化容量，如果添加s个元素所
+             * 需的最小容量大于初始化容量，则将最小容量扩容为最接近的2的幂次方大小作为初始化。
+             * 注意这里不是初始化阈值
+             */
             if (t > threshold)
                 threshold = tableSizeFor(t);
         }
         // 已初始化，并且m元素个数大于阈值，进行扩容处理
         else if (s > threshold)
             resize();
-        // 将m中的所有元素添加至HashMap中
+        // 将m中的所有元素添加至HashMap中，如果table未初始化，putVal中会调用resize初始化或扩容
         for (Map.Entry<? extends K, ? extends V> e : m.entrySet()) {
             K key = e.getKey();
             V value = e.getValue();
@@ -276,7 +286,7 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
     // 桶中已经存在元素（处理hash冲突）
     else {
         Node<K,V> e; K k;
-        // 判断table[i]中的元素是否与插入的key一样，若相同那就直接使用插入的值p替换掉旧的值e。
+        //快速判断第一个节点table[i]的key是否与插入的key一样，若相同就直接使用插入的值p替换掉旧的值e。
         if (p.hash == hash &&
             ((k = p.key) == key || (key != null && key.equals(k))))
                 e = p;
@@ -401,7 +411,7 @@ final Node<K,V> getNode(int hash, Object key) {
 
 ### resize 方法
 
-进行扩容，会伴随着一次重新 hash 分配，并且会遍历 hash 表中所有的元素，是非常耗时的。在编写程序中，要尽量避免 resize。
+进行扩容，会伴随着一次重新 hash 分配，并且会遍历 hash 表中所有的元素，是非常耗时的。在编写程序中，要尽量避免 resize。resize方法实际上是将 table 初始化和 table 扩容 进行了整合，底层的行为都是给 table 赋值一个新的数组。
 
 ```java
 final Node<K,V>[] resize() {
@@ -420,14 +430,16 @@ final Node<K,V>[] resize() {
             newThr = oldThr << 1; // double threshold
     }
     else if (oldThr > 0) // initial capacity was placed in threshold
+        // 创建对象时初始化容量大小放在threshold中，此时只需要将其作为新的数组容量
         newCap = oldThr;
     else {
-        // signifies using defaults
+        // signifies using defaults 无参构造函数创建的对象在这里计算容量和阈值
         newCap = DEFAULT_INITIAL_CAPACITY;
         newThr = (int)(DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);
     }
-    // 计算新的resize上限
     if (newThr == 0) {
+        // 创建时指定了初始化容量或者负载因子，在这里进行阈值初始化，
+    	// 或者扩容前的旧容量小于16，在这里计算新的resize上限
         float ft = (float)newCap * loadFactor;
         newThr = (newCap < MAXIMUM_CAPACITY && ft < (float)MAXIMUM_CAPACITY ? (int)ft : Integer.MAX_VALUE);
     }
@@ -442,8 +454,10 @@ final Node<K,V>[] resize() {
             if ((e = oldTab[j]) != null) {
                 oldTab[j] = null;
                 if (e.next == null)
+                    // 只有一个节点，直接计算元素新的位置即可
                     newTab[e.hash & (newCap - 1)] = e;
                 else if (e instanceof TreeNode)
+                    // 将红黑树拆分成2棵子树，拆分后的子树节点数小于等于6，则将树转化成链表
                     ((TreeNode<K,V>)e).split(this, newTab, j, oldCap);
                 else {
                     Node<K,V> loHead = null, loTail = null;
@@ -485,6 +499,7 @@ final Node<K,V>[] resize() {
     return newTab;
 }
 ```
+
 
 ## HashMap 常用方法测试
 
