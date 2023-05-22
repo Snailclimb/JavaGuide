@@ -392,7 +392,7 @@ PFCOUNT PAGE_1:UV
 
 ## Redis 持久化机制（重要）
 
-Redis 持久化机制（RDB 持久化、AOF 持久化、RDB 和 AOF 的混合持久化） 相关的问题比较多，也比较重要，于是我单独抽了一篇文章来总结 Redis 持久化机制相关的知识点和问题：[Redis 持久化机制详解](./redis-persistence.md) 。
+Redis 持久化机制（RDB 持久化、AOF 持久化、RDB 和 AOF 的混合持久化） 相关的问题比较多，也比较重要，于是我单独抽了一篇文章来总结 Redis 持久化机制相关的知识点和问题：[Redis 持久化机制详解](https://javaguide.cn/database/redis/redis-persistence.html) 。
 
 ## Redis 线程模型（重要）
 

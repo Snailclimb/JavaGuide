@@ -50,11 +50,11 @@ FROM Customers
 答案：
 
 ```sql
-SELECT distinct prod_id
+SELECT DISTINCT prod_id
 FROM OrderItems
 ```
 
-知识点：`distinct` 用于返回列中的唯一不同值。
+知识点：`DISTINCT` 用于返回列中的唯一不同值。
 
 ### 检索所有列
 
@@ -287,9 +287,10 @@ ORDER BY prod_price
 答案：
 
 ```sql
-SELECT DISTINCT order_num
+SELECT order_num
 FROM OrderItems
-WHERE quantity >= 100
+GROUP BY order_num
+HAVING SUM(quantity) >= 100
 ```
 
 ## 高级数据过滤

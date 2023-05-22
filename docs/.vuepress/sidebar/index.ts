@@ -23,7 +23,7 @@ export default sidebar({
       icon: "star",
       collapsible: true,
       prefix: "javaguide/",
-      children: ["intro", "contribution-guideline", "faq"],
+      children: ["intro", "use-suggestion", "contribution-guideline", "faq"],
     },
     {
       text: "面试准备",

@@ -189,7 +189,7 @@ Redis 从 2.6 版本开始支持执行 Lua 脚本，它的功能和事务非常�
 除了下面介绍的内容之外，再推荐两篇不错的文章：
 
 - [你的 Redis 真的变慢了吗？性能优化如何做 - 阿里开发者](https://mp.weixin.qq.com/s/nNEuYw0NlYGhuKKKKoWfcQ)
-- [Redis 常见阻塞原因总结 - JavaGuide](./redis-common-blocking-problems-summary.md)
+- [Redis 常见阻塞原因总结 - JavaGuide](https://javaguide.cn/database/redis/redis-common-blocking-problems-summary.html)
 
 ### 使用批量操作减少网络传输
 
@@ -316,7 +316,9 @@ Biggest string found '"ballcat:oauth:refresh_auth:f6cdb384-9a9d-4f2f-af01-dc3f28
 0 zsets with 0 members (00.00% of keys, avg size 0.00
 ```
 
-从这个命令的运行结果，我们可以看出：这个命令会扫描(Scan) Redis 中的所有 key ，会对 Redis 的性能有一点影响。并且，这种方式只能找出每种数据结构 top 1 bigkey（占用内存最大的 string 数据类型，包含元素最多的复合数据类型）。
+从这个命令的运行结果，我们可以看出：这个命令会扫描(Scan) Redis 中的所有 key ，会对 Redis 的性能有一点影响。并且，这种方式只能找出每种数据结构 top 1 bigkey（占用内存最大的 string 数据类型，包含元素最多的复合数据类型）。然而，一个 key 的元素多并不代表占用内存也多，需要我们根据具体的业务情况来进一步判断。
+
+在线上执行该命令时，为了降低对 Redis 的影响，需要指定 `-i` 参数控制扫描的频率。`redis-cli -p 6379 --bigkeys -i 3` 表示扫描过程中每次扫描后休息的时间间隔为 3 秒。
 
 **2、借助开源工具分析 RDB 文件。**
 
@@ -342,6 +344,7 @@ bigkey 的常见处理以及优化办法如下（这些方法可以配合起来�
 - **分割 bigkey**：将一个 bigkey 分割为多个小 key。这种方式需要修改业务层的代码，一般不推荐这样做。
 - **手动清理**：Redis 4.0+ 可以使用 `UNLINK` 命令来异步删除一个或多个指定的 key。Redis 4.0 以下可以考虑使用 `SCAN` 命令结合 `DEL` 命令来分批次删除。
 - **采用合适的数据结构**：比如使用 HyperLogLog 统计页面 UV。
+- **开启 lazy-free（惰性删除/延迟释放）** ：lazy-free 特性是 Redis 4.0 开始引入的，指的是让 Redis 采用异步方式延迟释放 key 使用的内存，将该操作交给单独的子线程处理，避免阻塞主线程。
 
 ### Redis hotkey（热 Key）
 
@@ -377,8 +380,8 @@ Error: ERR An LFU maxmemory policy is not selected, access frequency not tracked
 
 Redis 中有两种 LFU 算法：
 
-- **volatile-lru（least recently used）**：从已设置过期时间的数据集（`server.db[i].expires`）中挑选最近最少使用的数据淘汰。
-- **allkeys-lru（least recently used）**：当内存不足以容纳新写入数据时，在键空间中，移除最近最少使用的 key（这个是最常用的）。
+1. **volatile-lfu（least frequently used）**：从已设置过期时间的数据集（`server.db[i].expires`）中挑选最不经常使用的数据淘汰。
+2. **allkeys-lfu（least frequently used）**：当内存不足以容纳新写入数据时，在键空间中，移除最不经常使用的 key。
 
 以下是配置文件 `redis.conf` 中的示例：
 
@@ -701,7 +704,7 @@ Cache Aside Pattern 中遇到写请求是这样的：更新 DB，然后直接删
 
 ### 哪些情况可能会导致 Redis 阻塞？
 
-单独抽了一篇文章来总结可能会导致 Redis 阻塞的情况：[Redis 常见阻塞原因总结](./redis-memory-fragmentation.md)。
+单独抽了一篇文章来总结可能会导致 Redis 阻塞的情况：[Redis 常见阻塞原因总结](https://javaguide.cn/database/redis/redis-common-blocking-problems-summary.html)。
 
 ## Redis 集群
 
@@ -748,3 +751,4 @@ Cache Aside Pattern 中遇到写请求是这样的：更新 DB，然后直接删
 - Redis Transactions : <https://redis.io/docs/manual/transactions/>
 - What is Redis Pipeline：<https://buildatscale.tech/what-is-redis-pipeline/>
 - 一文详解 Redis 中 BigKey、HotKey 的发现与处理：<https://mp.weixin.qq.com/s/FPYE1B839_8Yk1-YSiW-1Q>
+- Redis延迟问题全面排障指南：https://mp.weixin.qq.com/s/mIc6a9mfEGdaNDD3MmfFsg
