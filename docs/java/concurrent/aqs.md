@@ -154,7 +154,9 @@ public Semaphore(int permits, boolean fair) {
 
 `Semaphore` 是共享锁的一种实现，它默认构造 AQS 的 `state` 值为 `permits`，你可以将 `permits` 的值理解为许可证的数量，只有拿到许可证的线程才能执行。
 
-调用`semaphore.acquire()` ，线程尝试获取许可证，如果 `state >= 0` 的话，则表示可以获取成功。如果获取成功的话，使用 CAS 操作去修改 `state` 的值 `state=state-1`。如果 `state<0` 的话，则表示许可证数量不足。此时会创建一个 Node 节点加入阻塞队列，挂起当前线程。
+调用`semaphore.acquire()` ，线程尝试获取许可证，如果 `state > 0` 的话，则表示可以获取成功，如果 `state <= 0` 的话，则表示许可证数量不足，获取失败。
+
+如果可以获取成功的话(`state > 0` )，会尝试使用 CAS 操作去修改 `state` 的值 `state=state-1`。如果获取失败则会创建一个 Node 节点加入阻塞队列，挂起当前线程。
 
 ```java
 /**
@@ -170,13 +172,40 @@ public final void acquireSharedInterruptibly(int arg)
     throws InterruptedException {
     if (Thread.interrupted())
       throw new InterruptedException();
-        // 尝试获取许可证，arg为获取许可证个数，当可用许可证数减当前获取的许可证数结果小于0,则创建一个节点加入阻塞队列，挂起当前线程。
+        // 尝试获取许可证，arg为获取许可证个数，当获取失败时,则创建一个节点加入阻塞队列，挂起当前线程。
     if (tryAcquireShared(arg) < 0)
       doAcquireSharedInterruptibly(arg);
 }
+/**
+ * 共享模式下尝试获取资源(在Semaphore中的资源即许可证):
+ * 1、获取失败，返回负值
+ * 2、共享模式下获取成功，但后续的共享模式获取会失败，返回0
+ * 3、共享模式获取成功，随后的共享模式也可能获取成功，返回正值
+ */
+protected int tryAcquireShared(int acquires) {
+    return nonfairTryAcquireShared(acquires);
+}
+/**
+ * 非公平的共享模式获取许可证，acquires为许可证数量，根据代码上下文可知该值总是为1
+ * 注：公平模式的实现会先判断队列中是否有节点在排队，有则直接返回-1，表示获取失败，没有则执行下面的操作
+ */
+final int nonfairTryAcquireShared(int acquires) {
+    for (;;) {
+        // 当前可用许可证数量
+        int available = getState();
+        /*
+         * 尝试获取许可证，当前可用许可证数量小于等于0时，返回负值，表示获取失败，
+         * 当前可用许可证大于0时才可能获取成功，CAS失败了会循环重新获取最新的值尝试获取
+         */
+        int remaining = available - acquires;
+        if (remaining < 0 ||
+            compareAndSetState(available, remaining))
+            return remaining;
+    }
+}
 ```
 
-调用`semaphore.release();` ，线程尝试释放许可证，并使用 CAS 操作去修改 `state` 的值 `state=state+1`。释放许可证成功之后，同时会唤醒同步队列中的一个线程。被唤醒的线程会重新尝试去修改 `state` 的值 `state=state-1` ，如果 `state>=0` 则获取令牌成功，否则重新进入阻塞队列，挂起线程。
+调用`semaphore.release();` ，线程尝试释放许可证，并使用 CAS 操作去修改 `state` 的值 `state=state+1`。释放许可证成功之后，同时会唤醒同步队列中的一个线程。被唤醒的线程会重新尝试去修改 `state` 的值 `state=state-1` ，如果 `state > 0` 则获取令牌成功，否则重新进入阻塞队列，挂起线程。
 
 ```java
 // 释放一个许可证
@@ -193,6 +222,17 @@ public final boolean releaseShared(int arg) {
       return true;
     }
     return false;
+}
+// 尝试释放资源
+protected final boolean tryReleaseShared(int releases) {
+    for (;;) {
+        int current = getState();
+        int next = current + releases;  // 可用许可证+1
+        if (next < current) // overflow
+            throw new Error("Maximum permit count exceeded");
+        if (compareAndSetState(current, next)) // 通过CAS修改
+            return true;
+    }
 }
 ```
 
