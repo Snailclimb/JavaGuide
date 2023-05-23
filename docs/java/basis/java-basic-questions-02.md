@@ -291,7 +291,7 @@ Person person1Copy = person1.clone();
 System.out.println(person1.getAddress() == person1Copy.getAddress());
 ```
 
-从输出结构就可以看出，虽然 `person1` 的克隆对象和 `person1` 包含的 `Address` 对象已经是不同的了。
+从输出结构就可以看出，显然 `person1` 的克隆对象和 `person1` 包含的 `Address` 对象已经是不同的了。
 
 **那什么是引用拷贝呢？** 简单来说，引用拷贝就是两个不同的引用指向同一个对象。
 
