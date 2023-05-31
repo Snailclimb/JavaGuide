@@ -7,8 +7,9 @@ import sidebar from "./sidebar/index.js";
 const __dirname = getDirname(import.meta.url);
 
 export default hopeTheme({
-  logo: "/logo.png",
   hostname: "https://javaguide.cn/",
+  logo: "/logo.png",
+  favicon: "/favicon.ico",
 
   iconAssets: "//at.alicdn.com/t/c/font_2922463_kweia6fbo9.css",
 
