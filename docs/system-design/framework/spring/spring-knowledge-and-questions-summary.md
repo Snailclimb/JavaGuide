@@ -129,7 +129,7 @@ Spring Boot 只是简化了配置，如果你需要构建 MVC 架构的 Web 程�
 
 Spring 时代我们一般通过 XML 文件来配置 Bean，后来开发人员觉得 XML 文件来配置不太好，于是 SpringBoot 注解配置就慢慢开始流行起来。
 
-相关阅读：
+相关阅读： 
 
 - [IoC 源码阅读](https://javadoop.com/post/spring-ioc)
 - [面试被问了几百遍的 IoC 和 AOP ，还在傻傻搞不清楚？](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247486938&idx=1&sn=c99ef0233f39a5ffc1b98c81e02dfcd4&chksm=cea24211f9d5cb07fa901183ba4d96187820713a72387788408040822ffb2ed575d28e953ce7&token=1736772241&lang=zh_CN#rd)
@@ -319,8 +319,6 @@ public Person personPrototype() {
 不过，大部分 Bean 实际都是无状态（没有实例变量）的（比如 Dao、Service），这种情况下， Bean 是线程安全的。
 
 ### Bean 的生命周期了解么?
-
-> 下面的内容整理自：<https://yemengying.com/2016/07/14/spring-bean-life-cycle/> ，除了这篇文章，再推荐一篇很不错的文章：<https://www.cnblogs.com/zrtqsk/p/3735273.html> 。
 
 - Bean 容器找到配置文件中 Spring Bean 的定义。
 - Bean 容器利用 Java Reflection API 创建一个 Bean 的实例。

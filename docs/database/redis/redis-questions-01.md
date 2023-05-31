@@ -147,11 +147,13 @@ null
 
 **List 实现消息队列功能太简单，像消息确认机制等功能还需要我们自己实现，最要命的是没有广播机制，消息也只能被消费一次。**
 
-**Redis 2.0 引入了 发布订阅 (pub/sub) 解决了 List 实现消息队列没有广播机制的问题。**
+**Redis 2.0 引入了发布订阅 (pub/sub) 功能，解决了 List 实现消息队列没有广播机制的问题。**
+
+![Redis 发布订阅 (pub/sub) 功能](https://oss.javaguide.cn/github/javaguide/database/redis/redis-pub-sub.png)
 
 pub/sub 中引入了一个概念叫 **channel（频道）**，发布订阅机制的实现就是基于这个 channel 来做的。
 
-pub/sub 涉及发布者和订阅者（也叫消费者）两个角色：
+pub/sub 涉及发布者（Publisher）和订阅者（Subscriber，也叫消费者）两个角色：
 
 - 发布者通过 `PUBLISH` 投递消息给指定 channel。
 - 订阅者通过`SUBSCRIBE`订阅它关心的 channel。并且，订阅者可以订阅一个或者多个 channel。

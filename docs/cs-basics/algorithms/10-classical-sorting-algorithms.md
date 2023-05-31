@@ -24,6 +24,11 @@ tag:
 
 ![十大排序算法](https://oss.javaguide.cn/github/javaguide/cs-basics/sorting-algorithms/sort1.png)
 
+上图存在错误：
+
+1. 插入排序的最好时间复杂度为 O(n) 而不是 O(n^2) 。
+2. 
+
 **图片名词解释：**
 
 - **n**：数据规模
@@ -397,7 +402,7 @@ public static void quickSort(int[] array, int low, int high) {
 
 - **稳定性**：不稳定
 - **时间复杂度**：最佳：O(nlogn)， 最差：O(nlogn)，平均：O(nlogn)
-- **空间复杂度**：O(nlogn)
+- **空间复杂度**：O(logn)
 
 ## 堆排序 (Heap Sort)
 
@@ -649,7 +654,7 @@ public static List<Integer> bucketSort(List<Integer> arr, int bucket_size) {
 
 - **稳定性**：稳定
 - **时间复杂度**：最佳：`O(n+k)` 最差：`O(n²)` 平均：`O(n+k)`
-- **空间复杂度**：`O(k)`
+- **空间复杂度**：`O(n+k)`
 
 ## 基数排序 (Radix Sort)
 
