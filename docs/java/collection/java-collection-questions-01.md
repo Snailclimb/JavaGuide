@@ -466,7 +466,7 @@ Output：
 
 ### 什么是 BlockingQueue？
 
-`BlockingQueue` （阻塞队列）是一个接口，继承自 `Queue`。`BlockingQueue`阻塞的原因是其支持当队列没有元素时一直阻塞，直到有有元素；还支持如果队列已满，一直等到队列可以放入新元素时再放入。
+`BlockingQueue` （阻塞队列）是一个接口，继承自 `Queue`。`BlockingQueue`阻塞的原因是其支持当队列没有元素时一直阻塞，直到有元素；还支持如果队列已满，一直等到队列可以放入新元素时再放入。
 
 ```java
 public interface BlockingQueue<E> extends Queue<E> {

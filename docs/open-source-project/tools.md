@@ -24,6 +24,7 @@ icon: tool
 
 ### 数据库管理
 
+- [Chat2DB](https://github.com/alibaba/Chat2DB)：阿里巴巴开源的一款智能的通用数据库工具和 SQL 客户端，支持 Windows、Mac 本地安装，也支持服务器端部署，Web 网页访问。和传统的数据库客户端软件 Navicat、DBeaver 相比 Chat2DB 集成了 AIGC 的能力，支持自然语言生成 SQL、SQL 性能优化等功能。
 - [Beekeeper Studio](https://github.com/beekeeper-studio/beekeeper-studio)：跨平台数据库管理工具，颜值高，支持 SQLite、MySQL、MariaDB、Postgres、CockroachDB、SQL Server、Amazon Redshift。
 - [Sequel Pro](https://github.com/sequelpro/sequelpro)：适用于 macOS 的 MySQL/MariaDB 数据库管理工具。
 - [DBeaver](https://github.com/dbeaver/dbeaver)：一个基于 Java 开发 ，并且支持几乎所有的数据库产品的开源数据库管理工具。DBeaver 社区版不光支持关系型数据库比如 MySQL、PostgreSQL、MariaDB、SQLite、Oracle、Db2、SQL Server，还比如 SQLite、H2 这些内嵌数据库。还支持常见的全文搜索引擎比如 Elasticsearch 和 Solr、大数据相关的工具比如 Hive 和 Spark。

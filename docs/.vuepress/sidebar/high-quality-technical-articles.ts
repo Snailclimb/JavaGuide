@@ -11,6 +11,7 @@ export const highQualityTechnicalArticles = arraySidebar([
       "ten-years-of-dachang-growth-road",
       "seven-tips-for-becoming-an-advanced-programmer",
       "20-bad-habits-of-bad-programmers",
+      "thinking-about-technology-and-business-after-five-years-of-work",
     ],
   },
   {

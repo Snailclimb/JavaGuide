@@ -51,21 +51,21 @@ export default defineUserConfig({
   theme,
 
   plugins: [
-    searchProPlugin({
-      indexContent: true,
-      indexOptions: {
-        tokenize: (text, fieldName) =>
-          fieldName === "id" ? [text] : cut(text, true),
-      },
-      customFields: [
-        {
-          getter: ({ frontmatter }) =>
-            <string | undefined>frontmatter.category ?? null,
-          formatter: "分类: $content",
-        },
-      ],
-      suggestDelay: 60,
-    }),
+    // searchProPlugin({
+    //   indexContent: true,
+    //   indexOptions: {
+    //     tokenize: (text, fieldName) =>
+    //       fieldName === "id" ? [text] : cut(text, true),
+    //   },
+    //   customFields: [
+    //     {
+    //       getter: ({ frontmatter }) =>
+    //         <string | undefined>frontmatter.category ?? null,
+    //       formatter: "分类: $content",
+    //     },
+    //   ],
+    //   suggestDelay: 60,
+    // }),
   ],
 
   pagePatterns: ["**/*.md", "!**/*.snippet.md", "!.vuepress", "!node_modules"],

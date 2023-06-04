@@ -14,6 +14,7 @@
 - [十年大厂成长之路](./advanced-programmer/ten-years-of-dachang-growth-road.md)
 - [给想成长为高级别开发同学的七条建议](./advanced-programmer/seven-tips-for-becoming-an-advanced-programmer.md)
 - [糟糕程序员的 20 个坏习惯](./advanced-programmer/20-bad-habits-of-bad-programmers.md)
+- [工作五年之后，对技术和业务的思考](./advanced-programmer/thinking-about-technology-and-business-after-five-years-of-work.md)
 
 ## 个人经历
 

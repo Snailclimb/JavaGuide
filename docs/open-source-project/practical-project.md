@@ -26,6 +26,7 @@ icon: project
 
 下面这几个项目都是非常适合 Spring Boot 初学者学习的，下面的大部分项目的总体代码架构我都看过，个人觉得还算不错，不会误导没有实际做过项目的朋友。
 
+- [paicoding](https://github.com/itwanger/paicoding)：一款好用又强大的开源社区，基于 Spring Boot 系列主流技术栈，附详细的教程。
 - [forest](https://github.com/rymcu)：下一代的知识社区系统，可以自定义专题和作品集。后端基于 SpringBoot + Shrio + MyBatis + JWT + Redis，前端基于 Vue + NuxtJS + Element-UI。
 - [vhr](https://github.com/lenve/vhr "vhr")：微人事是一个前后端分离的人力资源管理系统，项目采用 SpringBoot+Vue 开发。
 - [favorites-web](https://github.com/cloudfavorites/favorites-web) :云收藏 Spring Boot 2.X 开源项目。云收藏是一个使用 Spring Boot 构建的开源网站，可以让用户在线随时随地收藏的一个网站，在网站上分类整理收藏的网站或者文章。

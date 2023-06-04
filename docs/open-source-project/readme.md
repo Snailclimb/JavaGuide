@@ -37,6 +37,7 @@ category: 开源项目
 17. [3.2k！这是我见过最强的消息推送平台！！](https://mp.weixin.qq.com/s/heag76H4UwZmr8oBY_2gcw)
 18. [好家伙，又一本技术书籍开源了！！](https://mp.weixin.qq.com/s/w-JuBlcqCeAZR0xUFWzvHQ)
 19. [开箱即用的 ChatGPT Java SDK！支持 GPT3.5、 GPT4 API](https://mp.weixin.qq.com/s/WhI2K1VF0h_57TEVGCwuCA)
+20. [这是我见过最强大的技术社区实战项目！！](https://mp.weixin.qq.com/s/tdBQ0Td_Gsev4AaIlq5ltg)
 
 推荐你在我的公众号“**JavaGuide**”回复“**开源**”在线阅读[「优质开源项目推荐」](https://mp.weixin.qq.com/mp/appmsgalbum?__biz=Mzg2OTA0Njk0OA==&action=getalbum&album_id=1345382825083895808&scene=173&from_msgid=2247516459&from_itemidx=1&count=3&nolastread=1#wechat_redirect)系列。
 
