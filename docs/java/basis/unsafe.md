@@ -623,7 +623,7 @@ unpark mainThread success
 public native long staticFieldOffset(Field f);
 //获取静态属性的对象指针
 public native Object staticFieldBase(Field f);
-//判断类是否需要实例化（用于获取类的静态属性前进行检测）
+//判断类是否需要初始化（用于获取类的静态属性前进行检测）
 public native boolean shouldBeInitialized(Class<?> c);
 ```
 
@@ -637,6 +637,11 @@ public class User {
 }
 private void staticTest() throws Exception {
     User user=new User();
+    // 也可以用下面的语句触发类初始化
+    // 1.
+    // unsafe.ensureClassInitialized(User.class);
+    // 2.
+    // System.out.println(User.name);
     System.out.println(unsafe.shouldBeInitialized(User.class));
     Field sexField = User.class.getDeclaredField("name");
     long fieldOffset = unsafe.staticFieldOffset(sexField);
@@ -654,7 +659,7 @@ falseHydra
 
 在 `Unsafe` 的对象操作中，我们学习了通过`objectFieldOffset`方法获取对象属性偏移量并基于它对变量的值进行存取，但是它不适用于类中的静态属性，这时候就需要使用`staticFieldOffset`方法。在上面的代码中，只有在获取`Field`对象的过程中依赖到了`Class`，而获取静态变量的属性时不再依赖于`Class`。
 
-在上面的代码中首先创建一个`User`对象，这是因为如果一个类没有被实例化，那么它的静态属性也不会被初始化，最后获取的字段属性将是`null`。所以在获取静态属性前，需要调用`shouldBeInitialized`方法，判断在获取前是否需要初始化这个类。如果删除创建 User 对象的语句，运行结果会变为：
+在上面的代码中首先创建一个`User`对象，这是因为如果一个类没有被初始化，那么它的静态属性也不会被初始化，最后获取的字段属性将是`null`。所以在获取静态属性前，需要调用`shouldBeInitialized`方法，判断在获取前是否需要初始化这个类。如果删除创建 User 对象的语句，运行结果会变为：
 
 ```
 truenull
