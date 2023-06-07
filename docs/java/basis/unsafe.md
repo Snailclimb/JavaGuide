@@ -304,6 +304,49 @@ public boolean validate(long stamp) {
 
 #### 介绍
 
+**例子**
+
+```java
+import sun.misc.Unsafe;
+import java.lang.reflect.Field;
+
+public class Main {
+
+    private int value;
+
+    public static void main(String[] args) throws Exception{
+        Unsafe unsafe = reflectGetUnsafe();
+        assert unsafe != null;
+        long offset = unsafe.objectFieldOffset(Main.class.getDeclaredField("value"));
+        Main main = new Main();
+        System.out.println("value before putInt: " + main.value);
+        unsafe.putInt(main, offset, 42);
+        System.out.println("value after putInt: " + main.value);
+	System.out.println("value after putInt: " + unsafe.getInt(main, offset));
+    }
+
+    private static Unsafe reflectGetUnsafe() {
+        try {
+            Field field = Unsafe.class.getDeclaredField("theUnsafe");
+            field.setAccessible(true);
+            return (Unsafe) field.get(null);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+}
+```
+
+输出结果：
+
+```
+value before putInt: 0
+value after putInt: 42
+value after putInt: 42
+```
+
 **对象属性**
 
 对象成员属性的内存偏移量获取，以及字段属性值的修改，在上面的例子中我们已经测试过了。除了前面的`putInt`、`getInt`方法外，Unsafe 提供了全部 8 种基础数据类型以及`Object`的`put`和`get`方法，并且所有的`put`方法都可以越过访问权限，直接修改内存中的数据。阅读 openJDK 源码中的注释发现，基础数据类型和`Object`的读写稍有不同，基础数据类型是直接操作的属性值（`value`），而`Object`的操作则是基于引用值（`reference value`）。下面是`Object`的读写方法：
