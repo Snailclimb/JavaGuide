@@ -61,6 +61,7 @@ title: JavaGuide（Java学习&&面试指南）
 **源码分析**：
 
 - [ArrayList 源码+扩容机制分析](./java/collection/arraylist-source-code.md)
+- [LinkedList 源码分析](./java/collection/linkedlist-source-code.md)
 - [HashMap(JDK1.8)源码+底层数据结构分析](./java/collection/hashmap-source-code.md)
 - [ConcurrentHashMap 源码+底层数据结构分析](./java/collection/concurrent-hash-map-source-code.md)
 

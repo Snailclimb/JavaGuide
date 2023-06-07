@@ -319,7 +319,7 @@ public native int hashCode()
  */
 public boolean equals(Object obj)
 /**
- * naitive 方法，用于创建并返回当前对象的一份拷贝。
+ * native 方法，用于创建并返回当前对象的一份拷贝。
  */
 protected native Object clone() throws CloneNotSupportedException
 /**

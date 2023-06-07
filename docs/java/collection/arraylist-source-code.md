@@ -9,7 +9,7 @@ tag:
 
 `ArrayList` 的底层是数组队列，相当于动态数组。与 Java 中的数组相比，它的容量能动态增长。在添加大量元素前，应用程序可以使用`ensureCapacity`操作来增加 `ArrayList` 实例的容量。这可以减少递增式再分配的数量。
 
-`ArrayList`继承于 **`AbstractList`** ，实现了 **`List`**, **`RandomAccess`**, **`Cloneable`**, **`java.io.Serializable`** 这些接口。
+`ArrayList` 继承于 `AbstractList` ，实现了 `List`, `RandomAccess`, `Cloneable`, `java.io.Serializable` 这些接口。
 
 ```java
 
@@ -19,9 +19,10 @@ public class ArrayList<E> extends AbstractList<E>
   }
 ```
 
-- `RandomAccess` 是一个标志接口，表明实现这个接口的 List 集合是支持**快速随机访问**的。在 `ArrayList` 中，我们即可以通过元素的序号快速获取元素对象，这就是快速随机访问。
-- `ArrayList` 实现了 **`Cloneable` 接口** ，即覆盖了函数`clone()`，能被克隆。
-- `ArrayList` 实现了 `java.io.Serializable`接口，这意味着`ArrayList`支持序列化，能通过序列化去传输。
+- `List` : 表明它是一个列表，支持添加、删除、查找等操作，并且可以通过下标进行访问。
+- `RandomAccess` ：这是一个标志接口，表明实现这个接口的 `List` 集合是支持 **快速随机访问** 的。在 `ArrayList` 中，我们即可以通过元素的序号快速获取元素对象，这就是快速随机访问。
+- `Cloneable` ：表明它具有拷贝能力，可以进行深拷贝或浅拷贝操作。
+- `Serializable` : 表明它可以进行序列化操作，也就是可以将对象转换为字节流进行持久化存储或网络传输，非常方便。
 
 ### ArrayList 和 Vector 的区别?（了解即可）
 
@@ -58,6 +59,8 @@ System.out.println(listOfStrings);
 - **内存空间占用：** `ArrayList` 的空间浪费主要体现在在 list 列表的结尾会预留一定的容量空间，而 LinkedList 的空间花费则体现在它的每一个元素都需要消耗比 ArrayList 更多的空间（因为要存放直接后继和直接前驱以及数据）。
 
 ## ArrayList 核心源码解读
+
+这里以 JDK1.8为例，分析一下 `ArrayList` 的底层源码。
 
 ```java
 package java.util;

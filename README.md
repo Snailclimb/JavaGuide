@@ -69,6 +69,7 @@
 **源码分析**：
 
 - [ArrayList 源码+扩容机制分析](./docs/java/collection/arraylist-source-code.md)
+- [LinkedList 源码分析](./docs/java/collection/linkedlist-source-code.md)
 - [HashMap(JDK1.8)源码+底层数据结构分析](./docs/java/collection/hashmap-source-code.md)
 - [ConcurrentHashMap 源码+底层数据结构分析](./docs/java/collection/concurrent-hash-map-source-code.md)
 
