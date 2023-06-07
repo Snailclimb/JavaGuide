@@ -30,7 +30,7 @@
     "prettier": "2.8.8",
     "vue": "3.3.4",
     "vuepress": "2.0.0-beta.62",
-    "vuepress-plugin-search-pro": "2.0.0-beta.217",
-    "vuepress-theme-hope": "2.0.0-beta.217"
+    "@vuepress/plugin-search": "2.0.0-beta.62",
+    "vuepress-theme-hope": "2.0.0-beta.221"
   }
 }

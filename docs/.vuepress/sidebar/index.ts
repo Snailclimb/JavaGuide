@@ -85,6 +85,7 @@ export default sidebar({
               collapsible: true,
               children: [
                 "arraylist-source-code",
+                "linkedlist-source-code",
                 "hashmap-source-code",
                 "concurrent-hash-map-source-code",
               ],
