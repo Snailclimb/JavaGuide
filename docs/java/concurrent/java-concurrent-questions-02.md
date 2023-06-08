@@ -515,7 +515,7 @@ JDK 提供的所有现成的 `Lock` 实现类，包括 `synchronized` 关键字�
 在下面的代码中，`method1()` 和 `method2()`都被 `synchronized` 关键字修饰，`method1()`调用了`method2()`。
 
 ```java
-public class ReentrantLockDemo {
+public class SynchronizedDemo {
     public synchronized void method1() {
         System.out.println("方法1");
         method2();
