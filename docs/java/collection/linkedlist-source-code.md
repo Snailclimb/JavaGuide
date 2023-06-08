@@ -53,6 +53,8 @@ public class LinkedList<E>
 - `Cloneable` ：表明它具有拷贝能力，可以进行深拷贝或浅拷贝操作。
 - `Serializable` : 表明它可以进行序列化操作，也就是可以将对象转换为字节流进行持久化存储或网络传输，非常方便。
 
+![LinkedList 类图](https://oss.javaguide.cn/github/javaguide/java/collection/linkedlist--class-diagram.png)
+
 `LinkedList` 中的元素是通过 `Node` 定义的：
 
 ```java
@@ -221,12 +223,13 @@ Node<E> node(int index) {
 
 ### 删除元素
 
-`LinkedList`删除元素相关的方法一共有 4 个：
+`LinkedList`删除元素相关的方法一共有 5 个：
 
 1. `removeFirst()`：删除并返回链表的第一个元素。
 2. `removeLast()`：删除并返回链表的最后一个元素。
 3. `remove(E e)`：删除链表中首次出现的指定元素，如果不存在该元素则返回 false。
-4. `remove(int index)`：删除指定索引处的元素，并返回该元素的值
+4. `remove(int index)`：删除指定索引处的元素，并返回该元素的值。
+5. `void clear()`：移除此链表中的所有元素。
 
 ```java
 // 删除并返回链表的第一个元素

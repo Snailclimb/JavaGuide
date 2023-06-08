@@ -88,6 +88,7 @@ export default sidebar({
                 "linkedlist-source-code",
                 "hashmap-source-code",
                 "concurrent-hash-map-source-code",
+                "copyonwritearraylist-source-code",
               ],
             },
           ],
