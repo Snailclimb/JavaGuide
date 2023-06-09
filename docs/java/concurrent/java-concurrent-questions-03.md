@@ -367,16 +367,16 @@ public static class CallerRunsPolicy implements RejectedExecutionHandler {
 
 给线程池里的线程命名通常有下面两种方式：
 
-**1、利用 guava 的 `ThreadFactoryBuilder` **
+**1、利用 guava 的 `ThreadFactoryBuilder`**
 
 ```java
 ThreadFactory threadFactory = new ThreadFactoryBuilder()
                         .setNameFormat(threadNamePrefix + "-%d")
                         .setDaemon(true).build();
-ExecutorService threadPool = new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, TimeUnit.MINUTES, workQueue, threadFactory)
+ExecutorService threadPool = new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, TimeUnit.MINUTES, workQueue, threadFactory);
 ```
 
-**2、自己实现 `ThreadFactor`。**
+**2、自己实现 `ThreadFactory`。**
 
 ```java
 import java.util.concurrent.Executors;
