@@ -1,6 +1,6 @@
 ---
 icon: creative
-title: JavaGuide（Java学习&&面试指南）
+title: JavaGuide（Java学习&面试指南）
 ---
 
 ::: tip 友情提示
