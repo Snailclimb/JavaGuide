@@ -654,10 +654,10 @@ public class DefaultAopProxyFactory implements AopProxyFactory, Serializable {
 > `TransactionInterceptor` 类中的 `invoke()`方法内部实际调用的是 `TransactionAspectSupport` 类的 `invokeWithinTransaction()`方法。由于新版本的 Spring 对这部分重写很大，而且用到了很多响应式编程的知识，这里就不列源码了。
 
 #### Spring AOP 自调用问题
+因为SpringAOP工作原理导致@Transaction失效 。
+当一个方法被标记了@Transactional注解的时候，Spring事务管理器只会在被其他类方法调用的时候生效，而不会在一个类中方法调用生效。
 
-若同一类中的其他没有 `@Transactional` 注解的方法内部调用有 `@Transactional` 注解的方法，有`@Transactional` 注解的方法的事务会失效。
-
-这是由于`Spring AOP`代理的原因造成的，因为只有当 `@Transactional` 注解的方法在类以外被调用的时候，Spring 事务管理才生效。
+这是因为Spring AOP工作原理决定的。因为Spring AOP使用动态代理来实现事务的管理，他会在运行的时候为带有@Transaction注解的方法生成代理对象，并在方法调用的前后应用事物逻辑。如果该方法被其他类调用我们的代理对象就会拦截方法调用并处理事物。但是在一个类中的其他方法内部调用的时候我们代理对象就无法拦截到这个内部调用，因此事物也就失效了。
 
 `MyService` 类中的`method1()`调用`method2()`就会导致`method2()`的事务失效。
 
