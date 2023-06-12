@@ -418,7 +418,7 @@ assertEquals("hello!world!nice!", completableFuture.get());
 
 **那 `thenCompose()` 和 `thenCombine()` 有什么区别呢？**
 
-- `thenCompose()` 可以两个 `CompletableFuture` 对象，并将前一个任务的返回结果作为下一个任务的参数，它们之间存在着先后顺序。
+- `thenCompose()` 可以链接两个 `CompletableFuture` 对象，并将前一个任务的返回结果作为下一个任务的参数，它们之间存在着先后顺序。
 - `thenCombine()` 会在两个任务都执行完成后，把两个任务的结果合并。两个任务是并行执行的，它们之间并没有先后依赖顺序。
 
 ### 并行运行多个 CompletableFuture
