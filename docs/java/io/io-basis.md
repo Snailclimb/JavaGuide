@@ -80,7 +80,7 @@ String result = new String(bufferedInputStream.readAllBytes());
 System.out.println(result);
 ```
 
-`DataInputStream` 用于读取指定类型数据，不能单独使用，必须结合 `FileInputStream` 。
+`DataInputStream` 用于读取指定类型数据，不能单独使用，必须结合其它流，比如 `FileInputStream` 。
 
 ```java
 FileInputStream fileInputStream = new FileInputStream("input.txt");
@@ -138,7 +138,7 @@ FileOutputStream fileOutputStream = new FileOutputStream("output.txt");
 BufferedOutputStream bos = new BufferedOutputStream(fileOutputStream)
 ```
 
-**`DataOutputStream`** 用于写入指定类型数据，不能单独使用，必须结合 `FileOutputStream`
+**`DataOutputStream`** 用于写入指定类型数据，不能单独使用，必须结合其它流，比如 `FileOutputStream` 。
 
 ```java
 // 输出流
