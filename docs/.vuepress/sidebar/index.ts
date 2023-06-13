@@ -472,7 +472,7 @@ export default sidebar({
         {
           text: "分布式锁",
           icon: "lock",
-          children: ["distributed-lock"],
+          children: ["distributed-lock", "distributed-lock-implementations"],
         },
         {
           text: "RPC",

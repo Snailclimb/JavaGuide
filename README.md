@@ -358,7 +358,8 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 ### 分布式锁
 
-[分布式锁常见知识点&面试题总结](https://javaguide.cn/distributed-system/distributed-lock.html)
+- [分布式锁介绍](https://javaguide.cn/distributed-system/distributed-lock.html)
+- [分布式锁常见实现方案总结](https://javaguide.cn/distributed-system/distributed-lock-implementations.html)
 
 ### 分布式事务
 
