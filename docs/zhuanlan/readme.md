@@ -6,6 +6,7 @@ category: 知识星球
 这部分的内容为我的[知识星球](../about-the-author/zhishixingqiu-two-years.md)专属，目前已经更新了下面这些专栏：
 
 - **[《Java 面试指北》](./java-mian-shi-zhi-bei.md)** : 与 JavaGuide 开源版的内容互补！
+- **[《后端面试高频系统设计&场景题》](./back-end-interview-high-frequency-system-design-and-scenario-questions)** : 包含了常见的系统设计案例比如短链系统、秒杀系统以及高频的场景题比如海量数据去重、第三方授权登录。
 - **[《手写 RPC 框架》](./java-mian-shi-zhi-bei.md)** : 从零开始基于 Netty+Kyro+Zookeeper 实现一个简易的 RPC 框架。
 - **[《Java 必读源码系列》](./source-code-reading.md)**：目前已经整理了 Dubbo 2.6.x、Netty 4.x、SpringBoot 2.1 等框架/中间件的源码
 - ......
@@ -16,14 +17,8 @@ category: 知识星球
 
 ## 更多专栏
 
-除了上面介绍的之外，我的[知识星球](../about-the-author/zhishixingqiu-two-years.md)还有 **《Kafka 常见面试题/知识点总结》**、**《程序员副业赚钱之路》**等多个专栏。
+除了上面介绍的之外，我的[知识星球](../about-the-author/zhishixingqiu-two-years.md)还有 《Kafka 常见面试题/知识点总结》、《程序员副业赚钱之路》等多个专栏。
 
-![](https://oss.javaguide.cn/xingqiu/image-20220211231206733.png)
+![知识星球专栏概览](https://oss.javaguide.cn/xingqiu/image-20220211231206733.png)
 
-另外，星球还会有读书活动、学习打卡、简历修改、免费提问、海量 Java 优质面试资源以及各种不定时的福利。
-
-![](https://oss.javaguide.cn/xingqiu/image-20220304124333119.png)
-
-## 星球限时优惠
-
-<!-- @include: @the-way-join-planet.snippet.md -->
+<!-- @include: @planet2.snippet.md -->

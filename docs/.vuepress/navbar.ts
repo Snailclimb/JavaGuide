@@ -19,6 +19,11 @@ export default navbar([
         link: "/about-the-author/zhishixingqiu-two-years.md",
       },
       {
+        text: "星球专属优质专栏",
+        icon: "about",
+        link: "/zhuanlan/",
+      },
+      {
         text: "星球优质主题汇总",
         icon: "star",
         link: "https://www.yuque.com/snailclimb/rpkqw1/ncxpnfmlng08wlf1",

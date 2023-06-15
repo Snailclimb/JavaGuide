@@ -1,5 +1,5 @@
 ---
-title: 《手写 RPC 框架》(付费)
+title: 《手写 RPC 框架》
 category: 知识星球
 ---
 
@@ -18,16 +18,4 @@ category: 知识星球
 - GitHub 地址：[https://github.com/Snailclimb/guide-rpc-framework](https://github.com/Snailclimb/guide-rpc-framework) 。
 - Gitee 地址：[https://gitee.com/SnailClimb/guide-rpc-framework](https://gitee.com/SnailClimb/guide-rpc-framework) 。
 
-## 星球其他资源
-
-除了 **《手写 RPC 框架》** 之外，星球还有 **《Java 必读源码系列》**（目前已经整理了 Dubbo 2.6.x、Netty 4.x、SpringBoot2.1 的源码）、 **《Java 面试指北》**、**《Kafka 常见面试题/知识点总结》** 等多个专属小册。
-
-![](https://oss.javaguide.cn/xingqiu/image-20220316200015412.png)
-
-另外，星球还会有读书活动、学习打卡、简历修改、免费提问、海量 Java 优质面试资源以及各种不定时的福利。
-
-![](https://oss.javaguide.cn/xingqiu/image-20220304124333119.png)
-
-## 星球限时优惠
-
-<!-- @include: @the-way-join-planet.snippet.md -->
+<!-- @include: @planet2.snippet.md -->
