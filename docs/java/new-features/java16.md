@@ -84,7 +84,7 @@ Java 14([ JEP 370](https://openjdk.org/jeps/370)) 的时候，第一次孵化外
 | ---------- | ----------------- | --------------------------------------- | ---------------------------------------- |
 | Java SE 14 | preview           | [JEP 305](https://openjdk.org/jeps/305) | 首次引入 instanceof 模式匹配。           |
 | Java SE 15 | Second Preview    | [JEP 375](https://openjdk.org/jeps/375) | 相比较上个版本无变化，继续收集更多反馈。 |
-| Java SE 16 | Permanent Release | [JEP 394](https://openjdk.org/jeps/394) | 模式变量不在隐式为 final。               |
+| Java SE 16 | Permanent Release | [JEP 394](https://openjdk.org/jeps/394) | 模式变量不再隐式为 final。               |
 
 从 Java 16 开始，你可以对 `instanceof` 中的变量值进行修改。
 
