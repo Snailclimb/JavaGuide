@@ -9,7 +9,7 @@ Java 16 在 2021 年 3 月 16 日正式发布，非长期支持（LTS）版本�
 
 相关阅读：[OpenJDK Java 16 文档](https://openjdk.java.net/projects/jdk/16/) 。
 
-## JEP 338:向量 API(第二次孵化)
+## JEP 338:向量 API(第一次孵化)
 
 向量（Vector） API 最初由 [JEP 338](https://openjdk.java.net/jeps/338) 提出，并作为[孵化 API](http://openjdk.java.net/jeps/11)集成到 Java 16 中。第二轮孵化由 [JEP 414](https://openjdk.java.net/jeps/414) 提出并集成到 Java 17 中，第三轮孵化由 [JEP 417](https://openjdk.java.net/jeps/417) 提出并集成到 Java 18 中，第四轮由 [JEP 426](https://openjdk.java.net/jeps/426) 提出并集成到了 Java 19 中。
 
