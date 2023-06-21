@@ -334,7 +334,7 @@ public ArrayBlockingQueue(int capacity, boolean fair) {
     }
 ```
 
-这个构造方法里面有两个比较核心的成员变量  `notEmpty`(非空) 和 `notFull` （非满） ，需要我们格外留意，它们是实现生产者和消费者有序工作的关键所在，这一点笔者会在后续的源码解析中详细说明，这里我们只需初步了解一下阻塞队列的构造即可。
+这个构造方法里面有两个比较核心的成员变量 `notEmpty`(非空) 和 `notFull` （非满） ，需要我们格外留意，它们是实现生产者和消费者有序工作的关键所在，这一点笔者会在后续的源码解析中详细说明，这里我们只需初步了解一下阻塞队列的构造即可。
 
 另外两个构造方法都是基于上述的构造方法，默认情况下，我们会使用下面这个构造方法，该构造方法就意味着 `ArrayBlockingQueue` 用的是非公平锁，即各个生产者或者消费者线程收到通知后，对于锁的争抢是随机的。
 
@@ -593,7 +593,7 @@ public E peek() {
         lock.lock();
         try {
             //当队列为空时返回 null
-            return itemAt(takeIndex); 
+            return itemAt(takeIndex);
         } finally {
             //释放锁
             lock.unlock();
@@ -699,12 +699,12 @@ public boolean contains(Object o) {
 
 新增元素：
 
-| 方法                                      | 队列满时处理方式                                        | 方法返回值 |
-| ----------------------------------------- | ------------------------------------------------------- | ---------- |
-| `put(E e)`                                | 线程阻塞，直到中断或被唤醒                              | void       |
-| `offer(E e)`                              | 直接返回 false                                          | boolean    |
-| `offer(E e, long timeout, TimeUnit unit)` | 指定超时时间内阻塞，超过规定时间还未添加成功则返回false | boolean    |
-| `add(E e)`                                | 直接抛出 `IllegalStateException` 异常                   | boolean    |
+| 方法                                      | 队列满时处理方式                                         | 方法返回值 |
+| ----------------------------------------- | -------------------------------------------------------- | ---------- |
+| `put(E e)`                                | 线程阻塞，直到中断或被唤醒                               | void       |
+| `offer(E e)`                              | 直接返回 false                                           | boolean    |
+| `offer(E e, long timeout, TimeUnit unit)` | 指定超时时间内阻塞，超过规定时间还未添加成功则返回 false | boolean    |
+| `add(E e)`                                | 直接抛出 `IllegalStateException` 异常                    | boolean    |
 
 获取/移除元素：
 
@@ -728,11 +728,20 @@ public boolean contains(Object o) {
 
 为了保证线程安全，`ArrayBlockingQueue` 的并发控制采用可重入锁 `ReentrantLock` ，不管是插入操作还是读取操作，都需要获取到锁才能进行操作。并且，它还支持公平和非公平两种方式的锁访问机制，默认是非公平锁。
 
-`ArrayBlockingQueue` 虽名为阻塞队列，但也支持非阻塞获取和新增元素，只是队列满时添加元素会抛出异常，队列为空时获取的元素为 null。
+`ArrayBlockingQueue` 虽名为阻塞队列，但也支持非阻塞获取和新增元素（例如 `poll()` 和 `offer(E e)` 方法），只是队列满时添加元素会抛出异常，队列为空时获取的元素为 null，一般不会使用。
+
+### ArrayBlockingQueue 和 LinkedBlockingQueue 有什么区别？
+
+`ArrayBlockingQueue` 和 `LinkedBlockingQueue` 是 Java 并发包中常用的两种阻塞队列实现，它们都是线程安全的。不过，不过它们之间也存在下面这些区别：
+
+- 底层实现：`ArrayBlockingQueue` 基于数组实现，而 `LinkedBlockingQueue` 基于链表实现。
+- 是否有界：`ArrayBlockingQueue` 是有界队列，必须在创建时指定容量大小。`LinkedBlockingQueue` 创建时可以不指定容量大小，默认是`Integer.MAX_VALUE`，也就是无界的。但也可以指定队列大小，从而成为有界的。
+- 锁是否分离： `ArrayBlockingQueue`中的锁是没有分离的，即生产和消费用的是同一个锁；`LinkedBlockingQueue`中的锁是分离的，即生产用的是`putLock`，消费是`takeLock`，这样可以防止生产者和消费者线程之间的锁争夺。
+- 内存占用：`ArrayBlockingQueue` 需要提前分配数组内存，而 `LinkedBlockingQueue` 则是动态分配链表节点内存。这意味着，`ArrayBlockingQueue` 在创建时就会占用一定的内存空间，且往往申请的内存比实际所用的内存更大，而`LinkedBlockingQueue` 则是根据元素的增加而逐渐占用内存空间。
 
 ### ArrayBlockingQueue 和 ConcurrentLinkedQueue 有什么区别？
 
-`ArrayBlockingQueue` 和 `ConcurrentLinkedQueue` 是 Java 并发包中常用的两种队列实现，它们都是线程安全的，可以在多线程环境下使用。不过，不过它们之间也存在一些区别的。
+`ArrayBlockingQueue` 和 `ConcurrentLinkedQueue` 是 Java 并发包中常用的两种队列实现，它们都是线程安全的。不过，不过它们之间也存在下面这些区别：
 
 - 底层实现：`ArrayBlockingQueue` 基于数组实现，而 `ConcurrentLinkedQueue` 基于链表实现。
 - 是否有界：`ArrayBlockingQueue` 是有界队列，必须在创建时指定容量大小，而 `ConcurrentLinkedQueue` 是无界队列，可以动态地增加容量。
