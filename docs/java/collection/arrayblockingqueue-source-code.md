@@ -1,3 +1,10 @@
+---
+title: ArrayBlockingQueue 源码分析
+category: Java
+tag:
+  - Java集合
+---
+
 ## 阻塞队列简介
 
 ### 阻塞队列的历史

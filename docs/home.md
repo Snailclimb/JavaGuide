@@ -65,6 +65,7 @@ title: JavaGuide（Java学习&面试指南）
 - [HashMap 核心源码+底层数据结构分析](./java/collection/hashmap-source-code.md)
 - [ConcurrentHashMap 核心源码+底层数据结构分析](./java/collection/concurrent-hash-map-source-code.md)
 - [CopyOnWriteArrayList 核心源码分析](./java/collection/copyonwritearraylist-source-code.md)
+- [ArrayBlockingQueue 核心源码分析](./java/collection/arrayblockingqueue-source-code.md)
 
 ### IO
 
