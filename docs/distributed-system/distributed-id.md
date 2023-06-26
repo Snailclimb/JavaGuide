@@ -1,5 +1,5 @@
 ---
-title: 分布式ID常见问题总结
+title: 分布式ID介绍&实现方案总结
 category: 分布式
 ---
 

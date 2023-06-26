@@ -13,6 +13,7 @@ export default sidebar({
   "/high-quality-technical-articles/": highQualityTechnicalArticles,
   "/zhuanlan/": [
     "java-mian-shi-zhi-bei",
+    "back-end-interview-high-frequency-system-design-and-scenario-questions",
     "handwritten-rpc-framework",
     "source-code-reading",
   ],
@@ -89,6 +90,7 @@ export default sidebar({
                 "hashmap-source-code",
                 "concurrent-hash-map-source-code",
                 "copyonwritearraylist-source-code",
+                "arrayblockingqueue-source-code",
               ],
             },
           ],
@@ -472,7 +474,7 @@ export default sidebar({
         {
           text: "分布式锁",
           icon: "lock",
-          children: ["distributed-lock"],
+          children: ["distributed-lock", "distributed-lock-implementations"],
         },
         {
           text: "RPC",

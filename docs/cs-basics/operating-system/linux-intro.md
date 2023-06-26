@@ -373,7 +373,7 @@ Linux 系统是一个多用户多任务的分时操作系统，任何一个要�
 - 用户级别环境变量 : `~/.bashrc`、`~/.bash_profile`。
 - 系统级别环境变量 : `/etc/bashrc`、`/etc/environment`、`/etc/profile`、`/etc/profile.d`。
 
-上述配置文件执行先后顺序为：`/etc/enviroment` –> `/etc/profile` –> `/etc/profile.d` –> `~/.bash_profile` –> `/etc/bashrc` –> `~/.bashrc`
+上述配置文件执行先后顺序为：`/etc/environment` –> `/etc/profile` –> `/etc/profile.d` –> `~/.bash_profile` –> `/etc/bashrc` –> `~/.bashrc`
 
 如果要修改系统级别环境变量文件，需要管理员具备对该文件的写入权限。
 

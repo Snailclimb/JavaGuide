@@ -336,6 +336,7 @@ pool-1-thread-4 End. Time = Sun Apr 12 11:14:47 CST 2020
 pool-1-thread-5 End. Time = Sun Apr 12 11:14:47 CST 2020
 pool-1-thread-3 End. Time = Sun Apr 12 11:14:47 CST 2020
 pool-1-thread-2 End. Time = Sun Apr 12 11:14:47 CST 2020
+Finished all threads  // 任务全部执行完了才会跳出来，因为executor.isTerminated()判断为true了才会跳出while循环，当且仅当调用 shutdown() 方法后，并且所有提交的任务完成后返回为 true
 
 ```
 

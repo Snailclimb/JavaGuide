@@ -31,9 +31,9 @@ ClassFile {
     u2             access_flags;//Class 的访问标记
     u2             this_class;//当前类
     u2             super_class;//父类
-    u2             interfaces_count;//接口
+    u2             interfaces_count;//接口数量
     u2             interfaces[interfaces_count];//一个类可以实现多个接口
-    u2             fields_count;//Class 文件的字段属性
+    u2             fields_count;//Class 文件的字段属性数量
     field_info     fields[fields_count];//一个类可以有多个字段
     u2             methods_count;//Class 文件的方法数量
     method_info    methods[methods_count];//一个类可以有个多个方法
@@ -71,7 +71,7 @@ ClassFile {
     u2             major_version;//Class 的大版本号
 ```
 
-紧接着魔数的四个字节存储的是 Class 文件的版本号：第 5 和第 6 位是**次版本号**，第 7 和第 8 位是**主版本号**。
+紧接着魔数的四个字节存储的是 Class 文件的版本号：第 5 和第 6 个字节是**次版本号**，第 7 和第 8 个字节是**主版本号**。
 
 每当 Java 发布大版本（比如 Java 8，Java9）的时候，主版本号都会加 1。你可以使用 `javap -v` 命令来快速查看 Class 文件的版本号信息。
 
@@ -143,7 +143,7 @@ public class Employee {
 ```java
     u2             this_class;//当前类
     u2             super_class;//父类
-    u2             interfaces_count;//接口
+    u2             interfaces_count;//接口数量
     u2             interfaces[interfaces_count];//一个类可以实现多个接口
 ```
 

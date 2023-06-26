@@ -1,7 +1,4 @@
-推荐你通过在线阅读网站进行阅读，体验更好，速度更快！
-
-- **[JavaGuide 在线阅读网站（新版，推荐 👍）](https://javaguide.cn/)**
-- [JavaGuide 在线阅读版（老版）](https://snailclimb.gitee.io/javaguide/#/)
+推荐你通过在线阅读网站进行阅读，体验更好，速度更快！地址：[javaguide.cn](https://javaguide.cn/)。
 
 [<img src="https://oss.javaguide.cn/xingqiu/xingqiu.png" style="width:850px;margin: 0 auto" />](https://sourl.cn/e7ee87)
 
@@ -32,9 +29,10 @@
 
 ## 项目相关
 
-- [项目介绍](./docs/javaguide/intro.md)
-- [贡献指南](./docs/javaguide/contribution-guideline.md)
-- [常见问题](./docs/javaguide/faq.md)
+- [项目介绍](https://javaguide.cn/javaguide/intro.html)
+- [使用建议](https://javaguide.cn/javaguide/use-suggestion.html)
+- [贡献指南](https://javaguide.cn/javaguide/contribution-guideline.html)
+- [常见问题](https://javaguide.cn/javaguide/faq.html)
 
 ## Java
 
@@ -73,6 +71,7 @@
 - [HashMap 核心源码+底层数据结构分析](./docs/java/collection/hashmap-source-code.md)
 - [ConcurrentHashMap 核心源码+底层数据结构分析](./docs/java/collection/concurrent-hash-map-source-code.md)
 - [CopyOnWriteArrayList 核心源码分析](./docs/java/collection/copyonwritearraylist-source-code.md)
+- [ArrayBlockingQueue 核心源码分析](./docs/java/collection/arrayblockingqueue-source-code.md)
 
 ### IO
 
@@ -353,12 +352,13 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 ### 分布式 ID
 
-- [分布式 ID 常见知识点&面试题总结](https://javaguide.cn/distributed-system/distributed-id.html)
+- [分布式ID介绍&实现方案总结](https://javaguide.cn/distributed-system/distributed-id.html)
 - [分布式 ID 设计指南](https://javaguide.cn/distributed-system/distributed-id-design.html)
 
 ### 分布式锁
 
-[分布式锁常见知识点&面试题总结](https://javaguide.cn/distributed-system/distributed-lock.html)
+- [分布式锁介绍](https://javaguide.cn/distributed-system/distributed-lock.html)
+- [分布式锁常见实现方案总结](https://javaguide.cn/distributed-system/distributed-lock-implementations.html)
 
 ### 分布式事务
 
