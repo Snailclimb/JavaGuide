@@ -78,6 +78,7 @@
 - [IO 基础知识总结](./docs/java/io/io-basis.md)
 - [IO 设计模式总结](./docs/java/io/io-design-patterns.md)
 - [IO 模型详解](./docs/java/io/io-model.md)
+- [NIO 核心知识总结](./docs/java/io/nio-basis.md)
 
 ### 并发
 

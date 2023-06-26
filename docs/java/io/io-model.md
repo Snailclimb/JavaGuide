@@ -104,7 +104,7 @@ IO 多路复用模型中，线程首先发起 select 调用，询问内核数据
 
 Java 中的 NIO ，有一个非常重要的**选择器 ( Selector )** 的概念，也可以被称为 **多路复用器**。通过它，只需要一个线程便可以管理多个客户端连接。当客户端数据到了之后，才会为其服务。
 
-![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0f483f2437ce4ecdb180134270a00144~tplv-k3u1fbpfcp-watermark.image)
+![Buffer、Channel和Selector三者之间的关系](https://oss.javaguide.cn/github/javaguide/java/nio/channel-buffer-selector.png)
 
 ### AIO (Asynchronous I/O)
 
@@ -118,7 +118,7 @@ AIO 也就是 NIO 2。Java 7 中引入了 NIO 的改进版 NIO 2,它是异步 IO
 
 最后，来一张图，简单总结一下 Java 中的 BIO、NIO、AIO。
 
-![](https://images.xiaozhuanlan.com/photo/2020/33b193457c928ae02217480f994814b6.png)
+![BIO、NIO 和 AIO 对比](https://oss.javaguide.cn/github/javaguide/java/nio/bio-aio-nio.png)
 
 ## 参考
 

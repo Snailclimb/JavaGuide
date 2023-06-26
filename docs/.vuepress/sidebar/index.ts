@@ -126,7 +126,7 @@ export default sidebar({
           prefix: "io/",
           icon: "code",
           collapsible: true,
-          children: ["io-basis", "io-design-patterns", "io-model"],
+          children: ["io-basis", "io-design-patterns", "io-model", "nio-basis"],
         },
         {
           text: "JVM",
