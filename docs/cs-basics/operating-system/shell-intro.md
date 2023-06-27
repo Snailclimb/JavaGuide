@@ -110,21 +110,21 @@ echo  "helloworld!"
 
 字符串是 shell 编程中最常用最有用的数据类型（除了数字和字符串，也没啥其它类型好用了），字符串可以用单引号，也可以用双引号。这点和 Java 中有所不同。
 
-在单引号中所有的特殊符号，如$和反引号都没有特殊含义。在双引号中，除了"$","\"和反引号，其他的字符没有特殊含义。
+在单引号中所有的特殊符号，如$和反引号都没有特殊含义。在双引号中，除了"$"、"\\"、反引号和感叹号（需开启 `history expansion`），其他的字符没有特殊含义。
 
 **单引号字符串：**
 
 ```shell
 #!/bin/bash
 name='SnailClimb'
-hello='Hello, I  am '$name'!'
+hello='Hello, I am $name!'
 echo $hello
 ```
 
 输出内容：
 
 ```
-Hello, I  am '$name'!
+Hello, I am $name!
 ```
 
 **双引号字符串：**
@@ -132,7 +132,7 @@ Hello, I  am '$name'!
 ```shell
 #!/bin/bash
 name='SnailClimb'
-hello="Hello, I  am "$name"!"
+hello="Hello, I am $name!"
 echo $hello
 ```
 
