@@ -52,7 +52,7 @@ star: 2
 
 免费赠送多本优质 PDF 面试手册。
 
-![](https://oss.javaguide.cn/xingqiu/image-20220723120918434.png)
+![星球 PDF 面试手册](https://oss.javaguide.cn/xingqiu/image-20220723120918434.png)
 
 ### 优质精华主题沉淀
 
@@ -125,9 +125,11 @@ star: 2
 
 ## 如何加入？
 
-**方式一（不推荐）**：扫描下面的二维码原价加入（续费半价不到）。
+**方式一（不推荐）**：扫描下面的 10 元优惠卷直接加入（续费半价不到）。
 
-![知识星球](https://oss.javaguide.cn/xingqiu/image-20220311203414600.png)
+![知识星球10元优惠卷](https://oss.javaguide.cn/xingqiu/xingqiuyouhuijuan-10.jpg)
+
+使用这种方式进入的话，建议你也添加一下我的个人微信（**备注“星球”**即可），方便后续交流沟通。
 
 **方式二（推荐）**：添加我的个人微信（**javaguide1024**）领取一个 **30** 元的星球专属优惠券（续费半价不到）。
 

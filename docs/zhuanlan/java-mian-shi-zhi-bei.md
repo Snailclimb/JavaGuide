@@ -4,6 +4,12 @@ category: 知识星球
 star: 5
 ---
 
+我花费了两年多的时间，写了一本针对 Java 面试的《Java面试指北》。这份资料的内容质量还是非常高的，帮助了上万名同学高效准备 Java 面试。
+
+目前的成绩：累计阅读 **162w+** ,点赞 **2300+** ，评论 **700+** （几乎每一条提问类型的评论我看到后都会用心回复）。
+
+![《Java 面试指北》统计](https://oss.javaguide.cn/xingqiu/java-interview-guide-statistics.png)
+
 ## 介绍
 
 **《Java 面试指北》** 是我的[知识星球](../about-the-author/zhishixingqiu-two-years.md)的一个内部小册，和 [JavaGuide 开源版](https://javaguide.cn/)的内容互补。相比于开源版本来说，《Java 面试指北》添加了下面这些内容（不仅仅是这些内容）：
@@ -44,7 +50,7 @@ star: 5
 
 如果你是非科班的同学，也能在这些文章中找到对应的非科班的同学写的面经。
 
-![《Java 面试指北》面经篇](https://oss.javaguide.cn/githubjuejinjihua/thinkimage-20220612185810480.png)
+![《Java 面试指北》面经篇](https://oss.javaguide.cn/javamianshizhibei/thinkimage-20220612185810480.png)
 
 并且，[知识星球](https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html)还有专门分享面经和面试题的专题，里面会分享很多优质的面经和面试题。
 
@@ -72,6 +78,10 @@ star: 5
 
 每一篇内容都非常干货，不少球友看了之后表示收获满满。不过，最重要的还是知行合一。
 
+### 工作篇
 
+**「工作篇」** 这个系列主要内容是分享一些有助于个人以及职场发展的内容。
+
+![《Java 面试指北》工作篇](https://oss.javaguide.cn/javamianshizhibei/gongzuopian.jpg)
 
 <!-- @include: @planet2.snippet.md -->
