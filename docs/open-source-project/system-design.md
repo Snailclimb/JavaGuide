@@ -6,12 +6,24 @@ icon: "xitongsheji"
 
 ## 基础框架
 
-- [Spring Boot](https://github.com/spring-projects/spring-boot "spring-boot")：Spring Boot 可以轻松创建独立的生产级基于 Spring 的应用程序,内置 web 服务器让你可以像运行普通 Java 程序一样运行项 目。另外，大部分 Spring Boot 项目只需要少量的配置即可，这有别于 Spring 的重配置。
+- [Spring Boot](https://github.com/spring-projects/spring-boot "spring-boot")：Spring Boot 可以轻松创建独立的生产级基于 Spring 的应用程序，内置 web 服务器让你可以像运行普通 Java 程序一样运行项 目。另外，大部分 Spring Boot 项目只需要少量的配置即可，这有别于 Spring 的重配置。
 - [Javalin](https://github.com/tipsy/javalin)：一个轻量级的 Web 框架，同时支持 Java 和 Kotlin，被微软、红帽、Uber 等公司使用。
 - [Quarkus](https://github.com/quarkusio/quarkus) : 用于编写 Java 应用程序的云原生和容器优先的框架。
 - [Guice](https://github.com/google/guice)：Google 开源的一个轻量级依赖注入框架，相当于一个功能极简化的轻量级 Spring Boot。在某些情况下非常实用，就比如说我们的项目只需要使用依赖注入，不需要 AOP 等功能特性。
 - [SOFABoot](https://github.com/sofastack/sofa-boot)：SOFABoot 基于 Spring Boot ，不过在其基础上增加了 Readiness Check，类隔离，日志空间隔离等等能力。 配套提供的还有：SOFARPC（RPC 框架）、SOFABolt（基于 Netty 的远程通信框架）、SOFARegistry（注册中心）...详情请参考：[SOFAStack](https://github.com/sofastack) 。
 - [Spring Batch](https://github.com/spring-projects/spring-batch) : Spring Batch 是一个轻量级但功能又十分全面的批处理框架，主要用于批处理场景比如从数据库、文件或队列中读取大量记录。不过，需要注意的是：Spring Batch 不是调度框架。商业和开源领域都有许多优秀的企业调度框架比如 Quartz、XXL-JOB、Elastic-Job。它旨在与调度程序一起工作，而不是取代调度程序。更多介绍请参考 [Spring Batch 官方文档](https://docs.spring.io/spring-batch/docs/4.3.x/reference/html/spring-batch-intro.html#spring-batch-intro)，入门教程可以参考 [Spring Batch 从入门到实战](https://mrbird.cc/Spring-Batch入门.html)。
+
+## Bean 映射
+
+- [MapStruct](https://github.com/mapstruct/mapstruct)（推荐）：满足JSR269规范的一个Java注解处理器，用于为Java Bean生成类型安全且高性能的映射。它基于编译阶段生成get/set代码，此实现过程中没有反射，不会造成额外的性能损失。
+- [JMapper](https://github.com/jmapper-framework/jmapper-core) :  一个高性能且易于使用的 Bean 映射框架。
+
+## 字节码操作
+
+- [ASM](https://asm.ow2.io/)：通用 Java 字节码操作和分析框架。它可用于直接以二进制形式修改现有类或动态生成类。
+- [Byte Buddy](https://github.com/raphw/byte-buddy)：Java字节码生成和操作库，用于在 Java 应用程序运行时创建和修改 Java 类，无需使用编译器
+- [Javassist](https://github.com/jboss-javassist/javassist)：动态编辑Java字节码的类库。
+- [Recaf](https://github.com/Col-E/Recaf)：现代Java 字节码编辑器，基于 ASM（Java 字节码操作框架） 来修改字节码，可简化编辑已编译 Java 应用程序的过程。
 
 ## 数据库
 
@@ -57,8 +69,6 @@ icon: "xitongsheji"
 
 ## 测试
 
-为了能让我们编写的系统更加健壮，必要的测试（UI 测试、单元测试...）是必须的。
-
 ### 测试框架
 
 - [JUnit](http://junit.org/) : Java 测试框架。
@@ -92,25 +102,14 @@ icon: "xitongsheji"
 - [PowerJob](https://gitee.com/KFCFans/PowerJob)：新一代分布式任务调度与计算框架，支持 CRON、API、固定频率、固定延迟等调度策略，提供工作流来编排任务解决依赖关系，使用简单，功能强大，文档齐全，欢迎各位接入使用！<http://www.powerjob.tech/> 。
 - [DolphinScheduler](https://github.com/apache/dolphinscheduler)：分布式易扩展的可视化工作流任务调度平台。
 
-相关阅读：
-
-- [Spring Job、Quartz、XXL-Job 对比+全解析](https://mp.weixin.qq.com/s/jqN4noo5NazckPCehWFgpA)
-- [推荐 5 个 YYDS 的 Java 项目](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247518215&idx=1&sn=91e467f39322d2e7979b85fe235822d2&chksm=cea1c7ccf9d64edaf966c95923d72d337bf5e655a773a3d295d65fc92e4535ae5d8b0e6d9d86&token=2063686030&lang=zh_CN#rd)
-
 ## 分布式
 
 ### API 网关
 
-微服务下一个系统被拆分为多个服务，但是像 安全认证，流量控制，日志，监控等功能是每个服务都需要的，没有网关的话，我们就需要在每个服务中单独实现，这使得我们做了很多重复的事情并且没有一个全局的视图来统一管理这些功能。
-
-综上：一般情况下，网关一般都会提供请求转发、安全认证（身份/权限认证）、流量控制、负载均衡、容灾、日志、监控这些功能。
-
-上面介绍了这么多功能实际上网关主要做了一件事情：请求过滤 。权限校验、流量控制这些都可以通过过滤器实现，请求转也是通过过滤器实现的。
-
-1. [Kong](https://github.com/Kong/kong "kong")：Kong 是一个云原生、快速的、可伸缩的分布式微服务抽象层(也称为 API 网关、API 中间件或在某些情况下称为服务网格)。2015 年作为开源项目发布，其核心价值是高性能和可扩展性。
-2. [Soul](https://github.com/Dromara/soul "soul")：高性能、基于 webflux 的反应式 Java API 网关
-3. [Spring Cloud Gateway](https://github.com/spring-cloud/spring-cloud-gateway) : 基于 Spring Framework 5.x 和 Spring Boot 2.x 构建的高性能网关。
-4. [Zuul](https://github.com/Netflix/zuul) : Zuul 是一个 L7 应用程序网关，它提供了动态路由，监视，弹性，安全性等功能。
+- [Kong](https://github.com/Kong/kong "kong")：Kong 是一个云原生、快速的、可伸缩的分布式微服务抽象层(也称为 API 网关、API 中间件或在某些情况下称为服务网格)。2015 年作为开源项目发布，其核心价值是高性能和可扩展性。
+- [ShenYu](https://github.com/Dromara/soul "soul")：适用于所有微服务的可伸缩、高性能、响应性 API 网关解决方案。
+- [Spring Cloud Gateway](https://github.com/spring-cloud/spring-cloud-gateway) : 基于 Spring Framework 5.x 和 Spring Boot 2.x 构建的高性能网关。
+- [Zuul](https://github.com/Netflix/zuul) : Zuul 是一个 L7 应用程序网关，它提供了动态路由，监视，弹性，安全性等功能。
 
 ### 配置中心
 
@@ -121,11 +120,9 @@ icon: "xitongsheji"
 
 ### 链路追踪
 
-目前分布式链路追踪系统基本都是根据谷歌的《Dapper 大规模分布式系统的跟踪系统》这篇论文发展而来，主流的有 Pinpoint，Skywalking ，CAT（当然也有其他的例如 Zipkin，Jaeger 等产品，不过总体来说不如前面选取的 3 个完成度高）等。
-
-1. [Skywalking](https://github.com/apache/skywalking "skywalking") : 针对分布式系统的应用性能监控，尤其是针对微服务、云原生和面向容器的分布式系统架构。
-2. [Zipkin](https://github.com/openzipkin/zipkin "zipkin")：Zipkin 是一个分布式跟踪系统。它有助于收集解决服务体系结构中的延迟问题所需的时序数据。功能包括该数据的收集和查找。
-3. [CAT](https://github.com/dianping/cat "cat")：CAT 作为服务端项目基础组件，提供了 Java, C/C++, Node.js, Python, Go 等多语言客户端，已经在美团点评的基础架构中间件框架（MVC 框架，RPC 框架，数据库框架，缓存框架等，消息队列，配置系统等）深度集成，为美团点评各业务线提供系统丰富的性能指标、健康状况、实时告警等。
+- [Skywalking](https://github.com/apache/skywalking "skywalking") : 针对分布式系统的应用性能监控，尤其是针对微服务、云原生和面向容器的分布式系统架构。
+- [Zipkin](https://github.com/openzipkin/zipkin "zipkin")：Zipkin 是一个分布式跟踪系统。它有助于收集解决服务体系结构中的延迟问题所需的时序数据。功能包括该数据的收集和查找。
+- [CAT](https://github.com/dianping/cat "cat")：CAT 作为服务端项目基础组件，提供了 Java, C/C++, Node.js, Python, Go 等多语言客户端，已经在美团点评的基础架构中间件框架（MVC 框架，RPC 框架，数据库框架，缓存框架等，消息队列，配置系统等）深度集成，为美团点评各业务线提供系统丰富的性能指标、健康状况、实时告警等。
 
 相关阅读：[Skywalking 官网对于主流开源链路追踪系统的对比](https://skywalking.apache.org/zh/blog/2019-03-29-introduction-of-skywalking-and-simple-practice.html)
 
@@ -139,7 +136,7 @@ icon: "xitongsheji"
 
 ### 缓存
 
-- [Caffeine](https://github.com/ben-manes/caffeine) : 一款强大的本地缓存解决方案，性能非常 🐂。
+- [Caffeine](https://github.com/ben-manes/caffeine) : 一款强大的本地缓存解决方案，性能非常强大。
 - [Redis](https://github.com/redis/redis)：一个使用 C 语言开发的内存数据库，分布式缓存首选。
 
 ### 消息队列
@@ -159,13 +156,11 @@ icon: "xitongsheji"
 - [Kafdrop](https://github.com/obsidiandynamics/kafdrop) : 一个用于查看 Kafka 主题和浏览消费者组的 Web UI。
 - [EFAK](https://github.com/smartloli/EFAK) （Eagle For Apache Kafka，以前叫做 Kafka Eagle）：一个简单的高性能监控系统，用于对 Kafka 集群进行全面的监控和管理。
 
-### 数据库中间件
+### 读写分离和分库分表
 
 - [ShardingSphere](https://github.com/apache/shardingsphere)：ShardingSphere 是一套开源的分布式数据库中间件解决方案组成的生态圈，它由 Sharding-JDBC、Sharding-Proxy 和 Sharding-Sidecar（计划中）这 3 款相互独立的产品组成。
 - [MyCat](https://github.com/MyCatApache/MyCat2) : MyCat 是数据库分库分表的中间件，MyCat 使用最多的两个功能是：读写分离和分库分表。MyCat 是一些社区爱好者在阿里 Cobar 的基础上进行二次开发，解决了 Cobar 当时存 在的一些问题，并且加入了许多新的功能在其中。
-- [dynamic-datasource-spring-boot-starter](https://github.com/baomidou/dynamic-datasource-spring-boot-starter)：dynamic-datasource-spring-boot-starter 是一个基于 springboot 的快速集成多数据源的启动器。如果说你有配置多数据源、读写分离等需求的话，可以了解一下这个项目。
-
-相关阅读：[数据库中间件详解（精品长文）](https://zhuanlan.zhihu.com/p/87144535)
+- [dynamic-datasource-spring-boot-starter](https://github.com/baomidou/dynamic-datasource-spring-boot-starter)：一个基于 Spring Boot 的快速集成多数据源的启动器，支持多数据源、动态数据源、主从分离、读写分离和分布式事务。
 
 ## 高可用
 
@@ -176,7 +171,7 @@ icon: "xitongsheji"
 - [Sentinel](https://github.com/alibaba/Sentinel)（推荐）：面向分布式服务架构的高可用防护组件，主要以流量为切入点，从流量控制、熔断降级、系统自适应保护等多个维度来帮助用户保障微服务的稳定性。
 - [Hystrix](https://github.com/Netflix/Hystrix)：类似于 Sentinel 。
 
-相关阅读：[Sentinel 与 Hystrix 的对比](https://sentinelguard.io/zh-cn/blog/sentinel-vs-hystrix.html)
+相关阅读：[Sentinel 与 Hystrix 的对比](https://sentinelguard.io/zh-cn/blog/sentinel-vs-hystrix.html)。
 
 单机限流：
 

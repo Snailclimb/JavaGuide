@@ -7,6 +7,8 @@ category: 开源项目
 
 精选 GitHub 和 Gitee 上优质的 Java 开源项目。
 
+灵感来源于[awesome-java](https://github.com/akullpp/awesome-java) 这个项目，可以看作是这个项目的中文本土版本，项目类型更全面且加入了更多中文开源项目。
+
 欢迎大家在项目 [issues 区](https://github.com/CodingDocs/awesome-java/issues)推荐自己认可的 Java 开源项目，让我们共同维护一个优质的 Java 开源项目精选集！
 
 - GitHub 地址：[https://github.com/CodingDocs/awesome-java](https://github.com/CodingDocs/awesome-java)

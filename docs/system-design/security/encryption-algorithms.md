@@ -171,6 +171,10 @@ AES 的速度比 3DES 快，而且更安全。
 
 ![AES（Advanced Encryption Standard）](https://oss.javaguide.cn/github/javaguide/system-design/security/aes-steps.jpg)
 
+DES 算法和 AES 算法简单对比（图片来自于：[RSA vs. AES Encryption: Key Differences Explained](https://cheapsslweb.com/blog/rsa-vs-aes-encryption)）：
+
+![DES 和 AES 对比](https://oss.javaguide.cn/github/javaguide/system-design/security/des-vs-aes.png)
+
 基于 Java 实现 AES 算法代码示例：
 
 ```java
