@@ -302,6 +302,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 - [JWT 优缺点分析以及常见问题解决方案](./system-design/security/advantages-and-disadvantages-of-jwt.md)
 - [SSO 单点登录详解](./system-design/security/sso-intro.md)
 - [权限系统设计详解](./system-design/security/design-of-authority-system.md)
+- [常见加密算法总结](./system-design/security/encryption-algorithms.md)
 
 #### 数据脱敏
 

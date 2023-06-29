@@ -433,6 +433,7 @@ export default sidebar({
             "advantages-and-disadvantages-of-jwt",
             "sso-intro",
             "design-of-authority-system",
+            "encryption-algorithms",
             "sentive-words-filter",
             "data-desensitization",
           ],
