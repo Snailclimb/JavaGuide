@@ -110,7 +110,7 @@ OK
 ```bash
 > EXPIRE key 60
 (integer) 1
-> SETNX key 60 value # 设置值并设置过期时间
+> SETEX key 60 value # 设置值并设置过期时间
 OK
 > TTL key
 (integer) 56
