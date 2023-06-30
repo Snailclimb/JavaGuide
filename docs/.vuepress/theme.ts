@@ -33,7 +33,7 @@ export default hopeTheme({
     "Author",
     "Category",
     "Tag",
-    "Date",
+    // "Date",
     "Original",
     "Word",
     "ReadingTime",

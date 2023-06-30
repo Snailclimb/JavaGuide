@@ -411,6 +411,7 @@ export default sidebar({
           text: "基础",
           prefix: "basis/",
           icon: "basic",
+          collapsible: true,
           children: [
             "RESTfulAPI",
             "software-engineering",
