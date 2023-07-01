@@ -22,7 +22,7 @@ tag:
 
 布隆过滤器（Bloom Filter）是一个叫做 Bloom 的老哥于 1970 年提出的。我们可以把它看作由二进制向量（或者说位数组）和一系列随机映射函数（哈希函数）两部分组成的数据结构。相比于我们平时常用的的 List、Map、Set 等数据结构，它占用空间更少并且效率更高，但是缺点是其返回的结果是概率性的，而不是非常准确的。理论情况下添加到集合中的元素越多，误报的可能性就越大。并且，存放在布隆过滤器的数据不容易删除。
 
-Bloom Filter 会使用一个较大的 bit 数组来保存所有的数据，数组中的每个元素都只占用 1 bit ，并且每个元素只能是 0 或者 1（代表 false 或者 true），这也是 Bloom Filter 节省内存的核心所在。这样来算的话，申请一个 100w 个元素的位数组只占用 1000000Bit / 8 = 125000 Byte = 125000/1024 kb ≈ 122kb 的空间。
+Bloom Filter 会使用一个较大的 bit 数组来保存所有的数据，数组中的每个元素都只占用 1 bit ，并且每个元素只能是 0 或者 1（代表 false 或者 true），这也是 Bloom Filter 节省内存的核心所在。这样来算的话，申请一个 100w 个元素的位数组只占用 1000000Bit / 8 = 125000 Byte = 125000/1024 KB ≈ 122KB 的空间。
 
 ![位数组](https://oss.javaguide.cn/github/javaguide/cs-basics/algorithms/bloom-filter-bit-table.png)
 
@@ -265,6 +265,8 @@ root@21396d02c252:/data# redis-cli
 127.0.0.1:6379>
 ```
 
+**注意：当前rebloom镜像已经被废弃，官方推荐使用[redis-stack](https://hub.docker.com/r/redis/redis-stack)**
+
 ### 常用命令一览
 
 > 注意：key : 布隆过滤器的名称，item : 添加的元素。
@@ -274,11 +276,11 @@ root@21396d02c252:/data# redis-cli
 3. **`BF.EXISTS`** : 确定元素是否在布隆过滤器中存在。格式：`BF.EXISTS {key} {item}`。
 4. **`BF.MEXISTS`**：确定一个或者多个元素是否在布隆过滤器中存在格式：`BF.MEXISTS {key} {item} [item ...]`。
 
-另外， `BF. RESERVE` 命令需要单独介绍一下：
+另外， `BF.RESERVE` 命令需要单独介绍一下：
 
 这个命令的格式如下：
 
-`BF. RESERVE {key} {error_rate} {capacity} [EXPANSION expansion]` 。
+`BF.RESERVE {key} {error_rate} {capacity} [EXPANSION expansion]` 。
 
 下面简单介绍一下每个参数的具体含义：
 

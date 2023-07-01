@@ -406,7 +406,8 @@ done
 
 ```shell
 #!/bin/bash
-for((i=1;i<=5;i++));do
+length=5
+for((i=1;i<=length;i++));do
     echo $i;
 done;
 ```
