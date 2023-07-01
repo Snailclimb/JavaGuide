@@ -265,6 +265,8 @@ root@21396d02c252:/data# redis-cli
 127.0.0.1:6379>
 ```
 
+**注意：当前rebloom镜像已经被废弃，官方推荐使用[redis-stack](https://hub.docker.com/r/redis/redis-stack)**
+
 ### 常用命令一览
 
 > 注意：key : 布隆过滤器的名称，item : 添加的元素。
@@ -274,11 +276,11 @@ root@21396d02c252:/data# redis-cli
 3. **`BF.EXISTS`** : 确定元素是否在布隆过滤器中存在。格式：`BF.EXISTS {key} {item}`。
 4. **`BF.MEXISTS`**：确定一个或者多个元素是否在布隆过滤器中存在格式：`BF.MEXISTS {key} {item} [item ...]`。
 
-另外， `BF. RESERVE` 命令需要单独介绍一下：
+另外， `BF.RESERVE` 命令需要单独介绍一下：
 
 这个命令的格式如下：
 
-`BF. RESERVE {key} {error_rate} {capacity} [EXPANSION expansion]` 。
+`BF.RESERVE {key} {error_rate} {capacity} [EXPANSION expansion]` 。
 
 下面简单介绍一下每个参数的具体含义：
 
