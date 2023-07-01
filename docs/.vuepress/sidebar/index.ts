@@ -91,6 +91,7 @@ export default sidebar({
                 "concurrent-hash-map-source-code",
                 "copyonwritearraylist-source-code",
                 "arrayblockingqueue-source-code",
+                "priorityqueue-source-code"
               ],
             },
           ],
