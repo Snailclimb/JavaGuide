@@ -402,33 +402,26 @@ public E peek() {
 为了验证笔者小顶堆各个操作的正确性，笔者编写了下面这样一段测试代码，首先随机生成 1000w 个数据存到小顶堆中，然后进行出队并将元素存到新数组中，进行遍历如果前一个元素比后一个元素大，则说明我们的小顶堆实现的有问题。
 
 ```java
-public class Main {
-    public static void main(String[] args) {
+int n = 1000_0000;
 
-        int n = 1000_0000;
+MinHeap<Integer> heap = new MinHeap<>(n, Comparator.comparingInt(a -> a));
 
-        MinHeap<Integer> heap = new MinHeap<>(n, (a, b) -> a - b);
+//往堆中随机存放1000w个元素
+for (int i = 0; i < n; i++) {
+    heap.add(ThreadLocalRandom.current().nextInt(0, n));
+}
 
+int[] arr = new int[n];
 
-        //往堆中随机存放1000w个元素
-        for (int i = 0; i < n; i++) {
-            heap.add(RandomUtil.randomInt(0, n));
-        }
+//进行出队操作，并将元素存到数组中
+for (int i = 0; i < n; i++) {
+    arr[i] = heap.poll();
+}
 
-        int[] arr = new int[n];
-
-        //进行出队操作，并将元素存到数组中
-        for (int i = 0; i < n; i++) {
-            arr[i] = heap.poll();
-        }
-
-        //循环遍历，如果前一个元素比后一个元素大，则说明我们的小顶堆有问题
-        for (int i = 1; i < n; i++) {
-            if (arr[i - 1] > arr[i])
-                throw new RuntimeException("err heap");
-        }
-
-
+//循环遍历，如果前一个元素比后一个元素大，则说明我们的小顶堆有问题
+for (int i = 1; i < n; i++) {
+    if (arr[i - 1] > arr[i]) {
+        throw new RuntimeException("err heap");
     }
 }
 ```
@@ -523,29 +516,26 @@ public class PriorityQueue<E extends Comparable> implements Queue<E> {
 我们的测试代码很简单，因为我们优先队列底层采用的是小顶堆，所以我们随机在优先队列中存放 1000w 条数据，然后使用 poll 取出并存到数组中，因为优先队列底层实现用的是小顶堆，所以假如我们的数组前一个元素大于后一个元素，我们即可说明这个优先队列优先级排列有问题，反之则说明我们的优先队列是实现是正确的。
 
 ```java
- public static void main(String[] args) {
-        //往队列中随机添加1000_0000条数据
-        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>();
-        int n = 1000_0000;
-        for (int i = 0; i < n; i++) {
-            priorityQueue.offer(RandomUtil.randomInt(1, n));
-        }
+//往队列中随机添加1000_0000条数据
+PriorityQueue<Integer> priorityQueue = new PriorityQueue<>();
+int n = 1000_0000;
+for (int i = 0; i < n; i++) {
+    priorityQueue.offer(ThreadLocalRandom.current().nextInt(1, n));
+}
 
-        //将优先队列中的数据按照优先级取出并存到数组中
-        int[] arr = new int[n];
+//将优先队列中的数据按照优先级取出并存到数组中
+int[] arr = new int[n];
 
-        for (int i = 0; i < n; i++) {
-            arr[i] = priorityQueue.poll();
-        }
+for (int i = 0; i < n; i++) {
+    arr[i] = priorityQueue.poll();
+}
 
-        //如果前一个元素大于后一个元素,则说明优先队列优先级排列有问题
-        for (int i = 1; i < arr.length; i++) {
-            if (arr[i - 1] > arr[i]) {
-                throw new RuntimeException("error PriorityQueue");
-            }
-        }
-
+//如果前一个元素大于后一个元素,则说明优先队列优先级排列有问题
+for (int i = 1; i < arr.length; i++) {
+    if (arr[i - 1] > arr[i]) {
+        throw new RuntimeException("error PriorityQueue");
     }
+}
 ```
 
 ## JDK 自带 PriorityQueue 使用示例
