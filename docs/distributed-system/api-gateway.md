@@ -40,7 +40,7 @@ category: 分布式
 
 下图来源于[百亿规模 API 网关服务 Shepherd 的设计与实现 - 美团技术团队 - 2021](https://mp.weixin.qq.com/s/iITqdIiHi3XGKq6u6FRVdg)这篇文章。
 
-![](https://oscimg.oschina.net/oscnet/up-35e102c633bbe8e0dea1e075ea3fee5dcfb.png)
+![](https://oss.javaguide.cn/github/javaguide/distributed-system/api-gateway/up-35e102c633bbe8e0dea1e075ea3fee5dcfb.png)
 
 ## 有哪些常见的网关系统？
 
@@ -50,7 +50,7 @@ Zuul 是 Netflix 开发的一款提供动态路由、监控、弹性、安全的
 
 Zuul 核心架构如下：
 
-![Zuul 核心架构](https://oss.javaguide.cn/github/javaguide/system-design/distributed-system/api-gateway/zuul-core-architecture.webp)
+![Zuul 核心架构](https://oss.javaguide.cn/github/javaguide/distributed-system/api-gateway/zuul-core-architecture.webp)
 
 Zuul 主要通过过滤器（类似于 AOP）来过滤请求，从而实现网关必备的各种功能。
 
@@ -72,7 +72,7 @@ Zuul 主要通过过滤器（类似于 AOP）来过滤请求，从而实现网�
 
 [Zuul 1.x](https://netflixtechblog.com/announcing-zuul-edge-service-in-the-cloud-ab3af5be08ee) 基于同步 IO，性能较差。[Zuul 2.x](https://netflixtechblog.com/open-sourcing-zuul-2-82ea476cb2b3) 基于 Netty 实现了异步 IO，性能得到了大幅改进。
 
-![Zuul2 架构](https://oscimg.oschina.net/oscnet/up-4f9047dc9109e27f9fced1b365e2b976e9d.png)
+![Zuul2 架构](https://oss.javaguide.cn/github/javaguide/distributed-system/api-gateway/zuul2-core-architecture.png)
 
 - GitHub 地址： <https://github.com/Netflix/zuul>
 - 官方 Wiki： <https://github.com/Netflix/zuul/wiki>
@@ -128,7 +128,7 @@ APISIX 是一款基于 Nginx 和 etcd 的高性能、云原生、可扩展的网
 
 与传统 API 网关相比，APISIX 具有动态路由和插件热加载，特别适合微服务系统下的 API 管理。并且，APISIX 与 SkyWalking（分布式链路追踪系统）、Zipkin（分布式链路追踪系统）、Prometheus（监控系统） 等 DevOps 生态工具对接都十分方便。
 
-![APISIX 架构图](https://oscimg.oschina.net/oscnet/up-cc6717d095705a584dd8daaaadb13c5c75b.png)
+![APISIX 架构图](https://oss.javaguide.cn/github/javaguide/distributed-system/api-gateway/apisix-architecture.png)
 
 作为 NGINX 和 Kong 的替代项目，APISIX 目前已经是 Apache 顶级开源项目，并且是最快毕业的国产开源项目。国内目前已经有很多知名企业（比如金山、有赞、爱奇艺、腾讯、贝壳）使用 APISIX 处理核心的业务流量。
 
@@ -141,7 +141,7 @@ APISIX 同样支持定制化的插件开发。开发者除了能够使用 Lua �
 
 > Wasm 是基于堆栈的虚拟机的二进制指令格式，一种低级汇编语言，旨在非常接近已编译的机器代码，并且非常接近本机性能。Wasm 最初是为浏览器构建的，但是随着技术的成熟，在服务器端看到了越来越多的用例。
 
-![](https://oscimg.oschina.net/oscnet/up-a240d3b113cde647f5850f4c7cc55d4ff5c.png)
+![](https://oss.javaguide.cn/github/javaguide/distributed-system/api-gateway/up-a240d3b113cde647f5850f4c7cc55d4ff5c.png)
 
 - Github 地址：<https://github.com/apache/apisix>
 - 官网地址： <https://apisix.apache.org/zh/>
@@ -157,7 +157,7 @@ APISIX 同样支持定制化的插件开发。开发者除了能够使用 Lua �
 
 Shenyu 是一款基于 WebFlux 的可扩展、高性能、响应式网关，Apache 顶级开源项目。
 
-![Shenyu 架构](https://oscimg.oschina.net/oscnet/up-1c2b39f22e5a0bb1730531429c4147bfbf8.png)
+![Shenyu 架构](https://oss.javaguide.cn/github/javaguide/distributed-system/api-gateway/shenyu-architecture.png)
 
 Shenyu 通过插件扩展功能，插件是 ShenYu 的灵魂，并且插件也是可扩展和热插拔的。不同的插件实现不同的功能。Shenyu 自带了诸如限流、熔断、转发、重写、重定向、和路由监控等插件。
 

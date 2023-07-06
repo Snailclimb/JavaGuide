@@ -153,8 +153,6 @@ AOT 可以提前编译节省启动时间，那为什么不全部使用这种编�
 - BCL 协议（Oracle Binary Code License Agreement）：可以使用 JDK（支持商用），但是不能进行修改。
 - OTN 协议（Oracle Technology Network License Agreement）：11 及之后新发布的 JDK 用的都是这个协议，可以自己私下用，但是商用需要付费。
 
-![](https://oscimg.oschina.net/oscnet/up-5babce06ef8fad5c4df5d7a6cf53d4a7901.png)
-
 ### Java 和 C++ 的区别?
 
 我知道很多人没学过 C++，但是面试官就是没事喜欢拿咱们 Java 和 C++ 比呀！没办法！！！就算没学过 C++，也要记下来。
@@ -515,7 +513,7 @@ System.out.println(i1==i2);
 
 记住：**所有整型包装类对象之间值的比较，全部使用 equals 方法比较**。
 
-![](https://oscimg.oschina.net/oscnet/up-1ae0425ce8646adfb768b5374951eeb820d.png)
+![](https://oss.javaguide.cn/github/javaguide/up-1ae0425ce8646adfb768b5374951eeb820d.png)
 
 ### 自动装箱与拆箱了解吗？原理是什么？
 

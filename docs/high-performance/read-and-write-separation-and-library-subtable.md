@@ -178,11 +178,25 @@ MySQL binlog(binary log 即二进制日志文件) 主要记录了 MySQL 数据�
 
 ### 分库分表有没有什么比较推荐的方案？
 
+Apache ShardingSphere 是一款分布式的数据库生态系统， 可以将任意数据库转换为分布式数据库，并通过数据分片、弹性伸缩、加密等能力对原有数据库进行增强。
+
 ShardingSphere 项目（包括 Sharding-JDBC、Sharding-Proxy 和 Sharding-Sidecar）是当当捐入 Apache 的，目前主要由京东数科的一些巨佬维护。
 
-![](https://oscimg.oschina.net/oscnet/up-0aa05fa5f54e41a44b09619fc0ee597933c.png)
+ShardingSphere 绝对可以说是当前分库分表的首选！ShardingSphere 的功能完善，除了支持读写分离和分库分表，还提供分布式事务、数据库治理、影子库、数据加密和脱敏等功能。
 
-ShardingSphere 绝对可以说是当前分库分表的首选！ShardingSphere 的功能完善，除了支持读写分离和分库分表，还提供分布式事务、数据库治理等功能。
+ShardingSphere 提供的功能如下：
+
+![ShardingSphere 提供的功能](https://oss.javaguide.cn/github/javaguide/high-performance/shardingsphere-features.png)
+
+ShardingSphere 的优势如下（摘自 ShardingSphere 官方文档：<https://shardingsphere.apache.org/document/current/cn/overview/>）：
+
+- 极致性能：驱动程序端历经长年打磨，效率接近原生 JDBC，性能极致。
+- 生态兼容：代理端支持任何通过 MySQL/PostgreSQL 协议的应用访问，驱动程序端可对接任意实现 JDBC 规范的数据库。
+- 业务零侵入：面对数据库替换场景，ShardingSphere 可满足业务无需改造，实现平滑业务迁移。
+- 运维低成本：在保留原技术栈不变前提下，对 DBA 学习、管理成本低，交互友好。
+- 安全稳定：基于成熟数据库底座之上提供增量能力，兼顾安全性及稳定性。
+- 弹性扩展：具备计算、存储平滑在线扩展能力，可满足业务多变的需求。
+- 开放生态：通过多层次（内核、功能、生态）插件化能力，为用户提供可定制满足自身特殊需求的独有系统。
 
 另外，ShardingSphere 的生态体系完善，社区活跃，文档完善，更新和发布比较频繁。
 

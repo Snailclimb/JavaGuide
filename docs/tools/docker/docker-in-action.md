@@ -20,7 +20,7 @@ tag:
 
 官网地址：<https://www.docker.com/> 。
 
-![认识容器](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/container.png)
+![认识容器](https://oss.javaguide.cn/github/javaguide/tools/docker/container.png)
 
 ### 为什么要用 Docker?
 
@@ -46,35 +46,35 @@ Docker 的出现完美地解决了这一问题，我们可以在容器中安装 
 
 接下来对 Docker 进行安装，以 Windows 系统为例，访问 Docker 的官网：
 
-![](https://oscimg.oschina.net/oscnet/up-4e3146984adaee0067bdc5e9b1d757bb479.png)
+![安装 Docker](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-install-windows.png)
 
 然后点击`Get Started`：
 
-![](https://oscimg.oschina.net/oscnet/up-96adfbfebe3e59097c8ba25e55f68ba7908.png)
+![安装 Docker](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-install-windows-download.png)
 
 在此处点击`Download for Windows`即可进行下载。
 
 如果你的电脑是`Windows 10 64位专业版`的操作系统，则在安装 Docker 之前需要开启一下`Hyper-V`，开启方式如下。打开控制面板，选择程序：
 
-![](https://oscimg.oschina.net/oscnet/up-73ce678240826de0f49225250a970b4d205.png)
+![开启 Hyper-V](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-windows-hyperv.png)
 
 点击`启用或关闭Windows功能`：
 
-![](https://oscimg.oschina.net/oscnet/up-9c7a96c332e56b9506325a1f1fdb608a659.png)
+![开启 Hyper-V](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-windows-hyperv-enable.png)
 
 勾选上`Hyper-V`，点击确定即可：
 
-![](https://oscimg.oschina.net/oscnet/up-aad4a58c5e917f7185908d6320d7fb06861.png)
+![开启 Hyper-V](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-windows-hyperv-check.png)
 
 完成更改后需要重启一下计算机。
 
 开启了`Hyper-V`后，我们就可以对 Docker 进行安装了，打开安装程序后，等待片刻点击`Ok`即可：
 
-![](https://oscimg.oschina.net/oscnet/up-62ac3c9184bdc21387755294613ff5054c6.png)
+![安装 Docker](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-windows-hyperv-install.png)
 
 安装完成后，我们仍然需要重启计算机，重启后，若提示如下内容：
 
-![](https://oscimg.oschina.net/oscnet/up-3585c7d6a4632134ed925493a7d43e14a43.png)
+![安装 Docker](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-windows-hyperv-wsl2.png)
 
 它的意思是询问我们是否使用 WSL2，这是基于 Windows 的一个 Linux 子系统，这里我们取消即可，它就会使用我们之前勾选的`Hyper-V`虚拟机。
 
@@ -142,21 +142,21 @@ systemctl enable docker
 
 和 GitHub 一样，Docker 也提供了一个 DockerHub 用于查询各种镜像的地址和安装教程，为此，我们先访问 DockerHub：[https://hub.docker.com/](https://hub.docker.com/)
 
-![](https://oscimg.oschina.net/oscnet/up-37d083cc92fe36aad829e975646b9d27fa0.png)
+![DockerHub](https://oss.javaguide.cn/github/javaguide/tools/docker/dockerhub-com.png)
 
 在左上角的搜索框中输入`MySQL`并回车：
 
-![](https://oscimg.oschina.net/oscnet/up-ced37002391a059754def9b3a6c2aa4e342.png)
+![DockerHub 搜索 MySQL](https://oss.javaguide.cn/github/javaguide/tools/docker/dockerhub-mysql.png)
 
 可以看到相关 MySQL 的镜像非常多，若右上角有`OFFICIAL IMAGE`标识，则说明是官方镜像，所以我们点击第一个 MySQL 镜像：
 
-![](https://oscimg.oschina.net/oscnet/up-48ba3fdc99c93a96e18b929195ca8e93c6c.png)
+![MySQL 官方镜像](https://oss.javaguide.cn/github/javaguide/tools/docker/dockerhub-mysql-official-image.png)
 
 右边提供了下载 MySQL 镜像的指令为`docker pull MySQL`，但该指令始终会下载 MySQL 镜像的最新版本。
 
 若是想下载指定版本的镜像，则点击下面的`View Available Tags`：
 
-![](https://oscimg.oschina.net/oscnet/up-ed601649275c6cfe65bbe422b463c263a64.png)
+![查看其他版本的 MySQL](https://oss.javaguide.cn/github/javaguide/tools/docker/dockerhub-mysql-view-available-tags.png)
 
 这里就可以看到各种版本的镜像，右边有下载的指令，所以若是想下载 5.7.32 版本的 MySQL 镜像，则执行：
 
@@ -164,17 +164,13 @@ systemctl enable docker
 docker pull MySQL:5.7.32
 ```
 
-然而下载镜像的过程是非常慢的，所以我们需要配置一下镜像源加速下载，访问`阿里云`官网：
+然而下载镜像的过程是非常慢的，所以我们需要配置一下镜像源加速下载，访问`阿里云`官网，点击控制台：
 
-![](https://oscimg.oschina.net/oscnet/up-0a46effd262d3db1b613a0db597efa31f34.png)
-
-点击控制台：
-
-![](https://oscimg.oschina.net/oscnet/up-60f198e0106be6b43044969d2900272504f.png)
+![阿里云镜像加速](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-aliyun-mirror-admin.png)
 
 然后点击左上角的菜单，在弹窗的窗口中，将鼠标悬停在产品与服务上，并在右侧搜索容器镜像服务，最后点击容器镜像服务：
 
-![](https://oscimg.oschina.net/oscnet/up-2f6706a979b405dab01bc44a29bb6b26fc4.png)
+![阿里云镜像加速](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-aliyun-mirror-admin-accelerator.png)
 
 点击左侧的镜像加速器，并依次执行右侧的配置指令即可。
 
@@ -246,7 +242,7 @@ docker pull MySQL:5.7
 docker search MySQL
 ```
 
-![](https://oscimg.oschina.net/oscnet/up-559083ae80e7501e86e95fbbad25b6d571a.png)
+![](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-search-mysql-terminal.png)
 
 不过该指令只能查看 MySQL 相关的镜像信息，而不能知道有哪些版本，若想知道版本，则只能这样查询：
 
@@ -254,11 +250,9 @@ docker search MySQL
 docker search MySQL:5.5
 ```
 
-![](https://oscimg.oschina.net/oscnet/up-68394e25f652964bb042571151c5e0fd2e9.png)
-
 若是查询的版本不存在，则结果为空：
 
-![](https://oscimg.oschina.net/oscnet/up-abfdd51b9ad2ced3711268369f52b077b12.png)
+![](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-search-mysql-404-terminal.png)
 
 删除镜像使用指令：
 
@@ -317,7 +311,7 @@ docker pull tomcat:8.0-jre8
 
 下载完成后就可以运行了，运行后查看一下当前运行的容器：`docker ps` 。
 
-![](https://oscimg.oschina.net/oscnet/up-bd48e20ef07b7c91ad16f92821a3dbca5b5.png)
+![](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-ps-terminal.png)
 
 其中`CONTAINER_ID`为容器的 id，`IMAGE`为镜像名，`COMMAND`为容器内执行的命令，`CREATED`为容器的创建时间，`STATUS`为容器的状态，`PORTS`为容器内服务监听的端口，`NAMES`为容器的名称。
 
@@ -331,7 +325,7 @@ docker run -p 8080:8080 tomcat:8.0-jre8
 
 此时外部就可以访问 Tomcat 了：
 
-![](https://oscimg.oschina.net/oscnet/up-16d9ff4d29094681f51424ea8d0ee4fd73e.png)
+![](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-run-tomact-8080.png)
 
 若是这样进行映射：
 
@@ -361,9 +355,7 @@ docker run -d -p 8080:8080 --name tomcat01 tomcat:8.0-jre8
 docker ps -a
 ```
 
-该参数会将运行和非运行的容器全部列举出来：
-
-![](https://oscimg.oschina.net/oscnet/up-16d9ff4d29094681f51424ea8d0ee4fd73e.png)
+该参数会将运行和非运行的容器全部列举出来。
 
 `-q`参数将只查询正在运行的容器 id：`docker ps -q` 。
 
@@ -471,15 +463,11 @@ docker logs -ft 289cc00dc5ed
 docker top 289cc00dc5ed
 ```
 
-![](https://oscimg.oschina.net/oscnet/up-7ec71a682712e56e90490f55c32cf660fd3.png)
-
 若是想与容器进行交互，则使用指令：
 
 ```shell
 docker exec -it 289cc00dc5ed bash
 ```
-
-![](https://oscimg.oschina.net/oscnet/up-fd17796322f833685ca8ead592d38581898.png)
 
 此时终端将会进入容器内部，执行的指令都将在容器中生效，在容器内只能执行一些比较简单的指令，如：ls、cd 等，若是想退出容器终端，重新回到 CentOS 中，则执行`exit`即可。
 
@@ -515,7 +503,7 @@ docker cp 289cc00dc5ed:/usr/local/tomcat/webapps/test.html ./
 docker inspect 923c969b0d91
 ```
 
-![](https://oscimg.oschina.net/oscnet/up-fca74d4350cdfebfc2b06101e1cab411619.png)
+![](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-inspect-terminal.png)
 
 ## Docker 数据卷
 
@@ -529,7 +517,7 @@ docker run -d -p 8080:8080 --name tomcat01 -v /opt/apps:/usr/local/tomcat/webapp
 
 然而此时访问 tomcat 会发现无法访问：
 
-![](https://oscimg.oschina.net/oscnet/up-8fa1b23f6ea2567b5938370e7d7f636533f.png)
+![](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-data-volume-webapp-8080.png)
 
 这就说明我们的数据卷设置成功了，Docker 会将容器内的`webapps`目录与`/opt/apps`目录进行同步，而此时`/opt/apps`目录是空的，导致`webapps`目录也会变成空目录，所以就访问不到了。
 
@@ -572,7 +560,7 @@ public class HelloServlet extends HttpServlet {
 
 这是一个非常简单的 Servlet，我们将其打包上传到`/opt/apps`中，那么容器内肯定就会同步到该文件，此时进行访问：
 
-![](https://oscimg.oschina.net/oscnet/up-712716a8c8c444ba3a77ade8ff27e7c6cf5.png)
+![](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-data-volume-webapp-8080-hello-world.png)
 
 这种方式设置的数据卷称为自定义数据卷，因为数据卷的目录是由我们自己设置的，Docker 还为我们提供了另外一种设置数据卷的方式：
 

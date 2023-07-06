@@ -11,7 +11,7 @@ category: 知识星球
 
 不过，正常面试全是场景题的情况还是极少的，面试官一般会在面试中穿插一两个系统设计和场景题来考察你。
 
-![](https://oscimg.oschina.net/oscnet/up-cc0b49f7e4a8cf63f9502a1f8ac0c6163f5.png)
+![](https://oss.javaguide.cn/xingqiu/up-cc0b49f7e4a8cf63f9502a1f8ac0c6163f5.png)
 
 于是，我总结了这份《后端面试高频系统设计&场景题》，包含了常见的系统设计案例比如短链系统、秒杀系统以及高频的场景题比如海量数据去重、第三方授权登录。
 

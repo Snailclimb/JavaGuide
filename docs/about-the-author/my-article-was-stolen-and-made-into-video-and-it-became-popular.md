@@ -15,19 +15,19 @@ tag:
 
 麻烦这个培训机构看到这篇文章之后可以考虑换一个人做类似恶心的事情哈！这人完全没脑子啊！
 
-![](https://oscimg.oschina.net/oscnet/up-db6b9cf323930786fa2bec8b1e1bfaad732.png)
+![](https://oss.javaguide.cn/github/javaguide/about-the-author/up-db6b9cf323930786fa2bec8b1e1bfaad732.png)
 
-![](https://oscimg.oschina.net/oscnet/up-6395603ab441b74511c6eda28efee8937d7.png)
+![](https://oss.javaguide.cn/github/javaguide/about-the-author/up-6395603ab441b74511c6eda28efee8937d7.png)
 
-![](https://oscimg.oschina.net/oscnet/up-921f60a5c7cee2c5c2eb30f4f7048f648e1.png)
+![](https://oss.javaguide.cn/github/javaguide/about-the-author/up-921f60a5c7cee2c5c2eb30f4f7048f648e1.png)
 
-![](https://oscimg.oschina.net/oscnet/up-acc82a797bd01e27f5b7d5d327b32a21d4e.png)
+![](https://oss.javaguide.cn/github/javaguide/about-the-author/up-acc82a797bd01e27f5b7d5d327b32a21d4e.png)
 
 我随便找了一个视频看，发现也还是盗用别人的原创。
 
-![](https://oscimg.oschina.net/oscnet/up-48d0c5ab086265ae19b7396bc59de2c2daf.png)
+![](https://oss.javaguide.cn/github/javaguide/about-the-author/up-48d0c5ab086265ae19b7396bc59de2c2daf.png)
 
-![](https://oscimg.oschina.net/oscnet/up-366abf0656007ff96551064104e60740a41.png)
+![](https://oss.javaguide.cn/github/javaguide/about-the-author/up-366abf0656007ff96551064104e60740a41.png)
 
 其他的视频就不用多看了，是否还是剽窃别人的原创，原封不动地做成视频，大家心里应该有数。
 
@@ -49,7 +49,7 @@ tag:
 
 谁能想到，培训机构的人竟然找人来让我删文章了！讲真，这俩人是真的奇葩啊！
 
-![](https://oss.javaguide.cn/javaguide/8f8ccafcf5b764a2289a9c276c30728d.png)
+![](https://oss.javaguide.cn/github/javaguide/about-the-author/8f8ccafcf5b764a2289a9c276c30728d.png)
 
 ![](https://oss.javaguide.cn/javaguide/a0a4a45d7ec7b1a2622b2a38629e9b09.png)
 

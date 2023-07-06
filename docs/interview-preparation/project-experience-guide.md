@@ -54,7 +54,7 @@ GitHub 或者码云上面有很多实战类别项目，你可以选择一个来�
 
 如果参加这种赛事能获奖的话，项目含金量非常高。即使没获奖也没啥，也可以写简历上。
 
-![阿里云天池大赛](https://oscimg.oschina.net/oscnet/up-673f598477242691900a1e72c5d8b26df2c.png)
+![阿里云天池大赛](https://oss.javaguide.cn/xingqiu/up-673f598477242691900a1e72c5d8b26df2c.png)
 
 ### 参与实际项目
 
@@ -103,12 +103,12 @@ GitHub 或者码云上面有很多实战类别项目，你可以选择一个来�
 
 分析你的代码：右键项目-> Analyze->Inspect Code
 
-![](https://oscimg.oschina.net/oscnet/up-651672bce128025a135c1536cd5dc00532e.png)
+![](https://oss.javaguide.cn/xingqiu/up-651672bce128025a135c1536cd5dc00532e.png)
 
 扫描完成之后，IDEA 会给出一些可能存在的代码坏味道比如命名问题。
 
-![](https://oscimg.oschina.net/oscnet/up-05c83b319941995b07c8020fddc57f26037.png)
+![](https://oss.javaguide.cn/xingqiu/up-05c83b319941995b07c8020fddc57f26037.png)
 
 并且，你还可以自定义检查规则。
 
-![](https://oscimg.oschina.net/oscnet/up-6b618ad3bad0bc3f76e6066d90c8cd2f255.png)
+![](https://oss.javaguide.cn/xingqiu/up-6b618ad3bad0bc3f76e6066d90c8cd2f255.png)

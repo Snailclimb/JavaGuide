@@ -92,6 +92,7 @@ icon: "xitongsheji"
 - [Insomnia](https://insomnia.rest/) :像人类而不是机器人一样调试 API。我平时经常用的，界面美观且轻量，总之很喜欢。
 - [Postman](https://www.getpostman.com/)：API 请求生成器。
 - [Postwoman](https://github.com/liyasthomas/postwoman "postwoman")：API 请求生成器-一个免费、快速、漂亮的 Postma 替代品。
+- [Restful Fast Request](https://gitee.com/dromara/fast-request)：IDEA 版 Postman，API 调试工具 + API 管理工具 + API 搜索工具。
 
 ## 任务调度
 

@@ -312,7 +312,7 @@ Leaf 的诞生主要是为了解决美团各个业务线生成分布式 ID 的�
 
 Leaf 对原有的号段模式进行改进，比如它这里增加了双号段避免获取 DB 在获取号段的时候阻塞请求获取 ID 的线程。简单来说，就是我一个号段还没用完之前，我自己就主动提前去获取下一个号段（图片来自于美团官方文章：[《Leaf——美团点评分布式 ID 生成系统》](https://tech.meituan.com/2017/04/21/mt-leaf.html)）。
 
-![](https://oscimg.oschina.net/oscnet/up-5c152efed042a8fe7e13692e0339d577f5c.png)
+![](https://oss.javaguide.cn/github/javaguide/distributed-system/distributed-id/leaf-principle.png)
 
 根据项目 README 介绍，在 4C8G VM 基础上，通过公司 RPC 方式调用，QPS 压测结果近 5w/s，TP999 1ms。
 
@@ -324,7 +324,7 @@ Leaf 对原有的号段模式进行改进，比如它这里增加了双号段避
 
 为了搞清楚这个问题，我们先来看看基于数据库号段模式的简单架构方案。（图片来自于 Tinyid 的官方 wiki:[《Tinyid 原理介绍》](https://github.com/didi/tinyid/wiki/tinyid%E5%8E%9F%E7%90%86%E4%BB%8B%E7%BB%8D)）
 
-![](https://oscimg.oschina.net/oscnet/up-4afc0e45c0c86ba5ad645d023dce11e53c2.png)
+![](https://oss.javaguide.cn/github/javaguide/distributed-system/distributed-id/tinyid-principle.png)
 
 在这种架构模式下，我们通过 HTTP 请求向发号器服务申请唯一 ID。负载均衡 router 会把我们的请求送往其中的一台 tinyid-server。
 
@@ -337,7 +337,7 @@ Leaf 对原有的号段模式进行改进，比如它这里增加了双号段避
 
 Tinyid 的原理比较简单，其架构如下图所示：
 
-![](https://oscimg.oschina.net/oscnet/up-53f74cd615178046d6c04fe50513fee74ce.png)
+![](https://oss.javaguide.cn/github/javaguide/distributed-system/distributed-id/tinyid-architecture-design.png)
 
 相比于基于数据库号段模式的简单架构方案，Tinyid 方案主要做了下面这些优化：
 
