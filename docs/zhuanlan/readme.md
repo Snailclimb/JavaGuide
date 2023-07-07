@@ -15,10 +15,4 @@ category: 知识星球
 
 我有自己的原则，不割韭菜，用心做内容，真心希望帮助到你！
 
-## 更多专栏
-
-除了上面介绍的之外，我的[知识星球](../about-the-author/zhishixingqiu-two-years.md)还有 《Kafka 常见面试题/知识点总结》、《程序员副业赚钱之路》等多个专栏。进入星球之后，统统都可以免费阅读。
-
-![知识星球专栏概览](https://oss.javaguide.cn/xingqiu/image-20220211231206733.png)
-
 <!-- @include: @planet2.snippet.md -->
