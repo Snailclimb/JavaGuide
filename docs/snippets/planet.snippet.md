@@ -12,9 +12,9 @@
 
 **我有自己的原则，不割韭菜，用心做内容，真心希望帮助到你！**
 
-如果你感兴趣的话，不妨花 3 分钟左右看看星球的详细介绍：[JavaGuide 知识星球详细介绍](../about-the-author/zhishixingqiu-two-years.md)。
+如果你感兴趣的话，不妨花 3 分钟左右看看星球的详细介绍：[JavaGuide 知识星球详细介绍](../about-the-author/zhishixingqiu-two-years.md) 。
 
-这里再送一个 **30** 元的星球专属优惠券吧，数量有限（价格即将上调。老用户续费半价 ，微信扫码即可续费）！
+这里再送一个 **30** 元的星球专属优惠券，数量有限（价格即将上调。老用户续费半价 ，微信扫码即可续费）！
 
 ![知识星球30元优惠卷](https://oss.javaguide.cn/xingqiu/xingqiuyouhuijuan-30.jpg)
 
