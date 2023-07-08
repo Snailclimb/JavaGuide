@@ -192,7 +192,7 @@ ORDER BY vend_name DESC
 | 运算符  | 描述                                                       |
 | :------ | :--------------------------------------------------------- |
 | =       | 等于                                                       |
-| <>      | 不等于。**注释：**在 SQL 的一些版本中，该操作符可被写成 != |
+| <>      | 不等于。 **注释：** 在 SQL 的一些版本中，该操作符可被写成 != |
 | >       | 大于                                                       |
 | <       | 小于                                                       |
 | >=      | 大于等于                                                   |
@@ -358,7 +358,7 @@ WHERE prod_id IN ('BR01', 'BR02', 'BR03') AND quantity >= 100
 ```sql
 SELECT prod_name, prod_price
 FROM Products
-WHERE prod_price BETWEEN 3 AND 6
+WHERE prod_price >= 3 and prod_price <= 6
 ORDER BY prod_price
 ```
 
