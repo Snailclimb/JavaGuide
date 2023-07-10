@@ -70,6 +70,91 @@ MySQL 主要具有下面这些优点：
 7. 事务支持优秀， InnoDB 存储引擎默认使用 REPEATABLE-READ 并不会有任何性能损失，并且，InnoDB 实现的 REPEATABLE-READ 隔离级别其实是可以解决幻读问题发生的。
 8. 支持分库分表、读写分离、高可用。
 
+## MySQL 字段类型
+
+MySQL 字段类型可以简单分为三大类：
+
+- **数值类型**：整型（tinyint、smallint、mediumint、int 和 bigint）、浮点型（float 和 double）、定点型（decimal）
+- **字符串类型**：char、varchar、tinytext、text、mediumtext、longtext、tinyblob、blob、mediumblob 和 longblob 等，最常用的是 char 和 varchar 。
+- **日期时间类型**：year、time、date、datetime 和 timestamp 等。
+
+下面这张图不是我画的，忘记是从哪里保存下来的了，总结的还蛮不错的。
+
+![MySQL 常见字段类型总结](https://oss.javaguide.cn/github/javaguide/mysql/summary-of-mysql-field-types.png)
+
+MySQL 字段类型比较多，我这里会挑选一些日常开发使用很频繁且面试常问的字段类型，以面试问题的形式来详细介绍。如无特殊说明，针对的都是 InnoDB 存储引擎。
+
+另外，推荐阅读一下《高性能 MySQL(第三版)》的第四章，有详细介绍 MySQL 字段类型优化。
+
+### char 和 varchar 的区别是什么？
+
+char 和 varchar 是最常用到的字符串类型，两者的主要区别在于：**char 是定长字符串，varchar 是变长字符串。**
+
+char 在存储时会在右边填充空格以达到指定的长度，检索时会去掉空格；varchar 在存储时需要使用 1 或 2 个额外字节记录字符串的长度，检索时不需要处理。
+
+char 更适合存储长度较短或者长度都差不多的字符串，例如 Bcrypt 算法、MD5 算法加密后的密码、身份证号码。varchar 类型适合存储长度不确定或者差异较大的字符串，例如用户昵称、文章标题等。
+
+char(M) 和 varchar(M) 的 M 都代表能够保存的字符数的最大值，无论是字母、数字还是中文，每个都只占用一个字符。
+
+### varchar(100)和 varchar(10)的区别是什么？
+
+varchar(100)和 varchar(10)都是变长类型，表示能存储最多 100 个字符和 10 个字符。因此，varchar (100) 可以满足更大范围的字符存储需求，有更好的业务拓展性。而 varchar(10)存储超过 10 个字符时，就需要修改表结构才可以。
+
+虽说 varchar(100)和 varchar(10)能存储的字符范围不同，但二者存储相同的字符串，所占用磁盘的存储空间其实是一样的，这也是很多人容易误解的一点。
+
+不过，varchar(100)会消耗更多的内存。这是因为 varchar 类型在内存中操作时，通常会分配固定大小的内存块来保存值，即使用字符类型中定义的长度。例如在进行排序的时候，varcahr(100)是按照 100 这个长度来进行的，也就会消耗更多内存。
+
+### decimal 和 float/double 的区别是什么？
+
+decimal 和 float 的区别是：**decimal 是定点数，float/double 是浮点数。decimal 可以存储精确的小数值，float/double 只能存储近似的小数值。**
+
+decimal 用于存储有精度要求的小数比如与金钱相关的数据，可以避免浮点数带来的精度损失。
+
+在 Java 中，MySQL 的 decimal 类型对应的是 Java 类 `java.math.BigDecimal` 。
+
+### 为什么不推荐使用 text 和 blob？
+
+text 类型类似于 char（0 - 255 字节）、varchar（0 - 65 535 字节），不过其可以存储更长的字符串，也就是长文本数据，比如一篇博客的内容。
+
+| **类型**   | **可存储大小**         | **用途**       |
+| ---------- | ---------------------- | -------------- |
+| TINYTEXT   | 0 - 255 字节           | 一般文本字符串 |
+| TEXT       | 0 - 65 535 字节        | 长文本字符串   |
+| MEDIUMTEXT | 0 - 16 772 150 字节    | 较大文本数据   |
+| LONGTEXT   | 0 - 4 294 967 295 字节 | 极大文本数据   |
+
+blob 类型主要用于存储二进制大对象，例如图片，音视频等文件。
+
+| **类型**   | **可存储大小** | **用途**                 |
+| ---------- | -------------- | ------------------------ |
+| TINYBLOB   | 0 - 255 字节   | 短文本二进制字符串       |
+| BLOB       | 0 - 65KB       | 二进制字符串             |
+| MEDIUMBLOB | 0 - 16MB       | 二进制形式的长文本数据   |
+| LONGBLOB   | 0 - 4GB        | 二进制形式的极大文本数据 |
+
+日常开发中，text 类型用的很少，但偶尔会用，blob 类型就属于是基本不用。如果预期长度范围 varchar 就满足，就避免使用 text。
+
+数据库规范中一般不推荐使用 blob 及 text 类型，二者的部分缺点和限制如下：
+
+- 不能有默认值。
+- 在遇到使用临时表的情况时，无法使用内存临时表，只能在磁盘上创建临时表（《高性能 MySQL》这本书有提到）。
+- 检索效率比 char 和 varchar 低。
+- 不能直接创建索引，需要指定前缀长度。
+- 会消耗大量的网络和 IO 带宽。
+- 可能会导致表上的 DML 操作都变得较慢。
+- ......
+
+### datetime 和 timestamp 的区别是什么？
+
+DateTime 类型没有时区信息，Timestamp 和时区有关。
+
+Timestamp 只需要使用 4 个字节的存储空间，但是 DateTime 需要耗费 8 个字节的存储空间。但是，这样同样造成了一个问题，Timestamp 表示的时间范围更小。
+
+- DateTime：1000-01-01 00:00:00 ~ 9999-12-31 23:59:59
+- Timestamp：1970-01-01 00:00:01 ~ 2037-12-31 23:59:59
+
+关于两者的详细对比，请参考我写的[MySQL 时间类型数据存储建议](./some-thoughts-on-database-storage-time.md)。
+
 ## MySQL 基础架构
 
 > 建议配合 [SQL 语句在 MySQL 中的执行过程](./how-sql-executed-in-mysql.md) 这篇文章来理解 MySQL 基础架构。另外，“一个 SQL 语句在 MySQL 中的执行流程”也是面试中比较常问的一个问题。
@@ -115,7 +200,7 @@ mysql> SELECT VERSION();
 1 row in set (0.00 sec)
 ```
 
-你也可以通过 `SHOW VARIABLES  LIKE '%storage_engine%'` 命令直接查看 MySQL 当前默认的存储引擎。
+你也可以通过 `SHOW VARIABLES LIKE '%storage_engine%'` 命令直接查看 MySQL 当前默认的存储引擎。
 
 ```bash
 mysql> SHOW VARIABLES  LIKE '%storage_engine%';
@@ -712,6 +797,7 @@ mysql> EXPLAIN SELECT `score`,`name` FROM `cus_order` ORDER BY `score` DESC;
 - 《高性能 MySQL》第 7 章 MySQL 高级特性
 - 《MySQL 技术内幕 InnoDB 存储引擎》第 6 章 锁
 - Relational Database：<https://www.omnisci.com/technical-glossary/relational-database>
+- 一篇文章看懂 mysql 中 varchar 能存多少汉字、数字，以及 varchar(100)和 varchar(10)的区别：<https://www.cnblogs.com/zhuyeshen/p/11642211.html>
 - 技术分享 | 隔离级别：正确理解幻读：<https://opensource.actionsky.com/20210818-mysql/>
 - MySQL Server Logs - MySQL 5.7 Reference Manual：<https://dev.mysql.com/doc/refman/5.7/en/server-logs.html>
 - Redo Log - MySQL 5.7 Reference Manual：<https://dev.mysql.com/doc/refman/5.7/en/innodb-redo-log.html>
