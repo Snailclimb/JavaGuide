@@ -49,7 +49,7 @@ icon: "book"
 
 ## 大数据
 
-- [BigData-Notes](https://github.com/heibaiying/BigData-Notes "BigData-Notes") :大数据入门指南 ⭐️。
+- [juicy-bigdata](https://github.com/datawhalechina/juicy-bigdata)：妙趣横生大数据，大数据技术相关内容的导论课程。
 - [flink-learning](https://github.com/zhisheng17/flink-learning "flink-learning")：含 Flink 入门、概念、原理、实战、性能调优、源码解析等内容。
 
 ## 开源书籍

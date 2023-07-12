@@ -358,6 +358,8 @@ SELECT sql_no_cache COUNT(*) FROM usr;
 
 ## MySQL 日志
 
+MySQL 日志常见的面试题有：
+
 - MySQL 中常见的日志有哪些？
 - 慢查询日志有什么用？
 - binlog 主要记录了什么？
