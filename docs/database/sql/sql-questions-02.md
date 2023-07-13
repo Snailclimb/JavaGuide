@@ -95,7 +95,7 @@ REPLACE INTO examination_info VALUES
 
 ### 更新记录（一）
 
-**描述：**现在有一张试卷信息表 `examination_info`, 表结构如下图所示：
+**描述**：现在有一张试卷信息表 `examination_info`, 表结构如下图所示：
 
 | Filed        | Type     | Null | Key  | Extra          | Default | Comment  |
 | ------------ | -------- | ---- | ---- | -------------- | ------- | -------- |
@@ -140,9 +140,9 @@ SET tag = REPLACE(tag,'PYTHON','Python')
 
 **题目要求**：请把 `exam_record` 表中 2021 年 9 月 1 日==之前==开始作答的==未完成==记录全部改为被动完成，即：将完成时间改为'2099-01-01 00:00:00'，分数改为 0。
 
-**思路：**注意题干中的关键字(已经高亮) `" xxx 时间 "`之前这个条件， 那么这里马上就要想到要进行时间的比较 可以直接 `xxx_time < "2021-09-01 00:00:00",` 也可以采用`date()`函数来进行比较；第二个条件就是 `"未完成"`， 即完成时间为 NULL，也就是题目中的提交时间 ----- `submit_time 为 NULL`。
+**思路**：注意题干中的关键字(已经高亮) `" xxx 时间 "`之前这个条件， 那么这里马上就要想到要进行时间的比较 可以直接 `xxx_time < "2021-09-01 00:00:00",` 也可以采用`date()`函数来进行比较；第二个条件就是 `"未完成"`， 即完成时间为 NULL，也就是题目中的提交时间 ----- `submit_time 为 NULL`。
 
-**答案：**
+**答案**：
 
 ```sql
 UPDATE exam_record SET submit_time = '2099-01-01 00:00:00', score = 0 WHERE DATE(start_time) < "2021-09-01" AND submit_time IS null
@@ -196,7 +196,7 @@ YEAR：年
 
    这题需要进行分钟的比较，那么就是 TIMESTAMPDIFF(MINUTE, 开始时间， 结束时间) < 5
 
-**答案：**
+**答案**：
 
 ```sql
 DELETE FROM exam_record WHERE MINUTE (TIMEDIFF(submit_time , start_time)) < 5 AND score < 60
@@ -301,7 +301,7 @@ TRUNCATE  exam_record;
 | job           | varchar(32) | YES  |      | (NULL)            |                | 职业方向 |
 | register_time | datetime    | YES  |      | CURRENT_TIMESTAMP |                | 注册时间 |
 
-**思路：**如果这题给出了旧表的名称，可直接`create table 新表 as select * from 旧表;` 但是这题并没有给出旧表名称，所以需要自己创建，注意默认值和键的创建即可，比较简单。（注意：如果是在牛客网上面执行，请注意 comment 中要和题目中的 comment 保持一致，包括大小写，否则不通过，还有字符也要设置）
+**思路**：如果这题给出了旧表的名称，可直接`create table 新表 as select * from 旧表;` 但是这题并没有给出旧表名称，所以需要自己创建，注意默认值和键的创建即可，比较简单。（注意：如果是在牛客网上面执行，请注意 comment 中要和题目中的 comment 保持一致，包括大小写，否则不通过，还有字符也要设置）
 
 答案：
 
@@ -335,7 +335,7 @@ CREATE TABLE IF NOT EXISTS user_info_vip(
 
 **要求：**请在用户信息表，字段 `level` 的后面增加一列最多可保存 15 个汉字的字段 `school`；并将表中 `job` 列名改为 `profession`，同时 `varchar` 字段长度变为 10；`achievement` 的默认值设置为 0。
 
-**思路：**首先做这题之前，需要了解 ALTER 语句的基本用法：
+**思路**：首先做这题之前，需要了解 ALTER 语句的基本用法：
 
 - 添加一列：`ALTER TABLE 表名 ADD COLUMN 列名 类型 【first | after 字段名】;`（first ： 在某列之前添加，after 反之）
 - 修改列的类型或约束：`ALTER TABLE 表名 MODIFY COLUMN 列名 新类型 【新约束】;`
@@ -348,7 +348,7 @@ CREATE TABLE IF NOT EXISTS user_info_vip(
 
 在修改时，如果有多个修改项，可以写到一起，但要注意格式
 
-**答案：**
+**答案**：
 
 ```sql
 ALTER TABLE user_info
@@ -359,13 +359,13 @@ ALTER TABLE user_info
 
 ### 删除表
 
-**描述：**现有一张试卷作答记录表 `exam_record`，其中包含多年来的用户作答试卷记录。一般每年都会为 `exam_record` 表建立一张备份表 `exam_record_{YEAR}，{YEAR}` 为对应年份。
+**描述**：现有一张试卷作答记录表 `exam_record`，其中包含多年来的用户作答试卷记录。一般每年都会为 `exam_record` 表建立一张备份表 `exam_record_{YEAR}，{YEAR}` 为对应年份。
 
 现在随着数据越来越多，存储告急，请你把很久前的（2011 到 2014 年）备份表都删掉（如果存在的话）。
 
-**思路：**这题很简单，直接删就行，如果嫌麻烦，可以将要删除的表用逗号隔开，写到一行；这里肯定会有小伙伴问：如果要删除很多张表呢？放心，如果要删除很多张表，可以写脚本来进行删除。
+**思路**：这题很简单，直接删就行，如果嫌麻烦，可以将要删除的表用逗号隔开，写到一行；这里肯定会有小伙伴问：如果要删除很多张表呢？放心，如果要删除很多张表，可以写脚本来进行删除。
 
-**答案：**：
+**答案**：
 
 ```sql
 DROP TABLE IF EXISTS exam_record_2011;
@@ -376,7 +376,7 @@ DROP TABLE IF EXISTS exam_record_2014;
 
 ### 创建索引
 
-**描述：**现有一张试卷信息表 `examination_info`，其中包含各种类型试卷的信息。为了对表更方便快捷地查询，需要在 `examination_info` 表创建以下索引，
+**描述**：现有一张试卷信息表 `examination_info`，其中包含各种类型试卷的信息。为了对表更方便快捷地查询，需要在 `examination_info` 表创建以下索引，
 
 规则如下：在 `duration` 列创建普通索引 `idx_duration`、在 `exam_id` 列创建唯一性索引 `uniq_idx_exam_id`、在 `tag` 列创建全文索引 `full_idx_tag`。
 
@@ -390,7 +390,7 @@ DROP TABLE IF EXISTS exam_record_2014;
 
 备注：后台会通过 `SHOW INDEX FROM examination_info` 语句来对比输出结果
 
-**思路：**做这题首先需要了解常见的索引类型：
+**思路**：做这题首先需要了解常见的索引类型：
 
 - B-Tree 索引：B-Tree（或称为平衡树）索引是最常见和默认的索引类型。它适用于各种查询条件，可以快速定位到符合条件的数据。B-Tree 索引适用于普通的查找操作，支持等值查询、范围查询和排序。
 - 唯一索引：唯一索引与普通的 B-Tree 索引类似，不同之处在于它要求被索引的列的值是唯一的。这意味着在插入或更新数据时，MySQL 会验证索引列的唯一性。
@@ -413,7 +413,7 @@ DROP TABLE IF EXISTS exam_record_2014;
 
 有了以上的基础知识之后，该题答案也就浮出水面了。
 
-**答案：**：
+**答案**：
 
 ```sql
 ALTER TABLE examination_info
@@ -424,9 +424,9 @@ ALTER TABLE examination_info
 
 ### 删除索引
 
-**描述：**请删除`examination_info`表上的唯一索引 uniq_idx_exam_id 和全文索引 full_idx_tag。
+**描述**：请删除`examination_info`表上的唯一索引 uniq_idx_exam_id 和全文索引 full_idx_tag。
 
-**思路：**该题考察删除索引的基本语法：
+**思路**：该题考察删除索引的基本语法：
 
 ```sql
 -- 使用 DROP INDEX 删除索引
@@ -440,7 +440,7 @@ ALTER TABLE employees DROP INDEX idx_email;
 
 而且 **DROP** 命令需要慎用！！！
 
-**答案：**
+**答案**：
 
 ```sql
 DROP INDEX uniq_idx_exam_id ON examination_info;
