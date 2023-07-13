@@ -92,7 +92,7 @@ export default sidebar({
                 "linkedhashmap-source-code",
                 "copyonwritearraylist-source-code",
                 "arrayblockingqueue-source-code",
-                "priorityqueue-source-code"
+                "priorityqueue-source-code",
               ],
             },
           ],
@@ -263,7 +263,14 @@ export default sidebar({
               icon: "SQL",
               prefix: "sql/",
               collapsible: true,
-              children: ["sql-syntax-summary", "sql-questions-01"],
+              children: [
+                "sql-syntax-summary",
+                "sql-questions-01",
+                "sql-questions-02",
+                "sql-questions-03",
+                "sql-questions-04",
+                "sql-questions-05"
+              ],
             },
           ],
         },
