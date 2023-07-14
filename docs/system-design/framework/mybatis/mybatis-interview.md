@@ -13,6 +13,8 @@ head:
       content: 几道常见的 MyBatis 常见
 ---
 
+<!-- @include: @small-advertisement.snippet.md -->
+
 > 本篇文章由 JavaGuide 收集自网络，原出处不明。
 
 ### #{} 和 \${} 的区别是什么？

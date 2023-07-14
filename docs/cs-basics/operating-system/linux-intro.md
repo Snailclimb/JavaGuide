@@ -10,6 +10,8 @@ head:
       content: 简单介绍一下 Java 程序员必知的 Linux 的一些概念以及常见命令。
 ---
 
+<!-- @include: @small-advertisement.snippet.md -->
+
 简单介绍一下 Java 程序员必知的 Linux 的一些概念以及常见命令。
 
 ## 初探 Linux

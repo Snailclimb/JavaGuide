@@ -12,6 +12,8 @@ head:
       content: Java集合常见知识点和面试题总结，希望对你有帮助！
 ---
 
+<!-- @include: @small-advertisement.snippet.md -->
+
 ## 集合概述
 
 ### Java 集合概览
