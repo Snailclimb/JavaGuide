@@ -201,10 +201,10 @@ Maven 在遇到这种问题的时候，会遵循 **路径最短优先** 和 **�
 
 现在知道为什么你的 Maven 项目总是会报`NoClassDefFoundError`和`NoSuchMethodError`错误了吧？
 
-**如何解决呢？** 我们可以通过`exclusive`标签手动将 X(1.0) 给排除。
+**如何解决呢？** 我们可以通过`exclusion`标签手动将 X(1.0) 给排除。
 
 ```xml
-<dependencyD>
+<dependency>
     ......
     <exclusions>
       <exclusion>
