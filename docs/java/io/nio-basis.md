@@ -191,8 +191,8 @@ Channel 与前面介绍的 Buffer 打交道，读操作的时候将 Channel 中�
 
  Channel 最核心的两个方法：
 
-1. `read` ：用于从 Buffer 中读取数据；
-2. `write` ：向 Buffer 中写入数据。
+1. `read` ：读取数据并写入到 Buffer 中。
+2. `write` ：将 Buffer 中的数据写入到 Channel 中。
 
 这里我们以 `FileChannel` 为例演示一下是读取文件数据的。
 

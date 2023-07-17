@@ -74,7 +74,7 @@ Redis 官方文档中有对应的详细说明：
 
 ![](https://oss.javaguide.cn/github/javaguide/database/redis/image-20220721091424563.png)
 
-基数计数概率算法为了节省内存并不会直接存储元数据，而是通过一定的概率统计方法预估基数值（集合中包含元素的个数）。因此， HyperLogLog 的计数结果并不是一个精确值，存在一定的误差（标准误差为 `0.81%` 。）。
+基数计数概率算法为了节省内存并不会直接存储元数据，而是通过一定的概率统计方法预估基数值（集合中包含元素的个数）。因此， HyperLogLog 的计数结果并不是一个精确值，存在一定的误差（标准误差为 `0.81%` ）。
 
 ![](https://oss.javaguide.cn/github/javaguide/database/redis/image-20220720194154133.png)
 
@@ -200,6 +200,14 @@ user2
 
 - 举例：附近的人。
 - 相关命令: `GEOADD`、`GEORADIUS`、`GEORADIUSBYMEMBER` 。
+
+## 总结
+
+| 数据类型         | 说明                                                         |
+| ---------------- | ------------------------------------------------------------ |
+| Bitmap           | 你可以将 Bitmap 看作是一个存储二进制数字（0 和 1）的数组，数组中每个元素的下标叫做 offset（偏移量）。通过 Bitmap, 只需要一个 bit 位来表示某个元素对应的值或者状态，key 就是对应元素本身 。我们知道 8 个 bit 可以组成一个 byte，所以 Bitmap 本身会极大的节省储存空间。 |
+| HyperLogLog      | Redis 提供的 HyperLogLog 占用空间非常非常小，只需要 12k 的空间就能存储接近`2^64`个不同元素。不过，HyperLogLog 的计数结果并不是一个精确值，存在一定的误差（标准误差为 `0.81%` ）。 |
+| Geospatial index | Geospatial index（地理空间索引，简称 GEO） 主要用于存储地理位置信息，基于 Sorted Set 实现。 |
 
 ## 参考
 

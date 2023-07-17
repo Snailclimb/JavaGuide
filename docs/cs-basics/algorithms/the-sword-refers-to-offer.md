@@ -423,7 +423,7 @@ public class Solution {
 思路就是我们根据链表的特点，前一个节点指向下一个节点的特点，把后面的节点移到前面来。
 就比如下图：我们把 1 节点和 2 节点互换位置，然后再将 3 节点指向 2 节点，4 节点指向 3 节点，这样以来下面的链表就被反转了。
 
-![链表](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/844773c7300e4373922bb1a6ae2a55a3~tplv-k3u1fbpfcp-zoom-1.image)
+![链表](https://oss.javaguide.cn/p3-juejin/844773c7300e4373922bb1a6ae2a55a3~tplv-k3u1fbpfcp-zoom-1.png)
 
 **考察内容：**
 

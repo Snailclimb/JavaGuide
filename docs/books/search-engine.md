@@ -20,8 +20,8 @@ Elasticsearch 在 Apache Lucene 的基础上开发而成，学习 ES 之前，�
 
 如果你想看书的话，可以考虑一下 **[《Elasticsearch 实战》](https://book.douban.com/subject/30380439/)** 这本书。不过，需要说明的是，这本书中的 Elasticsearch 版本比较老，你可以将其作为一个参考书籍来看，有一些原理性的东西可以在上面找找答案。
 
-![《Elasticsearch 实战》-豆瓣](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d8b7fa83490e466aa212382cd323d37f~tplv-k3u1fbpfcp-zoom-1.image)
+![《Elasticsearch 实战》-豆瓣](https://oss.javaguide.cn/p3-juejin/d8b7fa83490e466aa212382cd323d37f~tplv-k3u1fbpfcp-zoom-1.png)
 
 如果你想进一步深入研究 Elasticsearch 原理的话，可以看看张超老师的 **[《Elasticsearch 源码解析与优化实战》](https://book.douban.com/subject/30386800/)** 这本书。这是市面上唯一一本写 Elasticsearch 源码的书。
 
-![《Elasticsearch 源码解析与优化实战》-豆瓣](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f856485931a945639d5c23aaed74fb38~tplv-k3u1fbpfcp-zoom-1.image)
+![《Elasticsearch 源码解析与优化实战》-豆瓣](https://oss.javaguide.cn/p3-juejin/f856485931a945639d5c23aaed74fb38~tplv-k3u1fbpfcp-zoom-1.png)

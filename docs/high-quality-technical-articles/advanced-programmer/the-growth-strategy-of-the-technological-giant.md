@@ -148,7 +148,7 @@ Brendan Gregg，Jay Kreps 和 Brad Traversy 三个人走的技术路线各不相
 
 ## 四、战略思维的诞生
 
-![思考周期和机会点](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/dc87167f53b243d49f9f4e8c7fe530a1~tplv-k3u1fbpfcp-zoom-1.image)
+![思考周期和机会点](https://oss.javaguide.cn/p3-juejin/dc87167f53b243d49f9f4e8c7fe530a1~tplv-k3u1fbpfcp-zoom-1.png)
 
 一般毕业生刚进入企业工作的时候，思考大都是以天/星期/月为单位的，基本上都是今天学个什么技术，明天学个什么语言，很少会去思考一年甚至更长的目标。这是个眼前漆黑看不到的懵懂时期，捕捉到机会点的能力和概率都非常小。
 
@@ -203,5 +203,3 @@ Brendan Gregg，Jay Kreps 和 Brad Traversy 三个人走的技术路线各不相
 > 译文：
 >
 > 实现战略目标，就像种树一样。刚开始只是一个小根芽，树干还没有长出来；树干长出来了，枝叶才能慢慢长出来；树枝长出来，然后才能开花和结果。刚开始种树的时候，只管栽培灌溉，别老是纠结枝什么时候长出来，花什么时候开，果实什么时候结出来。纠结有什么好处呢？只要你坚持投入栽培，还怕没有枝叶花实吗？
-
-![悬想何益](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/863dbfa7d8f64123a41cbc1406aa0c46~tplv-k3u1fbpfcp-zoom-1.image)
