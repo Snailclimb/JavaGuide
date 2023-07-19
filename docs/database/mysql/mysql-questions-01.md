@@ -511,8 +511,10 @@ InnoDB 行锁是通过对索引数据页上的记录加锁实现的，MySQL Inno
 由于 MVCC 的存在，对于一般的 `SELECT` 语句，InnoDB 不会加任何锁。不过， 你可以通过以下语句显式加共享锁或排他锁。
 
 ```sql
-# 共享锁
+# 共享锁 可以在 MySQL 5.7 和 MySQL 8.0 中使用
 SELECT ... LOCK IN SHARE MODE;
+# 共享锁 可以在 MySQL 8.0 中使用
+SELECT ... FOR SHARE;
 # 排他锁
 SELECT ... FOR UPDATE;
 ```
@@ -552,7 +554,10 @@ SELECT ... FOR UPDATE;
 
 ```sql
 SELECT ... FOR UPDATE
-SELECT ... LOCK IN SHARE MODE
+# 共享锁 可以在 MySQL 5.7 和 MySQL 8.0 中使用
+SELECT ... LOCK IN SHARE MODE;
+# 共享锁 可以在 MySQL 8.0 中使用
+SELECT ... FOR SHARE;
 ```
 
 快照即记录的历史版本，每行记录可能存在多个历史版本（多版本技术）。
@@ -575,6 +580,8 @@ SELECT ... LOCK IN SHARE MODE
 SELECT...FOR UPDATE
 # 对读的记录加一个S锁
 SELECT...LOCK IN SHARE MODE
+# 对读的记录加一个S锁
+SELECT...FOR SHARE
 # 对修改的记录加一个X锁
 INSERT...
 UPDATE...
