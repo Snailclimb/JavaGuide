@@ -155,6 +155,17 @@ Timestamp 只需要使用 4 个字节的存储空间，但是 DateTime 需要耗
 
 关于两者的详细对比，请参考我写的[MySQL 时间类型数据存储建议](./some-thoughts-on-database-storage-time.md)。
 
+### NULL 和 '' 的区别是什么？
+
+`NULL` 跟 `''`(空字符串)是两个完全不一样的值，区别如下：
+
+- `NULL` 代表一个不确定的值,就算是两个 `NULL`,它俩也不一定相等。例如，`SELECT NULL=NULL`的结果为 false，但是在我们使用`DISTINCT`,`GROUP BY`,`ORDER BY`时,`NULL`又被认为是相等的。
+- `''`的长度是 0，是不占用空间的，而`NULL` 是需要占用空间的。
+- `NULL` 会影响聚合函数的结果。例如，`SUM`、`AVG`、`MIN`、`MAX` 等聚合函数会忽略 `NULL` 值。 `COUNT` 的处理方式取决于参数的类型。如果参数是 `*`(`COUNT(*)`)，则会统计所有的记录数，包括 `NULL` 值；如果参数是某个字段名(`COUNT(列名)`)，则会忽略 `NULL` 值，只统计非空值的个数。
+- 查询 `NULL` 值时，必须使用 `IS NULL` 或 `IS NOT NULLl` 来判断，而不能使用 =、!=、 <、> 之类的比较运算符。而`''`是可以使用这些比较运算符的。
+
+看了上面的介绍之后，相信你对另外一个高频面试题：“为什么MySQL不建议使用NULL作为列默认值？”也有了答案。
+
 ## MySQL 基础架构
 
 > 建议配合 [SQL 语句在 MySQL 中的执行过程](./how-sql-executed-in-mysql.md) 这篇文章来理解 MySQL 基础架构。另外，“一个 SQL 语句在 MySQL 中的执行流程”也是面试中比较常问的一个问题。
