@@ -19,7 +19,7 @@ head:
 
 ### 什么是关系型数据库？
 
-顾名思义，关系型数据库（RDBMS，Relational Database Management System）就是一种建立在关系模型的基础上的数据库。关系模型表明了数据库中所存储的数据之间的联系（一对一、一对多、多对多）。
+顾名思义，关系型数据库（RDB，Relational Database）就是一种建立在关系模型的基础上的数据库。关系模型表明了数据库中所存储的数据之间的联系（一对一、一对多、多对多）。
 
 关系型数据库中，我们的数据都被存放在了各种表中（比如用户表），表中的每一行就存放着一条数据（比如一个用户的信息）。
 
@@ -609,8 +609,10 @@ InnoDB 行锁是通过对索引数据页上的记录加锁实现的，MySQL Inno
 由于 MVCC 的存在，对于一般的 `SELECT` 语句，InnoDB 不会加任何锁。不过， 你可以通过以下语句显式加共享锁或排他锁。
 
 ```sql
-# 共享锁
+# 共享锁 可以在 MySQL 5.7 和 MySQL 8.0 中使用
 SELECT ... LOCK IN SHARE MODE;
+# 共享锁 可以在 MySQL 8.0 中使用
+SELECT ... FOR SHARE;
 # 排他锁
 SELECT ... FOR UPDATE;
 ```
@@ -650,7 +652,10 @@ SELECT ... FOR UPDATE;
 
 ```sql
 SELECT ... FOR UPDATE
-SELECT ... LOCK IN SHARE MODE
+# 共享锁 可以在 MySQL 5.7 和 MySQL 8.0 中使用
+SELECT ... LOCK IN SHARE MODE;
+# 共享锁 可以在 MySQL 8.0 中使用
+SELECT ... FOR SHARE;
 ```
 
 快照即记录的历史版本，每行记录可能存在多个历史版本（多版本技术）。
@@ -673,6 +678,8 @@ SELECT ... LOCK IN SHARE MODE
 SELECT...FOR UPDATE
 # 对读的记录加一个S锁
 SELECT...LOCK IN SHARE MODE
+# 对读的记录加一个S锁
+SELECT...FOR SHARE
 # 对修改的记录加一个X锁
 INSERT...
 UPDATE...

@@ -192,7 +192,7 @@ ORDER BY vend_name DESC
 | 运算符  | 描述                                                       |
 | :------ | :--------------------------------------------------------- |
 | =       | 等于                                                       |
-| <>      | 不等于。**注释：**在 SQL 的一些版本中，该操作符可被写成 != |
+| <>      | 不等于。 **注释：** 在 SQL 的一些版本中，该操作符可被写成 != |
 | >       | 大于                                                       |
 | <       | 小于                                                       |
 | >=      | 大于等于                                                   |
@@ -358,7 +358,7 @@ WHERE prod_id IN ('BR01', 'BR02', 'BR03') AND quantity >= 100
 ```sql
 SELECT prod_name, prod_price
 FROM Products
-WHERE prod_price BETWEEN 3 AND 6
+WHERE prod_price >= 3 and prod_price <= 6
 ORDER BY prod_price
 ```
 
@@ -1337,7 +1337,7 @@ ORDER BY c.cust_name,o.order_num
 
 这是错误的！只对 `cust_name` 进行聚类确实符合题意，但是不符合 `GROUP BY` 的语法。
 
-select 语句中，如果没有 `GROUP BY` 语句，那么 `cust_name`、`order_num` 会返回若干个值，而 `sum(quantity _ item_price)` 只返回一个值，通过 `group by` `cust_name` 可以让 `cust_name` 和 `sum(quantity _ item_price)` 一一对应起来，或者说**聚类**，所以同样的，也要对 `order_num` 进行聚类。
+select 语句中，如果没有 `GROUP BY` 语句，那么 `cust_name`、`order_num` 会返回若干个值，而 `sum(quantity * item_price)` 只返回一个值，通过 `group by` `cust_name` 可以让 `cust_name` 和 `sum(quantity * item_price)` 一一对应起来，或者说**聚类**，所以同样的，也要对 `order_num` 进行聚类。
 
 > **一句话，select 中的字段要么都聚类，要么都不聚类**
 
