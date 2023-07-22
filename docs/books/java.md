@@ -30,9 +30,11 @@ icon: "java"
 
 ![《Java 编程思想》-豆瓣](https://oss.javaguide.cn/github/javaguide/books/image-20220424103124893.png)
 
-这本书被很多人称之为 Java 领域的圣经（_感觉有点过了~~~_）。不太推荐编程初学者阅读，有点劝退的味道，稍微有点基础后阅读更好。
+另外，这本书的作者去年新出版了[《On Java》](https://book.douban.com/subject/35751619/)，我更推荐这本，内容更新，介绍了 Java 的 3 个长期支持版（Java 8、11、17）。
 
-我第一次看的时候还觉得有点枯燥，那时候还在上大二，看了 1/3 就没看下去了。
+![](https://oss.javaguide.cn/github/javaguide/books/on-java/6171657600353_.pic_hd.jpg)
+
+毕竟，这是市面上目前唯一一本介绍了 Java 的 3 个长期支持版（Java 8、11、17）的技术书籍。
 
 **[《Java 8 实战》](https://book.douban.com/subject/26772632/)**
 
@@ -40,13 +42,19 @@ icon: "java"
 
 Java 8 算是一个里程碑式的版本，现在一般企业还是用 Java 8 比较多。掌握 Java 8 的一些新特性比如 Lambda、Stream API 还是挺有必要的。这块的话，我推荐 **[《Java 8 实战》](https://book.douban.com/subject/26772632/)** 这本书。
 
+ **[《Java编程的逻辑》](https://book.douban.com/subject/30133440/)**
+
+![《Java编程的逻辑》](https://oss.javaguide.cn/github/javaguide/books/image-20230721153650488.png)
+
+一本非常低调的好书，相比于入门书来说，内容更有深度。适合初学者，同时也适合大家拿来复习 Java 基础知识。
+
 ## Java 并发
 
 **[《Java 并发编程之美》](https://book.douban.com/subject/30351286/)**
 
 ![《Java 并发编程之美》-豆瓣](https://oss.javaguide.cn/github/javaguide/books/image-20220424112413660.png)
 
-_这本书还是非常适合我们用来学习 Java 多线程的。这本书的讲解非常通俗易懂，作者从并发编程基础到实战都是信手拈来。_
+这本书还是非常适合我们用来学习 Java 多线程的，讲解非常通俗易懂，作者从并发编程基础到实战都是信手拈来。
 
 另外，这本书的作者加多自身也会经常在网上发布各种技术文章。这本书也是加多大佬这么多年在多线程领域的沉淀所得的结果吧！他书中的内容基本都是结合代码讲解，非常有说服力！
 
@@ -64,13 +72,11 @@ _这本书还是非常适合我们用来学习 Java 多线程的。这本书的�
 
 这本书的质量也是非常过硬！给作者们点个赞！这本书有统一的排版规则和语言风格、清晰的表达方式和逻辑。并且每篇文章初稿写完后，作者们就会互相审校，合并到主分支时所有成员会再次审校，最后再通篇修订了三遍。
 
-在线阅读：[https://redspider.gitbook.io/concurrent/](https://redspider.gitbook.io/concurrent/) 。
+在线阅读：<https://redspider.gitbook.io/concurrent/>。
 
 **[《Java 并发实现原理：JDK 源码剖析》](https://book.douban.com/subject/35013531/)**
 
 ![《Java 并发实现原理：JDK 源码剖析》-豆瓣](https://oss.javaguide.cn/github/javaguide/books/0b1b046af81f4c94a03e292e66dd6f7d.png)
-
-这本书是 2020 年新出的，所以，现在知道的人还不是很多。
 
 这本书主要是对 Java Concurrent 包中一些比较重要的源码进行了讲解，另外，像 JMM、happen-before、CAS 等等比较重要的并发知识这本书也都会一并介绍到。
 
@@ -122,12 +128,12 @@ _这本书还是非常适合我们用来学习 Java 多线程的。这本书的�
 
 非常重要！非常重要！特别是 Git 和 Docker。
 
-- **IDEA**：熟悉基本操作以及常用快捷。你可以通过 GitHub 上的开源教程 [《IntelliJ IDEA 简体中文专题教程》](https://github.com/judasn/IntelliJ-IDEA-Tutorial) 来学习 IDEA 的使用。
-- **Maven**：强烈建议学习常用框架之前可以提前花几天时间学习一下**Maven**的使用。（到处找 Jar 包，下载 Jar 包是真的麻烦费事，使用 Maven 可以为你省很多事情）。
-- **Git**：基本的 Git 技能也是必备的，试着在学习的过程中将自己的代码托管在 Github 上。你可以看看这篇 Github 上开源的 [《Git 极简入门》](https://snailclimb.gitee.io/javaguide/#/docs/tools/Git) 。
-- **Docker**：学着用 Docker 安装学习中需要用到的软件比如 MySQL ,这样方便很多，可以为你节省不少时间。你可以看看这篇 Github 上开源的 [《Docker 基本概念解读》](https://snailclimb.gitee.io/javaguide/#/docs/tools/Docker) 、[《一文搞懂 Docker 镜像的常用操作！》](https://snailclimb.gitee.io/javaguide/#/docs/tools/Docker-Image)
+- **IDEA**：熟悉基本操作以及常用快捷。相关资料： [《IntelliJ IDEA 简体中文专题教程》](https://github.com/judasn/IntelliJ-IDEA-Tutorial) 。
+- **Maven**：强烈建议学习常用框架之前可以提前花几天时间学习一下**Maven**的使用。（到处找 Jar 包，下载 Jar 包是真的麻烦费事，使用 Maven 可以为你省很多事情）。相关阅读：[Maven核心概念总结](https://javaguide.cn/tools/maven/maven-core-concepts.html)。
+- **Git**：基本的 Git 技能也是必备的，试着在学习的过程中将自己的代码托管在 Github 上。相关阅读：[Git核心概念总结](https://javaguide.cn/tools/git/git-intro.html)。
+- **Docker**：学着用 Docker 安装学习中需要用到的软件比如 MySQL ,这样方便很多，可以为你节省不少时间。相关资料：[《Docker - 从入门到实践》](https://yeasy.gitbook.io/docker_practice/)  。
 
-除了这些工具之外，我强烈建议你一定要搞懂 GitHub 的使用。一些使用 GitHub 的小技巧，你可以看[《GitHub 小技巧》](https://snailclimb.gitee.io/javaguide/#/docs/tools/Github%E6%8A%80%E5%B7%A7)这篇文章。
+除了这些工具之外，我强烈建议你一定要搞懂 GitHub 的使用。一些使用 GitHub 的小技巧，你可以看[Github实用小技巧总结](https://javaguide.cn/tools/git/github-tips.html)这篇文章。
 
 ## 常用框架
 
@@ -191,7 +197,7 @@ SpringBoot 解析，不适合初学者。我是去年入手的，现在就看了
 
 ![](https://oss.javaguide.cn/github/javaguide/open-source-project/image-20220503085034268.png)
 
-2022 年 3 月刚刚出版的一本书。这本书分为上下两篇，上篇通过一个即时聊天系统的实战案例带你入门 Netty，下篇通过 Netty 源码分析带你搞清 Netty 比较重要的底层原理。
+2022 年 3 月出版的一本书。这本书分为上下两篇，上篇通过一个即时聊天系统的实战案例带你入门 Netty，下篇通过 Netty 源码分析带你搞清 Netty 比较重要的底层原理。
 
 ## 性能调优
 

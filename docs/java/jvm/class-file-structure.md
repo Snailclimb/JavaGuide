@@ -33,9 +33,9 @@ ClassFile {
     u2             super_class;//父类
     u2             interfaces_count;//接口数量
     u2             interfaces[interfaces_count];//一个类可以实现多个接口
-    u2             fields_count;//Class 文件的字段属性数量
+    u2             fields_count;//字段数量
     field_info     fields[fields_count];//一个类可以有多个字段
-    u2             methods_count;//Class 文件的方法数量
+    u2             methods_count;//方法数量
     method_info    methods[methods_count];//一个类可以有个多个方法
     u2             attributes_count;//此类的属性表中的属性数
     attribute_info attributes[attributes_count];//属性表集合
@@ -156,7 +156,7 @@ Java 类的继承关系由类索引、父类索引和接口索引集合三项确
 ### 字段表集合（Fields）
 
 ```java
-    u2             fields_count;//Class 文件的字段的个数
+    u2             fields_count;//字段数量
     field_info     fields[fields_count];//一个类会可以有个字段
 ```
 
@@ -181,7 +181,7 @@ Java 类的继承关系由类索引、父类索引和接口索引集合三项确
 ### 方法表集合（Methods）
 
 ```java
-    u2             methods_count;//Class 文件的方法的数量
+    u2             methods_count;//方法数量
     method_info    methods[methods_count];//一个类可以有个多个方法
 ```
 
