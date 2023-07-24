@@ -9,11 +9,11 @@ tag:
 
 `PriorityQueue` 是 Java 中的一种队列数据结构，被称为 **优先级队列** 。它和普通队列不同，普通队列都是遵循先进先出（FIFO）的原则，即先添加的元素先出队，后添加的元素后出队。而 `PriorityQueue` 则是按照元素的优先级来决定出队的顺序，默认情况下，优先级越小的元素越优先出队。
 
-![队列](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/queue.png)
+![队列](./images/generated/queue.png)
 
 如下图所示，如果是普通队列，我们按照元素 1 到元素 4 的顺序依次入队的话，那么出队的顺序则也是元素 1 到 4。
 
-![普通队列](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/normal-queue.png)
+![普通队列](./images/generated/normal-queue.png)
 
 而优先队列的逻辑存储结构和普通队列有所不同，以 `PriorityQueue` 为例，其底层实际上是使用 **小顶堆** 形式的二叉堆，即值最小的元素优先出队。
 
@@ -23,7 +23,7 @@ tag:
 2. 小顶堆的情况下，父节点的值永远小于两个子节点，大顶堆反之。
 3. 二叉堆的大小关系永远只针对父子孙这样的层级，假设我们用的是小顶堆，这并不能说明第二层节点就一定比第三层节点小，如下图的元素 3 和元素 4。
 
-![小顶堆](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/%20min-heap1.png)
+![小顶堆](./images/generated/%20min-heap1.png)
 
 `PriorityQueue`可以让我们方便地按照优先级执行任务，只要把任务按照优先级放入队列，每次取出的都是优先级最高（值最小）的任务，不用关心排序和出队的细节。
 
@@ -46,11 +46,11 @@ JDK 提供的 `PriorityQueue` 用到堆的思想，为了更好地理解 `Priori
 
 如下图所示，这就是典型的小顶堆，它既像一个完全二叉树(最后一层不满的情况下，节点尽可能靠左，非叶子节点的层节点排满)。又按照小顶堆的规则排列节点，即每一个父节点的值都比它下一层的子节点小。
 
-![小顶堆](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/min-heap1.png)
+![小顶堆](./images/generated/min-heap1.png)
 
 而大顶堆则相反，在符合完全二叉树的性质的情况下，所有的父节点的值都比其下一层的子节点的值大。
 
-![大顶堆](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/max-heap1.png)
+![大顶堆](./images/generated/max-heap1.png)
 
 ### 基于 JDK 动态数组实现二叉堆
 
@@ -58,7 +58,7 @@ JDK 提供的 `PriorityQueue` 用到堆的思想，为了更好地理解 `Priori
 
 接下来，我们通过观察下图来推导一下这个表示父子关系的公式。
 
-![小顶堆](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/minheap-enqueue-element-5-over.png)
+![小顶堆](./images/generated/minheap-enqueue-element-5-over.png)
 
 我们用 `parentIndex` 表示父节点索引，用 `leftIndex` 表示左子节点索引，用 `rightIndex` 表示右子节点。最终，得出以下 3 个公式:
 
@@ -180,21 +180,21 @@ private int rightIndex(int index) {
 
 然后，我们再来着手开发一下入队的操作，我们还是以这个小顶堆为例，假如我们现在要插入一个元素 5(优先级为 0)，要怎么做呢？
 
-![原始小顶堆](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/min-heap1.png)
+![原始小顶堆](./images/generated/min-heap1.png)
 
 首先我们为了保证元素插入的效率，自然会优先将其添加到数组末端，添加完成之后，我们发现小顶堆失衡了，子节点的值比父节点的值还要小，所以我们需要 `siftUp` 保持一下平衡。
 
-![先将元素5插入到数组末端](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/minheap-enqueue-element-5.png)
+![先将元素5插入到数组末端](./images/generated/minheap-enqueue-element-5.png)
 
 `siftUp` 的操作很简单，首先将元素 5 和其父节点元素 1 比较，发现元素 5 的值比元素 1 的小，两者交换一下位置。
 
-![对小顶堆进行 siftUp](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/minheap-enqueue-element-5-shifup.png)
+![对小顶堆进行 siftUp](./images/generated/minheap-enqueue-element-5-shifup.png)
 
 因为索引 1 位置的元素变为元素 5，所以元素 5 需要再次和当前的父节点比较一下，发现元素 5 的值也比元素 2 的值小，所以两者需要再次交换位置。
 
 最终元素 5 到达根节点，无需再进行比较，自此一个新元素入队完成。
 
-![插入优先级为0的元素5后](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/minheap-enqueue-element-5-over.png)
+![插入优先级为0的元素5后](./images/generated/minheap-enqueue-element-5-over.png)
 
 自此我们的编码也可以很快速的编写完成了，代码如下所示,整体步骤为:
 
@@ -238,20 +238,20 @@ private void siftUp(int index) {
 
 还是以上一张图为例，此时我们的小顶堆长这样，出队操作时，我们要将堆顶元素弹出。
 
-![原始小顶堆](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/minheap-enqueue-element-5-over.png)
+![原始小顶堆](./images/generated/minheap-enqueue-element-5-over.png)
 
 弹出之后，堆顶为空，如果我们单纯的使用左子节点或者右子节点进行 `siftUp`,平均比较次数就会激增，所以最稳妥的做法，是将末端节点移动到堆顶，进行 `siftDown` 操作。
 
-![先将栈顶元素5弹出](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/minheap-dequeue-element-5.png)
+![先将栈顶元素5弹出](./images/generated/minheap-dequeue-element-5.png)
 
 所以我们首先将末端元素移动到堆顶，然后从左右子节点中找到一个最小的和它进行比较，如果存有比它更小的，则交换位置。
 经过比较我们发现元素 2 更小，所以元素 1 要和元素 2 进行位置交换。
 
-![对小顶堆进行 siftDown](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/minheap-dequeue-element-5-siftdown.png)
+![对小顶堆进行 siftDown](./images/generated/minheap-dequeue-element-5-siftdown.png)
 
 交换完成后如下图所示，此时我们发现元素 1 的值比元素 4 小，所以无需进行交换，比较结束，自此二叉堆的一个出队操作就完成了。
 
-![弹出栈顶元素后](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/minheap-dequeue-element-5-over.png)
+![弹出栈顶元素后](./images/generated/minheap-dequeue-element-5-over.png)
 
 所以我们的出队操作的代码也实现了，这里的操作步骤和描述差不多，唯一需要注意的是比较的时候注意判断左右子节点索引计算时必须小于数组大小，避免越界问题。
 
@@ -341,13 +341,13 @@ private void siftDown(int index) {
 
 假如我们现在有下面这样一个数组，我们希望可以将其转换为优先队列，要如何做到呢？你一定觉得，我们遍历数组将元素一个个投入到堆中即可，这样做虽然方便，但是事件复杂度却是 O(n log n),所以笔者现在就要介绍出一种复杂度为 O(n)的方法——`heapify`。
 
-![](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/minheap-array.png)
+![](./images/generated/minheap-array.png)
 
 `heapify` 做法很简单，即从堆的最后一个非叶子节点开始遍历每一个非叶子节点，让这些非叶子节点不断进行 `siftDown` 操作，直到根节点完成 `siftDown` 从而实现快速完成小顶堆的创建。
 
 就以上面的数组为例子，如果我们自上而下、自作向右将其看作一个小顶堆，那么它就是下面这张图的样子。
 
-![数组对应的堆](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/minheap-array-tree.png)
+![数组对应的堆](./images/generated/minheap-array-tree.png)
 
 首先我们找到最后一个非叶子节点，获取方式很简单，上文说到过二叉堆是一个典型的完全二叉树，假设最后一个叶子节点，即数组的最后一个元素的索引为 `childIndex` 。
 
@@ -361,15 +361,15 @@ int parentIndex=(childIndex - 1) / 2
 
 最终我们来到的 20，对 20 进行 `siftDown`，结果发现 17 比 20 小，所以我们将这个两个节点进行交换,交换完成之后 20 到了叶子节点，没有需要进行比较的子节点，本次 `siftDown` 结束。
 
-![第一次 siftDown](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/minheap-array-tree-siftdown1.png)
+![第一次 siftDown](./images/generated/minheap-array-tree-siftdown1.png)
 
 继续向前推进，发现 18 的左子节点比 18 小，我们对其进行位置交换，紧接着 18 来到的新位置，发现两个子节点都比 18 大，siftDown 结束。
 
-![第二次 siftDown](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/minheap-array-tree-siftdown2.png)
+![第二次 siftDown](./images/generated/minheap-array-tree-siftdown2.png)
 
 最终我们来到了根节点 16，发现左子节点 14 比它小，进行位置交换，然后 16 来到的新位置，发现子节点都比它大，自此数组变为一个标准的小顶堆。
 
-![第三次 siftDown](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/minheap-array-tree-siftdown3.png)
+![第三次 siftDown](./images/generated/minheap-array-tree-siftdown3.png)
 
 了解了整个过程之后，我们的编码工作就变得很简单了，从最后一个非叶子节点往前遍历到根节点，不断执行 `siftDown`，这些都是我们现有的方法所以实现起来就很方便了。
 
@@ -872,7 +872,7 @@ peek 方法可以不改变队列结构查看优先级最高的元素，如果队
 
 就比如 [Leetcode 347. 前 K 个高频元素](https://leetcode.cn/problems/top-k-frequent-elements/) 这道题目，它要求我们返回整数数组中前 k 个高频元素，常规做法我们可以会将元素存放到 `map` 中，然后对这个 `map` 进行排序，尽管它确实可以完成这个题目，但是从排序和复杂度和优先队列差不多都是 `O(n log n)`，但在实现的复杂度上，在 `PriorityQueue` 的封装下，使用 `PriorityQueue` 来存放元素以及从元素中获取前 k 个元素的操作，相比于前者，同样的思想下后者的实现会更简单一些。
 
-![Leetcode 347. 前 K 个高频元素](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/leetcode347.png)
+![Leetcode 347. 前 K 个高频元素](./images/generated/leetcode347.png)
 
 ### 实现思路
 
@@ -920,7 +920,7 @@ public int[] topKFrequent(int[] nums, int k) {
 
 可以看到代码放到 Leetcode 上执行通过了。
 
-![](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/img202306301210022.png)
+![](./images/generated/img202306301210022.png)
 
 同样的，笔者也尝试过用自己的手写的优先队列解决这个问题，实现步骤几乎是一致的。
 

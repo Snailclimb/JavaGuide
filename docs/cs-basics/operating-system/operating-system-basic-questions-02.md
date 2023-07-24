@@ -16,7 +16,7 @@ head:
 
 ### 内存管理主要做了什么？
 
-![内存管理主要做的事情](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/memory-management-roles.png)
+![内存管理主要做的事情](./images/generated/memory-management-roles.png)
 
 操作系统的内存管理非常重要，主要负责下面这些事情：
 
@@ -35,7 +35,7 @@ head:
 - **内部内存碎片(Internal Memory Fragmentation，简称为内存碎片)**：已经分配给进程使用但未被使用的内存。导致内部内存碎片的主要原因是，当采用固定比例比如 2 的幂次方进行内存分配时，进程所分配的内存可能会比其实际所需要的大。举个例子，一个进程只需要 65 字节的内存，但为其分配了 128（2^7） 大小的内存，那 63 字节的内存就成为了内部内存碎片。
 - **外部内存碎片(External Memory Fragmentation，简称为外部碎片)**：由于未分配的连续内存区域太小，以至于不能满足任意进程所需要的内存分配请求，这些小片段且不连续的内存空间被称为外部碎片。也就是说，外部内存碎片指的是那些并未分配给进程但又不能使用的内存。我们后面介绍的分段机制就会导致外部内存碎片。
 
-![内存碎片](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/internal-and-external-fragmentation.png)
+![内存碎片](./images/generated/internal-and-external-fragmentation.png)
 
 内存碎片会导致内存利用率下降，如何减少内存碎片是内存管理要非常重视的一件事情。
 
@@ -56,11 +56,11 @@ head:
 
 假设两块相邻的内存块都被释放，系统会将这两个内存块合并，进而形成一个更大的内存块，以便后续的内存分配。这样就可以减少内存碎片的问题，提高内存利用率。
 
-![伙伴系统（Buddy System）内存管理](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/linux-buddy-system.png)
+![伙伴系统（Buddy System）内存管理](./images/generated/linux-buddy-system.png)
 
 虽然解决了外部内存碎片的问题，但伙伴系统仍然存在内存利用率不高的问题（内部内存碎片）。这主要是因为伙伴系统只能分配大小为 2^n 的内存块，因此当需要分配的内存大小不是 2^n 的整数倍时，会浪费一定的内存空间。举个例子：如果要分配 65 大小的内存快，依然需要分配 2^7=128 大小的内存块。
 
-![伙伴系统内存浪费问题](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/buddy-system-memory-waste.png)
+![伙伴系统内存浪费问题](./images/generated/buddy-system-memory-waste.png)
 
 对于内部内存碎片的问题，Linux 采用 **SLAB** 进行解决。由于这部分内容不是本篇文章的重点，这里就不详细介绍了。
 
@@ -78,7 +78,7 @@ head:
 
 **虚拟内存(Virtual Memory)** 是计算机系统内存管理非常重要的一个技术，本质上来说它只是逻辑存在的，是一个假想出来的内存空间，主要作用是作为进程访问主存（物理内存）的桥梁并简化内存管理。
 
-![虚拟内存作为进程访问主存的桥梁](https://oss.javaguide.cn/xingqiu/virtual-memory.png)
+![虚拟内存作为进程访问主存的桥梁](./images/generated/virtual-memory.png)
 
 总结来说，虚拟内存主要提供了下面这些能力：
 
@@ -108,7 +108,7 @@ head:
 
 操作系统一般通过 CPU 芯片中的一个重要组件 **MMU(Memory Management Unit，内存管理单元)** 将虚拟地址转换为物理地址，这个过程被称为 **地址翻译/地址转换（Address Translation）** 。
 
-![地址翻译过程](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/physical-virtual-address-translation.png)
+![地址翻译过程](./images/generated/physical-virtual-address-translation.png)
 
 通过 MMU 将虚拟地址转换为物理地址后，再通过总线传到物理内存设备，进而完成相应的物理内存读写请求。
 
@@ -148,7 +148,7 @@ MMU 将虚拟地址翻译为物理地址的主要机制有 3 种:
 2. 通过段号去该应用程序的段表中取出对应的段信息（找到对应的段表项）；
 3. 从段信息中取出该段的起始地址（物理地址）加上虚拟地址中的段内偏移量得到最终的物理地址。
 
-![分段机制下的地址翻译过程](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/segment-virtual-address-composition.png)
+![分段机制下的地址翻译过程](./images/generated/segment-virtual-address-composition.png)
 
 段表中还存有诸如段长(可用于检查虚拟地址是否超出合法范围)、段类型（该段的类型，例如代码段、数据段等）等信息。
 
@@ -172,7 +172,7 @@ MMU 将虚拟地址翻译为物理地址的主要机制有 3 种:
 
 此时，我们关闭了进程 1 和进程 4，则第 1 段和第 4 段的内存会被释放，空闲物理内存还有 1.5G。由于这 1.5G 物理内存并不是连续的，导致没办法将空闲的物理内存分配给一个需要 1.5G 物理内存的进程。
 
-![分段机制导致外部内存碎片](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/segment-external-memory-fragmentation.png)
+![分段机制导致外部内存碎片](./images/generated/segment-external-memory-fragmentation.png)
 
 ### 分页机制
 
@@ -186,7 +186,7 @@ MMU 将虚拟地址翻译为物理地址的主要机制有 3 种:
 
 分页管理通过 **页表（Page Table）** 映射虚拟地址和物理地址。我这里画了一张基于单级页表进行地址翻译的示意图。
 
-![单级页表](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/page-table.png)
+![单级页表](./images/generated/page-table.png)
 
 在分页机制下，每个应用程序都会有一个对应的页表。
 
@@ -201,7 +201,7 @@ MMU 将虚拟地址翻译为物理地址的主要机制有 3 种:
 2. 通过虚拟页号去该应用程序的页表中取出对应的物理页号（找到对应的页表项）；
 3. 用该物理页号对应的物理页起始地址（物理地址）加上虚拟地址中的页内偏移量得到最终的物理地址。
 
-![分页机制下的地址翻译过程](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/paging-virtual-address-composition.png)
+![分页机制下的地址翻译过程](./images/generated/paging-virtual-address-composition.png)
 
 页表中还存有诸如访问标志（标识该页面有没有被访问过）、脏数据标识位等信息。
 
@@ -221,7 +221,7 @@ MMU 将虚拟地址翻译为物理地址的主要机制有 3 种:
 
 假设只需要 2 个二级页表，那两级页表的内存占用情况为: 4KB（一级页表占用） + 4KB \* 2（二级页表占用） = 12 KB。
 
-![多级页表](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/multilevel-page-table.png)
+![多级页表](./images/generated/multilevel-page-table.png)
 
 多级页表属于时间换空间的典型场景，利用增加页表查询的次数减少页表占用的空间。
 
@@ -229,7 +229,7 @@ MMU 将虚拟地址翻译为物理地址的主要机制有 3 种:
 
 为了提高虚拟地址到物理地址的转换速度，操作系统在 **页表方案** 基础之上引入了 **转址旁路缓存(Translation Lookasjde Buffer，TLB，也被称为快表)** 。
 
-![加入 TLB 之后的地址翻译](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/physical-virtual-address-translation-mmu.png)
+![加入 TLB 之后的地址翻译](./images/generated/physical-virtual-address-translation-mmu.png)
 
 在主流的 AArch64 和 x86-64 体系结构下，TLB 属于 (Memory Management Unit，内存管理单元) 内部的单元，本质上就是一块高速缓存（Cache），缓存了虚拟页号到物理页号的映射关系，你可以将其简单看作是存储着键（虚拟页号）值（物理页号）对的哈希表。
 
@@ -240,7 +240,7 @@ MMU 将虚拟地址翻译为物理地址的主要机制有 3 种:
 3. 如果不能查到对应的物理页的话，还是需要去查询主存中的页表，同时将页表中的该映射表项添加到 TLB 中，这种情况称为 TLB 未命中（TLB miss)。
 4. 当 TLB 填满后，又要登记新页时，就按照一定的淘汰策略淘汰掉快表中的一个页。
 
-![使用 TLB 之后的地址翻译流程](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/page-table-tlb.png)
+![使用 TLB 之后的地址翻译流程](./images/generated/page-table-tlb.png)
 
 由于页表也在主存中，因此在没有 TLB 之前，每次读写内存数据时 CPU 要访问两次主存。有了 TLB 之后，对于存在于 TLB 中的页表数据只需要访问一次主存即可。
 
@@ -279,7 +279,7 @@ TLB 的设计思想非常简单，但命中率往往非常高，效果很好。�
 
 常见的页面置换算法有下面这 5 种（其他还有很多页面置换算法都是基于这些算法改进得来的）：
 
-![常见的页面置换算法](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/image-20230409113009139.png)
+![常见的页面置换算法](./images/generated/image-20230409113009139.png)
 
 1. **最佳页面置换算法（OPT，Optimal）**：优先选择淘汰的页面是以后永不使用的，或者是在最长时间内不再被访问的页面，这样可以保证获得最低的缺页率。但由于人们目前无法预知进程在内存下的若干页面中哪个是未来最长时间内不再被访问的，因而该算法无法实现，只是理论最优的页面置换算法，可以作为衡量其他置换算法优劣的标准。
 2. **先进先出页面置换算法（FIFO，First In First Out）** : 最简单的一种页面置换算法，总是淘汰最先进入内存的页面，即选择在内存中驻留时间最久的页面进行淘汰。该算法易于实现和理解，一般只需要通过一个 FIFO 队列即可需求。不过，它的性能并不是很好。
@@ -389,7 +389,7 @@ LRU 算法是实际使用中应用的比较多，也被认为是最接近 OPT �
 
 常见的磁盘调度算法有下面这 6 种（其他还有很多磁盘调度算法都是基于这些算法改进得来的）：
 
-![常见的磁盘调度算法](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/disk-scheduling-algorithms.png)
+![常见的磁盘调度算法](./images/generated/disk-scheduling-algorithms.png)
 
 1. **先来先服务算法（First-Come First-Served，FCFS）**：按照请求到达磁盘调度器的顺序进行处理，先到达的请求的先被服务。FCFS 算法实现起来比较简单，不存在算法开销。不过，由于没有考虑磁头移动的路径和方向，平均寻道时间较长。同时，该算法容易出现饥饿问题，即一些后到的磁盘请求可能需要等待很长时间才能得到服务。
 2. **最短寻道时间优先算法（Shortest Seek Time First，SSTF）**：也被称为最佳服务优先（Shortest Service Time First，SSTF）算法，优先选择距离当前磁头位置最近的请求进行服务。SSTF 算法能够最小化磁头的寻道时间，但容易出现饥饿问题，即磁头附近的请求不断被服务，远离磁头的请求长时间得不到响应。实际应用中，需要优化一下该算法的实现，避免出现饥饿问题。

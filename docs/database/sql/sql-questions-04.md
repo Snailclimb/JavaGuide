@@ -618,7 +618,7 @@ ORDER BY
 
 转换函数为：
 
-![](https://oss.javaguide.cn/github/javaguide/database/sql/29A377601170AB822322431FCDF7EDFE.png)
+![](./images/generated/29A377601170AB822322431FCDF7EDFE.png)
 
 请你将用户作答高难度试卷的得分在每份试卷作答记录内执行 min-max 归一化后缩放到[0,100]区间，并输出用户 ID、试卷 ID、归一化后分数平均值；最后按照试卷 ID 升序、归一化分数降序输出。（注：得分区间默认为[0,100]，如果某个试卷作答记录中只有一个得分，那么无需使用公式，归一化并缩放后分数仍为原分数）。
 
@@ -828,4 +828,3 @@ FROM
 ORDER BY
 	start_month
 ```
-

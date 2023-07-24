@@ -224,7 +224,7 @@ public class DrainToExample {
 
 在了解 `ArrayBlockingQueue` 的具体细节之前，我们先来看看 `ArrayBlockingQueue` 的类图。
 
-![ArrayBlockingQueue 类图](https://oss.javaguide.cn/github/javaguide/java/collection/arrayblockingqueue-class-diagram.png)
+![ArrayBlockingQueue 类图](./images/generated/arrayblockingqueue-class-diagram.png)
 
 从图中我们可以看出，`ArrayBlockingQueue` 继承了阻塞队列 `BlockingQueue` 这个接口，不难猜出通过继承 `BlockingQueue` 这个接口之后，`ArrayBlockingQueue` 就拥有了阻塞队列那些常见的操作行为。
 
@@ -390,11 +390,11 @@ public ArrayBlockingQueue(int capacity, boolean fair,
 
 接下来笔者就通过两张图让大家了解一下这两个条件是如何在阻塞队列中运用的。
 
-![ArrayBlockingQueue 非空条件](https://oss.javaguide.cn/github/javaguide/java/collection/ArrayBlockingQueue-notEmpty-take.png)
+![ArrayBlockingQueue 非空条件](./images/generated/ArrayBlockingQueue-notEmpty-take.png)
 
 假设我们的代码消费者先启动，当它发现队列中没有数据，那么非空条件就会将这个线程挂起，即等待条件非空时挂起。然后 CPU 执行权到达生产者，生产者发现队列中可以存放数据，于是将数据存放进去，通知此时条件非空，此时消费者就会被唤醒到队列中使用 `take` 等方法获取值了。
 
-![ArrayBlockingQueue 非满条件](https://oss.javaguide.cn/github/javaguide/java/collection/ArrayBlockingQueue-notFull-put.png)
+![ArrayBlockingQueue 非满条件](./images/generated/ArrayBlockingQueue-notFull-put.png)
 
 随后的执行中，生产者生产速度远远大于消费者消费速度，于是生产者将队列塞满后再次尝试将数据存入队列，发现队列已满，于是阻塞队列就将当前线程挂起，等待非满。然后消费者拿着 CPU 执行权进行消费，于是队列可以存放新数据了，发出一个非满的通知，此时挂起的生产者就会等待 CPU 执行权到来时再次尝试将数据存到队列中。
 
@@ -498,7 +498,7 @@ private E dequeue() {
 
 为了帮助理解，我专门画了一张图来展示 `notEmpty`(非空) 和 `notFull` （非满）这两个条件对象是如何控制 `ArrayBlockingQueue` 的存和取的。
 
-![ArrayBlockingQueue 非空非满](https://oss.javaguide.cn/github/javaguide/java/collection/ArrayBlockingQueue-notEmpty-notFull.png)
+![ArrayBlockingQueue 非空非满](./images/generated/ArrayBlockingQueue-notEmpty-notFull.png)
 
 - **消费者**：当消费者从队列中 `take` 或者 `poll` 等操作取出一个元素之后，就会通知队列非满，此时那些等待非满的生产者就会被唤醒等待获取 CPU 时间片进行入队操作。
 - **生产者**：当生产者将元素存到队列中后，就会触发通知队列非空，此时消费者就会被唤醒等待 CPU 时间片尝试获取元素。如此往复，两个条件对象就构成一个环路，控制着多线程之间的存和取。
@@ -716,7 +716,7 @@ public boolean contains(Object o) {
 | `peek()`                            | 返回 null                                           | E          |
 | `remove()`                          | 直接抛出 `NoSuchElementException` 异常              | boolean    |
 
-![](https://oss.javaguide.cn/github/javaguide/java/collection/ArrayBlockingQueue-get-add-element-methods.png)
+![](./images/generated/ArrayBlockingQueue-get-add-element-methods.png)
 
 ## ArrayBlockingQueue 相关面试题
 

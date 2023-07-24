@@ -16,4 +16,4 @@ category: 计算机书籍
 
 本项目推荐的大部分书籍的 PDF 版本我已经整理到了云盘里，你可以在公众号“**GitHub 掘金计划**” 后台回复“**书籍**”获取到。
 
-![](https://oss.javaguide.cn/github/javaguide/booksimage-20220409153638398.png)
+![](./images/generated/booksimage-20220409153638398.png)

@@ -16,7 +16,7 @@ footer: |-
   <a href="https://beian.miit.gov.cn/" target="_blank">鄂ICP备2020015769号-1</a> | 主题: <a href="https://vuepress-theme-hope.github.io/v2/" target="_blank">VuePress Theme Hope</a>
 ---
 
-[![Banner](https://oss.javaguide.cn/xingqiu/xingqiu.png)](https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html)
+![![Banner](./images/generated/xingqiu.png)
 
 ## 关于网站
 
@@ -37,10 +37,10 @@ footer: |-
 
 下面是星球提供的部分服务（点击下方图片即可获取知识星球的详细介绍）：
 
-[![星球服务](https://oss.javaguide.cn/xingqiu/xingqiufuwu.png)](./about-the-author/zhishixingqiu-two-years.md)
+![![星球服务](./images/generated/xingqiufuwu.png)
 
 ## 公众号
 
 最新更新会第一时间同步在公众号，推荐关注！另外，公众号上有很多干货不会同步在线阅读网站。
 
-![JavaGuide 官方公众号](https://oss.javaguide.cn/github/javaguide/gongzhonghaoxuanchuan.png)
+![JavaGuide 官方公众号](./images/generated/gongzhonghaoxuanchuan.png)

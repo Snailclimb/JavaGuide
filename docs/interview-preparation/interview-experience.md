@@ -10,15 +10,15 @@ icon: experience
 
 如果你是非科班的同学，也能在这些文章中找到对应的非科班的同学写的面经。
 
-![](https://oss.javaguide.cn/githubjuejinjihua/thinkimage-20220612185810480.png)
+![](./images/generated/thinkimage-20220612185810480.png)
 
 并且，[知识星球](https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html)还有专门分享面经和面试题的专题，里面会分享很多优质的面经和面试题。
 
-![](https://oss.javaguide.cn/xingqiu/image-20220304120018731.png)
+![](./images/generated/image-20220304120018731.png)
 
-![](https://oss.javaguide.cn/xingqiu/image-20220628101743381.png)
+![](./images/generated/image-20220628101743381.png)
 
-![](https://oss.javaguide.cn/xingqiu/image-20220628101805897.png)
+![](./images/generated/image-20220628101805897.png)
 
 相比于牛客网或者其他网站的面经，《Java 面试指北》中整理的面经质量更高，并且，我会提供优质的参考资料。
 

@@ -17,7 +17,7 @@ tag:
 
 **OSI 七层模型** 是国际标准化组织提出一个网络分层模型，其大体结构以及每一层提供的功能如下图所示：
 
-![OSI 七层模型](https://oss.javaguide.cn/github/javaguide/cs-basics/network/osi-7-model.png)
+![OSI 七层模型](./images/generated/osi-7-model.png)
 
 每一层都专注做一件事情，并且每一层都需要使用下一层提供的功能比如传输层需要使用网络层提供的路由和寻址功能，这样传输层才知道把数据传输到哪里去。
 
@@ -25,7 +25,7 @@ tag:
 
 上面这种图可能比较抽象，再来一个比较生动的图片。下面这个图片是我在国外的一个网站上看到的，非常赞！
 
-![osi七层模型2](https://oss.javaguide.cn/github/javaguide/osi七层模型2.png)
+![osi七层模型2](./images/generated/osi七层模型2.png)
 
 #### TCP/IP 四层模型是什么？每一层的作用是什么？
 
@@ -38,7 +38,7 @@ tag:
 
 需要注意的是，我们并不能将 TCP/IP 四层模型 和 OSI 七层模型完全精确地匹配起来，不过可以简单将两者对应起来，如下图所示：
 
-![TCP/IP 四层模型](https://oss.javaguide.cn/github/javaguide/cs-basics/network/tcp-ip-4-model.png)
+![TCP/IP 四层模型](./images/generated/tcp-ip-4-model.png)
 
 关于每一层作用的详细介绍，请看 [OSI 和 TCP/IP 网络分层模型详解（基础）](./osi-and-tcp-ip-model.md) 这篇文章。
 
@@ -66,7 +66,7 @@ tag:
 
 #### 应用层有哪些常见的协议？
 
-![应用层常见协议](https://oss.javaguide.cn/github/javaguide/cs-basics/network/application-layer-protocol.png)
+![应用层常见协议](./images/generated/application-layer-protocol.png)
 
 - **HTTP（Hypertext Transfer Protocol，超文本传输协议）**：基于 TCP 协议，是一种用于传输超文本和多媒体内容的协议，主要是为 Web 浏览器与 Web 服务器之间的通信而设计的。当我们使用浏览器浏览网页的时候，我们网页就是通过 HTTP 请求进行加载的。
 - **SMTP（Simple Mail Transfer Protocol，简单邮件发送协议）**：基于 TCP 协议，是一种用于发送电子邮件的协议。注意 ⚠️：SMTP 协议只负责邮件的发送，而不是接收。要从邮件服务器接收邮件，需要使用 POP3 或 IMAP 协议。
@@ -81,7 +81,7 @@ tag:
 
 #### 传输层有哪些常见的协议？
 
-![传输层常见协议](https://oss.javaguide.cn/github/javaguide/cs-basics/network/transport-layer-protocol.png)
+![传输层常见协议](./images/generated/transport-layer-protocol.png)
 
 - **TCP（Transmission Control Protocol，传输控制协议 ）**：提供 **面向连接** 的，**可靠** 的数据传输服务。
 - **UDP（User Datagram Protocol，用户数据协议）**：提供 **无连接** 的，**尽最大努力** 的数据传输服务（不保证数据传输的可靠性），简单高效。
@@ -128,7 +128,7 @@ tag:
 
 HTTP 状态码用于描述 HTTP 请求的结果，比如 2xx 就代表请求被成功处理。
 
-![常见 HTTP 状态码](https://oss.javaguide.cn/github/javaguide/cs-basics/network/http-status-code.png)
+![常见 HTTP 状态码](./images/generated/http-status-code.png)
 
 关于 HTTP 状态码更详细的总结，可以看我写的这篇文章：[HTTP 常见状态码总结（应用层）](./http-status-codes.md)。
 
@@ -171,7 +171,7 @@ HTTP 状态码用于描述 HTTP 请求的结果，比如 2xx 就代表请求被�
 
 ### HTTP 和 HTTPS 有什么区别？（重要）
 
-![HTTP 和 HTTPS 对比](https://oss.javaguide.cn/github/javaguide/cs-basics/network/http1.0-vs-http1.1.png)
+![HTTP 和 HTTPS 对比](./images/generated/http1.0-vs-http1.1.png)
 
 - **端口号**：HTTP 默认是 80，HTTPS 默认是 443。
 - **URL 前缀**：HTTP 的 URL 前缀是 `http://`，HTTPS 的 URL 前缀是 `https://`。
@@ -182,7 +182,7 @@ HTTP 状态码用于描述 HTTP 请求的结果，比如 2xx 就代表请求被�
 
 ### HTTP/1.0 和 HTTP/1.1 有什么区别？
 
-![HTTP/1.0 和 HTTP/1.1 对比](https://oss.javaguide.cn/github/javaguide/cs-basics/network/http1.0-vs-http1.1.png)
+![HTTP/1.0 和 HTTP/1.1 对比](./images/generated/http1.0-vs-http1.1.png)
 
 - **连接方式** : HTTP/1.0 为短连接，HTTP/1.1 支持长连接。
 - **状态响应码** : HTTP/1.1 中新加入了大量的状态码，光是错误响应状态码就新增了 24 种。比如说，`100 (Continue)`——在请求大资源前的预热请求，`206 (Partial Content)`——范围请求的标识码，`409 (Conflict)`——请求与当前资源的规定冲突，`410 (Gone)`——资源已被永久转移，而且没有任何已知的转发地址。
@@ -194,7 +194,7 @@ HTTP 状态码用于描述 HTTP 请求的结果，比如 2xx 就代表请求被�
 
 ### HTTP/1.1 和 HTTP/2.0 有什么区别？
 
-![HTTP/1.0 和 HTTP/1.1 对比](https://oss.javaguide.cn/github/javaguide/cs-basics/network/http1.1-vs-http2.0.png)
+![HTTP/1.0 和 HTTP/1.1 对比](./images/generated/http1.1-vs-http2.0.png)
 
 - **IO 多路复用（Multiplexing）**：HTTP/2.0 在同一连接上可以同时传输多个请求和响应（可以看作是 HTTP/1.1 中长链接的升级版本）。HTTP/1.1 则使用串行方式，每个请求和响应都需要独立的连接。这使得 HTTP/2.0 在处理多个请求时更加高效，减少了网络延迟和提高了性能。
 - **二进制帧（Binary Frames）**：HTTP/2.0 使用二进制帧进行数据传输，而 HTTP/1.1 则使用文本格式的报文。二进制帧更加紧凑和高效，减少了传输的数据量和带宽消耗。
@@ -203,7 +203,7 @@ HTTP 状态码用于描述 HTTP 请求的结果，比如 2xx 就代表请求被�
 
 ### HTTP/2.0 和 HTTP/3.0 有什么区别？
 
-![HTTP/2.0 和 HTTP/3.0 对比](https://oss.javaguide.cn/github/javaguide/cs-basics/network/http2.0-vs-http3.0.png)
+![HTTP/2.0 和 HTTP/3.0 对比](./images/generated/http2.0-vs-http3.0.png)
 
 - **传输协议**：HTTP/2.0 是基于 TCP 协议实现的，HTTP/3.0 新增了 QUIC（Quick UDP Internet Connections） 协议来实现可靠的传输，提供与 TLS/SSL 相当的安全性，具有较低的连接和传输延迟。你可以将 QUIC 看作是 UDP 的升级版本，在其基础上新增了很多功能比如加密、重传等等。HTTP/3.0 之前名为 HTTP-over-QUIC，从这个名字中我们也可以发现，HTTP/3 最大的改造就是使用了 QUIC。
 - **连接建立**：HTTP/2.0 需要经过经典的 TCP 三次握手过程（由于安全的 HTTPS 连接建立还需要 TLS 握手，共需要大约 3 个 RTT）。由于 QUIC 协议的特性（TLS 1.3，TLS 1.3 除了支持 1 个 RTT 的握手，还支持 0 个 RTT 的握手）连接建立仅需 0-RTT 或者 1-RTT。这意味着 QUIC 在最佳情况下不需要任何的额外往返时间就可以建立新连接。
@@ -284,7 +284,7 @@ PING 用到的 ICMP Echo Request（类型为 8 ） 和 ICMP Echo Reply（类型�
 
 DNS（Domain Name System）域名管理系统，是当用户使用浏览器访问网址之后，使用的第一个重要协议。DNS 要解决的是**域名和 IP 地址的映射问题**。
 
-![DNS:域名系统](https://oss.javaguide.cn/github/javaguide/cs-basics/network/dns-overview.png)
+![DNS:域名系统](./images/generated/dns-overview.png)
 
 在实际使用中，有一种情况下，浏览器是可以不必动用 DNS 就可以获知域名和 IP 地址的映射的。浏览器在本地会维护一个`hosts`列表，一般来说浏览器要先查看要访问的域名是否在`hosts`列表中，如果有的话，直接提取对应的 IP 地址记录，就好了。如果本地`hosts`列表内没有域名-IP 对应记录的话，那么 DNS 就闪亮登场了。
 

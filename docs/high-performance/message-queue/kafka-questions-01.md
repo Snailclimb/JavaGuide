@@ -37,7 +37,7 @@ Kafka 主要有两大应用场景：
 
 #### 队列模型：早期的消息模型
 
-![队列模型](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/队列模型23.png)
+![队列模型](./images/generated/队列模型23.png)
 
 **使用队列（Queue）作为消息通信载体，满足生产者与消费者模式，一条消息只能被一个消费者使用，未被消费的消息在队列中保留直到被消费或超时。** 比如：我们生产者发送 100 条消息的话，两个消费者来消费一般情况下两个消费者会按照消息发送的顺序各自消费一半（也就是你一个我一个的消费。）
 
@@ -51,7 +51,7 @@ Kafka 主要有两大应用场景：
 
 发布-订阅模型主要是为了解决队列模型存在的问题。
 
-![发布订阅模型](https://oss.javaguide.cn/java-guide-blog/%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%9E%8B.png)
+![发布订阅模型](./images/generated/%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%9E%8B.png)
 
 发布订阅模型（Pub-Sub） 使用**主题（Topic）** 作为消息通信载体，类似于**广播模式**；发布者发布一条消息，该消息通过主题传递给所有的订阅者，**在一条消息广播之后才订阅的用户则是收不到该条消息的**。
 
@@ -65,7 +65,7 @@ Kafka 主要有两大应用场景：
 
 Kafka 将生产者发布的消息发送到 **Topic（主题）** 中，需要这些消息的消费者可以订阅这些 **Topic（主题）**，如下图所示：
 
-![](https://oss.javaguide.cn/github/javaguide/high-performance/message-queue20210507200944439.png)
+![](./images/generated/message-queue20210507200944439.png)
 
 上面这张图也为我们引出了，Kafka 比较重要的几个概念：
 
@@ -119,7 +119,7 @@ ZooKeeper 主要为 Kafka 提供元数据的管理的功能。
 
 我们知道 Kafka 中 Partition(分区)是真正保存消息的地方，我们发送的消息都被放在了这里。而我们的 Partition(分区) 又存在于 Topic(主题) 这个概念中，并且我们可以给特定 Topic 指定多个 Partition。
 
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/KafkaTopicPartionsLayout.png)
+![](./images/generated/KafkaTopicPartionsLayout.png)
 
 每次添加消息到 Partition(分区) 的时候都会采用尾加法，如上图所示。 **Kafka 只能为我们保证 Partition(分区) 中的消息有序。**
 
@@ -170,7 +170,7 @@ if (sendResult.getRecordMetadata() != null) {
 
 我们知道消息在被追加到 Partition(分区)的时候都会分配一个特定的偏移量（offset）。偏移量（offset)表示 Consumer 当前消费到的 Partition(分区)的所在的位置。Kafka 通过偏移量（offset）可以保证消息在分区内的顺序性。
 
-![kafka offset](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/kafka-offset.jpg)
+![kafka offset](./images/generated/kafka-offset.jpg)
 
 当消费者拉取到了分区的某个消息之后，消费者会自动提交了 offset。自动提交的话会有一个问题，试想一下，当消费者刚拿到这个消息准备进行真正消费的时候，突然挂掉了，消息实际上并没有被消费，但是 offset 却被自动提交了。
 

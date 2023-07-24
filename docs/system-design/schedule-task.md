@@ -80,7 +80,7 @@ timer.schedule(task, delay);
 
 `ScheduledExecutorService` 是一个接口，有多个实现类，比较常用的是 `ScheduledThreadPoolExecutor` 。
 
-![](https://oss.javaguide.cn/javaguide/20210607154324712.png)
+![](./images/generated/20210607154324712.png)
 
 `ScheduledThreadPoolExecutor` 本身就是一个线程池，支持任务并发执行。并且，其内部使用 `DelayedWorkQueue` 作为任务队列。
 
@@ -151,7 +151,7 @@ Kafka、Dubbo、ZooKeeper、Netty、Caffeine、Akka 中都有对时间轮的实�
 
 下图是一个有 12 个时间格的时间轮，转完一圈需要 12 s。当我们需要新建一个 3s 后执行的定时任务，只需要将定时任务放在下标为 3 的时间格中即可。当我们需要新建一个 9s 后执行的定时任务，只需要将定时任务放在下标为 9 的时间格中即可。
 
-![](https://oss.javaguide.cn/github/javaguide/system-design/schedule-task/one-layers-of-time-wheel.png)
+![](./images/generated/one-layers-of-time-wheel.png)
 
 那当我们需要创建一个 13s 后执行的定时任务怎么办呢？这个时候可以引入一叫做 **圈数/轮数** 的概念，也就是说这个任务还是放在下标为 3 的时间格中， 不过它的圈数为 2 。
 
@@ -159,7 +159,7 @@ Kafka、Dubbo、ZooKeeper、Netty、Caffeine、Akka 中都有对时间轮的实�
 
 针对下图的时间轮，我来举一个例子便于大家理解。
 
-![](https://oss.javaguide.cn/github/javaguide/system-design/schedule-task/three-layers-of-time-wheel.png)
+![](./images/generated/three-layers-of-time-wheel.png)
 
 上图的时间轮，第 1 层的时间精度为 1 ，第 2 层的时间精度为 20 ，第 3 层的时间精度为 400。假如我们需要添加一个 350s 后执行的任务 A 的话（当前时间是 0s），这个任务会被放在第 2 层（因为第二层的时间跨度为 20\*20=400>350）的第 350/20=17 个时间格子。
 
@@ -213,11 +213,11 @@ ElasticJob-Lite 和 ElasticJob-Cloud 两者的对比如下：
 
 `ElasticJob` 支持任务在分布式场景下的分片和高可用、任务可视化管理等功能。
 
-![](https://oss.javaguide.cn/github/javaguide/system-design/schedule-task/elasticjob-feature-list.png)
+![](./images/generated/elasticjob-feature-list.png)
 
 ElasticJob-Lite 的架构设计如下图所示：
 
-![ElasticJob-Lite 的架构设计](https://oss.javaguide.cn/github/javaguide/system-design/schedule-task/elasticjob-lite-architecture-design.png)
+![ElasticJob-Lite 的架构设计](./images/generated/elasticjob-lite-architecture-design.png)
 
 从上图可以看出，Elastic-Job没有调度中心这一概念，而是使用 ZooKeeper 作为注册中心，注册中心负责协调分配任务到不同的节点上。
 
@@ -250,7 +250,7 @@ public class TestJob implements SimpleJob {
 
 `XXL-JOB` 于 2015 年开源，是一款优秀的轻量级分布式任务调度框架，支持任务可视化管理、弹性扩容缩容、任务失败重试和告警、任务分片等功能，
 
-![](https://oss.javaguide.cn/github/javaguide/system-design/schedule-task/xxljob-feature-list.png)
+![](./images/generated/xxljob-feature-list.png)
 
 根据 `XXL-JOB` 官网介绍，其解决了很多 Quartz 的不足。
 
@@ -265,7 +265,7 @@ public class TestJob implements SimpleJob {
 
 `XXL-JOB` 的架构设计如下图所示：
 
-![](https://oss.javaguide.cn/github/javaguide/system-design/schedule-task/xxljob-architecture-design-v2.1.0.png)
+![](./images/generated/xxljob-architecture-design-v2.1.0.png)
 
 从上图可以看出，`XXL-JOB` 由 **调度中心** 和 **执行器** 两大部分组成。调度中心主要负责任务管理、执行器管理以及日志管理。执行器主要是接收调度信号并处理。另外，调度中心进行任务调度时，是通过自研 RPC 来实现的。
 
@@ -298,7 +298,7 @@ public ReturnT<String> myAnnotationJobHandler(String param) throws Exception {
 }
 ```
 
-![](https://oss.javaguide.cn/github/javaguide/system-design/schedule-task/xxljob-admin-task-management.png)
+![](./images/generated/xxljob-admin-task-management.png)
 
 **相关地址：**
 
@@ -320,7 +320,7 @@ public ReturnT<String> myAnnotationJobHandler(String param) throws Exception {
 
 由于 SchedulerX 属于人民币产品，我这里就不过多介绍。PowerJob 官方也对比过其和 QuartZ、XXL-JOB 以及 SchedulerX。
 
-![](https://oss.javaguide.cn/github/javaguide/system-design/schedule-task/quartz-xxljob-schedulerx2.0-powerjob-comparison.png)
+![](./images/generated/quartz-xxljob-schedulerx2.0-powerjob-comparison.png)
 
 ## 总结
 

@@ -20,7 +20,7 @@ tag:
 删除：O（n）//最坏的情况发生在删除数组的开头发生并需要移动第一元素后面所有的元素时
 ```
 
-![数组](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/array.png)
+![数组](./images/generated/array.png)
 
 ## 2. 链表
 
@@ -51,25 +51,25 @@ tag:
 
 **单链表** 单向链表只有一个方向，结点只有一个后继指针 next 指向后面的节点。因此，链表这种数据结构通常在物理内存上是不连续的。我们习惯性地把第一个结点叫作头结点，链表通常有一个不保存任何值的 head 节点(头结点)，通过头结点我们可以遍历整个链表。尾结点通常指向 null。
 
-![单链表](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/single-linkedlist.png)
+![单链表](./images/generated/single-linkedlist.png)
 
 #### 2.2.2. 循环链表
 
 **循环链表** 其实是一种特殊的单链表，和单链表不同的是循环链表的尾结点不是指向 null，而是指向链表的头结点。
 
-![循环链表](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/circular-linkedlist.png)
+![循环链表](./images/generated/circular-linkedlist.png)
 
 #### 2.2.3. 双向链表
 
 **双向链表** 包含两个指针，一个 prev 指向前一个节点，一个 next 指向后一个节点。
 
-![双向链表](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/bidirectional-linkedlist.png)
+![双向链表](./images/generated/bidirectional-linkedlist.png)
 
 #### 2.2.4. 双向循环链表
 
 **双向循环链表** 最后一个节点的 next 指向 head，而 head 的 prev 指向最后一个节点，构成一个环。
 
-![双向循环链表](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/bidirectional-circular-linkedlist.png)
+![双向循环链表](./images/generated/bidirectional-circular-linkedlist.png)
 
 ### 2.3. 应用场景
 
@@ -97,7 +97,7 @@ tag:
 插入删除：O（1）//顶端插入和删除元素
 ```
 
-![栈](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/栈.png)
+![栈](./images/generated/栈.png)
 
 ### 3.2. 栈的常见应用常见应用场景
 
@@ -107,7 +107,7 @@ tag:
 
 我们只需要使用两个栈(Stack1 和 Stack2)和就能实现这个功能。比如你按顺序查看了 1,2,3,4 这四个页面，我们依次把 1,2,3,4 这四个页面压入 Stack1 中。当你想回头看 2 这个页面的时候，你点击回退按钮，我们依次把 4,3 这两个页面从 Stack1 弹出，然后压入 Stack2 中。假如你又想回到页面 3，你点击前进按钮，我们将 3 页面从 Stack2 弹出，然后压入到 Stack1 中。示例图如下:
 
-![栈实现浏览器倒退和前进](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/栈实现浏览器倒退和前进.png)
+![栈实现浏览器倒退和前进](./images/generated/栈实现浏览器倒退和前进.png)
 
 #### 3.2.2. 检查符号是否成对出现
 
@@ -268,7 +268,7 @@ myStack.pop();//报错：java.lang.IllegalArgumentException: Stack is empty.
 插入删除：O（1）//后端插入前端删除元素
 ```
 
-![队列](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/queue.png)
+![队列](./images/generated/queue.png)
 
 ### 4.2. 队列分类
 
@@ -282,7 +282,7 @@ myStack.pop();//报错：java.lang.IllegalArgumentException: Stack is empty.
 
 > 为了避免当只有一个元素的时候，队头和队尾重合使处理变得麻烦，所以引入两个指针，front 指针指向对头元素，rear 指针指向队列最后一个元素的下一个位置，这样当 front 等于 rear 时，此队列不是还剩一个元素，而是空队列。——From 《大话数据结构》
 
-![顺序队列假溢出](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/seq-queue-false-overflow.png)
+![顺序队列假溢出](./images/generated/seq-queue-false-overflow.png)
 
 #### 4.2.2. 循环队列
 
@@ -290,7 +290,7 @@ myStack.pop();//报错：java.lang.IllegalArgumentException: Stack is empty.
 
 还是用上面的图，我们将 rear 指针指向数组下标为 0 的位置就不会有越界问题了。当我们再向队列中添加元素的时候， rear 向后移动。
 
-![循环队列](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/circular-queue.png)
+![循环队列](./images/generated/circular-queue.png)
 
 顺序队列中，我们说 `front==rear` 的时候队列为空，循环队列中则不一样，也可能为满，如上图所示。解决办法有两种：
 

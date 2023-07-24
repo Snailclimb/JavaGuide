@@ -43,7 +43,7 @@ Redis 提供了两个命令来生成 RDB 快照文件：
 
 Redis AOF 持久化机制是在执行完命令之后再记录日志，这和关系型数据库（如 MySQL）通常都是执行命令之前记录日志（方便故障恢复）不同。
 
-![AOF 记录日志过程](https://oss.javaguide.cn/github/javaguide/database/redis/redis-aof-write-log-disc.png)
+![AOF 记录日志过程](./images/generated/redis-aof-write-log-disc.png)
 
 **为什么是在执行完命令之后记录日志呢？**
 

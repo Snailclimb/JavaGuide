@@ -9,7 +9,7 @@ Disruptor 是一个相对冷门一些的知识点，不过，如果你的项目�
 
 一位球友之前投稿的面经（社招）中就涉及一些 Disruptor 的问题，文章传送门：[圆梦！顺利拿到字节、淘宝、拼多多等大厂 offer！](https://mp.weixin.qq.com/s/C5QMjwEb6pzXACqZsyqC4A) 。
 
-![](https://oss.javaguide.cn/github/javaguide/high-performance/message-queue/disruptor-interview-questions.png)
+![](./images/generated/disruptor-interview-questions.png)
 
 这篇文章可以看作是对 Disruptor 做的一个简单总结，每个问题都不会扯太深入，主要针对面试或者速览 Disruptor。
 
@@ -21,13 +21,13 @@ Disruptor 是一个开源的高性能内存队列，诞生初衷是为了解决�
 
 LMAX 公司 2010 年在 QCon 演讲后，Disruptor 获得了业界关注，并获得了 2011 年的 Oracle 官方的 Duke's Choice Awards(Duke 选择大奖)。
 
-![](https://oss.javaguide.cn/github/javaguide/high-performance/message-queue/640.png)
+![](./images/generated/640.png)
 
 > “Duke 选择大奖”旨在表彰过去一年里全球个人或公司开发的、最具影响力的 Java 技术应用，由甲骨文公司主办。含金量非常高！
 
 我专门找到了 Oracle 官方当年颁布获得 Duke's Choice Awards 项目的那篇文章（文章地址：https://blogs.oracle.com/java/post/and-the-winners-arethe-dukes-choice-award） 。从文中可以看出，同年获得此大奖荣誉的还有大名鼎鼎的 Netty、JRebel 等项目。
 
-![2011 年的 Oracle 官方的 Duke's Choice Awards](https://oss.javaguide.cn/javaguide/image-20211015152323898.png)
+![2011 年的 Oracle 官方的 Duke's Choice Awards](./images/generated/image-20211015152323898.png)
 
 Disruptor 提供的功能优点类似于 Kafka、RocketMQ 这类分布式队列，不过，其作为范围是 JVM(内存)。
 
@@ -57,7 +57,7 @@ Disruptor 主要解决了 JDK 内置线程安全队列的性能和内存安全�
 
 下面这张图是 Disruptor 官网提供的 Disruptor 和 ArrayBlockingQueue 的延迟直方图对比。
 
-![disruptor-latency-histogram](https://oss.javaguide.cn/github/javaguide/high-performance/message-queue/disruptor-latency-histogram.png)
+![disruptor-latency-histogram](./images/generated/disruptor-latency-histogram.png)
 
 Disruptor 真的很快，关于它为什么这么快这个问题，会在后文介绍到。
 
@@ -93,7 +93,7 @@ Disruptor 真的很快，关于它为什么这么快这个问题，会在后文�
 
 下面这张图摘自 Disruptor 官网，展示了 LMAX 系统使用 Disruptor 的示例。
 
-![LMAX 系统使用 Disruptor 的示例](https://oss.javaguide.cn/github/javaguide/high-performance/message-queue/disruptor-models.png)
+![LMAX 系统使用 Disruptor 的示例](./images/generated/disruptor-models.png)
 
 ## Disruptor 等待策略有哪些？
 
@@ -101,7 +101,7 @@ Disruptor 真的很快，关于它为什么这么快这个问题，会在后文�
 
 常见的等待策略有下面这些：
 
-![Disruptor 等待策略](https://oss.javaguide.cn/github/javaguide/high-performance/message-queue/DisruptorWaitStrategy.png)
+![Disruptor 等待策略](./images/generated/DisruptorWaitStrategy.png)
 
 - `BlockingWaitStrategy`：基于 `ReentrantLock`+`Condition` 来实现等待和唤醒操作，实现代码非常简单，是 Disruptor 默认的等待策略。虽然最慢，但也是 CPU 使用率最低和最稳定的选项生产环境推荐使用；
 - `BusySpinWaitStrategy`：性能很好，存在持续自旋的风险，使用不当会造成 CPU 负载 100%，慎用；
@@ -128,7 +128,7 @@ CPU 缓存是通过将最近使用的数据存储在高速缓存中来实现更�
 
 在计算机系统中，CPU 主要访问高速缓存和内存。高速缓存是一种速度非常快、容量相对较小的内存，通常被分为多级缓存，其中 L1、L2、L3 分别表示一级缓存、二级缓存、三级缓存。越靠近 CPU 的缓存，速度越快，容量也越小。相比之下，内存容量相对较大，但速度较慢。
 
-![CPU 缓存模型示意图](https://oss.javaguide.cn/github/javaguide/java/concurrent/cpu-cache.png)
+![CPU 缓存模型示意图](./images/generated/cpu-cache.png)
 
 为了加速数据的读取过程，CPU 会先将数据从内存中加载到高速缓存中，如果下一次需要访问相同的数据，就可以直接从高速缓存中读取，而不需要再次访问内存。这就是所谓的 **缓存命中** 。另外，为了利用 **局部性原理** ，CPU 还会根据之前访问的内存地址预取相邻的内存数据，因为在程序中，连续的内存地址通常会被频繁访问到，这样做可以提高数据的缓存命中率，进而提高程序的性能。
 

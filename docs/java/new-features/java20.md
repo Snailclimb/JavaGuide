@@ -9,7 +9,7 @@ JDK 20 于 2023 年 3 月 21 日发布，非长期支持版本。
 
 根据开发计划，下一个 LTS 版本就是将于 2023 年 9 月发布的 JDK 21。
 
-![](https://oss.javaguide.cn/github/javaguide/java/new-features/640.png)
+![](./images/generated/640.png)
 
 JDK 20 只有 7 个新特性：
 

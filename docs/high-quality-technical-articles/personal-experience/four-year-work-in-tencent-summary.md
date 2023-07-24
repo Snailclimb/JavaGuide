@@ -48,7 +48,7 @@ BUGLY，这是一个终端 Crash 联网上报的系统，很多 APP 都接入了
 
 我在腾讯工作四年，腾讯半年考核一次，一共考核八次，回想了下，四年来的绩效情况为:三星，三星，五星，三星，五星，四星，四星，三星。统计一下， 四五星占比刚好一半。
 
-![](https://oss.javaguide.cn/github/javaguide/high-quality-technical-articles/640.png)
+![](./images/generated/640.png)
 
 PS：还好以前有奖杯，不然一点念想都没了。(现在腾讯似乎不发了）
 

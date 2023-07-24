@@ -18,7 +18,7 @@ tag:
 
 ### 什么是 Dubbo?
 
-![Dubbo 官网](https://oss.javaguide.cn/github/javaguide/system-design/distributed-system/rpc/dubbo.org-overview.png)
+![Dubbo 官网](./images/generated/dubbo.org-overview.png)
 
 [Apache Dubbo](https://github.com/apache/dubbo) |ˈdʌbəʊ| 是一款高性能、轻量级的开源 WEB 和 RPC 框架。
 
@@ -31,7 +31,7 @@ tag:
 5. 运行期流量调度。
 6. 可视化的服务治理与运维。
 
-![Dubbo提供的六大核心能力](https://oss.javaguide.cn/%E6%BA%90%E7%A0%81/dubbo/dubbo%E6%8F%90%E4%BE%9B%E7%9A%84%E5%85%AD%E5%A4%A7%E6%A0%B8%E5%BF%83%E8%83%BD%E5%8A%9B.png)
+![Dubbo提供的六大核心能力](./images/generated/dubbo%E6%8F%90%E4%BE%9B%E7%9A%84%E5%85%AD%E5%A4%A7%E6%A0%B8%E5%BF%83%E8%83%BD%E5%8A%9B.png)
 
 简单来说就是：**Dubbo 不光可以帮助我们调用远程服务，还提供了一些其他开箱即用的功能比如智能负载均衡。**
 
@@ -39,7 +39,7 @@ Dubbo 目前已经有接近 34.4 k 的 Star 。
 
 在 **2020 年度 OSC 中国开源项目** 评选活动中，Dubbo 位列开发框架和基础组件类项目的第 7 名。相比几年前来说，热度和排名有所下降。
 
-![](https://oss.javaguide.cn/%E6%BA%90%E7%A0%81/dubbo/image-20210107153159545.png)
+![](./images/generated/image-20210107153159545.png)
 
 Dubbo 是由阿里开源，后来加入了 Apache 。正是由于 Dubbo 的出现，才使得越来越多的公司开始使用以及接受分布式架构。
 
@@ -58,7 +58,7 @@ Dubbo 是由阿里开源，后来加入了 Apache 。正是由于 Dubbo 的出�
 3. **服务访问压力以及时长统计、资源调度和治理**：基于访问压力实时管理集群容量，提高集群利用率。
 4. ......
 
-![Dubbo 能力概览](https://oss.javaguide.cn/github/javaguide/system-design/distributed-system/rpc/dubbo-features-overview.jpg)
+![Dubbo 能力概览](./images/generated/dubbo-features-overview.jpg)
 
 另外，Dubbo 除了能够应用在分布式系统中，也可以应用在现在比较火的微服务系统中。不过，由于 Spring Cloud 在微服务中应用更加广泛，所以，我觉得一般我们提 Dubbo 的话，大部分是分布式系统的情况。
 
@@ -70,7 +70,7 @@ Dubbo 是由阿里开源，后来加入了 Apache 。正是由于 Dubbo 的出�
 
 分布式或者说 SOA 分布式重要的就是面向服务，说简单的分布式就是我们把整个系统拆分成不同的服务然后将这些服务放在不同的服务器上减轻单体服务的压力提高并发量和性能。比如电商系统可以简单地拆分成订单系统、商品系统、登录系统等等，拆分之后的每个服务可以部署在不同的机器上，如果某一个服务的访问量比较大的话也可以将这个服务同时部署在多台机器上。
 
-![分布式事务示意图](https://oss.javaguide.cn/java-guide-blog/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%A4%BA%E6%84%8F%E5%9B%BE.png)
+![分布式事务示意图](./images/generated/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%A4%BA%E6%84%8F%E5%9B%BE.png)
 
 ### 为什么要分布式?
 
@@ -84,7 +84,7 @@ Dubbo 是由阿里开源，后来加入了 Apache 。正是由于 Dubbo 的出�
 
 [官方文档中的框架设计章节](https://dubbo.apache.org/zh/docs/v2.7/dev/design/) 已经介绍的非常详细了，我这里把一些比较重要的点再提一下。
 
-![dubbo-relation](https://oss.javaguide.cn/%E6%BA%90%E7%A0%81/dubbo/dubbo-relation.jpg)
+![dubbo-relation](./images/generated/dubbo-relation.jpg)
 
 上述节点简单介绍以及他们之间的关系：
 
@@ -100,7 +100,7 @@ Dubbo 是由阿里开源，后来加入了 Apache 。正是由于 Dubbo 的出�
 
 简单来说，`Invoker` 就是 Dubbo 对远程调用的抽象。
 
-![dubbo_rpc_invoke.jpg](https://oss.javaguide.cn/java-guide-blog/dubbo_rpc_invoke.jpg)
+![dubbo_rpc_invoke.jpg](./images/generated/dubbo_rpc_invoke.jpg)
 
 按照 Dubbo 官方的话来说，`Invoker` 分为
 
@@ -115,7 +115,7 @@ Dubbo 是由阿里开源，后来加入了 Apache 。正是由于 Dubbo 的出�
 
 > 左边淡蓝背景的为服务消费方使用的接口，右边淡绿色背景的为服务提供方使用的接口，位于中轴线上的为双方都用到的接口。
 
-![dubbo-framework](https://oss.javaguide.cn/source-code/dubbo/dubbo-framework.jpg)
+![dubbo-framework](./images/generated/dubbo-framework.jpg)
 
 - **config 配置层**：Dubbo 相关的配置。支持代码配置，同时也支持基于 Spring 来做配置，以 `ServiceConfig`, `ReferenceConfig` 为中心
 - **proxy 服务代理层**：调用远程方法像调用本地的方法一样简单的一个关键，真实调用过程依赖代理类，以 `ServiceProxy` 为中心。
@@ -187,7 +187,7 @@ Dubbo 采用 微内核（Microkernel） + 插件（Plugin） 模式，简单来�
 
 微内核架构包含两类组件：**核心系统（core system）** 和 **插件模块（plug-in modules）**。
 
-![](https://oss.javaguide.cn/source-code/dubbo/%E5%BE%AE%E5%86%85%E6%A0%B8%E6%9E%B6%E6%9E%84%E7%A4%BA%E6%84%8F%E5%9B%BE.png)
+![](./images/generated/%E5%BE%AE%E5%86%85%E6%A0%B8%E6%9E%B6%E6%9E%84%E7%A4%BA%E6%84%8F%E5%9B%BE.png)
 
 核心系统提供系统所需核心能力，插件模块可以扩展系统的功能。因此， 基于微内核架构的系统，非常易于扩展功能。
 
@@ -254,7 +254,7 @@ public abstract class AbstractLoadBalance implements LoadBalance {
 
 `AbstractLoadBalance` 的实现类有下面这些：
 
-![](https://oss.javaguide.cn/java-guide-blog/image-20210326105257812.png)
+![](./images/generated/image-20210326105257812.png)
 
 官方文档对负载均衡这部分的介绍非常详细，推荐小伙伴们看看，地址：[https://dubbo.apache.org/zh/docs/v2.7/dev/source/loadbalance/#m-zhdocsv27devsourceloadbalance](https://dubbo.apache.org/zh/docs/v2.7/dev/source/loadbalance/#m-zhdocsv27devsourceloadbalance) 。
 
@@ -266,7 +266,7 @@ public abstract class AbstractLoadBalance implements LoadBalance {
 
 我们把这些权重值分布在坐标区间会得到：S1->[0, 7) ，S2->[7, 10)。我们生成[0, 10) 之间的随机数，随机数落到对应的区间，我们就选择对应的服务器来处理请求。
 
-![RandomLoadBalance](https://oss.javaguide.cn/java-guide-blog/%20RandomLoadBalance.png)
+![RandomLoadBalance](./images/generated/%20RandomLoadBalance.png)
 
 `RandomLoadBalance` 的源码非常简单，简单花几分钟时间看一下。
 
@@ -411,11 +411,11 @@ public class RpcStatus {
 
 `ConsistentHashLoadBalance` 即**一致性 Hash 负载均衡策略**。 `ConsistentHashLoadBalance` 中没有权重的概念，具体是哪个服务提供者处理请求是由你的请求的参数决定的，也就是说相同参数的请求总是发到同一个服务提供者。
 
-![](https://oss.javaguide.cn/java-guide-blog/consistent-hash-data-incline.jpg)
+![](./images/generated/consistent-hash-data-incline.jpg)
 
 另外，Dubbo 为了避免数据倾斜问题（节点不够分散，大量请求落到同一节点），还引入了虚拟节点的概念。通过虚拟节点可以让节点更加分散，有效均衡各个节点的请求量。
 
-![](https://oss.javaguide.cn/java-guide-blog/consistent-hash-invoker.jpg)
+![](./images/generated/consistent-hash-invoker.jpg)
 
 官方有详细的源码分析：[https://dubbo.apache.org/zh/docs/v2.7/dev/source/loadbalance/#23-consistenthashloadbalance](https://dubbo.apache.org/zh/docs/v2.7/dev/source/loadbalance/#23-consistenthashloadbalance) 。这里还有一个相关的 [PR#5440](https://github.com/apache/dubbo/pull/5440) 来修复老版本中 ConsistentHashLoadBalance 存在的一些 Bug。感兴趣的小伙伴，可以多花点时间研究一下。我这里不多分析了，这个作业留给你们！
 
@@ -435,7 +435,7 @@ Dubbo 中的 `RoundRobinLoadBalance` 的代码实现被修改重建了好几次�
 
 ### Dubbo 支持哪些序列化方式呢？
 
-![Dubbo 支持的序列化协议](https://oss.javaguide.cn/github/javaguide/csdn/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0MzM3Mjcy,size_16,color_FFFFFF,t_70-20230309234143460.png)
+![Dubbo 支持的序列化协议](./images/generated/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0MzM3Mjcy,size_16,color_FFFFFF,t_70-20230309234143460.png)
 
 Dubbo 支持多种序列化方式：JDK 自带的序列化、hessian2、JSON、Kryo、FST、Protostuff，ProtoBuf 等等。
 
@@ -456,4 +456,4 @@ Kryo 和 FST 这两种序列化方式是 Dubbo 后来才引入的，性能非常
 
 Dubbo 官方文档中还有一个关于这些[序列化协议的性能对比图](https://dubbo.apache.org/zh/docs/v2.7/user/serialization/#m-zhdocsv27userserialization)可供参考。
 
-![序列化协议的性能对比](https://oss.javaguide.cn/github/javaguide/distributed-system/rpc/dubbo-serialization-protocol-performance-comparison.png)
+![序列化协议的性能对比](./images/generated/dubbo-serialization-protocol-performance-comparison.png)

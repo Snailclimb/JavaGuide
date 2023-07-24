@@ -100,7 +100,7 @@ SET GLOBAL time_zone = 'Europe/Helsinki';
 
 下图是 MySQL 日期类型所占的存储空间（官方文档传送门：<https://dev.mysql.com/doc/refman/8.0/en/storage-requirements.html>）：
 
-![](https://oss.javaguide.cn/github/javaguide/FhRGUVHFK0ujRPNA75f6CuOXQHTE.jpeg)
+![](./images/generated/FhRGUVHFK0ujRPNA75f6CuOXQHTE.jpeg)
 
 在 MySQL 5.6.4 之前，DateTime 和 Timestamp 的存储空间是固定的，分别为 8 字节和 4 字节。但是从 MySQL 5.6.4 开始，它们的存储空间会根据毫秒精度的不同而变化，DateTime 的范围是 5~8 字节，Timestamp 的范围是 4~7 字节。
 
@@ -166,4 +166,3 @@ MySQL 中时间到底怎么存储才好？Datetime?Timestamp?还是数值时间�
 | DATETIME     | 5~8字节  | YYYY-MM-DD hh:mm:ss[.fraction] | 1000-01-01 00:00:00[.000000] ～ 9999-12-31 23:59:59[.999999] | 否             |
 | TIMESTAMP    | 4~7字节  | YYYY-MM-DD hh:mm:ss[.fraction] | 1970-01-01 00:00:01[.000000] ～ 2038-01-19 03:14:07[.999999] | 是             |
 | 数值型时间戳 | 4字节    | 全数字如1578707612             | 1970-01-01 00:00:01之后的时间                                | 否             |
-

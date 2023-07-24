@@ -9,7 +9,7 @@ tag:
 
 `DelayQueue` 是 JUC 包(`java.util.concurrent)`为我们提供的延迟队列，用于实现延时任务比如订单下单 15 分钟未支付直接取消。它是 `BlockingQueue` 的一种，底层是一个基于 `PriorityQueue` 实现的一个无界队列，是线程安全的。关于`PriorityQueue`可以参考笔者编写的这篇文章：[PriorityQueue 源码分析](./priorityqueue-source-code.md) 。
 
-![BlockingQueue 的实现类](https://oss.javaguide.cn/github/javaguide/java/collection/blocking-queue-hierarchy.png)
+![BlockingQueue 的实现类](./images/generated/blocking-queue-hierarchy.png)
 
 `DelayQueue` 中存放的元素必须实现 `Delayed` 接口，并且需要重写 `getDelay()`方法（计算是否到期）。
 
@@ -35,7 +35,7 @@ public interface Delayed extends Comparable<Delayed> {
 
 我们这里希望任务可以按照我们预期的时间执行，例如提交 3 个任务，分别要求 1s、2s、3s 后执行，即使是乱序添加，1s 后要求 1s 执行的任务会准时执行。
 
-![延迟任务](https://oss.javaguide.cn/github/javaguide/java/collection/delayed-task.png)
+![延迟任务](./images/generated/delayed-task.png)
 
 对此我们可以使用 `DelayQueue` 来实现,所以我们首先需要继承 `Delayed` 实现 `DelayedTask`，实现 `getDelay` 方法以及优先级比较 `compareTo`。
 
@@ -128,7 +128,7 @@ public class DelayQueue<E extends Delayed> extends AbstractQueue<E> implements B
 
 `DelayQueue` 实现了 `AbstractQueue` 类，继承了 `BlockingQueue` 接口。
 
-![DelayQueue类图](https://oss.javaguide.cn/github/javaguide/java/collection/delayqueue-class-diagram.png)
+![DelayQueue类图](./images/generated/delayqueue-class-diagram.png)
 
 ### 核心成员变量
 
@@ -210,7 +210,7 @@ public boolean offer(E e) {
 
 1、首先， 3 个线程会尝试获取可重入锁 `lock`,假设我们现在有 3 个线程分别是 t1、t2、t3,随后 t1 得到了锁，而 t2、t3 没有抢到锁，故将这两个线程存入等待队列中。
 
-![](https://oss.javaguide.cn/github/javaguide/java/collection/delayqueue-take-0.png)
+![](./images/generated/delayqueue-take-0.png)
 
 2、紧接着 t1 开始进行元素获取的逻辑。
 
@@ -218,11 +218,11 @@ public boolean offer(E e) {
 
 4、如果元素为空，则说明当前队列没有任何元素，故 t1 就会被阻塞存到 `conditionWaiter` 这个队列中。
 
-![](https://oss.javaguide.cn/github/javaguide/java/collection/delayqueue-take-1.png)
+![](./images/generated/delayqueue-take-1.png)
 
 注意，调用 `await` 之后 t1 就会释放 `lcok` 锁，假如 `DelayQueue` 持续为空，那么 t2、t3 也会像 t1 一样执行相同的逻辑并进入 `conditionWaiter` 队列中。
 
-![](https://oss.javaguide.cn/github/javaguide/java/collection/delayqueue-take-2.png)
+![](./images/generated/delayqueue-take-2.png)
 
 如果元素不为空，则判断当前任务是否到期，如果元素到期，则直接返回出去。如果元素未到期，则判断当前 `leader` 线程(`DelayQueue` 中唯一一个可以等待并获取元素的线程引用)是否为空，若不为空，则说明当前 `leader` 正在等待执行一个优先级比当前元素还高的元素到期，故当前线程 t1 只能调用 `await` 进入无限期等待，等到 `leader` 取得元素后唤醒。反之，若 `leader` 线程为空，则将当前线程设置为 leader 并进入有限期等待,到期后取出元素并返回。
 

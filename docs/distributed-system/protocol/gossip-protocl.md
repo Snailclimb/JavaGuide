@@ -38,7 +38,7 @@ NoSQL 数据库 Redis 和 Apache Cassandra、服务网格解决方案 Consul 等
 
 我们经常使用的分布式缓存 Redis 的官方集群解决方案（3.0 版本引入） Redis Cluster 就是基于 Gossip 协议来实现集群中各个节点数据的最终一致性。
 
-![Redis 的官方集群解决方案](https://oss.javaguide.cn/github/javaguide/distributed-system/protocol/up-fcacc1eefca6e51354a5f1fc9f2919f51ec.png)
+![Redis 的官方集群解决方案](./images/generated/up-fcacc1eefca6e51354a5f1fc9f2919f51ec.png)
 
 Redis Cluster 是一个典型的分布式系统，分布式系统中的各个节点需要互相通信。既然要相互通信就要遵循一致的通信协议，Redis Cluster 中的各个节点基于 **Gossip 协议** 来进行通信共享信息，每个 Redis 节点都维护了一份集群的状态信息。
 
@@ -79,7 +79,7 @@ Gossip 设计了两种可能的消息传播模式：**反熵（Anti-Entropy）**
 
 伪代码如下：
 
-![反熵伪代码](https://oss.javaguide.cn/github/javaguide/distributed-system/protocol/up-df16e98bf71e872a7e1f01ca31cee93d77b.png)
+![反熵伪代码](./images/generated/up-df16e98bf71e872a7e1f01ca31cee93d77b.png)
 
 在我们实际应用场景中，一般不会采用随机的节点进行反熵，而是需要可以的设计一个闭环。这样的话，我们能够在一个确定的时间范围内实现各个节点数据的最终一致性，而不是基于随机的概率。像 InfluxDB 就是这样来实现反熵的。
 
@@ -102,7 +102,7 @@ Gossip 设计了两种可能的消息传播模式：**反熵（Anti-Entropy）**
 
 伪代码如下：
 
-![](https://oss.javaguide.cn/github/javaguide/csdn/20210605170707933.png)
+![](./images/generated/20210605170707933.png)
 
 谣言传播比较适合节点数量比较多的情况，不过，这种模式下要尽量避免传播的信息包不能太大，避免网络消耗太大。
 

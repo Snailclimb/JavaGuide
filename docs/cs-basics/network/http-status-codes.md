@@ -7,7 +7,7 @@ tag:
 
 HTTP 状态码用于描述 HTTP 请求的结果，比如 2xx 就代表请求被成功处理。
 
-![常见 HTTP 状态码](https://oss.javaguide.cn/github/javaguide/cs-basics/network/http-status-code.png)
+![常见 HTTP 状态码](./images/generated/http-status-code.png)
 
 ### 1xx Informational（信息性状态码）
 

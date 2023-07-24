@@ -15,7 +15,7 @@ tag:
 
 `LinkedHashMap` 逻辑结构如下图所示，它是在 `HashMap` 基础上在各个节点之间维护一条双向链表，使得原本散列在不同 bucket 上的节点、链表、红黑树有序关联起来。
 
-![LinkedHashMap 逻辑结构](https://oss.javaguide.cn/github/javaguide/java/collection/linkhashmap-structure-overview.png)
+![LinkedHashMap 逻辑结构](./images/generated/linkhashmap-structure-overview.png)
 
 ## LinkedHashMap 使用示例
 
@@ -84,7 +84,7 @@ for (Map.Entry<Integer, String> entry : map.entrySet()) {
 
 从上一个我们可以了解到通过 `LinkedHashMap` 我们可以封装一个简易版的 LRU（**L**east **R**ecently **U**sed，最近最少使用） 缓存，确保当存放的元素超过容器容量时，将最近最少访问的元素移除。
 
-![](https://oss.javaguide.cn/github/javaguide/java/collection/lru-cache.png)
+![](./images/generated/lru-cache.png)
 
 具体实现思路如下：
 
@@ -149,7 +149,7 @@ three
 1. `LinkedHashMap` 的节点内部类 `Entry` 基于 `HashMap` 的基础上，增加 `before` 和 `after` 指针使节点具备双向链表的特性。
 2. `HashMap` 的树节点 `TreeNode` 继承了具备双向链表特性的 `LinkedHashMap` 的 `Entry`。
 
-![LinkedHashMap 和 HashMap 之间的关系](https://oss.javaguide.cn/github/javaguide/java/collection/map-hashmap-linkedhashmap.png)
+![LinkedHashMap 和 HashMap 之间的关系](./images/generated/map-hashmap-linkedhashmap.png)
 
 很多读者此时就会有这样一个疑问，为什么 `HashMap` 的树节点 `TreeNode` 要通过 `LinkedHashMap` 获取双向链表的特性呢?为什么不直接在 `Node` 上实现前驱和后继指针呢?
 
@@ -300,7 +300,7 @@ void afterNodeAccess(Node < K, V > e) { // move node to last
 
 可以结合这张图理解，展示了 key 为 13 的元素被移动到了链表尾部。
 
-![LinkedHashMap 移动元素 13 到链表尾部](https://oss.javaguide.cn/github/javaguide/java/collection/linkedhashmap-get.png)
+![LinkedHashMap 移动元素 13 到链表尾部](./images/generated/linkedhashmap-get.png)
 
 看不太懂也没关系，知道这个方法的作用就够了，后续有时间再慢慢消化。
 
@@ -369,7 +369,7 @@ void afterNodeRemoval(Node<K,V> e) { // unlink
 
 可以结合这张图理解，展示了 key 为 13 的元素被删除，也就是从链表中移除了这个元素。
 
-![LinkedHashMap 删除元素 13](https://oss.javaguide.cn/github/javaguide/java/collection/linkedhashmap-remove.png)
+![LinkedHashMap 删除元素 13](./images/generated/linkedhashmap-remove.png)
 
 看不太懂也没关系，知道这个方法的作用就够了，后续有时间再慢慢消化。
 
@@ -417,11 +417,11 @@ protected boolean removeEldestEntry(Map.Entry < K, V > eldest) {
 
 以下图为例，假设笔者最后新插入了一个不存在的节点 19,假设 `capacity` 为 4，所以 `removeEldestEntry` 返回 true，我们要将链表首节点移除。
 
-![LinkedHashMap 中插入新元素 19](https://oss.javaguide.cn/github/javaguide/java/collection/linkedhashmap-after-insert-1.png)
+![LinkedHashMap 中插入新元素 19](./images/generated/linkedhashmap-after-insert-1.png)
 
 移除的步骤很简单，查看链表首节点是否存在，若存在则断开首节点和后继节点的关系，并让首节点指针指向下一节点，所以 head 指针指向了 12，节点 10 成为没有任何引用指向的空对象，等待 GC。
 
-![LinkedHashMap 中插入新元素 19](https://oss.javaguide.cn/github/javaguide/java/collection/linkedhashmap-after-insert-2.png)
+![LinkedHashMap 中插入新元素 19](./images/generated/linkedhashmap-after-insert-2.png)
 
 ```java
 void afterNodeInsertion(boolean evict) { // possibly remove eldest

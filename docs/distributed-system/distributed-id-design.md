@@ -37,7 +37,7 @@ UA 是一个特殊字符串头，服务器依次可以识别出客户使用的�
 
 其本质均为在 APP 内置浏览器中实现 HTML5 支付。
 
-![文库会员支付示例](https://oss.javaguide.cn/github/javaguide/system-design/distributed-system/distributed-id-design-pay-one-card.png)
+![文库会员支付示例](./images/generated/distributed-id-design-pay-one-card.png)
 
 文库的研发同学在这个思路上，做了优化迭代。动态生成一码付的二维码预先绑定用户所选的商品信息和价格，根据用户所选的商品动态更新。这样不仅支持一码多平台调起支付，而且不用用户选择商品输入金额，即可完成订单支付的功能，很丝滑。用户在真正扫码后，服务端才通过前端获取用户 UID，结合二维码绑定的商品信息，真正的生成订单，发送支付信息到第三方（qq、微信、支付宝），第三方生成支付订单推给用户设备，从而调起支付。
 
@@ -79,7 +79,7 @@ UA 是一个特殊字符串头，服务器依次可以识别出客户使用的�
 2. 疫情期间，部分地方政府发放的消费券；
 3. 瓶装饮料经常会出现输入优惠编码兑换奖品。
 
-![优惠编码兑换奖品](https://oss.javaguide.cn/github/javaguide/system-design/distributed-system/distributed-id-design-coupon.png)
+![优惠编码兑换奖品](./images/generated/distributed-id-design-coupon.png)
 
 从技术角度看，有些场景适合 ID 即时生成，比如电商平台购物领取的优惠券，只需要在用户领取时分配优惠券信息即可。有些线上线下结合的场景，比如疫情优惠券，瓶盖开奖，京东卡，超市卡这种，则需要预先生成，预先生成的券码具备以下特性：
 
@@ -130,7 +130,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXZY0123456789
 
 处理一个 Web 请求要调用的多个服务，为了能更方便的查询哪个环节的服务出现了问题，现在常用的解决方案是为整个系统引入分布式链路跟踪。
 
-![在分布式链路跟踪](https://oss.javaguide.cn/github/javaguide/system-design/distributed-system/distributed-id-design-tracing.png)
+![在分布式链路跟踪](./images/generated/distributed-id-design-tracing.png)
 
 在分布式链路跟踪中有两个重要的概念：跟踪（trace）和 跨度（ span)。trace 是请求在分布式系统中的整个链路视图，span 则代表整个链路中不同服务内部的视图，span 组合在一起就是整个 trace 的视图。
 
@@ -162,7 +162,7 @@ span 是层的意思，比如在第一个实例算是第一层， 请求代理�
 
 短网址主要功能包括网址缩短与还原两大功能。相对于长网址，短网址可以更方便地在电子邮件，社交网络，微博和手机上传播，例如原来很长的网址通过短网址服务即可生成相应的短网址，避免折行或超出字符限制。
 
-![短网址作用](https://oss.javaguide.cn/github/javaguide/system-design/distributed-system/distributed-id-design-short-url.png)
+![短网址作用](./images/generated/distributed-id-design-short-url.png)
 
 常用的 ID 生成服务比如：MySQL ID 自增、 Redis 键自增、号段模式，生成的 ID 都是一串数字。短网址服务把客户的长网址转换成短网址，
 

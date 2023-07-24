@@ -9,7 +9,7 @@ tag:
 
 AQS 的全称为 `AbstractQueuedSynchronizer` ，翻译过来的意思就是抽象队列同步器。这个类在 `java.util.concurrent.locks` 包下面。
 
-![](https://oss.javaguide.cn/github/javaguide/AQS.png)
+![](./images/generated/AQS.png)
 
 AQS 就是一个抽象类，主要用来构建锁和同步器。
 
@@ -32,13 +32,13 @@ CLH 锁是对自旋锁的一种改进，是一个虚拟的双向队列（虚拟�
 
 CLH 队列结构如下图所示：
 
-![CLH 队列结构](https://oss.javaguide.cn/github/javaguide/java/concurrent/clh-queue-structure.png)
+![CLH 队列结构](./images/generated/clh-queue-structure.png)
 
 关于 AQS 核心数据结构-CLH 锁的详细解读，强烈推荐阅读 [Java AQS 核心数据结构-CLH 锁 - Qunar 技术沙龙](https://mp.weixin.qq.com/s/jEx-4XhNGOFdCo4Nou5tqg) 这篇文章。
 
 AQS(`AbstractQueuedSynchronizer`)的核心原理图：
 
-![CLH 队列](https://oss.javaguide.cn/github/javaguide/java/concurrent/clh-queue-state.png)
+![CLH 队列](./images/generated/clh-queue-state.png)
 
 AQS 使用 **int 成员变量 `state` 表示同步状态**，通过内置的 **FIFO 线程等待/等待队列** 来完成获取资源线程的排队工作。
 
@@ -70,7 +70,7 @@ protected final boolean compareAndSetState(int expect, int update) {
 
 线程 A 尝试获取锁的过程如下图所示（图源[从 ReentrantLock 的实现看 AQS 的原理及应用 - 美团技术团队](./reentrantlock.md)）：
 
-![AQS 独占模式获取锁](https://oss.javaguide.cn/github/javaguide/java/concurrent/aqs-exclusive-mode-acquire-lock.png)
+![AQS 独占模式获取锁](./images/generated/aqs-exclusive-mode-acquire-lock.png)
 
 再以倒计时器 `CountDownLatch` 以例，任务分为 N 个子线程去执行，`state` 也初始化为 N（注意 N 要与线程个数一致）。这 N 个子线程开始执行任务，每执行完一个子线程，就调用一次 `countDown()` 方法。该方法会尝试使用 CAS(Compare and Swap) 操作，让 `state` 的值减少 1。当所有的子线程都执行完毕后（即 `state` 的值变为 0），`CountDownLatch` 会调用 `unpark()` 方法，唤醒主线程。这时，主线程就可以从 `await()` 方法（`CountDownLatch` 中的`await()` 方法而非 AQS 中的）返回，继续执行后续的操作。
 

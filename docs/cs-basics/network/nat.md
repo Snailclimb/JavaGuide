@@ -15,7 +15,7 @@ SOHO 子网的“代理人”，也就是和外界的窗口，通常由路由器
 
 ## 细节
 
-![NAT 协议](https://oss.javaguide.cn/github/javaguide/cs-basics/network/nat-demo.png)
+![NAT 协议](./images/generated/nat-demo.png)
 
 假设当前场景如上图。中间是一个路由器，它的右侧组织了一个 LAN，网络号为`10.0.0/24`。LAN 侧接口的 IP 地址为`10.0.0.4`，并且该子网内有至少三台主机，分别是`10.0.0.1`，`10.0.0.2`和`10.0.0.3`。路由器的左侧连接的是 WAN，WAN 侧接口的 IP 地址为`138.76.29.7`。
 
@@ -36,7 +36,7 @@ SOHO 子网的“代理人”，也就是和外界的窗口，通常由路由器
 2. 响应报文到达路由器的 WAN 接口。路由器查询 NAT 转换表，发现`138.76.29.7:5001`在转换表中有记录，从而将其目的地址和目的端口转换成为`10.0.0.1:3345`，再发送到`10.0.0.4`上。
 3. 被转换的响应报文到达路由器的 LAN 接口，继而被转发至目的地`10.0.0.1`。
 
-![LAN-WAN 间通信提供地址转换](https://oss.javaguide.cn/github/javaguide/cs-basics/network/nat-demo2.png)
+![LAN-WAN 间通信提供地址转换](./images/generated/nat-demo2.png)
 
 🐛 修正（参见：[issue#2009](https://github.com/Snailclimb/JavaGuide/issues/2009)）：上图第四步的 Dest 值应该为 `10.0.0.1:3345` 而不是~~`138.76.29.7:5001`~~，这里笔误了。
 

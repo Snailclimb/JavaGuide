@@ -22,7 +22,7 @@ Java 集合， 也叫作容器，主要是由两大接口派生而来：一个�
 
 Java 集合框架如下图所示：
 
-![Java 集合框架概览](https://oss.javaguide.cn/github/javaguide/java/collection/java-collection-hierarchy.png)
+![Java 集合框架概览](./images/generated/java-collection-hierarchy.png)
 
 注：图中只列举了主要的继承派生关系，并没有列举所有关系。比方省略了`AbstractList`, `NavigableSet`等抽象类以及其他的一些辅助类，如想深入了解，可自行查看源码。
 
@@ -193,7 +193,7 @@ System.out.println(listOfStrings);
 
 这里简单列举一个例子：假如我们要删除节点9 的话，需要先遍历链表找到该节点。然后，再执行相应节点指针指向的更改，具体的源码可以参考：[LinkedList 源码分析](./linkedlist-source-code.md) 。
 
-![unlink 方法逻辑](https://oss.javaguide.cn/github/javaguide/java/collection/linkedlist-unlink.jpg)
+![unlink 方法逻辑](./images/generated/linkedlist-unlink.jpg)
 
 ### LinkedList 为什么不能实现 RandomAccess 接口？
 
@@ -211,7 +211,7 @@ System.out.println(listOfStrings);
 
 我们在项目中一般是不会使用到 `LinkedList` 的，需要用到 `LinkedList` 的场景几乎都可以使用 `ArrayList` 来代替，并且，性能通常会更好！就连 `LinkedList` 的作者约书亚 · 布洛克（Josh Bloch）自己都说从来不会使用 `LinkedList` 。
 
-![](https://oss.javaguide.cn/github/javaguide/redisimage-20220412110853807.png)
+![](./images/generated/redisimage-20220412110853807.png)
 
 另外，不要下意识地认为 `LinkedList` 作为链表就最适合元素增删的场景。我在上面也说了，`LinkedList` 仅仅在头尾插入或者删除元素的时候时间复杂度近似 O(1)，其他情况增删元素的平均时间复杂度都是 O(n) 。
 
@@ -219,11 +219,11 @@ System.out.println(listOfStrings);
 
 **双向链表：** 包含两个指针，一个 prev 指向前一个节点，一个 next 指向后一个节点。
 
-![双向链表](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/bidirectional-linkedlist.png)
+![双向链表](./images/generated/bidirectional-linkedlist.png)
 
 **双向循环链表：** 最后一个节点的 next 指向 head，而 head 的 prev 指向最后一个节点，构成一个环。
 
-![双向循环链表](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/bidirectional-circular-linkedlist.png)
+![双向循环链表](./images/generated/bidirectional-circular-linkedlist.png)
 
 #### 补充内容:RandomAccess 接口
 
@@ -463,11 +463,11 @@ public interface BlockingQueue<E> extends Queue<E> {
 
 `BlockingQueue` 常用于生产者-消费者模型中，生产者线程会向队列中添加数据，而消费者线程会从队列中取出数据进行处理。
 
-![BlockingQueue](https://oss.javaguide.cn/github/javaguide/java/collection/blocking-queue.png)
+![BlockingQueue](./images/generated/blocking-queue.png)
 
 ### BlockingQueue 的实现类有哪些？
 
-![BlockingQueue 的实现类](https://oss.javaguide.cn/github/javaguide/java/collection/blocking-queue-hierarchy.png)
+![BlockingQueue 的实现类](./images/generated/blocking-queue-hierarchy.png)
 
 Java 中常用的阻塞队列实现类有以下几种：
 

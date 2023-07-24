@@ -62,7 +62,7 @@ icon: jianli
 
 示例：
 
-![](https://oss.javaguide.cn/zhishixingqiu/20210428212337599.png)
+![](./images/generated/20210428212337599.png)
 
 **简历要不要放照片呢？** 很多人写简历的时候都有这个问题。
 
@@ -74,7 +74,7 @@ icon: jianli
 
 示例：
 
-![](https://oss.javaguide.cn/zhishixingqiu/20210428212410288.png)
+![](./images/generated/20210428212410288.png)
 
 ### 教育经历
 
@@ -91,11 +91,11 @@ icon: jianli
 
 下面是一份最新的 Java 后端开发技能清单，你可以根据自身情况以及岗位招聘要求做动态调整，核心思想就是尽可能满足岗位招聘的所有技能要求。
 
-![Java 后端技能模板](https://oss.javaguide.cn/zhishixingqiu/jinengmuban.png)
+![Java 后端技能模板](./images/generated/jinengmuban.png)
 
 我这里再单独放一个我看过的某位同学的技能介绍，我们来找找问题。
 
-![](https://oss.javaguide.cn/zhishixingqiu/up-a58d644340f8ce5cd32f9963f003abe4233.png)
+![](./images/generated/up-a58d644340f8ce5cd32f9963f003abe4233.png)
 
 上图中的技能介绍存在的问题：
 
@@ -140,7 +140,7 @@ icon: jianli
 
 **2、技术架构直接写技术名词就行，不要再介绍技术是干嘛的了，没意义，属于无效介绍。**
 
-![](https://oss.javaguide.cn/github/javaguide/interview-preparation/46c92fbc5160e65dd85c451143177144.png)
+![](./images/generated/46c92fbc5160e65dd85c451143177144.png)
 
 **3、尽量减少纯业务的个人职责介绍，对于面试不太友好。尽量再多挖掘一些亮点（6~8 条个人职责介绍差不多了，做好筛选），最好可以体现自己的综合素质，比如你是如何协调项目组成员协同开发的或者在遇到某一个棘手的问题的时候你是如何解决的又或者说你在这个项目优化了某个模块的性能。**
 
@@ -166,11 +166,11 @@ icon: jianli
 
 项目经历这部分对于简历来说非常重要，《Java 面试指北》的面试准备篇有好几篇关于优化项目经历的文章，建议你仔细阅读一下，应该会对你有帮助。
 
-![](https://oss.javaguide.cn/zhishixingqiu/4e11dbc842054e53ad6c5f0445023eb5~tplv-k3u1fbpfcp-zoom-1.png)
+![](./images/generated/4e11dbc842054e53ad6c5f0445023eb5~tplv-k3u1fbpfcp-zoom-1.png)
 
 **5、避免个人职责介绍都是围绕一个技术点来写，非常不可取。**
 
-![](https://oss.javaguide.cn/zhishixingqiu/image-20230424222513028.png)
+![](./images/generated/image-20230424222513028.png)
 
 ### 荣誉奖项（可选）
 
@@ -231,7 +231,7 @@ FAB 法则由下面 3 个单词组成（FAB 法则的名字就是由它们的首
 
 看了几千份简历，有少部分同学的简历页数都接近 10 页了，让我头皮发麻。
 
-![简历页数过多](https://oss.javaguide.cn/zhishixingqiu/image-20230508223646164.png)
+![简历页数过多](./images/generated/image-20230508223646164.png)
 
 ### 避免语义模糊
 

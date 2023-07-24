@@ -12,7 +12,7 @@ star: true
 
 ## 内容概览
 
-![](https://oss.javaguide.cn/xingqiu/image-20220621091832348.png)
+![](./images/generated/image-20220621091832348.png)
 
 <!-- @include: @planet2.snippet.md -->
 

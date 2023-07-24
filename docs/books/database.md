@@ -14,11 +14,11 @@ head:
 
 [《数据库系统原理》](https://www.icourse163.org/course/BNU-1002842007)这个课程的老师讲的非常详细，而且每一小节的作业设计的也与所讲知识很贴合，后面还有很多配套实验。
 
-![](https://oss.javaguide.cn/github/javaguide/books/up-e113c726a41874ef5fb19f7ac14e38e16ce.png)
+![](./images/generated/up-e113c726a41874ef5fb19f7ac14e38e16ce.png)
 
 如果你比较喜欢动手，对于理论知识比较抵触的话，推荐你看看[《如何开发一个简单的数据库》](https://cstack.github.io/db_tutorial/) ，这个 project 会手把手教你编写一个简单的数据库。
 
-![](https://oss.javaguide.cn/github/javaguide/books/up-11de8cb239aa7201cc8d78fa28928b9ec7d.png)
+![](./images/generated/up-11de8cb239aa7201cc8d78fa28928b9ec7d.png)
 
 GitHub 上也已经有大佬用 Java 实现过一个简易的数据库，介绍的挺详细的，感兴趣的朋友可以去看看。地址：[https://github.com/alchemystar/Freedom](https://github.com/alchemystar/Freedom) 。
 
@@ -26,7 +26,7 @@ GitHub 上也已经有大佬用 Java 实现过一个简易的数据库，介绍�
 
 **只要利用好搜索引擎，你可以找到各种语言实现的数据库玩具。**
 
-![](https://oss.javaguide.cn/github/javaguide/books/up-d32d853f847633ac7ed0efdecf56be1f1d2.png)
+![](./images/generated/up-d32d853f847633ac7ed0efdecf56be1f1d2.png)
 
 **纸上学来终觉浅 绝知此事要躬行！强烈推荐 CS 专业的小伙伴一定要多多实践！！！**
 
@@ -34,13 +34,13 @@ GitHub 上也已经有大佬用 Java 实现过一个简易的数据库，介绍�
 
 [《数据库系统概念》](https://book.douban.com/subject/10548379/)这本书涵盖了数据库系统的全套概念，知识体系清晰，是学习数据库系统非常经典的教材！不是参考书！
 
-![](https://oss.javaguide.cn/github/javaguide/booksimage-20220409150441742.png)
+![](./images/generated/booksimage-20220409150441742.png)
 
 ### 《数据库系统实现》
 
 如果你也想要研究 MySQL 底层原理的话，我推荐你可以先阅读一下[《数据库系统实现》](https://book.douban.com/subject/4838430/)。
 
-![](https://oss.javaguide.cn/github/javaguide/books/database-system-implementation.png)
+![](./images/generated/database-system-implementation.png)
 
 不管是 MySQL 还是 Oracle ，它们总体的架子是差不多的，不同的是其内部的实现比如数据库索引的数据结构、存储引擎的实现方式等等。
 
@@ -58,19 +58,19 @@ GitHub 上也已经有大佬用 Java 实现过一个简易的数据库，介绍�
 - **[《高性能 MySQL》](https://book.douban.com/subject/23008813/)**：MySQL 领域的经典之作！学习 MySQL 必看！属于进阶内容，主要教你如何更好地使用 MySQL 。既有有理论，又有实践！如果你没时间都看一遍的话，我建议第 5 章（创建高性能的索引）、第 6 章（查询性能优化） 你一定要认真看一下。
 - **[《MySQL 技术内幕》](https://book.douban.com/subject/24708143/)**：你想深入了解 MySQL 存储引擎的话，看这本书准没错！
 
-![](https://oss.javaguide.cn/github/javaguide/books/up-3d31e762933f9e50cc7170b2ebd8433917b.png)
+![](./images/generated/up-3d31e762933f9e50cc7170b2ebd8433917b.png)
 
 视频的话，你可以看看动力节点的 [《MySQL 数据库教程视频》](https://www.bilibili.com/video/BV1fx411X7BD)。这个视频基本上把 MySQL 的相关一些入门知识给介绍完了。
 
 另外，强推一波 **[《MySQL 是怎样运行的》](https://book.douban.com/subject/35231266/)** 这本书，内容很适合拿来准备面试。讲的很细节，但又不枯燥，内容非常良心！
 
-![](https://oss.javaguide.cn/github/javaguide/csdn/20210703120643370.png)
+![](./images/generated/20210703120643370.png)
 
 ## PostgreSQL
 
 和 MySQL 一样，PostgreSQL 也是开源免费且功能强大的关系型数据库。PostgreSQL 的 Slogan 是“**世界上最先进的开源关系型数据库**” 。
 
-![](https://oss.javaguide.cn/github/javaguide/books/image-20220702144954370.png)
+![](./images/generated/image-20220702144954370.png)
 
 最近几年，由于 PostgreSQL 的各种新特性过于优秀，使用 PostgreSQL 代替 MySQL 的项目越来越多了。
 
@@ -82,13 +82,13 @@ GitHub 上也已经有大佬用 Java 实现过一个简易的数据库，介绍�
 
 刚工作那会需要用到 PostgreSQL ，看了大概 1/3 的内容，感觉还不错。
 
-![](https://oss.javaguide.cn/github/javaguide/books/PostgreSQL-Guide.png)
+![](./images/generated/PostgreSQL-Guide.png)
 
 ### 《PostgreSQL 技术内幕：查询优化深度探索》
 
 [《PostgreSQL 技术内幕：查询优化深度探索》](https://book.douban.com/subject/30256561/)这本书主要讲了 PostgreSQL 在查询优化上的一些技术实现细节，可以让你对 PostgreSQL 的查询优化器有深层次的了解。
 
-![《PostgreSQL 技术内幕：查询优化深度探索》](https://oss.javaguide.cn/github/javaguide/books/PostgreSQL-TechnologyInsider.png)
+![《PostgreSQL 技术内幕：查询优化深度探索》](./images/generated/PostgreSQL-TechnologyInsider.png)
 
 ## Redis
 
@@ -99,8 +99,8 @@ GitHub 上也已经有大佬用 Java 实现过一个简易的数据库，介绍�
 - [《Redis 设计与实现》](https://book.douban.com/subject/25900156/) ：主要是 Redis 理论知识相关的内容，比较全面。我之前写过一篇文章 [《7 年前，24 岁，出版了一本 Redis 神书》](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247507030&idx=1&sn=0a5fd669413991b30163ab6f5834a4ad&chksm=cea1939df9d61a8b93925fae92f4cee0838c449534e60731cfaf533369831192e296780b32a6&token=709354671&lang=zh_CN&scene=21#wechat_redirect) 来介绍这本书。
 - [《Redis 核心原理与实践》](https://book.douban.com/subject/26612779/)：主要是结合源码来分析 Redis 的重要知识点比如各种数据结构和高级特性。
 
-![《Redis 设计与实现》和《Redis 设计与实现》](https://oss.javaguide.cn/github/javaguide/books/redis-books.png)
+![《Redis 设计与实现》和《Redis 设计与实现》](./images/generated/redis-books.png)
 
 另外，[《Redis 开发与运维》](https://book.douban.com/subject/26971561/) 这本书也非常不错，既有基础介绍，又有一线开发运维经验分享。
 
-![《Redis 开发与运维》](https://oss.javaguide.cn/github/javaguide/books/redis-kaifa-yu-yunwei.png)
+![《Redis 开发与运维》](./images/generated/redis-kaifa-yu-yunwei.png)

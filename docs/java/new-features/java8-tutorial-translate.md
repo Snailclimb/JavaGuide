@@ -96,7 +96,7 @@ List 类本身就有一个 `sort` 方法。并且 Java 编译器可以自动推�
 
 Java 语言设计者们投入了大量精力来思考如何使现有的函数友好地支持 Lambda。最终采取的方法是：增加函数式接口的概念。**“函数式接口”是指仅仅只包含一个抽象方法,但是可以有多个非抽象方法(也就是上面提到的默认方法)的接口。** 像这样的接口，可以被隐式转换为 lambda 表达式。`java.lang.Runnable` 与 `java.util.concurrent.Callable` 是函数式接口最典型的两个例子。Java 8 增加了一种特殊的注解`@FunctionalInterface`,但是这个注解通常不是必须的(某些情况建议使用)，只要接口只包含一个抽象方法，虚拟机会自动判断该接口为函数式接口。一般建议在接口上使用`@FunctionalInterface` 注解进行声明，这样的话，编译器如果发现你标注了这个注解的接口有多于一个抽象方法的时候会报错的，如下图所示
 
-![@FunctionalInterface 注解](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-2/@FunctionalInterface.png)
+![@FunctionalInterface 注解](./images/generated/@FunctionalInterface.png)
 
 示例：
 
@@ -795,7 +795,7 @@ System.out.println(formatterOfYyyy.format(rightNow));
 
 从下图可以更清晰的看到具体的错误，并且 IDEA 已经智能地提示更倾向于使用 `yyyy` 而不是 `YYYY` 。
 
-![](https://oss.javaguide.cn/github/javaguide/java/new-features/2021042717491413.png)
+![](./images/generated/2021042717491413.png)
 
 ### LocalDateTime(本地日期时间)
 

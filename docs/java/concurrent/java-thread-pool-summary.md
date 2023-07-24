@@ -39,7 +39,7 @@ tag:
 
 如下图所示，包括任务执行机制的核心接口 **`Executor`** ，以及继承自 `Executor` 接口的 **`ExecutorService` 接口。`ThreadPoolExecutor`** 和 **`ScheduledThreadPoolExecutor`** 这两个关键类实现了 **`ExecutorService`** 接口。
 
-![](https://oss.javaguide.cn/github/javaguide/java/concurrent/executor-class-diagram.png)
+![](./images/generated/executor-class-diagram.png)
 
 这里提了很多底层的类关系，但是，实际上我们需要更多关注的是 `ThreadPoolExecutor` 这个类，这个类在我们实际使用线程池的过程中，使用频率还是非常高的。
 
@@ -161,7 +161,7 @@ Spring 通过 `ThreadPoolTaskExecutor` 或者我们直接通过 `ThreadPoolExecu
 
 对应 `Executors` 工具类中的方法如图所示：
 
-![](https://oss.javaguide.cn/github/javaguide/java/concurrent/executors-inner-threadpool.png)
+![](./images/generated/executors-inner-threadpool.png)
 
 《阿里巴巴 Java 开发手册》强制线程池不允许使用 `Executors` 去创建，而是通过 `ThreadPoolExecutor` 构造函数的方式，这样的处理方式让写的同学更加明确线程池的运行规则，规避资源耗尽的风险
 
@@ -401,7 +401,7 @@ Finished all threads  // 任务全部执行完了才会跳出来，因为executo
 3. 如果向任务队列投放任务失败（任务队列已经满了），但是当前运行的线程数是小于最大线程数的，就新建一个线程来执行任务。
 4. 如果当前运行的线程数已经等同于最大线程数了，新建线程将会使当前运行的线程超出最大线程数，那么当前任务会被拒绝，饱和策略会调用`RejectedExecutionHandler.rejectedExecution()`方法。
 
-![图解线程池实现原理](https://oss.javaguide.cn/github/javaguide/java/concurrent/thread-pool-principle.png)
+![图解线程池实现原理](./images/generated/thread-pool-principle.png)
 
 在 `execute` 方法中，多次调用 `addWorker` 方法。`addWorker` 这个方法主要用来创建新的工作线程，如果返回 true 说明创建和启动工作线程成功，否则的话返回的就是 false。
 

@@ -20,7 +20,7 @@ category: 分布式
 - 线程 2 继续执行，将库存数量减少 1 个，然后返回成功。
 - 此时就发生了超卖问题，导致商品被多卖了一份。
 
-![共享资源未互斥访问导致出现问题](https://oss.javaguide.cn/github/javaguide/distributed-system/distributed-lock/oversold-without-locking.png)
+![共享资源未互斥访问导致出现问题](./images/generated/oversold-without-locking.png)
 
 为了保证共享资源被安全地访问，我们需要使用互斥操作对共享资源进行保护，即同一时刻只允许一个线程访问共享资源，其他线程需要等待当前线程释放后才能访问。这样可以避免数据竞争和脏数据问题，保证程序的正确性和稳定性。
 
@@ -32,7 +32,7 @@ category: 分布式
 
 下面是我对本地锁画的一张示意图。
 
-![本地锁](https://oss.javaguide.cn/github/javaguide/distributed-system/distributed-lock/jvm-local-lock.png)
+![本地锁](./images/generated/jvm-local-lock.png)
 
 从图中可以看出，这些线程访问共享资源是互斥的，同一时刻只有一个线程可以获取到本地锁访问共享资源。
 
@@ -42,7 +42,7 @@ category: 分布式
 
 下面是我对分布式锁画的一张示意图。
 
-![分布式锁](https://oss.javaguide.cn/github/javaguide/distributed-system/distributed-lock/distributed-lock.png)
+![分布式锁](./images/generated/distributed-lock.png)
 
 从图中可以看出，这些独立的进程中的线程访问共享资源是互斥的，同一时刻只有一个线程可以获取到分布式锁访问共享资源。
 

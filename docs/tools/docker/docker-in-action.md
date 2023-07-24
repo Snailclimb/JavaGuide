@@ -20,7 +20,7 @@ tag:
 
 官网地址：<https://www.docker.com/> 。
 
-![认识容器](https://oss.javaguide.cn/github/javaguide/tools/docker/container.png)
+![认识容器](./images/generated/container.png)
 
 ### 为什么要用 Docker?
 
@@ -38,7 +38,7 @@ Docker 的出现完美地解决了这一问题，我们可以在容器中安装 
 
 另外，[《Docker 从入门到实践》](https://yeasy.gitbook.io/docker_practice/introduction/why) 这本开源书籍中也已经给出了使用 Docker 的原因。
 
-![](https://oss.javaguide.cn/github/javaguide/tools/docker/20210412220015698.png)
+![](./images/generated/20210412220015698.png)
 
 ## Docker 的安装
 
@@ -46,35 +46,35 @@ Docker 的出现完美地解决了这一问题，我们可以在容器中安装 
 
 接下来对 Docker 进行安装，以 Windows 系统为例，访问 Docker 的官网：
 
-![安装 Docker](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-install-windows.png)
+![安装 Docker](./images/generated/docker-install-windows.png)
 
 然后点击`Get Started`：
 
-![安装 Docker](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-install-windows-download.png)
+![安装 Docker](./images/generated/docker-install-windows-download.png)
 
 在此处点击`Download for Windows`即可进行下载。
 
 如果你的电脑是`Windows 10 64位专业版`的操作系统，则在安装 Docker 之前需要开启一下`Hyper-V`，开启方式如下。打开控制面板，选择程序：
 
-![开启 Hyper-V](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-windows-hyperv.png)
+![开启 Hyper-V](./images/generated/docker-windows-hyperv.png)
 
 点击`启用或关闭Windows功能`：
 
-![开启 Hyper-V](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-windows-hyperv-enable.png)
+![开启 Hyper-V](./images/generated/docker-windows-hyperv-enable.png)
 
 勾选上`Hyper-V`，点击确定即可：
 
-![开启 Hyper-V](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-windows-hyperv-check.png)
+![开启 Hyper-V](./images/generated/docker-windows-hyperv-check.png)
 
 完成更改后需要重启一下计算机。
 
 开启了`Hyper-V`后，我们就可以对 Docker 进行安装了，打开安装程序后，等待片刻点击`Ok`即可：
 
-![安装 Docker](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-windows-hyperv-install.png)
+![安装 Docker](./images/generated/docker-windows-hyperv-install.png)
 
 安装完成后，我们仍然需要重启计算机，重启后，若提示如下内容：
 
-![安装 Docker](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-windows-hyperv-wsl2.png)
+![安装 Docker](./images/generated/docker-windows-hyperv-wsl2.png)
 
 它的意思是询问我们是否使用 WSL2，这是基于 Windows 的一个 Linux 子系统，这里我们取消即可，它就会使用我们之前勾选的`Hyper-V`虚拟机。
 
@@ -142,21 +142,21 @@ systemctl enable docker
 
 和 GitHub 一样，Docker 也提供了一个 DockerHub 用于查询各种镜像的地址和安装教程，为此，我们先访问 DockerHub：[https://hub.docker.com/](https://hub.docker.com/)
 
-![DockerHub](https://oss.javaguide.cn/github/javaguide/tools/docker/dockerhub-com.png)
+![DockerHub](./images/generated/dockerhub-com.png)
 
 在左上角的搜索框中输入`MySQL`并回车：
 
-![DockerHub 搜索 MySQL](https://oss.javaguide.cn/github/javaguide/tools/docker/dockerhub-mysql.png)
+![DockerHub 搜索 MySQL](./images/generated/dockerhub-mysql.png)
 
 可以看到相关 MySQL 的镜像非常多，若右上角有`OFFICIAL IMAGE`标识，则说明是官方镜像，所以我们点击第一个 MySQL 镜像：
 
-![MySQL 官方镜像](https://oss.javaguide.cn/github/javaguide/tools/docker/dockerhub-mysql-official-image.png)
+![MySQL 官方镜像](./images/generated/dockerhub-mysql-official-image.png)
 
 右边提供了下载 MySQL 镜像的指令为`docker pull MySQL`，但该指令始终会下载 MySQL 镜像的最新版本。
 
 若是想下载指定版本的镜像，则点击下面的`View Available Tags`：
 
-![查看其他版本的 MySQL](https://oss.javaguide.cn/github/javaguide/tools/docker/dockerhub-mysql-view-available-tags.png)
+![查看其他版本的 MySQL](./images/generated/dockerhub-mysql-view-available-tags.png)
 
 这里就可以看到各种版本的镜像，右边有下载的指令，所以若是想下载 5.7.32 版本的 MySQL 镜像，则执行：
 
@@ -166,11 +166,11 @@ docker pull MySQL:5.7.32
 
 然而下载镜像的过程是非常慢的，所以我们需要配置一下镜像源加速下载，访问`阿里云`官网，点击控制台：
 
-![阿里云镜像加速](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-aliyun-mirror-admin.png)
+![阿里云镜像加速](./images/generated/docker-aliyun-mirror-admin.png)
 
 然后点击左上角的菜单，在弹窗的窗口中，将鼠标悬停在产品与服务上，并在右侧搜索容器镜像服务，最后点击容器镜像服务：
 
-![阿里云镜像加速](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-aliyun-mirror-admin-accelerator.png)
+![阿里云镜像加速](./images/generated/docker-aliyun-mirror-admin-accelerator.png)
 
 点击左侧的镜像加速器，并依次执行右侧的配置指令即可。
 
@@ -242,7 +242,7 @@ docker pull MySQL:5.7
 docker search MySQL
 ```
 
-![](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-search-mysql-terminal.png)
+![](./images/generated/docker-search-mysql-terminal.png)
 
 不过该指令只能查看 MySQL 相关的镜像信息，而不能知道有哪些版本，若想知道版本，则只能这样查询：
 
@@ -252,7 +252,7 @@ docker search MySQL:5.5
 
 若是查询的版本不存在，则结果为空：
 
-![](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-search-mysql-404-terminal.png)
+![](./images/generated/docker-search-mysql-404-terminal.png)
 
 删除镜像使用指令：
 
@@ -311,7 +311,7 @@ docker pull tomcat:8.0-jre8
 
 下载完成后就可以运行了，运行后查看一下当前运行的容器：`docker ps` 。
 
-![](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-ps-terminal.png)
+![](./images/generated/docker-ps-terminal.png)
 
 其中`CONTAINER_ID`为容器的 id，`IMAGE`为镜像名，`COMMAND`为容器内执行的命令，`CREATED`为容器的创建时间，`STATUS`为容器的状态，`PORTS`为容器内服务监听的端口，`NAMES`为容器的名称。
 
@@ -325,7 +325,7 @@ docker run -p 8080:8080 tomcat:8.0-jre8
 
 此时外部就可以访问 Tomcat 了：
 
-![](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-run-tomact-8080.png)
+![](./images/generated/docker-run-tomact-8080.png)
 
 若是这样进行映射：
 
@@ -503,7 +503,7 @@ docker cp 289cc00dc5ed:/usr/local/tomcat/webapps/test.html ./
 docker inspect 923c969b0d91
 ```
 
-![](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-inspect-terminal.png)
+![](./images/generated/docker-inspect-terminal.png)
 
 ## Docker 数据卷
 
@@ -517,7 +517,7 @@ docker run -d -p 8080:8080 --name tomcat01 -v /opt/apps:/usr/local/tomcat/webapp
 
 然而此时访问 tomcat 会发现无法访问：
 
-![](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-data-volume-webapp-8080.png)
+![](./images/generated/docker-data-volume-webapp-8080.png)
 
 这就说明我们的数据卷设置成功了，Docker 会将容器内的`webapps`目录与`/opt/apps`目录进行同步，而此时`/opt/apps`目录是空的，导致`webapps`目录也会变成空目录，所以就访问不到了。
 
@@ -560,7 +560,7 @@ public class HelloServlet extends HttpServlet {
 
 这是一个非常简单的 Servlet，我们将其打包上传到`/opt/apps`中，那么容器内肯定就会同步到该文件，此时进行访问：
 
-![](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-data-volume-webapp-8080-hello-world.png)
+![](./images/generated/docker-data-volume-webapp-8080-hello-world.png)
 
 这种方式设置的数据卷称为自定义数据卷，因为数据卷的目录是由我们自己设置的，Docker 还为我们提供了另外一种设置数据卷的方式：
 

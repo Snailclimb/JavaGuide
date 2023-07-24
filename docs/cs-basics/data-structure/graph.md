@@ -18,7 +18,7 @@ tag:
 
 下图所展示的就是图这种数据结构，并且还是一张有向图。
 
-![有向图](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/directed-graph.png)
+![有向图](./images/generated/directed-graph.png)
 
 图在我们日常生活中的例子很多！比如我们在社交软件上好友关系就可以用图来表示。
 
@@ -56,7 +56,7 @@ tag:
 
 下图就是一个带权有向图。
 
-![带权有向图](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/weighted-directed-graph.png)
+![带权有向图](./images/generated/weighted-directed-graph.png)
 
 ## 图的存储
 
@@ -68,11 +68,11 @@ tag:
 
 在无向图中，我们只关心关系的有无，所以当顶点 i 和顶点 j 有关系时，`A[i][j]`=1，当顶点 i 和顶点 j 没有关系时，`A[i][j]`=0。如下图所示：
 
-![无向图的邻接矩阵存储](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/adjacency-matrix-representation-of-undirected-graph.png)
+![无向图的邻接矩阵存储](./images/generated/adjacency-matrix-representation-of-undirected-graph.png)
 
 值得注意的是：**无向图的邻接矩阵是一个对称矩阵，因为在无向图中，顶点 i 和顶点 j 有关系，则顶点 j 和顶点 i 必有关系。**
 
-![有向图的邻接矩阵存储](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/adjacency-matrix-representation-of-directed-graph.png)
+![有向图的邻接矩阵存储](./images/generated/adjacency-matrix-representation-of-directed-graph.png)
 
 邻接矩阵存储的方式优点是简单直接（直接使用一个二维数组即可），并且，在获取两个定点之间的关系的时候也非常高效（直接获取指定位置的数组元素的值即可）。但是，这种存储方式的缺点也比较明显，那就是比较浪费空间，
 
@@ -82,9 +82,9 @@ tag:
 
 邻接链表使用一个链表来存储某个顶点的所有后继相邻顶点。对于图中每个顶点 Vi，把所有邻接于 Vi 的顶点 Vj 链成一个单链表，这个单链表称为顶点 Vi 的 **邻接表**。如下图所示：
 
-![无向图的邻接表存储](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/adjacency-list-representation-of-undirected-graph.png)
+![无向图的邻接表存储](./images/generated/adjacency-list-representation-of-undirected-graph.png)
 
-![有向图的邻接表存储](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/adjacency-list-representation-of-directed-graph.png)
+![有向图的邻接表存储](./images/generated/adjacency-list-representation-of-directed-graph.png)
 
 大家可以数一数邻接表中所存储的元素的个数以及图中边的条数，你会发现：
 
@@ -97,62 +97,62 @@ tag:
 
 广度优先搜索就像水面上的波纹一样一层一层向外扩展，如下图所示：
 
-![广度优先搜索图示](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/breadth-first-search.png)
+![广度优先搜索图示](./images/generated/breadth-first-search.png)
 
 **广度优先搜索的具体实现方式用到了之前所学过的线性数据结构——队列** 。具体过程如下图所示：
 
 **第 1 步：**
 
-![广度优先搜索1](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/breadth-first-search1.png)
+![广度优先搜索1](./images/generated/breadth-first-search1.png)
 
 **第 2 步：**
 
-![广度优先搜索2](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/breadth-first-search2.png)
+![广度优先搜索2](./images/generated/breadth-first-search2.png)
 
 **第 3 步：**
 
-![广度优先搜索3](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/breadth-first-search3.png)
+![广度优先搜索3](./images/generated/breadth-first-search3.png)
 
 **第 4 步：**
 
-![广度优先搜索4](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/breadth-first-search4.png)
+![广度优先搜索4](./images/generated/breadth-first-search4.png)
 
 **第 5 步：**
 
-![广度优先搜索5](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/breadth-first-search5.png)
+![广度优先搜索5](./images/generated/breadth-first-search5.png)
 
 **第 6 步：**
 
-![广度优先搜索6](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/breadth-first-search6.png)
+![广度优先搜索6](./images/generated/breadth-first-search6.png)
 
 ### 深度优先搜索
 
 深度优先搜索就是“一条路走到黑”，从源顶点开始，一直走到没有后继节点，才回溯到上一顶点，然后继续“一条路走到黑”，如下图所示：
 
-![深度优先搜索图示](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/depth-first-search.png)
+![深度优先搜索图示](./images/generated/depth-first-search.png)
 
 **和广度优先搜索类似，深度优先搜索的具体实现用到了另一种线性数据结构——栈** 。具体过程如下图所示：
 
 **第 1 步：**
 
-![深度优先搜索1](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/depth-first-search1.png)
+![深度优先搜索1](./images/generated/depth-first-search1.png)
 
 **第 2 步：**
 
-![深度优先搜索2](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/depth-first-search2.png)
+![深度优先搜索2](./images/generated/depth-first-search2.png)
 
 **第 3 步：**
 
-![深度优先搜索3](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/depth-first-search3.png)
+![深度优先搜索3](./images/generated/depth-first-search3.png)
 
 **第 4 步：**
 
-![深度优先搜索4](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/depth-first-search4.png)
+![深度优先搜索4](./images/generated/depth-first-search4.png)
 
 **第 5 步：**
 
-![深度优先搜索5](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/depth-first-search5.png)
+![深度优先搜索5](./images/generated/depth-first-search5.png)
 
 **第 6 步：**
 
-![深度优先搜索6](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/depth-first-search6.png)
+![深度优先搜索6](./images/generated/depth-first-search6.png)
