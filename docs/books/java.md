@@ -177,6 +177,26 @@ SpringBoot 解析，不适合初学者。我是去年入手的，现在就看了
 
 比较一般的一本书，可以简单拿来看一下。
 
+### MyBatis
+
+MyBatis 国内用的挺多的，我的建议是不需要花太多时间在上面。当然了，MyBatis 的源码还是非常值得学习的，里面有很多不错的编码实践。这里推荐两本讲解 MyBatis 源码的书籍。
+
+**[《手写 MyBatis：渐进式源码实践》](https://book.douban.com/subject/36243250/)**
+
+![《手写MyBatis：渐进式源码实践》](https://oss.javaguide.cn/github/javaguide/books/image-20230724123402784.png)
+
+我的好朋友小傅哥出版的一本书。这本书以实践为核心，摒弃 MyBatis 源码中繁杂的内容，聚焦于 MyBaits 中的核心逻辑，简化代码实现过程，以渐进式的开发方式，逐步实现 MyBaits 中的核心功能。
+
+这本书的配套项目的仓库地址：<https://github.com/fuzhengwei/small-mybatis> 。
+
+**[《通用源码阅读指导书――MyBatis 源码详解》](https://book.douban.com/subject/35138963/)**
+
+![《通用源码阅读指导书――MyBatis源码详解》](https://oss.javaguide.cn/github/javaguide/books/image-20230724123416741.png)
+
+这本书通过 MyBatis 开源代码讲解源码阅读的流程和方法！一共对 MyBatis 源码中的 300 多个类进行了详细解析，包括其背景知识、组织方式、逻辑结构、实现细节。
+
+这本书的配套示例仓库地址：<https://github.com/yeecode/MyBatisDemo> 。
+
 ### Netty
 
 **[《Netty 实战》](https://book.douban.com/subject/27038538/)**
