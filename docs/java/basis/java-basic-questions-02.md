@@ -340,7 +340,7 @@ public final native void notifyAll()
  */
 public final native void wait(long timeout) throws InterruptedException
 /**
- * 多了 nanos 参数，这个参数表示额外时间（以毫微秒为单位，范围是 0-999999）。 所以超时的时间还需要加上 nanos 毫秒。。
+ * 多了 nanos 参数，这个参数表示额外时间（以纳秒为单位，范围是 0-999999）。 所以超时的时间还需要加上 nanos 纳秒。。
  */
 public final void wait(long timeout, int nanos) throws InterruptedException
 /**

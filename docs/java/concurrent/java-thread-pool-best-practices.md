@@ -88,7 +88,7 @@ ThreadFactory threadFactory = new ThreadFactoryBuilder()
 ExecutorService threadPool = new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, TimeUnit.MINUTES, workQueue, threadFactory)
 ```
 
-**2、自己实现 `ThreadFactor`。**
+**2、自己实现 `ThreadFactory`。**
 
 ```java
 import java.util.concurrent.Executors;
