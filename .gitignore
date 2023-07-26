@@ -1,4 +1,5 @@
 node_modules/
+
 # *.drawio
 *.drawio.bkp
 .DS_Store
