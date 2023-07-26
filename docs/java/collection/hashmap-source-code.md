@@ -113,24 +113,6 @@ public class HashMap<K,V> extends AbstractMap<K,V> implements Map<K,V>, Cloneabl
 
   **threshold = capacity \* loadFactor**，**当 Size>threshold**的时候，那么就要考虑对数组的扩增了，也就是说，这个的意思就是 **衡量数组是否需要扩增的一个标准**。
 
-### <font color='red'>示例</font>
-
-`Map<Object, Object> map = new HashMap<>();`
-
-- 刚初始化情况下，`table`为空，`threshold = 0`,`size=0`(size 为实际存储数据大小)
-
-- 当调用`put`方法时，会调用 `resize()` 方法扩容，库容到 table 大小为 16 `threshold = (int)(*DEFAULT_LOAD_FACTOR* * *DEFAULT_INITIAL_CAPACITY*)` = 16 x 0.75 = 12
-
-- 是否要扩容判断
-
-  调用 `put`方法 -> `putVal` 添加完后会进行扩容校验
-
-  ```
-  ++modCount;
-  if (++size > threshold)
-  	resize();
-  ```
-
 **Node 节点类源码:**
 
 ```java
