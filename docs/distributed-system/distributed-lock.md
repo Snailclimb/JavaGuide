@@ -3,6 +3,8 @@ title: 分布式锁介绍
 category: 分布式
 ---
 
+<!-- @include: @small-advertisement.snippet.md -->
+
 网上有很多分布式锁相关的文章，写了一个相对简洁易懂的版本，针对面试和工作应该够用了。
 
 这篇文章我们先介绍一下分布式锁的基本概念。

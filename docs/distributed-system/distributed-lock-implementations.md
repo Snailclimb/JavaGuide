@@ -3,6 +3,8 @@ title: 分布式锁常见实现方案总结
 category: 分布式
 ---
 
+<!-- @include: @small-advertisement.snippet.md -->
+
 通常情况下，我们一般会选择基于 Redis 或者 ZooKeeper 实现分布式锁，Redis 用的要更多一点，我这里也先以 Redis 为例介绍分布式锁的实现。
 
 ## 基于 Redis 实现分布式锁
