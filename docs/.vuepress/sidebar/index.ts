@@ -269,7 +269,7 @@ export default sidebar({
                 "sql-questions-02",
                 "sql-questions-03",
                 "sql-questions-04",
-                "sql-questions-05"
+                "sql-questions-05",
               ],
             },
           ],
@@ -394,6 +394,7 @@ export default sidebar({
             "spring-knowledge-and-questions-summary",
             "springboot-knowledge-and-questions-summary",
             "spring-common-annotations",
+            "springboot-source-code",
             {
               text: "重要知识点",
               icon: "star",
@@ -488,6 +489,16 @@ export default sidebar({
           children: ["distributed-lock", "distributed-lock-implementations"],
         },
         {
+          text: "分布式事务",
+          icon: "transanction",
+          children: ["distributed-transaction"],
+        },
+        {
+          text: "分布式配置中心",
+          icon: "configuration",
+          children: ["distributed-configuration-center"],
+        },
+        {
           text: "RPC",
           prefix: "rpc/",
           icon: "network",
@@ -500,18 +511,6 @@ export default sidebar({
           icon: "framework",
           collapsible: true,
           children: ["zookeeper-intro", "zookeeper-plus"],
-        },
-        {
-          text: "分布式事务",
-          icon: "transanction",
-          collapsible: true,
-          children: ["distributed-transaction"],
-        },
-        {
-          text: "分布式配置中心",
-          icon: "configuration",
-          collapsible: true,
-          children: ["distributed-configuration-center"],
         },
       ],
     },
