@@ -163,7 +163,7 @@ public class PrintClassLoaderTree {
 
 `ClassLoader` 类有两个关键的方法：
 
-- `protected Class loadClass(String name, boolean resolve)`：加载指定二进制名称的类，实现了双亲委派机制 。`name` 为类的二进制名称，`resove` 如果为 true，在加载时调用 `resolveClass(Class<?> c)` 方法解析该类。
+- `protected Class loadClass(String name, boolean resolve)`：加载指定二进制名称的类，实现了双亲委派机制 。`name` 为类的二进制名称，`resolve` 如果为 true，在加载时调用 `resolveClass(Class<?> c)` 方法解析该类。
 - `protected Class findClass(String name)`：根据类的二进制名称来查找类，默认实现是空方法。
 
 官方 API 文档中写到：
