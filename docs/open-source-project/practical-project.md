@@ -28,6 +28,11 @@ icon: project
 - [VBlog](https://github.com/lenve/VBlog)：V 部落，Vue+SpringBoot 实现的多用户博客管理平台!
 - [My-Blog](https://github.com/ZHENFENG13/My-Blog)：My Blog 是由 SpringBoot + Mybatis + Thymeleaf 等技术实现的 Java 博客系统，页面美观、功能齐全、部署简单及完善的代码，一定会给使用者无与伦比的体验。
 
+## Wiki/文档系统
+
+- [zyplayer-doc](https://gitee.com/dromara/zyplayer-doc)：适合团队和个人私有化部署使用的知识库、笔记、WIKI 文档管理工具，同时还包含数据库管理、Api 接口管理等模块。
+- [kkFileView](https://gitee.com/kekingcn/file-online-preview)：文档在线预览解决方案，支持几乎所有主流文档格式预览，例如 doc、docx、ppt、pptx、wps、xls、xlsx、zip、rar、ofd、xmind、bpmn 、eml 、epub、3ds、dwg、psd 、mp4、mp3 等等。
+
 ## 考试/刷题系统
 
 - [PlayEdu](https://github.com/PlayEdu/PlayEdu)：一款适用于搭建内部培训平台的开源系统，旨在为企业/机构打造自己品牌的内部培训平台。
