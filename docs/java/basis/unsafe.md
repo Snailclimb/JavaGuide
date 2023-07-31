@@ -654,7 +654,8 @@ private void staticTest() throws Exception {
 运行结果：
 
 ```
-falseHydra
+false
+Hydra
 ```
 
 在 `Unsafe` 的对象操作中，我们学习了通过`objectFieldOffset`方法获取对象属性偏移量并基于它对变量的值进行存取，但是它不适用于类中的静态属性，这时候就需要使用`staticFieldOffset`方法。在上面的代码中，只有在获取`Field`对象的过程中依赖到了`Class`，而获取静态变量的属性时不再依赖于`Class`。
@@ -662,7 +663,8 @@ falseHydra
 在上面的代码中首先创建一个`User`对象，这是因为如果一个类没有被初始化，那么它的静态属性也不会被初始化，最后获取的字段属性将是`null`。所以在获取静态属性前，需要调用`shouldBeInitialized`方法，判断在获取前是否需要初始化这个类。如果删除创建 User 对象的语句，运行结果会变为：
 
 ```
-truenull
+true
+null
 ```
 
 **使用`defineClass`方法允许程序在运行时动态地创建一个类**
