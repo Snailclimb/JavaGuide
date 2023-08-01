@@ -453,7 +453,8 @@ final Node<K,V>[] resize() {
                     // 只有一个节点，直接计算元素新的位置即可
                     newTab[e.hash & (newCap - 1)] = e;
                 else if (e instanceof TreeNode)
-                    // 将红黑树拆分成2棵子树，拆分后的子树节点数小于等于6，则将树转化成链表
+                    // 将红黑树拆分成2棵子树，如果子树节点数小于等于 UNTREEIFY_THRESHOLD（默认为 6），则将子树转换为链表。
+                    // 如果子树节点数大于 UNTREEIFY_THRESHOLD，则保持子树的树结构。
                     ((TreeNode<K,V>)e).split(this, newTab, j, oldCap);
                 else {
                     Node<K,V> loHead = null, loTail = null;
