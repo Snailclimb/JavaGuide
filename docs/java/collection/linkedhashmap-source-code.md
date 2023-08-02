@@ -118,6 +118,7 @@ LRUCache < Integer, String > cache = new LRUCache < > (2);
 cache.put(1, "one");
 cache.put(2, "two");
 cache.put(3, "three");
+cache.put(4, "four");
 for (int i = 0; i < 4; i++) {
     System.out.println(cache.get(i));
 }
@@ -129,6 +130,7 @@ for (int i = 0; i < 4; i++) {
 null
 null
 three
+four
 ```
 
 从输出结果来看，由于缓存容量为 2 ，因此，添加第 3 个元素时，第 1 个元素会被删除。添加第 4 个元素时，第 2 个元素会被删除。
