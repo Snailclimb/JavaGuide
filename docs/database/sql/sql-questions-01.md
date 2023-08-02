@@ -953,10 +953,9 @@ WHERE condition;
 ```sql
 SELECT cust_id
 FROM Orders
-WHERE order_num IN (SELECT order_num
+WHERE order_num IN (SELECT DISTINCT order_num
     FROM OrderItems
-    GROUP BY order_num
-    HAVING Sum(item_price) >= 10)
+    where item_price >= 10)
 ```
 
 ### 确定哪些订单购买了 prod_id 为 BR01 的产品（一）
