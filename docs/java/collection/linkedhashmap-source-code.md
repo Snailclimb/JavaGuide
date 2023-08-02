@@ -141,7 +141,7 @@ four
 
 在正式讨论 `LinkedHashMap` 前，我们先来聊聊 `LinkedHashMap` 节点 `Entry` 的设计,我们都知道 `HashMap` 的 bucket 上的因为冲突转为链表的节点会在符合以下两个条件时会将链表转为红黑树:
 
-1. 链表上的节点个数达到树化的阈值-1，即`TREEIFY_THRESHOLD - 1`。
+1. 链表上的节点个数达到树化的阈值7，即`TREEIFY_THRESHOLD - 1`。
 2. bucket 的容量达到最小的树化容量即`MIN_TREEIFY_CAPACITY`。
 
 而 `LinkedHashMap` 是在 `HashMap` 的基础上为 bucket 上的每一个节点建立一条双向链表，这就使得转为红黑树的树节点也需要具备双向链表节点的特性，即每一个树节点都需要拥有两个引用存储前驱节点和后继节点的地址,所以对于树节点类 `TreeNode` 的设计就是一个比较棘手的问题。
