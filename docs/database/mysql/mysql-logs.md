@@ -153,7 +153,7 @@ MySQL830 mysql:8.0.32
 
 可以看到刚好是32个，并且每个日志文件的大小是 `671088640 / 32 = 20971520`
 
-所以在使用 MySQL 8.0.32 及之后的版本时，推荐使用 `innodb_redo_log_capacity` 变量配置日志文件组
+所以在使用 MySQL 8.0.30 及之后的版本时，推荐使用 `innodb_redo_log_capacity` 变量配置日志文件组
 
 ### redo log 小结
 
