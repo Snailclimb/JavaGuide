@@ -114,6 +114,47 @@ tag:
 
 ![](https://oss.javaguide.cn/github/javaguide/12.png)
 
+注意从 MySQL 8.0.30 开始，日志文件组有了些许变化：
+
+> The innodb_redo_log_capacity variable supersedes the innodb_log_files_in_group and innodb_log_file_size variables, which are deprecated. When the innodb_redo_log_capacity setting is defined, the innodb_log_files_in_group and innodb_log_file_size settings are ignored; otherwise, these settings are used to compute the innodb_redo_log_capacity setting (innodb_log_files_in_group * innodb_log_file_size = innodb_redo_log_capacity). If none of those variables are set, redo log capacity is set to the innodb_redo_log_capacity default value, which is 104857600 bytes (100MB). The maximum redo log capacity is 128GB.
+
+> Redo log files reside in the #innodb_redo directory in the data directory unless a different directory was specified by the innodb_log_group_home_dir variable. If innodb_log_group_home_dir was defined, the redo log files reside in the #innodb_redo directory in that directory. There are two types of redo log files, ordinary and spare. Ordinary redo log files are those being used. Spare redo log files are those waiting to be used. InnoDB tries to maintain 32 redo log files in total, with each file equal in size to 1/32 * innodb_redo_log_capacity; however, file sizes may differ for a time after modifying the innodb_redo_log_capacity setting.
+
+意思是在 MySQL 8.0.30 之前可以通过 `innodb_log_files_in_group` 和 `innodb_log_file_size` 配置日志文件组的文件数和文件大小，但在 MySQL 8.0.30 及之后的版本中，这两个变量已被废弃，即使被指定也是用来计算 `innodb_redo_log_capacity` 的值。而日志文件组的文件数则固定为32，文件大小则为 `innodb_redo_log_capacity / 32` 。
+
+关于这一点变化，我们可以验证一下。
+
+首先创建一个配置文件，里面配置一下 `innodb_log_files_in_group` 和 `innodb_log_file_size` 的值：
+
+```properties
+[mysqld]
+innodb_log_file_size = 10485760
+innodb_log_files_in_group = 64
+```
+
+docker启动一个 MySQL 8.0.32 的容器：
+
+```bash
+docker run -d -p 3312:3309 -e MYSQL_ROOT_PASSWORD=your-password -v /path/to/your/conf:/etc/mysql/conf.d --name
+MySQL830 mysql:8.0.32
+```
+
+现在我们来看一下启动日志：
+
+```
+2023-08-03T02:05:11.720357Z 0 [Warning] [MY-013907] [InnoDB] Deprecated configuration parameters innodb_log_file_size and/or innodb_log_files_in_group have been used to compute innodb_redo_log_capacity=671088640. Please use innodb_redo_log_capacity instead.
+```
+
+这里也表明了 `innodb_log_files_in_group` 和 `innodb_log_file_size` 这两个变量是用来计算 `innodb_redo_log_capacity` ，且已经被废弃。
+
+我们再看下日志文件组的文件数是多少：
+
+![](images/redo-log.png)
+
+可以看到刚好是32个，并且每个日志文件的大小是 `671088640 / 32 = 20971520`
+
+所以在使用 MySQL 8.0.32 及之后的版本时，推荐使用 `innodb_redo_log_capacity` 变量配置日志文件组
+
 ### redo log 小结
 
 相信大家都知道 `redo log` 的作用和它的刷盘时机、存储形式。
