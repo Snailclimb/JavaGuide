@@ -232,6 +232,8 @@ public class ReferenceCountingGc {
 - 方法区中类静态属性引用的对象
 - 方法区中常量引用的对象
 - 所有被同步锁持有的对象
+- JNI（Java Native Interface）引用的对象
+
 
 **对象可以被回收，就代表一定会被回收吗？**
 
