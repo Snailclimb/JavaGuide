@@ -602,60 +602,86 @@ public static <T> T requireNonNull(T obj) {
 
 `ofNullable` 方法和`of`方法唯一区别就是当 value 为 null 时，`ofNullable` 返回的是`EMPTY`，of 会抛出 `NullPointerException` 异常。如果需要把 `NullPointerException` 暴漏出来就用 `of`，否则就用 `ofNullable`。
 
-### `map()`相关方法。
-
-```java
-/**
-* 如果value为null，返回EMPTY，否则返回Optional封装的参数值
-*/
-public<U> Optional<U> map(Function<? super T, ? extends U> mapper) {
-        Objects.requireNonNull(mapper);
-        if (!isPresent())
-            return empty();
-        else {
-            return Optional.ofNullable(mapper.apply(value));
-        }
-}
-/**
-* 如果value为null，返回EMPTY，否则返回Optional封装的参数值，如果参数值返回null会抛 NullPointerException
-*/
-public<U> Optional<U> flatMap(Function<? super T, Optional<U>> mapper) {
-        Objects.requireNonNull(mapper);
-        if (!isPresent())
-            return empty();
-        else {
-            return Objects.requireNonNull(mapper.apply(value));
-        }
-}
-```
 
 **`map()` 和 `flatMap()` 有什么区别的？**
 
-**1.参数不一样，`map` 的参数上面看到过，`flatMap` 的参数是这样**
+先看一下`map`和`flatMap`在`Stream`中的不同。
+`map` 和 `flatMap` 都是将一个函数应用于集合中的每个元素，但不同的是`map`返回一个新的集合，`flatMap`是将每个元素都映射为一个集合，最后再将这个集合展平。
 
-```java
-class ZooFlat {
-        private DogFlat dog = new DogFlat();
+在实际应用场景中，如果`map`返回的是数组，那么最后得到的是一个二维数组，使用`flatMap`就是为了将这个二维数组展平变成一个一维数组。
+```
+public class MapAndFlatMapExample {
+    public static void main(String[] args) {
+        List<String[]> listOfArrays = Arrays.asList(
+                new String[]{"apple", "banana", "cherry"},
+                new String[]{"orange", "grape", "pear"},
+                new String[]{"kiwi", "melon", "pineapple"}
+        );
 
-        public DogFlat getDog() {
-            return dog;
-        }
+        List<String[]> mapResult = listOfArrays.stream()
+                .map(array -> Arrays.stream(array).map(String::toUpperCase).toArray(String[]::new))
+                .collect(Collectors.toList());
+
+        System.out.println("Using map:");
+        System.out.println(mapResult);
+
+        List<String> flatMapResult = listOfArrays.stream()
+                .flatMap(array -> Arrays.stream(array).map(String::toUpperCase))
+                .collect(Collectors.toList());
+
+        System.out.println("Using flatMap:");
+        System.out.println(flatMapResult);
     }
-
-class DogFlat {
-        private int age = 1;
-        public Optional<Integer> getAge() {
-            return Optional.ofNullable(age);
-        }
 }
 
-ZooFlat zooFlat = new ZooFlat();
-Optional.ofNullable(zooFlat).map(o -> o.getDog()).flatMap(d -> d.getAge()).ifPresent(age ->
-    System.out.println(age)
-);
 ```
+运行结果:
+```
+Using map:
+[[APPLE, BANANA, CHERRY], [ORANGE, GRAPE, PEAR], [KIWI, MELON, PINEAPPLE]]
 
-**2.`flatMap()` 参数返回值如果是 null 会抛 `NullPointerException`，而 `map()` 返回`EMPTY`。**
+Using flatMap:
+[APPLE, BANANA, CHERRY, ORANGE, GRAPE, PEAR, KIWI, MELON, PINEAPPLE]
+
+```
+最简单的理解就是`flatMap()`可以将`map()`的结果展开。
+
+在`Optional`里面，当使用`map()`时，如果映射函数返回的是一个普通值，它会将这个值包装在一个新的`Optional`中。而使用`flatMap`时，如果映射函数返回的是一个`Optional`，它会将这个返回的`Optional`展平，不再包装成嵌套的`Optional`。
+
+下面是一个对比的示例代码：
+```
+public static void main(String[] args) {
+        int userId = 1;
+
+        // 使用flatMap的代码
+        String cityUsingFlatMap = getUserById(userId)
+                .flatMap(OptionalExample::getAddressByUser)
+                .map(Address::getCity)
+                .orElse("Unknown");
+
+        System.out.println("User's city using flatMap: " + cityUsingFlatMap);
+
+        // 不使用flatMap的代码
+        Optional<Optional<Address>> optionalAddress = getUserById(userId)
+                .map(OptionalExample::getAddressByUser);
+
+        String cityWithoutFlatMap;
+        if (optionalAddress.isPresent()) {
+            Optional<Address> addressOptional = optionalAddress.get();
+            if (addressOptional.isPresent()) {
+                Address address = addressOptional.get();
+                cityWithoutFlatMap = address.getCity();
+            } else {
+                cityWithoutFlatMap = "Unknown";
+            }
+        } else {
+            cityWithoutFlatMap = "Unknown";
+        }
+
+        System.out.println("User's city without flatMap: " + cityWithoutFlatMap);
+    }
+```
+在`Stream`和`Optional`中正确使用flatMap可以减少很多不必要的代码。
 
 ### 判断 value 是否为 null
 
