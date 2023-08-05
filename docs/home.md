@@ -67,6 +67,8 @@ title: JavaGuide（Java学习&面试指南）
 - [LinkedHashMap 核心源码分析](./java/collection/linkedhashmap-source-code.md)
 - [CopyOnWriteArrayList 核心源码分析](./java/collection/copyonwritearraylist-source-code.md)
 - [ArrayBlockingQueue 核心源码分析](./java/collection/arrayblockingqueue-source-code.md)
+- [PriorityQueue 核心源码分析](./java/collection/priorityqueue-source-code.md)
+- [DelayQueue 核心源码分析](./java/collection/priorityqueue-source-code.md)
 
 ### IO
 

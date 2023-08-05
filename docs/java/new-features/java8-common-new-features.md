@@ -1,4 +1,9 @@
-# Java8 新特性实战
+---
+title: Java8 新特性实战
+category: Java
+tag:
+  - Java新特性
+---
 
 > 本文来自[cowbi](https://github.com/cowbi)的投稿~
 
@@ -602,14 +607,13 @@ public static <T> T requireNonNull(T obj) {
 
 `ofNullable` 方法和`of`方法唯一区别就是当 value 为 null 时，`ofNullable` 返回的是`EMPTY`，of 会抛出 `NullPointerException` 异常。如果需要把 `NullPointerException` 暴漏出来就用 `of`，否则就用 `ofNullable`。
 
-
 **`map()` 和 `flatMap()` 有什么区别的？**
 
-先看一下`map`和`flatMap`在`Stream`中的不同。
 `map` 和 `flatMap` 都是将一个函数应用于集合中的每个元素，但不同的是`map`返回一个新的集合，`flatMap`是将每个元素都映射为一个集合，最后再将这个集合展平。
 
 在实际应用场景中，如果`map`返回的是数组，那么最后得到的是一个二维数组，使用`flatMap`就是为了将这个二维数组展平变成一个一维数组。
-```
+
+```java
 public class MapAndFlatMapExample {
     public static void main(String[] args) {
         List<String[]> listOfArrays = Arrays.asList(
@@ -635,21 +639,24 @@ public class MapAndFlatMapExample {
 }
 
 ```
+
 运行结果:
+
 ```
 Using map:
 [[APPLE, BANANA, CHERRY], [ORANGE, GRAPE, PEAR], [KIWI, MELON, PINEAPPLE]]
 
 Using flatMap:
 [APPLE, BANANA, CHERRY, ORANGE, GRAPE, PEAR, KIWI, MELON, PINEAPPLE]
-
 ```
+
 最简单的理解就是`flatMap()`可以将`map()`的结果展开。
 
 在`Optional`里面，当使用`map()`时，如果映射函数返回的是一个普通值，它会将这个值包装在一个新的`Optional`中。而使用`flatMap`时，如果映射函数返回的是一个`Optional`，它会将这个返回的`Optional`展平，不再包装成嵌套的`Optional`。
 
 下面是一个对比的示例代码：
-```
+
+```java
 public static void main(String[] args) {
         int userId = 1;
 
@@ -681,6 +688,7 @@ public static void main(String[] args) {
         System.out.println("User's city without flatMap: " + cityWithoutFlatMap);
     }
 ```
+
 在`Stream`和`Optional`中正确使用`flatMap`可以减少很多不必要的代码。
 
 ### 判断 value 是否为 null
@@ -759,7 +767,7 @@ public Optional<T> filter(Predicate<? super T> predicate) {
 
 ### 小结
 
-看完 `Optional` 源码，`Optional` 的方法真的非常简单，值得注意的是如果坚决不想看见 `NPE`，就不要用 `of() `、 `get()`、`flatMap(..)`。最后再综合用一下 `Optional` 的高频方法。
+看完 `Optional` 源码，`Optional` 的方法真的非常简单，值得注意的是如果坚决不想看见 `NPE`，就不要用 `of()`、 `get()`、`flatMap(..)`。最后再综合用一下 `Optional` 的高频方法。
 
 ```java
 Optional.ofNullable(zoo).map(o -> o.getDog()).map(d -> d.getAge()).filter(v->v==1).orElse(3);
@@ -1002,7 +1010,7 @@ System.out.println(date);
 //Wed Jan 27 14:05:29 CST 2021
 ```
 
-在新特性中引入了 `java.time.ZonedDateTime ` 来表示带时区的时间。它可以看成是 `LocalDateTime + ZoneId`。
+在新特性中引入了 `java.time.ZonedDateTime` 来表示带时区的时间。它可以看成是 `LocalDateTime + ZoneId`。
 
 ```java
 //当前时区时间
