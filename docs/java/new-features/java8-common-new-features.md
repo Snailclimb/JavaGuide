@@ -681,7 +681,7 @@ public static void main(String[] args) {
         System.out.println("User's city without flatMap: " + cityWithoutFlatMap);
     }
 ```
-在`Stream`和`Optional`中正确使用flatMap可以减少很多不必要的代码。
+在`Stream`和`Optional`中正确使用`flatMap`可以减少很多不必要的代码。
 
 ### 判断 value 是否为 null
 
