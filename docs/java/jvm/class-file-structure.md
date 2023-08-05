@@ -60,9 +60,7 @@ ClassFile {
     u4             magic; //Class 文件的标志
 ```
 
-每个 Class 文件的头 4 个字节称为魔数（Magic Number）,它的唯一作用是**确定这个文件是否为一个能被虚拟机接收的 Class 文件**。
-
-程序设计者很多时候都喜欢用一些特殊的数字表示固定的文件类型或者其它特殊的含义。
+每个 Class 文件的头 4 个字节称为魔数（Magic Number）,它的唯一作用是**确定这个文件是否为一个能被虚拟机接收的 Class 文件**。Java规范规定魔数为固定值：0xCAFEBABE。如果读取的文件不是以这个魔数开头，Java虚拟机将拒绝加载它。
 
 ### Class 文件版本号（Minor&Major Version）
 
