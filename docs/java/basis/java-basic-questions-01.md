@@ -591,6 +591,14 @@ System.out.println(a);// 0.100000024
 System.out.println(b);// 0.099999905
 System.out.println(a == b);// false
 ```
+如果把上面的数值改一下，读者朋友可以试试。
+```java
+float a = 2.0f - 1.9f;
+float b = 1.9f - 1.8f;
+System.out.println(a);// 0.100000024
+System.out.println(b);// 0.100000024
+System.out.println(a == b);// true
+```
 
 为什么会出现这个问题呢？
 
