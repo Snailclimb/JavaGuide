@@ -308,7 +308,7 @@ public ScheduledThreadPoolExecutor(int corePoolSize) {
 
 `ThreadPoolExecutor`其他常见参数 :
 
-- **`keepAliveTime`**:线程池中的线程数量大于 `corePoolSize` 的时候，如果这时没有新的任务提交，核心线程外的线程不会立即销毁，而是会等待，直到等待的时间超过了 `keepAliveTime`才会被回收销毁；
+- **`keepAliveTime`**:线程池中的线程数量大于 `corePoolSize` 的时候，如果这时没有新的任务提交，多余的空闲线程不会立即销毁，而是会等待，直到等待的时间超过了 `keepAliveTime`才会被回收销毁，线程池回收线程时，会对核心线程和非核心线程一视同仁，直到线程池中线程的数量等于 `corePoolSize` ，回收过程才会停止。
 - **`unit`** : `keepAliveTime` 参数的时间单位。
 - **`threadFactory`** :executor 创建新线程的时候会用到。
 - **`handler`** :饱和策略。关于饱和策略下面单独介绍一下。
