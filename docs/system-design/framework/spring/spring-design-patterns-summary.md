@@ -351,3 +351,5 @@ Spring 框架中用到了哪些设计模式？
 - <https://design-patterns.readthedocs.io/zh_CN/latest/behavioral_patterns/observer.html>
 - <https://juejin.im/post/5a8eb261f265da4e9e307230>
 - <https://juejin.im/post/5ba28986f265da0abc2b6084>
+
+<!-- @include: @article-footer.snippet.md -->

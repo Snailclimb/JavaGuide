@@ -195,3 +195,5 @@ AOF 校验机制是 Redis 在启动时对 AOF 文件进行检查，以判断文�
 - The difference between AOF and RDB persistence：https://www.sobyte.net/post/2022-04/redis-rdb-and-aof/
 - Redis AOF 持久化详解 - 程序员历小冰：http://remcarpediem.net/article/376c55d8/
 - Redis RDB 与 AOF 持久化 · Analyze：https://wingsxdu.com/posts/database/redis/rdb-and-aof/
+
+<!-- @include: @article-footer.snippet.md -->

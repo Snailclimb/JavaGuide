@@ -136,3 +136,5 @@ CPU 缓存是通过将最近使用的数据存储在高速缓存中来实现更�
 
 - Disruptor 高性能之道-等待策略：<http://wuwenliang.net/2022/02/28/Disruptor高性能之道-等待策略/>
 - 《Java 并发编程实战》- 40 | 案例分析（三）：高性能队列 Disruptor：<https://time.geekbang.org/column/article/98134>
+
+<!-- @include: @article-footer.snippet.md -->

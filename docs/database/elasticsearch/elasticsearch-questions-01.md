@@ -11,3 +11,5 @@ tag:
 ![](https://oss.javaguide.cn/javamianshizhibei/elasticsearch-questions.png)
 
 <!-- @include: @planet.snippet.md -->
+
+<!-- @include: @article-footer.snippet.md -->

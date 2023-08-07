@@ -460,3 +460,5 @@ Maven 插件被分为下面两种类型：
 - Maven 依赖范围：<http://www.mvnbook.com/maven-dependency.html>
 - 解决 maven 依赖冲突，这篇就够了！：<https://www.cnblogs.com/qdhxhz/p/16363532.html>
 - Multi-Module Project with Maven：<https://www.baeldung.com/maven-multi-module>
+
+<!-- @include: @article-footer.snippet.md -->

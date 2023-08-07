@@ -57,3 +57,5 @@ NoSQL 数据库主要可以分为下面四种类型：
 - NoSQL 是什么？- MongoDB 官方文档：<https://www.mongodb.com/zh-cn/nosql-explained>
 - 什么是 NoSQL? - AWS：<https://aws.amazon.com/cn/nosql/>
 - NoSQL vs. SQL Databases - MongoDB 官方文档：<https://www.mongodb.com/zh-cn/nosql-explained/nosql-vs-sql>
+
+<!-- @include: @article-footer.snippet.md -->

@@ -153,3 +153,5 @@ public class GlobalErrorWebExceptionHandler implements ErrorWebExceptionHandler 
 - Spring Cloud Gateway 官方文档：<https://cloud.spring.io/spring-cloud-gateway/reference/html/>
 - Creating a custom Spring Cloud Gateway Filter：<https://spring.io/blog/2022/08/26/creating-a-custom-spring-cloud-gateway-filter>
 - 全局异常处理: <https://zhuanlan.zhihu.com/p/347028665>
+
+<!-- @include: @article-footer.snippet.md -->

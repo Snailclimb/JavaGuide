@@ -217,3 +217,5 @@ tag:
 2. 唯一键冲突
 3. 事务回滚
 4. 批量插入（如 `insert...select` 语句）
+
+<!-- @include: @article-footer.snippet.md -->

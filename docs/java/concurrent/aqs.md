@@ -790,3 +790,5 @@ threadnum:7is finish
 
 - Java 并发之 AQS 详解：<https://www.cnblogs.com/waterystone/p/4920797.html>
 - 从 ReentrantLock 的实现看 AQS 的原理及应用：<https://tech.meituan.com/2019/12/05/aqs-theory-and-apply.html>
+
+<!-- @include: @article-footer.snippet.md -->

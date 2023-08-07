@@ -282,3 +282,5 @@ WiredTiger 日志也会被压缩，默认使用的也是 Snappy 压缩算法。�
 - Transactions - MongoDB 官方文档：<https://www.mongodb.com/docs/manual/core/transactions/>
 - WiredTiger Storage Engine - MongoDB 官方文档：<https://www.mongodb.com/docs/manual/core/wiredtiger/>
 - WiredTiger 存储引擎之一：基础数据结构分析：<https://mongoing.com/topic/archives-35143>
+
+<!-- @include: @article-footer.snippet.md -->

@@ -826,3 +826,5 @@ mysql> EXPLAIN SELECT `score`,`name` FROM `cus_order` ORDER BY `score` DESC;
 - 详解 MySQL InnoDB 中意向锁的作用：<https://juejin.cn/post/6844903666332368909>
 - 深入剖析 MySQL 自增锁：<https://juejin.cn/post/6968420054287253540>
 - 在数据库中不可重复读和幻读到底应该怎么分？：<https://www.zhihu.com/question/392569386>
+
+<!-- @include: @article-footer.snippet.md -->

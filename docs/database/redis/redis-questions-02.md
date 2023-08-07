@@ -754,3 +754,5 @@ Cache Aside Pattern 中遇到写请求是这样的：更新 DB，然后直接删
 - What is Redis Pipeline：<https://buildatscale.tech/what-is-redis-pipeline/>
 - 一文详解 Redis 中 BigKey、HotKey 的发现与处理：<https://mp.weixin.qq.com/s/FPYE1B839_8Yk1-YSiW-1Q>
 - Redis延迟问题全面排障指南：https://mp.weixin.qq.com/s/mIc6a9mfEGdaNDD3MmfFsg
+
+<!-- @include: @article-footer.snippet.md -->

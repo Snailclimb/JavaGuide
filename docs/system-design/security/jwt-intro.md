@@ -162,3 +162,5 @@ HMACSHA256(
 5. 密钥一定保管好，一定不要泄露出去。JWT 安全的核心在于签名，签名安全的核心在密钥。
 6. Payload 要加入 `exp` （JWT 的过期时间），永久有效的 JWT 不合理。并且，JWT 的过期时间不易过长。
 7. ......
+
+<!-- @include: @article-footer.snippet.md -->

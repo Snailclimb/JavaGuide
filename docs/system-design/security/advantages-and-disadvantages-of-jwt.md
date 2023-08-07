@@ -178,3 +178,5 @@ JWT 也不是银弹，也有很多缺陷，具体是选择 JWT 还是 Session �
 - How to log out when using JWT：<https://medium.com/devgorilla/how-to-log-out-when-using-jwt-a8c7823e8a6>
 - CSRF protection with JSON Web JWTs：<https://medium.com/@agungsantoso/csrf-protection-with-json-web-JWTs-83e0f2fcbcc>
 - Invalidating JSON Web JWTs：<https://stackoverflow.com/questions/21978658/invalidating-json-web-JWTs>
+
+<!-- @include: @article-footer.snippet.md -->

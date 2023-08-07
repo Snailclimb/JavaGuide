@@ -784,3 +784,5 @@ public static String getStr() {
 
 - 深入解析 String#intern：<https://tech.meituan.com/2014/03/06/in-depth-understanding-string-intern.html>
 - R 大（RednaxelaFX）关于常量折叠的回答：https://www.zhihu.com/question/55976094/answer/147302764
+
+<!-- @include: @article-footer.snippet.md -->

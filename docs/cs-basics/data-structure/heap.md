@@ -198,3 +198,5 @@ tag:
 ![堆排序6](./pictures/堆/堆排序6.png)
 
 堆排序完成！
+
+<!-- @include: @article-footer.snippet.md -->

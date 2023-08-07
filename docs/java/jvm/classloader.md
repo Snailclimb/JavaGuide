@@ -310,3 +310,5 @@ Tomcat 的类加载器的层次结构如下：
 - Class Loaders in Java：https://www.baeldung.com/java-classloaders
 - Class ClassLoader - Oracle 官方文档：https://docs.oracle.com/javase/8/docs/api/java/lang/ClassLoader.html
 - 老大难的 Java ClassLoader 再不理解就老了：https://zhuanlan.zhihu.com/p/51374915
+
+<!-- @include: @article-footer.snippet.md -->

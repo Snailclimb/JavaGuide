@@ -257,3 +257,5 @@ System.out.println(currentProcess.info());
 - 《深入剖析 Java 新特性》-极客时间 - JShell：怎么快速验证简单的小问题？
 - New Features in Java 9:https://www.baeldung.com/new-java-9
 - Java – Try with Resources：https://www.baeldung.com/java-try-with-resources
+
+<!-- @include: @article-footer.snippet.md -->

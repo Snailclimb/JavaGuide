@@ -167,3 +167,5 @@ MySQL 中时间到底怎么存储才好？Datetime?Timestamp?还是数值时间�
 | TIMESTAMP    | 4~7字节  | YYYY-MM-DD hh:mm:ss[.fraction] | 1970-01-01 00:00:01[.000000] ～ 2038-01-19 03:14:07[.999999] | 是             |
 | 数值型时间戳 | 4字节    | 全数字如1578707612             | 1970-01-01 00:00:01之后的时间                                | 否             |
 
+
+<!-- @include: @article-footer.snippet.md -->

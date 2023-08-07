@@ -182,3 +182,5 @@ value is JavaGuide
 ```java
 Class<?> targetClass = Class.forName("cn.javaguide.TargetObject");
 ```
+
+<!-- @include: @article-footer.snippet.md -->

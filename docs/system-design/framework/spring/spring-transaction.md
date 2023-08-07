@@ -697,3 +697,5 @@ private void method1() {
 - Spring 事务的传播特性：[https://github.com/love-somnus/Spring/wiki/Spring 事务的传播特性](https://github.com/love-somnus/Spring/wiki/Spring事务的传播特性)
 - [Spring 事务传播行为详解](https://segmentfault.com/a/1190000013341344)：[https://segmentfault.com/a/1190000013341344](https://segmentfault.com/a/1190000013341344)
 - 全面分析 Spring 的编程式事务管理及声明式事务管理：[https://www.ibm.com/developerworks/cn/education/opensource/os-cn-spring-trans/index.html](https://www.ibm.com/developerworks/cn/education/opensource/os-cn-spring-trans/index.html)
+
+<!-- @include: @article-footer.snippet.md -->

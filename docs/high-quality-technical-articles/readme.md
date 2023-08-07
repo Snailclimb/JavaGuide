@@ -40,3 +40,5 @@
 - [新入职一家公司如何快速进入工作状态](./work/get-into-work-mode-quickly-when-you-join-a-company.md)
 - [32 条总结教你提升职场经验](./work/32-tips-improving-career.md)
 - [聊聊大厂的绩效考核](./work/employee-performance.md)
+
+<!-- @include: @article-footer.snippet.md -->

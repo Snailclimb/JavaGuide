@@ -101,3 +101,5 @@ ARP 的工作原理将分两种场景讨论：
 7. 路由器接口将对 IP 数据报重新封装成链路层帧，目标 MAC 地址为主机 B 的 MAC 地址，单播发送，直到目的地。
 
 ![](./images/arp/arp_different_lan.png)
+
+<!-- @include: @article-footer.snippet.md -->

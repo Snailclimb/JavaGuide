@@ -579,3 +579,4 @@ linkedHashMap get time: 67
 - LinkedHashMap 源码详细分析（JDK1.8）:<https://www.imooc.com/article/22931>
 - HashMap 与 LinkedHashMap:<https://www.cnblogs.com/Spground/p/8536148.html>
 - 源于 LinkedHashMap 源码: <https://leetcode.cn/problems/lru-cache/solution/yuan-yu-linkedhashmapyuan-ma-by-jeromememory/>
+<!-- @include: @article-footer.snippet.md -->

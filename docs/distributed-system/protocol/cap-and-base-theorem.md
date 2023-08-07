@@ -159,3 +159,5 @@ CAP 理论这节我们也说过了：
 ### 总结
 
 **ACID 是数据库事务完整性的理论，CAP 是分布式系统设计理论，BASE 是 CAP 理论中 AP 方案的延伸。**
+
+<!-- @include: @article-footer.snippet.md -->

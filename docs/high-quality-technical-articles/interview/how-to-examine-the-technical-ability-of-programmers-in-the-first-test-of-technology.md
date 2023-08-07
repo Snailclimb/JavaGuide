@@ -342,3 +342,5 @@ tag:
 
 - [技术面试官的 9 大误区](https://zhuanlan.zhihu.com/p/51404304)
 - [如何当一个好的面试官？](https://www.zhihu.com/question/26240321)
+
+<!-- @include: @article-footer.snippet.md -->

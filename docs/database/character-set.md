@@ -323,3 +323,5 @@ Incorrect string value: '\xF0\x9F\x98\x98\xF0\x9F...' for column 'name' at row 1
 - MySQL8 文档：<https://dev.mysql.com/doc/refman/8.0/en/charset.html>
 - MySQL5.7 文档：<https://dev.mysql.com/doc/refman/5.7/en/charset.html>
 - MySQL Connector/J 文档：<https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-reference-charsets.html>
+
+<!-- @include: @article-footer.snippet.md -->

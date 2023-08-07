@@ -953,3 +953,5 @@ OPTIMIZE [LOCAL | NO_WRITE_TO_BINLOG] TABLE tbl_name [, tbl_name] ...
 6. SQL对大小写不敏感
 7. 清除已有语句：\c
 ```
+
+<!-- @include: @article-footer.snippet.md -->

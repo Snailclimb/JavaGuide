@@ -98,3 +98,5 @@ System.out.println(matchStrList2);
 
 - [一种敏感词自动过滤管理系统](https://patents.google.com/patent/CN101964000B)
 - [一种网络游戏中敏感词过滤方法及系统](https://patents.google.com/patent/CN103714160A/zh)
+
+<!-- @include: @article-footer.snippet.md -->

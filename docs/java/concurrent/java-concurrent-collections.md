@@ -151,3 +151,5 @@ private static ArrayBlockingQueue<Integer> blockingQueue = new ArrayBlockingQueu
 - 《实战 Java 高并发程序设计》
 - https://javadoop.com/post/java-concurrent-queue
 - https://juejin.im/post/5aeebd02518825672f19c546
+
+<!-- @include: @article-footer.snippet.md -->

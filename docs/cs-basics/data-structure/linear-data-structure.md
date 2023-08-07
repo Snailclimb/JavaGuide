@@ -327,3 +327,5 @@ myStack.pop();//报错：java.lang.IllegalArgumentException: Stack is empty.
 - 现实生活中的派对，播放器上的播放列表;
 - 消息队列
 - 等等......
+
+<!-- @include: @article-footer.snippet.md -->

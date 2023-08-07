@@ -306,3 +306,5 @@ root@21396d02c252:/data# redis-cli
 127.0.0.1:6379> BF.EXISTS myFilter github
 (integer) 0
 ```
+
+<!-- @include: @article-footer.snippet.md -->

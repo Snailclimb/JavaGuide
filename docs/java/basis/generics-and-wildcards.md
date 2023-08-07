@@ -16,3 +16,5 @@ tag:
 ![](https://oss.javaguide.cn/xingqiu/image-20220211231206733.png)
 
 <!-- @include: @planet.snippet.md -->
+
+<!-- @include: @article-footer.snippet.md -->

@@ -115,3 +115,5 @@ Oracle 的 HotSpot VM 便附带两个用 C++ 实现的 JIT compiler：C1 及 C2�
 - Guide to Java10 : <https://www.baeldung.com/java-10-overview>
 
 - 4 Class Data Sharing : https://docs.oracle.com/javase/10/vm/class-data-sharing.htm#JSJVM-GUID-7EAA3411-8CF0-4D19-BD05-DF5E1780AA91
+
+<!-- @include: @article-footer.snippet.md -->

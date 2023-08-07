@@ -445,3 +445,5 @@ mysql> EXPLAIN SELECT `score`,`name` FROM `cus_order` ORDER BY `score` DESC;
 | Extra         | 附加信息                                     |
 
 篇幅问题，我这里只是简单介绍了一下 MySQL 执行计划，详细介绍请看：[MySQL 执行计划分析](./mysql-query-execution-plan.md)这篇文章。
+
+<!-- @include: @article-footer.snippet.md -->

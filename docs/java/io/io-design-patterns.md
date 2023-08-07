@@ -317,3 +317,5 @@ class PollingWatchService
 - Patterns in Java APIs：http://cecs.wright.edu/~tkprasad/courses/ceg860/paper/node26.html
 - 装饰器模式：通过剖析 Java IO 类库源码学习装饰器模式：https://time.geekbang.org/column/article/204845
 - sun.nio 包是什么，是 java 代码么？ - RednaxelaFX https://www.zhihu.com/question/29237781/answer/43653953
+
+<!-- @include: @article-footer.snippet.md -->

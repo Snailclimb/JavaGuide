@@ -175,3 +175,5 @@ GET    /classes?page=1&size=10 //指定第1页，每页10个数据
 - <https://www.seobility.net/en/wiki/REST_API>
 
 - <https://dev.to/duomly/rest-api-vs-graphql-comparison-3j6g>
+
+<!-- @include: @article-footer.snippet.md -->

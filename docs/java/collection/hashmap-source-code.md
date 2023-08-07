@@ -575,3 +575,5 @@ public class HashMapDemo {
 
 }
 ```
+
+<!-- @include: @article-footer.snippet.md -->

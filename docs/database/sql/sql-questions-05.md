@@ -1009,3 +1009,5 @@ INNER JOIN a AS b ON UPPER(a.tag)= b.tag #a小写 b大写
 AND a.tag != b.tag
 WHERE a.answer_cnt < 3;
 ```
+
+<!-- @include: @article-footer.snippet.md -->

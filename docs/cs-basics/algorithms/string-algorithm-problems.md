@@ -459,3 +459,5 @@ public class Main {
 }
 
 ```
+
+<!-- @include: @article-footer.snippet.md -->

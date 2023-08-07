@@ -140,3 +140,5 @@ Code Review 可以非常有效提高代码的整体质量，它会帮助我们�
 
 - [再读《重构》- ThoughtWorks 洞见 - 2020](https://insights.thoughtworks.cn/reread-refactoring/)：详细介绍了重构的要点比如小步重构、捡垃圾式的重构，主要是重构概念相关的介绍。
 - [常见代码重构技巧 - VectorJin - 2021](https://juejin.cn/post/6954378167947624484)：从软件设计原则、设计模式、代码分层、命名规范等角度介绍了如何进行重构，比较偏实战。
+
+<!-- @include: @article-footer.snippet.md -->

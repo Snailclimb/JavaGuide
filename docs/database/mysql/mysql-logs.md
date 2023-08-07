@@ -328,3 +328,5 @@ MySQL InnoDB 引擎使用 **redo log(重做日志)** 保证事务的**持久性*
 
 - [CURD 这么多年，你有了解过 MySQL 的架构设计吗？](https://mp.weixin.qq.com/s/R-1km7r0z3oWfwYQV8iiqA)
 - [浅谈 MySQL InnoDB 的内存组件](https://mp.weixin.qq.com/s/7Kab4IQsNcU_bZdbv_MuOg)
+
+<!-- @include: @article-footer.snippet.md -->

@@ -10,3 +10,5 @@ tag:
 ![](https://oss.javaguide.cn/github/javaguide/database/redis/redis-cluster-javamianshizhibei.png)
 
 <!-- @include: @planet.snippet.md -->
+
+<!-- @include: @article-footer.snippet.md -->

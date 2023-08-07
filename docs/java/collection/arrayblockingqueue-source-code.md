@@ -771,3 +771,4 @@ public boolean contains(Object o) {
 - 深入理解 Java 系列 | BlockingQueue 用法详解：<https://juejin.cn/post/6999798721269465102>
 - 深入浅出阻塞队列 BlockingQueue 及其典型实现 ArrayBlockingQueue：<https://zhuanlan.zhihu.com/p/539619957>
 - 并发编程大扫盲：ArrayBlockingQueue 底层原理和实战：<https://zhuanlan.zhihu.com/p/339662987>
+<!-- @include: @article-footer.snippet.md -->

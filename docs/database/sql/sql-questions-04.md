@@ -829,3 +829,5 @@ ORDER BY
 	start_month
 ```
 
+
+<!-- @include: @article-footer.snippet.md -->

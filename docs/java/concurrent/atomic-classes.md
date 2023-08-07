@@ -446,3 +446,5 @@ class User {
 ## 参考
 
 - 《Java 并发编程的艺术》
+
+<!-- @include: @article-footer.snippet.md -->

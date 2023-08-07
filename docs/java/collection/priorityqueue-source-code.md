@@ -11,3 +11,5 @@ tag:
 
 <!-- @include: @yuanma.snippet.md -->
 
+
+<!-- @include: @article-footer.snippet.md -->

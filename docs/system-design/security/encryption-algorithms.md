@@ -356,3 +356,5 @@ DSA 算法签名过程：
 - 奇妙的安全旅行之 DSA 算法：<https://zhuanlan.zhihu.com/p/347025157>
 - AES-GCM 加密简介：<https://juejin.cn/post/6844904122676690951>
 - Java AES 256 GCM Encryption and Decryption Example | JCE Unlimited Strength：<https://www.javainterviewpoint.com/java-aes-256-gcm-encryption-and-decryption/>
+
+<!-- @include: @article-footer.snippet.md -->

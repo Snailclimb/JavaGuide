@@ -120,3 +120,5 @@ config set active-defrag-cycle-max 50
 - Redis 官方文档：https://redis.io/topics/memory-optimization
 - Redis 核心技术与实战 - 极客时间 - 删除数据后，为什么内存占用率还是很高？：https://time.geekbang.org/column/article/289140
 - Redis 源码解析——内存分配：<https://shinerio.cc/2020/05/17/redis/Redis源码解析——内存管理>
+
+<!-- @include: @article-footer.snippet.md -->

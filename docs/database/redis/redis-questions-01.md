@@ -599,3 +599,5 @@ Redis 提供 6 种数据淘汰策略：
 - 《Redis 设计与实现》
 - Redis 命令手册：https://www.redis.com.cn/commands.html
 - WHY Redis choose single thread (vs multi threads): [https://medium.com/@jychen7/sharing-redis-single-thread-vs-multi-threads-5870bd44d153](https://medium.com/@jychen7/sharing-redis-single-thread-vs-multi-threads-5870bd44d153)
+
+<!-- @include: @article-footer.snippet.md -->

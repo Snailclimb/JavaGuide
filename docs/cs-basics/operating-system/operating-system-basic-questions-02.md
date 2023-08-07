@@ -409,3 +409,5 @@ LRU 算法是实际使用中应用的比较多，也被认为是最接近 OPT �
 - 为什么 Linux 需要虚拟内存：https://draveness.me/whys-the-design-os-virtual-memory/
 - 程序员的自我修养（七）：内存缺页错误：https://liam.page/2017/09/01/page-fault/
 - 虚拟内存的那点事儿：https://juejin.cn/post/6844903507594575886
+
+<!-- @include: @article-footer.snippet.md -->

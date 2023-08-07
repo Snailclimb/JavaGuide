@@ -148,3 +148,5 @@ public class Outer {
 - [Consolidated JDK 16 Release Notes](https://www.oracle.com/java/technologies/javase/16all-relnotes.html)
 - [Java 16 正式发布，新特性一一解析](https://www.infoq.cn/article/IAkwhx7i9V7G8zLVEd4L)
 - [实操 | 剖析 Java16 新语法特性](https://xie.infoq.cn/article/8304c894c4e38318d38ceb116)（写的很赞）
+
+<!-- @include: @article-footer.snippet.md -->

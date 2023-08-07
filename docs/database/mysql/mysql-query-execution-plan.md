@@ -139,3 +139,5 @@ rows 列表示根据表统计信息及选用情况，大致估算出找到所需
 
 - https://dev.mysql.com/doc/refman/5.7/en/explain-output.html
 - https://juejin.cn/post/6953444668973514789
+
+<!-- @include: @article-footer.snippet.md -->

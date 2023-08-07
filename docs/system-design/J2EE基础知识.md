@@ -284,3 +284,5 @@ Cookie 和 Session 都是用来跟踪浏览器用户身份的会话方式，但�
 Cookie 数据保存在客户端(浏览器端)，Session 数据保存在服务器端。
 
 Cookie 存储在客户端中，而 Session 存储在服务器上，相对来说 Session 安全性更高。如果使用 Cookie 的一些敏感信息不要写入 Cookie 中，最好能将 Cookie 信息加密然后使用到的时候再去服务器端解密。
+
+<!-- @include: @article-footer.snippet.md -->

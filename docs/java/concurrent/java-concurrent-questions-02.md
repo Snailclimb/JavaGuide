@@ -706,3 +706,5 @@ Atomic 原子类部分的内容我单独写了一篇文章来总结：[Atomic �
 - 高性能解决线程饥饿的利器 StampedLock：https://mp.weixin.qq.com/s/2Acujjr4BHIhlFsCLGwYSg
 - 理解 Java 中的 ThreadLocal - 技术小黑屋：https://droidyue.com/blog/2016/03/13/learning-threadlocal-in-java/
 - ThreadLocal (Java Platform SE 8 ) - Oracle Help Center：https://docs.oracle.com/javase/8/docs/api/java/lang/ThreadLocal.html
+
+<!-- @include: @article-footer.snippet.md -->

@@ -351,3 +351,5 @@ HotSpot 虚拟机主要使用的就是这种方式来进行对象访问。
 - <http://www.pointsoftware.ch/en/under-the-hood-runtime-data-areas-javas-memory-model/>
 - <https://dzone.com/articles/jvm-permgen-%E2%80%93-where-art-thou>
 - <https://stackoverflow.com/questions/9095748/method-area-and-permgen>
+
+<!-- @include: @article-footer.snippet.md -->

@@ -169,3 +169,5 @@ Shenyu 通过插件扩展功能，插件是 ShenYu 的灵魂，并且插件也�
 - Kong 插件开发教程[通俗易懂]：<https://cloud.tencent.com/developer/article/2104299>
 - API 网关 Kong 实战：<https://xie.infoq.cn/article/10e4dab2de0bdb6f2c3c93da6>
 - Spring Cloud Gateway 原理介绍和应用：<https://blog.fintopia.tech/60e27b0e2078082a378ec5ed/>
+
+<!-- @include: @article-footer.snippet.md -->

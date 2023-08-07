@@ -204,3 +204,5 @@ MySQL 中的查询缓存虽然能够提升数据库的查询性能，但是查�
 - MySQL 缓存机制：<https://zhuanlan.zhihu.com/p/55947158>
 - RDS MySQL 查询缓存（Query Cache）的设置和使用 - 阿里元云数据库 RDS 文档:<https://help.aliyun.com/document_detail/41717.html>
 - 8.10.3 The MySQL Query Cache - MySQL 官方文档：<https://dev.mysql.com/doc/refman/5.7/en/query-cache.html>
+
+<!-- @include: @article-footer.snippet.md -->

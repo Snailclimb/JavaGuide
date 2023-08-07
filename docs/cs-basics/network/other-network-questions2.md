@@ -186,3 +186,5 @@ ARP 协议，全称 **地址解析协议（Address Resolution Protocol）**，�
 - 《计算机网络自顶向下方法》（第七版）
 - 什么是 Internet 协议（IP）？：<https://www.cloudflare.com/zh-cn/learning/network-layer/internet-protocol/>
 - What Is NAT and What Are the Benefits of NAT Firewalls?：<https://community.fs.com/blog/what-is-nat-and-what-are-the-benefits-of-nat-firewalls.html>
+
+<!-- @include: @article-footer.snippet.md -->

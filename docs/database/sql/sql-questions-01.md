@@ -1821,3 +1821,5 @@ FROM Customers
 WHERE cust_state = 'MI' or cust_state = 'IL'
 ORDER BY cust_name;
 ```
+
+<!-- @include: @article-footer.snippet.md -->

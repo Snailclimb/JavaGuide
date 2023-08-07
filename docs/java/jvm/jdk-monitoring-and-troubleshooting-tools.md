@@ -308,3 +308,5 @@ VisualVM 基于 NetBeans 平台开发，因此他一开始就具备了插件扩�
 
 - <https://visualvm.github.io/documentation.html>
 - <https://www.ibm.com/developerworks/cn/java/j-lo-visualvm/index.html>
+
+<!-- @include: @article-footer.snippet.md -->

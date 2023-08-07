@@ -138,3 +138,5 @@ update tb_student A set A.age='19' where A.name=' 张三 ';
 
 - 《MySQL 实战 45 讲》
 - MySQL 5.6 参考手册:<https://dev.MySQL.com/doc/refman/5.6/en/>
+
+<!-- @include: @article-footer.snippet.md -->

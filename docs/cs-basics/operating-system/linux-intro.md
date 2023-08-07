@@ -427,3 +427,5 @@ vim ~/.bash_profile
 ```bash
 source /etc/profile
 ```
+
+<!-- @include: @article-footer.snippet.md -->

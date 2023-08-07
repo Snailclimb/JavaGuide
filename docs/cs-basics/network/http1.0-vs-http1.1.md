@@ -103,3 +103,5 @@ HTTP/1.0 包含了`Content-Encoding`头部，对消息进行端到端编码。HT
 ## 参考资料
 
 [Key differences between HTTP/1.0 and HTTP/1.1](http://www.ra.ethz.ch/cdstore/www8/data/2136/pdf/pd1.pdf)
+
+<!-- @include: @article-footer.snippet.md -->

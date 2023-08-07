@@ -223,3 +223,5 @@ ShardingSphere 的优势如下（摘自 ShardingSphere 官方文档：<https://s
 - **分库** 就是将数据库中的数据分散到不同的数据库上。**分表** 就是对单表的数据进行拆分，可以是垂直拆分，也可以是水平拆分。
 - 引入分库分表之后，需要系统解决事务、分布式 id、无法 join 操作问题。
 - ShardingSphere 绝对可以说是当前分库分表的首选！ShardingSphere 的功能完善，除了支持读写分离和分库分表，还提供分布式事务、数据库治理等功能。另外，ShardingSphere 的生态体系完善，社区活跃，文档完善，更新和发布比较频繁。
+
+<!-- @include: @article-footer.snippet.md -->

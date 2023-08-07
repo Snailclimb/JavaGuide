@@ -364,3 +364,5 @@ tag:
 - `zookeeper` 的典型应用场景，比如选主，注册中心等等。
 
   如果忘了可以回去看看再次理解一下，如果有疑问和建议欢迎提出 🤝🤝🤝。
+
+<!-- @include: @article-footer.snippet.md -->

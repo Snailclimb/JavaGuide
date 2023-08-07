@@ -96,3 +96,5 @@ Dijkstra（Dijkstra 算法的作者） 在 1972 年图灵奖获奖感言中也�
 
 - 软件工程的基本概念-清华大学软件学院 刘强：<https://www.xuetangx.com/course/THU08091000367>
 - 软件开发过程-维基百科：[https://zh.wikipedia.org/wiki/软件开发过程](https://zh.wikipedia.org/wiki/软件开发过程)
+
+<!-- @include: @article-footer.snippet.md -->

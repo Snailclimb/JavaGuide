@@ -366,3 +366,5 @@ private static class LockData
 ## 总结
 
 这篇文章我们介绍了实现分布式锁的两种常见方式。至于具体选择 Redis 还是 ZooKeeper 来实现分布式锁，还是要看业务的具体需求。如果对性能要求比较高的话，建议使用 Redis 实现分布式锁。如果对可靠性要求比较高的话，建议使用 ZooKeeper 实现分布式锁。
+
+<!-- @include: @article-footer.snippet.md -->

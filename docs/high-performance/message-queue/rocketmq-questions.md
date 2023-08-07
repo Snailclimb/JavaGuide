@@ -456,3 +456,5 @@ emmm，是不是有一点复杂 🤣，看英文图片和英文文档的时候�
 7. 介绍了 `RocketMQ` 的存储机制和刷盘策略。
 
 等等。。。
+
+<!-- @include: @article-footer.snippet.md -->

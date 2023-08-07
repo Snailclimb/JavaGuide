@@ -222,3 +222,5 @@ acks 的默认值即为 1，代表我们的消息被 leader 副本接收之后�
 
 - Kafka 官方文档：https://kafka.apache.org/documentation/
 - 极客时间—《Kafka 核心技术与实战》第 11 节：无消息丢失配置怎么实现？
+
+<!-- @include: @article-footer.snippet.md -->

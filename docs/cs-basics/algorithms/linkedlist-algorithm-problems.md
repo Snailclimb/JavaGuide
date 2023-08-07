@@ -383,3 +383,5 @@ public class Solution {
   }
 }
 ```
+
+<!-- @include: @article-footer.snippet.md -->

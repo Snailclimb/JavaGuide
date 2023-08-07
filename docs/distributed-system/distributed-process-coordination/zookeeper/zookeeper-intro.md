@@ -279,3 +279,5 @@ ZAB 协议包括两种基本的模式，分别是
 ## 参考
 
 - 《从 Paxos 到 ZooKeeper 分布式一致性原理与实践》
+
+<!-- @include: @article-footer.snippet.md -->

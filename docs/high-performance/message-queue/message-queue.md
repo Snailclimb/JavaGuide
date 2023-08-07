@@ -286,3 +286,5 @@ Pulsar 更新记录（可以直观看到项目是否还在维护）：https://gi
 - 《大型网站技术架构 》
 - KRaft: Apache Kafka Without ZooKeeper：https://developer.confluent.io/learn/kraft/
 - 消息队列的使用场景是什么样的？：https://mp.weixin.qq.com/s/4V1jI6RylJr7Jr9JsQe73A
+
+<!-- @include: @article-footer.snippet.md -->

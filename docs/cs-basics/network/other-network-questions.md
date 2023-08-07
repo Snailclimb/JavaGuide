@@ -311,3 +311,5 @@ DNS 服务器自底向上可以依次分为以下几个层级(所有 DNS 服务�
 - HTTP 请求头字段大全| HTTP Request Headers：<https://www.flysnow.org/tools/table/http-request-headers/>
 - HTTP1、HTTP2、HTTP3：<https://juejin.cn/post/6855470356657307662>
 - 如何看待 HTTP/3 ？ - 车小胖的回答 - 知乎: <https://www.zhihu.com/question/302412059/answer/533223530>
+
+<!-- @include: @article-footer.snippet.md -->

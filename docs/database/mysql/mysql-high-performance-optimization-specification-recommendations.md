@@ -377,3 +377,5 @@ pt-online-schema-change 它会首先建立一个与原表结构相同的新表�
 
 - 程序使用数据库账号只能在一个 DB 下使用，不准跨库
 - 程序使用的账号原则上不准有 drop 权限
+
+<!-- @include: @article-footer.snippet.md -->

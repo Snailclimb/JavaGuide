@@ -131,3 +131,5 @@ http://cdn.wangsu.com/4/123.mp3? wsSecret=79aead3bd7b5db4adeffb93a010298b5&wsTim
 - 时间戳防盗链 - 七牛云 CDN：<https://developer.qiniu.com/fusion/kb/1670/timestamp-hotlinking-prevention>
 - CDN 是个啥玩意？一文说个明白：<https://mp.weixin.qq.com/s/Pp0C8ALUXsmYCUkM5QnkQw>
 - 《透视 HTTP 协议》- 37 | CDN：加速我们的网络服务：<http://gk.link/a/11yOG>
+
+<!-- @include: @article-footer.snippet.md -->

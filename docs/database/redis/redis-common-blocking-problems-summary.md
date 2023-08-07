@@ -171,3 +171,5 @@ Redis 是典型的 CPU 密集型应用，不建议和其他多核 CPU 密集型�
 
 - Redis 阻塞的 6 大类场景分析与总结：https://mp.weixin.qq.com/s/eaZCEtTjTuEmXfUubVHjew
 - Redis 开发与运维笔记-Redis 的噩梦-阻塞：https://mp.weixin.qq.com/s/TDbpz9oLH6ifVv6ewqgSgA
+
+<!-- @include: @article-footer.snippet.md -->

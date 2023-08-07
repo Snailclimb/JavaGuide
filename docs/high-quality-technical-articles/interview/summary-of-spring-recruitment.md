@@ -161,3 +161,5 @@ Java 卷吗？毫无疑问，很卷，我个人认为开发属于没有什么门
 ## 祝福
 
 惟愿诸君，前程似锦！
+
+<!-- @include: @article-footer.snippet.md -->

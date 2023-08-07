@@ -111,3 +111,5 @@ DNS（Domain Name System，域名管理系统）基于 UDP 协议，用于解决
 
 - 《计算机网络自顶向下方法》（第七版）
 - RTP 协议介绍:https://mthli.xyz/rtp-introduction/
+
+<!-- @include: @article-footer.snippet.md -->

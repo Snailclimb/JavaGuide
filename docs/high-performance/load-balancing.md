@@ -233,3 +233,5 @@ Spring Cloud 2020.0.0 版本移除了 Netflix 除 Eureka 外的所有组件。Sp
 - 干货 | eBay 的 4 层软件负载均衡实现：<https://mp.weixin.qq.com/s/bZMxLTECOK3mjdgiLbHj-g>
 - HTTP Load Balancing（Nginx 官方文档）：<https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/>
 - 深入浅出负载均衡 - vivo 互联网技术：<https://www.cnblogs.com/vivotech/p/14859041.html>
+
+<!-- @include: @article-footer.snippet.md -->

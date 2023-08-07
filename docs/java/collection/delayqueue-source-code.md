@@ -356,3 +356,4 @@ public E peek() {
 - 《深入理解高并发编程：JDK核心技术》:
 - 一口气说出Java 6种延时队列的实现方法(面试官也得服):<https://www.jb51.net/article/186192.htm>
 - 图解DelayQueue源码（java 8）——延时队列的小九九: <https://blog.csdn.net/every__day/article/details/113810985>
+<!-- @include: @article-footer.snippet.md -->

@@ -209,3 +209,5 @@ Resilience4j 不仅提供限流，还提供了熔断、负载保护、自动重�
 - 服务治理之轻量级熔断框架 Resilience4j：<https://xie.infoq.cn/article/14786e571c1a4143ad1ef8f19>
 - 超详细的 Guava RateLimiter 限流原理解析：<https://cloud.tencent.com/developer/article/1408819>
 - 实战 Spring Cloud Gateway 之限流篇 👍：<https://www.aneasystone.com/archives/2020/08/spring-cloud-gateway-current-limiting.html>
+
+<!-- @include: @article-footer.snippet.md -->

@@ -207,3 +207,5 @@ head:
 ## 参考
 
 - 选择合适的权限模型：https://docs.authing.cn/v2/guides/access-control/choose-the-right-access-control-model.html
+
+<!-- @include: @article-footer.snippet.md -->

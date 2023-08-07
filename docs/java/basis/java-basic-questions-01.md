@@ -1020,3 +1020,5 @@ public class VariableLengthArgument {
 - Oracle vs OpenJDK：https://www.educba.com/oracle-vs-openjdk/
 - Differences between Oracle JDK and OpenJDK：https://stackoverflow.com/questions/22358071/differences-between-oracle-jdk-and-openjdk
 - 彻底弄懂 Java 的移位操作符：https://juejin.cn/post/6844904025880526861
+
+<!-- @include: @article-footer.snippet.md -->

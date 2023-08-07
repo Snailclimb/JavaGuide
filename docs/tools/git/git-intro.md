@@ -245,3 +245,5 @@ git push origin
 - [图解 Git](https://marklodato.github.io/visual-git-guide/index-zh-cn.html)：图解 Git 中的最常用命令。如果你稍微理解 git 的工作原理，这篇文章能够让你理解的更透彻。
 - [猴子都能懂得 Git 入门](https://backlog.com/git-tutorial/cn/intro/intro1_1.html)：有趣的讲解。
 - [Pro Git book](https://git-scm.com/book/zh/v2)：国外的一本 Git 书籍，被翻译成多国语言，质量很高。
+
+<!-- @include: @article-footer.snippet.md -->

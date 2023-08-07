@@ -236,3 +236,5 @@ happens-before 与 JMM 的关系用《Java 并发编程的艺术》这本书中�
 - Java 内存访问重排序的研究：https://tech.meituan.com/2014/09/23/java-memory-reordering.html
 - 嘿，同学，你要的 Java 内存模型 (JMM) 来了：https://xie.infoq.cn/article/739920a92d0d27e2053174ef2
 - JSR 133 (Java Memory Model) FAQ：https://www.cs.umd.edu/~pugh/java/memoryModel/jsr-133-faq.html
+
+<!-- @include: @article-footer.snippet.md -->

@@ -51,3 +51,5 @@ JVM 线上问题排查和性能调优也是面试常问的一个问题，尤其�
 [Java 中 9 种常见的 CMS GC 问题分析与解决 - 美团技术团 - 2020](https://tech.meituan.com/2020/11/12/java-9-cms-gc.html)
 
 这篇文章共 2w+ 字，详细介绍了 GC 基础，总结了 CMS GC 的一些常见问题分析与解决办法。
+
+<!-- @include: @article-footer.snippet.md -->

@@ -954,3 +954,5 @@ public int await() throws InterruptedException, BrokenBarrierException {
 - Java 多线程（三）——FutureTask/CompletableFuture：https://www.cnblogs.com/iwehdio/p/14285282.html
 - Java 并发之 AQS 详解：https://www.cnblogs.com/waterystone/p/4920797.html
 - Java 并发包基石-AQS 详解：https://www.cnblogs.com/chengxiao/archive/2017/07/24/7141160.html
+
+<!-- @include: @article-footer.snippet.md -->

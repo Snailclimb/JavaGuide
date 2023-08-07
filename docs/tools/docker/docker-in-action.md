@@ -630,3 +630,5 @@ Loaded image: my_tomcat:1.0
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 my_tomcat           1.0                 79ab047fade5        7 minutes ago       463MB
 ```
+
+<!-- @include: @article-footer.snippet.md -->

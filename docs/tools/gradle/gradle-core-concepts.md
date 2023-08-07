@@ -302,3 +302,5 @@ Gradle 支持单项目和多项目构建。在初始化阶段，Gradle 确定哪
 - 【Gradle】Gradle 的生命周期详解：<https://juejin.cn/post/7067719629874921508>
 - 手把手带你自定义 Gradle 插件 —— Gradle 系列(2)：<https://www.cnblogs.com/pengxurui/p/16281537.html>
 - Gradle 爬坑指南 -- 理解 Plugin、Task、构建流程：<https://juejin.cn/post/6889090530593112077>
+
+<!-- @include: @article-footer.snippet.md -->

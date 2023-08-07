@@ -466,3 +466,5 @@ CDN 加速，我们可以这么理解：为了减少流氓骚扰，我干脆将�
 - SYN 洪水攻击：https://www.cloudflare.com/zh-cn/learning/ddos/syn-flood-ddos-attack/
 - 什么是 IP 欺骗？：https://www.cloudflare.com/zh-cn/learning/ddos/glossary/ip-spoofing/
 - 什么是 DNS 洪水？| DNS 洪水 DDoS 攻击：https://www.cloudflare.com/zh-cn/learning/ddos/dns-flood-ddos-attack/
+
+<!-- @include: @article-footer.snippet.md -->

@@ -68,3 +68,5 @@ HTTP 状态码用于描述 HTTP 请求的结果，比如 2xx 就代表请求被�
 - https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status
 - https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
 - https://segmentfault.com/a/1190000018264501
+
+<!-- @include: @article-footer.snippet.md -->

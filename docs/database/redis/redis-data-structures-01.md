@@ -499,3 +499,5 @@ value1
 - Redis Commands：<https://redis.io/commands/> 。
 - Redis Data types tutorial：<https://redis.io/docs/manual/data-types/data-types-tutorial/> 。
 - Redis 存储对象信息是用 Hash 还是 String : <https://segmentfault.com/a/1190000040032006>
+
+<!-- @include: @article-footer.snippet.md -->

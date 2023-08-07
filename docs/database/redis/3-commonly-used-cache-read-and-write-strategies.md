@@ -114,3 +114,5 @@ Write Behind Pattern 和 Read/Write Through Pattern 很相似，两者都是由 
 这种策略在我们平时开发过程中也非常非常少见，但是不代表它的应用场景少，比如消息队列中消息的异步写入磁盘、MySQL 的 Innodb Buffer Pool 机制都用到了这种策略。
 
 Write Behind Pattern 下 db 的写性能非常高，非常适合一些数据经常变化又对数据一致性要求没那么高的场景，比如浏览量、点赞量。
+
+<!-- @include: @article-footer.snippet.md -->

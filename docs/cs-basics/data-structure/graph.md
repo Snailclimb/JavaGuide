@@ -156,3 +156,5 @@ tag:
 **第 6 步：**
 
 ![深度优先搜索6](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/depth-first-search6.png)
+
+<!-- @include: @article-footer.snippet.md -->

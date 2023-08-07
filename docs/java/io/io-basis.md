@@ -544,3 +544,5 @@ randomAccessFile.write(new byte[]{'H', 'I', 'J', 'K'});
 ![](https://oss.javaguide.cn/github/javaguide/java/image-20220428104115362.png)
 
 `RandomAccessFile` 的实现依赖于 `FileDescriptor` (文件描述符) 和 `FileChannel` （内存映射文件）。
+
+<!-- @include: @article-footer.snippet.md -->

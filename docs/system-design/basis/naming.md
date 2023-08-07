@@ -247,3 +247,5 @@ Codelf 提供了在线网站版本，网址：[https://unbug.github.io/codelf/](
 另外，国人开发的一个叫做 Codelf 的网站被很多人称为“变量命名神器”，当你为命名而头疼的时候，你可以去参考一下上面提供的一些命名示例。
 
 最后，祝愿大家都不用再为命名而困扰!
+
+<!-- @include: @article-footer.snippet.md -->

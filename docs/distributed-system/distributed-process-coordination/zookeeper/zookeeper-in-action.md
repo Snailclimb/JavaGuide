@@ -293,3 +293,5 @@ zkClient.setData().forPath("/node1/00001","c++".getBytes());//更新节点数据
 ```java
 List<String> childrenPaths = zkClient.getChildren().forPath("/node1");
 ```
+
+<!-- @include: @article-footer.snippet.md -->

@@ -1297,3 +1297,5 @@ GROUP BY user_info.uid
 ORDER BY act_month_total DESC,
          act_days_2021 DESC
 ```
+
+<!-- @include: @article-footer.snippet.md -->

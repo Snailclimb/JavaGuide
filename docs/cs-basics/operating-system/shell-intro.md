@@ -532,3 +532,5 @@ funWithParam 1 2 3 4 5 6 7 8 9 34 73
 参数总数有 11 个!
 作为一个字符串输出所有参数 1 2 3 4 5 6 7 8 9 34 73 !
 ```
+
+<!-- @include: @article-footer.snippet.md -->

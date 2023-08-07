@@ -169,3 +169,5 @@ JDK 20 中对结构化并发唯一变化是更新为支持在任务范围内创�
 向量（Vector） API 最初由 [JEP 338](https://openjdk.java.net/jeps/338) 提出，并作为[孵化 API](http://openjdk.java.net/jeps/11)集成到 Java 16 中。第二轮孵化由 [JEP 414](https://openjdk.java.net/jeps/414) 提出并集成到 Java 17 中，第三轮孵化由 [JEP 417](https://openjdk.java.net/jeps/417) 提出并集成到 Java 18 中，第四轮由 [JEP 426](https://openjdk.java.net/jeps/426) 提出并集成到了 Java 19 中。
 
 Java20 的这次孵化基本没有改变向量 API ，只是进行了一些错误修复和性能增强，详见 [JEP 438](https://openjdk.org/jeps/438)。
+
+<!-- @include: @article-footer.snippet.md -->

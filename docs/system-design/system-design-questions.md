@@ -9,3 +9,5 @@ icon: "design"
 ![](https://oss.javaguide.cn/javamianshizhibei/system-design-questions.png)
 
 <!-- @include: @planet.snippet.md -->
+
+<!-- @include: @article-footer.snippet.md -->

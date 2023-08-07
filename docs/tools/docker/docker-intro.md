@@ -297,3 +297,5 @@ LXC 技术主要是借助 Linux 内核中提供的 CGroup 功能和 namespace �
 - [Linux Namespace 和 Cgroup](https://segmentfault.com/a/1190000009732550 "Linux Namespace和Cgroup")
 - [LXC vs Docker: Why Docker is Better](https://www.upguard.com/articles/docker-vs-lxc "LXC vs Docker: Why Docker is Better")
 - [CGroup 介绍、应用实例及原理描述](https://www.ibm.com/developerworks/cn/linux/1506_cgroup/index.html "CGroup 介绍、应用实例及原理描述")
+
+<!-- @include: @article-footer.snippet.md -->

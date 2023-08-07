@@ -439,3 +439,5 @@ CollectionUtils.addAll(list, str);
 Integer[] array = {1, 2, 3};
 List<Integer> list = List.of(array);
 ```
+
+<!-- @include: @article-footer.snippet.md -->

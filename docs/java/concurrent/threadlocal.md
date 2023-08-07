@@ -910,3 +910,5 @@ public class MyThreadPoolTaskExecutor extends ThreadPoolTaskExecutor {
 #### 使用 MQ 发送消息给第三方系统
 
 在 MQ 发送的消息体中自定义属性`requestId`，接收方消费消息后，自己解析`requestId`使用即可。
+
+<!-- @include: @article-footer.snippet.md -->

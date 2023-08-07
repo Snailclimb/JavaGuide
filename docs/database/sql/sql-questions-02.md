@@ -446,3 +446,5 @@ ALTER TABLE employees DROP INDEX idx_email;
 DROP INDEX uniq_idx_exam_id ON examination_info;
 DROP INDEX full_idx_tag ON examination_info;
 ```
+
+<!-- @include: @article-footer.snippet.md -->
