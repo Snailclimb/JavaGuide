@@ -12,6 +12,8 @@ head:
       content: Java并发常见知识点和面试题总结（含详细解答）。
 ---
 
+<!-- @include: @article-header.snippet.md -->
+
 ## JMM(Java 内存模型)
 
 JMM（Java 内存模型）相关的问题比较多，也比较重要，于是我单独抽了一篇文章来总结 JMM 相关的知识点和问题：[JMM（Java 内存模型）详解](./jmm.md) 。

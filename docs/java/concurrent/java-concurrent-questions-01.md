@@ -307,7 +307,7 @@ Process finished with exit code 0
 - **`sleep()` 方法没有释放锁，而 `wait()` 方法释放了锁** 。
 - `wait()` 通常被用于线程间交互/通信，`sleep()`通常被用于暂停执行。
 - `wait()` 方法被调用后，线程不会自动苏醒，需要别的线程调用同一个对象上的 `notify()`或者 `notifyAll()` 方法。`sleep()`方法执行完成后，线程会自动苏醒，或者也可以使用 `wait(long timeout)` 超时后线程会自动苏醒。
-- `sleep()` 是 `Thread` 类的静态本地方法，`wait()` 则是 `Object` 类的本地方法。为什么这样设计呢？
+- `sleep()` 是 `Thread` 类的静态本地方法，`wait()` 则是 `Object` 类的本地方法。为什么这样设计呢？下一个问题就会聊到。
 
 ## 为什么 wait() 方法不定义在 Thread 中？
 

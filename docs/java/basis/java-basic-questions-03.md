@@ -12,6 +12,8 @@ head:
       content: 全网质量最高的Java基础常见知识点和面试题总结，希望对你有帮助！
 ---
 
+<!-- @include: @article-header.snippet.md -->
+
 ## 异常
 
 **Java 异常类层次结构图概览**：

@@ -12,6 +12,8 @@ head:
       content: Java集合常见知识点和面试题总结，希望对你有帮助！
 ---
 
+<!-- @include: @article-header.snippet.md -->
+
 ## Map（重要）
 
 ### HashMap 和 Hashtable 的区别

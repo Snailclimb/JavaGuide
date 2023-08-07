@@ -16,9 +16,13 @@ footer: |-
   <a href="https://beian.miit.gov.cn/" target="_blank">鄂ICP备2020015769号-1</a> | 主题: <a href="https://vuepress-theme-hope.github.io/v2/" target="_blank">VuePress Theme Hope</a>
 ---
 
-[![Banner](https://oss.javaguide.cn/xingqiu/xingqiu.png)](https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html)
+[![Banner](https://oss.javaguide.cn/xingqiu/xingqiu.png)](./about-the-author/zhishixingqiu-two-years.md)
 
 ## 关于网站
+
+JavaGuide 已经持续维护 5 年多了，累计提交了 **5000+** commit ，共有 **440** 多位朋友参与维护。真心希望能够把这个项目做好，真正能够帮助到有需要的朋友！
+
+如果觉得 JavaGuide 的内容对你有帮助的话，还请点个免费的 Star（绝不强制点 Star，你觉得内容不错再点赞就好），这是对我最大的鼓励，感谢各位一起同行，共勉！传送门：[GitHub](https://github.com/Snailclimb/JavaGuide) | [Gitee](https://gitee.com/SnailClimb/JavaGuide)。
 
 - [项目介绍](./javaguide/intro.md)
 - [贡献指南](./javaguide/contribution-guideline.md)
@@ -30,14 +34,6 @@ footer: |-
 - [害，毕业三年了！](./about-the-author/my-college-life.md)
 - [我的知识星球快 3 岁了！](./about-the-author/zhishixingqiu-two-years.md)
 - [坚持写技术博客六年了](./about-the-author/writing-technology-blog-six-years.md)
-
-## 知识星球
-
-对于准备面试的同学来说，强烈推荐我创建的一个纯粹的[Java 面试知识星球](./about-the-author/zhishixingqiu-two-years.md)，干货非常多，学习氛围也很不错！
-
-下面是星球提供的部分服务（点击下方图片即可获取知识星球的详细介绍）：
-
-[![星球服务](https://oss.javaguide.cn/xingqiu/xingqiufuwu.png)](./about-the-author/zhishixingqiu-two-years.md)
 
 ## 公众号
 

@@ -5,6 +5,8 @@ tag:
   - Java集合
 ---
 
+<!-- @include: @article-header.snippet.md -->
+
 > 感谢 [changfubai](https://github.com/changfubai) 对本文的改进做出的贡献！
 
 ## HashMap 简介

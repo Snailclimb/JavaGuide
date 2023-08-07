@@ -4,3 +4,5 @@
 - **知识星球**：技术专栏/一对一提问/简历修改/求职指南/面试打卡/不定时福利，欢迎加入 **[JavaGuide 官方知识星球](../about-the-author/zhishixingqiu-two-years.md)**。
 
 :::
+
+![JavaGuide 官方公众号](https://oss.javaguide.cn/github/javaguide/gongzhonghaoxuanchuan.png)

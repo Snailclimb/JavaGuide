@@ -5,6 +5,8 @@ tag:
   - Java集合
 ---
 
+<!-- @include: @article-header.snippet.md -->
+
 ## LinkedList 简介
 
 `LinkedList` 是一个基于双向链表实现的集合类，经常被拿来和 `ArrayList` 做比较。关于 `LinkedList` 和`ArrayList`的详细对比，我们 [Java集合常见面试题总结(上)](./java-collection-questions-01.md)有详细介绍到。

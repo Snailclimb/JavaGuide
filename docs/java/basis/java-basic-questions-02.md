@@ -12,6 +12,8 @@ head:
       content: 全网质量最高的Java基础常见知识点和面试题总结，希望对你有帮助！
 ---
 
+<!-- @include: @article-header.snippet.md -->
+
 ## 面向对象基础
 
 ### 面向对象和面向过程的区别
