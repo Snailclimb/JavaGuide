@@ -68,7 +68,7 @@ star: 2
 
 ![](https://oss.javaguide.cn/xingqiu/image-20230421154518800.png)
 
-![](https://oss.javaguide.cn/xingqiu/Xnip2023-04-21_15-48-13.jpg)
+![](https://oss.javaguide.cn/xingqiu/Xnip2023-04-21_15-48-13.png)
 
 加入星球之后，记得抽时间把星球精华主题看看，相信你一定会有所收货！
 
