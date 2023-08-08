@@ -68,7 +68,7 @@ Route 路由和 Predicate 断言的对应关系如下：：
 
 Spring Cloud Gateway 作为微服务的入口，需要尽量避免重启，而现在配置更改需要重启服务不能满足实际生产过程中的动态刷新、实时变更的业务需求，所以我们需要在 Spring Cloud Gateway 运行时动态配置网关。
 
-实现动态路由的方式有很多种，其中一种推荐的方式是基于 Nacos 配置中心来做。简单来说，我们将将路由配置放在 Nacos 中存储，然后写个监听器监听 Nacos 上配置的变化，将变化后的配置更新到 GateWay 应用的进程内。
+实现动态路由的方式有很多种，其中一种推荐的方式是基于 Nacos 注册中心来做。 Spring Cloud Gateway可以从注册中心获取服务的元数据（例如服务名称、路径等），然后根据这些信息自动生成路由规则。这样，当你添加、移除或更新服务实例时，网关会自动感知并相应地调整路由规则，无需手动维护路由配置。
 
 其实这些复杂的步骤并不需要我们手动实现，通过 Nacos Server 和 Spring Cloud Alibaba Nacos Config 即可实现配置的动态变更，官方文档地址：<https://github.com/alibaba/spring-cloud-alibaba/wiki/Nacos-config> 。
 
