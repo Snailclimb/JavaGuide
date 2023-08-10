@@ -265,15 +265,15 @@ acks 的默认值即为 1，代表我们的消息被 leader 副本接收之后�
 ```
 其中 BackOffExecution.STOP 的值为-1，nextBackOff 的值调用 BackOff 类的 nextBackOff() 函数。如果当前执行次数大于最大执行次数则返回 STOP，既超过这个最大执行次数后才会停止重试。
 ```Java
-    public long nextBackOff() {
-			this.currentAttempts++;
-			if (this.currentAttempts <= getMaxAttempts()) {
-				return getInterval();
-			}
-			else {
-				return STOP;
-			}
-		}
+public long nextBackOff() {
+  this.currentAttempts++;
+  if (this.currentAttempts <= getMaxAttempts()) {
+    return getInterval();
+  }
+  else {
+    return STOP;
+  }
+}
 ```
 那么这个 getMaxAttempts 的值又是多少呢？回到最开始，当执行出错会进入 DefaultErrorHandler 。DefaultErrorHandler 默认的构造函数是：
 ```Java
