@@ -219,7 +219,7 @@ acks 的默认值即为 1，代表我们的消息被 leader 副本接收之后�
   - 拉取到消息即提交：会有消息丢失的风险。允许消息延时的场景，一般会采用这种方式。然后，通过定时任务在业务不繁忙（比如凌晨）的时候做数据兜底。
 
 # kafka的重试机制
- 网上关于spring kafka的默认重试机制文章很多，但大多都是过时的，和实际运行结果完全不一样。以下代码是根据 spring-kafka-2.9.3 源码重新梳理一下。
+ 网上关于spring kafka的默认重试机制文章很多，但大多都是过时的，和实际运行结果完全不一样。以下是根据 spring-kafka-2.9.3 源码重新梳理一下。
 
 ## 消费失败会怎么样
 在消费过程中，当其中一个消息消费异常时，会不会卡住后续队列消息的消费？这样业务岂不是卡住了？
@@ -264,8 +264,8 @@ acks 的默认值即为 1，代表我们的消息被 leader 副本接收之后�
   }
 ```
 其中 BackOffExecution.STOP 的值为-1，nextBackOff 的值调用 BackOff 类的 nextBackOff() 函数。如果当前执行次数大于最大执行次数则返回 STOP，既超过这个最大执行次数后才会停止重试。
-```
-public long nextBackOff() {
+```Java
+    public long nextBackOff() {
 			this.currentAttempts++;
 			if (this.currentAttempts <= getMaxAttempts()) {
 				return getInterval();
