@@ -53,4 +53,4 @@ icon: tool
 - [zktools](https://zktools.readthedocs.io/en/latest/#installing)：一个低延迟的 ZooKeeper 图形化管理客户端，颜值非常高，支持 Mac / Windows / Linux 。你可以使用 zktools 来实现对 ZooKeeper 的可视化增删改查。
 
 ## Kafka
-- [kafka-ui](https://github.com/provectus/kafka-ui)： 用于管理Apache Kafka群集的通用、快速、轻便的Web用户界面。
+- [kafka-ui](https://github.com/provectus/kafka-ui)：用于管理Apache Kafka群集的通用、快速、轻便的Web用户界面。
