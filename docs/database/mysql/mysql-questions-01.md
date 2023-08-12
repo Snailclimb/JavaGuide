@@ -74,9 +74,9 @@ MySQL 主要具有下面这些优点：
 
 MySQL 字段类型可以简单分为三大类：
 
-- **数值类型**：整型（tinyint、smallint、mediumint、int 和 bigint）、浮点型（float 和 double）、定点型（decimal）
-- **字符串类型**：char、varchar、tinytext、text、mediumtext、longtext、tinyblob、blob、mediumblob 和 longblob 等，最常用的是 char 和 varchar 。
-- **日期时间类型**：year、time、date、datetime 和 timestamp 等。
+- **数值类型**：整型（TINYINT、SMALLINT、MEDIUMINT、INT 和 BIGINT）、浮点型（FLOAT 和 DOUBLE）、定点型（DECIMAL）
+- **字符串类型**：CHAR、VARCHAR、TINYTEXT、TEXT、MEDIUMTEXT、LONGTEXT、TINYBLOB、BLOB、MEDIUMBLOB 和 LONGBLOB 等，最常用的是 CHAR 和 VARCHAR。
+- **日期时间类型**：YEAR、TIME、DATE、DATETIME 和 TIMESTAMP 等。
 
 下面这张图不是我画的，忘记是从哪里保存下来的了，总结的还蛮不错的。
 
@@ -86,71 +86,79 @@ MySQL 字段类型比较多，我这里会挑选一些日常开发使用很频�
 
 另外，推荐阅读一下《高性能 MySQL(第三版)》的第四章，有详细介绍 MySQL 字段类型优化。
 
-### char 和 varchar 的区别是什么？
+### 整数类型的 UNSIGNED 属性有什么用？
 
-char 和 varchar 是最常用到的字符串类型，两者的主要区别在于：**char 是定长字符串，varchar 是变长字符串。**
+MySQL 中的整数类型可以使用可选的 UNSIGNED 属性来表示不允许负值的无符号整数。使用 UNSIGNED 属性可以将正整数的上限提高一倍，因为它不需要存储负数值。
 
-char 在存储时会在右边填充空格以达到指定的长度，检索时会去掉空格；varchar 在存储时需要使用 1 或 2 个额外字节记录字符串的长度，检索时不需要处理。
+例如， TINYINT UNSIGNED 类型的取值范围是 0 ~ 255，而普通的 TINYINT 类型的值范围是 -128 ~ 127。INT UNSIGNED 类型的取值范围是 0 ~ 4,294,967,295，而普通的 TINYINT 类型的值范围是 2,147,483,648 ~ 2,147,483,647。
 
-char 更适合存储长度较短或者长度都差不多的字符串，例如 Bcrypt 算法、MD5 算法加密后的密码、身份证号码。varchar 类型适合存储长度不确定或者差异较大的字符串，例如用户昵称、文章标题等。
+对于从 0 开始递增的 ID 列，使用 UNSIGNED 属性可以非常适合，因为不允许负值并且可以拥有更大的上限范围，提供了更多的 ID 值可用。
 
-char(M) 和 varchar(M) 的 M 都代表能够保存的字符数的最大值，无论是字母、数字还是中文，每个都只占用一个字符。
+### CHAR 和 VARCHAR 的区别是什么？
 
-### varchar(100)和 varchar(10)的区别是什么？
+CHAR 和 VARCHAR 是最常用到的字符串类型，两者的主要区别在于：**CHAR 是定长字符串，VARCHAR 是变长字符串。**
 
-varchar(100)和 varchar(10)都是变长类型，表示能存储最多 100 个字符和 10 个字符。因此，varchar (100) 可以满足更大范围的字符存储需求，有更好的业务拓展性。而 varchar(10)存储超过 10 个字符时，就需要修改表结构才可以。
+CHAR 在存储时会在右边填充空格以达到指定的长度，检索时会去掉空格；VARCHAR 在存储时需要使用 1 或 2 个额外字节记录字符串的长度，检索时不需要处理。
 
-虽说 varchar(100)和 varchar(10)能存储的字符范围不同，但二者存储相同的字符串，所占用磁盘的存储空间其实是一样的，这也是很多人容易误解的一点。
+CHAR 更适合存储长度较短或者长度都差不多的字符串，例如 Bcrypt 算法、MD5 算法加密后的密码、身份证号码。VARCHAR 类型适合存储长度不确定或者差异较大的字符串，例如用户昵称、文章标题等。
 
-不过，varchar(100)会消耗更多的内存。这是因为 varchar 类型在内存中操作时，通常会分配固定大小的内存块来保存值，即使用字符类型中定义的长度。例如在进行排序的时候，varcahr(100)是按照 100 这个长度来进行的，也就会消耗更多内存。
+CHAR(M) 和 VARCHAR(M) 的 M 都代表能够保存的字符数的最大值，无论是字母、数字还是中文，每个都只占用一个字符。
 
-### decimal 和 float/double 的区别是什么？
+### VARCHAR(100)和 VARCHAR(10)的区别是什么？
 
-decimal 和 float 的区别是：**decimal 是定点数，float/double 是浮点数。decimal 可以存储精确的小数值，float/double 只能存储近似的小数值。**
+VARCHAR(100)和 VARCHAR(10)都是变长类型，表示能存储最多 100 个字符和 10 个字符。因此，VARCHAR (100) 可以满足更大范围的字符存储需求，有更好的业务拓展性。而 VARCHAR(10)存储超过 10 个字符时，就需要修改表结构才可以。
 
-decimal 用于存储有精度要求的小数比如与金钱相关的数据，可以避免浮点数带来的精度损失。
+虽说 VARCHAR(100)和 VARCHAR(10)能存储的字符范围不同，但二者存储相同的字符串，所占用磁盘的存储空间其实是一样的，这也是很多人容易误解的一点。
 
-在 Java 中，MySQL 的 decimal 类型对应的是 Java 类 `java.math.BigDecimal` 。
+不过，VARCHAR(100) 会消耗更多的内存。这是因为 VARCHAR 类型在内存中操作时，通常会分配固定大小的内存块来保存值，即使用字符类型中定义的长度。例如在进行排序的时候，VARCHAR(100)是按照 100 这个长度来进行的，也就会消耗更多内存。
 
-### 为什么不推荐使用 text 和 blob？
+### DECIMAL 和 FLOAT/DOUBLE 的区别是什么？
 
-text 类型类似于 char（0 - 255 字节）、varchar（0 - 65 535 字节），不过其可以存储更长的字符串，也就是长文本数据，比如一篇博客的内容。
+DECIMAL 和 FLOAT 的区别是：**DECIMAL 是定点数，FLOAT/DOUBLE 是浮点数。DECIMAL 可以存储精确的小数值，FLOAT/DOUBLE 只能存储近似的小数值。**
 
-| **类型**   | **可存储大小**         | **用途**       |
-| ---------- | ---------------------- | -------------- |
-| TINYTEXT   | 0 - 255 字节           | 一般文本字符串 |
-| TEXT       | 0 - 65 535 字节        | 长文本字符串   |
-| MEDIUMTEXT | 0 - 16 772 150 字节    | 较大文本数据   |
-| LONGTEXT   | 0 - 4 294 967 295 字节 | 极大文本数据   |
+DECIMAL 用于存储具有精度要求的小数，例如与货币相关的数据，可以避免浮点数带来的精度损失。
 
-blob 类型主要用于存储二进制大对象，例如图片，音视频等文件。
+在 Java 中，MySQL 的 DECIMAL 类型对应的是 Java 类 `java.math.BigDecimal`。
 
-| **类型**   | **可存储大小** | **用途**                 |
-| ---------- | -------------- | ------------------------ |
-| TINYBLOB   | 0 - 255 字节   | 短文本二进制字符串       |
-| BLOB       | 0 - 65KB       | 二进制字符串             |
-| MEDIUMBLOB | 0 - 16MB       | 二进制形式的长文本数据   |
-| LONGBLOB   | 0 - 4GB        | 二进制形式的极大文本数据 |
+### 为什么不推荐使用 TEXT 和 BLOB？
 
-日常开发中，text 类型用的很少，但偶尔会用，blob 类型就属于是基本不用。如果预期长度范围 varchar 就满足，就避免使用 text。
+TEXT 类型类似于 CHAR（0-255 字节）和 VARCHAR（0-65,535 字节），但可以存储更长的字符串，即长文本数据，例如博客内容。
 
-数据库规范中一般不推荐使用 blob 及 text 类型，二者的部分缺点和限制如下：
+| 类型       | 可存储大小           | 用途           |
+| ---------- | -------------------- | -------------- |
+| TINYTEXT   | 0-255 字节           | 一般文本字符串 |
+| TEXT       | 0-65,535 字节        | 长文本字符串   |
+| MEDIUMTEXT | 0-16,772,150 字节    | 较大文本数据   |
+| LONGTEXT   | 0-4,294,967,295 字节 | 极大文本数据   |
+
+BLOB 类型主要用于存储二进制大对象，例如图片、音视频等文件。
+
+| 类型       | 可存储大小 | 用途                     |
+| ---------- | ---------- | ------------------------ |
+| TINYBLOB   | 0-255 字节 | 短文本二进制字符串       |
+| BLOB       | 0-65KB     | 二进制字符串             |
+| MEDIUMBLOB | 0-16MB     | 二进制形式的长文本数据   |
+| LONGBLOB   | 0-4GB      | 二进制形式的极大文本数据 |
+
+在日常开发中，很少使用 TEXT 类型，但偶尔会用到，而 BLOB 类型则基本不常用。如果预期长度范围可以通过 VARCHAR 来满足，建议避免使用 TEXT。
+
+数据库规范通常不推荐使用 BLOB 和 TEXT 类型，这两种类型具有一些缺点和限制，例如：
 
 - 不能有默认值。
-- 在遇到使用临时表的情况时，无法使用内存临时表，只能在磁盘上创建临时表（《高性能 MySQL》这本书有提到）。
-- 检索效率比 char 和 varchar 低。
+- 在使用临时表时无法使用内存临时表，只能在磁盘上创建临时表（《高性能 MySQL》书中有提到）。
+- 检索效率较低。
 - 不能直接创建索引，需要指定前缀长度。
-- 会消耗大量的网络和 IO 带宽。
-- 可能会导致表上的 DML 操作都变得较慢。
+- 可能会消耗大量的网络和 IO 带宽。
+- 可能导致表上的 DML 操作变慢。
 - ......
 
-### datetime 和 timestamp 的区别是什么？
+### DATETIME 和 TIMESTAMP 的区别是什么？
 
-DateTime 类型没有时区信息，Timestamp 和时区有关。
+DATETIME 类型没有时区信息，TIMESTAMP 和时区有关。
 
-Timestamp 只需要使用 4 个字节的存储空间，但是 DateTime 需要耗费 8 个字节的存储空间。但是，这样同样造成了一个问题，Timestamp 表示的时间范围更小。
+TIMESTAMP 只需要使用 4 个字节的存储空间，但是 DATETIME 需要耗费 8 个字节的存储空间。但是，这样同样造成了一个问题，Timestamp 表示的时间范围更小。
 
-- DateTime：1000-01-01 00:00:00 ~ 9999-12-31 23:59:59
+- DATETIME：1000-01-01 00:00:00 ~ 9999-12-31 23:59:59
 - Timestamp：1970-01-01 00:00:01 ~ 2037-12-31 23:59:59
 
 关于两者的详细对比，请参考我写的[MySQL 时间类型数据存储建议](./some-thoughts-on-database-storage-time.md)。
@@ -164,7 +172,11 @@ Timestamp 只需要使用 4 个字节的存储空间，但是 DateTime 需要耗
 - `NULL` 会影响聚合函数的结果。例如，`SUM`、`AVG`、`MIN`、`MAX` 等聚合函数会忽略 `NULL` 值。 `COUNT` 的处理方式取决于参数的类型。如果参数是 `*`(`COUNT(*)`)，则会统计所有的记录数，包括 `NULL` 值；如果参数是某个字段名(`COUNT(列名)`)，则会忽略 `NULL` 值，只统计非空值的个数。
 - 查询 `NULL` 值时，必须使用 `IS NULL` 或 `IS NOT NULLl` 来判断，而不能使用 =、!=、 <、> 之类的比较运算符。而`''`是可以使用这些比较运算符的。
 
-看了上面的介绍之后，相信你对另外一个高频面试题：“为什么MySQL不建议使用 `NULL` 作为列默认值？”也有了答案。
+看了上面的介绍之后，相信你对另外一个高频面试题：“为什么 MySQL 不建议使用 `NULL` 作为列默认值？”也有了答案。
+
+### Boolean 类型如何表示？
+
+MySQL 中没有专门的布尔类型，而是用 TINYINT(1) 类型来表示布尔值。TINYINT(1) 类型可以存储 0 或 1，分别对应 false 或 true。
 
 ## MySQL 基础架构
 
@@ -694,8 +706,8 @@ DELETE...
 
 ```sql
 CREATE TABLE `sequence_id` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `stub` char(10) NOT NULL DEFAULT '',
+  `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `stub` CHAR(10) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   UNIQUE KEY `stub` (`stub`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
