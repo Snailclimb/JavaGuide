@@ -1,5 +1,5 @@
 ---
-title: MySQL时间类型数据存储建议
+title: MySQL日期类型选择建议
 category: 数据库
 tag:
   - MySQL
