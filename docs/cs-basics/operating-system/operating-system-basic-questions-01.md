@@ -315,7 +315,7 @@ ps -A -ostat,ppid,pid,cmd |grep -e '^[Zz]'
 
 下面通过一个实际的例子来模拟下图展示的线程死锁：
 
-![线程死锁示意图 ](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-4/2019-4%E6%AD%BB%E9%94%811.png)
+![线程死锁示意图 ](https://oss.javaguide.cn/github/javaguide/java/2019-4%E6%AD%BB%E9%94%811-20230814005444749.png)
 
 ```java
 public class DeadLockDemo {

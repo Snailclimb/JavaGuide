@@ -25,7 +25,7 @@ tag:
 
 **如果需要通俗地描述容器的话，我觉得容器就是一个存放东西的地方，就像书包可以装各种文具、衣柜可以放各种衣服、鞋架可以放各种鞋子一样。我们现在所说的容器存放的东西可能更偏向于应用比如网站、程序甚至是系统环境。**
 
-![认识容器](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/container.png)
+![认识容器](https://oss.javaguide.cn/github/javaguide/tools/docker/container.png)
 
 ### 1.2 图解物理机,虚拟机与容器
 
@@ -33,11 +33,11 @@ tag:
 
 **物理机：**
 
-![物理机](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/物理机图解.png)
+![物理机](https://oss.javaguide.cn/github/javaguide/tools/docker/%E7%89%A9%E7%90%86%E6%9C%BA%E5%9B%BE%E8%A7%A3.jpeg)
 
 **虚拟机：**
 
-![虚拟机](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/虚拟机图解.png)
+![虚拟机](https://oss.javaguide.cn/github/javaguide/tools/docker/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9B%BE%E8%A7%A3.jpeg)
 
 **容器：**
 
@@ -123,7 +123,7 @@ tag:
 
 理解了这三个概念，就理解了 Docker 的整个生命周期
 
-![docker基本概念](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/docker基本概念.png)
+![Docker 基本概念](https://oss.javaguide.cn/github/javaguide/tools/docker/docker%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5.jpeg)
 
 ### 4.1 镜像(Image):一个特殊的文件系统
 
@@ -165,7 +165,7 @@ Docker 设计时，就充分利用 **Union FS** 的技术，将其设计为**分
 
 比如我们想要搜索自己想要的镜像：
 
-![利用Docker Hub 搜索镜像](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/Screen%20Shot%202019-11-04%20at%208.21.39%20PM.png)
+![利用Docker Hub 搜索镜像](https://oss.javaguide.cn/github/javaguide/tools/docker/Screen%20Shot%202019-11-04%20at%208.21.39%20PM.png)
 
 在 Docker Hub 的搜索结果中，有几项关键的信息有助于我们选择合适的镜像：
 

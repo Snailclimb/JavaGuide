@@ -85,7 +85,7 @@ tag:
 
 **基本数据类型的零值**：(图片来自《深入理解 Java 虚拟机》第 3 版 7.33 )
 
-![基本数据类型的零值](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/基本数据类型的零值.png)
+![基本数据类型的零值](https://oss.javaguide.cn/github/javaguide/java/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E9%9B%B6%E5%80%BC.png)
 
 ### 解析
 

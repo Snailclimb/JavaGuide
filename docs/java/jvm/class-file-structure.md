@@ -121,7 +121,7 @@ ClassFile {
 
 类访问和属性修饰符:
 
-![类访问和属性修饰符](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/访问标志.png)
+![类访问和属性修饰符](https://oss.javaguide.cn/github/javaguide/java/%E8%AE%BF%E9%97%AE%E6%A0%87%E5%BF%97.png)
 
 我们定义了一个 `Employee` 类
 
@@ -134,7 +134,7 @@ public class Employee {
 
 通过`javap -v class类名` 指令来看一下类的访问标志。
 
-![查看类的访问标志](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/查看类的访问标志.png)
+![查看类的访问标志](https://oss.javaguide.cn/github/javaguide/java/%E6%9F%A5%E7%9C%8B%E7%B1%BB%E7%9A%84%E8%AE%BF%E9%97%AE%E6%A0%87%E5%BF%97.png)
 
 ### 当前类（This Class）、父类（Super Class）、接口（Interfaces）索引集合
 
@@ -162,7 +162,7 @@ Java 类的继承关系由类索引、父类索引和接口索引集合三项确
 
 **field info(字段表) 的结构:**
 
-![字段表的结构 ](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/字段表的结构.png)
+![字段表的结构 ](https://oss.javaguide.cn/github/javaguide/java/%E5%AD%97%E6%AE%B5%E8%A1%A8%E7%9A%84%E7%BB%93%E6%9E%84.png)
 
 - **access_flags:** 字段的作用域（`public` ,`private`,`protected`修饰符），是实例变量还是类变量（`static`修饰符）,可否被序列化（transient 修饰符）,可变性（final）,可见性（volatile 修饰符，是否强制从主内存读写）。
 - **name_index:** 对常量池的引用，表示的字段的名称；
@@ -189,7 +189,7 @@ Class 文件存储格式中对方法的描述与对字段的描述几乎采用�
 
 **method_info(方法表的) 结构:**
 
-![方法表的结构](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/方法表的结构.png)
+![方法表的结构](https://oss.javaguide.cn/github/javaguide/java/%E6%96%B9%E6%B3%95%E8%A1%A8%E7%9A%84%E7%BB%93%E6%9E%84.png)
 
 **方法表的 access_flag 取值：**
 

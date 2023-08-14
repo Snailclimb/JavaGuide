@@ -45,7 +45,9 @@ category: 走近作者
 
 如果你也想通过接私活变现的话，可以在我的公众号后台回复“**接私活**”来了解一些我的个人经验分享。
 
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2020-8/1d38ea3b-da2a-41df-9ac4-087356e9b5b4-20200802185910087.png)
+<div align="center">
+  <img src="https://oss.javaguide.cn/github/javaguide/gongzhonghaoxuanchuan.png" style="margin: 0 auto;" />  
+</div>
 
 ## 为什么自称 Guide？
 

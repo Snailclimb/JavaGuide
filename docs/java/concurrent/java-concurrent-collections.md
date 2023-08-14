@@ -59,7 +59,7 @@ Java 提供的线程安全的 `Queue` 可以分为**阻塞队列**和**非阻塞
 
 `BlockingQueue` 是一个接口，继承自 `Queue`，所以其实现类也可以作为 `Queue` 的实现来使用，而 `Queue` 又继承自 `Collection` 接口。下面是 `BlockingQueue` 的相关实现类：
 
-![BlockingQueue 的实现类](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-12-9/51622268.jpg)
+![BlockingQueue 的实现类](https://oss.javaguide.cn/github/javaguide/java/51622268.jpg)
 
 下面主要介绍一下 3 个常见的 `BlockingQueue` 的实现类：`ArrayBlockingQueue`、`LinkedBlockingQueue`、`PriorityBlockingQueue` 。
 
@@ -132,13 +132,13 @@ private static ArrayBlockingQueue<Integer> blockingQueue = new ArrayBlockingQueu
 
 跳表的本质是同时维护了多个链表，并且链表是分层的，
 
-![2级索引跳表](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-12-9/93666217.jpg)
+![2级索引跳表](https://oss.javaguide.cn/github/javaguide/java/93666217.jpg)
 
 最低层的链表维护了跳表内所有的元素，每上面一层链表都是下面一层的子集。
 
 跳表内的所有链表的元素都是排序的。查找时，可以从顶级链表开始找。一旦发现被查找的元素大于当前链表中的取值，就会转入下一层链表继续找。这也就是说在查找过程中，搜索是跳跃式的。如上图所示，在跳表中查找元素 18。
 
-![在跳表中查找元素18](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-12-9/32005738.jpg)
+![在跳表中查找元素18](https://oss.javaguide.cn/github/javaguide/java/32005738.jpg)
 
 查找 18 的时候原来需要遍历 18 次，现在只需要 7 次即可。针对链表长度比较大的时候，构建索引查找效率的提升就会非常明显。
 

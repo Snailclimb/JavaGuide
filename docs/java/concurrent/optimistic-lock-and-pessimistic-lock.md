@@ -39,7 +39,7 @@ try {
 
 像 Java 中`java.util.concurrent.atomic`包下面的原子变量类（比如`AtomicInteger`、`LongAdder`）就是使用了乐观锁的一种实现方式 **CAS** 实现的。
 
-![JUC原子类概览](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/JUC原子类概览.png)
+![JUC原子类概览](https://oss.javaguide.cn/github/javaguide/java/JUC%E5%8E%9F%E5%AD%90%E7%B1%BB%E6%A6%82%E8%A7%88-20230814005415437.png)
 
 ```java
 // LongAdder 在高并发场景下会比 AtomicInteger 和 AtomicLong 的性能更好
