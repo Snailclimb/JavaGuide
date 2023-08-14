@@ -256,7 +256,7 @@ public class BigDecimalUtil {
         }
         BigDecimal b1 = BigDecimal.valueOf(v1);
         BigDecimal b2 = BigDecimal.valueOf(v2);
-        return b1.divide(b2, scale, RoundingMode.HALF_UP).doubleValue();
+        return b1.divide(b2, scale, RoundingMode.HALF_EVEN).doubleValue();
     }
 
     /**
@@ -350,6 +350,12 @@ public class BigDecimalUtil {
 
 }
 ```
+
+相关 issue：[建议对保留规则设置为 RoundingMode.HALF_EVEN,即四舍六入五成双](https://github.com/Snailclimb/JavaGuide/issues/1122) 。
+
+
+
+![RoundingMode.HALF_EVEN](https://oss.javaguide.cn/github/javaguide/java/basis/RoundingMode.HALF_EVEN.png)
 
 ## 总结
 

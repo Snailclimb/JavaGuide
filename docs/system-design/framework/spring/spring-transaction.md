@@ -679,6 +679,25 @@ private void method1() {
 
 解决办法就是避免同一类中自调用或者使用 AspectJ 取代 Spring AOP 代理。
 
+[issue #2091](https://github.com/Snailclimb/JavaGuide/issues/2091)补充了一个例子：
+
+```java
+@Service
+public class MyService {
+
+private void method1() {
+     ((MyService)AopContext.currentProxy()).method2(); // 先获取该类的代理对象，然后通过代理对象调用method2。
+     //......
+}
+@Transactional
+ public void method2() {
+     //......
+  }
+}
+```
+
+上面的代码确实可以在自调用的时候开启事务，但是这是因为使用了 `AopContext.currentProxy()` 方法来获取当前类的代理对象，然后通过代理对象调用 `method2()`。这样就相当于从外部调用了 `method2()`，所以事务注解才会生效。我们一般也不会在代码中这么写，所以可以忽略这个特殊的例子。
+
 #### `@Transactional` 的使用注意事项总结
 
 - `@Transactional` 注解只有作用到 public 方法上事务才生效，不推荐在接口上使用；
