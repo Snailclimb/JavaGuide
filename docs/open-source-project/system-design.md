@@ -153,11 +153,6 @@ icon: "xitongsheji"
 
 - [Disruptor](https://github.com/LMAX-Exchange/disruptor)：Disruptor 是英国外汇交易公司 LMAX 开发的一个高性能队列，研发的初衷是解决内存队列的延迟问题（在性能测试中发现竟然与 I/O 操作处于同样的数量级）。相关阅读：[《高性能内存队列——Disruptor》](https://tech.meituan.com/2016/11/18/disruptor.html) 。
 
-**可视化管理工具**：
-
-- [Kafdrop](https://github.com/obsidiandynamics/kafdrop) : 一个用于查看 Kafka 主题和浏览消费者组的 Web UI。
-- [EFAK](https://github.com/smartloli/EFAK) （Eagle For Apache Kafka，以前叫做 Kafka Eagle）：一个简单的高性能监控系统，用于对 Kafka 集群进行全面的监控和管理。
-
 ### 读写分离和分库分表
 
 - [ShardingSphere](https://github.com/apache/shardingsphere)：ShardingSphere 是一套开源的分布式数据库中间件解决方案组成的生态圈，它由 Sharding-JDBC、Sharding-Proxy 和 Sharding-Sidecar（计划中）这 3 款相互独立的产品组成。

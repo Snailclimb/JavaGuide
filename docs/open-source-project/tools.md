@@ -53,4 +53,6 @@ icon: tool
 - [zktools](https://zktools.readthedocs.io/en/latest/#installing)：一个低延迟的 ZooKeeper 图形化管理客户端，颜值非常高，支持 Mac / Windows / Linux 。你可以使用 zktools 来实现对 ZooKeeper 的可视化增删改查。
 
 ## Kafka
-- [kafka-ui](https://github.com/provectus/kafka-ui)：用于管理Apache Kafka群集的通用、快速、轻便的Web用户界面。
+- [Kafka UI](https://github.com/provectus/kafka-ui)：免费的开源 Web UI，用于监控和管理 Apache Kafka 集群。
+- [Kafdrop](https://github.com/obsidiandynamics/kafdrop) : 一个用于查看 Kafka 主题和浏览消费者组的 Web UI。
+- [EFAK](https://github.com/smartloli/EFAK) （Eagle For Apache Kafka，以前叫做 Kafka Eagle）：一个简单的高性能监控系统，用于对 Kafka 集群进行全面的监控和管理。
