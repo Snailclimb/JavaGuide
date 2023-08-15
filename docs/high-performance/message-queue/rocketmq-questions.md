@@ -401,7 +401,7 @@ emmm，就两个字—— **幂等** 。在编程中一个*幂等* 操作的特�
 
 ### 传统IO方式
 
-![3](C:\Users\lv jiang er hao\Desktop\图库\3.png)
+![3](https://img1.imgtp.com/2023/08/15/9DQUZuL7.png)
 
 传统的IO读写其实就是read + write的操作，整个过程会分为如下几步
 
@@ -424,7 +424,7 @@ mmap（memory map）是一种内存映射文件的方法，即将一个文件或
 
 简单地说就是内核缓冲区和应用缓冲区共享，从而减少了从读缓冲区到用户缓冲区的一次CPU拷贝。基于此上述架构图可变为：
 
-![4](C:\Users\lv jiang er hao\Desktop\图库\4.png)
+![4](https://img1.imgtp.com/2023/08/15/CHmGd0II.png)
 
 基于mmap IO读写其实就变成mmap + write的操作，也就是用mmap替代传统IO中的read操作。
 
@@ -441,7 +441,7 @@ MappedByteBuffer mappedByteBuffer = fileChannel.map(FileChannel.MapMode.READ_WRI
 
 sendfile()跟mmap()一样，也会减少一次CPU拷贝，但是它同时也会减少两次上下文切换。
 
-![5](C:\Users\lv jiang er hao\Desktop\图库\5.png)
+![5](https://img1.imgtp.com/2023/08/15/jqLgCEBY.png)
 
 
 
