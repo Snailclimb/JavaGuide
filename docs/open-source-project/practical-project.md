@@ -26,12 +26,19 @@ icon: project
 - [vhr](https://github.com/lenve/vhr "vhr")：微人事是一个前后端分离的人力资源管理系统，项目采用 SpringBoot+Vue 开发。
 - [community](https://github.com/codedrinker/community)：开源论坛、问答系统，现有功能提问、回复、通知、最新、最热、消除零回复功能。功能持续更新中…… 技术栈 Spring、Spring Boot、MyBatis、MySQL/H2、Bootstrap。
 - [VBlog](https://github.com/lenve/VBlog)：V 部落，Vue+SpringBoot 实现的多用户博客管理平台!
-- [My-Blog](https://github.com/ZHENFENG13/My-Blog)：My Blog 是由 SpringBoot + Mybatis + Thymeleaf 等技术实现的 Java 博客系统，页面美观、功能齐全、部署简单及完善的代码，一定会给使用者无与伦比的体验。
+- [My-Blog](https://github.com/ZHENFENG13/My-Blog)： SpringBoot + Mybatis + Thymeleaf 等技术实现的 Java 博客系统，页面美观、功能齐全、部署简单及完善的代码，一定会给使用者无与伦比的体验。
 
 ## Wiki/文档系统
 
 - [zyplayer-doc](https://gitee.com/dromara/zyplayer-doc)：适合团队和个人私有化部署使用的知识库、笔记、WIKI 文档管理工具，同时还包含数据库管理、Api 接口管理等模块。
 - [kkFileView](https://gitee.com/kekingcn/file-online-preview)：文档在线预览解决方案，支持几乎所有主流文档格式预览，例如 doc、docx、ppt、pptx、wps、xls、xlsx、zip、rar、ofd、xmind、bpmn 、eml 、epub、3ds、dwg、psd 、mp4、mp3 等等。
+
+## 文件管理系统/网盘
+
+- [qiwen-file](https://gitee.com/qiwen-cloud/qiwen-file)：基于 SpringBoot+Vue 实现的分布式文件系统，支持本地磁盘、阿里云 OSS 对象存储、FastDFS 存储、MinIO 存储等多种存储方式，支持 office 在线编辑、分片上传、技术秒传、断点续传等功能。
+- 旨在为用户和企业提供一个简单、方便的文件存储方案，能够以完善的目录结构体系，对文件进行管理 。
+- [free-fs](https://gitee.com/dh_free/free-fs)：基于 SpringBoot + MyBatis Plus + MySQL + Sa-Token + Layui 等搭配七牛云， 阿里云 OSS 实现的云存储管理系统。 包含文件上传、删除、在线预览、云资源列表查询、下载、文件移动、重命名、目录管理、登录、注册、以及权限控制等功能。
+- [zfile](https://github.com/zfile-dev/zfile)：基于 Spring Boot + Vue 实现的在线网盘，支持对接 S3、OneDrive、SharePoint、Google Drive、多吉云、又拍云、本地存储、FTP、SFTP 等存储源，支持在线浏览图片、播放音视频，文本文件、Office、obj（3d）等文件类型。
 
 ## 考试/刷题系统
 

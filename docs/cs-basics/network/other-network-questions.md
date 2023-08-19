@@ -171,7 +171,7 @@ HTTP 状态码用于描述 HTTP 请求的结果，比如 2xx 就代表请求被�
 
 ### HTTP 和 HTTPS 有什么区别？（重要）
 
-![HTTP 和 HTTPS 对比](https://oss.javaguide.cn/github/javaguide/cs-basics/network/http1.0-vs-http1.1.png)
+![HTTP 和 HTTPS 对比](https://oss.javaguide.cn/github/javaguide/cs-basics/network/http-vs-https.png)
 
 - **端口号**：HTTP 默认是 80，HTTPS 默认是 443。
 - **URL 前缀**：HTTP 的 URL 前缀是 `http://`，HTTPS 的 URL 前缀是 `https://`。
