@@ -660,6 +660,16 @@ String s1 = new String("abc");
 ![](https://oss.javaguide.cn/github/javaguide/open-source-project/image-20220413175809959.png)
 
 `ldc` 命令用于判断字符串常量池中是否保存了对应的字符串对象的引用，如果保存了的话直接返回，如果没有保存的话，会在堆中创建对应的字符串对象并将该字符串对象的引用保存到字符串常量池中。
+（按照以上对`ldc'的解释那么以下的代码应该是true，但是实际上是false）
+```java
+String s1 = new String("abc");
+String s2 = "abc"
+System.out.printLn(s1 == s2)
+```
+(所以以上解释存在问题，`idc`实际上在heap中创建了一个新的object被s1引用；
+然后检查“abc"是否已经在string constant pool存在，如果不存在，再在heap中创建第二个全新的object，保存索引到string constant pool）
+（其原理如下图：）
+![](https://i.stack.imgur.com/HmWR0.jpg)
 
 2、如果字符串常量池中已存在字符串对象“abc”的引用，则只会在堆中创建 1 个字符串对象“abc”。
 
