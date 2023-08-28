@@ -31,7 +31,7 @@ tag:
 
 具体原理图如下，后面我会串起来将整个 RPC 的过程给大家说一下。
 
-![RPC原理图](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-12-6/37345851.jpg)
+![RPC原理图](https://oss.javaguide.cn/github/javaguide/distributed-system/rpc/37345851.jpg)
 
 1. 服务消费端（client）以本地调用的方式调用远程服务；
 1. 客户端 Stub（client stub） 接收到调用后负责将方法、参数等组装成能够进行网络传输的消息体（序列化）：`RpcRequest`；
@@ -82,7 +82,7 @@ Motan 是新浪微博开源的一款 RPC 框架，据说在新浪微博正支撑
 
 ### gRPC
 
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2020-8/2843b10d-0c2f-4b7e-9c3e-ea4466792a8b.png)
+![](https://oss.javaguide.cn/github/javaguide/distributed-system/rpc/2843b10d-0c2f-4b7e-9c3e-ea4466792a8b.png)
 
 gRPC 是 Google 开源的一个高性能、通用的开源 RPC 框架。其由主要面向移动应用开发并基于 HTTP/2 协议标准而设计（支持双向流、消息头压缩等功能，更加节省带宽），基于 ProtoBuf 序列化协议开发，并且支持众多开发语言。
 
@@ -114,11 +114,11 @@ Dubbo 不论是从功能完善程度、生态系统还是社区活跃度来说�
 
 下图展示了 Dubbo 的生态系统。
 
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2020-8/eee98ff2-8e06-4628-a42b-d30ffcd2831e.png)
+![](https://oss.javaguide.cn/github/javaguide/distributed-system/rpc/eee98ff2-8e06-4628-a42b-d30ffcd2831e.png)
 
 Dubbo 也是 Spring Cloud Alibaba 里面的一个组件。
 
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2020-8/0d195dae-72bc-4956-8451-3eaf6dd11cbd.png)
+![](https://oss.javaguide.cn/github/javaguide/distributed-system/rpc/0d195dae-72bc-4956-8451-3eaf6dd11cbd.png)
 
 但是，Dubbo 和 Motan 主要是给 Java 语言使用。虽然，Dubbo 和 Motan 目前也能兼容部分语言，但是不太推荐。如果需要跨多种语言调用的话，可以考虑使用 gRPC。
 

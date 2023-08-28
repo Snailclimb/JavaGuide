@@ -39,7 +39,7 @@ Kafka 主要有两大应用场景：
 
 #### 队列模型：早期的消息模型
 
-![队列模型](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/队列模型23.png)
+![队列模型](https://oss.javaguide.cn/github/javaguide/high-performance/message-queue/%E9%98%9F%E5%88%97%E6%A8%A1%E5%9E%8B23.png)
 
 **使用队列（Queue）作为消息通信载体，满足生产者与消费者模式，一条消息只能被一个消费者使用，未被消费的消息在队列中保留直到被消费或超时。** 比如：我们生产者发送 100 条消息的话，两个消费者来消费一般情况下两个消费者会按照消息发送的顺序各自消费一半（也就是你一个我一个的消费。）
 
@@ -186,7 +186,7 @@ if (sendResult.getRecordMetadata() != null) {
 
 我们知道消息在被追加到 Partition(分区)的时候都会分配一个特定的偏移量（offset）。偏移量（offset)表示 Consumer 当前消费到的 Partition(分区)的所在的位置。Kafka 通过偏移量（offset）可以保证消息在分区内的顺序性。
 
-![kafka offset](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/kafka-offset.jpg)
+![kafka offset](https://oss.javaguide.cn/github/javaguide/high-performance/message-queue/kafka-offset.jpg)
 
 当消费者拉取到了分区的某个消息之后，消费者会自动提交了 offset。自动提交的话会有一个问题，试想一下，当消费者刚拿到这个消息准备进行真正消费的时候，突然挂掉了，消息实际上并没有被消费，但是 offset 却被自动提交了。
 

@@ -15,7 +15,7 @@ tag:
 
 下图就是一颗树，并且是一颗二叉树。
 
-![二叉树](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/二叉树-2.png)
+![二叉树](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/%E4%BA%8C%E5%8F%89%E6%A0%91-2.png)
 
 如上图所示，通过上面这张图说明一下树中的常用概念：
 

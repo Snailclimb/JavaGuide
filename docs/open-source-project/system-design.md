@@ -140,18 +140,19 @@ icon: "xitongsheji"
 
 - [Caffeine](https://github.com/ben-manes/caffeine) : 一款强大的本地缓存解决方案，性能非常强大。
 - [Redis](https://github.com/redis/redis)：一个使用 C 语言开发的内存数据库，分布式缓存首选。
+- [OHC](https://github.com/snazy/ohc) ：Java 堆外缓存解决方案（项目从 2021 年开始就不再进行维护了）。
 
 ### 消息队列
 
 **分布式队列**：
 
 - [RocketMQ](https://github.com/apache/rocketmq "RocketMQ")：阿里巴巴开源的一款高性能、高吞吐量的分布式消息中间件。
-- [Kafaka](https://github.com/apache/kafka "Kafaka"): Kafka 是一种分布式的，基于发布 / 订阅的消息系统。关于它的入门可以查看：[Kafka 入门看这一篇就够了](https://github.com/Snailclimb/JavaGuide/blob/master/docs/system-design/data-communication/Kafka入门看这一篇就够了.md "Kafka入门看这一篇就够了")
+- [Kafaka](https://github.com/apache/kafka "Kafaka"): Kafka 是一种分布式的，基于发布 / 订阅的消息系统。
 - [RabbitMQ](https://github.com/rabbitmq "RabbitMQ") :由 erlang 开发的基于 AMQP（Advanced Message Queue 高级消息队列协议）协议实现的消息队列。
 
 **内存队列**：
 
-- [Disruptor](https://github.com/LMAX-Exchange/disruptor)：Disruptor 是英国外汇交易公司 LMAX 开发的一个高性能队列，研发的初衷是解决内存队列的延迟问题（在性能测试中发现竟然与 I/O 操作处于同样的数量级）。相关阅读：[《高性能内存队列——Disruptor》](https://tech.meituan.com/2016/11/18/disruptor.html) 。
+- [Disruptor](https://github.com/LMAX-Exchange/disruptor)：Disruptor 是英国外汇交易公司 LMAX 开发的一个高性能队列，研发的初衷是解决内存队列的延迟问题（在性能测试中发现竟然与 I/O 操作处于同样的数量级）。
 
 ### 读写分离和分库分表
 

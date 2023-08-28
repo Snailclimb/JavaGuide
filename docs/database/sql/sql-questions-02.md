@@ -311,7 +311,7 @@ CREATE TABLE IF NOT EXISTS user_info_vip(
     uid INT(11) UNIQUE NOT NULL COMMENT '用户ID',
     nick_name VARCHAR(64) COMMENT'昵称',
     achievement INT(11) DEFAULT 0 COMMENT '成就值',
-    level INT(11) COMMENT '用户等级',
+    `level` INT(11) COMMENT '用户等级',
     job VARCHAR(32) COMMENT '职业方向',
     register_time DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '注册时间'
 )CHARACTER SET UTF8

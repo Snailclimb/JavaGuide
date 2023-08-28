@@ -484,13 +484,19 @@ Java 8 中，锁粒度更细，`synchronized` 只锁定当前链表或红黑二�
 public static final Object NULL = new Object();
 ```
 
+最后，再分享一下 `ConcurrentHashMap` 作者本人 (Doug Lea)对于这个问题的回答：
+
+> The main reason that nulls aren't allowed in ConcurrentMaps (ConcurrentHashMaps, ConcurrentSkipListMaps) is that ambiguities that may be just barely tolerable in non-concurrent maps can't be accommodated. The main one is that if `map.get(key)` returns `null`, you can't detect whether the key explicitly maps to `null` vs the key isn't mapped. In a non-concurrent map, you can check this via `map.contains(key)`, but in a concurrent one, the map might have changed between calls.
+
+翻译过来之后的，大致意思还是单线程下可以容忍歧义，而多线程下无法容忍。
+
 ### ConcurrentHashMap 能保证复合操作的原子性吗？
 
-`ConcurrentHashMap` 是线程安全的，意味着它可以保证多个线程同时对它进行读写操作时，不会出现数据不一致的情况。但是，这并不意味着它可以保证所有的复合操作都是原子性的。
+`ConcurrentHashMap` 是线程安全的，意味着它可以保证多个线程同时对它进行读写操作时，不会出现数据不一致的情况，也不会导致 JDK1.7 及之前版本的 `HashMap` 多线程操作导致死循环问题。但是，这并不意味着它可以保证所有的复合操作都是原子性的，一定不要搞混了！
 
 复合操作是指由多个基本操作(如`put`、`get`、`remove`、`containsKey`等)组成的操作，例如先判断某个键是否存在`containsKey(key)`，然后根据结果进行插入或更新`put(key, value)`。这种操作在执行过程中可能会被其他线程打断，导致结果不符合预期。
 
-假设有两个线程 A 和 B 同时对 `ConcurrentHashMap` 进行复合操作，如下：
+例如，有两个线程 A 和 B 同时对 `ConcurrentHashMap` 进行复合操作，如下：
 
 ```java
 // 线程 A
@@ -534,7 +540,7 @@ map.computeIfAbsent(key, k -> value);
 map.computeIfAbsent(key, k -> anotherValue);
 ```
 
-不建议使用加锁的同步机制，违背了使用 `ConcurrentHashMap` 的初衷。
+很多同学可能会说了，这种情况也能加锁同步呀！确实可以，但不建议使用加锁的同步机制，违背了使用 `ConcurrentHashMap` 的初衷。在使用 `ConcurrentHashMap` 的时候，尽量使用这些原子性的复合操作方法来保证原子性。
 
 ## Collections 工具类（不重要）
 

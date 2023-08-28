@@ -97,7 +97,7 @@ tag:
 插入删除：O（1）//顶端插入和删除元素
 ```
 
-![栈](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/栈.png)
+![栈](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/%E6%A0%88.png)
 
 ### 3.2. 栈的常见应用常见应用场景
 
@@ -107,7 +107,7 @@ tag:
 
 我们只需要使用两个栈(Stack1 和 Stack2)和就能实现这个功能。比如你按顺序查看了 1,2,3,4 这四个页面，我们依次把 1,2,3,4 这四个页面压入 Stack1 中。当你想回头看 2 这个页面的时候，你点击回退按钮，我们依次把 4,3 这两个页面从 Stack1 弹出，然后压入 Stack2 中。假如你又想回到页面 3，你点击前进按钮，我们将 3 页面从 Stack2 弹出，然后压入到 Stack1 中。示例图如下:
 
-![栈实现浏览器倒退和前进](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/栈实现浏览器倒退和前进.png)
+![栈实现浏览器倒退和前进](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/%E6%A0%88%E5%AE%9E%E7%8E%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E5%80%92%E9%80%80%E5%92%8C%E5%89%8D%E8%BF%9B.png)
 
 #### 3.2.2. 检查符号是否成对出现
 
