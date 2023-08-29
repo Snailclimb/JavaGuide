@@ -6,24 +6,46 @@ icon: "xitongsheji"
 
 ## 基础框架
 
+### Web框架
+
 - [Spring Boot](https://github.com/spring-projects/spring-boot "spring-boot")：Spring Boot 可以轻松创建独立的生产级基于 Spring 的应用程序，内置 web 服务器让你可以像运行普通 Java 程序一样运行项 目。另外，大部分 Spring Boot 项目只需要少量的配置即可，这有别于 Spring 的重配置。
-- [Javalin](https://github.com/tipsy/javalin)：一个轻量级的 Web 框架，同时支持 Java 和 Kotlin，被微软、红帽、Uber 等公司使用。
-- [Quarkus](https://github.com/quarkusio/quarkus) : 用于编写 Java 应用程序的云原生和容器优先的框架。
-- [Guice](https://github.com/google/guice)：Google 开源的一个轻量级依赖注入框架，相当于一个功能极简化的轻量级 Spring Boot。在某些情况下非常实用，就比如说我们的项目只需要使用依赖注入，不需要 AOP 等功能特性。
 - [SOFABoot](https://github.com/sofastack/sofa-boot)：SOFABoot 基于 Spring Boot ，不过在其基础上增加了 Readiness Check，类隔离，日志空间隔离等等能力。 配套提供的还有：SOFARPC（RPC 框架）、SOFABolt（基于 Netty 的远程通信框架）、SOFARegistry（注册中心）...详情请参考：[SOFAStack](https://github.com/sofastack) 。
-- [Spring Batch](https://github.com/spring-projects/spring-batch) : Spring Batch 是一个轻量级但功能又十分全面的批处理框架，主要用于批处理场景比如从数据库、文件或队列中读取大量记录。不过，需要注意的是：Spring Batch 不是调度框架。商业和开源领域都有许多优秀的企业调度框架比如 Quartz、XXL-JOB、Elastic-Job。它旨在与调度程序一起工作，而不是取代调度程序。更多介绍请参考 [Spring Batch 官方文档](https://docs.spring.io/spring-batch/docs/4.3.x/reference/html/spring-batch-intro.html#spring-batch-intro)，入门教程可以参考 [Spring Batch 从入门到实战](https://mrbird.cc/Spring-Batch入门.html)。
+- [Javalin](https://github.com/tipsy/javalin)：一个轻量级的 Web 框架，同时支持 Java 和 Kotlin，被微软、红帽、Uber 等公司使用。
+- [Play Framework](https://github.com/playframework/playframework)：面向 Java 和 Scala 的高速 Web 框架。
+- [Blade](https://github.com/lets-blade/blade)：一款追求简约、高效的 Web 框架，基于 Java8 + Netty4。
 
-## Bean 映射
+### 微服务/云原生
 
-- [MapStruct](https://github.com/mapstruct/mapstruct)（推荐）：满足JSR269规范的一个Java注解处理器，用于为Java Bean生成类型安全且高性能的映射。它基于编译阶段生成get/set代码，此实现过程中没有反射，不会造成额外的性能损失。
-- [JMapper](https://github.com/jmapper-framework/jmapper-core) :  一个高性能且易于使用的 Bean 映射框架。
+- [Armeria](https://github.com/line/armeria)：适合任何情况的微服务框架。你可以用你喜欢的技术构建任何类型的微服务，包括[gRPC](https://grpc.io/)、 [Thrift](https://thrift.apache.org/)、[Kotlin](https://kotlinlang.org/)、 [Retrofit](https://square.github.io/retrofit/)、[Reactive Streams](https://www.reactive-streams.org/)、 [Spring Boot](https://spring.io/projects/spring-boot)和[Dropwizard](https://www.dropwizard.io/)
+- [Quarkus](https://github.com/quarkusio/quarkus) : 用于编写 Java 应用程序的云原生和容器优先的框架。
 
-## 字节码操作
+### API 文档
 
-- [ASM](https://asm.ow2.io/)：通用 Java 字节码操作和分析框架。它可用于直接以二进制形式修改现有类或动态生成类。
-- [Byte Buddy](https://github.com/raphw/byte-buddy)：Java字节码生成和操作库，用于在 Java 应用程序运行时创建和修改 Java 类，无需使用编译器
-- [Javassist](https://github.com/jboss-javassist/javassist)：动态编辑Java字节码的类库。
-- [Recaf](https://github.com/Col-E/Recaf)：现代Java 字节码编辑器，基于 ASM（Java 字节码操作框架） 来修改字节码，可简化编辑已编译 Java 应用程序的过程。
+- [Swagger](https://swagger.io/) ：较主流的 RESTful 风格的 API 文档工具，提供了一套工具和规范，让开发人员能够更轻松地创建和维护可读性强、易于使用和交互的 API 文档。
+- [Knife4j](https://doc.xiaominfo.com/)：集 Swagger2 和 OpenAPI3 为一体的增强解决方案。
+
+### Bean 映射
+
+- [MapStruct](https://github.com/mapstruct/mapstruct)（推荐）：满足 JSR269 规范的一个 Java 注解处理器，用于为 Java Bean 生成类型安全且高性能的映射。它基于编译阶段生成 get/set 代码，此实现过程中没有反射，不会造成额外的性能损失。
+- [JMapper](https://github.com/jmapper-framework/jmapper-core) : 一个高性能且易于使用的 Bean 映射框架。
+
+### 其他
+
+- [Guice](https://github.com/google/guice)：Google 开源的一个轻量级依赖注入框架，相当于一个功能极简化的轻量级 Spring Boot。在某些情况下非常实用，就比如说我们的项目只需要使用依赖注入，不需要 AOP 等功能特性。
+- [Spring Batch](https://github.com/spring-projects/spring-batch) : Spring Batch 是一个轻量级但功能又十分全面的批处理框架，主要用于批处理场景比如从数据库、文件或队列中读取大量记录。不过，需要注意的是：Spring Batch 不是调度框架。商业和开源领域都有许多优秀的企业调度框架比如 Quartz、XXL-JOB、Elastic-Job。它旨在与调度程序一起工作，而不是取代调度程序。
+
+## 认证授权
+
+- [WxJava](https://github.com/Wechat-Group/WxJava) : WxJava （微信开发 Java SDK），支持包括微信支付、开放平台、小程序、企业微信/企业号和公众号等的后端开发。
+- [Sa-Token](https://github.com/dromara/sa-token)：轻量级 Java 权限认证框架。支持认证授权、单点登录、踢人下线、自动续签等功能。
+- [JustAuth](https://github.com/justauth/JustAuth)：小而全而美的第三方登录开源组件。目前已经集成了诸如：GitHub、Gitee、支付宝、新浪微博、微信、Google、Facebook、Twitter、StackOverflow 等国内外数十家第三方平台。
+
+## 网络通讯
+
+- [Netty](https://github.com/netty/netty) : 一个基于 NIO 的 client-server(客户端服务器)框架，使用它可以快速简单地开发网络应用程序。
+- [Retrofit](https://github.com/square/retrofit)：适用于 Android 和 Java 的类型安全的 HTTP 客户端。Retrofit 的 HTTP 请求使用的是 [OkHttp](https://square.github.io/okhttp/) 库（一款被广泛使用网络框架）。
+- [Forest](https://gitee.com/dromara/forest)：轻量级 HTTP 客户端 API 框架，让 Java 发送 HTTP/HTTPS 请求不再难。它比 OkHttp 和 HttpClient 更高层，是封装调用第三方 restful api client 接口的好帮手，是 retrofit 和 feign 之外另一个选择。
+- [netty-websocket-spring-boot-starter](https://github.com/YeautyYE/netty-websocket-spring-boot-starter) :帮助你在 Spring Boot 中使用 Netty 来开发 WebSocket 服务器，并像 spring-websocket 的注解开发一样简单。
 
 ## 数据库
 
@@ -34,7 +56,7 @@ icon: "xitongsheji"
 
 ### 数据库框架
 
-- [MyBatis-Plus](https://github.com/baomidou/mybatis-plus) :  [MyBatis](http://www.mybatis.org/mybatis-3/) 增强工具，在 MyBatis 的基础上只做增强不做改变，为简化开发、提高效率而生。
+- [MyBatis-Plus](https://github.com/baomidou/mybatis-plus) : [MyBatis](http://www.mybatis.org/mybatis-3/) 增强工具，在 MyBatis 的基础上只做增强不做改变，为简化开发、提高效率而生。
 - [MyBatis-Flex](https://gitee.com/mybatis-flex/mybatis-flex)：一个优雅的 MyBatis 增强框架，无其他任何第三方依赖，支持 CRUD、分页查询、多表查询、批量操作。
 - [Redisson](https://github.com/redisson/redisson "redisson")：Redis 基础上的一个 Java 驻内存数据网格（In-Memory Data Grid）,支持超过 30 个对象和服务:`Set`,`SortedSet`, `Map`, `List`, `Queue`, `Deque` ......，并且提供了多种分布式锁的实现。更多介绍请看：[《Redisson 项目介绍》](https://github.com/redisson/redisson/wiki/Redisson%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D "Redisson项目介绍")。
 
@@ -54,19 +76,7 @@ icon: "xitongsheji"
 
 - [Elasticsearch](https://github.com/elastic/elasticsearch "elasticsearch") （推荐）：开源，分布式，RESTful 搜索引擎。
 - [Solr](https://lucene.apache.org/solr/) : Solr（读作“solar”）是 Apache Lucene 项目的开源企业搜索平台。
-
-## 认证授权
-
-- [WxJava](https://github.com/Wechat-Group/WxJava) : WxJava （微信开发 Java SDK），支持包括微信支付、开放平台、小程序、企业微信/企业号和公众号等的后端开发。
-- [Sa-Token](https://github.com/dromara/sa-token)：轻量级 Java 权限认证框架。支持认证授权、单点登录、踢人下线、自动续签等功能。
-- [JustAuth](https://github.com/justauth/JustAuth)：小而全而美的第三方登录开源组件。目前已经集成了诸如：GitHub、Gitee、支付宝、新浪微博、微信、Google、Facebook、Twitter、StackOverflow 等国内外数十家第三方平台。
-
-## 网络通讯
-
-- [Netty](https://github.com/netty/netty) : 一个基于 NIO 的 client-server(客户端服务器)框架，使用它可以快速简单地开发网络应用程序。
-- [Retrofit](https://github.com/square/retrofit)：适用于 Android 和 Java 的类型安全的 HTTP 客户端。Retrofit 的 HTTP 请求使用的是 [OkHttp](https://square.github.io/okhttp/) 库（一款被广泛使用网络框架）。
-- [Forest](https://gitee.com/dromara/forest)：轻量级 HTTP 客户端 API 框架，让 Java 发送 HTTP/HTTPS 请求不再难。它比 OkHttp 和 HttpClient 更高层，是封装调用第三方 restful api client 接口的好帮手，是 retrofit 和 feign 之外另一个选择。
-- [netty-websocket-spring-boot-starter](https://github.com/YeautyYE/netty-websocket-spring-boot-starter) :帮助你在 Spring Boot 中使用 Netty 来开发 WebSocket 服务器，并像 spring-websocket 的注解开发一样简单。
+- [Easy-ES](https://gitee.com/dromara/easy-es)：傻瓜级 ElasticSearch 搜索引擎 ORM 框架。
 
 ## 测试
 
@@ -187,3 +197,10 @@ icon: "xitongsheji"
 - 新一代 ELK 架构 : Elasticsearch+Logstash+Kibana+Beats。
 - EFK : EFK 中的 F 代表的是 [Fluentd](https://github.com/fluent/fluentd)。
 - [TLog](https://gitee.com/dromara/TLog)：一个轻量级的分布式日志标记追踪神器，10 分钟即可接入，自动对日志打标签完成微服务的链路追踪。
+
+## 字节码操作
+
+- [ASM](https://asm.ow2.io/)：通用 Java 字节码操作和分析框架。它可用于直接以二进制形式修改现有类或动态生成类。
+- [Byte Buddy](https://github.com/raphw/byte-buddy)：Java 字节码生成和操作库，用于在 Java 应用程序运行时创建和修改 Java 类，无需使用编译器
+- [Javassist](https://github.com/jboss-javassist/javassist)：动态编辑 Java 字节码的类库。
+- [Recaf](https://github.com/Col-E/Recaf)：现代 Java 字节码编辑器，基于 ASM（Java 字节码操作框架） 来修改字节码，可简化编辑已编译 Java 应用程序的过程。
