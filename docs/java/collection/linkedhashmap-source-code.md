@@ -314,7 +314,7 @@ void afterNodeAccess(Node < K, V > e) { // move node to last
 
 ### remove 方法后置操作——afterNodeRemoval
 
-`LinkedHashMap` 并没有对 `remove` 方法进行重写，而实直接继承 `HashMap` 的 `remove` 方法，为了保证键值对移除后双向链表中的节点也会同步被移除，`LinkedHashMap` 重写了 `HashMap` 的空实现方法 `afterNodeRemoval`。
+`LinkedHashMap` 并没有对 `remove` 方法进行重写，而是直接继承 `HashMap` 的 `remove` 方法，为了保证键值对移除后双向链表中的节点也会同步被移除，`LinkedHashMap` 重写了 `HashMap` 的空实现方法 `afterNodeRemoval`。
 
 ```java
 final Node<K,V> removeNode(int hash, Object key, Object value,
