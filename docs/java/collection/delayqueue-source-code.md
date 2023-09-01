@@ -115,7 +115,7 @@ Task 3
 
 ## DelayQueue 源码解析
 
-这里以 JDK1.8 为例，分析一下 `LinkedList` 的底层核心源码。
+这里以 JDK1.8 为例，分析一下 `DelayQueue` 的底层核心源码。
 
 `DelayQueue` 的类定义如下：
 
@@ -126,7 +126,7 @@ public class DelayQueue<E extends Delayed> extends AbstractQueue<E> implements B
 }
 ```
 
-`DelayQueue` 实现了 `AbstractQueue` 类，继承了 `BlockingQueue` 接口。
+`DelayQueue` 继承了 `AbstractQueue` 类，实现了 `BlockingQueue` 接口。
 
 ![DelayQueue类图](https://oss.javaguide.cn/github/javaguide/java/collection/delayqueue-class-diagram.png)
 

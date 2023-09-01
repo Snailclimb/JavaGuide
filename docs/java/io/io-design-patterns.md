@@ -215,7 +215,7 @@ static final class RunnableAdapter<T> implements Callable<T> {
 工厂模式用于创建对象，NIO 中大量用到了工厂模式，比如 `Files` 类的 `newInputStream` 方法用于创建 `InputStream` 对象（静态工厂）、 `Paths` 类的 `get` 方法创建 `Path` 对象（静态工厂）、`ZipFileSystem` 类（`sun.nio`包下的类，属于 `java.nio` 相关的一些内部实现）的 `getPath` 的方法创建 `Path` 对象（简单工厂）。
 
 ```java
-InputStream is Files.newInputStream(Paths.get(generatorLogoPath))
+InputStream is = Files.newInputStream(Paths.get(generatorLogoPath))
 ```
 
 ## 观察者模式
