@@ -1,9 +1,11 @@
 ---
-title: 数据脱敏
+title: 数据脱敏方案总结
 category: 系统设计
 tag:
   - 安全
 ---
+
+<!-- @include: @article-header.snippet.md -->
 
 > 本文转载完善自[Hutool：一行代码搞定数据脱敏 - 京东云开发者](https://mp.weixin.qq.com/s/1qFWczesU50ndPPLtABHFg)。
 
