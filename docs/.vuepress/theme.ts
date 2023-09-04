@@ -51,7 +51,14 @@ export default hopeTheme({
 
   plugins: {
     blog: true,
-    copyright: true,
+    copyright: {
+      author: "JavaGuide(javaguide.cn)",
+      license: "MIT",
+      triggerLength: 100,
+      maxLength: 700,
+      canonical: "https://javaguide.cn/",
+      global:true
+    },
     mdEnhance: {
       align: true,
       codetabs: true,
