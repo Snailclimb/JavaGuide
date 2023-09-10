@@ -16,6 +16,8 @@ head:
 <!-- @include: @small-advertisement.snippet.md -->
 
 > 本篇文章由 JavaGuide 收集自网络，原出处不明。
+>
+> 比起这些枯燥的面试题，我更建议你看看文末推荐的 MyBatis 优质好文。
 
 ### #{} 和 \${} 的区别是什么？
 
@@ -299,3 +301,11 @@ MyBatis 提供了 9 种动态 sql 标签:
 面试题看似都很简单，但是想要能正确回答上来，必定是研究过源码且深入的人，而不是仅会使用的人或者用的很熟的人，以上所有面试题及其答案所涉及的内容，在我的 MyBatis 系列博客中都有详细讲解和原理分析。
 
 <!-- @include: @article-footer.snippet.md -->
+
+### 文章推荐
+
+- [2W字全面剖析Mybatis中的9种设计模式](https://juejin.cn/post/7273516671574687759)
+- [从零开始实现一个MyBatis加解密插件](https://mp.weixin.qq.com/s/WUEAdFDwZsZ4EKO8ix0ijg)
+- [MyBatis最全使用指南](https://juejin.cn/post/7051910683264286750)
+- [脑洞打开！第一次看到这样使用MyBatis的，看得我一愣一愣的。](https://juejin.cn/post/7269390456530190376)
+- [MyBatis居然也有并发问题](https://juejin.cn/post/7264921613551730722)

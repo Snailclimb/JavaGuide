@@ -132,7 +132,7 @@ Spring 时代我们一般通过 XML 文件来配置 Bean，后来开发人员觉
 相关阅读： 
 
 - [IoC 源码阅读](https://javadoop.com/post/spring-ioc)
-- [面试被问了几百遍的 IoC 和 AOP ，还在傻傻搞不清楚？](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247486938&idx=1&sn=c99ef0233f39a5ffc1b98c81e02dfcd4&chksm=cea24211f9d5cb07fa901183ba4d96187820713a72387788408040822ffb2ed575d28e953ce7&token=1736772241&lang=zh_CN#rd)
+- [IoC & AOP详解（快速搞懂）](./ioc-and-aop.md)
 
 ### 什么是 Spring Bean？
 
@@ -359,7 +359,7 @@ Spring AOP 就是基于动态代理的，如果要代理的对象，实现了某
 
 当然你也可以使用 **AspectJ** ！Spring AOP 已经集成了 AspectJ ，AspectJ 应该算的上是 Java 生态系统中最完整的 AOP 框架了。
 
-AOP 切面编程设计到的一些专业术语：
+AOP 切面编程涉及到的一些专业术语：
 
 | 术语              |                                 含义                                  |
 | :---------------- | :-------------------------------------------------------------------: |
@@ -444,7 +444,7 @@ MVC 是模型(Model)、视图(View)、控制器(Controller)的简写，其核心
 
 - Model:系统涉及的数据，也就是 dao 和 bean。
 - View：展示模型中的数据，只是用来展示。
-- Controller：处理用户请求都发送给 ，返回数据给 JSP 并展示给用户。
+- Controller：接受用户请求，并将请求发送至 Model，最后返回数据给 JSP 并展示给用户
 
 ![](https://oss.javaguide.cn/java-guide-blog/mvc-model2.png)
 
