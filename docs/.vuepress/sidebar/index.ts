@@ -401,6 +401,7 @@ export default sidebar({
               icon: "star",
               collapsible: true,
               children: [
+                "ioc-and-aop",
                 "spring-transaction",
                 "spring-design-patterns-summary",
                 "spring-boot-auto-assembly-principles",

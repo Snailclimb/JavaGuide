@@ -294,6 +294,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 **重要知识点详解**：
 
+- [IoC & AOP详解（快速搞懂）](./docs/system-design/framework/spring/ioc-and-aop.md)
 - [Spring 事务详解](./docs/system-design/framework/spring/spring-transaction.md)
 - [Spring 中的设计模式详解](./docs/system-design/framework/spring/spring-design-patterns-summary.md)
 - [SpringBoot 自动装配原理详解](./docs/system-design/framework/spring/spring-boot-auto-assembly-principles.md)
