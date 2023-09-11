@@ -2270,7 +2270,7 @@ packages:
     engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
     dependencies:
       '@gar/promisify': registry.npmmirror.com/@gar/promisify@1.1.3
-      semver: registry.npmmirror.com/semver@7.5.1
+      semver: registry.npmmirror.com/semver@7.5.4
     dev: false
 
   registry.npmmirror.com/@npmcli/move-file@2.0.1:

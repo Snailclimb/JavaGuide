@@ -22,6 +22,7 @@
   "packageManager": "pnpm@8.6.0",
   "dependencies": {
     "@vuepress/client": "2.0.0-beta.67",
+    "@vuepress/plugin-search": "2.0.0-beta.67",
     "@vuepress/utils": "2.0.0-beta.67",
     "husky": "8.0.3",
     "markdownlint-cli": "0.34.0",
@@ -30,7 +31,6 @@
     "prettier": "2.8.8",
     "vue": "3.3.4",
     "vuepress": "2.0.0-beta.67",
-    "@vuepress/plugin-search": "2.0.0-beta.67",
     "vuepress-theme-hope": "2.0.0-beta.236"
   }
 }
