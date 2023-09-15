@@ -248,7 +248,8 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 
 ### Maven
 
-[Maven 核心概念总结](./tools/maven/maven-core-concepts.md)
+- [Maven 核心概念总结](./tools/maven/maven-core-concepts.md)
+- [Maven 最佳实践](./tools/maven/maven-best-practices.md)
 
 ### Gradle
 

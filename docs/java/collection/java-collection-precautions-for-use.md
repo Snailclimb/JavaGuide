@@ -213,8 +213,6 @@ public int indexOf(Object o) {
 
 ```
 
-我们的 `List` 有 N 个元素，那时间复杂度就接近是 O (n^2)。
-
 ## 集合转数组
 
 《阿里巴巴 Java 开发手册》的描述如下：

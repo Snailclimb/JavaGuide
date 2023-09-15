@@ -354,7 +354,7 @@ export default sidebar({
           text: "Maven",
           icon: "configuration",
           prefix: "maven/",
-          children: ["maven-core-concepts"],
+          children: ["maven-core-concepts", "maven-best-practices"],
         },
         {
           text: "Gradle",
