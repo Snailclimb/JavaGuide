@@ -26,7 +26,7 @@ icon: jianli
 - 一般情况下你的简历上注明你会的东西才会被问到（Java 基础、集合、并发、MySQL、Redis 、Spring、Spring Boot 这些算是每个人必问的），比如写了你熟练使用 Redis,那面试官就很大概率会问你 Redis 的一些问题，再比如你写了你在项目中使用了消息队列，那面试官大概率问很多消息队列相关的问题。
 - 技能熟练度在很大程度上也决定了面试官提问的深度。
 
-在不夸大自己能力的情况下，写出一份好的简历也是一项很棒的能力。
+在不夸大自己能力的情况下，写出一份好的简历也是一项很棒的能力。一般情况下，技术能力和学习能力比较厉害的，写出来的简历也比较棒！
 
 ## 简历模板
 
@@ -36,13 +36,13 @@ icon: jianli
 
 下面是我收集的一些还不错的简历模板：
 
-- 适合中文的简历模板收集（推荐，免费）：<https://github.com/dyweb/awesome-resume-for-chinese>
-- 木及简历（部分收费） ： <https://www.mujicv.com/>
-- 简单简历（付费）：<https://easycv.cn/>
-- 站长简历：<https://jianli.chinaz.com/>
+- 适合中文的简历模板收集（推荐，开源免费）：<https://github.com/dyweb/awesome-resume-for-chinese>
+- 木及简历（推荐，部分免费） ： <https://www.mujicv.com/>
+- 简单简历（推荐，部分免费）：<https://easycv.cn/>
+- 极简简历（免费）： <https://www.polebrief.com/index>
+- Markdown 简历排版工具（开源免费）：<https://resume.mdnice.com/>
+- 站长简历（收费，支持AI生成）：<https://jianli.chinaz.com/>
 - typora+markdown+css 自定义简历模板 ：<https://github.com/Snailclimb/typora-markdown-resume>
-- 极简简历 ： <https://www.polebrief.com/index>
-- Markdown 简历排版工具：<https://resume.mdnice.com/>
 - 超级简历（部分收费） ： <https://www.wondercv.com/>
 
 上面这些简历模板大多是只有 1 页内容，很难展现足够的信息量。如果你不是顶级大牛（比如 ACM 大赛获奖）的话，我建议还是尽可能多写一点可以突出你自己能力的内容（校招生 2 页之内，社招生 3 页之内，记得精炼语言，不要过多废话）。
@@ -52,6 +52,10 @@ icon: jianli
 - 尽量简洁，不要太花里胡哨。
 - 技术名词最好规范大小写比较好，比如 java->Java ，spring boot -> Spring Boot 。这个虽然有些面试官不会介意，但是很多面试官都会在意这个细节的。
 - 中文和数字英文之间加上空格的话看起来会舒服一点。
+
+另外，知识星球里还有真实的简历模板可供参考，地址：<https://t.zsxq.com/12ypxGNzU> （需加入[知识星球](https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html)获取）。
+
+![](https://oss.javaguide.cn/javamianshizhibei/image-20230918073550606.png)
 
 ## 简历内容
 
@@ -138,6 +142,8 @@ icon: jianli
 
 项目介绍尽量压缩在两行之内，不需要介绍太多，但也不要随便几个字就介绍完了。
 
+
+
 **2、技术架构直接写技术名词就行，不要再介绍技术是干嘛的了，没意义，属于无效介绍。**
 
 ![](https://oss.javaguide.cn/github/javaguide/interview-preparation/46c92fbc5160e65dd85c451143177144.png)
@@ -156,11 +162,17 @@ icon: jianli
 - 使用 xxx 技术优化了 xxx 模块，响应时间从 2s 降低到 0.2s。
 - ......
 
-示例：
+个人职责介绍示例 ：
 
-- 使用 Sharding-JDBC 对 MySQL 数据库进行分库分表，优化千万级大表，单表数据量保持在 500w 以下。
+- 基于 Spring Cloud Gateway + Spring Security OAuth2 + JWT 实现微服务统一认证授权和鉴权，使用 RBAC 权限模型实现动态权限控制。
+- 参与项目订单模块的开发，负责订单创建、删除、查询等功能。
+- 整合 Canal + RocketMQ 将 MySQL 增量数据（如商品、订单数据）同步到 ES。
+- 排查并解决扣费模块由于扣费父任务和反作弊子任务使用同一个线程池导致的死锁问题。
+- 负责用户统计模块的开发，使用 CompletableFuture 并行加载后台用户统计模块的数据信息，平均相应时间从 3.5s 降低到 1s。
+- 使用 Sharding-JDBC 以用户 ID 后 4 位作为 Shard Key 对订单表进行分库分表，共 3 个库，每个库 2 个订单表，单表数据量保持在 500w 以下。自定义雪花算法生成订单 ID 的规则，把分片键同时作为的订单 ID 一部分，避免了额外存储订单 ID 与路由键的关系。
 - 热门数据（如首页、热门博客）使用 Redis+Caffeine 两级缓存，解决了缓存击穿和穿透问题，查询速度毫秒级，QPS 30w+。
-- 使用 CompletableFuture 优化购物车查询模块，对获取用户信息、商品详情、优惠券信息等异步 RPC 调用进行编排，响应时间从 2s 降低 0.2s。
+- 使用 CompletableFuture 优化购物车查询模块，对获取用户信息、商品详情、优惠券信息等异步 RPC 调用进行编排，响应时间从 2s 降低为 0.2s。
+- 搭建 EasyMock 服务，用于模拟第三方平台接口，方便了在网络隔离情况下的接口对接工作。
 
 **4、如果你觉得你的项目技术比较落后的话，可以自己私下进行改进。重要的是让项目比较有亮点，通过什么方式就无所谓了。**
 
