@@ -700,7 +700,7 @@ CompletableFuture.runAsync(() -> {
 
 ### 合理组合多个异步任务
 
-正确使用 `thenCompose()` 、 `thenCombine()` 、``acceptEither()`、`allOf()`、`anyOf() `等方法来组合多个异步任务，以满足实际业务的需求，提高程序执行效率。
+正确使用 `thenCompose()` 、 `thenCombine()` 、`acceptEither()`、`allOf()`、`anyOf() `等方法来组合多个异步任务，以满足实际业务的需求，提高程序执行效率。
 
 实际使用中，我们还可以利用或者参考现成的异步任务编排框架，比如京东的 [asyncTool](https://gitee.com/jd-platform-opensource/asyncTool) 。
 
@@ -708,7 +708,7 @@ CompletableFuture.runAsync(() -> {
 
 ## 后记
 
-这篇文章只是简单介绍了 `CompletableFuture` 比较常用的一些 API 。如果想要深入学习的话，还可以多找一些书籍和博客看，比如下面几篇文章就挺不错：
+这篇文章只是简单介绍了 `CompletableFuture` 的核心概念和比较常用的一些 API 。如果想要深入学习的话，还可以多找一些书籍和博客看，比如下面几篇文章就挺不错：
 
 - [CompletableFuture 原理与实践-外卖商家端 API 的异步化 - 美团技术团队](https://tech.meituan.com/2022/05/12/principles-and-practices-of-completablefuture.html)：这篇文章详细介绍了 `CompletableFuture` 在实际项目中的运用。参考这篇文章，可以对项目中类似的场景进行优化，也算是一个小亮点了。这种性能优化方式比较简单且效果还不错！
 - [读 RocketMQ 源码，学习并发编程三大神器 - 勇哥 java 实战分享](https://mp.weixin.qq.com/s/32Ak-WFLynQfpn0Cg0N-0A)：这篇文章介绍了 RocketMQ 对`CompletableFuture`的应用。具体来说，从 RocketMQ 4.7 开始，RocketMQ 引入了 `CompletableFuture`来实现异步消息处理 。

@@ -19,7 +19,7 @@ tag:
 
 我们可以把消息队列看作是一个存放消息的容器，当我们需要使用消息的时候，直接从容器中取出消息供自己使用即可。由于队列 Queue 是一种先进先出的数据结构，所以消费消息时也是按照顺序来消费的。
 
-![Message queue](https://oss.javaguide.cn/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/message-queue-small.png)
+![](https://oss.javaguide.cn/github/javaguide/high-performance/message-queue/message-queue-small.png)
 
 参与消息传递的双方称为 **生产者** 和 **消费者** ，生产者负责发送消息，消费者负责处理消息。
 
