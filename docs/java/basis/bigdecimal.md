@@ -351,9 +351,7 @@ public class BigDecimalUtil {
 }
 ```
 
-相关 issue：[建议对保留规则设置为 RoundingMode.HALF_EVEN,即四舍六入五成双](https://github.com/Snailclimb/JavaGuide/issues/1122) 。
-
-
+相关 issue：[建议对保留规则设置为 RoundingMode.HALF_EVEN,即四舍六入五成双]([#1122](https://github.com/Snailclimb/JavaGuide/issues/1122)) 。
 
 ![RoundingMode.HALF_EVEN](https://oss.javaguide.cn/github/javaguide/java/basis/RoundingMode.HALF_EVEN.png)
 

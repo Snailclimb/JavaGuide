@@ -81,7 +81,9 @@ public class RpcRequest implements Serializable {
 
 **serialVersionUID 不是被 static 变量修饰了吗？为什么还会被“序列化”？**
 
-`static` 修饰的变量是静态变量，位于方法区，本身是不会被序列化的。 `static` 变量是属于类的而不是对象。你反序列之后，`static` 变量的值就像是默认赋予给了对象一样，看着就像是 `static` 变量被序列化，实际只是假象罢了。
+~~`static` 修饰的变量是静态变量，位于方法区，本身是不会被序列化的。 `static` 变量是属于类的而不是对象。你反序列之后，`static` 变量的值就像是默认赋予给了对象一样，看着就像是 `static` 变量被序列化，实际只是假象罢了。~~
+
+**🐛 修正（参见：[issue#2174](https://github.com/Snailclimb/JavaGuide/issues/2174)）**：`static` 修饰的变量是静态变量，位于方法区，本身是不会被序列化的。但是，`serialVersionUID` 的序列化做了特殊处理，在序列化时，会将 `serialVersionUID` 序列化到二进制字节流中；在反序列化时，也会解析它并做一致性判断。
 
 官方说明如下：
 
