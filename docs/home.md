@@ -327,6 +327,16 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 
 [Web 实时消息推送详解](./system-design/web-real-time-message-push.md)
 
+
+
+
+
+## 消息队列
+
+### Kafka
+
+[Kafka基础](./mq/kafka/kafka-basis.md)
+
 ## 分布式
 
 ### 理论&算法&协议
