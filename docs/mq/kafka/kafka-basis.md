@@ -114,10 +114,100 @@ Kafka 允许进行批量发送消息，先将消息缓存在内存中，然后�
 
 ## Kafka中的消息是否会丢失和重复消费？
 
+Kafka在**生产端**发送消息和**消费端**消费消息时都可能会**丢失**一些消息。
 
+### Producer消息丢失
+
+生产者在发送消息时，会有一个ack机制，当acks=0或者acks=1时，都可能会丢失消息。
+
+> 背景知识：Producer发送消息时，是直接与Broker中的Leader Partition进行交互的，然后其他的副本再从Leader Partition中进行数据的同步。因此，在发送消息的时候，Producer只需要找到对应Topic的Leader Partition进行消息发送即可。
+>
+> 消息发送的流程：
+>
+> 1. 将消息发送到对应Topic下的Leader Partition
+> 2. Leader Partition收到消息，并将消息写入Page Cache，定时刷盘进行持久化（顺序写入磁盘）。
+> 3. Foller Partition 拉取Leader Partition的消息并同Leader Partition的数据保持一致，待消息拉取完毕后再给Leader Partition回复ack确认消息。
+> 4. 待Leader与Foller 同步完数据并收到所有ISR中的Replica副本的ack后，Leader Partition会给Producer回复ack确认消息。
+
+
+
+Producer端为了提升发送效率，减少I/O操作，发送数据的时候是将多个请求合并成一个个RecordBatch，并将其转换成为Request请求**异步**将数据发送出去（或者按时间间隔方式，每隔一定的时间自动发送出去），因此，Producer端消息丢失更多是因为消息根本没有发送到Kafka Broker端。
+
+因此，**导致Producer端消息没有成功发送有以下原因**：
+
+1. 网络原因：由于网络原因，数据根本没有到达Broker端。
+2. 数据原因：消息太大，超出Broker承受的范围，导致Broker拒收消息。
+
+**Producer消息确认机制**
+
+Producer端配置了消息确认机制来确认消息是否生产成功，使用ack确认机制。
+
+1. asks=0:只要发送就自认为成功，并不进行消息接收成功的ack确认。
+	1. 不能保证消息是否发送成功。
+	2. 生产环境完全不可用。
+2. acks=1:当Leader Partition接收成功时进行ack确认，确认后表示成功；
+	1. 只要Leader Partition存活就可以保证不丢失，保证了吞吐量。
+	2. 生产环境中如果需要保证吞吐量可以用这个。
+3. acks=-1或者all：所有Leader Partition和Foller Partition（ISR）都接收成功时进行ack确认，确认后表示成功。
+	1. 保证消息不丢失，但是吞吐量低。
+	2. 生产环境要求数据不能丢失可以采用该方式。
+
+### Broker端丢失场景
+
+Broker接收到数据后，会将数据进行持久化存储到磁盘，为了提高吞吐量和性能，采用的是**异步批量刷盘的策略**，也就是说按照一定的消息量和时间间隔进行刷盘（这一点和mysql、redis很像）。首先，数据会背存储到**PageCache**中，至于什么时候将 Cache 中的数据刷盘是由「**操作系统**」根据自己的策略决定或者调用 fsync 命令进行强制刷盘，如果此时 Broker 宕机 Crash 掉，且选举了一个落后 Leader Partition 很多的 Follower Partition 成为新的 Leader Partition，那么落后的消息数据就会丢失。既然Broker是异步刷盘的，那么数据就有可能会丢失（比如刷盘之前操作系统崩了）。（并且Kafka中没有提供**同步刷盘**机制。）
+
+虽然，Kafka 通过「**多 Partition （分区）多 Replica（副本）机制」**已经可以最大限度的保证数据不丢失，但是当数据已经写入 PageCache 中但是还没来得及刷写到磁盘，此时如果所在 Broker 突然宕机挂掉或者停电，极端情况还是会造成数据丢失。
+
+### Consumer端丢失场景剖析
+
+> Consumer通过Pull模式主动的去Kafka集群中拉消息
+>
+> 1. 在消息拉取的过程中，有个消费者组的概念，多个 Consumer 可以组成一个消费者组即 Consumer Group，每个消费者组都有一个Group-Id。同一个 Consumer Group 中的 Consumer 可以消费同一个 Topic 下不同分区的数据，但是不会出现多个 Consumer 去消费同一个分区的数据。
+> 2. 拉取到消息后进行业务逻辑处理，待处理完成后，会进行 ACK 确认，即提交 Offset 消费位移进度记录。
+> 3. 最后 Offset 会被保存到 Kafka Broker 集群中的 **__consumer_offsets** 这个 Topic 中，且每个 Consumer 保存自己的 Offset 进度。
+
+Consumer端丢失消息主要体现在**消费端offset的自动提交**，如果开启了自动提交，万一消费到数据还没处理完，此时consumer直接宕机，未处理完的数据丢失了，下次也消费不到了，因为offset已经提交完毕，下次会从offset处开始消费新消息。（这种丢失情况的解决方法是**采用消费端的手动提交**）
+
+
+
+### 消息重复消费
+
+**生产端消息重复发送**
+
+生产端发送一条消息，但是未得到broker的ack，生产端又重新发了一条消息。这个时候两条消息都被broker接收到了，消费端从broker拉取消息时就会造成重复消费。
+
+> kafka新版本已经在broker中保证了接收消息的幂等性（比如2.4版本），只需在生产者加上参数 props.put(“enable.idempotence”, true) 即可，默认是false不开启。
+>
+> 新版本解决方案是：producer发送消息时，加上PID和Sequence Number，PID是Producer的唯一ID，Sequence Number是数据的序列号。
+>
+> broker接收到消息的时候就会检查有没有收到过这个消息（根据PID和Sequence Number）。
+
+**消费端消息重复消费**
+
+消费端拉取一部分数据，消费完成之后，提交offset之前挂掉了，此时offset未提交，当前消息就会被重复消费。
+
+解决办法：添加分布式锁，在offset提交之后再删key，这样就保证了同一个消息只会被消费一次。
+
+## Kafka顺序消息
+
+Kakfa如果需要保证消息的顺序性则需要牺牲一定的性能。具体的顺序方式就是使用单一的消费者，由一个消费者消费可以保证消息消费的顺序性，但是消息发送的顺序性还是无法保证，（因为消息发送端有重传机制，如果一次性发送两条消息，前一条消息发送失败，引发重传，就会导致消息发送乱序）。此时如果需要保证发送和接收的顺序，那就使用发送的ack机制，确认发送成功之后再发送下一条消息，并且只能有一个Partition。但是这种方式会导致kafka性能低下。
+
+
+
+**高效的解决方式**
+
+类似于tcp发送的方式，给每一个消息添加一个序号，然后消费端每次拉取全部消息，拉取回来之后再排序，根据排序之后的数据进行处理。
+
+
+
+## Kafka与其它MQ之间的区别？为什么选择使用Kafka？
+
+**kafka相对于rocketMQ、rabbitMQ来说，与它们最大的区别就是分布式存储，这也是kafka高性能的最主要原因**。使用分布式存储理念，一个主题下多个分区，同时可以被多个消费者和生产者去使用，也增加了接受消息和消费消息的能力！
 
 ## 参考
 
 + Kafka官方文档：https://kafka.apache.org/documentation
 + Kafka 设计架构原理详细解析：https://blog.csdn.net/qq_32828253/article/details/110732652
 + Kafka为什么这么快：https://zhuanlan.zhihu.com/p/147054382
++ Kafka如何保证消息不丢失：https://zhuanlan.zhihu.com/p/459610418
++ kafka专题：kafka的消息丢失、重复消费、消息积压等线上问题汇总及优化：https://blog.csdn.net/qq_45076180/article/details/111561984
