@@ -1,22 +1,28 @@
 ---
-title: Redis 3 种特殊数据结构详解
+title: Redis 3 种特殊数据类型详解
 category: 数据库
 tag:
   - Redis
 head:
   - - meta
     - name: keywords
-      content: Redis常见数据结构
+      content: Redis常见数据类型
   - - meta
     - name: description
-      content: Redis特殊数据结构总结：HyperLogLogs（基数统计）、Bitmap （位存储）、Geospatial (地理位置)。
+      content: Redis特殊数据类型总结：HyperLogLogs（基数统计）、Bitmap （位存储）、Geospatial (地理位置)。
 ---
 
-除了 5 种基本的数据结构之外，Redis 还支持 3 种特殊的数据结构：Bitmap、HyperLogLog、GEO。
+除了 5 种基本的数据类型之外，Redis 还支持 3 种特殊的数据类型：Bitmap、HyperLogLog、GEO。
 
-## Bitmap
+## Bitmap （位图）
 
 ### 介绍
+
+根据官网介绍：
+
+> Bitmaps are not an actual data type, but a set of bit-oriented operations defined on the String type which is treated like a bit vector. Since strings are binary safe blobs and their maximum length is 512 MB, they are suitable to set up to 2^32 different bits.
+>
+> Bitmap 不是 Redis 中的实际数据类型，而是在 String 类型上定义的一组面向位的操作，将其视为位向量。由于字符串是二进制安全的块，且最大长度为 512 MB，它们适合用于设置最多 2^32 个不同的位。
 
 Bitmap 存储的是连续的二进制数字（0 和 1），通过 Bitmap, 只需要一个 bit 位来表示某个元素对应的值或者状态，key 就是对应元素本身 。我们知道 8 个 bit 可以组成一个 byte，所以 Bitmap 本身会极大的节省储存空间。
 
@@ -59,7 +65,7 @@ Bitmap 存储的是连续的二进制数字（0 和 1），通过 Bitmap, 只需
 - 举例：用户签到情况、活跃用户情况、用户行为统计（比如是否点赞过某个视频）。
 - 相关命令：`SETBIT`、`GETBIT`、`BITCOUNT`、`BITOP`。
 
-## HyperLogLog
+## HyperLogLog（基数统计）
 
 ### 介绍
 
@@ -81,6 +87,8 @@ Redis 官方文档中有对应的详细说明：
 HyperLogLog 的使用非常简单，但原理非常复杂。HyperLogLog 的原理以及在 Redis 中的实现可以看这篇文章：[HyperLogLog 算法的原理讲解以及 Redis 是如何应用它的](https://juejin.cn/post/6844903785744056333) 。
 
 再推荐一个可以帮助理解 HyperLogLog 原理的工具：[Sketch of the Day: HyperLogLog — Cornerstone of a Big Data Infrastructure](http://content.research.neustar.biz/blog/hll.html) 。
+
+除了 HyperLogLog 之外，Redis 还提供了其他的概率数据结构，对应的官方文档地址：<https://redis.io/docs/data-types/probabilistic/> 。
 
 ### 常用命令
 
@@ -120,7 +128,7 @@ HyperLogLog 相关的命令非常少，最常用的也就 3 个。
 - 举例：热门网站每日/每周/每月访问 ip 数统计、热门帖子 uv 统计、
 - 相关命令：`PFADD`、`PFCOUNT` 。
 
-## Geospatial index
+## Geospatial (地理位置)
 
 ### 介绍
 
