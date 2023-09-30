@@ -1,22 +1,22 @@
 ---
-title: Redis 5 种基本数据结构详解
+title: Redis 5 种基本数据类型详解
 category: 数据库
 tag:
   - Redis
 head:
   - - meta
     - name: keywords
-      content: Redis常见数据结构
+      content: Redis常见数据类型
   - - meta
     - name: description
-      content: Redis基础数据结构总结：String（字符串）、List（列表）、Set（集合）、Hash（散列）、Zset（有序集合）
+      content: Redis基础数据类型总结：String（字符串）、List（列表）、Set（集合）、Hash（散列）、Zset（有序集合）
 ---
 
-Redis 共有 5 种基本数据结构：String（字符串）、List（列表）、Set（集合）、Hash（散列）、Zset（有序集合）。
+Redis 共有 5 种基本数据类型：String（字符串）、List（列表）、Set（集合）、Hash（散列）、Zset（有序集合）。
 
-这 5 种数据结构是直接提供给用户使用的，是数据的保存形式，其底层实现主要依赖这 8 种数据结构：简单动态字符串（SDS）、LinkedList（双向链表）、Dict（哈希表/字典）、SkipList（跳跃表）、Intset（整数集合）、ZipList（压缩列表）、QuickList（快速列表）。
+这 5 种数据类型是直接提供给用户使用的，是数据的保存形式，其底层实现主要依赖这 8 种数据结构：简单动态字符串（SDS）、LinkedList（双向链表）、Dict（哈希表/字典）、SkipList（跳跃表）、Intset（整数集合）、ZipList（压缩列表）、QuickList（快速列表）。
 
-Redis 基本数据结构的底层数据结构实现如下：
+Redis 5种基本数据类型对应的底层数据结构实现如下表所示：
 
 | String | List                         | Hash          | Set          | Zset              |
 | :----- | :--------------------------- | :------------ | :----------- | :---------------- |
@@ -24,7 +24,7 @@ Redis 基本数据结构的底层数据结构实现如下：
 
 Redis 3.2 之前，List 底层实现是 LinkedList 或者 ZipList。 Redis 3.2 之后，引入了 LinkedList 和 ZipList 的结合 QuickList，List 的底层实现变为 QuickList。从 Redis 7.0 开始， ZipList 被 ListPack 取代。
 
-你可以在 Redis 官网上找到 Redis 数据结构非常详细的介绍：
+你可以在 Redis 官网上找到 Redis 数据类型/结构非常详细的介绍：
 
 - [Redis Data Structures](https://redis.com/redis-enterprise/data-structures/)
 - [Redis Data types tutorial](https://redis.io/docs/manual/data-types/data-types-tutorial/)
@@ -37,9 +37,9 @@ Redis 3.2 之前，List 底层实现是 LinkedList 或者 ZipList。 Redis 3.2 �
 
 ### 介绍
 
-String 是 Redis 中最简单同时也是最常用的一个数据结构。
+String 是 Redis 中最简单同时也是最常用的一个数据类型。
 
-String 是一种二进制安全的数据结构，可以用来存储任何类型的数据比如字符串、整数、浮点数、图片（图片的 base64 编码或者解码或者图片的路径）、序列化后的对象。
+String 是一种二进制安全的数据类型，可以用来存储任何类型的数据比如字符串、整数、浮点数、图片（图片的 base64 编码或者解码或者图片的路径）、序列化后的对象。
 
 ![](https://oss.javaguide.cn/github/javaguide/database/redis/image-20220719124403897.png)
 
@@ -120,7 +120,7 @@ OK
 
 **需要存储常规数据的场景**
 
-- 举例：缓存 session、token、图片地址、序列化后的对象(相比较于 Hash 存储更节省内存)。
+- 举例：缓存 Session、Token、图片地址、序列化后的对象(相比较于 Hash 存储更节省内存)。
 - 相关命令：`SET`、`GET`。
 
 **需要计数的场景**
@@ -218,7 +218,7 @@ Redis 中的 List 其实就是链表数据结构的实现。我在 [线性数据
 
 **消息队列**
 
-Redis List 数据结构可以用来做消息队列，只是功能过于简单且存在很多缺陷，不建议这样做。
+`List` 可以用来做消息队列，只是功能过于简单且存在很多缺陷，不建议这样做。
 
 相对来说，Redis 5.0 新增加的一个数据结构 `Stream` 更适合做消息队列一些，只是功能依然非常简陋。和专业的消息队列相比，还是有很多欠缺的地方比如消息丢失和堆积问题不好解决。
 
@@ -487,7 +487,7 @@ value1
 
 | 数据类型         | 说明                                                         |
 | --------------------------------  | ------------------------------------------------- |
-| String | 一种二进制安全的数据结构，可以用来存储任何类型的数据比如字符串、整数、浮点数、图片（图片的 base64 编码或者解码或者图片的路径）、序列化后的对象。 |
+| String | 一种二进制安全的数据类型，可以用来存储任何类型的数据比如字符串、整数、浮点数、图片（图片的 base64 编码或者解码或者图片的路径）、序列化后的对象。 |
 | List     | Redis 的 List 的实现为一个双向链表，即可以支持反向查找和遍历，更方便操作，不过带来了部分额外的内存开销。 |
 | Hash     | 一个 String 类型的 field-value（键值对） 的映射表，特别适合用于存储对象，后续操作的时候，你可以直接修改这个对象中的某些字段的值。 |
 | Set      | 无序集合，集合中的元素没有先后顺序但都唯一，有点类似于 Java 中的 `HashSet` 。 |
