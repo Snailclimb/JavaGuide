@@ -18,8 +18,8 @@ JDK 20 只有 7 个新特性：
 - [JEP 433：switch 模式匹配](https://openjdk.org/jeps/433)（第四次预览）
 - [JEP 434: Foreign Function & Memory API（外部函数和内存 API）](https://openjdk.org/jeps/434)（第二次预览）
 - [JEP 436: Virtual Threads（虚拟线程）](https://openjdk.org/jeps/436)（第二次预览）
-- [JEP 437: Structured Concurrency（结构化并发）](https://openjdk.org/jeps/437)(第二次孵化)
-- [JEP 432：向量 API（](https://openjdk.org/jeps/438)第五次孵化）
+- [JEP 437:Structured Concurrency（结构化并发）](https://openjdk.org/jeps/437)(第二次孵化)
+- [JEP 432:向量 API（](https://openjdk.org/jeps/438)第五次孵化）
 
 ## JEP 429：作用域值（第一次孵化）
 
@@ -38,19 +38,108 @@ ScopedValue.where(V, <value>)
 
 作用域值允许在大型程序中的组件之间安全有效地共享数据，而无需求助于方法参数。
 
-关于作用域值的详细介绍，推荐阅读[作用域值常见问题解答](https://www.happycoders.eu/java/scoped-values/)。
+关于作用域值的详细介绍，推荐阅读[作用域值常见问题解答](https://www.happycoders.eu/java/scoped-values/)这篇文章。
 
 ## JEP 432：记录模式（第二次预览）
 
-记录模式（Record Patterns） 可对 record 的值进行解构，可以嵌套记录模式和类型模式，实现强大的、声明性的和可组合的数据导航和处理形式。
+记录模式（Record Patterns） 可对 record 的值进行解构，也就是更方便地从记录类（Record Class）中提取数据。并且，还可以嵌套记录模式和类型模式结合使用，以实现强大的、声明性的和可组合的数据导航和处理形式。
 
 记录模式不能单独使用，而是要与 instanceof 或 switch 模式匹配一同使用。
 
-记录模式在 Java 19 进行了第一次预览， 由[JEP 405](https://openjdk.org/jeps/405)提出。JDK 20 中是第二次预览，由 [JEP 432](https://openjdk.org/jeps/432) 提出。这次的改进包括：
+先以 instanceof 为例简单演示一下。
+
+简单定义一个记录类：
+
+```java
+record Shape(String type, long unit){}
+```
+
+没有记录模式之前：
+
+```java
+Shape circle = new Shape("Circle", 10);
+if (circle instanceof Shape shape) {
+
+  System.out.println("Area of " + shape.type() + " is : " + Math.PI * Math.pow(shape.unit(), 2));
+}
+```
+
+有了记录模式之后：
+
+```java
+Shape circle = new Shape("Circle", 10);
+if (circle instanceof Shape(String type, long unit)) {
+  System.out.println("Area of " + type + " is : " + Math.PI * Math.pow(unit, 2));
+}
+```
+
+再看看记录模式与 switch 的配合使用。
+
+定义一些类：
+
+```java
+interface Shape {}
+record Circle(double radius) implements Shape { }
+record Square(double side) implements Shape { }
+record Rectangle(double length, double width) implements Shape { }
+```
+
+没有记录模式之前：
+
+```java
+Shape shape = new Circle(10);
+switch (shape) {
+    case Circle c:
+        System.out.println("The shape is Circle with area: " + Math.PI * c.radius() * c.radius());
+        break;
+
+    case Square s:
+        System.out.println("The shape is Square with area: " + s.side() * s.side());
+        break;
+
+    case Rectangle r:
+        System.out.println("The shape is Rectangle with area: + " + r.length() * r.width());
+        break;
+
+    default:
+        System.out.println("Unknown Shape");
+        break;
+}
+```
+
+有了记录模式之后：
+
+```java
+Shape shape = new Circle(10);
+switch(shape) {
+
+  case Circle(double radius):
+    System.out.println("The shape is Circle with area: " + Math.PI * radius * radius);
+    break;
+
+  case Square(double side):
+    System.out.println("The shape is Square with area: " + side * side);
+    break;
+
+  case Rectangle(double length, double width):
+    System.out.println("The shape is Rectangle with area: + " + length * width);
+    break;
+
+  default:
+    System.out.println("Unknown Shape");
+    break;
+}
+```
+
+记录模式可以避免不必要的转换，使得代码更建简洁易读。而且，用了记录模式后不必再担心 `null` 或者 `NullPointerException`，代码更安全可靠。
+
+记录模式在 Java 19 进行了第一次预览， 由 [JEP 405](https://openjdk.org/jeps/405) 提出。JDK 20 中是第二次预览，由 [JEP 432](https://openjdk.org/jeps/432) 提出。这次的改进包括：
 
 - 添加对通用记录模式类型参数推断的支持，
 - 添加对记录模式的支持以出现在增强语句的标题中`for`
 - 删除对命名记录模式的支持。
+
+**注意**：不要把记录模式和 [JDK16](./java16.md) 正式引入的记录类搞混了。
 
 ## JEP 433：switch 模式匹配（第四次预览）
 
