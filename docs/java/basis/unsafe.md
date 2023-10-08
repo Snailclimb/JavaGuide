@@ -152,7 +152,7 @@ private void memoryTest() {
 
 先看结果输出：
 
-```
+```plain
 addr: 2433733895744
 addr3: 2433733894944
 16843009
@@ -275,7 +275,7 @@ public static void main(String[] args){
 
 运行结果：
 
-```
+```plain
 subThread change flag to:false
 detected flag changed
 main thread end
@@ -341,7 +341,7 @@ public class Main {
 
 输出结果：
 
-```
+```plain
 value before putInt: 0
 value after putInt: 42
 value after putInt: 42
@@ -417,7 +417,7 @@ public void objTest() throws Exception{
 }
 ```
 
-打印结果分别为 1、1、0，说明通过`allocateInstance`方法创建对象过程中，不会调用类的构造方法。使用这种方式创建对象时，只用到了`Class`对象，所以说如果想要跳过对象的初始化阶段或者跳过构造器的安全检查，就可以使用这种方法。在上面的例子中，如果将 A 类的构造函数改为`private`类型，将无法通过构造函数和反射创建对象（可以通过构造函数对象setAccessible后创建对象），但`allocateInstance`方法仍然有效。
+打印结果分别为 1、1、0，说明通过`allocateInstance`方法创建对象过程中，不会调用类的构造方法。使用这种方式创建对象时，只用到了`Class`对象，所以说如果想要跳过对象的初始化阶段或者跳过构造器的安全检查，就可以使用这种方法。在上面的例子中，如果将 A 类的构造函数改为`private`类型，将无法通过构造函数和反射创建对象（可以通过构造函数对象 setAccessible 后创建对象），但`allocateInstance`方法仍然有效。
 
 #### 典型应用
 
@@ -510,7 +510,7 @@ private void increment(int x){
 
 运行代码会依次输出：
 
-```
+```plain
 1 2 3 4 5 6 7 8 9
 ```
 
@@ -600,7 +600,7 @@ public static void main(String[] args) {
 
 程序输出为：
 
-```
+```plain
 park main mainThread
 subThread try to unpark mainThread
 unpark mainThread success
@@ -653,7 +653,7 @@ private void staticTest() throws Exception {
 
 运行结果：
 
-```
+```plain
 false
 Hydra
 ```
@@ -662,7 +662,7 @@ Hydra
 
 在上面的代码中首先创建一个`User`对象，这是因为如果一个类没有被初始化，那么它的静态属性也不会被初始化，最后获取的字段属性将是`null`。所以在获取静态属性前，需要调用`shouldBeInitialized`方法，判断在获取前是否需要初始化这个类。如果删除创建 User 对象的语句，运行结果会变为：
 
-```
+```plain
 true
 null
 ```

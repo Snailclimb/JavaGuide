@@ -24,7 +24,7 @@ tag:
 - `ThreadLocalMap.set()`方法实现原理？
 - `ThreadLocalMap.get()`方法实现原理？
 - 项目中`ThreadLocal`使用情况？遇到的坑？
-- ......
+- ……
 
 上述的一些问题你是否都已经掌握的很清楚了呢？本文将围绕这些问题使用图文方式来剖析`ThreadLocal`的**点点滴滴**。
 

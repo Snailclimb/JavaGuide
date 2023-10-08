@@ -49,7 +49,7 @@ head:
 - `ArithmeticException`（算术错误）
 - `SecurityException` （安全错误比如权限不够）
 - `UnsupportedOperationException`(不支持的操作错误比如重复创建同一用户)
-- ......
+- ……
 
 ![](https://oss.javaguide.cn/github/javaguide/java/basis/unchecked-exception.png)
 
@@ -81,7 +81,7 @@ try {
 
 输出：
 
-```
+```plain
 Try to do something
 Catch Exception -> RuntimeException
 Finally
@@ -117,7 +117,7 @@ public static int f(int value) {
 
 输出：
 
-```
+```plain
 0
 ```
 
@@ -142,7 +142,7 @@ try {
 
 输出：
 
-```
+```plain
 Try to do something
 Catch Exception -> RuntimeException
 ```
@@ -219,7 +219,7 @@ catch (IOException e) {
 - 抛出的异常信息一定要有意义。
 - 建议抛出更加具体的异常比如字符串转换为数字格式错误的时候应该抛出`NumberFormatException`而不是其父类`IllegalArgumentException`。
 - 使用日志打印异常之后就不要再抛出异常了（两者不要同时存在一段代码逻辑中）。
-- ......
+- ……
 
 ## 泛型
 
@@ -323,7 +323,7 @@ printArray( stringArray  );
 - 自定义接口通用返回结果 `CommonResult<T>` 通过参数 `T` 可根据具体的返回类型动态指定结果的数据类型
 - 定义 `Excel` 处理类 `ExcelUtil<T>` 用于动态指定 `Excel` 导出的数据类型
 - 构建集合工具类（参考 `Collections` 中的 `sort`, `binarySearch` 方法）。
-- ......
+- ……
 
 ## 反射
 

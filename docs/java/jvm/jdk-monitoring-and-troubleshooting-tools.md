@@ -182,14 +182,14 @@ public class DeadLockDemo {
 
 Output
 
-```
+```plain
 Thread[线程 1,5,main]get resource1
 Thread[线程 2,5,main]get resource2
 Thread[线程 1,5,main]waiting get resource2
 Thread[线程 2,5,main]waiting get resource1
 ```
 
-线程 A 通过 synchronized (resource1) 获得 resource1 的监视器锁，然后通过` Thread.sleep(1000);`让线程 A 休眠 1s 为的是让线程 B 得到执行然后获取到 resource2 的监视器锁。线程 A 和线程 B 休眠结束了都开始企图请求获取对方的资源，然后这两个线程就会陷入互相等待的状态，这也就产生了死锁。
+线程 A 通过 synchronized (resource1) 获得 resource1 的监视器锁，然后通过`Thread.sleep(1000);`让线程 A 休眠 1s 为的是让线程 B 得到执行然后获取到 resource2 的监视器锁。线程 A 和线程 B 休眠结束了都开始企图请求获取对方的资源，然后这两个线程就会陷入互相等待的状态，这也就产生了死锁。
 
 **通过 `jstack` 命令分析：**
 
@@ -260,7 +260,7 @@ JConsole 是基于 JMX 的可视化监视、管理工具。可以很方便的监
 
 在使用 JConsole 连接时，远程进程地址如下：
 
-```
+```plain
 外网访问 ip 地址:60001
 ```
 
@@ -302,7 +302,7 @@ VisualVM 基于 NetBeans 平台开发，因此他一开始就具备了插件扩�
 - **dump 以及分析堆转储快照（jmap、jhat）。**
 - **方法级的程序运行性能分析，找到被调用最多、运行时间最长的方法。**
 - **离线程序快照：收集程序的运行时配置、线程 dump、内存 dump 等信息建立一个快照，可以将快照发送开发者处进行 Bug 反馈。**
-- **其他 plugins 的无限的可能性......**
+- **其他 plugins 的无限的可能性……**
 
 这里就不具体介绍 VisualVM 的使用，如果想了解的话可以看:
 

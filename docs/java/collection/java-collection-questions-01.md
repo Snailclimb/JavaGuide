@@ -147,7 +147,7 @@ System.out.println(listOfStrings);
 
 输出：
 
-```
+```plain
 [null, java]
 ```
 
@@ -191,7 +191,7 @@ System.out.println(listOfStrings);
 - 尾部插入/删除：只需要修改尾结点的指针即可完成插入/删除操作，因此时间复杂度为 O(1)。
 - 指定位置插入/删除：需要先移动到指定位置，再修改指定节点的指针完成插入/删除，因此需要移动平均 n/2 个元素，时间复杂度为 O(n)。
 
-这里简单列举一个例子：假如我们要删除节点9 的话，需要先遍历链表找到该节点。然后，再执行相应节点指针指向的更改，具体的源码可以参考：[LinkedList 源码分析](./linkedlist-source-code.md) 。
+这里简单列举一个例子：假如我们要删除节点 9 的话，需要先遍历链表找到该节点。然后，再执行相应节点指针指向的更改，具体的源码可以参考：[LinkedList 源码分析](./linkedlist-source-code.md) 。
 
 ![unlink 方法逻辑](https://oss.javaguide.cn/github/javaguide/java/collection/linkedlist-unlink.jpg)
 
@@ -299,7 +299,7 @@ System.out.println(arrayList);
 
 Output:
 
-```
+```plain
 原始数组:
 [-1, 3, 3, -5, 7, 4, -9, -7]
 Collections.reverse(arrayList):
@@ -377,7 +377,7 @@ public  class Person implements Comparable<Person> {
 
 Output：
 
-```
+```plain
 5-小红
 10-王五
 20-李四
@@ -476,7 +476,7 @@ Java 中常用的阻塞队列实现类有以下几种：
 3. `PriorityBlockingQueue`：支持优先级排序的无界阻塞队列。元素必须实现`Comparable`接口或者在构造函数中传入`Comparator`对象，并且不能插入 null 元素。
 4. `SynchronousQueue`：同步队列，是一种不存储元素的阻塞队列。每个插入操作都必须等待对应的删除操作，反之删除操作也必须等待插入操作。因此，`SynchronousQueue`通常用于线程之间的直接传递数据。
 5. `DelayQueue`：延迟队列，其中的元素只有到了其指定的延迟时间，才能够从队列中出队。
-6. ......
+6. ……
 
 日常开发中，这些队列使用的其实都不多，了解即可。
 

@@ -533,7 +533,7 @@ try {
 
 输出：
 
-```
+```plain
 任务1开始执行，当前时间：1695088058520
 任务2开始执行，当前时间：1695088058521
 任务1执行完毕，当前时间：1695088059023
@@ -614,7 +614,7 @@ System.out.println("all futures done...");
 
 输出：
 
-```java
+```plain
 future1 done...
 future2 done...
 all futures done...
@@ -629,14 +629,14 @@ System.out.println(f.get());
 
 输出结果可能是：
 
-```java
+```plain
 future2 done...
 efg
 ```
 
 也可能是：
 
-```
+```plain
 future1 done...
 abc
 ```
@@ -696,11 +696,11 @@ CompletableFuture.runAsync(() -> {
 - 使用 `exceptionally` 方法可以处理异常并重新抛出，以便异常能够传播到后续阶段，而不是让异常被忽略或终止。
 - 使用 `handle` 方法可以处理正常的返回结果和异常，并返回一个新的结果，而不是让异常影响正常的业务逻辑。
 - 使用 `CompletableFuture.allOf` 方法可以组合多个 `CompletableFuture`，并统一处理所有任务的异常，而不是让异常处理过于冗长或重复。
-- ......
+- ……
 
 ### 合理组合多个异步任务
 
-正确使用 `thenCompose()` 、 `thenCombine()` 、`acceptEither()`、`allOf()`、`anyOf() `等方法来组合多个异步任务，以满足实际业务的需求，提高程序执行效率。
+正确使用 `thenCompose()` 、 `thenCombine()` 、`acceptEither()`、`allOf()`、`anyOf()`等方法来组合多个异步任务，以满足实际业务的需求，提高程序执行效率。
 
 实际使用中，我们还可以利用或者参考现成的异步任务编排框架，比如京东的 [asyncTool](https://gitee.com/jd-platform-opensource/asyncTool) 。
 

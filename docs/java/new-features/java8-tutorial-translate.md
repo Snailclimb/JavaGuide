@@ -66,7 +66,7 @@ Collections.sort(names, new Comparator<String>() {
 });
 ```
 
-只需要给静态方法` Collections.sort` 传入一个 List 对象以及一个比较器来按指定顺序排列。通常做法都是创建一个匿名的比较器对象然后将其传递给 `sort` 方法。
+只需要给静态方法`Collections.sort` 传入一个 List 对象以及一个比较器来按指定顺序排列。通常做法都是创建一个匿名的比较器对象然后将其传递给 `sort` 方法。
 
 在 Java 8 中你就没必要使用这种传统的匿名对象的方式了，Java 8 提供了更简洁的语法，lambda 表达式：
 
@@ -398,7 +398,7 @@ optional.ifPresent((s) -> System.out.println(s.charAt(0)));     // "b"
 
 ## Streams(流)
 
-`java.util.Stream` 表示能应用在一组元素上一次执行的操作序列。Stream 操作分为中间操作或者最终操作两种，最终操作返回一特定类型的计算结果，而中间操作返回 Stream 本身，这样你就可以将多个操作依次串起来。Stream 的创建需要指定一个数据源，比如` java.util.Collection` 的子类，List 或者 Set， Map 不支持。Stream 的操作可以串行执行或者并行执行。
+`java.util.Stream` 表示能应用在一组元素上一次执行的操作序列。Stream 操作分为中间操作或者最终操作两种，最终操作返回一特定类型的计算结果，而中间操作返回 Stream 本身，这样你就可以将多个操作依次串起来。Stream 的创建需要指定一个数据源，比如`java.util.Collection` 的子类，List 或者 Set， Map 不支持。Stream 的操作可以串行执行或者并行执行。
 
 首先看看 Stream 是怎么用，首先创建实例代码需要用到的数据 List：
 
@@ -572,7 +572,7 @@ long millis = TimeUnit.NANOSECONDS.toMillis(t1 - t0);
 System.out.println(String.format("sequential sort took: %d ms", millis));
 ```
 
-```
+```plain
 1000000
 sequential sort took: 709 ms//串行排序所用的时间
 ```
@@ -884,7 +884,7 @@ Hint[] hints2 = Person.class.getAnnotationsByType(Hint.class);
 System.out.println(hints2.length);          // 2
 ```
 
-即便我们没有在 `Person`类上定义 `@Hints`注解，我们还是可以通过 `getAnnotation(Hints.class) `来获取 `@Hints`注解，更加方便的方法是使用 `getAnnotationsByType` 可以直接获取到所有的`@Hint`注解。
+即便我们没有在 `Person`类上定义 `@Hints`注解，我们还是可以通过 `getAnnotation(Hints.class)`来获取 `@Hints`注解，更加方便的方法是使用 `getAnnotationsByType` 可以直接获取到所有的`@Hint`注解。
 另外 Java 8 的注解还增加到两种新的 target 上了：
 
 ```java

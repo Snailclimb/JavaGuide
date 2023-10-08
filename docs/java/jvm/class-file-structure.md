@@ -60,7 +60,7 @@ ClassFile {
     u4             magic; //Class 文件的标志
 ```
 
-每个 Class 文件的头 4 个字节称为魔数（Magic Number）,它的唯一作用是**确定这个文件是否为一个能被虚拟机接收的 Class 文件**。Java规范规定魔数为固定值：0xCAFEBABE。如果读取的文件不是以这个魔数开头，Java虚拟机将拒绝加载它。
+每个 Class 文件的头 4 个字节称为魔数（Magic Number）,它的唯一作用是**确定这个文件是否为一个能被虚拟机接收的 Class 文件**。Java 规范规定魔数为固定值：0xCAFEBABE。如果读取的文件不是以这个魔数开头，Java 虚拟机将拒绝加载它。
 
 ### Class 文件版本号（Minor&Major Version）
 
@@ -97,11 +97,11 @@ ClassFile {
 |        CONSTANT_utf8_info        |      1      |   UTF-8 编码的字符串   |
 |      CONSTANT_Integer_info       |      3      |       整形字面量       |
 |       CONSTANT_Float_info        |      4      |      浮点型字面量      |
-|        CONSTANT_Long_info        |     ５      |      长整型字面量      |
-|       CONSTANT_Double_info       |     ６      |   双精度浮点型字面量   |
-|       CONSTANT_Class_info        |     ７      |   类或接口的符号引用   |
-|       CONSTANT_String_info       |     ８      |    字符串类型字面量    |
-|      CONSTANT_FieldRef_info      |     ９      |     字段的符号引用     |
+|        CONSTANT_Long_info        |     5      |      长整型字面量      |
+|       CONSTANT_Double_info       |     6      |   双精度浮点型字面量   |
+|       CONSTANT_Class_info        |     7      |   类或接口的符号引用   |
+|       CONSTANT_String_info       |     8      |    字符串类型字面量    |
+|      CONSTANT_FieldRef_info      |     9      |     字段的符号引用     |
 |     CONSTANT_MethodRef_info      |     10      |   类中方法的符号引用   |
 | CONSTANT_InterfaceMethodRef_info |     11      |  接口中方法的符号引用  |
 |    CONSTANT_NameAndType_info     |     12      |  字段或方法的符号引用  |

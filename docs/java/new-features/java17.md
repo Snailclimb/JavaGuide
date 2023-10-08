@@ -29,7 +29,7 @@ Java 17 将是继 Java 8 以来最重要的长期支持（LTS）版本，是 Jav
 - [JEP 410:Remove the Experimental AOT and JIT Compiler（删除实验性的 AOT 和 JIT 编译器）](https://openjdk.java.net/jeps/410)
 - [JEP 411:Deprecate the Security Manager for Removal（弃用安全管理器以进行删除）](https://openjdk.java.net/jeps/411)
 - [JEP 412:Foreign Function & Memory API (外部函数和内存 API)](https://openjdk.java.net/jeps/412)（孵化）
-- [JEP 414:Vector（向量） API ](https://openjdk.java.net/jeps/417)（第二次孵化）
+- [JEP 414:Vector（向量） API](https://openjdk.java.net/jeps/417)（第二次孵化）
 - [JEP 415:Context-Specific Deserialization Filters](https://openjdk.java.net/jeps/415)
 
 这里只对 356、398、413、406、407、409、410、411、412、414 这几个我觉得比较重要的新特性进行详细介绍。
@@ -161,7 +161,7 @@ Java 17，删除实验性的提前 (AOT) 和即时 (JIT) 编译器，因为该�
 
 Java 程序可以通过该 API 与 Java 运行时之外的代码和数据进行互操作。通过高效地调用外部函数（即 JVM 之外的代码）和安全地访问外部内存（即不受 JVM 管理的内存），该 API 使 Java 程序能够调用本机库并处理本机数据，而不会像 JNI 那样危险和脆弱。
 
-外部函数和内存 API 在 Java 17 中进行了第一轮孵化，由 [JEP 412](https://openjdk.java.net/jeps/412) 提出。第二轮孵化由[ JEP 419](https://openjdk.org/jeps/419) 提出并集成到了 Java 18 中，预览由 [JEP 424](https://openjdk.org/jeps/424) 提出并集成到了 Java 19 中。
+外部函数和内存 API 在 Java 17 中进行了第一轮孵化，由 [JEP 412](https://openjdk.java.net/jeps/412) 提出。第二轮孵化由[JEP 419](https://openjdk.org/jeps/419) 提出并集成到了 Java 18 中，预览由 [JEP 424](https://openjdk.org/jeps/424) 提出并集成到了 Java 19 中。
 
 在 [Java 19 新特性概览](./java19.md) 中，我有详细介绍到外部函数和内存 API，这里就不再做额外的介绍了。
 

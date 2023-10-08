@@ -9,7 +9,7 @@ tag:
 
 ## LinkedList 简介
 
-`LinkedList` 是一个基于双向链表实现的集合类，经常被拿来和 `ArrayList` 做比较。关于 `LinkedList` 和`ArrayList`的详细对比，我们 [Java集合常见面试题总结(上)](./java-collection-questions-01.md)有详细介绍到。
+`LinkedList` 是一个基于双向链表实现的集合类，经常被拿来和 `ArrayList` 做比较。关于 `LinkedList` 和`ArrayList`的详细对比，我们 [Java 集合常见面试题总结(上)](./java-collection-questions-01.md)有详细介绍到。
 
 ![双向链表](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/bidirectional-linkedlist.png)
 
@@ -505,7 +505,7 @@ System.out.println("清空后的链表：" + list);
 
 输出：
 
-```
+```plain
 索引为 2 的元素：banana
 链表内容：[apple, orange, banana, grape]
 链表内容：[orange, banana, grape]

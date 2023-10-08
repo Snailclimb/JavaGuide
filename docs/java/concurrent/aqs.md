@@ -688,7 +688,7 @@ public class CyclicBarrierExample1 {
 
 运行结果，如下：
 
-```
+```plain
 threadnum:0is ready
 threadnum:1is ready
 threadnum:2is ready
@@ -760,7 +760,7 @@ public class CyclicBarrierExample2 {
 
 运行结果，如下：
 
-```
+```plain
 threadnum:0is ready
 threadnum:1is ready
 threadnum:2is ready

@@ -141,7 +141,7 @@ System.out.println(list); /* [1, 3, 5, 7, 9] */
 
 - 使用普通的 for 循环
 - 使用 fail-safe 的集合类。`java.util`包下面的所有的集合类都是 fail-fast 的，而`java.util.concurrent`包下面的所有的类都是 fail-safe 的。
-- ......
+- ……
 
 ## 集合去重
 

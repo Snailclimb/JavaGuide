@@ -5,7 +5,7 @@ tag:
   - Java新特性
 ---
 
-**Java 9** 发布于 2017 年 9 月 21 日 。作为 Java 8 之后 3 年半才发布的新版本，Java 9 带来了很多重大的变化其中最重要的改动是 Java 平台模块系统的引入，其他还有诸如集合、`Stream` 流......。
+**Java 9** 发布于 2017 年 9 月 21 日 。作为 Java 8 之后 3 年半才发布的新版本，Java 9 带来了很多重大的变化其中最重要的改动是 Java 平台模块系统的引入，其他还有诸如集合、`Stream` 流……。
 
 你可以在 [Archived OpenJDK General-Availability Releases](http://jdk.java.net/archive/) 上下载自己需要的 JDK 版本！官方的新特性说明文档地址：https://openjdk.java.net/projects/jdk/ 。
 
@@ -29,14 +29,14 @@ JShell 是 Java 9 新增的一个实用工具。为 Java 提供了类似于 Pyth
 
 1. 降低了输出第一行 Java 版"Hello World！"的门槛，能够提高新手的学习热情。
 2. 在处理简单的小逻辑，验证简单的小问题时，比 IDE 更有效率（并不是为了取代 IDE，对于复杂逻辑的验证，IDE 更合适，两者互补）。
-3. ......
+3. ……
 
 **JShell 的代码和普通的可编译代码，有什么不一样？**
 
 1. 一旦语句输入完成，JShell 立即就能返回执行的结果，而不再需要编辑器、编译器、解释器。
 2. JShell 支持变量的重复声明，后面声明的会覆盖前面声明的。
 3. JShell 支持独立的表达式比如普通的加法运算 `1 + 1`。
-4. ......
+4. ……
 
 ## 模块化系统
 
@@ -230,7 +230,7 @@ System.out.println(currentProcess.info());
 
 `Flow` 中包含了 `Flow.Publisher`、`Flow.Subscriber`、`Flow.Subscription` 和 `Flow.Processor` 等 4 个核心接口。Java 9 还提供了`SubmissionPublisher` 作为`Flow.Publisher` 的一个实现。
 
-关于 Java 9 响应式流更详细的解读，推荐你看 [Java 9 揭秘（17. Reactive Streams ）- 林本托 ](https://www.cnblogs.com/IcanFixIt/p/7245377.html) 这篇文章。
+关于 Java 9 响应式流更详细的解读，推荐你看 [Java 9 揭秘（17. Reactive Streams ）- 林本托](https://www.cnblogs.com/IcanFixIt/p/7245377.html) 这篇文章。
 
 ## 变量句柄
 
@@ -248,7 +248,7 @@ System.out.println(currentProcess.info());
 - **I/O 流的新特性**：增加了新的方法来读取和复制 `InputStream` 中包含的数据。
 - **改进应用的安全性能**：Java 9 新增了 4 个 SHA- 3 哈希算法，SHA3-224、SHA3-256、SHA3-384 和 SHA3-512。
 - **改进方法句柄（Method Handle）**：方法句柄从 Java7 开始引入，Java9 在类`java.lang.invoke.MethodHandles` 中新增了更多的静态方法来创建不同类型的方法句柄。
-- ......
+- ……
 
 ## 参考
 

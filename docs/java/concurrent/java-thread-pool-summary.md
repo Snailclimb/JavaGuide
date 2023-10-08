@@ -315,7 +315,7 @@ public class ThreadPoolExecutorDemo {
 
 **输出结构**：
 
-```
+```plain
 pool-1-thread-3 Start. Time = Sun Apr 12 11:14:37 CST 2020
 pool-1-thread-5 Start. Time = Sun Apr 12 11:14:37 CST 2020
 pool-1-thread-2 Start. Time = Sun Apr 12 11:14:37 CST 2020
@@ -579,7 +579,7 @@ executorService.shutdown();
 
 输出：
 
-```
+```plain
 abc
 ```
 
@@ -604,7 +604,7 @@ executorService.shutdown();
 
 输出：
 
-```
+```plain
 Exception in thread "main" java.util.concurrent.TimeoutException
 	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
 ```

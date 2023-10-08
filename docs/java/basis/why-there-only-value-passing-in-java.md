@@ -64,7 +64,7 @@ public static void swap(int a, int b) {
 
 输出：
 
-```
+```plain
 a = 20
 b = 10
 num1 = 10
@@ -99,7 +99,7 @@ num2 = 20
 
 输出：
 
-```
+```plain
 1
 0
 ```
@@ -143,7 +143,7 @@ public static void swap(Person person1, Person person2) {
 
 输出:
 
-```
+```plain
 person1:小李
 person2:小张
 xiaoZhang:小张
@@ -184,7 +184,7 @@ int main()
 
 输出结果：
 
-```
+```plain
 invoke before: 10
 incr before: 10
 incr after: 11

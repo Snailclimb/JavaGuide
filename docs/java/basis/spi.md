@@ -58,7 +58,7 @@ SLF4J （Simple Logging Facade for Java）是 Java 的一个日志门面（接�
 
 新建一个 Java 项目 `service-provider-interface` 目录结构如下：（注意直接新建 Java 项目就好了，不用新建 Maven 项目，Maven 项目会涉及到一些编译配置，如果有私服的话，直接 deploy 会比较方便，但是没有的话，在过程中可能会遇到一些奇怪的问题。）
 
-```
+```plain
 │  service-provider-interface.iml
 │
 ├─.idea
@@ -171,7 +171,7 @@ public class Main {
 
 新建项目 `service-provider` 目录结构如下：
 
-```
+```plain
 │  service-provider.iml
 │
 ├─.idea
@@ -290,7 +290,7 @@ public class TestJavaSPI {
 
 `ServiceLoader` 是 JDK 提供的一个工具类， 位于`package java.util;`包下。
 
-```
+```plain
 A facility to load implementations of a service.
 ```
 

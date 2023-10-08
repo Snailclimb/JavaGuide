@@ -73,7 +73,7 @@ GC 调优策略中很重要的一条经验总结是这样说的：
 
 比如下面的参数就是设置老年代与新生代内存的比值为 1。也就是说老年代和新生代所占比值为 1：1，新生代占整个堆栈的 1/2。
 
-```
+```plain
 -XX:NewRatio=1
 ```
 
@@ -125,7 +125,7 @@ void MetaspaceGC::initialize() {
 }
 ```
 
-相关阅读：[issue 更正：MaxMetaspaceSize 如果不指定大小的话，不会耗尽内存 #1204 ](https://github.com/Snailclimb/JavaGuide/issues/1204) 。
+相关阅读：[issue 更正：MaxMetaspaceSize 如果不指定大小的话，不会耗尽内存 #1204](https://github.com/Snailclimb/JavaGuide/issues/1204) 。
 
 ## 3.垃圾收集相关
 

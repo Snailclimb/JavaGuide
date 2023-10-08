@@ -64,7 +64,7 @@ try (InputStream fis = new FileInputStream("input.txt")) {
 
 输出：
 
-```
+```plain
 Number of remaining bytes:11
 The actual number of bytes skipped:2
 The content read from file:JavaGuide
@@ -233,7 +233,7 @@ try (FileReader fileReader = new FileReader("input.txt");) {
 
 输出：
 
-```
+```plain
 The actual number of bytes skipped:3
 The content read from file:我是Guide。
 ```
@@ -296,7 +296,7 @@ BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputS
 
 我使用 `write(int b)` 和 `read()` 方法，分别通过字节流和字节缓冲流复制一个 `524.9 mb` 的 PDF 文件耗时对比如下：
 
-```
+```plain
 使用缓冲流复制PDF文件总耗时:15428 毫秒
 使用普通字节流复制PDF文件总耗时:2555062 毫秒
 ```
@@ -347,7 +347,7 @@ void copy_pdf_to_another_pdf_stream() {
 
 这次我们使用 `read(byte b[])` 和 `write(byte b[], int off, int len)` 方法，分别通过字节流和字节缓冲流复制一个 524.9 mb 的 PDF 文件耗时对比如下：
 
-```
+```plain
 使用缓冲流复制PDF文件总耗时:695 毫秒
 使用普通字节流复制PDF文件总耗时:989 毫秒
 ```
@@ -516,7 +516,7 @@ System.out.println("读取之前的偏移量：" + randomAccessFile.getFilePoint
 
 输出：
 
-```
+```plain
 读取之前的偏移量：0,当前读取到的字符A，读取之后的偏移量：1
 读取之前的偏移量：6,当前读取到的字符G，读取之后的偏移量：7
 读取之前的偏移量：0,当前读取到的字符A，读取之后的偏移量：1

@@ -196,7 +196,7 @@ static String formatterPatternSwitch(Object o) {
 
 Java 程序可以通过该 API 与 Java 运行时之外的代码和数据进行互操作。通过高效地调用外部函数（即 JVM 之外的代码）和安全地访问外部内存（即不受 JVM 管理的内存），该 API 使 Java 程序能够调用本机库并处理本机数据，而不会像 JNI 那样危险和脆弱。
 
-外部函数和内存 API 在 Java 17 中进行了第一轮孵化，由 [JEP 412](https://openjdk.java.net/jeps/412) 提出。Java 18 中进行了第二次孵化，由[ JEP 419](https://openjdk.org/jeps/419) 提出。Java 19 中是第一次预览，由 [JEP 424](https://openjdk.org/jeps/424) 提出。
+外部函数和内存 API 在 Java 17 中进行了第一轮孵化，由 [JEP 412](https://openjdk.java.net/jeps/412) 提出。Java 18 中进行了第二次孵化，由[JEP 419](https://openjdk.org/jeps/419) 提出。Java 19 中是第一次预览，由 [JEP 424](https://openjdk.org/jeps/424) 提出。
 
 JDK 20 中是第二次预览，由 [JEP 434](https://openjdk.org/jeps/434) 提出，这次的改进包括：
 
@@ -247,7 +247,7 @@ Java 19 引入了结构化并发，一种多线程编程方法，目的是为了
 
 结构化并发非常适合虚拟线程，虚拟线程是 JDK 实现的轻量级线程。许多虚拟线程共享同一个操作系统线程，从而允许非常多的虚拟线程。
 
-JDK 20 中对结构化并发唯一变化是更新为支持在任务范围内创建的线程`StructuredTaskScope`继承范围值 这简化了跨线程共享不可变数据，详见[JEP 429 ](https://openjdk.org/jeps/429)。
+JDK 20 中对结构化并发唯一变化是更新为支持在任务范围内创建的线程`StructuredTaskScope`继承范围值 这简化了跨线程共享不可变数据，详见[JEP 429](https://openjdk.org/jeps/429)。
 
 ## JEP 432：向量 API（第五次孵化）
 

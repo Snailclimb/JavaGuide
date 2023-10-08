@@ -777,7 +777,7 @@ public static void main(String[] args) {
 
 输出结果：
 
-```
+```plain
 a == b is false
 c == d is true
 ```

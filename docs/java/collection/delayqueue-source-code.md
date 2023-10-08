@@ -19,7 +19,7 @@ public interface Delayed extends Comparable<Delayed> {
 }
 ```
 
-默认情况下, `DelayQueue` 会按照到期时间升序编排任务。只有当元素过期时（`getDelay()`方法返回值小于等于0），才能从队列中取出。
+默认情况下, `DelayQueue` 会按照到期时间升序编排任务。只有当元素过期时（`getDelay()`方法返回值小于等于 0），才能从队列中取出。
 
 ## DelayQueue 发展史
 
@@ -353,7 +353,7 @@ public E peek() {
 
 ## 参考文献
 
-- 《深入理解高并发编程：JDK核心技术》:
-- 一口气说出Java 6种延时队列的实现方法(面试官也得服):<https://www.jb51.net/article/186192.htm>
-- 图解DelayQueue源码（java 8）——延时队列的小九九: <https://blog.csdn.net/every__day/article/details/113810985>
+- 《深入理解高并发编程：JDK 核心技术》:
+- 一口气说出 Java 6 种延时队列的实现方法(面试官也得服):<https://www.jb51.net/article/186192.htm>
+- 图解 DelayQueue 源码（java 8）——延时队列的小九九: <https://blog.csdn.net/every__day/article/details/113810985>
 <!-- @include: @article-footer.snippet.md -->

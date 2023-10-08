@@ -642,7 +642,7 @@ public class MapAndFlatMapExample {
 
 运行结果:
 
-```
+```plain
 Using map:
 [[APPLE, BANANA, CHERRY], [ORANGE, GRAPE, PEAR], [KIWI, MELON, PINEAPPLE]]
 

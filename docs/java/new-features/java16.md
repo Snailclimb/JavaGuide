@@ -69,7 +69,7 @@ public void inc(Integer count) {
 
 引入外部内存访问 API 以允许 Java 程序安全有效地访问 Java 堆之外的外部内存。
 
-Java 14([ JEP 370](https://openjdk.org/jeps/370)) 的时候，第一次孵化外部内存访问 API，Java 15 中进行了第二次复活（[JEP 383](https://openjdk.org/jeps/383)），在 Java 16 中进行了第三次孵化。
+Java 14([JEP 370](https://openjdk.org/jeps/370)) 的时候，第一次孵化外部内存访问 API，Java 15 中进行了第二次复活（[JEP 383](https://openjdk.org/jeps/383)），在 Java 16 中进行了第三次孵化。
 
 引入外部内存访问 API 的目的如下：
 

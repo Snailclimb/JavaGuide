@@ -170,7 +170,7 @@ public class Main {
 
 输出内容：
 
-```
+```plain
 publicMethod
 privateMethod
 I love JavaGuide

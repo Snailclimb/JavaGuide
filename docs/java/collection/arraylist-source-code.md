@@ -48,7 +48,7 @@ System.out.println(listOfStrings);
 
 输出：
 
-```
+```plain
 [null, java]
 ```
 
@@ -64,7 +64,7 @@ System.out.println(listOfStrings);
 
 ## ArrayList 核心源码解读
 
-这里以 JDK1.8为例，分析一下 `ArrayList` 的底层源码。
+这里以 JDK1.8 为例，分析一下 `ArrayList` 的底层源码。
 
 ```java
 public class ArrayList<E> extends AbstractList<E>
@@ -823,7 +823,7 @@ public class ArraycopyTest {
 
 结果：
 
-```
+```plain
 0 1 99 2 3 0 0 0 0 0
 ```
 
@@ -872,7 +872,7 @@ public class ArrayscopyOfTest {
 
 结果：
 
-```
+```plain
 10
 ```
 
@@ -933,7 +933,7 @@ public class EnsureCapacityTest {
 
 运行结果：
 
-```
+```plain
 使用ensureCapacity方法前：2158
 ```
 
@@ -955,7 +955,7 @@ public class EnsureCapacityTest {
 
 运行结果：
 
-```
+```plain
 使用ensureCapacity方法后：1773
 ```
 

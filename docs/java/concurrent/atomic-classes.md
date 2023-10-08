@@ -257,7 +257,7 @@ class Person {
 
 上述代码首先创建了一个 `Person` 对象，然后把 `Person` 对象设置进 `AtomicReference` 对象中，然后调用 `compareAndSet` 方法，该方法就是通过 CAS 操作设置 ar。如果 ar 的值为 `person` 的话，则将其设置为 `updatePerson`。实现原理与 `AtomicInteger` 类中的 `compareAndSet` 方法相同。运行上面的代码后的输出结果如下：
 
-```
+```plain
 Daisy
 20
 ```
@@ -312,7 +312,7 @@ public class AtomicStampedReferenceDemo {
 
 输出结果如下：
 
-```
+```plain
 currentValue=0, currentStamp=0
 currentValue=666, currentStamp=999, casResult=true
 currentValue=666, currentStamp=999
@@ -371,7 +371,7 @@ public class AtomicMarkableReferenceDemo {
 
 输出结果如下：
 
-```
+```plain
 currentValue=null, currentMark=false
 currentValue=true, currentMark=true, casResult=true
 currentValue=true, currentMark=true
@@ -438,7 +438,7 @@ class User {
 
 输出结果：
 
-```
+```plain
 22
 23
 ```

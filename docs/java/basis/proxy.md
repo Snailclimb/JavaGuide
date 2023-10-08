@@ -248,7 +248,7 @@ smsService.send("java");
 
 运行上述代码之后，控制台打印出：
 
-```
+```plain
 before method send
 send message:java
 after method send
