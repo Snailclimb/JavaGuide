@@ -18,6 +18,8 @@ JDK 21 共有 15 个新特性：
 
 - [JEP 440：Record Patterns（记录模式）](https://openjdk.org/jeps/440)
 
+- [JEP 444：Virtual Threads（虚拟线程）](https://openjdk.org/jeps/444)
+
 ## JEP 430：字符串模板（预览）
 
 String Templates(字符串模板)  目前仍然是 JDK 21 中的一个预览功能。
@@ -141,6 +143,14 @@ java -XX:+UseZGC -XX:+ZGenerational ...
 记录模式在 Java 19 进行了第一次预览， 由 [JEP 405](https://openjdk.org/jeps/405) 提出。JDK 20 中是第二次预览，由 [JEP 432](https://openjdk.org/jeps/432) 提出。最终，记录模式在 JDK21 顺利转正。
 
 [Java 20 新特性概览](./java20.md)已经详细介绍过记录模式，这里就不重复了。
+
+## JEP 444：虚拟线程
+
+虚拟线程是一项重量级的更新，一定一定要重视！
+
+虚拟线程在 Java 19 中进行了第一次预览，由[JEP 425](https://openjdk.org/jeps/425)提出。JDK 20 中是第二次预览。最终，虚拟线程在 JDK21 顺利转正。
+
+[Java 20 新特性概览](./java20.md)已经详细介绍过虚拟线程，这里就不重复了。
 
 ## 参考
 

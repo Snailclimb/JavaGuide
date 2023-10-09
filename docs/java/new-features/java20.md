@@ -208,13 +208,21 @@ JDK 20 中是第二次预览，由 [JEP 434](https://openjdk.org/jeps/434) 提�
 
 ## JEP 436: 虚拟线程（第二次预览）
 
-虚拟线程（Virtual Thread-）是 JDK 而不是 OS 实现的轻量级线程(Lightweight Process，LWP），许多虚拟线程共享同一个操作系统线程，虚拟线程的数量可以远大于操作系统线程的数量。
+虚拟线程（Virtual Thread）是 JDK 而不是 OS 实现的轻量级线程(Lightweight Process，LWP），由 JVM 调度。许多虚拟线程共享同一个操作系统线程，虚拟线程的数量可以远大于操作系统线程的数量。
+
+在引入虚拟线程之前，`java.lang.Thread` 包已经支持所谓的平台线程，也就是没有虚拟线程之前，我们一直使用的线程。JVM 调度程序通过平台线程（载体线程）来管理虚拟线程，一个平台线程可以在不同的时间执行不同的虚拟线程（多个虚拟线程挂载在一个平台线程上），当虚拟线程被阻塞或等待时，平台线程可以切换到执行另一个虚拟线程。
+
+虚拟线程、平台线程和系统内核线程的关系图如下所示（图源：[How to Use Java 19 Virtual Threads](https://medium.com/javarevisited/how-to-use-java-19-virtual-threads-c16a32bad5f7)）：
+
+![虚拟线程、平台线程和系统内核线程的关系](https://oss.javaguide.cn/github/javaguide/java/new-features/virtual-threads-platform-threads-kernel-threads-relationship.png)
+
+关于平台线程和系统内核线程的对应关系多提一点：在 Windows 和 Linux 等主流操作系统中，Java 线程采用的是一对一的线程模型，也就是一个平台线程对应一个系统内核线程。Solaris 系统是一个特例，HotSpot VM 在 Solaris 上支持多对多和一对一。具体可以参考 R 大的回答: [JVM 中的线程模型是用户级的么？](https://www.zhihu.com/question/23096638/answer/29617153)。
+
+相比较于平台线程来说，虚拟线程是廉价且轻量级的，使用完后立即被销毁，因此它们不需要被重用或池化，每个任务可以有自己专属的虚拟线程来运行。虚拟线程暂停和恢复来实现线程之间的切换，避免了上下文切换的额外耗费，兼顾了多线程的优点，简化了高并发程序的复杂，可以有效减少编写、维护和观察高吞吐量并发应用程序的工作量。
 
 虚拟线程在其他多线程语言中已经被证实是十分有用的，比如 Go 中的 Goroutine、Erlang 中的进程。
 
-虚拟线程避免了上下文切换的额外耗费，兼顾了多线程的优点，简化了高并发程序的复杂，可以有效减少编写、维护和观察高吞吐量并发应用程序的工作量。
-
-知乎有一个关于 Java 19 虚拟线程的讨论，感兴趣的可以去看看：https://www.zhihu.com/question/536743167 。
+知乎有一个关于 Java 19 虚拟线程的讨论，感兴趣的可以去看看：<https://www.zhihu.com/question/536743167> 。
 
 Java 虚拟线程的详细解读和原理可以看下面这两篇文章：
 
@@ -222,6 +230,49 @@ Java 虚拟线程的详细解读和原理可以看下面这两篇文章：
 - [虚拟线程 - VirtualThread 源码透视](https://www.cnblogs.com/throwable/p/16758997.html)
 
 虚拟线程在 Java 19 中进行了第一次预览，由[JEP 425](https://openjdk.org/jeps/425)提出。JDK 20 中是第二次预览，做了一些细微变化，这里就不细提了。
+
+最后，我们来看一下四种创建虚拟线程的方法：
+
+```java
+// 1、通过 Thread.ofVirtual() 创建
+Runnable fn = () -> {
+  // your code here
+};
+
+Thread thread = Thread.ofVirtual(fn)
+                      .start();
+
+// 2、通过 Thread.startVirtualThread() 、创建
+Thread thread = Thread.startVirtualThread(() -> {
+  // your code here
+});
+
+// 3、通过 Executors.newVirtualThreadPerTaskExecutor() 创建
+var executorService = Executors.newVirtualThreadPerTaskExecutor();
+
+executorService.submit(() -> {
+  // your code here
+});
+
+//
+class CustomThread implements Runnable {
+  @Override
+  public void run() {
+    System.out.println("CustomThread run");
+  }
+}
+
+//4、通过 ThreadFactory 创建
+CustomThread customThread = new CustomThread();
+// 获取线程工厂类
+ThreadFactory factory = Thread.ofVirtual().factory();
+// 创建虚拟线程
+Thread thread = factory.newThread(customThread);
+// 启动线程
+thread.start(); 
+```
+
+通过上述列举的 4 种创建虚拟线程的方式可以看出，官方为了降低虚拟线程的门槛，尽力复用原有的 `Thread` 线程类，这样可以平滑的过渡到虚拟线程的使用。
 
 ## JEP 437: 结构化并发(第二次孵化)
 
