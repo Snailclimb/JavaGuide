@@ -330,7 +330,7 @@ System.out.println("total mem=" + Runtime.getRuntime().totalMemory() / 1024.0 / 
 
 设置一个 VM options 的参数
 
-```
+```plain
 -Xmx20m -Xms5m -XX:+PrintGCDetails
 ```
 
@@ -385,7 +385,7 @@ System.out.println("total mem=" + Runtime.getRuntime().totalMemory() / 1024.0 / 
 
 ### 4.2 调整新生代和老年代的比值
 
-```
+```plain
 -XX:NewRatio --- 新生代（eden+2\*Survivor）和老年代（不包含永久区）的比值
 
 例如：-XX:NewRatio=4，表示新生代:老年代=1:4，即新生代占整个堆的 1/5。在 Xms=Xmx 并且设置了 Xmn 的情况下，该参数不需要进行设置。
@@ -393,7 +393,7 @@ System.out.println("total mem=" + Runtime.getRuntime().totalMemory() / 1024.0 / 
 
 ### 4.3 调整 Survivor 区和 Eden 区的比值
 
-```
+```plain
 -XX:SurvivorRatio（幸存代）--- 设置两个 Survivor 区和 eden 的比值
 
 例如：8，表示两个 Survivor:eden=2:8，即一个 Survivor 占年轻代的 1/10
@@ -401,7 +401,7 @@ System.out.println("total mem=" + Runtime.getRuntime().totalMemory() / 1024.0 / 
 
 ### 4.4 设置年轻代和老年代的大小
 
-```
+```plain
 -XX:NewSize --- 设置年轻代大小
 -XX:MaxNewSize --- 设置年轻代最大值
 ```
@@ -414,7 +414,7 @@ System.out.println("total mem=" + Runtime.getRuntime().totalMemory() / 1024.0 / 
 
 在 OOM 时，记得 Dump 出堆，确保可以排查现场问题，通过下面命令你可以输出一个.dump 文件，这个文件可以使用 VisualVM 或者 Java 自带的 Java VisualVM 工具。
 
-```
+```plain
 -Xmx20m -Xms5m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=你要输出的日志路径
 ```
 
@@ -422,7 +422,7 @@ System.out.println("total mem=" + Runtime.getRuntime().totalMemory() / 1024.0 / 
 
 ### 4.6 永久区的设置
 
-```
+```plain
 -XX:PermSize -XX:MaxPermSize
 ```
 
@@ -440,7 +440,7 @@ JDK5.0 以后每个线程堆栈大小为 1M，以前每个线程堆栈大小为 
 
 #### 4.7.2 设置线程栈的大小
 
-```
+```plain
 -XXThreadStackSize：
 设置线程栈的大小(0 means use default stack size)
 ```
@@ -453,75 +453,75 @@ JDK5.0 以后每个线程堆栈大小为 1M，以前每个线程堆栈大小为 
 
 #### 4.8.1 设置内存页的大小
 
-```
+```plain
 -XXThreadStackSize：
 设置内存页的大小，不可设置过大，会影响Perm的大小
 ```
 
 #### 4.8.2 设置原始类型的快速优化
 
-```
+```plain
 -XX:+UseFastAccessorMethods：
 设置原始类型的快速优化
 ```
 
 #### 4.8.3 设置关闭手动 GC
 
-```
+```plain
 -XX:+DisableExplicitGC：
 设置关闭System.gc()(这个参数需要严格的测试)
 ```
 
 #### 4.8.4 设置垃圾最大年龄
 
-```
+```plain
 -XX:MaxTenuringThreshold
 设置垃圾最大年龄。如果设置为0的话,则年轻代对象不经过Survivor区,直接进入年老代.对于年老代比较多的应用,可以提高效率。如果将此值设置为一个较大值,则年轻代对象会在Survivor区进行多次复制,这样可以增加对象再年轻代的存活时间,加在年轻代即被回收的概率。该参数只有在串行GC时才有效.
 ```
 
 #### 4.8.5 加快编译速度
 
-```
+```plain
 -XX:+AggressiveOpts
 加快编译速度
 ```
 
 #### 4.8.6 改善锁机制性能
 
-```
+```plain
 -XX:+UseBiasedLocking
 ```
 
 #### 4.8.7 禁用垃圾回收
 
-```
+```plain
 -Xnoclassgc
 ```
 
 #### 4.8.8 设置堆空间存活时间
 
-```
+```plain
 -XX:SoftRefLRUPolicyMSPerMB
 设置每兆堆空闲空间中SoftReference的存活时间，默认值是1s。
 ```
 
 #### 4.8.9 设置对象直接分配在老年代
 
-```
+```plain
 -XX:PretenureSizeThreshold
 设置对象超过多大时直接在老年代分配，默认值是0。
 ```
 
 #### 4.8.10 设置 TLAB 占 eden 区的比例
 
-```
+```plain
 -XX:TLABWasteTargetPercent
 设置TLAB占eden区的百分比，默认值是1% 。
 ```
 
 #### 4.8.11 设置是否优先 YGC
 
-```
+```plain
 -XX:+CollectGen0First
 设置FullGC时是否先YGC，默认值是false。
 ```
