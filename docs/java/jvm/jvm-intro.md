@@ -198,8 +198,10 @@ JVM 内存会划分为堆内存和非堆内存，堆内存中也会划分为**�
 
 堆内存中存放的是对象，垃圾收集就是收集这些对象然后交给 GC 算法进行回收。非堆内存其实我们已经说过了，就是方法区。在 1.8 中已经移除永久代，替代品是一个元空间(MetaSpace)，最大区别是 metaSpace 是不存在于 JVM 中的，它使用的是本地内存。并有两个参数
 
-    MetaspaceSize：初始化元空间大小，控制发生GC
-    MaxMetaspaceSize：限制元空间大小上限，防止占用过多物理内存。
+```plain
+MetaspaceSize：初始化元空间大小，控制发生GC
+MaxMetaspaceSize：限制元空间大小上限，防止占用过多物理内存。
+```
 
 移除的原因可以大致了解一下：融合 HotSpot JVM 和 JRockit VM 而做出的改变，因为 JRockit 是没有永久代的，不过这也间接性地解决了永久代的 OOM 问题。
 
@@ -264,7 +266,7 @@ finalize()是 Object 类的一个方法、一个对象的 finalize()方法只会
 
 ### 3.4 垃圾回收算法
 
-关于常见垃圾回收算法的详细介绍，建议阅读这篇：[JVM垃圾回收详解（重点）](https://javaguide.cn/java/jvm/jvm-garbage-collection.html)。
+关于常见垃圾回收算法的详细介绍，建议阅读这篇：[JVM 垃圾回收详解（重点）](https://javaguide.cn/java/jvm/jvm-garbage-collection.html)。
 
 ### 3.5 （了解）各种各样的垃圾回收器
 
@@ -328,7 +330,9 @@ System.out.println("total mem=" + Runtime.getRuntime().totalMemory() / 1024.0 / 
 
 设置一个 VM options 的参数
 
-    -Xmx20m -Xms5m -XX:+PrintGCDetails
+```
+-Xmx20m -Xms5m -XX:+PrintGCDetails
+```
 
 ![](https://static001.geekbang.org/infoq/7e/7ea0bf0dec20e44bf95128c571d6ef0e.png)
 
@@ -381,21 +385,26 @@ System.out.println("total mem=" + Runtime.getRuntime().totalMemory() / 1024.0 / 
 
 ### 4.2 调整新生代和老年代的比值
 
+```
 -XX:NewRatio --- 新生代（eden+2\*Survivor）和老年代（不包含永久区）的比值
 
 例如：-XX:NewRatio=4，表示新生代:老年代=1:4，即新生代占整个堆的 1/5。在 Xms=Xmx 并且设置了 Xmn 的情况下，该参数不需要进行设置。
+```
 
 ### 4.3 调整 Survivor 区和 Eden 区的比值
 
+```
 -XX:SurvivorRatio（幸存代）--- 设置两个 Survivor 区和 eden 的比值
 
 例如：8，表示两个 Survivor:eden=2:8，即一个 Survivor 占年轻代的 1/10
+```
 
 ### 4.4 设置年轻代和老年代的大小
 
+```
 -XX:NewSize --- 设置年轻代大小
-
 -XX:MaxNewSize --- 设置年轻代最大值
+```
 
 可以通过设置不同参数来测试不同的情况，反正最优解当然就是官方的 Eden 和 Survivor 的占比为 8:1:1，然后在刚刚介绍这些参数的时候都已经附带了一些说明，感兴趣的也可以看看。反正最大堆内存和最小堆内存如果数值不同会导致多次的 gc，需要注意。
 
@@ -405,13 +414,17 @@ System.out.println("total mem=" + Runtime.getRuntime().totalMemory() / 1024.0 / 
 
 在 OOM 时，记得 Dump 出堆，确保可以排查现场问题，通过下面命令你可以输出一个.dump 文件，这个文件可以使用 VisualVM 或者 Java 自带的 Java VisualVM 工具。
 
-    -Xmx20m -Xms5m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=你要输出的日志路径
+```
+-Xmx20m -Xms5m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=你要输出的日志路径
+```
 
 一般我们也可以通过编写脚本的方式来让 OOM 出现时给我们报个信，可以通过发送邮件或者重启程序等来解决。
 
 ### 4.6 永久区的设置
 
-    -XX:PermSize -XX:MaxPermSize
+```
+-XX:PermSize -XX:MaxPermSize
+```
 
 初始空间（默认为物理内存的 1/64）和最大空间（默认为物理内存的 1/4）。也就是说，jvm 启动时，永久区一开始就占用了 PermSize 大小的空间，如果空间还不够，可以继续扩展，但是不能超过 MaxPermSize，否则会 OOM。
 
@@ -427,8 +440,10 @@ JDK5.0 以后每个线程堆栈大小为 1M，以前每个线程堆栈大小为 
 
 #### 4.7.2 设置线程栈的大小
 
-    -XXThreadStackSize：
-        设置线程栈的大小(0 means use default stack size)
+```
+-XXThreadStackSize：
+设置线程栈的大小(0 means use default stack size)
+```
 
 这些参数都是可以通过自己编写程序去简单测试的，这里碍于篇幅问题就不再提供 demo 了
 
@@ -438,60 +453,78 @@ JDK5.0 以后每个线程堆栈大小为 1M，以前每个线程堆栈大小为 
 
 #### 4.8.1 设置内存页的大小
 
-    -XXThreadStackSize：
-        设置内存页的大小，不可设置过大，会影响Perm的大小
+```
+-XXThreadStackSize：
+设置内存页的大小，不可设置过大，会影响Perm的大小
+```
 
 #### 4.8.2 设置原始类型的快速优化
 
-    -XX:+UseFastAccessorMethods：
-        设置原始类型的快速优化
+```
+-XX:+UseFastAccessorMethods：
+设置原始类型的快速优化
+```
 
 #### 4.8.3 设置关闭手动 GC
 
-    -XX:+DisableExplicitGC：
-        设置关闭System.gc()(这个参数需要严格的测试)
+```
+-XX:+DisableExplicitGC：
+设置关闭System.gc()(这个参数需要严格的测试)
+```
 
 #### 4.8.4 设置垃圾最大年龄
 
-    -XX:MaxTenuringThreshold
-        设置垃圾最大年龄。如果设置为0的话,则年轻代对象不经过Survivor区,直接进入年老代.
-        对于年老代比较多的应用,可以提高效率。如果将此值设置为一个较大值,
-        则年轻代对象会在Survivor区进行多次复制,这样可以增加对象再年轻代的存活时间,
-        增加在年轻代即被回收的概率。该参数只有在串行GC时才有效.
+```
+-XX:MaxTenuringThreshold
+设置垃圾最大年龄。如果设置为0的话,则年轻代对象不经过Survivor区,直接进入年老代.对于年老代比较多的应用,可以提高效率。如果将此值设置为一个较大值,则年轻代对象会在Survivor区进行多次复制,这样可以增加对象再年轻代的存活时间,加在年轻代即被回收的概率。该参数只有在串行GC时才有效.
+```
 
 #### 4.8.5 加快编译速度
 
-    -XX:+AggressiveOpts
-
+```
+-XX:+AggressiveOpts
 加快编译速度
+```
 
 #### 4.8.6 改善锁机制性能
 
-    -XX:+UseBiasedLocking
+```
+-XX:+UseBiasedLocking
+```
 
 #### 4.8.7 禁用垃圾回收
 
-    -Xnoclassgc
+```
+-Xnoclassgc
+```
 
 #### 4.8.8 设置堆空间存活时间
 
-    -XX:SoftRefLRUPolicyMSPerMB
-        设置每兆堆空闲空间中SoftReference的存活时间，默认值是1s。
+```
+-XX:SoftRefLRUPolicyMSPerMB
+设置每兆堆空闲空间中SoftReference的存活时间，默认值是1s。
+```
 
 #### 4.8.9 设置对象直接分配在老年代
 
-    -XX:PretenureSizeThreshold
-        设置对象超过多大时直接在老年代分配，默认值是0。
+```
+-XX:PretenureSizeThreshold
+设置对象超过多大时直接在老年代分配，默认值是0。
+```
 
 #### 4.8.10 设置 TLAB 占 eden 区的比例
 
-    -XX:TLABWasteTargetPercent
-        设置TLAB占eden区的百分比，默认值是1% 。
+```
+-XX:TLABWasteTargetPercent
+设置TLAB占eden区的百分比，默认值是1% 。
+```
 
 #### 4.8.11 设置是否优先 YGC
 
-    -XX:+CollectGen0First
-        设置FullGC时是否先YGC，默认值是false。
+```
+-XX:+CollectGen0First
+设置FullGC时是否先YGC，默认值是false。
+```
 
 ## finally
 

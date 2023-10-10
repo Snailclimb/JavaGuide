@@ -304,8 +304,8 @@ MyBatis 提供了 9 种动态 sql 标签:
 
 ### 文章推荐
 
-- [2W字全面剖析Mybatis中的9种设计模式](https://juejin.cn/post/7273516671574687759)
-- [从零开始实现一个MyBatis加解密插件](https://mp.weixin.qq.com/s/WUEAdFDwZsZ4EKO8ix0ijg)
-- [MyBatis最全使用指南](https://juejin.cn/post/7051910683264286750)
-- [脑洞打开！第一次看到这样使用MyBatis的，看得我一愣一愣的。](https://juejin.cn/post/7269390456530190376)
-- [MyBatis居然也有并发问题](https://juejin.cn/post/7264921613551730722)
+- [2W 字全面剖析 Mybatis 中的 9 种设计模式](https://juejin.cn/post/7273516671574687759)
+- [从零开始实现一个 MyBatis 加解密插件](https://mp.weixin.qq.com/s/WUEAdFDwZsZ4EKO8ix0ijg)
+- [MyBatis 最全使用指南](https://juejin.cn/post/7051910683264286750)
+- [脑洞打开！第一次看到这样使用 MyBatis 的，看得我一愣一愣的。](https://juejin.cn/post/7269390456530190376)
+- [MyBatis 居然也有并发问题](https://juejin.cn/post/7264921613551730722)

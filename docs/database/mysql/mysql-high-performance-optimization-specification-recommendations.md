@@ -140,11 +140,11 @@ MySQL 内存临时表不支持 TEXT、BLOB 这样的大数据类型，如果查�
 
 | 类型         | 存储空间 | 日期格式                       | 日期范围                                                     | 是否带时区信息 |
 | ------------ | -------- | ------------------------------ | ------------------------------------------------------------ | -------------- |
-| DATETIME     | 5~8字节  | YYYY-MM-DD hh:mm:ss[.fraction] | 1000-01-01 00:00:00[.000000] ～ 9999-12-31 23:59:59[.999999] | 否             |
-| TIMESTAMP    | 4~7字节  | YYYY-MM-DD hh:mm:ss[.fraction] | 1970-01-01 00:00:01[.000000] ～ 2038-01-19 03:14:07[.999999] | 是             |
-| 数值型时间戳 | 4字节    | 全数字如1578707612             | 1970-01-01 00:00:01之后的时间                                | 否             |
+| DATETIME     | 5~8 字节  | YYYY-MM-DD hh:mm:ss[.fraction] | 1000-01-01 00:00:00[.000000] ～ 9999-12-31 23:59:59[.999999] | 否             |
+| TIMESTAMP    | 4~7 字节  | YYYY-MM-DD hh:mm:ss[.fraction] | 1970-01-01 00:00:01[.000000] ～ 2038-01-19 03:14:07[.999999] | 是             |
+| 数值型时间戳 | 4 字节    | 全数字如 1578707612             | 1970-01-01 00:00:01 之后的时间                                | 否             |
 
-MySQL 时间类型选择的详细介绍请看这篇：[MySQL时间类型数据存储建议](https://javaguide.cn/database/mysql/some-thoughts-on-database-storage-time.html)。
+MySQL 时间类型选择的详细介绍请看这篇：[MySQL 时间类型数据存储建议](https://javaguide.cn/database/mysql/some-thoughts-on-database-storage-time.html)。
 
 ### 同财务相关的金额类数据必须使用 decimal 类型
 
@@ -383,7 +383,7 @@ pt-online-schema-change 它会首先建立一个与原表结构相同的新表�
 
 ## 推荐阅读
 
-- [技术同学必会的MySQL设计规约，都是惨痛的教训 - 阿里开发者](https://mp.weixin.qq.com/s/XC8e5iuQtfsrEOERffEZ-Q)
-- [聊聊数据库建表的15个小技巧](https://mp.weixin.qq.com/s/NM-aHaW6TXrnO6la6Jfl5A)
+- [技术同学必会的 MySQL 设计规约，都是惨痛的教训 - 阿里开发者](https://mp.weixin.qq.com/s/XC8e5iuQtfsrEOERffEZ-Q)
+- [聊聊数据库建表的 15 个小技巧](https://mp.weixin.qq.com/s/NM-aHaW6TXrnO6la6Jfl5A)
 
 <!-- @include: @article-footer.snippet.md -->

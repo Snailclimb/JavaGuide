@@ -53,11 +53,11 @@ HTTP/1.1 的缓存机制在 HTTP/1.0 的基础上，大大增加了灵活性和�
 
 ## Host 头处理
 
-域名系统（DNS）允许多个主机名绑定到同一个 IP 地址上，但是 HTTP/1.0 并没有考虑这个问题，假设我们有一个资源 URL 是http://example1.org/home.html，HTTP/1.0的请求报文中，将会请求的是`GET /home.html HTTP/1.0`.也就是不会加入主机名。这样的报文送到服务器端，服务器是理解不了客户端想请求的真正网址。
+域名系统（DNS）允许多个主机名绑定到同一个 IP 地址上，但是 HTTP/1.0 并没有考虑这个问题，假设我们有一个资源 URL 是http://example1.org/home.html，HTTP/1.0 的请求报文中，将会请求的是`GET /home.html HTTP/1.0`.也就是不会加入主机名。这样的报文送到服务器端，服务器是理解不了客户端想请求的真正网址。
 
 因此，HTTP/1.1 在请求头中加入了`Host`字段。加入`Host`字段的报文头部将会是:
 
-```
+```plain
 GET /home.html HTTP/1.1
 Host: example1.org
 ```

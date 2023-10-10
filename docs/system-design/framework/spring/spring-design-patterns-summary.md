@@ -340,13 +340,13 @@ Spring 框架中用到了哪些设计模式？
 - **包装器设计模式** : 我们的项目需要连接多个数据库，而且不同的客户在每次访问中根据需要会去访问不同的数据库。这种模式让我们可以根据客户的需求能够动态切换不同的数据源。
 - **观察者模式:** Spring 事件驱动模型就是观察者模式很经典的一个应用。
 - **适配器模式** :Spring AOP 的增强或通知(Advice)使用到了适配器模式、spring MVC 中也是用到了适配器模式适配`Controller`。
-- ......
+- ……
 
 ## 参考
 
 - 《Spring 技术内幕》
 - <https://blog.eduonix.com/java-programming-2/learn-design-patterns-used-spring-framework/>
-- <http://blog.yeamin.top/2018/03/27/单例模式-Spring单例实现原理分析/>
+- <http://blog.yeamin.top/2018/03/27/单例模式-Spring 单例实现原理分析/>
 - <https://www.tutorialsteacher.com/ioc/inversion-of-control>
 - <https://design-patterns.readthedocs.io/zh_CN/latest/behavioral_patterns/observer.html>
 - <https://juejin.im/post/5a8eb261f265da4e9e307230>

@@ -132,7 +132,7 @@ Spring 时代我们一般通过 XML 文件来配置 Bean，后来开发人员觉
 相关阅读： 
 
 - [IoC 源码阅读](https://javadoop.com/post/spring-ioc)
-- [IoC & AOP详解（快速搞懂）](./ioc-and-aop.md)
+- [IoC & AOP 详解（快速搞懂）](./ioc-and-aop.md)
 
 ### 什么是 Spring Bean？
 
@@ -547,7 +547,7 @@ public class GlobalExceptionHandler {
 - **包装器设计模式** : 我们的项目需要连接多个数据库，而且不同的客户在每次访问中根据需要会去访问不同的数据库。这种模式让我们可以根据客户的需求能够动态切换不同的数据源。
 - **观察者模式:** Spring 事件驱动模型就是观察者模式很经典的一个应用。
 - **适配器模式** : Spring AOP 的增强或通知(Advice)使用到了适配器模式、spring MVC 中也是用到了适配器模式适配`Controller`。
-- ......
+- ……
 
 ## Spring 事务
 
@@ -716,7 +716,7 @@ public abstract class AbstractAuditBase {
 
 ### 实体之间的关联关系注解有哪些？
 
-- `@OneToOne ` : 一对一。
+- `@OneToOne` : 一对一。
 - `@ManyToMany`：多对多。
 - `@OneToMany` : 一对多。
 - `@ManyToOne`：多对一。
@@ -737,7 +737,7 @@ Spring Security 重要的是实战，这里仅对小部分知识点进行总结�
 - `authenticated()`：只允许已认证的用户访问。
 - `fullyAuthenticated()`：只允许已经登录或者通过 remember-me 登录的用户访问。
 - `hasRole(String)` : 只允许指定的角色访问。
-- `hasAnyRole(String)	` : 指定一个或者多个角色，满足其一的用户即可访问。
+- `hasAnyRole(String)` : 指定一个或者多个角色，满足其一的用户即可访问。
 - `hasAuthority(String)`：只允许具有指定权限的用户访问
 - `hasAnyAuthority(String)`：指定一个或者多个权限，满足其一的用户即可访问。
 - `hasIpAddress(String)` : 只允许指定 ip 的用户访问。

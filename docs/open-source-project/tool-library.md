@@ -30,7 +30,7 @@ icon: codelibrary-fill
 
 ### PDF
 
-- [x-easypdf](https://gitee.com/dromara/x-easypdf)：一个用搭积木的方式构建 PDF 的框架（基于pdfbox/fop），支持 PDF 导出和编辑。
+- [x-easypdf](https://gitee.com/dromara/x-easypdf)：一个用搭积木的方式构建 PDF 的框架（基于 pdfbox/fop），支持 PDF 导出和编辑。
 - [pdfbox](https://github.com/apache/pdfbox) :用于处理 PDF 文档的开放源码 Java 工具。该项目允许创建新的 PDF 文档、对现有文档进行操作以及从文档中提取内容。PDFBox 还包括几个命令行实用程序。PDFBox 是在 Apache 2.0 版许可下发布的。
 - [OpenPDF](https://github.com/LibrePDF/OpenPDF)：OpenPDF 是一个免费的 Java 库，用于使用 LGPL 和 MPL 开源许可创建和编辑 PDF 文件。OpenPDF 基于 iText 的一个分支。
 - [itext7](https://github.com/itext/itext7)：iText 7 代表了想要利用利用好 PDF 的开发人员的更高级别的 sdk。iText 7 配备了更好的文档引擎、高级和低级编程功能以及创建、编辑和增强 PDF 文档的能力，几乎对每个工作流都有好处。
@@ -57,4 +57,4 @@ icon: codelibrary-fill
 
 - [oshi](https://github.com/oshi/oshi "oshi")：一款为 Java 语言提供的基于 JNA 的（本机）操作系统和硬件信息库。
 - [ip2region](https://github.com/lionsoul2014/ip2region) :最自由的 ip 地址查询库，ip 到地区的映射库，提供 Binary,B 树和纯内存三种查询算法，妈妈再也不用担心我的 ip 地址定位。
-- [agrona](https://github.com/real-logic/agrona)：Java 高性能数据结构（`Buffers`、`Lists`、`Maps`、`Scalable Timer Wheel`......）和实用方法。
+- [agrona](https://github.com/real-logic/agrona)：Java 高性能数据结构（`Buffers`、`Lists`、`Maps`、`Scalable Timer Wheel`……）和实用方法。

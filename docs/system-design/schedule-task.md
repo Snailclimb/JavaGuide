@@ -20,7 +20,7 @@ head:
 3. 某媒体聚合平台，每 10 分钟动态抓取某某网站的数据为自己所用。
 4. 某博客平台，支持定时发送文章。
 5. 某基金平台，每晚定时计算用户当日收益情况并推送给用户最新的数据。
-6. ......
+6. ……
 
 这些场景往往都要求我们在某个特定的时间去做某个事情，也就是定时或者延时去做某个事情。
 
@@ -360,14 +360,14 @@ public ReturnT<String> myAnnotationJobHandler(String param) throws Exception {
 |                | QuartZ                                     | xxl-job                                  | SchedulerX 2.0                                    | PowerJob                                                     |
 | -------------- | ------------------------------------------ | ---------------------------------------- | ------------------------------------------------- | ------------------------------------------------------------ |
 | 定时类型       | CRON                                       | CRON                                     | CRON、固定频率、固定延迟、OpenAPI                 | **CRON、固定频率、固定延迟、OpenAPI**                        |
-| 任务类型       | 内置Java                                   | 内置Java、GLUE Java、Shell、Python等脚本 | 内置Java、外置Java（FatJar）、Shell、Python等脚本 | **内置Java、外置Java（容器）、Shell、Python等脚本**          |
-| 分布式计算     | 无                                         | 静态分片                                 | MapReduce动态分片                                 | **MapReduce动态分片**                                        |
+| 任务类型       | 内置 Java                                   | 内置 Java、GLUE Java、Shell、Python 等脚本 | 内置 Java、外置 Java（FatJar）、Shell、Python 等脚本 | **内置 Java、外置 Java（容器）、Shell、Python 等脚本**          |
+| 分布式计算     | 无                                         | 静态分片                                 | MapReduce 动态分片                                 | **MapReduce 动态分片**                                        |
 | 在线任务治理   | 不支持                                     | 支持                                     | 支持                                              | **支持**                                                     |
 | 日志白屏化     | 不支持                                     | 支持                                     | 不支持                                            | **支持**                                                     |
 | 调度方式及性能 | 基于数据库锁，有性能瓶颈                   | 基于数据库锁，有性能瓶颈                 | 不详                                              | **无锁化设计，性能强劲无上限**                               |
 | 报警监控       | 无                                         | 邮件                                     | 短信                                              | **WebHook、邮件、钉钉与自定义扩展**                          |
-| 系统依赖       | JDBC支持的关系型数据库（MySQL、Oracle...） | MySQL                                    | 人民币                                            | **任意Spring Data Jpa支持的关系型数据库（MySQL、Oracle...）** |
-| DAG工作流      | 不支持                                     | 不支持                                   | 支持                                              | **支持**                                                     |
+| 系统依赖       | JDBC 支持的关系型数据库（MySQL、Oracle...） | MySQL                                    | 人民币                                            | **任意 Spring Data Jpa 支持的关系型数据库（MySQL、Oracle...）** |
+| DAG 工作流      | 不支持                                     | 不支持                                   | 支持                                              | **支持**                                                     |
 
 ## 定时任务方案总结
 

@@ -25,7 +25,7 @@ category: 代码质量
 
 1. 你通过某电商网站搜索某某商品，电商网站的前端就调用了后端提供了搜索商品相关的 API。
 2. 你使用 JDK 开发 Java 程序，想要读取用户的输入的话，你就需要使用 JDK 提供的 IO 相关的 API。
-3. ......
+3. ……
 
 你可以把 API 理解为程序与程序之间通信的桥梁，其本质就是一个函数而已。另外，API 的使用也不是没有章法的，它的规则由（比如数据输入和输出的格式）API 提供方制定。
 
@@ -37,7 +37,7 @@ category: 代码质量
 
 举个例子，如果我给你下面两个 API 你是不是立马能知道它们是干什么用的！这就是 RESTful API 的强大之处！
 
-```
+```plain
 GET    /classes：列出所有班级
 POST   /classes：新建一个班级
 ```
@@ -87,7 +87,7 @@ POST   /classes：新建一个班级
 
 Talk is cheap！来举个实际的例子来说明一下吧！现在有这样一个 API 提供班级（class）的信息，还包括班级中的学生和教师的信息，则它的路径应该设计成下面这样。
 
-```
+```plain
 GET    /classes：列出所有班级
 POST   /classes：新建一个班级
 GET    /classes/{classId}：获取某个指定班级的信息
@@ -101,7 +101,7 @@ DELETE /classes/{classId}/teachers/{ID}：删除某个指定班级下的指定�
 
 反例：
 
-```
+```plain
 /getAllclasses
 /createNewclass
 /deleteAllActiveclasses
@@ -113,13 +113,13 @@ DELETE /classes/{classId}/teachers/{ID}：删除某个指定班级下的指定�
 
 如果我们在查询的时候需要添加特定条件的话，建议使用 url 参数的形式。比如我们要查询 state 状态为 active 并且 name 为 guidegege 的班级：
 
-```
+```plain
 GET    /classes?state=active&name=guidegege
 ```
 
 比如我们要实现分页查询：
 
-```
+```plain
 GET    /classes?page=1&size=10 //指定第1页，每页10个数据
 ```
 

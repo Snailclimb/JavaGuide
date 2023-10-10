@@ -81,14 +81,14 @@ str.toString().replace(" ","%20");
 
 示例 1:
 
-```
+```plain
 输入: ["flower","flow","flight"]
 输出: "fl"
 ```
 
 示例 2:
 
-```
+```plain
 输入: ["dog","racecar","car"]
 输出: ""
 解释: 输入不存在公共前缀。
@@ -163,7 +163,7 @@ public class Main {
 
 示例 1:
 
-```
+```plain
 输入:
 "abccccdd"
 
@@ -210,14 +210,14 @@ class Solution {
 
 示例 1:
 
-```
+```plain
 输入: "A man, a plan, a canal: Panama"
 输出: true
 ```
 
 示例 2:
 
-```
+```plain
 输入: "race a car"
 输出: false
 ```
@@ -254,7 +254,7 @@ class Solution {
 
 示例 1：
 
-```
+```plain
 输入: "babad"
 输出: "bab"
 注意: "aba"也是一个有效答案。
@@ -262,7 +262,7 @@ class Solution {
 
 示例 2：
 
-```
+```plain
 输入: "cbbd"
 输出: "bb"
 ```
@@ -307,7 +307,7 @@ class Solution {
 
 示例 1:
 
-```
+```plain
 输入:
 "bbbab"
 输出:
@@ -318,7 +318,7 @@ class Solution {
 
 示例 2:
 
-```
+```plain
 输入:
 "cbbd"
 输出:
@@ -367,7 +367,7 @@ class Solution {
 
 > 例如: "()()()"的深度是 1,"((()))"的深度是 3。牛牛现在给你一个合法的括号序列,需要你计算出其深度。
 
-```
+```plain
 输入描述:
 输入包括一个合法的括号序列s,s长度length(2 ≤ length ≤ 50),序列中只包含'('和')'。
 
@@ -377,7 +377,7 @@ class Solution {
 
 示例：
 
-```
+```plain
 输入:
 (())
 输出:

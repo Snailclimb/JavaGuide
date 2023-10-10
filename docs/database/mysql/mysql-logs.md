@@ -156,7 +156,7 @@ MySQL830 mysql:8.0.32
 
 现在我们来看一下启动日志：
 
-```
+```plain
 2023-08-03T02:05:11.720357Z 0 [Warning] [MY-013907] [InnoDB] Deprecated configuration parameters innodb_log_file_size and/or innodb_log_files_in_group have been used to compute innodb_redo_log_capacity=671088640. Please use innodb_redo_log_capacity instead.
 ```
 

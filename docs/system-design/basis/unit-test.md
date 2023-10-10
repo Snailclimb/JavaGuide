@@ -27,7 +27,7 @@ category: 代码质量
 
 每个开发者都会经历重构，重构后把代码改坏了的情况并不少见，很可能你只是修改了一个很简单的方法就导致系统出现了一个比较严重的错误。
 
-如果有了单元测试的话，就不会存在这个隐患了。写完一个类，把单元测试写了，确保这个类逻辑正确；写第二个类，单元测试.....写 100 个类，道理一样，每个类做到第一点“保证逻辑正确性”，100 个类拼在一起肯定不出问题。你大可以放心一边重构，一边运行 APP；而不是整体重构完，提心吊胆地 run。
+如果有了单元测试的话，就不会存在这个隐患了。写完一个类，把单元测试写了，确保这个类逻辑正确；写第二个类，单元测试……写 100 个类，道理一样，每个类做到第一点“保证逻辑正确性”，100 个类拼在一起肯定不出问题。你大可以放心一边重构，一边运行 APP；而不是整体重构完，提心吊胆地 run。
 
 ### 提高代码质量
 
@@ -41,7 +41,7 @@ category: 代码质量
 
 ### 快速定位 bug
 
-如果程序有 bug，我们运行一次全部单元测试，找到不通过的测试，可以很快地定位对应的执行代码。修复代码后，运行对应的单元测试；如还不通过，继续修改，运行测试.....直到**测试通过**。
+如果程序有 bug，我们运行一次全部单元测试，找到不通过的测试，可以很快地定位对应的执行代码。修复代码后，运行对应的单元测试；如还不通过，继续修改，运行测试……直到**测试通过**。
 
 ### 持续集成依赖单元测试
 
@@ -57,7 +57,7 @@ category: 代码质量
 
 ### 大牛都写单元测试
 
-国外很多家喻户晓的开源项目，都有大量单元测试。例如，[retrofit](https://link.jianshu.com?t=https://github.com/square/retrofit/tree/master/retrofit/src/test/java/retrofit2)、[okhttp](https://link.jianshu.com?t=https://github.com/square/okhttp/tree/master/okhttp-tests/src/test/java/okhttp3)、[butterknife](https://link.jianshu.com?t=https://github.com/JakeWharton/butterknife/tree/master/butterknife-compiler/src/test/java/butterknife).... 国外大牛都写单元测试，我们也写吧！
+国外很多家喻户晓的开源项目，都有大量单元测试。例如，[retrofit](https://link.jianshu.com?t=https://github.com/square/retrofit/tree/master/retrofit/src/test/java/retrofit2)、[okhttp](https://link.jianshu.com?t=https://github.com/square/okhttp/tree/master/okhttp-tests/src/test/java/okhttp3)、[butterknife](https://link.jianshu.com?t=https://github.com/JakeWharton/butterknife/tree/master/butterknife-compiler/src/test/java/butterknife)…… 国外大牛都写单元测试，我们也写吧！
 
 很多读者都有这种想法，一开始满腔热血。当真要对自己项目单元测试时，便困难重重，很大原因是项目对单元测试不友好。最后只能对一些不痛不痒的工具类做单元测试，久而久之，当初美好愿望也不了了之。
 
@@ -67,7 +67,7 @@ category: 代码质量
 
 ### 心虚
 
-笔者也是个不太相信自己代码的人，总觉得哪里会突然冒出莫名其妙的 bug，也怕别人不小心改了自己的代码（被害妄想症），新版本上线提心吊胆......花点时间写单元测试，有事没事跑一下测试，确保原逻辑没问题，至少能睡安稳一点。
+笔者也是个不太相信自己代码的人，总觉得哪里会突然冒出莫名其妙的 bug，也怕别人不小心改了自己的代码（被害妄想症），新版本上线提心吊胆……花点时间写单元测试，有事没事跑一下测试，确保原逻辑没问题，至少能睡安稳一点。
 
 ## TDD 测试驱动开发
 

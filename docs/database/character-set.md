@@ -21,7 +21,7 @@ MySQL 字符编码集中有两套 UTF-8 编码实现：**`utf8`** 和 **`utf8mb4
 
 ## 有哪些常见的字符集？
 
-常见的字符集有 ASCII、GB2312、GBK、UTF-8......。
+常见的字符集有 ASCII、GB2312、GBK、UTF-8……。
 
 不同的字符集的主要区别在于：
 
@@ -308,7 +308,7 @@ VALUES
 
 报错信息如下：
 
-```
+```plain
 Incorrect string value: '\xF0\x9F\x98\x98\xF0\x9F...' for column 'name' at row 1
 ```
 

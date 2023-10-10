@@ -12,7 +12,7 @@ tag:
 1. 保存在数据库中的密码需要加盐之后使用哈希算法（比如 BCrypt）进行加密。
 2. 保存在数据库中的银行卡号、身份号这类敏感数据需要使用对称加密算法（比如 AES）保存。
 3. 网络传输的敏感数据比如银行卡号、身份号需要用 HTTPS + 非对称加密算法（如 RSA）来保证传输数据的安全性。
-4. ......
+4. ……
 
 ## 哈希算法
 
@@ -38,7 +38,7 @@ tag:
 - SHA（Secure Hash Algorithm，安全哈希算法）：比如 SHA-1、SHA-256。
 - MAC（Message Authentication Code，消息认证码算法）：比如 HMAC(Hash Message Authentication Code)。
 - 其他：国密算法（SM3）、密码哈希算法（Bcrypt）。
-- ......
+- ……
 
 国密算法常见的如 SM2、SM3、SM4，其中 SM2 为非对称加密算法，SM4 为对称加密算法，SM3 为哈希算法（安全性及效率和 SHA-256 相当，但更适合国内的应用环境）。
 

@@ -69,7 +69,7 @@ tag:
 - [MySQL 实战 45 讲](https://time.geekbang.org/column/intro/100020801)：前 27 讲多看几遍基本可以秒杀面试中遇到的 MySQL 问题了。
 - [Redis 核心技术与实战](https://time.geekbang.org/column/intro/100056701)：讲解了大量的 Redis 在生产上的使用场景，和《Redis 设计与实现》配合着看，也可以秒杀面试中遇到的 Redis 问题了。
 - [JavaGuide](https://javaguide.cn/books/)：「Java 学习+面试指南」一份涵盖大部分 Java 程序员所需要掌握的核心知识。
-- [《Java 面试指北》](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247519384&idx=1&sn=bc7e71af75350b755f04ca4178395b1a&chksm=cea1c353f9d64a458f797696d4144b4d6e58639371a4612b8e4d106d83a66d2289e7b2cd7431&token=660789642&lang=zh_CN&scene=21#wechat_redirect)：这是一份教你如何更高效地准备面试的小册，涵盖常见八股文（系统设计、常见框架、分布式、高并发 ......）、优质面经等内容。
+- [《Java 面试指北》](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247519384&idx=1&sn=bc7e71af75350b755f04ca4178395b1a&chksm=cea1c353f9d64a458f797696d4144b4d6e58639371a4612b8e4d106d83a66d2289e7b2cd7431&token=660789642&lang=zh_CN&scene=21#wechat_redirect)：这是一份教你如何更高效地准备面试的小册，涵盖常见八股文（系统设计、常见框架、分布式、高并发 ……）、优质面经等内容。
 
 ## 找工作
 

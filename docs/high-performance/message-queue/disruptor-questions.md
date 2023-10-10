@@ -76,7 +76,7 @@ Disruptor 真的很快，关于它为什么这么快这个问题，会在后文�
 - **SOFATracer**：SOFATracer 是蚂蚁金服开源的分布式应用链路追踪工具，它基于 Disruptor 来实现异步日志。
 - **Storm** : Storm 是一个开源的分布式实时计算系统，它基于 Disruptor 来实现工作进程内发生的消息传递（同一 Storm 节点上的线程间，无需网络通信）。
 - **HBase**：HBase 是一个分布式列存储数据库系统，它基于 Disruptor 来提高写并发性能。
-- ......
+- ……
 
 ## Disruptor 核心概念有哪些？
 
@@ -134,7 +134,7 @@ CPU 缓存是通过将最近使用的数据存储在高速缓存中来实现更�
 
 ## 参考
 
-- Disruptor 高性能之道-等待策略：<http://wuwenliang.net/2022/02/28/Disruptor高性能之道-等待策略/>
+- Disruptor 高性能之道-等待策略：<http://wuwenliang.net/2022/02/28/Disruptor 高性能之道-等待策略/>
 - 《Java 并发编程实战》- 40 | 案例分析（三）：高性能队列 Disruptor：<https://time.geekbang.org/column/article/98134>
 
 <!-- @include: @article-footer.snippet.md -->

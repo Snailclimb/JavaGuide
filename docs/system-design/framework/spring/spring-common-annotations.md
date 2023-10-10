@@ -390,7 +390,7 @@ SpringBoot 项目的 spring-boot-starter-web 依赖中已经有 hibernate-valida
 - `@Digits(integer, fraction)`被注释的元素必须是一个数字，其值必须在可接受的范围内
 - `@Past`被注释的元素必须是一个过去的日期
 - `@Future` 被注释的元素必须是一个将来的日期
-- ......
+- ……
 
 #### 6.2. 验证请求体(RequestBody)
 

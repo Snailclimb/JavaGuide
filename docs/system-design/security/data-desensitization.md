@@ -32,7 +32,7 @@ tag:
 - 重排：将原始数据中的某些字符或字段的顺序打乱。例如，将身份证号码的随机位交错互换。
 - 加噪：在数据中注入一些误差或者噪音，达到对数据脱敏的效果。例如，在敏感数据中添加一些随机生成的字符。
 - 加密（常用）：使用加密算法将敏感数据转换为密文。例如，将银行卡号用 MD5 或 SHA-256 等哈希函数进行散列。常见加密算法总结可以参考这篇文章：<https://javaguide.cn/system-design/security/encryption-algorithms.html> 。
-- ......
+- ……
 
 ## 常用脱敏工具
 
@@ -472,7 +472,7 @@ public class Account {
 ## 推荐阅读
 
 - [Spring Boot 日志、配置文件、接口数据如何脱敏？老鸟们都是这样玩的！](https://mp.weixin.qq.com/s/59osrnjyPJ7BV070x6ABwQ)
-- [大厂也在用的6种数据脱敏方案，严防泄露数据的“内鬼”](https://mp.weixin.qq.com/s/_Dgekk1AJsIx0TTlnH6kUA)
+- [大厂也在用的 6 种数据脱敏方案，严防泄露数据的“内鬼”](https://mp.weixin.qq.com/s/_Dgekk1AJsIx0TTlnH6kUA)
 
 ## 参考
 

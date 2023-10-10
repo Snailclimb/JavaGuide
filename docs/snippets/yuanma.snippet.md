@@ -2,7 +2,7 @@
 
 ![《Java 必读源码系列》](https://oss.javaguide.cn/xingqiu/image-20220621091832348.png)
 
-为了帮助更多同学准备 Java 面试以及学习 Java ，我创建了一个纯粹的[ Java 面试知识星球](../about-the-author/zhishixingqiu-two-years.md)。虽然收费只有培训班/训练营的百分之一，但是知识星球里的内容质量更高，提供的服务也更全面，非常适合准备 Java 面试和学习 Java 的同学。
+为了帮助更多同学准备 Java 面试以及学习 Java ，我创建了一个纯粹的[Java 面试知识星球](../about-the-author/zhishixingqiu-two-years.md)。虽然收费只有培训班/训练营的百分之一，但是知识星球里的内容质量更高，提供的服务也更全面，非常适合准备 Java 面试和学习 Java 的同学。
 
 **欢迎准备 Java 面试以及学习 Java 的同学加入我的 [知识星球](../about-the-author/zhishixingqiu-two-years.md)，干货非常多，学习氛围也很不错！收费虽然是白菜价，但星球里的内容或许比你参加上万的培训班质量还要高。**
 

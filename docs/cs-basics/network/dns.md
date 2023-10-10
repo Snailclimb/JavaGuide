@@ -86,7 +86,7 @@ DNS 服务器在响应查询时，需要查询自己的数据库，数据库中�
 
 `CNAME`记录总是指向另一则域名，而非 IP 地址。假设有下述 DNS zone：
 
-```
+```plain
 NAME                    TYPE   VALUE
 --------------------------------------------------
 bar.example.com.        CNAME  foo.example.com.

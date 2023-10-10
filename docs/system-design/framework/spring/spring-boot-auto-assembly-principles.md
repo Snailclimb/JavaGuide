@@ -235,7 +235,7 @@ AutoConfigurationEntry getAutoConfigurationEntry(AutoConfigurationMetadata autoC
 
 获取需要自动装配的所有配置类，读取`META-INF/spring.factories`
 
-```
+```plain
 spring-boot/spring-boot-project/spring-boot-autoconfigure/src/main/resources/META-INF/spring.factories
 ```
 

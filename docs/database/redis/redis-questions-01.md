@@ -111,7 +111,7 @@ Memcached 是分布式缓存最开始兴起的那会，比较常用的。后来�
 - **延时队列**：Redisson 内置了延时队列（基于 Sorted Set 实现的）。
 - **分布式 Session** ：利用 String 或者 Hash 数据类型保存 Session 数据，所有的服务器都可以访问。
 - **复杂业务场景**：通过 Redis 以及 Redis 扩展（比如 Redisson）提供的数据结构，我们可以很方便地完成很多复杂的业务场景比如通过 Bitmap 统计活跃用户、通过 Sorted Set 维护排行榜。
-- ......
+- ……
 
 ### 如何基于 Redis 实现分布式锁？
 
@@ -205,7 +205,7 @@ String 的常见应用场景如下：
 - 常规数据（比如 Session、Token、序列化后的对象、图片的路径）的缓存；
 - 计数比如用户单位时间的请求数（简单限流可以用到）、页面单位时间的访问数；
 - 分布式锁(利用 `SETNX key value` 命令可以实现一个最简易的分布式锁)；
-- ......
+- ……
 
 关于 String 的详细介绍请看这篇文章：[Redis 5 种基本数据类型详解](https://javaguide.cn/database/redis/redis-data-structures-01.html)。
 
@@ -314,7 +314,7 @@ struct sdshdr {
 
 ### 使用 Redis 实现一个排行榜怎么做？
 
-Redis 中有一个叫做 `Sorted Set ` 的数据类型经常被用在各种排行榜的场景，比如直播间送礼物的排行榜、朋友圈的微信步数排行榜、王者荣耀中的段位排行榜、话题热度排行榜等等。
+Redis 中有一个叫做 `Sorted Set` 的数据类型经常被用在各种排行榜的场景，比如直播间送礼物的排行榜、朋友圈的微信步数排行榜、王者荣耀中的段位排行榜、话题热度排行榜等等。
 
 相关的一些 Redis 命令: `ZRANGE` (从小到大排序)、 `ZREVRANGE` （从大到小排序）、`ZREVRANK` (指定元素排名)。
 

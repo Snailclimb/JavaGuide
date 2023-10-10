@@ -132,7 +132,7 @@ OSI 七层模型虽然失败了，但是却提供了很多不错的理论基础�
 - SSH（Secure Shell Protocol，安全的网络传输协议）
 - RTP（Real-time Transport Protocol，实时传输协议）
 - DNS（Domain Name System，域名管理系统）
-- ......
+- ……
 
 **传输层协议** :
 
@@ -154,7 +154,7 @@ OSI 七层模型虽然失败了，但是却提供了很多不错的理论基础�
 - OSPF（Open Shortest Path First，开放式最短路径优先）
 - RIP(Routing Information Protocol，路由信息协议）
 - BGP（Border Gateway Protocol，边界网关协议）
-- ......
+- ……
 
 **网络接口层** :
 
@@ -163,7 +163,7 @@ OSI 七层模型虽然失败了，但是却提供了很多不错的理论基础�
 - CSMA/CD 协议
 - MAC 协议
 - 以太网技术
-- ......
+- ……
 
 ## 网络分层的原因
 

@@ -16,7 +16,7 @@ Redis 共有 5 种基本数据类型：String（字符串）、List（列表）�
 
 这 5 种数据类型是直接提供给用户使用的，是数据的保存形式，其底层实现主要依赖这 8 种数据结构：简单动态字符串（SDS）、LinkedList（双向链表）、Dict（哈希表/字典）、SkipList（跳跃表）、Intset（整数集合）、ZipList（压缩列表）、QuickList（快速列表）。
 
-Redis 5种基本数据类型对应的底层数据结构实现如下表所示：
+Redis 5 种基本数据类型对应的底层数据结构实现如下表所示：
 
 | String | List                         | Hash          | Set          | Zset              |
 | :----- | :--------------------------- | :------------ | :----------- | :---------------- |
@@ -52,7 +52,7 @@ String 是一种二进制安全的数据类型，可以用来存储任何类型�
 | SET key value                  | 设置指定 key 的值                |
 | SETNX key value                | 只有在 key 不存在时设置 key 的值 |
 | GET key                        | 获取指定 key 的值                |
-| MSET key1 value1 key2 value2 … | 设置一个或多个指定 key 的值      |
+| MSET key1 value1 key2 value2 …… | 设置一个或多个指定 key 的值      |
 | MGET key1 key2 ...             | 获取一个或多个指定 key 的值      |
 | STRLEN key                     | 返回 key 所储存的字符串值的长度  |
 | INCR key                       | 将 key 中储存的数字值增一        |

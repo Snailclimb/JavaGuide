@@ -56,7 +56,7 @@ Dubbo 是由阿里开源，后来加入了 Apache 。正是由于 Dubbo 的出�
 1. **负载均衡**：同一个服务部署在不同的机器时该调用哪一台机器上的服务。
 2. **服务调用链路生成**：随着系统的发展，服务越来越多，服务间依赖关系变得错踪复杂，甚至分不清哪个应用要在哪个应用之前启动，架构师都不能完整的描述应用的架构关系。Dubbo 可以为我们解决服务之间互相是如何调用的。
 3. **服务访问压力以及时长统计、资源调度和治理**：基于访问压力实时管理集群容量，提高集群利用率。
-4. ......
+4. ……
 
 ![Dubbo 能力概览](https://oss.javaguide.cn/github/javaguide/system-design/distributed-system/rpc/dubbo-features-overview.jpg)
 
@@ -171,7 +171,7 @@ src
 
 `org.apache.dubbo.rpc.cluster.LoadBalance`
 
-```
+```plain
 xxx=com.xxx.XxxLoadBalance
 ```
 
@@ -262,7 +262,7 @@ public abstract class AbstractLoadBalance implements LoadBalance {
 
 根据权重随机选择（对加权随机算法的实现）。这是 Dubbo 默认采用的一种负载均衡策略。
 
-` RandomLoadBalance` 具体的实现原理非常简单，假如有两个提供相同服务的服务器 S1,S2，S1 的权重为 7，S2 的权重为 3。
+`RandomLoadBalance` 具体的实现原理非常简单，假如有两个提供相同服务的服务器 S1,S2，S1 的权重为 7，S2 的权重为 3。
 
 我们把这些权重值分布在坐标区间会得到：S1->[0, 7) ，S2->[7, 10)。我们生成[0, 10) 之间的随机数，随机数落到对应的区间，我们就选择对应的服务器来处理请求。
 

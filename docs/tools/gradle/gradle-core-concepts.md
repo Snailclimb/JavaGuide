@@ -87,7 +87,7 @@ Gradle Wrapper 会给我们带来下面这些好处：
 
 执行`gradle wrapper`命令之后，Gradle Wrapper 就生成完成了，项目根目录中生成如下文件：
 
-```
+```plain
 ├── gradle
 │   └── wrapper
 │       ├── gradle-wrapper.jar

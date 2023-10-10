@@ -137,7 +137,7 @@ SELECT `current_max_id`, `step`,`version` FROM `sequence_id_generator` where `bi
 
 结果：
 
-```
+```plain
 id current_max_id step version biz_type
 1 0 100 0 101
 ```
@@ -151,7 +151,7 @@ SELECT `current_max_id`, `step`,`version` FROM `sequence_id_generator` where `bi
 
 结果：
 
-```
+```plain
 id current_max_id step version biz_type
 1 100 100 1 101
 ```

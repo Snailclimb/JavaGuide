@@ -56,8 +56,8 @@ Bloom Filter 的简单原理图如下：
 
 ## 布隆过滤器使用场景
 
-1. 判断给定数据是否存在：比如判断一个数字是否存在于包含大量数字的数字集中（数字集很大，上亿）、 防止缓存穿透（判断请求的数据是否有效避免直接绕过缓存请求数据库）等等、邮箱的垃圾邮件过滤（判断一个邮件地址是否在垃圾邮件列表中）、黑名单功能（判断一个IP地址或手机号码是否在黑名单中）等等。
-2. 去重：比如爬给定网址的时候对已经爬取过的 URL 去重、对巨量的 QQ号/订单号去重。
+1. 判断给定数据是否存在：比如判断一个数字是否存在于包含大量数字的数字集中（数字集很大，上亿）、 防止缓存穿透（判断请求的数据是否有效避免直接绕过缓存请求数据库）等等、邮箱的垃圾邮件过滤（判断一个邮件地址是否在垃圾邮件列表中）、黑名单功能（判断一个 IP 地址或手机号码是否在黑名单中）等等。
+2. 去重：比如爬给定网址的时候对已经爬取过的 URL 去重、对巨量的 QQ 号/订单号去重。
 
 去重场景也需要用到判断给定数据是否存在，因此布隆过滤器主要是为了解决海量数据的存在性问题。
 
@@ -171,7 +171,7 @@ System.out.println(filter.contains(value2));
 
 Output:
 
-```
+```plain
 false
 false
 true
@@ -250,7 +250,7 @@ Redis v4.0 之后有了 Module（模块/插件） 功能，Redis Modules 让 Red
 
 - redis-lua-scaling-bloom-filter（lua 脚本实现）：https://github.com/erikdubbelboer/redis-lua-scaling-bloom-filter
 - pyreBloom（Python 中的快速 Redis 布隆过滤器）：https://github.com/seomoz/pyreBloom
-- ......
+- ……
 
 RedisBloom 提供了多种语言的客户端支持，包括：Python、Java、JavaScript 和 PHP。
 
@@ -267,7 +267,7 @@ root@21396d02c252:/data# redis-cli
 127.0.0.1:6379>
 ```
 
-**注意：当前rebloom镜像已经被废弃，官方推荐使用[redis-stack](https://hub.docker.com/r/redis/redis-stack)**
+**注意：当前 rebloom 镜像已经被废弃，官方推荐使用[redis-stack](https://hub.docker.com/r/redis/redis-stack)**
 
 ### 常用命令一览
 

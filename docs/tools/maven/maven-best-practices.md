@@ -194,7 +194,7 @@ jobs:
 - maven-checkstyle-plugin：强制执行编码标准和最佳实践。
 - jacoco-maven-plugin: 单测覆盖率。
 - sonar-maven-plugin：分析代码质量。
-- ......
+- ……
 
 jacoco-maven-plugin 使用示例：
 

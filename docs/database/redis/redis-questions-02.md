@@ -215,7 +215,7 @@ Redis 中有一些原生支持批量操作的命令，比如：
 - `MGET`(获取一个或多个指定 key 的值)、`MSET`(设置一个或多个指定 key 的值)、
 - `HMGET`(获取指定哈希表中一个或者多个指定字段的值)、`HMSET`(同时将一个或多个 field-value 对设置到指定哈希表中)、
 - `SADD`（向指定集合添加一个或多个元素）
-- ......
+- ……
 
 不过，在 Redis 官方提供的分片集群解决方案 Redis Cluster 下，使用这些原生批量操作命令可能会存在一些小问题需要解决。就比如说 `MGET` 无法保证所有的 key 都在同一个 **hash slot**（哈希槽）上，`MGET`可能还是需要多次网络传输，原子操作也无法保证了。不过，相较于非批量操作，还是可以节省不少网络传输次数。
 
@@ -478,7 +478,7 @@ Redis 中的大部分命令都是 O(1)时间复杂度，但也有少部分 O(n) 
 - `LRANGE`：会返回 List 中指定范围内的元素。
 - `SMEMBERS`：返回 Set 中的所有元素。
 - `SINTER`/`SUNION`/`SDIFF`：计算多个 Set 的交集/并集/差集。
-- ......
+- ……
 
 由于这些命令时间复杂度是 O(n)，有时候也会全表扫描，随着 n 的增大，执行耗时也会越长。不过， 这些命令并不是一定不能使用，但是需要明确 N 的值。另外，有遍历的需求可以使用 `HSCAN`、`SSCAN`、`ZSCAN` 代替。
 
@@ -486,7 +486,7 @@ Redis 中的大部分命令都是 O(1)时间复杂度，但也有少部分 O(n) 
 
 - `ZRANGE`/`ZREVRANGE`：返回指定 Sorted Set 中指定排名范围内的所有元素。时间复杂度为 O(log(n)+m)，n 为所有元素的数量， m 为返回的元素数量，当 m 和 n 相当大时，O(n) 的时间复杂度更小。
 - `ZREMRANGEBYRANK`/`ZREMRANGEBYSCORE`：移除 Sorted Set 中指定排名范围/指定 score 范围内的所有元素。时间复杂度为 O(log(n)+m)，n 为所有元素的数量， m 被删除元素的数量，当 m 和 n 相当大时，O(n) 的时间复杂度更小。
-- ......
+- ……
 
 #### 如何找到慢查询命令？
 
@@ -742,7 +742,7 @@ Cache Aside Pattern 中遇到写请求是这样的：更新 DB，然后直接删
 4. 尽量不适用 Redis 事务：Redis 事务实现的功能比较鸡肋，可以使用 Lua 脚本代替。
 5. 禁止长时间开启 monitor：对性能影响比较大。
 6. 控制 key 的生命周期：避免 Redis 中存放了太多不经常被访问的数据。
-7. ......
+7. ……
 
 相关文章推荐：[阿里云 Redis 开发规范](https://developer.aliyun.com/article/531067) 。
 
@@ -753,6 +753,6 @@ Cache Aside Pattern 中遇到写请求是这样的：更新 DB，然后直接删
 - Redis Transactions : <https://redis.io/docs/manual/transactions/>
 - What is Redis Pipeline：<https://buildatscale.tech/what-is-redis-pipeline/>
 - 一文详解 Redis 中 BigKey、HotKey 的发现与处理：<https://mp.weixin.qq.com/s/FPYE1B839_8Yk1-YSiW-1Q>
-- Redis延迟问题全面排障指南：https://mp.weixin.qq.com/s/mIc6a9mfEGdaNDD3MmfFsg
+- Redis 延迟问题全面排障指南：https://mp.weixin.qq.com/s/mIc6a9mfEGdaNDD3MmfFsg
 
 <!-- @include: @article-footer.snippet.md -->

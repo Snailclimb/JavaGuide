@@ -5,7 +5,7 @@ tag:
   - 计算机网络
 ---
 
-本文是我在大二学习计算机网络期间整理， 大部分内容都来自于谢希仁老师的[《计算机网络》第七版 ](https://www.elias.ltd/usr/local/etc/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%88%E7%AC%AC7%E7%89%88%EF%BC%89%E8%B0%A2%E5%B8%8C%E4%BB%81.pdf)这本书。为了内容更容易理解，我对之前的整理进行了一波重构，并配上了一些相关的示意图便于理解。
+本文是我在大二学习计算机网络期间整理， 大部分内容都来自于谢希仁老师的[《计算机网络》第七版](https://www.elias.ltd/usr/local/etc/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%88%E7%AC%AC7%E7%89%88%EF%BC%89%E8%B0%A2%E5%B8%8C%E4%BB%81.pdf)这本书。为了内容更容易理解，我对之前的整理进行了一波重构，并配上了一些相关的示意图便于理解。
 
 ![](https://oss.javaguide.cn/p3-juejin/fb5d8645cd55484ab0177f25a13e97db~tplv-k3u1fbpfcp-zoom-1.png)
 

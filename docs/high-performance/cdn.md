@@ -104,7 +104,7 @@ CDN 服务提供商几乎都提供了这种比较基础的防盗链机制。
 
 时间戳防盗链 URL 示例：
 
-```
+```plain
 http://cdn.wangsu.com/4/123.mp3? wsSecret=79aead3bd7b5db4adeffb93a010298b5&wsTime=1601026312
 ```
 
