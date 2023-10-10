@@ -396,12 +396,15 @@ ALTER TABLE `cus_order` ADD INDEX id_score_name(score, name);
 索引失效也是慢查询的主要原因之一，常见的导致索引失效的情况有下面这些：
 
 - ~~使用 `SELECT *` 进行查询;~~ `SELECT *` 不会直接导致索引失效（如果不走索引大概率是因为 where 查询范围过大导致的），但它可能会带来一些其他的性能问题比如造成网络传输和数据处理的浪费、无法使用索引覆盖;
-- 创建了组合索引，但查询条件未遵守最左匹配原则;
+- 创建了组合索引，但查询条件未准守最左匹配原则;
 - 在索引列上进行计算、函数、类型转换等操作;
-- 以 `%` 开头的 LIKE 查询比如 `like '%abc'`;
-- 查询条件中使用 or，且 or 的前后条件中有一个列没有索引，涉及的索引都不会被使用到;
-- 发生[隐式转换](./index-invalidation-caused-by-implicit-conversion.md);
-- ......
+- 以 % 开头的 LIKE 查询比如 `LIKE '%abc';`;
+- 查询条件中使用 OR，且 OR 的前后条件中有一个列没有索引，涉及的索引都不会被使用到;
+- IN 的取值范围较大时会导致索引失效，走全表扫描(NOT IN 和 IN 的失效场景相同);
+- 发生[隐式转换](https://javaguide.cn/database/mysql/index-invalidation-caused-by-implicit-conversion.html);
+- ……
+
+推荐阅读这篇文章：[美团暑期实习一面：MySQl 索引失效的场景有哪些？](https://mp.weixin.qq.com/s/mwME3qukHBFul57WQLkOYg)。
 
 ### 删除长期未使用的索引
 
