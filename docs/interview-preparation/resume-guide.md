@@ -5,7 +5,7 @@ icon: jianli
 ---
 
 ::: tip 友情提示
-本文节选自 **[《Java 面试指北》](../zhuanlan/java-mian-shi-zhi-bei.md)**。这是一份教你如何更高效地准备面试的小册，涵盖常见八股文（系统设计、常见框架、分布式、高并发 ......）、优质面经等内容。
+本文节选自 **[《Java 面试指北》](../zhuanlan/java-mian-shi-zhi-bei.md)**。这是一份教你如何更高效地准备面试的小册，涵盖常见八股文（系统设计、常见框架、分布式、高并发 ……）、优质面经等内容。
 :::
 
 ## 前言
@@ -41,7 +41,7 @@ icon: jianli
 - 简单简历（推荐，部分免费）：<https://easycv.cn/>
 - 极简简历（免费）： <https://www.polebrief.com/index>
 - Markdown 简历排版工具（开源免费）：<https://resume.mdnice.com/>
-- 站长简历（收费，支持AI生成）：<https://jianli.chinaz.com/>
+- 站长简历（收费，支持 AI 生成）：<https://jianli.chinaz.com/>
 - typora+markdown+css 自定义简历模板 ：<https://github.com/Snailclimb/typora-markdown-resume>
 - 超级简历（部分收费） ： <https://www.wondercv.com/>
 
@@ -160,7 +160,7 @@ icon: jianli
 - 使用 xxx 技术了优化了 xxx 接口，系统 QPS 从 xxx 提高到了 xxx。
 - 使用 xxx 技术解决了 xxx 问题，查询速度优化了 xxx，系统 QPS 达到 10w+。
 - 使用 xxx 技术优化了 xxx 模块，响应时间从 2s 降低到 0.2s。
-- ......
+- ……
 
 个人职责介绍示例 ：
 
@@ -176,13 +176,17 @@ icon: jianli
 
 **4、如果你觉得你的项目技术比较落后的话，可以自己私下进行改进。重要的是让项目比较有亮点，通过什么方式就无所谓了。**
 
-项目经历这部分对于简历来说非常重要，《Java 面试指北》的面试准备篇有好几篇关于优化项目经历的文章，建议你仔细阅读一下，应该会对你有帮助。
+项目经历这部分对于简历来说非常重要，[《Java 面试指北》](https://javaguide.cn/zhuanlan/java-mian-shi-zhi-bei.html)的面试准备篇有好几篇关于优化项目经历的文章，建议你仔细阅读一下，应该会对你有帮助。
 
 ![](https://oss.javaguide.cn/zhishixingqiu/4e11dbc842054e53ad6c5f0445023eb5~tplv-k3u1fbpfcp-zoom-1.png)
 
 **5、避免个人职责介绍都是围绕一个技术点来写，非常不可取。**
 
 ![](https://oss.javaguide.cn/zhishixingqiu/image-20230424222513028.png)
+
+**6、避免模糊性描述，介绍要具体（技术+场景+效果），也要注意精简语言（避免堆砌技术词，省略不必要的描述）。**
+
+![](https://oss.javaguide.cn/github/javaguide/interview-preparation/project-experience-avoiding-ambiguity-descriptio.png)
 
 ### 荣誉奖项（可选）
 
@@ -267,3 +271,19 @@ FAB 法则由下面 3 个单词组成（FAB 法则的名字就是由它们的首
 - 项目经历建议以时间倒序排序，另外项目经历不在于多（精选 2~3 即可），而在于有亮点。
 - 准备面试的过程中应该将你写在简历上的东西作为重点，尤其是项目经历上和技能介绍上的。
 - 面试和工作是两回事，聪明的人会把面试官往自己擅长的领域领，其他人则被面试官牵着鼻子走。虽说面试和工作是两回事，但是你要想要获得自己满意的 offer ，你自身的实力必须要强。
+
+## 简历修改
+
+到目前为止，我至少帮助 **6000+** 位球友提供了免费的简历修改服务。由于个人精力有限，修改简历仅限加入星球的读者，需要帮看简历的话，可以加入 [**JavaGuide 官方知识星球**](https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html#%E7%AE%80%E5%8E%86%E4%BF%AE%E6%94%B9)（点击链接查看详细介绍）。
+
+![img](https://oss.javaguide.cn/xingqiu/%E7%AE%80%E5%8E%86%E4%BF%AE%E6%94%B92.jpg)
+
+虽然收费只有培训班/训练营的百分之一，但是知识星球里的内容质量更高，提供的服务也更全面，非常适合准备 Java 面试和学习 Java 的同学。
+
+下面是星球提供的部分服务（点击下方图片即可获取知识星球的详细介绍）：
+
+[![星球服务](https://oss.javaguide.cn/xingqiu/xingqiufuwu.png)](../about-the-author/zhishixingqiu-two-years.md)
+
+这里再提供一份限时专属优惠卷：
+
+![知识星球30元优惠卷](https://oss.javaguide.cn/xingqiu/xingqiuyouhuijuan-30.jpg)
