@@ -974,6 +974,12 @@ public int await() throws InterruptedException, BrokenBarrierException {
     }
 ```
 
+## 虚拟线程
+
+虚拟线程在 Java 21 正式发布，这是一项重量级的更新。
+
+虽然目前面试中问的不多，但还是建议大家去简单了解一下，具体可以阅读这篇文章：[虚拟线程极简入门](./virtual-thread.md) 。重点搞清楚虚拟线程和平台线程的关系以及虚拟线程的优势即可。
+
 ## 参考
 
 - 《深入理解 Java 虚拟机》

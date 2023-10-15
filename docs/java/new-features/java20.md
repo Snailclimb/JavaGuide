@@ -254,7 +254,6 @@ executorService.submit(() -> {
   // your code here
 });
 
-//
 class CustomThread implements Runnable {
   @Override
   public void run() {

@@ -120,6 +120,7 @@ export default sidebar({
                 "atomic-classes",
                 "threadlocal",
                 "completablefuture-intro",
+                "virtual-thread",
               ],
             },
           ],
