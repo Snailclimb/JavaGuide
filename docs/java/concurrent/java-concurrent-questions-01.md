@@ -82,7 +82,7 @@ JDK 1.2 之前，Java 线程是基于绿色线程（Green Threads）实现的，
 
 在 Windows 和 Linux 等主流操作系统中，Java 线程采用的是一对一的线程模型，也就是一个 Java 线程对应一个系统内核线程。Solaris 系统是一个特例（Solaris 系统本身就支持多对多的线程模型），HotSpot VM 在 Solaris 上支持多对多和一对一。具体可以参考 R 大的回答: [JVM 中的线程模型是用户级的么？](https://www.zhihu.com/question/23096638/answer/29617153)。
 
-虚拟线程在 JDK 21 顺利转正，关于虚拟线程、平台线程（也就是我们前面提到的 Java 线程）和内核线程三者的关系可以阅读我写的这篇文章：[Java 20 新特性概览](../new-features/java20.md)。
+虚拟线程在 JDK 21 顺利转正，关于虚拟线程、平台线程（也就是我们上面提到的 Java 线程）和内核线程三者的关系可以阅读我写的这篇文章：[Java 20 新特性概览](../new-features/java20.md)。
 
 ## 请简要描述线程与进程的关系,区别及优缺点？
 

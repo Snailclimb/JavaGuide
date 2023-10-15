@@ -39,29 +39,30 @@ Java 集合框架如下图所示：
 
 #### List
 
-- `ArrayList`：`Object[]` 数组
-- `Vector`：`Object[]` 数组
-- `LinkedList`：双向链表(JDK1.6 之前为循环链表，JDK1.7 取消了循环)
+- `ArrayList`：`Object[]` 数组。详细可以查看：[ArrayList 源码分析](./arraylist-source-code.md)。
+- `Vector`：`Object[]` 数组。
+- `LinkedList`：双向链表(JDK1.6 之前为循环链表，JDK1.7 取消了循环)。详细可以查看：[LinkedList 源码分析](./linkedlist-source-code.md)。
 
 #### Set
 
-- `HashSet`(无序，唯一): 基于 `HashMap` 实现的，底层采用 `HashMap` 来保存元素
-- `LinkedHashSet`: `LinkedHashSet` 是 `HashSet` 的子类，并且其内部是通过 `LinkedHashMap` 来实现的。有点类似于我们之前说的 `LinkedHashMap` 其内部是基于 `HashMap` 实现一样，不过还是有一点点区别的
-- `TreeSet`(有序，唯一): 红黑树(自平衡的排序二叉树)
+- `HashSet`(无序，唯一): 基于 `HashMap` 实现的，底层采用 `HashMap` 来保存元素。
+- `LinkedHashSet`: `LinkedHashSet` 是 `HashSet` 的子类，并且其内部是通过 `LinkedHashMap` 来实现的。
+- `TreeSet`(有序，唯一): 红黑树(自平衡的排序二叉树)。
 
 #### Queue
 
-- `PriorityQueue`: `Object[]` 数组来实现二叉堆
-- `ArrayQueue`: `Object[]` 数组 + 双指针
+- `PriorityQueue`: `Object[]` 数组来实现小顶堆。详细可以查看：[PriorityQueue 源码分析](./priorityqueue-source-code.md)。
+- `DelayQueue`:`PriorityQueue`。详细可以查看：[DelayQueue 源码分析](./delayqueue-source-code.md)。
+- `ArrayDeque`: 可扩容动态双向数组。
 
 再来看看 `Map` 接口下面的集合。
 
 #### Map
 
-- `HashMap`：JDK1.8 之前 `HashMap` 由数组+链表组成的，数组是 `HashMap` 的主体，链表则是主要为了解决哈希冲突而存在的（“拉链法”解决冲突）。JDK1.8 以后在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为 8）（将链表转换成红黑树前会判断，如果当前数组的长度小于 64，那么会选择先进行数组扩容，而不是转换为红黑树）时，将链表转化为红黑树，以减少搜索时间
-- `LinkedHashMap`：`LinkedHashMap` 继承自 `HashMap`，所以它的底层仍然是基于拉链式散列结构即由数组和链表或红黑树组成。另外，`LinkedHashMap` 在上面结构的基础上，增加了一条双向链表，使得上面的结构可以保持键值对的插入顺序。同时通过对链表进行相应的操作，实现了访问顺序相关逻辑。详细可以查看：[《LinkedHashMap 源码详细分析（JDK1.8）》](https://www.imooc.com/article/22931)
-- `Hashtable`：数组+链表组成的，数组是 `Hashtable` 的主体，链表则是主要为了解决哈希冲突而存在的
-- `TreeMap`：红黑树（自平衡的排序二叉树）
+- `HashMap`：JDK1.8 之前 `HashMap` 由数组+链表组成的，数组是 `HashMap` 的主体，链表则是主要为了解决哈希冲突而存在的（“拉链法”解决冲突）。JDK1.8 以后在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为 8）（将链表转换成红黑树前会判断，如果当前数组的长度小于 64，那么会选择先进行数组扩容，而不是转换为红黑树）时，将链表转化为红黑树，以减少搜索时间。详细可以查看：[HashMap 源码分析](./hashmap-source-code.md)。
+- `LinkedHashMap`：`LinkedHashMap` 继承自 `HashMap`，所以它的底层仍然是基于拉链式散列结构即由数组和链表或红黑树组成。另外，`LinkedHashMap` 在上面结构的基础上，增加了一条双向链表，使得上面的结构可以保持键值对的插入顺序。同时通过对链表进行相应的操作，实现了访问顺序相关逻辑。详细可以查看：[LinkedHashMap 源码分析](./linkedhashmap-source-code.md)
+- `Hashtable`：数组+链表组成的，数组是 `Hashtable` 的主体，链表则是主要为了解决哈希冲突而存在的。
+- `TreeMap`：红黑树（自平衡的排序二叉树）。
 
 ### 如何选用集合?
 

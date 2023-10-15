@@ -7,9 +7,11 @@ icon: project
 ## 快速开发平台
 
 - [Snowy](https://gitee.com/xiaonuobase/snowy)：国内首个国密前后端分离快速开发平台，定位不是深度封装的框架，也不是无代码平台，更不是某个领域的产品。详细介绍：[5.1k！这是我见过最强的前后端分离快速开发脚手架！！](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247534316&idx=1&sn=69938397674fc33ecda43c8c9d0a4039&chksm=cea10927f9d68031bc862485c6be984ade5af233d4d871d498c38f22164a84314678c0c67cd7&token=1464380539&lang=zh_CN#rd)。
+- [eladmin](https://github.com/elunez/eladmin) : 前后端分离的后台管理系统，项目采用分模块开发方式， 权限控制采用 RBAC，支持数据字典与数据权限管理，支持一键生成前后端代码，支持动态路由。
 - [RuoYi](https://gitee.com/y_project/RuoYi)：RuoYi 一款基于基于 SpringBoot 的权限管理系统 易读易懂、界面简洁美观，直接运行即可用 。
 - [AgileBoot-Back-End](https://github.com/valarchie/AgileBoot-Back-End)：基于 Ruoyi 做了大量重构优化的基础快速开发框架。
 - [RuoYi-Vue-Pro](https://github.com/YunaiV/ruoyi-vue-pro)：RuoYi-Vue 全新 Pro 版本，优化重构所有功能。
+- [pig](https://gitee.com/log4j/pig "pig")：（gitee）基于 Spring Boot 2.2、 Spring Cloud Hoxton & Alibaba、 OAuth2 的 RBAC 权限管理系统。
 - [Guns](https://gitee.com/stylefeng/guns)：现代化的 Java 应用开发基础框架。
 - [JeecgBoot](https://github.com/zhangdaiscott/jeecg-boot)：一款基于代码生成器的 J2EE 低代码快速开发平台，支持生成前后端分离架构的项目。
 - [Erupt](https://gitee.com/erupt/erupt) : 低代码全栈类框架，它使用 Java 注解 动态生成页面以及增、删、改、查、权限控制等后台功能。
@@ -66,11 +68,8 @@ icon: project
 
 权限管理系统在企业级的项目中一般都是非常重要的，如果你需求去实际了解一个不错的权限系统是如何设计的话，推荐你可以参考下面这些开源项目。
 
-- [Spring-Cloud-Admin](https://github.com/wxiaoqi/Spring-Cloud-Admin "Spring-Cloud-Admin")：Cloud-Admin 是国内首个基于 Spring Cloud 微服务化开发平台，具有统一授权、认证后台管理系统，其中包含具备用户管理、资源权限管理、网关 API 管理等多个模块，支持多业务系统并行开发，可以作为后端服务的开发脚手架。代码简洁，架构清晰，适合学习和直接项目中使用。核心技术采用 Spring Boot2 以及 Spring Cloud Gateway 相关核心组件，前端采用 vue-element-admin 组件。
-- [pig](https://gitee.com/log4j/pig "pig")：（gitee）基于 Spring Boot 2.2、 Spring Cloud Hoxton & Alibaba、 OAuth2 的 RBAC 权限管理系统。
-- [FEBS-Shiro](https://github.com/wuyouzhuguli/FEBS-Shiro "FEBS-Shiro")：Spring Boot 2.1.3，Shiro1.4.0 & Layui 2.5.4 权限管理系统。
-- [eladmin](https://github.com/elunez/eladmin) : 项目基于 Spring Boot 2.1.0、 Jpa、 Spring Security、redis、Vue 的前后端分离的后台管理系统，项目采用分模块开发方式， 权限控制采用 RBAC，支持数据字典与数据权限管理，支持一键生成前后端代码，支持动态路由。
-- [SpringBoot-Shiro-Vue](https://github.com/Heeexy/SpringBoot-Shiro-Vue)：提供一套基于 Spring Boot-Shiro-Vue 的权限管理思路.前后端都加以控制,做到按钮/接口级别的权限。
+- [SpringBoot-Shiro-Vue](https://github.com/Heeexy/SpringBoot-Shiro-Vue)：基于 Spring Boot-Shiro-Vue 的权限管理思路，前后端都加以控制，可以做到按钮/接口级别的权限。
+- [renren-security](https://gitee.com/renrenio/renren-security)：一套灵活的权限控制系统，可控制到页面或按钮，满足绝大部分的权限需求
 
 ## 造轮子
 
