@@ -10,7 +10,8 @@
     "docs:dev": "vuepress dev docs",
     "docs:clean-dev": "vuepress dev docs --clean-cache",
     "lint": "prettier --check --write . && markdownlint docs/**/*.md",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "update": "pnpm dlx vp-update"
   },
   "nano-staged": {
     ".ts,.scss": "prettier --write",
@@ -19,18 +20,19 @@
       "markdownlint"
     ]
   },
-  "packageManager": "pnpm@8.6.0",
+  "packageManager": "pnpm@8.9.2",
   "dependencies": {
     "@vuepress/client": "2.0.0-beta.67",
     "@vuepress/plugin-search": "2.0.0-beta.67",
     "@vuepress/utils": "2.0.0-beta.67",
     "husky": "8.0.3",
-    "markdownlint-cli": "0.34.0",
+    "markdownlint-cli": "0.37.0",
+    "mathjax-full": "3.2.2",
     "nano-staged": "0.8.0",
     "nodejs-jieba": "0.0.2",
-    "prettier": "2.8.8",
-    "vue": "3.3.4",
+    "prettier": "3.0.3",
+    "vue": "3.3.7",
     "vuepress": "2.0.0-beta.67",
-    "vuepress-theme-hope": "2.0.0-beta.236"
+    "vuepress-theme-hope": "2.0.0-beta.241"
   }
 }

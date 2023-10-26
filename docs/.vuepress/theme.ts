@@ -51,19 +51,28 @@ export default hopeTheme({
 
   plugins: {
     blog: true,
+
     copyright: {
       author: "JavaGuide(javaguide.cn)",
       license: "MIT",
       triggerLength: 100,
       maxLength: 700,
       canonical: "https://javaguide.cn/",
-      global:true
+      global: true,
     },
+
+    feed: {
+      atom: true,
+      json: true,
+      rss: true,
+    },
+
     mdEnhance: {
       align: true,
       codetabs: true,
       container: true,
       figure: true,
+      gfm: true,
       include: {
         resolvePath: (file, cwd) => {
           if (file.startsWith("@"))
@@ -77,11 +86,6 @@ export default hopeTheme({
         },
       },
       tasklist: true,
-    },
-    feed: {
-      atom: true,
-      json: true,
-      rss: true,
     },
   },
 });
