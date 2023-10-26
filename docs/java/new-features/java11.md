@@ -125,7 +125,7 @@ Consumer<String> consumer = (String i) -> System.out.println(i);
 
 ## 参考
 
-- JDK 11 Release Notes：https://www.oracle.com/java/technologies/javase/11-relnote-issues.html
+- JDK 11 Release Notes：<https://www.oracle.com/java/technologies/javase/11-relnote-issues.html>
 - Java 11 – Features and Comparison：<https://www.geeksforgeeks.org/java-11-features-and-comparison/>
 
 <!-- @include: @article-footer.snippet.md -->

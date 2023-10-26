@@ -79,7 +79,7 @@ export default hopeTheme({
             return path.resolve(
               __dirname,
               "../snippets",
-              file.replace("@", "./")
+              file.replace("@", "./"),
             );
 
           return path.resolve(cwd, file);

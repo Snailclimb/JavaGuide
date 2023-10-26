@@ -86,9 +86,9 @@ public abstract class ClassLoader {
 
 JVM 中内置了三个重要的 `ClassLoader`：
 
-1.  **`BootstrapClassLoader`(启动类加载器)**：最顶层的加载类，由 C++实现，通常表示为 null，并且没有父级，主要用来加载 JDK 内部的核心类库（ `%JAVA_HOME%/lib`目录下的 `rt.jar`、`resources.jar`、`charsets.jar`等 jar 包和类）以及被 `-Xbootclasspath`参数指定的路径下的所有类。
-2.  **`ExtensionClassLoader`(扩展类加载器)**：主要负责加载 `%JRE_HOME%/lib/ext` 目录下的 jar 包和类以及被 `java.ext.dirs` 系统变量所指定的路径下的所有类。
-3.  **`AppClassLoader`(应用程序类加载器)**：面向我们用户的加载器，负责加载当前应用 classpath 下的所有 jar 包和类。
+1. **`BootstrapClassLoader`(启动类加载器)**：最顶层的加载类，由 C++实现，通常表示为 null，并且没有父级，主要用来加载 JDK 内部的核心类库（ `%JAVA_HOME%/lib`目录下的 `rt.jar`、`resources.jar`、`charsets.jar`等 jar 包和类）以及被 `-Xbootclasspath`参数指定的路径下的所有类。
+2. **`ExtensionClassLoader`(扩展类加载器)**：主要负责加载 `%JRE_HOME%/lib/ext` 目录下的 jar 包和类以及被 `java.ext.dirs` 系统变量所指定的路径下的所有类。
+3. **`AppClassLoader`(应用程序类加载器)**：面向我们用户的加载器，负责加载当前应用 classpath 下的所有 jar 包和类。
 
 > 🌈 拓展一下：
 >
@@ -341,10 +341,10 @@ cl = Thread.currentThread().getContextClassLoader();
 ## 推荐阅读
 
 - 《深入拆解 Java 虚拟机》
-- 深入分析 Java ClassLoader 原理：https://blog.csdn.net/xyang81/article/details/7292380
-- Java 类加载器(ClassLoader)：http://gityuan.com/2016/01/24/java-classloader/
-- Class Loaders in Java：https://www.baeldung.com/java-classloaders
-- Class ClassLoader - Oracle 官方文档：https://docs.oracle.com/javase/8/docs/api/java/lang/ClassLoader.html
-- 老大难的 Java ClassLoader 再不理解就老了：https://zhuanlan.zhihu.com/p/51374915
+- 深入分析 Java ClassLoader 原理：<https://blog.csdn.net/xyang81/article/details/7292380>
+- Java 类加载器(ClassLoader)：<http://gityuan.com/2016/01/24/java-classloader/>
+- Class Loaders in Java：<https://www.baeldung.com/java-classloaders>
+- Class ClassLoader - Oracle 官方文档：<https://docs.oracle.com/javase/8/docs/api/java/lang/ClassLoader.html>
+- 老大难的 Java ClassLoader 再不理解就老了：<https://zhuanlan.zhihu.com/p/51374915>
 
 <!-- @include: @article-footer.snippet.md -->

@@ -133,7 +133,7 @@ Java 堆是垃圾收集器管理的主要区域，因此也被称作 **GC 堆（
 >
 > ```c++
 > uint ageTable::compute_tenuring_threshold(size_t survivor_capacity) {
-> 	//survivor_capacity是survivor空间的大小
+>  //survivor_capacity是survivor空间的大小
 > size_t desired_survivor_size = (size_t)((((double) survivor_capacity)*TargetSurvivorRatio)/100);
 > size_t total = 0;
 > uint age = 1;
@@ -143,7 +143,7 @@ Java 堆是垃圾收集器管理的主要区域，因此也被称作 **GC 堆（
 > age++;
 > }
 > uint result = age < MaxTenuringThreshold ? age : MaxTenuringThreshold;
-> 	...
+>   ...
 > }
 > ```
 
@@ -344,10 +344,10 @@ HotSpot 虚拟机主要使用的就是这种方式来进行对象访问。
 
 - 《深入理解 Java 虚拟机：JVM 高级特性与最佳实践（第二版》
 - 《自己动手写 Java 虚拟机》
-- Chapter 2. The Structure of the Java Virtual Machine：https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-2.html
-- JVM 栈帧内部结构-动态链接：https://chenxitag.com/archives/368
-- Java 中 new String("字面量") 中 "字面量" 是何时进入字符串常量池的? - 木女孩的回答 - 知乎：https://www.zhihu.com/question/55994121/answer/147296098
-- JVM 常量池中存储的是对象还是引用呢？ - RednaxelaFX 的回答 - 知乎：https://www.zhihu.com/question/57109429/answer/151717241
+- Chapter 2. The Structure of the Java Virtual Machine：<https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-2.html>
+- JVM 栈帧内部结构-动态链接：<https://chenxitag.com/archives/368>
+- Java 中 new String("字面量") 中 "字面量" 是何时进入字符串常量池的? - 木女孩的回答 - 知乎：<https://www.zhihu.com/question/55994121/answer/147296098>
+- JVM 常量池中存储的是对象还是引用呢？ - RednaxelaFX 的回答 - 知乎：<https://www.zhihu.com/question/57109429/answer/151717241>
 - <http://www.pointsoftware.ch/en/under-the-hood-runtime-data-areas-javas-memory-model/>
 - <https://dzone.com/articles/jvm-permgen-%E2%80%93-where-art-thou>
 - <https://stackoverflow.com/questions/9095748/method-area-and-permgen>

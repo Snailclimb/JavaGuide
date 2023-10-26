@@ -51,13 +51,13 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 public class App {
-	public static void main(String[] args) {
-		ApplicationContext context = new FileSystemXmlApplicationContext(
-				"C:/work/IOC Containers/springframework.applicationcontext/src/main/resources/bean-factory-config.xml");
+  public static void main(String[] args) {
+    ApplicationContext context = new FileSystemXmlApplicationContext(
+        "C:/work/IOC Containers/springframework.applicationcontext/src/main/resources/bean-factory-config.xml");
 
-		HelloApplicationContext obj = (HelloApplicationContext) context.getBean("helloApplicationContext");
-		obj.getMsg();
-	}
+    HelloApplicationContext obj = (HelloApplicationContext) context.getBean("helloApplicationContext");
+    obj.getMsg();
+  }
 }
 ```
 
