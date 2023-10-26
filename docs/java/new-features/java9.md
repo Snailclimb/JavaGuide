@@ -138,7 +138,7 @@ try (scanner;writer) {
 
 **什么是 effectively-final 变量？** 简单来说就是没有被 `final` 修饰但是值在初始化后从未更改的变量。
 
-正如上面的代码所演示的那样，即使 `writer` 变量没有被显示声明为 `final`，但它在第一次被复制后就不会改变了，因此，它就是 effectively-final 变量。
+正如上面的代码所演示的那样，即使 `writer` 变量没有被显示声明为 `final`，但它在第一次被赋值后就不会改变了，因此，它就是 effectively-final 变量。
 
 ## Stream & Optional 增强
 
