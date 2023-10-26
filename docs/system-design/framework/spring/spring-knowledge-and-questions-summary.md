@@ -129,7 +129,7 @@ Spring Boot 只是简化了配置，如果你需要构建 MVC 架构的 Web 程�
 
 Spring 时代我们一般通过 XML 文件来配置 Bean，后来开发人员觉得 XML 文件来配置不太好，于是 SpringBoot 注解配置就慢慢开始流行起来。
 
-相关阅读： 
+相关阅读：
 
 - [IoC 源码阅读](https://javadoop.com/post/spring-ioc)
 - [IoC & AOP 详解（快速搞懂）](./ioc-and-aop.md)

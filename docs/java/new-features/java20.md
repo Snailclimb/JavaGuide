@@ -268,7 +268,7 @@ ThreadFactory factory = Thread.ofVirtual().factory();
 // 创建虚拟线程
 Thread thread = factory.newThread(customThread);
 // 启动线程
-thread.start(); 
+thread.start();
 ```
 
 通过上述列举的 4 种创建虚拟线程的方式可以看出，官方为了降低虚拟线程的门槛，尽力复用原有的 `Thread` 线程类，这样可以平滑的过渡到虚拟线程的使用。

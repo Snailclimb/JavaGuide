@@ -266,7 +266,6 @@ HashMap 只提供了 put 用于添加元素，putVal 方法只是给 put 方法�
 
 ![ ](https://oss.javaguide.cn/github/javaguide/database/sql/put.png)
 
-
 ```java
 public V put(K key, V value) {
     return putVal(hash(key), key, value, false, true);
@@ -498,7 +497,6 @@ final Node<K,V>[] resize() {
     return newTab;
 }
 ```
-
 
 ## HashMap 常用方法测试
 

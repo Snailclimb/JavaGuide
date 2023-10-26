@@ -197,8 +197,6 @@ tag:
 
 你可以看到图中生产者组中的生产者会向主题发送消息，而 **主题中存在多个队列**，生产者每次生产消息之后是指定主题中的某个队列发送消息的。
 
-
-
 每个主题中都有多个队列(分布在不同的 `Broker`中，如果是集群的话，`Broker`又分布在不同的服务器中)，集群消费模式下，一个消费者集群多台机器共同消费一个 `topic` 的多个队列，**一个队列只会被一个消费者消费**。如果某个消费者挂掉，分组内其它消费者会接替挂掉的消费者继续消费。就像上图中 `Consumer1` 和 `Consumer2` 分别对应着两个队列，而 `Consumer3` 是没有队列对应的，所以一般来讲要控制 **消费者组中的消费者个数和主题中队列个数相同** 。
 
 当然也可以消费者个数小于队列个数，只不过不太建议。如下图。
@@ -373,7 +371,7 @@ SimpleConsumer 是一种接口原子型的消费者类型，消息的获取、�
 一个来自官网的例子：
 
 ```java
-// 消费示例：使用 SimpleConsumer 消费普通消息，主动获取消息处理并提交。 
+// 消费示例：使用 SimpleConsumer 消费普通消息，主动获取消息处理并提交。
 ClientServiceProvider provider = ClientServiceProvider.loadService();
 String topic = "YourTopic";
 FilterExpression filterExpression = new FilterExpression("YourFilterTag", FilterExpressionType.TAG);
@@ -607,8 +605,6 @@ MappedByteBuffer mappedByteBuffer = fileChannel.map(FileChannel.MapMode.READ_WRI
 sendfile()跟 mmap()一样，也会减少一次 CPU 拷贝，但是它同时也会减少两次上下文切换。
 
 ![5](https://img1.imgtp.com/2023/08/15/jqLgCEBY.png)
-
-
 
 如图，用户在发起 sendfile()调用时会发生切换 1，之后数据通过 DMA 拷贝到内核缓冲区，之后再将内核缓冲区的数据 CPU 拷贝到 Socket 缓冲区，最后拷贝到网卡，sendfile()返回，发生切换 2。发生了 3 次拷贝和两次切换。Java 也提供了相应 api：
 

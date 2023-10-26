@@ -259,13 +259,13 @@ struct __attribute__ ((__packed__)) sdshdr64 {
 
 通过源码可以看出，SDS 共有五种实现方式 SDS_TYPE_5（并未用到）、SDS_TYPE_8、SDS_TYPE_16、SDS_TYPE_32、SDS_TYPE_64，其中只有后四种实际用到。Redis 会根据初始化的长度决定使用哪种类型，从而减少内存的使用。
 
-| 类型     | 字节 | 位   |
-| -------- | ---- | ---- |
-| sdshdr5  | < 1  | <8   |
-| sdshdr8  | 1    | 8    |
-| sdshdr16 | 2    | 16   |
-| sdshdr32 | 4    | 32   |
-| sdshdr64 | 8    | 64   |
+| 类型     | 字节 | 位  |
+| -------- | ---- | --- |
+| sdshdr5  | < 1  | <8  |
+| sdshdr8  | 1    | 8   |
+| sdshdr16 | 2    | 16  |
+| sdshdr32 | 4    | 32  |
+| sdshdr64 | 8    | 64  |
 
 对于后四种实现都包含了下面这 4 个属性：
 
