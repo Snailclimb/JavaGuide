@@ -97,11 +97,11 @@ ClassFile {
 |        CONSTANT_utf8_info        |      1      |   UTF-8 编码的字符串   |
 |      CONSTANT_Integer_info       |      3      |       整形字面量       |
 |       CONSTANT_Float_info        |      4      |      浮点型字面量      |
-|        CONSTANT_Long_info        |     5      |      长整型字面量      |
-|       CONSTANT_Double_info       |     6      |   双精度浮点型字面量   |
-|       CONSTANT_Class_info        |     7      |   类或接口的符号引用   |
-|       CONSTANT_String_info       |     8      |    字符串类型字面量    |
-|      CONSTANT_FieldRef_info      |     9      |     字段的符号引用     |
+|        CONSTANT_Long_info        |      5      |      长整型字面量      |
+|       CONSTANT_Double_info       |      6      |   双精度浮点型字面量   |
+|       CONSTANT_Class_info        |      7      |   类或接口的符号引用   |
+|       CONSTANT_String_info       |      8      |    字符串类型字面量    |
+|      CONSTANT_FieldRef_info      |      9      |     字段的符号引用     |
 |     CONSTANT_MethodRef_info      |     10      |   类中方法的符号引用   |
 | CONSTANT_InterfaceMethodRef_info |     11      |  接口中方法的符号引用  |
 |    CONSTANT_NameAndType_info     |     12      |  字段或方法的符号引用  |

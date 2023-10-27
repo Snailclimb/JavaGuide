@@ -556,7 +556,7 @@ SELECT column_name(s) FROM table2;
 | `LEFT()`、`RIGHT()`  | 左边或者右边的字符     |
 | `LOWER()`、`UPPER()` | 转换为小写或者大写     |
 | `LTRIM()`、`RTRIM()` | 去除左边或者右边的空格 |
-| `LENGTH()`           | 长度，以字节为单位                   |
+| `LENGTH()`           | 长度，以字节为单位     |
 | `SOUNDEX()`          | 转换为语音值           |
 
 其中， **`SOUNDEX()`** 可以将一个字符串转换为描述其语音表示的字母数字模式。

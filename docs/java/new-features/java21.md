@@ -22,7 +22,7 @@ JDK 21 共有 15 个新特性：
 
 ## JEP 430：字符串模板（预览）
 
-String Templates(字符串模板)  目前仍然是 JDK 21 中的一个预览功能。
+String Templates(字符串模板) 目前仍然是 JDK 21 中的一个预览功能。
 
 String Templates 提供了一种更简洁、更直观的方式来动态构建字符串。通过使用占位符`${}`，我们可以将变量的值直接嵌入到字符串中，而不需要手动处理。在运行时，Java 编译器会将这些占位符替换为实际的变量值。并且，表达式支持局部变量、静态/非静态字段甚至方法、计算结果等特性。
 
@@ -39,7 +39,7 @@ Java 在没有 String Templates 之前，我们通常使用字符串拼接或格
 
 ```java
 //concatenation
-message = "Greetings " + name + "!";	
+message = "Greetings " + name + "!";
 
 //String.format()
 message = String.format("Greetings %s!", name);	//concatenation
@@ -53,7 +53,7 @@ message = new StringBuilder().append("Greetings ").append(name).append("!").toSt
 
 这些方法或多或少都存在一些缺点，比如难以阅读、冗长、复杂。
 
-Java 使用  String Templates 进行字符串拼接，可以直接在字符串中嵌入表达式，而无需进行额外的处理：
+Java 使用 String Templates 进行字符串拼接，可以直接在字符串中嵌入表达式，而无需进行额外的处理：
 
 ```java
 String message = STR."Greetings \{name}!";
@@ -71,7 +71,7 @@ String message = STR."Greetings \{name}!";
 - RAW：不会像 STR 和 FMT 模板处理器那样自动处理字符串模板，而是返回一个 `StringTemplate` 对象，这个对象包含了模板中的文本和表达式的信息
 
 ```java
-String name = "Lokesh";	
+String name = "Lokesh";
 
 //STR
 String message = STR."Greetings \{name}.";
@@ -155,4 +155,3 @@ java -XX:+UseZGC -XX:+ZGenerational ...
 ## 参考
 
 - Java 21 String Templates：<https://howtodoinjava.com/java/java-string-templates/>
-

@@ -57,10 +57,10 @@ Java 堆是垃圾收集器管理的主要区域，因此也被称作 **GC 堆（
 
 ```java
 public class GCTest {
-	public static void main(String[] args) {
-		byte[] allocation1, allocation2;
-		allocation1 = new byte[30900*1024];
-	}
+  public static void main(String[] args) {
+    byte[] allocation1, allocation2;
+    allocation1 = new byte[30900*1024];
+  }
 }
 ```
 
@@ -91,14 +91,14 @@ allocation2 = new byte[900*1024];
 ```java
 public class GCTest {
 
-	public static void main(String[] args) {
-		byte[] allocation1, allocation2,allocation3,allocation4,allocation5;
-		allocation1 = new byte[32000*1024];
-		allocation2 = new byte[1000*1024];
-		allocation3 = new byte[1000*1024];
-		allocation4 = new byte[1000*1024];
-		allocation5 = new byte[1000*1024];
-	}
+  public static void main(String[] args) {
+    byte[] allocation1, allocation2,allocation3,allocation4,allocation5;
+    allocation1 = new byte[32000*1024];
+    allocation2 = new byte[1000*1024];
+    allocation3 = new byte[1000*1024];
+    allocation4 = new byte[1000*1024];
+    allocation5 = new byte[1000*1024];
+  }
 }
 
 ```
@@ -109,8 +109,8 @@ public class GCTest {
 
 大对象直接进入老年代的行为是由虚拟机动态决定的，它与具体使用的垃圾回收器和相关参数有关。大对象直接进入老年代是一种优化策略，旨在避免将大对象放入新生代，从而减少新生代的垃圾回收频率和成本。
 
-* G1 垃圾回收器会根据-XX:G1HeapRegionSize参数设置的堆区域大小和-XX:G1MixedGCLiveThresholdPercent参数设置的阈值，来决定哪些对象会直接进入老年代。
-* Parallel Scavenge 垃圾回收器中，默认情况下，并没有一个固定的阈值(XX:ThresholdTolerance是动态调整的)来决定何时直接在老年代分配大对象。而是由虚拟机根据当前的堆内存情况和历史数据动态决定。
+- G1 垃圾回收器会根据 `-XX:G1HeapRegionSize` 参数设置的堆区域大小和 `-XX:G1MixedGCLiveThresholdPercent` 参数设置的阈值，来决定哪些对象会直接进入老年代。
+- Parallel Scavenge 垃圾回收器中，默认情况下，并没有一个固定的阈值(`XX:ThresholdTolerance`是动态调整的)来决定何时直接在老年代分配大对象。而是由虚拟机根据当前的堆内存情况和历史数据动态决定。
 
 ### 长期存活的对象将进入老年代
 
@@ -122,7 +122,7 @@ public class GCTest {
 
 > 修正（[issue552](https://github.com/Snailclimb/JavaGuide/issues/552)）：“Hotspot 遍历所有对象时，按照年龄从小到大对其所占用的大小进行累积，当累积的某个年龄大小超过了 survivor 区的 50% 时（默认值是 50%，可以通过 `-XX:TargetSurvivorRatio=percent` 来设置，参见 [issue1199](https://github.com/Snailclimb/JavaGuide/issues/1199) ），取这个年龄和 MaxTenuringThreshold 中更小的一个值，作为新的晋升年龄阈值”。
 >
-> jdk8 官方文档引用：https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html 。
+> jdk8 官方文档引用：<https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html>。
 >
 > ![](https://oss.javaguide.cn/java-guide-blog/image-20210523201742303.png)
 >
@@ -233,7 +233,6 @@ public class ReferenceCountingGc {
 - 方法区中常量引用的对象
 - 所有被同步锁持有的对象
 - JNI（Java Native Interface）引用的对象
-
 
 **对象可以被回收，就代表一定会被回收吗？**
 
@@ -508,7 +507,7 @@ $ java -XX:+UseZGC className
 ## 参考
 
 - 《深入理解 Java 虚拟机：JVM 高级特性与最佳实践（第二版》
-- https://my.oschina.net/hosee/blog/644618
+- <https://my.oschina.net/hosee/blog/644618>
 - <https://docs.oracle.com/javase/specs/jvms/se8/html/index.html>
 
 <!-- @include: @article-footer.snippet.md -->

@@ -513,4 +513,5 @@ System.out.println("清空后的链表：" + list);
 链表长度：2
 清空后的链表：[]
 ```
+
 <!-- @include: @article-footer.snippet.md -->

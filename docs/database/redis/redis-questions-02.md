@@ -496,7 +496,7 @@ Redis 中的大部分命令都是 O(1)时间复杂度，但也有少部分 O(n) 
 
 ⚠️注意：由于慢查询日志会占用一定内存空间，如果设置最大记录条数过大，可能会导致内存占用过高的问题。
 
- `slowlog-log-slower-than`和`slowlog-max-len`的默认配置如下(可以自行修改)：
+`slowlog-log-slower-than`和`slowlog-max-len`的默认配置如下(可以自行修改)：
 
 ```nginx
 # The following time is expressed in microseconds, so 1000000 is equivalent

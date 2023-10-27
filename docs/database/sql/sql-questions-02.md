@@ -27,14 +27,14 @@ SQL 插入记录的方式汇总：
 
 试卷作答记录表`exam_record`中，表已建好，其结构如下，请用一条语句将这两条记录插入表中。
 
-| Filed       | Type       | Null | Key  | Extra          | Default | Comment  |
-| ----------- | ---------- | ---- | ---- | -------------- | ------- | -------- |
-| id          | int(11)    | NO   | PRI  | auto_increment | (NULL)  | 自增 ID  |
-| uid         | int(11)    | NO   |      |                | (NULL)  | 用户 ID  |
-| exam_id     | int(11)    | NO   |      |                | (NULL)  | 试卷 ID  |
-| start_time  | datetime   | NO   |      |                | (NULL)  | 开始时间 |
-| submit_time | datetime   | YES  |      |                | (NULL)  | 提交时间 |
-| score       | tinyint(4) | YES  |      |                | (NULL)  | 得分     |
+| Filed       | Type       | Null | Key | Extra          | Default | Comment  |
+| ----------- | ---------- | ---- | --- | -------------- | ------- | -------- |
+| id          | int(11)    | NO   | PRI | auto_increment | (NULL)  | 自增 ID  |
+| uid         | int(11)    | NO   |     |                | (NULL)  | 用户 ID  |
+| exam_id     | int(11)    | NO   |     |                | (NULL)  | 试卷 ID  |
+| start_time  | datetime   | NO   |     |                | (NULL)  | 开始时间 |
+| submit_time | datetime   | YES  |     |                | (NULL)  | 提交时间 |
+| score       | tinyint(4) | YES  |     |                | (NULL)  | 得分     |
 
 **答案**：
 
@@ -51,14 +51,14 @@ INSERT INTO exam_record (uid, exam_id, start_time, submit_time, score) VALUES
 
 表`exam_record`：
 
-| Filed       | Type       | Null | Key  | Extra          | Default | Comment  |
-| ----------- | ---------- | ---- | ---- | -------------- | ------- | -------- |
-| id          | int(11)    | NO   | PRI  | auto_increment | (NULL)  | 自增 ID  |
-| uid         | int(11)    | NO   |      |                | (NULL)  | 用户 ID  |
-| exam_id     | int(11)    | NO   |      |                | (NULL)  | 试卷 ID  |
-| start_time  | datetime   | NO   |      |                | (NULL)  | 开始时间 |
-| submit_time | datetime   | YES  |      |                | (NULL)  | 提交时间 |
-| score       | tinyint(4) | YES  |      |                | (NULL)  | 得分     |
+| Filed       | Type       | Null | Key | Extra          | Default | Comment  |
+| ----------- | ---------- | ---- | --- | -------------- | ------- | -------- |
+| id          | int(11)    | NO   | PRI | auto_increment | (NULL)  | 自增 ID  |
+| uid         | int(11)    | NO   |     |                | (NULL)  | 用户 ID  |
+| exam_id     | int(11)    | NO   |     |                | (NULL)  | 试卷 ID  |
+| start_time  | datetime   | NO   |     |                | (NULL)  | 开始时间 |
+| submit_time | datetime   | YES  |     |                | (NULL)  | 提交时间 |
+| score       | tinyint(4) | YES  |     |                | (NULL)  | 得分     |
 
 我们已经创建了一张新表`exam_record_before_2021`用来备份 2021 年之前的试题作答记录，结构和`exam_record`表一致，请将 2021 年之前的已完成了的试题作答纪录导入到该表。
 
@@ -77,14 +77,14 @@ WHERE YEAR(submit_time) < 2021;
 
 试题信息表`examination_info`：
 
-| Filed        | Type        | Null | Key  | Extra          | Default | Comment      |
-| ------------ | ----------- | ---- | ---- | -------------- | ------- | ------------ |
-| id           | int(11)     | NO   | PRI  | auto_increment | (NULL)  | 自增 ID      |
-| exam_id      | int(11)     | NO   | UNI  |                | (NULL)  | 试卷 ID      |
-| tag          | varchar(32) | YES  |      |                | (NULL)  | 类别标签     |
-| difficulty   | varchar(8)  | YES  |      |                | (NULL)  | 难度         |
-| duration     | int(11)     | NO   |      |                | (NULL)  | 时长(分钟数) |
-| release_time | datetime    | YES  |      |                | (NULL)  | 发布时间     |
+| Filed        | Type        | Null | Key | Extra          | Default | Comment      |
+| ------------ | ----------- | ---- | --- | -------------- | ------- | ------------ |
+| id           | int(11)     | NO   | PRI | auto_increment | (NULL)  | 自增 ID      |
+| exam_id      | int(11)     | NO   | UNI |                | (NULL)  | 试卷 ID      |
+| tag          | varchar(32) | YES  |     |                | (NULL)  | 类别标签     |
+| difficulty   | varchar(8)  | YES  |     |                | (NULL)  | 难度         |
+| duration     | int(11)     | NO   |     |                | (NULL)  | 时长(分钟数) |
+| release_time | datetime    | YES  |     |                | (NULL)  | 发布时间     |
 
 **答案**：
 
@@ -97,14 +97,14 @@ REPLACE INTO examination_info VALUES
 
 **描述**：现在有一张试卷信息表 `examination_info`, 表结构如下图所示：
 
-| Filed        | Type     | Null | Key  | Extra          | Default | Comment  |
-| ------------ | -------- | ---- | ---- | -------------- | ------- | -------- |
-| id           | int(11)  | NO   | PRI  | auto_increment | (NULL)  | 自增 ID  |
-| exam_id      | int(11)  | NO   | UNI  |                | (NULL)  | 试卷 ID  |
-| tag          | char(32) | YES  |      |                | (NULL)  | 类别标签 |
-| difficulty   | char(8)  | YES  |      |                | (NULL)  | 难度     |
-| duration     | int(11)  | NO   |      |                | (NULL)  | 时长     |
-| release_time | datetime | YES  |      |                | (NULL)  | 发布时间 |
+| Filed        | Type     | Null | Key | Extra          | Default | Comment  |
+| ------------ | -------- | ---- | --- | -------------- | ------- | -------- |
+| id           | int(11)  | NO   | PRI | auto_increment | (NULL)  | 自增 ID  |
+| exam_id      | int(11)  | NO   | UNI |                | (NULL)  | 试卷 ID  |
+| tag          | char(32) | YES  |     |                | (NULL)  | 类别标签 |
+| difficulty   | char(8)  | YES  |     |                | (NULL)  | 难度     |
+| duration     | int(11)  | NO   |     |                | (NULL)  | 时长     |
+| release_time | datetime | YES  |     |                | (NULL)  | 发布时间 |
 
 请把**examination_info**表中`tag`为`PYTHON`的`tag`字段全部修改为`Python`。
 
@@ -129,14 +129,14 @@ SET tag = REPLACE(tag,'PYTHON','Python')
 
 **描述**：现有一张试卷作答记录表 exam_record，其中包含多年来的用户作答试卷记录，结构如下表：作答记录表 `exam_record`： **`submit_time`** 为 完成时间 （注意这句话）
 
-| Filed       | Type       | Null | Key  | Extra          | Default | Comment  |
-| ----------- | ---------- | ---- | ---- | -------------- | ------- | -------- |
-| id          | int(11)    | NO   | PRI  | auto_increment | (NULL)  | 自增 ID  |
-| uid         | int(11)    | NO   |      |                | (NULL)  | 用户 ID  |
-| exam_id     | int(11)    | NO   |      |                | (NULL)  | 试卷 ID  |
-| start_time  | datetime   | NO   |      |                | (NULL)  | 开始时间 |
-| submit_time | datetime   | YES  |      |                | (NULL)  | 提交时间 |
-| score       | tinyint(4) | YES  |      |                | (NULL)  | 得分     |
+| Filed       | Type       | Null | Key | Extra          | Default | Comment  |
+| ----------- | ---------- | ---- | --- | -------------- | ------- | -------- |
+| id          | int(11)    | NO   | PRI | auto_increment | (NULL)  | 自增 ID  |
+| uid         | int(11)    | NO   |     |                | (NULL)  | 用户 ID  |
+| exam_id     | int(11)    | NO   |     |                | (NULL)  | 试卷 ID  |
+| start_time  | datetime   | NO   |     |                | (NULL)  | 开始时间 |
+| submit_time | datetime   | YES  |     |                | (NULL)  | 提交时间 |
+| score       | tinyint(4) | YES  |     |                | (NULL)  | 得分     |
 
 **题目要求**：请把 `exam_record` 表中 2021 年 9 月 1 日==之前==开始作答的==未完成==记录全部改为被动完成，即：将完成时间改为'2099-01-01 00:00:00'，分数改为 0。
 
@@ -154,14 +154,14 @@ UPDATE exam_record SET submit_time = '2099-01-01 00:00:00', score = 0 WHERE DATE
 
 作答记录表`exam_record：` **`start_time`** 是试卷开始时间`submit_time` 是交卷，即结束时间。
 
-| Filed       | Type       | Null | Key  | Extra          | Default | Comment  |
-| ----------- | ---------- | ---- | ---- | -------------- | ------- | -------- |
-| id          | int(11)    | NO   | PRI  | auto_increment | (NULL)  | 自增 ID  |
-| uid         | int(11)    | NO   |      |                | (NULL)  | 用户 ID  |
-| exam_id     | int(11)    | NO   |      |                | (NULL)  | 试卷 ID  |
-| start_time  | datetime   | NO   |      |                | (NULL)  | 开始时间 |
-| submit_time | datetime   | YES  |      |                | (NULL)  | 提交时间 |
-| score       | tinyint(4) | YES  |      |                | (NULL)  | 得分     |
+| Filed       | Type       | Null | Key | Extra          | Default | Comment  |
+| ----------- | ---------- | ---- | --- | -------------- | ------- | -------- |
+| id          | int(11)    | NO   | PRI | auto_increment | (NULL)  | 自增 ID  |
+| uid         | int(11)    | NO   |     |                | (NULL)  | 用户 ID  |
+| exam_id     | int(11)    | NO   |     |                | (NULL)  | 试卷 ID  |
+| start_time  | datetime   | NO   |     |                | (NULL)  | 开始时间 |
+| submit_time | datetime   | YES  |     |                | (NULL)  | 提交时间 |
+| score       | tinyint(4) | YES  |     |                | (NULL)  | 得分     |
 
 **要求**：请删除`exam_record`表中作答时间小于 5 分钟整且分数不及格（及格线为 60 分）的记录；
 
@@ -194,7 +194,7 @@ YEAR：年
 # TIMESTAMPDIFF函数返回datetime_expr2 - datetime_expr1的结果（人话： 后面的 - 前面的  即2-1），其中datetime_expr1和datetime_expr2可以是DATE或DATETIME类型值（人话：可以是“2023-01-01”， 也可以是“2023-01-01- 00:00:00”）
 ```
 
-   这题需要进行分钟的比较，那么就是 TIMESTAMPDIFF(MINUTE, 开始时间， 结束时间) < 5
+这题需要进行分钟的比较，那么就是 TIMESTAMPDIFF(MINUTE, 开始时间， 结束时间) < 5
 
 **答案**：
 
@@ -212,14 +212,14 @@ DELETE FROM exam_record WHERE TIMESTAMPDIFF(MINUTE, start_time, submit_time) < 5
 
 作答记录表`exam_record`：`start_time` 是试卷开始时间，`submit_time` 是交卷时间，即结束时间，如果未完成的话，则为空。
 
-| Filed       | Type       | Null | Key  | Extra          | Default | Comment  |
-| ----------- | ---------- | :--: | ---- | -------------- | ------- | -------- |
-| id          | int(11)    |  NO  | PRI  | auto_increment | (NULL)  | 自增 ID  |
-| uid         | int(11)    |  NO  |      |                | (NULL)  | 用户 ID  |
-| exam_id     | int(11)    |  NO  |      |                | (NULL)  | 试卷 ID  |
-| start_time  | datetime   |  NO  |      |                | (NULL)  | 开始时间 |
-| submit_time | datetime   | YES  |      |                | (NULL)  | 提交时间 |
-| score       | tinyint(4) | YES  |      |                | (NULL)  | 分数     |
+| Filed       | Type       | Null | Key | Extra          | Default | Comment  |
+| ----------- | ---------- | :--: | --- | -------------- | ------- | -------- |
+| id          | int(11)    |  NO  | PRI | auto_increment | (NULL)  | 自增 ID  |
+| uid         | int(11)    |  NO  |     |                | (NULL)  | 用户 ID  |
+| exam_id     | int(11)    |  NO  |     |                | (NULL)  | 试卷 ID  |
+| start_time  | datetime   |  NO  |     |                | (NULL)  | 开始时间 |
+| submit_time | datetime   | YES  |     |                | (NULL)  | 提交时间 |
+| score       | tinyint(4) | YES  |     |                | (NULL)  | 分数     |
 
 **要求**：请删除`exam_record`表中未完成作答==或==作答时间小于 5 分钟整的记录中，开始作答时间最早的 3 条记录。
 
@@ -240,14 +240,14 @@ LIMIT 3
 
 **描述**：现有一张试卷作答记录表 exam_record，其中包含多年来的用户作答试卷记录，结构如下表：
 
-| Filed       | Type       | Null | Key  | Extra          | Default | Comment  |
-| ----------- | ---------- | :--: | ---- | -------------- | ------- | -------- |
-| id          | int(11)    |  NO  | PRI  | auto_increment | (NULL)  | 自增 ID  |
-| uid         | int(11)    |  NO  |      |                | (NULL)  | 用户 ID  |
-| exam_id     | int(11)    |  NO  |      |                | (NULL)  | 试卷 ID  |
-| start_time  | datetime   |  NO  |      |                | (NULL)  | 开始时间 |
-| submit_time | datetime   | YES  |      |                | (NULL)  | 提交时间 |
-| score       | tinyint(4) | YES  |      |                | (NULL)  | 分数     |
+| Filed       | Type       | Null | Key | Extra          | Default | Comment  |
+| ----------- | ---------- | :--: | --- | -------------- | ------- | -------- |
+| id          | int(11)    |  NO  | PRI | auto_increment | (NULL)  | 自增 ID  |
+| uid         | int(11)    |  NO  |     |                | (NULL)  | 用户 ID  |
+| exam_id     | int(11)    |  NO  |     |                | (NULL)  | 试卷 ID  |
+| start_time  | datetime   |  NO  |     |                | (NULL)  | 开始时间 |
+| submit_time | datetime   | YES  |     |                | (NULL)  | 提交时间 |
+| score       | tinyint(4) | YES  |     |                | (NULL)  | 分数     |
 
 **要求**：请删除`exam_record`表中所有记录，==并重置自增主键==
 
@@ -277,29 +277,29 @@ TRUNCATE  exam_record;
 
 原来的用户信息表：
 
-| Filed         | Type        | Null | Key  | Default           | Extra          | Comment  |
-| ------------- | ----------- | ---- | ---- | ----------------- | -------------- | -------- |
-| id            | int(11)     | NO   | PRI  | (NULL)            | auto_increment | 自增 ID  |
-| uid           | int(11)     | NO   | UNI  | (NULL)            |                | 用户 ID  |
-| nick_name     | varchar(64) | YES  |      | (NULL)            |                | 昵称     |
-| achievement   | int(11)     | YES  |      | 0                 |                | 成就值   |
-| level         | int(11)     | YES  |      | (NULL)            |                | 用户等级 |
-| job           | varchar(32) | YES  |      | (NULL)            |                | 职业方向 |
-| register_time | datetime    | YES  |      | CURRENT_TIMESTAMP |                | 注册时间 |
+| Filed         | Type        | Null | Key | Default           | Extra          | Comment  |
+| ------------- | ----------- | ---- | --- | ----------------- | -------------- | -------- |
+| id            | int(11)     | NO   | PRI | (NULL)            | auto_increment | 自增 ID  |
+| uid           | int(11)     | NO   | UNI | (NULL)            |                | 用户 ID  |
+| nick_name     | varchar(64) | YES  |     | (NULL)            |                | 昵称     |
+| achievement   | int(11)     | YES  |     | 0                 |                | 成就值   |
+| level         | int(11)     | YES  |     | (NULL)            |                | 用户等级 |
+| job           | varchar(32) | YES  |     | (NULL)            |                | 职业方向 |
+| register_time | datetime    | YES  |     | CURRENT_TIMESTAMP |                | 注册时间 |
 
 作为数据分析师，请**创建一张优质用户信息表 user_info_vip**，表结构和用户信息表一致。
 
 你应该返回的输出如下表格所示，请写出建表语句将表格中所有限制和说明记录到表里。
 
-| Filed         | Type        | Null | Key  | Default           | Extra          | Comment  |
-| ------------- | ----------- | ---- | ---- | ----------------- | -------------- | -------- |
-| id            | int(11)     | NO   | PRI  | (NULL)            | auto_increment | 自增 ID  |
-| uid           | int(11)     | NO   | UNI  | (NULL)            |                | 用户 ID  |
-| nick_name     | varchar(64) | YES  |      | (NULL)            |                | 昵称     |
-| achievement   | int(11)     | YES  |      | 0                 |                | 成就值   |
-| level         | int(11)     | YES  |      | (NULL)            |                | 用户等级 |
-| job           | varchar(32) | YES  |      | (NULL)            |                | 职业方向 |
-| register_time | datetime    | YES  |      | CURRENT_TIMESTAMP |                | 注册时间 |
+| Filed         | Type        | Null | Key | Default           | Extra          | Comment  |
+| ------------- | ----------- | ---- | --- | ----------------- | -------------- | -------- |
+| id            | int(11)     | NO   | PRI | (NULL)            | auto_increment | 自增 ID  |
+| uid           | int(11)     | NO   | UNI | (NULL)            |                | 用户 ID  |
+| nick_name     | varchar(64) | YES  |     | (NULL)            |                | 昵称     |
+| achievement   | int(11)     | YES  |     | 0                 |                | 成就值   |
+| level         | int(11)     | YES  |     | (NULL)            |                | 用户等级 |
+| job           | varchar(32) | YES  |     | (NULL)            |                | 职业方向 |
+| register_time | datetime    | YES  |     | CURRENT_TIMESTAMP |                | 注册时间 |
 
 **思路**：如果这题给出了旧表的名称，可直接`create table 新表 as select * from 旧表;` 但是这题并没有给出旧表名称，所以需要自己创建，注意默认值和键的创建即可，比较简单。（注意：如果是在牛客网上面执行，请注意 comment 中要和题目中的 comment 保持一致，包括大小写，否则不通过，还有字符也要设置）
 
@@ -323,15 +323,15 @@ CREATE TABLE IF NOT EXISTS user_info_vip(
 
 **用户信息表 `user_info`：**
 
-| Filed         | Type        | Null | Key  | Default           | Extra          | Comment  |
-| ------------- | ----------- | ---- | ---- | ----------------- | -------------- | -------- |
-| id            | int(11)     | NO   | PRI  | (NULL)            | auto_increment | 自增 ID  |
-| uid           | int(11)     | NO   | UNI  | (NULL)            |                | 用户 ID  |
-| nick_name     | varchar(64) | YES  |      | (NULL)            |                | 昵称     |
-| achievement   | int(11)     | YES  |      | 0                 |                | 成就值   |
-| level         | int(11)     | YES  |      | (NULL)            |                | 用户等级 |
-| job           | varchar(32) | YES  |      | (NULL)            |                | 职业方向 |
-| register_time | datetime    | YES  |      | CURRENT_TIMESTAMP |                | 注册时间 |
+| Filed         | Type        | Null | Key | Default           | Extra          | Comment  |
+| ------------- | ----------- | ---- | --- | ----------------- | -------------- | -------- |
+| id            | int(11)     | NO   | PRI | (NULL)            | auto_increment | 自增 ID  |
+| uid           | int(11)     | NO   | UNI | (NULL)            |                | 用户 ID  |
+| nick_name     | varchar(64) | YES  |     | (NULL)            |                | 昵称     |
+| achievement   | int(11)     | YES  |     | 0                 |                | 成就值   |
+| level         | int(11)     | YES  |     | (NULL)            |                | 用户等级 |
+| job           | varchar(32) | YES  |     | (NULL)            |                | 职业方向 |
+| register_time | datetime    | YES  |     | CURRENT_TIMESTAMP |                | 注册时间 |
 
 **要求：**请在用户信息表，字段 `level` 的后面增加一列最多可保存 15 个汉字的字段 `school`；并将表中 `job` 列名改为 `profession`，同时 `varchar` 字段长度变为 10；`achievement` 的默认值设置为 0。
 
@@ -382,11 +382,11 @@ DROP TABLE IF EXISTS exam_record_2014;
 
 根据题意，将返回如下结果：
 
-| examination_info | 0    | PRIMARY          | 1    | id       | A    | 0    |      |      |      | BTREE    |
-| ---------------- | ---- | ---------------- | ---- | -------- | ---- | ---- | ---- | ---- | ---- | -------- |
-| examination_info | 0    | uniq_idx_exam_id | 1    | exam_id  | A    | 0    |      |      | YES  | BTREE    |
-| examination_info | 1    | idx_duration     | 1    | duration | A    | 0    |      |      |      | BTREE    |
-| examination_info | 1    | full_idx_tag     | 1    | tag      |      | 0    |      |      | YES  | FULLTEXT |
+| examination_info | 0   | PRIMARY          | 1   | id       | A   | 0   |     |     |     | BTREE    |
+| ---------------- | --- | ---------------- | --- | -------- | --- | --- | --- | --- | --- | -------- |
+| examination_info | 0   | uniq_idx_exam_id | 1   | exam_id  | A   | 0   |     |     | YES | BTREE    |
+| examination_info | 1   | idx_duration     | 1   | duration | A   | 0   |     |     |     | BTREE    |
+| examination_info | 1   | full_idx_tag     | 1   | tag      |     | 0   |     |     | YES | FULLTEXT |
 
 备注：后台会通过 `SHOW INDEX FROM examination_info` 语句来对比输出结果
 
