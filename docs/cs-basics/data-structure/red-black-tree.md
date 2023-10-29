@@ -51,34 +51,34 @@ public class Node {
 
 ### 1.左倾染色
 
-![幻灯片1](D:\Desktop\JavaGuide\docs\cs-basics\data-structure\pictures\红黑树\红黑树1.PNG)
+![幻灯片1](pictures/红黑树/红黑树1.PNG)
 
 - 染色时根据当前节点的爷爷节点，找到当前节点的叔叔节点。
 - 再把父节点染黑、叔叔节点染黑，爷爷节点染红。但爷爷节点染红是临时的，当平衡树高操作后会把根节点染黑。
 
 ### 2.右倾染色
 
-![幻灯片2](D:\Desktop\JavaGuide\docs\cs-basics\data-structure\pictures\红黑树\红黑树2.PNG)
+![幻灯片2](pictures/红黑树/红黑树2.PNG)
 
 ### 3.左旋调衡
 
 #### 3.1一次左旋
 
-![幻灯片3](D:\Desktop\JavaGuide\docs\cs-basics\data-structure\pictures\红黑树\红黑树3.PNG)
+![幻灯片3](pictures/红黑树/红黑树3.PNG)
 
 #### 3.2右旋+左旋
 
-![幻灯片4](D:\Desktop\JavaGuide\docs\cs-basics\data-structure\pictures\红黑树\红黑树4.PNG)
+![幻灯片4](pictures/红黑树/红黑树4.PNG)
 
 ### 4.右旋调衡
 
 #### 4.1一次右旋
 
-![幻灯片5](D:\Desktop\JavaGuide\docs\cs-basics\data-structure\pictures\红黑树\红黑树5.PNG)
+![幻灯片5](pictures/红黑树/红黑树5.PNG)
 
 #### 4.2左旋+右旋
 
-![幻灯片6](D:\Desktop\JavaGuide\docs\cs-basics\data-structure\pictures\红黑树\红黑树6.PNG)
+![幻灯片6](pictures/红黑树/红黑树6.PNG)
 
 **红黑树的应用**：TreeMap、TreeSet 以及 JDK1.8 的 HashMap 底层都用到了红黑树。
 
