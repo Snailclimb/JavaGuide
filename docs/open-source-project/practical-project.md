@@ -6,18 +6,19 @@ icon: project
 
 ## 快速开发平台
 
-- [Snowy](https://gitee.com/xiaonuobase/snowy)：国内首个国密前后端分离快速开发平台，定位不是深度封装的框架，也不是无代码平台，更不是某个领域的产品。详细介绍：[5.1k！这是我见过最强的前后端分离快速开发脚手架！！](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247534316&idx=1&sn=69938397674fc33ecda43c8c9d0a4039&chksm=cea10927f9d68031bc862485c6be984ade5af233d4d871d498c38f22164a84314678c0c67cd7&token=1464380539&lang=zh_CN#rd)。
+- [Snowy](https://gitee.com/xiaonuobase/snowy)：国内首个国密前后端分离快速开发平台。详细介绍：[5.1k！这是我见过最强的前后端分离快速开发脚手架！！](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247534316&idx=1&sn=69938397674fc33ecda43c8c9d0a4039&chksm=cea10927f9d68031bc862485c6be984ade5af233d4d871d498c38f22164a84314678c0c67cd7&token=1464380539&lang=zh_CN#rd)。
 - [eladmin](https://github.com/elunez/eladmin) : 前后端分离的后台管理系统，项目采用分模块开发方式， 权限控制采用 RBAC，支持数据字典与数据权限管理，支持一键生成前后端代码，支持动态路由。
 - [RuoYi](https://gitee.com/y_project/RuoYi)：RuoYi 一款基于基于 SpringBoot 的权限管理系统 易读易懂、界面简洁美观，直接运行即可用 。
 - [AgileBoot-Back-End](https://github.com/valarchie/AgileBoot-Back-End)：基于 Ruoyi 做了大量重构优化的基础快速开发框架。
-- [RuoYi-Vue-Pro](https://github.com/YunaiV/ruoyi-vue-pro)：RuoYi-Vue 全新 Pro 版本，优化重构所有功能。
-- [pig](https://gitee.com/log4j/pig "pig")：（gitee）基于 Spring Boot 2.2、 Spring Cloud Hoxton & Alibaba、 OAuth2 的 RBAC 权限管理系统。
+- [SmartAdmin](https://gitee.com/lab1024/smart-admin) : 一套简洁、易用的低代码中后台解决方案。
+- [EuBackend](https://gitee.com/zhaoeryu/eu-backend)：基于 SpringBoot 开发的轻量级快速开发平台。
+- [RuoYi-Vue-Pro](https://github.com/YunaiV/ruoyi-vue-pro)：RuoYi-Vue 全新 Pro 版本，优化重构所有功能，支持数据权限、SaaS 多租户、Flowable 工作流、三方登录、支付等功能。
+- [pig](https://gitee.com/log4j/pig "pig")：基于 Spring Boot + Spring Cloud + OAuth2 的 RBAC 权限管理系统。
 - [Guns](https://gitee.com/stylefeng/guns)：现代化的 Java 应用开发基础框架。
 - [JeecgBoot](https://github.com/zhangdaiscott/jeecg-boot)：一款基于代码生成器的 J2EE 低代码快速开发平台，支持生成前后端分离架构的项目。
 - [Erupt](https://gitee.com/erupt/erupt) : 低代码全栈类框架，它使用 Java 注解 动态生成页面以及增、删、改、查、权限控制等后台功能。
-- [SmartAdmin](https://gitee.com/lab1024/smart-admin) : 一套简洁、易用的低代码中后台解决方案。
 - [BallCat](https://github.com/ballcat-projects/ballcat)：一个功能完善的快速开发脚手架！除了最基本的权限管理，定时任务功能之外，还额外支持 XSS 过滤，SQL 防注入、数据脱敏等多种功能
-- [JHipster](https://github.com/jhipster/generator-jhipster) :开源应用程序平台，可在几秒钟内创建 Spring Boot + Angular / React 项目！
+- [JHipster](https://github.com/jhipster/generator-jhipster) :开源应用程序平台，可在几秒钟内创建 Spring Boot + Angular / React 项目。
 
 ## 博客/论坛系统
 
