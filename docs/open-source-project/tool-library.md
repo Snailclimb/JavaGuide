@@ -24,6 +24,10 @@ icon: codelibrary-fill
 - [excel-streaming-reader](https://github.com/monitorjbl/excel-streaming-reader)：Excel 流式代码风格读取工具（只支持读取 XLSX 文件），基于 Apache POI 封装，同时保留标准 POI API 的语法。
 - [myexcel](https://github.com/liaochong/myexcel)：一个集导入、导出、加密 Excel 等多项功能的工具包。
 
+### Word
+
+- [poi-tl](https://github.com/Sayi/poi-tl)：基于 Apache POI 的 Word 模板引擎，可以根据 Word 模板和数据生成 Word 文档，所见即所得！
+
 ### JSON
 
 - [JsonPath](https://github.com/json-path/JsonPath)：处理 JSON 数据的工具库。

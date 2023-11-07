@@ -239,6 +239,8 @@ export default sidebar({
           icon: "suanfaku",
           collapsible: true,
           children: [
+            "classical-algorithm-problems-recommendations",
+            "common-data-structures-leetcode-recommendations",
             "string-algorithm-problems",
             "linkedlist-algorithm-problems",
             "the-sword-refers-to-offer",
