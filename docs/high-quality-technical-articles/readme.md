@@ -2,10 +2,11 @@
 
 <!-- @include: @small-advertisement.snippet.md -->
 
-这里主要会收录一些我看到的和程序员密切相关的非技术类的优质文章，每一篇都值得你阅读 3 遍以上！常看常新！
+这里主要会收录一些我看到的或者我自己写的和程序员密切相关的非技术类的优质文章，每一篇都值得你阅读 3 遍以上！常看常新！
 
 ## 练级攻略
 
+- [程序员如何快速学习新技术](./advanced-programmer/programmer-quickly-learn-new-technology.md)
 - [程序员的技术成长战略](./advanced-programmer/the-growth-strategy-of-the-technological-giant.md)
 - [十年大厂成长之路](./advanced-programmer/ten-years-of-dachang-growth-road.md)
 - [给想成长为高级别开发同学的七条建议](./advanced-programmer/seven-tips-for-becoming-an-advanced-programmer.md)

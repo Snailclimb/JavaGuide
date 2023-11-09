@@ -7,6 +7,7 @@ export const highQualityTechnicalArticles = arraySidebar([
     prefix: "advanced-programmer/",
     collapsible: false,
     children: [
+      "programmer-quickly-learn-new-technology",
       "the-growth-strategy-of-the-technological-giant",
       "ten-years-of-dachang-growth-road",
       "seven-tips-for-becoming-an-advanced-programmer",
