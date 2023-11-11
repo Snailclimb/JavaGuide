@@ -5,7 +5,7 @@ tag:
   - 练级攻略
 ---
 
-> **推荐语**：这是[《Java面试指北》](https://javaguide.cn/zhuanlan/java-mian-shi-zhi-bei.html)练级攻略篇中的一篇文章，分享了我对于如何快速学习一门新技术的看法。
+> **推荐语**：这是[《Java 面试指北》](https://javaguide.cn/zhuanlan/java-mian-shi-zhi-bei.html)练级攻略篇中的一篇文章，分享了我对于如何快速学习一门新技术的看法。
 >
 > ![《Java 面试指北》练级攻略篇](https://oss.javaguide.cn/javamianshizhibei/training-strategy-articles.png)
 
