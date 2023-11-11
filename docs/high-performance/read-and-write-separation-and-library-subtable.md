@@ -38,7 +38,9 @@ head:
 
 我们可以在应用和数据中间加了一个代理层。应用程序所有的数据请求都交给代理层处理，代理层负责分离读写请求，将它们路由到对应的数据库中。
 
-提供类似功能的中间件有 **MySQL Router**（官方）、**Atlas**（基于 MySQL Proxy）、**MaxScale**、**MyCat**。
+提供类似功能的中间件有 **MySQL Router**（官方， MySQL Proxy 的替代方案）、**Atlas**（基于 MySQL Proxy）、**MaxScale**、**MyCat**。
+
+关于 MySQL Router 多提一点：在 MySQL 8.2 的版本中，MySQL Router 能自动分辨对数据库读写/操作并把这些操作路由到正确的实例上。这是一项有价值的功能，可以优化数据库性能和可扩展性，而无需在应用程序中进行任何更改。具体介绍可以参考官方博客：[MySQL 8.2 – transparent read/write splitting](https://blogs.oracle.com/mysql/post/mysql-82-transparent-readwrite-splitting)。
 
 **2. 组件方式**
 
