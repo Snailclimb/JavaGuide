@@ -284,14 +284,16 @@ Lua 脚本同样支持批量操作多条命令。一段 Lua 脚本可以视作�
 
 简单来说，如果一个 key 对应的 value 所占用的内存比较大，那这个 key 就可以看作是 bigkey。具体多大才算大呢？有一个不是特别精确的参考标准：
 
-- string 类型的 value 超过 1MB
-- 复合类型（List、Hash、Set、Sorted Set 等）的 value 包含的元素超过 5000 个（对于复合类型的 value 来说，不一定包含的元素越多，占用的内存就越多）。
+- String 类型的 value 超过 1MB
+- 复合类型（List、Hash、Set、Sorted Set 等）的 value 包含的元素超过 5000 个（不过，对于复合类型的 value 来说，不一定包含的元素越多，占用的内存就越多）。
+
+![bigkey 判定标准](https://oss.javaguide.cn/github/javaguide/database/redis/bigkey-criterion.png)
 
 #### bigkey 是怎么产生的？有什么危害？
 
 bigkey 通常是由于下面这些原因产生的：
 
-- 程序设计不当，比如直接使用 string 类型存储较大的文件对应的二进制数据。
+- 程序设计不当，比如直接使用 String 类型存储较大的文件对应的二进制数据。
 - 对于业务的数据规模考虑不周到，比如使用集合类型的时候没有考虑到数据量的快速增长。
 - 未及时清理垃圾数据，比如哈希中冗余了大量的无用键值对。
 
@@ -337,7 +339,7 @@ Biggest string found '"ballcat:oauth:refresh_auth:f6cdb384-9a9d-4f2f-af01-dc3f28
 0 zsets with 0 members (00.00% of keys, avg size 0.00
 ```
 
-从这个命令的运行结果，我们可以看出：这个命令会扫描(Scan) Redis 中的所有 key ，会对 Redis 的性能有一点影响。并且，这种方式只能找出每种数据结构 top 1 bigkey（占用内存最大的 string 数据类型，包含元素最多的复合数据类型）。然而，一个 key 的元素多并不代表占用内存也多，需要我们根据具体的业务情况来进一步判断。
+从这个命令的运行结果，我们可以看出：这个命令会扫描(Scan) Redis 中的所有 key ，会对 Redis 的性能有一点影响。并且，这种方式只能找出每种数据结构 top 1 bigkey（占用内存最大的 String 数据类型，包含元素最多的复合数据类型）。然而，一个 key 的元素多并不代表占用内存也多，需要我们根据具体的业务情况来进一步判断。
 
 在线上执行该命令时，为了降低对 Redis 的影响，需要指定 `-i` 参数控制扫描的频率。`redis-cli -p 6379 --bigkeys -i 3` 表示扫描过程中每次扫描后休息的时间间隔为 3 秒。
 
