@@ -127,6 +127,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 - [Java 18 新特性概览](./docs/java/new-features/java18.md)
 - [Java 19 新特性概览](./docs/java/new-features/java19.md)
 - [Java 20 新特性概览](./docs/java/new-features/java20.md)
+- [Java 21 新特性概览](./docs/java/new-features/java21.md)
 
 ## 计算机基础
 
