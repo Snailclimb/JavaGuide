@@ -241,7 +241,7 @@ ElasticJob 当当网开源的一个面向互联网生态和海量任务的分布
 
 ElasticJob-Lite 和 ElasticJob-Cloud 两者的对比如下：
 
-| ElasticJob-Lite | ElasticJob-Cloud |                   |
+|                 | ElasticJob-Lite | ElasticJob-Cloud |
 | :-------------- | :--------------- | ----------------- |
 | 无中心化        | 是               | 否                |
 | 资源分配        | 不支持           | 支持              |
