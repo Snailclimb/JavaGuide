@@ -70,9 +70,9 @@ export default hopeTheme({
     mdEnhance: {
       align: true,
       codetabs: true,
-      container: true,
       figure: true,
       gfm: true,
+      hint: true,
       include: {
         resolvePath: (file, cwd) => {
           if (file.startsWith("@"))
