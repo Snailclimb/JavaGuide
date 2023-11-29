@@ -171,12 +171,47 @@ pub/sub 既能单播又能广播，还支持 channel 的简单正则匹配。不
 为此，Redis 5.0 新增加的一个数据结构 `Stream` 来做消息队列。`Stream` 支持：
 
 - 发布 / 订阅模式
-- 按照消费者组进行消费
+- 按照消费者组进行消费（借鉴了 Kafka 消费者组的概念）
 - 消息持久化（ RDB 和 AOF）
+- ACK 机制（通过确认机制来告知已经成功处理了消息）
+- 阻塞式获取消息
 
-`Stream` 使用起来相对要麻烦一些，这里就不演示了。而且，`Stream` 在实际使用中依然会有一些小问题不太好解决比如在 Redis 发生故障恢复后不能保证消息至少被消费一次。
+`Stream` 的结构如下：
 
-综上，和专业的消息队列相比，使用 Redis 来实现消息队列还是有很多欠缺的地方比如消息丢失和堆积问题不好解决。因此，我们通常建议不要使用 Redis 来做消息队列，你完全可以选择市面上比较成熟的一些消息队列比如 RocketMQ、Kafka。
+![](https://oss.javaguide.cn/github/javaguide/database/redis/redis-stream-structure.png)
+
+这是一个有序的消息链表，每个消息都有一个唯一的 ID 和对应的内容。ID 是一个时间戳和序列号的组合，用来保证消息的唯一性和递增性。内容是一个或多个键值对（类似 Hash 基本数据类型），用来存储消息的数据。
+
+这里再对图中涉及到的一些概念，进行简单解释：
+
+- `Consumer Group`：消费者组用于组织和管理多个消费者。消费者组本身不处理消息，而是再将消息分发给消费者，由消费者进行真正的消费
+- `last_delivered_id`：标识消费者组当前消费位置的游标，消费者组中任意一个消费者读取了消息都会使 last_delivered_id 往前移动。
+- `pending_ids`：记录已经被客户端消费但没有 ack 的消息的 ID。
+
+下面是`Stream` 用作消息队列时常用的命令：
+
+- `XADD`：向流中添加新的消息。
+- `XREAD`：从流中读取消息。
+- `XREADGROUP`：从消费组中读取消息。
+- `XRANGE`：根据消息 ID 范围读取流中的消息。
+- `XREVRANGE`：与 `XRANGE` 类似，但以相反顺序返回结果。
+- `XDEL`：从流中删除消息。
+- `XTRIM`：修剪流的长度，可以指定修建策略（`MAXLEN`/`MINID`）。
+- `XLEN`：获取流的长度。
+- `XGROUP CREATE`：创建消费者组。
+- `XGROUP DESTROY` ： 删除消费者组
+- `XGROUP DELCONSUMER`：从消费者组中删除一个消费者。
+- `XGROUP SETID`：为消费者组设置新的最后递送消息 ID
+- `XACK`：确认消费组中的消息已被处理。
+- `XPENDING`：查询消费组中挂起（未确认）的消息。
+- `XCLAIM`：将挂起的消息从一个消费者转移到另一个消费者。
+- `XINFO`：获取流(`XINFO STREAM`)、消费组(`XINFO GROUPS`)或消费者(`XINFO CONSUMERS`)的详细信息。
+
+`Stream` 使用起来相对要麻烦一些，这里就不演示了。
+
+总的来说，`Stream` 已经可以满足一个消息队列的基本要求了。不过，`Stream` 在实际使用中依然会有一些小问题不太好解决比如在 Redis 发生故障恢复后不能保证消息至少被消费一次。
+
+综上，和专业的消息队列相比，使用 Redis 来实现消息队列还是有很多欠缺的地方比如消息丢失和堆积问题不好解决。因此，我们通常建议不要使用 Redis 来做消息队列，你完全可以选择市面上比较成熟的一些消息队列比如 RocketMQ、Kafka。不过，如果你就是想要用 Redis 来做消息队列的话，那我建议你优先考虑  `Stream`，这是目前相对最优的 Redis 消息队列实现。
 
 相关阅读：[Redis 消息队列发展历程 - 阿里开发者 - 2022](https://mp.weixin.qq.com/s/gCUT5TcCQRAxYkTJfTRjJw)。
 
