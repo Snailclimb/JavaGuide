@@ -39,7 +39,8 @@ icon: tool
 
 ### Redis
 
-- [Another Redis Desktop Manager](https://github.com/qishibo/AnotherRedisDesktopManager/blob/master/README.zh-CN.md)：更快、更好、更稳定的 Redis 桌面(GUI)管理客户端。
+- [Another Redis Desktop Manager](https://github.com/qishibo/AnotherRedisDesktopManager/blob/master/README.zh-CN.md)：更快、更好、更稳定的 Redis 桌面(GUI)管理客户端，兼容 Windows、Mac、Linux。
+- [Tiny RDM](https://github.com/tiny-craft/tiny-rdm)：一个更现代化的 Redis 桌面(GUI)管理客户端，基于 Webview2，兼容 Windows、Mac、Linux。
 - [Redis Manager](https://github.com/ngbdf/redis-manager)：Redis 一站式管理平台，支持集群（cluster、master-replica、sentinel）的监控、安装（除 sentinel）、管理、告警以及基本的数据操作功能。
 
 ## Docker
