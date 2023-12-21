@@ -768,7 +768,7 @@ public class ConsumerAddViewHistory implements RocketMQListener<Message> {
 
 ### 传统 IO 方式
 
-![3](https://img1.imgtp.com/2023/08/15/9DQUZuL7.png)
+![](https://oss.javaguide.cn/github/javaguide/high-performance/message-queue/31699457085_.pic.jpg)
 
 传统的 IO 读写其实就是 read + write 的操作，整个过程会分为如下几步
 
@@ -791,7 +791,7 @@ mmap（memory map）是一种内存映射文件的方法，即将一个文件或
 
 简单地说就是内核缓冲区和应用缓冲区共享，从而减少了从读缓冲区到用户缓冲区的一次 CPU 拷贝。基于此上述架构图可变为：
 
-![4](https://img1.imgtp.com/2023/08/15/CHmGd0II.png)
+![](https://oss.javaguide.cn/github/javaguide/high-performance/message-queue/41699457086_.pic.jpg)
 
 基于 mmap IO 读写其实就变成 mmap + write 的操作，也就是用 mmap 替代传统 IO 中的 read 操作。
 
@@ -808,7 +808,7 @@ MappedByteBuffer mappedByteBuffer = fileChannel.map(FileChannel.MapMode.READ_WRI
 
 sendfile()跟 mmap()一样，也会减少一次 CPU 拷贝，但是它同时也会减少两次上下文切换。
 
-![5](https://img1.imgtp.com/2023/08/15/jqLgCEBY.png)
+![](https://oss.javaguide.cn/github/javaguide/high-performance/message-queue/51699457087_.pic.jpg)
 
 如图，用户在发起 sendfile()调用时会发生切换 1，之后数据通过 DMA 拷贝到内核缓冲区，之后再将内核缓冲区的数据 CPU 拷贝到 Socket 缓冲区，最后拷贝到网卡，sendfile()返回，发生切换 2。发生了 3 次拷贝和两次切换。Java 也提供了相应 api：
 

@@ -267,7 +267,7 @@ public E take() throws InterruptedException {
             }
         }
     } finally {
-        //收尾逻辑:如果leader不为空且q有元素，则说明有任务没人认领，直接发起通知唤醒因为锁被当前消费者持有而导致阻塞的生产者(即调用put、add、offer的线程)
+        //收尾逻辑:当leader为null，并且队列中有任务时，唤醒等待的获取元素的线程。 
         if (leader == null && q.peek() != null)
             available.signal();
         //释放锁
