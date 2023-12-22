@@ -13,6 +13,7 @@ icon: project
 - [SmartAdmin](https://gitee.com/lab1024/smart-admin) : 一套简洁、易用的低代码中后台解决方案。
 - [EuBackend](https://gitee.com/zhaoeryu/eu-backend)：基于 SpringBoot 开发的轻量级快速开发平台。
 - [RuoYi-Vue-Pro](https://github.com/YunaiV/ruoyi-vue-pro)：RuoYi-Vue 全新 Pro 版本，优化重构所有功能，支持数据权限、SaaS 多租户、Flowable 工作流、三方登录、支付等功能。
+- [RuoYi-Vue-Plus](https://gitee.com/dromara/RuoYi-Vue-Plus)：RuoYi-Vue 全新 Plus 版本，重写了 RuoYi-Vue 所有功能，集成了 Sa-Token、Mybatis-Plus、Jackson、SpringDoc、Hutool、OSS 定期同步等。
 - [pig](https://gitee.com/log4j/pig "pig")：基于 Spring Boot + Spring Cloud + OAuth2 的 RBAC 权限管理系统。
 - [Guns](https://gitee.com/stylefeng/guns)：现代化的 Java 应用开发基础框架。
 - [JeecgBoot](https://github.com/zhangdaiscott/jeecg-boot)：一款基于代码生成器的 J2EE 低代码快速开发平台，支持生成前后端分离架构的项目。
