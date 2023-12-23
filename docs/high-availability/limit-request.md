@@ -25,9 +25,9 @@ category: 高可用
 - 1 分钟之内每处理一个请求之后就将 `counter+1` ，当 `counter=33` 之后（也就是说在这 1 分钟内接口已经被访问 33 次的话），后续的请求就会被全部拒绝。
 - 等到 1 分钟结束后，将 `counter` 重置 0，重新开始计数。
 
-**这种限流算法无法保证限流速率，因而无法保证突然激增的流量。**
+这种限流算法限流不够平滑。例如，我们限制某个接口每分钟只能访问 30 次，假设前 30 秒就有 30 个请求到达的话，那后续 30 秒将无法处理请求，这是不可取的，用户体验极差！
 
-就比如说我们限制某个接口 1 分钟只能访问 1000 次，该接口的 QPS 为 500，前 55s 这个接口 1 个请求没有接收，后 1s 突然接收了 1000 个请求。然后，在当前场景下，这 1000 个请求在 1s 内是没办法被处理的，系统直接就被瞬时的大量请求给击垮了。
+除此之外，这种限流算法无法保证限流速率，因而无法应对突然激增的流量。例如，我们限制某个接口 1 分钟只能访问 1000 次，该接口的 QPS 为 500，前 55s 这个接口 1 个请求没有接收，后 1s 突然接收了 1000 个请求。然后，在当前场景下，这 1000 个请求在 1s 内是没办法被处理的，系统直接就被瞬时的大量请求给击垮了。
 
 ![固定窗口计数器算法](https://static001.infoq.cn/resource/image/8d/15/8ded7a2b90e1482093f92fff555b3615.png)
 
@@ -43,6 +43,8 @@ category: 高可用
 
 ![滑动窗口计数器算法](https://static001.infoq.cn/resource/image/ae/15/ae4d3cd14efb8dc7046d691c90264715.png)
 
+滑动窗口计数器算法可以应对突然激增的流量，但依然存在限流不够平滑的问题。
+
 ### 漏桶算法
 
 我们可以把发请求的动作比作成注水到桶中，我们处理请求的过程可以比喻为漏桶漏水。我们往桶中以任意速率流入水，以一定速率流出水。当水超过桶流量则丢弃，因为桶容量是不变的，保证了整体的速率。
@@ -51,11 +53,19 @@ category: 高可用
 
 ![漏桶算法](https://static001.infoq.cn/resource/image/75/03/75938d1010138ce66e38c6ed0392f103.png)
 
+漏桶算法可以控制限流速率，避免网络拥塞和系统过载。不过，漏桶算法无法应对突然激增的流量，因为只能以固定的速率处理请求，对系统资源利用不够友好。
+
+实际业务场景中，基本不会使用漏桶算法。
+
 ### 令牌桶算法
 
 令牌桶算法也比较简单。和漏桶算法算法一样，我们的主角还是桶（这限流算法和桶过不去啊）。不过现在桶里装的是令牌了，请求在被处理之前需要拿到一个令牌，请求处理完毕之后将这个令牌丢弃（删除）。我们根据限流大小，按照一定的速率往桶里添加令牌。如果桶装满了，就不能继续往里面继续添加令牌了。
 
 ![令牌桶算法](https://static001.infoq.cn/resource/image/ec/93/eca0e5eaa35dac938c673fecf2ec9a93.png)
+
+
+
+令牌桶算法可以限制平均速率和应对突然激增的流量，还可以动态调整生成令牌的速率。不过，如果令牌产生速率和桶的容量设置不合理，可能会出现问题比如大量的请求被丢弃、系统过载。
 
 ## 单机限流怎么做？
 
@@ -204,10 +214,39 @@ Resilience4j 不仅提供限流，还提供了熔断、负载保护、自动重�
 
 ![ShenYu 限流脚本](https://oss.javaguide.cn/github/javaguide/csdn/e1e2a75f489e4854990dabe3b6cec522.jpg)
 
+另外，如果不想自己写 Lua 脚本的话，也可以直接利用  Redisson 中的 `RRateLimiter`  来实现分布式限流，其底层实现就是基于 Lua 代码。
+
+Redisson 是一个开源的 Java 语言 Redis 客户端，提供了很多开箱即用的功能，比如 Java 中常用的数据结构实现、分布式锁、延迟队列等等。并且，Redisson 还支持 Redis 单机、Redis Sentinel、Redis Cluster 等多种部署架构。
+
+`RRateLimiter` 的使用方式非常简单。我们首先需要获取一个`RRateLimiter`对象，直接通过 Redisson 客户端获取即可。然后，设置限流规则就好。
+
+```java
+// 创建一个 Redisson 客户端实例
+RedissonClient redissonClient = Redisson.create();
+// 获取一个名为 "javaguide.limiter" 的限流器对象
+RRateLimiter rateLimiter = redissonClient.getRateLimiter("javaguide.limiter");
+// 尝试设置限流器的速率为每小时 100 次
+// RateType 有两种，OVERALL是全局限流,ER_CLIENT是单Client限流（可以认为就是单机限流）
+rateLimiter.trySetRate(RateType.OVERALL, 100, 1, RateIntervalUnit.HOURS); 
+```
+
+接下来我们调用`acquire()`方法或`tryAcquire()`方法即可获取许可。
+
+```java
+// 获取一个许可，如果超过限流器的速率则会等待
+// acquire()是同步方法，对应的异步方法：acquireAsync()
+rateLimiter.acquire(1); 
+// 尝试在 5 秒内获取一个许可，如果成功则返回 true，否则返回 false
+// tryAcquire()是同步方法，对应的异步方法：tryAcquireAsync()
+boolean res = rateLimiter.tryAcquire(1, 5, TimeUnit.SECONDS); 
+```
+
 ## 相关阅读
 
 - 服务治理之轻量级熔断框架 Resilience4j：<https://xie.infoq.cn/article/14786e571c1a4143ad1ef8f19>
 - 超详细的 Guava RateLimiter 限流原理解析：<https://cloud.tencent.com/developer/article/1408819>
 - 实战 Spring Cloud Gateway 之限流篇 👍：<https://www.aneasystone.com/archives/2020/08/spring-cloud-gateway-current-limiting.html>
+- 详解 Redisson 分布式限流的实现原理：<https://juejin.cn/post/7199882882138898489>
+- 一文详解 Java 限流接口实现 - 阿里云开发者：<https://mp.weixin.qq.com/s/A5VYjstIDeVvizNK2HkrTQ>
 
 <!-- @include: @article-footer.snippet.md -->
