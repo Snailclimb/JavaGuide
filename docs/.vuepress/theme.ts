@@ -24,6 +24,7 @@ export default hopeTheme({
   pure: true,
   breadcrumb: false,
   navbar,
+  navbarAutoHide: "always",
   sidebar,
   footer:
     '<a href="https://beian.miit.gov.cn/" target="_blank">鄂ICP备2020015769号-1</a>',
