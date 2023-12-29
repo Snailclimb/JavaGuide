@@ -140,6 +140,24 @@ IP 地址过滤是一种简单的网络安全措施，实际应用中一般会�
 - **ICMPv6（Internet Control Message Protocol for IPv6）**：IPv6 中的 ICMPv6 相较于 IPv4 中的 ICMP 有了一些改进，如邻居发现、路径 MTU 发现等功能的改进，从而提升了网络的可靠性和性能。
 - ……
 
+### 如何获取客户端真实 IP？
+
+获取客户端真实 IP 的方法有多种，主要分为应用层方法、传输层方法和网络层方法。
+
+**应用层方法** ：
+
+通过 [X-Forwarded-For](https://en.wikipedia.org/wiki/X-Forwarded-For) 请求头获取，简单方便。不过，这种方法无法保证获取到的是真实 IP，这是因为 X-Forwarded-For 字段可能会被伪造。如果经过多个代理服务器，X-Forwarded-For 字段可能会有多个值（附带了整个请求链中的所有代理服务器 IP 地址）。并且，这种方法只适用于 HTTP 和 SMTP 协议。
+
+**传输层方法**：
+
+利用 TCP Options 字段承载真实源 IP 信息。这种方法适用于任何基于 TCP 的协议，不受应用层的限制。不过，这并非是 TCP 标准所支持的，所以需要通信双方都进行改造。也就是：对于发送方来说，需要有能力把真实源 IP 插入到 TCP Options 里面。对于接收方来说，需要有能力把 TCP Options 里面的 IP 地址读取出来。
+
+也可以通过 Proxy Protocol 协议来传递客户端 IP 和 Port 信息。这种方法可以利用 Nginx 或者其他支持该协议的反向代理服务器来获取真实 IP 或者在业务服务器解析真实 IP。
+
+**网络层方法**：
+
+隧道 +DSR 模式。这种方法可以适用于任何协议，就是实施起来会比较麻烦，也存在一定限制，实际应用中一般不会使用这种方法。
+
 ### NAT 的作用是什么？
 
 **NAT（Network Address Translation，网络地址转换）** 主要用于在不同网络之间转换 IP 地址。它允许将私有 IP 地址（如在局域网中使用的 IP 地址）映射为公有 IP 地址（在互联网中使用的 IP 地址）或者反向映射，从而实现局域网内的多个设备通过单一公有 IP 地址访问互联网。
@@ -185,6 +203,7 @@ ARP 协议，全称 **地址解析协议（Address Resolution Protocol）**，�
 - 《图解 HTTP》
 - 《计算机网络自顶向下方法》（第七版）
 - 什么是 Internet 协议（IP）？：<https://www.cloudflare.com/zh-cn/learning/network-layer/internet-protocol/>
+- 透传真实源 IP 的各种方法 - 极客时间：<https://time.geekbang.org/column/article/497864>
 - What Is NAT and What Are the Benefits of NAT Firewalls?：<https://community.fs.com/blog/what-is-nat-and-what-are-the-benefits-of-nat-firewalls.html>
 
 <!-- @include: @article-footer.snippet.md -->
