@@ -59,7 +59,7 @@ Memcached 是分布式缓存最开始兴起的那会，比较常用的。后来�
 - [Dragonfly](https://github.com/dragonflydb/dragonfly)：一种针对现代应用程序负荷需求而构建的内存数据库，完全兼容 Redis 和 Memcached 的 API，迁移时无需修改任何代码，号称全世界最快的内存数据库。
 - [KeyDB](https://github.com/Snapchat/KeyDB)： Redis 的一个高性能分支，专注于多线程、内存效率和高吞吐量。
 
-不过，个人还是建议分布式缓存首选 Redis ，毕竟经过这么多年的生产考研，生态也这么优秀，资料也很全面。
+不过，个人还是建议分布式缓存首选 Redis ，毕竟经过这么多年的生考验，生态也这么优秀，资料也很全面。
 
 ### 说一下 Redis 和 Memcached 的区别和共同点
 
