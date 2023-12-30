@@ -8,11 +8,7 @@ tag:
 
 > **推荐语**：牛客网热帖，写的很全面！暑期实习，投了阿里、腾讯、字节，拿到了阿里和腾讯的 offer。
 >
-> <br/>
->
-> **原文地址：** https://www.nowcoder.com/discuss/640519
->
-> <br/>
+> **原文地址：** <https://www.nowcoder.com/discuss/640519>
 >
 > **下篇**：[十年饮冰，难凉热血——秋招总结](https://www.nowcoder.com/discuss/804679)
 

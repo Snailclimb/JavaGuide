@@ -385,8 +385,8 @@ private void loadFileIntoMemory(File xmlFile) throws IOException {
 
 - Java NIO 浅析：<https://tech.meituan.com/2016/11/04/nio.html>
 
-- 面试官：Java NIO 了解？https://mp.weixin.qq.com/s/mZobf-U8OSYQfHfYBEB6KA
+- 面试官：Java NIO 了解？<https://mp.weixin.qq.com/s/mZobf-U8OSYQfHfYBEB6KA>
 
-- Java NIO：Buffer、Channel 和 Selector：https://www.javadoop.com/post/java-nio
+- Java NIO：Buffer、Channel 和 Selector：<https://www.javadoop.com/post/java-nio>
 
 <!-- @include: @article-footer.snippet.md -->

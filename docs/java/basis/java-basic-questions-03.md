@@ -560,7 +560,7 @@ Java IO 流的 40 多个类都是从如下 4 个抽象类基类中派生出来�
 ```java
 String[] strs = {"JavaGuide", "公众号：JavaGuide", "博客：https://javaguide.cn/"};
 for (String s : strs) {
-  	System.out.println(s);
+    System.out.println(s);
 }
 ```
 

@@ -180,7 +180,7 @@ static class Entry<K,V> extends HashMap.Node<K,V> {
 
 ```java
 static final class TreeNode<K,V> extends LinkedHashMap.Entry<K,V> {
-	//略
+  //略
 
 }
 ```
@@ -346,20 +346,20 @@ void afterNodeRemoval(Node<K,V> p) { }
 ```java
 void afterNodeRemoval(Node<K,V> e) { // unlink
 
-		//获取当前节点p、以及e的前驱节点b和后继节点a
+    //获取当前节点p、以及e的前驱节点b和后继节点a
         LinkedHashMap.Entry<K,V> p =
             (LinkedHashMap.Entry<K,V>)e, b = p.before, a = p.after;
-		//将p的前驱和后继指针都设置为null，使其和前驱、后继节点断开联系
+    //将p的前驱和后继指针都设置为null，使其和前驱、后继节点断开联系
         p.before = p.after = null;
 
-		//如果前驱节点为空，则说明当前节点p是链表首节点，让head指针指向后继节点a即可
+    //如果前驱节点为空，则说明当前节点p是链表首节点，让head指针指向后继节点a即可
         if (b == null)
             head = a;
         else
         //如果前驱节点b不为空，则让b直接指向后继节点a
             b.after = a;
 
-		//如果后继节点为空，则说明当前节点p在链表末端，所以直接让tail指针指向前驱节点a即可
+    //如果后继节点为空，则说明当前节点p在链表末端，所以直接让tail指针指向前驱节点a即可
         if (a == null)
             tail = b;
         else
@@ -393,7 +393,7 @@ void afterNodeRemoval(Node<K,V> e) { // unlink
 ```java
 final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
                    boolean evict) {
-        	//略
+          //略
             if (e != null) { // existing mapping for key
                 V oldValue = e.value;
                 if (!onlyIfAbsent || oldValue == null)
@@ -436,7 +436,7 @@ void afterNodeInsertion(boolean evict) { // possibly remove eldest
         LinkedHashMap.Entry<K,V> first;
         //如果evict为true且队首元素不为空以及removeEldestEntry返回true，则说明我们需要最老的元素(即在链表首部的元素)移除。
         if (evict && (first = head) != null && removeEldestEntry(first)) {
-        	//获取链表首部的键值对的key
+          //获取链表首部的键值对的key
             K key = first.key;
             //调用removeNode将元素从HashMap的bucket中移除，并和LinkedHashMap的双向链表断开，等待gc回收
             removeNode(hash(key), key, null, false, true);

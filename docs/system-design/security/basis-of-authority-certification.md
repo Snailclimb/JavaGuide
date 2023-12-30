@@ -249,8 +249,8 @@ OAuth 2.0 比较常用的场景就是第三方登录，当你的网站接入了�
 
 ## 参考
 
-- 不要用 JWT 替代 session 管理（上）：全面了解 Token,JWT,OAuth,SAML,SSO：https://zhuanlan.zhihu.com/p/38942172
-- Introduction to JSON Web Tokens：https://jwt.io/introduction
-- JSON Web Token Claims：https://auth0.com/docs/secure/tokens/json-web-tokens/json-web-token-claims
+- 不要用 JWT 替代 session 管理（上）：全面了解 Token,JWT,OAuth,SAML,SSO：<https://zhuanlan.zhihu.com/p/38942172>
+- Introduction to JSON Web Tokens：<https://jwt.io/introduction>
+- JSON Web Token Claims：<https://auth0.com/docs/secure/tokens/json-web-tokens/json-web-token-claims>
 
 <!-- @include: @article-footer.snippet.md -->

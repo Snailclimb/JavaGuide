@@ -141,6 +141,6 @@ tag:
 
 - 《深入理解 Java 虚拟机》
 - 《实战 Java 虚拟机》
-- Chapter 5. Loading, Linking, and Initializing - Java Virtual Machine Specification：https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-5.html#jvms-5.4
+- Chapter 5. Loading, Linking, and Initializing - Java Virtual Machine Specification：<https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-5.html#jvms-5.4>
 
 <!-- @include: @article-footer.snippet.md -->

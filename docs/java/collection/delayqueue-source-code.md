@@ -267,7 +267,7 @@ public E take() throws InterruptedException {
             }
         }
     } finally {
-        //收尾逻辑:当leader为null，并且队列中有任务时，唤醒等待的获取元素的线程。 
+        // 收尾逻辑:当leader为null，并且队列中有任务时，唤醒等待的获取元素的线程。
         if (leader == null && q.peek() != null)
             available.signal();
         //释放锁

@@ -5,7 +5,7 @@ tag:
   - MySQL
 ---
 
-> 原文地址：https://shockerli.net/post/1000-line-mysql-note/ ，JavaGuide 对本文进行了简答排版，新增了目录。
+> 原文地址：<https://shockerli.net/post/1000-line-mysql-note/> ，JavaGuide 对本文进行了简答排版，新增了目录。
 
 非常不错的总结，强烈建议保存下来，需要的时候看一看。
 

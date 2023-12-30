@@ -63,8 +63,6 @@ category: 高可用
 
 ![令牌桶算法](https://static001.infoq.cn/resource/image/ec/93/eca0e5eaa35dac938c673fecf2ec9a93.png)
 
-
-
 令牌桶算法可以限制平均速率和应对突然激增的流量，还可以动态调整生成令牌的速率。不过，如果令牌产生速率和桶的容量设置不合理，可能会出现问题比如大量的请求被丢弃、系统过载。
 
 ## 针对什么来进行限流？
@@ -228,7 +226,7 @@ Resilience4j 不仅提供限流，还提供了熔断、负载保护、自动重�
 
 ![ShenYu 限流脚本](https://oss.javaguide.cn/github/javaguide/csdn/e1e2a75f489e4854990dabe3b6cec522.jpg)
 
-另外，如果不想自己写 Lua 脚本的话，也可以直接利用  Redisson 中的 `RRateLimiter`  来实现分布式限流，其底层实现就是基于 Lua 代码。
+另外，如果不想自己写 Lua 脚本的话，也可以直接利用 Redisson 中的 `RRateLimiter` 来实现分布式限流，其底层实现就是基于 Lua 代码。
 
 Redisson 是一个开源的 Java 语言 Redis 客户端，提供了很多开箱即用的功能，比如 Java 中常用的数据结构实现、分布式锁、延迟队列等等。并且，Redisson 还支持 Redis 单机、Redis Sentinel、Redis Cluster 等多种部署架构。
 
@@ -241,7 +239,7 @@ RedissonClient redissonClient = Redisson.create();
 RRateLimiter rateLimiter = redissonClient.getRateLimiter("javaguide.limiter");
 // 尝试设置限流器的速率为每小时 100 次
 // RateType 有两种，OVERALL是全局限流,ER_CLIENT是单Client限流（可以认为就是单机限流）
-rateLimiter.trySetRate(RateType.OVERALL, 100, 1, RateIntervalUnit.HOURS); 
+rateLimiter.trySetRate(RateType.OVERALL, 100, 1, RateIntervalUnit.HOURS);
 ```
 
 接下来我们调用`acquire()`方法或`tryAcquire()`方法即可获取许可。
@@ -249,10 +247,10 @@ rateLimiter.trySetRate(RateType.OVERALL, 100, 1, RateIntervalUnit.HOURS);
 ```java
 // 获取一个许可，如果超过限流器的速率则会等待
 // acquire()是同步方法，对应的异步方法：acquireAsync()
-rateLimiter.acquire(1); 
+rateLimiter.acquire(1);
 // 尝试在 5 秒内获取一个许可，如果成功则返回 true，否则返回 false
 // tryAcquire()是同步方法，对应的异步方法：tryAcquireAsync()
-boolean res = rateLimiter.tryAcquire(1, 5, TimeUnit.SECONDS); 
+boolean res = rateLimiter.tryAcquire(1, 5, TimeUnit.SECONDS);
 ```
 
 ## 总结

@@ -16,10 +16,10 @@ tag:
 我们系统的每个业务方法可能包括了多个原子性的数据库操作，比如下面的 `savePerson()` 方法中就有两个原子性的数据库操作。这些原子性的数据库操作是有依赖的，它们要么都执行，要不就都不执行。
 
 ```java
-	public void savePerson() {
-		personDao.save(person);
-		personDetailDao.save(personDetail);
-	}
+  public void savePerson() {
+    personDao.save(person);
+    personDetailDao.save(personDetail);
+  }
 ```
 
 另外，需要格外注意的是：**事务能否生效数据库引擎是否支持事务是关键。比如常用的 MySQL 数据库默认使用支持事务的 `innodb`引擎。但是，如果把数据库引擎变为 `myisam`，那么程序也就不再支持事务了！**
@@ -35,23 +35,23 @@ tag:
 
 ```java
 public class OrdersService {
-	private AccountDao accountDao;
+  private AccountDao accountDao;
 
-	public void setOrdersDao(AccountDao accountDao) {
-		this.accountDao = accountDao;
-	}
+  public void setOrdersDao(AccountDao accountDao) {
+    this.accountDao = accountDao;
+  }
 
   @Transactional(propagation = Propagation.REQUIRED,
                 isolation = Isolation.DEFAULT, readOnly = false, timeout = -1)
-	public void accountMoney() {
+  public void accountMoney() {
     //小红账户多1000
-		accountDao.addMoney(1000,xiaohong);
-		//模拟突然出现的异常，比如银行中可能为突然停电等等
+    accountDao.addMoney(1000,xiaohong);
+    //模拟突然出现的异常，比如银行中可能为突然停电等等
     //如果没有配置事务管理的话会造成，小红账户多了1000而小明账户没有少钱
-		int i = 10 / 0;
-		//小王账户少1000
-		accountDao.reduceMoney(1000,xiaoming);
-	}
+    int i = 10 / 0;
+    //小王账户少1000
+    accountDao.reduceMoney(1000,xiaoming);
+  }
 }
 ```
 
@@ -582,27 +582,27 @@ public interface TransactionDefinition {
 @Documented
 public @interface Transactional {
 
-	@AliasFor("transactionManager")
-	String value() default "";
+  @AliasFor("transactionManager")
+  String value() default "";
 
-	@AliasFor("value")
-	String transactionManager() default "";
+  @AliasFor("value")
+  String transactionManager() default "";
 
-	Propagation propagation() default Propagation.REQUIRED;
+  Propagation propagation() default Propagation.REQUIRED;
 
-	Isolation isolation() default Isolation.DEFAULT;
+  Isolation isolation() default Isolation.DEFAULT;
 
-	int timeout() default TransactionDefinition.TIMEOUT_DEFAULT;
+  int timeout() default TransactionDefinition.TIMEOUT_DEFAULT;
 
-	boolean readOnly() default false;
+  boolean readOnly() default false;
 
-	Class<? extends Throwable>[] rollbackFor() default {};
+  Class<? extends Throwable>[] rollbackFor() default {};
 
-	String[] rollbackForClassName() default {};
+  String[] rollbackForClassName() default {};
 
-	Class<? extends Throwable>[] noRollbackFor() default {};
+  Class<? extends Throwable>[] noRollbackFor() default {};
 
-	String[] noRollbackForClassName() default {};
+  String[] noRollbackForClassName() default {};
 
 }
 ```
@@ -628,23 +628,23 @@ public @interface Transactional {
 ```java
 public class DefaultAopProxyFactory implements AopProxyFactory, Serializable {
 
-	@Override
-	public AopProxy createAopProxy(AdvisedSupport config) throws AopConfigException {
-		if (config.isOptimize() || config.isProxyTargetClass() || hasNoUserSuppliedProxyInterfaces(config)) {
-			Class<?> targetClass = config.getTargetClass();
-			if (targetClass == null) {
-				throw new AopConfigException("TargetSource cannot determine target class: " +
-						"Either an interface or a target is required for proxy creation.");
-			}
-			if (targetClass.isInterface() || Proxy.isProxyClass(targetClass)) {
-				return new JdkDynamicAopProxy(config);
-			}
-			return new ObjenesisCglibAopProxy(config);
-		}
-		else {
-			return new JdkDynamicAopProxy(config);
-		}
-	}
+  @Override
+  public AopProxy createAopProxy(AdvisedSupport config) throws AopConfigException {
+    if (config.isOptimize() || config.isProxyTargetClass() || hasNoUserSuppliedProxyInterfaces(config)) {
+      Class<?> targetClass = config.getTargetClass();
+      if (targetClass == null) {
+        throw new AopConfigException("TargetSource cannot determine target class: " +
+            "Either an interface or a target is required for proxy creation.");
+      }
+      if (targetClass.isInterface() || Proxy.isProxyClass(targetClass)) {
+        return new JdkDynamicAopProxy(config);
+      }
+      return new ObjenesisCglibAopProxy(config);
+    }
+    else {
+      return new JdkDynamicAopProxy(config);
+    }
+  }
   .......
 }
 ```

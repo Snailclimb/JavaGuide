@@ -103,7 +103,7 @@
 
 ### JVM (必看 :+1:)
 
-JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle.com/javase/specs/jvms/se8/html/index.html) 和周志明老师的[《深入理解 Java 虚拟机（第 3 版）》](https://book.douban.com/subject/34907497/) （强烈建议阅读多遍！）。
+JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.com/javase/specs/jvms/se8/html/index.html) 和周志明老师的[《深入理解 Java 虚拟机（第 3 版）》](https://book.douban.com/subject/34907497/) （强烈建议阅读多遍！）。
 
 - **[Java 内存区域](./docs/java/jvm/memory-area.md)**
 - **[JVM 垃圾回收](./docs/java/jvm/jvm-garbage-collection.md)**
@@ -183,8 +183,8 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 **常见算法问题总结**：
 
-- [几道常见的字符串算法题总结 ](./docs/cs-basics/algorithms/string-algorithm-problems.md)
-- [几道常见的链表算法题总结 ](./docs/cs-basics/algorithms/linkedlist-algorithm-problems.md)
+- [几道常见的字符串算法题总结](./docs/cs-basics/algorithms/string-algorithm-problems.md)
+- [几道常见的链表算法题总结](./docs/cs-basics/algorithms/linkedlist-algorithm-problems.md)
 - [剑指 offer 部分编程题](./docs/cs-basics/algorithms/the-sword-refers-to-offer.md)
 - [十大经典排序算法](./docs/cs-basics/algorithms/10-classical-sorting-algorithms.md)
 

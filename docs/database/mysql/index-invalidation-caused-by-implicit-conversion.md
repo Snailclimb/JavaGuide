@@ -8,7 +8,7 @@ tag:
 
 > 本次测试使用的 MySQL 版本是 `5.7.26`，随着 MySQL 版本的更新某些特性可能会发生改变，本文不代表所述观点和结论于 MySQL 所有版本均准确无误，版本差异请自行甄别。
 >
-> 原文：https://www.guitu18.com/post/2019/11/24/61.html
+> 原文：<https://www.guitu18.com/post/2019/11/24/61.html>
 
 ## 前言
 

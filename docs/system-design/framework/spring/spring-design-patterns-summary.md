@@ -346,7 +346,7 @@ Spring 框架中用到了哪些设计模式？
 
 - 《Spring 技术内幕》
 - <https://blog.eduonix.com/java-programming-2/learn-design-patterns-used-spring-framework/>
-- <http://blog.yeamin.top/2018/03/27/单例模式-Spring 单例实现原理分析/>
+- <http://blog.yeamin.top/2018/03/27/单例模式-Spring%20单例实现原理分析/>
 - <https://www.tutorialsteacher.com/ioc/inversion-of-control>
 - <https://design-patterns.readthedocs.io/zh_CN/latest/behavioral_patterns/observer.html>
 - <https://juejin.im/post/5a8eb261f265da4e9e307230>

@@ -209,7 +209,7 @@ Class 文件存储格式中对方法的描述与对字段的描述几乎采用�
 ## 参考
 
 - 《实战 Java 虚拟机》
-- Chapter 4. The class File Format - Java Virtual Machine Specification:https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-4.html
+- Chapter 4. The class File Format - Java Virtual Machine Specification: <https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-4.html>
 - 实例分析 JAVA CLASS 的文件结构：<https://coolshell.cn/articles/9229.html>
 - 《Java 虚拟机原理图解》 1.2.2、Class 文件中的常量池详解（上）：<https://blog.csdn.net/luanlouis/article/details/39960815>
 

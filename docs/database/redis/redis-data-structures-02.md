@@ -219,8 +219,8 @@ user2
 
 ## 参考
 
-- Redis Data Structures：https://redis.com/redis-enterprise/data-structures/ 。
+- Redis Data Structures：<https://redis.com/redis-enterprise/data-structures/> 。
 - 《Redis 深度历险：核心原理与应用实践》1.6 四两拨千斤——HyperLogLog
-- 布隆过滤器,位图,HyperLogLog：https://hogwartsrico.github.io/2020/06/08/BloomFilter-HyperLogLog-BitMap/index.html
+- 布隆过滤器,位图,HyperLogLog：<https://hogwartsrico.github.io/2020/06/08/BloomFilter-HyperLogLog-BitMap/index.html>
 
 <!-- @include: @article-footer.snippet.md -->

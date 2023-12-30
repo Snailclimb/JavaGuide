@@ -211,7 +211,7 @@ MMU 将虚拟地址翻译为物理地址的主要机制有 3 种:
 
 #### 单级页表有什么问题？为什么需要多级页表？
 
-以 32 位的环境为例，虚拟地址空间范围共有 2^32（4G）。假设 一个页的大小是 2^12（4KB），那页表项共有 4G / 4K = 2^20 个。每个页表项为一个地址，占用 4 字节，2^20 * 2^2/1024*1024= 4MB。也就是说一个程序啥都不干，页表大小就得占用 4M。
+以 32 位的环境为例，虚拟地址空间范围共有 2^32（4G）。假设 一个页的大小是 2^12（4KB），那页表项共有 4G / 4K = 2^20 个。每个页表项为一个地址，占用 4 字节，`2^20 * 2^2 / 1024 * 1024= 4MB`。也就是说一个程序啥都不干，页表大小就得占用 4M。
 
 系统运行的应用程序多起来的话，页表的开销还是非常大的。而且，绝大部分应用程序可能只能用到页表中的几项，其他的白白浪费了。
 
@@ -404,10 +404,10 @@ LRU 算法是实际使用中应用的比较多，也被认为是最接近 OPT �
 - 《深入理解计算机系统》
 - 《重学操作系统》
 - 《现代操作系统原理与实现》
-- 王道考研操作系统知识点整理：https://wizardforcel.gitbooks.io/wangdaokaoyan-os/content/13.html
-- 内存管理之伙伴系统与 SLAB：https://blog.csdn.net/qq_44272681/article/details/124199068
-- 为什么 Linux 需要虚拟内存：https://draveness.me/whys-the-design-os-virtual-memory/
-- 程序员的自我修养（七）：内存缺页错误：https://liam.page/2017/09/01/page-fault/
-- 虚拟内存的那点事儿：https://juejin.cn/post/6844903507594575886
+- 王道考研操作系统知识点整理：<https://wizardforcel.gitbooks.io/wangdaokaoyan-os/content/13.html>
+- 内存管理之伙伴系统与 SLAB：<https://blog.csdn.net/qq_44272681/article/details/124199068>
+- 为什么 Linux 需要虚拟内存：<https://draveness.me/whys-the-design-os-virtual-memory/>
+- 程序员的自我修养（七）：内存缺页错误：<https://liam.page/2017/09/01/page-fault/>
+- 虚拟内存的那点事儿：<https://juejin.cn/post/6844903507594575886>
 
 <!-- @include: @article-footer.snippet.md -->

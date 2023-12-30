@@ -804,19 +804,19 @@ private static int hugeCapacity(int minCapacity) {
 ```java
 public class ArraycopyTest {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		int[] a = new int[10];
-		a[0] = 0;
-		a[1] = 1;
-		a[2] = 2;
-		a[3] = 3;
-		System.arraycopy(a, 2, a, 3, 3);
-		a[2]=99;
-		for (int i = 0; i < a.length; i++) {
-			System.out.print(a[i] + " ");
-		}
-	}
+  public static void main(String[] args) {
+    // TODO Auto-generated method stub
+    int[] a = new int[10];
+    a[0] = 0;
+    a[1] = 1;
+    a[2] = 2;
+    a[3] = 3;
+    System.arraycopy(a, 2, a, 3, 3);
+    a[2]=99;
+    for (int i = 0; i < a.length; i++) {
+      System.out.print(a[i] + " ");
+    }
+  }
 
 }
 ```
@@ -833,9 +833,9 @@ public class ArraycopyTest {
 
 ```java
     public static int[] copyOf(int[] original, int newLength) {
-    	// 申请一个新的数组
+      // 申请一个新的数组
         int[] copy = new int[newLength];
-	// 调用System.arraycopy,将源数组中的数据进行拷贝,并返回新的数组
+  // 调用System.arraycopy,将源数组中的数据进行拷贝,并返回新的数组
         System.arraycopy(original, 0, copy, 0,
                          Math.min(original.length, newLength));
         return copy;
@@ -859,14 +859,14 @@ public class ArraycopyTest {
 ```java
 public class ArrayscopyOfTest {
 
-	public static void main(String[] args) {
-		int[] a = new int[3];
-		a[0] = 0;
-		a[1] = 1;
-		a[2] = 2;
-		int[] b = Arrays.copyOf(a, 10);
-		System.out.println("b.length"+b.length);
-	}
+  public static void main(String[] args) {
+    int[] a = new int[3];
+    a[0] = 0;
+    a[1] = 1;
+    a[2] = 2;
+    int[] b = Arrays.copyOf(a, 10);
+    System.out.println("b.length"+b.length);
+  }
 }
 ```
 
@@ -917,17 +917,17 @@ public class ArrayscopyOfTest {
 
 ```java
 public class EnsureCapacityTest {
-	public static void main(String[] args) {
-		ArrayList<Object> list = new ArrayList<Object>();
-		final int N = 10000000;
-		long startTime = System.currentTimeMillis();
-		for (int i = 0; i < N; i++) {
-			list.add(i);
-		}
-		long endTime = System.currentTimeMillis();
-		System.out.println("使用ensureCapacity方法前："+(endTime - startTime));
+  public static void main(String[] args) {
+    ArrayList<Object> list = new ArrayList<Object>();
+    final int N = 10000000;
+    long startTime = System.currentTimeMillis();
+    for (int i = 0; i < N; i++) {
+      list.add(i);
+    }
+    long endTime = System.currentTimeMillis();
+    System.out.println("使用ensureCapacity方法前："+(endTime - startTime));
 
-	}
+  }
 }
 ```
 

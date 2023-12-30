@@ -1,5 +1,4 @@
 import { defineUserConfig } from "vuepress";
-import { searchPlugin } from "@vuepress/plugin-search";
 import theme from "./theme.js";
 
 export default defineUserConfig({
@@ -47,38 +46,6 @@ export default defineUserConfig({
   ],
 
   theme,
-
-  plugins: [
-    searchPlugin({
-      // https://v2.vuepress.vuejs.org/zh/reference/plugin/search.html
-      // 排除首页
-      isSearchable: (page) => page.path !== "/",
-      maxSuggestions: 10,
-      hotKeys: ["s", "/"],
-      // 用于在页面的搜索索引中添加额外字段
-      getExtraFields: () => [],
-      locales: {
-        "/": {
-          placeholder: "搜索",
-        },
-      },
-    }),
-    // searchProPlugin({
-    //   indexContent: true,
-    //   indexOptions: {
-    //     tokenize: (text, fieldName) =>
-    //       fieldName === "id" ? [text] : cut(text, true),
-    //   },
-    //   customFields: [
-    //     {
-    //       getter: ({ frontmatter }) =>
-    //         <string | undefined>frontmatter.category ?? null,
-    //       formatter: "分类: $content",
-    //     },
-    //   ],
-    //   suggestDelay: 60,
-    // }),
-  ],
 
   pagePatterns: ["**/*.md", "!**/*.snippet.md", "!.vuepress", "!node_modules"],
 

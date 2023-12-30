@@ -101,19 +101,19 @@ public BigDecimal divide(BigDecimal divisor, int scale, RoundingMode roundingMod
 public enum RoundingMode {
    // 2.5 -> 3 , 1.6 -> 2
    // -1.6 -> -2 , -2.5 -> -3
-			 UP(BigDecimal.ROUND_UP),
+   UP(BigDecimal.ROUND_UP),
    // 2.5 -> 2 , 1.6 -> 1
    // -1.6 -> -1 , -2.5 -> -2
-			 DOWN(BigDecimal.ROUND_DOWN),
-			 // 2.5 -> 3 , 1.6 -> 2
+   DOWN(BigDecimal.ROUND_DOWN),
+   // 2.5 -> 3 , 1.6 -> 2
    // -1.6 -> -1 , -2.5 -> -2
-			 CEILING(BigDecimal.ROUND_CEILING),
-			 // 2.5 -> 2 , 1.6 -> 1
+   CEILING(BigDecimal.ROUND_CEILING),
+   // 2.5 -> 2 , 1.6 -> 1
    // -1.6 -> -2 , -2.5 -> -3
-			 FLOOR(BigDecimal.ROUND_FLOOR),
-   	// 2.5 -> 3 , 1.6 -> 2
+   FLOOR(BigDecimal.ROUND_FLOOR),
+   // 2.5 -> 3 , 1.6 -> 2
    // -1.6 -> -2 , -2.5 -> -3
-			 HALF_UP(BigDecimal.ROUND_HALF_UP),
+   HALF_UP(BigDecimal.ROUND_HALF_UP),
    //......
 }
 ```

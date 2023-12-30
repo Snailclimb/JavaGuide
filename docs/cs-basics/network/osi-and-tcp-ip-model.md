@@ -189,7 +189,7 @@ OSI 七层模型虽然失败了，但是却提供了很多不错的理论基础�
 
 ## 参考
 
-- TCP/IP model vs OSI model：https://fiberbit.com.tw/tcpip-model-vs-osi-model/
-- Data Encapsulation and the TCP/IP Protocol Stack：https://docs.oracle.com/cd/E19683-01/806-4075/ipov-32/index.html
+- TCP/IP model vs OSI model：<https://fiberbit.com.tw/tcpip-model-vs-osi-model/>
+- Data Encapsulation and the TCP/IP Protocol Stack：<https://docs.oracle.com/cd/E19683-01/806-4075/ipov-32/index.html>
 
 <!-- @include: @article-footer.snippet.md -->

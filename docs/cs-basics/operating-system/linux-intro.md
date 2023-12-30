@@ -166,7 +166,7 @@ Linux 使用一种称为目录树的层次结构来组织文件和目录。目�
 
 下面只是给出了一些比较常用的命令。
 
-推荐一个 Linux 命令快查网站，非常不错，大家如果遗忘某些命令或者对某些命令不理解都可以在这里得到解决。Linux 命令在线速查手册：https://wangchujiang.com/linux-command/ 。
+推荐一个 Linux 命令快查网站，非常不错，大家如果遗忘某些命令或者对某些命令不理解都可以在这里得到解决。Linux 命令在线速查手册：<https://wangchujiang.com/linux-command/> 。
 
 ![ Linux 命令快查](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/linux/linux-command-search.png)
 

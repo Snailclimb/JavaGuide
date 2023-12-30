@@ -8,9 +8,7 @@ tag:
 
 > **推荐语**：详细介绍了求职者在面试中应该具备哪些能力才会有更大概率脱颖而出。
 >
-> <br/>
->
-> **原文地址：** https://mp.weixin.qq.com/s/M2M808PwQ2JcMqfLQfXQMw
+> **原文地址：** <https://mp.weixin.qq.com/s/M2M808PwQ2JcMqfLQfXQMw>
 
 最近我的工作稍微轻松些，就被安排去校招面试了
 

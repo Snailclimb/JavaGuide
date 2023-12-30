@@ -199,13 +199,13 @@ DNS Flood 对传统上基于放大的攻击方法做出了改变。借助轻易�
 可以使用 netcat 工具来建立 TCP 连接，这个工具很多操作系统都预装了。打开第一个终端窗口，运行以下命令：
 
 ```bash
-$ nc -nvl 8000
+nc -nvl 8000
 ```
 
 这个命令会启动一个 TCP 服务，监听端口为 `8000`。接着再打开第二个终端窗口，运行以下命令：
 
 ```bash
-$ nc 127.0.0.1 8000
+nc 127.0.0.1 8000
 ```
 
 该命令会尝试与上面的服务建立连接，在其中一个窗口输入一些字符，就会通过 TCP 连接发送给另一个窗口并打印出来。
@@ -328,7 +328,7 @@ DES 使用的密钥表面上是 64 位的，然而只有其中的 56 位被实�
 
 **SM1 和 SM4**
 
-之前几种都是国外的，我们国内自行研究了国密 **SM1 **和 **SM4**。其中 S 都属于国家标准，算法公开。优点就是国家的大力支持和认可
+之前几种都是国外的，我们国内自行研究了国密 **SM1**和 **SM4**。其中 S 都属于国家标准，算法公开。优点就是国家的大力支持和认可
 
 **总结**：
 
@@ -462,9 +462,9 @@ CDN 加速，我们可以这么理解：为了减少流氓骚扰，我干脆将�
 
 ## 参考
 
-- HTTP 洪水攻击 - CloudFlare：https://www.cloudflare.com/zh-cn/learning/ddos/http-flood-ddos-attack/
-- SYN 洪水攻击：https://www.cloudflare.com/zh-cn/learning/ddos/syn-flood-ddos-attack/
-- 什么是 IP 欺骗？：https://www.cloudflare.com/zh-cn/learning/ddos/glossary/ip-spoofing/
-- 什么是 DNS 洪水？| DNS 洪水 DDoS 攻击：https://www.cloudflare.com/zh-cn/learning/ddos/dns-flood-ddos-attack/
+- HTTP 洪水攻击 - CloudFlare：<https://www.cloudflare.com/zh-cn/learning/ddos/http-flood-ddos-attack/>
+- SYN 洪水攻击：<https://www.cloudflare.com/zh-cn/learning/ddos/syn-flood-ddos-attack/>
+- 什么是 IP 欺骗？：<https://www.cloudflare.com/zh-cn/learning/ddos/glossary/ip-spoofing/>
+- 什么是 DNS 洪水？| DNS 洪水 DDoS 攻击：<https://www.cloudflare.com/zh-cn/learning/ddos/dns-flood-ddos-attack/>
 
 <!-- @include: @article-footer.snippet.md -->

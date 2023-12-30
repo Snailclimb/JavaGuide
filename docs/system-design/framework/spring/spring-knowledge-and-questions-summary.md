@@ -30,7 +30,7 @@ Spring 翻译过来就是春天的意思，可见其目标和使命就是为 Jav
 Spring 提供的核心功能主要是 IoC 和 AOP。学习 Spring ，一定要把 IoC 和 AOP 的核心思想搞懂！
 
 - Spring 官网：<https://spring.io/>
-- GitHub 地址： https://github.com/spring-projects/spring-framework
+- GitHub 地址： <https://github.com/spring-projects/spring-framework>
 
 ### Spring 包含的模块有哪些？
 
@@ -513,25 +513,25 @@ public class GlobalExceptionHandler {
 
 ```java
 @Nullable
-	private Method getMappedMethod(Class<? extends Throwable> exceptionType) {
-		List<Class<? extends Throwable>> matches = new ArrayList<>();
+  private Method getMappedMethod(Class<? extends Throwable> exceptionType) {
+    List<Class<? extends Throwable>> matches = new ArrayList<>();
     //找到可以处理的所有异常信息。mappedMethods 中存放了异常和处理异常的方法的对应关系
-		for (Class<? extends Throwable> mappedException : this.mappedMethods.keySet()) {
-			if (mappedException.isAssignableFrom(exceptionType)) {
-				matches.add(mappedException);
-			}
-		}
+    for (Class<? extends Throwable> mappedException : this.mappedMethods.keySet()) {
+      if (mappedException.isAssignableFrom(exceptionType)) {
+        matches.add(mappedException);
+      }
+    }
     // 不为空说明有方法处理异常
-		if (!matches.isEmpty()) {
+    if (!matches.isEmpty()) {
       // 按照匹配程度从小到大排序
-			matches.sort(new ExceptionDepthComparator(exceptionType));
+      matches.sort(new ExceptionDepthComparator(exceptionType));
       // 返回处理异常的方法
-			return this.mappedMethods.get(matches.get(0));
-		}
-		else {
-			return null;
-		}
-	}
+      return this.mappedMethods.get(matches.get(0));
+    }
+    else {
+      return null;
+    }
+  }
 ```
 
 从源代码看出：**`getMappedMethod()`会首先找到可以匹配处理异常的所有方法信息，然后对其进行从小到大的排序，最后取最小的那一个匹配的方法(即匹配度最高的那个)。**
@@ -782,11 +782,11 @@ public interface PasswordEncoder {
 ## 参考
 
 - 《Spring 技术内幕》
-- 《从零开始深入学习 Spring》：https://juejin.cn/book/6857911863016390663
+- 《从零开始深入学习 Spring》：<https://juejin.cn/book/6857911863016390663>
 - <http://www.cnblogs.com/wmyskxz/p/8820371.html>
 - <https://www.journaldev.com/2696/spring-interview-questions-and-answers>
 - <https://www.edureka.co/blog/interview-questions/spring-interview-questions/>
-- https://www.cnblogs.com/clwydjgs/p/9317849.html
+- <https://www.cnblogs.com/clwydjgs/p/9317849.html>
 - <https://howtodoinjava.com/interview-questions/top-spring-interview-questions-with-answers/>
 - <http://www.tomaszezula.com/2014/02/09/spring-series-part-5-component-vs-bean/>
 - <https://stackoverflow.com/questions/34172888/difference-between-bean-and-autowired>

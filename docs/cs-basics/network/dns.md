@@ -97,8 +97,8 @@ foo.example.com.        A      192.0.2.23
 
 ## 参考
 
-- DNS 服务器类型：https://www.cloudflare.com/zh-cn/learning/dns/dns-server-types/
-- DNS Message Resource Record Field Formats：http://www.tcpipguide.com/free/t_DNSMessageResourceRecordFieldFormats-2.htm
-- Understanding Different Types of Record in DNS Server：https://www.mustbegeek.com/understanding-different-types-of-record-in-dns-server/
+- DNS 服务器类型：<https://www.cloudflare.com/zh-cn/learning/dns/dns-server-types/>
+- DNS Message Resource Record Field Formats：<http://www.tcpipguide.com/free/t_DNSMessageResourceRecordFieldFormats-2.htm>
+- Understanding Different Types of Record in DNS Server：<https://www.mustbegeek.com/understanding-different-types-of-record-in-dns-server/>
 
 <!-- @include: @article-footer.snippet.md -->

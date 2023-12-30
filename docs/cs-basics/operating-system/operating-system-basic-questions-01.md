@@ -454,8 +454,8 @@ Thread[线程 2,5,main]waiting get resource1
 - 《计算机操作系统—汤小丹》第四版
 - 《深入理解计算机系统》
 - 《重学操作系统》
-- 操作系统为什么要分用户态和内核态：https://blog.csdn.net/chen134225/article/details/81783980
-- 从根上理解用户态与内核态：https://juejin.cn/post/6923863670132850701
-- 什么是僵尸进程与孤儿进程：https://blog.csdn.net/a745233700/article/details/120715371
+- 操作系统为什么要分用户态和内核态：<https://blog.csdn.net/chen134225/article/details/81783980>
+- 从根上理解用户态与内核态：<https://juejin.cn/post/6923863670132850701>
+- 什么是僵尸进程与孤儿进程：<https://blog.csdn.net/a745233700/article/details/120715371>
 
 <!-- @include: @article-footer.snippet.md -->

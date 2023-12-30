@@ -60,11 +60,11 @@ SMTP 协议这块涉及的内容比较多，下面这两个问题比较重要：
 
 **电子邮件的发送过程？**
 
-比如我的邮箱是“dabai@cszhinan.com”，我要向“xiaoma@qq.com”发送邮件，整个过程可以简单分为下面几步：
+比如我的邮箱是“<dabai@cszhinan.com>”，我要向“<xiaoma@qq.com>”发送邮件，整个过程可以简单分为下面几步：
 
 1. 通过 **SMTP** 协议，我将我写好的邮件交给 163 邮箱服务器（邮局）。
 2. 163 邮箱服务器发现我发送的邮箱是 qq 邮箱，然后它使用 SMTP 协议将我的邮件转发到 qq 邮箱服务器。
-3. qq 邮箱服务器接收邮件之后就通知邮箱为“xiaoma@qq.com”的用户来收邮件，然后用户就通过 **POP3/IMAP** 协议将邮件取出。
+3. qq 邮箱服务器接收邮件之后就通知邮箱为“<xiaoma@qq.com>”的用户来收邮件，然后用户就通过 **POP3/IMAP** 协议将邮件取出。
 
 **如何判断邮箱是真正存在的？**
 
@@ -77,9 +77,9 @@ SMTP 协议这块涉及的内容比较多，下面这两个问题比较重要：
 
 推荐几个在线邮箱是否有效检测工具：
 
-1. https://verify-email.org/
-2. http://tool.chacuo.net/mailverify
-3. https://www.emailcamel.com/
+1. <https://verify-email.org/>
+2. <http://tool.chacuo.net/mailverify>
+3. <https://www.emailcamel.com/>
 
 ## POP3/IMAP:邮件接收的协议
 
@@ -138,6 +138,6 @@ DNS（Domain Name System，域名管理系统）基于 UDP 协议，用于解决
 ## 参考
 
 - 《计算机网络自顶向下方法》（第七版）
-- RTP 协议介绍:https://mthli.xyz/rtp-introduction/
+- RTP 协议介绍:<https://mthli.xyz/rtp-introduction/>
 
 <!-- @include: @article-footer.snippet.md -->

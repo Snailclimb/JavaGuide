@@ -238,7 +238,7 @@ public class DrainToExample {
 public abstract class AbstractQueue<E>
     extends AbstractCollection<E>
     implements Queue<E> {
-   		//...
+       //...
 }
 ```
 
@@ -249,11 +249,11 @@ public abstract class AbstractQueue<E>
 
 ```java
 public boolean add(E e) {
-        if (offer(e))
-            return true;
-        else
-            throw new IllegalStateException("Queue full");
-    }
+  if (offer(e))
+      return true;
+  else
+      throw new IllegalStateException("Queue full");
+}
 ```
 
 而 `AbstractQueue` 中并没有对 `Queue` 的 `offer` 的实现，很明显这样做的目的是定义好了 `add` 的核心逻辑，将 `offer` 的细节交由其子类即我们的 `ArrayBlockingQueue` 实现。
@@ -265,13 +265,13 @@ public boolean add(E e) {
 ```java
 public interface BlockingQueue<E> extends Queue<E> {
 
-   	//元素入队成功返回true，反之则会抛出异常IllegalStateException
+     //元素入队成功返回true，反之则会抛出异常IllegalStateException
     boolean add(E e);
 
-   	//元素入队成功返回true，反之返回false
+     //元素入队成功返回true，反之返回false
     boolean offer(E e);
 
-   	//元素入队成功则直接返回，如果队列已满元素不可入队则将线程阻塞，因为阻塞期间可能会被打断，所以这里方法签名抛出了InterruptedException
+     //元素入队成功则直接返回，如果队列已满元素不可入队则将线程阻塞，因为阻塞期间可能会被打断，所以这里方法签名抛出了InterruptedException
     void put(E e) throws InterruptedException;
 
    //和上一个方法一样,只不过队列满时只会阻塞单位为unit，时间为timeout的时长，如果在等待时长内没有入队成功则直接返回false。
@@ -281,20 +281,20 @@ public interface BlockingQueue<E> extends Queue<E> {
     //从队头取出一个元素，如果队列为空则阻塞等待，因为会阻塞线程的缘故，所以该方法可能会被打断，所以签名定义了InterruptedException
     E take() throws InterruptedException;
 
- 	   //取出队头的元素并返回，如果当前队列为空则阻塞等待timeout且单位为unit的时长，如果这个时间段没有元素则直接返回null。
+      //取出队头的元素并返回，如果当前队列为空则阻塞等待timeout且单位为unit的时长，如果这个时间段没有元素则直接返回null。
     E poll(long timeout, TimeUnit unit)
         throws InterruptedException;
 
-   	 //获取队列剩余元素个数
+      //获取队列剩余元素个数
     int remainingCapacity();
 
- 	  //删除我们指定的对象，如果成功返回true，反之返回false。
+     //删除我们指定的对象，如果成功返回true，反之返回false。
     boolean remove(Object o);
 
     //判断队列中是否包含指定元素
     public boolean contains(Object o);
 
-   	//将队列中的元素全部存到指定的集合中
+     //将队列中的元素全部存到指定的集合中
     int drainTo(Collection<? super E> c);
 
     //转移maxElements个元素到集合中
@@ -306,12 +306,12 @@ public interface BlockingQueue<E> extends Queue<E> {
 
 ```java
 public boolean add(E e) {
-        //AbstractQueue的offer来自下层的ArrayBlockingQueue从BlockingQueue继承并实现的offer方法
-        if (offer(e))
-            return true;
-        else
-            throw new IllegalStateException("Queue full");
-    }
+  //AbstractQueue的offer来自下层的ArrayBlockingQueue从BlockingQueue继承并实现的offer方法
+  if (offer(e))
+      return true;
+  else
+      throw new IllegalStateException("Queue full");
+}
 ```
 
 ### 初始化
@@ -321,17 +321,17 @@ public boolean add(E e) {
 ```java
 // capacity 表示队列初始容量，fair 表示 锁的公平性
 public ArrayBlockingQueue(int capacity, boolean fair) {
-									//如果设置的队列大小小于0，则直接抛出IllegalArgumentException
-        if (capacity <= 0)
-            throw new IllegalArgumentException();
-        //初始化一个数组用于存放队列的元素
-        this.items = new Object[capacity];
-        //创建阻塞队列流程控制的锁
-        lock = new ReentrantLock(fair);
-        //用lock锁创建两个条件控制队列生产和消费
-        notEmpty = lock.newCondition();
-        notFull =  lock.newCondition();
-    }
+  //如果设置的队列大小小于0，则直接抛出IllegalArgumentException
+  if (capacity <= 0)
+      throw new IllegalArgumentException();
+  //初始化一个数组用于存放队列的元素
+  this.items = new Object[capacity];
+  //创建阻塞队列流程控制的锁
+  lock = new ReentrantLock(fair);
+  //用lock锁创建两个条件控制队列生产和消费
+  notEmpty = lock.newCondition();
+  notFull =  lock.newCondition();
+}
 ```
 
 这个构造方法里面有两个比较核心的成员变量 `notEmpty`(非空) 和 `notFull` （非满） ，需要我们格外留意，它们是实现生产者和消费者有序工作的关键所在，这一点笔者会在后续的源码解析中详细说明，这里我们只需初步了解一下阻塞队列的构造即可。
@@ -349,32 +349,32 @@ public ArrayBlockingQueue(int capacity, boolean fair) {
 ```java
 public ArrayBlockingQueue(int capacity, boolean fair,
                               Collection<? extends E> c) {
-        //初始化容量和锁的公平性
-        this(capacity, fair);
+  //初始化容量和锁的公平性
+  this(capacity, fair);
 
-        final ReentrantLock lock = this.lock;
-        //上锁并将c中的元素存放到ArrayBlockingQueue底层的数组中
-        lock.lock();
-        try {
-            int i = 0;
-            try {
-            					//遍历并添加元素到数组中
-                for (E e : c) {
-                    checkNotNull(e);
-                    items[i++] = e;
-                }
-            } catch (ArrayIndexOutOfBoundsException ex) {
-                throw new IllegalArgumentException();
-            }
-            //记录当前队列容量
-            count = i;
- 													 //更新下一次put或者offer或用add方法添加到队列底层数组的位置
-            putIndex = (i == capacity) ? 0 : i;
-        } finally {
-            //完成遍历后释放锁
-            lock.unlock();
-        }
-    }
+  final ReentrantLock lock = this.lock;
+  //上锁并将c中的元素存放到ArrayBlockingQueue底层的数组中
+  lock.lock();
+  try {
+      int i = 0;
+      try {
+                //遍历并添加元素到数组中
+          for (E e : c) {
+              checkNotNull(e);
+              items[i++] = e;
+          }
+      } catch (ArrayIndexOutOfBoundsException ex) {
+          throw new IllegalArgumentException();
+      }
+      //记录当前队列容量
+      count = i;
+                      //更新下一次put或者offer或用add方法添加到队列底层数组的位置
+      putIndex = (i == capacity) ? 0 : i;
+  } finally {
+      //完成遍历后释放锁
+      lock.unlock();
+  }
+}
 ```
 
 ### 阻塞式获取和新增元素
@@ -402,42 +402,42 @@ public ArrayBlockingQueue(int capacity, boolean fair,
 
 ```java
 public void put(E e) throws InterruptedException {
-        //确保插入的元素不为null
-        checkNotNull(e);
-        //加锁
-        final ReentrantLock lock = this.lock;
-        //这里使用lockInterruptibly()方法而不是lock()方法是为了能够响应中断操作，如果在等待获取锁的过程中被打断则该方法会抛出InterruptedException异常。
-        lock.lockInterruptibly();
-        try {
-       				 //如果count等数组长度则说明队列已满，当前线程将被挂起放到AQS队列中，等待队列非满时插入（非满条件）。
-           //在等待期间，锁会被释放，其他线程可以继续对队列进行操作。
-            while (count == items.length)
-                notFull.await();
-        			 //如果队列可以存放元素，则调用enqueue将元素入队
-            enqueue(e);
-        } finally {
-            //释放锁
-            lock.unlock();
-        }
+    //确保插入的元素不为null
+    checkNotNull(e);
+    //加锁
+    final ReentrantLock lock = this.lock;
+    //这里使用lockInterruptibly()方法而不是lock()方法是为了能够响应中断操作，如果在等待获取锁的过程中被打断则该方法会抛出InterruptedException异常。
+    lock.lockInterruptibly();
+    try {
+            //如果count等数组长度则说明队列已满，当前线程将被挂起放到AQS队列中，等待队列非满时插入（非满条件）。
+       //在等待期间，锁会被释放，其他线程可以继续对队列进行操作。
+        while (count == items.length)
+            notFull.await();
+           //如果队列可以存放元素，则调用enqueue将元素入队
+        enqueue(e);
+    } finally {
+        //释放锁
+        lock.unlock();
     }
+}
 ```
 
 `put`方法内部调用了 `enqueue` 方法来实现元素入队，我们继续深入查看一下 `enqueue` 方法的实现细节：
 
 ```java
 private void enqueue(E x) {
-       //获取队列底层的数组
-        final Object[] items = this.items;
-        //将putindex位置的值设置为我们传入的x
-        items[putIndex] = x;
-        //更新putindex，如果putindex等于数组长度，则更新为0
-        if (++putIndex == items.length)
-            putIndex = 0;
-        //队列长度+1
-        count++;
-        //通知队列非空，那些因为获取元素而阻塞的线程可以继续工作了
-        notEmpty.signal();
-    }
+   //获取队列底层的数组
+    final Object[] items = this.items;
+    //将putindex位置的值设置为我们传入的x
+    items[putIndex] = x;
+    //更新putindex，如果putindex等于数组长度，则更新为0
+    if (++putIndex == items.length)
+        putIndex = 0;
+    //队列长度+1
+    count++;
+    //通知队列非空，那些因为获取元素而阻塞的线程可以继续工作了
+    notEmpty.signal();
+}
 ```
 
 从源码中可以看到入队操作的逻辑就是在数组中追加一个新元素，整体执行步骤为:
@@ -452,20 +452,20 @@ private void enqueue(E x) {
 
 ```java
 public E take() throws InterruptedException {
-		      //获取锁
-        final ReentrantLock lock = this.lock;
-        lock.lockInterruptibly();
-        try {
-        				//如果队列中元素个数为0，则将当前线程打断并存入AQS队列中，等待队列非空时获取并移除元素（非空条件）
-            while (count == 0)
-                notEmpty.await();
-        			 //如果队列不为空则调用dequeue获取元素
-            return dequeue();
-        } finally {
-          	 //释放锁
-            lock.unlock();
-        }
-    }
+       //获取锁
+     final ReentrantLock lock = this.lock;
+     lock.lockInterruptibly();
+     try {
+             //如果队列中元素个数为0，则将当前线程打断并存入AQS队列中，等待队列非空时获取并移除元素（非空条件）
+         while (count == 0)
+             notEmpty.await();
+            //如果队列不为空则调用dequeue获取元素
+         return dequeue();
+     } finally {
+          //释放锁
+         lock.unlock();
+     }
+}
 ```
 
 理解了 `put` 方法再看`take` 方法就很简单了，其核心逻辑和`put` 方法正好是相反的，比如`put` 方法在队列满的时候等待队列非满时插入元素（非满条件），而`take` 方法等待队列非空时获取并移除元素（非空条件）。
@@ -474,24 +474,24 @@ public E take() throws InterruptedException {
 
 ```java
 private E dequeue() {
-      	//获取阻塞队列底层的数组
-        final Object[] items = this.items;
-        @SuppressWarnings("unchecked")
-        //从队列中获取takeIndex位置的元素
-        E x = (E) items[takeIndex];
-        //将takeIndex置空
-        items[takeIndex] = null;
-        //takeIndex向后挪动，如果等于数组长度则更新为0
-        if (++takeIndex == items.length)
-            takeIndex = 0;
-        //队列长度减1
-        count--;
-        if (itrs != null)
-            itrs.elementDequeued();
-        //通知那些被打断的线程当前队列状态非满，可以继续存放元素
-        notFull.signal();
-        return x;
-    }
+  //获取阻塞队列底层的数组
+  final Object[] items = this.items;
+  @SuppressWarnings("unchecked")
+  //从队列中获取takeIndex位置的元素
+  E x = (E) items[takeIndex];
+  //将takeIndex置空
+  items[takeIndex] = null;
+  //takeIndex向后挪动，如果等于数组长度则更新为0
+  if (++takeIndex == items.length)
+      takeIndex = 0;
+  //队列长度减1
+  count--;
+  if (itrs != null)
+      itrs.elementDequeued();
+  //通知那些被打断的线程当前队列状态非满，可以继续存放元素
+  notFull.signal();
+  return x;
+}
 ```
 
 由于`dequeue` 方法（出队）和上面介绍的 `enqueue` 方法（入队）的步骤大致类似，这里就不重复介绍了。
@@ -523,7 +523,7 @@ public boolean offer(E e) {
         final ReentrantLock lock = this.lock;
         lock.lock();
         try {
-           	//队列已满直接返回false
+             //队列已满直接返回false
             if (count == items.length)
                 return false;
             else {
@@ -546,7 +546,7 @@ public E poll() {
         //上锁
         lock.lock();
         try {
-        	//如果队列为空直接返回null，反之出队返回元素值
+          //如果队列为空直接返回null，反之出队返回元素值
             return (count == 0) ? null : dequeue();
         } finally {
             lock.unlock();
@@ -558,13 +558,13 @@ public E poll() {
 
 ```java
 public boolean add(E e) {
-		//调用下方的add
+    //调用下方的add
         return super.add(e);
     }
 
 
 public boolean add(E e) {
-		//调用offer如果失败直接抛出异常
+    //调用offer如果失败直接抛出异常
         if (offer(e))
             return true;
         else
@@ -644,7 +644,7 @@ public E poll(long timeout, TimeUnit unit) throws InterruptedException {
         final ReentrantLock lock = this.lock;
         lock.lockInterruptibly();
         try {
-        	//队列为空，循环等待，若时间到还是空的，则直接返回null
+          //队列为空，循环等待，若时间到还是空的，则直接返回null
             while (count == 0) {
                 if (nanos <= 0)
                     return null;

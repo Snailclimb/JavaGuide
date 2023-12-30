@@ -106,7 +106,7 @@ Java 语言并没有直接实现 CAS，CAS 相关的实现是通过 C++ 内联�
 
 ```java
 /**
-	*  CAS
+  *  CAS
   * @param o         包含要修改field的对象
   * @param offset    对象中某field的偏移量
   * @param expected  期望值
@@ -170,7 +170,7 @@ CAS 只对单个共享变量有效，当操作涉及跨多个共享变量时 CAS
 ## 参考
 
 - 《Java 并发编程核心 78 讲》
-- 通俗易懂 悲观锁、乐观锁、可重入锁、自旋锁、偏向锁、轻量/重量级锁、读写锁、各种锁及其 Java 实现！：https://zhuanlan.zhihu.com/p/71156910
-- 一文彻底搞懂 CAS 实现原理 & 深入到 CPU 指令：https://zhuanlan.zhihu.com/p/94976168
+- 通俗易懂 悲观锁、乐观锁、可重入锁、自旋锁、偏向锁、轻量/重量级锁、读写锁、各种锁及其 Java 实现！：<https://zhuanlan.zhihu.com/p/71156910>
+- 一文彻底搞懂 CAS 实现原理 & 深入到 CPU 指令：<https://zhuanlan.zhihu.com/p/94976168>
 
 <!-- @include: @article-footer.snippet.md -->
