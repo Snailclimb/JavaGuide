@@ -35,7 +35,7 @@ tag:
 
 除了消息队列之外，常见的中间件还有 RPC 框架、分布式组件、HTTP 服务器、任务调度框架、配置中心、数据库层的分库分表工具和数据迁移工具等等。
 
-关于中间件比较详细的介绍可以参考阿里巴巴淘系技术的一篇回答：https://www.zhihu.com/question/19730582/answer/1663627873 。
+关于中间件比较详细的介绍可以参考阿里巴巴淘系技术的一篇回答：<https://www.zhihu.com/question/19730582/answer/1663627873> 。
 
 随着分布式和微服务系统的发展，消息队列在系统设计中有了更大的发挥空间，使用消息队列可以降低系统耦合性、实现任务异步、有效地进行流量削峰，是分布式和微服务系统中重要的组件之一。
 
@@ -184,9 +184,9 @@ Kafka 是一个分布式系统，由通过高性能 TCP 网络协议进行通信
 
 ![](https://oss.javaguide.cn/github/javaguide/high-performance/message-queue/kafka3.3.1-kraft-%20production-ready.png)
 
-Kafka 官网：http://kafka.apache.org/
+Kafka 官网：<http://kafka.apache.org/>
 
-Kafka 更新记录（可以直观看到项目是否还在维护）：https://kafka.apache.org/downloads
+Kafka 更新记录（可以直观看到项目是否还在维护）：<https://kafka.apache.org/downloads>
 
 #### RocketMQ
 
@@ -207,9 +207,9 @@ RocketMQ 的核心特性（摘自 RocketMQ 官网）：
 
 > Apache RocketMQ 自诞生以来，因其架构简单、业务功能丰富、具备极强可扩展性等特点被众多企业开发者以及云厂商广泛采用。历经十余年的大规模场景打磨，RocketMQ 已经成为业内共识的金融级可靠业务消息首选方案，被广泛应用于互联网、大数据、移动互联网、物联网等领域的业务场景。
 
-RocketMQ 官网：https://rocketmq.apache.org/ （文档很详细，推荐阅读）
+RocketMQ 官网：<https://rocketmq.apache.org/> （文档很详细，推荐阅读）
 
-RocketMQ 更新记录（可以直观看到项目是否还在维护）：https://github.com/apache/rocketmq/releases
+RocketMQ 更新记录（可以直观看到项目是否还在维护）：<https://github.com/apache/rocketmq/releases>
 
 #### RabbitMQ
 
@@ -228,9 +228,9 @@ RabbitMQ 发展到今天，被越来越多的人认可，这和它在易用性�
 - **易用的管理界面：** RabbitMQ 提供了一个易用的用户界面，使得用户可以监控和管理消息、集群中的节点等。在安装 RabbitMQ 的时候会介绍到，安装好 RabbitMQ 就自带管理界面。
 - **插件机制：** RabbitMQ 提供了许多插件，以实现从多方面进行扩展，当然也可以编写自己的插件。感觉这个有点类似 Dubbo 的 SPI 机制
 
-RabbitMQ 官网：https://www.rabbitmq.com/ 。
+RabbitMQ 官网：<https://www.rabbitmq.com/> 。
 
-RabbitMQ 更新记录（可以直观看到项目是否还在维护）：https://www.rabbitmq.com/news.html
+RabbitMQ 更新记录（可以直观看到项目是否还在维护）：<https://www.rabbitmq.com/news.html>
 
 #### Pulsar
 
@@ -253,9 +253,9 @@ Pulsar 的关键特性如下（摘自官网）：
 - 基于 Pulsar Functions 的 serverless connector 框架 Pulsar IO 使得数据更易移入、移出 Apache Pulsar。
 - 分层式存储可在数据陈旧时，将数据从热存储卸载到冷/长期存储（如 S3、GCS）中。
 
-Pulsar 官网：https://pulsar.apache.org/
+Pulsar 官网：<https://pulsar.apache.org/>
 
-Pulsar 更新记录（可以直观看到项目是否还在维护）：https://github.com/apache/pulsar/releases
+Pulsar 更新记录（可以直观看到项目是否还在维护）：<https://github.com/apache/pulsar/releases>
 
 #### ActiveMQ
 
@@ -284,7 +284,7 @@ Pulsar 更新记录（可以直观看到项目是否还在维护）：https://gi
 ## 参考
 
 - 《大型网站技术架构 》
-- KRaft: Apache Kafka Without ZooKeeper：https://developer.confluent.io/learn/kraft/
-- 消息队列的使用场景是什么样的？：https://mp.weixin.qq.com/s/4V1jI6RylJr7Jr9JsQe73A
+- KRaft: Apache Kafka Without ZooKeeper：<https://developer.confluent.io/learn/kraft/>
+- 消息队列的使用场景是什么样的？：<https://mp.weixin.qq.com/s/4V1jI6RylJr7Jr9JsQe73A>
 
 <!-- @include: @article-footer.snippet.md -->

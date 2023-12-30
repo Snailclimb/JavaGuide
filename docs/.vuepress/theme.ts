@@ -87,5 +87,10 @@ export default hopeTheme({
       },
       tasklist: true,
     },
+
+    search: {
+      isSearchable: (page) => page.path !== "/",
+      maxSuggestions: 10,
+    },
   },
 });

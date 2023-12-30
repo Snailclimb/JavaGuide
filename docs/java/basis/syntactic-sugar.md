@@ -14,7 +14,7 @@ head:
 
 > 作者：Hollis
 >
-> 原文：https://mp.weixin.qq.com/s/o4XdEMq1DL-nBS-f8Za5Aw
+> 原文：<https://mp.weixin.qq.com/s/o4XdEMq1DL-nBS-f8Za5Aw>
 
 语法糖是大厂 Java 面试常问的一个知识点。
 

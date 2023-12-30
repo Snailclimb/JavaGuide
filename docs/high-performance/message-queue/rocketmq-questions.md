@@ -431,7 +431,7 @@ RocketMQ 服务端 5.x 版本开始，**生产者是匿名的**，无需管理�
 
 RocketMQ 服务端 5.x 版本：上述消费者的消费行为从关联的消费者分组中统一获取，因此，同一分组内所有消费者的消费行为必然是一致的，客户端无需关注。
 
-RocketMQ 服务端 3.x/4.x 历史版本：上述消费逻辑由消费者客户端接口定义，因此，您需要自己在消费者客户端设置时保证同一分组下的消费者的消费行为一致。[来自官方网站]
+RocketMQ 服务端 3.x/4.x 历史版本：上述消费逻辑由消费者客户端接口定义，因此，您需要自己在消费者客户端设置时保证同一分组下的消费者的消费行为一致。(来自官方网站)
 
 ## 如何解决顺序消费和重复消费？
 
@@ -543,6 +543,7 @@ emmm，就两个字—— **幂等** 。在编程中一个*幂等* 操作的特�
 实践中会遇到的问题：事务消息需要一个事务监听器来监听本地事务是否成功，并且事务监听器接口只允许被实现一次。那就意味着需要把各种事务消息的本地事务都写在一个接口方法里面，必将会产生大量的耦合和类型判断。采用函数 Function 接口来包装整个业务过程，作为一个参数传递到监听器的接口方法中。再调用 Function 的 apply() 方法来执行业务，事务也会在 apply() 方法中执行。让监听器与业务之间实现解耦，使之具备了真实生产环境中的可行性。
 
 1.模拟一个添加用户浏览记录的需求
+
 ```java
 @PostMapping("/add")
 @ApiOperation("添加用户浏览记录")
@@ -563,6 +564,7 @@ public Result<TransactionSendResult> add(Long userId, Long forecastLogId) {
 ```
 
 2.发送事务消息的方法
+
 ```java
 /**
  * 发送事务消息
@@ -585,6 +587,7 @@ public TransactionSendResult sendTransactionMessage(String msgBody, String tag, 
 ```
 
 3.生产者消息监听器,只允许一个类去实现该监听器
+
 ```java
 @Slf4j
 @RocketMQTransactionListener
@@ -651,6 +654,7 @@ public class TransactionMsgListener implements RocketMQLocalTransactionListener 
 ```
 
 4.模拟的业务场景,这里的方法必须提取出来,放在别的类里面.如果调用方与被调用方在同一个类中,会发生事务失效的问题.
+
 ```java
 @Component
 public class ViewHistoryHandler {
@@ -700,7 +704,9 @@ public class ViewHistoryHandler {
     }
 }
 ```
+
 5.消费消息,以及幂等处理
+
 ```java
 @Service
 @RocketMQMessageListener(topic = MQDestination.TOPIC, selectorExpression = MQDestination.TAG_ADD_VIEW_HISTORY, consumerGroup = MQDestination.TAG_ADD_VIEW_HISTORY)

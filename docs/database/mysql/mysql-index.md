@@ -5,7 +5,7 @@ tag:
   - MySQL
 ---
 
-> 感谢[WT-AHA](https://github.com/WT-AHA)对本文的完善，相关 PR：https://github.com/Snailclimb/JavaGuide/pull/1648 。
+> 感谢[WT-AHA](https://github.com/WT-AHA)对本文的完善，相关 PR：<https://github.com/Snailclimb/JavaGuide/pull/1648> 。
 
 但凡经历过几场面试的小伙伴，应该都清楚，数据库索引这个知识点在面试中出现的频率高到离谱。
 

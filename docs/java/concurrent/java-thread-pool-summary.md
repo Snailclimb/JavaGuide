@@ -606,7 +606,7 @@ executorService.shutdown();
 
 ```plain
 Exception in thread "main" java.util.concurrent.TimeoutException
-	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
+  at java.util.concurrent.FutureTask.get(FutureTask.java:205)
 ```
 
 #### `shutdown()`VS`shutdownNow()`
@@ -661,9 +661,9 @@ Exception in thread "main" java.util.concurrent.TimeoutException
 
 **上图说明：**
 
-1.  如果当前运行的线程数小于 `corePoolSize`， 如果再来新任务的话，就创建新的线程来执行任务；
-2.  当前运行的线程数等于 `corePoolSize` 后， 如果再来新任务的话，会将任务加入 `LinkedBlockingQueue`；
-3.  线程池中的线程执行完 手头的任务后，会在循环中反复从 `LinkedBlockingQueue` 中获取任务来执行；
+1. 如果当前运行的线程数小于 `corePoolSize`， 如果再来新任务的话，就创建新的线程来执行任务；
+2. 当前运行的线程数等于 `corePoolSize` 后， 如果再来新任务的话，会将任务加入 `LinkedBlockingQueue`；
+3. 线程池中的线程执行完 手头的任务后，会在循环中反复从 `LinkedBlockingQueue` 中获取任务来执行；
 
 #### 为什么不推荐使用`FixedThreadPool`？
 

@@ -67,7 +67,7 @@ Dubbo 是由阿里开源，后来加入了 Apache 。正是由于 Dubbo 的出�
 Dubbo 算的是比较优秀的国产开源项目了，它的源码也是非常值得学习和阅读的！
 
 - GitHub：[https://github.com/apache/incubator-dubbo](https://github.com/apache/incubator-dubbo "https://github.com/apache/incubator-dubbo")
-- 官网：https://dubbo.apache.org/zh/
+- 官网：<https://dubbo.apache.org/zh/>
 
 ### Motan
 

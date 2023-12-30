@@ -20,7 +20,7 @@ Redis 不同于 Memcached 的很重要一点就是，Redis 支持持久化，而
 - 只追加文件（append-only file, AOF）
 - RDB 和 AOF 的混合持久化(Redis 4.0 新增)
 
-官方文档地址：https://redis.io/topics/persistence 。
+官方文档地址：<https://redis.io/topics/persistence> 。
 
 ![](https://oss.javaguide.cn/github/javaguide/database/redis/redis4.0-persitence.png)
 
@@ -163,7 +163,7 @@ AOF 校验机制是 Redis 在启动时对 AOF 文件进行检查，以判断文�
 
 如果把混合持久化打开，AOF 重写的时候就直接把 RDB 的内容写到 AOF 文件开头。这样做的好处是可以结合 RDB 和 AOF 的优点, 快速加载同时避免丢失过多的数据。当然缺点也是有的， AOF 里面的 RDB 部分是压缩格式不再是 AOF 格式，可读性较差。
 
-官方文档地址：https://redis.io/topics/persistence
+官方文档地址：<https://redis.io/topics/persistence>
 
 ![](https://oss.javaguide.cn/github/javaguide/database/redis/redis4.0-persitence.png)
 
@@ -191,9 +191,9 @@ AOF 校验机制是 Redis 在启动时对 AOF 文件进行检查，以判断文�
 ## 参考
 
 - 《Redis 设计与实现》
-- Redis persistence - Redis 官方文档：https://redis.io/docs/management/persistence/
-- The difference between AOF and RDB persistence：https://www.sobyte.net/post/2022-04/redis-rdb-and-aof/
-- Redis AOF 持久化详解 - 程序员历小冰：http://remcarpediem.net/article/376c55d8/
-- Redis RDB 与 AOF 持久化 · Analyze：https://wingsxdu.com/posts/database/redis/rdb-and-aof/
+- Redis persistence - Redis 官方文档：<https://redis.io/docs/management/persistence/>
+- The difference between AOF and RDB persistence：<https://www.sobyte.net/post/2022-04/redis-rdb-and-aof/>
+- Redis AOF 持久化详解 - 程序员历小冰：<http://remcarpediem.net/article/376c55d8/>
+- Redis RDB 与 AOF 持久化 · Analyze：<https://wingsxdu.com/posts/database/redis/rdb-and-aof/>
 
 <!-- @include: @article-footer.snippet.md -->

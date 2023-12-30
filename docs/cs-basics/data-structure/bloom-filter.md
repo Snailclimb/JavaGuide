@@ -243,20 +243,20 @@ System.out.println(filter.mightContain(2));
 
 ### 介绍
 
-Redis v4.0 之后有了 Module（模块/插件） 功能，Redis Modules 让 Redis 可以使用外部模块扩展其功能 。布隆过滤器就是其中的 Module。详情可以查看 Redis 官方对 Redis Modules 的介绍：https://redis.io/modules
+Redis v4.0 之后有了 Module（模块/插件） 功能，Redis Modules 让 Redis 可以使用外部模块扩展其功能 。布隆过滤器就是其中的 Module。详情可以查看 Redis 官方对 Redis Modules 的介绍：<https://redis.io/modules>
 
-另外，官网推荐了一个 RedisBloom 作为 Redis 布隆过滤器的 Module，地址：https://github.com/RedisBloom/RedisBloom
+另外，官网推荐了一个 RedisBloom 作为 Redis 布隆过滤器的 Module，地址：<https://github.com/RedisBloom/RedisBloom>
 其他还有：
 
-- redis-lua-scaling-bloom-filter（lua 脚本实现）：https://github.com/erikdubbelboer/redis-lua-scaling-bloom-filter
-- pyreBloom（Python 中的快速 Redis 布隆过滤器）：https://github.com/seomoz/pyreBloom
+- redis-lua-scaling-bloom-filter（lua 脚本实现）：<https://github.com/erikdubbelboer/redis-lua-scaling-bloom-filter>
+- pyreBloom（Python 中的快速 Redis 布隆过滤器）：<https://github.com/seomoz/pyreBloom>
 - ……
 
 RedisBloom 提供了多种语言的客户端支持，包括：Python、Java、JavaScript 和 PHP。
 
 ### 使用 Docker 安装
 
-如果我们需要体验 Redis 中的布隆过滤器非常简单，通过 Docker 就可以了！我们直接在 Google 搜索 **docker redis bloomfilter** 然后在排除广告的第一条搜素结果就找到了我们想要的答案（这是我平常解决问题的一种方式，分享一下），具体地址：https://hub.docker.com/r/redislabs/rebloom/ （介绍的很详细 ）。
+如果我们需要体验 Redis 中的布隆过滤器非常简单，通过 Docker 就可以了！我们直接在 Google 搜索 **docker redis bloomfilter** 然后在排除广告的第一条搜素结果就找到了我们想要的答案（这是我平常解决问题的一种方式，分享一下），具体地址：<https://hub.docker.com/r/redislabs/rebloom/> （介绍的很详细 ）。
 
 **具体操作如下：**
 

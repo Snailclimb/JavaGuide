@@ -99,7 +99,7 @@ Kafka 将生产者发布的消息发送到 **Topic（主题）** 中，需要这
 
 ### Zookeeper 在 Kafka 中的作用是什么？
 
-> 要想搞懂 zookeeper 在 Kafka 中的作用 一定要自己搭建一个 Kafka 环境然后自己进 zookeeper 去看一下有哪些文件夹和 Kafka 有关，每个节点又保存了什么信息。 一定不要光看不实践，这样学来的也终会忘记！这部分内容参考和借鉴了这篇文章：https://www.jianshu.com/p/a036405f989c 。
+> 要想搞懂 zookeeper 在 Kafka 中的作用 一定要自己搭建一个 Kafka 环境然后自己进 zookeeper 去看一下有哪些文件夹和 Kafka 有关，每个节点又保存了什么信息。 一定不要光看不实践，这样学来的也终会忘记！这部分内容参考和借鉴了这篇文章：<https://www.jianshu.com/p/a036405f989c> 。
 
 下图就是我的本地 Zookeeper ，它成功和我本地的 Kafka 关联上（以下文件夹结构借助 idea 插件 Zookeeper tool 实现）。
 
@@ -120,7 +120,7 @@ ZooKeeper 主要为 Kafka 提供元数据的管理的功能。
 
 不过，要提示一下：**如果要使用 KRaft 模式的话，建议选择较高版本的 Kafka，因为这个功能还在持续完善优化中。Kafka 3.3.1 版本是第一个将 KRaft（Kafka Raft）共识协议标记为生产就绪的版本。**
 
-![](https://oss.javaguide.cn/github/javaguide/high-performance/message-queue/kafka3.3.1-kraft- production-ready.png)
+![](<https://oss.javaguide.cn/github/javaguide/high-performance/message-queue/kafka3.3.1-kraft-> production-ready.png)
 
 ## Kafka 消费顺序、消息丢失和重复消费
 
@@ -435,7 +435,7 @@ private void customer(String message) {
 
 ## 参考
 
-- Kafka 官方文档：https://kafka.apache.org/documentation/
+- Kafka 官方文档：<https://kafka.apache.org/documentation/>
 - 极客时间—《Kafka 核心技术与实战》第 11 节：无消息丢失配置怎么实现？
 
 <!-- @include: @article-footer.snippet.md -->

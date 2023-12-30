@@ -8,7 +8,7 @@ tag:
 
 > 作者：飞天小牛肉
 >
-> 原文：https://mp.weixin.qq.com/s/qci10h9rJx_COZbHV3aygQ
+> 原文：<https://mp.weixin.qq.com/s/qci10h9rJx_COZbHV3aygQ>
 
 众所周知，自增主键可以让聚集索引尽量地保持递增顺序插入，避免了随机查询，从而提高了查询效率。
 

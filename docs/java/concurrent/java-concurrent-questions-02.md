@@ -197,6 +197,7 @@ try {
     lock.unlock();
 }
 ```
+
 高并发的场景下，激烈的锁竞争会造成线程阻塞，大量阻塞线程会导致系统的上下文切换，增加系统的性能开销。并且，悲观锁还可能会存在死锁问题，影响代码的正常运行。
 
 ### 什么是乐观锁？
@@ -268,7 +269,7 @@ Java 语言并没有直接实现 CAS，CAS 相关的实现是通过 C++ 内联�
 
 ```java
 /**
-	*  CAS
+  *  CAS
   * @param o         包含要修改field的对象
   * @param offset    对象中某field的偏移量
   * @param expected  期望值
@@ -700,11 +701,11 @@ Atomic 原子类部分的内容我单独写了一篇文章来总结：[Atomic �
 
 - 《深入理解 Java 虚拟机》
 - 《实战 Java 高并发程序设计》
-- Guide to the Volatile Keyword in Java - Baeldung：https://www.baeldung.com/java-volatile
-- 不可不说的 Java“锁”事 - 美团技术团队：https://tech.meituan.com/2018/11/15/java-lock.html
-- 在 ReadWriteLock 类中读锁为什么不能升级为写锁？：https://cloud.tencent.com/developer/article/1176230
-- 高性能解决线程饥饿的利器 StampedLock：https://mp.weixin.qq.com/s/2Acujjr4BHIhlFsCLGwYSg
-- 理解 Java 中的 ThreadLocal - 技术小黑屋：https://droidyue.com/blog/2016/03/13/learning-threadlocal-in-java/
-- ThreadLocal (Java Platform SE 8 ) - Oracle Help Center：https://docs.oracle.com/javase/8/docs/api/java/lang/ThreadLocal.html
+- Guide to the Volatile Keyword in Java - Baeldung：<https://www.baeldung.com/java-volatile>
+- 不可不说的 Java“锁”事 - 美团技术团队：<https://tech.meituan.com/2018/11/15/java-lock.html>
+- 在 ReadWriteLock 类中读锁为什么不能升级为写锁？：<https://cloud.tencent.com/developer/article/1176230>
+- 高性能解决线程饥饿的利器 StampedLock：<https://mp.weixin.qq.com/s/2Acujjr4BHIhlFsCLGwYSg>
+- 理解 Java 中的 ThreadLocal - 技术小黑屋：<https://droidyue.com/blog/2016/03/13/learning-threadlocal-in-java/>
+- ThreadLocal (Java Platform SE 8 ) - Oracle Help Center：<https://docs.oracle.com/javase/8/docs/api/java/lang/ThreadLocal.html>
 
 <!-- @include: @article-footer.snippet.md -->

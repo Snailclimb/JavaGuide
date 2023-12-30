@@ -25,7 +25,7 @@ LMAX 公司 2010 年在 QCon 演讲后，Disruptor 获得了业界关注，并�
 
 > “Duke 选择大奖”旨在表彰过去一年里全球个人或公司开发的、最具影响力的 Java 技术应用，由甲骨文公司主办。含金量非常高！
 
-我专门找到了 Oracle 官方当年颁布获得 Duke's Choice Awards 项目的那篇文章（文章地址：https://blogs.oracle.com/java/post/and-the-winners-arethe-dukes-choice-award） 。从文中可以看出，同年获得此大奖荣誉的还有大名鼎鼎的 Netty、JRebel 等项目。
+我专门找到了 Oracle 官方当年颁布获得 Duke's Choice Awards 项目的那篇文章（文章地址：<https://blogs.oracle.com/java/post/and-the-winners-arethe-dukes-choice-award）> 。从文中可以看出，同年获得此大奖荣誉的还有大名鼎鼎的 Netty、JRebel 等项目。
 
 ![2011 年的 Oracle 官方的 Duke's Choice Awards](https://oss.javaguide.cn/javaguide/image-20211015152323898.png)
 
@@ -134,7 +134,7 @@ CPU 缓存是通过将最近使用的数据存储在高速缓存中来实现更�
 
 ## 参考
 
-- Disruptor 高性能之道-等待策略：<http://wuwenliang.net/2022/02/28/Disruptor 高性能之道-等待策略/>
+- Disruptor 高性能之道-等待策略：<<http://wuwenliang.net/2022/02/28/Disruptor> 高性能之道-等待策略/>
 - 《Java 并发编程实战》- 40 | 案例分析（三）：高性能队列 Disruptor：<https://time.geekbang.org/column/article/98134>
 
 <!-- @include: @article-footer.snippet.md -->

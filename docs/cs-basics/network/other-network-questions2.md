@@ -56,8 +56,8 @@ HTTP/3.0 之前是基于 TCP 协议的，而 HTTP/3.0 将弃用 TCP，改用 **�
 
 相关证明可以参考下面这两个链接：
 
-- https://zh.wikipedia.org/zh/HTTP/3
-- https://datatracker.ietf.org/doc/rfc9114/
+- <https://zh.wikipedia.org/zh/HTTP/3>
+- <https://datatracker.ietf.org/doc/rfc9114/>
 
 ### 使用 TCP 的协议有哪些?使用 UDP 的协议有哪些?
 

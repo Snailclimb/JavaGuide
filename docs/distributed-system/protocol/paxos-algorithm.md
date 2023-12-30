@@ -77,7 +77,7 @@ Basic Paxos 算法的仅能就单个值达成共识，为了能够对一系列�
 
 ## 参考
 
-- https://zh.wikipedia.org/wiki/Paxos
-- 分布式系统中的一致性与共识算法：http://www.xuyasong.com/?p=1970
+- <https://zh.wikipedia.org/wiki/Paxos>
+- 分布式系统中的一致性与共识算法：<http://www.xuyasong.com/?p=1970>
 
 <!-- @include: @article-footer.snippet.md -->

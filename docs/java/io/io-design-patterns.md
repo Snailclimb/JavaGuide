@@ -118,8 +118,8 @@ BufferedReader bufferedReader = new BufferedReader(isr);
 
 ```java
 public class InputStreamReader extends Reader {
-	//用于解码的对象
-	private final StreamDecoder sd;
+ //用于解码的对象
+ private final StreamDecoder sd;
     public InputStreamReader(InputStream in) {
         super(in);
         try {
@@ -130,7 +130,7 @@ public class InputStreamReader extends Reader {
         }
     }
     // 使用 StreamDecoder 对象做具体的读取工作
-	public int read() throws IOException {
+ public int read() throws IOException {
         return sd.read();
     }
 }
@@ -314,8 +314,8 @@ class PollingWatchService
 
 ## 参考
 
-- Patterns in Java APIs：http://cecs.wright.edu/~tkprasad/courses/ceg860/paper/node26.html
-- 装饰器模式：通过剖析 Java IO 类库源码学习装饰器模式：https://time.geekbang.org/column/article/204845
-- sun.nio 包是什么，是 java 代码么？ - RednaxelaFX https://www.zhihu.com/question/29237781/answer/43653953
+- Patterns in Java APIs：<http://cecs.wright.edu/~tkprasad/courses/ceg860/paper/node26.html>
+- 装饰器模式：通过剖析 Java IO 类库源码学习装饰器模式：<https://time.geekbang.org/column/article/204845>
+- sun.nio 包是什么，是 java 代码么？ - RednaxelaFX <https://www.zhihu.com/question/29237781/answer/43653953>
 
 <!-- @include: @article-footer.snippet.md -->

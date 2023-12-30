@@ -499,7 +499,7 @@ Java11 的时候 ，ZGC 还在试验阶段。经过多个版本的迭代，不�
 不过，默认的垃圾回收器依然是 G1。你可以通过下面的参数启动 ZGC：
 
 ```bash
-$ java -XX:+UseZGC className
+java -XX:+UseZGC className
 ```
 
 关于 ZGC 收集器的详细介绍推荐阅读美团技术团队的 [新一代垃圾回收器 ZGC 的探索与实践](https://tech.meituan.com/2020/08/06/new-zgc-practice-in-meituan.html) 这篇文章。

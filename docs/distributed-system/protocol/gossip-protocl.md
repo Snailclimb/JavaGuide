@@ -138,7 +138,7 @@ Gossip 设计了两种可能的消息传播模式：**反熵（Anti-Entropy）**
 
 ## 参考
 
-- 一万字详解 Redis Cluster Gossip 协议：https://segmentfault.com/a/1190000038373546
+- 一万字详解 Redis Cluster Gossip 协议：<https://segmentfault.com/a/1190000038373546>
 - 《分布式协议与算法实战》
 - 《Redis 设计与实现》
 

@@ -12,7 +12,7 @@ head:
       content: 执行计划是指一条 SQL 语句在经过MySQL 查询优化器的优化会后，具体的执行方式。优化 SQL 的第一步应该是读懂 SQL 的执行计划。
 ---
 
-> 本文来自公号 MySQL 技术，JavaGuide 对其做了补充完善。原文地址：https://mp.weixin.qq.com/s/d5OowNLtXBGEAbT31sSH4g
+> 本文来自公号 MySQL 技术，JavaGuide 对其做了补充完善。原文地址：<https://mp.weixin.qq.com/s/d5OowNLtXBGEAbT31sSH4g>
 
 优化 SQL 的第一步应该是读懂 SQL 的执行计划。本篇文章，我们一起来学习下 MySQL `EXPLAIN` 执行计划相关知识。
 
@@ -138,7 +138,7 @@ rows 列表示根据表统计信息及选用情况，大致估算出找到所需
 
 ## 参考
 
-- https://dev.mysql.com/doc/refman/5.7/en/explain-output.html
-- https://juejin.cn/post/6953444668973514789
+- <https://dev.mysql.com/doc/refman/5.7/en/explain-output.html>
+- <https://juejin.cn/post/6953444668973514789>
 
 <!-- @include: @article-footer.snippet.md -->

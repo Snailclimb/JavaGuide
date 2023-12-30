@@ -241,12 +241,12 @@ ElasticJob 当当网开源的一个面向互联网生态和海量任务的分布
 
 ElasticJob-Lite 和 ElasticJob-Cloud 两者的对比如下：
 
-|                 | ElasticJob-Lite | ElasticJob-Cloud |
-| :-------------- | :--------------- | ----------------- |
-| 无中心化        | 是               | 否                |
-| 资源分配        | 不支持           | 支持              |
-| 作业模式        | 常驻             | 常驻 + 瞬时       |
-| 部署依赖        | ZooKeeper        | ZooKeeper + Mesos |
+|          | ElasticJob-Lite | ElasticJob-Cloud  |
+| :------- | :-------------- | ----------------- |
+| 无中心化 | 是              | 否                |
+| 资源分配 | 不支持          | 支持              |
+| 作业模式 | 常驻            | 常驻 + 瞬时       |
+| 部署依赖 | ZooKeeper       | ZooKeeper + Mesos |
 
 `ElasticJob` 支持任务在分布式场景下的分片和高可用、任务可视化管理等功能。
 

@@ -160,7 +160,7 @@ public class LogAspect {
   // 切入点，所有被 Log 注解标注的方法
   @Pointcut("@annotation(cn.javaguide.annotation.Log)")
   public void webLog() {
-		}
+  }
 
    /**
    * 环绕通知

@@ -112,7 +112,7 @@ ARQ 包括停止等待 ARQ 协议和连续 ARQ 协议。
 3. [https://www.9tut.com/tcp-and-udp-tutorial](https://www.9tut.com/tcp-and-udp-tutorial)
 4. [https://github.com/wolverinn/Waking-Up/blob/master/Computer%20Network.md](https://github.com/wolverinn/Waking-Up/blob/master/Computer%20Network.md)
 5. TCP Flow Control—[https://www.brianstorti.com/tcp-flow-control/](https://www.brianstorti.com/tcp-flow-control/)
-6. TCP 流量控制(Flow Control)：https://notfalse.net/24/tcp-flow-control
-7. TCP 之滑动窗口原理 : https://cloud.tencent.com/developer/article/1857363
+6. TCP 流量控制(Flow Control)：<https://notfalse.net/24/tcp-flow-control>
+7. TCP 之滑动窗口原理 : <https://cloud.tencent.com/developer/article/1857363>
 
 <!-- @include: @article-footer.snippet.md -->

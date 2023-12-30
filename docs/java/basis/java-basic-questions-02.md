@@ -431,8 +431,8 @@ public boolean equals(Object anObject) {
 
 > ⚠️ 注意：该方法在 **Oracle OpenJDK8** 中默认是 "使用线程局部状态来实现 Marsaglia's xor-shift 随机数生成", 并不是 "地址" 或者 "地址转换而来", 不同 JDK/VM 可能不同在 **Oracle OpenJDK8** 中有六种生成方式 (其中第五种是返回地址), 通过添加 VM 参数: -XX:hashCode=4 启用第五种。参考源码:
 >
-> - https://hg.openjdk.org/jdk8u/jdk8u/hotspot/file/87ee5ee27509/src/share/vm/runtime/globals.hpp（1127 行）
-> - https://hg.openjdk.org/jdk8u/jdk8u/hotspot/file/87ee5ee27509/src/share/vm/runtime/synchronizer.cpp（537 行开始）
+> - <https://hg.openjdk.org/jdk8u/jdk8u/hotspot/file/87ee5ee27509/src/share/vm/runtime/globals.hpp（1127> 行）
+> - <https://hg.openjdk.org/jdk8u/jdk8u/hotspot/file/87ee5ee27509/src/share/vm/runtime/synchronizer.cpp（537> 行开始）
 
 ```java
 public native int hashCode();
@@ -509,7 +509,7 @@ abstract class AbstractStringBuilder implements Appendable, CharSequence {
         count += len;
         return this;
     }
-  	//...
+    //...
 }
 ```
 
@@ -534,7 +534,7 @@ abstract class AbstractStringBuilder implements Appendable, CharSequence {
 ```java
 public final class String implements java.io.Serializable, Comparable<String>, CharSequence {
     private final char value[];
-	//...
+  //...
 }
 ```
 
@@ -572,7 +572,7 @@ public final class String implements java.io.Serializable, Comparable<String>, C
 >
 > 如果字符串中包含的汉字超过 Latin-1 可表示范围内的字符，`byte` 和 `char` 所占用的空间是一样的。
 >
-> 这是官方的介绍：https://openjdk.java.net/jeps/254 。
+> 这是官方的介绍：<https://openjdk.java.net/jeps/254> 。
 
 ### 字符串拼接用“+” 还是 StringBuilder?
 
@@ -782,6 +782,6 @@ public static String getStr() {
 ## 参考
 
 - 深入解析 String#intern：<https://tech.meituan.com/2014/03/06/in-depth-understanding-string-intern.html>
-- R 大（RednaxelaFX）关于常量折叠的回答：https://www.zhihu.com/question/55976094/answer/147302764
+- R 大（RednaxelaFX）关于常量折叠的回答：<https://www.zhihu.com/question/55976094/answer/147302764>
 
 <!-- @include: @article-footer.snippet.md -->

@@ -235,7 +235,7 @@ pub/sub 既能单播又能广播，还支持 channel 的简单正则匹配。不
 
 总的来说，`Stream` 已经可以满足一个消息队列的基本要求了。不过，`Stream` 在实际使用中依然会有一些小问题不太好解决比如在 Redis 发生故障恢复后不能保证消息至少被消费一次。
 
-综上，和专业的消息队列相比，使用 Redis 来实现消息队列还是有很多欠缺的地方比如消息丢失和堆积问题不好解决。因此，我们通常建议不要使用 Redis 来做消息队列，你完全可以选择市面上比较成熟的一些消息队列比如 RocketMQ、Kafka。不过，如果你就是想要用 Redis 来做消息队列的话，那我建议你优先考虑  `Stream`，这是目前相对最优的 Redis 消息队列实现。
+综上，和专业的消息队列相比，使用 Redis 来实现消息队列还是有很多欠缺的地方比如消息丢失和堆积问题不好解决。因此，我们通常建议不要使用 Redis 来做消息队列，你完全可以选择市面上比较成熟的一些消息队列比如 RocketMQ、Kafka。不过，如果你就是想要用 Redis 来做消息队列的话，那我建议你优先考虑 `Stream`，这是目前相对最优的 Redis 消息队列实现。
 
 相关阅读：[Redis 消息队列发展历程 - 阿里开发者 - 2022](https://mp.weixin.qq.com/s/gCUT5TcCQRAxYkTJfTRjJw)。
 
@@ -303,7 +303,7 @@ Redis 是基于 C 语言编写的，但 Redis 的 String 类型的底层实现�
 
 SDS 最早是 Redis 作者为日常 C 语言开发而设计的 C 字符串，后来被应用到了 Redis 上，并经过了大量的修改完善以适合高性能操作。
 
-Redis7.0 的 SDS 的部分源码如下（https://github.com/redis/redis/blob/7.0/src/sds.h）：
+Redis7.0 的 SDS 的部分源码如下（<https://github.com/redis/redis/blob/7.0/src/sds.h>）:
 
 ```c
 /* Note: sdshdr5 is never used, we just access the flags byte directly.
@@ -577,7 +577,7 @@ io-threads-do-reads yes
 - 通过 `bio_aof_fsync` 后台线程调用 `fsync` 函数将系统内核缓冲区还未同步到到磁盘的数据强制刷到磁盘（ AOF 文件）。
 - 通过 `bio_lazy_free`后台线程释放大对象（已删除）占用的内存空间.
 
-在`bio.h` 文件中有定义（Redis 6.0 版本，源码地址：https://github.com/redis/redis/blob/6.0/src/bio.h）：
+在`bio.h` 文件中有定义（Redis 6.0 版本，源码地址：<https://github.com/redis/redis/blob/6.0/src/bio.h>）：
 
 ```java
 #ifndef __BIO_H
@@ -684,7 +684,7 @@ Redis 提供 6 种数据淘汰策略：
 
 - 《Redis 开发与运维》
 - 《Redis 设计与实现》
-- Redis 命令手册：https://www.redis.com.cn/commands.html
+- Redis 命令手册：<https://www.redis.com.cn/commands.html>
 - RedisSearch 终极使用指南，你值得拥有！：<https://mp.weixin.qq.com/s/FA4XVAXJksTOHUXMsayy2g>
 - WHY Redis choose single thread (vs multi threads): [https://medium.com/@jychen7/sharing-redis-single-thread-vs-multi-threads-5870bd44d153](https://medium.com/@jychen7/sharing-redis-single-thread-vs-multi-threads-5870bd44d153)
 

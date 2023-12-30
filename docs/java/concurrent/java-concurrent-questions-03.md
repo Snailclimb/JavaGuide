@@ -693,11 +693,11 @@ semaphore.release();
 
 ```java
 public Semaphore(int permits) {
-  	sync = new NonfairSync(permits);
+    sync = new NonfairSync(permits);
 }
 
 public Semaphore(int permits, boolean fair) {
-  	sync = fair ? new FairSync(permits) : new NonfairSync(permits);
+    sync = fair ? new FairSync(permits) : new NonfairSync(permits);
 }
 ```
 
@@ -716,7 +716,7 @@ public Semaphore(int permits, boolean fair) {
  *  获取1个许可证
  */
 public void acquire() throws InterruptedException {
- 	 sync.acquireSharedInterruptibly(1);
+    sync.acquireSharedInterruptibly(1);
 }
 /**
  * 共享模式下获取许可证，获取成功则返回，失败则加入阻塞队列，挂起线程
@@ -736,7 +736,7 @@ public final void acquireSharedInterruptibly(int arg)
 ```java
 // 释放一个许可证
 public void release() {
-  	sync.releaseShared(1);
+    sync.releaseShared(1);
 }
 
 // 释放共享锁，同时会唤醒同步队列中的一个线程。
@@ -885,9 +885,9 @@ public CyclicBarrier(int parties, Runnable barrierAction) {
 ```java
 public int await() throws InterruptedException, BrokenBarrierException {
   try {
-    	return dowait(false, 0L);
+      return dowait(false, 0L);
   } catch (TimeoutException toe) {
-   	 throw new Error(toe); // cannot happen
+      throw new Error(toe); // cannot happen
   }
 }
 ```
@@ -984,10 +984,10 @@ public int await() throws InterruptedException, BrokenBarrierException {
 
 - 《深入理解 Java 虚拟机》
 - 《实战 Java 高并发程序设计》
-- 带你了解下 SynchronousQueue（并发队列专题）：https://juejin.cn/post/7031196740128768037
-- 阻塞队列 — DelayedWorkQueue 源码分析：https://zhuanlan.zhihu.com/p/310621485
-- Java 多线程（三）——FutureTask/CompletableFuture：https://www.cnblogs.com/iwehdio/p/14285282.html
-- Java 并发之 AQS 详解：https://www.cnblogs.com/waterystone/p/4920797.html
-- Java 并发包基石-AQS 详解：https://www.cnblogs.com/chengxiao/archive/2017/07/24/7141160.html
+- 带你了解下 SynchronousQueue（并发队列专题）：<https://juejin.cn/post/7031196740128768037>
+- 阻塞队列 — DelayedWorkQueue 源码分析：<https://zhuanlan.zhihu.com/p/310621485>
+- Java 多线程（三）——FutureTask/CompletableFuture：<https://www.cnblogs.com/iwehdio/p/14285282.html>
+- Java 并发之 AQS 详解：<https://www.cnblogs.com/waterystone/p/4920797.html>
+- Java 并发包基石-AQS 详解：<https://www.cnblogs.com/chengxiao/archive/2017/07/24/7141160.html>
 
 <!-- @include: @article-footer.snippet.md -->

@@ -198,7 +198,7 @@ public E remove(int index) {
     // 加锁
     lock.lock();
     try {
-    	   //获取当前array数组
+         //获取当前array数组
         Object[] elements = getArray();
         // 获取当前array长度
         int len = elements.length;
@@ -207,7 +207,7 @@ public E remove(int index) {
         int numMoved = len - index - 1;
         // 判断删除的是否是最后一个元素
         if (numMoved == 0)
-        	   // 如果删除的是最后一个元素，直接复制该元素前的所有元素到新的数组
+             // 如果删除的是最后一个元素，直接复制该元素前的所有元素到新的数组
             setArray(Arrays.copyOf(elements, len - 1));
         else {
             // 分段复制，将index前的元素和index+1后的元素复制到新数组
@@ -221,7 +221,7 @@ public E remove(int index) {
         }
         return oldValue;
     } finally {
-       	// 解锁
+         // 解锁
         lock.unlock();
     }
 }

@@ -38,9 +38,9 @@ String Templates 提供了一种更简洁、更直观的方式来动态构建字
 
 ```typescript
 "Greetings {{ name }}!";  //Angular
-`Greetings ${ name }!`;		//Typescript
-$"Greetings { name }!"		//Visual basic
-f"Greetings { name }!"		//Python
+`Greetings ${ name }!`;    //Typescript
+$"Greetings { name }!"    //Visual basic
+f"Greetings { name }!"    //Python
 ```
 
 Java 在没有 String Templates 之前，我们通常使用字符串拼接或格式化方法来构建字符串：
@@ -50,7 +50,7 @@ Java 在没有 String Templates 之前，我们通常使用字符串拼接或格
 message = "Greetings " + name + "!";
 
 //String.format()
-message = String.format("Greetings %s!", name);	//concatenation
+message = String.format("Greetings %s!", name);  //concatenation
 
 //MessageFormat
 message = new MessageFormat("Greetings {0}!").format(name);
@@ -111,7 +111,7 @@ message = STR."Greetings \{this.name}!";
 
 ```java
 int x = 10, y = 20;
-String s = STR."\{x} + \{y} = \{x + y}";	//"10 + 20 = 30"
+String s = STR."\{x} + \{y} = \{x + y}";  //"10 + 20 = 30"
 ```
 
 为了提高可读性，我们可以将嵌入的表达式分成多行:
@@ -122,7 +122,7 @@ String time = STR."The current time is \{
     DateTimeFormatter
       .ofPattern("HH:mm:ss")
       .format(LocalTime.now())
-	}.";
+  }.";
 ```
 
 ## JEP431：序列化集合
@@ -379,4 +379,4 @@ void main() {
 ## 参考
 
 - Java 21 String Templates：<https://howtodoinjava.com/java/java-string-templates/>
-- Java 21 Sequenced Collections：https://howtodoinjava.com/java/sequenced-collections/
+- Java 21 Sequenced Collections：<https://howtodoinjava.com/java/sequenced-collections/>

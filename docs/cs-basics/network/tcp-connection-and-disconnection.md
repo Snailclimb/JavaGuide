@@ -81,6 +81,6 @@ TCP 是全双工通信，可以双向传输数据。任何一方都可以在数�
 
 - 《图解 HTTP》
 
-- TCP and UDP Tutorial：https://www.9tut.com/tcp-and-udp-tutorial
+- TCP and UDP Tutorial：<https://www.9tut.com/tcp-and-udp-tutorial>
 
 <!-- @include: @article-footer.snippet.md -->
