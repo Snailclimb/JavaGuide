@@ -1,5 +1,6 @@
 import { getDirname, path } from "@vuepress/utils";
 import { hopeTheme } from "vuepress-theme-hope";
+import { componentsPlugin } from "vuepress-plugin-components";
 
 import navbar from "./navbar.js";
 import sidebar from "./sidebar/index.js";
@@ -50,8 +51,26 @@ export default hopeTheme({
   },
 
   plugins: {
+    components: {
+      rootComponents: {
+        notice: [
+          {
+            path: "/",
+            title: "Java学习路线最新版",
+            content:
+              "花了一个月零碎的时间，我根据当下 Java 后端求职和招聘的最新要求，对之前写的 Java 后端学习路线进行了全面的优化和改进。这可能是你所见过的最用心、最全面的 Java 后端学习路线，共 4w+ 字。",
+            actions: [
+              {
+                text: "免费获取",
+                link: "https://mp.weixin.qq.com/s/6nWgi22UT5Y7nJiPfQ_XIw",
+                type: "primary",
+              },
+            ],
+          },
+        ],
+      },
+    },
     blog: true,
-
     copyright: {
       author: "JavaGuide(javaguide.cn)",
       license: "MIT",

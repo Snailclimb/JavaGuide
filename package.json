@@ -35,5 +35,8 @@
     "vuepress-plugin-copyright2": "2.0.0-rc.10",
     "vuepress-plugin-feed2": "2.0.0-rc.10",
     "vuepress-theme-hope": "2.0.0-rc.10"
+  },
+  "devDependencies": {
+    "vuepress-plugin-components": "2.0.0-rc.11"
   }
 }
