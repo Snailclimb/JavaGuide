@@ -10,6 +10,7 @@ export const highQualityTechnicalArticles = arraySidebar([
       "programmer-quickly-learn-new-technology",
       "the-growth-strategy-of-the-technological-giant",
       "ten-years-of-dachang-growth-road",
+      "meituan-three-year-summary-lesson-10",
       "seven-tips-for-becoming-an-advanced-programmer",
       "20-bad-habits-of-bad-programmers",
       "thinking-about-technology-and-business-after-five-years-of-work",
