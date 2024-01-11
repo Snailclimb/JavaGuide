@@ -546,7 +546,7 @@ public E poll() {
         //上锁
         lock.lock();
         try {
-          //如果队列为空直接返回null，反之出队返回元素值
+            //如果队列为空直接返回null，反之出队返回元素值
             return (count == 0) ? null : dequeue();
         } finally {
             lock.unlock();
@@ -558,13 +558,12 @@ public E poll() {
 
 ```java
 public boolean add(E e) {
-    //调用下方的add
         return super.add(e);
     }
 
 
 public boolean add(E e) {
-    //调用offer如果失败直接抛出异常
+        //调用offer方法如果失败直接抛出异常
         if (offer(e))
             return true;
         else
