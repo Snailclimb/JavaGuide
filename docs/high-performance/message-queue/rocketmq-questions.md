@@ -925,7 +925,7 @@ emmm，是不是有一点复杂 🤣，看英文图片和英文文档的时候�
 2. 消息队列的作用(异步，解耦，削峰)
 3. 消息队列带来的一系列问题(消息堆积、重复消费、顺序消费、分布式事务等等)
 4. 消息队列的两种消息模型——队列和主题模式
-5. 分析了 `RocketMQ` 的技术架构(`NameServer`、`Broker`、`Producer`、`Comsumer`)
+5. 分析了 `RocketMQ` 的技术架构(`NameServer`、`Broker`、`Producer`、`Consumer`)
 6. 结合 `RocketMQ` 回答了消息队列副作用的解决方案
 7. 介绍了 `RocketMQ` 的存储机制和刷盘策略。
 

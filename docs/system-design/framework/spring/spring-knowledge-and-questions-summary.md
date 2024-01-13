@@ -207,7 +207,7 @@ public OneService getService(status) {
 
 Spring 内置的 `@Autowired` 以及 JDK 内置的 `@Resource` 和 `@Inject` 都可以用于注入 Bean。
 
-| Annotaion    | Package                            | Source       |
+| Annotation   | Package                            | Source       |
 | ------------ | ---------------------------------- | ------------ |
 | `@Autowired` | `org.springframework.bean.factory` | Spring 2.5+  |
 | `@Resource`  | `javax.annotation`                 | Java JSR-250 |

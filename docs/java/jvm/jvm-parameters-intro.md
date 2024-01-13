@@ -119,7 +119,7 @@ JDK 1.8 之前永久代还没被彻底移除的时候通常通过下面这些参
 
 ```c
 void MetaspaceGC::initialize() {
-  // Set the high-water mark to MaxMetapaceSize during VM initializaton since
+  // Set the high-water mark to MaxMetapaceSize during VM initialization since
   // we can't do a GC during initialization.
   _capacity_until_GC = MaxMetaspaceSize;
 }
