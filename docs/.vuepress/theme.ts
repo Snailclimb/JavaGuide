@@ -53,10 +53,12 @@ export default hopeTheme({
   plugins: {
     components: {
       rootComponents: {
+        // https://plugin-components.vuejs.press/zh/guide/utilities/notice.html#%E7%94%A8%E6%B3%95
         notice: [
           {
             path: "/",
             title: "Java学习路线最新版",
+            showOnce: true,
             content:
               "花了一个月零碎的时间，我根据当下 Java 后端求职和招聘的最新要求，对之前写的 Java 后端学习路线进行了全面的优化和改进。这可能是你所见过的最用心、最全面的 Java 后端学习路线，共 4w+ 字。",
             actions: [
