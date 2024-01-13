@@ -168,7 +168,7 @@ public ResponseEntity<List<User>> getAllUsers() {
 ```java
 @PostMapping("/users")
 public ResponseEntity<User> createUser(@Valid @RequestBody UserCreateRequest userCreateRequest) {
- return userRespository.save(userCreateRequest);
+ return userRepository.save(userCreateRequest);
 }
 ```
 

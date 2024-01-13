@@ -77,14 +77,14 @@ byte[] result = messageDigest.digest();
 // 将哈希值转换为十六进制字符串
 String hexString = new HexBinaryAdapter().marshal(result);
 System.out.println("Original String: " + originalString);
-System.out.println("SHA-256 Hash: " + hexString.toLowerCase());
+System.out.println("MD5 Hash: " + hexString.toLowerCase());
 ```
 
 输出：
 
 ```bash
 Original String: Java学习 + 面试指南：javaguide.cn
-SHA-256 Hash: fb246796f5b1b60d4d0268c817c608fa
+MD5 Hash: fb246796f5b1b60d4d0268c817c608fa
 ```
 
 ### SHA

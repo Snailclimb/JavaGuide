@@ -598,7 +598,7 @@ private void cancelAcquire(Node node) {
     compareAndSetNext(pred, predNext, null);
   } else {
     int ws;
-    // 如果当前节点不是head的后继节点，1:判断当前节点前驱节点的是否为SIGNAL，2:如果不是，则把前驱节点设置为SINGAL看是否成功
+    // 如果当前节点不是head的后继节点，1:判断当前节点前驱节点的是否为SIGNAL，2:如果不是，则把前驱节点设置为SIGNAL看是否成功
     // 如果1和2中有一个为true，再判断当前节点的线程是否为null
     // 如果上述条件都满足，把当前节点的前驱节点的后继指针指向当前节点的后继节点
     if (pred != head && ((ws = pred.waitStatus) == Node.SIGNAL || (ws <= 0 && compareAndSetWaitStatus(pred, ws, Node.SIGNAL))) && pred.thread != null) {

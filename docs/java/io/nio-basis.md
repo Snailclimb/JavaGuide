@@ -367,7 +367,7 @@ private void loadFileIntoMemory(File xmlFile) throws IOException {
   FileInputStream fis = new FileInputStream(xmlFile);
   // 创建 FileChannel 对象
   FileChannel fc = fis.getChannel();
-  // FileChannle.map() 将文件映射到直接内存并返回 MappedByteBuffer 对象
+  // FileChannel.map() 将文件映射到直接内存并返回 MappedByteBuffer 对象
   MappedByteBuffer mmb = fc.map(FileChannel.MapMode.READ_ONLY, 0, fc.size());
   xmlFileBuffer = new byte[(int)fc.size()];
   mmb.get(xmlFileBuffer);

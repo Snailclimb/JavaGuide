@@ -32,9 +32,9 @@ tag:
 
 可以看出， **Trie 树的核心原理其实很简单，就是通过公共前缀来提高字符串匹配效率。**
 
-[Apache Commons Collecions](https://mvnrepository.com/artifact/org.apache.commons/commons-collections4) 这个库中就有 Trie 树实现：
+[Apache Commons Collections](https://mvnrepository.com/artifact/org.apache.commons/commons-collections4) 这个库中就有 Trie 树实现：
 
-![Apache Commons Collecions 中的 Trie 树实现](https://oss.javaguide.cn/github/javaguide/system-design/security/common-collections-trie.png)
+![Apache Commons Collections 中的 Trie 树实现](https://oss.javaguide.cn/github/javaguide/system-design/security/common-collections-trie.png)
 
 ```java
 Trie<String, String> trie = new PatriciaTrie<>();
