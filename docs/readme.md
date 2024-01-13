@@ -16,8 +16,6 @@ footer: |-
   <a href="https://beian.miit.gov.cn/" target="_blank">鄂ICP备2020015769号-1</a> | 主题: <a href="https://vuepress-theme-hope.github.io/v2/" target="_blank">VuePress Theme Hope</a>
 ---
 
-[![Banner](https://oss.javaguide.cn/xingqiu/xingqiu.png)](./about-the-author/zhishixingqiu-two-years.md)
-
 ## 关于网站
 
 JavaGuide 已经持续维护 5 年多了，累计提交了 **5000+** commit ，共有 **440** 多位朋友参与维护。真心希望能够把这个项目做好，真正能够帮助到有需要的朋友！

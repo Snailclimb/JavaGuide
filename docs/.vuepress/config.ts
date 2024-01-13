@@ -4,7 +4,7 @@ import theme from "./theme.js";
 export default defineUserConfig({
   dest: "./dist",
 
-  title: "JavaGuide(Java面试+学习指南)",
+  title: "JavaGuide",
   description:
     "「Java学习指北 + Java面试指南」一份涵盖大部分 Java 程序员所需要掌握的核心知识。准备 Java 面试，复习 Java 知识点，首选 JavaGuide！  ",
   lang: "zh-CN",
@@ -28,6 +28,14 @@ export default defineUserConfig({
         name: "keywords",
         content:
           "Java基础, 多线程, JVM, 虚拟机, 数据库, MySQL, Spring, Redis, MyBatis, 系统设计, 分布式, RPC, 高可用, 高并发",
+      },
+    ],
+    [
+      "meta",
+      {
+        name: "description",
+        content:
+          "「Java学习 + 面试指南」一份涵盖大部分 Java 程序员所需要掌握的核心知识。准备 Java 面试，首选 JavaGuide！",
       },
     ],
     ["meta", { name: "apple-mobile-web-app-capable", content: "yes" }],

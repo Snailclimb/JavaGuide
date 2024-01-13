@@ -184,7 +184,7 @@ export default sidebar({
           children: [
             "other-network-questions",
             "other-network-questions2",
-            "computer-network-xiexiren-summary",
+            // "computer-network-xiexiren-summary",
             {
               text: "重要知识点",
               icon: "star",

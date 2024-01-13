@@ -12,7 +12,7 @@ export default hopeTheme({
   logo: "/logo.png",
   favicon: "/favicon.ico",
 
-  iconAssets: "//at.alicdn.com/t/c/font_2922463_kweia6fbo9.css",
+  iconAssets: "//at.alicdn.com/t/c/font_2922463_twrlnf18xy9.css",
 
   author: {
     name: "Guide",

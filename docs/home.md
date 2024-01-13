@@ -13,16 +13,6 @@ title: JavaGuide（Java学习&面试指南）
 
 :::
 
-<div align="center">
-
-![logo](https://oss.javaguide.cn/github/javaguide/csdn/1c00413c65d1995993bf2b0daf7b4f03.png)
-
-[GitHub](https://github.com/Snailclimb/JavaGuide) | [Gitee](https://gitee.com/SnailClimb/JavaGuide)
-
-</div>
-
-[![Banner](https://oss.javaguide.cn/xingqiu/xingqiu.png)](./about-the-author/zhishixingqiu-two-years.md)
-
 ## Java
 
 ### 基础

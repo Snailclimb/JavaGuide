@@ -1,6 +1,7 @@
 ---
 title: 冗余设计详解
 category: 高可用
+icon: cluster
 ---
 
 冗余设计是保证系统和数据高可用的最常的手段。
