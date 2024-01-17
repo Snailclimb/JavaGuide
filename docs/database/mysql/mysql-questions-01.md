@@ -811,6 +811,10 @@ mysql> EXPLAIN SELECT `score`,`name` FROM `cus_order` ORDER BY `score` DESC;
 
 读写分离和分库分表相关的问题比较多，于是，我单独写了一篇文章来介绍：[读写分离和分库分表详解](../../high-performance/read-and-write-separation-and-library-subtable.md)。
 
+### 深度分页如何优化？
+
+[深度分页介绍及优化建议](../../high-performance/deep-pagination-optimization.md)
+
 ## MySQL 学习资料推荐
 
 [**书籍推荐**](../../books/database.md#mysql) 。
