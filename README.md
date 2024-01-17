@@ -373,17 +373,15 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 
 ## 高性能
 
-### 数据库读写分离&分库分表
+### 数据库优化
 
-[数据库读写分离和分库分表常见知识点&面试题总结](./docs/high-performance/read-and-write-separation-and-library-subtable.md)
+- [数据库读写分离和分库分表](./docs/high-performance/read-and-write-separation-and-library-subtable.md)
+- [常见 SQL 优化手段总结](./docs/high-performance/sql-optimization.md)
+- [深度分页介绍及优化建议](./docs/high-performance/deep-pagination-optimization.md)
 
 ### 负载均衡
 
 [负载均衡常见知识点&面试题总结](./docs/high-performance/load-balancing.md)
-
-### SQL 优化
-
-[常见 SQL 优化手段总结](./docs/high-performance/sql-optimization.md)
 
 ### CDN
 

@@ -1,5 +1,5 @@
 ---
-title: 读写分离和分库分表常见问题总结
+title: 读写分离和分库分表详解
 category: 高性能
 head:
   - - meta

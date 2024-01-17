@@ -542,6 +542,7 @@ export default sidebar({
           children: [
             "read-and-write-separation-and-library-subtable",
             "sql-optimization",
+            "deep-pagination-optimization",
           ],
         },
         {

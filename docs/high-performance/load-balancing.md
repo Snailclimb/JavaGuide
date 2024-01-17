@@ -1,5 +1,5 @@
 ---
-title: 负载均衡常见问题总结
+title: 负载均衡原理及算法详解
 category: 高性能
 head:
   - - meta

@@ -1,5 +1,5 @@
 ---
-title: CDN常见问题总结
+title: CDN工作原理详解
 category: 高性能
 head:
   - - meta
