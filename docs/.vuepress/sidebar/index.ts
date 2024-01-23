@@ -541,6 +541,7 @@ export default sidebar({
           icon: "mysql",
           children: [
             "read-and-write-separation-and-library-subtable",
+            "data-cold-hot-separation",
             "sql-optimization",
             "deep-pagination-optimization",
           ],

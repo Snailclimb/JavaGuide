@@ -4,10 +4,10 @@ category: 高性能
 head:
   - - meta
     - name: keywords
-      content: 读写分离,分库分表,主从复制
+      content: 深度分页
   - - meta
     - name: description
-      content: 读写分离主要是为了将对数据库的读写操作分散到不同的数据库节点上。 这样的话，就能够小幅提升写性能，大幅提升读性能。 读写分离基于主从复制，MySQL 主从复制是依赖于 binlog 。分库就是将数据库中的数据分散到不同的数据库上。分表就是对单表的数据进行拆分，可以是垂直拆分，也可以是水平拆分。引入分库分表之后，需要系统解决事务、分布式 id、无法 join 操作问题。
+      content: 查询偏移量过大的场景我们称为深度分页，这会导致查询性能较低。深度分页可以采用范围查询、子查询、INNER JOIN 延迟关联、覆盖索引等方法进行优化。
 ---
 
 ## 深度分页介绍
@@ -88,4 +88,4 @@ LIMIT 1000000, 10;
 
 - 聊聊如何解决 MySQL 深分页问题 - 捡田螺的小男孩：<https://juejin.cn/post/7012016858379321358>
 - 数据库深分页介绍及优化方案 - 京东零售技术：<https://mp.weixin.qq.com/s/ZEwGKvRCyvAgGlmeseAS7g>
-- MySQL深分页优化 - 得物技术：<https://juejin.cn/post/6985478936683610149>
+- MySQL 深分页优化 - 得物技术：<https://juejin.cn/post/6985478936683610149>

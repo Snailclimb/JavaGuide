@@ -815,6 +815,20 @@ mysql> EXPLAIN SELECT `score`,`name` FROM `cus_order` ORDER BY `score` DESC;
 
 [深度分页介绍及优化建议](../../high-performance/deep-pagination-optimization.md)
 
+### 数据冷热分离如何做？
+
+[数据冷热分离详解](../../high-performance/data-cold-hot-separation.md)
+
+### 常见的数据库优化方法有哪些？
+
+- [索引优化](./mysql-index.md)
+- [读写分离和分库分表](../../high-performance/read-and-write-separation-and-library-subtable.md)
+- [数据冷热分离](../../high-performance/data-cold-hot-separation.md)
+- [SQL 优化](../../high-performance/sql-optimization.md)
+- [深度分页优化](../../high-performance/deep-pagination-optimization.md)
+- 适当冗余数据
+- 使用更高的硬件配置
+
 ## MySQL 学习资料推荐
 
 [**书籍推荐**](../../books/database.md#mysql) 。
