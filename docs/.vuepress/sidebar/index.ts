@@ -424,7 +424,7 @@ export default sidebar({
       collapsible: true,
       children: [
         {
-          text: "基础",
+          text: "基础知识",
           prefix: "basis/",
           icon: "basic",
           collapsible: true,
@@ -440,7 +440,7 @@ export default sidebar({
           ],
         },
         {
-          text: "安全",
+          text: "认证授权",
           prefix: "security/",
           icon: "security-fill",
           collapsible: true,
@@ -450,6 +450,14 @@ export default sidebar({
             "advantages-and-disadvantages-of-jwt",
             "sso-intro",
             "design-of-authority-system",
+          ],
+        },
+        {
+          text: "数据安全",
+          prefix: "security/",
+          icon: "security-fill",
+          collapsible: true,
+          children: [
             "encryption-algorithms",
             "sentive-words-filter",
             "data-desensitization",
