@@ -55,15 +55,23 @@ SELECT * FROM t_order WHERE id >= (SELECT id FROM t_order limit 1000000, 1) LIMI
 
 当然，我们也可以利用子查询先去获取目标分页的 ID 集合，然后再根据 ID 集合获取内容，但这种写法非常繁琐，不如使用 INNER JOIN 延迟关联。
 
-### INNER JOIN 延迟关联
+### 延迟关联
 
-延迟关联的优化思路，跟子查询的优化思路其实是一样的：都是把条件转移到主键索引树，然后减少回表。不同点是，延迟关联使用了 INNER JOIN 代替子查询。
+延迟关联的优化思路，跟子查询的优化思路其实是一样的：都是把条件转移到主键索引树，减少回表的次数。不同点是，延迟关联使用了 INNER JOIN（内连接） 包含子查询。
 
 ```sql
 SELECT t1.* FROM t_order t1
-INNER JOIN (SELECT id FROM t_order limit 1000000, 1) t2
-ON t1.id >= t2.id
+INNER JOIN (SELECT id FROM t_order limit 1000000, 10) t2
+ON t1.id = t2.id
 LIMIT 10;
+```
+
+除了使用 INNER JOIN 之外，还可以使用逗号连接子查询。
+
+```sql
+SELECT t1.* FROM t_order t1,
+(SELECT id FROM t_order limit 1000000, 10) t2
+WHERE t1.id = t2.id;
 ```
 
 ### 覆盖索引

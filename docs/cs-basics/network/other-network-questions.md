@@ -104,25 +104,17 @@ tag:
 
 > 类似的问题：打开一个网页，整个过程会使用哪些协议？
 
-图解（图片来源：《图解 HTTP》）：
+总体来说分为以下几个步骤:
 
-<img src="https://oss.javaguide.cn/github/javaguide/url%E8%BE%93%E5%85%A5%E5%88%B0%E5%B1%95%E7%A4%BA%E5%87%BA%E6%9D%A5%E7%9A%84%E8%BF%87%E7%A8%8B.jpg" style="zoom:50%" />
+1. 在浏览器中输入指定网页的 URL。
+2. 浏览器通过 DNS 协议，获取域名对应的 IP 地址。
+3. 浏览器根据 IP 地址和端口号，向目标服务器发起一个 TCP 连接请求。
+4. 浏览器在 TCP 连接上，向服务器发送一个 HTTP 请求报文，请求获取网页的内容。
+5. 服务器收到 HTTP 请求报文后，处理请求，并返回 HTTP 响应报文给浏览器。
+6. 浏览器收到 HTTP 响应报文后，解析响应体中的 HTML 代码，渲染网页的结构和样式，同时根据 HTML 中的其他资源的 URL（如图片、CSS、JS 等），再次发起 HTTP 请求，获取这些资源的内容，直到网页完全加载显示。
+7. 浏览器在不需要和服务器通信时，可以主动关闭 TCP 连接，或者等待服务器的关闭请求。
 
-> 上图有一个错误，请注意，是 OSPF 不是 OPSF。 OSPF（Open Shortest Path First，ospf）开放最短路径优先协议, 是由 Internet 工程任务组开发的路由选择协议
-
-总体来说分为以下几个过程:
-
-1. DNS 解析
-2. TCP 连接
-3. 发送 HTTP 请求
-4. 服务器处理请求并返回 HTTP 报文
-5. 浏览器解析渲染页面
-6. 连接结束
-
-具体可以参考下面这两篇文章：
-
-- [从输入 URL 到页面加载发生了什么？](https://segmentfault.com/a/1190000006879700)
-- [浏览器从输入网址到页面展示的过程](https://cloud.tencent.com/developer/article/1879758)
+详细介绍可以查看这篇文章：[访问网页的全过程（知识串联）](./the-whole-process-of-accessing-web-pages.md)（强烈推荐）。
 
 ### HTTP 状态码有哪些？
 

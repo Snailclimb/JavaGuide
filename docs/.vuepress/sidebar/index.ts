@@ -191,6 +191,7 @@ export default sidebar({
               collapsible: true,
               children: [
                 "osi-and-tcp-ip-model",
+                "the-whole-process-of-accessing-web-pages",
                 "application-layer-protocol",
                 "http-vs-https",
                 "http1.0-vs-http1.1",
