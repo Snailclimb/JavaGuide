@@ -395,7 +395,7 @@ struct sdshdr {
 
 ### 使用 Redis 实现一个排行榜怎么做？
 
-Redis 中有一个叫做 `Sorted Set` 的数据类型经常被用在各种排行榜的场景，比如直播间送礼物的排行榜、朋友圈的微信步数排行榜、王者荣耀中的段位排行榜、话题热度排行榜等等。
+Redis 中有一个叫做 `Sorted Set` （有序集合）的数据类型经常被用在各种排行榜的场景，比如直播间送礼物的排行榜、朋友圈的微信步数排行榜、王者荣耀中的段位排行榜、话题热度排行榜等等。
 
 相关的一些 Redis 命令: `ZRANGE` (从小到大排序)、 `ZREVRANGE` （从大到小排序）、`ZREVRANK` (指定元素排名)。
 
@@ -404,6 +404,10 @@ Redis 中有一个叫做 `Sorted Set` 的数据类型经常被用在各种排行
 [《Java 面试指北》](https://javaguide.cn/zhuanlan/java-mian-shi-zhi-bei.html) 的「技术面试题篇」就有一篇文章详细介绍如何使用 Sorted Set 来设计制作一个排行榜，感兴趣的小伙伴可以看看。
 
 ![](https://oss.javaguide.cn/github/javaguide/database/redis/image-20220719071115140.png)
+
+### Redis 为什么用跳表实现有序集合?
+
+这道面试题很多大厂比较喜欢问，难度还是有点大的，我单独写了一篇文章来详细回答这个问题：[Redis 为什么用跳表实现有序集合](./redis-skiplist.md)。
 
 ### Set 的应用场景是什么？
 

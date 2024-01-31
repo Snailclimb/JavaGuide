@@ -54,6 +54,7 @@ URL（Uniform Resource Locators），即统一资源定位器。网络上的所�
 
 - [HTTP vs HTTPS（应用层）](https://javaguide.cn/cs-basics/network/http-vs-https.html)
 - [HTTP 1.0 vs HTTP 1.1（应用层）](https://javaguide.cn/cs-basics/network/http1.0-vs-http1.1.html)
+- [HTTP 常见状态码总结（应用层）](https://javaguide.cn/cs-basics/network/http-status-codes.html)
 
 ## 传输层
 
