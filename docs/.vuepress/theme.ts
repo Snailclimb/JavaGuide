@@ -1,6 +1,5 @@
-import { getDirname, path } from "@vuepress/utils";
+import { getDirname, path } from "vuepress/utils";
 import { hopeTheme } from "vuepress-theme-hope";
-import { componentsPlugin } from "vuepress-plugin-components";
 
 import navbar from "./navbar.js";
 import sidebar from "./sidebar/index.js";
@@ -30,15 +29,7 @@ export default hopeTheme({
     '<a href="https://beian.miit.gov.cn/" target="_blank">鄂ICP备2020015769号-1</a>',
   displayFooter: true,
 
-  pageInfo: [
-    "Author",
-    "Category",
-    "Tag",
-    // "Date",
-    "Original",
-    "Word",
-    "ReadingTime",
-  ],
+  pageInfo: ["Author", "Category", "Tag", "Original", "Word", "ReadingTime"],
 
   blog: {
     intro: "/about-the-author/",
@@ -72,7 +63,9 @@ export default hopeTheme({
         ],
       },
     },
+
     blog: true,
+
     copyright: {
       author: "JavaGuide(javaguide.cn)",
       license: "MIT",
