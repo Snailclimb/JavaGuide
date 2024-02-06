@@ -39,7 +39,7 @@ tag:
 
 ### 2.2.显式新生代内存(Young Generation)
 
-根据[Oracle 官方文档](https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/sizing.html)，在堆总可用内存配置完成之后，第二大影响因素是为 `Young Generation` 在堆内存所占的比例。默认情况下，YG 的最小大小为 1310 _MB_，最大大小为*无限制*。
+根据[Oracle 官方文档](https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/sizing.html)，在堆总可用内存配置完成之后，第二大影响因素是为 `Young Generation` 在堆内存所占的比例。默认情况下，YG 的最小大小为 1310 _MB_，最大大小为 _无限制_。
 
 一共有两种指定 新生代内存(Young Generation)大小的方法：
 
