@@ -492,14 +492,22 @@ G1 收集器的运作大致分为以下几个步骤：
 
 与 CMS 中的 ParNew 和 G1 类似，ZGC 也采用标记-复制算法，不过 ZGC 对该算法做了重大改进。
 
-在 ZGC 中出现 Stop The World 的情况会更少！
+ZGC 可以将暂停时间控制在几毫秒以内，且暂停时间不受堆内存大小的影响，出现 Stop The World 的情况会更少，但代价是牺牲了一些吞吐量。ZGC 最大支持 16TB 的堆内存。
 
-Java11 的时候 ，ZGC 还在试验阶段。经过多个版本的迭代，不断的完善和修复问题，ZGC 在 Java 15 已经可以正式使用了！
+ZGC 在 Java11 中引入，处于试验阶段。经过多个版本的迭代，不断的完善和修复问题，ZGC 在 Java15 已经可以正式使用了。
 
-不过，默认的垃圾回收器依然是 G1。你可以通过下面的参数启动 ZGC：
+不过，默认的垃圾回收器依然是 G1。你可以通过下面的参数启用 ZGC：
 
 ```bash
 java -XX:+UseZGC className
+```
+
+在 Java21 中，引入了分代 ZGC，暂停时间可以缩短到1毫秒以内。
+
+你可以通过下面的参数启用分代 ZGC：
+
+```bash
+java -XX:+UseZGC -XX:+ZGenerational className
 ```
 
 关于 ZGC 收集器的详细介绍推荐阅读美团技术团队的 [新一代垃圾回收器 ZGC 的探索与实践](https://tech.meituan.com/2020/08/06/new-zgc-practice-in-meituan.html) 这篇文章。
