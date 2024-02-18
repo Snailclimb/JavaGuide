@@ -48,14 +48,14 @@ export default hopeTheme({
         notice: [
           {
             path: "/",
-            title: "Java学习路线最新版",
+            title: "2023技术年货汇总",
             showOnce: true,
             content:
-              "花了一个月零碎的时间，我根据当下 Java 后端求职和招聘的最新要求，对之前写的 Java 后端学习路线进行了全面的优化和改进。这可能是你所见过的最用心、最全面的 Java 后端学习路线，共 4w+ 字。",
+              "抽空整理了一些优秀的技术团队公众号 2023 年的优质技术文章汇总，质量都挺高的，强烈建议打开这篇文章看看。",
             actions: [
               {
-                text: "免费获取",
-                link: "https://mp.weixin.qq.com/s/6nWgi22UT5Y7nJiPfQ_XIw",
+                text: "开始阅读",
+                link: "https://www.yuque.com/snailclimb/dr6cvl/nt5qc467p3t6s13k?singleDoc# 《2023技术年货》",
                 type: "primary",
               },
             ],

@@ -517,7 +517,6 @@ java -XX:+UseZGC -XX:+ZGenerational className
 ## 参考
 
 - 《深入理解 Java 虚拟机：JVM 高级特性与最佳实践（第二版》
-- <https://my.oschina.net/hosee/blog/644618>
-- <https://docs.oracle.com/javase/specs/jvms/se8/html/index.html>
+- The Java® Virtual Machine Specification - Java SE 8 Edition：<https://docs.oracle.com/javase/specs/jvms/se8/html/index.html>
 
 <!-- @include: @article-footer.snippet.md -->
