@@ -7,7 +7,7 @@ heroText: JavaGuide
 tagline: 「Java学习 + 面试指南」一份涵盖大部分 Java 程序员所需要掌握的核心知识。准备 Java 面试，首选 JavaGuide！
 actions:
   - text: 开始阅读
-    link: /home/
+    link: /home.md
     type: primary
   - text: 知识星球
     link: /about-the-author/zhishixingqiu-two-years.md

@@ -143,9 +143,7 @@ JavaGuide 知识星球优质主题汇总传送门：<https://www.yuque.com/snail
 
 ![知识星球30元优惠卷](https://oss.javaguide.cn/xingqiu/xingqiuyouhuijuan-30.jpg)
 
-进入星球之后，记得查看 **[星球使用指南](https://t.zsxq.com/0d18KSarv)** （一定要看！！！） 和 **[星球优质主题汇总](https://www.yuque.com/snailclimb/rpkqw1/ncxpnfmlng08wlf1)** 。另外，建议你添加一下我的个人微信（ **javaguide1024** ，备注 **“星球”** ，生活号，球友专属），方便后续交流沟通。
-
-![个人微信](https://oss.javaguide.cn/xingqiu/weixin-guidege666.jpeg)
+进入星球之后，记得查看 **[星球使用指南](https://t.zsxq.com/0d18KSarv)** （一定要看！！！） 和 **[星球优质主题汇总](https://t.zsxq.com/12uSKgTIm)** 。
 
 **无任何套路，无任何潜在收费项。用心做内容，不割韭菜！**
 
