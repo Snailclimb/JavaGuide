@@ -220,7 +220,7 @@ var="https://www.runoob.com/linux/linux-shell-variable.html"
 # 注: *为通配符, 意为匹配任意数量的任意字符
 s1=${var%%t*} #h
 s2=${var%t*}  #https://www.runoob.com/linux/linux-shell-variable.h
-s3=${var%%.*} #http://www
+s3=${var%%.*} #https://www
 s4=${var#*/}  #/www.runoob.com/linux/linux-shell-variable.html
 s5=${var##*/} #linux-shell-variable.html
 ```
