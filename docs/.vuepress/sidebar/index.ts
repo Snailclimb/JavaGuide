@@ -567,6 +567,7 @@ export default sidebar({
             "kafka-questions-01",
             "rocketmq-questions",
             "rabbitmq-questions",
+            "rocketmq-nameserver",
           ],
         },
       ],
