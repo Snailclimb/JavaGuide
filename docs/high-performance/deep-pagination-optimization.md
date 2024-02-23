@@ -62,8 +62,7 @@ SELECT * FROM t_order WHERE id >= (SELECT id FROM t_order limit 1000000, 1) LIMI
 ```sql
 SELECT t1.* FROM t_order t1
 INNER JOIN (SELECT id FROM t_order limit 1000000, 10) t2
-ON t1.id = t2.id
-LIMIT 10;
+ON t1.id = t2.id;
 ```
 
 除了使用 INNER JOIN 之外，还可以使用逗号连接子查询。

@@ -274,7 +274,7 @@ MongoDB 单文档原生支持原子性，也具备事务的特性。当谈论 Mo
 
 WiredTiger 日志也会被压缩，默认使用的也是 Snappy 压缩算法。如果日志记录小于或等于 128 字节，WiredTiger 不会压缩该记录。
 
-## Amazon Document与MongoDB 的差异
+## Amazon Document 与 MongoDB 的差异
 
 Amazon DocumentDB（与 MongoDB 兼容） 是一种快速、可靠、完全托管的数据库服务。Amazon DocumentDB 可在云中轻松设置、操作和扩展与 MongoDB 兼容的数据库。
 
@@ -330,8 +330,6 @@ WriteResult({
   }
 })
 ```
-
-
 
 ## 参考
 
