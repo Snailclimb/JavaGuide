@@ -81,7 +81,7 @@ Gossip 设计了两种可能的消息传播模式：**反熵（Anti-Entropy）**
 
 ![反熵伪代码](https://oss.javaguide.cn/github/javaguide/distributed-system/protocol/up-df16e98bf71e872a7e1f01ca31cee93d77b.png)
 
-在我们实际应用场景中，一般不会采用随机的节点进行反熵，而是需要可以的设计一个闭环。这样的话，我们能够在一个确定的时间范围内实现各个节点数据的最终一致性，而不是基于随机的概率。像 InfluxDB 就是这样来实现反熵的。
+在我们实际应用场景中，一般不会采用随机的节点进行反熵，而是可以设计成一个闭环。这样的话，我们能够在一个确定的时间范围内实现各个节点数据的最终一致性，而不是基于随机的概率。像 InfluxDB 就是这样来实现反熵的。
 
 ![](./images/gossip/反熵-闭环.png)
 
@@ -98,7 +98,7 @@ Gossip 设计了两种可能的消息传播模式：**反熵（Anti-Entropy）**
 
 如下图所示（下图来自于[INTRODUCTION TO GOSSIP](https://managementfromscratch.wordpress.com/2016/04/01/introduction-to-gossip/) 这篇文章）：
 
-![Gossip 传播示意图](./images/gossip/gossip-rumor- mongering.gif)
+![Gossip 传播示意图](./images/gossip/gossip-rumor-mongering.gif)
 
 伪代码如下：
 
