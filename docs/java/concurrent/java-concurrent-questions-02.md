@@ -96,7 +96,7 @@ public class Singleton {
  * @author Guide哥
  * @date 2022/08/03 13:40
  **/
-public class VolatoleAtomicityDemo {
+public class VolatileAtomicityDemo {
     public volatile static int inc = 0;
 
     public void increase() {
@@ -105,11 +105,11 @@ public class VolatoleAtomicityDemo {
 
     public static void main(String[] args) throws InterruptedException {
         ExecutorService threadPool = Executors.newFixedThreadPool(5);
-        VolatoleAtomicityDemo volatoleAtomicityDemo = new VolatoleAtomicityDemo();
+        VolatileAtomicityDemo volatileAtomicityDemo = new VolatileAtomicityDemo();
         for (int i = 0; i < 5; i++) {
             threadPool.execute(() -> {
                 for (int j = 0; j < 500; j++) {
-                    volatoleAtomicityDemo.increase();
+                    volatileAtomicityDemo.increase();
                 }
             });
         }
