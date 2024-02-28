@@ -136,7 +136,7 @@ Swap 对于 Redis 来说是非常致命的，Redis 保证高性能的一个重�
 1、查询 Redis 进程号
 
 ```bash
-reids-cli -p 6383 info server | grep process_id
+redis-cli -p 6383 info server | grep process_id
 process_id: 4476
 ```
 
@@ -164,7 +164,7 @@ Swap: 0kB
 
 Redis 是典型的 CPU 密集型应用，不建议和其他多核 CPU 密集型服务部署在一起。当其他进程过度消耗 CPU 时，将严重影响 Redis 的吞吐量。
 
-可以通过`reids-cli --stat`获取当前 Redis 使用情况。通过`top`命令获取进程对 CPU 的利用率等信息 通过`info commandstats`统计信息分析出命令不合理开销时间，查看是否是因为高算法复杂度或者过度的内存优化问题。
+可以通过`redis-cli --stat`获取当前 Redis 使用情况。通过`top`命令获取进程对 CPU 的利用率等信息 通过`info commandstats`统计信息分析出命令不合理开销时间，查看是否是因为高算法复杂度或者过度的内存优化问题。
 
 ## 网络问题
 
