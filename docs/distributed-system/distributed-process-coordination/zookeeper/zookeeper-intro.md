@@ -272,29 +272,32 @@ ZAB 协议包括两种基本的模式，分别是
 - [ZooKeeper 与 Zab 协议 · Analyze](https://wingsxdu.com/posts/database/zookeeper/)
 - [Raft 算法详解](https://javaguide.cn/distributed-system/protocol/raft-algorithm.html)
 
-## ZooKeeper VS Etcd
+## ZooKeeper VS ETCD
 
-[Etcd](https://etcd.io/) 是一种强一致性的分布式键值存储，它提供了一种可靠的方式来存储需要由分布式系统或机器集群访问的数据。Etcd 内部采用 [Raft 算法](https://javaguide.cn/distributed-system/protocol/raft-algorithm.html)作为一致性算法，基于 Go 语言实现。
+[ETCD](https://etcd.io/) 是一种强一致性的分布式键值存储，它提供了一种可靠的方式来存储需要由分布式系统或机器集群访问的数据。ETCD 内部采用 [Raft 算法](https://javaguide.cn/distributed-system/protocol/raft-algorithm.html)作为一致性算法，基于 Go 语言实现。
 
-与 ZooKeeper 类似，Etcd 也可用于数据发布/订阅、负载均衡、命名服务、分布式协调/通知、分布式锁等场景。那二者如何选择呢？
+与 ZooKeeper 类似，ETCD 也可用于数据发布/订阅、负载均衡、命名服务、分布式协调/通知、分布式锁等场景。那二者如何选择呢？
 
-得物技术的[浅析如何基于 ZooKeeper 实现高可用架构](https://mp.weixin.qq.com/s/pBI3rjv5NdS1124Z7HQ-JA)这篇文章给出了如下的对比表格，可以作为参考：
+得物技术的[浅析如何基于 ZooKeeper 实现高可用架构](https://mp.weixin.qq.com/s/pBI3rjv5NdS1124Z7HQ-JA)这篇文章给出了如下的对比表格（我进一步做了优化），可以作为参考：
 
-|                | ZooKeeper                                                             | Etcd                                                   |
-| -------------- | --------------------------------------------------------------------- | ------------------------------------------------------ |
-| **语言**       | Java                                                                  | Go                                                     |
-| **协议**       | TCP                                                                   | Grpc                                                   |
-| **接口调用**   | 必须要使用自己的 client 进行调用                                      | 可通过 HTTP 传输，即可通过 CURL 等命令实现调用         |
-| **一致性算法** | Zab 协议                                                              | Raft 算法                                              |
-| **Watch 功能** | 较局限，一次性触发器                                                  | 一次 Watch 可以监听所有的事件                          |
-| **数据模型**   | 基于目录的层次模式                                                    | 参考了 zk 的数据模型，是个扁平的 kv 模型               |
-| **存储**       | kv 存储，使用的是 ConcurrentHashMap，内存存储，一般不建议存储较多数据 | kv 存储，使用 bbolt 存储引擎，可以处理几个 GB 的数据。 |
-| **支持 MVCC**  | 不支持                                                                | 支持，通过两个 B+ Tree 进行版本控制                    |
-| **权限校验**   | 实现的 ACL                                                            | 实现了 RBAC                                            |
-| **事务能力**   | 提供了简易的事务能力                                                  | 只提供了版本号的检查能力                               |
-| 部署维护       | 复杂                                                                  | 简单                                                   |
+|                  | ZooKeeper                                                             | ETCD                                                   |
+| ---------------- | --------------------------------------------------------------------- | ------------------------------------------------------ |
+| **语言**         | Java                                                                  | Go                                                     |
+| **协议**         | TCP                                                                   | Grpc                                                   |
+| **接口调用**     | 必须要使用自己的 client 进行调用                                      | 可通过 HTTP 传输，即可通过 CURL 等命令实现调用         |
+| **一致性算法**   | Zab 协议                                                              | Raft 算法                                              |
+| **Watcher 机制** | 较局限，一次性触发器                                                  | 一次 Watch 可以监听所有的事件                          |
+| **数据模型**     | 基于目录的层次模式                                                    | 参考了 zk 的数据模型，是个扁平的 kv 模型               |
+| **存储**         | kv 存储，使用的是 ConcurrentHashMap，内存存储，一般不建议存储较多数据 | kv 存储，使用 bbolt 存储引擎，可以处理几个 GB 的数据。 |
+| **MVCC**         | 不支持                                                                | 支持，通过两个 B+ Tree 进行版本控制                    |
+| **全局 Session** | 存在缺陷                                                              | 实现更灵活，避免了安全性问题                           |
+| **权限校验**     | ACL                                                                   | RBAC                                                   |
+| **事务能力**     | 提供了简易的事务能力                                                  | 只提供了版本号的检查能力                               |
+| **部署维护**     | 复杂                                                                  | 简单                                                   |
 
-实际选用哪个要根据实际业务场景和需求来定，Etcd 相对来说更适合云原生领域，并且提供了更稳定的高负载稳定读写能力以及更高的可用性。
+ZooKeeper 在存储性能、全局 Session、Watcher 机制等方面存在一定局限性，越来越多的开源项目在替换 ZooKeeper 为 Raft 实现或其它分布式协调服务，例如：[Kafka Needs No Keeper - Removing ZooKeeper Dependency (confluent.io)](https://www.confluent.io/blog/removing-zookeeper-dependency-in-kafka/)、[Moving Toward a ZooKeeper-Less Apache Pulsar (streamnative.io)](https://streamnative.io/blog/moving-toward-zookeeper-less-apache-pulsar)。
+
+ETCD 相对来说更优秀一些，提供了更稳定的高负载读写能力，对 ZooKeeper 暴露的许多问题进行了改进优化。并且，ETCD 基本能够覆盖 ZooKeeper 的所有应用场景，实现对其的替代。
 
 ## 总结
 
@@ -308,5 +311,6 @@ ZAB 协议包括两种基本的模式，分别是
 ## 参考
 
 - 《从 Paxos 到 ZooKeeper 分布式一致性原理与实践》
+- 谈谈 ZooKeeper 的局限性：<https://wingsxdu.com/posts/database/zookeeper-limitations/>
 
 <!-- @include: @article-footer.snippet.md -->
