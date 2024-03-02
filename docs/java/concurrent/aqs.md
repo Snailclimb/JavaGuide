@@ -338,7 +338,7 @@ semaphore.release(5);// 释放5个许可
 
 #### 介绍
 
-`CountDownLatch` 允许 `count` 个线程阻塞在一个地方，直至所有线程的任务都执行完毕。
+`CountDownLatch` 允许多个线程阻塞在一个地方，直至`count`个线程的任务都执行完毕。
 
 `CountDownLatch` 是一次性的，计数器的值只能在构造方法中初始化一次，之后没有任何机制再次对其设置值，当 `CountDownLatch` 使用完毕后，它不能再次被使用。
 
