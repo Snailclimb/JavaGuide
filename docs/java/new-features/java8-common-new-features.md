@@ -627,7 +627,7 @@ public class MapAndFlatMapExample {
                 .collect(Collectors.toList());
 
         System.out.println("Using map:");
-        System.out.println(mapResult);
+        mapResult.forEach(arrays-> System.out.println(Arrays.toString(arrays)));
 
         List<String> flatMapResult = listOfArrays.stream()
                 .flatMap(array -> Arrays.stream(array).map(String::toUpperCase))
