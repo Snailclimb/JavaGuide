@@ -112,7 +112,7 @@ InnoDB 将 redo log 刷到磁盘上有几种情况：
 
 ![](https://oss.javaguide.cn/github/javaguide/10.png)
 
-在个**日志文件组**中还有两个重要的属性，分别是 `write pos、checkpoint`
+在这个**日志文件组**中还有两个重要的属性，分别是 `write pos、checkpoint`
 
 - **write pos** 是当前记录的位置，一边写一边后移
 - **checkpoint** 是当前要擦除的位置，也是往后推移
