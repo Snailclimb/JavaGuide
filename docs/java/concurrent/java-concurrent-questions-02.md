@@ -285,9 +285,9 @@ public final native boolean compareAndSwapLong(Object o, long offset, long expec
 
 关于 `Unsafe` 类的详细介绍可以看这篇文章：[Java 魔法类 Unsafe 详解 - JavaGuide - 2022](https://javaguide.cn/java/basis/unsafe.html) 。
 
-### 乐观锁存在哪些问题？
+### CAS 算法存在哪些问题？
 
-ABA 问题是乐观锁最常见的问题。
+ABA 问题是 CAS 算法最常见的问题。
 
 #### ABA 问题
 
