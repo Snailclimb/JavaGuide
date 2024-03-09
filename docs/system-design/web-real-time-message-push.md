@@ -315,7 +315,7 @@ WebSocket 的工作过程可以分为以下几个步骤：
 
 另外，建立 WebSocket 连接之后，通过心跳机制来保持 WebSocket 连接的稳定性和活跃性。
 
-SpringBoot 整合 Websocket，先引入 Websocket 相关的工具包，和 SSE 相比额外的开发成本。
+SpringBoot 整合 WebSocket，先引入 WebSocket 相关的工具包，和 SSE 相比有额外的开发成本。
 
 ```xml
 <!-- 引入websocket -->
@@ -370,6 +370,22 @@ public class WebSocketServer {
                 e.printStackTrace();
             }
         }
+    }
+}
+```
+
+服务端还需要注入`ServerEndpointerExporter`，这个 Bean 就会自动注册使用了`@ServerEndpoint`注解的 WebSocket 服务器。
+
+```java
+@Configuration
+public class WebSocketConfiguration {
+
+    /**
+     * 用于注册使用了 @ServerEndpoint 注解的 WebSocket 服务器
+     */
+    @Bean
+    public ServerEndpointExporter serverEndpointExporter() {
+        return new ServerEndpointExporter();
     }
 }
 ```
