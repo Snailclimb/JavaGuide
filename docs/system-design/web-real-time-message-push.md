@@ -374,6 +374,22 @@ public class WebSocketServer {
 }
 ```
 
+服务端还需要注入`ServerEndpointerExporter`，这个 Bean 就会自动注册使用了`@ServerEndpoint`注解的 WebSocket 服务器。
+
+```java
+@Configuration
+public class WebSocketConfiguration {
+
+    /**
+     * 用于注册使用了 @ServerEndpoint 注解的 WebSocket 服务器
+     */
+    @Bean
+    public ServerEndpointExporter serverEndpointExporter() {
+        return new ServerEndpointExporter();
+    }
+}
+```
+
 前端初始化打开 WebSocket 连接，并监听连接状态，接收服务端数据或向服务端发送数据。
 
 ```javascript
