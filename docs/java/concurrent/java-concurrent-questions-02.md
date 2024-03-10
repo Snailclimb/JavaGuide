@@ -285,9 +285,9 @@ public final native boolean compareAndSwapLong(Object o, long offset, long expec
 
 关于 `Unsafe` 类的详细介绍可以看这篇文章：[Java 魔法类 Unsafe 详解 - JavaGuide - 2022](https://javaguide.cn/java/basis/unsafe.html) 。
 
-### 乐观锁存在哪些问题？
+### CAS 算法存在哪些问题？
 
-ABA 问题是乐观锁最常见的问题。
+ABA 问题是 CAS 算法最常见的问题。
 
 #### ABA 问题
 
@@ -317,7 +317,7 @@ CAS 经常会用到自旋操作来进行重试，也就是不成功就一直循�
 如果 JVM 能支持处理器提供的 pause 指令那么效率会有一定的提升，pause 指令有两个作用：
 
 1. 可以延迟流水线执行指令，使 CPU 不会消耗过多的执行资源，延迟的时间取决于具体实现的版本，在一些处理器上延迟时间是零。
-2. 可以避免在退出循环的时候因内存顺序冲而引起 CPU 流水线被清空，从而提高 CPU 的执行效率。
+2. 可以避免在退出循环的时候因内存顺序冲突而引起 CPU 流水线被清空，从而提高 CPU 的执行效率。
 
 #### 只能保证一个共享变量的原子操作
 

@@ -111,15 +111,15 @@ public class LRUCache<K, V> extends LinkedHashMap<K, V> {
 }
 ```
 
-测试代码如下，笔者初始化缓存容量为 2，然后按照次序先后添加 4 个元素。
+测试代码如下，笔者初始化缓存容量为 3，然后按照次序先后添加 4 个元素。
 
 ```java
-LRUCache < Integer, String > cache = new LRUCache < > (2);
+LRUCache<Integer, String> cache = new LRUCache<>(3);
 cache.put(1, "one");
 cache.put(2, "two");
 cache.put(3, "three");
 cache.put(4, "four");
-for (int i = 0; i < 4; i++) {
+for (int i = 0; i <= 4; i++) {
     System.out.println(cache.get(i));
 }
 ```
@@ -128,7 +128,7 @@ for (int i = 0; i < 4; i++) {
 
 ```java
 null
-null
+two
 three
 four
 ```
