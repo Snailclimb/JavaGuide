@@ -523,9 +523,9 @@ abstract class AbstractStringBuilder implements Appendable, CharSequence {
 
 **对于三者使用的总结：**
 
-1. 操作少量的数据: 适用 `String`
-2. 单线程操作字符串缓冲区下操作大量数据: 适用 `StringBuilder`
-3. 多线程操作字符串缓冲区下操作大量数据: 适用 `StringBuffer`
+- 操作少量的数据: 适用 `String`
+- 单线程操作字符串缓冲区下操作大量数据: 适用 `StringBuilder`
+- 多线程操作字符串缓冲区下操作大量数据: 适用 `StringBuffer`
 
 ### String 为什么是不可变的?
 

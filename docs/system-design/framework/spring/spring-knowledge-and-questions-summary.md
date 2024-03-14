@@ -347,7 +347,7 @@ prototype 作用域下，每次获取都会创建一个新的 bean 实例，不�
 
 ![Spring Bean 生命周期](https://images.xiaozhuanlan.com/photo/2019/b5d264565657a5395c2781081a7483e1.jpg)
 
-## Spring AoP
+## Spring AOP
 
 ### 谈谈自己对于 AOP 的了解
 
