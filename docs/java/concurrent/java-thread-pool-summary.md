@@ -219,7 +219,7 @@ public ScheduledThreadPoolExecutor(int corePoolSize) {
 
 ### ThreadPoolExecutor 示例代码
 
-首先创建一个 `Runnable` 接口的实现类（当然也可以是 `Callable` 接口，我们上面也说了两者的区别。）
+首先创建一个 `Runnable` 接口的实现类（当然也可以是 `Callable` 接口，我们后面会介绍两者的区别。）
 
 `MyRunnable.java`
 
