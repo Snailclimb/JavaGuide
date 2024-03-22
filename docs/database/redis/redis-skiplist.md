@@ -233,7 +233,7 @@ private int randomLevel() {
 /**
  * 默认情况下的高度为1，即只有自己一个节点
  */
-private int leveCount = 1;
+private int levelCount = 1;
 
 /**
  * 跳表最底层的节点，即头节点
@@ -271,9 +271,9 @@ public void add(int value) {
         maxOfMinArr[i].forwards[i] = newNode;
     }
 
-    //如果当前newNode高度大于跳表最高高度则更新leveCount
-    if (leveCount < level) {
-        leveCount = level;
+    //如果当前newNode高度大于跳表最高高度则更新levelCount
+    if (levelCount < level) {
+        levelCount = level;
     }
 
 }
@@ -299,7 +299,7 @@ public void add(int value) {
 public Node get(int value) {
     Node p = h;
     //找到小于value的最大值
-    for (int i = leveCount - 1; i >= 0; i--) {
+    for (int i = levelCount - 1; i >= 0; i--) {
         while (p.forwards[i] != null && p.forwards[i].data < value) {
             p = p.forwards[i];
         }
@@ -334,8 +334,8 @@ public Node get(int value) {
 public void delete(int value) {
     Node p = h;
     //找到各级节点小于value的最大值
-    Node[] updateArr = new Node[leveCount];
-    for (int i = leveCount - 1; i >= 0; i--) {
+    Node[] updateArr = new Node[levelCount];
+    for (int i = levelCount - 1; i >= 0; i--) {
         while (p.forwards[i] != null && p.forwards[i].data < value) {
             p = p.forwards[i];
         }
@@ -344,7 +344,7 @@ public void delete(int value) {
     //查看原始层节点前驱是否等于value，若等于则说明存在要删除的值
     if (p.forwards[0] != null && p.forwards[0].data == value) {
         //从最高级索引开始查看其前驱是否等于value，若等于则将当前节点指向value节点的后继节点
-        for (int i = leveCount - 1; i >= 0; i--) {
+        for (int i = levelCount - 1; i >= 0; i--) {
             if (updateArr[i].forwards[i] != null && updateArr[i].forwards[i].data == value) {
                 updateArr[i].forwards[i] = updateArr[i].forwards[i].forwards[i];
             }
@@ -352,8 +352,8 @@ public void delete(int value) {
     }
 
     //从最高级开始查看是否有一级索引为空，若为空则层级减1
-    while (leveCount > 1 && h.forwards[leveCount] == null) {
-        leveCount--;
+    while (levelCount > 1 && h.forwards[levelCount - 1] == null) {
+        levelCount--;
     }
 
 }
@@ -379,7 +379,7 @@ public class SkipList {
     /**
      * 默认情况下的高度为1，即只有自己一个节点
      */
-    private int leveCount = 1;
+    private int levelCount = 1;
 
     /**
      * 跳表最底层的节点，即头节点
@@ -436,9 +436,9 @@ public class SkipList {
             maxOfMinArr[i].forwards[i] = newNode;
         }
 
-        //如果当前newNode高度大于跳表最高高度则更新leveCount
-        if (leveCount < level) {
-            leveCount = level;
+        //如果当前newNode高度大于跳表最高高度则更新levelCount
+        if (levelCount < level) {
+            levelCount = level;
         }
 
     }
@@ -463,7 +463,7 @@ public class SkipList {
     public Node get(int value) {
         Node p = h;
         //找到小于value的最大值
-        for (int i = leveCount - 1; i >= 0; i--) {
+        for (int i = levelCount - 1; i >= 0; i--) {
             while (p.forwards[i] != null && p.forwards[i].data < value) {
                 p = p.forwards[i];
             }
@@ -484,8 +484,8 @@ public class SkipList {
     public void delete(int value) {
         Node p = h;
         //找到各级节点小于value的最大值
-        Node[] updateArr = new Node[leveCount];
-        for (int i = leveCount - 1; i >= 0; i--) {
+        Node[] updateArr = new Node[levelCount];
+        for (int i = levelCount - 1; i >= 0; i--) {
             while (p.forwards[i] != null && p.forwards[i].data < value) {
                 p = p.forwards[i];
             }
@@ -494,7 +494,7 @@ public class SkipList {
         //查看原始层节点前驱是否等于value，若等于则说明存在要删除的值
         if (p.forwards[0] != null && p.forwards[0].data == value) {
             //从最高级索引开始查看其前驱是否等于value，若等于则将当前节点指向value节点的后继节点
-            for (int i = leveCount - 1; i >= 0; i--) {
+            for (int i = levelCount - 1; i >= 0; i--) {
                 if (updateArr[i].forwards[i] != null && updateArr[i].forwards[i].data == value) {
                     updateArr[i].forwards[i] = updateArr[i].forwards[i].forwards[i];
                 }
@@ -502,8 +502,8 @@ public class SkipList {
         }
 
         //从最高级开始查看是否有一级索引为空，若为空则层级减1
-        while (leveCount > 1 && h.forwards[leveCount] == null) {
-            leveCount--;
+        while (levelCount > 1 && h.forwards[levelCount - 1] == null) {
+            levelCount--;
         }
 
     }
