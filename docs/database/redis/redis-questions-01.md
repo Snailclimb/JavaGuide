@@ -130,7 +130,7 @@ Redis 从 4.0 版本开始，支持通过 Module 来扩展其功能以满足特�
 ### Redis 除了做缓存，还能做什么？
 
 - **分布式锁**：通过 Redis 来做分布式锁是一种比较常见的方式。通常情况下，我们都是基于 Redisson 来实现分布式锁。关于 Redis 实现分布式锁的详细介绍，可以看我写的这篇文章：[分布式锁详解](https://javaguide.cn/distributed-system/distributed-lock.html) 。
-- **限流**：一般是通过 Redis + Lua 脚本的方式来实现限流。相关阅读：[《我司用了 6 年的 Redis 分布式限流器，可以说是非常厉害了！》](https://mp.weixin.qq.com/s/kyFAWH3mVNJvurQDt4vchA)。
+- **限流**：一般是通过 Redis + Lua 脚本的方式来实现限流。如果不想自己写 Lua 脚本的话，也可以直接利用 Redisson 中的 `RRateLimiter` 来实现分布式限流，其底层实现就是基于 Lua 代码+令牌桶算法。
 - **消息队列**：Redis 自带的 List 数据结构可以作为一个简单的队列使用。Redis 5.0 中增加的 Stream 类型的数据结构更加适合用来做消息队列。它比较类似于 Kafka，有主题和消费组的概念，支持消息持久化以及 ACK 机制。
 - **延时队列**：Redisson 内置了延时队列（基于 Sorted Set 实现的）。
 - **分布式 Session** ：利用 String 或者 Hash 数据类型保存 Session 数据，所有的服务器都可以访问。
@@ -139,11 +139,11 @@ Redis 从 4.0 版本开始，支持通过 Module 来扩展其功能以满足特�
 
 ### 如何基于 Redis 实现分布式锁？
 
-关于 Redis 实现分布式锁的详细介绍，可以看我写的这篇文章：[分布式锁详解](https://javaguide.cn/distributed-system/distributed-lock.html) 。
+关于 Redis 实现分布式锁的详细介绍，可以看我写的这篇文章：[分布式锁详解](https://javaguide.cn/distributed-system/distributed-lock-implementations.html) 。
 
 ### Redis 可以做消息队列么？
 
-> 实际项目中也没见谁使用 Redis 来做消息队列，对于这部分知识点大家了解就好了。
+> 实际项目中使用 Redis 来做消息队列的非常少，毕竟有更成熟的消息队列中间件可以用。
 
 先说结论：**可以是可以，但不建议使用 Redis 来做消息队列。和专业的消息队列相比，还是有很多欠缺的地方。**
 
@@ -260,6 +260,27 @@ RediSearch 支持中文分词、聚合统计、停用词、同义词、拼写检
 4. 生态较差：Elasticsearch 可以轻松和常见的一些系统/软件集成比如 Hadoop、Spark、Kibana，而 RedisSearch 则不具备该优势。
 
 Elasticsearch 适用于全文搜索、复杂查询、实时数据分析和聚合的场景，而 RediSearch 适用于快速数据存储、缓存和简单查询的场景。
+
+### 如何基于 Redis 实现延时任务？
+
+> 类似的问题：
+>
+> - 订单在 10 分钟后未支付就失效，如何用 Redis 实现？
+> - 红包 24 小时未被查收自动退还，如何用 Redis 实现？
+
+基于 Redis 实现延时任务的功能无非就下面两种方案：
+
+1. Redis 过期事件监听
+2. Redisson 内置的延时队列
+
+Redis 过期事件监听的存在时效性较差、丢消息、多服务实例下消息重复消费等问题，不被推荐使用。
+
+Redisson 内置的延时队列具备下面这些优势：
+
+1. **减少了丢消息的可能**：DelayedQueue 中的消息会被持久化，即使 Redis 宕机了，根据持久化机制，也只可能丢失一点消息，影响不大。当然了，你也可以使用扫描数据库的方法作为补偿机制。
+2. **消息不存在重复消费问题**：每个客户端都是从同一个目标队列中获取任务的，不存在重复消费的问题。
+
+关于 Redis 实现延时任务的详细介绍，可以看我写的这篇文章：[如何基于 Redis 实现延时任务？](./redis-delayed-task.md)。
 
 ## Redis 数据类型
 

@@ -322,6 +322,7 @@ export default sidebar({
               icon: "star",
               collapsible: true,
               children: [
+                "redis-delayed-task",
                 "3-commonly-used-cache-read-and-write-strategies",
                 "redis-data-structures-01",
                 "redis-data-structures-02",
