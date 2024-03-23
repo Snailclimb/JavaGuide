@@ -79,20 +79,15 @@ head:
 ![TreeMap 继承关系图](https://oss.javaguide.cn/github/javaguide/java/collection/treemap_hierarchy.png)
 
 实现 `NavigableMap` 接口让 `TreeMap` 有了对集合内元素的搜索的能力。
-```
-实现 NavigableMap 接口让 TreeMap 具备元素搜索能力
-`TreeMap` 是一种基于红黑树的 NavigableMap 实现，它存储的元素是有序的。实现 `NavigableMap` 接口使 `TreeMap` 具备了对集合内元素的高效搜索能力，提供了丰富的方法来探索和操作键值对。
-以下是实现 `NavigableMap` 接口为 `TreeMap` 带来的几个搜索相关的能力：
-1. **定向搜索**:
-   - `NavigableMap` 接口提供了 `ceilingEntry()`, `floorEntry()`, `higherEntry()`, 和 `lowerEntry()` 等方法，可以用于定位大于、小于、大于等于、小于等于给定键的最接近的键值对。
-2. **子集操作**:
-   - 可以通过 `subMap()`, `headMap()`, 和 `tailMap()` 方法高效地创建原集合的子集视图，而无需复制整个集合。
-3. **逆序视图**:
-   - `descendingMap()` 方法返回一个逆序的 `NavigableMap` 视图，使得可以反向迭代整个 `TreeMap`。
-4. **边界操作**:
-   - 提供了 `firstEntry()`, `lastEntry()`, `pollFirstEntry()`, 和 `pollLastEntry()` 等方法来方便地访问和移除元素。
+
+`NavigableMap` 接口提供了丰富的方法来探索和操作键值对:
+
+1. **定向搜索**: `ceilingEntry()`, `floorEntry()`, `higherEntry()`和 `lowerEntry()` 等方法可以用于定位大于、小于、大于等于、小于等于给定键的最接近的键值对。
+2. **子集操作**: `subMap()`, `headMap()`和 `tailMap()` 方法可以高效地创建原集合的子集视图，而无需复制整个集合。
+3. **逆序视图**:`descendingMap()` 方法返回一个逆序的 `NavigableMap` 视图，使得可以反向迭代整个 `TreeMap`。
+4. **边界操作**: `firstEntry()`, `lastEntry()`, `pollFirstEntry()`和 `pollLastEntry()` 等方法可以方便地访问和移除元素。
+
 这些方法都是基于红黑树数据结构的属性实现的，红黑树保持平衡状态，从而保证了搜索操作的时间复杂度为 O(log n)，这让 `TreeMap` 成为了处理有序集合搜索问题的强大工具。
-```
 
 实现`SortedMap`接口让 `TreeMap` 有了对集合中的元素根据键排序的能力。默认是按 key 的升序排序，不过我们也可以指定排序的比较器。示例代码如下：
 
@@ -152,7 +147,7 @@ TreeMap<Person, String> treeMap = new TreeMap<>((person1, person2) -> {
 });
 ```
 
-**综上，相比于`HashMap`来说 `TreeMap` 主要多了对集合中的元素根据键排序的能力以及对集合内元素的搜索的能力。**
+**综上，相比于`HashMap`来说， `TreeMap` 主要多了对集合中的元素根据键排序的能力以及对集合内元素的搜索的能力。**
 
 ### HashSet 如何检查重复?
 
