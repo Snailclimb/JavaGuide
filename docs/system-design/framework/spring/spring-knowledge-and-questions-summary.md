@@ -766,7 +766,7 @@ Spring Security 重要的是实战，这里仅对小部分知识点进行总结�
 
 如果我们需要保存密码这类敏感数据到数据库的话，需要先加密再保存。
 
-Spring Security 提供了多种加密算法的实现，开箱即用，非常方便。这些加密算法实现类的父类是 `PasswordEncoder` ，如果你想要自己实现一个加密算法的话，也需要继承 `PasswordEncoder`。
+Spring Security 提供了多种加密算法的实现，开箱即用，非常方便。这些加密算法实现类的接口是 `PasswordEncoder` ，如果你想要自己实现一个加密算法的话，也需要实现 `PasswordEncoder` 接口。
 
 `PasswordEncoder` 接口一共也就 3 个必须实现的方法。
 
