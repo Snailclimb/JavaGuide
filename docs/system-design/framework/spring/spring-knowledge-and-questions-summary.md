@@ -325,27 +325,110 @@ prototype 作用域下，每次获取都会创建一个新的 bean 实例，不�
 
 ### Bean 的生命周期了解么?
 
-- Bean 容器找到配置文件中 Spring Bean 的定义。
-- Bean 容器利用 Java Reflection API 创建一个 Bean 的实例。
-- 如果涉及到一些属性值 利用 `set()`方法设置一些属性值。
-- 如果 Bean 实现了 `BeanNameAware` 接口，调用 `setBeanName()`方法，传入 Bean 的名字。
-- 如果 Bean 实现了 `BeanClassLoaderAware` 接口，调用 `setBeanClassLoader()`方法，传入 `ClassLoader`对象的实例。
-- 如果 Bean 实现了 `BeanFactoryAware` 接口，调用 `setBeanFactory()`方法，传入 `BeanFactory`对象的实例。
-- 与上面的类似，如果实现了其他 `*.Aware`接口，就调用相应的方法。
-- 如果有和加载这个 Bean 的 Spring 容器相关的 `BeanPostProcessor` 对象，执行`postProcessBeforeInitialization()` 方法
-- 如果 Bean 实现了`InitializingBean`接口，执行`afterPropertiesSet()`方法。
-- 如果 Bean 在配置文件中的定义包含 init-method 属性，执行指定的方法。
-- 如果有和加载这个 Bean 的 Spring 容器相关的 `BeanPostProcessor` 对象，执行`postProcessAfterInitialization()` 方法
-- 当要销毁 Bean 的时候，如果 Bean 实现了 `DisposableBean` 接口，执行 `destroy()` 方法。
-- 当要销毁 Bean 的时候，如果 Bean 在配置文件中的定义包含 destroy-method 属性，执行指定的方法。
+1. **创建 Bean 的实例**：Bean 容器首先会找到配置文件中的 Bean 定义，然后使用 Java 反射 API 来创建 Bean 的实例。
+2. **Bean 属性赋值/填充**：为 Bean 设置相关属性和依赖，例如`@Autowired` 等注解注入的对象、`@Value` 注入的值、`setter`方法或构造函数注入依赖和值、`@Resource`注入的各种资源。
+3. **Bean 初始化**：
+   - 如果 Bean 实现了 `BeanNameAware` 接口，调用 `setBeanName()`方法，传入 Bean 的名字。
+   - 如果 Bean 实现了 `BeanClassLoaderAware` 接口，调用 `setBeanClassLoader()`方法，传入 `ClassLoader`对象的实例。
+   - 如果 Bean 实现了 `BeanFactoryAware` 接口，调用 `setBeanFactory()`方法，传入 `BeanFactory`对象的实例。
+   - 与上面的类似，如果实现了其他 `*.Aware`接口，就调用相应的方法。
+   - 如果有和加载这个 Bean 的 Spring 容器相关的 `BeanPostProcessor` 对象，执行`postProcessBeforeInitialization()` 方法
+   - 如果 Bean 实现了`InitializingBean`接口，执行`afterPropertiesSet()`方法。
+   - 如果 Bean 在配置文件中的定义包含 `init-method` 属性，执行指定的方法。
+   - 如果有和加载这个 Bean 的 Spring 容器相关的 `BeanPostProcessor` 对象，执行`postProcessAfterInitialization()` 方法。
+4. **销毁 Bean**：销毁并不是说要立马把 Bean 给销毁掉，而是把 Bean 的销毁方法先记录下来，将来需要销毁 Bean 或者销毁容器的时候，就调用这些方法去释放 Bean 所持有的资源。
+   - 如果 Bean 实现了 `DisposableBean` 接口，执行 `destroy()` 方法。
+   - 如果 Bean 在配置文件中的定义包含 `destroy-method` 属性，执行指定的 Bean 销毁方法。或者，也可以直接通过`@PreDestroy` 注解标记 Bean 销毁之前执行的方法。
 
-图示：
+`AbstractAutowireCapableBeanFactory` 的 `doCreateBean()` 方法中能看到依次执行了这 4 个阶段：
 
-![Spring Bean 生命周期](https://images.xiaozhuanlan.com/photo/2019/24bc2bad3ce28144d60d9e0a2edf6c7f.jpg)
+```java
+protected Object doCreateBean(final String beanName, final RootBeanDefinition mbd, final @Nullable Object[] args)
+    throws BeanCreationException {
 
-与之比较类似的中文版本:
+    // 1. 创建 Bean 的实例
+    BeanWrapper instanceWrapper = null;
+    if (instanceWrapper == null) {
+        instanceWrapper = createBeanInstance(beanName, mbd, args);
+    }
 
-![Spring Bean 生命周期](https://images.xiaozhuanlan.com/photo/2019/b5d264565657a5395c2781081a7483e1.jpg)
+    Object exposedObject = bean;
+    try {
+        // 2. Bean 属性赋值/填充
+        populateBean(beanName, mbd, instanceWrapper);
+        // 3. Bean 初始化
+        exposedObject = initializeBean(beanName, exposedObject, mbd);
+    }
+
+    // 4. 销毁 Bean-注册回调接口
+    try {
+        registerDisposableBeanIfNecessary(beanName, bean, mbd);
+    }
+
+    return exposedObject;
+}
+```
+
+`Aware` 接口能让 Bean 能拿到 Spring 容器资源。
+
+Spring 中提供的 `Aware` 接口主要有：
+
+1. `BeanNameAware`：注入当前 bean 对应 beanName；
+2. `BeanClassLoaderAware`：注入加载当前 bean 的 ClassLoader；
+3. `BeanFactoryAware`：注入当前 `BeanFactory` 容器的引用。
+
+`BeanPostProcessor` 接口是 Spring 为修改 Bean 提供的强大扩展点。
+
+```java
+public interface BeanPostProcessor {
+
+	// 初始化前置处理
+	default Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+		return bean;
+	}
+
+	// 初始化后置处理
+	default Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+		return bean;
+	}
+
+}
+```
+
+- `postProcessBeforeInitialization`：Bean 实例化、属性注入完成后，`InitializingBean#afterPropertiesSet`方法以及自定义的 `init-method` 方法之前执行；
+- `postProcessAfterInitialization`：类似于上面，不过是在 `InitializingBean#afterPropertiesSet`方法以及自定义的 `init-method` 方法之后执行。
+
+`InitializingBean` 和 `init-method` 是 Spring 为 Bean 初始化提供的扩展点。
+
+```java
+public interface InitializingBean {
+ // 初始化逻辑
+	void afterPropertiesSet() throws Exception;
+}
+```
+
+指定 `init-method` 方法，指定初始化方法：
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="demo" class="com.chaycao.Demo" init-method="init()"/>
+
+</beans>
+```
+
+**如何记忆呢？**
+
+1. 整体上可以简单分为四步：实例化 —> 属性赋值 —> 初始化 —> 销毁。
+2. 初始化这一步涉及到的步骤比较多，包含 `Aware` 接口的依赖注入、`BeanPostProcessor` 在初始化前后的处理以及 `InitializingBean` 和 `init-method` 的初始化操作。
+3. 销毁这一步会注册相关销毁回调接口，最后通过`DisposableBean` 和 `destory-method` 进行销毁。
+
+最后，再分享一张清晰的图解（图源：[如何记忆 Spring Bean 的生命周期](https://chaycao.github.io/2020/02/15/如何记忆Spring-Bean的生命周期.html)）。
+
+![](https://oss.javaguide.cn/github/javaguide/system-design/framework/spring/spring-bean-lifestyle.png)
 
 ## Spring AOP
 
