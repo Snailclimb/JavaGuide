@@ -223,7 +223,7 @@ PS: 不懂的同学可以暂存疑，慢慢往下看，后面会有答案的，�
 
 **优点**：
 
-更新代价比聚簇索引要小 。非聚簇索引的更新代价就没有聚簇索引那么大了，非聚簇索引的叶子节点是不存放数据的
+更新代价比聚簇索引要小 。非聚簇索引的更新代价就没有聚簇索引那么大了，非聚簇索引的叶子节点是不存放数据的。
 
 **缺点**：
 
@@ -391,18 +391,28 @@ MySQL 8.0.13 版本引入了索引跳跃扫描（Index Skip Scan，简称 ISS）
 
 **索引下推（Index Condition Pushdown，简称 ICP）** 是 **MySQL 5.6** 版本中提供的一项索引优化功能，它允许存储引擎在索引遍历过程中，执行部分 `WHERE`字句的判断条件，直接过滤掉不满足条件的记录，从而减少回表次数，提高查询效率。
 
-假设我们有一个名为 `usr` 的表，其中包含 `id`, `name`, 和 `age` 3 个字段，`name` 字段上创建了索引。
+假设我们有一个名为 `user` 的表，其中包含 `id`, `username`, `zipcode`和 `birthdate` 4 个字段，创建了联合索引`(zipcode, birthdate)`。
 
 ```sql
-#查询名字以"Aoki"开头且年龄为30岁的用户
-EXPLAIN SELECT * FROM usr
-WHERE name LIKE 'Aoki%' AND age = 30;
+CREATE TABLE `user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `zipcode` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `birthdate` date NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_username_birthdate` (`zipcode`,`birthdate`) ) ENGINE=InnoDB AUTO_INCREMENT=1001 DEFAULT CHARSET=utf8mb4;
+
+# 查询 zipcode 为 431200 且生日在 3 月的用户
+# birthdate 字段使用函数索引失效
+SELECT * FROM user WHERE zipcode = '431200' AND MONTH(birthdate) = 3;
 ```
 
-- 没有索引下推之前，即使 `name` 字段建立的索引可以帮助我们快速定位到了以“张”开头的用户，但我们仍然需要对每一个找到的以“张”开头的用户进行回表操作，获取完整的用户数据，再判断 `age` 字段是否等于 30。
-- 有了索引下推之后，存储引擎会在使用 `name` 索引查找以"张"开头的记录时，同时检查 `age` 字段是否等于 30。这样，只有同时满足 `name` 和 `age` 条件的记录才会被返回，减少了回表次数。
+- 没有索引下推之前，即使 `zipcode` 字段利用索引可以帮助我们快速定位到 `zipcode = '431200'` 的用户，但我们仍然需要对每一个找到的用户进行回表操作，获取完整的用户数据，再去判断 `MONTH(birthdate) = 12`。
+- 有了索引下推之后，存储引擎会在使用`zipcode` 字段索引查找`zipcode = '431200'` 的用户时，同时判断`MONTH(birthdate) = 12`。这样，只有同时满足条件的记录才会被返回，减少了回表次数。
 
 ![](https://oss.javaguide.cn/github/javaguide/database/mysql/index-condition-pushdown.png)
+
+![](https://oss.javaguide.cn/github/javaguide/database/mysql/index-condition-pushdown-graphic-illustration.png)
 
 再来讲讲索引下推的具体原理，先看下面这张 MySQL 简要架构图。
 
@@ -416,13 +426,13 @@ MySQL 可以简单分为 Server 层和存储引擎层这两层。Server 层处�
 
 没有索引下推之前：
 
-- 存储引擎层先根据 `name` 索引字段找到所有以“张”开头用户的主键 ID，然后二次回表查询，获取完整的用户数据。
-- 存储引擎层把所有以“张”开头的用户数据全部交给 Server 层，Server 层根据`age` 字段是否等于 30 这一条件再进一步做筛选。
+- 存储引擎层先根据 `zipcode` 索引字段找到所有 `zipcode = '431200'` 的用户的主键 ID，然后二次回表查询，获取完整的用户数据；
+- 存储引擎层把所有 `zipcode = '431200'` 的用户数据全部交给 Server 层，Server 层根据`MONTH(birthdate) = 12`这一条件再进一步做筛选。
 
 有了索引下推之后：
 
-- 存储引擎层先根据 `name` 索引字段找到所有以“张”开头的用户，然后直接判断`age` 字段是否等于 30，筛选出符合条件的 主键 ID。
-- 二次回表查询，根据符合条件的主键 ID 去获取完整的用户数据，
+- 存储引擎层先根据 `zipcode` 索引字段找到所有 `zipcode = '431200'` 的用户，然后直接判断 `MONTH(birthdate) = 12`，筛选出符合条件的主键 ID；
+- 二次回表查询，根据符合条件的主键 ID 去获取完整的用户数据；
 - 存储引擎层把符合条件的用户数据全部交给 Server 层。
 
 可以看出，**除了可以减少回表次数之外，索引下推还可以减少存储引擎层和 Server 层的数据传输量。**
