@@ -407,8 +407,8 @@ CREATE TABLE `user` (
 SELECT * FROM user WHERE zipcode = '431200' AND MONTH(birthdate) = 3;
 ```
 
-- 没有索引下推之前，即使 `zipcode` 字段利用索引可以帮助我们快速定位到 `zipcode = '431200'` 的用户，但我们仍然需要对每一个找到的用户进行回表操作，获取完整的用户数据，再去判断 `MONTH(birthdate) = 12`。
-- 有了索引下推之后，存储引擎会在使用`zipcode` 字段索引查找`zipcode = '431200'` 的用户时，同时判断`MONTH(birthdate) = 12`。这样，只有同时满足条件的记录才会被返回，减少了回表次数。
+- 没有索引下推之前，即使 `zipcode` 字段利用索引可以帮助我们快速定位到 `zipcode = '431200'` 的用户，但我们仍然需要对每一个找到的用户进行回表操作，获取完整的用户数据，再去判断 `MONTH(birthdate) = 3`。
+- 有了索引下推之后，存储引擎会在使用`zipcode` 字段索引查找`zipcode = '431200'` 的用户时，同时判断`MONTH(birthdate) = 3`。这样，只有同时满足条件的记录才会被返回，减少了回表次数。
 
 ![](https://oss.javaguide.cn/github/javaguide/database/mysql/index-condition-pushdown.png)
 
@@ -427,11 +427,11 @@ MySQL 可以简单分为 Server 层和存储引擎层这两层。Server 层处�
 没有索引下推之前：
 
 - 存储引擎层先根据 `zipcode` 索引字段找到所有 `zipcode = '431200'` 的用户的主键 ID，然后二次回表查询，获取完整的用户数据；
-- 存储引擎层把所有 `zipcode = '431200'` 的用户数据全部交给 Server 层，Server 层根据`MONTH(birthdate) = 12`这一条件再进一步做筛选。
+- 存储引擎层把所有 `zipcode = '431200'` 的用户数据全部交给 Server 层，Server 层根据`MONTH(birthdate) = 3`这一条件再进一步做筛选。
 
 有了索引下推之后：
 
-- 存储引擎层先根据 `zipcode` 索引字段找到所有 `zipcode = '431200'` 的用户，然后直接判断 `MONTH(birthdate) = 12`，筛选出符合条件的主键 ID；
+- 存储引擎层先根据 `zipcode` 索引字段找到所有 `zipcode = '431200'` 的用户，然后直接判断 `MONTH(birthdate) = 3`，筛选出符合条件的主键 ID；
 - 二次回表查询，根据符合条件的主键 ID 去获取完整的用户数据；
 - 存储引擎层把符合条件的用户数据全部交给 Server 层。
 
