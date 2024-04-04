@@ -632,77 +632,67 @@ public class GlobalExceptionHandler {
 - **适配器模式** : Spring AOP 的增强或通知(Advice)使用到了适配器模式、spring MVC 中也是用到了适配器模式适配`Controller`。
 - ……
 
-## Spring 加载 Bean
-
-### 看过 SpringBoot 的启动流程吗？
-
-这个问了源码，看过就说看过，没看过就说没看过吧，不过可以了解一下整体的启动流程
-
-SpringBoot 是基于 Spring 的，那么 **Spring** 源码中核心的方法就是 **refresh()** 方法，在这个 refresh() 方法中有 12 个方法，通过这 12 个方法完成整个项目中的 Bean 的加载
-
-**先说一下 Spring 加载 Bean 的流程：**
-
-**Spring 整个 Bean 加载的原理：** 先根据路径去拿到路径下的所有 class 文件（字节码文件），再去根据注解或者 xml 文件将指定的 Bean 给注册到 Spring 中去，之后进行实例化，实例化之后需要对该 Bean 里的属性进行填充，那么这里填充属性值的时候就涉及到了 **循环依赖** 的问题，属性填充完毕之后，整个 Bean 就算初始化完成了
-
-Spring 中还支持了许多扩展点，比如 **BeanPostProcessor、Aware、@PostConstruct、InitializingBean、DisposableBean** ，通过这些扩展点可以让开发者在 Bean 加载的过程中做一些额外的操作
-
-那么整个加载 Bean 的流程主要就是去扫描字节码文件，再通过反射实例化，进行属性填充，完成 Bean 的创建，不过具体到细节流程还是很复杂的，因为还需要初始化很多其他的内容，比如 Bean 工厂、监听器、创建动态代理等等，整个 Bean 加载的流程如下：
-
-![Spring加载Bean的流程](https://11laile-note-img.oss-cn-beijing.aliyuncs.com/image-20240401150843359.png)
-
-那么 SpringBoot 启动的时候也会加载 Bean，因此会调用到 Spring 的 **refresh()** 方法， **启动流程：**
-
-1、SpringBoot 项目启动就是从 **SpringApplication.run()** 方法开始的
-
-2、根据应用类型加载对应的 Web 容器，SpringBoot 中 **内嵌了 Web 容器** 的初始化
-
-3、加载一些初始化器，也就是加载一些自动配置类，也就是从 **META-INF/spring.factories** 配置文件中进行加载（在定义 starter 的时候，也是在这个文件中定义了自动配置类，这样 SpringBoot 项目启动的时候就会扫描 spring.factories，之后就可以拿到 starter 中定义的自动配置类，根据自动配置类去加载 stater 中对应的 Bean）
-
-4、之后调用 Spring 的 **refresh()** 方法来进行 Bean 的实例化、初始化流程
-
 ## Spring 的循环依赖
 
-### Spring 的三级缓存介绍下，为啥需要他解决循环依赖？
+### Spring 循环依赖了解吗，怎么解决？
 
-先说一下 Spring 中的三级缓存是什么，其实就是三个 Map，如下：
+循环依赖是指 Bean 对象循环引用，是两个或多个 Bean 之间相互持有对方的引用，例如 CircularDependencyA → CircularDependencyB → CircularDependencyA。
 
 ```java
-// 一级缓存：存储完整的 Bean 对象
+@Component
+public class CircularDependencyA {
+    @Autowired
+    private CircularDependencyB circB;
+}
+
+@Component
+public class CircularDependencyB {
+    @Autowired
+    private CircularDependencyA circA;
+}
+```
+
+单个对象的自我依赖也会出现循环依赖，但这种概率极低，属于是代码编写错误。
+
+```java
+@Component
+public class CircularDependencyA {
+    @Autowired
+    private CircularDependencyA circA;
+}
+```
+
+Spring 框架通过使用三级缓存来解决这个问题，确保即使在循环依赖的情况下也能正确创建 Bean。
+
+Spring 中的三级缓存其实就是三个 Map，如下：
+
+```java
+// 一级缓存
+/** Cache of singleton objects: bean name to bean instance. */
 private final Map<String, Object> singletonObjects = new ConcurrentHashMap<>(256);
-// 二级缓存：存储早期的 Bean 对象，因为有些 Bean 对象可能没有初始化完成，将未初始化完成的 Bean 对象先放在这里
+
+// 二级缓存
+/** Cache of early singleton objects: bean name to bean instance. */
 private final Map<String, Object> earlySingletonObjects = new HashMap<>(16);
-// 三级缓存：
+
+// 三级缓存
+/** Cache of singleton factories: bean name to ObjectFactory. */
 private final Map<String, ObjectFactory<?>> singletonFactories = new HashMap<>(16);
 ```
 
-Spring 中三级缓存的作用是 **解决循环依赖**
+简单来说，Spring 的三级缓存包括：
 
-先说一下 **循环依赖** 问题：比如现在有两个类 **A** 和 **B** ，那么如果 A 类中使用到了 B，B 中也使用到了 A，那么这种情况就是循环依赖：
+1. **一级缓存（singletonObjects）**：存放最终形态的 Bean（已经实例化、属性填充、初始化），单例池，为“Spring 的单例属性”⽽⽣。一般情况我们获取 Bean 都是从这里获取的，但是并不是所有的 Bean 都在单例池里面，例如原型 Bean 就不在里面。
+2. **二级缓存（earlySingletonObjects）**：存放过渡 Bean（半成品，尚未属性填充），也就是三级缓存中`ObjectFactory`产生的对象，与三级缓存配合使用的，可以防止 AOP 的情况下，每次调用`ObjectFactory#getObject()`都是会产生新的代理对象的。
+3. **三级缓存（singletonFactories）**：存放`ObjectFactory`，`ObjectFactory`的`getObject()`方法（最终调用的是`getEarlyBeanReference()`方法）可以生成原始 Bean 对象或者代理对象（如果 Bean 被 AOP 切面代理）。三级缓存只会对单例 Bean 生效。
 
-```java
-class A {
-    // 使用了 B
-    private B b;
-}
-class B {
-    // 使用了 A
-    private A a;
-}
-```
+接下来说一下 Spring 创建 Bean 的流程：
 
-循环依赖会出现问题的，当 Spring 去创建 A 的时候，发现 A 依赖了 B，于是去创建 B，发现 B 又依赖了 A，难道还要去创建 A 嘛？
+1. 先去 **一级缓存 `singletonObjects`** 中获取，存在就返回；
+2. 如果不存在或者对象正在创建中，于是去 **二级缓存 `earlySingletonObjects`** 中获取；
+3. 如果还没有获取到，就去 **三级缓存 `singletonFactories`** 中获取，通过执行 `ObjectFacotry` 的 `getObject()` 就可以获取该对象，获取成功之后，从三级缓存移除，并将该对象加入到二级缓存中。
 
-这显然不合理，因此 Spring 通过 **三级缓存来解决这个循环依赖** 的问题
-
-接下来说一下 **Spring 创建 Bean** 的流程：
-
-1、先去 **一级缓存 singletonObjects** 中获取，存在就返回
-
-2、如果不存在或者对象正在创建中，于是去 **二级缓存 earlySingletonObjects** 中获取
-
-3、如果还没有获取到，就去 **三级缓存 singletonFactories** 中获取，通过执行 ObjectFacotry 的 getObject() 就可以获取该对象，获取成功之后，从三级缓存移除，并将该对象加入到二级缓存中
-
-在三级缓存中存储的是 **ObjectFacoty** ，定义为：
+在三级缓存中存储的是 `ObjectFacoty` ：
 
 ```java
 public interface ObjectFactory<T> {
@@ -710,7 +700,7 @@ public interface ObjectFactory<T> {
 }
 ```
 
-Spring 在创建 Bean 的时候，如果允许循环依赖的话，Spring 就会将刚刚实例化完成，但是属性还没有初始化完的 Bean 对象给提前暴露出去，这里通过 **addSingletonFactory** 方法，向三级缓存中添加一个 ObjectFactory 对象：
+Spring 在创建 Bean 的时候，如果允许循环依赖的话，Spring 就会将刚刚实例化完成，但是属性还没有初始化完的 Bean 对象给提前暴露出去，这里通过 `addSingletonFactory` 方法，向三级缓存中添加一个 `ObjectFactory` 对象：
 
 ```java
 // AbstractAutowireCapableBeanFactory # doCreateBean #
@@ -724,38 +714,80 @@ public abstract class AbstractAutowireCapableBeanFactory ... {
 }
 ```
 
-那么上边在说 Spring 创建 Bean 的流程时说了，如果一级缓存、二级缓存都取不到对象时，会去三级缓存中通过 ObjectFactory 的 getObject 方法获取对象
+那么上边在说 Spring 创建 Bean 的流程时说了，如果一级缓存、二级缓存都取不到对象时，会去三级缓存中通过 `ObjectFactory` 的 `getObject` 方法获取对象。
 
-**整个解决循环依赖的流程如下：**
+```java
+class A {
+    // 使用了 B
+    private B b;
+}
+class B {
+    // 使用了 A
+    private A a;
+}
+```
 
-- 当 Spring 创建 A 之后，发现 A 依赖了 B ，又去创建 B，B 依赖了 A ，又去创建 A
-- 在 B 创建 A 的时候，那么此时 A 就发生了循环依赖，由于 A 此时还没有初始化完成，因此在 **一二级缓存** 中肯定没有 A
-- 那么此时就去三级缓存中调用 getObject() 方法去获取 A 的 **前期暴露的对象** ，也就是调用上边加入的 **getEarlyBeanReference()** 方法，生成一个 A 的 **前期暴露对象**
-- 然后就将这个 ObjectFactory 从三级缓存中移除，并且将前期暴露对象放入到二级缓存中，那么 B 就将这个前期暴露对象注入到依赖，**来支持循环依赖！**
+以上面的循环依赖代码为例，整个解决循环依赖的流程如下：
 
-**最后总结一下 Spring 如何解决三级缓存**
+- 当 Spring 创建 A 之后，发现 A 依赖了 B ，又去创建 B，B 依赖了 A ，又去创建 A；
+- 在 B 创建 A 的时候，那么此时 A 就发生了循环依赖，由于 A 此时还没有初始化完成，因此在 **一二级缓存** 中肯定没有 A；
+- 那么此时就去三级缓存中调用 `getObject()` 方法去获取 A 的 **前期暴露的对象** ，也就是调用上边加入的 `getEarlyBeanReference()` 方法，生成一个 A 的 **前期暴露对象**；
+- 然后就将这个 `ObjectFactory` 从三级缓存中移除，并且将前期暴露对象放入到二级缓存中，那么 B 就将这个前期暴露对象注入到依赖，来支持循环依赖。
 
-在三级缓存这一块，主要记一下 Spring 是如何支持循环依赖的即可，也就是如果发生循环依赖的话，就去 **三级缓存 singletonFactories** 中拿到三级缓存中存储的 ObjectFactory 并调用它的 getObject() 方法来获取这个循环依赖对象的前期暴露对象（虽然还没初始化完成，但是可以拿到该对象在堆中的存储地址了），并且将这个前期暴露对象放到二级缓存中，这样在循环依赖时，就不会重复初始化了！
+**只用两级缓存够吗？** 在没有 AOP 的情况下，确实可以只使用一级和三级缓存来解决循环依赖问题。但是，当涉及到 AOP 时，二级缓存就显得非常重要了，因为它确保了即使在 Bean 的创建过程中有多次对早期引用的请求，也始终只返回同一个代理对象，从而避免了同一个 Bean 有多个代理对象的问题。
 
-### @Lazy能解决循环依赖吗？
+**最后总结一下 Spring 如何解决三级缓存**：
 
-@Lazy 注解可以配置在指定的 Bean 上，也可以配置在 SpringBootApplication 上表示全局配置
+在三级缓存这一块，主要记一下 Spring 是如何支持循环依赖的即可，也就是如果发生循环依赖的话，就去 **三级缓存 `singletonFactories`** 中拿到三级缓存中存储的 `ObjectFactory` 并调用它的 `getObject()` 方法来获取这个循环依赖对象的前期暴露对象（虽然还没初始化完成，但是可以拿到该对象在堆中的存储地址了），并且将这个前期暴露对象放到二级缓存中，这样在循环依赖时，就不会重复初始化了！
 
-**@Lazy 注解的作用** 就是缩短 Spring IOC 容器的初始化时间，并且在发现循环依赖的时候，也可以通过 @Lazy 来解决
+不过，这种机制也有一些缺点，比如增加了内存开销（需要维护三级缓存，也就是三个 Map），降低了性能（需要进行多次检查和转换）。并且，还有少部分情况是不支持循环依赖的，比如非单例的 bean 和`@Async`注解的 bean 无法支持循环依赖。
 
-@Lazy 解决循环依赖就是靠 **代理** 来解决的，使用 @Lazy 标注的对象会被延迟加载
+### @Lazy 能解决循环依赖吗？
 
-这里举一个例子，比如说有两个 Bean，A 和 B，他们之间发生了循环依赖，那么 A 的构造器上添加 @Lazy 注解之后，**加载的流程如下：**
+`@Lazy` 用来标识类是否需要懒加载/延迟加载，可以作用在类上、方法上、构造器上、方法参数上、成员变量中。
 
-- 首先 Spring 会去创建 A 的 Bean，创建时需要注入 B 的属性
-- 由于在 A 上标注了 @Lazy 注解，因此 Spring 会去创建一个 B 的代理对象，将这个代理对象注入到 A 中的 B 属性
-- 之后开始执行 B 的实例化、初始化，在注入 B 中的 A 属性时，此时 A 已经创建完毕了，就可以将 A 给注入进去
+Spring Boot 2.2 新增了全局懒加载属性，开启后全局 bean 被设置为懒加载，需要时再去创建。
 
-通过 **@Lazy** 就解决了循环依赖的注入， **关键点** 就在于对 A 中的属性 B 进行注入时，注入的是 B 的代理对象，因此不会循环依赖
+配置文件配置全局懒加载：
 
-之前说的发生循环依赖是因为在对 A 中的属性 B 进行注入时，注入的是 B 对象，此时又会去初始化 B 对象，发现 B 又依赖了 A，因此才导致的循环依赖
+```properties
+#默认false
+spring.main.lazy-initialization=true
+```
 
-一般是不建议使用循环依赖的，但是如果项目比较复杂，可以使用 @Lazy 解决一部分循环依赖的问题
+编码的方式设置全局懒加载：
+
+```java
+SpringApplication springApplication=new SpringApplication(Start.class);
+springApplication.setLazyInitialization(false);
+springApplication.run(args);
+```
+
+如非必要，尽量不要用全局懒加载。全局懒加载会让Bean第一次使用的时候加载会变慢，并且它会延迟应用程序问题的发现（当Bean被初始化时，问题才会出现）。
+
+如果一个Bean没有被标记为懒加载，那么它会在Spring IoC容器启动的过程中被创建和初始化。如果一个 Bean 被标记为懒加载，那么它不会在Spring IoC容器启动时立即实例化，而是在第一次被请求时才创建。这可以帮助减少应用启动时的初始化时间，也可以用来解决循环依赖问题。
+
+循环依赖问题是如何通过`@Lazy` 解决的呢？这里举一个例子，比如说有两个 Bean，A 和 B，他们之间发生了循环依赖，那么 A 的构造器上添加 `@Lazy` 注解之后（延迟 Bean B的实例化），加载的流程如下：
+
+- 首先 Spring 会去创建 A 的 Bean，创建时需要注入 B 的属性；
+- 由于在 A 上标注了 `@Lazy` 注解，因此 Spring 会去创建一个 B 的代理对象，将这个代理对象注入到 A 中的 B 属性；
+- 之后开始执行 B 的实例化、初始化，在注入 B 中的 A 属性时，此时 A 已经创建完毕了，就可以将 A 给注入进去。
+
+通过 `@Lazy` 就解决了循环依赖的注入， 关键点就在于对 A 中的属性 B 进行注入时，注入的是 B 的代理对象，因此不会循环依赖。
+
+之前说的发生循环依赖是因为在对 A 中的属性 B 进行注入时，注入的是 B 对象，此时又会去初始化 B 对象，发现 B 又依赖了 A，因此才导致的循环依赖。
+
+一般是不建议使用循环依赖的，但是如果项目比较复杂，可以使用 `@Lazy` 解决一部分循环依赖的问题。
+
+### SpringBoot 允许循环依赖发生么？
+
+SpringBoot 2.6.x 以前是默认允许循环依赖的，也就是说你的代码出现了循环依赖问题，一般情况下也不会报错。SpringBoot 2.6.x 以后官方不再推荐编写存在循环依赖的代码，建议开发者自己写代码的时候去减少不必要的互相依赖。这其实也是我们最应该去做的，循环依赖本身就是一种设计缺陷，我们不应该过度依赖 Spring 而忽视了编码的规范和质量，说不定未来某个 SpringBoot 版本就彻底禁止循环依赖的代码了。
+
+SpringBoot 2.6.x 以后，如果你不想重构循环依赖的代码的话，也可以采用下面这些方法：
+
+- 在全局配置文件中设置允许循环依赖存在：`spring.main.allow-circular-references=true`。最简单粗暴的方式，不太推荐。
+- 在导致循环依赖的 Bean 上添加 `@Lazy` 注解，这是一种比较推荐的方式。`@Lazy` 用来标识类是否需要懒加载/延迟加载，可以作用在类上、方法上、构造器上、方法参数上、成员变量中。
+- ……
 
 ## Spring 事务
 
