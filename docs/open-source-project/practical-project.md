@@ -27,7 +27,6 @@ icon: project
 
 - [paicoding](https://github.com/itwanger/paicoding)：一款好用又强大的开源社区，基于 Spring Boot 系列主流技术栈，附详细的教程。
 - [forest](https://github.com/rymcu/forest)：下一代的知识社区系统，可以自定义专题和作品集。后端基于 SpringBoot + Shrio + MyBatis + JWT + Redis，前端基于 Vue + NuxtJS + Element-UI。
-- [vhr](https://github.com/lenve/vhr "vhr")：微人事是一个前后端分离的人力资源管理系统，项目采用 SpringBoot+Vue 开发。
 - [community](https://github.com/codedrinker/community)：开源论坛、问答系统，现有功能提问、回复、通知、最新、最热、消除零回复功能。功能持续更新中…… 技术栈 Spring、Spring Boot、MyBatis、MySQL/H2、Bootstrap。
 - [VBlog](https://github.com/lenve/VBlog)：V 部落，Vue+SpringBoot 实现的多用户博客管理平台!
 - [My-Blog](https://github.com/ZHENFENG13/My-Blog)： SpringBoot + Mybatis + Thymeleaf 等技术实现的 Java 博客系统，页面美观、功能齐全、部署简单及完善的代码，一定会给使用者无与伦比的体验。
@@ -49,6 +48,7 @@ icon: project
 - [HOJ](https://gitee.com/himitzh0730/hoj)：分布式架构的在线测评平台 OJ ，功能非常全面，支持刷题、训练、比赛、评测等功能。
 - [VOJ](https://github.com/simplefanC/voj)：基于微服务架构的高性能在线评测系统。拥有本地判题服务，同时支持其它知名 OJ (HDU、POJ...) 的远程判题。采用现阶段流行技术实现，采用 Docker 容器化部署。
 - [OnlineJudge](https://github.com/SDUOJ/OnlineJudge)：基于微服务架构的在线评测系统，支持多种国际赛制支持（ICPC/OI/IOI），采用 Docker 容器化部署。
+- [sg-exam](https://gitee.com/wells2333/sg-exam)：方便易用、高颜值的教学管理平台，提供多租户、权限管理、考试、练习、在线学习等功能。
 - [uexam](https://gitee.com/mindskip/uexam)：功能全面的在线考试系统，开发部署简单快捷、界面设计友好、代码结构清晰。相关阅读：[好一个 Spring Boot 开源在线考试系统！解决了我的燃眉之急](http://link.zhihu.com/?target=https%3A//mp.weixin.qq.com/s%3F__biz%3DMzg2OTA0Njk0OA%3D%3D%26mid%3D2247491585%26idx%3D1%26sn%3D8d3c6768c22e72d6bfcbeee9624886a7%26chksm%3Dcea1afcaf9d626dc918760289c37025ad526f6255786bc198d2402203df64c873ad7934f58df%26scene%3D178%26cur_album_id%3D1345382825083895808%23rd) 。
 - [PassJava-Platform](https://github.com/Jackson0714/PassJava-Platform)：基于微服务架构的面试刷题小程序！相关阅读：[一个基于 Spring Cloud 的面试刷题系统。面试、毕设、项目经验一网打尽](http://link.zhihu.com/?target=https%3A//mp.weixin.qq.com/s%3F__biz%3DMzg2OTA0Njk0OA%3D%3D%26mid%3D2247497045%26idx%3D1%26sn%3D577175bfd6c040a0df5a494fce6f9758%26chksm%3Dcea1ba9ef9d633883a2e213c0fb9a88bdc87051347d4b3fad2c2befb65d8b16e1ea81d8146dd%26scene%3D178%26cur_album_id%3D1345382825083895808%23rd)。
 
