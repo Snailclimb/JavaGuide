@@ -20,6 +20,8 @@ tag:
 
 ![哈希算法效果演示](https://oss.javaguide.cn/github/javaguide/system-design/security/encryption-algorithms/hash-function-effect-demonstration.png)
 
+哈希算法的是不可逆的，你无法通过哈希之后的值再得到原值。
+
 哈希值的作用是可以用来验证数据的完整性和一致性。
 
 举两个实际的例子：
