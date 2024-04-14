@@ -344,265 +344,114 @@ public static class CallerRunsPolicy implements RejectedExecutionHandler {
 
 ### 如果不允许丢弃任务任务，应该选择哪个拒绝策略
 
-答案是`CallerRunsPolicy` ，这一点我们从注释和源码都可以看出，只要当前程序不关闭就会使用执行`execute`方法的线程执行该任务:
+根据上面对线程池拒绝策略的介绍，相信大家很容易能够得出答案是：`CallerRunsPolicy` 。
 
+这里我们再来结合`CallerRunsPolicy` 的源码来看看：
 
 ```java
 public static class CallerRunsPolicy implements RejectedExecutionHandler {
-      
+
         public CallerRunsPolicy() { }
 
-        
+
         public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
             //只要当前程序没有关闭，就用执行execute方法的线程执行该任务
             if (!e.isShutdown()) {
-                
+
                 r.run();
             }
         }
     }
 ```
 
+从源码可以看出，只要当前程序不关闭就会使用执行`execute`方法的线程执行该任务。
+
 ### CallerRunsPolicy 拒绝策略有什么风险？如何解决？
 
-默认情况下，我们都会为了保证任务不被丢弃都优先考虑`CallerRunsPolicy`，这也是相对维稳的做法，这种做法的隐患是假设走到`CallerRunsPolicy`的任务是个非常耗时的任务，就会导致主线程就很卡死。
+我们上面也提到了：如果想要保证任何一个任务请求都要被执行的话，那选择 CallerRunsPolicy 拒绝策略更合适一些。
 
-下面就是笔者通过主线程使用线程池的方法，该线程池限定了最大线程数为2还有阻塞队列大小为1，这意味着第4个任务就会走到拒绝策略：
+不过，如果走到`CallerRunsPolicy`的任务是个非常耗时的任务，且处理提交任务的线程是主线程，可能会导致主线程阻塞，影响程序的正常运行。
+
+这里简单举一个例子，该线程池限定了最大线程数为 2，还阻塞队列大小为 1(这意味着第 4 个任务就会走到拒绝策略)，`ThreadUtil`为 Hutool 提供的工具类：
 
 ```java
-	Logger log = LoggerFactory.getLogger(ThreadPoolTest.class);
-        // 创建一个线程池，核心线程数为1，最大线程数为2
-        // 当线程数大于核心线程数时，多余的空闲线程存活的最长时间为60秒，
-        // 任务队列为容量为1的ArrayBlockingQueue，饱和策略为CallerRunsPolicy。
-        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(1,
-                2,
-                60,
-                TimeUnit.SECONDS,
-                new ArrayBlockingQueue<>(1),
-                new ThreadPoolExecutor.CallerRunsPolicy());
+Logger log = LoggerFactory.getLogger(ThreadPoolTest.class);
+// 创建一个线程池，核心线程数为1，最大线程数为2
+// 当线程数大于核心线程数时，多余的空闲线程存活的最长时间为60秒，
+// 任务队列为容量为1的ArrayBlockingQueue，饱和策略为CallerRunsPolicy。
+ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(1,
+        2,
+        60,
+        TimeUnit.SECONDS,
+        new ArrayBlockingQueue<>(1),
+        new ThreadPoolExecutor.CallerRunsPolicy());
 
-        // 提交第一个任务，由核心线程执行
-        threadPoolExecutor.execute(() -> {
-            log.info("核心线程执行第一个任务");
-            ThreadUtil.sleep(1, TimeUnit.MINUTES);
-        });
+// 提交第一个任务，由核心线程执行
+threadPoolExecutor.execute(() -> {
+    log.info("核心线程执行第一个任务");
+    ThreadUtil.sleep(1, TimeUnit.MINUTES);
+});
 
-        // 提交第二个任务，由于核心线程被占用，任务将进入队列等待
-        threadPoolExecutor.execute(() -> {
-            log.info("处理入队的第二个任务");
-            ThreadUtil.sleep(1, TimeUnit.MINUTES);
-        });
+// 提交第二个任务，由于核心线程被占用，任务将进入队列等待
+threadPoolExecutor.execute(() -> {
+    log.info("非核心线程处理入队的第二个任务");
+    ThreadUtil.sleep(1, TimeUnit.MINUTES);
+});
 
-        // 提交第三个任务，由于核心线程被占用且队列已满，创建非核心线程处理
-        threadPoolExecutor.execute(() -> {
-            log.info("非核心线程处理第三个任务");
-            ThreadUtil.sleep(1, TimeUnit.MINUTES);
-        });
+// 提交第三个任务，由于核心线程被占用且队列已满，创建非核心线程处理
+threadPoolExecutor.execute(() -> {
+    log.info("非核心线程处理第三个任务");
+    ThreadUtil.sleep(1, TimeUnit.MINUTES);
+});
 
-        // 提交第四个任务，由于核心线程和非核心线程都被占用，队列也满了，根据CallerRunsPolicy策略，任务将由提交任务的线程（即主线程）来执行
-        threadPoolExecutor.execute(() -> {
-            log.info("主线程处理第四个任务");
-            ThreadUtil.sleep(2, TimeUnit.MINUTES);
-        });
+// 提交第四个任务，由于核心线程和非核心线程都被占用，队列也满了，根据CallerRunsPolicy策略，任务将由提交任务的线程（即主线程）来执行
+threadPoolExecutor.execute(() -> {
+    log.info("主线程处理第四个任务");
+    ThreadUtil.sleep(2, TimeUnit.MINUTES);
+});
 
-        // 提交第五个任务，主线程被第四个任务卡住，该任务必须等到主线程执行完才能提交
-        threadPoolExecutor.execute(() -> {
-            log.info("核心线程执行第五个任务");
-        });
+// 提交第五个任务，主线程被第四个任务卡住，该任务必须等到主线程执行完才能提交
+threadPoolExecutor.execute(() -> {
+    log.info("核心线程执行第五个任务");
+});
 ```
 
+输出：
 
-从输出结果可以看出，因为`CallerRunsPolicy`这个拒绝策略，导致耗时的任务用了主线程执行，导致线程池阻塞，进而导致后续任务无法及时执行，严重的情况下很可能导致`OOM`：
-
-
-```bash
-2024-04-03 00:08:12.617  INFO 20804 --- [           main] com.sharkChili.ThreadPoolApplication     : 启动成功！！
-2024-04-03 00:08:15.739  INFO 20804 --- [pool-1-thread-1] com.sharkChili.ThreadPoolApplication     : 核心线程执行
-2024-04-03 00:08:36.768  INFO 20804 --- [pool-1-thread-2] com.sharkChili.ThreadPoolApplication     : 应急线程处理
-2024-04-03 00:08:49.333  INFO 20804 --- [           main] com.sharkChili.ThreadPoolApplication     : CallerRunsPolicy task
+```ba
+18:19:48.203 INFO  [pool-1-thread-1] c.j.concurrent.ThreadPoolTest - 核心线程执行第一个任务
+18:19:48.203 INFO  [pool-1-thread-2] c.j.concurrent.ThreadPoolTest - 非核心线程处理第三个任务
+18:19:48.203 INFO  [main] c.j.concurrent.ThreadPoolTest - 主线程处理第四个任务
+18:20:48.212 INFO  [pool-1-thread-2] c.j.concurrent.ThreadPoolTest - 非核心线程处理入队的第二个任务
+18:21:48.219 INFO  [pool-1-thread-2] c.j.concurrent.ThreadPoolTest - 核心线程执行第五个任务
 ```
 
+从输出结果可以看出，因为`CallerRunsPolicy`这个拒绝策略，导致耗时的任务用了主线程执行，导致线程池阻塞，进而导致后续任务无法及时执行，严重的情况下很可能导致 OOM。
 
-我们从问题的本质入手，调用者采用`CallerRunsPolicy`是希望所有的任务都能够被执行，按照笔者的经验，假如我们的场景是偶发这种突发场景，在内存允许的情况下，我们建议增加阻塞队列`BlockingQueue`的大小并调整堆内存以容纳更多的任务，确保任务能够被准确执行。
+我们从问题的本质入手，调用者采用`CallerRunsPolicy`是希望所有的任务都能够被执行，暂时无法处理的任务又被保存在阻塞队列`BlockingQueue`中。这样的话，在内存允许的情况下，我们可以增加阻塞队列`BlockingQueue`的大小并调整堆内存以容纳更多的任务，确保任务能够被准确执行。
 
+为了充分利用 CPU，我们还可以调整线程池的`maximumPoolSize` （最大线程数）参数，这样可以提高任务处理速度，避免累计在 `BlockingQueue`的任务过多导致内存用完。
 
-![](https://qiniuyun.sharkchili.com/202404141059210.png)
+![调整阻塞队列大小和最大线程数](https://oss.javaguide.cn/github/javaguide/java/concurrent/threadpool-reject-2-threadpool-reject-01.png)
 
+如果服务器资源以达到可利用的极限，这就意味我们要在设计策略上改变线程池的调度了，我们都知道，导致主线程卡死的本质就是因为我们不希望任何一个任务被丢弃。换个思路，有没有办法既能保证任务不被丢弃且在服务器有余力时及时处理呢？
 
+这里提供的一种**任务持久化**的思路，这里所谓的任务持久化，包括但不限于:
 
-
-若当前服务器内存资源紧张，但我们配置线程池还为尽可能利用到`CPU`，我们建议调整线程中`maximumPoolSize`以保证尽可能压榨`CPU`资源：
-
-![](https://qiniuyun.sharkchili.com/202404141059257.png)
-
-
-
-如果服务器资源以达到可利用的极限，这就意味我们要在设计策略上改变线程池的调度了，我们都知道，导致主线程卡死的本质就是因为我们不希望任何一个任务被丢弃。换个思路，有没有办法既能保证任务不被丢弃且在服务器有余力时及时处理呢？这里笔者提供的一种思路，即任务持久化，注意这里笔者更多强调的是思路而不是实现，这里所谓的任务持久化，包括但不限于:
-1. 设计一张任务表间任务存储到`MySQL`数据库中。
+1. 设计一张任务表间任务存储到 MySQL 数据库中。
 2. `Redis`缓存任务。
 3. 将任务提交到消息队列中。
 
-笔者以方案二为例，通过继承`BlockingQueue`实现一个混合式阻塞队列，该队列包含`JDK`自带的`ArrayBlockingQueue`和一个自定义的队列(数据存入`mysql`中对应`DDL`语句如下)，通过魔改队列的添加逻辑达到任务可以存入`ArrayBlockingQueue`或者数据表的目的。
+这里以方案一为例，简单介绍一下实现逻辑：
 
-```sql
+1. 实现`RejectedExecutionHandler`接口自定义拒绝策略，自定义拒绝策略负责将线程池暂时无法处理（此时阻塞队列已满）的任务入库（保存到 MySQL 中）。注意：线程池暂时无法处理的任务会先被放在阻塞队列中，阻塞队列满了才会触发拒绝策略。
+2. 继承`BlockingQueue`实现一个混合式阻塞队列，该队列包含`JDK`自带的`ArrayBlockingQueue`。另外，该混合式阻塞队列需要修改取任务处理的逻辑，也就是重写`take()`方法，取任务时优先从数据库中读取最早的任务，数据库中无任务时再从 `ArrayBlockingQueue`中去取任务。
 
-CREATE TABLE `task_info` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `data` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-```
+![将一部分任务保存到MySQL中](https://oss.javaguide.cn/github/javaguide/java/concurrent/threadpool-reject-2-threadpool-reject-02.png)
 
+整个实现逻辑还是比较简单的，核心在于自定义拒绝策略和阻塞队列。如此一来，一旦我们的线程池中线程以达到满载时，我们就可以通过拒绝策略将最新任务持久化到 MySQL 数据库中，等到线程池有了有余力处理所有任务时，让其优先处理数据库中的任务以避免"饥饿"问题。
 
-
-如此一来，一旦我们的线程池中线程以达到满载时，我们就可以通过拒绝策略将最新任务持久化到`MySQL`数据库中，等到线程池有了有余力处理所有任务时，让其优先处理数据库中的任务以避免"饥饿"问题。
-
-![](https://qiniuyun.sharkchili.com/202404141059303.png)
-
-
-
-这里笔者也给出混合队列实现的核心源码，即通过继承`BlockingQueue`魔改了入队和出队的逻辑：
-
-
-```java
-public class HybridBlockingQueue<E> implements BlockingQueue<E> {
-    
-     private Object mysqlLock = new Object();
-
-
-    private ArrayBlockingQueue<E> arrayBlockingQueue;
-
-    //构造方法初始化阻塞队列大小
-    public HybridBlockingQueue(int maxSize) {
-        arrayBlockingQueue = new ArrayBlockingQueue<>(maxSize);
-    }
-
-
-    /**
-     * 线程池会调用的入队方法
-     * @param e
-     * @return
-     */
-    @Override
-    public boolean offer(E e) {
-        return arrayBlockingQueue.offer(e);
-    }
-
-
-     /**
-     * 取任务时，优先从数据库中读取最早的任务
-     *
-     * @return
-     * @throws InterruptedException
-     */
-    @Override
-    public E take() throws InterruptedException {
-
-        synchronized (mysqlLock) {
-            //从数据库中读取任务，通过上锁读取避免重复消费
-            TaskInfoMapper taskMapper = SpringUtil.getBean(TaskInfoMapper.class);
-            TaskInfo taskInfo = taskMapper.selectByExample(null).stream()
-                    .findFirst()
-                    .orElse(null);
-
-
-            //若数据库存在该任务，则先删后返回
-            if (ObjUtil.isNotEmpty(taskInfo)) {
-                taskMapper.deleteByPrimaryKey(taskInfo.getId());
-                Task task = new Task(taskInfo.getData());
-                return (E) task;
-            }
-        }
-
-        //若数据库没有要处理的任务则从内存中获取
-        return arrayBlockingQueue.poll();
-    }
-
-    /**
-     * 带有时间限制的任务获取
-     *
-     * @param timeout
-     * @param unit
-     * @return
-     * @throws InterruptedException
-     */
-    @Override
-    public E poll(long timeout, TimeUnit unit) throws InterruptedException {
-        //从数据库中读取任务，通过上锁读取避免重复消费
-        synchronized (mysqlLock) {
-            //从数据库中读取任务，
-            TaskInfoMapper taskMapper = SpringUtil.getBean(TaskInfoMapper.class);
-            TaskInfo taskInfo = taskMapper.selectByExample(null).stream()
-                    .findFirst()
-                    .orElse(null);
-
-
-            //若数据库存在该任务，则先删后返回
-            if (ObjUtil.isNotEmpty(taskInfo)) {
-                taskMapper.deleteByPrimaryKey(taskInfo.getId());
-                Task task = new Task(taskInfo.getData());
-                return (E) task;
-            }
-        }
-        //若数据库没有要处理的任务则从内存中获取
-        return arrayBlockingQueue.poll(timeout, unit);
-
-    }
-	
-	//......
-}
-```
-
-接下来就是自定义拒绝策略了，很明显我们的拒绝策略就叫持久化策略(注:这里序列化用的是`hutool`的`JSONUtil`)：
-
-```java
-public class PersistentTaskPolicy implements RejectedExecutionHandler {
-
-    @Override
-    public void rejectedExecution(Runnable r, ThreadPoolExecutor executor) {
-		//任务入库
-        TaskInfoMapper taskMapper = SpringUtil.getBean(TaskInfoMapper.class);
-        Task task = (Task) r;
-        TaskInfo taskInfo = new TaskInfo();
-        taskInfo.setData(JSONUtil.toJsonStr(task.getTaskInfo()));
-        taskMapper.insertSelective(taskInfo);
-    }
-}
-
-```
-
-
-最终我们的使用示例如下：
-
-```java
-ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(1,
-                2,
-                60, TimeUnit.SECONDS,
-                new HybridBlockingQueue<>(1),
-                new PersistentTaskPolicy());
-
-        threadPoolExecutor.execute(new Task("core thread"));
-
-        threadPoolExecutor.execute(new Task("queueTask"));
-
-        threadPoolExecutor.execute(new Task("max thread"));
-
-        threadPoolExecutor.execute(new Task("insert into mysql database"));
-```
-
-最终我们的`insert into mysql database`因为线程池无法及时处理而走了我们自定义的拒绝策略而持久化入库,等待线程池中其他任务完成后被取出执行：
-
-```bash
-2024-04-14 11:30:16.865  INFO 1052 --- [           main] com.sharkChili.PersistentTaskPolicy      : 任务持久化，taskInfo:{"data":"insert into mysql database"}
-2024-04-14 11:31:08.516  INFO 1052 --- [pool-1-thread-2] com.sharkChili.Task                      : task execution completed,task info:max thread
-2024-04-14 11:31:08.516  INFO 1052 --- [pool-1-thread-1] com.sharkChili.Task                      : task execution completed,task info:core thread
-2024-04-14 11:32:08.563  INFO 1052 --- [pool-1-thread-1] com.sharkChili.Task                      : task execution completed,task info:queueTask
-2024-04-14 11:32:08.563  INFO 1052 --- [pool-1-thread-2] com.sharkChili.Task                      : task execution completed,task info:insert into mysql database
-```
-
-
-
-当然，对于这个问题，我们也可以参考其他主流框架的做法，以`Netty`为例，它的拒绝策略则是直接创建一个线程池以外的线程处理这些任务，为了保证任务的实时处理，这种做法可能需要良好的硬件设备且临时创建的线程无法做到准确的监控：
+当然，对于这个问题，我们也可以参考其他主流框架的做法，以 Netty 为例，它的拒绝策略则是直接创建一个线程池以外的线程处理这些任务，为了保证任务的实时处理，这种做法可能需要良好的硬件设备且临时创建的线程无法做到准确的监控：
 
 ```java
 private static final class NewThreadRunsPolicy implements RejectedExecutionHandler {
@@ -622,7 +471,7 @@ private static final class NewThreadRunsPolicy implements RejectedExecutionHandl
 }
 ```
 
-`ActiveMq`则是尝试在指定的时效内尽可能的争取将任务入队，以保证最大交付：
+ActiveMQ 则是尝试在指定的时效内尽可能的争取将任务入队，以保证最大交付：
 
 ```java
 new RejectedExecutionHandler() {
@@ -638,8 +487,6 @@ new RejectedExecutionHandler() {
                 }
             });
 ```
-
-
 
 ### 线程池常用的阻塞队列有哪些？
 
