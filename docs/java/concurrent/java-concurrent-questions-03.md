@@ -342,7 +342,7 @@ public static class CallerRunsPolicy implements RejectedExecutionHandler {
     }
 ```
 
-### 如果不允许丢弃任务任务，应该选择哪个拒绝策略
+### 如果不允许丢弃任务任务，应该选择哪个拒绝策略？
 
 根据上面对线程池拒绝策略的介绍，相信大家很容易能够得出答案是：`CallerRunsPolicy` 。
 
@@ -368,7 +368,7 @@ public static class CallerRunsPolicy implements RejectedExecutionHandler {
 
 ### CallerRunsPolicy 拒绝策略有什么风险？如何解决？
 
-我们上面也提到了：如果想要保证任何一个任务请求都要被执行的话，那选择 CallerRunsPolicy 拒绝策略更合适一些。
+我们上面也提到了：如果想要保证任何一个任务请求都要被执行的话，那选择 `CallerRunsPolicy` 拒绝策略更合适一些。
 
 不过，如果走到`CallerRunsPolicy`的任务是个非常耗时的任务，且处理提交任务的线程是主线程，可能会导致主线程阻塞，影响程序的正常运行。
 

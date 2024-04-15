@@ -42,6 +42,8 @@ icon: tool
 - [Another Redis Desktop Manager](https://github.com/qishibo/AnotherRedisDesktopManager/blob/master/README.zh-CN.md)：更快、更好、更稳定的 Redis 桌面(GUI)管理客户端，兼容 Windows、Mac、Linux。
 - [Tiny RDM](https://github.com/tiny-craft/tiny-rdm)：一个更现代化的 Redis 桌面(GUI)管理客户端，基于 Webview2，兼容 Windows、Mac、Linux。
 - [Redis Manager](https://github.com/ngbdf/redis-manager)：Redis 一站式管理平台，支持集群（cluster、master-replica、sentinel）的监控、安装（除 sentinel）、管理、告警以及基本的数据操作功能。
+- [CacheCloud](https://github.com/sohutv/cachecloud)：一个 Redis 云管理平台，支持 Redis 多种架构(Standalone、Sentinel、Cluster)高效管理、有效降低大规模 Redis 运维成本，提升资源管控能力和利用率。
+- [RedisShake](https://github.com/tair-opensource/RedisShake)：一个用于处理和迁移 Redis 数据的工具。
 
 ## Docker
 
