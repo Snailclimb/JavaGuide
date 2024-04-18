@@ -75,8 +75,8 @@ String message = STR."Greetings \{name}!";
 Java 目前支持三种模板处理器：
 
 - STR：自动执行字符串插值，即将模板中的每个嵌入式表达式替换为其值（转换为字符串）。
-- FMT：和 STR 类似，但是它还可以接受格式说明符，这些格式说明符出现在嵌入式表达式的左边，用来控制输出的样式
-- RAW：不会像 STR 和 FMT 模板处理器那样自动处理字符串模板，而是返回一个 `StringTemplate` 对象，这个对象包含了模板中的文本和表达式的信息
+- FMT：和 STR 类似，但是它还可以接受格式说明符，这些格式说明符出现在嵌入式表达式的左边，用来控制输出的样式。
+- RAW：不会像 STR 和 FMT 模板处理器那样自动处理字符串模板，而是返回一个 `StringTemplate` 对象，这个对象包含了模板中的文本和表达式的信息。
 
 ```java
 String name = "Lokesh";
@@ -92,7 +92,7 @@ StringTemplate st = RAW."Greetings \{name}.";
 String message = STR.process(st);
 ```
 
-除了 JDK 自带的三种模板处理器外，你还可以实现 `StringTemplate.Processor` 接口来创建自己的模板处理器。
+除了 JDK 自带的三种模板处理器外，你还可以实现 `StringTemplate.Processor` 接口来创建自己的模板处理器，只需要继承 `StringTemplate.Processor`接口，然后实现 `process` 方法即可。
 
 我们可以使用局部变量、静态/非静态字段甚至方法作为嵌入表达式：
 
