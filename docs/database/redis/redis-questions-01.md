@@ -829,6 +829,7 @@ maxmemory-policy noeviction
 
 - 《Redis 开发与运维》
 - 《Redis 设计与实现》
+- 《Redis 核心原理与实战》
 - Redis 命令手册：<https://www.redis.com.cn/commands.html>
 - RedisSearch 终极使用指南，你值得拥有！：<https://mp.weixin.qq.com/s/FA4XVAXJksTOHUXMsayy2g>
 - WHY Redis choose single thread (vs multi threads): [https://medium.com/@jychen7/sharing-redis-single-thread-vs-multi-threads-5870bd44d153](https://medium.com/@jychen7/sharing-redis-single-thread-vs-multi-threads-5870bd44d153)
