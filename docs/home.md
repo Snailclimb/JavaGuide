@@ -41,7 +41,7 @@ title: JavaGuide（Java学习&面试指南）
 
 - [Java 集合常见知识点&面试题总结(上)](./java/collection/java-collection-questions-01.md) (必看 :+1:)
 - [Java 集合常见知识点&面试题总结(下)](./java/collection/java-collection-questions-02.md) (必看 :+1:)
-- [Java 容器使用注意事项总结](./java/collection/java-collection-precautions-for-use.md)
+- [Java 集合使用注意事项总结](./java/collection/java-collection-precautions-for-use.md)
 
 **源码分析**：
 
