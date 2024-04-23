@@ -145,7 +145,7 @@ JVM 具有四种类型的 GC 实现：
 ```bash
 -XX:+UseSerialGC
 -XX:+UseParallelGC
--XX:+UseParNewGC
+-XX:+UseConcMarkSweepGC
 -XX:+UseG1GC
 ```
 
