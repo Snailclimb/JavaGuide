@@ -464,7 +464,7 @@ JDK1.8 默认使用的是 Parallel Scavenge + Parallel Old，如果指定了-XX:
 - **无法处理浮动垃圾；**
 - **它使用的回收算法-“标记-清除”算法会导致收集结束时会有大量空间碎片产生。**
 
-**CMS垃圾回收器在Java 9中已经被标记为过时(deprecated)，并在Java 14中被移除。**
+**CMS 垃圾回收器在 Java 9 中已经被标记为过时(deprecated)，并在 Java 14 中被移除。**
 
 ### G1 收集器
 
