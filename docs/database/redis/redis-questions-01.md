@@ -553,15 +553,19 @@ Redis 通过 **IO 多路复用程序** 来监听来自客户端的大量连接�
 
 ### Redis6.0 之前为什么不使用多线程？
 
-虽然说 Redis 是单线程模型，但是，实际上，**Redis 在 4.0 之后的版本中就已经加入了对多线程的支持。**
+虽然说 Redis 是单线程模型，但实际上，**Redis 在 4.0 之后的版本中就已经加入了对多线程的支持。**
 
-不过，Redis 4.0 增加的多线程主要是针对一些大键值对的删除操作的命令，使用这些命令就会使用主线程之外的其他线程来“异步处理”。
+不过，Redis 4.0 增加的多线程主要是针对一些大键值对的删除操作的命令，使用这些命令就会使用主线程之外的其他线程来“异步处理”，从而减少对主线程的影响。
 
-为此，Redis 4.0 之后新增了`UNLINK`（可以看作是 `DEL` 的异步版本）、`FLUSHALL ASYNC`（清空所有数据库的所有 key，不仅仅是当前 `SELECT` 的数据库）、`FLUSHDB ASYNC`（清空当前 `SELECT` 数据库中的所有 key）等异步命令。
+为此，Redis 4.0 之后新增了几个异步命令：
+
+- `UNLINK`：可以看作是 `DEL` 命令的异步版本。
+- `FLUSHALL ASYNC`：用于清空所有数据库的所有键，不限于当前 `SELECT` 的数据库。
+- `FLUSHDB ASYNC`：用于清空当前 `SELECT` 数据库中的所有键。
 
 ![redis4.0 more thread](https://oss.javaguide.cn/github/javaguide/database/redis/redis4.0-more-thread.png)
 
-大体上来说，Redis 6.0 之前主要还是单线程处理。
+总的来说，直到 Redis 6.0 之前，Redis 的主要操作仍然是单线程处理的。
 
 **那 Redis6.0 之前为什么不使用多线程？** 我觉得主要原因有 3 点：
 

@@ -90,7 +90,7 @@ public class HashMap<K,V> extends AbstractMap<K,V> implements Map<K,V>, Cloneabl
     static final int MIN_TREEIFY_CAPACITY = 64;
     // 存储元素的数组，总是2的幂次倍
     transient Node<k,v>[] table;
-    // 存放具体元素的集
+    // 一个包含了映射中所有键值对的集合视图
     transient Set<map.entry<k,v>> entrySet;
     // 存放元素的个数，注意这个不等于数组的长度。
     transient int size;
