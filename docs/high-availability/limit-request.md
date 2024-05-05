@@ -239,7 +239,7 @@ Resilience4j 不仅提供限流，还提供了熔断、负载保护、自动重�
 
 分布式限流常见的方案：
 
-- **借助中间件架限流**：可以借助 Sentinel 或者使用 Redis 来自己实现对应的限流逻辑。
+- **借助中间件框架限流**：可以借助 Sentinel 或者使用 Redis 来自己实现对应的限流逻辑。
 - **网关层限流**：比较常用的一种方案，直接在网关层把限流给安排上了。不过，通常网关层限流通常也需要借助到中间件/框架。就比如 Spring Cloud Gateway 的分布式限流实现`RedisRateLimiter`就是基于 Redis+Lua 来实现的，再比如 Spring Cloud Gateway 还可以整合 Sentinel 来做限流。
 
 如果你要基于 Redis 来手动实现限流逻辑的话，建议配合 Lua 脚本来做。
