@@ -328,7 +328,7 @@ private void rehash(HashEntry<K,V> node) {
         HashEntry<K,V> e = oldTable[i];
         if (e != null) {
             HashEntry<K,V> next = e.next;
-            // 计算新的位置，新的位置只可能是不便或者是老的位置+老的容量。
+            // 计算新的位置，新的位置只可能是不变或者是老的位置+老的容量。
             int idx = e.hash & sizeMask;
             if (next == null)   //  Single node on list
                 // 如果当前位置还不是链表，只是一个元素，直接赋值
@@ -337,7 +337,7 @@ private void rehash(HashEntry<K,V> node) {
                 // 如果是链表了
                 HashEntry<K,V> lastRun = e;
                 int lastIdx = idx;
-                // 新的位置只可能是不便或者是老的位置+老的容量。
+                // 新的位置只可能是不变或者是老的位置+老的容量。
                 // 遍历结束后，lastRun 后面的元素位置都是相同的
                 for (HashEntry<K,V> last = next; last != null; last = last.next) {
                     int k = last.hash & sizeMask;
