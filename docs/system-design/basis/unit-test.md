@@ -113,7 +113,7 @@ JUnit 几乎是默认选择，但是其不支持 Mock，因此我们还需要选
 
 究竟是选择 Mockito 还是 Spock 呢？我这里做了一些简单的对比分析：
 
-- Spock 没办法 Mock 静态方法和私有方法 ，Mockito 3.4.0 以后，支持静态方法的 Mock，具体可以看这个 issue：<https://github.com/mockito/mockito/issues/1013，具体教程可以看这篇文章：https://www.baeldung.com/mockito-mock-static-methods。>
+- Spock 没办法 Mock 静态方法和私有方法 ，Mockito 3.4.0 以后，支持静态方法的 Mock，具体可以看这个 issue：<https://github.com/mockito/mockito/issues/1013>，具体教程可以看这篇文章：<https://www.baeldung.com/mockito-mock-static-methods。>
 - Spock 基于 Groovy，写出来的测试代码更清晰易读，比较规范(自带 given-when-then 的常用测试结构规范)。Mockito 没有具体的结构规范，需要项目组自己约定一个或者遵守比较好的测试代码实践。通常来说，同样的测试用例，Spock 的代码要更简洁。
 - Mockito 使用的人群更广泛，稳定可靠。并且，Mockito 是 SpringBoot Test 默认集成的 Mock 工具。
 
