@@ -239,7 +239,7 @@ for (int binCount = 0; ; ++binCount) {
     // 遍历到链表最后一个节点
     if ((e = p.next) == null) {
         p.next = newNode(hash, key, value, null);
-        // 如果链表元素个数大于等于TREEIFY_THRESHOLD（8）
+        // 如果链表元素个数大于TREEIFY_THRESHOLD（8）
         if (binCount >= TREEIFY_THRESHOLD - 1) // -1 for 1st
             // 红黑树转换（并不会直接转换成红黑树）
             treeifyBin(tab, hash);
