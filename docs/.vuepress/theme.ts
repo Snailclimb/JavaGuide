@@ -48,14 +48,14 @@ export default hopeTheme({
         notice: [
           {
             path: "/",
-            title: "2023技术年货汇总",
+            title: "知识星球",
             showOnce: true,
             content:
-              "抽空整理了一些优秀的技术团队公众号 2023 年的优质技术文章汇总，质量都挺高的，强烈建议打开这篇文章看看。",
+              "专属面试小册/一对一交流/简历修改/专属求职指南，欢迎加入 JavaGuide 知识星球。",
             actions: [
               {
-                text: "开始阅读",
-                link: "https://www.yuque.com/snailclimb/dr6cvl/nt5qc467p3t6s13k?singleDoc# 《2023技术年货》",
+                text: "前往了解",
+                link: "https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html",
                 type: "primary",
               },
             ],
