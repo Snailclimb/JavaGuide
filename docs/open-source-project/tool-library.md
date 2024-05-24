@@ -57,6 +57,11 @@ icon: codelibrary-fill
 - [AJ-Captcha](https://gitee.com/anji-plus/captcha)：行为验证码(滑动拼图、点选文字)，前后端(java)交互。
 - [tianai-captcha](https://gitee.com/tianai/tianai-captcha)：好看又好用的滑块验证码。
 
+## 短信&邮件
+
+- [SMS4J](https://github.com/dromara/SMS4J)：短信聚合框架，解决接入多个短信 SDK 的繁琐流程。
+- [Simple Java Mail](https://github.com/bbottema/simple-java-mail)：最简单的 Java 轻量级邮件库，同时能够发送复杂的电子邮件。
+
 ## 在线支付
 
 - [jeepay](https://gitee.com/jeequan/jeepay)：一套适合互联网企业使用的开源支付系统，已实现交易、退款、转账、分账等接口，支持服务商特约商户和普通商户接口。已对接微信，支付宝，云闪付官方接口，支持聚合码支付。

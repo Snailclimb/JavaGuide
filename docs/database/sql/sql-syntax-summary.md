@@ -257,11 +257,11 @@ ORDER BY cust_name DESC;
 **使用 WHERE 和 HAVING 过滤数据**
 
 ```sql
-SELECT cust_name, COUNT(*) AS num
+SELECT cust_name, COUNT(*) AS NumberOfOrders
 FROM Customers
 WHERE cust_email IS NOT NULL
 GROUP BY cust_name
-HAVING COUNT(*) >= 1;
+HAVING COUNT(*) > 1;
 ```
 
 **`having` vs `where`**：
@@ -396,7 +396,7 @@ WHERE prod_price BETWEEN 3 AND 5;
 
 **AND 示例**
 
-```ini
+```sql
 SELECT prod_id, prod_name, prod_price
 FROM products
 WHERE vend_id = 'DLL01' AND prod_price <= 4;
