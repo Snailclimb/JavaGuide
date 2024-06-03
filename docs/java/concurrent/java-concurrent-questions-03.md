@@ -317,6 +317,15 @@ public ScheduledThreadPoolExecutor(int corePoolSize) {
 
 ![线程池各个参数的关系](https://oss.javaguide.cn/github/javaguide/java/concurrent/relationship-between-thread-pool-parameters.png)
 
+### 线程池的核心线程会被回收吗？
+
+`ThreadPoolExecutor` 默认不会回收核心线程，即使它们已经空闲了。这是为了减少创建线程的开销，因为核心线程通常是要长期保持活跃的。但是，如果线程池是被用于周期性使用的场景，且频率不高（周期之间有明显的空闲时间），可以考虑将 `allowCoreThreadTimeOut(boolean value)` 方法的参数设置为 `true`，这样就会回收空闲（时间间隔由 `keepAliveTime` 指定）的核心线程了。
+
+```java
+ ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(4, 6, 6, TimeUnit.SECONDS, new SynchronousQueue<>());
+        threadPoolExecutor.allowCoreThreadTimeOut(true);
+```
+
 ### 线程池的拒绝策略有哪些？
 
 如果当前同时运行的线程数量达到最大线程数量并且队列也已经被放满了任务时，`ThreadPoolExecutor` 定义一些策略:
@@ -517,6 +526,13 @@ new RejectedExecutionHandler() {
 2. 如果当前运行的线程数等于或大于核心线程数，但是小于最大线程数，那么就把该任务放入到任务队列里等待执行。
 3. 如果向任务队列投放任务失败（任务队列已经满了），但是当前运行的线程数是小于最大线程数的，就新建一个线程来执行任务。
 4. 如果当前运行的线程数已经等同于最大线程数了，新建线程将会使当前运行的线程超出最大线程数，那么当前任务会被拒绝，拒绝策略会调用`RejectedExecutionHandler.rejectedExecution()`方法。
+
+再提一个有意思的小问题：**线程池在提交任务前，可以提前创建线程吗？**
+
+答案是可以的！`ThreadPoolExecutor` 提供了两个方法帮助我们在提交任务之前，完成核心线程的创建，从而实现线程池预热的效果：
+
+- `prestartCoreThread()`:启动一个线程，等待任务，如果已达到核心线程数，这个方法返回 false，否则返回 true；
+- `prestartAllCoreThreads()`:启动所有的核心线程，并返回启动成功的核心线程数。
 
 ### 线程池中线程异常后，销毁还是复用？
 
@@ -1151,6 +1167,7 @@ public int await() throws InterruptedException, BrokenBarrierException {
 
 - 《深入理解 Java 虚拟机》
 - 《实战 Java 高并发程序设计》
+- Java线程池的实现原理及其在业务中的最佳实践:阿里云开发者：<https://mp.weixin.qq.com/s/icrrxEsbABBvEU0Gym7D5Q>
 - 带你了解下 SynchronousQueue（并发队列专题）：<https://juejin.cn/post/7031196740128768037>
 - 阻塞队列 — DelayedWorkQueue 源码分析：<https://zhuanlan.zhihu.com/p/310621485>
 - Java 多线程（三）——FutureTask/CompletableFuture：<https://www.cnblogs.com/iwehdio/p/14285282.html>
