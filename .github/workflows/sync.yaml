@@ -24,7 +24,7 @@ jobs:
         id: sync
         uses: aormsby/Fork-Sync-With-Upstream-action@v3.4
         with:
-          upstream_sync_repo: tangly1024/NotionNext
+          upstream_sync_repo: Snailclimb/JavaGuide
           upstream_sync_branch: main
           target_sync_branch: main
           target_repo_token: ${{ secrets.TOKEN }} # automatically generated, no need to set
