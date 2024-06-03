@@ -7,7 +7,7 @@ tag:
 
 **Java 9** 发布于 2017 年 9 月 21 日 。作为 Java 8 之后 3 年半才发布的新版本，Java 9 带来了很多重大的变化其中最重要的改动是 Java 平台模块系统的引入，其他还有诸如集合、`Stream` 流……。
 
-你可以在 [Archived OpenJDK General-Availability Releases](http://jdk.java.net/archive/) 上下载自己需要的 JDK 版本！官方的新特性说明文档地址：https://openjdk.java.net/projects/jdk/ 。
+你可以在 [Archived OpenJDK General-Availability Releases](http://jdk.java.net/archive/) 上下载自己需要的 JDK 版本！官方的新特性说明文档地址：<https://openjdk.java.net/projects/jdk/> 。
 
 **概览（精选了一部分）**：
 
@@ -138,7 +138,7 @@ try (scanner;writer) {
 
 **什么是 effectively-final 变量？** 简单来说就是没有被 `final` 修饰但是值在初始化后从未更改的变量。
 
-正如上面的代码所演示的那样，即使 `writer` 变量没有被显示声明为 `final`，但它在第一次被复制后就不会改变了，因此，它就是 effectively-final 变量。
+正如上面的代码所演示的那样，即使 `writer` 变量没有被显示声明为 `final`，但它在第一次被赋值后就不会改变了，因此，它就是 effectively-final 变量。
 
 ## Stream & Optional 增强
 
@@ -252,10 +252,10 @@ System.out.println(currentProcess.info());
 
 ## 参考
 
-- Java version history：https://en.wikipedia.org/wiki/Java_version_history
-- Release Notes for JDK 9 and JDK 9 Update Releases : https://www.oracle.com/java/technologies/javase/9-all-relnotes.html
+- Java version history：<https://en.wikipedia.org/wiki/Java_version_history>
+- Release Notes for JDK 9 and JDK 9 Update Releases : <https://www.oracle.com/java/technologies/javase/9-all-relnotes.html>
 - 《深入剖析 Java 新特性》-极客时间 - JShell：怎么快速验证简单的小问题？
-- New Features in Java 9:https://www.baeldung.com/new-java-9
-- Java – Try with Resources：https://www.baeldung.com/java-try-with-resources
+- New Features in Java 9: <https://www.baeldung.com/new-java-9>
+- Java – Try with Resources：<https://www.baeldung.com/java-try-with-resources>
 
 <!-- @include: @article-footer.snippet.md -->

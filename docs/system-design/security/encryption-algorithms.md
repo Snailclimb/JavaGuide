@@ -7,42 +7,55 @@ tag:
 
 加密算法是一种用数学方法对数据进行变换的技术，目的是保护数据的安全，防止被未经授权的人读取或修改。加密算法可以分为三大类：对称加密算法、非对称加密算法和哈希算法（也叫摘要算法）。
 
-日常开发中常见的需要用到的加密算法的场景：
+日常开发中常见的需要用到加密算法的场景：
 
 1. 保存在数据库中的密码需要加盐之后使用哈希算法（比如 BCrypt）进行加密。
 2. 保存在数据库中的银行卡号、身份号这类敏感数据需要使用对称加密算法（比如 AES）保存。
 3. 网络传输的敏感数据比如银行卡号、身份号需要用 HTTPS + 非对称加密算法（如 RSA）来保证传输数据的安全性。
 4. ……
 
+ps: 严格上来说，哈希算法其实不属于加密算法，只是可以用到某些加密场景中（例如密码加密），两者可以看作是并列关系。加密算法通常指的是可以将明文转换为密文，并且能够通过某种方式（如密钥）再将密文还原为明文的算法。而哈希算法是一种单向过程，它将输入信息转换成一个固定长度的、看似随机的哈希值，但这个过程是不可逆的，也就是说，不能从哈希值还原出原始信息。
+
 ## 哈希算法
 
-哈希算法也叫哈希函数、散列函数或摘要算法，它的作用是对任意长度的数据生成一个固定长度的唯一标识，也叫哈希值、散列值或消息摘要（后文统称为哈希值）。
+哈希算法也叫散列函数或摘要算法，它的作用是对任意长度的数据生成一个固定长度的唯一标识，也叫哈希值、散列值或消息摘要（后文统称为哈希值）。
 
 ![哈希算法效果演示](https://oss.javaguide.cn/github/javaguide/system-design/security/encryption-algorithms/hash-function-effect-demonstration.png)
+
+哈希算法的是不可逆的，你无法通过哈希之后的值再得到原值。
 
 哈希值的作用是可以用来验证数据的完整性和一致性。
 
 举两个实际的例子：
 
-- 我们下载一个文件时，可以通过比较文件的哈希值和官方提供的哈希值是否一致，来判断文件是否被篡改或损坏；
 - 保存密码到数据库时使用哈希算法进行加密，可以通过比较用户输入密码的哈希值和数据库保存的哈希值是否一致，来判断密码是否正确。
+- 我们下载一个文件时，可以通过比较文件的哈希值和官方提供的哈希值是否一致，来判断文件是否被篡改或损坏；
 
 这种算法的特点是不可逆：
 
 - 不能从哈希值还原出原始数据。
 - 原始数据的任何改变都会导致哈希值的巨大变化。
 
-哈希算法主要下面几类：
+哈希算法可以简单分为两类：
 
-- MD（Message Digest，消息摘要算法）：比如 MD5。
-- SHA（Secure Hash Algorithm，安全哈希算法）：比如 SHA-1、SHA-256。
-- MAC（Message Authentication Code，消息认证码算法）：比如 HMAC(Hash Message Authentication Code)。
-- 其他：国密算法（SM3）、密码哈希算法（Bcrypt）。
+1. **加密哈希算法**：安全性较高的哈希算法，它可以提供一定的数据完整性保护和数据防篡改能力，能够抵御一定的攻击手段，安全性相对较高，但性能较差，适用于对安全性要求较高的场景。例如 SHA2、SHA3、SM3、RIPEMD-160、BLAKE2、SipHash 等等。
+2. **非加密哈希算法**：安全性相对较低的哈希算法，易受到暴力破解、冲突攻击等攻击手段的影响，但性能较高，适用于对安全性没有要求的业务场景。例如 CRC32、MurMurHash3、SipHash 等等。
+
+除了这两种之外，还有一些特殊的哈希算法，例如安全性更高的**慢哈希算法**。
+
+常见的哈希算法有：
+
+- MD（Message Digest，消息摘要算法）：MD2、MD4、MD5 等，已经不被推荐使用。
+- SHA（Secure Hash Algorithm，安全哈希算法）：SHA-1 系列安全性低，SHA2，SHA3 系列安全性较高。
+- 国密算法：例如 SM2、SM3、SM4，其中 SM2 为非对称加密算法，SM4 为对称加密算法，SM3 为哈希算法（安全性及效率和 SHA-256 相当，但更适合国内的应用环境）。
+- Bcrypt（密码哈希算法）：基于 Blowfish 加密算法的密码哈希算法，专门为密码加密而设计，安全性高，属于慢哈希算法。
+- MAC（Message Authentication Code，消息认证码算法）：HMAC 是一种基于哈希的 MAC，可以与任何安全的哈希算法结合使用，例如 SHA-256。
+- CRC：（Cyclic Redundancy Check，循环冗余校验）：CRC32 是一种 CRC 算法，它的特点是生成 32 位的校验值，通常用于数据完整性校验、文件校验等场景。
+- SipHash：加密哈希算法，它的设计目的是在速度和安全性之间达到一个平衡，用于防御[哈希泛洪 DoS 攻击](https://aumasson.jp/siphash/siphashdos_29c3_slides.pdf)。Rust 默认使用 SipHash 作为哈希算法，从 Redis4.0 开始，哈希算法被替换为 SipHash。
+- MurMurHash：经典快速的非加密哈希算法，目前最新的版本是 MurMurHash3，可以生成 32 位或者 128 位哈希值；
 - ……
 
-国密算法常见的如 SM2、SM3、SM4，其中 SM2 为非对称加密算法，SM4 为对称加密算法，SM3 为哈希算法（安全性及效率和 SHA-256 相当，但更适合国内的应用环境）。
-
-哈希算法一般是不需要密钥的，但也存在部分特殊哈希算法需要密钥。例如，MAC 算法就是一种基于密钥的哈希算法，它在哈希算法的基础上增加了一个密钥，使得只有知道密钥的人才能验证数据的完整性和来源。
+哈希算法一般是不需要密钥的，但也存在部分特殊哈希算法需要密钥。例如，MAC 和 SipHash 就是一种基于密钥的哈希算法，它在哈希算法的基础上增加了一个密钥，使得只有知道密钥的人才能验证数据的完整性和来源。
 
 ### MD
 
@@ -70,25 +83,25 @@ byte[] result = messageDigest.digest();
 // 将哈希值转换为十六进制字符串
 String hexString = new HexBinaryAdapter().marshal(result);
 System.out.println("Original String: " + originalString);
-System.out.println("SHA-256 Hash: " + hexString.toLowerCase());
+System.out.println("MD5 Hash: " + hexString.toLowerCase());
 ```
 
 输出：
 
 ```bash
 Original String: Java学习 + 面试指南：javaguide.cn
-SHA-256 Hash: fb246796f5b1b60d4d0268c817c608fa
+MD5 Hash: fb246796f5b1b60d4d0268c817c608fa
 ```
 
 ### SHA
 
-SHA（Secure Hash Algorithm）系列算法是一组密码哈希函数，用于将任意长度的数据映射为固定长度的哈希值。SHA 系列算法由美国国家安全局（NSA）于 1993 年设计，目前共有 SHA-1、SHA-2、SHA-3 三种版本。
+SHA（Secure Hash Algorithm）系列算法是一组密码哈希算法，用于将任意长度的数据映射为固定长度的哈希值。SHA 系列算法由美国国家安全局（NSA）于 1993 年设计，目前共有 SHA-1、SHA-2、SHA-3 三种版本。
 
 SHA-1 算法将任意长度的数据映射为 160 位的哈希值。然而，SHA-1 算法存在一些严重的缺陷，比如安全性低，容易受到碰撞攻击和长度扩展攻击。因此，SHA-1 算法已经不再被推荐使用。 SHA-2 家族（如 SHA-256、SHA-384、SHA-512 等）和 SHA-3 系列是 SHA-1 算法的替代方案，它们都提供了更高的安全性和更长的哈希值长度。
 
 SHA-2 家族是在 SHA-1 算法的基础上改进而来的，它们采用了更复杂的运算过程和更多的轮次，使得攻击者更难以通过预计算或巧合找到碰撞。
 
-为了寻找一种更安全和更先进的密码哈希函数，美国国家标准与技术研究院（National Institute of Standards and Technology，简称 NIST）在 2007 年公开征集 SHA-3 的候选算法。NIST 一共收到了 64 个算法方案，经过多轮的评估和筛选，最终在 2012 年宣布 Keccak 算法胜出，成为 SHA-3 的标准算法（SHA-3 与 SHA-2 算法没有直接的关系）。 Keccak 算法具有与 MD 和 SHA-1/2 完全不同的设计思路，即海绵结构（Sponge Construction），使得传统攻击方法无法直接应用于 SHA-3 的攻击中（能够抵抗目前已知的所有攻击方式包括碰撞攻击、长度扩展攻击、差分攻击等）。
+为了寻找一种更安全和更先进的密码哈希算法，美国国家标准与技术研究院（National Institute of Standards and Technology，简称 NIST）在 2007 年公开征集 SHA-3 的候选算法。NIST 一共收到了 64 个算法方案，经过多轮的评估和筛选，最终在 2012 年宣布 Keccak 算法胜出，成为 SHA-3 的标准算法（SHA-3 与 SHA-2 算法没有直接的关系）。 Keccak 算法具有与 MD 和 SHA-1/2 完全不同的设计思路，即海绵结构（Sponge Construction），使得传统攻击方法无法直接应用于 SHA-3 的攻击中（能够抵抗目前已知的所有攻击方式包括碰撞攻击、长度扩展攻击、差分攻击等）。
 
 由于 SHA-2 算法还没有出现重大的安全漏洞，而且在软件中的效率更高，所以大多数人还是倾向于使用 SHA-2 算法。
 
@@ -125,7 +138,7 @@ SHA-256 Hash: 184eb7e1d7fb002444098c9bde3403c6f6722c93ecfac242c0e35cd9ed3b41cd
 
 ### Bcrypt
 
-Bcrypt 算法是一种基于 Blowfish 加密算法的密码哈希函数，专门为密码加密而设计，安全性高。
+Bcrypt 算法是一种基于 Blowfish 加密算法的密码哈希算法，专门为密码加密而设计，安全性高。
 
 由于 Bcrypt 采用了 salt（盐） 和 cost（成本） 两种机制，它可以有效地防止彩虹表攻击和暴力破解攻击，从而保证密码的安全性。salt 是一个随机生成的字符串，用于和密码混合，增加密码的复杂度和唯一性。cost 是一个数值参数，用于控制 Bcrypt 算法的迭代次数，增加密码哈希的计算时间和资源消耗。
 
@@ -353,6 +366,8 @@ DSA 算法签名过程：
 
 ## 参考
 
+- 深入理解完美哈希 - 腾讯技术工程：https://mp.weixin.qq.com/s/M8Wcj8sZ7UF1CMr887Puog
+- 写给开发人员的实用密码学（二）—— 哈希函数：https://thiscute.world/posts/practical-cryptography-basics-2-hash/
 - 奇妙的安全旅行之 DSA 算法：<https://zhuanlan.zhihu.com/p/347025157>
 - AES-GCM 加密简介：<https://juejin.cn/post/6844904122676690951>
 - Java AES 256 GCM Encryption and Decryption Example | JCE Unlimited Strength：<https://www.javainterviewpoint.com/java-aes-256-gcm-encryption-and-decryption/>

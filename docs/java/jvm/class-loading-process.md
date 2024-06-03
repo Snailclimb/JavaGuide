@@ -7,7 +7,7 @@ tag:
 
 ## 类的生命周期
 
-类从被加载到虚拟机内存中开始到卸载出内存为止，它的整个生命周期可以简单概括为 7 个阶段：：加载（Loading）、验证（Verification）、准备（Preparation）、解析（Resolution）、初始化（Initialization）、使用（Using）和卸载（Unloading）。其中，验证、准备和解析这三个阶段可以统称为连接（Linking）。
+类从被加载到虚拟机内存中开始到卸载出内存为止，它的整个生命周期可以简单概括为 7 个阶段：加载（Loading）、验证（Verification）、准备（Preparation）、解析（Resolution）、初始化（Initialization）、使用（Using）和卸载（Unloading）。其中，验证、准备和解析这三个阶段可以统称为连接（Linking）。
 
 这 7 个阶段的顺序如下图所示：
 
@@ -114,7 +114,7 @@ tag:
    - 当 jvm 执行 `getstatic` 指令时会初始化类。即程序访问类的静态变量(不是静态常量，常量会被加载到运行时常量池)。
    - 当 jvm 执行 `putstatic` 指令时会初始化类。即程序给类的静态变量赋值。
    - 当 jvm 执行 `invokestatic` 指令时会初始化类。即程序调用类的静态方法。
-2. 使用 `java.lang.reflect` 包的方法对类进行反射调用时如 `Class.forname("...")`, `newInstance()` 等等。如果类没初始化，需要触发其初始化。
+2. 使用 `java.lang.reflect` 包的方法对类进行反射调用时如 `Class.forName("...")`, `newInstance()` 等等。如果类没初始化，需要触发其初始化。
 3. 初始化一个类，如果其父类还未初始化，则先触发该父类的初始化。
 4. 当虚拟机启动时，用户需要定义一个要执行的主类 (包含 `main` 方法的那个类)，虚拟机会先初始化这个类。
 5. `MethodHandle` 和 `VarHandle` 可以看作是轻量级的反射调用机制，而要想使用这 2 个调用，
@@ -141,6 +141,6 @@ tag:
 
 - 《深入理解 Java 虚拟机》
 - 《实战 Java 虚拟机》
-- Chapter 5. Loading, Linking, and Initializing - Java Virtual Machine Specification：https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-5.html#jvms-5.4
+- Chapter 5. Loading, Linking, and Initializing - Java Virtual Machine Specification：<https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-5.html#jvms-5.4>
 
 <!-- @include: @article-footer.snippet.md -->

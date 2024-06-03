@@ -14,7 +14,7 @@ head:
 
 > 作者：Hollis
 >
-> 原文：https://mp.weixin.qq.com/s/o4XdEMq1DL-nBS-f8Za5Aw
+> 原文：<https://mp.weixin.qq.com/s/o4XdEMq1DL-nBS-f8Za5Aw>
 
 语法糖是大厂 Java 面试常问的一个知识点。
 
@@ -246,7 +246,7 @@ public static transient void print(String strs[])
 }
 ```
 
-从反编译后代码可以看出，可变参数在被使用的时候，他首先会创建一个数组，数组的长度就是调用该方法是传递的实参的个数，然后再把参数值全部放到这个数组当中，然后再把这个数组作为参数传递到被调用的方法中。
+从反编译后代码可以看出，可变参数在被使用的时候，他首先会创建一个数组，数组的长度就是调用该方法是传递的实参的个数，然后再把参数值全部放到这个数组当中，然后再把这个数组作为参数传递到被调用的方法中。（注：`trasient` 仅在修饰成员变量时有意义，此处 “修饰方法” 是由于在 javassist 中使用相同数值分别表示 `trasient` 以及 `vararg`，见 [此处](https://github.com/jboss-javassist/javassist/blob/7302b8b0a09f04d344a26ebe57f29f3db43f2a3e/src/main/javassist/bytecode/AccessFlag.java#L32)。）
 
 ### 枚举
 
@@ -758,7 +758,8 @@ class GT<T>{
 
 以上代码输出结果为：2！
 
-由于经过类型擦除，所有的泛型类实例都关联到同一份字节码上，泛型类的所有静态变量是共享的。
+有些同学可能会误认为泛型类是不同的类，对应不同的字节码，其实
+由于经过类型擦除，所有的泛型类实例都关联到同一份字节码上，泛型类的静态变量是共享的。上面例子里的`GT<Integer>.var`和`GT<String>.var`其实是一个变量。
 
 ### 自动装箱与拆箱
 

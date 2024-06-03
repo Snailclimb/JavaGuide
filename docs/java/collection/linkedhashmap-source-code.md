@@ -111,15 +111,16 @@ public class LRUCache<K, V> extends LinkedHashMap<K, V> {
 }
 ```
 
-测试代码如下，笔者初始化缓存容量为 2，然后按照次序先后添加 4 个元素。
+测试代码如下，笔者初始化缓存容量为 3，然后按照次序先后添加 4 个元素。
 
 ```java
-LRUCache < Integer, String > cache = new LRUCache < > (2);
+LRUCache<Integer, String> cache = new LRUCache<>(3);
 cache.put(1, "one");
 cache.put(2, "two");
 cache.put(3, "three");
 cache.put(4, "four");
-for (int i = 0; i < 4; i++) {
+cache.put(5, "five");
+for (int i = 1; i <= 5; i++) {
     System.out.println(cache.get(i));
 }
 ```
@@ -131,9 +132,10 @@ null
 null
 three
 four
+five
 ```
 
-从输出结果来看，由于缓存容量为 2 ，因此，添加第 3 个元素时，第 1 个元素会被删除。添加第 4 个元素时，第 2 个元素会被删除。
+从输出结果来看，由于缓存容量为 3 ，因此，添加第 4 个元素时，第 1 个元素会被删除。添加第 5 个元素时，第 2 个元素会被删除。
 
 ## LinkedHashMap 源码解析
 
@@ -180,7 +182,7 @@ static class Entry<K,V> extends HashMap.Node<K,V> {
 
 ```java
 static final class TreeNode<K,V> extends LinkedHashMap.Entry<K,V> {
-	//略
+  //略
 
 }
 ```
@@ -270,7 +272,7 @@ void afterNodeAccess(Node < K, V > e) { // move node to last
         if (b == null)
             head = a;
         else
-            //如果后继节点不为空，则让前驱节点指向后继节点
+            //如果前驱节点不为空，则让前驱节点指向后继节点
             b.after = a;
 
         //如果后继节点不为空，则让后继节点指向前驱节点
@@ -346,20 +348,20 @@ void afterNodeRemoval(Node<K,V> p) { }
 ```java
 void afterNodeRemoval(Node<K,V> e) { // unlink
 
-		//获取当前节点p、以及e的前驱节点b和后继节点a
+    //获取当前节点p、以及e的前驱节点b和后继节点a
         LinkedHashMap.Entry<K,V> p =
             (LinkedHashMap.Entry<K,V>)e, b = p.before, a = p.after;
-		//将p的前驱和后继指针都设置为null，使其和前驱、后继节点断开联系
+    //将p的前驱和后继指针都设置为null，使其和前驱、后继节点断开联系
         p.before = p.after = null;
 
-		//如果前驱节点为空，则说明当前节点p是链表首节点，让head指针指向后继节点a即可
+    //如果前驱节点为空，则说明当前节点p是链表首节点，让head指针指向后继节点a即可
         if (b == null)
             head = a;
         else
         //如果前驱节点b不为空，则让b直接指向后继节点a
             b.after = a;
 
-		//如果后继节点为空，则说明当前节点p在链表末端，所以直接让tail指针指向前驱节点a即可
+    //如果后继节点为空，则说明当前节点p在链表末端，所以直接让tail指针指向前驱节点a即可
         if (a == null)
             tail = b;
         else
@@ -370,10 +372,10 @@ void afterNodeRemoval(Node<K,V> e) { // unlink
 
 从源码可以看出， `afterNodeRemoval` 方法的整体操作就是让当前节点 p 和前驱节点、后继节点断开联系，等待 gc 回收，整体步骤为:
 
-1. 获取当前节点 p、以及 e 的前驱节点 b 和后继节点 a。
+1. 获取当前节点 p、以及 p 的前驱节点 b 和后继节点 a。
 2. 让当前节点 p 和其前驱、后继节点断开联系。
 3. 尝试让前驱节点 b 指向后继节点 a，若 b 为空则说明当前节点 p 在链表首部，我们直接将 head 指向后继节点 a 即可。
-4. 尝试让后继节点 a 指向前驱节点 b，若 a 为空则说明当前节点 p 在链表末端，所以直接让 tail 指针指向前驱节点 a 即可。
+4. 尝试让后继节点 a 指向前驱节点 b，若 a 为空则说明当前节点 p 在链表末端，所以直接让 tail 指针指向前驱节点 b 即可。
 
 可以结合这张图理解，展示了 key 为 13 的元素被删除，也就是从链表中移除了这个元素。
 
@@ -393,7 +395,7 @@ void afterNodeRemoval(Node<K,V> e) { // unlink
 ```java
 final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
                    boolean evict) {
-        	//略
+          //略
             if (e != null) { // existing mapping for key
                 V oldValue = e.value;
                 if (!onlyIfAbsent || oldValue == null)
@@ -436,7 +438,7 @@ void afterNodeInsertion(boolean evict) { // possibly remove eldest
         LinkedHashMap.Entry<K,V> first;
         //如果evict为true且队首元素不为空以及removeEldestEntry返回true，则说明我们需要最老的元素(即在链表首部的元素)移除。
         if (evict && (first = head) != null && removeEldestEntry(first)) {
-        	//获取链表首部的键值对的key
+          //获取链表首部的键值对的key
             K key = first.key;
             //调用removeNode将元素从HashMap的bucket中移除，并和LinkedHashMap的双向链表断开，等待gc回收
             removeNode(hash(key), key, null, false, true);

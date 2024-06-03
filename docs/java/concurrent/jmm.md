@@ -160,9 +160,9 @@ JSR 133 引入了 happens-before 这个概念来描述两个操作之间的内�
 我们看下面这段代码：
 
 ```java
-int userNum = getUserNum(); 	// 1
-int teacherNum = getTeacherNum();	 // 2
-int totalNum = userNum + teacherNum;	// 3
+int userNum = getUserNum();   // 1
+int teacherNum = getTeacherNum();   // 2
+int totalNum = userNum + teacherNum;  // 3
 ```
 
 - 1 happens-before 2
@@ -232,9 +232,9 @@ happens-before 与 JMM 的关系用《Java 并发编程的艺术》这本书中�
 ## 参考
 
 - 《Java 并发编程的艺术》第三章 Java 内存模型
-- 《深入浅出 Java 多线程》：http://concurrent.redspider.group/RedSpider.html
-- Java 内存访问重排序的研究：https://tech.meituan.com/2014/09/23/java-memory-reordering.html
-- 嘿，同学，你要的 Java 内存模型 (JMM) 来了：https://xie.infoq.cn/article/739920a92d0d27e2053174ef2
-- JSR 133 (Java Memory Model) FAQ：https://www.cs.umd.edu/~pugh/java/memoryModel/jsr-133-faq.html
+- 《深入浅出 Java 多线程》：<http://concurrent.redspider.group/RedSpider.html>
+- Java 内存访问重排序的研究：<https://tech.meituan.com/2014/09/23/java-memory-reordering.html>
+- 嘿，同学，你要的 Java 内存模型 (JMM) 来了：<https://xie.infoq.cn/article/739920a92d0d27e2053174ef2>
+- JSR 133 (Java Memory Model) FAQ：<https://www.cs.umd.edu/~pugh/java/memoryModel/jsr-133-faq.html>
 
 <!-- @include: @article-footer.snippet.md -->

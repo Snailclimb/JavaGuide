@@ -25,7 +25,7 @@ tag:
 
 Leetcode 官方详细解答地址：
 
-https://leetcode-cn.com/problems/add-two-numbers/solution/
+<https://leetcode-cn.com/problems/add-two-numbers/solution/>
 
 > 要对头结点进行操作时，考虑创建哑节点 dummy，使用 dummy->next 表示真正的头节点。这样可以避免处理头节点为空的边界问题。
 

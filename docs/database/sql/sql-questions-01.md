@@ -189,17 +189,17 @@ ORDER BY vend_name DESC
 
 下面的运算符可以在 `WHERE` 子句中使用：
 
-| 运算符  | 描述                                                       |
-| :------ | :--------------------------------------------------------- |
-| =       | 等于                                                       |
+| 运算符  | 描述                                                         |
+| :------ | :----------------------------------------------------------- |
+| =       | 等于                                                         |
 | <>      | 不等于。 **注释：** 在 SQL 的一些版本中，该操作符可被写成 != |
-| >       | 大于                                                       |
-| <       | 小于                                                       |
-| >=      | 大于等于                                                   |
-| <=      | 小于等于                                                   |
-| BETWEEN | 在某个范围内                                               |
-| LIKE    | 搜索某种模式                                               |
-| IN      | 指定针对某个列的多个可能值                                 |
+| >       | 大于                                                         |
+| <       | 小于                                                         |
+| >=      | 大于等于                                                     |
+| <=      | 小于等于                                                     |
+| BETWEEN | 在某个范围内                                                 |
+| LIKE    | 搜索某种模式                                                 |
+| IN      | 指定针对某个列的多个可能值                                   |
 
 ### 返回固定价格的产品
 
@@ -1027,11 +1027,11 @@ ORDER BY order_date
 
 `Customers` 表代表顾客信息，`cust_id` 为顾客 id，`cust_email` 为顾客 email
 
-| cust_id | cust_email      |
-| ------- | --------------- |
-| cust10  | cust10@cust.com |
-| cust1   | cust1@cust.com  |
-| cust2   | cust2@cust.com  |
+| cust_id | cust_email        |
+| ------- | ----------------- |
+| cust10  | <cust10@cust.com> |
+| cust1   | <cust1@cust.com>  |
+| cust2   | <cust2@cust.com>  |
 
 【问题】返回购买 `prod_id` 为 `BR01` 的产品的所有顾客的电子邮件（`Customers` 表中的 `cust_email`），结果无需排序。
 
@@ -1417,11 +1417,11 @@ ORDER BY order_date
 
 `Customers` 表代表顾客信息，`cust_id` 为顾客 id，`cust_email` 为顾客 email
 
-| cust_id | cust_email      |
-| ------- | --------------- |
-| cust10  | cust10@cust.com |
-| cust1   | cust1@cust.com  |
-| cust2   | cust2@cust.com  |
+| cust_id | cust_email        |
+| ------- | ----------------- |
+| cust10  | <cust10@cust.com> |
+| cust1   | <cust1@cust.com>  |
+| cust2   | <cust2@cust.com>  |
 
 【问题】返回购买 `prod_id` 为 BR01 的产品的所有顾客的电子邮件（`Customers` 表中的 `cust_email`），结果无需排序。
 
@@ -1779,11 +1779,11 @@ ORDER BY prod_name
 
 表 `Customers` 含有字段 `cust_name` 顾客名、`cust_contact` 顾客联系方式、`cust_state` 顾客州、`cust_email` 顾客 `email`
 
-| cust_name | cust_contact | cust_state | cust_email      |
-| --------- | ------------ | ---------- | --------------- |
-| cust10    | 8695192      | MI         | cust10@cust.com |
-| cust1     | 8695193      | MI         | cust1@cust.com  |
-| cust2     | 8695194      | IL         | cust2@cust.com  |
+| cust_name | cust_contact | cust_state | cust_email        |
+| --------- | ------------ | ---------- | ----------------- |
+| cust10    | 8695192      | MI         | <cust10@cust.com> |
+| cust1     | 8695193      | MI         | <cust1@cust.com>  |
+| cust2     | 8695194      | IL         | <cust2@cust.com>  |
 
 【问题】修正下面错误的 SQL
 

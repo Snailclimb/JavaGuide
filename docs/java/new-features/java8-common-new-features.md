@@ -209,7 +209,7 @@ void lamndaFor() {
         strings.forEach((s) -> System.out.println(s));
         //or
         strings.forEach(System.out::println);
- 				//map
+     //map
         Map<Integer, String> map = new HashMap<>();
         map.forEach((k,v)->System.out.println(v));
 }
@@ -627,7 +627,7 @@ public class MapAndFlatMapExample {
                 .collect(Collectors.toList());
 
         System.out.println("Using map:");
-        System.out.println(mapResult);
+        mapResult.forEach(arrays-> System.out.println(Arrays.toString(arrays)));
 
         List<String> flatMapResult = listOfArrays.stream()
                 .flatMap(array -> Arrays.stream(array).map(String::toUpperCase))
@@ -913,7 +913,7 @@ public void pushWeek(){
                 + period.getYears() + "年"
                 + period.getMonths() + "月"
                 + period.getDays() + "天");
-		 //打印结果是 “date1 到 date2 相隔：0年9月27天”
+   //打印结果是 “date1 到 date2 相隔：0年9月27天”
      //这里period.getDays()得到的天是抛去年月以外的天数，并不是总天数
      //如果要获取纯粹的总天数应该用下面的方法
      long day = date2.toEpochDay() - date1.toEpochDay();

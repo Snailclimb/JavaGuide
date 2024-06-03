@@ -39,7 +39,7 @@ tag:
 
 ### 2.2.显式新生代内存(Young Generation)
 
-根据[Oracle 官方文档](https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/sizing.html)，在堆总可用内存配置完成之后，第二大影响因素是为 `Young Generation` 在堆内存所占的比例。默认情况下，YG 的最小大小为 1310 _MB_，最大大小为*无限制*。
+根据[Oracle 官方文档](https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/sizing.html)，在堆总可用内存配置完成之后，第二大影响因素是为 `Young Generation` 在堆内存所占的比例。默认情况下，YG 的最小大小为 1310 _MB_，最大大小为 _无限制_。
 
 一共有两种指定 新生代内存(Young Generation)大小的方法：
 
@@ -119,7 +119,7 @@ JDK 1.8 之前永久代还没被彻底移除的时候通常通过下面这些参
 
 ```c
 void MetaspaceGC::initialize() {
-  // Set the high-water mark to MaxMetapaceSize during VM initializaton since
+  // Set the high-water mark to MaxMetapaceSize during VM initialization since
   // we can't do a GC during initialization.
   _capacity_until_GC = MaxMetaspaceSize;
 }
@@ -145,7 +145,7 @@ JVM 具有四种类型的 GC 实现：
 ```bash
 -XX:+UseSerialGC
 -XX:+UseParallelGC
--XX:+UseParNewGC
+-XX:+UseConcMarkSweepGC
 -XX:+UseG1GC
 ```
 

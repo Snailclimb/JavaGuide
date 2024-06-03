@@ -6,7 +6,7 @@ tag:
   - Java基础
 ---
 
-在学习  NIO 之前，需要先了解一下计算机 I/O 模型的基础理论知识。还不了解的话，可以参考我写的这篇文章：[Java IO 模型详解](https://javaguide.cn/java/io/io-model.html)。
+在学习 NIO 之前，需要先了解一下计算机 I/O 模型的基础理论知识。还不了解的话，可以参考我写的这篇文章：[Java IO 模型详解](https://javaguide.cn/java/io/io-model.html)。
 
 ## NIO 简介
 
@@ -48,7 +48,7 @@ NIO 主要包括以下三个核心组件：
 
 为了更清晰地认识缓冲区，我们来简单看看`Buffer` 类中定义的四个成员变量：
 
-~~~java
+```java
 public abstract class Buffer {
     // Invariants: mark <= position <= limit <= capacity
     private int mark = -1;
@@ -56,7 +56,7 @@ public abstract class Buffer {
     private int limit;
     private int capacity;
 }
-~~~
+```
 
 这四个成员变量的具体含义如下：
 
@@ -73,18 +73,18 @@ public abstract class Buffer {
 
 ![position 、limit 和 capacity 之前的关系](https://oss.javaguide.cn/github/javaguide/java/nio/NIOBufferClassAttributes.png)
 
- `Buffer` 对象不能通过 `new` 调用构造方法创建对象 ，只能通过静态方法实例化 `Buffer`。
+`Buffer` 对象不能通过 `new` 调用构造方法创建对象 ，只能通过静态方法实例化 `Buffer`。
 
 这里以 `ByteBuffer`为例进行介绍：
 
-~~~java
+```java
 // 分配堆内存
-public static ByteBuffer allocate(int capacity); 
+public static ByteBuffer allocate(int capacity);
 // 分配直接内存
-public static ByteBuffer allocateDirect(int capacity); 
-~~~
+public static ByteBuffer allocateDirect(int capacity);
+```
 
- Buffer 最核心的两个方法：
+Buffer 最核心的两个方法：
 
 1. `get` : 读取缓冲区的数据
 2. `put` ：向缓冲区写入数据
@@ -92,20 +92,20 @@ public static ByteBuffer allocateDirect(int capacity);
 除上述两个方法之外，其他的重要方法：
 
 - `flip` ：将缓冲区从写模式切换到读模式，它会将 `limit` 的值设置为当前 `position` 的值，将 `position` 的值设置为 0。
-- `clear`:  清空缓冲区，将缓冲区从读模式切换到写模式，并将 `position` 的值设置为 0，将 `limit` 的值设置为 `capacity` 的值。
+- `clear`: 清空缓冲区，将缓冲区从读模式切换到写模式，并将 `position` 的值设置为 0，将 `limit` 的值设置为 `capacity` 的值。
 - ……
 
 Buffer 中数据变化的过程：
 
-~~~java
+```java
 import java.nio.*;
 
 public class CharBufferDemo {
     public static void main(String[] args) {
         // 分配一个容量为8的CharBuffer
         CharBuffer buffer = CharBuffer.allocate(8);
-        System.out.println("初始状态："); 
-        printState(buffer); 
+        System.out.println("初始状态：");
+        printState(buffer);
 
         // 向buffer写入3个字符
         buffer.put('a').put('b').put('c');
@@ -118,7 +118,7 @@ public class CharBufferDemo {
         printState(buffer);
 
         // 读取字符
-        while (buffer.hasRemaining()) { 
+        while (buffer.hasRemaining()) {
             System.out.print(buffer.get());
         }
 
@@ -138,11 +138,11 @@ public class CharBufferDemo {
         System.out.println("\n");
     }
 }
-~~~
+```
 
 输出:
 
-~~~bash
+```bash
 初始状态：
 capacity: 8, limit: 8, position: 0
 
@@ -157,8 +157,8 @@ capacity: 8, limit: 3, position: 0
 读取到的数据：abc
 
 调用clear()方法后的状态：
-capacity: 8, limit: 8, position: 0   
-~~~
+capacity: 8, limit: 8, position: 0
+```
 
 为了帮助理解，我绘制了一张图片展示 `capacity`、`limit`和`position`每一阶段的变化。
 
@@ -188,24 +188,23 @@ Channel 与前面介绍的 Buffer 打交道，读操作的时候将 Channel 中�
 
 ![Channel继承关系图](https://oss.javaguide.cn/github/javaguide/java/nio/channel-inheritance-relationship.png)
 
-
- Channel 最核心的两个方法：
+Channel 最核心的两个方法：
 
 1. `read` ：读取数据并写入到 Buffer 中。
 2. `write` ：将 Buffer 中的数据写入到 Channel 中。
 
 这里我们以 `FileChannel` 为例演示一下是读取文件数据的。
 
-~~~java
-RandomAccessFile reader = new RandomAccessFile("/Users/guide/Documents/test_read.in", "r")) 
+```java
+RandomAccessFile reader = new RandomAccessFile("/Users/guide/Documents/test_read.in", "r"))
 FileChannel channel = reader.getChannel();
 ByteBuffer buffer = ByteBuffer.allocate(1024);
 channel.read(buffer);
-~~~
+```
 
 ### Selector（选择器）
 
-Selector（选择器） 是 NIO 中的一个关键组件，它允许一个线程处理多个 Channel。Selector 是基于事件驱动的 I/O 多路复用模型，主要运作原理是：通过 Selector 注册通道的事件，Selector 会不断地轮询注册在其上的 Channel。当事件发生时，比如：某个 Channel 上面有新的 TCP 连接接入、读和写事件，这个 Channel 就处于就绪状态，会被 Selector 轮询出来。Selector 会将相关的 Channel 加入到就绪集合中。通过 SelectionKey 可以获取就绪 Channel 的集合，然后对这些就绪的 Channel 进行响应的 I/O 操作。
+Selector（选择器） 是 NIO 中的一个关键组件，它允许一个线程处理多个 Channel。Selector 是基于事件驱动的 I/O 多路复用模型，主要运作原理是：通过 Selector 注册通道的事件，Selector 会不断地轮询注册在其上的 Channel。当事件发生时，比如：某个 Channel 上面有新的 TCP 连接接入、读和写事件，这个 Channel 就处于就绪状态，会被 Selector 轮询出来。Selector 会将相关的 Channel 加入到就绪集合中。通过 SelectionKey 可以获取就绪 Channel 的集合，然后对这些就绪的 Channel 进行相应的 I/O 操作。
 
 ![Selector 选择器工作示意图](https://oss.javaguide.cn/github/javaguide/java/nio/selector-channel-selectionkey.png)
 
@@ -252,13 +251,13 @@ Selector 还提供了一系列和 `select()` 相关的方法：
 
 - `int select()`：监控所有注册的 `Channel`，当它们中间有需要处理的 `IO` 操作时，该方法返回，并将对应的 `SelectionKey` 加入被选择的 `SelectionKey` 集合中，该方法返回这些 `Channel` 的数量。
 - `int select(long timeout)`：可以设置超时时长的 `select()` 操作。
-- `int selectNow()`：执行一个立即返回的 `select()`  操作，相对于无参数的 `select()` 方法而言，该方法不会阻塞线程。
+- `int selectNow()`：执行一个立即返回的 `select()` 操作，相对于无参数的 `select()` 方法而言，该方法不会阻塞线程。
 - `Selector wakeup()`：使一个还未返回的 `select()` 方法立刻返回。
 - ……
 
 使用 Selector 实现网络读写的简单示例：
 
-~~~java
+```java
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
@@ -335,7 +334,7 @@ public class NioSelectorExample {
     }
   }
 }
-~~~
+```
 
 在示例中，我们创建了一个简单的服务器，监听 8080 端口，使用 Selector 处理连接、读取和写入事件。当接收到客户端的数据时，服务器将读取数据并将其打印到控制台，然后向客户端回复 "Hello, Client!"。
 
@@ -368,7 +367,7 @@ private void loadFileIntoMemory(File xmlFile) throws IOException {
   FileInputStream fis = new FileInputStream(xmlFile);
   // 创建 FileChannel 对象
   FileChannel fc = fis.getChannel();
-  // FileChannle.map() 将文件映射到直接内存并返回 MappedByteBuffer 对象
+  // FileChannel.map() 将文件映射到直接内存并返回 MappedByteBuffer 对象
   MappedByteBuffer mmb = fc.map(FileChannel.MapMode.READ_ONLY, 0, fc.size());
   xmlFileBuffer = new byte[(int)fc.size()];
   mmb.get(xmlFileBuffer);
@@ -386,9 +385,8 @@ private void loadFileIntoMemory(File xmlFile) throws IOException {
 
 - Java NIO 浅析：<https://tech.meituan.com/2016/11/04/nio.html>
 
-- 面试官：Java NIO 了解？https://mp.weixin.qq.com/s/mZobf-U8OSYQfHfYBEB6KA
+- 面试官：Java NIO 了解？<https://mp.weixin.qq.com/s/mZobf-U8OSYQfHfYBEB6KA>
 
-- Java NIO：Buffer、Channel 和 Selector：https://www.javadoop.com/post/java-nio
+- Java NIO：Buffer、Channel 和 Selector：<https://www.javadoop.com/post/java-nio>
 
-  
 <!-- @include: @article-footer.snippet.md -->

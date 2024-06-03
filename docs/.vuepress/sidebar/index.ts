@@ -166,6 +166,7 @@ export default sidebar({
             "java18",
             "java19",
             "java20",
+            "java21",
           ],
         },
       ],
@@ -183,13 +184,14 @@ export default sidebar({
           children: [
             "other-network-questions",
             "other-network-questions2",
-            "computer-network-xiexiren-summary",
+            // "computer-network-xiexiren-summary",
             {
               text: "重要知识点",
               icon: "star",
               collapsible: true,
               children: [
                 "osi-and-tcp-ip-model",
+                "the-whole-process-of-accessing-web-pages",
                 "application-layer-protocol",
                 "http-vs-https",
                 "http1.0-vs-http1.1",
@@ -239,6 +241,8 @@ export default sidebar({
           icon: "suanfaku",
           collapsible: true,
           children: [
+            "classical-algorithm-problems-recommendations",
+            "common-data-structures-leetcode-recommendations",
             "string-algorithm-problems",
             "linkedlist-algorithm-problems",
             "the-sword-refers-to-offer",
@@ -318,9 +322,11 @@ export default sidebar({
               icon: "star",
               collapsible: true,
               children: [
+                "redis-delayed-task",
                 "3-commonly-used-cache-read-and-write-strategies",
                 "redis-data-structures-01",
                 "redis-data-structures-02",
+                "redis-skiplist",
                 "redis-persistence",
                 "redis-memory-fragmentation",
                 "redis-common-blocking-problems-summary",
@@ -421,7 +427,7 @@ export default sidebar({
       collapsible: true,
       children: [
         {
-          text: "基础",
+          text: "基础知识",
           prefix: "basis/",
           icon: "basic",
           collapsible: true,
@@ -437,7 +443,7 @@ export default sidebar({
           ],
         },
         {
-          text: "安全",
+          text: "认证授权",
           prefix: "security/",
           icon: "security-fill",
           collapsible: true,
@@ -447,6 +453,14 @@ export default sidebar({
             "advantages-and-disadvantages-of-jwt",
             "sso-intro",
             "design-of-authority-system",
+          ],
+        },
+        {
+          text: "数据安全",
+          prefix: "security/",
+          icon: "security-fill",
+          collapsible: true,
+          children: [
             "encryption-algorithms",
             "sentive-words-filter",
             "data-desensitization",
@@ -538,7 +552,9 @@ export default sidebar({
           icon: "mysql",
           children: [
             "read-and-write-separation-and-library-subtable",
+            "data-cold-hot-separation",
             "sql-optimization",
+            "deep-pagination-optimization",
           ],
         },
         {

@@ -27,7 +27,7 @@ IoC （Inversion of Control ）即控制反转/反转控制。它是一种思想
 例如：现有类 A 依赖于类 B
 
 - **传统的开发方式** ：往往是在类 A 中手动通过 new 关键字来 new 一个 B 的对象出来
-- **使用 IoC 思想的开发方式** ：不通过 new 关键字来创建对象，而是通过 IoC 容器(Spring 框架) 来帮助我们实例化对象。我们需要哪个对象，直接从 IoC 容器里面过去即可。
+- **使用 IoC 思想的开发方式** ：不通过 new 关键字来创建对象，而是通过 IoC 容器(Spring 框架) 来帮助我们实例化对象。我们需要哪个对象，直接从 IoC 容器里面去取即可。
 
 从以上两种开发方式的对比来看：我们 “丧失了一个权力” (创建、管理对象的权力)，从而也得到了一个好处（不用再考虑对象的创建、管理等一系列的事情）
 
@@ -53,17 +53,17 @@ IoC 的思想就是两方之间不互相依赖，由第三方容器来管理相�
 
 很完美，这种方式也是可以实现的，但是我们想象一下如下场景：
 
-开发过程中突然接到一个新的需求，针对对`IUserDao` 接口开发出另一个具体实现类。因为 Server 层依赖了`IUserDao`的具体实现，所以我们需要修改`UserServiceImpl`中 new 的对象。如果只有一个类引用了`IUserDao`的具体实现，可能觉得还好，修改起来也不是很费力气，但是如果有许许多多的地方都引用了`IUserDao`的具体实现的话，一旦需要更换`IUserDao` 的实现方式，那修改起来将会非常的头疼。
+开发过程中突然接到一个新的需求，针对`IUserDao` 接口开发出另一个具体实现类。因为 Server 层依赖了`IUserDao`的具体实现，所以我们需要修改`UserServiceImpl`中 new 的对象。如果只有一个类引用了`IUserDao`的具体实现，可能觉得还好，修改起来也不是很费力气，但是如果有许许多多的地方都引用了`IUserDao`的具体实现的话，一旦需要更换`IUserDao` 的实现方式，那修改起来将会非常的头疼。
 
 ![](https://oss.javaguide.cn/github/javaguide/system-design/framework/spring/why-ioc.png)
 
-使用 IoC 的思想，我们将对象的控制权（创建、管理）交有 IoC 容器去管理，我们在使用的时候直接向 IoC 容器 “要” 就可以了
+使用 IoC 的思想，我们将对象的控制权（创建、管理）交由 IoC 容器去管理，我们在使用的时候直接向 IoC 容器 “要” 就可以了
 
 ![](https://oss.javaguide.cn/github/javaguide/system-design/framework/spring/why-ioc-2.png)
 
 ### IoC 和 DI 有区别吗？
 
-IoC（Inverse of Control:控制反转）是一种设计思想或者说是某种模式。这个设计思想就是 **将原本在程序中手动创建对象的控制权交给第三方比如 IoC 容易。** 对于我们常用的 Spring 框架来说， IoC 容器实际上就是个 Map（key，value）,Map 中存放的是各种对象。不过，IoC 在其他语言中也有应用，并非 Spring 特有。
+IoC（Inverse of Control:控制反转）是一种设计思想或者说是某种模式。这个设计思想就是 **将原本在程序中手动创建对象的控制权交给第三方比如 IoC 容器。** 对于我们常用的 Spring 框架来说， IoC 容器实际上就是个 Map（key，value）,Map 中存放的是各种对象。不过，IoC 在其他语言中也有应用，并非 Spring 特有。
 
 IoC 最常见以及最合理的实现方式叫做依赖注入（Dependency Injection，简称 DI）。
 
@@ -132,7 +132,7 @@ public CommonResponse<Object> method2() {
 // ...
 ```
 
-使用 AOP 技术之后，我们可以日志记录的逻辑封装成一个切面，然后通过切入点和通知来指定在哪些方法需要执行日志记录的操作。
+使用 AOP 技术之后，我们可以将日志记录的逻辑封装成一个切面，然后通过切入点和通知来指定在哪些方法需要执行日志记录的操作。
 
 ```java
 
@@ -160,7 +160,7 @@ public class LogAspect {
   // 切入点，所有被 Log 注解标注的方法
   @Pointcut("@annotation(cn.javaguide.annotation.Log)")
   public void webLog() {
-		}
+  }
 
    /**
    * 环绕通知

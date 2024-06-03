@@ -322,7 +322,7 @@ public class Main {
         System.out.println("value before putInt: " + main.value);
         unsafe.putInt(main, offset, 42);
         System.out.println("value after putInt: " + main.value);
-	System.out.println("value after putInt: " + unsafe.getInt(main, offset));
+  System.out.println("value after putInt: " + unsafe.getInt(main, offset));
     }
 
     private static Unsafe reflectGetUnsafe() {
@@ -451,7 +451,7 @@ public native int arrayIndexScale(Class<?> arrayClass);
 
 ```java
 /**
-	*  CAS
+  *  CAS
   * @param o         包含要修改field的对象
   * @param offset    对象中某field的偏移量
   * @param expected  期望值

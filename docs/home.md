@@ -13,21 +13,6 @@ title: JavaGuide（Java学习&面试指南）
 
 :::
 
-<div align="center">
-
-[![logo](https://oss.javaguide.cn/github/javaguide/csdn/1c00413c65d1995993bf2b0daf7b4f03.png)](https://github.com/Snailclimb/JavaGuide)
-
-[![阅读](https://img.shields.io/badge/阅读-read-brightgreen.svg)](https://javaguide.cn/)
-![Stars](https://img.shields.io/github/stars/Snailclimb/JavaGuide)
-![forks](https://img.shields.io/github/forks/Snailclimb/JavaGuide)
-![issues](https://img.shields.io/github/issues/Snailclimb/JavaGuide)
-
-[GitHub](https://github.com/Snailclimb/JavaGuide) | [Gitee](https://gitee.com/SnailClimb/JavaGuide)
-
-</div>
-
-[![Banner](https://oss.javaguide.cn/xingqiu/xingqiu.png)](./about-the-author/zhishixingqiu-two-years.md)
-
 ## Java
 
 ### 基础
@@ -56,7 +41,7 @@ title: JavaGuide（Java学习&面试指南）
 
 - [Java 集合常见知识点&面试题总结(上)](./java/collection/java-collection-questions-01.md) (必看 :+1:)
 - [Java 集合常见知识点&面试题总结(下)](./java/collection/java-collection-questions-02.md) (必看 :+1:)
-- [Java 容器使用注意事项总结](./java/collection/java-collection-precautions-for-use.md)
+- [Java 集合使用注意事项总结](./java/collection/java-collection-precautions-for-use.md)
 
 **源码分析**：
 
@@ -121,6 +106,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 - [Java 18 新特性概览](./java/new-features/java18.md)
 - [Java 19 新特性概览](./java/new-features/java19.md)
 - [Java 20 新特性概览](./java/new-features/java20.md)
+- [Java 21 新特性概览](./java/new-features/java21.md)
 
 ## 计算机基础
 
@@ -373,17 +359,16 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 
 ## 高性能
 
-### 数据库读写分离&分库分表
+### 数据库优化
 
-[数据库读写分离和分库分表常见知识点&面试题总结](./high-performance/read-and-write-separation-and-library-subtable.md)
+- [数据库读写分离和分库分表](./high-performance/read-and-write-separation-and-library-subtable.md)
+- [数据冷热分离](./high-performance/data-cold-hot-separation.md)
+- [常见 SQL 优化手段总结](./high-performance/sql-optimization.md)
+- [深度分页介绍及优化建议](./high-performance/deep-pagination-optimization.md)
 
 ### 负载均衡
 
 [负载均衡常见知识点&面试题总结](./high-performance/load-balancing.md)
-
-### SQL 优化
-
-[常见 SQL 优化手段总结](./high-performance/sql-optimization.md)
 
 ### CDN
 

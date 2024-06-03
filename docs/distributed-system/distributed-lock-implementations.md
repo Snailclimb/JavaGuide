@@ -56,7 +56,7 @@ OK
 ```
 
 - **lockKey**：加锁的锁名；
-- **uniqueValue**：能够唯一标示锁的随机字符串；
+- **uniqueValue**：能够唯一标识锁的随机字符串；
 - **NX**：只有当 lockKey 对应的 key 值不存在的时候才能 SET 成功；
 - **EX**：过期时间设置（秒为单位）EX 3 标示这个锁有一个 3 秒的自动过期时间。与 EX 对应的是 PX（毫秒为单位），这两个都是过期时间设置。
 
@@ -365,6 +365,14 @@ private static class LockData
 
 ## 总结
 
-这篇文章我们介绍了实现分布式锁的两种常见方式。至于具体选择 Redis 还是 ZooKeeper 来实现分布式锁，还是要看业务的具体需求。如果对性能要求比较高的话，建议使用 Redis 实现分布式锁。如果对可靠性要求比较高的话，建议使用 ZooKeeper 实现分布式锁。
+在这篇文章中，我介绍了实现分布式锁的两种常见方式： Redis 和 ZooKeeper。至于具体选择 Redis 还是 ZooKeeper 来实现分布式锁，还是要看业务的具体需求。
+
+- 如果对性能要求比较高的话，建议使用 Redis 实现分布式锁（优先选择 Redisson 提供的现成的分布式锁，而不是自己实现）。
+- 如果对可靠性要求比较高的话，建议使用 ZooKeeper 实现分布式锁（推荐基于 Curator 框架实现）。不过，现在很多项目都不会用到 ZooKeeper，如果单纯是因为分布式锁而引入 ZooKeeper 的话，那是不太可取的，不建议这样做，为了一个小小的功能增加了系统的复杂度。
+
+最后，再分享两篇我觉得写的还不错的文章：
+
+- [分布式锁实现原理与最佳实践 - 阿里云开发者](https://mp.weixin.qq.com/s/JzCHpIOiFVmBoAko58ZuGw)
+- [聊聊分布式锁 - 字节跳动技术团队](https://mp.weixin.qq.com/s/-N4x6EkxwAYDGdJhwvmZLw)
 
 <!-- @include: @article-footer.snippet.md -->

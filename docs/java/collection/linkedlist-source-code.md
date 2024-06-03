@@ -250,7 +250,7 @@ public E removeLast() {
     return unlinkLast(l);
 }
 
-// 删除链表中首次出现的指定元素，如果不存在该元素则返回 fals
+// 删除链表中首次出现的指定元素，如果不存在该元素则返回 false
 public boolean remove(Object o) {
     // 如果指定元素为 null，遍历链表找到第一个为 null 的元素进行删除
     if (o == null) {
@@ -513,4 +513,5 @@ System.out.println("清空后的链表：" + list);
 链表长度：2
 清空后的链表：[]
 ```
+
 <!-- @include: @article-footer.snippet.md -->

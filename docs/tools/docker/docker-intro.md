@@ -5,13 +5,13 @@ tag:
   - Docker
 ---
 
-**本文只是对 Docker 的概念做了较为详细的介绍，并不涉及一些像 Docker 环境的安装以及 Docker 的一些常见操作和命令。**
+本文只是对 Docker 的概念做了较为详细的介绍，并不涉及一些像 Docker 环境的安装以及 Docker 的一些常见操作和命令。
 
-## 一 认识容器
+## 容器介绍
 
 **Docker 是世界领先的软件容器平台**，所以想要搞懂 Docker 的概念我们必须先从容器开始说起。
 
-### 1.1 什么是容器?
+### 什么是容器?
 
 #### 先来看看容器较为官方的解释
 
@@ -23,11 +23,11 @@ tag:
 
 #### 再来看看容器较为通俗的解释
 
-**如果需要通俗地描述容器的话，我觉得容器就是一个存放东西的地方，就像书包可以装各种文具、衣柜可以放各种衣服、鞋架可以放各种鞋子一样。我们现在所说的容器存放的东西可能更偏向于应用比如网站、程序甚至是系统环境。**
+如果需要通俗地描述容器的话，我觉得容器就是一个存放东西的地方，就像书包可以装各种文具、衣柜可以放各种衣服、鞋架可以放各种鞋子一样。我们现在所说的容器存放的东西可能更偏向于应用比如网站、程序甚至是系统环境。
 
 ![认识容器](https://oss.javaguide.cn/github/javaguide/tools/docker/container.png)
 
-### 1.2 图解物理机,虚拟机与容器
+### 图解物理机,虚拟机与容器
 
 关于虚拟机与容器的对比在后面会详细介绍到，这里只是通过网上的图片加深大家对于物理机、虚拟机与容器这三者的理解(下面的图片来源于网络)。
 
@@ -45,87 +45,73 @@ tag:
 
 通过上面这三张抽象图，我们可以大概通过类比概括出：**容器虚拟化的是操作系统而不是硬件，容器之间是共享同一套操作系统资源的。虚拟机技术是虚拟出一套硬件后，在其上运行一个完整操作系统。因此容器的隔离级别会稍低一些。**
 
----
+### 容器 VS 虚拟机
 
-**相信通过上面的解释大家对于容器这个既陌生又熟悉的概念有了一个初步的认识，下面我们就来谈谈 Docker 的一些概念。**
-
-## 二 再来谈谈 Docker 的一些概念
-
-### 2.1 什么是 Docker?
-
-说实话关于 Docker 是什么并太好说，下面我通过四点向你说明 Docker 到底是个什么东西。
-
-- **Docker 是世界领先的软件容器平台。**
-- **Docker** 使用 Google 公司推出的 **Go 语言** 进行开发实现，基于 **Linux 内核** 提供的 CGroup 功能和 namespace 来实现的，以及 AUFS 类的 **UnionFS** 等技术，**对进程进行封装隔离，属于操作系统层面的虚拟化技术。** 由于隔离的进程独立于宿主和其它的隔离的进程，因此也称其为容器。
-- **Docker 能够自动执行重复性任务，例如搭建和配置开发环境，从而解放了开发人员以便他们专注在真正重要的事情上：构建杰出的软件。**
-- **用户可以方便地创建和使用容器，把自己的应用放入容器。容器还可以进行版本管理、复制、分享、修改，就像管理普通的代码一样。**
-
-### 2.2 Docker 思想
-
-- **集装箱**
-- **标准化：** ① 运输方式 ② 存储方式 ③ API 接口
-- **隔离**
-
-### 2.3 Docker 容器的特点
-
-- **轻量** : 在一台机器上运行的多个 Docker 容器可以共享这台机器的操作系统内核；它们能够迅速启动，只需占用很少的计算和内存资源。镜像是通过文件系统层进行构造的，并共享一些公共文件。这样就能尽量降低磁盘用量，并能更快地下载镜像。
-- **标准** : Docker 容器基于开放式标准，能够在所有主流 Linux 版本、Microsoft Windows 以及包括 VM、裸机服务器和云在内的任何基础设施上运行。
-- **安全** : Docker 赋予应用的隔离性不仅限于彼此隔离，还独立于底层的基础设施。Docker 默认提供最强的隔离，因此应用出现问题，也只是单个容器的问题，而不会波及到整台机器。
-
-### 2.4 为什么要用 Docker ?
-
-- **Docker 的镜像提供了除内核外完整的运行时环境，确保了应用运行环境一致性，从而不会再出现 “这段代码在我机器上没问题啊” 这类问题；——一致的运行环境**
-- **可以做到秒级、甚至毫秒级的启动时间。大大的节约了开发、测试、部署的时间。——更快速的启动时间**
-- **避免公用的服务器，资源会容易受到其他用户的影响。——隔离性**
-- **善于处理集中爆发的服务器使用压力；——弹性伸缩，快速扩展**
-- **可以很轻易的将在一个平台上运行的应用，迁移到另一个平台上，而不用担心运行环境的变化导致应用无法正常运行的情况。——迁移方便**
-- **使用 Docker 可以通过定制应用镜像来实现持续集成、持续交付、部署。——持续交付和部署**
-
----
-
-## 三 容器 VS 虚拟机
-
-**每当说起容器，我们不得不将其与虚拟机做一个比较。就我而言，对于两者无所谓谁会取代谁，而是两者可以和谐共存。**
+每当说起容器，我们不得不将其与虚拟机做一个比较。就我而言，对于两者无所谓谁会取代谁，而是两者可以和谐共存。
 
 简单来说：**容器和虚拟机具有相似的资源隔离和分配优势，但功能有所不同，因为容器虚拟化的是操作系统，而不是硬件，因此容器更容易移植，效率也更高。**
-
-### 3.1 两者对比图
 
 传统虚拟机技术是虚拟出一套硬件后，在其上运行一个完整操作系统，在该系统上再运行所需应用进程；而容器内的应用进程直接运行于宿主的内核，容器内没有自己的内核，而且也没有进行硬件虚拟。因此容器要比传统虚拟机更为轻便。
 
 ![](https://oss.javaguide.cn/javaguide/2e2b95eebf60b6d03f6c1476f4d7c697.png)
 
-### 3.2 容器与虚拟机总结
+**容器和虚拟机的对比**：
 
 ![](https://oss.javaguide.cn/javaguide/4ef8691d67eb1eb53217099d0a691eb5.png)
 
-- **容器是一个应用层抽象，用于将代码和依赖资源打包在一起。** **多个容器可以在同一台机器上运行，共享操作系统内核，但各自作为独立的进程在用户空间中运行** 。与虚拟机相比， **容器占用的空间较少**（容器镜像大小通常只有几十兆），**瞬间就能完成启动** 。
+- 容器是一个应用层抽象，用于将代码和依赖资源打包在一起。 多个容器可以在同一台机器上运行，共享操作系统内核，但各自作为独立的进程在用户空间中运行 。与虚拟机相比， **容器占用的空间较少**（容器镜像大小通常只有几十兆），**瞬间就能完成启动** 。
 
-- **虚拟机 (VM) 是一个物理硬件层抽象，用于将一台服务器变成多台服务器。** 管理程序允许多个 VM 在一台机器上运行。每个 VM 都包含一整套操作系统、一个或多个应用、必要的二进制文件和库资源，因此 **占用大量空间** 。而且 VM **启动也十分缓慢** 。
+- 虚拟机 (VM) 是一个物理硬件层抽象，用于将一台服务器变成多台服务器。管理程序允许多个 VM 在一台机器上运行。每个 VM 都包含一整套操作系统、一个或多个应用、必要的二进制文件和库资源，因此 **占用大量空间** 。而且 VM **启动也十分缓慢** 。
 
 通过 Docker 官网，我们知道了这么多 Docker 的优势，但是大家也没有必要完全否定虚拟机技术，因为两者有不同的使用场景。**虚拟机更擅长于彻底隔离整个运行环境**。例如，云服务提供商通常采用虚拟机技术隔离不同的用户。而 **Docker 通常用于隔离不同的应用** ，例如前端，后端以及数据库。
-
-### 3.3 容器与虚拟机两者是可以共存的
 
 就我而言，对于两者无所谓谁会取代谁，而是两者可以和谐共存。
 
 ![](https://oss.javaguide.cn/javaguide/056c87751b9dd7b56f4264240fe96d00.png)
 
+## Docker 介绍
+
+### 什么是 Docker?
+
+说实话关于 Docker 是什么并太好说，下面我通过四点向你说明 Docker 到底是个什么东西。
+
+- **Docker 是世界领先的软件容器平台。**
+- **Docker** 使用 Google 公司推出的 **Go 语言** 进行开发实现，基于 **Linux 内核** 提供的 CGroup 功能和 namespace 来实现的，以及 AUFS 类的 **UnionFS** 等技术，**对进程进行封装隔离，属于操作系统层面的虚拟化技术。** 由于隔离的进程独立于宿主和其它的隔离的进程，因此也称其为容器。
+- Docker 能够自动执行重复性任务，例如搭建和配置开发环境，从而解放了开发人员以便他们专注在真正重要的事情上：构建杰出的软件。
+- 用户可以方便地创建和使用容器，把自己的应用放入容器。容器还可以进行版本管理、复制、分享、修改，就像管理普通的代码一样。
+
+**Docker 思想**：
+
+- **集装箱**：就像海运中的集装箱一样，Docker 容器包含了应用程序及其所有依赖项，确保在任何环境中都能以相同的方式运行。
+- **标准化：**运输方式、存储方式、API 接口。
+- **隔离**：每个 Docker 容器都在自己的隔离环境中运行，与宿主机和其他容器隔离。
+
+### Docker 容器的特点
+
+- **轻量** : 在一台机器上运行的多个 Docker 容器可以共享这台机器的操作系统内核；它们能够迅速启动，只需占用很少的计算和内存资源。镜像是通过文件系统层进行构造的，并共享一些公共文件。这样就能尽量降低磁盘用量，并能更快地下载镜像。
+- **标准** : Docker 容器基于开放式标准，能够在所有主流 Linux 版本、Microsoft Windows 以及包括 VM、裸机服务器和云在内的任何基础设施上运行。
+- **安全** : Docker 赋予应用的隔离性不仅限于彼此隔离，还独立于底层的基础设施。Docker 默认提供最强的隔离，因此应用出现问题，也只是单个容器的问题，而不会波及到整台机器。
+
+### 为什么要用 Docker ?
+
+- Docker 的镜像提供了除内核外完整的运行时环境，确保了应用运行环境一致性，从而不会再出现 “这段代码在我机器上没问题啊” 这类问题；——一致的运行环境
+- 可以做到秒级、甚至毫秒级的启动时间。大大的节约了开发、测试、部署的时间。——更快速的启动时间
+- 避免公用的服务器，资源会容易受到其他用户的影响。——隔离性
+- 善于处理集中爆发的服务器使用压力；——弹性伸缩，快速扩展
+- 可以很轻易的将在一个平台上运行的应用，迁移到另一个平台上，而不用担心运行环境的变化导致应用无法正常运行的情况。——迁移方便
+- 使用 Docker 可以通过定制应用镜像来实现持续集成、持续交付、部署。——持续交付和部署
+
 ---
 
-## 四 Docker 基本概念
+## Docker 基本概念
 
-**Docker 中有非常重要的三个基本概念，理解了这三个概念，就理解了 Docker 的整个生命周期。**
+Docker 中有非常重要的三个基本概念：镜像（Image）、容器（Container）和仓库（Repository）。
 
-- **镜像（Image）**
-- **容器（Container）**
-- **仓库（Repository）**
+理解了这三个概念，就理解了 Docker 的整个生命周期。
 
-理解了这三个概念，就理解了 Docker 的整个生命周期
+![](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-build-run.jpeg)
 
-![Docker 基本概念](https://oss.javaguide.cn/github/javaguide/tools/docker/docker%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5.jpeg)
-
-### 4.1 镜像(Image):一个特殊的文件系统
+### 镜像(Image):一个特殊的文件系统
 
 **操作系统分为内核和用户空间**。对于 Linux 而言，内核启动后，会挂载 root 文件系统为其提供用户空间支持。而 Docker 镜像（Image），就相当于是一个 root 文件系统。
 
@@ -137,7 +123,7 @@ Docker 设计时，就充分利用 **Union FS** 的技术，将其设计为**分
 
 分层存储的特征还使得镜像的复用、定制变的更为容易。甚至可以用之前构建好的镜像作为基础层，然后进一步添加新的层，以定制自己所需的内容，构建新的镜像。
 
-### 4.2 容器(Container):镜像运行时的实体
+### 容器(Container):镜像运行时的实体
 
 镜像（Image）和容器（Container）的关系，就像是面向对象程序设计中的 类 和 实例 一样，镜像是静态的定义，**容器是镜像运行时的实体。容器可以被创建、启动、停止、删除、暂停等** 。
 
@@ -147,7 +133,7 @@ Docker 设计时，就充分利用 **Union FS** 的技术，将其设计为**分
 
 按照 Docker 最佳实践的要求，**容器不应该向其存储层内写入任何数据** ，容器存储层要保持无状态化。**所有的文件写入操作，都应该使用数据卷（Volume）、或者绑定宿主目录**，在这些位置的读写会跳过容器存储层，直接对宿主(或网络存储)发生读写，其性能和稳定性更高。数据卷的生存周期独立于容器，容器消亡，数据卷不会消亡。因此， **使用数据卷后，容器可以随意删除、重新 run ，数据却不会丢失。**
 
-### 4.3 仓库(Repository):集中存放镜像文件的地方
+### 仓库(Repository):集中存放镜像文件的地方
 
 镜像构建完成后，可以很容易的在当前宿主上运行，但是， **如果需要在其它服务器上使用这个镜像，我们就需要一个集中的存储、分发镜像的服务，Docker Registry 就是这样的服务。**
 
@@ -183,15 +169,28 @@ mariadb                           MariaDB is a community-developed fork of MyS�
 mysql/mysql-server                Optimized MySQL Server Docker images. Create…   650                                     [OK]
 ```
 
-在国内访问**Docker Hub** 可能会比较慢国内也有一些云服务商提供类似于 Docker Hub 的公开服务。比如 [时速云镜像库](https://www.tenxcloud.com/ "时速云镜像库")、[网易云镜像服务](https://www.163yun.com/product/repo "网易云镜像服务")、[DaoCloud 镜像市场](https://www.daocloud.io/ "DaoCloud 镜像市场")、[阿里云镜像库](https://www.aliyun.com/product/containerservice?utm_content=se_1292836 "阿里云镜像库")等。
+在国内访问 **Docker Hub** 可能会比较慢国内也有一些云服务商提供类似于 Docker Hub 的公开服务。比如 [时速云镜像库](https://www.tenxcloud.com/ "时速云镜像库")、[网易云镜像服务](https://www.163yun.com/product/repo "网易云镜像服务")、[DaoCloud 镜像市场](https://www.daocloud.io/ "DaoCloud 镜像市场")、[阿里云镜像库](https://www.aliyun.com/product/containerservice?utm_content=se_1292836 "阿里云镜像库")等。
 
-除了使用公开服务外，用户还可以在 **本地搭建私有 Docker Registry** 。Docker 官方提供了 Docker Registry 镜像，可以直接使用做为私有 Registry 服务。开源的 Docker Registry 镜像只提供了 Docker Registry API 的服务端实现，足以支持 docker 命令，不影响使用。但不包含图形界面，以及镜像维护、用户管理、访问控制等高级功能。
+除了使用公开服务外，用户还可以在 **本地搭建私有 Docker Registry** 。Docker 官方提供了 Docker Registry 镜像，可以直接使用做为私有 Registry 服务。开源的 Docker Registry 镜像只提供了 Docker Registry API 的服务端实现，足以支持 Docker 命令，不影响使用。但不包含图形界面，以及镜像维护、用户管理、访问控制等高级功能。
+
+### Image、Container 和 Repository 的关系
+
+下面这一张图很形象地展示了 Image、Container、Repository 和 Registry/Hub 这四者的关系：
+
+![Docker 架构](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-regitstry.png)
+
+- Dockerfile 是一个文本文件，包含了一系列的指令和参数，用于定义如何构建一个 Docker 镜像。运行 `docker build`命令并指定一个 Dockerfile 时，Docker 会读取 Dockerfile 中的指令，逐步构建一个新的镜像，并将其保存在本地。
+- `docker pull` 命令可以从指定的 Registry/Hub 下载一个镜像到本地，默认使用 Docker Hub。
+- `docker run` 命令可以从本地镜像创建一个新的容器并启动它。如果本地没有镜像，Docker 会先尝试从 Registry/Hub 拉取镜像。
+- `docker push` 命令可以将本地的 Docker 镜像上传到指定的 Registry/Hub。
+
+上面涉及到了一些 Docker 的基本命令，后面会详细介绍大。
 
 ---
 
-## 五 常见命令
+## 常见命令
 
-### 5.1 基本命令
+### 基本命令
 
 ```bash
 docker version # 查看docker版本
@@ -201,7 +200,9 @@ docker ps #查看正在运行的容器
 docker image prune # 清理临时的、没有被使用的镜像文件。-a, --all: 删除所有没有用的镜像，而不仅仅是临时文件；
 ```
 
-### 5.2 拉取镜像
+### 拉取镜像
+
+`docker pull` 命令默认使用的 Registry/Hub 是 Docker Hub。当你执行 docker pull 命令而没有指定任何 Registry/Hub 的地址时，Docker 会从 Docker Hub 拉取镜像。
 
 ```bash
 docker search mysql # 查看mysql相关镜像
@@ -209,7 +210,19 @@ docker pull mysql:5.7 # 拉取mysql镜像
 docker image ls # 查看所有已下载镜像
 ```
 
-### 5.3 删除镜像
+### 构建镜像
+
+运行 `docker build`命令并指定一个 Dockerfile 时，Docker 会读取 Dockerfile 中的指令，逐步构建一个新的镜像，并将其保存在本地。
+
+```bash
+#
+# imageName 是镜像名称，1.0.0 是镜像的版本号或标签
+docker build -t imageName:1.0.0 .
+```
+
+需要注意：Dockerfile 的文件名不必须为 Dockerfile，也不一定要放在构建上下文的根目录中。使用 `-f` 或 `--file` 选项，可以指定任何位置的任何文件作为 Dockerfile。当然，一般大家习惯性的会使用默认的文件名 `Dockerfile`，以及会将其置于镜像构建上下文目录中。
+
+### 删除镜像
 
 比如我们要删除我们下载的 mysql 镜像。
 
@@ -237,9 +250,21 @@ mysql                   5.7                 f6509bac4980        3 months ago    
 docker rmi f6509bac4980 #  或者 docker rmi mysql
 ```
 
-## 六 Build Ship and Run
+### 镜像推送
 
-**Docker 的概念以及常见命令基本上已经讲完，我们再来谈谈：Build, Ship, and Run。**
+`docker push` 命令用于将本地的 Docker 镜像上传到指定的 Registry/Hub。
+
+```bash
+# 将镜像推送到私有镜像仓库 Harbor
+# harbor.example.com是私有镜像仓库的地址，ubuntu是镜像的名称，18.04是镜像的版本标签
+docker push harbor.example.com/ubuntu:18.04
+```
+
+镜像推送之前，要确保本地已经构建好需要推送的 Docker 镜像。另外，务必先登录到对应的镜像仓库。
+
+## Build Ship and Run
+
+Docker 的概念以及常见命令基本上已经讲完，我们再来谈谈：Build, Ship, and Run。
 
 如果你搜索 Docker 官网，会发现如下的字样：**“Docker - Build, Ship, and Run Any App, Anywhere”**。那么 Build, Ship, and Run 到底是在干什么呢？
 
@@ -249,19 +274,46 @@ docker rmi f6509bac4980 #  或者 docker rmi mysql
 - **Ship（运输镜像）**：主机和仓库间运输，这里的仓库就像是超级码头一样。
 - **Run （运行镜像）**：运行的镜像就是一个容器，容器就是运行程序的地方。
 
-**Docker 运行过程也就是去仓库把镜像拉到本地，然后用一条命令把镜像运行起来变成容器。所以，我们也常常将 Docker 称为码头工人或码头装卸工，这和 Docker 的中文翻译搬运工人如出一辙。**
+Docker 运行过程也就是去仓库把镜像拉到本地，然后用一条命令把镜像运行起来变成容器。所以，我们也常常将 Docker 称为码头工人或码头装卸工，这和 Docker 的中文翻译搬运工人如出一辙。
 
-## 七 简单了解一下 Docker 底层原理
+## Docker 数据管理
 
-### 7.1 虚拟化技术
+在容器中管理数据主要有两种方式：
 
-首先，Docker **容器虚拟化**技术为基础的软件，那么什么是虚拟化技术呢？
+1. 数据卷（Volumes）
+2. 挂载主机目录 (Bind mounts)
+
+![Docker 数据管理](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-data-management.png)
+
+数据卷是由 Docker 管理的数据存储区域，有如下这些特点：
+
+- 可以在容器之间共享和重用。
+- 即使容器被删除，数据卷中的数据也不会被自动删除，从而确保数据的持久性。
+- 对数据卷的修改会立马生效。
+- 对数据卷的更新，不会影响镜像。
+
+```bash
+# 创建一个数据卷
+docker volume create my-vol
+# 查看所有的数据卷
+docker volume ls
+# 查看数据卷的具体信息
+docker inspect web
+# 删除指定的数据卷
+docker volume rm my-vol
+```
+
+在用 `docker run` 命令的时候，使用 `--mount` 标记来将一个或多个数据卷挂载到容器里。
+
+还可以通过 `--mount` 标记将宿主机上的文件或目录挂载到容器中，这使得容器可以直接访问宿主机的文件系统。Docker 挂载主机目录的默认权限是读写，用户也可以通过增加 `readonly` 指定为只读。
+
+## Docker 底层原理
+
+首先，Docker 是基于轻量级虚拟化技术的软件，那什么是虚拟化技术呢？
 
 简单点来说，虚拟化技术可以这样定义：
 
-> 虚拟化技术是一种资源管理技术，是将计算机的各种[实体资源](https://zh.wikipedia.org/wiki/資源_(計算機科學 "实体资源"))（[CPU](https://zh.wikipedia.org/wiki/CPU "CPU")、[内存](https://zh.wikipedia.org/wiki/内存 "内存")、[磁盘空间](https://zh.wikipedia.org/wiki/磁盘空间 "磁盘空间")、[网络适配器](https://zh.wikipedia.org/wiki/網路適配器 "网络适配器")等），予以抽象、转换后呈现出来并可供分割、组合为一个或多个电脑配置环境。由此，打破实体结构间的不可切割的障碍，使用户可以比原本的配置更好的方式来应用这些电脑硬件资源。这些资源的新虚拟部分是不受现有资源的架设方式，地域或物理配置所限制。一般所指的虚拟化资源包括计算能力和数据存储。
-
-### 7.2 Docker 基于 LXC 虚拟容器技术
+> 虚拟化技术是一种资源管理技术，是将计算机的各种[实体资源](https://zh.wikipedia.org/wiki/計算機科學 "实体资源"))（[CPU](https://zh.wikipedia.org/wiki/CPU "CPU")、[内存](https://zh.wikipedia.org/wiki/内存 "内存")、[磁盘空间](https://zh.wikipedia.org/wiki/磁盘空间 "磁盘空间")、[网络适配器](https://zh.wikipedia.org/wiki/網路適配器 "网络适配器")等），予以抽象、转换后呈现出来并可供分割、组合为一个或多个电脑配置环境。由此，打破实体结构间的不可切割的障碍，使用户可以比原本的配置更好的方式来应用这些电脑硬件资源。这些资源的新虚拟部分是不受现有资源的架设方式，地域或物理配置所限制。一般所指的虚拟化资源包括计算能力和数据存储。
 
 Docker 技术是基于 LXC（Linux container- Linux 容器）虚拟容器技术的。
 
@@ -273,9 +325,9 @@ LXC 技术主要是借助 Linux 内核中提供的 CGroup 功能和 namespace �
 
 - **namespace 是 Linux 内核用来隔离内核资源的方式。** 通过 namespace 可以让一些进程只能看到与自己相关的一部分资源，而另外一些进程也只能看到与它们自己相关的资源，这两拨进程根本就感觉不到对方的存在。具体的实现方式是把一个或多个进程的相关资源指定在同一个 namespace 中。Linux namespaces 是对全局系统资源的一种封装隔离，使得处于不同 namespace 的进程拥有独立的全局系统资源，改变一个 namespace 中的系统资源只会影响当前 namespace 里的进程，对其他 namespace 中的进程没有影响。
 
-  （以上关于 namespace 介绍内容来自<https://www.cnblogs.com/sparkdev/p/9365405.html> ，更多关于 namespace 的呢内容可以查看这篇文章 ）。
+  （以上关于 namespace 介绍内容来自<https://www.cnblogs.com/sparkdev/p/9365405.html> ，更多关于 namespace 的内容可以查看这篇文章 ）。
 
-- **CGroup 是 Control Groups 的缩写，是 Linux 内核提供的一种可以限制、记录、隔离进程组 (process groups) 所使用的物力资源 (如 cpu memory i/o 等等) 的机制。**
+- **CGroup 是 Control Groups 的缩写，是 Linux 内核提供的一种可以限制、记录、隔离进程组 (process groups) 所使用的物理资源 (如 cpu memory i/o 等等) 的机制。**
 
   （以上关于 CGroup 介绍内容来自 <https://www.ibm.com/developerworks/cn/linux/1506_cgroup/index.html> ，更多关于 CGroup 的内容可以查看这篇文章 ）。
 
@@ -283,16 +335,15 @@ LXC 技术主要是借助 Linux 内核中提供的 CGroup 功能和 namespace �
 
 两者都是将进程进行分组，但是两者的作用还是有本质区别。namespace 是为了隔离进程组之间的资源，而 cgroup 是为了对一组进程进行统一的资源监控和限制。
 
-## 八 总结
+## 总结
 
-本文主要把 Docker 中的一些常见概念做了详细的阐述，但是并不涉及 Docker 的安装、镜像的使用、容器的操作等内容。这部分东西，希望读者自己可以通过阅读书籍与官方文档的形式掌握。如果觉得官方文档阅读起来很费力的话，这里推荐一本书籍《Docker 技术入门与实战第二版》。
+本文主要把 Docker 中的一些常见概念和命令做了详细的阐述。从零到上手实战可以看[Docker 从入门到上手干事](https://javaguide.cn/tools/docker/docker-in-action.html)这篇文章，内容非常详细！
 
-## 九 推荐阅读
+另外，再给大家推荐一本质量非常高的开源书籍[《Docker 从入门到实践》](https://yeasy.gitbook.io/docker_practice/introduction/why "《Docker 从入门到实践》") ，这本书的内容非常新，毕竟书籍的内容是开源的，可以随时改进。
 
-- [10 分钟看懂 Docker 和 K8S](https://zhuanlan.zhihu.com/p/53260098 "10分钟看懂Docker和K8S")
-- [从零开始入门 K8s：详解 K8s 容器基本概念](https://www.infoq.cn/article/te70FlSyxhltL1Cr7gzM "从零开始入门 K8s：详解 K8s 容器基本概念")
+![《Docker 从入门到实践》网站首页](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-getting-started-practice-website-homepage.png)
 
-## 十 参考
+## 参考
 
 - [Linux Namespace 和 Cgroup](https://segmentfault.com/a/1190000009732550 "Linux Namespace和Cgroup")
 - [LXC vs Docker: Why Docker is Better](https://www.upguard.com/articles/docker-vs-lxc "LXC vs Docker: Why Docker is Better")

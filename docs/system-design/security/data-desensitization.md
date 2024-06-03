@@ -40,27 +40,27 @@ tag:
 
 Hutool 一个 Java 基础工具类，对文件、流、加密解密、转码、正则、线程、XML 等 JDK 方法进行封装，组成各种 Util 工具类，同时提供以下组件：
 
-|        模块        |                             介绍                             |
-| :----------------: | :----------------------------------------------------------: |
-|     hutool-aop     |          JDK 动态代理封装，提供非 IOC 下的切面支持           |
-| hutool-bloomFilter |            布隆过滤，提供一些 Hash 算法的布隆过滤            |
-|    hutool-cache    |                         简单缓存实现                         |
-|    hutool-core     |           核心，包括 Bean 操作、日期、各种 Util 等           |
-|    hutool-cron     |        定时任务模块，提供类 Crontab 表达式的定时任务         |
-|   hutool-crypto    |         加密解密模块，提供对称、非对称和摘要算法封装         |
-|     hutool-db      |        JDBC 封装后的数据操作，基于 ActiveRecord 思想         |
-|     hutool-dfa     |                 基于 DFA 模型的多关键字查找                  |
+|        模块        |                                     介绍                                      |
+| :----------------: | :---------------------------------------------------------------------------: |
+|     hutool-aop     |                   JDK 动态代理封装，提供非 IOC 下的切面支持                   |
+| hutool-bloomFilter |                    布隆过滤，提供一些 Hash 算法的布隆过滤                     |
+|    hutool-cache    |                                 简单缓存实现                                  |
+|    hutool-core     |                   核心，包括 Bean 操作、日期、各种 Util 等                    |
+|    hutool-cron     |                 定时任务模块，提供类 Crontab 表达式的定时任务                 |
+|   hutool-crypto    |                 加密解密模块，提供对称、非对称和摘要算法封装                  |
+|     hutool-db      |                 JDBC 封装后的数据操作，基于 ActiveRecord 思想                 |
+|     hutool-dfa     |                          基于 DFA 模型的多关键字查找                          |
 |    hutool-extra    | 扩展模块，对第三方封装（模板引擎、邮件、Servlet、二维码、Emoji、FTP、分词等） |
-|    hutool-http     |          基于 HttpUrlConnection 的 Http 客户端封装           |
-|     hutool-log     |                  自动识别日志实现的日志门面                  |
-|   hutool-script    |                脚本执行封装，例如 Javascript                 |
-|   hutool-setting   |       功能更强大的 Setting 配置文件和 Properties 封装        |
-|   hutool-system    |                系统参数调用封装（JVM 信息等）                |
-|    hutool-json     |                          JSON 实现                           |
-|   hutool-captcha   |                        图片验证码实现                        |
-|     hutool-poi     |               针对 POI 中 Excel 和 Word 的封装               |
-|   hutool-socket    |            基于 Java 的 NIO 和 AIO 的 Socket 封装            |
-|     hutool-jwt     |                JSON Web Token (JWT) 封装实现                 |
+|    hutool-http     |                   基于 HttpUrlConnection 的 Http 客户端封装                   |
+|     hutool-log     |                          自动识别日志实现的日志门面                           |
+|   hutool-script    |                         脚本执行封装，例如 Javascript                         |
+|   hutool-setting   |                功能更强大的 Setting 配置文件和 Properties 封装                |
+|   hutool-system    |                        系统参数调用封装（JVM 信息等）                         |
+|    hutool-json     |                                   JSON 实现                                   |
+|   hutool-captcha   |                                图片验证码实现                                 |
+|     hutool-poi     |                       针对 POI 中 Excel 和 Word 的封装                        |
+|   hutool-socket    |                    基于 Java 的 NIO 和 AIO 的 Socket 封装                     |
+|     hutool-jwt     |                         JSON Web Token (JWT) 封装实现                         |
 
 可以根据需求对每个模块单独引入，也可以通过引入`hutool-all`方式引入所有模块，本文所使用的数据脱敏工具就是在 `hutool.core` 模块。
 
@@ -130,7 +130,7 @@ public class HuToolDesensitizationTest {
 
 现在有了数据脱敏工具类，如果前端需要显示数据数据的地方比较多，我们不可能在每个地方都调用一个工具类，这样就显得代码太冗余了，那我们如何通过注解的方式优雅的完成数据脱敏呢？
 
-如果项目是基于 Spring Boot 的 web 项目，则可以利用 Spring Boot 自带的 jackson 自定义序列化实现。它的实现原来其实就是在 json 进行序列化渲染给前端时，进行脱敏。
+如果项目是基于 Spring Boot 的 web 项目，则可以利用 Spring Boot 自带的 jackson 自定义序列化实现。它的实现原理其实就是在 json 进行序列化渲染给前端时，进行脱敏。
 
 **第一步：脱敏策略的枚举。**
 

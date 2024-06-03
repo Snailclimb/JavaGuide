@@ -189,9 +189,13 @@ iframe 流的服务器开销很大，而且 IE、Chrome 等浏览器一直会处
 
 iframe 流非常不友好，强烈不推荐。
 
-### SSE (我的方式)
+### SSE (推荐)
 
 很多人可能不知道，服务端向客户端推送消息，其实除了可以用`WebSocket`这种耳熟能详的机制外，还有一种服务器发送事件(Server-Sent Events)，简称 SSE。这是一种服务器端到客户端(浏览器)的单向消息推送。
+
+大名鼎鼎的 ChatGPT 就是采用的 SSE。对于需要长时间等待响应的对话场景，ChatGPT 采用了一种巧妙的策略：它会将已经计算出的数据“推送”给用户，并利用 SSE 技术在计算过程中持续返回数据。这样做的好处是可以避免用户因等待时间过长而选择关闭页面。
+
+![ChatGPT 使用 SSE 实现对话](https://oss.javaguide.cn/github/javaguide/system-design/web-real-time-message-push/chatgpt-sse.png)
 
 SSE 基于 HTTP 协议的，我们知道一般意义上的 HTTP 协议是无法做到服务端主动向客户端推送消息的，但 SSE 是个例外，它变换了一种思路。
 
@@ -298,11 +302,20 @@ public static void sendMessage(String userId, String message) {
 
 Websocket 应该是大家都比较熟悉的一种实现消息推送的方式，上边我们在讲 SSE 的时候也和 Websocket 进行过比较。
 
-是一种在 TCP 连接上进行全双工通信的协议，建立客户端和服务器之间的通信渠道。浏览器和服务器仅需一次握手，两者之间就直接可以创建持久性的连接，并进行双向数据传输。
+这是一种在 TCP 连接上进行全双工通信的协议，建立客户端和服务器之间的通信渠道。浏览器和服务器仅需一次握手，两者之间就直接可以创建持久性的连接，并进行双向数据传输。
 
 ![Websocket 示意图](https://oss.javaguide.cn/github/javaguide/system-design/web-real-time-message-push/1460000042192394.png)
 
-SpringBoot 整合 Websocket，先引入 Websocket 相关的工具包，和 SSE 相比额外的开发成本。
+WebSocket 的工作过程可以分为以下几个步骤：
+
+1. 客户端向服务器发送一个 HTTP 请求，请求头中包含 `Upgrade: websocket` 和 `Sec-WebSocket-Key` 等字段，表示要求升级协议为 WebSocket；
+2. 服务器收到这个请求后，会进行升级协议的操作，如果支持 WebSocket，它将回复一个 HTTP 101 状态码，响应头中包含 ，`Connection: Upgrade`和 `Sec-WebSocket-Accept: xxx` 等字段、表示成功升级到 WebSocket 协议。
+3. 客户端和服务器之间建立了一个 WebSocket 连接，可以进行双向的数据传输。数据以帧（frames）的形式进行传送，而不是传统的 HTTP 请求和响应。WebSocket 的每条消息可能会被切分成多个数据帧（最小单位）。发送端会将消息切割成多个帧发送给接收端，接收端接收消息帧，并将关联的帧重新组装成完整的消息。
+4. 客户端或服务器可以主动发送一个关闭帧，表示要断开连接。另一方收到后，也会回复一个关闭帧，然后双方关闭 TCP 连接。
+
+另外，建立 WebSocket 连接之后，通过心跳机制来保持 WebSocket 连接的稳定性和活跃性。
+
+SpringBoot 整合 WebSocket，先引入 WebSocket 相关的工具包，和 SSE 相比有额外的开发成本。
 
 ```xml
 <!-- 引入websocket -->
@@ -357,6 +370,22 @@ public class WebSocketServer {
                 e.printStackTrace();
             }
         }
+    }
+}
+```
+
+服务端还需要注入`ServerEndpointerExporter`，这个 Bean 就会自动注册使用了`@ServerEndpoint`注解的 WebSocket 服务器。
+
+```java
+@Configuration
+public class WebSocketConfiguration {
+
+    /**
+     * 用于注册使用了 @ServerEndpoint 注解的 WebSocket 服务器
+     */
+    @Bean
+    public ServerEndpointExporter serverEndpointExporter() {
+        return new ServerEndpointExporter();
     }
 }
 ```

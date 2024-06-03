@@ -166,7 +166,7 @@ Linux 使用一种称为目录树的层次结构来组织文件和目录。目�
 
 下面只是给出了一些比较常用的命令。
 
-推荐一个 Linux 命令快查网站，非常不错，大家如果遗忘某些命令或者对某些命令不理解都可以在这里得到解决。Linux 命令在线速查手册：https://wangchujiang.com/linux-command/ 。
+推荐一个 Linux 命令快查网站，非常不错，大家如果遗忘某些命令或者对某些命令不理解都可以在这里得到解决。Linux 命令在线速查手册：<https://wangchujiang.com/linux-command/> 。
 
 ![ Linux 命令快查](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/linux/linux-command-search.png)
 
@@ -237,7 +237,7 @@ Linux 中的打包文件一般是以 `.tar` 结尾的，压缩的命令一般是
 
 ### 文件权限
 
-操作系统中每个文件都拥有特定的权限、所属用户和所属组。权限是操作系统用来限制资源访问的机制，在 Linux 中权限一般分为读(readable)、写(writable)和执行(excutable)，分为三组。分别对应文件的属主(owner)，属组(group)和其他用户(other)，通过这样的机制来限制哪些用户、哪些组可以对特定的文件进行什么样的操作。
+操作系统中每个文件都拥有特定的权限、所属用户和所属组。权限是操作系统用来限制资源访问的机制，在 Linux 中权限一般分为读(readable)、写(writable)和执行(executable)，分为三组。分别对应文件的属主(owner)，属组(group)和其他用户(other)，通过这样的机制来限制哪些用户、哪些组可以对特定的文件进行什么样的操作。
 
 通过 **`ls -l`** 命令我们可以 查看某个目录下的文件或目录的权限
 

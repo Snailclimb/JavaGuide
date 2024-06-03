@@ -13,7 +13,7 @@ tag:
 - **`jstat`**（JVM Statistics Monitoring Tool）: 用于收集 HotSpot 虚拟机各方面的运行数据;
 - **`jinfo`** (Configuration Info for Java) : Configuration Info for Java,显示虚拟机配置信息;
 - **`jmap`** (Memory Map for Java) : 生成堆转储快照;
-- **`jhat`** (JVM Heap Dump Browser) : 用于分析 heapdump 文件，它会建立一个 HTTP/HTML 服务器，让用户可以在浏览器上查看分析结果;
+- **`jhat`** (JVM Heap Dump Browser) : 用于分析 heapdump 文件，它会建立一个 HTTP/HTML 服务器，让用户可以在浏览器上查看分析结果。JDK9 移除了 jhat；
 - **`jstack`** (Stack Trace for Java) : 生成虚拟机当前时刻的线程快照，线程快照就是当前虚拟机内每一条线程正在执行的方法堆栈的集合。
 
 ### `jps`:查看所有 Java 进程
@@ -132,6 +132,8 @@ Server is ready.
 ```
 
 访问 <http://localhost:7000/>
+
+注意⚠️：JDK9 移除了 jhat（[JEP 241: Remove the jhat Tool](https://openjdk.org/jeps/241)），你可以使用其替代品 Eclipse Memory Analyzer Tool (MAT) 和 VisualVM，这也是官方所推荐的。
 
 ### **`jstack`** :生成虚拟机当前时刻的线程快照
 
@@ -297,16 +299,27 @@ VisualVM 提供在 Java 虚拟机 (Java Virtual Machine, JVM) 上运行的 Java 
 
 VisualVM 基于 NetBeans 平台开发，因此他一开始就具备了插件扩展功能的特性，通过插件扩展支持，VisualVM 可以做到：
 
-- **显示虚拟机进程以及进程的配置、环境信息（jps、jinfo）。**
-- **监视应用程序的 CPU、GC、堆、方法区以及线程的信息（jstat、jstack）。**
-- **dump 以及分析堆转储快照（jmap、jhat）。**
-- **方法级的程序运行性能分析，找到被调用最多、运行时间最长的方法。**
-- **离线程序快照：收集程序的运行时配置、线程 dump、内存 dump 等信息建立一个快照，可以将快照发送开发者处进行 Bug 反馈。**
-- **其他 plugins 的无限的可能性……**
+- 显示虚拟机进程以及进程的配置、环境信息（jps、jinfo）。
+- 监视应用程序的 CPU、GC、堆、方法区以及线程的信息（jstat、jstack）。
+- dump 以及分析堆转储快照（jmap、jhat）。
+- 方法级的程序运行性能分析，找到被调用最多、运行时间最长的方法。
+- 离线程序快照：收集程序的运行时配置、线程 dump、内存 dump 等信息建立一个快照，可以将快照发送开发者处进行 Bug 反馈。
+- 其他 plugins 的无限的可能性……
 
 这里就不具体介绍 VisualVM 的使用，如果想了解的话可以看:
 
 - <https://visualvm.github.io/documentation.html>
 - <https://www.ibm.com/developerworks/cn/java/j-lo-visualvm/index.html>
+
+### MAT：内存分析器工具
+
+MAT（Memory Analyzer Tool）是一款快速便捷且功能强大丰富的 JVM 堆内存离线分析工具。其通过展现 JVM 异常时所记录的运行时堆转储快照（Heap dump）状态（正常运行时也可以做堆转储分析），帮助定位内存泄漏问题或优化大内存消耗逻辑。
+
+在遇到 OOM 和 GC 问题的时候，我一般会首选使用 MAT 分析 dump 文件在，这也是该工具应用最多的一个场景。
+
+关于 MAT 的详细介绍推荐下面这两篇文章，写的很不错：
+
+- [JVM 内存分析工具 MAT 的深度讲解与实践—入门篇](https://juejin.cn/post/6908665391136899079)
+- [JVM 内存分析工具 MAT 的深度讲解与实践—进阶篇](https://juejin.cn/post/6911624328472133646)
 
 <!-- @include: @article-footer.snippet.md -->

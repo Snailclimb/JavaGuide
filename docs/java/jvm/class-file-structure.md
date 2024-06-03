@@ -97,11 +97,11 @@ ClassFile {
 |        CONSTANT_utf8_info        |      1      |   UTF-8 编码的字符串   |
 |      CONSTANT_Integer_info       |      3      |       整形字面量       |
 |       CONSTANT_Float_info        |      4      |      浮点型字面量      |
-|        CONSTANT_Long_info        |     5      |      长整型字面量      |
-|       CONSTANT_Double_info       |     6      |   双精度浮点型字面量   |
-|       CONSTANT_Class_info        |     7      |   类或接口的符号引用   |
-|       CONSTANT_String_info       |     8      |    字符串类型字面量    |
-|      CONSTANT_FieldRef_info      |     9      |     字段的符号引用     |
+|        CONSTANT_Long_info        |      5      |      长整型字面量      |
+|       CONSTANT_Double_info       |      6      |   双精度浮点型字面量   |
+|       CONSTANT_Class_info        |      7      |   类或接口的符号引用   |
+|       CONSTANT_String_info       |      8      |    字符串类型字面量    |
+|      CONSTANT_FieldRef_info      |      9      |     字段的符号引用     |
 |     CONSTANT_MethodRef_info      |     10      |   类中方法的符号引用   |
 | CONSTANT_InterfaceMethodRef_info |     11      |  接口中方法的符号引用  |
 |    CONSTANT_NameAndType_info     |     12      |  字段或方法的符号引用  |
@@ -209,7 +209,7 @@ Class 文件存储格式中对方法的描述与对字段的描述几乎采用�
 ## 参考
 
 - 《实战 Java 虚拟机》
-- Chapter 4. The class File Format - Java Virtual Machine Specification:https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-4.html
+- Chapter 4. The class File Format - Java Virtual Machine Specification: <https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-4.html>
 - 实例分析 JAVA CLASS 的文件结构：<https://coolshell.cn/articles/9229.html>
 - 《Java 虚拟机原理图解》 1.2.2、Class 文件中的常量池详解（上）：<https://blog.csdn.net/luanlouis/article/details/39960815>
 

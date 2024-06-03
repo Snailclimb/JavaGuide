@@ -93,17 +93,36 @@ Spring Cloud Gateway 和 Zuul 2.x 的差别不大，也是通过过滤器来处�
 - Github 地址： <https://github.com/spring-cloud/spring-cloud-gateway>
 - 官网： <https://spring.io/projects/spring-cloud-gateway>
 
+### OpenResty
+
+根据官方介绍：
+
+> OpenResty 是一个基于 Nginx 与 Lua 的高性能 Web 平台，其内部集成了大量精良的 Lua 库、第三方模块以及大多数的依赖项。用于方便地搭建能够处理超高并发、扩展性极高的动态 Web 应用、Web 服务和动态网关。
+
+![OpenResty 和 Nginx 以及 Lua 的关系](https://oss.javaguide.cn/github/javaguide/system-design/distributed-system/api-gatewaynginx-lua-openresty.png)
+
+OpenResty 基于 Nginx，主要还是看中了其优秀的高并发能力。不过，由于 Nginx 采用 C 语言开发，二次开发门槛较高。如果想在 Nginx 上实现一些自定义的逻辑或功能，就需要编写 C 语言的模块，并重新编译 Nginx。
+
+为了解决这个问题，OpenResty 通过实现 `ngx_lua` 和 `stream_lua` 等 Nginx 模块，把 Lua/LuaJIT 完美地整合进了 Nginx，从而让我们能够在 Nginx 内部里嵌入 Lua 脚本，使得可以通过简单的 Lua 语言来扩展网关的功能，比如实现自定义的路由规则、过滤器、缓存策略等。
+
+> Lua 是一种非常快速的动态脚本语言，它的运行速度接近于 C 语言。LuaJIT 是 Lua 的一个即时编译器，它可以显著提高 Lua 代码的执行效率。LuaJIT 将一些常用的 Lua 函数和工具库预编译并缓存，这样在下次调用时就可以直接使用缓存的字节码，从而大大加快了执行速度。
+
+关于 OpenResty 的入门以及网关安全实战推荐阅读这篇文章：[每个后端都应该了解的 OpenResty 入门以及网关安全实战](https://mp.weixin.qq.com/s/3HglZs06W95vF3tSa3KrXw)。
+
+- Github 地址： <https://github.com/openresty/openresty>
+- 官网地址： <https://openresty.org/>
+
 ### Kong
 
-Kong 是一款基于 [OpenResty](https://github.com/openresty/) （Nginx + Lua）的高性能、云原生、可扩展的网关系统，主要由 3 个组件组成：
+Kong 是一款基于 [OpenResty](https://github.com/openresty/) （Nginx + Lua）的高性能、云原生、可扩展、生态丰富的网关系统，主要由 3 个组件组成：
 
 - Kong Server：基于 Nginx 的服务器，用来接收 API 请求。
 - Apache Cassandra/PostgreSQL：用来存储操作数据。
 - Kong Dashboard：官方推荐 UI 管理工具，当然，也可以使用 RESTful 方式 管理 Admin api。
 
-> OpenResty 是一个基于 Nginx 与 Lua 的高性能 Web 平台，其内部集成了大量精良的 Lua 库、第三方模块以及大多数的依赖项。用于方便地搭建能够处理超高并发、扩展性极高的动态 Web 应用、Web 服务和动态网关。
-
 ![](https://oss.javaguide.cn/github/javaguide/system-design/distributed-system/api-gateway/kong-way.webp)
+
+由于默认使用 Apache Cassandra/PostgreSQL 存储数据，Kong 的整个架构比较臃肿，并且会带来高可用的问题。
 
 Kong 提供了插件机制来扩展其功能，插件在 API 请求响应循环的生命周期中被执行。比如在服务上启用 Zipkin 插件：
 
@@ -114,16 +133,20 @@ $ curl -X POST http://kong:8001/services/{service}/plugins \
     --data "config.sample_ratio=0.001"
 ```
 
-> Kong 本身就是一个 Lua 应用程序，并且是在 Openresty 的基础之上做了一层封装的应用。归根结底就是利用 Lua 嵌入 Nginx 的方式，赋予了 Nginx 可编程的能力，这样以插件的形式在 Nginx 这一层能够做到无限想象的事情。例如限流、安全访问策略、路由、负载均衡等等。编写一个 Kong 插件，就是按照 Kong 插件编写规范，写一个自己自定义的 Lua 脚本，然后加载到 Kong 中，最后引用即可。
+Kong 本身就是一个 Lua 应用程序，并且是在 Openresty 的基础之上做了一层封装的应用。归根结底就是利用 Lua 嵌入 Nginx 的方式，赋予了 Nginx 可编程的能力，这样以插件的形式在 Nginx 这一层能够做到无限想象的事情。例如限流、安全访问策略、路由、负载均衡等等。编写一个 Kong 插件，就是按照 Kong 插件编写规范，写一个自己自定义的 Lua 脚本，然后加载到 Kong 中，最后引用即可。
 
 ![](https://oss.javaguide.cn/github/javaguide/system-design/distributed-system/api-gateway/kong-gateway-overview.png)
+
+除了 Lua，Kong 还可以基于 Go 、JavaScript、Python 等语言开发插件，得益于对应的 PDK（插件开发工具包）。
+
+关于 Kong 插件的详细介绍，推荐阅读官方文档：<https://docs.konghq.com/gateway/latest/kong-plugins/>，写的比较详细。
 
 - Github 地址： <https://github.com/Kong/kong>
 - 官网地址： <https://konghq.com/kong>
 
 ### APISIX
 
-APISIX 是一款基于 Nginx 和 etcd 的高性能、云原生、可扩展的网关系统。
+APISIX 是一款基于 OpenResty 和 etcd 的高性能、云原生、可扩展的网关系统。
 
 > etcd 是使用 Go 语言开发的一个开源的、高可用的分布式 key-value 存储系统，使用 Raft 协议做分布式共识。
 
@@ -131,7 +154,7 @@ APISIX 是一款基于 Nginx 和 etcd 的高性能、云原生、可扩展的网
 
 ![APISIX 架构图](https://oss.javaguide.cn/github/javaguide/distributed-system/api-gateway/apisix-architecture.png)
 
-作为 NGINX 和 Kong 的替代项目，APISIX 目前已经是 Apache 顶级开源项目，并且是最快毕业的国产开源项目。国内目前已经有很多知名企业（比如金山、有赞、爱奇艺、腾讯、贝壳）使用 APISIX 处理核心的业务流量。
+作为 Nginx 和 Kong 的替代项目，APISIX 目前已经是 Apache 顶级开源项目，并且是最快毕业的国产开源项目。国内目前已经有很多知名企业（比如金山、有赞、爱奇艺、腾讯、贝壳）使用 APISIX 处理核心的业务流量。
 
 根据官网介绍：“APISIX 已经生产可用，功能、性能、架构全面优于 Kong”。
 
@@ -152,7 +175,7 @@ APISIX 同样支持定制化的插件开发。开发者除了能够使用 Lua �
 - [为什么说 Apache APISIX 是最好的 API 网关？](https://mp.weixin.qq.com/s/j8ggPGEHFu3x5ekJZyeZnA)
 - [有了 NGINX 和 Kong，为什么还需要 Apache APISIX](https://www.apiseven.com/zh/blog/why-we-need-Apache-APISIX)
 - [APISIX 技术博客](https://www.apiseven.com/zh/blog)
-- [APISIX 用户案例](https://www.apiseven.com/zh/usercases)
+- [APISIX 用户案例](https://www.apiseven.com/zh/usercases)（推荐）
 
 ### Shenyu
 
@@ -165,10 +188,24 @@ Shenyu 通过插件扩展功能，插件是 ShenYu 的灵魂，并且插件也�
 - Github 地址： <https://github.com/apache/incubator-shenyu>
 - 官网地址： <https://shenyu.apache.org/>
 
+## 如何选择？
+
+上面介绍的几个常见的网关系统，最常用的是 Spring Cloud Gateway、Kong、APISIX 这三个。
+
+对于公司业务以 Java 为主要开发语言的情况下，Spring Cloud Gateway 通常是个不错的选择，其优点有：简单易用、成熟稳定、与 Spring Cloud 生态系统兼容、Spring 社区成熟等等。不过，Spring Cloud Gateway 也有一些局限性和不足之处， 一般还需要结合其他网关一起使用比如 OpenResty。并且，其性能相比较于 Kong 和 APISIX，还是差一些。如果对性能要求比较高的话，Spring Cloud Gateway 不是一个好的选择。
+
+Kong 和 APISIX 功能更丰富，性能更强大，技术架构更贴合云原生。Kong 是开源 API 网关的鼻祖，生态丰富，用户群体庞大。APISIX 属于后来者，更优秀一些，根据 APISIX 官网介绍：“APISIX 已经生产可用，功能、性能、架构全面优于 Kong”。下面简单对比一下二者：
+
+- APISIX 基于 etcd 来做配置中心，不存在单点问题，云原生友好；而 Kong 基于 Apache Cassandra/PostgreSQL ，存在单点风险，需要额外的基础设施保障做高可用。
+- APISIX 支持热更新，并且实现了毫秒级别的热更新响应；而 Kong 不支持热更新。
+- APISIX 的性能要优于 Kong 。
+- APISIX 支持的插件更多，功能更丰富。
+
 ## 参考
 
 - Kong 插件开发教程[通俗易懂]：<https://cloud.tencent.com/developer/article/2104299>
 - API 网关 Kong 实战：<https://xie.infoq.cn/article/10e4dab2de0bdb6f2c3c93da6>
 - Spring Cloud Gateway 原理介绍和应用：<https://blog.fintopia.tech/60e27b0e2078082a378ec5ed/>
+- 微服务为什么要用到 API 网关？：<https://apisix.apache.org/zh/blog/2023/03/08/why-do-microservices-need-an-api-gateway/>
 
 <!-- @include: @article-footer.snippet.md -->

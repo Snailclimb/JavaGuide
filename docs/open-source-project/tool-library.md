@@ -10,11 +10,17 @@ icon: codelibrary-fill
 - [guava](https://github.com/google/guava "guava")：Guava 是一组核心库，其中包括新的集合类型（例如 multimap 和 multiset），不可变集合，图形库以及用于并发、I / O、哈希、原始类型、字符串等的实用程序！
 - [hutool](https://github.com/looly/hutool "hutool") : Hutool 是一个 Java 工具包，也只是一个工具包，它帮助我们简化每一行代码，减少每一个方法，让 Java 语言也可以“甜甜的”。
 - [p3c](https://github.com/alibaba/p3c "p3c")：Alibaba Java Coding Guidelines pmd implements and IDE plugin。Eclipse 和 IDEA 上都有该插件，推荐使用！
-- [arthas](https://github.com/alibaba/arthas "arthas")：Arthas 是 Alibaba 开源的 Java 诊断工具。
 - [sonarqube](https://github.com/SonarSource/sonarqube "sonarqube")：SonarQube 支持所有开发人员编写更干净，更安全的代码。
 - [checkstyle](https://github.com/checkstyle/checkstyle "checkstyle") :Checkstyle 是一种开发工具，可帮助程序员编写符合编码标准的 Java 代码。它使检查 Java 代码的过程自动化，从而使人们不必执行这项无聊（但很重要）的任务。这使其成为想要实施编码标准的项目的理想选择。
 - [pmd](https://github.com/pmd/pmd "pmd") : 可扩展的多语言静态代码分析器。
 - [spotbugs](https://github.com/spotbugs/spotbugs "spotbugs") :SpotBugs 是 FindBugs 的继任者。静态分析工具，用于查找 Java 代码中的错误。
+
+## 问题排查和性能优化
+
+- [arthas](https://github.com/alibaba/arthas "arthas")：Alibaba 开源的 Java 诊断工具，可以实时监控和诊断 Java 应用程序。它提供了丰富的命令和功能，用于分析应用程序的性能问题，包括启动过程中的资源消耗和加载时间。
+- [Async Profiler](https://github.com/async-profiler/async-profiler)：低开销的异步 Java 性能分析工具，用于收集和分析应用程序的性能数据。
+- [Spring Boot Startup Report](https://github.com/maciejwalkowiak/spring-boot-startup-report)：用于生成 Spring Boot 应用程序启动报告的工具。它可以提供详细的启动过程信息，包括每个 bean 的加载时间、自动配置的耗时等，帮助你分析和优化启动过程。
+- [Spring Startup Analyzer](https://github.com/linyimin0812/spring-startup-analyzer/blob/main/README_ZH.md)：采集 Spring 应用启动过程数据，生成交互式分析报告(HTML)，用于分析 Spring 应用启动卡点，支持 Spring Bean 异步初始化，减少优化 Spring 应用启动时间。UI 参考[Spring Boot Startup Report](https://github.com/maciejwalkowiak/spring-boot-startup-report)实现。
 
 ## 文档处理
 
@@ -23,6 +29,10 @@ icon: codelibrary-fill
 - [easyexcel](https://github.com/alibaba/easyexcel) :快速、简单避免 OOM 的 Java 处理 Excel 工具。
 - [excel-streaming-reader](https://github.com/monitorjbl/excel-streaming-reader)：Excel 流式代码风格读取工具（只支持读取 XLSX 文件），基于 Apache POI 封装，同时保留标准 POI API 的语法。
 - [myexcel](https://github.com/liaochong/myexcel)：一个集导入、导出、加密 Excel 等多项功能的工具包。
+
+### Word
+
+- [poi-tl](https://github.com/Sayi/poi-tl)：基于 Apache POI 的 Word 模板引擎，可以根据 Word 模板和数据生成 Word 文档，所见即所得！
 
 ### JSON
 
@@ -46,6 +56,11 @@ icon: codelibrary-fill
 - [EasyCaptcha](https://gitee.com/whvse/EasyCaptcha)：Java 图形验证码，支持 gif、中文、算术等类型，可用于 Java Web、JavaSE 等项目。
 - [AJ-Captcha](https://gitee.com/anji-plus/captcha)：行为验证码(滑动拼图、点选文字)，前后端(java)交互。
 - [tianai-captcha](https://gitee.com/tianai/tianai-captcha)：好看又好用的滑块验证码。
+
+## 短信&邮件
+
+- [SMS4J](https://github.com/dromara/SMS4J)：短信聚合框架，解决接入多个短信 SDK 的繁琐流程。
+- [Simple Java Mail](https://github.com/bbottema/simple-java-mail)：最简单的 Java 轻量级邮件库，同时能够发送复杂的电子邮件。
 
 ## 在线支付
 

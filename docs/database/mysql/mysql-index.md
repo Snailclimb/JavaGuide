@@ -5,7 +5,7 @@ tag:
   - MySQL
 ---
 
-> 感谢[WT-AHA](https://github.com/WT-AHA)对本文的完善，相关 PR：https://github.com/Snailclimb/JavaGuide/pull/1648 。
+> 感谢[WT-AHA](https://github.com/WT-AHA)对本文的完善，相关 PR：<https://github.com/Snailclimb/JavaGuide/pull/1648> 。
 
 但凡经历过几场面试的小伙伴，应该都清楚，数据库索引这个知识点在面试中出现的频率高到离谱。
 
@@ -23,7 +23,7 @@ tag:
 
 **优点**：
 
-- 使用索引可以大大加快 数据的检索速度（大大减少检索的数据量）, 这也是创建索引的最主要的原因。
+- 使用索引可以大大加快数据的检索速度（大大减少检索的数据量）, 减少 IO 次数，这也是创建索引的最主要的原因。
 - 通过创建唯一性索引，可以保证数据库表中每一行数据的唯一性。
 
 **缺点**：
@@ -92,7 +92,7 @@ AVL 树是计算机科学中最早被发明的自平衡二叉查找树，它的�
 
 AVL 树采用了旋转操作来保持平衡。主要有四种旋转操作：LL 旋转、RR 旋转、LR 旋转和 RL 旋转。其中 LL 旋转和 RR 旋转分别用于处理左左和右右失衡，而 LR 旋转和 RL 旋转则用于处理左右和右左失衡。
 
-由于 AVL 树需要频繁地进行旋转操作来保持平衡，因此会有较大的计算开销进而降低了查询性能。并且， 在使用 AVL 树时，每个树节点仅存储一个数据，而每次进行磁盘 IO 时只能读取一个节点的数据，如果需要查询的数据分布在多个节点上，那么就需要进行多次磁盘 IO。 **磁盘 IO 是一项耗时的操作，在设计数据库索引时，我们需要优先考虑如何最大限度地减少磁盘 IO 操作的次数。**
+由于 AVL 树需要频繁地进行旋转操作来保持平衡，因此会有较大的计算开销进而降低了数据库写操作的性能。并且， 在使用 AVL 树时，每个树节点仅存储一个数据，而每次进行磁盘 IO 时只能读取一个节点的数据，如果需要查询的数据分布在多个节点上，那么就需要进行多次磁盘 IO。 **磁盘 IO 是一项耗时的操作，在设计数据库索引时，我们需要优先考虑如何最大限度地减少磁盘 IO 操作的次数。**
 
 实际应用中，AVL 树使用的并不多。
 
@@ -104,7 +104,7 @@ AVL 树采用了旋转操作来保持平衡。主要有四种旋转操作：LL �
 2. 根节点总是黑色的；
 3. 每个叶子节点都是黑色的空节点（NIL 节点）；
 4. 如果节点是红色的，则它的子节点必须是黑色的（反之不一定）；
-5. 从根节点到叶节点或空子节点的每条路径，必须包含相同数目的黑色节点（即相同的黑色高度）。
+5. 从任意节点到它的叶子节点或空子节点的每条路径，必须包含相同数目的黑色节点（即相同的黑色高度）。
 
 ![红黑树](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/red-black-tree.png)
 
@@ -174,16 +174,15 @@ MySQL 8.x 中实现的索引新特性：
 
 ## 二级索引
 
-**二级索引（Secondary Index）又称为辅助索引，是因为二级索引的叶子节点存储的数据是主键。也就是说，通过二级索引，可以定位主键的位置。**
+二级索引（Secondary Index）的叶子节点存储的数据是主键的值，也就是说，通过二级索引可以定位主键的位置，二级索引又称为辅助索引/非主键索引。
 
-唯一索引，普通索引，前缀索引等索引属于二级索引。
+唯一索引，普通索引，前缀索引等索引都属于二级索引。
 
 PS: 不懂的同学可以暂存疑，慢慢往下看，后面会有答案的，也可以自行搜索。
 
 1. **唯一索引(Unique Key)**:唯一索引也是一种约束。唯一索引的属性列不能出现重复的数据，但是允许数据为 NULL，一张表允许创建多个唯一索引。 建立唯一索引的目的大部分时候都是为了该属性列的数据的唯一性，而不是为了查询效率。
 2. **普通索引(Index)**:普通索引的唯一作用就是为了快速查询数据，一张表允许创建多个普通索引，并允许数据重复和 NULL。
-3. **前缀索引(Prefix)**:前缀索引只适用于字符串类型的数据。前缀索引是对文本的前几个字符创建索引，相比普通索引建立的数据更小，
-   因为只取前几个字符。
+3. **前缀索引(Prefix)**:前缀索引只适用于字符串类型的数据。前缀索引是对文本的前几个字符创建索引，相比普通索引建立的数据更小，因为只取前几个字符。
 4. **全文索引(Full Text)**:全文索引主要是为了检索大文本数据中的关键字的信息，是目前搜索引擎数据库使用的一种技术。Mysql5.6 之前只有 MYISAM 引擎支持全文索引，5.6 之后 InnoDB 也支持了全文索引。
 
 二级索引:
@@ -196,7 +195,7 @@ PS: 不懂的同学可以暂存疑，慢慢往下看，后面会有答案的，�
 
 #### 聚簇索引介绍
 
-**聚簇索引（Clustered Index）即索引结构和数据一起存放的索引，并不是一种单独的索引类型。InnoDB 中的主键索引就属于聚簇索引。**
+聚簇索引（Clustered Index）即索引结构和数据一起存放的索引，并不是一种单独的索引类型。InnoDB 中的主键索引就属于聚簇索引。
 
 在 MySQL 中，InnoDB 引擎的表的 `.ibd`文件就包含了该表的索引和数据，对于 InnoDB 引擎表来说，该表的索引(B+树)的每个非叶子节点存储索引，叶子节点存储索引和索引对应的数据。
 
@@ -216,7 +215,7 @@ PS: 不懂的同学可以暂存疑，慢慢往下看，后面会有答案的，�
 
 #### 非聚簇索引介绍
 
-**非聚簇索引(Non-Clustered Index)即索引结构和数据分开存放的索引，并不是一种单独的索引类型。二级索引(辅助索引)就属于非聚簇索引。MySQL 的 MyISAM 引擎，不管主键还是非主键，使用的都是非聚簇索引。**
+非聚簇索引(Non-Clustered Index)即索引结构和数据分开存放的索引，并不是一种单独的索引类型。二级索引(辅助索引)就属于非聚簇索引。MySQL 的 MyISAM 引擎，不管主键还是非主键，使用的都是非聚簇索引。
 
 非聚簇索引的叶子节点并不一定存放数据的指针，因为二级索引的叶子节点就存放的是主键，根据主键再回表查数据。
 
@@ -224,7 +223,7 @@ PS: 不懂的同学可以暂存疑，慢慢往下看，后面会有答案的，�
 
 **优点**：
 
-更新代价比聚簇索引要小 。非聚簇索引的更新代价就没有聚簇索引那么大了，非聚簇索引的叶子节点是不存放数据的
+更新代价比聚簇索引要小 。非聚簇索引的更新代价就没有聚簇索引那么大了，非聚簇索引的叶子节点是不存放数据的。
 
 **缺点**：
 
@@ -263,7 +262,9 @@ SELECT id FROM table WHERE id=1;
 
 ### 覆盖索引
 
-如果一个索引包含（或者说覆盖）所有需要查询的字段的值，我们就称之为 **覆盖索引（Covering Index）** 。我们知道在 InnoDB 存储引擎中，如果不是主键索引，叶子节点存储的是主键+列值。最终还是要“回表”，也就是要通过主键再查找一次，这样就会比较慢。而覆盖索引就是把要查询出的列和索引是对应的，不做回表操作！
+如果一个索引包含（或者说覆盖）所有需要查询的字段的值，我们就称之为 **覆盖索引（Covering Index）** 。
+
+在 InnoDB 存储引擎中，非主键索引的叶子节点包含的是主键的值。这意味着，当使用非主键索引进行查询时，数据库会先找到对应的主键值，然后再通过主键索引来定位和检索完整的行数据。这个过程被称为“回表”。
 
 **覆盖索引即需要查询的字段正好是索引的字段，那么直接根据该索引，就可以查到数据了，而无需回表查询。**
 
@@ -314,7 +315,8 @@ CALL BatchinsertDataToCusOder(1, 1000000); # 插入100w+的随机数据
 为了能够对这 100w 数据按照 `score` 进行排序，我们需要执行下面的 SQL 语句。
 
 ```sql
-SELECT `score`,`name` FROM `cus_order` ORDER BY `score` DESC;#降序排序
+#降序排序
+SELECT `score`,`name` FROM `cus_order` ORDER BY `score` DESC;
 ```
 
 使用 `EXPLAIN` 命令分析这条 SQL 语句，通过 `Extra` 这一列的 `Using filesort` ，我们发现是没有用到覆盖索引的。
@@ -349,13 +351,99 @@ ALTER TABLE `cus_order` ADD INDEX id_score_name(score, name);
 
 ### 最左前缀匹配原则
 
-最左前缀匹配原则指的是，在使用联合索引时，**MySQL** 会根据联合索引中的字段顺序，从左到右依次到查询条件中去匹配，如果查询条件中存在与联合索引中最左侧字段相匹配的字段，则就会使用该字段过滤一批数据，直至联合索引中全部字段匹配完成，或者在执行过程中遇到范围查询（如 **`>`**、**`<`** ）才会停止匹配。对于 **`>=`**、**`<=`**、**`BETWEEN`**、**`like`** 前缀匹配的范围查询，并不会停止匹配。所以，我们在使用联合索引时，可以将区分度高的字段放在最左边，这也可以过滤更多数据。
+最左前缀匹配原则指的是在使用联合索引时，MySQL 会根据索引中的字段顺序，从左到右依次匹配查询条件中的字段。如果查询条件与索引中的最左侧字段相匹配，那么 MySQL 就会使用索引来过滤数据，这样可以提高查询效率。
 
-相关阅读：[联合索引的最左匹配原则全网都在说的一个错误结论](https://mp.weixin.qq.com/s/8qemhRg5MgXs1So5YCv0fQ)。
+最左匹配原则会一直向右匹配，直到遇到范围查询（如 >、<）为止。对于 >=、<=、BETWEEN 以及前缀匹配 LIKE 的范围查询，不会停止匹配（相关阅读：[联合索引的最左匹配原则全网都在说的一个错误结论](https://mp.weixin.qq.com/s/8qemhRg5MgXs1So5YCv0fQ)）。
+
+假设有一个联合索引`(column1, column2, column3)`，其从左到右的所有前缀为`(column1)`、`(column1, column2)`、`(column1, column2, column3)`（创建 1 个联合索引相当于创建了 3 个索引），包含这些列的所有查询都会走索引而不会全表扫描。
+
+我们在使用联合索引时，可以将区分度高的字段放在最左边，这也可以过滤更多数据。
+
+我们这里简单演示一下最左前缀匹配的效果。
+
+1、创建一个名为 `student` 的表，这张表只有 `id`、`name`、`class`这 3 个字段。
+
+```sql
+CREATE TABLE `student` (
+  `id` int NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `class` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `name_class_idx` (`name`,`class`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+```
+
+2、下面我们分别测试三条不同的 SQL 语句。
+
+![](https://oss.javaguide.cn/github/javaguide/database/mysql/leftmost-prefix-matching-rule.png)
+
+```sql
+# 可以命中索引
+SELECT * FROM student WHERE name = 'Anne Henry';
+EXPLAIN SELECT * FROM student WHERE name = 'Anne Henry' AND class = 'lIrm08RYVk';
+# 无法命中索引
+SELECT * FROM student WHERE class = 'lIrm08RYVk';
+```
+
+MySQL 8.0.13 版本引入了索引跳跃扫描（Index Skip Scan，简称 ISS），它可以在某些索引查询场景下提高查询效率。在没有 ISS 之前，不满足最左前缀匹配原则的联合索引查询中会执行全表扫描。而 ISS 允许 MySQL 在某些情况下避免全表扫描，即使查询条件不符合最左前缀。不过，这个功能比较鸡肋， 和 Oracle 中的没法比，MySQL 8.0.31 还报告了一个 bug：[Bug #109145 Using index for skip scan cause incorrect result](https://bugs.mysql.com/bug.php?id=109145)（后续版本已经修复）。个人建议知道有这个东西就好，不需要深究，实际项目也不一定能用上。
 
 ## 索引下推
 
-**索引下推（Index Condition Pushdown）** 是 **MySQL 5.6** 版本中提供的一项索引优化功能，可以在非聚簇索引遍历过程中，对索引中包含的字段先做判断，过滤掉不符合条件的记录，减少回表次数。
+**索引下推（Index Condition Pushdown，简称 ICP）** 是 **MySQL 5.6** 版本中提供的一项索引优化功能，它允许存储引擎在索引遍历过程中，执行部分 `WHERE`字句的判断条件，直接过滤掉不满足条件的记录，从而减少回表次数，提高查询效率。
+
+假设我们有一个名为 `user` 的表，其中包含 `id`, `username`, `zipcode`和 `birthdate` 4 个字段，创建了联合索引`(zipcode, birthdate)`。
+
+```sql
+CREATE TABLE `user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `zipcode` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `birthdate` date NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_username_birthdate` (`zipcode`,`birthdate`) ) ENGINE=InnoDB AUTO_INCREMENT=1001 DEFAULT CHARSET=utf8mb4;
+
+# 查询 zipcode 为 431200 且生日在 3 月的用户
+# birthdate 字段使用函数索引失效
+SELECT * FROM user WHERE zipcode = '431200' AND MONTH(birthdate) = 3;
+```
+
+- 没有索引下推之前，即使 `zipcode` 字段利用索引可以帮助我们快速定位到 `zipcode = '431200'` 的用户，但我们仍然需要对每一个找到的用户进行回表操作，获取完整的用户数据，再去判断 `MONTH(birthdate) = 3`。
+- 有了索引下推之后，存储引擎会在使用`zipcode` 字段索引查找`zipcode = '431200'` 的用户时，同时判断`MONTH(birthdate) = 3`。这样，只有同时满足条件的记录才会被返回，减少了回表次数。
+
+![](https://oss.javaguide.cn/github/javaguide/database/mysql/index-condition-pushdown.png)
+
+![](https://oss.javaguide.cn/github/javaguide/database/mysql/index-condition-pushdown-graphic-illustration.png)
+
+再来讲讲索引下推的具体原理，先看下面这张 MySQL 简要架构图。
+
+![](https://oss.javaguide.cn/javaguide/13526879-3037b144ed09eb88.png)
+
+MySQL 可以简单分为 Server 层和存储引擎层这两层。Server 层处理查询解析、分析、优化、缓存以及与客户端的交互等操作，而存储引擎层负责数据的存储和读取，MySQL 支持 InnoDB、MyISAM、Memory 等多种存储引擎。
+
+索引下推的**下推**其实就是指将部分上层（Server 层）负责的事情，交给了下层（存储引擎层）去处理。
+
+我们这里结合索引下推原理再对上面提到的例子进行解释。
+
+没有索引下推之前：
+
+- 存储引擎层先根据 `zipcode` 索引字段找到所有 `zipcode = '431200'` 的用户的主键 ID，然后二次回表查询，获取完整的用户数据；
+- 存储引擎层把所有 `zipcode = '431200'` 的用户数据全部交给 Server 层，Server 层根据`MONTH(birthdate) = 3`这一条件再进一步做筛选。
+
+有了索引下推之后：
+
+- 存储引擎层先根据 `zipcode` 索引字段找到所有 `zipcode = '431200'` 的用户，然后直接判断 `MONTH(birthdate) = 3`，筛选出符合条件的主键 ID；
+- 二次回表查询，根据符合条件的主键 ID 去获取完整的用户数据；
+- 存储引擎层把符合条件的用户数据全部交给 Server 层。
+
+可以看出，**除了可以减少回表次数之外，索引下推还可以减少存储引擎层和 Server 层的数据传输量。**
+
+最后，总结一下索引下推应用范围：
+
+1. 适用于 InnoDB 引擎和 MyISAM 引擎的查询。
+2. 适用于执行计划是 range, ref, eq_ref, ref_or_null 的范围查询。
+3. 对于 InnoDB 表，仅用于非聚簇索引。索引下推的目标是减少全行读取次数，从而减少 I/O 操作。对于 InnoDB 聚集索引，完整的记录已经读入 InnoDB 缓冲区。在这种情况下使用索引下推 不会减少 I/O。
+4. 子查询不能使用索引下推，因为子查询通常会创建临时表来处理结果，而这些临时表是没有索引的。
+5. 存储过程不能使用索引下推，因为存储引擎无法调用存储函数。
 
 ## 正确使用索引的一些建议
 
@@ -396,7 +484,7 @@ ALTER TABLE `cus_order` ADD INDEX id_score_name(score, name);
 索引失效也是慢查询的主要原因之一，常见的导致索引失效的情况有下面这些：
 
 - ~~使用 `SELECT *` 进行查询;~~ `SELECT *` 不会直接导致索引失效（如果不走索引大概率是因为 where 查询范围过大导致的），但它可能会带来一些其他的性能问题比如造成网络传输和数据处理的浪费、无法使用索引覆盖;
-- 创建了组合索引，但查询条件未准守最左匹配原则;
+- 创建了组合索引，但查询条件未遵守最左匹配原则;
 - 在索引列上进行计算、函数、类型转换等操作;
 - 以 % 开头的 LIKE 查询比如 `LIKE '%abc';`;
 - 查询条件中使用 OR，且 OR 的前后条件中有一个列没有索引，涉及的索引都不会被使用到;

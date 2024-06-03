@@ -142,11 +142,11 @@ semaphore.release();
 
 ```java
 public Semaphore(int permits) {
-  	sync = new NonfairSync(permits);
+    sync = new NonfairSync(permits);
 }
 
 public Semaphore(int permits, boolean fair) {
-  	sync = fair ? new FairSync(permits) : new NonfairSync(permits);
+    sync = fair ? new FairSync(permits) : new NonfairSync(permits);
 }
 ```
 
@@ -165,7 +165,7 @@ public Semaphore(int permits, boolean fair) {
 ```java
 // 获取1个许可证
 public void acquire() throws InterruptedException {
- 	 sync.acquireSharedInterruptibly(1);
+    sync.acquireSharedInterruptibly(1);
 }
 
 // 获取一个或者多个许可证
@@ -219,7 +219,7 @@ final int nonfairTryAcquireShared(int acquires) {
 ```java
 // 释放一个许可证
 public void release() {
-  	sync.releaseShared(1);
+    sync.releaseShared(1);
 }
 
 // 释放一个或者多个许可证
@@ -550,9 +550,9 @@ public CyclicBarrier(int parties, Runnable barrierAction) {
 ```java
 public int await() throws InterruptedException, BrokenBarrierException {
   try {
-    	return dowait(false, 0L);
+      return dowait(false, 0L);
   } catch (TimeoutException toe) {
-   	 throw new Error(toe); // cannot happen
+      throw new Error(toe); // cannot happen
   }
 }
 ```

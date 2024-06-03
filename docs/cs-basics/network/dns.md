@@ -15,12 +15,16 @@ DNS（Domain Name System）域名管理系统，是当用户使用浏览器访�
 
 ![TCP/IP 各层协议概览](https://oss.javaguide.cn/github/javaguide/cs-basics/network/network-protocol-overview.png)
 
+## DNS 服务器
+
 DNS 服务器自底向上可以依次分为以下几个层级(所有 DNS 服务器都属于以下四个类别之一):
 
 - 根 DNS 服务器。根 DNS 服务器提供 TLD 服务器的 IP 地址。目前世界上只有 13 组根服务器，我国境内目前仍没有根服务器。
 - 顶级域 DNS 服务器（TLD 服务器）。顶级域是指域名的后缀，如`com`、`org`、`net`和`edu`等。国家也有自己的顶级域，如`uk`、`fr`和`ca`。TLD 服务器提供了权威 DNS 服务器的 IP 地址。
 - 权威 DNS 服务器。在因特网上具有公共可访问主机的每个组织机构必须提供公共可访问的 DNS 记录，这些记录将这些主机的名字映射为 IP 地址。
 - 本地 DNS 服务器。每个 ISP（互联网服务提供商）都有一个自己的本地 DNS 服务器。当主机发出 DNS 请求时，该请求被发往本地 DNS 服务器，它起着代理的作用，并将该请求转发到 DNS 层次结构中。严格说来，不属于 DNS 层级结构。
+
+世界上并不是只有 13 台根服务器，这是很多人普遍的误解，网上很多文章也是这么写的。实际上，现在根服务器数量远远超过这个数量。最初确实是为 DNS 根服务器分配了 13 个 IP 地址，每个 IP 地址对应一个不同的根 DNS 服务器。然而，由于互联网的快速发展和增长，这个原始的架构变得不太适应当前的需求。为了提高 DNS 的可靠性、安全性和性能，目前这 13 个 IP 地址中的每一个都有多个服务器，截止到 2023 年底，所有根服务器之和达到了 600 多台，未来还会继续增加。
 
 ## DNS 工作流程
 
@@ -48,7 +52,7 @@ DNS 服务器自底向上可以依次分为以下几个层级(所有 DNS 服务�
 
 ![](https://oss.javaguide.cn/github/javaguide/cs-basics/network/DNS-process2.png)
 
-另外，DNS 的缓存位于本地 DNS 服务器。由于全世界的根服务器甚少，只有 400 多台，分为 13 组，且顶级域的数量也在一个可数的范围内，因此本地 DNS 通常已经缓存了很多 TLD DNS 服务器，所以在实际查找过程中，无需访问根服务器。根服务器通常是被跳过的，不请求的。
+另外，DNS 的缓存位于本地 DNS 服务器。由于全世界的根服务器甚少，只有 600 多台，分为 13 组，且顶级域的数量也在一个可数的范围内，因此本地 DNS 通常已经缓存了很多 TLD DNS 服务器，所以在实际查找过程中，无需访问根服务器。根服务器通常是被跳过的，不请求的。这样可以提高 DNS 查询的效率和速度，减少对根服务器和 TLD 服务器的负担。
 
 ## DNS 报文格式
 
@@ -68,7 +72,7 @@ DNS 报文分为查询和回答报文，两种形式的报文结构相同。
 
 ## DNS 记录
 
-DNS 服务器在响应查询时，需要查询自己的数据库，数据库中的条目被称为**资源记录(Resource Record，RR)**。RR 提供了主机名到 IP 地址的映射。RR 是一个包含了`Name`, `Value`, `Type`, `TTL`四个字段的四元组。
+DNS 服务器在响应查询时，需要查询自己的数据库，数据库中的条目被称为 **资源记录(Resource Record，RR)** 。RR 提供了主机名到 IP 地址的映射。RR 是一个包含了`Name`, `Value`, `Type`, `TTL`四个字段的四元组。
 
 ![](https://oss.javaguide.cn/github/javaguide/cs-basics/network/20210506174303797.png)
 
@@ -97,8 +101,8 @@ foo.example.com.        A      192.0.2.23
 
 ## 参考
 
-- DNS 服务器类型：https://www.cloudflare.com/zh-cn/learning/dns/dns-server-types/
-- DNS Message Resource Record Field Formats：http://www.tcpipguide.com/free/t_DNSMessageResourceRecordFieldFormats-2.htm
-- Understanding Different Types of Record in DNS Server：https://www.mustbegeek.com/understanding-different-types-of-record-in-dns-server/
+- DNS 服务器类型：<https://www.cloudflare.com/zh-cn/learning/dns/dns-server-types/>
+- DNS Message Resource Record Field Formats：<http://www.tcpipguide.com/free/t_DNSMessageResourceRecordFieldFormats-2.htm>
+- Understanding Different Types of Record in DNS Server：<https://www.mustbegeek.com/understanding-different-types-of-record-in-dns-server/>
 
 <!-- @include: @article-footer.snippet.md -->

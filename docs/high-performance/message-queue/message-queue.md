@@ -35,21 +35,23 @@ tag:
 
 除了消息队列之外，常见的中间件还有 RPC 框架、分布式组件、HTTP 服务器、任务调度框架、配置中心、数据库层的分库分表工具和数据迁移工具等等。
 
-关于中间件比较详细的介绍可以参考阿里巴巴淘系技术的一篇回答：https://www.zhihu.com/question/19730582/answer/1663627873 。
+关于中间件比较详细的介绍可以参考阿里巴巴淘系技术的一篇回答：<https://www.zhihu.com/question/19730582/answer/1663627873> 。
 
 随着分布式和微服务系统的发展，消息队列在系统设计中有了更大的发挥空间，使用消息队列可以降低系统耦合性、实现任务异步、有效地进行流量削峰，是分布式和微服务系统中重要的组件之一。
 
 ## 消息队列有什么用？
 
-通常来说，使用消息队列能为我们的系统带来下面三点好处：
+通常来说，使用消息队列主要能为我们的系统带来下面三点好处：
 
-1. **通过异步处理提高系统性能（减少响应所需时间）**
-2. **削峰/限流**
-3. **降低系统耦合性。**
+1. 通过异步处理提高系统性能（减少响应所需时间）
+2. 削峰/限流
+3. 降低系统耦合性
+
+除了这三点之外，消息队列还有其他的一些应用场景，例如实现分布式事务、顺序保证和数据流处理。
 
 如果在面试的时候你被面试官问到这个问题的话，一般情况是你在你的简历上涉及到消息队列这方面的内容，这个时候推荐你结合你自己的项目来回答。
 
-### 通过异步处理提高系统性能（减少响应所需时间）
+### 通过异步处理提高系统性能（减少响应时间）
 
 ![通过异步处理提高系统性能](https://oss.javaguide.cn/github/javaguide/Asynchronous-message-queue.png)
 
@@ -75,7 +77,9 @@ tag:
 
 **消息队列使用发布-订阅模式工作，消息发送者（生产者）发布消息，一个或多个消息接受者（消费者）订阅消息。** 从上图可以看到**消息发送者（生产者）和消息接受者（消费者）之间没有直接耦合**，消息发送者将消息发送至分布式消息队列即结束对消息的处理，消息接受者从分布式消息队列获取该消息后进行后续处理，并不需要知道该消息从何而来。**对新增业务，只要对该类消息感兴趣，即可订阅该消息，对原有系统和业务没有任何影响，从而实现网站业务的可扩展性设计**。
 
-消息接受者对消息进行过滤、处理、包装后，构造成一个新的消息类型，将消息继续发送出去，等待其他消息接受者订阅该消息。因此基于事件（消息对象）驱动的业务架构可以是一系列流程。
+例如，我们商城系统分为用户、订单、财务、仓储、消息通知、物流、风控等多个服务。用户在完成下单后，需要调用财务（扣款）、仓储（库存管理）、物流（发货）、消息通知（通知用户发货）、风控（风险评估）等服务。使用消息队列后，下单操作和后续的扣款、发货、通知等操作就解耦了，下单完成发送一个消息到消息队列，需要用到的地方去订阅这个消息进行消息即可。
+
+![](https://oss.javaguide.cn/github/javaguide/high-performance/message-queue/message-queue-decouple-mall-example.png)
 
 另外，为了避免消息队列服务器宕机造成消息丢失，会将成功发送到消息队列的消息存储在消息生产者服务器上，等消息真正被消费者服务器处理后才删除消息。在消息队列服务器宕机后，生产者服务器会选择分布式消息队列服务器集群中的其他服务器发布消息。
 
@@ -90,6 +94,18 @@ RocketMQ、 Kafka、Pulsar、QMQ 都提供了事务相关的功能。事务允�
 详细介绍可以查看 [分布式事务详解(付费)](https://javaguide.cn/distributed-system/distributed-transaction.html) 这篇文章。
 
 ![分布式事务详解 - MQ事务](https://oss.javaguide.cn/github/javaguide/csdn/07b338324a7d8894b8aef4b659b76d92.png)
+
+### 顺序保证
+
+在很多应用场景中，处理数据的顺序至关重要。消息队列保证数据按照特定的顺序被处理，适用于那些对数据顺序有严格要求的场景。大部分消息队列，例如 RocketMQ、RabbitMQ、Pulsar、Kafka，都支持顺序消息。
+
+### 延时/定时处理
+
+消息发送后不会立即被消费，而是指定一个时间，到时间后再消费。大部分消息队列，例如 RocketMQ、RabbitMQ、Pulsar、Kafka，都支持定时/延时消息。
+
+### 数据流处理
+
+针对分布式系统产生的海量数据流，如业务日志、监控数据、用户行为等，消息队列可以实时或批量收集这些数据，并将其导入到大数据处理引擎中，实现高效的数据流管理和处理。
 
 ## 使用消息队列会带来哪些问题？
 
@@ -184,9 +200,9 @@ Kafka 是一个分布式系统，由通过高性能 TCP 网络协议进行通信
 
 ![](https://oss.javaguide.cn/github/javaguide/high-performance/message-queue/kafka3.3.1-kraft-%20production-ready.png)
 
-Kafka 官网：http://kafka.apache.org/
+Kafka 官网：<http://kafka.apache.org/>
 
-Kafka 更新记录（可以直观看到项目是否还在维护）：https://kafka.apache.org/downloads
+Kafka 更新记录（可以直观看到项目是否还在维护）：<https://kafka.apache.org/downloads>
 
 #### RocketMQ
 
@@ -207,9 +223,9 @@ RocketMQ 的核心特性（摘自 RocketMQ 官网）：
 
 > Apache RocketMQ 自诞生以来，因其架构简单、业务功能丰富、具备极强可扩展性等特点被众多企业开发者以及云厂商广泛采用。历经十余年的大规模场景打磨，RocketMQ 已经成为业内共识的金融级可靠业务消息首选方案，被广泛应用于互联网、大数据、移动互联网、物联网等领域的业务场景。
 
-RocketMQ 官网：https://rocketmq.apache.org/ （文档很详细，推荐阅读）
+RocketMQ 官网：<https://rocketmq.apache.org/> （文档很详细，推荐阅读）
 
-RocketMQ 更新记录（可以直观看到项目是否还在维护）：https://github.com/apache/rocketmq/releases
+RocketMQ 更新记录（可以直观看到项目是否还在维护）：<https://github.com/apache/rocketmq/releases>
 
 #### RabbitMQ
 
@@ -228,9 +244,9 @@ RabbitMQ 发展到今天，被越来越多的人认可，这和它在易用性�
 - **易用的管理界面：** RabbitMQ 提供了一个易用的用户界面，使得用户可以监控和管理消息、集群中的节点等。在安装 RabbitMQ 的时候会介绍到，安装好 RabbitMQ 就自带管理界面。
 - **插件机制：** RabbitMQ 提供了许多插件，以实现从多方面进行扩展，当然也可以编写自己的插件。感觉这个有点类似 Dubbo 的 SPI 机制
 
-RabbitMQ 官网：https://www.rabbitmq.com/ 。
+RabbitMQ 官网：<https://www.rabbitmq.com/> 。
 
-RabbitMQ 更新记录（可以直观看到项目是否还在维护）：https://www.rabbitmq.com/news.html
+RabbitMQ 更新记录（可以直观看到项目是否还在维护）：<https://www.rabbitmq.com/news.html>
 
 #### Pulsar
 
@@ -253,9 +269,9 @@ Pulsar 的关键特性如下（摘自官网）：
 - 基于 Pulsar Functions 的 serverless connector 框架 Pulsar IO 使得数据更易移入、移出 Apache Pulsar。
 - 分层式存储可在数据陈旧时，将数据从热存储卸载到冷/长期存储（如 S3、GCS）中。
 
-Pulsar 官网：https://pulsar.apache.org/
+Pulsar 官网：<https://pulsar.apache.org/>
 
-Pulsar 更新记录（可以直观看到项目是否还在维护）：https://github.com/apache/pulsar/releases
+Pulsar 更新记录（可以直观看到项目是否还在维护）：<https://github.com/apache/pulsar/releases>
 
 #### ActiveMQ
 
@@ -284,7 +300,7 @@ Pulsar 更新记录（可以直观看到项目是否还在维护）：https://gi
 ## 参考
 
 - 《大型网站技术架构 》
-- KRaft: Apache Kafka Without ZooKeeper：https://developer.confluent.io/learn/kraft/
-- 消息队列的使用场景是什么样的？：https://mp.weixin.qq.com/s/4V1jI6RylJr7Jr9JsQe73A
+- KRaft: Apache Kafka Without ZooKeeper：<https://developer.confluent.io/learn/kraft/>
+- 消息队列的使用场景是什么样的？：<https://mp.weixin.qq.com/s/4V1jI6RylJr7Jr9JsQe73A>
 
 <!-- @include: @article-footer.snippet.md -->

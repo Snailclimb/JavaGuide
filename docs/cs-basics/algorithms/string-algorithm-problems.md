@@ -7,7 +7,7 @@ tag:
 
 > 作者：wwwxmu
 >
-> 原文地址:https://www.weiweiblog.cn/13string/
+> 原文地址:<https://www.weiweiblog.cn/13string/>
 
 ## 1. KMP 算法
 
@@ -25,7 +25,7 @@ tag:
 **除此之外，再来了解一下 BM 算法！**
 
 > BM 算法也是一种精确字符串匹配算法，它采用从右向左比较的方法，同时应用到了两种启发式规则，即坏字符规则 和好后缀规则 ，来决定向右跳跃的距离。基本思路就是从右往左进行字符匹配，遇到不匹配的字符后从坏字符表和好后缀表找一个最大的右移值，将模式串右移继续匹配。
-> 《字符串匹配的 KMP 算法》:http://www.ruanyifeng.com/blog/2013/05/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm.html
+> 《字符串匹配的 KMP 算法》:<http://www.ruanyifeng.com/blog/2013/05/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm.html>
 
 ## 2. 替换空格
 
@@ -98,56 +98,56 @@ str.toString().replace(" ","%20");
 
 ```java
 public class Main {
-	public static String replaceSpace(String[] strs) {
+ public static String replaceSpace(String[] strs) {
 
-		// 如果检查值不合法及就返回空串
-		if (!checkStrs(strs)) {
-			return "";
-		}
-		// 数组长度
-		int len = strs.length;
-		// 用于保存结果
-		StringBuilder res = new StringBuilder();
-		// 给字符串数组的元素按照升序排序(包含数字的话，数字会排在前面)
-		Arrays.sort(strs);
-		int m = strs[0].length();
-		int n = strs[len - 1].length();
-		int num = Math.min(m, n);
-		for (int i = 0; i < num; i++) {
-			if (strs[0].charAt(i) == strs[len - 1].charAt(i)) {
-				res.append(strs[0].charAt(i));
-			} else
-				break;
+  // 如果检查值不合法及就返回空串
+  if (!checkStrs(strs)) {
+   return "";
+  }
+  // 数组长度
+  int len = strs.length;
+  // 用于保存结果
+  StringBuilder res = new StringBuilder();
+  // 给字符串数组的元素按照升序排序(包含数字的话，数字会排在前面)
+  Arrays.sort(strs);
+  int m = strs[0].length();
+  int n = strs[len - 1].length();
+  int num = Math.min(m, n);
+  for (int i = 0; i < num; i++) {
+   if (strs[0].charAt(i) == strs[len - 1].charAt(i)) {
+    res.append(strs[0].charAt(i));
+   } else
+    break;
 
-		}
-		return res.toString();
+  }
+  return res.toString();
 
-	}
+ }
 
-	private static boolean checkStrs(String[] strs) {
-		boolean flag = false;
-		if (strs != null) {
-			// 遍历strs检查元素值
-			for (int i = 0; i < strs.length; i++) {
-				if (strs[i] != null && strs[i].length() != 0) {
-					flag = true;
-				} else {
-					flag = false;
-					break;
-				}
-			}
-		}
-		return flag;
-	}
+ private static boolean checkStrs(String[] strs) {
+  boolean flag = false;
+  if (strs != null) {
+   // 遍历strs检查元素值
+   for (int i = 0; i < strs.length; i++) {
+    if (strs[i] != null && strs[i].length() != 0) {
+     flag = true;
+    } else {
+     flag = false;
+     break;
+    }
+   }
+  }
+  return flag;
+ }
 
-	// 测试
-	public static void main(String[] args) {
-		String[] strs = { "customer", "car", "cat" };
-		// String[] strs = { "customer", "car", null };//空串
-		// String[] strs = {};//空串
-		// String[] strs = null;//空串
-		System.out.println(Main.replaceSpace(strs));// c
-	}
+ // 测试
+ public static void main(String[] args) {
+  String[] strs = { "customer", "car", "cat" };
+  // String[] strs = { "customer", "car", null };//空串
+  // String[] strs = {};//空串
+  // String[] strs = null;//空串
+  System.out.println(Main.replaceSpace(strs));// c
+ }
 }
 
 ```
@@ -158,8 +158,8 @@ public class Main {
 
 > LeetCode: 给定一个包含大写字母和小写字母的字符串，找到通过这些字母构造成的最长的回文串。在构造过程中，请注意区分大小写。比如`"Aa"`不能当做一个回文字符串。注
 > 意:假设字符串的长度不会超过 1010。
-
-> 回文串：“回文串”是一个正读和反读都一样的字符串，比如“level”或者“noon”等等就是回文串。——百度百科 地址：https://baike.baidu.com/item/%E5%9B%9E%E6%96%87%E4%B8%B2/1274921?fr=aladdin
+>
+> 回文串：“回文串”是一个正读和反读都一样的字符串，比如“level”或者“noon”等等就是回文串。——百度百科 地址：<https://baike.baidu.com/item/%E5%9B%9E%E6%96%87%E4%B8%B2/1274921?fr=aladdin>
 
 示例 1:
 
@@ -327,7 +327,7 @@ class Solution {
 
 一个可能的最长回文子序列为 "bb"。
 
-**动态规划：** dp[i][j] = dp[i+1][j-1] + 2 if s.charAt(i) == s.charAt(j) otherwise, dp[i][j] = Math.max(dp[i+1][j], dp[i][j-1])
+**动态规划：** `dp[i][j] = dp[i+1][j-1] + 2 if s.charAt(i) == s.charAt(j) otherwise, dp[i][j] = Math.max(dp[i+1][j], dp[i][j-1])`
 
 ```java
 class Solution {
@@ -357,14 +357,14 @@ class Solution {
 > 2. 如果"X"和"Y"都是合法的括号匹配序列,"XY"也是一个合法的括号匹配序列
 > 3. 如果"X"是一个合法的括号匹配序列,那么"(X)"也是一个合法的括号匹配序列
 > 4. 每个合法的括号序列都可以由以上规则生成。
-
+>
 > 例如: "","()","()()","((()))"都是合法的括号序列
 > 对于一个合法的括号序列我们又有以下定义它的深度:
 >
-> 1.  空串""的深度是 0
-> 2.  如果字符串"X"的深度是 x,字符串"Y"的深度是 y,那么字符串"XY"的深度为 max(x,y)
-> 3.  如果"X"的深度是 x,那么字符串"(X)"的深度是 x+1
-
+> 1. 空串""的深度是 0
+> 2. 如果字符串"X"的深度是 x,字符串"Y"的深度是 y,那么字符串"XY"的深度为 max(x,y)
+> 3. 如果"X"的深度是 x,那么字符串"(X)"的深度是 x+1
+>
 > 例如: "()()()"的深度是 1,"((()))"的深度是 3。牛牛现在给你一个合法的括号序列,需要你计算出其深度。
 
 ```plain

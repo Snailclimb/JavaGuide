@@ -28,7 +28,7 @@ category: 代码质量
 
 **常见的软件设计原则如下**：
 
-![常见的软件设计原则](https://oss.javaguide.cn/github/javaguide/system-design/basis/programming-principles%20.png)
+![常见的软件设计原则](https://oss.javaguide.cn/github/javaguide/system-design/basis/programming-principles.png)
 
 更全面的设计原则总结，可以看 **[java-design-patterns](https://github.com/iluwatar/java-design-patterns)** 和 **[hacker-laws-zh](https://github.com/nusr/hacker-laws-zh)** 这两个开源项目。
 

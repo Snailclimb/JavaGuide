@@ -36,9 +36,22 @@ icon: "xitongsheji"
 
 ## 认证授权
 
+### 权限认证
+
+- [Sa-Token](https://github.com/dromara/sa-token)：轻量级 Java 权限认证框架。支持认证授权、单点登录、踢人下线、自动续签等功能。相比于 Spring Security 和 Shiro 来说，Sa-Token 内置的开箱即用的功能更多，使用也更简单。
+- [Spring Security](https://github.com/spring-projects/spring-security)：Spring 官方安全框架，能够用于身份验证、授权、加密和会话管理，是目前使用最广泛的 Java 安全框架。
+- [Shiro](https://github.com/apache/shiro)：Java 安全框架，功能和 Spring Security 类似，但使用起来更简单。
+
+### 第三方登录
+
 - [WxJava](https://github.com/Wechat-Group/WxJava) : WxJava （微信开发 Java SDK），支持包括微信支付、开放平台、小程序、企业微信/企业号和公众号等的后端开发。
-- [Sa-Token](https://github.com/dromara/sa-token)：轻量级 Java 权限认证框架。支持认证授权、单点登录、踢人下线、自动续签等功能。
 - [JustAuth](https://github.com/justauth/JustAuth)：小而全而美的第三方登录开源组件。目前已经集成了诸如：GitHub、Gitee、支付宝、新浪微博、微信、Google、Facebook、Twitter、StackOverflow 等国内外数十家第三方平台。
+
+### 单点登录（SSO）
+
+- [CAS](https://github.com/apereo/cas)：企业多语言网络单点登录解决方案。
+- [MaxKey](https://gitee.com/dromara/MaxKey)：单点登录认证系统，提供安全、标准和开放的用户身份管理(IDM)、身份认证(AM)、单点登录(SSO)、RBAC 权限管理和资源管理等。
+- [Keycloak](https://github.com/keycloak/keycloak)：免费、开源身份认证和访问管理系统，支持高度可配置的单点登录功能。
 
 ## 网络通讯
 
@@ -75,6 +88,7 @@ icon: "xitongsheji"
 ## 搜索引擎
 
 - [Elasticsearch](https://github.com/elastic/elasticsearch "elasticsearch") （推荐）：开源，分布式，RESTful 搜索引擎。
+- [Meilisearch](https://github.com/meilisearch/meilisearch)：一个功能强大、快速、开源、易于使用和部署的搜索引擎，支持中文搜索（不需要添加额外的配置）。
 - [Solr](https://lucene.apache.org/solr/) : Solr（读作“solar”）是 Apache Lucene 项目的开源企业搜索平台。
 - [Easy-ES](https://gitee.com/dromara/easy-es)：傻瓜级 ElasticSearch 搜索引擎 ORM 框架。
 
@@ -148,9 +162,22 @@ icon: "xitongsheji"
 
 ### 缓存
 
+#### 本地缓存
+
 - [Caffeine](https://github.com/ben-manes/caffeine) : 一款强大的本地缓存解决方案，性能非常强大。
-- [Redis](https://github.com/redis/redis)：一个使用 C 语言开发的内存数据库，分布式缓存首选。
+- [Guava](https://github.com/google/guava)：Google Java 核心库，内置了比较完善的本地缓存实现。
 - [OHC](https://github.com/snazy/ohc) ：Java 堆外缓存解决方案（项目从 2021 年开始就不再进行维护了）。
+
+#### 分布式缓存
+
+- [Redis](https://github.com/redis/redis)：一个使用 C 语言开发的内存数据库，分布式缓存首选。
+- [Dragonfly](https://github.com/dragonflydb/dragonfly)：一种针对现代应用程序负荷需求而构建的内存数据库，完全兼容 Redis 和 Memcached 的 API，迁移时无需修改任何代码，号称全世界最快的内存数据库。
+- [KeyDB](https://github.com/Snapchat/KeyDB)： Redis 的一个高性能分支，专注于多线程、内存效率和高吞吐量。
+
+#### 多级缓存
+
+- [J2Cache](https://gitee.com/ld/J2Cache)：基于本地内存和 Redis 的两级 Java 缓存框架。
+- [JetCache](https://github.com/alibaba/jetcache)：阿里开源的缓存框架，支持多级缓存、分布式缓存自动刷新、 TTL 等功能。
 
 ### 消息队列
 

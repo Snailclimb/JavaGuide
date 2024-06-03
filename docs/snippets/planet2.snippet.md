@@ -1,10 +1,8 @@
 ## 星球其他资源
 
-[知识星球](../about-the-author/zhishixingqiu-two-years.md)除了提供了 **《Java 面试指北》** 、  **《Java 必读源码系列》**（目前已经整理了 Dubbo 2.6.x 、Netty 4.x、SpringBoot2.1 的源码）、 **《手写 RPC 框架》** 、**《Kafka 常见面试题/知识点总结》** 等多个专属小册，还有 读书活动、学习打卡、简历修改、免费提问、海量 Java 优质面试资源以及各种不定时的福利。
+[知识星球](../about-the-author/zhishixingqiu-two-years.md)除了提供了 **《Java 面试指北》** 、 **《Java 必读源码系列》**（目前已经整理了 Dubbo 2.6.x 、Netty 4.x、SpringBoot2.1 的源码）、 **《手写 RPC 框架》** 、**《Kafka 常见面试题/知识点总结》** 等多个专属小册，还有读书活动、学习打卡、简历修改、免费提问、海量 Java 优质面试资源以及各种不定时的福利。
 
 ![知识星球专栏概览](https://oss.javaguide.cn/xingqiu/image-20220211231206733.png)
-
-
 
 ![星球 PDF 面试手册](https://oss.javaguide.cn/xingqiu/image-20220723120918434.png)
 
@@ -22,9 +20,7 @@
 
 ![知识星球30元优惠卷](https://oss.javaguide.cn/xingqiu/xingqiuyouhuijuan-30.jpg)
 
-进入星球之后，记得查看 **[星球使用指南](https://t.zsxq.com/0d18KSarv)** （一定要看！！！） 和 **[星球优质主题汇总](https://www.yuque.com/snailclimb/rpkqw1/ncxpnfmlng08wlf1)** 。另外，建议你添加一下我的个人微信（ **javaguide1024** ，备注 **“星球”** ，生活号，球友专属），方便后续交流沟通。
-
-![个人微信](https://oss.javaguide.cn/xingqiu/weixin-guidege666.jpeg)
+进入星球之后，记得查看 **[星球使用指南](https://t.zsxq.com/0d18KSarv)** （一定要看！！！） 和 **[星球优质主题汇总](https://www.yuque.com/snailclimb/rpkqw1/ncxpnfmlng08wlf1)** 。
 
 **无任何套路，无任何潜在收费项。用心做内容，不割韭菜！**
 

@@ -655,7 +655,7 @@ private ThreadPoolExecutor executor = new ThreadPoolExecutor(10, 10,
         new LinkedBlockingQueue<Runnable>());
 
 CompletableFuture.runAsync(() -> {
- 		//...
+     //...
 }, executor);
 ```
 
@@ -714,7 +714,5 @@ CompletableFuture.runAsync(() -> {
 - [读 RocketMQ 源码，学习并发编程三大神器 - 勇哥 java 实战分享](https://mp.weixin.qq.com/s/32Ak-WFLynQfpn0Cg0N-0A)：这篇文章介绍了 RocketMQ 对`CompletableFuture`的应用。具体来说，从 RocketMQ 4.7 开始，RocketMQ 引入了 `CompletableFuture`来实现异步消息处理 。
 
 另外，建议 G 友们可以看看京东的 [asyncTool](https://gitee.com/jd-platform-opensource/asyncTool) 这个并发框架，里面大量使用到了 `CompletableFuture` 。
-
-
 
 <!-- @include: @article-footer.snippet.md -->

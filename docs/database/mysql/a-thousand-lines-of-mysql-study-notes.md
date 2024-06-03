@@ -5,7 +5,7 @@ tag:
   - MySQL
 ---
 
-> 原文地址：https://shockerli.net/post/1000-line-mysql-note/ ，JavaGuide 对本文进行了简答排版，新增了目录。
+> 原文地址：<https://shockerli.net/post/1000-line-mysql-note/> ，JavaGuide 对本文进行了简答排版，新增了目录。
 
 非常不错的总结，强烈建议保存下来，需要的时候看一看。
 
@@ -385,7 +385,7 @@ c. WHERE 子句
         -- 运算符：
             =, <=>, <>, !=, <=, <, >=, >, !, &&, ||,
             in (not) null, (not) like, (not) in, (not) between and, is (not), and, or, not, xor
-            is/is not 加上ture/false/unknown，检验某个值的真假
+            is/is not 加上true/false/unknown，检验某个值的真假
             <=>与<>功能相同，<=>可用于null比较
 d. GROUP BY 子句, 分组子句
     GROUP BY 字段/别名 [排序方式]
@@ -792,7 +792,7 @@ default();
     CREATE FUNCTION function_name (参数列表) RETURNS 返回值类型
         函数体
     - 函数名，应该合法的标识符，并且不应该与已有的关键字冲突。
-    - 一个函数应该属于某个数据库，可以使用db_name.funciton_name的形式执行当前函数所属数据库，否则为当前数据库。
+    - 一个函数应该属于某个数据库，可以使用db_name.function_name的形式执行当前函数所属数据库，否则为当前数据库。
     - 参数部分，由"参数名"和"参数类型"组成。多个参数用逗号隔开。
     - 函数体由多条可用的mysql语句，流程控制，变量声明等语句构成。
     - 多条语句应该使用 begin...end 语句块包含。

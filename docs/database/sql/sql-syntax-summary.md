@@ -257,11 +257,11 @@ ORDER BY cust_name DESC;
 **使用 WHERE 和 HAVING 过滤数据**
 
 ```sql
-SELECT cust_name, COUNT(*) AS num
+SELECT cust_name, COUNT(*) AS NumberOfOrders
 FROM Customers
 WHERE cust_email IS NOT NULL
 GROUP BY cust_name
-HAVING COUNT(*) >= 1;
+HAVING COUNT(*) > 1;
 ```
 
 **`having` vs `where`**：
@@ -396,7 +396,7 @@ WHERE prod_price BETWEEN 3 AND 5;
 
 **AND 示例**
 
-```ini
+```sql
 SELECT prod_id, prod_name, prod_price
 FROM products
 WHERE vend_id = 'DLL01' AND prod_price <= 4;
@@ -556,7 +556,7 @@ SELECT column_name(s) FROM table2;
 | `LEFT()`、`RIGHT()`  | 左边或者右边的字符     |
 | `LOWER()`、`UPPER()` | 转换为小写或者大写     |
 | `LTRIM()`、`RTRIM()` | 去除左边或者右边的空格 |
-| `LENGTH()`           | 长度，以字节为单位                   |
+| `LENGTH()`           | 长度，以字节为单位     |
 | `SOUNDEX()`          | 转换为语音值           |
 
 其中， **`SOUNDEX()`** 可以将一个字符串转换为描述其语音表示的字母数字模式。
@@ -867,7 +867,7 @@ COMMIT;
 
 ## 权限控制
 
-要授予用户帐户权限，可以用`GRANT`命令。有撤销用户的权限，可以用`REVOKE`命令。这里以 MySQl 为例，介绍权限控制实际应用。
+要授予用户帐户权限，可以用`GRANT`命令。要撤销用户的权限，可以用`REVOKE`命令。这里以 MySQL 为例，介绍权限控制实际应用。
 
 `GRANT`授予权限语法：
 
@@ -1127,7 +1127,7 @@ MySQL 不允许在触发器中使用 CALL 语句 ，也就是不能调用存储�
 
 > 注意：在 MySQL 中，分号 `;` 是语句结束的标识符，遇到分号表示该段语句已经结束，MySQL 可以开始执行了。因此，解释器遇到触发器执行动作中的分号后就开始执行，然后会报错，因为没有找到和 BEGIN 匹配的 END。
 >
-> 这时就会用到 `DELIMITER` 命令（DELIMITER 是定界符，分隔符的意思）。它是一条命令，不需要语句结束标识，语法为：`DELIMITER new_delemiter`。`new_delemiter` 可以设为 1 个或多个长度的符号，默认的是分号 `;`，我们可以把它修改为其他符号，如 `$` - `DELIMITER $` 。在这之后的语句，以分号结束，解释器不会有什么反应，只有遇到了 `$`，才认为是语句结束。注意，使用完之后，我们还应该记得把它给修改回来。
+> 这时就会用到 `DELIMITER` 命令（DELIMITER 是定界符，分隔符的意思）。它是一条命令，不需要语句结束标识，语法为：`DELIMITER new_delimiter`。`new_delimiter` 可以设为 1 个或多个长度的符号，默认的是分号 `;`，我们可以把它修改为其他符号，如 `$` - `DELIMITER $` 。在这之后的语句，以分号结束，解释器不会有什么反应，只有遇到了 `$`，才认为是语句结束。注意，使用完之后，我们还应该记得把它给修改回来。
 
 在 MySQL 5.7.2 版之前，可以为每个表定义最多六个触发器。
 

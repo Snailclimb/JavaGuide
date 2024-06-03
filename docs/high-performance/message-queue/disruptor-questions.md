@@ -25,7 +25,7 @@ LMAX 公司 2010 年在 QCon 演讲后，Disruptor 获得了业界关注，并�
 
 > “Duke 选择大奖”旨在表彰过去一年里全球个人或公司开发的、最具影响力的 Java 技术应用，由甲骨文公司主办。含金量非常高！
 
-我专门找到了 Oracle 官方当年颁布获得 Duke's Choice Awards 项目的那篇文章（文章地址：https://blogs.oracle.com/java/post/and-the-winners-arethe-dukes-choice-award） 。从文中可以看出，同年获得此大奖荣誉的还有大名鼎鼎的 Netty、JRebel 等项目。
+我专门找到了 Oracle 官方当年颁布获得 Duke's Choice Awards 项目的那篇文章（文章地址：<https://blogs.oracle.com/java/post/and-the-winners-arethe-dukes-choice-award）> 。从文中可以看出，同年获得此大奖荣誉的还有大名鼎鼎的 Netty、JRebel 等项目。
 
 ![2011 年的 Oracle 官方的 Duke's Choice Awards](https://oss.javaguide.cn/javaguide/image-20211015152323898.png)
 
@@ -115,7 +115,7 @@ Disruptor 真的很快，关于它为什么这么快这个问题，会在后文�
 ## Disruptor 为什么这么快？
 
 - **RingBuffer（环形数组）** : Disruptor 内部的 RingBuffer 是通过数组实现的。由于这个数组中的所有元素在初始化时一次性全部创建，因此这些元素的内存地址一般来说是连续的。这样做的好处是，当生产者不断往 RingBuffer 中插入新的事件对象时，这些事件对象的内存地址就能够保持连续，从而利用 CPU 缓存的局部性原理，将相邻的事件对象一起加载到缓存中，提高程序的性能。这类似于 MySQL 的预读机制，将连续的几个页预读到内存里。除此之外，RingBuffer 基于数组还支持批量操作（一次处理多个元素）、还可以避免频繁的内存分配和垃圾回收（RingBuffer 是一个固定大小的数组，当向数组中添加新元素时，如果数组已满，则新元素将覆盖掉最旧的元素）。
-- **避免了伪共享问题**：CPU 缓存内部是按照 Cache Line（缓存行）管理的，一般的 Cache Line 大小在 64 字节左右。Disruptor 为了确保目标字段独占一个 Cache Line，会在目标字段前后增加了 64 个字节的填充（前 56 个字节和后 8 个字节），这样可以避免 Cache Line 的伪共享（False Sharing）问题。
+- **避免了伪共享问题**：CPU 缓存内部是按照 Cache Line（缓存行）管理的，一般的 Cache Line 大小在 64 字节左右。Disruptor 为了确保目标字段独占一个 Cache Line，会在目标字段前后增加字节填充（前 56 个字节和后 56 个字节），这样可以避免 Cache Line 的伪共享（False Sharing）问题。同时，为了让 RingBuffer 存放数据的数组独占缓存行，数组的设计为 无效填充（128 字节）+ 有效数据。
 - **无锁设计**：Disruptor 采用无锁设计，避免了传统锁机制带来的竞争和延迟。Disruptor 的无锁实现起来比较复杂，主要是基于 CAS、内存屏障（Memory Barrier）、RingBuffer 等技术实现的。
 
 综上所述，Disruptor 之所以能够如此快，是基于一系列优化策略的综合作用，既充分利用了现代 CPU 缓存结构的特点，又避免了常见的并发问题和性能瓶颈。
@@ -134,7 +134,7 @@ CPU 缓存是通过将最近使用的数据存储在高速缓存中来实现更�
 
 ## 参考
 
-- Disruptor 高性能之道-等待策略：<http://wuwenliang.net/2022/02/28/Disruptor 高性能之道-等待策略/>
+- Disruptor 高性能之道-等待策略：<<http://wuwenliang.net/2022/02/28/Disruptor> 高性能之道-等待策略/>
 - 《Java 并发编程实战》- 40 | 案例分析（三）：高性能队列 Disruptor：<https://time.geekbang.org/column/article/98134>
 
 <!-- @include: @article-footer.snippet.md -->

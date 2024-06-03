@@ -65,11 +65,11 @@ head:
 
 如果你看过 `HashSet` 源码的话就应该知道：`HashSet` 底层就是基于 `HashMap` 实现的。（`HashSet` 的源码非常非常少，因为除了 `clone()`、`writeObject()`、`readObject()`是 `HashSet` 自己不得不实现之外，其他方法都是直接调用 `HashMap` 中的方法。
 
-|               `HashMap`                |                          `HashSet`                           |
-| :------------------------------------: | :----------------------------------------------------------: |
-|           实现了 `Map` 接口            |                       实现 `Set` 接口                        |
-|               存储键值对               |                          仅存储对象                          |
-|     调用 `put()`向 map 中添加元素      |             调用 `add()`方法向 `Set` 中添加元素              |
+|               `HashMap`                |                                                        `HashSet`                                                         |
+| :------------------------------------: | :----------------------------------------------------------------------------------------------------------------------: |
+|           实现了 `Map` 接口            |                                                     实现 `Set` 接口                                                      |
+|               存储键值对               |                                                        仅存储对象                                                        |
+|     调用 `put()`向 map 中添加元素      |                                           调用 `add()`方法向 `Set` 中添加元素                                            |
 | `HashMap` 使用键（Key）计算 `hashcode` | `HashSet` 使用成员对象来计算 `hashcode` 值，对于两个对象来说 `hashcode` 可能相同，所以`equals()`方法用来判断对象的相等性 |
 
 ### HashMap 和 TreeMap 区别
@@ -79,6 +79,15 @@ head:
 ![TreeMap 继承关系图](https://oss.javaguide.cn/github/javaguide/java/collection/treemap_hierarchy.png)
 
 实现 `NavigableMap` 接口让 `TreeMap` 有了对集合内元素的搜索的能力。
+
+`NavigableMap` 接口提供了丰富的方法来探索和操作键值对:
+
+1. **定向搜索**: `ceilingEntry()`, `floorEntry()`, `higherEntry()`和 `lowerEntry()` 等方法可以用于定位大于、小于、大于等于、小于等于给定键的最接近的键值对。
+2. **子集操作**: `subMap()`, `headMap()`和 `tailMap()` 方法可以高效地创建原集合的子集视图，而无需复制整个集合。
+3. **逆序视图**:`descendingMap()` 方法返回一个逆序的 `NavigableMap` 视图，使得可以反向迭代整个 `TreeMap`。
+4. **边界操作**: `firstEntry()`, `lastEntry()`, `pollFirstEntry()`和 `pollLastEntry()` 等方法可以方便地访问和移除元素。
+
+这些方法都是基于红黑树数据结构的属性实现的，红黑树保持平衡状态，从而保证了搜索操作的时间复杂度为 O(log n)，这让 `TreeMap` 成为了处理有序集合搜索问题的强大工具。
 
 实现`SortedMap`接口让 `TreeMap` 有了对集合中的元素根据键排序的能力。默认是按 key 的升序排序，不过我们也可以指定排序的比较器。示例代码如下：
 
@@ -138,7 +147,7 @@ TreeMap<Person, String> treeMap = new TreeMap<>((person1, person2) -> {
 });
 ```
 
-**综上，相比于`HashMap`来说 `TreeMap` 主要多了对集合中的元素根据键排序的能力以及对集合内元素的搜索的能力。**
+**综上，相比于`HashMap`来说， `TreeMap` 主要多了对集合中的元素根据键排序的能力以及对集合内元素的搜索的能力。**
 
 ### HashSet 如何检查重复?
 
@@ -230,7 +239,7 @@ for (int binCount = 0; ; ++binCount) {
     // 遍历到链表最后一个节点
     if ((e = p.next) == null) {
         p.next = newNode(hash, key, value, null);
-        // 如果链表元素个数大于等于TREEIFY_THRESHOLD（8）
+        // 如果链表元素个数大于TREEIFY_THRESHOLD（8）
         if (binCount >= TREEIFY_THRESHOLD - 1) // -1 for 1st
             // 红黑树转换（并不会直接转换成红黑树）
             treeifyBin(tab, hash);

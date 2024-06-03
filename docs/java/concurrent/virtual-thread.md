@@ -5,7 +5,7 @@ tag:
   - Java并发
 ---
 
-> 本文部分内容来自 [Lorin](https://github.com/Lorin-github)  的[PR](https://github.com/Snailclimb/JavaGuide/pull/2190)。
+> 本文部分内容来自 [Lorin](https://github.com/Lorin-github) 的[PR](https://github.com/Snailclimb/JavaGuide/pull/2190)。
 
 虚拟线程在 Java 21 正式发布，这是一项重量级的更新。
 
@@ -26,11 +26,13 @@ tag:
 ## 虚拟线程有什么优点和缺点？
 
 ### 优点
+
 - 非常轻量级：可以在单个线程中创建成百上千个虚拟线程而不会导致过多的线程创建和上下文切换。
 - 简化异步编程： 虚拟线程可以简化异步编程，使代码更易于理解和维护。它可以将异步代码编写得更像同步代码，避免了回调地狱（Callback Hell）。
 - 减少资源开销： 相比于操作系统线程，虚拟线程的资源开销更小。本质上是提高了线程的执行效率，从而减少线程资源的创建和上下文切换。
 
 ### 缺点
+
 - 不适用于计算密集型任务： 虚拟线程适用于 I/O 密集型任务，但不适用于计算密集型任务，因为密集型计算始终需要 CPU 资源作为支持。
 - 依赖于语言或库的支持： 协程需要编程语言或库提供支持。不是所有编程语言都原生支持协程。比如 Java 实现的虚拟线程。
 
@@ -44,42 +46,41 @@ Java 21 已经正式支持虚拟线程，大家可以在官网下载使用，在
 2. 使用 `Thread.ofVirtual()` 创建
 3. 使用 `ThreadFactory` 创建
 
-
 #### 使用 Thread.startVirtualThread()创建
 
 ```java
-public class VirtualThreadTest { 
-  public static void main(String[] args) { 
+public class VirtualThreadTest {
+  public static void main(String[] args) {
     CustomThread customThread = new CustomThread();
-    Thread.startVirtualThread(customThread); 
+    Thread.startVirtualThread(customThread);
   }
 }
 
-static class CustomThread implements Runnable { 
-  @Override 
-  public void run() { 
-    System.out.println("CustomThread run"); 
-  } 
+static class CustomThread implements Runnable {
+  @Override
+  public void run() {
+    System.out.println("CustomThread run");
+  }
 }
 ```
 
 #### 使用 Thread.ofVirtual()创建
 
 ```java
-public class VirtualThreadTest {  
-  public static void main(String[] args) { 
+public class VirtualThreadTest {
+  public static void main(String[] args) {
     CustomThread customThread = new CustomThread();
     // 创建不启动
     Thread unStarted = Thread.ofVirtual().unstarted(customThread);
-    unStarted.start(); 
+    unStarted.start();
     // 创建直接启动
-    Thread.ofVirtual().start(customThread); 
+    Thread.ofVirtual().start(customThread);
   }
 }
-static class CustomThread implements Runnable { 
+static class CustomThread implements Runnable {
   @Override
-  public void run() { 
-    System.out.println("CustomThread run"); 
+  public void run() {
+    System.out.println("CustomThread run");
   }
 }
 ```
@@ -87,12 +88,12 @@ static class CustomThread implements Runnable {
 #### 使用 ThreadFactory 创建
 
 ```java
-public class VirtualThreadTest { 
-  public static void main(String[] args) { 
+public class VirtualThreadTest {
+  public static void main(String[] args) {
     CustomThread customThread = new CustomThread();
     ThreadFactory factory = Thread.ofVirtual().factory();
     Thread thread = factory.newThread(customThread);
-    thread.start(); 
+    thread.start();
   }
 }
 
@@ -118,11 +119,12 @@ static class CustomThread implements Runnable {
   @Override
   public void run() {
     System.out.println("CustomThread run");
-  } 
+  }
 }
 ```
 
 ## 虚拟线程和平台线程性能对比
+
 通过多线程和虚拟线程的方式处理相同的任务，对比创建的系统线程数和处理耗时。
 
 **说明**：统计创建的系统线程中部分为后台线程（比如 GC 线程），两种场景下都一样，所以并不影响对比。

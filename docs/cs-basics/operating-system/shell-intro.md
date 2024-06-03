@@ -220,7 +220,7 @@ var="https://www.runoob.com/linux/linux-shell-variable.html"
 # 注: *为通配符, 意为匹配任意数量的任意字符
 s1=${var%%t*} #h
 s2=${var%t*}  #https://www.runoob.com/linux/linux-shell-variable.h
-s3=${var%%.*} #http://www
+s3=${var%%.*} #https://www
 s4=${var#*/}  #/www.runoob.com/linux/linux-shell-variable.html
 s5=${var##*/} #linux-shell-variable.html
 ```
@@ -348,7 +348,7 @@ a 不等于 b
 
 使用方式很简单，比如我们定义好了一个文件路径`file="/usr/learnshell/test.sh"` 如果我们想判断这个文件是否可读，可以这样`if [ -r $file ]` 如果想判断这个文件是否可写，可以这样`-w $file`，是不是很简单。
 
-## shell 流程控制
+## Shell 流程控制
 
 ### if 条件语句
 
@@ -454,7 +454,7 @@ do
 done
 ```
 
-## shell 函数
+## Shell 函数
 
 ### 不带参数没有返回值的函数
 

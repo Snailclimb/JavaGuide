@@ -1,0 +1,49 @@
+<mxfile host="Electron" modified="2023-12-28T06:26:13.675Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.2 Chrome/114.0.5735.289 Electron/25.9.4 Safari/537.36" etag="w4ErlF-yWlGjaIo9deZF" version="22.1.2" type="device">
+  <diagram id="sWMFM4V07WVYII8mS4d8" name="Page-1">
+    <mxGraphModel dx="1153" dy="664" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#F6FFF8" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="WVfZq0yCbzVCR4_tBo_1-1" value="" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;shadow=0;sketch=0;fontFamily=JetBrains Mono;fillColor=#F6FFF8;dashed=1;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DJetBrains%2BMono;" parent="1" vertex="1">
+          <mxGeometry x="95" y="240" width="870" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="WVfZq0yCbzVCR4_tBo_1-28" value="" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#e1d5e7;strokeColor=none;shadow=0;sketch=0;fontFamily=JetBrains Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DJetBrains%2BMono;" parent="1" vertex="1">
+          <mxGeometry x="149" y="330" width="381" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="WVfZq0yCbzVCR4_tBo_1-29" value="SOLID" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;shadow=0;sketch=0;fontFamily=JetBrains Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DJetBrains%2BMono;" parent="1" vertex="1">
+          <mxGeometry x="306" y="360" width="90" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="WVfZq0yCbzVCR4_tBo_1-34" value="公众号：JavaGuide&lt;br style=&quot;font-size: 16px;&quot;&gt;作者：Guide哥" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=none;fontSize=16;fontColor=#B3B3B3;rotation=0;sketch=0;shadow=0;fontFamily=JetBrains Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DJetBrains%2BMono;" parent="1" vertex="1">
+          <mxGeometry x="700" y="560" width="180" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="WVfZq0yCbzVCR4_tBo_1-35" value="单一职责" style="ellipse;whiteSpace=wrap;html=1;strokeWidth=1;fontSize=16;fillColor=#ffe6cc;strokeColor=none;shadow=0;sketch=0;fontFamily=JetBrains Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DJetBrains%2BMono;" parent="1" vertex="1">
+          <mxGeometry x="180" y="410" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WVfZq0yCbzVCR4_tBo_1-36" value="开闭" style="ellipse;whiteSpace=wrap;html=1;strokeWidth=1;fontSize=16;fillColor=#ffe6cc;strokeColor=none;shadow=0;sketch=0;fontFamily=JetBrains Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DJetBrains%2BMono;" parent="1" vertex="1">
+          <mxGeometry x="300" y="410" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WVfZq0yCbzVCR4_tBo_1-38" value="里式替换" style="ellipse;whiteSpace=wrap;html=1;strokeWidth=1;fontSize=16;fillColor=#ffe6cc;strokeColor=none;shadow=0;sketch=0;fontFamily=JetBrains Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DJetBrains%2BMono;" parent="1" vertex="1">
+          <mxGeometry x="414" y="410" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WVfZq0yCbzVCR4_tBo_1-39" value="接口隔离" style="ellipse;whiteSpace=wrap;html=1;strokeWidth=1;fontSize=16;fillColor=#ffe6cc;strokeColor=none;shadow=0;sketch=0;fontFamily=JetBrains Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DJetBrains%2BMono;" parent="1" vertex="1">
+          <mxGeometry x="230" y="495" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WVfZq0yCbzVCR4_tBo_1-40" value="依赖反转" style="ellipse;whiteSpace=wrap;html=1;strokeWidth=1;fontSize=16;fillColor=#ffe6cc;strokeColor=none;shadow=0;sketch=0;fontFamily=JetBrains Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DJetBrains%2BMono;" parent="1" vertex="1">
+          <mxGeometry x="360" y="495" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="WVfZq0yCbzVCR4_tBo_1-41" value="KISS" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#e1d5e7;strokeColor=none;shadow=0;fontSize=18;sketch=0;fontFamily=JetBrains Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DJetBrains%2BMono;" parent="1" vertex="1">
+          <mxGeometry x="570" y="440" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="WVfZq0yCbzVCR4_tBo_1-42" value="YAGNI" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#e1d5e7;strokeColor=none;shadow=0;fontSize=18;sketch=0;fontFamily=JetBrains Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DJetBrains%2BMono;" parent="1" vertex="1">
+          <mxGeometry x="570" y="340" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="WVfZq0yCbzVCR4_tBo_1-43" value="DRY" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#e1d5e7;strokeColor=none;shadow=0;fontSize=18;sketch=0;fontFamily=JetBrains Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DJetBrains%2BMono;" parent="1" vertex="1">
+          <mxGeometry x="740" y="340" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="9OUafKlKKgUiKlvtTepq-1" value="&lt;strong style=&quot;box-sizing: border-box; caret-color: rgb(59, 69, 78); color: rgb(59, 69, 78); font-size: 22px; orphans: 4; text-align: start;&quot;&gt;常见的软件设计原则&lt;/strong&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=22;fontFamily=JetBrains Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DJetBrains%2BMono;" vertex="1" parent="1">
+          <mxGeometry x="427" y="270" width="206" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -115,9 +115,9 @@ if (o instanceof String s) {
 
 ```java
 public class Outer {
-	class Inner {
-		static int age;
-	}
+  class Inner {
+    static int age;
+  }
 }
 ```
 

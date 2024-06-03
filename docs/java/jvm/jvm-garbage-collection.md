@@ -57,10 +57,10 @@ Java 堆是垃圾收集器管理的主要区域，因此也被称作 **GC 堆（
 
 ```java
 public class GCTest {
-	public static void main(String[] args) {
-		byte[] allocation1, allocation2;
-		allocation1 = new byte[30900*1024];
-	}
+  public static void main(String[] args) {
+    byte[] allocation1, allocation2;
+    allocation1 = new byte[30900*1024];
+  }
 }
 ```
 
@@ -91,14 +91,14 @@ allocation2 = new byte[900*1024];
 ```java
 public class GCTest {
 
-	public static void main(String[] args) {
-		byte[] allocation1, allocation2,allocation3,allocation4,allocation5;
-		allocation1 = new byte[32000*1024];
-		allocation2 = new byte[1000*1024];
-		allocation3 = new byte[1000*1024];
-		allocation4 = new byte[1000*1024];
-		allocation5 = new byte[1000*1024];
-	}
+  public static void main(String[] args) {
+    byte[] allocation1, allocation2,allocation3,allocation4,allocation5;
+    allocation1 = new byte[32000*1024];
+    allocation2 = new byte[1000*1024];
+    allocation3 = new byte[1000*1024];
+    allocation4 = new byte[1000*1024];
+    allocation5 = new byte[1000*1024];
+  }
 }
 
 ```
@@ -109,8 +109,8 @@ public class GCTest {
 
 大对象直接进入老年代的行为是由虚拟机动态决定的，它与具体使用的垃圾回收器和相关参数有关。大对象直接进入老年代是一种优化策略，旨在避免将大对象放入新生代，从而减少新生代的垃圾回收频率和成本。
 
-* G1 垃圾回收器会根据-XX:G1HeapRegionSize参数设置的堆区域大小和-XX:G1MixedGCLiveThresholdPercent参数设置的阈值，来决定哪些对象会直接进入老年代。
-* Parallel Scavenge 垃圾回收器中，默认情况下，并没有一个固定的阈值(XX:ThresholdTolerance是动态调整的)来决定何时直接在老年代分配大对象。而是由虚拟机根据当前的堆内存情况和历史数据动态决定。
+- G1 垃圾回收器会根据 `-XX:G1HeapRegionSize` 参数设置的堆区域大小和 `-XX:G1MixedGCLiveThresholdPercent` 参数设置的阈值，来决定哪些对象会直接进入老年代。
+- Parallel Scavenge 垃圾回收器中，默认情况下，并没有一个固定的阈值(`XX:ThresholdTolerance`是动态调整的)来决定何时直接在老年代分配大对象。而是由虚拟机根据当前的堆内存情况和历史数据动态决定。
 
 ### 长期存活的对象将进入老年代
 
@@ -122,7 +122,7 @@ public class GCTest {
 
 > 修正（[issue552](https://github.com/Snailclimb/JavaGuide/issues/552)）：“Hotspot 遍历所有对象时，按照年龄从小到大对其所占用的大小进行累积，当累积的某个年龄大小超过了 survivor 区的 50% 时（默认值是 50%，可以通过 `-XX:TargetSurvivorRatio=percent` 来设置，参见 [issue1199](https://github.com/Snailclimb/JavaGuide/issues/1199) ），取这个年龄和 MaxTenuringThreshold 中更小的一个值，作为新的晋升年龄阈值”。
 >
-> jdk8 官方文档引用：https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html 。
+> jdk8 官方文档引用：<https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html>。
 >
 > ![](https://oss.javaguide.cn/java-guide-blog/image-20210523201742303.png)
 >
@@ -233,7 +233,6 @@ public class ReferenceCountingGc {
 - 方法区中常量引用的对象
 - 所有被同步锁持有的对象
 - JNI（Java Native Interface）引用的对象
-
 
 **对象可以被回收，就代表一定会被回收吗？**
 
@@ -465,6 +464,8 @@ JDK1.8 默认使用的是 Parallel Scavenge + Parallel Old，如果指定了-XX:
 - **无法处理浮动垃圾；**
 - **它使用的回收算法-“标记-清除”算法会导致收集结束时会有大量空间碎片产生。**
 
+**CMS 垃圾回收器在 Java 9 中已经被标记为过时(deprecated)，并在 Java 14 中被移除。**
+
 ### G1 收集器
 
 **G1 (Garbage-First) 是一款面向服务器的垃圾收集器,主要针对配备多颗处理器及大容量内存的机器. 以极高概率满足 GC 停顿时间要求的同时,还具备高吞吐量性能特征.**
@@ -493,14 +494,22 @@ G1 收集器的运作大致分为以下几个步骤：
 
 与 CMS 中的 ParNew 和 G1 类似，ZGC 也采用标记-复制算法，不过 ZGC 对该算法做了重大改进。
 
-在 ZGC 中出现 Stop The World 的情况会更少！
+ZGC 可以将暂停时间控制在几毫秒以内，且暂停时间不受堆内存大小的影响，出现 Stop The World 的情况会更少，但代价是牺牲了一些吞吐量。ZGC 最大支持 16TB 的堆内存。
 
-Java11 的时候 ，ZGC 还在试验阶段。经过多个版本的迭代，不断的完善和修复问题，ZGC 在 Java 15 已经可以正式使用了！
+ZGC 在 Java11 中引入，处于试验阶段。经过多个版本的迭代，不断的完善和修复问题，ZGC 在 Java15 已经可以正式使用了。
 
-不过，默认的垃圾回收器依然是 G1。你可以通过下面的参数启动 ZGC：
+不过，默认的垃圾回收器依然是 G1。你可以通过下面的参数启用 ZGC：
 
 ```bash
-$ java -XX:+UseZGC className
+java -XX:+UseZGC className
+```
+
+在 Java21 中，引入了分代 ZGC，暂停时间可以缩短到 1 毫秒以内。
+
+你可以通过下面的参数启用分代 ZGC：
+
+```bash
+java -XX:+UseZGC -XX:+ZGenerational className
 ```
 
 关于 ZGC 收集器的详细介绍推荐阅读美团技术团队的 [新一代垃圾回收器 ZGC 的探索与实践](https://tech.meituan.com/2020/08/06/new-zgc-practice-in-meituan.html) 这篇文章。
@@ -508,7 +517,6 @@ $ java -XX:+UseZGC className
 ## 参考
 
 - 《深入理解 Java 虚拟机：JVM 高级特性与最佳实践（第二版》
-- https://my.oschina.net/hosee/blog/644618
-- <https://docs.oracle.com/javase/specs/jvms/se8/html/index.html>
+- The Java® Virtual Machine Specification - Java SE 8 Edition：<https://docs.oracle.com/javase/specs/jvms/se8/html/index.html>
 
 <!-- @include: @article-footer.snippet.md -->

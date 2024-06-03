@@ -13,7 +13,7 @@ tag:
 
 ### Trie 树
 
-**Trie 树** 也称为字典树、单词查找树，哈系树的一种变种，通常被用于字符串匹配，用来解决在一组字符串集合中快速查找某个字符串的问题。像浏览器搜索的关键词提示一般就是基于 Trie 树来做的。
+**Trie 树** 也称为字典树、单词查找树，哈希树的一种变种，通常被用于字符串匹配，用来解决在一组字符串集合中快速查找某个字符串的问题。像浏览器搜索的关键词提示就可以基于 Trie 树来做的。
 
 ![浏览器 Trie 树效果展示](https://oss.javaguide.cn/github/javaguide/system-design/security/brower-trie.png)
 
@@ -32,9 +32,9 @@ tag:
 
 可以看出， **Trie 树的核心原理其实很简单，就是通过公共前缀来提高字符串匹配效率。**
 
-[Apache Commons Collecions](https://mvnrepository.com/artifact/org.apache.commons/commons-collections4) 这个库中就有 Trie 树实现：
+[Apache Commons Collections](https://mvnrepository.com/artifact/org.apache.commons/commons-collections4) 这个库中就有 Trie 树实现：
 
-![Apache Commons Collecions 中的 Trie 树实现](https://oss.javaguide.cn/github/javaguide/system-design/security/common-collections-trie.png)
+![Apache Commons Collections 中的 Trie 树实现](https://oss.javaguide.cn/github/javaguide/system-design/security/common-collections-trie.png)
 
 ```java
 Trie<String, String> trie = new PatriciaTrie<>();
@@ -48,11 +48,17 @@ assertEquals("{Abi=doctor, Abigail=student}", trie.prefixMap("Abi").toString());
 assertEquals("{Chris=doctor, Christina=student}", trie.prefixMap("Chr").toString());
 ```
 
+Trie 树是一种利用空间换时间的数据结构，占用的内存会比较大。也正是因为这个原因，实际工程项目中都是使用的改进版 Trie 树例如双数组 Trie 树（Double-Array Trie，DAT）。
+
+DAT 的设计者是日本的 Aoe Jun-ichi，Mori Akira 和 Sato Takuya，他们在 1989 年发表了一篇论文[《An Efficient Implementation of Trie Structures》](https://www.co-ding.com/assets/pdf/dat.pdf)，详细介绍了 DAT 的构造和应用，原作者写的示例代码地址：<https://github.com/komiya-atsushi/darts-java/blob/e2986a55e648296cc0a6244ae4a2e457cd89fb82/src/main/java/darts/DoubleArrayTrie.java>。相比较于 Trie 树，DAT 的内存占用极低，可以达到 Trie 树内存的 1%左右。DAT 在中文分词、自然语言处理、信息检索等领域有广泛的应用，是一种非常优秀的数据结构。
+
+### AC 自动机
+
 Aho-Corasick（AC）自动机是一种建立在 Trie 树上的一种改进算法，是一种多模式匹配算法，由贝尔实验室的研究人员 Alfred V. Aho 和 Margaret J.Corasick 发明。
 
-AC 自动机算法使用 Trie 树来存放模式串的前缀，通过失败匹配指针（失配指针）来处理匹配失败的跳转。
+AC 自动机算法使用 Trie 树来存放模式串的前缀，通过失败匹配指针（失配指针）来处理匹配失败的跳转。关于 AC 自动机的详细介绍，可以查看这篇文章：[地铁十分钟 | AC 自动机](https://zhuanlan.zhihu.com/p/146369212)。
 
-相关阅读：[地铁十分钟 | AC 自动机](https://zhuanlan.zhihu.com/p/146369212)
+如果使用上面提到的 DAT 来表示 AC 自动机 ，就可以兼顾两者的优点，得到一种高效的多模式匹配算法。Github 上已经有了开源 Java 实现版本：<https://github.com/hankcs/AhoCorasickDoubleArrayTrie> 。
 
 ### DFA
 

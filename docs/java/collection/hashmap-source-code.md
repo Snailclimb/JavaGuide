@@ -90,7 +90,7 @@ public class HashMap<K,V> extends AbstractMap<K,V> implements Map<K,V>, Cloneabl
     static final int MIN_TREEIFY_CAPACITY = 64;
     // 存储元素的数组，总是2的幂次倍
     transient Node<k,v>[] table;
-    // 存放具体元素的集
+    // 一个包含了映射中所有键值对的集合视图
     transient Set<map.entry<k,v>> entrySet;
     // 存放元素的个数，注意这个不等于数组的长度。
     transient int size;
@@ -265,7 +265,6 @@ HashMap 只提供了 put 用于添加元素，putVal 方法只是给 put 方法�
 2. 如果定位到的数组位置有元素就和要插入的 key 比较，如果 key 相同就直接覆盖，如果 key 不相同，就判断 p 是否是一个树节点，如果是就调用`e = ((TreeNode<K,V>)p).putTreeVal(this, tab, hash, key, value)`将元素添加进入。如果不是就遍历链表插入(插入的是链表尾部)。
 
 ![ ](https://oss.javaguide.cn/github/javaguide/database/sql/put.png)
-
 
 ```java
 public V put(K key, V value) {
@@ -498,7 +497,6 @@ final Node<K,V>[] resize() {
     return newTab;
 }
 ```
-
 
 ## HashMap 常用方法测试
 

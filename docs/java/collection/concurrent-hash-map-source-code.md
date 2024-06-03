@@ -5,7 +5,7 @@ tag:
   - Java集合
 ---
 
-> 本文来自公众号：末读代码的投稿，原文地址：https://mp.weixin.qq.com/s/AHWzboztt53ZfFZmsSnMSw 。
+> 本文来自公众号：末读代码的投稿，原文地址：<https://mp.weixin.qq.com/s/AHWzboztt53ZfFZmsSnMSw> 。
 
 上一篇文章介绍了 HashMap 源码，反响不错，也有很多同学发表了自己的观点，这次又来了，这次是 `ConcurrentHashMap` 了，作为线程安全的 HashMap ，它的使用频率也是很高。那么它的存储结构和实现原理是怎么样的呢？
 
@@ -328,7 +328,7 @@ private void rehash(HashEntry<K,V> node) {
         HashEntry<K,V> e = oldTable[i];
         if (e != null) {
             HashEntry<K,V> next = e.next;
-            // 计算新的位置，新的位置只可能是不便或者是老的位置+老的容量。
+            // 计算新的位置，新的位置只可能是不变或者是老的位置+老的容量。
             int idx = e.hash & sizeMask;
             if (next == null)   //  Single node on list
                 // 如果当前位置还不是链表，只是一个元素，直接赋值
@@ -337,7 +337,7 @@ private void rehash(HashEntry<K,V> node) {
                 // 如果是链表了
                 HashEntry<K,V> lastRun = e;
                 int lastIdx = idx;
-                // 新的位置只可能是不便或者是老的位置+老的容量。
+                // 新的位置只可能是不变或者是老的位置+老的容量。
                 // 遍历结束后，lastRun 后面的元素位置都是相同的
                 for (HashEntry<K,V> last = next; last != null; last = last.next) {
                     int k = last.hash & sizeMask;
@@ -439,10 +439,10 @@ private final Node<K,V>[] initTable() {
 }
 ```
 
-从源码中可以发现 `ConcurrentHashMap` 的初始化是通过**自旋和 CAS** 操作完成的。里面需要注意的是变量 `sizeCtl` ，它的值决定着当前的初始化状态。
+从源码中可以发现 `ConcurrentHashMap` 的初始化是通过**自旋和 CAS** 操作完成的。里面需要注意的是变量 `sizeCtl` （sizeControl 的缩写），它的值决定着当前的初始化状态。
 
-1. -1 说明正在初始化
-2. -N 说明有 N-1 个线程正在进行扩容
+1. -1 说明正在初始化，其他线程需要自旋等待
+2. -N 说明 table 正在进行扩容，高 16 位表示扩容的标识戳，低 16 位减 1 为正在进行扩容的线程数
 3. 0 表示 table 初始化大小，如果 table 没有初始化
 4. \>0 表示 table 扩容的阈值，如果 table 已经初始化。
 

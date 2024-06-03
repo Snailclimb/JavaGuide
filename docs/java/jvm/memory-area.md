@@ -125,16 +125,34 @@ Java 堆是垃圾收集器管理的主要区域，因此也被称作 **GC 堆（
 
 **JDK 8 版本之后 PermGen(永久代) 已被 Metaspace(元空间) 取代，元空间使用的是本地内存。** （我会在方法区这部分内容详细介绍到）。
 
-大部分情况，对象都会首先在 Eden 区域分配，在一次新生代垃圾回收后，如果对象还存活，则会进入 S0 或者 S1，并且对象的年龄还会加 1(Eden 区->Survivor 区后对象的初始年龄变为 1)，当它的年龄增加到一定程度（默认为 15 岁），就会被晋升到老年代中。对象晋升到老年代的年龄阈值，可以通过参数 `-XX:MaxTenuringThreshold` 来设置。
+大部分情况，对象都会首先在 Eden 区域分配，在一次新生代垃圾回收后，如果对象还存活，则会进入 S0 或者 S1，并且对象的年龄还会加 1(Eden 区->Survivor 区后对象的初始年龄变为 1)，当它的年龄增加到一定程度（默认为 15 岁），就会被晋升到老年代中。对象晋升到老年代的年龄阈值，可以通过参数 `-XX:MaxTenuringThreshold` 来设置。不过，设置的值应该在 0-15，否则会爆出以下错误：
 
-> **🐛 修正（参见：[issue552](https://github.com/Snailclimb/JavaGuide/issues/552)）**：“Hotspot 遍历所有对象时，按照年龄从小到大对其所占用的大小进行累积，当累积的某个年龄大小超过了 survivor 区的一半时，取这个年龄和 MaxTenuringThreshold 中更小的一个值，作为新的晋升年龄阈值”。
+```bash
+MaxTenuringThreshold of 20 is invalid; must be between 0 and 15
+```
+
+**为什么年龄只能是 0-15? **
+
+因为记录年龄的区域在对象头中，这个区域的大小通常是 4 位。这 4 位可以表示的最大二进制数字是 1111，即十进制的 15。因此，对象的年龄被限制为 0 到 15。
+
+这里我们简单结合对象布局来详细介绍一下。
+
+在 HotSpot 虚拟机中，对象在内存中存储的布局可以分为 3 块区域：对象头（Header）、实例数据（Instance Data）和对齐填充（Padding）。其中，对象头包括两部分：标记字段（Mark Word）和类型指针（Klass Word）。关于对象内存布局的详细介绍，后文会介绍到，这里就不重复提了。
+
+这个年龄信息就是在标记字段中存放的（标记字段还存放了对象自身的其他信息比如哈希码、锁状态信息等等）。`markOop.hpp`定义了标记字（mark word）的结构：
+
+![标记字段结构](https://oss.javaguide.cn/github/javaguide/java/jvm/hotspot-markOop.hpp..png)
+
+可以看到对象年龄占用的大小确实是 4 位。
+
+> **🐛 修正（参见：[issue552](https://github.com/Snailclimb/JavaGuide/issues/552)）**：“Hotspot 遍历所有对象时，按照年龄从小到大对其所占用的大小进行累加，当累加到某个年龄时，所累加的大小超过了 Survivor 区的一半，则取这个年龄和 `MaxTenuringThreshold` 中更小的一个值，作为新的晋升年龄阈值”。
 >
 > **动态年龄计算的代码如下**
 >
 > ```c++
 > uint ageTable::compute_tenuring_threshold(size_t survivor_capacity) {
-> 	//survivor_capacity是survivor空间的大小
-> size_t desired_survivor_size = (size_t)((((double) survivor_capacity)*TargetSurvivorRatio)/100);
+>  //survivor_capacity是survivor空间的大小
+> size_t desired_survivor_size = (size_t)((((double) survivor_capacity)*TargetSurvivorRatio)/100);//TargetSurvivorRatio 为50
 > size_t total = 0;
 > uint age = 1;
 > while (age < table_size) {
@@ -143,7 +161,7 @@ Java 堆是垃圾收集器管理的主要区域，因此也被称作 **GC 堆（
 > age++;
 > }
 > uint result = age < MaxTenuringThreshold ? age : MaxTenuringThreshold;
-> 	...
+>   ...
 > }
 > ```
 
@@ -171,7 +189,7 @@ Java 堆是垃圾收集器管理的主要区域，因此也被称作 **GC 堆（
 
 ![](https://oss.javaguide.cn/github/javaguide/java/jvm/20210425134508117.png)
 
-1、整个永久代有一个 JVM 本身设置的固定大小上限，无法进行调整，而元空间使用的是本地内存，受本机可用内存的限制，虽然元空间仍旧可能溢出，但是比原来出现的几率会更小。
+1、整个永久代有一个 JVM 本身设置的固定大小上限，无法进行调整（也就是受到 JVM 内存的限制），而元空间使用的是本地内存，受本机可用内存的限制，虽然元空间仍旧可能溢出，但是比原来出现的几率会更小。
 
 > 当元空间溢出时会得到如下错误：`java.lang.OutOfMemoryError: MetaSpace`
 
@@ -180,6 +198,8 @@ Java 堆是垃圾收集器管理的主要区域，因此也被称作 **GC 堆（
 2、元空间里面存放的是类的元数据，这样加载多少类的元数据就不由 `MaxPermSize` 控制了, 而由系统的实际可用空间来控制，这样能加载的类就更多了。
 
 3、在 JDK8，合并 HotSpot 和 JRockit 的代码时, JRockit 从来没有一个叫永久代的东西, 合并之后就没有必要额外的设置这么一个永久代的地方了。
+
+4、永久代会为 GC 带来不必要的复杂度，并且回收效率偏低。
 
 **方法区常用参数有哪些？**
 
@@ -260,7 +280,7 @@ JDK1.4 中新加入的 **NIO（Non-Blocking I/O，也被称为 New I/O）**，�
 
 类似的概念还有 **堆外内存** 。在一些文章中将直接内存等价于堆外内存，个人觉得不是特别准确。
 
-堆外内存就是把内存对象分配在堆（新生代+老年代+永久代）以外的内存，这些内存直接受操作系统管理（而不是虚拟机），这样做的结果就是能够在一定程度上减少垃圾回收对应用程序造成的影响。
+堆外内存就是把内存对象分配在堆外的内存，这些内存直接受操作系统管理（而不是虚拟机），这样做的结果就是能够在一定程度上减少垃圾回收对应用程序造成的影响。
 
 ## HotSpot 虚拟机对象探秘
 
@@ -312,9 +332,12 @@ Java 对象的创建过程我建议最好是能默写出来，并且要掌握每
 
 ### 对象的内存布局
 
-在 Hotspot 虚拟机中，对象在内存中的布局可以分为 3 块区域：**对象头**、**实例数据**和**对齐填充**。
+在 Hotspot 虚拟机中，对象在内存中的布局可以分为 3 块区域：**对象头（Header）**、**实例数据（Instance Data）**和**对齐填充（Padding）**。
 
-**Hotspot 虚拟机的对象头包括两部分信息**，**第一部分用于存储对象自身的运行时数据**（哈希码、GC 分代年龄、锁状态标志等等），**另一部分是类型指针**，即对象指向它的类元数据的指针，虚拟机通过这个指针来确定这个对象是哪个类的实例。
+对象头包括两部分信息：
+
+1. 标记字段（Mark Word）：用于存储对象自身的运行时数据， 如哈希码（HashCode）、GC 分代年龄、锁状态标志、线程持有的锁、偏向线程 ID、偏向时间戳等等。
+2. 类型指针（Klass Word）：对象指向它的类元数据的指针，虚拟机通过这个指针来确定这个对象是哪个类的实例。
 
 **实例数据部分是对象真正存储的有效信息**，也是在程序中所定义的各种类型的字段内容。
 
@@ -344,10 +367,10 @@ HotSpot 虚拟机主要使用的就是这种方式来进行对象访问。
 
 - 《深入理解 Java 虚拟机：JVM 高级特性与最佳实践（第二版》
 - 《自己动手写 Java 虚拟机》
-- Chapter 2. The Structure of the Java Virtual Machine：https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-2.html
-- JVM 栈帧内部结构-动态链接：https://chenxitag.com/archives/368
-- Java 中 new String("字面量") 中 "字面量" 是何时进入字符串常量池的? - 木女孩的回答 - 知乎：https://www.zhihu.com/question/55994121/answer/147296098
-- JVM 常量池中存储的是对象还是引用呢？ - RednaxelaFX 的回答 - 知乎：https://www.zhihu.com/question/57109429/answer/151717241
+- Chapter 2. The Structure of the Java Virtual Machine：<https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-2.html>
+- JVM 栈帧内部结构-动态链接：<https://chenxitag.com/archives/368>
+- Java 中 new String("字面量") 中 "字面量" 是何时进入字符串常量池的? - 木女孩的回答 - 知乎：<https://www.zhihu.com/question/55994121/answer/147296098>
+- JVM 常量池中存储的是对象还是引用呢？ - RednaxelaFX 的回答 - 知乎：<https://www.zhihu.com/question/57109429/answer/151717241>
 - <http://www.pointsoftware.ch/en/under-the-hood-runtime-data-areas-javas-memory-model/>
 - <https://dzone.com/articles/jvm-permgen-%E2%80%93-where-art-thou>
 - <https://stackoverflow.com/questions/9095748/method-area-and-permgen>

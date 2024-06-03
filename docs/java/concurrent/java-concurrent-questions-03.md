@@ -211,16 +211,16 @@ static class Entry extends WeakReference<ThreadLocal<?>> {
 
 **方式二：通过 `Executor` 框架的工具类 `Executors` 来创建。**
 
-我们可以创建多种类型的 `ThreadPoolExecutor`：
+`Executors`工具类提供的创建线程池的方法如下图所示：
 
-- **`FixedThreadPool`**：该方法返回一个固定线程数量的线程池。该线程池中的线程数量始终不变。当有一个新的任务提交时，线程池中若有空闲线程，则立即执行。若没有，则新的任务会被暂存在一个任务队列中，待有线程空闲时，便处理在任务队列中的任务。
-- **`SingleThreadExecutor`：** 该方法返回一个只有一个线程的线程池。若多余一个任务被提交到该线程池，任务会被保存在一个任务队列中，待线程空闲，按先入先出的顺序执行队列中的任务。
-- **`CachedThreadPool`：** 该方法返回一个可根据实际情况调整线程数量的线程池。初始大小为 0。当有新任务提交时，如果当前线程池中没有线程可用，它会创建一个新的线程来处理该任务。如果在一段时间内（默认为 60 秒）没有新任务提交，核心线程会超时并被销毁，从而缩小线程池的大小。
-- **`ScheduledThreadPool`**：该方法返回一个用来在给定的延迟后运行任务或者定期执行任务的线程池。
+![](https://oss.javaguide.cn/github/javaguide/java/concurrent/executors-new-thread-pool-methods.png)
 
-对应 `Executors` 工具类中的方法如图所示：
+可以看出，通过`Executors`工具类可以创建多种类型的线程池，包括：
 
-![](https://oss.javaguide.cn/github/javaguide/java/concurrent/executors-inner-threadpool.png)
+- `FixedThreadPool`：固定线程数量的线程池。该线程池中的线程数量始终不变。当有一个新的任务提交时，线程池中若有空闲线程，则立即执行。若没有，则新的任务会被暂存在一个任务队列中，待有线程空闲时，便处理在任务队列中的任务。
+- `SingleThreadExecutor`： 只有一个线程的线程池。若多余一个任务被提交到该线程池，任务会被保存在一个任务队列中，待线程空闲，按先入先出的顺序执行队列中的任务。
+- `CachedThreadPool`： 可根据实际情况调整线程数量的线程池。线程池的线程数量不确定，但若有空闲线程可以复用，则会优先使用可复用的线程。若所有线程均在工作，又有新的任务提交，则会创建新的线程处理任务。所有线程在当前任务执行完毕后，将返回线程池进行复用。
+- `ScheduledThreadPool`：给定的延迟后运行任务或者定期执行任务的线程池。
 
 ### 为什么不推荐使用内置线程池？
 
@@ -232,14 +232,14 @@ static class Entry extends WeakReference<ThreadLocal<?>> {
 
 另外，《阿里巴巴 Java 开发手册》中强制线程池不允许使用 `Executors` 去创建，而是通过 `ThreadPoolExecutor` 构造函数的方式，这样的处理方式让写的同学更加明确线程池的运行规则，规避资源耗尽的风险
 
-`Executors` 返回线程池对象的弊端如下(后文会详细介绍到)：
+`Executors` 返回线程池对象的弊端如下：
 
-- **`FixedThreadPool` 和 `SingleThreadExecutor`**：使用的是无界的 `LinkedBlockingQueue`，任务队列最大长度为 `Integer.MAX_VALUE`,可能堆积大量的请求，从而导致 OOM。
-- **`CachedThreadPool`**：使用的是同步队列 `SynchronousQueue`, 允许创建的线程数量为 `Integer.MAX_VALUE` ，如果任务数量过多且执行速度较慢，可能会创建大量的线程，从而导致 OOM。
-- **`ScheduledThreadPool` 和 `SingleThreadScheduledExecutor`** : 使用的无界的延迟阻塞队列`DelayedWorkQueue`，任务队列最大长度为 `Integer.MAX_VALUE`,可能堆积大量的请求，从而导致 OOM。
+- `FixedThreadPool` 和 `SingleThreadExecutor`:使用的是有界阻塞队列是 `LinkedBlockingQueue` ，其任务队列的最大长度为 `Integer.MAX_VALUE` ，可能堆积大量的请求，从而导致 OOM。
+- `CachedThreadPool`:使用的是同步队列 `SynchronousQueue`, 允许创建的线程数量为 `Integer.MAX_VALUE` ，如果任务数量过多且执行速度较慢，可能会创建大量的线程，从而导致 OOM。
+- `ScheduledThreadPool` 和 `SingleThreadScheduledExecutor` :使用的无界的延迟阻塞队列 `DelayedWorkQueue` ，任务队列最大长度为 `Integer.MAX_VALUE` ，可能堆积大量的请求，从而导致 OOM。
 
 ```java
-// 无界队列 LinkedBlockingQueue
+// 有界队列 LinkedBlockingQueue
 public static ExecutorService newFixedThreadPool(int nThreads) {
 
     return new ThreadPoolExecutor(nThreads, nThreads,0L, TimeUnit.MILLISECONDS,new LinkedBlockingQueue<Runnable>());
@@ -300,33 +300,33 @@ public ScheduledThreadPoolExecutor(int corePoolSize) {
     }
 ```
 
-**`ThreadPoolExecutor` 3 个最重要的参数：**
+`ThreadPoolExecutor` 3 个最重要的参数：
 
-- **`corePoolSize` :** 任务队列未达到队列容量时，最大可以同时运行的线程数量。
-- **`maximumPoolSize` :** 任务队列中存放的任务达到队列容量的时候，当前可以同时运行的线程数量变为最大线程数。
-- **`workQueue`:** 新任务来的时候会先判断当前运行的线程数量是否达到核心线程数，如果达到的话，新任务就会被存放在队列中。
+- `corePoolSize` : 任务队列未达到队列容量时，最大可以同时运行的线程数量。
+- `maximumPoolSize` : 任务队列中存放的任务达到队列容量的时候，当前可以同时运行的线程数量变为最大线程数。
+- `workQueue`: 新任务来的时候会先判断当前运行的线程数量是否达到核心线程数，如果达到的话，新任务就会被存放在队列中。
 
 `ThreadPoolExecutor`其他常见参数 :
 
-- **`keepAliveTime`**:线程池中的线程数量大于 `corePoolSize` 的时候，如果这时没有新的任务提交，多余的空闲线程不会立即销毁，而是会等待，直到等待的时间超过了 `keepAliveTime`才会被回收销毁，线程池回收线程时，会对核心线程和非核心线程一视同仁，直到线程池中线程的数量等于 `corePoolSize` ，回收过程才会停止。
-- **`unit`** : `keepAliveTime` 参数的时间单位。
-- **`threadFactory`** :executor 创建新线程的时候会用到。
-- **`handler`** :饱和策略。关于饱和策略下面单独介绍一下。
+- `keepAliveTime`:线程池中的线程数量大于 `corePoolSize` 的时候，如果这时没有新的任务提交，核心线程外的线程不会立即销毁，而是会等待，直到等待的时间超过了 `keepAliveTime`才会被回收销毁。
+- `unit` : `keepAliveTime` 参数的时间单位。
+- `threadFactory` :executor 创建新线程的时候会用到。
+- `handler` :拒绝策略（后面会单独详细介绍一下）。
 
 下面这张图可以加深你对线程池中各个参数的相互关系的理解（图片来源：《Java 性能调优实战》）：
 
-![线程池各个参数的关系](./images/java-thread-pool-summary/线程池各个参数之间的关系.png)
+![线程池各个参数的关系](https://oss.javaguide.cn/github/javaguide/java/concurrent/relationship-between-thread-pool-parameters.png)
 
-### 线程池的饱和策略有哪些？
+### 线程池的拒绝策略有哪些？
 
-如果当前同时运行的线程数量达到最大线程数量并且队列也已经被放满了任务时，`ThreadPoolTaskExecutor` 定义一些策略:
+如果当前同时运行的线程数量达到最大线程数量并且队列也已经被放满了任务时，`ThreadPoolExecutor` 定义一些策略:
 
-- **`ThreadPoolExecutor.AbortPolicy`：** 抛出 `RejectedExecutionException`来拒绝新任务的处理。
-- **`ThreadPoolExecutor.CallerRunsPolicy`：** 调用执行自己的线程运行任务，也就是直接在调用`execute`方法的线程中运行(`run`)被拒绝的任务，如果执行程序已关闭，则会丢弃该任务。因此这种策略会降低对于新任务提交速度，影响程序的整体性能。如果您的应用程序可以承受此延迟并且你要求任何一个任务请求都要被执行的话，你可以选择这个策略。
-- **`ThreadPoolExecutor.DiscardPolicy`：** 不处理新任务，直接丢弃掉。
-- **`ThreadPoolExecutor.DiscardOldestPolicy`：** 此策略将丢弃最早的未处理的任务请求。
+- `ThreadPoolExecutor.AbortPolicy`：抛出 `RejectedExecutionException`来拒绝新任务的处理。
+- `ThreadPoolExecutor.CallerRunsPolicy`：调用执行自己的线程运行任务，也就是直接在调用`execute`方法的线程中运行(`run`)被拒绝的任务，如果执行程序已关闭，则会丢弃该任务。因此这种策略会降低对于新任务提交速度，影响程序的整体性能。如果你的应用程序可以承受此延迟并且你要求任何一个任务请求都要被执行的话，你可以选择这个策略。
+- `ThreadPoolExecutor.DiscardPolicy`：不处理新任务，直接丢弃掉。
+- `ThreadPoolExecutor.DiscardOldestPolicy`：此策略将丢弃最早的未处理的任务请求。
 
-举个例子：Spring 通过 `ThreadPoolTaskExecutor` 或者我们直接通过 `ThreadPoolExecutor` 的构造函数创建线程池的时候，当我们不指定 `RejectedExecutionHandler` 饱和策略来配置线程池的时候，默认使用的是 `AbortPolicy`。在这种饱和策略下，如果队列满了，`ThreadPoolExecutor` 将抛出 `RejectedExecutionException` 异常来拒绝新来的任务 ，这代表你将丢失对这个任务的处理。如果不想丢弃任务的话，可以使用`CallerRunsPolicy`。`CallerRunsPolicy` 和其他的几个策略不同，它既不会抛弃任务，也不会抛出异常，而是将任务回退给调用者，使用调用者的线程来执行任务
+举个例子：Spring 通过 `ThreadPoolTaskExecutor` 或者我们直接通过 `ThreadPoolExecutor` 的构造函数创建线程池的时候，当我们不指定 `RejectedExecutionHandler` 拒绝策略来配置线程池的时候，默认使用的是 `AbortPolicy`。在这种拒绝策略下，如果队列满了，`ThreadPoolExecutor` 将抛出 `RejectedExecutionException` 异常来拒绝新来的任务 ，这代表你将丢失对这个任务的处理。如果不想丢弃任务的话，可以使用`CallerRunsPolicy`。`CallerRunsPolicy` 和其他的几个策略不同，它既不会抛弃任务，也不会抛出异常，而是将任务回退给调用者，使用调用者的线程来执行任务。
 
 ```java
 public static class CallerRunsPolicy implements RejectedExecutionHandler {
@@ -342,24 +342,194 @@ public static class CallerRunsPolicy implements RejectedExecutionHandler {
     }
 ```
 
+### 如果不允许丢弃任务任务，应该选择哪个拒绝策略？
+
+根据上面对线程池拒绝策略的介绍，相信大家很容易能够得出答案是：`CallerRunsPolicy` 。
+
+这里我们再来结合`CallerRunsPolicy` 的源码来看看：
+
+```java
+public static class CallerRunsPolicy implements RejectedExecutionHandler {
+
+        public CallerRunsPolicy() { }
+
+
+        public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
+            //只要当前程序没有关闭，就用执行execute方法的线程执行该任务
+            if (!e.isShutdown()) {
+
+                r.run();
+            }
+        }
+    }
+```
+
+从源码可以看出，只要当前程序不关闭就会使用执行`execute`方法的线程执行该任务。
+
+### CallerRunsPolicy 拒绝策略有什么风险？如何解决？
+
+我们上面也提到了：如果想要保证任何一个任务请求都要被执行的话，那选择 `CallerRunsPolicy` 拒绝策略更合适一些。
+
+不过，如果走到`CallerRunsPolicy`的任务是个非常耗时的任务，且处理提交任务的线程是主线程，可能会导致主线程阻塞，影响程序的正常运行。
+
+这里简单举一个例子，该线程池限定了最大线程数为 2，阻塞队列大小为 1(这意味着第 4 个任务就会走到拒绝策略)，`ThreadUtil`为 Hutool 提供的工具类：
+
+```java
+public class ThreadPoolTest {
+
+    private static final Logger log = LoggerFactory.getLogger(ThreadPoolTest.class);
+
+    public static void main(String[] args) {
+        // 创建一个线程池，核心线程数为1，最大线程数为2
+        // 当线程数大于核心线程数时，多余的空闲线程存活的最长时间为60秒，
+        // 任务队列为容量为1的ArrayBlockingQueue，饱和策略为CallerRunsPolicy。
+        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(1,
+                2,
+                60,
+                TimeUnit.SECONDS,
+                new ArrayBlockingQueue<>(1),
+                new ThreadPoolExecutor.CallerRunsPolicy());
+
+        // 提交第一个任务，由核心线程执行
+        threadPoolExecutor.execute(() -> {
+            log.info("核心线程执行第一个任务");
+            ThreadUtil.sleep(1, TimeUnit.MINUTES);
+        });
+
+        // 提交第二个任务，由于核心线程被占用，任务将进入队列等待
+        threadPoolExecutor.execute(() -> {
+            log.info("非核心线程处理入队的第二个任务");
+            ThreadUtil.sleep(1, TimeUnit.MINUTES);
+        });
+
+        // 提交第三个任务，由于核心线程被占用且队列已满，创建非核心线程处理
+        threadPoolExecutor.execute(() -> {
+            log.info("非核心线程处理第三个任务");
+            ThreadUtil.sleep(1, TimeUnit.MINUTES);
+        });
+
+        // 提交第四个任务，由于核心线程和非核心线程都被占用，队列也满了，根据CallerRunsPolicy策略，任务将由提交任务的线程（即主线程）来执行
+        threadPoolExecutor.execute(() -> {
+            log.info("主线程处理第四个任务");
+            ThreadUtil.sleep(2, TimeUnit.MINUTES);
+        });
+
+        // 提交第五个任务，主线程被第四个任务卡住，该任务必须等到主线程执行完才能提交
+        threadPoolExecutor.execute(() -> {
+            log.info("核心线程执行第五个任务");
+        });
+
+        // 关闭线程池
+        threadPoolExecutor.shutdown();
+    }
+}
+
+```
+
+输出：
+
+```ba
+18:19:48.203 INFO  [pool-1-thread-1] c.j.concurrent.ThreadPoolTest - 核心线程执行第一个任务
+18:19:48.203 INFO  [pool-1-thread-2] c.j.concurrent.ThreadPoolTest - 非核心线程处理第三个任务
+18:19:48.203 INFO  [main] c.j.concurrent.ThreadPoolTest - 主线程处理第四个任务
+18:20:48.212 INFO  [pool-1-thread-2] c.j.concurrent.ThreadPoolTest - 非核心线程处理入队的第二个任务
+18:21:48.219 INFO  [pool-1-thread-2] c.j.concurrent.ThreadPoolTest - 核心线程执行第五个任务
+```
+
+从输出结果可以看出，因为`CallerRunsPolicy`这个拒绝策略，导致耗时的任务用了主线程执行，导致线程池阻塞，进而导致后续任务无法及时执行，严重的情况下很可能导致 OOM。
+
+我们从问题的本质入手，调用者采用`CallerRunsPolicy`是希望所有的任务都能够被执行，暂时无法处理的任务又被保存在阻塞队列`BlockingQueue`中。这样的话，在内存允许的情况下，我们可以增加阻塞队列`BlockingQueue`的大小并调整堆内存以容纳更多的任务，确保任务能够被准确执行。
+
+为了充分利用 CPU，我们还可以调整线程池的`maximumPoolSize` （最大线程数）参数，这样可以提高任务处理速度，避免累计在 `BlockingQueue`的任务过多导致内存用完。
+
+![调整阻塞队列大小和最大线程数](https://oss.javaguide.cn/github/javaguide/java/concurrent/threadpool-reject-2-threadpool-reject-01.png)
+
+如果服务器资源以达到可利用的极限，这就意味我们要在设计策略上改变线程池的调度了，我们都知道，导致主线程卡死的本质就是因为我们不希望任何一个任务被丢弃。换个思路，有没有办法既能保证任务不被丢弃且在服务器有余力时及时处理呢？
+
+这里提供的一种**任务持久化**的思路，这里所谓的任务持久化，包括但不限于:
+
+1. 设计一张任务表间任务存储到 MySQL 数据库中。
+2. Redis 缓存任务。
+3. 将任务提交到消息队列中。
+
+这里以方案一为例，简单介绍一下实现逻辑：
+
+1. 实现`RejectedExecutionHandler`接口自定义拒绝策略，自定义拒绝策略负责将线程池暂时无法处理（此时阻塞队列已满）的任务入库（保存到 MySQL 中）。注意：线程池暂时无法处理的任务会先被放在阻塞队列中，阻塞队列满了才会触发拒绝策略。
+2. 继承`BlockingQueue`实现一个混合式阻塞队列，该队列包含 JDK 自带的`ArrayBlockingQueue`。另外，该混合式阻塞队列需要修改取任务处理的逻辑，也就是重写`take()`方法，取任务时优先从数据库中读取最早的任务，数据库中无任务时再从 `ArrayBlockingQueue`中去取任务。
+
+![将一部分任务保存到MySQL中](https://oss.javaguide.cn/github/javaguide/java/concurrent/threadpool-reject-2-threadpool-reject-02.png)
+
+整个实现逻辑还是比较简单的，核心在于自定义拒绝策略和阻塞队列。如此一来，一旦我们的线程池中线程以达到满载时，我们就可以通过拒绝策略将最新任务持久化到 MySQL 数据库中，等到线程池有了有余力处理所有任务时，让其优先处理数据库中的任务以避免"饥饿"问题。
+
+当然，对于这个问题，我们也可以参考其他主流框架的做法，以 Netty 为例，它的拒绝策略则是直接创建一个线程池以外的线程处理这些任务，为了保证任务的实时处理，这种做法可能需要良好的硬件设备且临时创建的线程无法做到准确的监控：
+
+```java
+private static final class NewThreadRunsPolicy implements RejectedExecutionHandler {
+    NewThreadRunsPolicy() {
+        super();
+    }
+    public void rejectedExecution(Runnable r, ThreadPoolExecutor executor) {
+        try {
+            //创建一个临时线程处理任务
+            final Thread t = new Thread(r, "Temporary task executor");
+            t.start();
+        } catch (Throwable e) {
+            throw new RejectedExecutionException(
+                    "Failed to start a new thread", e);
+        }
+    }
+}
+```
+
+ActiveMQ 则是尝试在指定的时效内尽可能的争取将任务入队，以保证最大交付：
+
+```java
+new RejectedExecutionHandler() {
+                @Override
+                public void rejectedExecution(final Runnable r, final ThreadPoolExecutor executor) {
+                    try {
+                        //限时阻塞等待，实现尽可能交付
+                        executor.getQueue().offer(r, 60, TimeUnit.SECONDS);
+                    } catch (InterruptedException e) {
+                        throw new RejectedExecutionException("Interrupted waiting for BrokerService.worker");
+                    }
+                    throw new RejectedExecutionException("Timed Out while attempting to enqueue Task.");
+                }
+            });
+```
+
 ### 线程池常用的阻塞队列有哪些？
 
 新任务来的时候会先判断当前运行的线程数量是否达到核心线程数，如果达到的话，新任务就会被存放在队列中。
 
 不同的线程池会选用不同的阻塞队列，我们可以结合内置线程池来分析。
 
-- 容量为 `Integer.MAX_VALUE` 的 `LinkedBlockingQueue`（无界队列）：`FixedThreadPool` 和 `SingleThreadExector` 。`FixedThreadPool`最多只能创建核心线程数的线程（核心线程数和最大线程数相等），`SingleThreadExector`只能创建一个线程（核心线程数和最大线程数都是 1），二者的任务队列永远不会被放满。
+- 容量为 `Integer.MAX_VALUE` 的 `LinkedBlockingQueue`（有界阻塞队列）：`FixedThreadPool` 和 `SingleThreadExecutor` 。`FixedThreadPool`最多只能创建核心线程数的线程（核心线程数和最大线程数相等），`SingleThreadExecutor`只能创建一个线程（核心线程数和最大线程数都是 1），二者的任务队列永远不会被放满。
 - `SynchronousQueue`（同步队列）：`CachedThreadPool` 。`SynchronousQueue` 没有容量，不存储元素，目的是保证对于提交的任务，如果有空闲线程，则使用空闲线程来处理；否则新建一个线程来处理任务。也就是说，`CachedThreadPool` 的最大线程数是 `Integer.MAX_VALUE` ，可以理解为线程数是可以无限扩展的，可能会创建大量线程，从而导致 OOM。
-- `DelayedWorkQueue`（延迟阻塞队列）：`ScheduledThreadPool` 和 `SingleThreadScheduledExecutor` 。`DelayedWorkQueue` 的内部元素并不是按照放入的时间排序，而是会按照延迟的时间长短对任务进行排序，内部采用的是“堆”的数据结构，可以保证每次出队的任务都是当前队列中执行时间最靠前的。`DelayedWorkQueue` 添加元素满了之后会自动扩容原来容量的 1/2，即永远不会阻塞，最大扩容可达 `Integer.MAX_VALUE`，所以最多只能创建核心线程数的线程。
+- `DelayedWorkQueue`（延迟队列）：`ScheduledThreadPool` 和 `SingleThreadScheduledExecutor` 。`DelayedWorkQueue` 的内部元素并不是按照放入的时间排序，而是会按照延迟的时间长短对任务进行排序，内部采用的是“堆”的数据结构，可以保证每次出队的任务都是当前队列中执行时间最靠前的。`DelayedWorkQueue` 添加元素满了之后会自动扩容，增加原来容量的 50%，即永远不会阻塞，最大扩容可达 `Integer.MAX_VALUE`，所以最多只能创建核心线程数的线程。
+- `ArrayBlockingQueue`（有界阻塞队列）：底层由数组实现，容量一旦创建，就不能修改。
 
 ### 线程池处理任务的流程了解吗？
 
-![图解线程池实现原理](https://oss.javaguide.cn/javaguide/%E5%9B%BE%E8%A7%A3%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.png)
+![图解线程池实现原理](https://oss.javaguide.cn/github/javaguide/java/concurrent/thread-pool-principle.png)
 
 1. 如果当前运行的线程数小于核心线程数，那么就会新建一个线程来执行任务。
 2. 如果当前运行的线程数等于或大于核心线程数，但是小于最大线程数，那么就把该任务放入到任务队列里等待执行。
 3. 如果向任务队列投放任务失败（任务队列已经满了），但是当前运行的线程数是小于最大线程数的，就新建一个线程来执行任务。
-4. 如果当前运行的线程数已经等同于最大线程数了，新建线程将会使当前运行的线程超出最大线程数，那么当前任务会被拒绝，饱和策略会调用`RejectedExecutionHandler.rejectedExecution()`方法。
+4. 如果当前运行的线程数已经等同于最大线程数了，新建线程将会使当前运行的线程超出最大线程数，那么当前任务会被拒绝，拒绝策略会调用`RejectedExecutionHandler.rejectedExecution()`方法。
+
+### 线程池中线程异常后，销毁还是复用？
+
+先说结论，需要分两种情况：
+
+- **使用`execute()`提交任务**：当任务通过`execute()`提交到线程池并在执行过程中抛出异常时，如果这个异常没有在任务内被捕获，那么该异常会导致当前线程终止，并且异常会被打印到控制台或日志文件中。线程池会检测到这种线程终止，并创建一个新线程来替换它，从而保持配置的线程数不变。
+- **使用`submit()`提交任务**：对于通过`submit()`提交的任务，如果在任务执行中发生异常，这个异常不会直接打印出来。相反，异常会被封装在由`submit()`返回的`Future`对象中。当调用`Future.get()`方法时，可以捕获到一个`ExecutionException`。在这种情况下，线程不会因为异常而终止，它会继续存在于线程池中，准备执行后续的任务。
+
+简单来说：使用`execute()`时，未捕获异常导致线程终止，线程池创建新线程替代；使用`submit()`时，异常被封装在`Future`中，线程继续复用。
+
+这种设计允许`submit()`提供更灵活的错误处理机制，因为它允许调用者决定如何处理异常，而`execute()`则适用于那些不需要关注执行结果的场景。
+
+具体的源码分析可以参考这篇：[线程池中线程异常后：销毁还是复用？ - 京东技术](https://mp.weixin.qq.com/s/9ODjdUU-EwQFF5PrnzOGfw)。
 
 ### 如何给线程池命名？
 
@@ -381,33 +551,30 @@ ExecutorService threadPool = new ThreadPoolExecutor(corePoolSize, maximumPoolSiz
 **2、自己实现 `ThreadFactory`。**
 
 ```java
-import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * 线程工厂，它设置线程名称，有利于我们定位问题。
  */
 public final class NamingThreadFactory implements ThreadFactory {
 
     private final AtomicInteger threadNum = new AtomicInteger();
-    private final ThreadFactory delegate;
     private final String name;
 
     /**
      * 创建一个带名字的线程池生产工厂
      */
-    public NamingThreadFactory(ThreadFactory delegate, String name) {
-        this.delegate = delegate;
-        this.name = name; // TODO consider uniquifying this
+    public NamingThreadFactory(String name) {
+        this.name = name;
     }
 
     @Override
     public Thread newThread(Runnable r) {
-        Thread t = delegate.newThread(r);
+        Thread t = new Thread(r);
         t.setName(name + " [#" + threadNum.incrementAndGet() + "]");
         return t;
     }
-
 }
 ```
 
@@ -449,7 +616,7 @@ CPU 密集型简单理解就是利用 CPU 计算能力的任务比如你在内�
 >
 > IO 密集型任务下，几乎全是线程等待时间，从理论上来说，你就可以将线程数设置为 2N（按道理来说，WT/ST 的结果应该比较大，这里选择 2N 的原因应该是为了避免创建过多线程吧）。
 
-公示也只是参考，具体还是要根据项目实际线上运行情况来动态调整。我在后面介绍的美团的线程池参数动态配置这种方案就非常不错，很实用！
+公式也只是参考，具体还是要根据项目实际线上运行情况来动态调整。我在后面介绍的美团的线程池参数动态配置这种方案就非常不错，很实用！
 
 ### 如何动态修改线程池的参数？
 
@@ -469,7 +636,7 @@ CPU 密集型简单理解就是利用 CPU 计算能力的任务比如你在内�
 
 ![](https://oss.javaguide.cn/github/javaguide/java/concurrent/threadpoolexecutor-methods.png)
 
-格外需要注意的是`corePoolSize`， 程序运行期间的时候，我们调用 `setCorePoolSize（）`这个方法的话，线程池会首先判断当前工作线程数是否大于`corePoolSize`，如果大于的话就会回收工作线程。
+格外需要注意的是`corePoolSize`， 程序运行期间的时候，我们调用 `setCorePoolSize()`这个方法的话，线程池会首先判断当前工作线程数是否大于`corePoolSize`，如果大于的话就会回收工作线程。
 
 另外，你也看到了上面并没有动态指定队列长度的方法，美团的方式是自定义了一个叫做 `ResizableCapacityLinkedBlockIngQueue` 的队列（主要就是把`LinkedBlockingQueue`的 capacity 字段的 final 关键字修饰给去掉了，让它变为可变的）。
 
@@ -488,7 +655,7 @@ CPU 密集型简单理解就是利用 CPU 计算能力的任务比如你在内�
 
 这是一个常见的面试问题，本质其实还是在考察求职者对于线程池以及阻塞队列的掌握。
 
-我们上面也提到了，不同的线程池会选用不同的阻塞队列作为任务队列，比如`FixedThreadPool` 使用的是`LinkedBlockingQueue`（无界队列），由于队列永远不会被放满，因此`FixedThreadPool`最多只能创建核心线程数的线程。
+我们上面也提到了，不同的线程池会选用不同的阻塞队列作为任务队列，比如`FixedThreadPool` 使用的是`LinkedBlockingQueue`（有界队列），默认构造器初始的队列长度为 `Integer.MAX_VALUE` ，由于队列永远不会被放满，因此`FixedThreadPool`最多只能创建核心线程数的线程。
 
 假如我们需要实现一个优先级任务线程池的话，那可以考虑使用 `PriorityBlockingQueue` （优先级阻塞队列）作为任务队列（`ThreadPoolExecutor` 的构造函数有一个 `workQueue` 参数可以传入任务队列）。
 
@@ -693,11 +860,11 @@ semaphore.release();
 
 ```java
 public Semaphore(int permits) {
-  	sync = new NonfairSync(permits);
+    sync = new NonfairSync(permits);
 }
 
 public Semaphore(int permits, boolean fair) {
-  	sync = fair ? new FairSync(permits) : new NonfairSync(permits);
+    sync = fair ? new FairSync(permits) : new NonfairSync(permits);
 }
 ```
 
@@ -716,7 +883,7 @@ public Semaphore(int permits, boolean fair) {
  *  获取1个许可证
  */
 public void acquire() throws InterruptedException {
- 	 sync.acquireSharedInterruptibly(1);
+    sync.acquireSharedInterruptibly(1);
 }
 /**
  * 共享模式下获取许可证，获取成功则返回，失败则加入阻塞队列，挂起线程
@@ -736,7 +903,7 @@ public final void acquireSharedInterruptibly(int arg)
 ```java
 // 释放一个许可证
 public void release() {
-  	sync.releaseShared(1);
+    sync.releaseShared(1);
 }
 
 // 释放共享锁，同时会唤醒同步队列中的一个线程。
@@ -885,9 +1052,9 @@ public CyclicBarrier(int parties, Runnable barrierAction) {
 ```java
 public int await() throws InterruptedException, BrokenBarrierException {
   try {
-    	return dowait(false, 0L);
+      return dowait(false, 0L);
   } catch (TimeoutException toe) {
-   	 throw new Error(toe); // cannot happen
+      throw new Error(toe); // cannot happen
   }
 }
 ```
@@ -984,10 +1151,10 @@ public int await() throws InterruptedException, BrokenBarrierException {
 
 - 《深入理解 Java 虚拟机》
 - 《实战 Java 高并发程序设计》
-- 带你了解下 SynchronousQueue（并发队列专题）：https://juejin.cn/post/7031196740128768037
-- 阻塞队列 — DelayedWorkQueue 源码分析：https://zhuanlan.zhihu.com/p/310621485
-- Java 多线程（三）——FutureTask/CompletableFuture：https://www.cnblogs.com/iwehdio/p/14285282.html
-- Java 并发之 AQS 详解：https://www.cnblogs.com/waterystone/p/4920797.html
-- Java 并发包基石-AQS 详解：https://www.cnblogs.com/chengxiao/archive/2017/07/24/7141160.html
+- 带你了解下 SynchronousQueue（并发队列专题）：<https://juejin.cn/post/7031196740128768037>
+- 阻塞队列 — DelayedWorkQueue 源码分析：<https://zhuanlan.zhihu.com/p/310621485>
+- Java 多线程（三）——FutureTask/CompletableFuture：<https://www.cnblogs.com/iwehdio/p/14285282.html>
+- Java 并发之 AQS 详解：<https://www.cnblogs.com/waterystone/p/4920797.html>
+- Java 并发包基石-AQS 详解：<https://www.cnblogs.com/chengxiao/archive/2017/07/24/7141160.html>
 
 <!-- @include: @article-footer.snippet.md -->

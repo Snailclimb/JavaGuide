@@ -5,7 +5,7 @@ tag:
   - Redis
 ---
 
-> 本文整理完善自：https://mp.weixin.qq.com/s/0Nqfq_eQrUb12QH6eBbHXA ，作者：阿 Q 说代码
+> 本文整理完善自：<https://mp.weixin.qq.com/s/0Nqfq_eQrUb12QH6eBbHXA> ，作者：阿 Q 说代码
 
 这篇文章会详细总结一下可能导致 Redis 阻塞的情况，这些情况也是影响 Redis 性能的关键因素，使用 Redis 的时候应该格外注意！
 
@@ -81,7 +81,10 @@ Redis AOF 持久化机制是在执行完命令之后再记录日志，这和关�
 
 ## 大 Key
 
-如果一个 key 对应的 value 所占用的内存比较大，那这个 key 就可以看作是 bigkey。具体多大才算大呢？有一个不是特别精确的参考标准：string 类型的 value 超过 10 kb，复合类型的 value 包含的元素超过 5000 个（对于复合类型的 value 来说，不一定包含的元素越多，占用的内存就越多）。
+如果一个 key 对应的 value 所占用的内存比较大，那这个 key 就可以看作是 bigkey。具体多大才算大呢？有一个不是特别精确的参考标准：
+
+- string 类型的 value 超过 1MB
+- 复合类型（列表、哈希、集合、有序集合等）的 value 包含的元素超过 5000 个（对于复合类型的 value 来说，不一定包含的元素越多，占用的内存就越多）。
 
 大 key 造成的阻塞问题如下：
 
@@ -133,7 +136,7 @@ Swap 对于 Redis 来说是非常致命的，Redis 保证高性能的一个重�
 1、查询 Redis 进程号
 
 ```bash
-reids-cli -p 6383 info server | grep process_id
+redis-cli -p 6383 info server | grep process_id
 process_id: 4476
 ```
 
@@ -161,7 +164,7 @@ Swap: 0kB
 
 Redis 是典型的 CPU 密集型应用，不建议和其他多核 CPU 密集型服务部署在一起。当其他进程过度消耗 CPU 时，将严重影响 Redis 的吞吐量。
 
-可以通过`reids-cli --stat`获取当前 Redis 使用情况。通过`top`命令获取进程对 CPU 的利用率等信息 通过`info commandstats`统计信息分析出命令不合理开销时间，查看是否是因为高算法复杂度或者过度的内存优化问题。
+可以通过`redis-cli --stat`获取当前 Redis 使用情况。通过`top`命令获取进程对 CPU 的利用率等信息 通过`info commandstats`统计信息分析出命令不合理开销时间，查看是否是因为高算法复杂度或者过度的内存优化问题。
 
 ## 网络问题
 
@@ -169,7 +172,7 @@ Redis 是典型的 CPU 密集型应用，不建议和其他多核 CPU 密集型�
 
 ## 参考
 
-- Redis 阻塞的 6 大类场景分析与总结：https://mp.weixin.qq.com/s/eaZCEtTjTuEmXfUubVHjew
-- Redis 开发与运维笔记-Redis 的噩梦-阻塞：https://mp.weixin.qq.com/s/TDbpz9oLH6ifVv6ewqgSgA
+- Redis 阻塞的 6 大类场景分析与总结：<https://mp.weixin.qq.com/s/eaZCEtTjTuEmXfUubVHjew>
+- Redis 开发与运维笔记-Redis 的噩梦-阻塞：<https://mp.weixin.qq.com/s/TDbpz9oLH6ifVv6ewqgSgA>
 
 <!-- @include: @article-footer.snippet.md -->

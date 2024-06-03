@@ -106,13 +106,13 @@ raft 使用了随机的选举超时时间来避免上述情况。每一个 Candi
 
 ## 4 日志复制
 
-一旦选出了 Leader，它就开始接受客户端的请求。每一个客户端的请求都包含一条需要被复制状态机（`Replicated State Mechine`）执行的命令。
+一旦选出了 Leader，它就开始接受客户端的请求。每一个客户端的请求都包含一条需要被复制状态机（`Replicated State Machine`）执行的命令。
 
 Leader 收到客户端请求后，会生成一个 entry，包含`<index,term,cmd>`，再将这个 entry 添加到自己的日志末尾后，向所有的节点广播该 entry，要求其他服务器复制这条 entry。
 
 如果 Follower 接受该 entry，则会将 entry 添加到自己的日志后面，同时返回给 Leader 同意。
 
-如果 Leader 收到了多数的成功响应，Leader 会将这个 entry 应用到自己的状态机中，之后可以成为这个 entry 是 committed 的，并且向客户端返回执行结果。
+如果 Leader 收到了多数的成功响应，Leader 会将这个 entry 应用到自己的状态机中，之后可以称这个 entry 是 committed 的，并且向客户端返回执行结果。
 
 raft 保证以下两个性质：
 
@@ -163,9 +163,9 @@ raft 的要求之一就是安全性不依赖于时间：系统不能仅仅因为
 
 ## 6 参考
 
-- https://tanxinyu.work/raft/
-- https://github.com/OneSizeFitsQuorum/raft-thesis-zh_cn/blob/master/raft-thesis-zh_cn.md
-- https://github.com/ongardie/dissertation/blob/master/stanford.pdf
-- https://knowledge-sharing.gitbooks.io/raft/content/chapter5.html
+- <https://tanxinyu.work/raft/>
+- <https://github.com/OneSizeFitsQuorum/raft-thesis-zh_cn/blob/master/raft-thesis-zh_cn.md>
+- <https://github.com/ongardie/dissertation/blob/master/stanford.pdf>
+- <https://knowledge-sharing.gitbooks.io/raft/content/chapter5.html>
 
 <!-- @include: @article-footer.snippet.md -->

@@ -208,7 +208,7 @@ public class DebugInvocationHandler implements InvocationHandler {
         this.target = target;
     }
 
-
+    @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws InvocationTargetException, IllegalAccessException {
         //调用方法之前，我们可以添加自己的操作
         System.out.println("before method " + method.getName());

@@ -6,26 +6,27 @@ icon: project
 
 ## 快速开发平台
 
-- [Snowy](https://gitee.com/xiaonuobase/snowy)：国内首个国密前后端分离快速开发平台，定位不是深度封装的框架，也不是无代码平台，更不是某个领域的产品。详细介绍：[5.1k！这是我见过最强的前后端分离快速开发脚手架！！](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247534316&idx=1&sn=69938397674fc33ecda43c8c9d0a4039&chksm=cea10927f9d68031bc862485c6be984ade5af233d4d871d498c38f22164a84314678c0c67cd7&token=1464380539&lang=zh_CN#rd)。
+- [Snowy](https://gitee.com/xiaonuobase/snowy)：国内首个国密前后端分离快速开发平台。详细介绍：[5.1k！这是我见过最强的前后端分离快速开发脚手架！！](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247534316&idx=1&sn=69938397674fc33ecda43c8c9d0a4039&chksm=cea10927f9d68031bc862485c6be984ade5af233d4d871d498c38f22164a84314678c0c67cd7&token=1464380539&lang=zh_CN#rd)。
 - [eladmin](https://github.com/elunez/eladmin) : 前后端分离的后台管理系统，项目采用分模块开发方式， 权限控制采用 RBAC，支持数据字典与数据权限管理，支持一键生成前后端代码，支持动态路由。
 - [RuoYi](https://gitee.com/y_project/RuoYi)：RuoYi 一款基于基于 SpringBoot 的权限管理系统 易读易懂、界面简洁美观，直接运行即可用 。
 - [AgileBoot-Back-End](https://github.com/valarchie/AgileBoot-Back-End)：基于 Ruoyi 做了大量重构优化的基础快速开发框架。
-- [RuoYi-Vue-Pro](https://github.com/YunaiV/ruoyi-vue-pro)：RuoYi-Vue 全新 Pro 版本，优化重构所有功能。
-- [pig](https://gitee.com/log4j/pig "pig")：（gitee）基于 Spring Boot 2.2、 Spring Cloud Hoxton & Alibaba、 OAuth2 的 RBAC 权限管理系统。
+- [SmartAdmin](https://gitee.com/lab1024/smart-admin) : 一套简洁、易用的低代码中后台解决方案。
+- [EuBackend](https://gitee.com/zhaoeryu/eu-backend)：基于 SpringBoot 开发的轻量级快速开发平台。
+- [RuoYi-Vue-Pro](https://github.com/YunaiV/ruoyi-vue-pro)：RuoYi-Vue 全新 Pro 版本，优化重构所有功能，支持数据权限、SaaS 多租户、Flowable 工作流、三方登录、支付等功能。
+- [RuoYi-Vue-Plus](https://gitee.com/dromara/RuoYi-Vue-Plus)：RuoYi-Vue 全新 Plus 版本，重写了 RuoYi-Vue 所有功能，集成了 Sa-Token、Mybatis-Plus、Jackson、SpringDoc、Hutool、OSS 定期同步等。
+- [pig](https://gitee.com/log4j/pig "pig")：基于 Spring Boot + Spring Cloud + OAuth2 的 RBAC 权限管理系统。
 - [Guns](https://gitee.com/stylefeng/guns)：现代化的 Java 应用开发基础框架。
 - [JeecgBoot](https://github.com/zhangdaiscott/jeecg-boot)：一款基于代码生成器的 J2EE 低代码快速开发平台，支持生成前后端分离架构的项目。
 - [Erupt](https://gitee.com/erupt/erupt) : 低代码全栈类框架，它使用 Java 注解 动态生成页面以及增、删、改、查、权限控制等后台功能。
-- [SmartAdmin](https://gitee.com/lab1024/smart-admin) : 一套简洁、易用的低代码中后台解决方案。
 - [BallCat](https://github.com/ballcat-projects/ballcat)：一个功能完善的快速开发脚手架！除了最基本的权限管理，定时任务功能之外，还额外支持 XSS 过滤，SQL 防注入、数据脱敏等多种功能
-- [JHipster](https://github.com/jhipster/generator-jhipster) :开源应用程序平台，可在几秒钟内创建 Spring Boot + Angular / React 项目！
+- [JHipster](https://github.com/jhipster/generator-jhipster) :开源应用程序平台，可在几秒钟内创建 Spring Boot + Angular / React 项目。
 
 ## 博客/论坛系统
 
 下面这几个项目都是非常适合 Spring Boot 初学者学习的，下面的大部分项目的总体代码架构我都看过，个人觉得还算不错，不会误导没有实际做过项目的朋友。
 
 - [paicoding](https://github.com/itwanger/paicoding)：一款好用又强大的开源社区，基于 Spring Boot 系列主流技术栈，附详细的教程。
-- [forest](https://github.com/rymcu)：下一代的知识社区系统，可以自定义专题和作品集。后端基于 SpringBoot + Shrio + MyBatis + JWT + Redis，前端基于 Vue + NuxtJS + Element-UI。
-- [vhr](https://github.com/lenve/vhr "vhr")：微人事是一个前后端分离的人力资源管理系统，项目采用 SpringBoot+Vue 开发。
+- [forest](https://github.com/rymcu/forest)：下一代的知识社区系统，可以自定义专题和作品集。后端基于 SpringBoot + Shrio + MyBatis + JWT + Redis，前端基于 Vue + NuxtJS + Element-UI。
 - [community](https://github.com/codedrinker/community)：开源论坛、问答系统，现有功能提问、回复、通知、最新、最热、消除零回复功能。功能持续更新中…… 技术栈 Spring、Spring Boot、MyBatis、MySQL/H2、Bootstrap。
 - [VBlog](https://github.com/lenve/VBlog)：V 部落，Vue+SpringBoot 实现的多用户博客管理平台!
 - [My-Blog](https://github.com/ZHENFENG13/My-Blog)： SpringBoot + Mybatis + Thymeleaf 等技术实现的 Java 博客系统，页面美观、功能齐全、部署简单及完善的代码，一定会给使用者无与伦比的体验。
@@ -45,8 +46,11 @@ icon: project
 
 - [PlayEdu](https://github.com/PlayEdu/PlayEdu)：一款适用于搭建内部培训平台的开源系统，旨在为企业/机构打造自己品牌的内部培训平台。
 - [HOJ](https://gitee.com/himitzh0730/hoj)：分布式架构的在线测评平台 OJ ，功能非常全面，支持刷题、训练、比赛、评测等功能。
-- [uexam](https://gitee.com/mindskip/uexam)：一个非常不错的考试系统！考试系统应用场景还挺多的，不论是对于在校大学生还是已经工作的小伙伴，并且，类似的私活也有很多。相关阅读：[《好一个 Spring Boot 开源在线考试系统！解决了我的燃眉之急》](http://link.zhihu.com/?target=https%3A//mp.weixin.qq.com/s%3F__biz%3DMzg2OTA0Njk0OA%3D%3D%26mid%3D2247491585%26idx%3D1%26sn%3D8d3c6768c22e72d6bfcbeee9624886a7%26chksm%3Dcea1afcaf9d626dc918760289c37025ad526f6255786bc198d2402203df64c873ad7934f58df%26scene%3D178%26cur_album_id%3D1345382825083895808%23rd) 。
-- [PassJava-Platform](https://github.com/Jackson0714/PassJava-Platform)：一个基于微服务(SpringBoot、Spring Cloud)的面试刷题系统！相关阅读：[《一个基于 Spring Cloud 的面试刷题系统。面试、毕设、项目经验一网打尽》](http://link.zhihu.com/?target=https%3A//mp.weixin.qq.com/s%3F__biz%3DMzg2OTA0Njk0OA%3D%3D%26mid%3D2247497045%26idx%3D1%26sn%3D577175bfd6c040a0df5a494fce6f9758%26chksm%3Dcea1ba9ef9d633883a2e213c0fb9a88bdc87051347d4b3fad2c2befb65d8b16e1ea81d8146dd%26scene%3D178%26cur_album_id%3D1345382825083895808%23rd)。
+- [VOJ](https://github.com/simplefanC/voj)：基于微服务架构的高性能在线评测系统。拥有本地判题服务，同时支持其它知名 OJ (HDU、POJ...) 的远程判题。采用现阶段流行技术实现，采用 Docker 容器化部署。
+- [OnlineJudge](https://github.com/SDUOJ/OnlineJudge)：基于微服务架构的在线评测系统，支持多种国际赛制支持（ICPC/OI/IOI），采用 Docker 容器化部署。
+- [sg-exam](https://gitee.com/wells2333/sg-exam)：方便易用、高颜值的教学管理平台，提供多租户、权限管理、考试、练习、在线学习等功能。
+- [uexam](https://gitee.com/mindskip/uexam)：功能全面的在线考试系统，开发部署简单快捷、界面设计友好、代码结构清晰。相关阅读：[好一个 Spring Boot 开源在线考试系统！解决了我的燃眉之急](http://link.zhihu.com/?target=https%3A//mp.weixin.qq.com/s%3F__biz%3DMzg2OTA0Njk0OA%3D%3D%26mid%3D2247491585%26idx%3D1%26sn%3D8d3c6768c22e72d6bfcbeee9624886a7%26chksm%3Dcea1afcaf9d626dc918760289c37025ad526f6255786bc198d2402203df64c873ad7934f58df%26scene%3D178%26cur_album_id%3D1345382825083895808%23rd) 。
+- [PassJava-Platform](https://github.com/Jackson0714/PassJava-Platform)：基于微服务架构的面试刷题小程序！相关阅读：[一个基于 Spring Cloud 的面试刷题系统。面试、毕设、项目经验一网打尽](http://link.zhihu.com/?target=https%3A//mp.weixin.qq.com/s%3F__biz%3DMzg2OTA0Njk0OA%3D%3D%26mid%3D2247497045%26idx%3D1%26sn%3D577175bfd6c040a0df5a494fce6f9758%26chksm%3Dcea1ba9ef9d633883a2e213c0fb9a88bdc87051347d4b3fad2c2befb65d8b16e1ea81d8146dd%26scene%3D178%26cur_album_id%3D1345382825083895808%23rd)。
 
 ## 商城系统
 
@@ -55,9 +59,7 @@ icon: project
 - [congomall](https://gitee.com/nageoffer/congomall)：不一样的 TOC 商城系统，SpringCloud-Alibaba 微服务架构设计，基于 DDD 领域驱动模型开发，代码设计优雅，涵盖商城核心业务。
 - [mall](https://github.com/macrozheng/mall "mall")：mall 项目是一套电商系统，包括前台商城系统及后台管理系统，基于 SpringBoot+MyBatis 实现。
 - [mall-swarm](https://github.com/macrozheng/mall-swarm "mall-swarm") : mall-swarm 是一套微服务商城系统，采用了 Spring Cloud Greenwich、Spring Boot 2、MyBatis、Docker、Elasticsearch 等核心技术，同时提供了基于 Vue 的管理后台方便快速搭建系统。
-- [onemall](https://github.com/YunaiV/onemall)：mall 商城，基于微服务的思想，构建在 B2C 电商场景下的项目实战。核心技术栈，是 Spring Boot + Dubbo 。未来，会重构成 Spring Cloud Alibaba 。
 - [litemall](https://github.com/linlinjava/litemall "litemall")：又一个小商城。litemall = Spring Boot 后端 + Vue 管理员前端 + 微信小程序用户前端 + Vue 用户移动端。
-- [xmall](https://github.com/Exrick/xmall) :基于 SOA 架构的分布式电商购物商城 前后端分离 前台商城:Vue 全家桶 后台管理系统:Spring/Dubbo/SSM/Elasticsearch/Redis/MySQL/ActiveMQ/Shiro/Zookeeper 等
 - [newbee-mall](https://github.com/newbee-ltd/newbee-mall) :newbee-mall 项目（新蜂商城）是一套电商系统，包括 newbee-mall 商城系统及 newbee-mall-admin 商城后台管理系统，基于 Spring Boot 2.X 及相关技术栈开发。
 
 ## 售票系统

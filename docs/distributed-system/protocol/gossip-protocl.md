@@ -67,7 +67,7 @@ Gossip 设计了两种可能的消息传播模式：**反熵（Anti-Entropy）**
 
 > 熵的概念最早起源于[物理学](https://zh.wikipedia.org/wiki/物理学)，用于度量一个热力学系统的混乱程度。熵最好理解为不确定性的量度而不是确定性的量度，因为越随机的信源的熵越大。
 
-在这里，你可以把反熵中的熵了解为节点之间数据的混乱程度/差异性，反熵就是指消除不同节点中数据的差异，提升节点间数据的相似度，从而降低熵值。
+在这里，你可以把反熵中的熵理解为节点之间数据的混乱程度/差异性，反熵就是指消除不同节点中数据的差异，提升节点间数据的相似度，从而降低熵值。
 
 具体是如何反熵的呢？集群中的节点，每隔段时间就随机选择某个其他节点，然后通过互相交换自己的所有数据来消除两者之间的差异，实现数据的最终一致性。
 
@@ -81,7 +81,7 @@ Gossip 设计了两种可能的消息传播模式：**反熵（Anti-Entropy）**
 
 ![反熵伪代码](https://oss.javaguide.cn/github/javaguide/distributed-system/protocol/up-df16e98bf71e872a7e1f01ca31cee93d77b.png)
 
-在我们实际应用场景中，一般不会采用随机的节点进行反熵，而是需要可以的设计一个闭环。这样的话，我们能够在一个确定的时间范围内实现各个节点数据的最终一致性，而不是基于随机的概率。像 InfluxDB 就是这样来实现反熵的。
+在我们实际应用场景中，一般不会采用随机的节点进行反熵，而是可以设计成一个闭环。这样的话，我们能够在一个确定的时间范围内实现各个节点数据的最终一致性，而不是基于随机的概率。像 InfluxDB 就是这样来实现反熵的。
 
 ![](./images/gossip/反熵-闭环.png)
 
@@ -98,7 +98,7 @@ Gossip 设计了两种可能的消息传播模式：**反熵（Anti-Entropy）**
 
 如下图所示（下图来自于[INTRODUCTION TO GOSSIP](https://managementfromscratch.wordpress.com/2016/04/01/introduction-to-gossip/) 这篇文章）：
 
-![Gossip 传播示意图](./images/gossip/gossip-rumor- mongering.gif)
+![Gossip 传播示意图](./images/gossip/gossip-rumor-mongering.gif)
 
 伪代码如下：
 
@@ -138,7 +138,7 @@ Gossip 设计了两种可能的消息传播模式：**反熵（Anti-Entropy）**
 
 ## 参考
 
-- 一万字详解 Redis Cluster Gossip 协议：https://segmentfault.com/a/1190000038373546
+- 一万字详解 Redis Cluster Gossip 协议：<https://segmentfault.com/a/1190000038373546>
 - 《分布式协议与算法实战》
 - 《Redis 设计与实现》
 

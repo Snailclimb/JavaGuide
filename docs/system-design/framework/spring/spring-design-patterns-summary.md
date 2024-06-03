@@ -51,13 +51,13 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 public class App {
-	public static void main(String[] args) {
-		ApplicationContext context = new FileSystemXmlApplicationContext(
-				"C:/work/IOC Containers/springframework.applicationcontext/src/main/resources/bean-factory-config.xml");
+  public static void main(String[] args) {
+    ApplicationContext context = new FileSystemXmlApplicationContext(
+        "C:/work/IOC Containers/springframework.applicationcontext/src/main/resources/bean-factory-config.xml");
 
-		HelloApplicationContext obj = (HelloApplicationContext) context.getBean("helloApplicationContext");
-		obj.getMsg();
-	}
+    HelloApplicationContext obj = (HelloApplicationContext) context.getBean("helloApplicationContext");
+    obj.getMsg();
+  }
 }
 ```
 
@@ -206,7 +206,7 @@ Spring 中默认存在以下事件，他们都是对 `ApplicationContextEvent` �
 
 #### 事件监听者角色
 
-`ApplicationListener` 充当了事件监听者角色，它是一个接口，里面只定义了一个 `onApplicationEvent（）`方法来处理`ApplicationEvent`。`ApplicationListener`接口类源码如下，可以看出接口定义看出接口中的事件只要实现了 `ApplicationEvent`就可以了。所以，在 Spring 中我们只要实现 `ApplicationListener` 接口的 `onApplicationEvent()` 方法即可完成监听事件
+`ApplicationListener` 充当了事件监听者角色，它是一个接口，里面只定义了一个 `onApplicationEvent()`方法来处理`ApplicationEvent`。`ApplicationListener`接口类源码如下，可以看出接口定义看出接口中的事件只要实现了 `ApplicationEvent`就可以了。所以，在 Spring 中我们只要实现 `ApplicationListener` 接口的 `onApplicationEvent()` 方法即可完成监听事件
 
 ```java
 package org.springframework.context;
@@ -233,7 +233,7 @@ public interface ApplicationEventPublisher {
 
 ```
 
-`ApplicationEventPublisher` 接口的`publishEvent（）`这个方法在`AbstractApplicationContext`类中被实现，阅读这个方法的实现，你会发现实际上事件真正是通过`ApplicationEventMulticaster`来广播出去的。具体内容过多，就不在这里分析了，后面可能会单独写一篇文章提到。
+`ApplicationEventPublisher` 接口的`publishEvent()`这个方法在`AbstractApplicationContext`类中被实现，阅读这个方法的实现，你会发现实际上事件真正是通过`ApplicationEventMulticaster`来广播出去的。具体内容过多，就不在这里分析了，后面可能会单独写一篇文章提到。
 
 ### Spring 的事件流程总结
 
@@ -346,7 +346,7 @@ Spring 框架中用到了哪些设计模式？
 
 - 《Spring 技术内幕》
 - <https://blog.eduonix.com/java-programming-2/learn-design-patterns-used-spring-framework/>
-- <http://blog.yeamin.top/2018/03/27/单例模式-Spring 单例实现原理分析/>
+- <http://blog.yeamin.top/2018/03/27/单例模式-Spring%20 单例实现原理分析/>
 - <https://www.tutorialsteacher.com/ioc/inversion-of-control>
 - <https://design-patterns.readthedocs.io/zh_CN/latest/behavioral_patterns/observer.html>
 - <https://juejin.im/post/5a8eb261f265da4e9e307230>

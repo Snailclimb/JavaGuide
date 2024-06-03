@@ -78,10 +78,11 @@ assert Arrays.equals(javaStrings, new String[] {"car", "cat", "dog", "mouse"}); 
 
 虚拟线程避免了上下文切换的额外耗费，兼顾了多线程的优点，简化了高并发程序的复杂，可以有效减少编写、维护和观察高吞吐量并发应用程序的工作量。
 
-知乎有一个关于 Java 19 虚拟线程的讨论，感兴趣的可以去看看：https://www.zhihu.com/question/536743167 。
+知乎有一个关于 Java 19 虚拟线程的讨论，感兴趣的可以去看看：<https://www.zhihu.com/question/536743167> 。
 
 Java 虚拟线程的详细解读和原理可以看下面这两篇文章：
 
+- [虚拟线程原理及性能分析｜得物技术](https://mp.weixin.qq.com/s/vdLXhZdWyxc6K-D3Aj03LA)
 - [Java19 正式 GA！看虚拟线程如何大幅提高系统吞吐量](https://mp.weixin.qq.com/s/yyApBXxpXxVwttr01Hld6Q)
 - [虚拟线程 - VirtualThread 源码透视](https://www.cnblogs.com/throwable/p/16758997.html)
 

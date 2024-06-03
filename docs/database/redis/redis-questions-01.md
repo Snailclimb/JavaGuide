@@ -20,7 +20,7 @@ head:
 
 [Redis](https://redis.io/) （**RE**mote **DI**ctionary **S**erver）是一个基于 C 语言开发的开源 NoSQL 数据库（BSD 许可）。与传统数据库不同的是，Redis 的数据是保存在内存中的（内存数据库，支持持久化），因此读写速度非常快，被广泛应用于分布式缓存方向。并且，Redis 存储的是 KV 键值对数据。
 
-为了满足不同的业务场景，Redis 内置了多种数据类型实现（比如 String、Hash、Sorted Set、Bitmap、HyperLogLog、GEO）。并且，Redis 还支持事务、持久化、Lua 脚本、多种开箱即用的集群方案（Redis Sentinel、Redis Cluster）。
+为了满足不同的业务场景，Redis 内置了多种数据类型实现（比如 String、Hash、Sorted Set、Bitmap、HyperLogLog、GEO）。并且，Redis 还支持事务、持久化、Lua 脚本、发布订阅模型、多种开箱即用的集群方案（Redis Sentinel、Redis Cluster）。
 
 ![Redis 数据类型概览](https://oss.javaguide.cn/github/javaguide/database/redis/redis-overview-of-data-types-2023-09-28.jpg)
 
@@ -36,13 +36,16 @@ Redis 没有外部依赖，Linux 和 OS X 是 Redis 开发和测试最多的两�
 
 Redis 内部做了非常多的性能优化，比较重要的有下面 3 点：
 
-1. Redis 基于内存，内存的访问速度是磁盘的上千倍；
+1. Redis 基于内存，内存的访问速度比磁盘快很多；
 2. Redis 基于 Reactor 模式设计开发了一套高效的事件处理模型，主要是单线程事件循环和 IO 多路复用（Redis 线程模式后面会详细介绍到）；
 3. Redis 内置了多种优化过后的数据类型/结构实现，性能非常高。
+4. Redis 通信协议实现简单且解析高效。
 
 > 下面这张图片总结的挺不错的，分享一下，出自 [Why is Redis so fast?](https://twitter.com/alexxubyte/status/1498703822528544770) 。
 
 ![why-redis-so-fast](./images/why-redis-so-fast.png)
+
+那既然都这么快了，为什么不直接用 Redis 当主数据库呢？主要是因为内存成本太高且 Redis 提供的数据持久化仍然有数据丢失的风险。
 
 ### 分布式缓存常见的技术选型方案有哪些？
 
@@ -50,11 +53,16 @@ Redis 内部做了非常多的性能优化，比较重要的有下面 3 点：
 
 Memcached 是分布式缓存最开始兴起的那会，比较常用的。后来，随着 Redis 的发展，大家慢慢都转而使用更加强大的 Redis 了。
 
-另外，腾讯也开源了一款类似于 Redis 的分布式高性能 KV 存储数据库，基于知名的开源项目 [RocksDB](https://github.com/facebook/rocksdb) 作为存储引擎 ，100% 兼容 Redis 协议和 Redis4.0 所有数据模型，名为 [Tendis](https://github.com/Tencent/Tendis)。
+有一些大厂也开源了类似于 Redis 的分布式高性能 KV 存储数据库，例如，腾讯开源的 [Tendis](https://github.com/Tencent/Tendis) 。Tendis 基于知名开源项目 [RocksDB](https://github.com/facebook/rocksdb) 作为存储引擎 ，100% 兼容 Redis 协议和 Redis4.0 所有数据模型。关于 Redis 和 Tendis 的对比，腾讯官方曾经发过一篇文章：[Redis vs Tendis：冷热混合存储版架构揭秘](https://mp.weixin.qq.com/s/MeYkfOIdnU6LYlsGb24KjQ) ，可以简单参考一下。
 
-关于 Redis 和 Tendis 的对比，腾讯官方曾经发过一篇文章：[Redis vs Tendis：冷热混合存储版架构揭秘](https://mp.weixin.qq.com/s/MeYkfOIdnU6LYlsGb24KjQ) ，可以简单参考一下。
+不过，从 Tendis 这个项目的 Github 提交记录可以看出，Tendis 开源版几乎已经没有被维护更新了，加上其关注度并不高，使用的公司也比较少。因此，不建议你使用 Tendis 来实现分布式缓存。
 
-从这个项目的 GitHub 提交记录可以看出，Tendis 开源版几乎已经没有被维护更新了，加上其关注度并不高，使用的公司也比较少。因此，不建议你使用 Tendis 来实现分布式缓存。
+目前，比较业界认可的 Redis 替代品还是下面这两个开源分布式缓存（都是通过碰瓷 Redis 火的）：
+
+- [Dragonfly](https://github.com/dragonflydb/dragonfly)：一种针对现代应用程序负荷需求而构建的内存数据库，完全兼容 Redis 和 Memcached 的 API，迁移时无需修改任何代码，号称全世界最快的内存数据库。
+- [KeyDB](https://github.com/Snapchat/KeyDB)： Redis 的一个高性能分支，专注于多线程、内存效率和高吞吐量。
+
+不过，个人还是建议分布式缓存首选 Redis ，毕竟经过这么多年的生考验，生态也这么优秀，资料也很全面。
 
 ### 说一下 Redis 和 Memcached 的区别和共同点
 
@@ -68,45 +76,62 @@ Memcached 是分布式缓存最开始兴起的那会，比较常用的。后来�
 
 **区别**：
 
-1. **Redis 支持更丰富的数据类型（支持更复杂的应用场景）**。Redis 不仅仅支持简单的 k/v 类型的数据，同时还提供 list，set，zset，hash 等数据结构的存储。Memcached 只支持最简单的 k/v 数据类型。
-2. **Redis 支持数据的持久化，可以将内存中的数据保持在磁盘中，重启的时候可以再次加载进行使用,而 Memcached 把数据全部存在内存之中。**
-3. **Redis 有灾难恢复机制。** 因为可以把缓存中的数据持久化到磁盘上。
-4. **Redis 在服务器内存使用完之后，可以将不用的数据放到磁盘上。但是，Memcached 在服务器内存使用完之后，就会直接报异常。**
-5. **Memcached 没有原生的集群模式，需要依靠客户端来实现往集群中分片写入数据；但是 Redis 目前是原生支持 cluster 模式的。**
-6. **Memcached 是多线程，非阻塞 IO 复用的网络模型；Redis 使用单线程的多路 IO 复用模型。** （Redis 6.0 针对网络数据的读写引入了多线程）
-7. **Redis 支持发布订阅模型、Lua 脚本、事务等功能，而 Memcached 不支持。并且，Redis 支持更多的编程语言。**
-8. **Memcached 过期数据的删除策略只用了惰性删除，而 Redis 同时使用了惰性删除与定期删除。**
+1. **数据类型**：Redis 支持更丰富的数据类型（支持更复杂的应用场景）。Redis 不仅仅支持简单的 k/v 类型的数据，同时还提供 list，set，zset，hash 等数据结构的存储。Memcached 只支持最简单的 k/v 数据类型。
+2. **数据持久化**：Redis 支持数据的持久化，可以将内存中的数据保持在磁盘中，重启的时候可以再次加载进行使用，而 Memcached 把数据全部存在内存之中。也就是说，Redis 有灾难恢复机制而 Memcached 没有。
+3. **集群模式支持**：Memcached 没有原生的集群模式，需要依靠客户端来实现往集群中分片写入数据；但是 Redis 自 3.0 版本起是原生支持集群模式的。
+4. **线程模型**：Memcached 是多线程，非阻塞 IO 复用的网络模型；Redis 使用单线程的多路 IO 复用模型。 （Redis 6.0 针对网络数据的读写引入了多线程）
+5. **特性支持**：Redis 支持发布订阅模型、Lua 脚本、事务等功能，而 Memcached 不支持。并且，Redis 支持更多的编程语言。
+6. **过期数据删除**：Memcached 过期数据的删除策略只用了惰性删除，而 Redis 同时使用了惰性删除与定期删除。
 
 相信看了上面的对比之后，我们已经没有什么理由可以选择使用 Memcached 来作为自己项目的分布式缓存了。
 
-### 为什么要用 Redis/为什么要用缓存？
+### 为什么要用 Redis？
 
-下面我们主要从“高性能”和“高并发”这两点来回答这个问题。
+**1、访问速度更快**
 
-**1、高性能**
-
-假如用户第一次访问数据库中的某些数据的话，这个过程是比较慢，毕竟是从硬盘中读取的。但是，如果说，用户访问的数据属于高频数据并且不会经常改变的话，那么我们就可以很放心地将该用户访问的数据存在缓存中。
-
-**这样有什么好处呢？** 那就是保证用户下一次再访问这些数据的时候就可以直接从缓存中获取了。操作缓存就是直接操作内存，所以速度相当快。
+传统数据库数据保存在磁盘，而 Redis 基于内存，内存的访问速度比磁盘快很多。引入 Redis 之后，我们可以把一些高频访问的数据放到 Redis 中，这样下次就可以直接从内存中读取，速度可以提升几十倍甚至上百倍。
 
 **2、高并发**
 
-一般像 MySQL 这类的数据库的 QPS 大概都在 1w 左右（4 核 8g） ，但是使用 Redis 缓存之后很容易达到 10w+，甚至最高能达到 30w+（就单机 Redis 的情况，Redis 集群的话会更高）。
+一般像 MySQL 这类的数据库的 QPS 大概都在 4k 左右（4 核 8g） ，但是使用 Redis 缓存之后很容易达到 5w+，甚至能达到 10w+（就单机 Redis 的情况，Redis 集群的话会更高）。
 
 > QPS（Query Per Second）：服务器每秒可以执行的查询次数；
 
 由此可见，直接操作缓存能够承受的数据库请求数量是远远大于直接访问数据库的，所以我们可以考虑把数据库中的部分数据转移到缓存中去，这样用户的一部分请求会直接到缓存这里而不用经过数据库。进而，我们也就提高了系统整体的并发。
 
+**3、功能全面**
+
+Redis 除了可以用作缓存之外，还可以用于分布式锁、限流、消息队列、延时队列等场景，功能强大！
+
 ### 常见的缓存读写策略有哪些？
 
 关于常见的缓存读写策略的详细介绍，可以看我写的这篇文章：[3 种常用的缓存读写策略详解](https://javaguide.cn/database/redis/3-commonly-used-cache-read-and-write-strategies.html) 。
+
+### 什么是 Redis Module？有什么用？
+
+Redis 从 4.0 版本开始，支持通过 Module 来扩展其功能以满足特殊的需求。这些 Module 以动态链接库（so 文件）的形式被加载到 Redis 中，这是一种非常灵活的动态扩展功能的实现方式，值得借鉴学习！
+
+我们每个人都可以基于 Redis 去定制化开发自己的 Module，比如实现搜索引擎功能、自定义分布式锁和分布式限流。
+
+目前，被 Redis 官方推荐的 Module 有：
+
+- [RediSearch](https://github.com/RediSearch/RediSearch)：用于实现搜索引擎的模块。
+- [RedisJSON](https://github.com/RedisJSON/RedisJSON)：用于处理 JSON 数据的模块。
+- [RedisGraph](https://github.com/RedisGraph/RedisGraph)：用于实现图形数据库的模块。
+- [RedisTimeSeries](https://github.com/RedisTimeSeries/RedisTimeSeries)：用于处理时间序列数据的模块。
+- [RedisBloom](https://github.com/RedisBloom/RedisBloom)：用于实现布隆过滤器的模块。
+- [RedisAI](https://github.com/RedisAI/RedisAI)：用于执行深度学习/机器学习模型并管理其数据的模块。
+- [RedisCell](https://github.com/brandur/redis-cell)：用于实现分布式限流的模块。
+- ……
+
+关于 Redis 模块的详细介绍，可以查看官方文档：<https://redis.io/modules>。
 
 ## Redis 应用
 
 ### Redis 除了做缓存，还能做什么？
 
 - **分布式锁**：通过 Redis 来做分布式锁是一种比较常见的方式。通常情况下，我们都是基于 Redisson 来实现分布式锁。关于 Redis 实现分布式锁的详细介绍，可以看我写的这篇文章：[分布式锁详解](https://javaguide.cn/distributed-system/distributed-lock.html) 。
-- **限流**：一般是通过 Redis + Lua 脚本的方式来实现限流。相关阅读：[《我司用了 6 年的 Redis 分布式限流器，可以说是非常厉害了！》](https://mp.weixin.qq.com/s/kyFAWH3mVNJvurQDt4vchA)。
+- **限流**：一般是通过 Redis + Lua 脚本的方式来实现限流。如果不想自己写 Lua 脚本的话，也可以直接利用 Redisson 中的 `RRateLimiter` 来实现分布式限流，其底层实现就是基于 Lua 代码+令牌桶算法。
 - **消息队列**：Redis 自带的 List 数据结构可以作为一个简单的队列使用。Redis 5.0 中增加的 Stream 类型的数据结构更加适合用来做消息队列。它比较类似于 Kafka，有主题和消费组的概念，支持消息持久化以及 ACK 机制。
 - **延时队列**：Redisson 内置了延时队列（基于 Sorted Set 实现的）。
 - **分布式 Session** ：利用 String 或者 Hash 数据类型保存 Session 数据，所有的服务器都可以访问。
@@ -115,11 +140,11 @@ Memcached 是分布式缓存最开始兴起的那会，比较常用的。后来�
 
 ### 如何基于 Redis 实现分布式锁？
 
-关于 Redis 实现分布式锁的详细介绍，可以看我写的这篇文章：[分布式锁详解](https://javaguide.cn/distributed-system/distributed-lock.html) 。
+关于 Redis 实现分布式锁的详细介绍，可以看我写的这篇文章：[分布式锁详解](https://javaguide.cn/distributed-system/distributed-lock-implementations.html) 。
 
 ### Redis 可以做消息队列么？
 
-> 实际项目中也没见谁使用 Redis 来做消息队列，对于这部分知识点大家了解就好了。
+> 实际项目中使用 Redis 来做消息队列的非常少，毕竟有更成熟的消息队列中间件可以用。
 
 先说结论：**可以是可以，但不建议使用 Redis 来做消息队列。和专业的消息队列相比，还是有很多欠缺的地方。**
 
@@ -140,7 +165,7 @@ Memcached 是分布式缓存最开始兴起的那会，比较常用的。后来�
 
 不过，通过 `RPUSH/LPOP` 或者 `LPUSH/RPOP`这样的方式存在性能问题，我们需要不断轮询去调用 `RPOP` 或 `LPOP` 来消费消息。当 List 为空时，大部分的轮询的请求都是无效请求，这种方式大量浪费了系统资源。
 
-因此，Redis 还提供了 `BLPOP`、`BRPOP` 这种阻塞式读取的命令（带 B-Bloking 的都是阻塞式），并且还支持一个超时参数。如果 List 为空，Redis 服务端不会立刻返回结果，它会等待 List 中有新数据后在返回或者是等待最多一个超时时间后返回空。如果将超时时间设置为 0 时，即可无限等待，直到弹出消息
+因此，Redis 还提供了 `BLPOP`、`BRPOP` 这种阻塞式读取的命令（带 B-Blocking 的都是阻塞式），并且还支持一个超时参数。如果 List 为空，Redis 服务端不会立刻返回结果，它会等待 List 中有新数据后再返回或者是等待最多一个超时时间后返回空。如果将超时时间设置为 0 时，即可无限等待，直到弹出消息
 
 ```bash
 # 超时时间为 10s
@@ -171,14 +196,92 @@ pub/sub 既能单播又能广播，还支持 channel 的简单正则匹配。不
 为此，Redis 5.0 新增加的一个数据结构 `Stream` 来做消息队列。`Stream` 支持：
 
 - 发布 / 订阅模式
-- 按照消费者组进行消费
+- 按照消费者组进行消费（借鉴了 Kafka 消费者组的概念）
 - 消息持久化（ RDB 和 AOF）
+- ACK 机制（通过确认机制来告知已经成功处理了消息）
+- 阻塞式获取消息
 
-`Stream` 使用起来相对要麻烦一些，这里就不演示了。而且，`Stream` 在实际使用中依然会有一些小问题不太好解决比如在 Redis 发生故障恢复后不能保证消息至少被消费一次。
+`Stream` 的结构如下：
 
-综上，和专业的消息队列相比，使用 Redis 来实现消息队列还是有很多欠缺的地方比如消息丢失和堆积问题不好解决。因此，我们通常建议不要使用 Redis 来做消息队列，你完全可以选择市面上比较成熟的一些消息队列比如 RocketMQ、Kafka。
+![](https://oss.javaguide.cn/github/javaguide/database/redis/redis-stream-structure.png)
+
+这是一个有序的消息链表，每个消息都有一个唯一的 ID 和对应的内容。ID 是一个时间戳和序列号的组合，用来保证消息的唯一性和递增性。内容是一个或多个键值对（类似 Hash 基本数据类型），用来存储消息的数据。
+
+这里再对图中涉及到的一些概念，进行简单解释：
+
+- `Consumer Group`：消费者组用于组织和管理多个消费者。消费者组本身不处理消息，而是再将消息分发给消费者，由消费者进行真正的消费
+- `last_delivered_id`：标识消费者组当前消费位置的游标，消费者组中任意一个消费者读取了消息都会使 last_delivered_id 往前移动。
+- `pending_ids`：记录已经被客户端消费但没有 ack 的消息的 ID。
+
+下面是`Stream` 用作消息队列时常用的命令：
+
+- `XADD`：向流中添加新的消息。
+- `XREAD`：从流中读取消息。
+- `XREADGROUP`：从消费组中读取消息。
+- `XRANGE`：根据消息 ID 范围读取流中的消息。
+- `XREVRANGE`：与 `XRANGE` 类似，但以相反顺序返回结果。
+- `XDEL`：从流中删除消息。
+- `XTRIM`：修剪流的长度，可以指定修建策略（`MAXLEN`/`MINID`）。
+- `XLEN`：获取流的长度。
+- `XGROUP CREATE`：创建消费者组。
+- `XGROUP DESTROY` ： 删除消费者组
+- `XGROUP DELCONSUMER`：从消费者组中删除一个消费者。
+- `XGROUP SETID`：为消费者组设置新的最后递送消息 ID
+- `XACK`：确认消费组中的消息已被处理。
+- `XPENDING`：查询消费组中挂起（未确认）的消息。
+- `XCLAIM`：将挂起的消息从一个消费者转移到另一个消费者。
+- `XINFO`：获取流(`XINFO STREAM`)、消费组(`XINFO GROUPS`)或消费者(`XINFO CONSUMERS`)的详细信息。
+
+`Stream` 使用起来相对要麻烦一些，这里就不演示了。
+
+总的来说，`Stream` 已经可以满足一个消息队列的基本要求了。不过，`Stream` 在实际使用中依然会有一些小问题不太好解决比如在 Redis 发生故障恢复后不能保证消息至少被消费一次。
+
+综上，和专业的消息队列相比，使用 Redis 来实现消息队列还是有很多欠缺的地方比如消息丢失和堆积问题不好解决。因此，我们通常建议不要使用 Redis 来做消息队列，你完全可以选择市面上比较成熟的一些消息队列比如 RocketMQ、Kafka。不过，如果你就是想要用 Redis 来做消息队列的话，那我建议你优先考虑 `Stream`，这是目前相对最优的 Redis 消息队列实现。
 
 相关阅读：[Redis 消息队列发展历程 - 阿里开发者 - 2022](https://mp.weixin.qq.com/s/gCUT5TcCQRAxYkTJfTRjJw)。
+
+### Redis 可以做搜索引擎么？
+
+Redis 是可以实现全文搜索引擎功能的，需要借助 **RediSearch** ，这是一个基于 Redis 的搜索引擎模块。
+
+RediSearch 支持中文分词、聚合统计、停用词、同义词、拼写检查、标签查询、向量相似度查询、多关键词搜索、分页搜索等功能，算是一个功能比较完善的全文搜索引擎了。
+
+相比较于 Elasticsearch 来说，RediSearch 主要在下面两点上表现更优异一些：
+
+1. 性能更优秀：依赖 Redis 自身的高性能，基于内存操作（Elasticsearch 基于磁盘）。
+2. 较低内存占用实现快速索引：RediSearch 内部使用压缩的倒排索引，所以可以用较低的内存占用来实现索引的快速构建。
+
+对于小型项目的简单搜索场景来说，使用 RediSearch 来作为搜索引擎还是没有问题的（搭配 RedisJSON 使用）。
+
+对于比较复杂或者数据规模较大的搜索场景还是不太建议使用 RediSearch 来作为搜索引擎，主要是因为下面这些限制和问题：
+
+1. 数据量限制：Elasticsearch 可以支持 PB 级别的数据量，可以轻松扩展到多个节点，利用分片机制提高可用性和性能。RedisSearch 是基于 Redis 实现的，其能存储的数据量受限于 Redis 的内存容量，不太适合存储大规模的数据（内存昂贵，扩展能力较差）。
+2. 分布式能力较差：Elasticsearch 是为分布式环境设计的，可以轻松扩展到多个节点。虽然 RedisSearch 支持分布式部署，但在实际应用中可能会面临一些挑战，如数据分片、节点间通信、数据一致性等问题。
+3. 聚合功能较弱：Elasticsearch 提供了丰富的聚合功能，而 RediSearch 的聚合功能相对较弱，只支持简单的聚合操作。
+4. 生态较差：Elasticsearch 可以轻松和常见的一些系统/软件集成比如 Hadoop、Spark、Kibana，而 RedisSearch 则不具备该优势。
+
+Elasticsearch 适用于全文搜索、复杂查询、实时数据分析和聚合的场景，而 RediSearch 适用于快速数据存储、缓存和简单查询的场景。
+
+### 如何基于 Redis 实现延时任务？
+
+> 类似的问题：
+>
+> - 订单在 10 分钟后未支付就失效，如何用 Redis 实现？
+> - 红包 24 小时未被查收自动退还，如何用 Redis 实现？
+
+基于 Redis 实现延时任务的功能无非就下面两种方案：
+
+1. Redis 过期事件监听
+2. Redisson 内置的延时队列
+
+Redis 过期事件监听的存在时效性较差、丢消息、多服务实例下消息重复消费等问题，不被推荐使用。
+
+Redisson 内置的延时队列具备下面这些优势：
+
+1. **减少了丢消息的可能**：DelayedQueue 中的消息会被持久化，即使 Redis 宕机了，根据持久化机制，也只可能丢失一点消息，影响不大。当然了，你也可以使用扫描数据库的方法作为补偿机制。
+2. **消息不存在重复消费问题**：每个客户端都是从同一个目标队列中获取任务的，不存在重复消费的问题。
+
+关于 Redis 实现延时任务的详细介绍，可以看我写的这篇文章：[如何基于 Redis 实现延时任务？](./redis-delayed-task.md)。
 
 ## Redis 数据类型
 
@@ -222,7 +325,7 @@ Redis 是基于 C 语言编写的，但 Redis 的 String 类型的底层实现�
 
 SDS 最早是 Redis 作者为日常 C 语言开发而设计的 C 字符串，后来被应用到了 Redis 上，并经过了大量的修改完善以适合高性能操作。
 
-Redis7.0 的 SDS 的部分源码如下（https://github.com/redis/redis/blob/7.0/src/sds.h）：
+Redis7.0 的 SDS 的部分源码如下（<https://github.com/redis/redis/blob/7.0/src/sds.h>）:
 
 ```c
 /* Note: sdshdr5 is never used, we just access the flags byte directly.
@@ -259,13 +362,13 @@ struct __attribute__ ((__packed__)) sdshdr64 {
 
 通过源码可以看出，SDS 共有五种实现方式 SDS_TYPE_5（并未用到）、SDS_TYPE_8、SDS_TYPE_16、SDS_TYPE_32、SDS_TYPE_64，其中只有后四种实际用到。Redis 会根据初始化的长度决定使用哪种类型，从而减少内存的使用。
 
-| 类型     | 字节 | 位   |
-| -------- | ---- | ---- |
-| sdshdr5  | < 1  | <8   |
-| sdshdr8  | 1    | 8    |
-| sdshdr16 | 2    | 16   |
-| sdshdr32 | 4    | 32   |
-| sdshdr64 | 8    | 64   |
+| 类型     | 字节 | 位  |
+| -------- | ---- | --- |
+| sdshdr5  | < 1  | <8  |
+| sdshdr8  | 1    | 8   |
+| sdshdr16 | 2    | 16  |
+| sdshdr32 | 4    | 32  |
+| sdshdr64 | 8    | 64  |
 
 对于后四种实现都包含了下面这 4 个属性：
 
@@ -314,7 +417,7 @@ struct sdshdr {
 
 ### 使用 Redis 实现一个排行榜怎么做？
 
-Redis 中有一个叫做 `Sorted Set` 的数据类型经常被用在各种排行榜的场景，比如直播间送礼物的排行榜、朋友圈的微信步数排行榜、王者荣耀中的段位排行榜、话题热度排行榜等等。
+Redis 中有一个叫做 `Sorted Set` （有序集合）的数据类型经常被用在各种排行榜的场景，比如直播间送礼物的排行榜、朋友圈的微信步数排行榜、王者荣耀中的段位排行榜、话题热度排行榜等等。
 
 相关的一些 Redis 命令: `ZRANGE` (从小到大排序)、 `ZREVRANGE` （从大到小排序）、`ZREVRANK` (指定元素排名)。
 
@@ -323,6 +426,16 @@ Redis 中有一个叫做 `Sorted Set` 的数据类型经常被用在各种排行
 [《Java 面试指北》](https://javaguide.cn/zhuanlan/java-mian-shi-zhi-bei.html) 的「技术面试题篇」就有一篇文章详细介绍如何使用 Sorted Set 来设计制作一个排行榜，感兴趣的小伙伴可以看看。
 
 ![](https://oss.javaguide.cn/github/javaguide/database/redis/image-20220719071115140.png)
+
+### Redis 的有序集合底层为什么要用跳表，而不用平衡树、红黑树或者 B+树？
+
+这道面试题很多大厂比较喜欢问，难度还是有点大的。
+
+- 平衡树 vs 跳表：平衡树的插入、删除和查询的时间复杂度和跳表一样都是 **O(log n)**。对于范围查询来说，平衡树也可以通过中序遍历的方式达到和跳表一样的效果。但是它的每一次插入或者删除操作都需要保证整颗树左右节点的绝对平衡，只要不平衡就要通过旋转操作来保持平衡，这个过程是比较耗时的。跳表诞生的初衷就是为了克服平衡树的一些缺点。跳表使用概率平衡而不是严格强制的平衡，因此，跳表中的插入和删除算法比平衡树的等效算法简单得多，速度也快得多。
+- 红黑树 vs 跳表：相比较于红黑树来说，跳表的实现也更简单一些，不需要通过旋转和染色（红黑变换）来保证黑平衡。并且，按照区间来查找数据这个操作，红黑树的效率没有跳表高。
+- B+树 vs 跳表：B+树更适合作为数据库和文件系统中常用的索引结构之一，它的核心思想是通过可能少的 IO 定位到尽可能多的索引来获得查询数据。对于 Redis 这种内存数据库来说，它对这些并不感冒，因为 Redis 作为内存数据库它不可能存储大量的数据，所以对于索引不需要通过 B+树这种方式进行维护，只需按照概率进行随机维护即可，节约内存。而且使用跳表实现 zset 时相较前者来说更简单一些，在进行插入时只需通过索引将数据插入到链表中合适的位置再随机维护一定高度的索引即可，也不需要像 B+树那样插入时发现失衡时还需要对节点分裂与合并。
+
+另外，我还单独写了一篇文章从有序集合的基本使用到跳表的源码分析和实现，让你会对 Redis 的有序集合底层实现的跳表有着更深刻的理解和掌握 ：[Redis 为什么用跳表实现有序集合](./redis-skiplist.md)。
 
 ### Set 的应用场景是什么？
 
@@ -440,15 +553,19 @@ Redis 通过 **IO 多路复用程序** 来监听来自客户端的大量连接�
 
 ### Redis6.0 之前为什么不使用多线程？
 
-虽然说 Redis 是单线程模型，但是，实际上，**Redis 在 4.0 之后的版本中就已经加入了对多线程的支持。**
+虽然说 Redis 是单线程模型，但实际上，**Redis 在 4.0 之后的版本中就已经加入了对多线程的支持。**
 
-不过，Redis 4.0 增加的多线程主要是针对一些大键值对的删除操作的命令，使用这些命令就会使用主线程之外的其他线程来“异步处理”。
+不过，Redis 4.0 增加的多线程主要是针对一些大键值对的删除操作的命令，使用这些命令就会使用主线程之外的其他线程来“异步处理”，从而减少对主线程的影响。
 
-为此，Redis 4.0 之后新增了`UNLINK`（可以看作是 `DEL` 的异步版本）、`FLUSHALL ASYNC`（清空所有数据库的所有 key，不仅仅是当前 `SELECT` 的数据库）、`FLUSHDB ASYNC`（清空当前 `SELECT` 数据库中的所有 key）等异步命令。
+为此，Redis 4.0 之后新增了几个异步命令：
+
+- `UNLINK`：可以看作是 `DEL` 命令的异步版本。
+- `FLUSHALL ASYNC`：用于清空所有数据库的所有键，不限于当前 `SELECT` 的数据库。
+- `FLUSHDB ASYNC`：用于清空当前 `SELECT` 数据库中的所有键。
 
 ![redis4.0 more thread](https://oss.javaguide.cn/github/javaguide/database/redis/redis4.0-more-thread.png)
 
-大体上来说，Redis 6.0 之前主要还是单线程处理。
+总的来说，直到 Redis 6.0 之前，Redis 的主要操作仍然是单线程处理的。
 
 **那 Redis6.0 之前为什么不使用多线程？** 我觉得主要原因有 3 点：
 
@@ -496,7 +613,7 @@ io-threads-do-reads yes
 - 通过 `bio_aof_fsync` 后台线程调用 `fsync` 函数将系统内核缓冲区还未同步到到磁盘的数据强制刷到磁盘（ AOF 文件）。
 - 通过 `bio_lazy_free`后台线程释放大对象（已删除）占用的内存空间.
 
-在`bio.h` 文件中有定义（Redis 6.0 版本，源码地址：https://github.com/redis/redis/blob/6.0/src/bio.h）：
+在`bio.h` 文件中有定义（Redis 6.0 版本，源码地址：<https://github.com/redis/redis/blob/6.0/src/bio.h>）：
 
 ```java
 #ifndef __BIO_H
@@ -552,7 +669,7 @@ OK
 
 Redis 通过一个叫做过期字典（可以看作是 hash 表）来保存数据过期的时间。过期字典的键指向 Redis 数据库中的某个 key(键)，过期字典的值是一个 long long 类型的整数，这个整数保存了 key 所指向的数据库键的过期时间（毫秒精度的 UNIX 时间戳）。
 
-![redis过期字典](https://oss.javaguide.cn/github/javaguide/database/redis/redis-expired-dictionary.png)
+![Redis 过期字典](https://oss.javaguide.cn/github/javaguide/database/redis/redis-expired-dictionary.png)
 
 过期字典是存储在 redisDb 这个结构里的：
 
@@ -566,44 +683,159 @@ typedef struct redisDb {
 } redisDb;
 ```
 
-### 过期的数据的删除策略了解么？
+在查询一个 key 的时候，Redis 首先检查该 key 是否存在于过期字典中（时间复杂度为 O(1)），如果不在就直接返回，在的话需要判断一下这个 key 是否过期，过期直接删除 key 然后返回 null。
+
+### Redis 过期 key 删除策略了解么？
 
 如果假设你设置了一批 key 只能存活 1 分钟，那么 1 分钟后，Redis 是怎么对这批 key 进行删除的呢？
 
-常用的过期数据的删除策略就两个（重要！自己造缓存轮子的时候需要格外考虑的东西）：
+常用的过期数据的删除策略就下面这几种（重要！自己造缓存轮子的时候需要格外考虑的东西）：
 
-1. **惰性删除**：只会在取出 key 的时候才对数据进行过期检查。这样对 CPU 最友好，但是可能会造成太多过期 key 没有被删除。
-2. **定期删除**：每隔一段时间抽取一批 key 执行删除过期 key 操作。并且，Redis 底层会通过限制删除操作执行的时长和频率来减少删除操作对 CPU 时间的影响。
+1. **惰性删除**：只会在取出/查询 key 的时候才对数据进行过期检查。这种方式对 CPU 最友好，但是可能会造成太多过期 key 没有被删除。
+2. **定期删除**：周期性地随机从设置了过期时间的 key 中抽查一批，然后逐个检查这些 key 是否过期，过期就删除 key。相比于惰性删除，定期删除对内存更友好，对 CPU 不太友好。
+3. **延迟队列**：把设置过期时间的 key 放到一个延迟队列里，到期之后就删除 key。这种方式可以保证每个过期 key 都能被删除，但维护延迟队列太麻烦，队列本身也要占用资源。
+4. **定时删除**：每个设置了过期时间的 key 都会在设置的时间到达时立即被删除。这种方法可以确保内存中不会有过期的键，但是它对 CPU 的压力最大，因为它需要为每个键都设置一个定时器。
 
-定期删除对内存更加友好，惰性删除对 CPU 更加友好。两者各有千秋，所以 Redis 采用的是 **定期删除+惰性/懒汉式删除** 。
+**Redis 采用的那种删除策略呢？**
 
-但是，仅仅通过给 key 设置过期时间还是有问题的。因为还是可能存在定期删除和惰性删除漏掉了很多过期 key 的情况。这样就导致大量过期 key 堆积在内存里，然后就 Out of memory 了。
+Redis 采用的是 **定期删除+惰性/懒汉式删除** 结合的策略，这也是大部分缓存框架的选择。定期删除对内存更加友好，惰性删除对 CPU 更加友好。两者各有千秋，结合起来使用既能兼顾 CPU 友好，又能兼顾内存友好。
 
-怎么解决这个问题呢？答案就是：**Redis 内存淘汰机制。**
+下面是我们详细介绍一下 Redis 中的定期删除具体是如何做的。
 
-### Redis 内存淘汰机制了解么？
+Redis 的定期删除过程是随机的（周期性地随机从设置了过期时间的 key 中抽查一批），所以并不保证所有过期键都会被立即删除。这也就解释了为什么有的 key 过期了，并没有被删除。并且，Redis 底层会通过限制删除操作执行的时长和频率来减少删除操作对 CPU 时间的影响。
+
+另外，定期删除还会受到执行时间和过期 key 的比例的影响：
+
+- 执行时间已经超过了阈值，那么就中断这一次定期删除循环，以避免使用过多的 CPU 时间。
+- 如果这一批过期的 key 比例超过一个比例，就会重复执行此删除流程，以更积极地清理过期 key。相应地，如果过期的 key 比例低于这个比例，就会中断这一次定期删除循环，避免做过多的工作而获得很少的内存回收。
+
+Redis 7.2 版本的执行时间阈值是 **25ms**，过期 key 比例设定值是 **10%**。
+
+```java
+#define ACTIVE_EXPIRE_CYCLE_FAST_DURATION 1000 /* Microseconds. */
+#define ACTIVE_EXPIRE_CYCLE_SLOW_TIME_PERC 25 /* Max % of CPU to use. */
+#define ACTIVE_EXPIRE_CYCLE_ACCEPTABLE_STALE 10 /* % of stale keys after which
+                                                   we do extra efforts. */
+```
+
+**每次随机抽查数量是多少？**
+
+`expire.c`中定义了每次随机抽查的数量，Redis 7.2 版本为 20 ，也就是说每次会随机选择 20 个设置了过期时间的 key 判断是否过期。
+
+```c
+#define ACTIVE_EXPIRE_CYCLE_KEYS_PER_LOOP 20 /* Keys for each DB loop. */
+```
+
+**如何控制定期删除的执行频率？**
+
+在 Redis 中，定期删除的频率是由 **hz** 参数控制的。hz 默认为 10，代表每秒执行 10 次，也就是每秒钟进行 10 次尝试来查找并删除过期的 key。
+
+hz 的取值范围为 1~500。增大 hz 参数的值会提升定期删除的频率。如果你想要更频繁地执行定期删除任务，可以适当增加 hz 的值，但这会加 CPU 的使用率。根据 Redis 官方建议，hz 的值不建议超过 100，对于大部分用户使用默认的 10 就足够了。
+
+下面是 hz 参数的官方注释，我翻译了其中的重要信息（Redis 7.2 版本）。
+
+![redis.conf 对于 hz 的注释](https://oss.javaguide.cn/github/javaguide/database/redis/redis.conf-hz.png)
+
+类似的参数还有一个 **dynamic-hz**，这个参数开启之后 Redis 就会在 hz 的基础上动态计算一个值。Redis 提供并默认启用了使用自适应 hz 值的能力，
+
+这两个参数都在 Redis 配置文件 `redis.conf`中：
+
+```properties
+# 默认为 10
+hz 10
+# 默认开启
+dynamic-hz yes
+```
+
+多提一嘴，除了定期删除过期 key 这个定期任务之外，还有一些其他定期任务例如关闭超时的客户端连接、更新统计信息，这些定期任务的执行频率也是通过 hz 参数决定。
+
+**为什么定期删除不是把所有过期 key 都删除呢？**
+
+这样会对性能造成太大的影响。如果我们 key 数量非常庞大的话，挨个遍历检查是非常耗时的，会严重影响性能。Redis 设计这种策略的目的是为了平衡内存和性能。
+
+**为什么 key 过期之后不立马把它删掉呢？这样不是会浪费很多内存空间吗？**
+
+因为不太好办到，或者说这种删除方式的成本太高了。假如我们使用延迟队列作为删除策略，这样存在下面这些问题：
+
+1. 队列本身的开销可能很大：key 多的情况下，一个延迟队列可能无法容纳。
+2. 维护延迟队列太麻烦：修改 key 的过期时间就需要调整期在延迟队列中的位置，并且，还需要引入并发控制。
+
+### 大量 key 集中过期怎么办？
+
+如果存在大量 key 集中过期的问题，可能会使 Redis 的请求延迟变高。可以采用下面的可选方案来应对：
+
+1. 尽量避免 key 集中过期，在设置键的过期时间时尽量随机一点。
+2. 对过期的 key 开启 lazyfree 机制（修改 `redis.conf` 中的 `lazyfree-lazy-expire`参数即可），这样会在后台异步删除过期的 key，不会阻塞主线程的运行。
+
+### Redis 内存淘汰策略了解么？
 
 > 相关问题：MySQL 里有 2000w 数据，Redis 中只存 20w 的数据，如何保证 Redis 中的数据都是热点数据?
 
-Redis 提供 6 种数据淘汰策略：
+Redis 的内存淘汰策略只有在运行内存达到了配置的最大内存阈值时才会触发，这个阈值是通过`redis.conf`的`maxmemory`参数来定义的。64 位操作系统下，`maxmemory` 默认为 0 ，表示不限制内存大小。32 位操作系统下，默认的最大内存值是 3GB。
+
+你可以使用命令 `config get maxmemory` 来查看 `maxmemory`的值。
+
+```bash
+> config get maxmemory
+maxmemory
+0
+```
+
+Redis 提供了 6 种内存淘汰策略：
 
 1. **volatile-lru（least recently used）**：从已设置过期时间的数据集（`server.db[i].expires`）中挑选最近最少使用的数据淘汰。
 2. **volatile-ttl**：从已设置过期时间的数据集（`server.db[i].expires`）中挑选将要过期的数据淘汰。
 3. **volatile-random**：从已设置过期时间的数据集（`server.db[i].expires`）中任意选择数据淘汰。
-4. **allkeys-lru（least recently used）**：当内存不足以容纳新写入数据时，在键空间中，移除最近最少使用的 key（这个是最常用的）。
+4. **allkeys-lru（least recently used）**：从数据集（`server.db[i].dict`）中移除最近最少使用的数据淘汰。
 5. **allkeys-random**：从数据集（`server.db[i].dict`）中任意选择数据淘汰。
-6. **no-eviction**：禁止驱逐数据，也就是说当内存不足以容纳新写入数据时，新写入操作会报错。这个应该没人使用吧！
+6. **no-eviction**（默认内存淘汰策略）：禁止驱逐数据，当内存不足以容纳新写入数据时，新写入操作会报错。
 
 4.0 版本后增加以下两种：
 
 7. **volatile-lfu（least frequently used）**：从已设置过期时间的数据集（`server.db[i].expires`）中挑选最不经常使用的数据淘汰。
-8. **allkeys-lfu（least frequently used）**：当内存不足以容纳新写入数据时，在键空间中，移除最不经常使用的 key。
+8. **allkeys-lfu（least frequently used）**：从数据集（`server.db[i].dict`）中移除最不经常使用的数据淘汰。
+
+`allkeys-xxx` 表示从所有的键值中淘汰数据，而 `volatile-xxx` 表示从设置了过期时间的键值中淘汰数据。
+
+`config.c`中定义了内存淘汰策略的枚举数组：
+
+```c
+configEnum maxmemory_policy_enum[] = {
+    {"volatile-lru", MAXMEMORY_VOLATILE_LRU},
+    {"volatile-lfu", MAXMEMORY_VOLATILE_LFU},
+    {"volatile-random",MAXMEMORY_VOLATILE_RANDOM},
+    {"volatile-ttl",MAXMEMORY_VOLATILE_TTL},
+    {"allkeys-lru",MAXMEMORY_ALLKEYS_LRU},
+    {"allkeys-lfu",MAXMEMORY_ALLKEYS_LFU},
+    {"allkeys-random",MAXMEMORY_ALLKEYS_RANDOM},
+    {"noeviction",MAXMEMORY_NO_EVICTION},
+    {NULL, 0}
+};
+```
+
+你可以使用 `config get maxmemory-policy` 命令来查看当前 Redis 的内存淘汰策略。
+
+```bash
+> config get maxmemory-policy
+maxmemory-policy
+noeviction
+```
+
+可以通过`config set maxmemory-policy 内存淘汰策略` 命令修改内存淘汰策略，立即生效，但这种方式重启 Redis 之后就失效了。修改 `redis.conf` 中的 `maxmemory-policy` 参数不会因为重启而失效，不过，需要重启之后修改才能生效。
+
+```properties
+maxmemory-policy noeviction
+```
+
+关于淘汰策略的详细说明可以参考 Redis 官方文档：<https://redis.io/docs/reference/eviction/>。
 
 ## 参考
 
 - 《Redis 开发与运维》
 - 《Redis 设计与实现》
-- Redis 命令手册：https://www.redis.com.cn/commands.html
+- 《Redis 核心原理与实战》
+- Redis 命令手册：<https://www.redis.com.cn/commands.html>
+- RedisSearch 终极使用指南，你值得拥有！：<https://mp.weixin.qq.com/s/FA4XVAXJksTOHUXMsayy2g>
 - WHY Redis choose single thread (vs multi threads): [https://medium.com/@jychen7/sharing-redis-single-thread-vs-multi-threads-5870bd44d153](https://medium.com/@jychen7/sharing-redis-single-thread-vs-multi-threads-5870bd44d153)
 
 <!-- @include: @article-footer.snippet.md -->

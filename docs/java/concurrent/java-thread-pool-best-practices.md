@@ -13,9 +13,9 @@ tag:
 
 `Executors` 返回线程池对象的弊端如下(后文会详细介绍到)：
 
-- **`FixedThreadPool` 和 `SingleThreadExecutor`**：使用的是无界的 `LinkedBlockingQueue`，任务队列最大长度为 `Integer.MAX_VALUE`,可能堆积大量的请求，从而导致 OOM。
-- **`CachedThreadPool`**：使用的是同步队列 `SynchronousQueue`, 允许创建的线程数量为 `Integer.MAX_VALUE` ，可能会创建大量线程，从而导致 OOM。
-- **`ScheduledThreadPool` 和 `SingleThreadScheduledExecutor`** : 使用的无界的延迟阻塞队列`DelayedWorkQueue`，任务队列最大长度为 `Integer.MAX_VALUE`,可能堆积大量的请求，从而导致 OOM。
+- **`FixedThreadPool` 和 `SingleThreadExecutor`**：使用的是有界阻塞队列 `LinkedBlockingQueue`，任务队列的默认长度和最大长度为 `Integer.MAX_VALUE`，可能堆积大量的请求，从而导致 OOM。
+- **`CachedThreadPool`**：使用的是同步队列 `SynchronousQueue`，允许创建的线程数量为 `Integer.MAX_VALUE` ，可能会创建大量线程，从而导致 OOM。
+- **`ScheduledThreadPool` 和 `SingleThreadScheduledExecutor`** : 使用的无界的延迟阻塞队列`DelayedWorkQueue`，任务队列最大长度为 `Integer.MAX_VALUE`，可能堆积大量的请求，从而导致 OOM。
 
 说白了就是：**使用有界队列，控制线程创建数量。**
 
@@ -59,7 +59,7 @@ public static void printThreadPoolStatus(ThreadPoolExecutor threadPool) {
 
 一般建议是不同的业务使用不同的线程池，配置线程池的时候根据当前业务的情况对当前线程池进行配置，因为不同的业务的并发以及对资源的使用情况都不同，重心优化系统性能瓶颈相关的业务。
 
-**我们再来看一个真实的事故案例！** (本案例来源自：[《线程池运用不当的一次线上事故》](https://club.perfma.com/article/646639) ，很精彩的一个案例)
+**我们再来看一个真实的事故案例！** (本案例来源自：[《线程池运用不当的一次线上事故》](https://heapdump.cn/article/646639) ，很精彩的一个案例)
 
 ![案例代码概览](https://oss.javaguide.cn/github/javaguide/java/concurrent/production-accident-threadpool-sharing-example.png)
 
@@ -91,33 +91,30 @@ ExecutorService threadPool = new ThreadPoolExecutor(corePoolSize, maximumPoolSiz
 **2、自己实现 `ThreadFactory`。**
 
 ```java
-import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * 线程工厂，它设置线程名称，有利于我们定位问题。
  */
 public final class NamingThreadFactory implements ThreadFactory {
 
     private final AtomicInteger threadNum = new AtomicInteger();
-    private final ThreadFactory delegate;
     private final String name;
 
     /**
      * 创建一个带名字的线程池生产工厂
      */
-    public NamingThreadFactory(ThreadFactory delegate, String name) {
-        this.delegate = delegate;
-        this.name = name; // TODO consider uniquifying this
+    public NamingThreadFactory(String name) {
+        this.name = name;
     }
 
     @Override
     public Thread newThread(Runnable r) {
-        Thread t = delegate.newThread(r);
+        Thread t = new Thread(r);
         t.setName(name + " [#" + threadNum.incrementAndGet() + "]");
         return t;
     }
-
 }
 ```
 
@@ -230,7 +227,7 @@ try {
 
 线程池本身的目的是为了提高任务执行效率，避免因频繁创建和销毁线程而带来的性能开销。如果将耗时任务提交到线程池中执行，可能会导致线程池中的线程被长时间占用，无法及时响应其他任务，甚至会导致线程池崩溃或者程序假死。
 
-因此，在使用线程池时，我们应该尽量避免将耗时任务提交到线程池中执行。对于一些比较耗时的操作，如网络请求、文件读写等，可以采用异步操作的方式来处理，以避免阻塞线程池中的线程。
+因此，在使用线程池时，我们应该尽量避免将耗时任务提交到线程池中执行。对于一些比较耗时的操作，如网络请求、文件读写等，可以采用 `CompletableFuture` 等其他异步操作的方式来处理，以避免阻塞线程池中的线程。
 
 ## 8、线程池使用的一些小坑
 
@@ -295,6 +292,6 @@ server.tomcat.max-threads=1
 
 解决上述问题比较建议的办法是使用阿里巴巴开源的 `TransmittableThreadLocal`(`TTL`)。`TransmittableThreadLocal`类继承并加强了 JDK 内置的`InheritableThreadLocal`类，在使用线程池等会池化复用线程的执行组件情况下，提供`ThreadLocal`值的传递功能，解决异步执行时上下文传递的问题。
 
-`TransmittableThreadLocal` 项目地址：https://github.com/alibaba/transmittable-thread-local 。
+`TransmittableThreadLocal` 项目地址：<https://github.com/alibaba/transmittable-thread-local> 。
 
 <!-- @include: @article-footer.snippet.md -->

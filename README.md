@@ -6,18 +6,13 @@
 
 [![logo](https://oss.javaguide.cn/github/javaguide/csdn/1c00413c65d1995993bf2b0daf7b4f03.png)](https://github.com/Snailclimb/JavaGuide)
 
-[![阅读](https://img.shields.io/badge/阅读-read-brightgreen.svg)](https://javaguide.cn/)
-![Stars](https://img.shields.io/github/stars/Snailclimb/JavaGuide)
-![forks](https://img.shields.io/github/forks/Snailclimb/JavaGuide)
-![issues](https://img.shields.io/github/issues/Snailclimb/JavaGuide)
-
 [GitHub](https://github.com/Snailclimb/JavaGuide) | [Gitee](https://gitee.com/SnailClimb/JavaGuide)
 
 </div>
 
 > - **面试专版**：准备 Java 面试的小伙伴可以考虑面试专版：**[《Java 面试指北 》](./docs/zhuanlan/java-mian-shi-zhi-bei.md)** (质量很高，专为面试打造，配合 JavaGuide 食用)。
-> - **知识星球**：专属面试小册/一对一交流/简历修改/专属求职指南，欢迎加入 **[JavaGuide 知识星球](./about-the-author/zhishixingqiu-two-years.md)**（点击链接即可查看星球的详细介绍，一定确定自己真的需要再加入）。
-> - **使用建议** ：有水平的面试官都是顺着项目经历挖掘技术问题。一定不要死记硬背技术八股文！详细的学习建议请参考：[JavaGuide 使用建议](./javaguide/use-suggestion.md)。
+> - **知识星球**：专属面试小册/一对一交流/简历修改/专属求职指南，欢迎加入 **[JavaGuide 知识星球](./docs/about-the-author/zhishixingqiu-two-years.md)**（点击链接即可查看星球的详细介绍，一定确定自己真的需要再加入）。
+> - **使用建议** ：有水平的面试官都是顺着项目经历挖掘技术问题。一定不要死记硬背技术八股文！详细的学习建议请参考：[JavaGuide 使用建议](./docs/javaguide/use-suggestion.md)。
 > - **求个Star**：如果觉得 JavaGuide 的内容对你有帮助的话，还请点个免费的 Star，这是对我最大的鼓励，感谢各位一起同行，共勉！Github 地址：[https://github.com/Snailclimb/JavaGuide](https://github.com/Snailclimb/JavaGuide) 。
 > - **转载须知**：以下所有文章如非文首说明为转载皆为 JavaGuide 原创，转载请在文首注明出处。如发现恶意抄袭/搬运，会动用法律武器维护自己的权益。让我们一起维护一个良好的技术创作环境！
 
@@ -103,7 +98,7 @@
 
 ### JVM (必看 :+1:)
 
-JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle.com/javase/specs/jvms/se8/html/index.html) 和周志明老师的[《深入理解 Java 虚拟机（第 3 版）》](https://book.douban.com/subject/34907497/) （强烈建议阅读多遍！）。
+JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.com/javase/specs/jvms/se8/html/index.html) 和周志明老师的[《深入理解 Java 虚拟机（第 3 版）》](https://book.douban.com/subject/34907497/) （强烈建议阅读多遍！）。
 
 - **[Java 内存区域](./docs/java/jvm/memory-area.md)**
 - **[JVM 垃圾回收](./docs/java/jvm/jvm-garbage-collection.md)**
@@ -127,6 +122,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 - [Java 18 新特性概览](./docs/java/new-features/java18.md)
 - [Java 19 新特性概览](./docs/java/new-features/java19.md)
 - [Java 20 新特性概览](./docs/java/new-features/java20.md)
+- [Java 21 新特性概览](./docs/java/new-features/java21.md)
 
 ## 计算机基础
 
@@ -182,8 +178,8 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 **常见算法问题总结**：
 
-- [几道常见的字符串算法题总结 ](./docs/cs-basics/algorithms/string-algorithm-problems.md)
-- [几道常见的链表算法题总结 ](./docs/cs-basics/algorithms/linkedlist-algorithm-problems.md)
+- [几道常见的字符串算法题总结](./docs/cs-basics/algorithms/string-algorithm-problems.md)
+- [几道常见的链表算法题总结](./docs/cs-basics/algorithms/linkedlist-algorithm-problems.md)
 - [剑指 offer 部分编程题](./docs/cs-basics/algorithms/the-sword-refers-to-offer.md)
 - [十大经典排序算法](./docs/cs-basics/algorithms/10-classical-sorting-algorithms.md)
 
@@ -377,17 +373,16 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8 ](https://docs.oracle
 
 ## 高性能
 
-### 数据库读写分离&分库分表
+### 数据库优化
 
-[数据库读写分离和分库分表常见知识点&面试题总结](./docs/high-performance/read-and-write-separation-and-library-subtable.md)
+- [数据库读写分离和分库分表](./docs/high-performance/read-and-write-separation-and-library-subtable.md)
+- [数据冷热分离](./docs/high-performance/data-cold-hot-separation.md)
+- [常见 SQL 优化手段总结](./docs/high-performance/sql-optimization.md)
+- [深度分页介绍及优化建议](./docs/high-performance/deep-pagination-optimization.md)
 
 ### 负载均衡
 
 [负载均衡常见知识点&面试题总结](./docs/high-performance/load-balancing.md)
-
-### SQL 优化
-
-[常见 SQL 优化手段总结](./docs/high-performance/sql-optimization.md)
 
 ### CDN
 

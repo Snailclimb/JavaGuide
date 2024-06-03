@@ -78,7 +78,7 @@ OSI 七层模型虽然失败了，但是却提供了很多不错的理论基础�
 
 ![传输层常见协议](https://oss.javaguide.cn/github/javaguide/cs-basics/network/transport-layer-protocol.png)
 
-- **TCP（Transmisson Control Protocol，传输控制协议 ）**：提供 **面向连接** 的，**可靠** 的数据传输服务。
+- **TCP（Transmission Control Protocol，传输控制协议 ）**：提供 **面向连接** 的，**可靠** 的数据传输服务。
 - **UDP（User Datagram Protocol，用户数据协议）**：提供 **无连接** 的，**尽最大努力** 的数据传输服务（不保证数据传输的可靠性），简单高效。
 
 ### 网络层（Network layer）
@@ -189,7 +189,7 @@ OSI 七层模型虽然失败了，但是却提供了很多不错的理论基础�
 
 ## 参考
 
-- TCP/IP model vs OSI model：https://fiberbit.com.tw/tcpip-model-vs-osi-model/
-- Data Encapsulation and the TCP/IP Protocol Stack：https://docs.oracle.com/cd/E19683-01/806-4075/ipov-32/index.html
+- TCP/IP model vs OSI model：<https://fiberbit.com.tw/tcpip-model-vs-osi-model/>
+- Data Encapsulation and the TCP/IP Protocol Stack：<https://docs.oracle.com/cd/E19683-01/806-4075/ipov-32/index.html>
 
 <!-- @include: @article-footer.snippet.md -->
