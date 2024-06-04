@@ -1167,7 +1167,7 @@ public int await() throws InterruptedException, BrokenBarrierException {
 
 - 《深入理解 Java 虚拟机》
 - 《实战 Java 高并发程序设计》
-- Java线程池的实现原理及其在业务中的最佳实践:阿里云开发者：<https://mp.weixin.qq.com/s/icrrxEsbABBvEU0Gym7D5Q>
+- Java 线程池的实现原理及其在业务中的最佳实践:阿里云开发者：<https://mp.weixin.qq.com/s/icrrxEsbABBvEU0Gym7D5Q>
 - 带你了解下 SynchronousQueue（并发队列专题）：<https://juejin.cn/post/7031196740128768037>
 - 阻塞队列 — DelayedWorkQueue 源码分析：<https://zhuanlan.zhihu.com/p/310621485>
 - Java 多线程（三）——FutureTask/CompletableFuture：<https://www.cnblogs.com/iwehdio/p/14285282.html>

@@ -186,9 +186,21 @@ mysql/mysql-server                Optimized MySQL Server Docker images. Create�
 
 上面涉及到了一些 Docker 的基本命令，后面会详细介绍大。
 
----
+### Build Ship and Run
 
-## 常见命令
+Docker 的概念基本上已经讲完，我们再来谈谈：Build, Ship, and Run。
+
+如果你搜索 Docker 官网，会发现如下的字样：**“Docker - Build, Ship, and Run Any App, Anywhere”**。那么 Build, Ship, and Run 到底是在干什么呢？
+
+![](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-build-ship-run.jpg)
+
+- **Build（构建镜像）**：镜像就像是集装箱包括文件以及运行环境等等资源。
+- **Ship（运输镜像）**：主机和仓库间运输，这里的仓库就像是超级码头一样。
+- **Run （运行镜像）**：运行的镜像就是一个容器，容器就是运行程序的地方。
+
+Docker 运行过程也就是去仓库把镜像拉到本地，然后用一条命令把镜像运行起来变成容器。所以，我们也常常将 Docker 称为码头工人或码头装卸工，这和 Docker 的中文翻译搬运工人如出一辙。
+
+## Docker 常见命令
 
 ### 基本命令
 
@@ -262,20 +274,6 @@ docker push harbor.example.com/ubuntu:18.04
 
 镜像推送之前，要确保本地已经构建好需要推送的 Docker 镜像。另外，务必先登录到对应的镜像仓库。
 
-## Build Ship and Run
-
-Docker 的概念以及常见命令基本上已经讲完，我们再来谈谈：Build, Ship, and Run。
-
-如果你搜索 Docker 官网，会发现如下的字样：**“Docker - Build, Ship, and Run Any App, Anywhere”**。那么 Build, Ship, and Run 到底是在干什么呢？
-
-![](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-build-ship-run.jpg)
-
-- **Build（构建镜像）**：镜像就像是集装箱包括文件以及运行环境等等资源。
-- **Ship（运输镜像）**：主机和仓库间运输，这里的仓库就像是超级码头一样。
-- **Run （运行镜像）**：运行的镜像就是一个容器，容器就是运行程序的地方。
-
-Docker 运行过程也就是去仓库把镜像拉到本地，然后用一条命令把镜像运行起来变成容器。所以，我们也常常将 Docker 称为码头工人或码头装卸工，这和 Docker 的中文翻译搬运工人如出一辙。
-
 ## Docker 数据管理
 
 在容器中管理数据主要有两种方式：
@@ -306,6 +304,144 @@ docker volume rm my-vol
 在用 `docker run` 命令的时候，使用 `--mount` 标记来将一个或多个数据卷挂载到容器里。
 
 还可以通过 `--mount` 标记将宿主机上的文件或目录挂载到容器中，这使得容器可以直接访问宿主机的文件系统。Docker 挂载主机目录的默认权限是读写，用户也可以通过增加 `readonly` 指定为只读。
+
+## Docker Compose
+
+### 什么是 Docker Compose？有什么用？
+
+Docker Compose 是 Docker 官方编排（Orchestration）项目之一，基于 Python 编写，负责实现对 Docker 容器集群的快速编排。通过 Docker Compose，开发者可以使用 YAML 文件来配置应用的所有服务，然后只需一个简单的命令即可创建和启动所有服务。
+
+Docker Compose 是开源项目，地址：<https://github.com/docker/compose>。
+
+Docker Compose 的核心功能：
+
+- **多容器管理**：允许用户在一个 YAML 文件中定义和管理多个容器。
+- **服务编排**：配置容器间的网络和依赖关系。
+- **一键部署**：通过简单的命令，如`docker-compose up`和`docker-compose down`，可以轻松地启动和停止整个应用程序。
+
+Docker Compose 简化了多容器应用程序的开发、测试和部署过程，提高了开发团队的生产力，同时降低了应用程序的部署复杂度和管理成本。
+
+### Docker Compose 文件基本结构
+
+Docker Compose 文件是 Docker Compose 工具的核心，用于定义和配置多容器 Docker 应用。这个文件通常命名为 `docker-compose.yml`，采用 YAML（YAML Ain't Markup Language）格式编写。
+
+Docker Compose 文件基本结构如下：
+
+- **版本（version）：** 指定 Compose 文件格式的版本。版本决定了可用的配置选项。
+- **服务（services）：** 定义了应用中的每个容器（服务）。每个服务可以使用不同的镜像、环境设置和依赖关系。
+  - **镜像（image）：** 从指定的镜像中启动容器，可以是存储仓库、标签以及镜像 ID。
+  - **命令（command）：** 可选，覆盖容器启动后默认执行的命令。在启动服务时运行特定的命令或脚本，常用于启动应用程序、执行初始化脚本等。
+  - **端口（ports）：** 可选，映射容器和宿主机的端口。
+  - **依赖（depends_on）：** 依赖配置的选项，意思是如果服务启动是如果有依赖于其他服务的，先启动被依赖的服务，启动完成后在启动该服务。
+  - **环境变量（environment）：** 可选，设置服务运行所需的环境变量。
+  - **重启（restart）:** 可选，控制容器的重启策略。在容器退出时，根据指定的策略自动重启容器。
+  - **服务卷（volumes）:** 可选，定义服务使用的卷，用于数据持久化或在容器之间共享数据。
+  - **构建（build）：** 指定构建镜像的 dockerfile 的上下文路径，或者详细配置对象。
+- **网络（networks）：** 定义了容器间的网络连接。
+- **卷（volumes）：** 用于数据持久化和共享的数据卷定义。常用于数据库存储、配置文件、日志等数据的持久化。
+
+```yaml
+version: "3.8" # 定义版本， 表示当前使用的 docker-compose 语法的版本
+services: # 服务，可以存在多个
+    servicename1: # 服务名字，它也是内部 bridge 网络可以使用的 DNS name，如果不是集群模式相当于 docker run 的时候指定的一个名称，
+   #集群（Swarm）模式是多个容器的逻辑抽象
+        image: # 镜像的名字
+        command: # 可选，如果设置，则会覆盖默认镜像里的 CMD 命令
+        environment: # 可选，等价于 docker container run 里的 --env 选项设置环境变量
+        volumes: # 可选，等价于 docker container run 里的 -v 选项 绑定数据卷
+        networks: # 可选，等价于 docker container run 里的 --network 选项指定网络
+        ports: # 可选，等价于 docker container run 里的 -p 选项指定端口映射
+        restart: # 可选，控制容器的重启策略
+        build: #构建目录
+        depends_on: #服务依赖配置
+    servicename2:
+        image:
+        command:
+        networks:
+    	ports:
+    servicename3:
+    #...
+volumes: # 可选，需要创建的数据卷，类似 docker volume create
+  db_data:
+networks: # 可选，等价于 docker network create
+```
+
+### Docker Compose 常见命令
+
+#### 启动
+
+`docker-compose up`会根据 `docker-compose.yml` 文件中定义的服务来创建和启动容器，并将它们连接到默认的网络中。
+
+```bash
+# 在当前目录下寻找 docker-compose.yml 文件，并根据其中定义的服务启动应用程序
+docker-compose up
+# 后台启动
+docker-compose up -d
+# 强制重新创建所有容器，即使它们已经存在
+docker-compose up --force-recreate
+# 重新构建镜像
+docker-compose up --build
+# 指定要启动的服务名称，而不是启动所有服务
+# 可以同时指定多个服务，用空格分隔。
+docker-compose up service_name
+```
+
+另外，如果 Compose 文件名称不是 `docker-compose.yml` 也没问题，可以通过 `-f` 参数指定。
+
+```bash
+docker-compose -f docker-compose.prod.yml up
+```
+
+#### 暂停
+
+`docker-compose down`用于停止并移除通过 `docker-compose up` 启动的容器和网络。
+
+```bash
+# 在当前目录下寻找 docker-compose.yml 文件
+# 根据其中定义移除启动的所有容器，网络和卷。
+docker-compose down
+# 停止容器但不移除
+docker-compose down --stop
+# 指定要停止和移除的特定服务，而不是停止和移除所有服务
+# 可以同时指定多个服务，用空格分隔。
+docker-compose down service_name
+```
+
+同样地，如果 Compose 文件名称不是 `docker-compose.yml` 也没问题，可以通过 `-f` 参数指定。
+
+```bash
+docker-compose -f docker-compose.prod.yml down
+```
+
+#### 查看
+
+`docker-compose ps`用于查看通过 `docker-compose up` 启动的所有容器的状态信息。
+
+```bash
+# 查看所有容器的状态信息
+docker-compose ps
+# 只显示服务名称
+docker-compose ps --services
+# 查看指定服务的容器
+docker-compose ps service_name
+```
+
+#### 其他
+
+| 命令                     | 介绍                   |
+| ------------------------ | ---------------------- |
+| `docker-compose version` | 查看版本               |
+| `docker-compose images`  | 列出所有容器使用的镜像 |
+| `docker-compose kill`    | 强制停止服务的容器     |
+| `docker-compose exec`    | 在容器中执行命令       |
+| `docker-compose logs`    | 查看日志               |
+| `docker-compose pause`   | 暂停服务               |
+| `docker-compose unpause` | 恢复服务               |
+| `docker-compose push`    | 推送服务镜像           |
+| `docker-compose start`   | 启动当前停止的某个容器 |
+| `docker-compose stop`    | 停止当前运行的某个容器 |
+| `docker-compose rm`      | 删除服务停止的容器     |
+| `docker-compose top`     | 查看进程               |
 
 ## Docker 底层原理
 
@@ -345,6 +481,7 @@ LXC 技术主要是借助 Linux 内核中提供的 CGroup 功能和 namespace �
 
 ## 参考
 
+- [Docker Compose：从零基础到实战应用的全面指南](https://juejin.cn/post/7306756690727747610)
 - [Linux Namespace 和 Cgroup](https://segmentfault.com/a/1190000009732550 "Linux Namespace和Cgroup")
 - [LXC vs Docker: Why Docker is Better](https://www.upguard.com/articles/docker-vs-lxc "LXC vs Docker: Why Docker is Better")
 - [CGroup 介绍、应用实例及原理描述](https://www.ibm.com/developerworks/cn/linux/1506_cgroup/index.html "CGroup 介绍、应用实例及原理描述")
