@@ -148,7 +148,7 @@ public class MyBloomFilter {
          */
         public int hash(Object value) {
             int h;
-            return (value == null) ? 0 : Math.abs(seed * (cap - 1) & ((h = value.hashCode()) ^ (h >>> 16)));
+            return (value == null) ? 0 : Math.abs((cap - 1) & seed * ((h = value.hashCode()) ^ (h >>> 16)));
         }
 
     }
