@@ -977,6 +977,7 @@ public class SuperMan extends Hero{
 }
 
 public class SuperSuperMan extends SuperMan {
+    @Override
     public String name() {
         return "超级超级英雄";
     }
