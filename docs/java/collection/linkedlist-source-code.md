@@ -151,8 +151,9 @@ void linkBefore(E e, Node<E> succ) {
     final Node<E> newNode = new Node<>(pred, e, succ);
     // 将 succ 节点前驱引用 prev 指向新节点
     succ.prev = newNode;
-    // 判断尾节点是否为空，为空表示当前链表还没有节点
+    // 判断前驱节点是否为空，为空表示 succ 是第一个节点
     if (pred == null)
+        // 新节点成为第一个节点
         first = newNode;
     else
         // succ 节点前驱的后继引用指向新节点
