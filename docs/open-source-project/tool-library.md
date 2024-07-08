@@ -19,6 +19,10 @@ icon: codelibrary-fill
 
 ## 文档处理
 
+### 文档解析
+
+- [Tika](https://github.com/apache/tika)：Apache Tika 工具包能够检测并提取来自超过一千种不同文件类型（如 PPT、XLS 和 PDF）的元数据和文本内容。
+
 ### Excel
 
 - [easyexcel](https://github.com/alibaba/easyexcel) :快速、简单避免 OOM 的 Java 处理 Excel 工具。
@@ -38,8 +42,8 @@ icon: codelibrary-fill
 - [x-easypdf](https://gitee.com/dromara/x-easypdf)：一个用搭积木的方式构建 PDF 的框架（基于 pdfbox/fop），支持 PDF 导出和编辑。
 - [pdfbox](https://github.com/apache/pdfbox) :用于处理 PDF 文档的开放源码 Java 工具。该项目允许创建新的 PDF 文档、对现有文档进行操作以及从文档中提取内容。PDFBox 还包括几个命令行实用程序。PDFBox 是在 Apache 2.0 版许可下发布的。
 - [OpenPDF](https://github.com/LibrePDF/OpenPDF)：OpenPDF 是一个免费的 Java 库，用于使用 LGPL 和 MPL 开源许可创建和编辑 PDF 文件。OpenPDF 基于 iText 的一个分支。
-- [itext7](https://github.com/itext/itext7)：iText 7 代表了想要利用利用好 PDF 的开发人员的更高级别的 sdk。iText 7 配备了更好的文档引擎、高级和低级编程功能以及创建、编辑和增强 PDF 文档的能力，几乎对每个工作流都有好处。
-- [FOP](https://xmlgraphics.apache.org/fop/) :Apache FOP 项目的主要的输出目标是 PDF。
+- [itext7](https://github.com/itext/itext7)：一个用于创建、编辑和增强 PDF 文档的 Java 库。
+- [FOP](https://xmlgraphics.apache.org/fop/) : Apache FOP 用于将 XSL-FO（Extensible Stylesheet Language Formatting Objects）格式化对象转换为多种输出格式，最常见的是 PDF。
 
 ## 图片处理
 
