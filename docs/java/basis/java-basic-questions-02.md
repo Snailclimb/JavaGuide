@@ -299,13 +299,13 @@ System.out.println(person1.getAddress() == person1Copy.getAddress());
 
 我专门画了一张图来描述浅拷贝、深拷贝、引用拷贝：
 
-![浅拷贝、深拷贝、引用拷贝示意图](https://oss.javaguide.cn/github/javaguide/java/basis/shallow&deep-copy.png)
+![shallow&deep-copy](https://oss.javaguide.cn/github/javaguide/java/basis/shallow&deep-copy.png)
 
 ## Object
 
 ### Object 类的常见方法有哪些？
 
-Object 类是一个特殊的类，是所有类的父类。它主要提供了以下 11 个方法：
+Object 类是一个特殊的类，是所有类的父类，主要提供了以下 11 个方法：
 
 ```java
 /**
