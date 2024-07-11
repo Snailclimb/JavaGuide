@@ -595,7 +595,7 @@ System.out.println(String.format("parallel sort took: %d ms", millis));
 
 ```java
 1000000
-parallel sort took: 475 ms//串行排序所用的时间
+parallel sort took: 475 ms//并行排序所用的时间
 ```
 
 上面两个代码几乎是一样的，但是并行版的快了 50% 左右，唯一需要做的改动就是将 `stream()` 改为`parallelStream()`。
