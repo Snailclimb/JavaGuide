@@ -148,7 +148,7 @@ WHERE username = 'root';
 ### 删除数据
 
 - `DELETE` 语句用于删除表中的记录。
-- `TRUNCATE TABLE` 可以清空表，也就是删除所有行。
+- `TRUNCATE TABLE` 可以清空表，也就是删除所有行。说明：`TRUNCATE` 语句不属于 DML 语法而是 DDL 语法。
 
 **删除表中的指定数据**
 

@@ -285,6 +285,108 @@ public final native boolean compareAndSwapLong(Object o, long offset, long expec
 
 关于 `Unsafe` 类的详细介绍可以看这篇文章：[Java 魔法类 Unsafe 详解 - JavaGuide - 2022](https://javaguide.cn/java/basis/unsafe.html) 。
 
+### Java 中 CAS 是如何实现的？
+
+在 Java 中，实现 CAS（Compare-And-Swap, 比较并交换）操作的一个关键类是`Unsafe`。
+
+`Unsafe`类位于`sun.misc`包下，是一个提供低级别、不安全操作的类。由于其强大的功能和潜在的危险性，它通常用于 JVM 内部或一些需要极高性能和底层访问的库中，而不推荐普通开发者在应用程序中使用。关于 `Unsafe`类的详细介绍，可以阅读这篇文章：📌[Java 魔法类 Unsafe 详解](https://javaguide.cn/java/basis/unsafe.html)。
+
+`sun.misc`包下的`Unsafe`类提供了`compareAndSwapObject`、`compareAndSwapInt`、`compareAndSwapLong`方法来实现的对`Object`、`int`、`long`类型的 CAS 操作：
+
+```java
+/**
+ * 以原子方式更新对象字段的值。
+ *
+ * @param o        要操作的对象
+ * @param offset   对象字段的内存偏移量
+ * @param expected 期望的旧值
+ * @param x        要设置的新值
+ * @return 如果值被成功更新，则返回 true；否则返回 false
+ */
+boolean compareAndSwapObject(Object o, long offset, Object expected, Object x);
+
+/**
+ * 以原子方式更新 int 类型的对象字段的值。
+ */
+boolean compareAndSwapInt(Object o, long offset, int expected, int x);
+
+/**
+ * 以原子方式更新 long 类型的对象字段的值。
+ */
+boolean compareAndSwapLong(Object o, long offset, long expected, long x);
+```
+
+`Unsafe`类中的 CAS 方法是`native`方法。`native`关键字表明这些方法是用本地代码（通常是 C 或 C++）实现的，而不是用 Java 实现的。这些方法直接调用底层的硬件指令来实现原子操作。也就是说，Java 语言并没有直接用 Java 实现 CAS，而是通过 C++ 内联汇编的形式实现的（通过 JNI 调用）。因此，CAS 的具体实现与操作系统以及 CPU 密切相关。
+
+`java.util.concurrent.atomic` 包提供了一些用于原子操作的类。这些类利用底层的原子指令，确保在多线程环境下的操作是线程安全的。
+
+![JUC原子类概览](https://oss.javaguide.cn/github/javaguide/java/JUC%E5%8E%9F%E5%AD%90%E7%B1%BB%E6%A6%82%E8%A7%88.png)
+
+关于这些 Atomic 原子类的介绍和使用，可以阅读这篇文章：[Atomic 原子类总结](https://javaguide.cn/java/concurrent/atomic-classes.html)。
+
+`AtomicInteger`是 Java 的原子类之一，主要用于对 `int` 类型的变量进行原子操作，它利用`Unsafe`类提供的低级别原子操作方法实现无锁的线程安全性。
+
+下面，我们通过解读`AtomicInteger`的核心源码（JDK1.8），来说明 Java 如何使用`Unsafe`类的方法来实现原子操作。
+
+`AtomicInteger`核心源码如下：
+
+```java
+// 获取 Unsafe 实例
+private static final Unsafe unsafe = Unsafe.getUnsafe();
+private static final long valueOffset;
+
+static {
+    try {
+        // 获取“value”字段在AtomicInteger类中的内存偏移量
+        valueOffset = unsafe.objectFieldOffset
+            (AtomicInteger.class.getDeclaredField("value"));
+    } catch (Exception ex) { throw new Error(ex); }
+}
+// 确保“value”字段的可见性
+private volatile int value;
+
+// 如果当前值等于预期值，则原子地将值设置为newValue
+// 使用 Unsafe#compareAndSwapInt 方法进行CAS操作
+public final boolean compareAndSet(int expect, int update) {
+    return unsafe.compareAndSwapInt(this, valueOffset, expect, update);
+}
+
+// 原子地将当前值加 delta 并返回旧值
+public final int getAndAdd(int delta) {
+    return unsafe.getAndAddInt(this, valueOffset, delta);
+}
+
+// 原子地将当前值加 1 并返回加之前的值（旧值）
+// 使用 Unsafe#getAndAddInt 方法进行CAS操作。
+public final int getAndIncrement() {
+    return unsafe.getAndAddInt(this, valueOffset, 1);
+}
+
+// 原子地将当前值减 1 并返回减之前的值（旧值）
+public final int getAndDecrement() {
+    return unsafe.getAndAddInt(this, valueOffset, -1);
+}
+```
+
+`Unsafe#getAndAddInt`源码：
+
+```java
+// 原子地获取并增加整数值
+public final int getAndAddInt(Object o, long offset, int delta) {
+    int v;
+    do {
+        // 以 volatile 方式获取对象 o 在内存偏移量 offset 处的整数值
+        v = getIntVolatile(o, offset);
+    } while (!compareAndSwapInt(o, offset, v, v + delta));
+    // 返回旧值
+    return v;
+}
+```
+
+可以看到，`getAndAddInt` 使用了 `do-while` 循环：在`compareAndSwapInt`操作失败时，会不断重试直到成功。也就是说，`getAndAddInt`方法会通过 `compareAndSwapInt` 方法来尝试更新 `value` 的值，如果更新失败（当前值在此期间被其他线程修改），它会重新获取当前值并再次尝试更新，直到操作成功。
+
+由于 CAS 操作可能会因为并发冲突而失败，因此通常会与`while`循环搭配使用，在失败后不断重试，直到操作成功。这就是 **自旋锁机制** 。
+
 ### CAS 算法存在哪些问题？
 
 ABA 问题是 CAS 算法最常见的问题。
@@ -314,14 +416,18 @@ public boolean compareAndSet(V   expectedReference,
 
 CAS 经常会用到自旋操作来进行重试，也就是不成功就一直循环执行直到成功。如果长时间不成功，会给 CPU 带来非常大的执行开销。
 
-如果 JVM 能支持处理器提供的 pause 指令那么效率会有一定的提升，pause 指令有两个作用：
+如果 JVM 能够支持处理器提供的`pause`指令，那么自旋操作的效率将有所提升。`pause`指令有两个重要作用：
 
-1. 可以延迟流水线执行指令，使 CPU 不会消耗过多的执行资源，延迟的时间取决于具体实现的版本，在一些处理器上延迟时间是零。
-2. 可以避免在退出循环的时候因内存顺序冲突而引起 CPU 流水线被清空，从而提高 CPU 的执行效率。
+1. **延迟流水线执行指令**：`pause`指令可以延迟指令的执行，从而减少 CPU 的资源消耗。具体的延迟时间取决于处理器的实现版本，在某些处理器上，延迟时间可能为零。
+2. **避免内存顺序冲突**：在退出循环时，`pause`指令可以避免由于内存顺序冲突而导致的 CPU 流水线被清空，从而提高 CPU 的执行效率。
 
 #### 只能保证一个共享变量的原子操作
 
 CAS 只对单个共享变量有效，当操作涉及跨多个共享变量时 CAS 无效。但是从 JDK 1.5 开始，提供了`AtomicReference`类来保证引用对象之间的原子性，你可以把多个变量放在一个对象里来进行 CAS 操作.所以我们可以使用锁或者利用`AtomicReference`类把多个共享变量合并成一个共享变量来操作。
+
+CAS 操作仅能对单个共享变量有效。当需要操作多个共享变量时，CAS 就显得无能为力。不过，从 JDK 1.5 开始，Java 提供了`AtomicReference`类，这使得我们能够保证引用对象之间的原子性。通过将多个变量封装在一个对象中，我们可以使用`AtomicReference`来执行 CAS 操作。
+
+除了 `AtomicReference` 这种方式之外，还可以利用加锁来保证。
 
 ## synchronized 关键字
 

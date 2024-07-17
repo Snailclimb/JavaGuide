@@ -216,7 +216,7 @@ public class Student {
 
 在 Java 8 及以上版本中，接口引入了新的方法类型：`default` 方法、`static` 方法和 `private` 方法。这些方法让接口的使用更加灵活。
 
-Java 8 引入的`default` 方法用于提供接口方法的默认实现，可以在实现类中被覆盖。
+Java 8 引入的`default` 方法用于提供接口方法的默认实现，可以在实现类中被覆盖。这样就可以在不修改实现类的情况下向现有接口添加新功能，从而增强接口的扩展性和向后兼容性。
 
 ```java
 public interface MyInterface {
@@ -226,7 +226,7 @@ public interface MyInterface {
 }
 ```
 
-Java 8 引入的`static` 方法无法在实现类中被覆盖，只能通过接口名直接调用（ `MyInterface.staticMethod()`），类似于类中的静态方法。
+Java 8 引入的`static` 方法无法在实现类中被覆盖，只能通过接口名直接调用（ `MyInterface.staticMethod()`），类似于类中的静态方法。`static` 方法通常用于定义一些通用的、与接口相关的工具方法，一般很少用。
 
 ```java
 public interface MyInterface {
@@ -255,7 +255,7 @@ public interface MyInterface {
         System.out.println("This is a private method used internally.");
     }
 
-      // 私有方法，只能被 default 方法调用。
+      // 实例私有方法，只能被 default 方法调用。
     private void instanceCommonMethod() {
         System.out.println("This is a private instance method used internally.");
     }
