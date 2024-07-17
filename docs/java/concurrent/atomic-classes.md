@@ -7,17 +7,21 @@ tag:
 
 ## Atomic 原子类介绍
 
-Atomic 翻译成中文是原子的意思。在化学上，我们知道原子是构成一般物质的最小单位，在化学反应中是不可分割的。在我们这里 Atomic 是指一个操作是不可中断的。即使是在多个线程一起执行的时候，一个操作一旦开始，就不会被其他线程干扰。
+`Atomic` 翻译成中文是“原子”的意思。在化学上，原子是构成物质的最小单位，在化学反应中不可分割。在编程中，`Atomic` 指的是一个操作具有原子性，即该操作不可分割、不可中断。即使在多个线程同时执行时，该操作要么全部执行完成，要么不执行，不会被其他线程看到部分完成的状态。
 
-所以，所谓原子类说简单点就是具有原子/原子操作特征的类。
+原子类简单来说就是具有原子性操作特征的类。
 
-并发包 `java.util.concurrent` 的原子类都存放在`java.util.concurrent.atomic`下,如下图所示。
+`java.util.concurrent.atomic` 包中的 `Atomic` 原子类提供了一种线程安全的方式来操作单个变量。
+
+`Atomic` 类依赖于 CAS（Compare-And-Swap，比较并交换）乐观锁来保证其方法的原子性，而不需要使用传统的锁机制（如 `synchronized` 块或 `ReentrantLock`）。
+
+这篇文章我们直接介绍 Atomic 原子类的概念，具体实现原理可以阅读笔者写的这篇文章：[CAS 详解](./cas.md)。
 
 ![JUC原子类概览](https://oss.javaguide.cn/github/javaguide/java/JUC%E5%8E%9F%E5%AD%90%E7%B1%BB%E6%A6%82%E8%A7%88.png)
 
-根据操作的数据类型，可以将 JUC 包中的原子类分为 4 类
+根据操作的数据类型，可以将 JUC 包中的原子类分为 4 类：
 
-**基本类型**
+**1、基本类型**
 
 使用原子的方式更新基本类型
 
@@ -25,7 +29,7 @@ Atomic 翻译成中文是原子的意思。在化学上，我们知道原子是�
 - `AtomicLong`：长整型原子类
 - `AtomicBoolean`：布尔型原子类
 
-**数组类型**
+**2、数组类型**
 
 使用原子的方式更新数组里的某个元素
 
@@ -33,7 +37,7 @@ Atomic 翻译成中文是原子的意思。在化学上，我们知道原子是�
 - `AtomicLongArray`：长整型数组原子类
 - `AtomicReferenceArray`：引用类型数组原子类
 
-**引用类型**
+**3、引用类型**
 
 - `AtomicReference`：引用类型原子类
 - `AtomicMarkableReference`：原子更新带有标记的引用类型。该类将 boolean 标记与引用关联起来，~~也可以解决使用 CAS 进行原子更新时可能出现的 ABA 问题~~。
@@ -41,7 +45,7 @@ Atomic 翻译成中文是原子的意思。在化学上，我们知道原子是�
 
 **🐛 修正（参见：[issue#626](https://github.com/Snailclimb/JavaGuide/issues/626)）** : `AtomicMarkableReference` 不能解决 ABA 问题。
 
-**对象的属性修改类型**
+**4、对象的属性修改类型**
 
 - `AtomicIntegerFieldUpdater`:原子更新整型字段的更新器
 - `AtomicLongFieldUpdater`：原子更新长整型字段的更新器
@@ -57,7 +61,7 @@ Atomic 翻译成中文是原子的意思。在化学上，我们知道原子是�
 
 上面三个类提供的方法几乎相同，所以我们这里以 `AtomicInteger` 为例子来介绍。
 
-**AtomicInteger 类常用方法**
+**`AtomicInteger` 类常用方法** ：
 
 ```java
 public final int get() //获取当前的值
@@ -66,89 +70,50 @@ public final int getAndIncrement()//获取当前的值，并自增
 public final int getAndDecrement() //获取当前的值，并自减
 public final int getAndAdd(int delta) //获取当前的值，并加上预期的值
 boolean compareAndSet(int expect, int update) //如果输入的数值等于预期值，则以原子方式将该值设置为输入值（update）
-public final void lazySet(int newValue)//最终设置为newValue,使用 lazySet 设置之后可能导致其他线程在之后的一小段时间内还是可以读到旧的值。
+public final void lazySet(int newValue)//最终设置为newValue, lazySet 提供了一种比 set 方法更弱的语义，可能导致其他线程在之后的一小段时间内还是可以读到旧的值，但可能更高效。
 ```
 
 **`AtomicInteger` 类使用示例** :
 
 ```java
-import java.util.concurrent.atomic.AtomicInteger;
+// 初始化 AtomicInteger 对象，初始值为 0
+AtomicInteger atomicInt = new AtomicInteger(0);
 
-public class AtomicIntegerTest {
+// 使用 getAndSet 方法获取当前值，并设置新值为 3
+int tempValue = atomicInt.getAndSet(3);
+System.out.println("tempValue: " + tempValue + "; atomicInt: " + atomicInt);
 
-    public static void main(String[] args) {
-        int temvalue = 0;
-        AtomicInteger i = new AtomicInteger(0);
-        temvalue = i.getAndSet(3);
-        System.out.println("temvalue:" + temvalue + ";  i:" + i); //temvalue:0;  i:3
-        temvalue = i.getAndIncrement();
-        System.out.println("temvalue:" + temvalue + ";  i:" + i); //temvalue:3;  i:4
-        temvalue = i.getAndAdd(5);
-        System.out.println("temvalue:" + temvalue + ";  i:" + i); //temvalue:4;  i:9
-    }
+// 使用 getAndIncrement 方法获取当前值，并自增 1
+tempValue = atomicInt.getAndIncrement();
+System.out.println("tempValue: " + tempValue + "; atomicInt: " + atomicInt);
 
-}
+// 使用 getAndAdd 方法获取当前值，并增加指定值 5
+tempValue = atomicInt.getAndAdd(5);
+System.out.println("tempValue: " + tempValue + "; atomicInt: " + atomicInt);
+
+// 使用 compareAndSet 方法进行原子性条件更新，期望值为 9，更新值为 10
+boolean updateSuccess = atomicInt.compareAndSet(9, 10);
+System.out.println("Update Success: " + updateSuccess + "; atomicInt: " + atomicInt);
+
+// 获取当前值
+int currentValue = atomicInt.get();
+System.out.println("Current value: " + currentValue);
+
+// 使用 lazySet 方法设置新值为 15
+atomicInt.lazySet(15);
+System.out.println("After lazySet, atomicInt: " + atomicInt);
 ```
 
-### 基本数据类型原子类的优势
-
-通过一个简单例子带大家看一下基本数据类型原子类的优势
-
-**1、多线程环境不使用原子类保证线程安全（基本数据类型）**
+输出：
 
 ```java
-class Test {
-        private volatile int count = 0;
-        //若要线程安全执行执行count++，需要加锁
-        public synchronized void increment() {
-                  count++;
-        }
-
-        public int getCount() {
-                  return count;
-        }
-}
+tempValue: 0; atomicInt: 3
+tempValue: 3; atomicInt: 4
+tempValue: 4; atomicInt: 9
+Update Success: true; atomicInt: 10
+Current value: 10
+After lazySet, atomicInt: 15
 ```
-
-**2、多线程环境使用原子类保证线程安全（基本数据类型）**
-
-```java
-class Test2 {
-        private AtomicInteger count = new AtomicInteger();
-
-        public void increment() {
-                  count.incrementAndGet();
-        }
-      //使用AtomicInteger之后，不需要加锁，也可以实现线程安全。
-       public int getCount() {
-                return count.get();
-        }
-}
-
-```
-
-### AtomicInteger 线程安全原理简单分析
-
-`AtomicInteger` 类的部分源码：
-
-```java
-    // setup to use Unsafe.compareAndSwapInt for updates（更新操作时提供“比较并替换”的作用）
-    private static final Unsafe unsafe = Unsafe.getUnsafe();
-    private static final long valueOffset;
-
-    static {
-        try {
-            valueOffset = unsafe.objectFieldOffset
-                (AtomicInteger.class.getDeclaredField("value"));
-        } catch (Exception ex) { throw new Error(ex); }
-    }
-
-    private volatile int value;
-```
-
-`AtomicInteger` 类主要利用 CAS (compare and swap) + volatile 和 native 方法来保证原子操作，从而避免 synchronized 的高开销，执行效率大为提升。
-
-CAS 的原理是拿期望的值和原本的一个值作比较，如果相同则更新成新的值。UnSafe 类的 `objectFieldOffset()` 方法是一个本地方法，这个方法是用来拿到“原来的值”的内存地址。另外 value 是一个 volatile 变量，在内存中可见，因此 JVM 可以保证任何时刻任何线程总能拿到该变量的最新值。
 
 ## 数组类型原子类
 
