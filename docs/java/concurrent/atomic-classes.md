@@ -15,7 +15,7 @@ tag:
 
 `Atomic` 类依赖于 CAS（Compare-And-Swap，比较并交换）乐观锁来保证其方法的原子性，而不需要使用传统的锁机制（如 `synchronized` 块或 `ReentrantLock`）。
 
-这篇文章我们直接介绍 Atomic 原子类的概念，具体实现原理可以阅读笔者写的这篇文章：[CAS 详解](./cas.md)。
+这篇文章我们只介绍 Atomic 原子类的概念，具体实现原理可以阅读笔者写的这篇文章：[CAS 详解](./cas.md)。
 
 ![JUC原子类概览](https://oss.javaguide.cn/github/javaguide/java/JUC%E5%8E%9F%E5%AD%90%E7%B1%BB%E6%A6%82%E8%A7%88.png)
 
@@ -140,26 +140,55 @@ public final void lazySet(int i, int newValue)//最终 将index=i 位置的元�
 **`AtomicIntegerArray` 类使用示例** :
 
 ```java
-import java.util.concurrent.atomic.AtomicIntegerArray;
+int[] nums = {1, 2, 3, 4, 5, 6};
+// 创建 AtomicIntegerArray
+AtomicIntegerArray atomicArray = new AtomicIntegerArray(nums);
 
-public class AtomicIntegerArrayTest {
-
-    public static void main(String[] args) {
-        int temvalue = 0;
-        int[] nums = { 1, 2, 3, 4, 5, 6 };
-        AtomicIntegerArray i = new AtomicIntegerArray(nums);
-        for (int j = 0; j < nums.length; j++) {
-            System.out.println(i.get(j));
-        }
-        temvalue = i.getAndSet(0, 2);
-        System.out.println("temvalue:" + temvalue + ";  i:" + i);
-        temvalue = i.getAndIncrement(0);
-        System.out.println("temvalue:" + temvalue + ";  i:" + i);
-        temvalue = i.getAndAdd(0, 5);
-        System.out.println("temvalue:" + temvalue + ";  i:" + i);
-    }
-
+// 打印 AtomicIntegerArray 中的初始值
+System.out.println("Initial values in AtomicIntegerArray:");
+for (int j = 0; j < nums.length; j++) {
+    System.out.print("Index " + j + ": " + atomicArray.get(j) + " ");
 }
+
+// 使用 getAndSet 方法将索引 0 处的值设置为 2，并返回旧值
+int tempValue = atomicArray.getAndSet(0, 2);
+System.out.println("\nAfter getAndSet(0, 2):");
+System.out.println("Returned value: " + tempValue);
+for (int j = 0; j < atomicArray.length(); j++) {
+    System.out.print("Index " + j + ": " + atomicArray.get(j) + " ");
+}
+
+// 使用 getAndIncrement 方法将索引 0 处的值加 1，并返回旧值
+tempValue = atomicArray.getAndIncrement(0);
+System.out.println("\nAfter getAndIncrement(0):");
+System.out.println("Returned value: " + tempValue);
+for (int j = 0; j < atomicArray.length(); j++) {
+    System.out.print("Index " + j + ": " + atomicArray.get(j) + " ");
+}
+
+// 使用 getAndAdd 方法将索引 0 处的值增加 5，并返回旧值
+tempValue = atomicArray.getAndAdd(0, 5);
+System.out.println("\nAfter getAndAdd(0, 5):");
+System.out.println("Returned value: " + tempValue);
+for (int j = 0; j < atomicArray.length(); j++) {
+    System.out.print("Index " + j + ": " + atomicArray.get(j) + " ");
+}
+```
+
+输出：
+
+```plain
+Initial values in AtomicIntegerArray:
+Index 0: 1 Index 1: 2 Index 2: 3 Index 3: 4 Index 4: 5 Index 5: 6
+After getAndSet(0, 2):
+Returned value: 1
+Index 0: 2 Index 1: 2 Index 2: 3 Index 3: 4 Index 4: 5 Index 5: 6
+After getAndIncrement(0):
+Returned value: 2
+Index 0: 3 Index 1: 2 Index 2: 3 Index 3: 4 Index 4: 5 Index 5: 6
+After getAndAdd(0, 5):
+Returned value: 3
+Index 0: 8 Index 1: 2 Index 2: 3 Index 3: 4 Index 4: 5 Index 5: 6
 ```
 
 ## 引用类型原子类
@@ -175,174 +204,133 @@ public class AtomicIntegerArrayTest {
 **`AtomicReference` 类使用示例** :
 
 ```java
-import java.util.concurrent.atomic.AtomicReference;
-
-public class AtomicReferenceTest {
-
-    public static void main(String[] args) {
-        AtomicReference < Person > ar = new AtomicReference < Person > ();
-        Person person = new Person("SnailClimb", 22);
-        ar.set(person);
-        Person updatePerson = new Person("Daisy", 20);
-        ar.compareAndSet(person, updatePerson);
-
-        System.out.println(ar.get().getName());
-        System.out.println(ar.get().getAge());
-    }
-}
-
+// Person 类
 class Person {
     private String name;
     private int age;
-
-    public Person(String name, int age) {
-        super();
-        this.name = name;
-        this.age = age;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
+    //省略getter/setter和toString
 }
+
+
+// 创建 AtomicReference 对象并设置初始值
+AtomicReference<Person> ar = new AtomicReference<>(new Person("SnailClimb", 22));
+
+// 打印初始值
+System.out.println("Initial Person: " + ar.get().toString());
+
+// 更新值
+Person updatePerson = new Person("Daisy", 20);
+ar.compareAndSet(ar.get(), updatePerson);
+
+// 打印更新后的值
+System.out.println("Updated Person: " + ar.get().toString());
+
+// 尝试再次更新
+Person anotherUpdatePerson = new Person("John", 30);
+boolean isUpdated = ar.compareAndSet(updatePerson, anotherUpdatePerson);
+
+// 打印是否更新成功及最终值
+System.out.println("Second Update Success: " + isUpdated);
+System.out.println("Final Person: " + ar.get().toString());
 ```
 
-上述代码首先创建了一个 `Person` 对象，然后把 `Person` 对象设置进 `AtomicReference` 对象中，然后调用 `compareAndSet` 方法，该方法就是通过 CAS 操作设置 ar。如果 ar 的值为 `person` 的话，则将其设置为 `updatePerson`。实现原理与 `AtomicInteger` 类中的 `compareAndSet` 方法相同。运行上面的代码后的输出结果如下：
+输出：
 
 ```plain
-Daisy
-20
+Initial Person: Person{name='SnailClimb', age=22}
+Updated Person: Person{name='Daisy', age=20}
+Second Update Success: true
+Final Person: Person{name='John', age=30}
 ```
 
 **`AtomicStampedReference` 类使用示例** :
 
 ```java
-import java.util.concurrent.atomic.AtomicStampedReference;
+// 创建一个 AtomicStampedReference 对象，初始值为 "SnailClimb"，初始版本号为 1
+AtomicStampedReference<String> asr = new AtomicStampedReference<>("SnailClimb", 1);
 
-public class AtomicStampedReferenceDemo {
-    public static void main(String[] args) {
-        // 实例化、取当前值和 stamp 值
-        final Integer initialRef = 0, initialStamp = 0;
-        final AtomicStampedReference<Integer> asr = new AtomicStampedReference<>(initialRef, initialStamp);
-        System.out.println("currentValue=" + asr.getReference() + ", currentStamp=" + asr.getStamp());
+// 打印初始值和版本号
+int[] initialStamp = new int[1];
+String initialRef = asr.get(initialStamp);
+System.out.println("Initial Reference: " + initialRef + ", Initial Stamp: " + initialStamp[0]);
 
-        // compare and set
-        final Integer newReference = 666, newStamp = 999;
-        final boolean casResult = asr.compareAndSet(initialRef, newReference, initialStamp, newStamp);
-        System.out.println("currentValue=" + asr.getReference()
-                + ", currentStamp=" + asr.getStamp()
-                + ", casResult=" + casResult);
+// 更新值和版本号
+int oldStamp = initialStamp[0];
+String oldRef = initialRef;
+String newRef = "Daisy";
+int newStamp = oldStamp + 1;
 
-        // 获取当前的值和当前的 stamp 值
-        int[] arr = new int[1];
-        final Integer currentValue = asr.get(arr);
-        final int currentStamp = arr[0];
-        System.out.println("currentValue=" + currentValue + ", currentStamp=" + currentStamp);
+boolean isUpdated = asr.compareAndSet(oldRef, newRef, oldStamp, newStamp);
+System.out.println("Update Success: " + isUpdated);
 
-        // 单独设置 stamp 值
-        final boolean attemptStampResult = asr.attemptStamp(newReference, 88);
-        System.out.println("currentValue=" + asr.getReference()
-                + ", currentStamp=" + asr.getStamp()
-                + ", attemptStampResult=" + attemptStampResult);
+// 打印更新后的值和版本号
+int[] updatedStamp = new int[1];
+String updatedRef = asr.get(updatedStamp);
+System.out.println("Updated Reference: " + updatedRef + ", Updated Stamp: " + updatedStamp[0]);
 
-        // 重新设置当前值和 stamp 值
-        asr.set(initialRef, initialStamp);
-        System.out.println("currentValue=" + asr.getReference() + ", currentStamp=" + asr.getStamp());
+// 尝试用错误的版本号更新
+boolean isUpdatedWithWrongStamp = asr.compareAndSet(newRef, "John", oldStamp, newStamp + 1);
+System.out.println("Update with Wrong Stamp Success: " + isUpdatedWithWrongStamp);
 
-        // [不推荐使用，除非搞清楚注释的意思了] weak compare and set
-        // 困惑！weakCompareAndSet 这个方法最终还是调用 compareAndSet 方法。[版本: jdk-8u191]
-        // 但是注释上写着 "May fail spuriously and does not provide ordering guarantees,
-        // so is only rarely an appropriate alternative to compareAndSet."
-        // todo 感觉有可能是 jvm 通过方法名在 native 方法里面做了转发
-        final boolean wCasResult = asr.weakCompareAndSet(initialRef, newReference, initialStamp, newStamp);
-        System.out.println("currentValue=" + asr.getReference()
-                + ", currentStamp=" + asr.getStamp()
-                + ", wCasResult=" + wCasResult);
-    }
-}
+// 打印最终的值和版本号
+int[] finalStamp = new int[1];
+String finalRef = asr.get(finalStamp);
+System.out.println("Final Reference: " + finalRef + ", Final Stamp: " + finalStamp[0]);
 ```
 
 输出结果如下：
 
 ```plain
-currentValue=0, currentStamp=0
-currentValue=666, currentStamp=999, casResult=true
-currentValue=666, currentStamp=999
-currentValue=666, currentStamp=88, attemptStampResult=true
-currentValue=0, currentStamp=0
-currentValue=666, currentStamp=999, wCasResult=true
+Initial Reference: SnailClimb, Initial Stamp: 1
+Update Success: true
+Updated Reference: Daisy, Updated Stamp: 2
+Update with Wrong Stamp Success: false
+Final Reference: Daisy, Final Stamp: 2
 ```
 
 **`AtomicMarkableReference` 类使用示例** :
 
 ```java
-import java.util.concurrent.atomic.AtomicMarkableReference;
+// 创建一个 AtomicMarkableReference 对象，初始值为 "SnailClimb"，初始标记为 false
+AtomicMarkableReference<String> amr = new AtomicMarkableReference<>("SnailClimb", false);
 
-public class AtomicMarkableReferenceDemo {
-    public static void main(String[] args) {
-        // 实例化、取当前值和 mark 值
-        final Boolean initialRef = null, initialMark = false;
-        final AtomicMarkableReference<Boolean> amr = new AtomicMarkableReference<>(initialRef, initialMark);
-        System.out.println("currentValue=" + amr.getReference() + ", currentMark=" + amr.isMarked());
+// 打印初始值和标记
+boolean[] initialMark = new boolean[1];
+String initialRef = amr.get(initialMark);
+System.out.println("Initial Reference: " + initialRef + ", Initial Mark: " + initialMark[0]);
 
-        // compare and set
-        final Boolean newReference1 = true, newMark1 = true;
-        final boolean casResult = amr.compareAndSet(initialRef, newReference1, initialMark, newMark1);
-        System.out.println("currentValue=" + amr.getReference()
-                + ", currentMark=" + amr.isMarked()
-                + ", casResult=" + casResult);
+// 更新值和标记
+String oldRef = initialRef;
+String newRef = "Daisy";
+boolean oldMark = initialMark[0];
+boolean newMark = true;
 
-        // 获取当前的值和当前的 mark 值
-        boolean[] arr = new boolean[1];
-        final Boolean currentValue = amr.get(arr);
-        final boolean currentMark = arr[0];
-        System.out.println("currentValue=" + currentValue + ", currentMark=" + currentMark);
+boolean isUpdated = amr.compareAndSet(oldRef, newRef, oldMark, newMark);
+System.out.println("Update Success: " + isUpdated);
 
-        // 单独设置 mark 值
-        final boolean attemptMarkResult = amr.attemptMark(newReference1, false);
-        System.out.println("currentValue=" + amr.getReference()
-                + ", currentMark=" + amr.isMarked()
-                + ", attemptMarkResult=" + attemptMarkResult);
+// 打印更新后的值和标记
+boolean[] updatedMark = new boolean[1];
+String updatedRef = amr.get(updatedMark);
+System.out.println("Updated Reference: " + updatedRef + ", Updated Mark: " + updatedMark[0]);
 
-        // 重新设置当前值和 mark 值
-        amr.set(initialRef, initialMark);
-        System.out.println("currentValue=" + amr.getReference() + ", currentMark=" + amr.isMarked());
+// 尝试用错误的标记更新
+boolean isUpdatedWithWrongMark = amr.compareAndSet(newRef, "John", oldMark, !newMark);
+System.out.println("Update with Wrong Mark Success: " + isUpdatedWithWrongMark);
 
-        // [不推荐使用，除非搞清楚注释的意思了] weak compare and set
-        // 困惑！weakCompareAndSet 这个方法最终还是调用 compareAndSet 方法。[版本: jdk-8u191]
-        // 但是注释上写着 "May fail spuriously and does not provide ordering guarantees,
-        // so is only rarely an appropriate alternative to compareAndSet."
-        // todo 感觉有可能是 jvm 通过方法名在 native 方法里面做了转发
-        final boolean wCasResult = amr.weakCompareAndSet(initialRef, newReference1, initialMark, newMark1);
-        System.out.println("currentValue=" + amr.getReference()
-                + ", currentMark=" + amr.isMarked()
-                + ", wCasResult=" + wCasResult);
-    }
-}
+// 打印最终的值和标记
+boolean[] finalMark = new boolean[1];
+String finalRef = amr.get(finalMark);
+System.out.println("Final Reference: " + finalRef + ", Final Mark: " + finalMark[0]);
 ```
 
 输出结果如下：
 
 ```plain
-currentValue=null, currentMark=false
-currentValue=true, currentMark=true, casResult=true
-currentValue=true, currentMark=true
-currentValue=true, currentMark=false, attemptMarkResult=true
-currentValue=null, currentMark=false
-currentValue=true, currentMark=true, wCasResult=true
+Initial Reference: SnailClimb, Initial Mark: false
+Update Success: true
+Updated Reference: Daisy, Updated Mark: true
+Update with Wrong Mark Success: false
+Final Reference: Daisy, Final Mark: true
 ```
 
 ## 对象的属性修改类型原子类
@@ -360,52 +348,48 @@ currentValue=true, currentMark=true, wCasResult=true
 **`AtomicIntegerFieldUpdater` 类使用示例** :
 
 ```java
-import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
-
-public class AtomicIntegerFieldUpdaterTest {
-  public static void main(String[] args) {
-    AtomicIntegerFieldUpdater<User> a = AtomicIntegerFieldUpdater.newUpdater(User.class, "age");
-
-    User user = new User("Java", 22);
-    System.out.println(a.getAndIncrement(user));// 22
-    System.out.println(a.get(user));// 23
-  }
+// Person 类
+class Person {
+    private String name;
+    // 要使用 AtomicIntegerFieldUpdater，字段必须是 public volatile
+    private volatile int age;
+    //省略getter/setter和toString
 }
 
-class User {
-  private String name;
-  public volatile int age;
+// 创建 AtomicIntegerFieldUpdater 对象
+AtomicIntegerFieldUpdater<Person> ageUpdater = AtomicIntegerFieldUpdater.newUpdater(Person.class, "age");
 
-  public User(String name, int age) {
-    super();
-    this.name = name;
-    this.age = age;
-  }
+// 创建 Person 对象
+Person person = new Person("SnailClimb", 22);
 
-  public String getName() {
-    return name;
-  }
+// 打印初始值
+System.out.println("Initial Person: " + person);
 
-  public void setName(String name) {
-    this.name = name;
-  }
+// 更新 age 字段
+ageUpdater.incrementAndGet(person); // 自增
+System.out.println("After Increment: " + person);
 
-  public int getAge() {
-    return age;
-  }
+ageUpdater.addAndGet(person, 5); // 增加 5
+System.out.println("After Adding 5: " + person);
 
-  public void setAge(int age) {
-    this.age = age;
-  }
+ageUpdater.compareAndSet(person, 28, 30); // 如果当前值是 28，则设置为 30
+System.out.println("After Compare and Set (28 to 30): " + person);
 
-}
+// 尝试使用错误的比较值进行更新
+boolean isUpdated = ageUpdater.compareAndSet(person, 28, 35); // 这次应该失败
+System.out.println("Compare and Set (28 to 35) Success: " + isUpdated);
+System.out.println("Final Person: " + person);
 ```
 
 输出结果：
 
 ```plain
-22
-23
+Initial Person: Name: SnailClimb, Age: 22
+After Increment: Name: SnailClimb, Age: 23
+After Adding 5: Name: SnailClimb, Age: 28
+After Compare and Set (28 to 30): Name: SnailClimb, Age: 30
+Compare and Set (28 to 35) Success: false
+Final Person: Name: SnailClimb, Age: 30
 ```
 
 ## 参考
