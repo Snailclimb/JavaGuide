@@ -48,14 +48,14 @@ export default hopeTheme({
         notice: [
           {
             path: "/",
-            title: "知识星球",
+            title: "PDF面试资料（2024版）",
             showOnce: true,
             content:
-              "专属面试小册/一对一交流/简历修改/专属求职指南，欢迎加入 JavaGuide 知识星球。",
+              "2024最新版原创PDF面试资料来啦！涵盖 Java 核心、数据库、缓存、分布式、设计模式、智力题等内容，非常全面！",
             actions: [
               {
-                text: "前往了解",
-                link: "https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html",
+                text: "点击领取",
+                link: "https://oss.javaguide.cn/backend-notekbook/official-account-traffic-backend-notebook-with-data-screenshot.png",
                 type: "primary",
               },
             ],
