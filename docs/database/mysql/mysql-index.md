@@ -88,7 +88,7 @@ SELECT * FROM tb1 WHERE id < 500;
 
 AVL 树是计算机科学中最早被发明的自平衡二叉查找树，它的名称来自于发明者 G.M. Adelson-Velsky 和 E.M. Landis 的名字缩写。AVL 树的特点是保证任何节点的左右子树高度之差不超过 1，因此也被称为高度平衡二叉树，它的查找、插入和删除在平均和最坏情况下的时间复杂度都是 O(logn)。
 
-![AVL 树](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/avl-tree.png)
+![](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/avl-tree.png)
 
 AVL 树采用了旋转操作来保持平衡。主要有四种旋转操作：LL 旋转、RR 旋转、LR 旋转和 RL 旋转。其中 LL 旋转和 RR 旋转分别用于处理左左和右右失衡，而 LR 旋转和 RL 旋转则用于处理左右和右左失衡。
 
