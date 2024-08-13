@@ -305,8 +305,11 @@ public class ArrayList<E> extends AbstractList<E>
 
     /**
      * 以正确的顺序（从第一个到最后一个元素）返回一个包含此列表中所有元素的数组。
-     * 返回的数组将是“安全的”，因为该列表不保留对它的引用。 （换句话说，这个方法必须分配一个新的数组）。
-     * 因此，调用者可以自由地修改返回的数组。 此方法充当基于阵列和基于集合的API之间的桥梁。
+     * 返回的数组将是“安全的”，因为该列表不保留对它的引用。
+     * （换句话说，这个方法必须分配一个新的数组）。
+     * 因此，调用者可以自由地修改返回的数组结构。
+     * 注意：如果元素是引用类型，修改元素的内容会影响到原列表中的对象。
+     * 此方法充当基于数组和基于集合的API之间的桥梁。
      */
     public Object[] toArray() {
         return Arrays.copyOf(elementData, size);
@@ -729,7 +732,7 @@ private void grow(int minCapacity) {
 **我们再来通过例子探究一下`grow()` 方法：**
 
 - 当 `add` 第 1 个元素时，`oldCapacity` 为 0，经比较后第一个 if 判断成立，`newCapacity = minCapacity`(为 10)。但是第二个 if 判断不会成立，即 `newCapacity` 不比 `MAX_ARRAY_SIZE` 大，则不会进入 `hugeCapacity` 方法。数组容量为 10，`add` 方法中 return true,size 增为 1。
-- 当 `add` 第 11 个元素进入 `grow` 方法时，`newCapacity` 为 15，比 `minCapacity`（为 11）大，第一个 if 判断不成立。新容量没有大于数组最大 size，不会进入 huge`C`apacity 方法。数组容量扩为 15，add 方法中 return true,size 增为 11。
+- 当 `add` 第 11 个元素进入 `grow` 方法时，`newCapacity` 为 15，比 `minCapacity`（为 11）大，第一个 if 判断不成立。新容量没有大于数组最大 size，不会进入 `hugeCapacity` 方法。数组容量扩为 15，add 方法中 return true,size 增为 11。
 - 以此类推······
 
 **这里补充一点比较重要，但是容易被忽视掉的知识点：**

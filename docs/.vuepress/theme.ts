@@ -48,14 +48,14 @@ export default hopeTheme({
         notice: [
           {
             path: "/",
-            title: "2023技术年货汇总",
+            title: "PDF面试资料（2024版）",
             showOnce: true,
             content:
-              "抽空整理了一些优秀的技术团队公众号 2023 年的优质技术文章汇总，质量都挺高的，强烈建议打开这篇文章看看。",
+              "2024最新版原创PDF面试资料来啦！涵盖 Java 核心、数据库、缓存、分布式、设计模式、智力题等内容，非常全面！",
             actions: [
               {
-                text: "开始阅读",
-                link: "https://www.yuque.com/snailclimb/dr6cvl/nt5qc467p3t6s13k?singleDoc# 《2023技术年货》",
+                text: "点击领取",
+                link: "https://oss.javaguide.cn/backend-notekbook/official-account-traffic-backend-notebook-with-data-screenshot.png",
                 type: "primary",
               },
             ],

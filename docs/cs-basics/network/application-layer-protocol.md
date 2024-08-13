@@ -102,7 +102,7 @@ FTP 是基于客户—服务器（C/S）模型而设计的，在客户端与 FTP
 
 ![FTP工作过程](https://oss.javaguide.cn/github/javaguide/cs-basics/network/ftp.png)
 
-注意 ⚠️：FTP 是一种不安全的协议，因为它在传输过程中不会对数据进行加密。因此，FTP 传输的文件可能会被窃听或篡改。建议在传输敏感数据时使用更安全的协议，如 SFTP（一种基于 SSH 协议的安全文件传输协议，用于在网络上安全地传输文件）。
+注意 ⚠️：FTP 是一种不安全的协议，因为它在传输过程中不会对数据进行加密。因此，FTP 传输的文件可能会被窃听或篡改。建议在传输敏感数据时使用更安全的协议，如 SFTP（SSH File Transfer Protocol，一种基于 SSH 协议的安全文件传输协议，用于在网络上安全地传输文件）。
 
 ## Telnet:远程登陆协议
 
@@ -114,9 +114,11 @@ FTP 是基于客户—服务器（C/S）模型而设计的，在客户端与 FTP
 
 **SSH（Secure Shell）** 基于 TCP 协议，通过加密和认证机制实现安全的访问和文件传输等业务。
 
-SSH 的经典用途是登录到远程电脑中执行命令。除此之外，SSH 也支持隧道协议、端口映射和 X11 连接。借助 SFTP 或 SCP 协议，SSH 还可以传输文件。
+SSH 的经典用途是登录到远程电脑中执行命令。除此之外，SSH 也支持隧道协议、端口映射和 X11 连接（允许用户在本地运行远程服务器上的图形应用程序）。借助 SFTP（SSH File Transfer Protocol） 或 SCP（Secure Copy Protocol） 协议，SSH 还可以安全传输文件。
 
 SSH 使用客户端-服务器模型，默认端口是 22。SSH 是一个守护进程，负责实时监听客户端请求，并进行处理。大多数现代操作系统都提供了 SSH。
+
+如下图所示，SSH Client（SSH 客户端）和 SSH Server（SSH 服务器）通过公钥交换生成共享的对称加密密钥，用于后续的加密通信。
 
 ![SSH:安全的网络传输协议](https://oss.javaguide.cn/github/javaguide/cs-basics/network/ssh-client-server.png)
 

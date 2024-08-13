@@ -88,7 +88,7 @@ SELECT * FROM tb1 WHERE id < 500;
 
 AVL 树是计算机科学中最早被发明的自平衡二叉查找树，它的名称来自于发明者 G.M. Adelson-Velsky 和 E.M. Landis 的名字缩写。AVL 树的特点是保证任何节点的左右子树高度之差不超过 1，因此也被称为高度平衡二叉树，它的查找、插入和删除在平均和最坏情况下的时间复杂度都是 O(logn)。
 
-![AVL 树](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/avl-tree.png)
+![](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/avl-tree.png)
 
 AVL 树采用了旋转操作来保持平衡。主要有四种旋转操作：LL 旋转、RR 旋转、LR 旋转和 RL 旋转。其中 LL 旋转和 RR 旋转分别用于处理左左和右右失衡，而 LR 旋转和 RL 旋转则用于处理左右和右左失衡。
 
@@ -384,6 +384,14 @@ EXPLAIN SELECT * FROM student WHERE name = 'Anne Henry' AND class = 'lIrm08RYVk'
 # 无法命中索引
 SELECT * FROM student WHERE class = 'lIrm08RYVk';
 ```
+
+再来看一个常见的面试题：如果有索引 `联合索引（a，b，c）`，查询 `a=1 AND c=1`会走索引么？`c=1` 呢？`b=1 AND c=1`呢？
+
+先不要往下看答案，给自己 3 分钟时间想一想。
+
+1. 查询 `a=1 AND c=1`：根据最左前缀匹配原则，查询可以使用索引的前缀部分。因此，该查询仅在 `a=1` 上使用索引，然后对结果进行 `c=1` 的过滤。
+2. 查询 `c=1` ：由于查询中不包含最左列 `a`，根据最左前缀匹配原则，整个索引都无法被使用。
+3. 查询`b=1 AND c=1`：和第二种一样的情况，整个索引都不会使用。
 
 MySQL 8.0.13 版本引入了索引跳跃扫描（Index Skip Scan，简称 ISS），它可以在某些索引查询场景下提高查询效率。在没有 ISS 之前，不满足最左前缀匹配原则的联合索引查询中会执行全表扫描。而 ISS 允许 MySQL 在某些情况下避免全表扫描，即使查询条件不符合最左前缀。不过，这个功能比较鸡肋， 和 Oracle 中的没法比，MySQL 8.0.31 还报告了一个 bug：[Bug #109145 Using index for skip scan cause incorrect result](https://bugs.mysql.com/bug.php?id=109145)（后续版本已经修复）。个人建议知道有这个东西就好，不需要深究，实际项目也不一定能用上。
 

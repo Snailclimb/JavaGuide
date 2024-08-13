@@ -368,37 +368,42 @@ FastJSON 实现数据脱敏的方式主要有两种：
 - 基于注解 `@JSONField` 实现：需要自定义一个用于脱敏的序列化的类，然后在需要脱敏的字段上通过 `@JSONField` 中的 `serializeUsing` 指定为我们自定义的序列化类型即可。
 - 基于序列化过滤器：需要实现 `ValueFilter` 接口，重写 `process` 方法完成自定义脱敏，然后在 JSON 转换时使用自定义的转换策略。具体实现可参考这篇文章： <https://juejin.cn/post/7067916686141161479>。
 
-### Mybatis-mate
+### Mybatis-Mate
 
-MybatisPlus 也提供了数据脱敏模块 mybatis-mate。mybatis-mate 为 MybatisPlus 企业级模块，使用之前需要配置授权码（付费），旨在更敏捷优雅处理数据。
+先介绍一下 MyBatis、MyBatis-Plus 和 Mybatis-Mate 这三者的关系：
 
-配置内容如下所示：
+- MyBatis 是一款优秀的持久层框架，它支持定制化 SQL、存储过程以及高级映射。
+- MyBatis-Plus 是一个 MyBatis 的增强工具，能够极大地简化持久层的开发工作。
+- Mybatis-Mate 是为 MyBatis-Plus 提供的企业级模块，旨在更敏捷优雅处理数据。不过，使用之前需要配置授权码（付费）。
 
-```yaml
-# Mybatis Mate 配置
-mybatis-mate:
-  cert:
-    grant: jxftsdfggggx
-    license: GKXP9r4MCJhGID/DTGigcBcLmZjb1YZGjE4GXaAoxbtGsPC20sxpEtiUr2F7Nb1ANTUekvF6Syo6DzraA4M4oacwoLVTglzfvaEfadfsd232485eLJK1QsskrSJmreMnEaNh9lsV7Lpbxy9JeGCeM0HPEbRvq8Y+8dUt5bQYLklsa3ZIBexir+4XykZY15uqn1pYIp4pEK0+aINTa57xjJNoWuBIqm7BdFIb4l1TAcPYMTsMXhF5hfMmKD2h391HxWTshJ6jbt4YqdKD167AgeoM+B+DE1jxlLjcpskY+kFs9piOS7RCcmKBBUOgX2BD/JxhR2gQ==
+Mybatis-Mate 支持敏感词脱敏，内置手机号、邮箱、银行卡号等 9 种常用脱敏规则。
+
+```java
+@FieldSensitive("testStrategy")
+private String username;
+
+@Configuration
+public class SensitiveStrategyConfig {
+
+    /**
+     * 注入脱敏策略
+     */
+    @Bean
+    public ISensitiveStrategy sensitiveStrategy() {
+        // 自定义 testStrategy 类型脱敏处理
+        return new SensitiveStrategy().addStrategy("testStrategy", t -> t + "***test***");
+    }
+}
+
+// 跳过脱密处理，用于编辑场景
+RequestDataTransfer.skipSensitive();
 ```
-
-具体实现可参考 baomidou 提供的如下代码：<https://gitee.com/baomidou/mybatis-mate-examples> 。
 
 ### MyBatis-Flex
 
 类似于 MybatisPlus，MyBatis-Flex 也是一个 MyBatis 增强框架。MyBatis-Flex 同样提供了数据脱敏功能，并且是可以免费使用的。
 
 MyBatis-Flex 提供了 `@ColumnMask()` 注解，以及内置的 9 种脱敏规则，开箱即用：
-
-- 用户名脱敏
-- 手机号脱敏
-- 固定电话脱敏
-- 身份证号脱敏
-- 车牌号脱敏
-- 地址脱敏
-- 邮件脱敏
-- 密码脱敏
-- 银行卡号脱敏
 
 ```java
 /**
@@ -465,14 +470,57 @@ public class Account {
 
 如果这些内置的脱敏规则不满足你的要求的话，你还可以自定义脱敏规则。
 
+1、通过 `MaskManager` 注册新的脱敏规则：
+
+```java
+MaskManager.registerMaskProcessor("自定义规则名称"
+        , data -> {
+            return data;
+        })
+```
+
+2、使用自定义的脱敏规则
+
+```java
+@Table("tb_account")
+public class Account {
+
+    @Id(keyType = KeyType.Auto)
+    private Long id;
+
+    @ColumnMask("自定义规则名称")
+    private String userName;
+}
+```
+
+并且，对于需要跳过脱密处理的场景，例如进入编辑页面编辑用户数据，MyBatis-Flex 也提供了对应的支持：
+
+1. **`MaskManager#execWithoutMask`**（推荐）：该方法使用了模版方法设计模式，保障跳过脱敏处理并执行相关逻辑后自动恢复脱敏处理。
+2. **`MaskManager#skipMask`**：跳过脱敏处理。
+3. **`MaskManager#restoreMask`**：恢复脱敏处理，确保后续的操作继续使用脱敏逻辑。
+
+`MaskManager#execWithoutMask`方法实现如下：
+
+```java
+public static <T> T execWithoutMask(Supplier<T> supplier) {
+    try {
+        skipMask();
+        return supplier.get();
+    } finally {
+        restoreMask();
+    }
+}
+```
+
+`MaskManager` 的`skipMask`和`restoreMask`方法一般配套使用，推荐`try{...}finally{...}`模式。
+
 ## 总结
 
-本文主要介绍了数据脱敏的相关内容，首先介绍了数据脱敏的概念，在此基础上介绍了常用的数据脱敏规则；随后介绍了本文的重点 Hutool 工具及其使用方法，在此基础上进行了实操，分别演示了使用 DesensitizedUtil 工具类、配合 Jackson 通过注解的方式完成数据脱敏；最后，介绍了一些常见的数据脱敏方法，并附上了对应的教程链接供大家参考，本文内容如有不当之处，还请大家批评指正。
+这篇文章主要介绍了：
 
-## 推荐阅读
-
-- [Spring Boot 日志、配置文件、接口数据如何脱敏？老鸟们都是这样玩的！](https://mp.weixin.qq.com/s/59osrnjyPJ7BV070x6ABwQ)
-- [大厂也在用的 6 种数据脱敏方案，严防泄露数据的“内鬼”](https://mp.weixin.qq.com/s/_Dgekk1AJsIx0TTlnH6kUA)
+- 数据脱敏的定义：数据脱敏是指对某些敏感信息通过脱敏规则进行数据的变形，实现敏感隐私数据的可靠保护。
+- 常用的脱敏规则：替换、删除、重排、加噪和加密。
+- 常用的脱敏工具：Hutool、Apache ShardingSphere、FastJSON、Mybatis-Mate 和 MyBatis-Flex。
 
 ## 参考
 

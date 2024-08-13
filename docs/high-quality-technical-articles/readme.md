@@ -23,6 +23,7 @@
 
 ## 程序员
 
+- [程序员最该拿的几种高含金量证书](./programmer/high-value-certifications-for-programmers.md)
 - [程序员怎样出版一本技术书](./programmer/how-do-programmers-publish-a-technical-book.md)
 - [程序员高效出书避坑和实践指南](./programmer/efficient-book-publishing-and-practice-guide.md)
 

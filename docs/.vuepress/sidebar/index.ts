@@ -112,6 +112,7 @@ export default sidebar({
               collapsible: true,
               children: [
                 "optimistic-lock-and-pessimistic-lock",
+                "cas",
                 "jmm",
                 "java-thread-pool-summary",
                 "java-thread-pool-best-practices",

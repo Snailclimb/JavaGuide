@@ -88,6 +88,8 @@
 
 **重要知识点详解**：
 
+- [乐观锁和悲观锁详解](./docs/java/concurrent/jmm.md)
+- [CAS 详解](./docs/java/concurrent/cas.md)
 - [JMM（Java 内存模型）详解](./docs/java/concurrent/jmm.md)
 - **线程池**：[Java 线程池详解](./docs/java/concurrent/java-thread-pool-summary.md)、[Java 线程池最佳实践](./docs/java/concurrent/java-thread-pool-best-practices.md)
 - [ThreadLocal 详解](./docs/java/concurrent/threadlocal.md)

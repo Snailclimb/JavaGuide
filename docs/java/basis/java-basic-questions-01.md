@@ -50,6 +50,8 @@ head:
 
 Java 虚拟机（Java Virtual Machine, JVM）是运行 Java 字节码的虚拟机。JVM 有针对不同系统的特定实现（Windows，Linux，macOS），目的是使用相同的字节码，它们都会给出相同的结果。字节码和不同系统的 JVM 实现是 Java 语言“一次编译，随处可以运行”的关键所在。
 
+如下图所示，不同编程语言（Java、Groovy、Kotlin、JRuby、Clojure ...）通过各自的编译器编译成 `.class` 文件，并最终通过 JVM 在不同平台（Windows、Mac、Linux）上运行。
+
 ![运行在 Java 虚拟机之上的编程语言](https://oss.javaguide.cn/github/javaguide/java/basis/java-virtual-machine-program-language-os.png)
 
 **JVM 并不是只有一种！只要满足 JVM 规范，每个公司、组织或者个人都可以开发自己的专属 JVM。** 也就是说我们平时接触到的 HotSpot VM 仅仅是是 JVM 规范的一种实现而已。
@@ -60,13 +62,20 @@ Java 虚拟机（Java Virtual Machine, JVM）是运行 Java 字节码的虚拟�
 
 #### JDK 和 JRE
 
-JDK（Java Development Kit），它是功能齐全的 Java SDK，是提供给开发者使用，能够创建和编译 Java 程序的开发套件。它包含了 JRE，同时还包含了编译 java 源码的编译器 javac 以及一些其他工具比如 javadoc（文档注释工具）、jdb（调试器）、jconsole（基于 JMX 的可视化监控⼯具）、javap（反编译工具）等等。
+JDK（Java Development Kit）是一个功能齐全的 Java 开发工具包，供开发者使用，用于创建和编译 Java 程序。它包含了 JRE（Java Runtime Environment），以及编译器 javac 和其他工具，如 javadoc（文档生成器）、jdb（调试器）、jconsole（监控工具）、javap（反编译工具）等。
 
-JRE（Java Runtime Environment） 是 Java 运行时环境。它是运行已编译 Java 程序所需的所有内容的集合，主要包括 Java 虚拟机（JVM）、Java 基础类库（Class Library）。
+JRE 是运行已编译 Java 程序所需的环境，主要包含以下两个部分：
 
-也就是说，JRE 是 Java 运行时环境，仅包含 Java 应用程序的运行时环境和必要的类库。而 JDK 则包含了 JRE，同时还包括了 javac、javadoc、jdb、jconsole、javap 等工具，可以用于 Java 应用程序的开发和调试。如果需要进行 Java 编程工作，比如编写和编译 Java 程序、使用 Java API 文档等，就需要安装 JDK。而对于某些需要使用 Java 特性的应用程序，如 JSP 转换为 Java Servlet、使用反射等，也需要 JDK 来编译和运行 Java 代码。因此，即使不打算进行 Java 应用程序的开发工作，也有可能需要安装 JDK。
+1. **JVM** : 也就是我们上面提到的 Java 虚拟机。
+2. **Java 基础类库（Class Library）**：一组标准的类库，提供常用的功能和 API（如 I/O 操作、网络通信、数据结构等）。
 
-![JDK 包含 JRE](https://oss.javaguide.cn/github/javaguide/java/basis/jdk-include-jre.png)
+简单来说，JRE 只包含运行 Java 程序所需的环境和类库，而 JDK 不仅包含 JRE，还包括用于开发和调试 Java 程序的工具。
+
+如果需要编写、编译 Java 程序或使用 Java API 文档，就需要安装 JDK。某些需要 Java 特性的应用程序（如 JSP 转换为 Servlet 或使用反射）也可能需要 JDK 来编译和运行 Java 代码。因此，即使不进行 Java 开发工作，有时也可能需要安装 JDK。
+
+下图清晰展示了 JDK、JRE 和 JVM 的关系。
+
+![jdk-include-jre](https://oss.javaguide.cn/github/javaguide/java/basis/jdk-include-jre.png)
 
 不过，从 JDK 9 开始，就不需要区分 JDK 和 JRE 的关系了，取而代之的是模块系统（JDK 被重新组织成 94 个模块）+ [jlink](http://openjdk.java.net/jeps/282) 工具 (随 Java 9 一起发布的新命令行工具，用于生成自定义 Java 运行时映像，该映像仅包含给定应用程序所需的模块) 。并且，从 JDK 11 开始，Oracle 不再提供单独的 JRE 下载。
 
@@ -129,7 +138,7 @@ JDK 9 引入了一种新的编译模式 **AOT(Ahead of Time Compilation)** 。�
 
 **JIT 与 AOT 两者的关键指标对比**:
 
-![JIT vs AOT](https://oss.javaguide.cn/github/javaguide/java/basis/jit-vs-aot.png)
+<img src="https://oss.javaguide.cn/github/javaguide/java/basis/jit-vs-aot.png" alt="JIT vs AOT" style="zoom: 25%;" />
 
 可以看出，AOT 的主要优势在于启动时间、内存占用和打包体积。JIT 的主要优势在于具备更高的极限处理能力，可以降低请求的最大延迟。
 
@@ -203,8 +212,6 @@ JDK 9 引入了一种新的编译模式 **AOT(Ahead of Time Compilation)** 。�
 
 Java 中的注释有三种：
 
-![Java 注释类型总结](https://oss.javaguide.cn/github/javaguide/java/basis/java-annotation-types.png)
-
 1. **单行注释**：通常用于解释方法内某单行代码的作用。
 
 2. **多行注释**：通常用于解释一段代码的作用。
@@ -274,9 +281,26 @@ Java 中的注释有三种：
 
 ### 自增自减运算符
 
-在写代码的过程中，常见的一种情况是需要某个整数类型变量增加 1 或减少 1，Java 提供了一种特殊的运算符，用于这种表达式，叫做自增运算符（++)和自减运算符（--）。
+在写代码的过程中，常见的一种情况是需要某个整数类型变量增加 1 或减少 1。Java 提供了自增运算符 (`++`) 和自减运算符 (`--`) 来简化这种操作。
 
-++ 和 -- 运算符可以放在变量之前，也可以放在变量之后，当运算符放在变量之前时(前缀)，先自增/减，再赋值；当运算符放在变量之后时(后缀)，先赋值，再自增/减。例如，当 `b = ++a` 时，先自增（自己增加 1），再赋值（赋值给 b）；当 `b = a++` 时，先赋值(赋值给 b)，再自增（自己增加 1）。也就是，++a 输出的是 a+1 的值，a++输出的是 a 值。用一句口诀就是：“符号在前就先加/减，符号在后就后加/减”。
+`++` 和 `--` 运算符可以放在变量之前，也可以放在变量之后：
+
+- **前缀形式**（例如 `++a` 或 `--a`）：先自增/自减变量的值，然后再使用该变量，例如，`b = ++a` 先将 `a` 增加 1，然后把增加后的值赋给 `b`。
+- **后缀形式**（例如 `a++` 或 `a--`）：先使用变量的当前值，然后再自增/自减变量的值。例如，`b = a++` 先将 `a` 的当前值赋给 `b`，然后再将 `a` 增加 1。
+
+为了方便记忆，可以使用下面的口诀：**符号在前就先加/减，符号在后就后加/减**。
+
+下面来看一个考察自增自减运算符的高频笔试题：执行下面的代码后，`a` 、`b` 、 `c` 、`d`和`e`的值是？
+
+```java
+int a = 9;
+int b = a++;
+int c = ++a;
+int d = c--;
+int e = --d;
+```
+
+答案：`a = 11` 、`b = 9` 、 `c = 10` 、 `d = 10` 、 `e = 10`。
 
 ### 移位运算符
 
@@ -295,17 +319,28 @@ static final int hash(Object key) {
 
 ```
 
-在 Java 代码里使用 `<<`、 `>>` 和`>>>`转换成的指令码运行起来会更高效些。
+**使用移位运算符的主要原因**：
+
+1. **高效**：移位运算符直接对应于处理器的移位指令。现代处理器具有专门的硬件指令来执行这些移位操作，这些指令通常在一个时钟周期内完成。相比之下，乘法和除法等算术运算在硬件层面上需要更多的时钟周期来完成。
+2. **节省内存**：通过移位操作，可以使用一个整数（如 `int` 或 `long`）来存储多个布尔值或标志位，从而节省内存。
+
+移位运算符最常用于快速乘以或除以 2 的幂次方。除此之外，它还在以下方面发挥着重要作用：
+
+- **位字段管理**：例如存储和操作多个布尔值。
+- **哈希算法和加密解密**：通过移位和与、或等操作来混淆数据。
+- **数据压缩**：例如霍夫曼编码通过移位运算符可以快速处理和操作二进制数据，以生成紧凑的压缩格式。
+- **数据校验**：例如 CRC（循环冗余校验）通过移位和多项式除法生成和校验数据完整性。。
+- **内存对齐**：通过移位操作，可以轻松计算和调整数据的对齐地址。
 
 掌握最基本的移位运算符知识还是很有必要的，这不光可以帮助我们在代码中使用，还可以帮助我们理解源码中涉及到移位运算符的代码。
 
 Java 中有三种移位运算符：
 
-![Java 移位运算符总结](https://oss.javaguide.cn/github/javaguide/java/basis/shift-operator.png)
-
-- `<<` :左移运算符，向左移若干位，高位丢弃，低位补零。`x << 1`,相当于 x 乘以 2(不溢出的情况下)。
-- `>>` :带符号右移，向右移若干位，高位补符号位，低位丢弃。正数高位补 0,负数高位补 1。`x >> 1`,相当于 x 除以 2。
+- `<<` :左移运算符，向左移若干位，高位丢弃，低位补零。`x << n`,相当于 x 乘以 2 的 n 次方(不溢出的情况下)。
+- `>>` :带符号右移，向右移若干位，高位补符号位，低位丢弃。正数高位补 0,负数高位补 1。`x >> n`,相当于 x 除以 2 的 n 次方。
 - `>>>` :无符号右移，忽略符号位，空位都以 0 补齐。
+
+虽然移位运算本质上可以分为左移和右移，但在实际应用中，右移操作需要考虑符号位的处理方式。
 
 由于 `double`，`float` 在二进制中的表现比较特殊，因此不能来进行移位操作。
 
@@ -365,31 +400,31 @@ System.out.println("左移 10 位后的数据对应的二进制字符 " + Intege
 思考一下：下列语句的运行结果是什么？
 
 ```java
-    public static void main(String[] args) {
-        boolean flag = false;
-        for (int i = 0; i <= 3; i++) {
-            if (i == 0) {
-                System.out.println("0");
-            } else if (i == 1) {
-                System.out.println("1");
-                continue;
-            } else if (i == 2) {
-                System.out.println("2");
-                flag = true;
-            } else if (i == 3) {
-                System.out.println("3");
-                break;
-            } else if (i == 4) {
-                System.out.println("4");
-            }
-            System.out.println("xixi");
+public static void main(String[] args) {
+    boolean flag = false;
+    for (int i = 0; i <= 3; i++) {
+        if (i == 0) {
+            System.out.println("0");
+        } else if (i == 1) {
+            System.out.println("1");
+            continue;
+        } else if (i == 2) {
+            System.out.println("2");
+            flag = true;
+        } else if (i == 3) {
+            System.out.println("3");
+            break;
+        } else if (i == 4) {
+            System.out.println("4");
         }
-        if (flag) {
-            System.out.println("haha");
-            return;
-        }
-        System.out.println("heihei");
+        System.out.println("xixi");
     }
+    if (flag) {
+        System.out.println("haha");
+        return;
+    }
+    System.out.println("heihei");
+}
 ```
 
 运行结果：
@@ -438,13 +473,12 @@ Java 中有 8 种基本数据类型，分别为：
 **注意：**
 
 1. Java 里使用 `long` 类型的数据一定要在数值后面加上 **L**，否则将作为整型解析。
-2. `char a = 'h'`char :单引号，`String a = "hello"` :双引号。
+2. Java 里使用 `float` 类型的数据一定要在数值后面加上 **f 或 F**，否则将无法通过编译。
+3. `char a = 'h'`char :单引号，`String a = "hello"` :双引号。
 
 这八种基本类型都有对应的包装类分别为：`Byte`、`Short`、`Integer`、`Long`、`Float`、`Double`、`Character`、`Boolean` 。
 
 ### 基本类型和包装类型的区别？
-
-![基本类型 vs 包装类型](https://oss.javaguide.cn/github/javaguide/java/basis/primitive-type-vs-packaging-type.png)
 
 - **用途**：除了定义一些常量和局部变量之外，我们在其他地方比如方法参数、对象属性中很少会使用基本类型来定义变量。并且，包装类型可用于泛型，而基本类型不可以。
 - **存储方式**：基本数据类型的局部变量存放在 Java 虚拟机栈中的局部变量表中，基本数据类型的成员变量（未被 `static` 修饰 ）存放在 Java 虚拟机的堆中。包装类型属于对象类型，我们知道几乎所有对象实例都存在于堆中。
@@ -661,15 +695,18 @@ System.out.println(a == b);// false
 
 ```java
 BigDecimal a = new BigDecimal("1.0");
-BigDecimal b = new BigDecimal("0.9");
+BigDecimal b = new BigDecimal("1.00");
 BigDecimal c = new BigDecimal("0.8");
 
-BigDecimal x = a.subtract(b);
+BigDecimal x = a.subtract(c);
 BigDecimal y = b.subtract(c);
 
-System.out.println(x); /* 0.1 */
-System.out.println(y); /* 0.1 */
-System.out.println(Objects.equals(x, y)); /* true */
+System.out.println(x); /* 0.2 */
+System.out.println(y); /* 0.20 */
+// 比较内容，不是比较值
+System.out.println(Objects.equals(x, y)); /* false */
+// 比较值相等用相等compareTo，相等返回0
+System.out.println(0 == x.compareTo(y)); /* true */
 ```
 
 关于 `BigDecimal` 的详细介绍，可以看看我写的这篇文章：[BigDecimal 详解](https://javaguide.cn/java/basis/bigdecimal.html)。
@@ -693,8 +730,6 @@ System.out.println(l + 1 == Long.MIN_VALUE); // true
 ## 变量
 
 ### 成员变量与局部变量的区别？
-
-![成员变量 vs 局部变量](https://oss.javaguide.cn/github/javaguide/java/basis/member-var-vs-local-var.png)
 
 - **语法形式**：从语法形式上看，成员变量是属于类的，而局部变量是在代码块或方法中定义的变量或是方法的参数；成员变量可以被 `public`,`private`,`static` 等修饰符所修饰，而局部变量不能被访问控制修饰符及 `static` 所修饰；但是，成员变量和局部变量都能被 `final` 所修饰。
 - **存储方式**：从变量在内存中的存储方式来看，如果成员变量是使用 `static` 修饰的，那么这个成员变量是属于类的，如果没有使用 `static` 修饰，这个成员变量是属于实例的。而对象存在于堆内存，局部变量则存在于栈内存。
@@ -976,6 +1011,7 @@ public class SuperMan extends Hero{
 }
 
 public class SuperSuperMan extends SuperMan {
+    @Override
     public String name() {
         return "超级超级英雄";
     }

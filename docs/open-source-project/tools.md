@@ -4,6 +4,15 @@ category: 开源项目
 icon: tool
 ---
 
+## 代码质量
+
+- [SonarQube](https://github.com/SonarSource/sonarqube "sonarqube")：静态代码检查工具，，帮助检查代码缺陷，可以快速的定位代码中潜在的或者明显的错误，改善代码质量，提高开发速度。
+- [Spotless](https://github.com/diffplug/spotless)：Spotless 是支持多种语言的代码格式化工具，支持 Maven 和 Gradle 以 Plugin 的形式构建。
+- [CheckStyle](https://github.com/checkstyle/checkstyle "checkstyle") : 类似于 Spotless，可帮助程序员编写符合编码标准的 Java 代码。
+- [PMD](https://github.com/pmd/pmd "pmd") : 可扩展的多语言静态代码分析器。
+- [SpotBugs](https://github.com/spotbugs/spotbugs "spotbugs") : FindBugs 的继任者。静态分析工具，用于查找 Java 代码中的错误。
+- [P3C](https://github.com/alibaba/p3c "p3c")：Alibaba Java Coding Guidelines pmd implements and IDE plugin。Eclipse 和 IDEA 上都有该插件。
+
 ## 项目构建
 
 - [Maven](https://maven.apache.org/)：一个软件项目管理和理解工具。基于项目对象模型 (Project Object Model，POM) 的概念，Maven 可以从一条中心信息管理项目的构建、报告和文档。详细介绍：[Maven 核心概念总结](https://javaguide.cn/tools/maven/maven-core-concepts.html)。

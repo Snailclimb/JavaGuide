@@ -18,14 +18,26 @@ head:
 
 ### 面向对象和面向过程的区别
 
-两者的主要区别在于解决问题的方式不同：
+面向过程编程（Procedural-Oriented Programming，POP）和面向对象编程（Object-Oriented Programming，OOP）是两种常见的编程范式，两者的主要区别在于解决问题的方式不同：
 
-- 面向过程把解决问题的过程拆成一个个方法，通过一个个方法的执行解决问题。
-- 面向对象会先抽象出对象，然后用对象执行方法的方式解决问题。
+- **面向过程编程（POP）**：面向过程把解决问题的过程拆成一个个方法，通过一个个方法的执行解决问题。
+- **面向对象编程（OOP）**：面向对象会先抽象出对象，然后用对象执行方法的方式解决问题。
 
-另外，面向对象开发的程序一般更易维护、易复用、易扩展。
+相比较于 POP，OOP 开发的程序一般具有下面这些优点：
 
-相关 issue : [面向过程：面向过程性能比面向对象高？？](https://github.com/Snailclimb/JavaGuide/issues/431) 。
+- **易维护**：由于良好的结构和封装性，OOP 程序通常更容易维护。
+- **易复用**：通过继承和多态，OOP 设计使得代码更具复用性，方便扩展功能。
+- **易扩展**：模块化设计使得系统扩展变得更加容易和灵活。
+
+POP 的编程方式通常更为简单和直接，适合处理一些较简单的任务。
+
+POP 和 OOP 的性能差异主要取决于它们的运行机制，而不仅仅是编程范式本身。因此，简单地比较两者的性能是一个常见的误区（相关 issue : [面向过程：面向过程性能比面向对象高？？](https://github.com/Snailclimb/JavaGuide/issues/431) ）。
+
+![ POP 和 OOP  性能比较不合适](https://oss.javaguide.cn/github/javaguide/java/basis/pop-vs-oop-performance.png)
+
+在选择编程范式时，性能并不是唯一的考虑因素。代码的可维护性、可扩展性和开发效率同样重要。
+
+现代编程语言基本都支持多种编程范式，既可以用来进行面向过程编程，也可以进行面向对象编程。
 
 下面是一个求圆的面积和周长的示例，简单分别展示了面向对象和面向过程两种不同的解决方案。
 
@@ -136,13 +148,13 @@ true
 
 ### 构造方法有哪些特点？是否可被 override?
 
-构造方法特点如下：
+构造方法具有以下特点：
 
-- 名字与类名相同。
-- 没有返回值，但不能用 void 声明构造函数。
-- 生成类的对象时自动执行，无需调用。
+- **名称与类名相同**：构造方法的名称必须与类名完全一致。
+- **没有返回值**：构造方法没有返回类型，且不能使用 `void` 声明。
+- **自动执行**：在生成类的对象时，构造方法会自动执行，无需显式调用。
 
-构造方法不能被 override（重写）,但是可以 overload（重载）,所以你可以看到一个类中有多个构造函数的情况。
+构造方法**不能被重写（override）**，但**可以被重载（overload）**。因此，一个类中可以有多个构造方法，这些构造方法可以具有不同的参数列表，以提供不同的对象初始化方式。
 
 ### 面向对象三大特征
 
@@ -200,17 +212,67 @@ public class Student {
 
 ### 接口和抽象类有什么共同点和区别？
 
-**共同点**：
+#### 接口和抽象类的共同点
 
-- 都不能被实例化。
-- 都可以包含抽象方法。
-- 都可以有默认实现的方法（Java 8 可以用 `default` 关键字在接口中定义默认方法）。
+- **实例化**：接口和抽象类都不能直接实例化，只能被实现（接口）或继承（抽象类）后才能创建具体的对象。
+- **抽象方法**：接口和抽象类都可以包含抽象方法。抽象方法没有方法体，必须在子类或实现类中实现。
 
-**区别**：
+#### 接口和抽象类的区别
 
-- 接口主要用于对类的行为进行约束，你实现了某个接口就具有了对应的行为。抽象类主要用于代码复用，强调的是所属关系。
-- 一个类只能继承一个类，但是可以实现多个接口。
-- 接口中的成员变量只能是 `public static final` 类型的，不能被修改且必须有初始值，而抽象类的成员变量默认 default，可在子类中被重新定义，也可被重新赋值。
+- **设计目的**：接口主要用于对类的行为进行约束，你实现了某个接口就具有了对应的行为。抽象类主要用于代码复用，强调的是所属关系。
+- **继承和实现**：一个类只能继承一个类（包括抽象类），因为 Java 不支持多继承。但一个类可以实现多个接口，一个接口也可以继承多个其他接口。
+- **成员变量**：接口中的成员变量只能是 `public static final` 类型的，不能被修改且必须有初始值。抽象类的成员变量可以有任何修饰符（`private`, `protected`, `public`），可以在子类中被重新定义或赋值。
+- **方法**：
+  - Java 8 之前，接口中的方法默认是 `public abstract` ，也就是只能有方法声明。自 Java 8 起，可以在接口中定义 `default`（默认） 方法和 `static` （静态）方法。 自 Java 9 起，接口可以包含 `private` 方法。
+  - 抽象类可以包含抽象方法和非抽象方法。抽象方法没有方法体，必须在子类中实现。非抽象方法有具体实现，可以直接在抽象类中使用或在子类中重写。
+
+在 Java 8 及以上版本中，接口引入了新的方法类型：`default` 方法、`static` 方法和 `private` 方法。这些方法让接口的使用更加灵活。
+
+Java 8 引入的`default` 方法用于提供接口方法的默认实现，可以在实现类中被覆盖。这样就可以在不修改实现类的情况下向现有接口添加新功能，从而增强接口的扩展性和向后兼容性。
+
+```java
+public interface MyInterface {
+    default void defaultMethod() {
+        System.out.println("This is a default method.");
+    }
+}
+```
+
+Java 8 引入的`static` 方法无法在实现类中被覆盖，只能通过接口名直接调用（ `MyInterface.staticMethod()`），类似于类中的静态方法。`static` 方法通常用于定义一些通用的、与接口相关的工具方法，一般很少用。
+
+```java
+public interface MyInterface {
+    static void staticMethod() {
+        System.out.println("This is a static method in the interface.");
+    }
+}
+```
+
+Java 9 允许在接口中使用 `private` 方法。`private`方法可以用于在接口内部共享代码，不对外暴露。
+
+```java
+public interface MyInterface {
+    // default 方法
+    default void defaultMethod() {
+        commonMethod();
+    }
+
+    // static 方法
+    static void staticMethod() {
+        commonMethod();
+    }
+
+    // 私有静态方法，可以被 static 和 default 方法调用
+    private static void commonMethod() {
+        System.out.println("This is a private method used internally.");
+    }
+
+      // 实例私有方法，只能被 default 方法调用。
+    private void instanceCommonMethod() {
+        System.out.println("This is a private instance method used internally.");
+    }
+}
+```
 
 ### 深拷贝和浅拷贝区别了解吗？什么是引用拷贝？
 
@@ -299,13 +361,13 @@ System.out.println(person1.getAddress() == person1Copy.getAddress());
 
 我专门画了一张图来描述浅拷贝、深拷贝、引用拷贝：
 
-![浅拷贝、深拷贝、引用拷贝示意图](https://oss.javaguide.cn/github/javaguide/java/basis/shallow&deep-copy.png)
+![shallow&deep-copy](https://oss.javaguide.cn/github/javaguide/java/basis/shallow&deep-copy.png)
 
 ## Object
 
 ### Object 类的常见方法有哪些？
 
-Object 类是一个特殊的类，是所有类的父类。它主要提供了以下 11 个方法：
+Object 类是一个特殊的类，是所有类的父类，主要提供了以下 11 个方法：
 
 ```java
 /**
@@ -621,7 +683,7 @@ System.out.println(s);
 
 如果你使用 IDEA 的话，IDEA 自带的代码检查机制也会提示你修改代码。
 
-不过，使用 “+” 进行字符串拼接会产生大量的临时对象的问题在 JDK9 中得到了解决。在 JDK9 当中，字符串相加 “+” 改为了用动态方法 `makeConcatWithConstants()` 来实现，而不是大量的 `StringBuilder` 了。这个改进是 JDK9 的 [JEP 280](https://openjdk.org/jeps/280) 提出的，这也意味着 JDK 9 之后，你可以放心使用“+” 进行字符串拼接了。关于这部分改进的详细介绍，推荐阅读这篇文章：还在无脑用 [StringBuilder？来重温一下字符串拼接吧](https://juejin.cn/post/7182872058743750715) 。
+在 JDK 9 中，字符串相加“+”改为用动态方法 `makeConcatWithConstants()` 来实现，通过提前分配空间从而减少了部分临时对象的创建。然而这种优化主要针对简单的字符串拼接，如： `a+b+c` 。对于循环中的大量拼接操作，仍然会逐个动态分配内存（类似于两个两个 append 的概念），并不如手动使用 StringBuilder 来进行拼接效率高。这个改进是 JDK9 的 [JEP 280](https://openjdk.org/jeps/280) 提出的，关于这部分改进的详细介绍，推荐阅读这篇文章：还在无脑用 [StringBuilder？来重温一下字符串拼接吧](https://juejin.cn/post/7182872058743750715) 以及参考 [issue#2442](https://github.com/Snailclimb/JavaGuide/issues/2442)。
 
 ### String#equals() 和 Object#equals() 有何区别？
 
