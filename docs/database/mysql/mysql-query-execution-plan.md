@@ -69,7 +69,7 @@ mysql> explain SELECT * FROM dept_emp WHERE emp_no IN (SELECT emp_no FROM dept_e
 
 ### id
 
-SELECT 标识符，是查询中 SELECT 的序号，用来标识整个查询中 SELELCT 语句的顺序。
+SELECT 标识符，是查询中 SELECT 的序号，用来标识整个查询中 SELECT 语句的顺序。
 
 id 如果相同，从上往下依次执行。id 不同，id 值越大，执行优先级越高，如果行引用其他行的并集结果，则该值可以为 NULL。
 
