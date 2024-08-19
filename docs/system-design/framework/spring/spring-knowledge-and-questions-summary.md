@@ -316,12 +316,68 @@ Spring 框架中的 Bean 是否线程安全，取决于其作用域和状态。
 
 prototype 作用域下，每次获取都会创建一个新的 bean 实例，不存在资源竞争问题，所以不存在线程安全问题。singleton 作用域下，IoC 容器中只有唯一的 bean 实例，可能会存在资源竞争问题（取决于 Bean 是否有状态）。如果这个 bean 是有状态的话，那就存在线程安全问题（有状态 Bean 是指包含可变的成员变量的对象）。
 
+有状态 Bean 示例：
+
+```java
+// 定义了一个购物车类，其中包含一个保存用户的购物车里商品的 List
+@Component
+public class ShoppingCart {
+    private List<String> items = new ArrayList<>();
+
+    public void addItem(String item) {
+        items.add(item);
+    }
+
+    public List<String> getItems() {
+        return items;
+    }
+}
+```
+
 不过，大部分 Bean 实际都是无状态（没有定义可变的成员变量）的（比如 Dao、Service），这种情况下， Bean 是线程安全的。
 
-对于有状态单例 Bean 的线程安全问题，常见的有两种解决办法：
+无状态 Bean 示例：
 
-1. 在 Bean 中尽量避免定义可变的成员变量。
-2. 在类中定义一个 `ThreadLocal` 成员变量，将需要的可变成员变量保存在 `ThreadLocal` 中（推荐的一种方式）。
+```java
+// 定义了一个用户服务，它仅包含业务逻辑而不保存任何状态。
+@Component
+public class UserService {
+
+    public User findUserById(Long id) {
+        //...
+    }
+    //...
+}
+```
+
+对于有状态单例 Bean 的线程安全问题，常见的三种解决办法是：
+
+1. **避免可变成员变量**: 尽量设计 Bean 为无状态。
+2. **使用`ThreadLocal`**: 将可变成员变量保存在 `ThreadLocal` 中，确保线程独立。
+3. **使用同步机制**: 利用 `synchronized` 或 `ReentrantLock` 来进行同步控制，确保线程安全。
+
+这里以 `ThreadLocal`为例，演示一下`ThreadLocal` 保存用户登录信息的场景：
+
+```java
+public class UserThreadLocal {
+
+    private UserThreadLocal() {}
+
+    private static final ThreadLocal<SysUser> LOCAL = ThreadLocal.withInitial(() -> null);
+
+    public static void put(SysUser sysUser) {
+        LOCAL.set(sysUser);
+    }
+
+    public static SysUser get() {
+        return LOCAL.get();
+    }
+
+    public static void remove() {
+        LOCAL.remove();
+    }
+}
+```
 
 ### Bean 的生命周期了解么?
 

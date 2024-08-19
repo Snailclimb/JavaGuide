@@ -70,9 +70,70 @@ Host: example1.org
 
 HTTP/1.1 引入了范围请求（range request）机制，以避免带宽的浪费。当客户端想请求一个文件的一部分，或者需要继续下载一个已经下载了部分但被终止的文件，HTTP/1.1 可以在请求中加入`Range`头部，以请求（并只能请求字节型数据）数据的一部分。服务器端可以忽略`Range`头部，也可以返回若干`Range`响应。
 
-如果一个响应包含部分数据的话，那么将带有`206 (Partial Content)`状态码。该状态码的意义在于避免了 HTTP/1.0 代理缓存错误地把该响应认为是一个完整的数据响应，从而把他当作为一个请求的响应缓存。
+`206 (Partial Content)` 状态码的主要作用是确保客户端和代理服务器能正确识别部分内容响应，避免将其误认为完整资源并错误地缓存。这对于正确处理范围请求和缓存管理非常重要。
 
-在范围响应中，`Content-Range`头部标志指示出了该数据块的偏移量和数据块的长度。
+一个典型的 HTTP/1.1 范围请求示例：
+
+```bash
+# 获取一个文件的前 1024 个字节
+GET /z4d4kWk.jpg HTTP/1.1
+Host: i.imgur.com
+Range: bytes=0-1023
+```
+
+`206 Partial Content` 响应：
+
+```bash
+
+HTTP/1.1 206 Partial Content
+Content-Range: bytes 0-1023/146515
+Content-Length: 1024
+…
+（二进制内容）
+```
+
+简单解释一下 HTTP 范围响应头部中的字段：
+
+- **`Content-Range` 头部**：指示返回数据在整个资源中的位置，包括起始和结束字节以及资源的总长度。例如，`Content-Range: bytes 0-1023/146515` 表示服务器端返回了第 0 到 1023 字节的数据（共 1024 字节），而整个资源的总长度是 146,515 字节。
+- **`Content-Length` 头部**：指示此次响应中实际传输的字节数。例如，`Content-Length: 1024` 表示服务器端传输了 1024 字节的数据。
+
+`Range` 请求头不仅可以请求单个字节范围，还可以一次性请求多个范围。这种方式被称为“多重范围请求”（multiple range requests）。
+
+客户端想要获取资源的第 0 到 499 字节以及第 1000 到 1499 字节：
+
+```bash
+GET /path/to/resource HTTP/1.1
+Host: example.com
+Range: bytes=0-499,1000-1499
+```
+
+服务器端返回多个字节范围，每个范围的内容以分隔符分开：
+
+```bash
+HTTP/1.1 206 Partial Content
+Content-Type: multipart/byteranges; boundary=3d6b6a416f9b5
+Content-Length: 376
+
+--3d6b6a416f9b5
+Content-Type: application/octet-stream
+Content-Range: bytes 0-99/2000
+
+(第 0 到 99 字节的数据块)
+
+--3d6b6a416f9b5
+Content-Type: application/octet-stream
+Content-Range: bytes 500-599/2000
+
+(第 500 到 599 字节的数据块)
+
+--3d6b6a416f9b5
+Content-Type: application/octet-stream
+Content-Range: bytes 1000-1099/2000
+
+(第 1000 到 1099 字节的数据块)
+
+--3d6b6a416f9b5--
+```
 
 ### 状态码 100
 
