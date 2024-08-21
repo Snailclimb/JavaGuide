@@ -279,6 +279,78 @@ private SmsService smsService;
 - 当一个接口存在多个实现类的情况下，`@Autowired` 和`@Resource`都需要通过名称才能正确匹配到对应的 Bean。`Autowired` 可以通过 `@Qualifier` 注解来显式指定名称，`@Resource`可以通过 `name` 属性来显式指定名称。
 - `@Autowired` 支持在构造函数、方法、字段和参数上使用。`@Resource` 主要用于字段和方法上的注入，不支持在构造函数或参数上使用。
 
+### 注入 Bean 的方式有哪些？
+
+依赖注入 (Dependency Injection, DI) 的常见方式：
+
+1. 构造函数注入：通过类的构造函数来注入依赖项。
+1. Setter 注入：通过类的 Setter 方法来注入依赖项。
+1. Field（字段） 注入：直接在类的字段上使用注解（如 `@Autowired` 或 `@Resource`）来注入依赖项。
+
+构造函数注入示例：
+
+```java
+@Service
+public class UserService {
+
+    private final UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    //...
+}
+```
+
+Setter 注入示例：
+
+```java
+@Service
+public class UserService {
+
+    private UserRepository userRepository;
+
+    // 在 Spring 4.3 及以后的版本，特定情况下 @Autowired 可以省略不写
+    @Autowired
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    //...
+}
+```
+
+Field 注入示例：
+
+```java
+@Service
+public class UserService {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    //...
+}
+```
+
+### 构造函数注入还是 Setter 注入？
+
+Spring 官方有对这个问题的回答：<https://docs.spring.io/spring-framework/reference/core/beans/dependencies/factory-collaborators.html#beans-setter-injection>。
+
+我这里主要提取总结完善一下 Spring 官方的建议。
+
+**Spring 官方推荐构造函数注入**，这种注入方式的优势如下：
+
+1. 依赖完整性：确保所有必需依赖在对象创建时就被注入，避免了空指针异常的风险。
+2. 不可变性：有助于创建不可变对象，提高了线程安全性。
+3. 初始化保证：组件在使用前已完全初始化，减少了潜在的错误。
+4. 测试便利性：在单元测试中，可以直接通过构造函数传入模拟的依赖项，而不必依赖 Spring 容器进行注入。
+
+构造函数注入适合处理**必需的依赖项**，而 **Setter 注入** 则更适合**可选的依赖项**，这些依赖项可以有默认值或在对象生命周期中动态设置。虽然 `@Autowired` 可以用于 Setter 方法来处理必需的依赖项，但构造函数注入仍然是更好的选择。
+
+在某些情况下（例如第三方类不提供 Setter 方法），构造函数注入可能是**唯一的选择**。
+
 ### Bean 的作用域有哪些?
 
 Spring 中 Bean 的作用域通常有下面几种：
@@ -802,7 +874,7 @@ class B {
 
 `@Lazy` 用来标识类是否需要懒加载/延迟加载，可以作用在类上、方法上、构造器上、方法参数上、成员变量中。
 
-Spring Boot 2.2 新增了全局懒加载属性，开启后全局 bean 被设置为懒加载，需要时再去创建。
+Spring Boot 2.2 新增了**全局懒加载属性**，开启后全局 bean 被设置为懒加载，需要时再去创建。
 
 配置文件配置全局懒加载：
 
@@ -829,11 +901,12 @@ springApplication.run(args);
 - 由于在 A 上标注了 `@Lazy` 注解，因此 Spring 会去创建一个 B 的代理对象，将这个代理对象注入到 A 中的 B 属性；
 - 之后开始执行 B 的实例化、初始化，在注入 B 中的 A 属性时，此时 A 已经创建完毕了，就可以将 A 给注入进去。
 
-通过 `@Lazy` 就解决了循环依赖的注入， 关键点就在于对 A 中的属性 B 进行注入时，注入的是 B 的代理对象，因此不会循环依赖。
+从上面的加载流程可以看出： `@Lazy` 解决循环依赖的关键点在于代理对象的使用。
 
-之前说的发生循环依赖是因为在对 A 中的属性 B 进行注入时，注入的是 B 对象，此时又会去初始化 B 对象，发现 B 又依赖了 A，因此才导致的循环依赖。
+- **没有 `@Lazy` 的情况下**：在 Spring 容器初始化 `A` 时会立即尝试创建 `B`，而在创建 `B` 的过程中又会尝试创建 `A`，最终导致循环依赖（即无限递归，最终抛出异常）。
+- **使用 `@Lazy` 的情况下**：Spring 不会立即创建 `B`，而是会注入一个 `B` 的代理对象。由于此时 `B` 仍未被真正初始化，`A` 的初始化可以顺利完成。等到 `A` 实例实际调用 `B` 的方法时，代理对象才会触发 `B` 的真正初始化。
 
-一般是不建议使用循环依赖的，但是如果项目比较复杂，可以使用 `@Lazy` 解决一部分循环依赖的问题。
+`@Lazy` 能够在一定程度上打破循环依赖链，允许 Spring 容器顺利地完成 Bean 的创建和注入。但这并不是一个根本性的解决方案，尤其是在构造函数注入、复杂的多级依赖等场景中，`@Lazy` 无法有效地解决问题。因此，最佳实践仍然是尽量避免设计上的循环依赖。
 
 ### SpringBoot 允许循环依赖发生么？
 
