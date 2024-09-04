@@ -367,8 +367,8 @@ JDK1.2 以后，Java 对引用的概念进行了扩充，将引用分为强引�
 
 JDK 默认垃圾收集器（使用 `java -XX:+PrintCommandLineFlags -version` 命令查看）：
 
-- JDK 8：Parallel Scavenge（新生代）+ Parallel Old（老年代）
-- JDK 9 ~ JDK20: G1
+- JDK 8: Parallel Scavenge（新生代）+ Parallel Old（老年代）
+- JDK 9 ~ JDK22: G1
 
 ### Serial 收集器
 
