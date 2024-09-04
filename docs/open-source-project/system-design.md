@@ -72,7 +72,7 @@ icon: "xitongsheji"
 - [MyBatis-Plus](https://github.com/baomidou/mybatis-plus) : [MyBatis](http://www.mybatis.org/mybatis-3/) 增强工具，在 MyBatis 的基础上只做增强不做改变，为简化开发、提高效率而生。
 - [MyBatis-Flex](https://gitee.com/mybatis-flex/mybatis-flex)：一个优雅的 MyBatis 增强框架，无其他任何第三方依赖，支持 CRUD、分页查询、多表查询、批量操作。
 - [jOOQ](https://github.com/jOOQ/jOOQ)：用 Java 编写 SQL 的最佳方式。
-- [Redisson](https://github.com/redisson/redisson "redisson")：Redis 基础上的一个 Java 驻内存数据网格（In-Memory Data Grid）,支持超过 30 个对象和服务:`Set`,`SortedSet`, `Map`, `List`, `Queue`, `Deque` ……，并且提供了多种分布式锁的实现。更多介绍请看：[《Redisson 项目介绍》](https://github.com/redisson/redisson/wiki/Redisson%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D "Redisson项目介绍")。
+- [Redisson](https://github.com/redisson/redisson "redisson")：Redisson 是一款架设在 Redis 基础之上的 Java 驻内存数据网格 (In-Memory Data Grid)，它充分利用了 Redis 键值数据库的优势，为 Java 开发者提供了一系列具有分布式特性的常用工具类。例如，分布式 Java 对象（`Set`，`SortedSet`，`Map`，`List`，`Queue`，`Deque` 等）、分布式锁等。详细介绍请看：[Redisson 项目介绍](https://github.com/redisson/redisson/wiki/Redisson%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D "Redisson项目介绍")。
 
 ### 数据同步
 
@@ -151,6 +151,11 @@ icon: "xitongsheji"
 - [CAT](https://github.com/dianping/cat "cat")：CAT 作为服务端项目基础组件，提供了 Java, C/C++, Node.js, Python, Go 等多语言客户端，已经在美团点评的基础架构中间件框架（MVC 框架，RPC 框架，数据库框架，缓存框架等，消息队列，配置系统等）深度集成，为美团点评各业务线提供系统丰富的性能指标、健康状况、实时告警等。
 
 相关阅读：[Skywalking 官网对于主流开源链路追踪系统的对比](https://skywalking.apache.org/zh/blog/2019-03-29-introduction-of-skywalking-and-simple-practice.html)
+
+### 分布式锁
+
+- [Lock4j](https://gitee.com/baomidou/lock4j)：支持 Redisson、ZooKeeper 等不同方案的高性能分布式锁。
+- [Redisson](https://github.com/redisson/redisson "redisson")：Redisson 在分布式锁方面提供全面且强大的支持，超越了简单的 Redis 锁实现。
 
 ## 高性能
 

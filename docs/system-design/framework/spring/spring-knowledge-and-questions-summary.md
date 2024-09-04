@@ -590,7 +590,9 @@ Spring AOP 已经集成了 AspectJ ，AspectJ 应该算的上是 Java 生态系�
 
 如果我们的切面比较少，那么两者性能差异不大。但是，当切面太多的话，最好选择 AspectJ ，它比 Spring AOP 快很多。
 
-### AspectJ 定义的通知类型有哪些？
+### AOP 常见的通知类型有哪些？
+
+![](https://oss.javaguide.cn/github/javaguide/system-design/framework/spring/aspectj-advice-types.jpg)
 
 - **Before**（前置通知）：目标对象的方法调用之前触发
 - **After** （后置通知）：目标对象的方法调用之后触发
