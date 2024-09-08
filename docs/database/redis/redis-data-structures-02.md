@@ -36,7 +36,7 @@ Bitmap 存储的是连续的二进制数字（0 和 1），通过 Bitmap, 只需
 | ------------------------------------- | ---------------------------------------------------------------- |
 | SETBIT key offset value               | 设置指定 offset 位置的值                                         |
 | GETBIT key offset                     | 获取指定 offset 位置的值                                         |
-| BITCOUNT key start end                | 获取 start 和 end 之前值为 1 的元素个数                          |
+| BITCOUNT key start end                | 获取 start 和 end 之间值为 1 的元素个数                          |
 | BITOP operation destkey key1 key2 ... | 对一个或多个 Bitmap 进行运算，可用运算符有 AND, OR, XOR 以及 NOT |
 
 **Bitmap 基本操作演示**：
