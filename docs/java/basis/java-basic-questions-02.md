@@ -695,7 +695,7 @@ System.out.println(s);
 
 ```java
 // 在字符串常量池中创建字符串对象 ”ab“
-// 将字符串对象 ”ab“ 的引用返回给引用 aa
+// 将字符串对象 ”ab“ 的引用赋值给 aa
 String aa = "ab";
 // 直接返回字符串常量池中字符串对象 ”ab“，赋值给引用 bb
 String bb = "ab";
