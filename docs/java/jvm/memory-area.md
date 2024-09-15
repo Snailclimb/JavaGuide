@@ -242,12 +242,12 @@ Class 文件中除了有类的版本、字段、方法、接口等描述信息�
 **字符串常量池** 是 JVM 为了提升性能和减少内存消耗针对字符串（String 类）专门开辟的一块区域，主要目的是为了避免字符串的重复创建。
 
 ```java
-// 在堆中创建字符串对象”ab“
-// 将字符串对象”ab“的引用保存在字符串常量池中
+// 在字符串常量池中创建字符串对象 ”ab“
+// 将字符串对象 ”ab“ 的引用返回给引用 aa
 String aa = "ab";
-// 直接返回字符串常量池中字符串对象”ab“的引用
+// 直接返回字符串常量池中字符串对象 ”ab“，赋值给引用 bb
 String bb = "ab";
-System.out.println(aa==bb);// true
+System.out.println(aa==bb); // true
 ```
 
 HotSpot 虚拟机中字符串常量池的实现是 `src/hotspot/share/classfile/stringTable.cpp` ,`StringTable` 可以简单理解为一个固定大小的`HashTable` ，容量为 `StringTableSize`（可以通过 `-XX:StringTableSize` 参数来设置），保存的是字符串（key）和 字符串对象的引用（value）的映射关系，字符串对象的引用指向堆中的字符串对象。
