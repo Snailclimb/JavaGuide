@@ -454,7 +454,7 @@ void afterNodeInsertion(boolean evict) { // possibly remove eldest
 
 ## LinkedHashMap 和 HashMap 遍历性能比较
 
-`LinkedHashMap` 维护了一个双向链表来记录数据插入的顺序，因此在迭代遍历生成的迭代器的时候，是按照双向链表的路径进行遍历的。这一点相比于 `HashMap` 那种遍历整个 bucket 的方式来说，高效需多。
+`LinkedHashMap` 维护了一个双向链表来记录数据插入的顺序，因此在迭代遍历生成的迭代器的时候，是按照双向链表的路径进行遍历的。这一点相比于 `HashMap` 那种遍历整个 bucket 的方式来说，高效许多。
 
 这一点我们可以从两者的迭代器中得以印证，先来看看 `HashMap` 的迭代器，可以看到 `HashMap` 迭代键值对时会用到一个 `nextNode` 方法，该方法会返回 next 指向的下一个元素，并会从 next 开始遍历 bucket 找到下一个 bucket 中不为空的元素 Node。
 
@@ -484,7 +484,7 @@ void afterNodeInsertion(boolean evict) { // possibly remove eldest
  }
 ```
 
-相比之下 `LinkedHashMap` 的迭代器则是直接使用通过 `after` 指针快速定位到当前节点的后继节点，简洁高效需多。
+相比之下 `LinkedHashMap` 的迭代器则是直接使用通过 `after` 指针快速定位到当前节点的后继节点，简洁高效许多。
 
 ```java
  final class LinkedEntryIterator extends LinkedHashIterator
@@ -550,7 +550,7 @@ System.out.println("linkedHashMap get time: " + (end - start));
 System.out.println(num);
 ```
 
-从输出结果来看，因为 `LinkedHashMap` 需要维护双向链表的缘故，插入元素相较于 `HashMap` 会更耗时，但是有了双向链表明确的前后节点关系，迭代效率相对于前者高效了需多。不过，总体来说却别不大，毕竟数据量这么庞大。
+从输出结果来看，因为 `LinkedHashMap` 需要维护双向链表的缘故，插入元素相较于 `HashMap` 会更耗时，但是有了双向链表明确的前后节点关系，迭代效率相对于前者高效了许多。不过，总体来说却别不大，毕竟数据量这么庞大。
 
 ```bash
 map time putVal: 5880
