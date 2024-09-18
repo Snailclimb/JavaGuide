@@ -653,7 +653,15 @@ abc
 
 我们上面的代码示例中，为了方便，都没有选择自定义线程池。实际项目中，这是不可取的。
 
-`CompletableFuture` 默认使用`ForkJoinPool.commonPool()` 作为执行器，这个线程池是全局共享的，可能会被其他任务占用，导致性能下降或者饥饿。因此，建议使用自定义的线程池来执行 `CompletableFuture` 的异步任务，可以提高并发度和灵活性。
+`CompletableFuture` 默认使用全局共享的 `ForkJoinPool.commonPool()` 作为执行器，所有未指定执行器的异步任务都会使用该线程池。这意味着应用程序、多个库或框架（如 Spring、第三方库）若都依赖 `CompletableFuture`，默认情况下它们都会共享同一个线程池。
+
+虽然 `ForkJoinPool` 效率很高，但当同时提交大量任务时，可能会导致资源竞争和线程饥饿，进而影响系统性能。
+
+为避免这些问题，建议为 `CompletableFuture` 提供自定义线程池，带来以下优势：
+
+- **隔离性**：为不同任务分配独立的线程池，避免全局线程池资源争夺。
+- **资源控制**：根据任务特性调整线程池大小和队列类型，优化性能表现。
+- **异常处理**：通过自定义 `ThreadFactory` 更好地处理线程中的异常情况。
 
 ```java
 private ThreadPoolExecutor executor = new ThreadPoolExecutor(10, 10,
