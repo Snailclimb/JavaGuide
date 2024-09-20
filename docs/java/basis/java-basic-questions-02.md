@@ -779,29 +779,33 @@ String s2 = new String("abc");
 
 ### String#intern 方法有什么作用?
 
-`String.intern()` 是一个 native（本地）方法，其作用是将指定的字符串对象的引用保存在字符串常量池中，可以简单分为两种情况：
+`String.intern()` 是一个 `native` (本地) 方法，用来处理字符串常量池中的字符串对象引用。它的工作流程可以概括为以下两种情况：
 
-- 如果字符串常量池中保存了对应的字符串对象的引用，就直接返回该引用。
-- 如果字符串常量池中没有保存了对应的字符串对象的引用，那就在常量池中创建一个指向该字符串对象的引用并返回。
+1. **常量池中已有相同内容的字符串对象**：如果字符串常量池中已经有一个与调用 `intern()` 方法的字符串内容相同的 `String` 对象，`intern()` 方法会直接返回常量池中该对象的引用。
+2. **常量池中没有相同内容的字符串对象**：如果字符串常量池中还没有一个与调用 `intern()` 方法的字符串内容相同的对象，`intern()` 方法会将当前字符串对象的引用添加到字符串常量池中，并返回该引用。
+
+总结：
+
+- `intern()` 方法的主要作用是确保字符串引用在常量池中的唯一性。
+- 当调用 `intern()` 时，如果常量池中已经存在相同内容的字符串，则返回常量池中已有对象的引用；否则，将该字符串添加到常量池并返回其引用。
 
 示例代码（JDK 1.8） :
 
 ```java
-// 在堆中创建字符串对象”Java“
-// 将字符串对象”Java“的引用保存在字符串常量池中
+// s1 指向字符串常量池中的 "Java" 对象
 String s1 = "Java";
-// 直接返回字符串常量池中字符串对象”Java“对应的引用
+// s2 也指向字符串常量池中的 "Java" 对象，和 s1 是同一个对象
 String s2 = s1.intern();
-// 会在堆中在单独创建一个字符串对象
+// 在堆中创建一个新的 "Java" 对象，s3 指向它
 String s3 = new String("Java");
-// 直接返回字符串常量池中字符串对象”Java“对应的引用
+// s4 指向字符串常量池中的 "Java" 对象，和 s1 是同一个对象
 String s4 = s3.intern();
-// s1 和 s2 指向的是堆中的同一个对象
+// s1 和 s2 指向的是同一个常量池中的对象
 System.out.println(s1 == s2); // true
-// s3 和 s4 指向的是堆中不同的对象
+// s3 指向堆中的对象，s4 指向常量池中的对象，所以不同
 System.out.println(s3 == s4); // false
-// s1 和 s4 指向的是堆中的同一个对象
-System.out.println(s1 == s4); //true
+// s1 和 s4 都指向常量池中的同一个对象
+System.out.println(s1 == s4); // true
 ```
 
 ### String 类型的变量和常量做“+”运算时发生了什么？
@@ -882,6 +886,7 @@ public static String getStr() {
 ## 参考
 
 - 深入解析 String#intern：<https://tech.meituan.com/2014/03/06/in-depth-understanding-string-intern.html>
+- Java String 源码解读：<http://keaper.cn/2020/09/08/java-string-mian-mian-guan/>
 - R 大（RednaxelaFX）关于常量折叠的回答：<https://www.zhihu.com/question/55976094/answer/147302764>
 
 <!-- @include: @article-footer.snippet.md -->
