@@ -168,6 +168,7 @@ export default sidebar({
             "java19",
             "java20",
             "java21",
+            "java22-23",
           ],
         },
       ],
