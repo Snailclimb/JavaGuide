@@ -149,7 +149,7 @@ JVM 具有四种类型的 GC 实现：
 -XX:+UseG1GC
 ```
 
-有关*垃圾回收*实施的更多详细信息，请参见[此处](https://github.com/Snailclimb/JavaGuide/blob/master/docs/java/jvm/JVM%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.md)。
+有关 _垃圾回收_ 实施的更多详细信息，请参见[此处](https://github.com/Snailclimb/JavaGuide/blob/master/docs/java/jvm/JVM%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.md)。
 
 ### 3.2.GC 日志记录
 

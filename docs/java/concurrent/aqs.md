@@ -5,6 +5,8 @@ tag:
   - Java并发
 ---
 
+<!-- markdownlint-disable MD024 -->
+
 ## AQS 介绍
 
 AQS 的全称为 `AbstractQueuedSynchronizer` ，翻译过来的意思就是抽象队列同步器。这个类在 `java.util.concurrent.locks` 包下面。
