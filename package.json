@@ -22,6 +22,7 @@
   "packageManager": "pnpm@9.11.0",
   "dependencies": {
     "@vuepress/bundler-vite": "2.0.0-rc.15",
+    "@vuepress/plugin-feed": "2.0.0-rc.3",
     "@vuepress/plugin-search": "2.0.0-rc.47",
     "husky": "9.1.6",
     "markdownlint-cli2": "0.14.0",
