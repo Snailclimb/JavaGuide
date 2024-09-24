@@ -5,6 +5,8 @@ tag:
   - 算法
 ---
 
+<!-- markdownlint-disable MD024 -->
+
 ## 1. 两数相加
 
 ### 题目描述

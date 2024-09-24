@@ -42,28 +42,6 @@ export default hopeTheme({
   },
 
   plugins: {
-    components: {
-      rootComponents: {
-        // https://plugin-components.vuejs.press/zh/guide/utilities/notice.html#%E7%94%A8%E6%B3%95
-        // notice: [
-        //   {
-        //     path: "/",
-        //     title: "PDF面试资料（2024版）",
-        //     showOnce: true,
-        //     content:
-        //       "2024最新版原创PDF面试资料来啦！涵盖 Java 核心、数据库、缓存、分布式、设计模式、智力题等内容，非常全面！",
-        //     actions: [
-        //       {
-        //         text: "点击领取",
-        //         link: "https://oss.javaguide.cn/backend-notekbook/official-account-traffic-backend-notebook-with-data-screenshot.png",
-        //         type: "primary",
-        //       },
-        //     ],
-        //   },
-        // ],
-      },
-    },
-
     blog: true,
 
     copyright: {
@@ -81,12 +59,13 @@ export default hopeTheme({
       rss: true,
     },
 
+    markdownTab: {
+      codeTabs: true,
+    },
+
     mdEnhance: {
       align: true,
-      codetabs: true,
-      figure: true,
       gfm: true,
-      hint: true,
       include: {
         resolvePath: (file, cwd) => {
           if (file.startsWith("@"))

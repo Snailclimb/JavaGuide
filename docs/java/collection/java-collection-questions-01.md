@@ -14,6 +14,8 @@ head:
 
 <!-- @include: @small-advertisement.snippet.md -->
 
+<!-- markdownlint-disable MD024 -->
+
 ## 集合概述
 
 ### Java 集合概览

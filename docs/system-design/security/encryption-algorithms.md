@@ -366,8 +366,8 @@ DSA 算法签名过程：
 
 ## 参考
 
-- 深入理解完美哈希 - 腾讯技术工程：https://mp.weixin.qq.com/s/M8Wcj8sZ7UF1CMr887Puog
-- 写给开发人员的实用密码学（二）—— 哈希函数：https://thiscute.world/posts/practical-cryptography-basics-2-hash/
+- 深入理解完美哈希 - 腾讯技术工程：<https://mp.weixin.qq.com/s/M8Wcj8sZ7UF1CMr887Puog>
+- 写给开发人员的实用密码学（二）—— 哈希函数：<https://thiscute.world/posts/practical-cryptography-basics-2-hash/>
 - 奇妙的安全旅行之 DSA 算法：<https://zhuanlan.zhihu.com/p/347025157>
 - AES-GCM 加密简介：<https://juejin.cn/post/6844904122676690951>
 - Java AES 256 GCM Encryption and Decryption Example | JCE Unlimited Strength：<https://www.javainterviewpoint.com/java-aes-256-gcm-encryption-and-decryption/>
