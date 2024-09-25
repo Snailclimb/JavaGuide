@@ -104,7 +104,7 @@ private static final ThreadLocal<SimpleDateFormat> formatter = new ThreadLocal<S
 };
 ```
 
-### ThreadLocal 原理了解吗？
+### ⭐️ThreadLocal 原理了解吗？
 
 从 `Thread`类源代码入手。
 
@@ -161,7 +161,7 @@ ThreadLocalMap(ThreadLocal<?> firstKey, Object firstValue) {
 
 ![ThreadLocal内部类](https://oss.javaguide.cn/github/javaguide/java/concurrent/thread-local-inner-class.png)
 
-### ThreadLocal 内存泄露问题是怎么导致的？
+### ⭐️ThreadLocal 内存泄露问题是怎么导致的？
 
 `ThreadLocalMap` 中使用的 key 为 `ThreadLocal` 的弱引用，而 value 是强引用。所以，如果 `ThreadLocal` 没有被外部强引用的情况下，在垃圾回收的时候，key 会被清理掉，而 value 不会被清理掉。
 
@@ -191,7 +191,7 @@ static class Entry extends WeakReference<ThreadLocal<?>> {
 
 顾名思义，线程池就是管理一系列线程的资源池。当有任务要处理时，直接从线程池中获取线程来处理，处理完之后线程并不会立即被销毁，而是等待下一个任务。
 
-### 为什么要用线程池？
+### ⭐️为什么要用线程池？
 
 池化技术想必大家已经屡见不鲜了，线程池、数据库连接池、HTTP 连接池等等都是对这个思想的应用。池化技术的思想主要是为了减少每次获取资源的消耗，提高对资源的利用率。
 
@@ -222,7 +222,7 @@ static class Entry extends WeakReference<ThreadLocal<?>> {
 - `CachedThreadPool`： 可根据实际情况调整线程数量的线程池。线程池的线程数量不确定，但若有空闲线程可以复用，则会优先使用可复用的线程。若所有线程均在工作，又有新的任务提交，则会创建新的线程处理任务。所有线程在当前任务执行完毕后，将返回线程池进行复用。
 - `ScheduledThreadPool`：给定的延迟后运行任务或者定期执行任务的线程池。
 
-### 为什么不推荐使用内置线程池？
+### ⭐️为什么不推荐使用内置线程池？
 
 在《阿里巴巴 Java 开发手册》“并发处理”这一章节，明确指出线程资源必须通过线程池提供，不允许在应用中自行显式创建线程。
 
@@ -270,7 +270,7 @@ public ScheduledThreadPoolExecutor(int corePoolSize) {
 }
 ```
 
-### 线程池常见参数有哪些？如何解释？
+### ⭐️线程池常见参数有哪些？如何解释？
 
 ```java
     /**
@@ -322,11 +322,23 @@ public ScheduledThreadPoolExecutor(int corePoolSize) {
 `ThreadPoolExecutor` 默认不会回收核心线程，即使它们已经空闲了。这是为了减少创建线程的开销，因为核心线程通常是要长期保持活跃的。但是，如果线程池是被用于周期性使用的场景，且频率不高（周期之间有明显的空闲时间），可以考虑将 `allowCoreThreadTimeOut(boolean value)` 方法的参数设置为 `true`，这样就会回收空闲（时间间隔由 `keepAliveTime` 指定）的核心线程了。
 
 ```java
- ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(4, 6, 6, TimeUnit.SECONDS, new SynchronousQueue<>());
-        threadPoolExecutor.allowCoreThreadTimeOut(true);
+public void allowCoreThreadTimeOut(boolean value) {
+    // 核心线程的 keepAliveTime 必须大于 0 才能启用超时机制
+    if (value && keepAliveTime <= 0) {
+        throw new IllegalArgumentException("Core threads must have nonzero keep alive times");
+    }
+    // 设置 allowCoreThreadTimeOut 的值
+    if (value != allowCoreThreadTimeOut) {
+        allowCoreThreadTimeOut = value;
+        // 如果启用了超时机制，清理所有空闲的线程，包括核心线程
+        if (value) {
+            interruptIdleWorkers();
+        }
+    }
+}
 ```
 
-### 线程池的拒绝策略有哪些？
+### ⭐️线程池的拒绝策略有哪些？
 
 如果当前同时运行的线程数量达到最大线程数量并且队列也已经被放满了任务时，`ThreadPoolExecutor` 定义一些策略:
 
@@ -518,7 +530,7 @@ new RejectedExecutionHandler() {
 - `DelayedWorkQueue`（延迟队列）：`ScheduledThreadPool` 和 `SingleThreadScheduledExecutor` 。`DelayedWorkQueue` 的内部元素并不是按照放入的时间排序，而是会按照延迟的时间长短对任务进行排序，内部采用的是“堆”的数据结构，可以保证每次出队的任务都是当前队列中执行时间最靠前的。`DelayedWorkQueue` 添加元素满了之后会自动扩容，增加原来容量的 50%，即永远不会阻塞，最大扩容可达 `Integer.MAX_VALUE`，所以最多只能创建核心线程数的线程。
 - `ArrayBlockingQueue`（有界阻塞队列）：底层由数组实现，容量一旦创建，就不能修改。
 
-### 线程池处理任务的流程了解吗？
+### ⭐️线程池处理任务的流程了解吗？
 
 ![图解线程池实现原理](https://oss.javaguide.cn/github/javaguide/java/concurrent/thread-pool-principle.png)
 
@@ -534,7 +546,7 @@ new RejectedExecutionHandler() {
 - `prestartCoreThread()`:启动一个线程，等待任务，如果已达到核心线程数，这个方法返回 false，否则返回 true；
 - `prestartAllCoreThreads()`:启动所有的核心线程，并返回启动成功的核心线程数。
 
-### 线程池中线程异常后，销毁还是复用？
+### ⭐️线程池中线程异常后，销毁还是复用？
 
 直接说结论，需要分两种情况：
 
@@ -547,7 +559,7 @@ new RejectedExecutionHandler() {
 
 具体的源码分析可以参考这篇：[线程池中线程异常后：销毁还是复用？ - 京东技术](https://mp.weixin.qq.com/s/9ODjdUU-EwQFF5PrnzOGfw)。
 
-### 如何给线程池命名？
+### ⭐️如何给线程池命名？
 
 初始化线程池的时候需要显示命名（设置线程池名称前缀），有利于定位问题。
 
@@ -634,7 +646,7 @@ CPU 密集型简单理解就是利用 CPU 计算能力的任务比如你在内�
 
 公式也只是参考，具体还是要根据项目实际线上运行情况来动态调整。我在后面介绍的美团的线程池参数动态配置这种方案就非常不错，很实用！
 
-### 如何动态修改线程池的参数？
+### ⭐️如何动态修改线程池的参数？
 
 美团技术团队在[《Java 线程池实现原理及其在美团业务中的实践》](https://tech.meituan.com/2020/04/02/java-pooling-pratice-in-meituan.html)这篇文章中介绍到对线程池参数实现可自定义配置的思路和方法。
 
@@ -660,14 +672,16 @@ CPU 密集型简单理解就是利用 CPU 计算能力的任务比如你在内�
 
 ![动态配置线程池参数最终效果](https://oss.javaguide.cn/github/javaguide/java/concurrent/meituan-dynamically-configuring-thread-pool-parameters.png)
 
-还没看够？推荐 why 神的[如何设置线程池参数？美团给出了一个让面试官虎躯一震的回答。](https://mp.weixin.qq.com/s/9HLuPcoWmTqAeFKa1kj-_A)这篇文章，深度剖析，很不错哦！
+还没看够？我在[《后端面试高频系统设计&场景题》](https://javaguide.cn/zhuanlan/back-end-interview-high-frequency-system-design-and-scenario-questions.html#%E4%BB%8B%E7%BB%8D)中详细介绍了如何设计一个动态线程池，这也是面试中常问的一道系统设计题。
+
+![《后端面试高频系统设计&场景题》](https://oss.javaguide.cn/xingqiu/back-end-interview-high-frequency-system-design-and-scenario-questions-fengmian.png)
 
 如果我们的项目也想要实现这种效果的话，可以借助现成的开源项目：
 
 - **[Hippo4j](https://github.com/opengoofy/hippo4j)**：异步线程池框架，支持线程池动态变更&监控&报警，无需修改代码轻松引入。支持多种使用模式，轻松引入，致力于提高系统运行保障能力。
 - **[Dynamic TP](https://github.com/dromara/dynamic-tp)**：轻量级动态线程池，内置监控告警功能，集成三方中间件线程池管理，基于主流配置中心（已支持 Nacos、Apollo，Zookeeper、Consul、Etcd，可通过 SPI 自定义实现）。
 
-### 如何设计一个能够根据任务的优先级来执行的线程池？
+### ⭐️如何设计一个能够根据任务的优先级来执行的线程池？
 
 这是一个常见的面试问题，本质其实还是在考察求职者对于线程池以及阻塞队列的掌握。
 
@@ -697,6 +711,10 @@ CPU 密集型简单理解就是利用 CPU 计算能力的任务比如你在内�
 对于性能方面的影响，是没办法避免的，毕竟需要对任务进行排序操作。并且，对于大部分业务场景来说，这点性能影响是可以接受的。
 
 ## Future
+
+重点是要掌握 `CompletableFuture` 的使用以及常见面试题。
+
+除了下面的面试题之外，还推荐你看看我写的这篇文章： [CompletableFuture 详解](./completablefuture-intro.md)。
 
 ### Future 类有什么用？
 
@@ -789,6 +807,69 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
 
 ![](https://oss.javaguide.cn/javaguide/image-20210902093026059.png)
 
+### ⭐️一个任务需要依赖另外两个任务执行完之后再执行，怎么设计？
+
+这种任务编排场景非常适合通过`CompletableFuture`实现。这里假设要实现 T3 在 T2 和 T1 执行完后执行。
+
+代码如下（这里为了简化代码，用到了 Hutool 的线程工具类 `ThreadUtil` 和日期时间工具类 `DateUtil`）：
+
+```java
+// T1
+CompletableFuture<Void> futureT1 = CompletableFuture.runAsync(() -> {
+    System.out.println("T1 is executing. Current time：" + DateUtil.now());
+    // 模拟耗时操作
+    ThreadUtil.sleep(1000);
+});
+// T2
+CompletableFuture<Void> futureT2 = CompletableFuture.runAsync(() -> {
+    System.out.println("T2 is executing. Current time：" + DateUtil.now());
+    ThreadUtil.sleep(1000);
+});
+
+// 使用allOf()方法合并T1和T2的CompletableFuture，等待它们都完成
+CompletableFuture<Void> bothCompleted = CompletableFuture.allOf(futureT1, futureT2);
+// 当T1和T2都完成后，执行T3
+bothCompleted.thenRunAsync(() -> System.out.println("T3 is executing after T1 and T2 have completed.Current time：" + DateUtil.now()));
+// 等待所有任务完成，验证效果
+ThreadUtil.sleep(3000);
+```
+
+通过 `CompletableFuture` 的 `allOf()`这个静态方法来并行运行 T1 和 T2 。当 T1 和
+
+### ⭐️使用 CompletableFuture，有一个任务失败，如何处理异常？
+
+使用 `CompletableFuture`的时候一定要以正确的方式进行异常处理，避免异常丢失或者出现不可控问题。
+
+下面是一些建议：
+
+- 使用 `whenComplete` 方法可以在任务完成时触发回调函数，并正确地处理异常，而不是让异常被吞噬或丢失。
+- 使用 `exceptionally` 方法可以处理异常并重新抛出，以便异常能够传播到后续阶段，而不是让异常被忽略或终止。
+- 使用 `handle` 方法可以处理正常的返回结果和异常，并返回一个新的结果，而不是让异常影响正常的业务逻辑。
+- 使用 `CompletableFuture.allOf` 方法可以组合多个 `CompletableFuture`，并统一处理所有任务的异常，而不是让异常处理过于冗长或重复。
+- ……
+
+### ⭐️在使用 CompletableFuture 的时候为什么要自定义线程池？
+
+`CompletableFuture` 默认使用全局共享的 `ForkJoinPool.commonPool()` 作为执行器，所有未指定执行器的异步任务都会使用该线程池。这意味着应用程序、多个库或框架（如 Spring、第三方库）若都依赖 `CompletableFuture`，默认情况下它们都会共享同一个线程池。
+
+虽然 `ForkJoinPool` 效率很高，但当同时提交大量任务时，可能会导致资源竞争和线程饥饿，进而影响系统性能。
+
+为避免这些问题，建议为 `CompletableFuture` 提供自定义线程池，带来以下优势：
+
+- 隔离性：为不同任务分配独立的线程池，避免全局线程池资源争夺。
+- 资源控制：根据任务特性调整线程池大小和队列类型，优化性能表现。
+- 异常处理：通过自定义 `ThreadFactory` 更好地处理线程中的异常情况。
+
+```java
+private ThreadPoolExecutor executor = new ThreadPoolExecutor(10, 10,
+        0L, TimeUnit.MILLISECONDS,
+        new LinkedBlockingQueue<Runnable>());
+
+CompletableFuture.runAsync(() -> {
+     //...
+}, executor);
+```
+
 ## AQS
 
 ### AQS 是什么？
@@ -806,7 +887,7 @@ public abstract class AbstractQueuedSynchronizer extends AbstractOwnableSynchron
 
 AQS 为构建锁和同步器提供了一些通用功能的实现，因此，使用 AQS 能简单且高效地构造出应用广泛的大量的同步器，比如我们提到的 `ReentrantLock`，`Semaphore`，其他的诸如 `ReentrantReadWriteLock`，`SynchronousQueue`等等皆是基于 AQS 的。
 
-### AQS 的原理是什么？
+### ⭐️AQS 的原理是什么？
 
 AQS 核心思想是，如果被请求的共享资源空闲，则将当前请求资源的线程设置为有效的工作线程，并且将共享资源设置为锁定状态。如果被请求的共享资源被占用，那么就需要一套线程阻塞等待以及被唤醒时锁分配的机制，这个机制 AQS 是用 **CLH 队列锁** 实现的，即将暂时获取不到锁的线程加入到队列中。
 

@@ -14,11 +14,11 @@ head:
 
 <!-- @include: @article-header.snippet.md -->
 
-## JMM(Java 内存模型)
+## ⭐️JMM(Java 内存模型)
 
 JMM（Java 内存模型）相关的问题比较多，也比较重要，于是我单独抽了一篇文章来总结 JMM 相关的知识点和问题：[JMM（Java 内存模型）详解](./jmm.md) 。
 
-## volatile 关键字
+## ⭐️volatile 关键字
 
 ### 如何保证变量的可见性？
 
@@ -174,7 +174,7 @@ public void increase() {
 }
 ```
 
-## 乐观锁和悲观锁
+## ⭐️乐观锁和悲观锁
 
 ### 什么是悲观锁？
 
@@ -496,7 +496,7 @@ synchronized(this) {
 
 另外，构造方法本身是线程安全的，但如果在构造方法中涉及到共享资源的操作，就需要采取适当的同步措施来保证整个构造过程的线程安全。
 
-### synchronized 底层原理了解吗？
+### ⭐️synchronized 底层原理了解吗？
 
 synchronized 关键字底层原理属于 JVM 层面的东西。
 
@@ -573,7 +573,7 @@ public class SynchronizedDemo2 {
 
 `synchronized` 锁升级是一个比较复杂的过程，面试也很少问到，如果你想要详细了解的话，可以看看这篇文章：[浅析 synchronized 锁升级的原理与实现](https://www.cnblogs.com/star95/p/17542850.html)。
 
-### synchronized 和 volatile 有什么区别？
+### ⭐️synchronized 和 volatile 有什么区别？
 
 `synchronized` 关键字和 `volatile` 关键字是两个互补的存在，而不是对立的存在！
 
@@ -611,7 +611,7 @@ public ReentrantLock(boolean fair) {
 - **公平锁** : 锁被释放之后，先申请的线程先得到锁。性能较差一些，因为公平锁为了保证时间上的绝对顺序，上下文切换更频繁。
 - **非公平锁**：锁被释放之后，后申请的线程可能会先获取到锁，是随机或者按照其他优先级排序的。性能更好，但可能会导致某些线程永远无法获取到锁。
 
-### synchronized 和 ReentrantLock 有什么区别？
+### ⭐️synchronized 和 ReentrantLock 有什么区别？
 
 #### 两者都是可重入锁
 
