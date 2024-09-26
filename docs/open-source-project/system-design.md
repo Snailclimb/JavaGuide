@@ -128,6 +128,13 @@ icon: "xitongsheji"
 - [EasyScheduler](https://github.com/analysys/EasyScheduler "EasyScheduler") （已经更名为 DolphinScheduler，已经成为 Apache 孵化器项目）：分布式易扩展的可视化工作流任务调度平台，主要解决“复杂任务依赖但无法直接监控任务健康状态”的问题。
 - [PowerJob](https://gitee.com/KFCFans/PowerJob)：新一代分布式任务调度与计算框架，支持 CRON、API、固定频率、固定延迟等调度策略，提供工作流来编排任务解决依赖关系，使用简单，功能强大，文档齐全，欢迎各位接入使用！<http://www.powerjob.tech/> 。
 
+## 工作流
+
+1. [Flowable](https://github.com/flowable/flowable-engine) ：Activiti5 的一个分支发展而来，功能丰富，在 Activiti 的基础上，引入了更多高级功能，如更强大的 CMMN（案例管理模型与符号）、DMN（决策模型与符号）支持，以及更灵活的集成选项。
+2. [Activiti](https://github.com/Activiti/Activiti)：功能扩展相对保守，适合需要稳定 BPMN 2.0 工作流引擎的传统企业应用。
+3. [Warm-Flow](https://gitee.com/dromara/warm-flow)：国产开源工作流引擎，其特点简洁轻量但又不简单，五脏俱全，组件独立，可扩展。
+4. [FlowLong](https://gitee.com/aizuda/flowlong)：国产开源工作流引擎，专门中国特色流程审批打造。
+
 ## 分布式
 
 ### API 网关
