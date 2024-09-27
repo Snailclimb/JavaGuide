@@ -18,6 +18,20 @@ head:
 # MySQL 在无法利用索引的情况下跳过1000000条记录后，再获取10条记录
 SELECT * FROM t_order ORDER BY id LIMIT 1000000, 10
 ```
+## 深度分页问题的原因
+**全表扫描**：当OFFSET值较大时，MySQL可能会选择执行全表扫描而不是使用索引。
+![image](https://github.com/user-attachments/assets/d2537428-74db-4eba-bd1b-20b0ef681b8e)
+![image](https://github.com/user-attachments/assets/00467d02-b5bd-4241-8145-acded334b76a)
+
+具体的临界点每个机器不一样，我的机器上是5980，为什么产生呢？
+![image](https://github.com/user-attachments/assets/19bb5403-398b-4bff-934a-7db2e31995aa)
+![image](https://github.com/user-attachments/assets/d01a5b84-a47e-4ddd-966d-520cc3d3b3bd)
+MySQL数据库的查询优化器是采用了基于代价的，而查询代价的估算是基于CPU代价和IO代价。
+如果MySQL在查询代价估算中，认为全表扫描方式比走索引扫描的方式效率更高的话，就会放弃索引，直接全表扫描。
+这就是为什么在大分页的SQL查询中，明明给该字段加了索引，但是MySQL却走了全表扫描的原因。
+
+
+
 
 ## 深度分页优化建议
 
