@@ -699,6 +699,18 @@ MVC 是一种设计模式，Spring MVC 是一款很优秀的 MVC 框架。Spring
 6. `DispaterServlet` 把返回的 `Model` 传给 `View`（视图渲染）。
 7. 把 `View` 返回给请求者（浏览器）
 
+上述流程是传统开发模式（JSP，Thymeleaf 等）的工作原理。然而现在主流的开发方式是前后端分离，这种情况下 Spring MVC 的 `View` 概念发生了一些变化。由于 `View` 通常由前端框架（Vue, React 等）来处理，后端不再负责渲染页面，而是只负责提供数据。
+
+因此：
+
+- 前后端分离时，后端通常不再返回具体的视图，而是返回**纯数据**（通常是 JSON 格式），由前端负责渲染和展示。
+- 因此，`View` 的部分在前后端分离的场景下往往不需要设置，Spring MVC 的控制器方法只需要返回数据，不再返回 `ModelAndView`，通常直接返回对象或数据（如 `Map`、`List`），Spring 会自动将其转换为 JSON 格式。相应的，`ViewResolver` 也将不再被使用。
+
+怎么做到呢？
+
+- 使用 `@RestController` 注解代替传统的 `@Controller` 注解，这样所有方法默认会返回 JSON 格式的数据，而不是试图解析视图。
+- 如果你使用的是 `@Controller`，可以结合 `@ResponseBody` 注解来返回 JSON。
+
 ### 统一异常处理怎么做？
 
 推荐使用注解的方式统一异常处理，具体会使用到 `@ControllerAdvice` + `@ExceptionHandler` 这两个注解 。
