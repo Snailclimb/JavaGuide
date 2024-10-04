@@ -258,7 +258,7 @@ public V get(Object key) {
 ```java
 void afterNodeAccess(Node < K, V > e) { // move node to last
     LinkedHashMap.Entry < K, V > last;
-    //如果accessOrder 且当前节点不未链表尾节点
+    //如果accessOrder 且当前节点不为链表尾节点
     if (accessOrder && (last = tail) != e) {
 
         //获取当前节点、以及前驱节点和后继节点
