@@ -116,7 +116,7 @@ public class TargetObject {
 }
 ```
 
-2. 使用反射操作这个类的方法以及参数
+2. 使用反射操作这个类的方法以及属性
 
 ```java
 package cn.javaguide;
