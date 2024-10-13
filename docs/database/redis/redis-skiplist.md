@@ -598,10 +598,12 @@ Node{data=20, maxLevel=1}
 Node{data=21, maxLevel=3}
 Node{data=23, maxLevel=1}
 ```
-# Redis跳表的特点
+
+**Redis 跳表的特点**：
+
 1. 采用**双向链表**，不同于上面的示例，存在一个回退指针。主要用于简化操作，例如删除某个元素时，还需要找到该元素的前驱节点，使用回退指针会非常方便。
-2. score值可以重复，如果score值一样，则按照ele（节点存储的值，为sds）字典排序
-3. Redis 跳跃表默认允许最大的层数是32，被源码中 ZSKIPLIST_MAXLEVEL 定义。
+2. `score` 值可以重复，如果 `score` 值一样，则按照 ele（节点存储的值，为 sds）字典排序
+3. Redis 跳跃表默认允许最大的层数是32，被源码中 `ZSKIPLIST_MAXLEVEL` 定义。
 
 ## 和其余三种数据结构的比较
 
