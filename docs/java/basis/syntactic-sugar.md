@@ -379,6 +379,84 @@ public class OutterClass
 }
 ```
 
+**为什么内部类可以使用外部类的private属性**：
+
+我们在InnerClass中增加一个方法，打印外部类的userName属性
+
+```java
+//省略其他属性
+public class OutterClass {
+    private String userName;
+    ......
+    class InnerClass{
+    ......
+        public void printOut(){
+            System.out.println("Username from OutterClass:"+userName);
+        }
+    }
+}
+
+// 此时，使用javap -p命令对OutterClass反编译结果：
+public classOutterClass {
+    private String userName;
+    ......
+    static String access$000(OutterClass);
+}
+// 此时，InnerClass的反编译结果：
+class OutterClass$InnerClass {
+    final OutterClass this$0;
+    ......
+    public void printOut();
+}
+
+```
+
+实际上，在编译完成之后，inner实例内部会有指向outer实例的引用`this$0`，但是简单的`outer.name`是无法访问private属性的。从反编译的结果可以看到，outer中会有一个桥方法`static String access$000(OutterClass)`，恰好返回String类型，即userName属性。正是通过这个方法实现内部类访问外部类私有属性。所以反编译后的`printOut()`方法大致如下：
+
+```java
+public void printOut() {
+    System.out.println("Username from OutterClass:" + OutterClass.access$000(this.this$0));
+}
+```
+
+补充：
+
+1. 匿名内部类、局部内部类、静态内部类也是通过桥方法来获取private属性。
+2. 静态内部类没有`this$0`的引用
+3. 匿名内部类、局部内部类通过复制使用局部变量，该变量初始化之后就不能被修改。以下是一个案例：
+
+```java
+public class OutterClass {
+    private String userName;
+
+    public void test(){
+        //这里i初始化为1后就不能再被修改
+        int i=1;
+        class Inner{
+            public void printName(){
+                System.out.println(userName);
+                System.out.println(i);
+            }
+        }
+    }
+}
+```
+
+反编译后：
+
+```java
+//javap命令反编译Inner的结果
+//i被复制进内部类，且为final
+class OutterClass$1Inner {
+  final int val$i;
+  final OutterClass this$0;
+  OutterClass$1Inner();
+  public void printName();
+}
+
+```
+
+
 ### 条件编译
 
 —般情况下，程序中的每一行代码都要参加编译。但有时候出于对程序代码优化的考虑，希望只对其中一部分内容进行编译，此时就需要在程序中加上条件，让编译器只对满足条件的代码进行编译，将不满足条件的代码舍弃，这就是条件编译。
