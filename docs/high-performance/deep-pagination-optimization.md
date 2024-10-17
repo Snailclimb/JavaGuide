@@ -64,12 +64,12 @@ SELECT * FROM t_order WHERE id > 100000 LIMIT 10
 
 ```sql
 # 通过子查询来获取 id 的起始值，把 limit 1000000 的条件转移到子查询
-SELECT * FROM t_order WHERE id >= (SELECT id FROM t_order limit 1000000, 1) LIMIT 10;
+SELECT * FROM t_order WHERE id >= (SELECT id FROM t_order where id > 1000000 limit 1) LIMIT 10;
 ```
 
 **工作原理**:
 
-1. 子查询 `(SELECT id FROM t_order LIMIT 1000000, 1)` 会利用主键索引快速定位到第 1000001 条记录，并返回其 ID 值。
+1. 子查询 `(SELECT id FROM t_order where id > 1000000 limit 1)` 会利用主键索引快速定位到第 1000001 条记录，并返回其 ID 值。
 2. 主查询 `SELECT * FROM t_order WHERE id >= ... LIMIT 10` 将子查询返回的起始 ID 作为过滤条件，使用 `id >=` 获取从该 ID 开始的后续 10 条记录。
 
 不过，子查询的结果会产生一张新表，会影响性能，应该尽量避免大量使用子查询。并且，这种方法只适用于 ID 是正序的。在复杂分页场景，往往需要通过过滤条件，筛选到符合条件的 ID，此时的 ID 是离散且不连续的。
@@ -84,12 +84,12 @@ SELECT * FROM t_order WHERE id >= (SELECT id FROM t_order limit 1000000, 1) LIMI
 -- 使用 INNER JOIN 进行延迟关联
 SELECT t1.*
 FROM t_order t1
-INNER JOIN (SELECT id FROM t_order LIMIT 1000000, 10) t2 ON t1.id = t2.id;
+INNER JOIN (SELECT id FROM t_order where id > 1000000 LIMIT 10) t2 ON t1.id = t2.id;
 ```
 
 **工作原理**:
 
-1. 子查询 `(SELECT id FROM t_order LIMIT 1000000, 10)` 利用主键索引快速定位目标分页的 10 条记录的 ID。
+1. 子查询 `(SELECT id FROM t_order where id > 1000000 LIMIT 10)` 利用主键索引快速定位目标分页的 10 条记录的 ID。
 2. 通过 `INNER JOIN` 将子查询结果与主表 `t_order` 关联，获取完整的记录数据。
 
 除了使用 INNER JOIN 之外，还可以使用逗号连接子查询。
@@ -97,7 +97,7 @@ INNER JOIN (SELECT id FROM t_order LIMIT 1000000, 10) t2 ON t1.id = t2.id;
 ```sql
 -- 使用逗号进行延迟关联
 SELECT t1.* FROM t_order t1,
-(SELECT id FROM t_order limit 1000000, 10) t2
+(SELECT id FROM t_order where id > 1000000 LIMIT 10) t2
 WHERE t1.id = t2.id;
 ```
 
