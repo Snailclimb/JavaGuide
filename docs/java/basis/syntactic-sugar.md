@@ -379,9 +379,9 @@ public class OutterClass
 }
 ```
 
-**为什么内部类可以使用外部类的private属性**：
+**为什么内部类可以使用外部类的 private 属性**：
 
-我们在InnerClass中增加一个方法，打印外部类的userName属性
+我们在 InnerClass 中增加一个方法，打印外部类的 userName 属性
 
 ```java
 //省略其他属性
@@ -411,7 +411,7 @@ class OutterClass$InnerClass {
 
 ```
 
-实际上，在编译完成之后，inner实例内部会有指向outer实例的引用`this$0`，但是简单的`outer.name`是无法访问private属性的。从反编译的结果可以看到，outer中会有一个桥方法`static String access$000(OutterClass)`，恰好返回String类型，即userName属性。正是通过这个方法实现内部类访问外部类私有属性。所以反编译后的`printOut()`方法大致如下：
+实际上，在编译完成之后，inner 实例内部会有指向 outer 实例的引用`this$0`，但是简单的`outer.name`是无法访问 private 属性的。从反编译的结果可以看到，outer 中会有一个桥方法`static String access$000(OutterClass)`，恰好返回 String 类型，即 userName 属性。正是通过这个方法实现内部类访问外部类私有属性。所以反编译后的`printOut()`方法大致如下：
 
 ```java
 public void printOut() {
@@ -421,7 +421,7 @@ public void printOut() {
 
 补充：
 
-1. 匿名内部类、局部内部类、静态内部类也是通过桥方法来获取private属性。
+1. 匿名内部类、局部内部类、静态内部类也是通过桥方法来获取 private 属性。
 2. 静态内部类没有`this$0`的引用
 3. 匿名内部类、局部内部类通过复制使用局部变量，该变量初始化之后就不能被修改。以下是一个案例：
 
@@ -455,7 +455,6 @@ class OutterClass$1Inner {
 }
 
 ```
-
 
 ### 条件编译
 

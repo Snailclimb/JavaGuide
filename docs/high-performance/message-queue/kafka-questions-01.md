@@ -120,7 +120,7 @@ ZooKeeper 主要为 Kafka 提供元数据的管理的功能。
 
 不过，要提示一下：**如果要使用 KRaft 模式的话，建议选择较高版本的 Kafka，因为这个功能还在持续完善优化中。Kafka 3.3.1 版本是第一个将 KRaft（Kafka Raft）共识协议标记为生产就绪的版本。**
 
-![](<https://oss.javaguide.cn/github/javaguide/high-performance/message-queue/kafka3.3.1-kraft-> production-ready.png)
+![](https://oss.javaguide.cn/github/javaguide/high-performance/message-queue/kafka3.3.1-kraft-production-ready.png)
 
 ## Kafka 消费顺序、消息丢失和重复消费
 
