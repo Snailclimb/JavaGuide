@@ -543,7 +543,7 @@ Redis 持久化机制（RDB 持久化、AOF 持久化、RDB 和 AOF 的混合持
 
 **Redis 基于 Reactor 模式设计开发了一套高效的事件处理模型** （Netty 的线程模型也基于 Reactor 模式，Reactor 模式不愧是高性能 IO 的基石），这套事件处理模型对应的是 Redis 中的文件事件处理器（file event handler）。由于文件事件处理器（file event handler）是单线程方式运行的，所以我们一般都说 Redis 是单线程模型。
 
-《Redis 设计与实现》有一段话是如是介绍文件事件处理器的，我觉得写得挺不错。
+《Redis 设计与实现》有一段话是这样介绍文件事件处理器的，我觉得写得挺不错。
 
 > Redis 基于 Reactor 模式开发了自己的网络事件处理器：这个处理器被称为文件事件处理器（file event handler）。
 >
