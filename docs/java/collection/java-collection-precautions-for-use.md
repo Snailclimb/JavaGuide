@@ -15,34 +15,57 @@ tag:
 
 > **判断所有集合内部的元素是否为空，使用 `isEmpty()` 方法，而不是 `size()==0` 的方式。**
 
-这是因为 `isEmpty()` 方法的可读性更好，并且时间复杂度为 O(1)。
+这是因为 `isEmpty()` 方法的可读性更好，并且时间复杂度为 `O(1)`。
 
-绝大部分我们使用的集合的 `size()` 方法的时间复杂度也是 O(1)，不过，也有很多复杂度不是 O(1) 的，比如 `java.util.concurrent` 包下的某些集合（`ConcurrentLinkedQueue`、`ConcurrentHashMap`...）。
+绝大部分我们使用的集合的 `size()` 方法的时间复杂度也是 `O(1)`，不过，也有很多复杂度不是 `O(1)` 的，比如 `java.util.concurrent` 包下的 `ConcurrentLinkedQueue`。`ConcurrentLinkedQueue` 的 `isEmpty()` 方法通过 `first()` 方法进行判断，其中 `first()` 方法返回的是队列中第一个值不为 `null` 的节点（节点值为`null`的原因是在迭代器中使用的逻辑删除）
 
-下面是 `ConcurrentHashMap` 的 `size()` 方法和 `isEmpty()` 方法的源码。
+```java
+public boolean isEmpty() { return first() == null; }
+
+Node<E> first() {
+    restartFromHead:
+    for (;;) {
+        for (Node<E> h = head, p = h, q;;) {
+            boolean hasItem = (p.item != null);
+            if (hasItem || (q = p.next) == null) {  // 当前节点值不为空 或 到达队尾
+                updateHead(h, p);  // 将head设置为p
+                return hasItem ? p : null;
+            }
+            else if (p == q) continue restartFromHead;
+            else p = q;  // p = p.next
+        }
+    }
+}
+```
+
+由于在插入与删除元素时，都会执行`updateHead(h, p)`方法，所以该方法的执行的时间复杂度可以近似为`O(1)`。而 `size()` 方法需要遍历整个链表，时间复杂度为`O(n)`
 
 ```java
 public int size() {
-    long n = sumCount();
-    return ((n < 0L) ? 0 :
-            (n > (long)Integer.MAX_VALUE) ? Integer.MAX_VALUE :
-            (int)n);
+    int count = 0;
+    for (Node<E> p = first(); p != null; p = succ(p))
+        if (p.item != null)
+            if (++count == Integer.MAX_VALUE)
+                break;
+    return count;
 }
+```
+
+此外，在`ConcurrentHashMap` 1.7 中 `size()` 方法和 `isEmpty()` 方法的时间复杂度也不太一样。`ConcurrentHashMap` 1.7 将元素数量存储在每个`Segment` 中，`size()` 方法需要统计每个 `Segment` 的数量，而 `isEmpty()` 只需要找到第一个不为空的 `Segment` 即可。但是在`ConcurrentHashMap` 1.8 中的 `size()` 方法和 `isEmpty()` 都需要调用 `sumCount()` 方法，其时间复杂度与 `Node` 数组的大小有关。下面是 `sumCount()` 方法的源码：
+
+```java
 final long sumCount() {
     CounterCell[] as = counterCells; CounterCell a;
     long sum = baseCount;
-    if (as != null) {
-        for (int i = 0; i < as.length; ++i) {
+    if (as != null)
+        for (int i = 0; i < as.length; ++i)
             if ((a = as[i]) != null)
                 sum += a.value;
-        }
-    }
     return sum;
 }
-public boolean isEmpty() {
-    return sumCount() <= 0L; // ignore transient negative values
-}
 ```
+
+这是因为在并发的环境下，`ConcurrentHashMap` 将每个 `Node` 中节点的数量存储在 `CounterCell[]` 数组中。在 `ConcurrentHashMap` 1.7 中，将元素数量存储在每个`Segment` 中，`size()` 方法需要统计每个 `Segment` 的数量，而 `isEmpty()` 只需要找到第一个不为空的 `Segment` 即可。
 
 ## 集合转 Map
 
