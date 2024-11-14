@@ -196,7 +196,7 @@ icon: "xitongsheji"
 **分布式队列**：
 
 - [RocketMQ](https://github.com/apache/rocketmq "RocketMQ")：阿里巴巴开源的一款高性能、高吞吐量的分布式消息中间件。
-- [Kafaka](https://github.com/apache/kafka "Kafaka"): Kafka 是一种分布式的，基于发布 / 订阅的消息系统。
+- [Kafka](https://github.com/apache/kafka "Kafka"): Kafka 是一种分布式的，基于发布 / 订阅的消息系统。
 - [RabbitMQ](https://github.com/rabbitmq "RabbitMQ") :由 erlang 开发的基于 AMQP（Advanced Message Queue 高级消息队列协议）协议实现的消息队列。
 
 **内存队列**：
