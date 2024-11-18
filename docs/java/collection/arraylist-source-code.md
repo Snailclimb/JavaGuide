@@ -159,18 +159,21 @@ public class ArrayList<E> extends AbstractList<E>
      * @param minCapacity 所需的最小容量
      */
     public void ensureCapacity(int minCapacity) {
-        //如果是true，minExpand的值为0，如果是false,minExpand的值为10
+        // 如果不是默认空数组，则minExpand的值为0；
+        // 如果是默认空数组，则minExpand的值为10
         int minExpand = (elementData != DEFAULTCAPACITY_EMPTY_ELEMENTDATA)
-                // any size if not default element table
+                // 如果不是默认元素表，则可以使用任意大小
                 ? 0
-                // larger than default for default empty table. It's already
-                // supposed to be at default size.
+                // 如果是默认空数组，它应该已经是默认大小
                 : DEFAULT_CAPACITY;
-        //如果最小容量大于已有的最大容量
+
+        // 如果最小容量大于已有的最大容量
         if (minCapacity > minExpand) {
+            // 根据需要的最小容量，确保容量足够
             ensureExplicitCapacity(minCapacity);
         }
     }
+
 
     // 根据给定的最小容量和当前数组元素来计算所需容量。
     private static int calculateCapacity(Object[] elementData, int minCapacity) {
@@ -429,8 +432,7 @@ public class ArrayList<E> extends AbstractList<E>
     }
 
     /*
-     * Private remove method that skips bounds checking and does not
-     * return the value removed.
+     * 该方法为私有的移除方法，跳过了边界检查，并且不返回被移除的值。
      */
     private void fastRemove(int index) {
         modCount++;
@@ -438,7 +440,7 @@ public class ArrayList<E> extends AbstractList<E>
         if (numMoved > 0)
             System.arraycopy(elementData, index + 1, elementData, index,
                     numMoved);
-        elementData[--size] = null; // clear to let GC do its work
+        elementData[--size] = null; // 在移除元素后，将该位置的元素设为 null，以便垃圾回收器（GC）能够回收该元素。
     }
 
     /**
