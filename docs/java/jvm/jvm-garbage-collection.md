@@ -322,7 +322,7 @@ JDK1.2 以后，Java 对引用的概念进行了扩充，将引用分为强引�
 
 ![标记-清除算法](https://oss.javaguide.cn/github/javaguide/java/jvm/mark-and-sweep-garbage-collection-algorithm.png)
 
-关于具体是标记可回收对象还是不可回收对象，众说纷纭，两种说法其实都没问题，我个人更倾向于是前者。
+关于具体是标记可回收对象（不可达对象）还是不可回收对象（可达对象），众说纷纭，两种说法其实都没问题，我个人更倾向于是后者。
 
 如果按照前者的理解，整个标记-清除过程大致是这样的：
 
