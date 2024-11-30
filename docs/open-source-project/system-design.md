@@ -115,9 +115,12 @@ icon: "xitongsheji"
 
 ### API 调试
 
-- [Insomnia](https://insomnia.rest/) :像人类而不是机器人一样调试 API。我平时经常用的，界面美观且轻量，总之很喜欢。
-- [Postman](https://www.getpostman.com/)：API 请求生成器。
-- [Postwoman](https://github.com/liyasthomas/postwoman "postwoman")：API 请求生成器-一个免费、快速、漂亮的 Postma 替代品。
+- [Reqable](https://reqable.com/zh-CN/)：新一代开源 API 开发工具。Reqable = Fiddler + Charles + Postman, 让 API 调试更快。
+- [Insomnia](https://insomnia.rest/) :像人类而不是机器人一样调试 API。我平时经常用的一款 API 开发工具，界面美观且轻量，总之很喜欢。
+- [RapidAPI](https://paw.cloud/)：一款功能齐全的 HTTP 客户端，但仅支持 Mac。
+- [Postcat](https://github.com/Postcatlab/postcat)：一个可扩展的开源 API 工具平台。
+- [Postman](https://www.getpostman.com/)：开发者最常用的 API 测试工具之一。
+- [Hoppscotch](https://github.com/liyasthomas/postwoman "postwoman")（原 Postwoman）：开源 API 测试工具。官方定位是 Postman、Insomnia 等产品的开源替代品。
 - [Restful Fast Request](https://gitee.com/dromara/fast-request)：IDEA 版 Postman，API 调试工具 + API 管理工具 + API 搜索工具。
 
 ## 任务调度
