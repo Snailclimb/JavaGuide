@@ -646,15 +646,101 @@ public class SynchronizedDemo {
 
 相比`synchronized`，`ReentrantLock`增加了一些高级功能。主要来说主要有三点：
 
-- **等待可中断** : `ReentrantLock`提供了一种能够中断等待锁的线程的机制，通过 `lock.lockInterruptibly()` 来实现这个机制。也就是说正在等待的线程可以选择放弃等待，改为处理其他事情。
+- **等待可中断** : `ReentrantLock`提供了一种能够中断等待锁的线程的机制，通过 `lock.lockInterruptibly()` 来实现这个机制。也就是说当前线程在等待获取锁的过程中，如果其他线程中断当前线程「 `interrupt()` 」，当前线程就会抛出 `InterruptedException` 异常，可以捕捉该异常进行相应处理。
 - **可实现公平锁** : `ReentrantLock`可以指定是公平锁还是非公平锁。而`synchronized`只能是非公平锁。所谓的公平锁就是先等待的线程先获得锁。`ReentrantLock`默认情况是非公平的，可以通过 `ReentrantLock`类的`ReentrantLock(boolean fair)`构造方法来指定是否是公平的。
 - **可实现选择性通知（锁可以绑定多个条件）**: `synchronized`关键字与`wait()`和`notify()`/`notifyAll()`方法相结合可以实现等待/通知机制。`ReentrantLock`类当然也可以实现，但是需要借助于`Condition`接口与`newCondition()`方法。
+- **支持超时** ：`ReentrantLock` 提供了 `tryLock(timeout)` 的方法，可以指定等待获取锁的最长等待时间，如果超过了等待时间，就会获取锁失败，不会一直等待。
 
 如果你想使用上述功能，那么选择 `ReentrantLock` 是一个不错的选择。
 
 关于 `Condition`接口的补充：
 
 > `Condition`是 JDK1.5 之后才有的，它具有很好的灵活性，比如可以实现多路通知功能也就是在一个`Lock`对象中可以创建多个`Condition`实例（即对象监视器），**线程对象可以注册在指定的`Condition`中，从而可以有选择性的进行线程通知，在调度线程上更加灵活。 在使用`notify()/notifyAll()`方法进行通知时，被通知的线程是由 JVM 选择的，用`ReentrantLock`类结合`Condition`实例可以实现“选择性通知”** ，这个功能非常重要，而且是 `Condition` 接口默认提供的。而`synchronized`关键字就相当于整个 `Lock` 对象中只有一个`Condition`实例，所有的线程都注册在它一个身上。如果执行`notifyAll()`方法的话就会通知所有处于等待状态的线程，这样会造成很大的效率问题。而`Condition`实例的`signalAll()`方法，只会唤醒注册在该`Condition`实例中的所有等待线程。
+
+关于 **等待可中断** 的补充：
+
+> `lockInterruptibly()` 会让获取锁的线程在阻塞等待的过程中可以响应中断，即当前线程在获取锁的时候，发现锁被其他线程持有，就会阻塞等待
+>
+> 在阻塞等待的过程中，如果其他线程中断当前线程 「 `interrupt()` 」，就会抛出 `InterruptedException` 异常，可以捕获该异常，做一些处理操作
+>
+> 为了更好理解这个方法，借用 Stack Overflow 上的一个案例，可以更好地理解 `lockInterruptibly()` 可以响应中断：
+>
+> ```JAVA
+> public class MyRentrantlock {
+>     Thread t = new Thread() {
+>         @Override
+>         public void run() {
+>             ReentrantLock r = new ReentrantLock();
+>             // 1.1、第一次尝试获取锁，可以获取成功
+>             r.lock();
+>
+>             // 1.2、此时锁的重入次数为 1
+>             System.out.println("lock() : lock count :" + r.getHoldCount());
+>
+>             // 2、中断当前线程，通过 Thread.currentThread().isInterrupted() 可以看到当前线程的中断状态为 true
+>             interrupt();
+>             System.out.println("Current thread is intrupted");
+>
+>             // 3.1、尝试获取锁，可以成功获取
+>             r.tryLock();
+>             // 3.2、此时锁的重入次数为 2
+>             System.out.println("tryLock() on intrupted thread lock count :" + r.getHoldCount());
+>             try {
+>                 // 4、打印线程的中断状态为 true，那么调用 lockInterruptibly() 方法就会抛出 InterruptedException 异常
+>                 System.out.println("Current Thread isInterrupted:" + Thread.currentThread().isInterrupted());
+>                 r.lockInterruptibly();
+>                 System.out.println("lockInterruptibly() --NOt executable statement" + r.getHoldCount());
+>             } catch (InterruptedException e) {
+>                 r.lock();
+>                 System.out.println("Error");
+>             } finally {
+>                 r.unlock();
+>             }
+>
+>             // 5、打印锁的重入次数，可以发现 lockInterruptibly() 方法并没有成功获取到锁
+>             System.out.println("lockInterruptibly() not able to Acqurie lock: lock count :" + r.getHoldCount());
+>
+>             r.unlock();
+>             System.out.println("lock count :" + r.getHoldCount());
+>             r.unlock();
+>             System.out.println("lock count :" + r.getHoldCount());
+>         }
+>     };
+>     public static void main(String str[]) {
+>         MyRentrantlock m = new MyRentrantlock();
+>         m.t.start();
+>     }
+> }
+> ```
+>
+> 输出：
+>
+> ```BASH
+> lock() : lock count :1
+> Current thread is intrupted
+> tryLock() on intrupted thread lock count :2
+> Current Thread isInterrupted:true
+> Error
+> lockInterruptibly() not able to Acqurie lock: lock count :2
+> lock count :1
+> lock count :0
+> ```
+
+关于 **支持超时** 的补充：
+
+> **为什么需要 `tryLock(timeout)` 这个功能呢？**
+>
+> 假设这样一种场景：有一个加载缓存数据的任务在某个时间点多个线程同时要来执行，为了并发安全，通过锁来控制只有一个线程可以执行该任务。
+>
+> 假设大量线程同时来执行该任务，由于需要穿行执行，因此大量线程都进入阻塞队列等待获取锁
+>
+> 当第一个线程拿到锁，执行完任务之后，此时后边的线程都不需要执行该任务了，但是由于没有这个超时功能，导致后边的线程还需要在队列中阻塞等待获取锁，再一个个进入同步代码块，发现任务已经执行过了，不需要自己再执行了，之后再退出释放锁，退出同步代码块。
+>
+> 因此就需要一个支持超时的功能，`tryLock(timeout)` 的作用就是 **将大量线程的串行操作转为并行操作** ，当大量线程等待时间已经超过了指定的超时时间，直接返回 false，表示获取锁失败，不需要大量的线程串行排队等待获取锁。
+>
+> ![image-20241208153800259](https://11laile-note-img.oss-cn-beijing.aliyuncs.com/image-20241208153800259.png)
+>
+> 这里 `tryLock(timeout)` 的情况只是举一个特殊的情况，其实是参考了分布式环境下，更新 Redis 缓存时会出现这种情况，但是在分布式环境下肯定不会使用 synchronized ，因此这里主要是举个例子说一下 tryLock(timeout) 的作用！
 
 ### 可中断锁和不可中断锁有什么区别？
 
