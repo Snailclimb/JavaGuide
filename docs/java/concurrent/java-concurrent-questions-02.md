@@ -577,6 +577,8 @@ public class SynchronizedDemo2 {
 
 Open JDK 官方声明：[JEP 374: Deprecate and Disable Biased Locking](https://openjdk.org/jeps/374)
 
+在 JDK15 中，偏向锁被默认关闭（仍然可以使用 `-XX:+UseBiasedLocking` 启用偏向锁），在 JDK18 中，偏向锁已经被彻底废弃（无法通过命令行打开）。
+
 在官方声明中，主要原因有两个方面：
 
 - **性能收益不明显：**
