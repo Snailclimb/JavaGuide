@@ -106,21 +106,47 @@ ThreadLocalMap(ThreadLocal<?> firstKey, Object firstValue) {
 
 ### ⭐️ThreadLocal 内存泄露问题是怎么导致的？
 
-`ThreadLocalMap` 中使用的 key 为 `ThreadLocal` 的弱引用，而 value 是强引用。所以，如果 `ThreadLocal` 没有被外部强引用的情况下，在垃圾回收的时候，key 会被清理掉，而 value 不会被清理掉。
+`ThreadLocalMap` 中使用的 key 为 `ThreadLocal` 的弱引用，而 value 是强引用。
 
-这样一来，`ThreadLocalMap` 中就会出现 key 为 null 的 Entry。假如我们不做任何措施的话，value 永远无法被 GC 回收，这个时候就可能会产生内存泄露。`ThreadLocalMap` 实现中已经考虑了这种情况，在调用 `set()`、`get()`、`remove()` 方法的时候，会清理掉 key 为 null 的记录。使用完 `ThreadLocal`方法后最好手动调用`remove()`方法
+如果 ThreadLocal 使用不当，就会发生内存泄漏，发生内存泄漏需要满足 2 个条件：
 
-```java
-static class Entry extends WeakReference<ThreadLocal<?>> {
-    /** The value associated with this ThreadLocal. */
-    Object value;
+- ThreadLocal 被定义为方法的局部变量，从而导致 ThreadLocalMap 中的 key 在 GC 之后变为 null。
+- 线程持续存活（比如线程处在线程池中），导致线程内部的 ThreadLocalMap 对象一直未被回收。
 
-    Entry(ThreadLocal<?> k, Object v) {
-        super(k);
-        value = v;
-    }
-}
-```
+**通过案例解释为什么会内存泄漏：**
+
+假设将 ThreadLocal 定义为方法中的 **局部变量** ，那么当线程进入该方法的时候，就会将 ThreadLocal 的引用给加载到线程的 **栈** 中，假设为 ThreadLocalRef。
+
+如下图所示，在线程栈 Stack 中，有两个变量，ThreadLocalRef 和 CurrentThreadRef，分别指向了声明的局部变量 ThreadLocal ，以及当前执行的线程内部的 ThreadLocalMap 变量。
+
+![image-20241210225928979](https://11laile-note-img.oss-cn-beijing.aliyuncs.com/image-20241210225928979.png)
+
+当线程执行完该方法之后，就会将该方法的局部变量从栈中删除。
+
+因此 Stack 线程栈中的 ThreadLocalRef 变量就会被弹出栈，此时 ThreadLocal 变量的强引用消失了，现在只有 Entry 中的 key 对它进行弱引用。
+
+那么这个 ThreadLocal 变量就会被垃圾回收器给回收掉，导致 Entry 中的 key 为 null，同时 value 指向了对 Object 的强引用。
+
+同时假设当前这个线程一直存活，那么 Thread 内部的 ThreadLocalMap 变量就不会被回收，因此 ThreadLocalMap 内部的 Entry 的 value 指向的 Object 对象一直不会被回收，如下图（对线程的引用不一定在 Stack 栈中，还有可能在方法区，这里画在 Stack 栈中是为了方便理解）：
+
+![ThreadLocal 结构和内存泄漏](https://11laile-note-img.oss-cn-beijing.aliyuncs.com/ThreadLocal%20%E7%BB%93%E6%9E%84%E5%92%8C%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F.jpg)
+
+**因此内存泄漏的发生需要满足 2 个条件：**
+
+1、ThreadLocal 定义为方法内的局部变量，当方法执行完毕之后，ThreadLocal 被回收，导致无法通过 ThreadLocal 访问到 ThreadLocalMap 内部的 value。
+
+2、Stack 线程栈内部的 CurrentThreadRef 引用指向的线程 **一直存活** ，导致线程内部的 ThreadLocalMap 也无法被回收，从而导致 Entry 的 value 一直存在指向 Object 的强引用，导致 Object 对象无法回收，出现内存泄漏。
+
+JDK 团队也考虑到了这种情况，因此在设计 ThreadLocal 时还添加了清除 ThreadLocalMap 中 key 为 null 的 value 的功能，避免内存泄漏。这是在设计阶段为了避免内存泄漏而采取的措施，而我们使用的时候要保持良好的编程规范，正确定义 ThreadLocal，并且手动 remove，避免内存泄漏的发生。
+
+结论：如果 `ThreadLocal` 被定义为方法的局部变量，并且线程一直存活，就会导致内存泄漏的发生。
+
+**如何避免内存泄漏的发生？**
+
+遵循阿里巴巴的开发规范：
+
+- 将 ThreadLocal 变量定义成 `private static final` ，这样就一直存在 ThreadLocal 的强引用，也能保证任何时候都能通过 ThreadLocal 的访问到 Entry 的 value 值，进而清除掉。
+- 每次使用完 ThreadLocal 都主动调用它的 remove() 方法清除数据。
 
 **弱引用介绍：**
 
@@ -286,7 +312,7 @@ public void allowCoreThreadTimeOut(boolean value) {
 如果当前同时运行的线程数量达到最大线程数量并且队列也已经被放满了任务时，`ThreadPoolExecutor` 定义一些策略:
 
 - `ThreadPoolExecutor.AbortPolicy`：抛出 `RejectedExecutionException`来拒绝新任务的处理。
-- `ThreadPoolExecutor.CallerRunsPolicy`：调用执行自己的线程运行任务，也就是直接在调用`execute`方法的线程中运行(`run`)被拒绝的任务，如果执行程序已关闭，则会丢弃该任务。因此这种策略会降低对于新任务提交速度，影响程序的整体性能。如果你的应用程序可以承受此延迟并且你要求任何一个任务请求都要被执行的话，你可以选择这个策略。
+- `ThreadPoolExecutor.CallerRunsPolicy`：调用执行者自己的线程运行任务，也就是直接在调用`execute`方法的线程中运行(`run`)被拒绝的任务，如果执行程序已关闭，则会丢弃该任务。因此这种策略会降低对于新任务提交速度，影响程序的整体性能。如果你的应用程序可以承受此延迟并且你要求任何一个任务请求都要被执行的话，你可以选择这个策略。
 - `ThreadPoolExecutor.DiscardPolicy`：不处理新任务，直接丢弃掉。
 - `ThreadPoolExecutor.DiscardOldestPolicy`：此策略将丢弃最早的未处理的任务请求。
 
