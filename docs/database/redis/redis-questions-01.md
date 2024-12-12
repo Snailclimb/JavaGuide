@@ -729,7 +729,7 @@ Redis 的定期删除过程是随机的（周期性地随机从设置了过期�
 
 Redis 7.2 版本的执行时间阈值是 **25ms**，过期 key 比例设定值是 **10%**。
 
-```java
+```c
 #define ACTIVE_EXPIRE_CYCLE_FAST_DURATION 1000 /* Microseconds. */
 #define ACTIVE_EXPIRE_CYCLE_SLOW_TIME_PERC 25 /* Max % of CPU to use. */
 #define ACTIVE_EXPIRE_CYCLE_ACCEPTABLE_STALE 10 /* % of stale keys after which
