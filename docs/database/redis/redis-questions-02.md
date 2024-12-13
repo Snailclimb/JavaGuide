@@ -438,7 +438,7 @@ maxmemory-policy allkeys-lfu
 
 由于该命令对 Redis 性能的影响比较大，因此禁止长时间开启 `MONITOR`（生产环境中建议谨慎使用该命令）。
 
-```java
+```bash
 # redis-cli
 127.0.0.1:6379> MONITOR
 OK
