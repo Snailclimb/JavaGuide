@@ -27,7 +27,6 @@
     "markdownlint-cli2": "0.16.0",
     "mathjax-full": "3.2.2",
     "nano-staged": "0.8.0",
-    "nodejs-jieba": "0.2.1",
     "prettier": "3.4.2",
     "sass-embedded": "1.83.0",
     "vue": "^3.5.13",
