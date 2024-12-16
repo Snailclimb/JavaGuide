@@ -14,14 +14,15 @@ jobs:
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
-        with:
-          run_install: true
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20.17.0
+          node-version: 22
           cache: pnpm
+
+      - name: Install deps
+        run: pnpm install --frozen-lockfile
 
       - name: Build test
         env:
