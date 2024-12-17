@@ -141,6 +141,74 @@ static class Entry extends WeakReference<ThreadLocal<?>> {
 1. 在使用完 `ThreadLocal` 后，务必调用 `remove()` 方法。 这是最安全和最推荐的做法。 `remove()` 方法会从 `ThreadLocalMap` 中显式地移除对应的 entry，彻底解决内存泄漏的风险。 即使将 `ThreadLocal` 定义为 `static final`，也强烈建议在每次使用后调用 `remove()`。
 2. 在线程池等线程复用的场景下，使用 `try-finally` 块可以确保即使发生异常，`remove()` 方法也一定会被执行。
 
+### 如何跨线程传递 ThreadLocal 的值？
+
+由于 `ThreadLocal` 的变量值存放在 `Thread` 里，而父子线程属于不同的 `Thread` 的。因此在异步场景下，父子线程的 `ThreadLocal` 值无法进行传递。
+
+如果想要在异步场景下传递 `ThreadLocal` 值，有两种解决方案：
+
+- `InheritableThreadLocal` ：`InheritableThreadLocal` 是 JDK1.2 提供的工具，继承自 `ThreadLocal` 。使用 `InheritableThreadLocal` 时，会在创建子线程时，令子线程继承父线程中的 `ThreadLocal` 值，但是无法支持线程池场景下的 `ThreadLocal` 值传递。
+- `TransmittableThreadLocal` ： `TransmittableThreadLocal` （简称 TTL） 是阿里巴巴开源的工具。`TTL` 可以在线程池的场景下支持 `ThreadLocal` 值传递。
+
+#### `InheritableThreadLocal` 原理扩展
+
+`InheritableThreadLocal` 实现了创建异步线程时，继承父线程 `ThreadLocal` 值的功能。该类是 JDK 团队提供的，通过改造 JDK 源码包中的 `Thread` 类来实现创建线程时，`ThreadLocal` 值的传递。
+
+**`InheritableThreadLocal` 的值存储在哪里？**
+
+在 `Thread` 类中添加了一个新的 `ThreadLocalMap` ，命名为 `inheritableThreadLocals` ，该变量用于存储需要跨线程传递的 `ThreadLocal` 值。如下：
+
+```JAVA
+class Thread implements Runnable {
+    ThreadLocal.ThreadLocalMap threadLocals = null;
+    ThreadLocal.ThreadLocalMap inheritableThreadLocals = null;
+}
+```
+
+**如何完成 `ThreadLocal` 值的传递？**
+
+通过改造 `Thread` 类的构造方法来实现，在创建 `Thread` 线程时，拿到父线程的 `inheritableThreadLocals` 变量赋值给子线程即可。相关代码如下：
+
+```JAVA
+// Thread 的构造方法会调用 init() 方法
+private void init(/* ... */) {
+	// 1、获取父线程
+    Thread parent = currentThread();
+    // 2、将父线程的 inheritableThreadLocals 赋值给子线程
+    if (inheritThreadLocals && parent.inheritableThreadLocals != null)
+        this.inheritableThreadLocals =
+        	ThreadLocal.createInheritedMap(parent.inheritableThreadLocals);
+}
+```
+
+#### `TransmittableThreadLocal` 原理扩展
+
+JDK 默认没有支持线程池场景下 `ThreadLocal` 值传递的功能，因此阿里巴巴开源了一套工具 `TransmittableThreadLocal` 来实现该功能。
+
+阿里巴巴无法改动 JDK 的源码，因此他内部通过 **装饰器模式** 在原有的功能上做增强，以此来实现线程池场景下的 `ThreadLocal` 值传递。
+
+TTL 改造的地方有两处：
+
+- 实现自定义的 `Thread` ，在 `run()` 方法内部做 `ThreadLocal` 变量的赋值操作。
+
+- 基于 **线程池** 进行装饰，在 `execute()` 方法中，不提交 JDK 内部的 `Thread` ，而是提交自定义的 `Thread` 。
+
+如果想要查看相关源码，可以引入 Maven 依赖进行下载。
+
+```XML
+<dependency>
+    <groupId>com.alibaba</groupId>
+    <artifactId>transmittable-thread-local</artifactId>
+    <version>2.12.0</version>
+</dependency>
+```
+
+#### 相关应用场景
+
+在 **线上服务压测** 场景下，会使用 `ThreadLocal` 存储压测标记，来区分压测流量和线上真实流量。
+
+如果使用默认的 `ThreadLocal` ，就会导致在异步线程、线程池场景下， `ThreadLocal` 存储的压测标记丢失，从而造成比较严重的后果。
+
 ## 线程池
 
 ### 什么是线程池?
