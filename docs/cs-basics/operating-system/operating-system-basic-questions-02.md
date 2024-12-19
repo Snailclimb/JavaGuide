@@ -188,7 +188,7 @@ MMU 将虚拟地址翻译为物理地址的主要机制有 3 种:
 
 ![单级页表](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/page-table.png)
 
-在分页机制下，每个应用程序都会有一个对应的页表。
+在分页机制下，每个进程都会有一个对应的页表。
 
 分页机制下的虚拟地址由两部分组成：
 
