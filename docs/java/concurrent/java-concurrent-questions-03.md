@@ -148,7 +148,7 @@ static class Entry extends WeakReference<ThreadLocal<?>> {
 如果想要在异步场景下传递 `ThreadLocal` 值，有两种解决方案：
 
 - `InheritableThreadLocal` ：`InheritableThreadLocal` 是 JDK1.2 提供的工具，继承自 `ThreadLocal` 。使用 `InheritableThreadLocal` 时，会在创建子线程时，令子线程继承父线程中的 `ThreadLocal` 值，但是无法支持线程池场景下的 `ThreadLocal` 值传递。
-- `TransmittableThreadLocal` ： `TransmittableThreadLocal` （简称 TTL） 是阿里巴巴开源的工具。`TTL` 可以在线程池的场景下支持 `ThreadLocal` 值传递。
+- `TransmittableThreadLocal` ： `TransmittableThreadLocal` （简称 TTL） 是阿里巴巴开源的工具类，继承并加强了`InheritableThreadLocal`类，可以在线程池的场景下支持 `ThreadLocal` 值传递。项目地址：<https://github.com/alibaba/transmittable-thread-local>。
 
 #### `InheritableThreadLocal` 原理扩展
 
@@ -203,11 +203,10 @@ TTL 改造的地方有两处：
 </dependency>
 ```
 
-#### 相关应用场景
+#### 应用场景
 
-在 **线上服务压测** 场景下，会使用 `ThreadLocal` 存储压测标记，来区分压测流量和线上真实流量。
-
-如果使用默认的 `ThreadLocal` ，就会导致在异步线程、线程池场景下， `ThreadLocal` 存储的压测标记丢失，从而造成比较严重的后果。
+1. **压测流量标记**： 在压测场景中，使用 `ThreadLocal` 存储压测标记，用于区分压测流量和真实流量。如果标记丢失，可能导致压测流量被错误地当成线上流量处理。
+2. **上下文传递**：在分布式系统中，传递链路追踪信息（如 Trace ID）或用户上下文信息。
 
 ## 线程池
 
