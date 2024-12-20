@@ -597,25 +597,25 @@ private Node addWaiter(Node mode) {
 
 此时，假设线程 `T1` 先获取到锁，线程 `T2` 排队等待获取锁。在线程 `T2` 进入队列之前，需要对 AQS 内部队列进行初始化。`head` 节点在初始化后状态为 `0` 。AQS 内部初始化后的队列如下图：
 
-![AQS acquire and release process 5.drawio](https://11laile-note-img.oss-cn-beijing.aliyuncs.com/AQS%20acquire%20and%20release%20process%205.drawio-173461521802737.png)
+![AQS-acquire-and-release-process-1](https://11laile-note-img.oss-cn-beijing.aliyuncs.com/AQS%20acquire%20and%20release%20process%205.drawio-173461521802737.png)
 
 此时，线程 `T2` 尝试获取锁。由于线程 `T1` 持有锁，因此线程 `T2` 会进入队列中等待获取锁。同时会将前继节点（ `head` 节点）的状态由 `0` 更新为 `SIGNAL` ，表示需要对 `head` 节点的后继节点进行唤醒。此时，AQS 内部队列如下图所示：
 
-![AQS acquire and release process 4.drawio](https://11laile-note-img.oss-cn-beijing.aliyuncs.com/AQS%20acquire%20and%20release%20process%204.drawio-173461538992839.png)
+![AQS-acquire-and-release-process-2](https://11laile-note-img.oss-cn-beijing.aliyuncs.com/AQS%20acquire%20and%20release%20process%204.drawio-173461538992839.png)
 
 此时，线程 `T3` 尝试获取锁。由于线程 `T1` 持有锁，因此线程 `T3` 会进入队列中等待获取锁。同时会将前继节点（线程 `T2` 节点）的状态由 `0` 更新为 `SIGNAL` ，表示线程 `T2` 节点需要对后继节点进行唤醒。此时，AQS 内部队列如下图所示：
 
-![AQS acquire and release process.drawio](https://11laile-note-img.oss-cn-beijing.aliyuncs.com/AQS%20acquire%20and%20release%20process.drawio.png)
+![AQS-acquire-and-release-process-3](https://11laile-note-img.oss-cn-beijing.aliyuncs.com/AQS%20acquire%20and%20release%20process.drawio-173466875782350.png)
 
 此时，假设线程 `T1` 释放锁，会唤醒后继节点 `T2` 。线程 `T2` 被唤醒后获取到锁，并且会从等待队列中退出。
 
 这里线程 `T2` 节点退出等待队列并不是直接从队列移除，而是令线程 `T2` 节点成为新的 `head` 节点，以此来退出资源获取的等待。此时 AQS 内部队列如下所示：
 
-![AQS acquire and release process 2.drawio](https://11laile-note-img.oss-cn-beijing.aliyuncs.com/AQS%20acquire%20and%20release%20process%202.drawio-173461691867746.png)
+![AQS-acquire-and-release-process-4](https://11laile-note-img.oss-cn-beijing.aliyuncs.com/AQS%20acquire%20and%20release%20process%202.drawio-173461691867746.png)
 
 此时，假设线程 `T2` 释放锁，会唤醒后继节点 `T3` 。线程 `T3` 获取到锁之后，同样也退出等待队列，即将线程 `T3` 节点变为 `head` 节点来退出资源获取的等待。此时 AQS 内部队列如下所示：
 
-![AQS acquire and release process 3.drawio](https://11laile-note-img.oss-cn-beijing.aliyuncs.com/AQS%20acquire%20and%20release%20process%203.drawio-173461705733148.png)
+![AQS-acquire-and-release-process-5](https://11laile-note-img.oss-cn-beijing.aliyuncs.com/AQS%20acquire%20and%20release%20process%203.drawio-173461705733148.png)
 
 ## 常见同步工具类
 
