@@ -899,20 +899,11 @@ CompletableFuture.runAsync(() -> {
 
 ### AQS 是什么？
 
-AQS 的全称为 `AbstractQueuedSynchronizer` ，翻译过来的意思就是抽象队列同步器。这个类在 `java.util.concurrent.locks` 包下面。
+AQS （`AbstractQueuedSynchronizer` ，抽象队列同步器）是从 JDK1.5 开始提供的 Java 并发核心组件，很多同步器都是基于 AQS 实现的，如 `ReentrantLock` 、 `Semaphore` 、 `CountDownLatch` 等等。
 
-![](https://oss.javaguide.cn/github/javaguide/java/AQS.png)
+在并发场景下，多个线程需要控制对共享资源的同步访问。即线程先尝试获取资源，如果获取资源失败（资源已经被其他线程占有），就进入队列中阻塞，等待被唤醒。当占有资源的线程释放资源之后，就会去队列中唤醒后续线程节点，允许等待中的线程尝试获取资源。
 
-AQS 就是一个抽象类，主要用来构建锁和同步器。
-
-```java
-public abstract class AbstractQueuedSynchronizer extends AbstractOwnableSynchronizer implements java.io.Serializable {
-}
-```
-
-AQS 解决了开发者在实现同步器时的复杂性问题。它提供了一个通用框架，用于实现各种同步器，例如 **可重入锁**（`ReentrantLock`）、**信号量**（`Semaphore`）和 **倒计时器**（`CountDownLatch`）。通过封装底层的线程同步机制，AQS 将复杂的线程管理逻辑隐藏起来，使开发者只需专注于具体的同步逻辑。
-
-简单来说，AQS 是一个抽象类，为同步器提供了通用的 **执行框架**。它定义了 **资源获取和释放的通用流程**，而具体的资源获取逻辑则由具体同步器通过重写模板方法来实现。 因此，可以将 AQS 看作是同步器的 **基础“底座”**，而同步器则是基于 AQS 实现的 **具体“应用”**。
+在整个获取资源的过程中，需要协调多个线程的资源获取和等待操作，AQS 正是实现这一机制的工具。
 
 ### ⭐️AQS 的原理是什么？
 
@@ -967,7 +958,7 @@ protected final boolean compareAndSetState(int expect, int update) {
 
 以 `ReentrantLock` 为例，`state` 初始值为 0，表示未锁定状态。A 线程 `lock()` 时，会调用 `tryAcquire()` 独占该锁并将 `state+1` 。此后，其他线程再 `tryAcquire()` 时就会失败，直到 A 线程 `unlock()` 到 `state=`0（即释放锁）为止，其它线程才有机会获取该锁。当然，释放锁之前，A 线程自己是可以重复获取此锁的（`state` 会累加），这就是可重入的概念。但要注意，获取多少次就要释放多少次，这样才能保证 state 是能回到零态的。
 
-再以 `CountDownLatch` 以例，任务分为 N 个子线程去执行，`state` 也初始化为 N（注意 N 要与线程个数一致）。这 N 个子线程是并行执行的，每个子线程执行完后`countDown()` 一次，state 会 CAS(Compare and Swap) 减 1。等到所有子线程都执行完后(即 `state=0` )，会 `unpark()` 主调用线程，然后主调用线程就会从 `await()` 函数返回，继续后余动作。
+再以 `CountDownLatch` 以例，任务分为 N 个子线程去执行，`state` 也初始化为 N（注意 N 要与线程个数一致）。这 N 个子线程是并行执行的，每个子线程执行完后`countDown()` 一次，state 会 CAS(Compare and Swap) 减 1。等到所有子线程都执行完后(即 `state=0` )，会 `unpark()` 主调用线程，然后主调用线程就会从 `await()` 函数返回，继续后续动作。
 
 ### Semaphore 有什么用？
 
