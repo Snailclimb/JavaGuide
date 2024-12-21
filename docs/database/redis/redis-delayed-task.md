@@ -33,7 +33,7 @@ Redis 中有很多默认的 channel，这些 channel 是由 Redis 本身向它�
 
 我们只需要监听这个 channel，就可以拿到过期的 key 的消息，进而实现了延时任务功能。
 
-这个功能被 Redis 官方称为 **keyspace notifications** ，作用是实时监控实时监控 Redis 键和值的变化。
+这个功能被 Redis 官方称为 **keyspace notifications** ，作用是实时监控 Redis 键和值的变化。
 
 ### Redis 过期事件监听实现延时任务功能有什么缺陷？
 
