@@ -895,6 +895,8 @@ CompletableFuture.runAsync(() -> {
 
 ## AQS
 
+关于 AQS 源码的详细分析，可以看看这一篇文章：[AQS 详解](./aqs.md)。
+
 ### AQS 是什么？
 
 AQS 的全称为 `AbstractQueuedSynchronizer` ，翻译过来的意思就是抽象队列同步器。这个类在 `java.util.concurrent.locks` 包下面。
