@@ -899,11 +899,16 @@ CompletableFuture.runAsync(() -> {
 
 ### AQS 是什么？
 
-AQS （`AbstractQueuedSynchronizer` ，抽象队列同步器）是从 JDK1.5 开始提供的 Java 并发核心组件，很多同步器都是基于 AQS 实现的，如 `ReentrantLock` 、 `Semaphore` 、 `CountDownLatch` 等等。
+AQS （`AbstractQueuedSynchronizer` ，抽象队列同步器）是从 JDK1.5 开始提供的 Java 并发核心组件。AQS 是一个抽象类，对外提供了模板方法，很多同步器都是基于 AQS 实现的，如 `ReentrantLock` 、 `ReentrantReadWriteLock` 、 `Semaphore` 、 `CountDownLatch` 等等。
 
-在并发场景下，多个线程需要控制对共享资源的同步访问。即线程先尝试获取资源，如果获取资源失败（资源已经被其他线程占有），就进入队列中阻塞，等待被唤醒。当占有资源的线程释放资源之后，就会去队列中唤醒后续线程节点，允许等待中的线程尝试获取资源。
+```JAVA
+public abstract class AbstractQueuedSynchronizer extends AbstractOwnableSynchronizer implements java.io.Serializable {
+}
+```
 
-在整个获取资源的过程中，需要协调多个线程的资源获取和等待操作，AQS 正是实现这一机制的工具。
+在并发场景下，多个线程需要控制对共享资源的同步访问。即线程先尝试获取资源，如果获取资源失败（资源已经被其他线程占有），就进入队列中阻塞，等待被唤醒。当占有资源的线程释放资源之后，会去队列中唤醒后续线程节点，允许等待中的线程尝试获取资源。
+
+在多个线程获取共享资源的过程中，需要一种机制协调多个线程的资源获取和等待操作， **AQS 正是实现这一机制的工具。**
 
 ### ⭐️AQS 的原理是什么？
 
