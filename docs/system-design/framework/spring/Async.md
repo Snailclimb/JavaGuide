@@ -658,7 +658,7 @@ protected Object doSubmit(Callable<Object> task, AsyncTaskExecutor executor, Cla
 
 ### `@Async` 原理总结
 
-![Async原理总结](./async.png)
+![Async原理总结](./images/async.png)
 
 理解 `@Async` 原理的核心在于理解 `@EnableAsync` 注解，该注解开启了异步任务的功能。
 
