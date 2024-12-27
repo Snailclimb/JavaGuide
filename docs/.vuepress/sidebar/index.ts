@@ -414,6 +414,7 @@ export default sidebar({
                 "spring-transaction",
                 "spring-design-patterns-summary",
                 "spring-boot-auto-assembly-principles",
+                "async",
               ],
             },
           ],
