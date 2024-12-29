@@ -361,6 +361,67 @@ public void allowCoreThreadTimeOut(boolean value) {
 }
 ```
 
+### 核心线程空闲时处于什么状态？
+
+核心线程空闲时，其状态分为以下两种情况：
+
+- **设置了核心线程的存活时间** ：核心线程在空闲时，会处于阻塞状态，等待获取任务。如果阻塞等待的时间超过了核心线程存活时间，则该核心线程会被销毁。
+- **没有设置核心线程的存活时间** ：核心线程在空闲时，会一直处于阻塞状态，等待获取任务。
+
+#### 相关源码
+
+接下来通过相关源码，了解一下线程池内部是如何做的。
+
+线程在线程池内部被抽象为了 `Worker` ，当 `Worker` 被启动之后，会不断去任务队列中获取任务。
+
+在获取任务的时候，会根据 `timed` 值来决定从任务队列（ `BlockingQueue` ）获取任务的行为。
+
+如果「设置了核心线程的存活时间」或者「线程数量超过了核心线程数量」，则将 `timed` 标记为 `true` ：
+
+- `timed == true` ：使用 `poll()` 来获取任务。`poll()` 方法会指定获取任务的等待时间，如果到达等待时间之后，还没有获取到任务，则会返回 `null`。
+- `timed == false` ：使用 `take()` 来获取任务。`take()` 方法是 `BlockingQueue` 中的阻塞方法，调用之后，线程会进入等待状态，直到从队列中获取任务。
+
+因此，如果「设置了核心线程的存活时间」，核心线程没有在超时时间之内获取到任务，则会被销毁。
+
+如果「没有设置核心线程的存活时间」，则核心线程在没有获取到任务时，会通过 `take()` 方法进行阻塞等待。
+
+源码如下：
+
+```JAVA
+// ThreadPoolExecutor
+private Runnable getTask() {
+    boolean timedOut = false;
+    for (;;) {
+        // ...
+
+        // 1、如果「设置了核心线程的存活时间」或者是「线程数量超过了核心线程数量」，则 timed 为 true。
+        boolean timed = allowCoreThreadTimeOut || wc > corePoolSize;
+        // 2、扣减线程数量。
+		// wc > maximuimPoolSize：线程池中的线程数量超过最大线程数量。其中 wc 为线程池中的线程数量。
+		// timed && timeOut：timeOut 表示获取任务超时。
+		// 分为两种情况：核心线程设置了存活时间 && 获取任务超时，则扣减线程数量；线程数量超过了核心线程数量 && 获取任务超时，则扣减线程数量。
+        if ((wc > maximumPoolSize || (timed && timedOut))
+            && (wc > 1 || workQueue.isEmpty())) {
+            if (compareAndDecrementWorkerCount(c))
+                return null;
+            continue;
+        }
+        try {
+            // 3、如果 timed 为 true，则使用 poll() 获取任务；否则，使用 take() 获取任务。
+            Runnable r = timed ?
+                workQueue.poll(keepAliveTime, TimeUnit.NANOSECONDS) :
+                workQueue.take();
+            // 4、获取任务之后返回。
+            if (r != null)
+                return r;
+            timedOut = true;
+        } catch (InterruptedException retry) {
+            timedOut = false;
+        }
+    }
+}
+```
+
 ### ⭐️线程池的拒绝策略有哪些？
 
 如果当前同时运行的线程数量达到最大线程数量并且队列也已经被放满了任务时，`ThreadPoolExecutor` 定义一些策略:
