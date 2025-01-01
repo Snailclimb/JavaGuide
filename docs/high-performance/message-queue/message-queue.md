@@ -206,7 +206,7 @@ Kafka 是一个分布式系统，由通过高性能 TCP 网络协议进行通信
 
 不过，要提示一下：**如果要使用 KRaft 模式的话，建议选择较高版本的 Kafka，因为这个功能还在持续完善优化中。Kafka 3.3.1 版本是第一个将 KRaft（Kafka Raft）共识协议标记为生产就绪的版本。**
 
-![](https://oss.javaguide.cn/github/javaguide/high-performance/message-queue/kafka3.3.1-kraft-%20production-ready.png)
+![](https://oss.javaguide.cn/github/javaguide/high-performance/message-queue/kafka3.3.1-kraft-production-ready.png)
 
 Kafka 官网：<http://kafka.apache.org/>
 

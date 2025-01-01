@@ -141,7 +141,7 @@ static class Entry extends WeakReference<ThreadLocal<?>> {
 1. 在使用完 `ThreadLocal` 后，务必调用 `remove()` 方法。 这是最安全和最推荐的做法。 `remove()` 方法会从 `ThreadLocalMap` 中显式地移除对应的 entry，彻底解决内存泄漏的风险。 即使将 `ThreadLocal` 定义为 `static final`，也强烈建议在每次使用后调用 `remove()`。
 2. 在线程池等线程复用的场景下，使用 `try-finally` 块可以确保即使发生异常，`remove()` 方法也一定会被执行。
 
-### 如何跨线程传递 ThreadLocal 的值？
+### ⭐️如何跨线程传递 ThreadLocal 的值？
 
 由于 `ThreadLocal` 的变量值存放在 `Thread` 里，而父子线程属于不同的 `Thread` 的。因此在异步场景下，父子线程的 `ThreadLocal` 值无法进行传递。
 
@@ -150,7 +150,7 @@ static class Entry extends WeakReference<ThreadLocal<?>> {
 - `InheritableThreadLocal` ：`InheritableThreadLocal` 是 JDK1.2 提供的工具，继承自 `ThreadLocal` 。使用 `InheritableThreadLocal` 时，会在创建子线程时，令子线程继承父线程中的 `ThreadLocal` 值，但是无法支持线程池场景下的 `ThreadLocal` 值传递。
 - `TransmittableThreadLocal` ： `TransmittableThreadLocal` （简称 TTL） 是阿里巴巴开源的工具类，继承并加强了`InheritableThreadLocal`类，可以在线程池的场景下支持 `ThreadLocal` 值传递。项目地址：<https://github.com/alibaba/transmittable-thread-local>。
 
-#### `InheritableThreadLocal` 原理扩展
+#### InheritableThreadLocal 原理
 
 `InheritableThreadLocal` 实现了创建异步线程时，继承父线程 `ThreadLocal` 值的功能。该类是 JDK 团队提供的，通过改造 JDK 源码包中的 `Thread` 类来实现创建线程时，`ThreadLocal` 值的传递。
 
@@ -181,7 +181,7 @@ private void init(/* ... */) {
 }
 ```
 
-#### `TransmittableThreadLocal` 原理扩展
+#### TransmittableThreadLocal 原理
 
 JDK 默认没有支持线程池场景下 `ThreadLocal` 值传递的功能，因此阿里巴巴开源了一套工具 `TransmittableThreadLocal` 来实现该功能。
 
@@ -369,8 +369,6 @@ public void allowCoreThreadTimeOut(boolean value) {
 - **没有设置核心线程的存活时间** ：核心线程在空闲时，会一直处于 `WAITING` 状态，等待获取任务，核心线程会一直存活在线程池中。
 
 当队列中有可用任务时，会唤醒被阻塞的线程，线程的状态会由 `WAITING` 状态变为 `RUNNABLE` 状态，之后去执行对应任务。
-
-#### 相关源码
 
 接下来通过相关源码，了解一下线程池内部是如何做的。
 
