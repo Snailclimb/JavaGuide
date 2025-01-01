@@ -914,7 +914,7 @@ bothCompleted.thenRunAsync(() -> System.out.println("T3 is executing after T1 an
 ThreadUtil.sleep(3000);
 ```
 
-通过 `CompletableFuture` 的 `allOf()`这个静态方法来并行运行 T1 和 T2 。当 T1 和
+通过 `CompletableFuture` 的 `allOf()` 这个静态方法来并行运行 T1 和 T2，当 T1 和 T2 都完成后，再执行 T3。
 
 ### ⭐️使用 CompletableFuture，有一个任务失败，如何处理异常？
 
