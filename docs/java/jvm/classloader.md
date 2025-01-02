@@ -281,9 +281,52 @@ protected Class<?> loadClass(String name, boolean resolve)
 
 ### 双亲委派模型的好处
 
-双亲委派模型保证了 Java 程序的稳定运行，可以避免类的重复加载（JVM 区分不同类的方式不仅仅根据类名，相同的类文件被不同的类加载器加载产生的是两个不同的类），也保证了 Java 的核心 API 不被篡改。
+双亲委派模型是 Java 类加载机制的重要组成部分，它通过委派父加载器优先加载类的方式，实现了两个关键的安全目标：避免类的重复加载和防止核心 API 被篡改。
 
-如果没有使用双亲委派模型，而是每个类加载器加载自己的话就会出现一些问题，比如我们编写一个称为 `java.lang.Object` 类的话，那么程序运行的时候，系统就会出现两个不同的 `Object` 类。双亲委派模型可以保证加载的是 JRE 里的那个 `Object` 类，而不是你写的 `Object` 类。这是因为 `AppClassLoader` 在加载你的 `Object` 类时，会委托给 `ExtClassLoader` 去加载，而 `ExtClassLoader` 又会委托给 `BootstrapClassLoader`，`BootstrapClassLoader` 发现自己已经加载过了 `Object` 类，会直接返回，不会去加载你写的 `Object` 类。
+JVM 区分不同类的方式不仅仅基于类名，相同的类文件被不同类加载器加载会生成不同的类。双亲委派模型确保核心类总是由 `BootstrapClassLoader` 加载，保证了核心类的唯一性。
+
+例如，当应用程序尝试加载 `java.lang.Object` 时，`AppClassLoader` 会首先将请求委派给 `ExtClassLoader`，`ExtClassLoader` 再委派给 `BootstrapClassLoader`。`BootstrapClassLoader` 会在 JRE 核心类库中找到并加载 `java.lang.Object`，从而保证应用程序使用的是 JRE 提供的标准版本。
+
+有很多小伙伴就要说了：“那我绕过双亲委派模型不就可以了么？”。
+
+然而，即使攻击者绕过了双亲委派模型，Java 仍然具备更底层的安全机制来保护核心类库。`ClassLoader` 的 `preDefineClass` 方法会在定义类之前进行类名校验。任何以 `"java."` 开头的类名都会触发 `SecurityException`，阻止恶意代码定义或加载伪造的核心类。 同时，`defineClass` 方法被声明为 `final`，防止子类覆盖该方法并绕过安全检查。
+
+JDK 8 中`ClassLoader#preDefineClass` 方法源码如下：
+
+```java
+private ProtectionDomain preDefineClass(String name,
+                                            ProtectionDomain pd)
+    {
+        // 检查类名是否合法
+        if (!checkName(name)) {
+            throw new NoClassDefFoundError("IllegalName: " + name);
+        }
+
+        // 防止在 "java.*" 包中定义类。
+        // 此检查对于安全性至关重要，因为它可以防止恶意代码替换核心 Java 类。
+        // JDK 9 利用平台类加载器增强了 preDefineClass 方法的安全性
+        if ((name != null) && name.startsWith("java.")) {
+            throw new SecurityException
+                ("禁止的包名: " +
+                 name.substring(0, name.lastIndexOf('.')));
+        }
+
+         // 如果未指定 ProtectionDomain，则使用默认域（defaultDomain）。
+        if (pd == null) {
+            pd = defaultDomain;
+        }
+
+        if (name != null) {
+            checkCerts(name, pd.getCodeSource());
+        }
+
+        return pd;
+    }
+```
+
+JDK 9 中这部分逻辑有所改变，多了平台类加载器（`getPlatformClassLoader()` 方法获取），增强了 `preDefineClass` 方法的安全性。这里就不贴源码了，感兴趣的话，可以自己去看看。
+
+因此，Java 的核心类库安全并非完全依赖于双亲委派模型，更重要的是对 `java.*` 开头类名的显式限制以及 `defineClass` 方法的 `final` 修饰符。这些底层机制构筑了更加牢固的安全防线，有效地阻止了恶意代码对核心类的篡改，即使双亲委派机制失效也能提供保护。 双亲委派模型主要负责优先加载父加载器路径下的类，避免重复加载，而类名校验和 `final` 修饰符则提供了更底层的安全保障，阻止恶意替换核心类。
 
 ### 打破双亲委派模型方法
 
