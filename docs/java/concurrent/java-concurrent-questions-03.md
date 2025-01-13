@@ -108,33 +108,44 @@ ThreadLocalMap(ThreadLocal<?> firstKey, Object firstValue) {
 
 `ThreadLocal` 内存泄漏的根本原因在于其内部实现机制。
 
-通过上面的内容我们已经知道：每个线程维护一个名为 `ThreadLocalMap` 的 map。 当你使用 `ThreadLocal` 存储值时，实际上是将值存储在当前线程的 `ThreadLocalMap` 中，其中 `ThreadLocal` 实例本身作为 key，而你要存储的值作为 value。
+源码版本：opebjdk8
+内部主要围绕着threadlocalMap、threadlocal两个变量进行记录，同时需要理解的是该内存泄漏问题已经被解决，并不需要手动操作。
 
-`ThreadLocalMap` 的 `key` 和 `value` 引用机制：
+threadlocalMap是线程级别变量，存储于线程变量Thread的成员变量引用。
+threadlocal是作为threadlocalMap的key,是我们手动为类添加的成员变量。
 
-- **key 是弱引用**：`ThreadLocalMap` 中的 key 是 `ThreadLocal` 的弱引用 (`WeakReference<ThreadLocal<?>>`)。 这意味着，如果 `ThreadLocal` 实例不再被任何强引用指向，垃圾回收器会在下次 GC 时回收该实例，导致 `ThreadLocalMap` 中对应的 key 变为 `null`。
-- **value 是强引用**：`ThreadLocalMap` 中的 value 是强引用。 即使 key 被回收（变为 `null`），value 仍然存在于 `ThreadLocalMap` 中，被强引用，不会被回收。
+以threadlocal的set源码为例子：
 
-```java
-static class Entry extends WeakReference<ThreadLocal<?>> {
-    /** The value associated with this ThreadLocal. */
-    Object value;
-
-    Entry(ThreadLocal<?> k, Object v) {
-        super(k);
-        value = v;
-    }
+public void set(T value) {  
+Thread t = Thread.currentThread();  
+ThreadLocalMap map = getMap(t);  
+if (map != null) {  
+map.set(this, value);  
+} else {  
+createMap(t, value);  
+}  
 }
-```
+在map.set和createMap中，并没有真正存储key，而是通过threadlocal的hash值进行离散计算得到坐标，最终存储于类型为static class Entry extends WeakReference<ThreadLocal< ? > >的数组中。
+`int i = key.threadLocalHashCode & (len-1);`
 
-当 `ThreadLocal` 实例失去强引用后，其对应的 value 仍然存在于 `ThreadLocalMap` 中，因为 `Entry` 对象强引用了它。如果线程持续存活（例如线程池中的线程），`ThreadLocalMap` 也会一直存在，导致 key 为 `null` 的 entry 无法被垃圾回收，机会造成内存泄漏。
+key不同于Map<K,V>接口的一般实现，使用node<k,V>将key和value一起存储，也就是说key只是作为钥匙，但并不存储于map当中，如果threadlocal变量的外部引用被抹除是可以正常被回收的。
 
-也就是说，内存泄漏的发生需要同时满足两个条件：
 
-1. `ThreadLocal` 实例不再被强引用；
-2. 线程持续存活，导致 `ThreadLocalMap` 长期存在。
+这也是Entry为何是弱引用的原因，因为可能会出现《null,v》的情况。这里虽然解决了内存泄漏的问题，但是似乎可能会导致Entry提前被回收？
 
-虽然 `ThreadLocalMap` 在 `get()`, `set()` 和 `remove()` 操作时会尝试清理 key 为 null 的 entry，但这种清理机制是被动的，并不完全可靠。
+查询得知可达性分析会有一条链路从threadlocal.get()方法所获得的变量，也就是间接可达，换句话说会考虑方法上的引用链条，而并非单纯是变量的直接引用。
+
+那么此时k存在v就一定存在，但是问题并没有结束，因为会出现k不存在，但是v存在的情况！
+这是由于k实际上是类、方法的变量ThreadLocal,如果该变量被回收也就意味着内部的V永远不会被找到，成为了内存泄漏的原因。
+
+
+**重点在于key并非是弱引用，只是v作为map的直接引用无法被回收，因此使其成为了弱引用类型，并在set、get方法中做了一系列安全措施。**
+
+
+
+
+
+
 
 **如何避免内存泄漏的发生？**
 
