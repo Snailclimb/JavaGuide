@@ -11,8 +11,6 @@ export default hopeTheme({
   logo: "/logo.png",
   favicon: "/favicon.ico",
 
-  iconAssets: "//at.alicdn.com/t/c/font_2922463_o9q9dxmps9.css",
-
   author: {
     name: "Guide",
     url: "https://javaguide.cn/article/",
@@ -76,6 +74,10 @@ export default hopeTheme({
       atom: true,
       json: true,
       rss: true,
+    },
+
+    icon: {
+      assets: "//at.alicdn.com/t/c/font_2922463_o9q9dxmps9.css",
     },
 
     search: {
