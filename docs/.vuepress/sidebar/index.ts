@@ -582,6 +582,7 @@ export default sidebar({
       collapsible: true,
       children: [
         "high-availability-system-design",
+        "idempotency",
         "redundancy",
         "limit-request",
         "fallback-and-circuit-breaker",
