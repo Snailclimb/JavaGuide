@@ -424,28 +424,56 @@ Class B {
 - 在外部方法开启事务的情况下，在内部开启一个新的事务，作为嵌套事务存在。
 - 如果外部方法无事务，则单独开启一个事务，与 `PROPAGATION_REQUIRED` 类似。
 
-这里还是简单举个例子：如果 `bMethod()` 回滚的话，`aMethod()`不会回滚。如果 `aMethod()` 回滚的话，`bMethod()`会回滚。
-
-```java
-@Service
-Class A {
-    @Autowired
-    B b;
-    @Transactional(propagation = Propagation.REQUIRED)
-    public void aMethod {
-        //do something
-        b.bMethod();
+举个例子： 
+- 如果 `aMethod()` 回滚的话，作为嵌套事务的`bMethod()`会回滚。
+- 如果 `bMethod()` 回滚的话，`aMethod()`是否回滚，要看`bMethod()`的异常是否被处理：
+  - `bMethod()`的异常没有被处理，即`bMethod()`内部没有处理异常，且`aMethod()`也没有处理异常，那么`aMethod()`将感知异常致使整体回滚。
+    ```java
+    @Service
+    Class A {
+        @Autowired
+        B b;
+        @Transactional(propagation = Propagation.REQUIRED)
+        public void aMethod (){
+            //do something
+            b.bMethod();
+        }
     }
-}
-
-@Service
-Class B {
-    @Transactional(propagation = Propagation.NESTED)
-    public void bMethod {
-       //do something
+    
+    @Service
+    Class B {
+        @Transactional(propagation = Propagation.NESTED)
+        public void bMethod (){
+           //do something and throw an exception
+        }
     }
-}
-```
+    ```
+  - `bMethod()`处理异常或`aMethod()`处理异常，`aMethod()`不会回滚。
+
+    ```java
+    @Service
+    Class A {
+        @Autowired
+        B b;
+        @Transactional(propagation = Propagation.REQUIRED)
+        public void aMethod (){
+            //do something
+            try {
+                b.bMethod();
+            } catch (Exception e) {
+                System.out.println("方法回滚");
+            }
+        }
+    }
+    
+    @Service
+    Class B {
+        @Transactional(propagation = Propagation.NESTED)
+        public void bMethod {
+           //do something and throw an exception
+        }
+    }
+    ```
 
 **4.`TransactionDefinition.PROPAGATION_MANDATORY`**
 
