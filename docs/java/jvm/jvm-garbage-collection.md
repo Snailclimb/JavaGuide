@@ -253,7 +253,7 @@ public class ReferenceCountingGc {
 
 JDK1.2 之前，Java 中引用的定义很传统：如果 reference 类型的数据存储的数值代表的是另一块内存的起始地址，就称这块内存代表一个引用。
 
-JDK1.2 以后，Java 对引用的概念进行了扩充，将引用分为强引用、软引用、弱引用、虚引用四种（引用强度逐渐减弱），强引用就是Java中普通的对象，而软引用、弱引用、虚引用在JDK中定义的类分别是SoftReference、WeakReference、PhantomReference。
+JDK1.2 以后，Java 对引用的概念进行了扩充，将引用分为强引用、软引用、弱引用、虚引用四种（引用强度逐渐减弱），强引用就是 Java 中普通的对象，而软引用、弱引用、虚引用在JDK中定义的类分别是 `SoftReference`、`WeakReference`、`PhantomReference`。
 
 ![Java 引用类型总结](https://oss.javaguide.cn/github/javaguide/java/jvm/java-reference-type.png)
 
