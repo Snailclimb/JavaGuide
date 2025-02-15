@@ -77,7 +77,7 @@ System.out.println(op.isEmpty());//判断指定的 Optional 对象是否为空
 ZGC 主要为了满足如下目标进行设计：
 
 - GC 停顿时间不超过 10ms
-- 即能处理几百 MB 的小堆，也能处理几个 TB 的大堆
+- 既能处理几百 MB 的小堆，也能处理几个 TB 的大堆
 - 应用吞吐能力不会下降超过 15%（与 G1 回收算法相比）
 - 方便在此基础上引入新的 GC 特性和利用 colored 针以及 Load barriers 优化奠定基础
 - 当前只支持 Linux/x64 位平台
