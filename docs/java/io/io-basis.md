@@ -20,7 +20,7 @@ Java IO 流的 40 多个类都是从如下 4 个抽象类基类中派生出来�
 ## 字节流
 
 ### InputStream（字节输入流）
-
+  
 `InputStream`用于从源头（通常是文件）读取数据（字节信息）到内存中，`java.io.InputStream`抽象类是所有字节输入流的父类。
 
 `InputStream` 常用方法：
@@ -430,7 +430,7 @@ class BufferedInputStream extends FilterInputStream {
 
 ### BufferedOutputStream（字节缓冲输出流）
 
-`BufferedOutputStream` 将数据（字节信息）写入到目的地（通常是文件）的过程中不会一个字节一个字节的写入，而是会先将要写入的字节存放在缓存区，并从内部缓冲区中单独写入字节。这样大幅减少了 IO 次数，提高了读取效率
+`BufferedOutputStream` 将数据（字节信息）写入到目的地（通常是文件）的过程中不会一个字节一个字节的写入，而是会先将要写入的字节存放在缓存区，并从内部缓冲区中单独写入字节。这样大幅减少了 IO 次数，提高了效率
 
 ```java
 try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream("output.txt"))) {
