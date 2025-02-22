@@ -885,6 +885,7 @@ public FutureTask(Runnable runnable, V result) {
 
 `FutureTask`相当于对`Callable` 进行了封装，管理着任务执行的情况，存储了 `Callable` 的 `call` 方法的任务执行结果。
 
+关于更多 `Future` 的源码细节，可以肝这篇万字解析，写的很清楚：[Java是如何实现Future模式的？万字详解！](https://juejin.cn/post/6844904199625375757)。
 ### CompletableFuture 类有什么用？
 
 `Future` 在实际使用过程中存在一些局限性比如不支持异步任务的编排组合、获取计算结果的 `get()` 方法为阻塞调用。
