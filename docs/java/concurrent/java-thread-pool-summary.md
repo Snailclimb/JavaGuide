@@ -183,21 +183,19 @@ public static class CallerRunsPolicy implements RejectedExecutionHandler {
 
 `Executors` 返回线程池对象的弊端如下(后文会详细介绍到)：
 
-- `FixedThreadPool` 和 `SingleThreadExecutor`:使用的是无界的 `LinkedBlockingQueue`，任务队列最大长度为 `Integer.MAX_VALUE`,可能堆积大量的请求，从而导致 OOM。
+- `FixedThreadPool` 和 `SingleThreadExecutor`:使用的是阻塞队列 `LinkedBlockingQueue`，任务队列最大长度为 `Integer.MAX_VALUE`，可以看作是无界的，可能堆积大量的请求，从而导致 OOM。
 - `CachedThreadPool`:使用的是同步队列 `SynchronousQueue`, 允许创建的线程数量为 `Integer.MAX_VALUE` ，如果任务数量过多且执行速度较慢，可能会创建大量的线程，从而导致 OOM。
 - `ScheduledThreadPool` 和 `SingleThreadScheduledExecutor`:使用的无界的延迟阻塞队列`DelayedWorkQueue`，任务队列最大长度为 `Integer.MAX_VALUE`,可能堆积大量的请求，从而导致 OOM。
 
 ```java
-// 无界队列 LinkedBlockingQueue
 public static ExecutorService newFixedThreadPool(int nThreads) {
-
+    // LinkedBlockingQueue 的默认长度为 Integer.MAX_VALUE，可以看作是无界的
     return new ThreadPoolExecutor(nThreads, nThreads,0L, TimeUnit.MILLISECONDS,new LinkedBlockingQueue<Runnable>());
 
 }
 
-// 无界队列 LinkedBlockingQueue
 public static ExecutorService newSingleThreadExecutor() {
-
+    // LinkedBlockingQueue 的默认长度为 Integer.MAX_VALUE，可以看作是无界的
     return new FinalizableDelegatedExecutorService (new ThreadPoolExecutor(1, 1,0L, TimeUnit.MILLISECONDS,new LinkedBlockingQueue<Runnable>()));
 
 }

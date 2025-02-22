@@ -276,23 +276,21 @@ TTL 改造的地方有两处：
 
 另外，《阿里巴巴 Java 开发手册》中强制线程池不允许使用 `Executors` 去创建，而是通过 `ThreadPoolExecutor` 构造函数的方式，这样的处理方式让写的同学更加明确线程池的运行规则，规避资源耗尽的风险
 
-`Executors` 返回线程池对象的弊端如下：
+`Executors` 返回线程池对象的弊端如下(后文会详细介绍到)：
 
-- `FixedThreadPool` 和 `SingleThreadExecutor`:使用的是有界阻塞队列是 `LinkedBlockingQueue` ，其任务队列的最大长度为 `Integer.MAX_VALUE` ，可能堆积大量的请求，从而导致 OOM。
+- `FixedThreadPool` 和 `SingleThreadExecutor`:使用的是阻塞队列 `LinkedBlockingQueue`，任务队列最大长度为 `Integer.MAX_VALUE`，可以看作是无界的，可能堆积大量的请求，从而导致 OOM。
 - `CachedThreadPool`:使用的是同步队列 `SynchronousQueue`, 允许创建的线程数量为 `Integer.MAX_VALUE` ，如果任务数量过多且执行速度较慢，可能会创建大量的线程，从而导致 OOM。
-- `ScheduledThreadPool` 和 `SingleThreadScheduledExecutor` :使用的无界的延迟阻塞队列 `DelayedWorkQueue` ，任务队列最大长度为 `Integer.MAX_VALUE` ，可能堆积大量的请求，从而导致 OOM。
+- `ScheduledThreadPool` 和 `SingleThreadScheduledExecutor`:使用的无界的延迟阻塞队列`DelayedWorkQueue`，任务队列最大长度为 `Integer.MAX_VALUE`,可能堆积大量的请求，从而导致 OOM。
 
 ```java
-// 有界队列 LinkedBlockingQueue
 public static ExecutorService newFixedThreadPool(int nThreads) {
-
+    // LinkedBlockingQueue 的默认长度为 Integer.MAX_VALUE，可以看作是无界的
     return new ThreadPoolExecutor(nThreads, nThreads,0L, TimeUnit.MILLISECONDS,new LinkedBlockingQueue<Runnable>());
 
 }
 
-// 无界队列 LinkedBlockingQueue
 public static ExecutorService newSingleThreadExecutor() {
-
+    // LinkedBlockingQueue 的默认长度为 Integer.MAX_VALUE，可以看作是无界的
     return new FinalizableDelegatedExecutorService (new ThreadPoolExecutor(1, 1,0L, TimeUnit.MILLISECONDS,new LinkedBlockingQueue<Runnable>()));
 
 }
@@ -886,6 +884,7 @@ public FutureTask(Runnable runnable, V result) {
 `FutureTask`相当于对`Callable` 进行了封装，管理着任务执行的情况，存储了 `Callable` 的 `call` 方法的任务执行结果。
 
 关于更多 `Future` 的源码细节，可以肝这篇万字解析，写的很清楚：[Java是如何实现Future模式的？万字详解！](https://juejin.cn/post/6844904199625375757)。
+
 ### CompletableFuture 类有什么用？
 
 `Future` 在实际使用过程中存在一些局限性比如不支持异步任务的编排组合、获取计算结果的 `get()` 方法为阻塞调用。

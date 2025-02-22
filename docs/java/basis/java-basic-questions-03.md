@@ -89,14 +89,6 @@ Finally
 
 **注意：不要在 finally 语句块中使用 return!** 当 try 语句和 finally 语句中都有 return 语句时，try 语句块中的 return 语句会被忽略。这是因为 try 语句中的 return 返回值会先被暂存在一个本地变量中，当执行到 finally 语句中的 return 之后，这个本地变量的值就变为了 finally 语句中的 return 返回值。
 
-[jvm 官方文档](https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-4.html#jvms-4.10.2.5)中有明确提到：
-
-> If the `try` clause executes a _return_, the compiled code does the following:
->
-> 1. Saves the return value (if any) in a local variable.
-> 2. Executes a _jsr_ to the code for the `finally` clause.
-> 3. Upon return from the `finally` clause, returns the value saved in the local variable.
-
 代码示例：
 
 ```java
