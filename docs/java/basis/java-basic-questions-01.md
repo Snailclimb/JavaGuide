@@ -298,7 +298,7 @@ Java 中的注释有三种：
 ```java
 int a = 9;
 int b = a++;
-int c = ++a;
+int c = ++b;
 int d = c--;
 int e = --d;
 ```
@@ -549,7 +549,7 @@ public static Character valueOf(char c) {
 
 private static class CharacterCache {
     private CharacterCache(){}
-    static final Character cache[] = new Character[127 + 1];
+    static final Character[] cache = new Character[127 + 1];
     static {
         for (int i = 0; i < cache.length; i++)
             cache[i] = new Character((char)i);
