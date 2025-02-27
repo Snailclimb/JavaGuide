@@ -6,7 +6,8 @@ tag:
 ---
 
 > 本文由 JavaGuide 翻译自 [https://www.baeldung.com/jvm-parameters](https://www.baeldung.com/jvm-parameters)，并对文章进行了大量的完善补充。
->
+> 文档参数 [https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html](https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html)
+> 
 > JDK 版本：1.8
 
 ## 1.概述
@@ -71,10 +72,10 @@ GC 调优策略中很重要的一条经验总结是这样说的：
 
 另外，你还可以通过 **`-XX:NewRatio=<int>`** 来设置老年代与新生代内存的比值。
 
-比如下面的参数就是设置老年代与新生代内存的比值为 1。也就是说老年代和新生代所占比值为 1：1，新生代占整个堆栈的 1/2。
+比如下面的参数就是设置新生代与老年代内存的比值为 2（默认值）。也就是说 young/old 所占比值为 2：1，新生代占整个堆栈的 2/3。
 
 ```plain
--XX:NewRatio=1
+-XX:NewRatio=2
 ```
 
 ### 2.3.显式指定永久代/元空间的大小
