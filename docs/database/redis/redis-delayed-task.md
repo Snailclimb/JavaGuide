@@ -7,8 +7,8 @@ tag:
 
 基于 Redis 实现延时任务的功能无非就下面两种方案：
 
-1. Redis 过期事件监听
-2. Redisson 内置的延时队列
+1. Redis 过期事件监听；
+2. Redisson 内置的延时队列。
 
 面试的时候，你可以先说自己考虑了这两种方案，但最后发现 Redis 过期事件监听这种方案存在很多问题，因此你最终选择了 Redisson 内置的 DelayedQueue 这种方案。
 
@@ -18,28 +18,28 @@ tag:
 
 ### Redis 过期事件监听实现延时任务功能的原理？
 
-Redis 2.0 引入了发布订阅 (pub/sub) 功能。在 pub/sub 中，引入了一个叫做 **channel（频道）** 的概念，有点类似于消息队列中的 **topic（主题）**。
+Redis 2.0 引入了发布订阅（pub/sub）功能。在 pub/sub 中，引入了一个叫做 **channel（频道）** 的概念，有点类似于消息队列中的 **topic（主题）**。
 
 pub/sub 涉及发布者（publisher）和订阅者（subscriber，也叫消费者）两个角色：
 
 - 发布者通过 `PUBLISH` 投递消息给指定 channel。
-- 订阅者通过`SUBSCRIBE`订阅它关心的 channel。并且，订阅者可以订阅一个或者多个 channel。
+- 订阅者通过 `SUBSCRIBE` 订阅它关心的 channel。并且，订阅者可以订阅一个或者多个 channel。
 
 ![Redis 发布订阅 (pub/sub) 功能](https://oss.javaguide.cn/github/javaguide/database/redis/redis-pub-sub.png)
 
 在 pub/sub 模式下，生产者需要指定消息发送到哪个 channel 中，而消费者则订阅对应的 channel 以获取消息。
 
-Redis 中有很多默认的 channel，这些 channel 是由 Redis 本身向它们发送消息的，而不是我们自己编写的代码。其中，`__keyevent@0__:expired` 就是一个默认的 channel，负责监听 key 的过期事件。也就是说，当一个 key 过期之后，Redis 会发布一个 key 过期的事件到`__keyevent@<db>__:expired`这个 channel 中。
+Redis 中有很多默认的 channel，这些 channel 是由 Redis 本身向它们发送消息的，而不是我们自己编写的代码。其中，`__keyevent@0__:expired` 就是一个默认的 channel，负责监听 key 的过期事件。也就是说，当一个 key 过期之后，Redis 会发布一个 key 过期的事件到 `__keyevent@<db>__:expired` 这个 channel 中。
 
 我们只需要监听这个 channel，就可以拿到过期的 key 的消息，进而实现了延时任务功能。
 
-这个功能被 Redis 官方称为 **keyspace notifications** ，作用是实时监控 Redis 键和值的变化。
+这个功能被 Redis 官方称为 **keyspace notifications**，作用是实时监控 Redis 键和值的变化。
 
 ### Redis 过期事件监听实现延时任务功能有什么缺陷？
 
 **1、时效性差**
 
-官方文档的一段介绍解释了时效性差的原因，地址：<https://redis.io/docs/manual/keyspace-notifications/#timing-of-expired-events> 。
+官方文档的一段介绍解释了时效性差的原因，地址：<https://redis.io/docs/manual/keyspace-notifications/#timing-of-expired-events>。
 
 ![Redis 过期事件](https://oss.javaguide.cn/github/javaguide/database/redis/redis-timing-of-expired-events.png)
 
@@ -50,7 +50,7 @@ Redis 中有很多默认的 channel，这些 channel 是由 Redis 本身向它�
 1. **惰性删除**：只会在取出 key 的时候才对数据进行过期检查。这样对 CPU 最友好，但是可能会造成太多过期 key 没有被删除。
 2. **定期删除**：每隔一段时间抽取一批 key 执行删除过期 key 操作。并且，Redis 底层会通过限制删除操作执行的时长和频率来减少删除操作对 CPU 时间的影响。
 
-定期删除对内存更加友好，惰性删除对 CPU 更加友好。两者各有千秋，所以 Redis 采用的是 **定期删除+惰性/懒汉式删除** 。
+定期删除对内存更加友好，惰性删除对 CPU 更加友好。两者各有千秋，所以 Redis 采用的是 **定期删除+惰性/懒汉式删除**。
 
 因此，就会存在我设置了 key 的过期时间，但到了指定时间 key 还未被删除，进而没有发布过期事件的情况。
 

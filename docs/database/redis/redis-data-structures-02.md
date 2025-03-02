@@ -24,7 +24,7 @@ head:
 >
 > Bitmap 不是 Redis 中的实际数据类型，而是在 String 类型上定义的一组面向位的操作，将其视为位向量。由于字符串是二进制安全的块，且最大长度为 512 MB，它们适合用于设置最多 2^32 个不同的位。
 
-Bitmap 存储的是连续的二进制数字（0 和 1），通过 Bitmap, 只需要一个 bit 位来表示某个元素对应的值或者状态，key 就是对应元素本身 。我们知道 8 个 bit 可以组成一个 byte，所以 Bitmap 本身会极大的节省储存空间。
+Bitmap 存储的是连续的二进制数字（0 和 1），通过 Bitmap，只需要一个 bit 位来表示某个元素对应的值或者状态，key 就是对应元素本身。我们知道 8 个 bit 可以组成一个 byte，所以 Bitmap 本身会极大的节省储存空间。
 
 你可以将 Bitmap 看作是一个存储二进制数字（0 和 1）的数组，数组中每个元素的下标叫做 offset（偏移量）。
 
@@ -32,12 +32,12 @@ Bitmap 存储的是连续的二进制数字（0 和 1），通过 Bitmap, 只需
 
 ### 常用命令
 
-| 命令                                  | 介绍                                                             |
-| ------------------------------------- | ---------------------------------------------------------------- |
-| SETBIT key offset value               | 设置指定 offset 位置的值                                         |
-| GETBIT key offset                     | 获取指定 offset 位置的值                                         |
-| BITCOUNT key start end                | 获取 start 和 end 之间值为 1 的元素个数                          |
-| BITOP operation destkey key1 key2 ... | 对一个或多个 Bitmap 进行运算，可用运算符有 AND, OR, XOR 以及 NOT |
+| 命令                                  | 介绍                                          |
+| ------------------------------------- |---------------------------------------------|
+| SETBIT key offset value               | 设置指定 offset 位置的值                            |
+| GETBIT key offset                     | 获取指定 offset 位置的值                            |
+| BITCOUNT key start end                | 获取 start 和 end 之间值为 1 的元素个数                 |
+| BITOP operation destkey key1 key2 ... | 对一个或多个 Bitmap 进行运算，可用运算符有 AND、OR、XOR 以及 NOT |
 
 **Bitmap 基本操作演示**：
 
@@ -69,9 +69,9 @@ Bitmap 存储的是连续的二进制数字（0 和 1），通过 Bitmap, 只需
 
 ### 介绍
 
-HyperLogLog 是一种有名的基数计数概率算法 ，基于 LogLog Counting(LLC)优化改进得来，并不是 Redis 特有的，Redis 只是实现了这个算法并提供了一些开箱即用的 API。
+HyperLogLog 是一种有名的基数计数概率算法，基于 LogLog Counting（LLC）优化改进得来，并不是 Redis 特有的，Redis 只是实现了这个算法并提供了一些开箱即用的 API。
 
-Redis 提供的 HyperLogLog 占用空间非常非常小，只需要 12k 的空间就能存储接近`2^64`个不同元素。这是真的厉害，这就是数学的魅力么！并且，Redis 对 HyperLogLog 的存储结构做了优化，采用两种方式计数：
+Redis 提供的 HyperLogLog 占用空间非常非常小，只需要 12k 的空间就能存储接近 `2^64` 个不同元素。这是真的厉害，这就是数学的魅力么！并且，Redis 对 HyperLogLog 的存储结构做了优化，采用两种方式计数：
 
 - **稀疏矩阵**：计数较少的时候，占用空间很小。
 - **稠密矩阵**：计数达到某个阈值的时候，占用 12k 的空间。
@@ -80,15 +80,15 @@ Redis 官方文档中有对应的详细说明：
 
 ![](https://oss.javaguide.cn/github/javaguide/database/redis/image-20220721091424563.png)
 
-基数计数概率算法为了节省内存并不会直接存储元数据，而是通过一定的概率统计方法预估基数值（集合中包含元素的个数）。因此， HyperLogLog 的计数结果并不是一个精确值，存在一定的误差（标准误差为 `0.81%` ）。
+基数计数概率算法为了节省内存并不会直接存储元数据，而是通过一定的概率统计方法预估基数值（集合中包含元素的个数）。因此，HyperLogLog 的计数结果并不是一个精确值，存在一定的误差（标准误差为 `0.81%`）。
 
 ![](https://oss.javaguide.cn/github/javaguide/database/redis/image-20220720194154133.png)
 
-HyperLogLog 的使用非常简单，但原理非常复杂。HyperLogLog 的原理以及在 Redis 中的实现可以看这篇文章：[HyperLogLog 算法的原理讲解以及 Redis 是如何应用它的](https://juejin.cn/post/6844903785744056333) 。
+HyperLogLog 的使用非常简单，但原理非常复杂。HyperLogLog 的原理以及在 Redis 中的实现可以看这篇文章：[HyperLogLog 算法的原理讲解以及 Redis 是如何应用它的](https://juejin.cn/post/6844903785744056333)。
 
-再推荐一个可以帮助理解 HyperLogLog 原理的工具：[Sketch of the Day: HyperLogLog — Cornerstone of a Big Data Infrastructure](http://content.research.neustar.biz/blog/hll.html) 。
+再推荐一个可以帮助理解 HyperLogLog 原理的工具：[Sketch of the Day: HyperLogLog — Cornerstone of a Big Data Infrastructure](http://content.research.neustar.biz/blog/hll.html)。
 
-除了 HyperLogLog 之外，Redis 还提供了其他的概率数据结构，对应的官方文档地址：<https://redis.io/docs/data-types/probabilistic/> 。
+除了 HyperLogLog 之外，Redis 还提供了其他的概率数据结构，对应的官方文档地址：<https://redis.io/docs/data-types/probabilistic/>。
 
 ### 常用命令
 
@@ -126,7 +126,7 @@ HyperLogLog 相关的命令非常少，最常用的也就 3 个。
 **数量巨大（百万、千万级别以上）的计数场景**
 
 - 举例：热门网站每日/每周/每月访问 ip 数统计、热门帖子 uv 统计。
-- 相关命令：`PFADD`、`PFCOUNT` 。
+- 相关命令：`PFADD`、`PFCOUNT`。
 
 ## Geospatial (地理位置)
 
@@ -140,13 +140,13 @@ Geospatial index（地理空间索引，简称 GEO） 主要用于存储地理�
 
 ### 常用命令
 
-| 命令                                             | 介绍                                                                                                 |
-| ------------------------------------------------ | ---------------------------------------------------------------------------------------------------- |
-| GEOADD key longitude1 latitude1 member1 ...      | 添加一个或多个元素对应的经纬度信息到 GEO 中                                                          |
-| GEOPOS key member1 member2 ...                   | 返回给定元素的经纬度信息                                                                             |
-| GEODIST key member1 member2 M/KM/FT/MI           | 返回两个给定元素之间的距离                                                                           |
-| GEORADIUS key longitude latitude radius distance | 获取指定位置附近 distance 范围内的其他元素，支持 ASC(由近到远)、DESC（由远到近）、Count(数量) 等参数 |
-| GEORADIUSBYMEMBER key member radius distance     | 类似于 GEORADIUS 命令，只是参照的中心点是 GEO 中的元素                                               |
+| 命令                                             | 介绍                                                              |
+| ------------------------------------------------ |-----------------------------------------------------------------|
+| GEOADD key longitude1 latitude1 member1 ...      | 添加一个或多个元素对应的经纬度信息到 GEO 中                                        |
+| GEOPOS key member1 member2 ...                   | 返回给定元素的经纬度信息                                                    |
+| GEODIST key member1 member2 M/KM/FT/MI           | 返回两个给定元素之间的距离                                                   |
+| GEORADIUS key longitude latitude radius distance | 获取指定位置附近 distance 范围内的其他元素，支持 ASC（由近到远）、DESC（由远到近）、Count（数量）等参数 |
+| GEORADIUSBYMEMBER key member radius distance     | 类似于 GEORADIUS 命令，只是参照的中心点是 GEO 中的元素                             |
 
 **基本操作**：
 
@@ -160,9 +160,9 @@ Geospatial index（地理空间索引，简称 GEO） 主要用于存储地理�
 1.4018
 ```
 
-通过 Redis 可视化工具查看 `personLocation` ，果不其然，底层就是 Sorted Set。
+通过 Redis 可视化工具查看 `personLocation`，果不其然，底层就是 Sorted Set。
 
-GEO 中存储的地理位置信息的经纬度数据通过 GeoHash 算法转换成了一个整数，这个整数作为 Sorted Set 的 score(权重参数)使用。
+GEO 中存储的地理位置信息的经纬度数据通过 GeoHash 算法转换成了一个整数，这个整数作为 Sorted Set 的 score（权重参数）使用。
 
 ![](https://oss.javaguide.cn/github/javaguide/database/redis/image-20220721201545147.png)
 
@@ -186,11 +186,11 @@ user1
 user2
 ```
 
-`GEORADIUS` 命令的底层原理解析可以看看阿里的这篇文章：[Redis 到底是怎么实现“附近的人”这个功能的呢？](https://juejin.cn/post/6844903966061363207) 。
+`GEORADIUS` 命令的底层原理解析可以看看阿里的这篇文章：[Redis 到底是怎么实现“附近的人”这个功能的呢？](https://juejin.cn/post/6844903966061363207)。
 
 **移除元素**：
 
-GEO 底层是 Sorted Set ，你可以对 GEO 使用 Sorted Set 相关的命令。
+GEO 底层是 Sorted Set，你可以对 GEO 使用 Sorted Set 相关的命令。
 
 ```bash
 > ZREM personLocation user1
@@ -211,16 +211,16 @@ user2
 
 ## 总结
 
-| 数据类型         | 说明                                                                                                                                                                                                                                                                  |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Bitmap           | 你可以将 Bitmap 看作是一个存储二进制数字（0 和 1）的数组，数组中每个元素的下标叫做 offset（偏移量）。通过 Bitmap, 只需要一个 bit 位来表示某个元素对应的值或者状态，key 就是对应元素本身 。我们知道 8 个 bit 可以组成一个 byte，所以 Bitmap 本身会极大的节省储存空间。 |
-| HyperLogLog      | Redis 提供的 HyperLogLog 占用空间非常非常小，只需要 12k 的空间就能存储接近`2^64`个不同元素。不过，HyperLogLog 的计数结果并不是一个精确值，存在一定的误差（标准误差为 `0.81%` ）。                                                                                     |
-| Geospatial index | Geospatial index（地理空间索引，简称 GEO） 主要用于存储地理位置信息，基于 Sorted Set 实现。                                                                                                                                                                           |
+| 数据类型         | 说明                                                                                                                                                            |
+| ---------------- |---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Bitmap           | 你可以将 Bitmap 看作是一个存储二进制数字（0 和 1）的数组，数组中每个元素的下标叫做 offset（偏移量）。通过 Bitmap，只需要一个 bit 位来表示某个元素对应的值或者状态，key 就是对应元素本身。我们知道 8 个 bit 可以组成一个 byte，所以 Bitmap 本身会极大的节省储存空间。 |
+| HyperLogLog      | Redis 提供的 HyperLogLog 占用空间非常非常小，只需要 12k 的空间就能存储接近 `2^64` 个不同元素。不过，HyperLogLog 的计数结果并不是一个精确值，存在一定的误差（标准误差为 `0.81%`）。                                           |
+| Geospatial index | Geospatial index（地理空间索引，简称 GEO）主要用于存储地理位置信息，基于 Sorted Set 实现。                                                                                                 |
 
 ## 参考
 
-- Redis Data Structures：<https://redis.com/redis-enterprise/data-structures/> 。
-- 《Redis 深度历险：核心原理与应用实践》1.6 四两拨千斤——HyperLogLog
-- 布隆过滤器,位图,HyperLogLog：<https://hogwartsrico.github.io/2020/06/08/BloomFilter-HyperLogLog-BitMap/index.html>
+- Redis Data Structures：<https://redis.com/redis-enterprise/data-structures/>。
+- 《Redis 深度历险：核心原理与应用实践》1.6 四两拨千斤——HyperLogLog。
+- 布隆过滤器、位图、HyperLogLog：<https://hogwartsrico.github.io/2020/06/08/BloomFilter-HyperLogLog-BitMap/index.html>。
 
 <!-- @include: @article-footer.snippet.md -->
