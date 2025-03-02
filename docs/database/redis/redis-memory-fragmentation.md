@@ -25,7 +25,7 @@ Redis 内存碎片产生比较常见的 2 个原因：
 
 > To store user keys, Redis allocates at most as much memory as the `maxmemory` setting enables (however there are small extra allocations possible).
 
-Redis 使用 `zmalloc` 方法(Redis 自己实现的内存分配方法)进行内存分配的时候，除了要分配 `size` 大小的内存之外，还会多分配 `PREFIX_SIZE` 大小的内存。
+Redis 使用 `zmalloc` 方法（Redis 自己实现的内存分配方法）进行内存分配的时候，除了要分配 `size` 大小的内存之外，还会多分配 `PREFIX_SIZE` 大小的内存。
 
 `zmalloc` 方法源码如下（源码地址：<https://github.com/antirez/redis-tools/blob/master/zmalloc.c）：>
 
@@ -45,7 +45,7 @@ void *zmalloc(size_t size) {
 }
 ```
 
-另外，Redis 可以使用多种内存分配器来分配内存（ libc、jemalloc、tcmalloc），默认使用 [jemalloc](https://github.com/jemalloc/jemalloc)，而 jemalloc 按照一系列固定的大小（8 字节、16 字节、32 字节……）来分配内存的。jemalloc 划分的内存单元如下图所示：
+另外，Redis 可以使用多种内存分配器来分配内存（libc、jemalloc、tcmalloc），默认使用 [jemalloc](https://github.com/jemalloc/jemalloc)，而 jemalloc 按照一系列固定的大小（8 字节、16 字节、32 字节……）来分配内存的。jemalloc 划分的内存单元如下图所示：
 
 ![jemalloc 内存单元示意图](https://oss.javaguide.cn/github/javaguide/database/redis/6803d3929e3e46c1b1c9d0bb9ee8e717.png)
 
@@ -55,27 +55,27 @@ void *zmalloc(size_t size) {
 
 当 Redis 中的某个数据删除时，Redis 通常不会轻易释放内存给操作系统。
 
-这个在 Redis 官方文档中也有对应的原话:
+这个在 Redis 官方文档中也有对应的原话：
 
 ![](https://oss.javaguide.cn/github/javaguide/redis-docs-memory-optimization.png)
 
-文档地址：<https://redis.io/topics/memory-optimization> 。
+文档地址：<https://redis.io/topics/memory-optimization>。
 
 ## 如何查看 Redis 内存碎片的信息？
 
-使用 `info memory` 命令即可查看 Redis 内存相关的信息。下图中每个参数具体的含义，Redis 官方文档有详细的介绍：<https://redis.io/commands/INFO> 。
+使用 `info memory` 命令即可查看 Redis 内存相关的信息。下图中每个参数具体的含义，Redis 官方文档有详细的介绍：<https://redis.io/commands/INFO>。
 
 ![](https://oss.javaguide.cn/github/javaguide/redis-info-memory.png)
 
-Redis 内存碎片率的计算公式：`mem_fragmentation_ratio` （内存碎片率）= `used_memory_rss` (操作系统实际分配给 Redis 的物理内存空间大小)/ `used_memory`(Redis 内存分配器为了存储数据实际申请使用的内存空间大小)
+Redis 内存碎片率的计算公式：`mem_fragmentation_ratio`（内存碎片率）=`used_memory_rss`（操作系统实际分配给 Redis 的物理内存空间大小）/`used_memory`（Redis 内存分配器为了存储数据实际申请使用的内存空间大小）。
 
-也就是说，`mem_fragmentation_ratio` （内存碎片率）的值越大代表内存碎片率越严重。
+也就是说，`mem_fragmentation_ratio`（内存碎片率）的值越大，代表内存碎片率越严重。
 
-一定不要误认为`used_memory_rss` 减去 `used_memory`值就是内存碎片的大小！！！这不仅包括内存碎片，还包括其他进程开销，以及共享库、堆栈等的开销。
+一定不要误认为 `used_memory_rss` 减去 `used_memory` 值就是内存碎片的大小！！！这不仅包括内存碎片，还包括其他进程开销，以及共享库、堆栈等的开销。
 
 很多小伙伴可能要问了：“多大的内存碎片率才是需要清理呢？”。
 
-通常情况下，我们认为 `mem_fragmentation_ratio > 1.5` 的话才需要清理内存碎片。 `mem_fragmentation_ratio > 1.5` 意味着你使用 Redis 存储实际大小 2G 的数据需要使用大于 3G 的内存。
+通常情况下，我们认为 `mem_fragmentation_ratio > 1.5` 的话才需要清理内存碎片。`mem_fragmentation_ratio > 1.5` 意味着你使用 Redis 存储实际大小 2G 的数据需要使用大于 3G 的内存。
 
 如果想要快速查看内存碎片率的话，你还可以通过下面这个命令：
 
@@ -83,7 +83,7 @@ Redis 内存碎片率的计算公式：`mem_fragmentation_ratio` （内存碎片
 > redis-cli -p 6379 info | grep mem_fragmentation_ratio
 ```
 
-另外，内存碎片率可能存在小于 1 的情况。这种情况我在日常使用中还没有遇到过，感兴趣的小伙伴可以看看这篇文章 [故障分析 | Redis 内存碎片率太低该怎么办？- 爱可生开源社区](https://mp.weixin.qq.com/s/drlDvp7bfq5jt2M5pTqJCw) 。
+另外，内存碎片率可能存在小于 1 的情况。这种情况我在日常使用中还没有遇到过，感兴趣的小伙伴可以看看这篇文章 [故障分析 | Redis 内存碎片率太低该怎么办？- 爱可生开源社区](https://mp.weixin.qq.com/s/drlDvp7bfq5jt2M5pTqJCw)。
 
 ## 如何清理 Redis 内存碎片？
 
