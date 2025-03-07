@@ -779,7 +779,7 @@ Cache Aside Pattern 中遇到写请求是这样的：更新数据库，然后直
 1. 使用连接池：避免频繁创建关闭客户端连接。
 2. 尽量不使用 O(n) 指令，使用 O(n) 命令时要关注 n 的数量：像 `KEYS *`、`HGETALL`、`LRANGE`、`SMEMBERS`、`SINTER`/`SUNION`/`SDIFF` 等 O(n) 命令并非不能使用，但是需要明确 n 的值。另外，有遍历的需求可以使用 `HSCAN`、`SSCAN`、`ZSCAN` 代替。
 3. 使用批量操作减少网络传输：原生批量操作命令（比如 `MGET`、`MSET` 等等）、pipeline、Lua 脚本。
-4. 尽量不适用 Redis 事务：Redis 事务实现的功能比较鸡肋，可以使用 Lua 脚本代替。
+4. 尽量不使用 Redis 事务：Redis 事务实现的功能比较鸡肋，可以使用 Lua 脚本代替。
 5. 禁止长时间开启 monitor：对性能影响比较大。
 6. 控制 key 的生命周期：避免 Redis 中存放了太多不经常被访问的数据。
 7. ……
