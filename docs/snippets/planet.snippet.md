@@ -14,11 +14,11 @@
 
 如果你感兴趣的话，不妨花 3 分钟左右看看星球的详细介绍：[JavaGuide 知识星球详细介绍](../about-the-author/zhishixingqiu-two-years.md) 。
 
-这里再送一个 **30** 元的星球专属优惠券，数量有限（价格即将上调。老用户续费半价 ，微信扫码即可续费）！
+这里再送一张 **30** 元的星球专属优惠券，数量有限（价格即将上调。老用户续费半价 ，微信扫码即可续费）！
 
 ![知识星球30元优惠卷](https://oss.javaguide.cn/xingqiu/xingqiuyouhuijuan-30.jpg)
 
-进入星球之后，记得查看 **[星球使用指南](https://t.zsxq.com/0d18KSarv)** （一定要看！！！） 和 **[星球优质主题汇总](https://t.zsxq.com/12uSKgTIm)** 。
+进入星球之后，记得查看 **[星球使用指南](https://t.zsxq.com/0d18KSarv)** （一定要看！！！） 和 **[星球优质主题汇总](https://t.zsxq.com/12uSKgTIm)** ，干货多多！
 
 **无任何套路，无任何潜在收费项。用心做内容，不割韭菜！**
 

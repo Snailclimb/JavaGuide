@@ -258,7 +258,7 @@ public V get(Object key) {
 ```java
 void afterNodeAccess(Node < K, V > e) { // move node to last
     LinkedHashMap.Entry < K, V > last;
-    //如果accessOrder 且当前节点不未链表尾节点
+    //如果accessOrder 且当前节点不为链表尾节点
     if (accessOrder && (last = tail) != e) {
 
         //获取当前节点、以及前驱节点和后继节点
@@ -272,7 +272,7 @@ void afterNodeAccess(Node < K, V > e) { // move node to last
         if (b == null)
             head = a;
         else
-            //如果后继节点不为空，则让前驱节点指向后继节点
+            //如果前驱节点不为空，则让前驱节点指向后继节点
             b.after = a;
 
         //如果后继节点不为空，则让后继节点指向前驱节点
@@ -372,10 +372,10 @@ void afterNodeRemoval(Node<K,V> e) { // unlink
 
 从源码可以看出， `afterNodeRemoval` 方法的整体操作就是让当前节点 p 和前驱节点、后继节点断开联系，等待 gc 回收，整体步骤为:
 
-1. 获取当前节点 p、以及 e 的前驱节点 b 和后继节点 a。
+1. 获取当前节点 p、以及 p 的前驱节点 b 和后继节点 a。
 2. 让当前节点 p 和其前驱、后继节点断开联系。
 3. 尝试让前驱节点 b 指向后继节点 a，若 b 为空则说明当前节点 p 在链表首部，我们直接将 head 指向后继节点 a 即可。
-4. 尝试让后继节点 a 指向前驱节点 b，若 a 为空则说明当前节点 p 在链表末端，所以直接让 tail 指针指向前驱节点 a 即可。
+4. 尝试让后继节点 a 指向前驱节点 b，若 a 为空则说明当前节点 p 在链表末端，所以直接让 tail 指针指向前驱节点 b 即可。
 
 可以结合这张图理解，展示了 key 为 13 的元素被删除，也就是从链表中移除了这个元素。
 
@@ -454,7 +454,7 @@ void afterNodeInsertion(boolean evict) { // possibly remove eldest
 
 ## LinkedHashMap 和 HashMap 遍历性能比较
 
-`LinkedHashMap` 维护了一个双向链表来记录数据插入的顺序，因此在迭代遍历生成的迭代器的时候，是按照双向链表的路径进行遍历的。这一点相比于 `HashMap` 那种遍历整个 bucket 的方式来说，高效需多。
+`LinkedHashMap` 维护了一个双向链表来记录数据插入的顺序，因此在迭代遍历生成的迭代器的时候，是按照双向链表的路径进行遍历的。这一点相比于 `HashMap` 那种遍历整个 bucket 的方式来说，高效许多。
 
 这一点我们可以从两者的迭代器中得以印证，先来看看 `HashMap` 的迭代器，可以看到 `HashMap` 迭代键值对时会用到一个 `nextNode` 方法，该方法会返回 next 指向的下一个元素，并会从 next 开始遍历 bucket 找到下一个 bucket 中不为空的元素 Node。
 
@@ -484,7 +484,7 @@ void afterNodeInsertion(boolean evict) { // possibly remove eldest
  }
 ```
 
-相比之下 `LinkedHashMap` 的迭代器则是直接使用通过 `after` 指针快速定位到当前节点的后继节点，简洁高效需多。
+相比之下 `LinkedHashMap` 的迭代器则是直接使用通过 `after` 指针快速定位到当前节点的后继节点，简洁高效许多。
 
 ```java
  final class LinkedEntryIterator extends LinkedHashIterator
@@ -550,7 +550,7 @@ System.out.println("linkedHashMap get time: " + (end - start));
 System.out.println(num);
 ```
 
-从输出结果来看，因为 `LinkedHashMap` 需要维护双向链表的缘故，插入元素相较于 `HashMap` 会更耗时，但是有了双向链表明确的前后节点关系，迭代效率相对于前者高效了需多。不过，总体来说却别不大，毕竟数据量这么庞大。
+从输出结果来看，因为 `LinkedHashMap` 需要维护双向链表的缘故，插入元素相较于 `HashMap` 会更耗时，但是有了双向链表明确的前后节点关系，迭代效率相对于前者高效了许多。不过，总体来说却别不大，毕竟数据量这么庞大。
 
 ```bash
 map time putVal: 5880

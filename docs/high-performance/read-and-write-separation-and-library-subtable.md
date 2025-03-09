@@ -63,7 +63,7 @@ MySQL binlog(binary log 即二进制日志文件) 主要记录了 MySQL 数据�
 3. 从库会创建一个 I/O 线程向主库请求更新的 binlog
 4. 主库会创建一个 binlog dump 线程来发送 binlog ，从库中的 I/O 线程负责接收
 5. 从库的 I/O 线程将接收的 binlog 写入到 relay log 中。
-6. 从库的 SQL 线程读取 relay log 同步数据本地（也就是再执行一遍 SQL ）。
+6. 从库的 SQL 线程读取 relay log 同步数据到本地（也就是再执行一遍 SQL ）。
 
 怎么样？看了我对主从复制这个过程的讲解，你应该搞明白了吧!
 

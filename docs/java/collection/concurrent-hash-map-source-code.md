@@ -328,7 +328,7 @@ private void rehash(HashEntry<K,V> node) {
         HashEntry<K,V> e = oldTable[i];
         if (e != null) {
             HashEntry<K,V> next = e.next;
-            // 计算新的位置，新的位置只可能是不便或者是老的位置+老的容量。
+            // 计算新的位置，新的位置只可能是不变或者是老的位置+老的容量。
             int idx = e.hash & sizeMask;
             if (next == null)   //  Single node on list
                 // 如果当前位置还不是链表，只是一个元素，直接赋值
@@ -337,7 +337,7 @@ private void rehash(HashEntry<K,V> node) {
                 // 如果是链表了
                 HashEntry<K,V> lastRun = e;
                 int lastIdx = idx;
-                // 新的位置只可能是不便或者是老的位置+老的容量。
+                // 新的位置只可能是不变或者是老的位置+老的容量。
                 // 遍历结束后，lastRun 后面的元素位置都是相同的
                 for (HashEntry<K,V> last = next; last != null; last = last.next) {
                     int k = last.hash & sizeMask;
@@ -368,7 +368,19 @@ private void rehash(HashEntry<K,V> node) {
 }
 ```
 
-有些同学可能会对最后的两个 for 循环有疑惑，这里第一个 for 是为了寻找这样一个节点，这个节点后面的所有 next 节点的新位置都是相同的。然后把这个作为一个链表赋值到新位置。第二个 for 循环是为了把剩余的元素通过头插法插入到指定位置链表。这样实现的原因可能是基于概率统计，有深入研究的同学可以发表下意见。
+有些同学可能会对最后的两个 for 循环有疑惑，这里第一个 for 是为了寻找这样一个节点，这个节点后面的所有 next 节点的新位置都是相同的。然后把这个作为一个链表赋值到新位置。第二个 for 循环是为了把剩余的元素通过头插法插入到指定位置链表。~~这样实现的原因可能是基于概率统计，有深入研究的同学可以发表下意见。~~
+
+内部第二个 `for` 循环中使用了 `new HashEntry<K,V>(h, p.key, v, n)` 创建了一个新的 `HashEntry`，而不是复用之前的，是因为如果复用之前的，那么会导致正在遍历（如正在执行 `get` 方法）的线程由于指针的修改无法遍历下去。正如注释中所说的：
+
+> 当它们不再被可能正在并发遍历表的任何读取线程引用时，被替换的节点将被垃圾回收。
+>
+> The nodes they replace will be garbage collectable as soon as they are no longer referenced by any reader thread that may be in the midst of concurrently traversing table
+
+为什么需要再使用一个 `for` 循环找到 `lastRun` ，其实是为了减少对象创建的次数，正如注解中所说的：
+
+> 从统计上看，在默认的阈值下，当表容量加倍时，只有大约六分之一的节点需要被克隆。
+>
+> Statistically, at the default threshold, only about one-sixth of them need cloning when a table doubles.
 
 ### 5. get
 

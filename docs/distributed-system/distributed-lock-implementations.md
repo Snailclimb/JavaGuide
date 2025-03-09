@@ -56,7 +56,7 @@ OK
 ```
 
 - **lockKey**：加锁的锁名；
-- **uniqueValue**：能够唯一标示锁的随机字符串；
+- **uniqueValue**：能够唯一标识锁的随机字符串；
 - **NX**：只有当 lockKey 对应的 key 值不存在的时候才能 SET 成功；
 - **EX**：过期时间设置（秒为单位）EX 3 标示这个锁有一个 3 秒的自动过期时间。与 EX 对应的是 PX（毫秒为单位），这两个都是过期时间设置。
 
@@ -202,13 +202,11 @@ Redlock 是直接操作 Redis 节点的，并不是通过 Redis 集群操作的�
 
 Redlock 实现比较复杂，性能比较差，发生时钟变迁的情况下还存在安全性隐患。《数据密集型应用系统设计》一书的作者 Martin Kleppmann 曾经专门发文（[How to do distributed locking - Martin Kleppmann - 2016](https://martin.kleppmann.com/2016/02/08/how-to-do-distributed-locking.html)）怼过 Redlock，他认为这是一个很差的分布式锁实现。感兴趣的朋友可以看看[Redis 锁从面试连环炮聊到神仙打架](https://mp.weixin.qq.com/s?__biz=Mzg3NjU3NTkwMQ==&mid=2247505097&idx=1&sn=5c03cb769c4458350f4d4a321ad51f5a&source=41#wechat_redirect)这篇文章，有详细介绍到 antirez 和 Martin Kleppmann 关于 Redlock 的激烈辩论。
 
-实际项目中不建议使用 Redlock 算法，成本和收益不成正比。
-
-如果不是非要实现绝对可靠的分布式锁的话，其实单机版 Redis 就完全够了，实现简单，性能也非常高。如果你必须要实现一个绝对可靠的分布式锁的话，可以基于 ZooKeeper 来做，只是性能会差一些。
+实际项目中不建议使用 Redlock 算法，成本和收益不成正比，可以考虑基于 Redis 主从复制+哨兵模式实现分布式锁。
 
 ## 基于 ZooKeeper 实现分布式锁
 
-Redis 实现分布式锁性能较高，ZooKeeper 实现分布式锁可靠性更高。实际项目中，我们应该根据业务的具体需求来选择。
+ZooKeeper 相比于 Redis 实现分布式锁，除了提供相对更高的可靠性之外，在功能层面还有一个非常有用的特性：**Watch 机制**。这个机制可以用来实现公平的分布式锁。不过，使用 ZooKeeper 实现的分布式锁在性能方面相对较差，因此如果对性能要求比较高的话，ZooKeeper 可能就不太适合了。
 
 ### 如何基于 ZooKeeper 实现分布式锁？
 
@@ -365,14 +363,19 @@ private static class LockData
 
 ## 总结
 
-在这篇文章中，我介绍了实现分布式锁的两种常见方式： Redis 和 ZooKeeper。至于具体选择 Redis 还是 ZooKeeper 来实现分布式锁，还是要看业务的具体需求。
+在这篇文章中，我介绍了实现分布式锁的两种常见方式：**Redis** 和 **ZooKeeper**。至于具体选择 Redis 还是 ZooKeeper 来实现分布式锁，还是要根据业务的具体需求来决定。
 
-- 如果对性能要求比较高的话，建议使用 Redis 实现分布式锁（优先选择 Redisson 提供的现成的分布式锁，而不是自己实现）。
-- 如果对可靠性要求比较高的话，建议使用 ZooKeeper 实现分布式锁（推荐基于 Curator 框架实现）。不过，现在很多项目都不会用到 ZooKeeper，如果单纯是因为分布式锁而引入 ZooKeeper 的话，那是不太可取的，不建议这样做，为了一个小小的功能增加了系统的复杂度。
+- 如果对性能要求比较高的话，建议使用 Redis 实现分布式锁。推荐优先选择 **Redisson** 提供的现成分布式锁，而不是自己实现。实际项目中不建议使用 Redlock 算法，成本和收益不成正比，可以考虑基于 Redis 主从复制+哨兵模式实现分布式锁。
+- 如果对可靠性要求比较高，建议使用 ZooKeeper 实现分布式锁，推荐基于 **Curator** 框架来实现。不过，现在很多项目都不会用到 ZooKeeper，如果单纯是因为分布式锁而引入 ZooKeeper 的话，那是不太可取的，不建议这样做，为了一个小小的功能增加了系统的复杂度。
 
-最后，再分享两篇我觉得写的还不错的文章：
+需要注意的是，无论选择哪种方式实现分布式锁，包括 Redis、ZooKeeper 或 Etcd（本文没介绍，但也经常用来实现分布式锁），都无法保证 100% 的安全性，特别是在遇到进程垃圾回收（GC）、网络延迟等异常情况下。
+
+为了进一步提高系统的可靠性，建议引入一个兜底机制。例如，可以通过 **版本号（Fencing Token）机制** 来避免并发冲突。
+
+最后，再分享几篇我觉得写的还不错的文章：
 
 - [分布式锁实现原理与最佳实践 - 阿里云开发者](https://mp.weixin.qq.com/s/JzCHpIOiFVmBoAko58ZuGw)
 - [聊聊分布式锁 - 字节跳动技术团队](https://mp.weixin.qq.com/s/-N4x6EkxwAYDGdJhwvmZLw)
+- [Redis、ZooKeeper、Etcd，谁有最好用的分布式锁？ - 腾讯云开发者](https://mp.weixin.qq.com/s/yZC6VJGxt1ANZkn0SljZBg)
 
 <!-- @include: @article-footer.snippet.md -->

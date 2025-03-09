@@ -23,12 +23,12 @@ Maven 遵循标准目录结构来保持项目之间的一致性。遵循这种�
 Maven 项目的标准目录结构如下：
 
 ```groovy
-src /
-  main /
+src/
+  main/
     java/
     resources/
-  test/ java
-     /
+  test/
+    java/
     resources/
 pom.xml
 ```

@@ -5,15 +5,11 @@ tag:
   - 安全
 ---
 
-在 [JWT 基本概念详解](https://javaguide.cn/system-design/security/jwt-intro.html)这篇文章中，我介绍了：
+校招面试中，遇到大部分的候选者认证登录这块用的都是 JWT。提问 JWT 的概念性问题以及使用 JWT 的原因，基本都能回答一些，但当问到 JWT 存在的一些问题和解决方案时，只有一小部分候选者回答的还可以。
 
-- 什么是 JWT?
-- JWT 由哪些部分组成？
-- 如何基于 JWT 进行身份验证？
-- JWT 如何防止 Token 被篡改？
-- 如何加强 JWT 的安全性？
+JWT 不是银弹，也有很多缺陷，很多时候并不是最优的选择。这篇文章，我们一起探讨一下 JWT 身份认证的优缺点以及常见问题的解决办法，来看看为什么很多人不再推荐使用 JWT 了。
 
-这篇文章，我们一起探讨一下 JWT 身份认证的优缺点以及常见问题的解决办法。
+关于 JWT 的基本概念介绍请看我写的这篇文章： [JWT 基本概念详解](https://javaguide.cn/system-design/security/jwt-intro.html)。
 
 ## JWT 的优势
 
@@ -21,7 +17,7 @@ tag:
 
 ### 无状态
 
-JWT 自身包含了身份验证所需要的所有信息，因此，我们的服务器不需要存储 Session 信息。这显然增加了系统的可用性和伸缩性，大大减轻了服务端的压力。
+JWT 自身包含了身份验证所需要的所有信息，因此，我们的服务器不需要存储 JWT 信息。这显然增加了系统的可用性和伸缩性，大大减轻了服务端的压力。
 
 不过，也正是由于 JWT 的无状态，也导致了它最大的缺点：**不可控！**
 
@@ -170,15 +166,35 @@ JWT 认证的话，我们应该如何解决续签问题呢？查阅了很多资�
 - 重新请求获取 JWT 的过程中会有短暂 JWT 不可用的情况（可以通过在客户端设置定时器，当 accessJWT 快过期的时候，提前去通过 refreshJWT 获取新的 accessJWT）;
 - 存在安全问题，只要拿到了未过期的 refreshJWT 就一直可以获取到 accessJWT。不过，由于 refreshJWT 只用来获取 accessJWT，不容易被泄露。
 
+### JWT 体积太大
+
+JWT 结构复杂（Header、Payload 和 Signature），包含了更多额外的信息，还需要进行 Base64Url 编码，这会使得 JWT 体积较大，增加了网络传输的开销。
+
+JWT 组成:
+
+![JWT 组成](https://oss.javaguide.cn/javaguide/system-design/jwt/jwt-composition.png)
+
+JWT 示例：
+
+```plain
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
+eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.
+SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+```
+
+解决办法：
+
+- 尽量减少 JWT Payload（载荷）中的信息，只保留必要的用户和权限信息。
+- 在传输 JWT 之前，使用压缩算法（如 GZIP）对 JWT 进行压缩以减少体积。
+- 在某些情况下，使用传统的 Token 可能更合适。传统的 Token 通常只是一个唯一标识符，对应的信息（例如用户 ID、Token 过期时间、权限信息）存储在服务端，通常会通过 Redis 保存。
+
 ## 总结
 
-JWT 其中一个很重要的优势是无状态，但实际上，我们想要在实际项目中合理使用 JWT 的话，也还是需要保存 JWT 信息。
+JWT 其中一个很重要的优势是无状态，但实际上，我们想要在实际项目中合理使用 JWT 做认证登录的话，也还是需要保存 JWT 信息。
 
 JWT 也不是银弹，也有很多缺陷，具体是选择 JWT 还是 Session 方案还是要看项目的具体需求。万万不可尬吹 JWT，而看不起其他身份认证方案。
 
-另外，不用 JWT 直接使用普通的 Token(随机生成，不包含具体的信息) 结合 Redis 来做身份认证也是可以的。我在 [「优质开源项目推荐」](https://javaguide.cn/open-source-project/)的第 8 期推荐过的 [Sa-Token](https://github.com/dromara/sa-token) 这个项目是一个比较完善的 基于 JWT 的身份认证解决方案，支持自动续签、踢人下线、账号封禁、同端互斥登录等功能，感兴趣的朋友可以看看。
-
-![](https://oss.javaguide.cn/javaguide/system-design/jwt/image-20220609170714725.png)
+另外，不用 JWT 直接使用普通的 Token(随机生成的 ID，不包含具体的信息) 结合 Redis 来做身份认证也是可以的。
 
 ## 参考
 

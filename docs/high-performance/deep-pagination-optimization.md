@@ -19,6 +19,18 @@ head:
 SELECT * FROM t_order ORDER BY id LIMIT 1000000, 10
 ```
 
+## 深度分页问题的原因
+
+当查询偏移量过大时，MySQL 的查询优化器可能会选择全表扫描而不是利用索引来优化查询。这是因为扫描索引和跳过大量记录可能比直接全表扫描更耗费资源。
+
+![深度分页问题](https://oss.javaguide.cn/github/javaguide/mysql/deep-pagination-phenomenon.png)
+
+不同机器上这个查询偏移量过大的临界点可能不同，取决于多个因素，包括硬件配置（如 CPU 性能、磁盘速度）、表的大小、索引的类型和统计信息等。
+
+![转全表扫描的临界点](https://oss.javaguide.cn/github/javaguide/mysql/deep-pagination-phenomenon-critical-point.png)
+
+MySQL 的查询优化器采用基于成本的策略来选择最优的查询执行计划。它会根据 CPU 和 I/O 的成本来决定是否使用索引扫描或全表扫描。如果优化器认为全表扫描的成本更低，它就会放弃使用索引。不过，即使偏移量很大，如果查询中使用了覆盖索引（covering index），MySQL 仍然可能会使用索引，避免回表操作。
+
 ## 深度分页优化建议
 
 这里以 MySQL 数据库为例介绍一下如何优化深度分页。
@@ -34,7 +46,11 @@ SELECT * FROM t_order WHERE id > 100000 AND id <= 100010 ORDER BY id
 SELECT * FROM t_order WHERE id > 100000 LIMIT 10
 ```
 
-这种优化方式限制比较大，且一般项目的 ID 也没办法保证完全连续。
+这种基于 ID 范围的深度分页优化方式存在很大限制：
+
+1. **ID 连续性要求高**: 实际项目中，数据库自增 ID 往往因为各种原因（例如删除数据、事务回滚等）导致 ID 不连续，难以保证连续性。
+2. **排序问题**: 如果查询需要按照其他字段（例如创建时间、更新时间等）排序，而不是按照 ID 排序，那么这种方法就不再适用。
+3. **并发场景**: 在高并发场景下，单纯依赖记录上次查询的最后一条记录的 ID 进行分页，容易出现数据重复或遗漏的问题。
 
 ### 子查询
 
@@ -48,8 +64,13 @@ SELECT * FROM t_order WHERE id > 100000 LIMIT 10
 
 ```sql
 # 通过子查询来获取 id 的起始值，把 limit 1000000 的条件转移到子查询
-SELECT * FROM t_order WHERE id >= (SELECT id FROM t_order limit 1000000, 1) LIMIT 10;
+SELECT * FROM t_order WHERE id >= (SELECT id FROM t_order where id > 1000000 limit 1) LIMIT 10;
 ```
+
+**工作原理**:
+
+1. 子查询 `(SELECT id FROM t_order where id > 1000000 limit 1)` 会利用主键索引快速定位到第 1000001 条记录，并返回其 ID 值。
+2. 主查询 `SELECT * FROM t_order WHERE id >= ... LIMIT 10` 将子查询返回的起始 ID 作为过滤条件，使用 `id >=` 获取从该 ID 开始的后续 10 条记录。
 
 不过，子查询的结果会产生一张新表，会影响性能，应该尽量避免大量使用子查询。并且，这种方法只适用于 ID 是正序的。在复杂分页场景，往往需要通过过滤条件，筛选到符合条件的 ID，此时的 ID 是离散且不连续的。
 
@@ -57,21 +78,30 @@ SELECT * FROM t_order WHERE id >= (SELECT id FROM t_order limit 1000000, 1) LIMI
 
 ### 延迟关联
 
-延迟关联的优化思路，跟子查询的优化思路其实是一样的：都是把条件转移到主键索引树，减少回表的次数。不同点是，延迟关联使用了 INNER JOIN（内连接） 包含子查询。
+延迟关联与子查询的优化思路类似，都是通过将 `LIMIT` 操作转移到主键索引树上，减少回表次数。相比直接使用子查询，延迟关联通过 `INNER JOIN` 将子查询结果集成到主查询中，避免了子查询可能产生的临时表。在执行 `INNER JOIN` 时，MySQL 优化器能够利用索引进行高效的连接操作（如索引扫描或其他优化策略），因此在深度分页场景下，性能通常优于直接使用子查询。
 
 ```sql
-SELECT t1.* FROM t_order t1
-INNER JOIN (SELECT id FROM t_order limit 1000000, 10) t2
-ON t1.id = t2.id;
+-- 使用 INNER JOIN 进行延迟关联
+SELECT t1.*
+FROM t_order t1
+INNER JOIN (SELECT id FROM t_order where id > 1000000 LIMIT 10) t2 ON t1.id = t2.id;
 ```
+
+**工作原理**:
+
+1. 子查询 `(SELECT id FROM t_order where id > 1000000 LIMIT 10)` 利用主键索引快速定位目标分页的 10 条记录的 ID。
+2. 通过 `INNER JOIN` 将子查询结果与主表 `t_order` 关联，获取完整的记录数据。
 
 除了使用 INNER JOIN 之外，还可以使用逗号连接子查询。
 
 ```sql
+-- 使用逗号进行延迟关联
 SELECT t1.* FROM t_order t1,
-(SELECT id FROM t_order limit 1000000, 10) t2
+(SELECT id FROM t_order where id > 1000000 LIMIT 10) t2
 WHERE t1.id = t2.id;
 ```
+
+**注意**: 虽然逗号连接子查询也能实现类似的效果，但为了代码可读性和可维护性，建议使用更规范的 `INNER JOIN` 语法。
 
 ### 覆盖索引
 
@@ -89,7 +119,19 @@ ORDER BY code
 LIMIT 1000000, 10;
 ```
 
-不过，当查询的结果集占表的总行数的很大一部分时，可能就不会走索引了，自动转换为全表扫描。当然了，也可以通过 `FORCE INDEX` 来强制查询优化器走索引，但这种提升效果一般不明显。
+**⚠️注意**:
+
+- 当查询的结果集占表的总行数的很大一部分时，MySQL 查询优化器可能选择放弃使用索引，自动转换为全表扫描。
+- 虽然可以使用 `FORCE INDEX` 强制查询优化器走索引，但这种方式可能会导致查询优化器无法选择更优的执行计划，效果并不总是理想。
+
+## 总结
+
+本文总结了几种常见的深度分页优化方案:
+
+1. **范围查询**: 基于 ID 连续性进行分页，通过记录上一页最后一条记录的 ID 来获取下一页数据。适合 ID 连续且按 ID 查询的场景，但在 ID 不连续或需要按其他字段排序时存在局限。
+2. **子查询**: 先通过子查询获取分页的起始主键值，再根据主键进行筛选分页。利用主键索引提高效率，但子查询会生成临时表，复杂场景下性能不佳。
+3. **延迟关联 (INNER JOIN)**: 使用 `INNER JOIN` 将分页操作转移到主键索引上，减少回表次数。相比子查询，延迟关联的性能更优，适合大数据量的分页查询。
+4. **覆盖索引**: 通过索引直接获取所需字段，避免回表操作，减少 IO 开销，适合查询特定字段的场景。但当结果集较大时，MySQL 可能会选择全表扫描。
 
 ## 参考
 

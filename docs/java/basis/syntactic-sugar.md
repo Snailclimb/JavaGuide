@@ -379,6 +379,83 @@ public class OutterClass
 }
 ```
 
+**为什么内部类可以使用外部类的 private 属性**：
+
+我们在 InnerClass 中增加一个方法，打印外部类的 userName 属性
+
+```java
+//省略其他属性
+public class OutterClass {
+    private String userName;
+    ......
+    class InnerClass{
+    ......
+        public void printOut(){
+            System.out.println("Username from OutterClass:"+userName);
+        }
+    }
+}
+
+// 此时，使用javap -p命令对OutterClass反编译结果：
+public classOutterClass {
+    private String userName;
+    ......
+    static String access$000(OutterClass);
+}
+// 此时，InnerClass的反编译结果：
+class OutterClass$InnerClass {
+    final OutterClass this$0;
+    ......
+    public void printOut();
+}
+
+```
+
+实际上，在编译完成之后，inner 实例内部会有指向 outer 实例的引用`this$0`，但是简单的`outer.name`是无法访问 private 属性的。从反编译的结果可以看到，outer 中会有一个桥方法`static String access$000(OutterClass)`，恰好返回 String 类型，即 userName 属性。正是通过这个方法实现内部类访问外部类私有属性。所以反编译后的`printOut()`方法大致如下：
+
+```java
+public void printOut() {
+    System.out.println("Username from OutterClass:" + OutterClass.access$000(this.this$0));
+}
+```
+
+补充：
+
+1. 匿名内部类、局部内部类、静态内部类也是通过桥方法来获取 private 属性。
+2. 静态内部类没有`this$0`的引用
+3. 匿名内部类、局部内部类通过复制使用局部变量，该变量初始化之后就不能被修改。以下是一个案例：
+
+```java
+public class OutterClass {
+    private String userName;
+
+    public void test(){
+        //这里i初始化为1后就不能再被修改
+        int i=1;
+        class Inner{
+            public void printName(){
+                System.out.println(userName);
+                System.out.println(i);
+            }
+        }
+    }
+}
+```
+
+反编译后：
+
+```java
+//javap命令反编译Inner的结果
+//i被复制进内部类，且为final
+class OutterClass$1Inner {
+  final int val$i;
+  final OutterClass this$0;
+  OutterClass$1Inner();
+  public void printName();
+}
+
+```
+
 ### 条件编译
 
 —般情况下，程序中的每一行代码都要参加编译。但有时候出于对程序代码优化的考虑，希望只对其中一部分内容进行编译，此时就需要在程序中加上条件，让编译器只对满足条件的代码进行编译，将不满足条件的代码舍弃，这就是条件编译。
@@ -423,7 +500,7 @@ public class ConditionalCompilation
 
 首先，我们发现，在反编译后的代码中没有`System.out.println("Hello, ONLINE!");`，这其实就是条件编译。当`if(ONLINE)`为 false 的时候，编译器就没有对其内的代码进行编译。
 
-所以，**Java 语法的条件编译，是通过判断条件为常量的 if 语句实现的。其原理也是 Java 语言的语法糖。根据 if 判断条件的真假，编译器直接把分支为 false 的代码块消除。通过该方式实现的条件编译，必须在方法体内实现，而无法在正整个 Java 类的结构或者类的属性上进行条件编译，这与 C/C++的条件编译相比，确实更有局限性。在 Java 语言设计之初并没有引入条件编译的功能，虽有局限，但是总比没有更强。**
+所以，**Java 语法的条件编译，是通过判断条件为常量的 if 语句实现的。其原理也是 Java 语言的语法糖。根据 if 判断条件的真假，编译器直接把分支为 false 的代码块消除。通过该方式实现的条件编译，必须在方法体内实现，而无法在整个 Java 类的结构或者类的属性上进行条件编译，这与 C/C++的条件编译相比，确实更有局限性。在 Java 语言设计之初并没有引入条件编译的功能，虽有局限，但是总比没有更强。**
 
 ### 断言
 

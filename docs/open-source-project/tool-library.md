@@ -9,11 +9,6 @@ icon: codelibrary-fill
 - [lombok](https://github.com/rzwitserloot/lombok) :使用 Lombok 我们可以简化我们的 Java 代码，比如使用它之后我们通过注释就可以实现 getter/setter、equals 等方法。
 - [guava](https://github.com/google/guava "guava")：Guava 是一组核心库，其中包括新的集合类型（例如 multimap 和 multiset），不可变集合，图形库以及用于并发、I / O、哈希、原始类型、字符串等的实用程序！
 - [hutool](https://github.com/looly/hutool "hutool") : Hutool 是一个 Java 工具包，也只是一个工具包，它帮助我们简化每一行代码，减少每一个方法，让 Java 语言也可以“甜甜的”。
-- [p3c](https://github.com/alibaba/p3c "p3c")：Alibaba Java Coding Guidelines pmd implements and IDE plugin。Eclipse 和 IDEA 上都有该插件，推荐使用！
-- [sonarqube](https://github.com/SonarSource/sonarqube "sonarqube")：SonarQube 支持所有开发人员编写更干净，更安全的代码。
-- [checkstyle](https://github.com/checkstyle/checkstyle "checkstyle") :Checkstyle 是一种开发工具，可帮助程序员编写符合编码标准的 Java 代码。它使检查 Java 代码的过程自动化，从而使人们不必执行这项无聊（但很重要）的任务。这使其成为想要实施编码标准的项目的理想选择。
-- [pmd](https://github.com/pmd/pmd "pmd") : 可扩展的多语言静态代码分析器。
-- [spotbugs](https://github.com/spotbugs/spotbugs "spotbugs") :SpotBugs 是 FindBugs 的继任者。静态分析工具，用于查找 Java 代码中的错误。
 
 ## 问题排查和性能优化
 
@@ -23,6 +18,10 @@ icon: codelibrary-fill
 - [Spring Startup Analyzer](https://github.com/linyimin0812/spring-startup-analyzer/blob/main/README_ZH.md)：采集 Spring 应用启动过程数据，生成交互式分析报告(HTML)，用于分析 Spring 应用启动卡点，支持 Spring Bean 异步初始化，减少优化 Spring 应用启动时间。UI 参考[Spring Boot Startup Report](https://github.com/maciejwalkowiak/spring-boot-startup-report)实现。
 
 ## 文档处理
+
+### 文档解析
+
+- [Tika](https://github.com/apache/tika)：Apache Tika 工具包能够检测并提取来自超过一千种不同文件类型（如 PPT、XLS 和 PDF）的元数据和文本内容。
 
 ### Excel
 
@@ -40,11 +39,13 @@ icon: codelibrary-fill
 
 ### PDF
 
-- [x-easypdf](https://gitee.com/dromara/x-easypdf)：一个用搭积木的方式构建 PDF 的框架（基于 pdfbox/fop），支持 PDF 导出和编辑。
-- [pdfbox](https://github.com/apache/pdfbox) :用于处理 PDF 文档的开放源码 Java 工具。该项目允许创建新的 PDF 文档、对现有文档进行操作以及从文档中提取内容。PDFBox 还包括几个命令行实用程序。PDFBox 是在 Apache 2.0 版许可下发布的。
-- [OpenPDF](https://github.com/LibrePDF/OpenPDF)：OpenPDF 是一个免费的 Java 库，用于使用 LGPL 和 MPL 开源许可创建和编辑 PDF 文件。OpenPDF 基于 iText 的一个分支。
-- [itext7](https://github.com/itext/itext7)：iText 7 代表了想要利用利用好 PDF 的开发人员的更高级别的 sdk。iText 7 配备了更好的文档引擎、高级和低级编程功能以及创建、编辑和增强 PDF 文档的能力，几乎对每个工作流都有好处。
-- [FOP](https://xmlgraphics.apache.org/fop/) :Apache FOP 项目的主要的输出目标是 PDF。
+对于简单的 PDF 创建需求，OpenPDF 是一个不错的选择，它开源免费，API 简单易用。对于需要解析、转换和提取文本等操作的复杂场景，可以选择 Apache PDFBox。当然了，复杂场景如果不介意 LGPL 许可也可以选择 iText。
+
+- [x-easypdf](https://gitee.com/dromara/x-easypdf)：一个用搭积木的方式构建 PDF 的框架（基于 pdfbox/fop），支持 PDF 导出和编辑，适合简单的 PDF 文档生成场景。
+- [iText](https://github.com/itext/itext7)：一个用于创建、编辑和增强 PDF 文档的 Java 库。iText 7 社区版采用 AGPL 许可证，如果你的项目是闭源商业项目，需要购买商业许可证。 iText 5 仍然是 LGPL 许可，可以免费用于商业用途，但已经停止维护。
+- [OpenPDF](https://github.com/LibrePDF/OpenPDF)：完全开源免费 (LGPL/MPL 双重许可)，基于 iText 的一个分支，可以作为 iText 的替代品，简单易用，但功能相比于 iText 更少一些（对于大多数场景已经足够）。
+- [Apache PDFBox](https://github.com/apache/pdfbox) :完全开源免费 (Apache 许可证)，功能强大，支持 PDF 的创建、解析、转换和提取文本等。不过，由于其功能过于丰富，因此 API 设计相对复杂，学习难度会大一些。
+- [FOP](https://xmlgraphics.apache.org/fop/) : Apache FOP 用于将 XSL-FO（Extensible Stylesheet Language Formatting Objects）格式化对象转换为多种输出格式，最常见的是 PDF。
 
 ## 图片处理
 
@@ -56,6 +57,11 @@ icon: codelibrary-fill
 - [EasyCaptcha](https://gitee.com/whvse/EasyCaptcha)：Java 图形验证码，支持 gif、中文、算术等类型，可用于 Java Web、JavaSE 等项目。
 - [AJ-Captcha](https://gitee.com/anji-plus/captcha)：行为验证码(滑动拼图、点选文字)，前后端(java)交互。
 - [tianai-captcha](https://gitee.com/tianai/tianai-captcha)：好看又好用的滑块验证码。
+
+## 短信&邮件
+
+- [SMS4J](https://github.com/dromara/SMS4J)：短信聚合框架，解决接入多个短信 SDK 的繁琐流程。
+- [Simple Java Mail](https://github.com/bbottema/simple-java-mail)：最简单的 Java 轻量级邮件库，同时能够发送复杂的电子邮件。
 
 ## 在线支付
 

@@ -41,7 +41,7 @@ title: JavaGuide（Java学习&面试指南）
 
 - [Java 集合常见知识点&面试题总结(上)](./java/collection/java-collection-questions-01.md) (必看 :+1:)
 - [Java 集合常见知识点&面试题总结(下)](./java/collection/java-collection-questions-02.md) (必看 :+1:)
-- [Java 容器使用注意事项总结](./java/collection/java-collection-precautions-for-use.md)
+- [Java 集合使用注意事项总结](./java/collection/java-collection-precautions-for-use.md)
 
 **源码分析**：
 
@@ -72,6 +72,8 @@ title: JavaGuide（Java学习&面试指南）
 
 **重要知识点详解**：
 
+- [乐观锁和悲观锁详解](./java/concurrent/jmm.md)
+- [CAS 详解](./java/concurrent/cas.md)
 - [JMM（Java 内存模型）详解](./java/concurrent/jmm.md)
 - **线程池**：[Java 线程池详解](./java/concurrent/java-thread-pool-summary.md)、[Java 线程池最佳实践](./java/concurrent/java-thread-pool-best-practices.md)
 - [ThreadLocal 详解](./java/concurrent/threadlocal.md)
@@ -107,6 +109,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 - [Java 19 新特性概览](./java/new-features/java19.md)
 - [Java 20 新特性概览](./java/new-features/java20.md)
 - [Java 21 新特性概览](./java/new-features/java21.md)
+- [Java 22 & 23 新特性概览](./java/new-features/java22-23.md)
 
 ## 计算机基础
 

@@ -5,6 +5,8 @@ tag:
   - Java并发
 ---
 
+<!-- markdownlint-disable MD024 -->
+
 池化技术想必大家已经屡见不鲜了，线程池、数据库连接池、HTTP 连接池等等都是对这个思想的应用。池化技术的思想主要是为了减少每次获取资源的消耗，提高对资源的利用率。
 
 这篇文章我会详细介绍一下线程池的基本概念以及核心原理。
@@ -125,13 +127,13 @@ public class ScheduledThreadPoolExecutor
 - `keepAliveTime`:线程池中的线程数量大于 `corePoolSize` 的时候，如果这时没有新的任务提交，核心线程外的线程不会立即销毁，而是会等待，直到等待的时间超过了 `keepAliveTime`才会被回收销毁。
 - `unit` : `keepAliveTime` 参数的时间单位。
 - `threadFactory` :executor 创建新线程的时候会用到。
-- `handler` :饱和策略（后面会单独详细介绍一下）。
+- `handler` :拒绝策略（后面会单独详细介绍一下）。
 
 下面这张图可以加深你对线程池中各个参数的相互关系的理解（图片来源：《Java 性能调优实战》）：
 
 ![线程池各个参数的关系](https://oss.javaguide.cn/github/javaguide/java/concurrent/relationship-between-thread-pool-parameters.png)
 
-**`ThreadPoolExecutor` 饱和策略定义:**
+**`ThreadPoolExecutor` 拒绝策略定义:**
 
 如果当前同时运行的线程数量达到最大线程数量并且队列也已经被放满了任务时，`ThreadPoolExecutor` 定义一些策略:
 
@@ -142,7 +144,7 @@ public class ScheduledThreadPoolExecutor
 
 举个例子：
 
-举个例子：Spring 通过 `ThreadPoolTaskExecutor` 或者我们直接通过 `ThreadPoolExecutor` 的构造函数创建线程池的时候，当我们不指定 `RejectedExecutionHandler` 饱和策略来配置线程池的时候，默认使用的是 `AbortPolicy`。在这种饱和策略下，如果队列满了，`ThreadPoolExecutor` 将抛出 `RejectedExecutionException` 异常来拒绝新来的任务 ，这代表你将丢失对这个任务的处理。如果不想丢弃任务的话，可以使用`CallerRunsPolicy`。`CallerRunsPolicy` 和其他的几个策略不同，它既不会抛弃任务，也不会抛出异常，而是将任务回退给调用者，使用调用者的线程来执行任务
+举个例子：Spring 通过 `ThreadPoolTaskExecutor` 或者我们直接通过 `ThreadPoolExecutor` 的构造函数创建线程池的时候，当我们不指定 `RejectedExecutionHandler` 拒绝策略来配置线程池的时候，默认使用的是 `AbortPolicy`。在这种拒绝策略下，如果队列满了，`ThreadPoolExecutor` 将抛出 `RejectedExecutionException` 异常来拒绝新来的任务 ，这代表你将丢失对这个任务的处理。如果不想丢弃任务的话，可以使用`CallerRunsPolicy`。`CallerRunsPolicy` 和其他的几个策略不同，它既不会抛弃任务，也不会抛出异常，而是将任务回退给调用者，使用调用者的线程来执行任务
 
 ```java
 public static class CallerRunsPolicy implements RejectedExecutionHandler {
@@ -181,21 +183,19 @@ public static class CallerRunsPolicy implements RejectedExecutionHandler {
 
 `Executors` 返回线程池对象的弊端如下(后文会详细介绍到)：
 
-- `FixedThreadPool` 和 `SingleThreadExecutor`:使用的是无界的 `LinkedBlockingQueue`，任务队列最大长度为 `Integer.MAX_VALUE`,可能堆积大量的请求，从而导致 OOM。
+- `FixedThreadPool` 和 `SingleThreadExecutor`:使用的是阻塞队列 `LinkedBlockingQueue`，任务队列最大长度为 `Integer.MAX_VALUE`，可以看作是无界的，可能堆积大量的请求，从而导致 OOM。
 - `CachedThreadPool`:使用的是同步队列 `SynchronousQueue`, 允许创建的线程数量为 `Integer.MAX_VALUE` ，如果任务数量过多且执行速度较慢，可能会创建大量的线程，从而导致 OOM。
 - `ScheduledThreadPool` 和 `SingleThreadScheduledExecutor`:使用的无界的延迟阻塞队列`DelayedWorkQueue`，任务队列最大长度为 `Integer.MAX_VALUE`,可能堆积大量的请求，从而导致 OOM。
 
 ```java
-// 无界队列 LinkedBlockingQueue
 public static ExecutorService newFixedThreadPool(int nThreads) {
-
+    // LinkedBlockingQueue 的默认长度为 Integer.MAX_VALUE，可以看作是无界的
     return new ThreadPoolExecutor(nThreads, nThreads,0L, TimeUnit.MILLISECONDS,new LinkedBlockingQueue<Runnable>());
 
 }
 
-// 无界队列 LinkedBlockingQueue
 public static ExecutorService newSingleThreadExecutor() {
-
+    // LinkedBlockingQueue 的默认长度为 Integer.MAX_VALUE，可以看作是无界的
     return new FinalizableDelegatedExecutorService (new ThreadPoolExecutor(1, 1,0L, TimeUnit.MILLISECONDS,new LinkedBlockingQueue<Runnable>()));
 
 }
@@ -325,7 +325,7 @@ public class ThreadPoolExecutorDemo {
 - `keepAliveTime` : 等待时间为 1L。
 - `unit`: 等待时间的单位为 TimeUnit.SECONDS。
 - `workQueue`：任务队列为 `ArrayBlockingQueue`，并且容量为 100;
-- `handler`:饱和策略为 `CallerRunsPolicy`。
+- `handler`:拒绝策略为 `CallerRunsPolicy`。
 
 **输出结构**：
 
@@ -413,7 +413,7 @@ Finished all threads  // 任务全部执行完了才会跳出来，因为executo
 1. 如果当前运行的线程数小于核心线程数，那么就会新建一个线程来执行任务。
 2. 如果当前运行的线程数等于或大于核心线程数，但是小于最大线程数，那么就把该任务放入到任务队列里等待执行。
 3. 如果向任务队列投放任务失败（任务队列已经满了），但是当前运行的线程数是小于最大线程数的，就新建一个线程来执行任务。
-4. 如果当前运行的线程数已经等同于最大线程数了，新建线程将会使当前运行的线程超出最大线程数，那么当前任务会被拒绝，饱和策略会调用`RejectedExecutionHandler.rejectedExecution()`方法。
+4. 如果当前运行的线程数已经等同于最大线程数了，新建线程将会使当前运行的线程超出最大线程数，那么当前任务会被拒绝，拒绝策略会调用`RejectedExecutionHandler.rejectedExecution()`方法。
 
 ![图解线程池实现原理](https://oss.javaguide.cn/github/javaguide/java/concurrent/thread-pool-principle.png)
 
@@ -534,7 +534,7 @@ Finished all threads  // 任务全部执行完了才会跳出来，因为executo
 
 #### `Runnable` vs `Callable`
 
-`Runnable`自 Java 1.0 以来一直存在，但`Callable`仅在 Java 1.5 中引入,目的就是为了来处理`Runnable`不支持的用例。**`Runnable` 接口**不会返回结果或抛出检查异常，但是 **`Callable` 接口**可以。所以，如果任务不需要返回结果或抛出异常推荐使用 **`Runnable` 接口**，这样代码看起来会更加简洁。
+`Runnable`自 Java 1.0 以来一直存在，但`Callable`仅在 Java 1.5 中引入,目的就是为了来处理`Runnable`不支持的用例。`Runnable` 接口不会返回结果或抛出检查异常，但是 `Callable` 接口可以。所以，如果任务不需要返回结果或抛出异常推荐使用 `Runnable` 接口，这样代码看起来会更加简洁。
 
 工具类 `Executors` 可以实现将 `Runnable` 对象转换成 `Callable` 对象。（`Executors.callable(Runnable task)` 或 `Executors.callable(Runnable task, Object result)`）。
 
@@ -567,14 +567,15 @@ public interface Callable<V> {
 
 #### `execute()` vs `submit()`
 
-- `execute()`方法用于提交不需要返回值的任务，所以无法判断任务是否被线程池执行成功与否；
-- `submit()`方法用于提交需要返回值的任务。线程池会返回一个 `Future` 类型的对象，通过这个 `Future` 对象可以判断任务是否执行成功，并且可以通过 `Future` 的 `get()`方法来获取返回值，`get()`方法会阻塞当前线程直到任务完成，而使用 `get（long timeout，TimeUnit unit）`方法的话，如果在 `timeout` 时间内任务还没有执行完，就会抛出 `java.util.concurrent.TimeoutException`。
+`execute()` 和 `submit()`是两种提交任务到线程池的方法，有一些区别：
 
-这里只是为了演示使用，推荐使用 `ThreadPoolExecutor` 构造方法来创建线程池。
+- **返回值**：`execute()` 方法用于提交不需要返回值的任务。通常用于执行 `Runnable` 任务，无法判断任务是否被线程池成功执行。`submit()` 方法用于提交需要返回值的任务。可以提交 `Runnable` 或 `Callable` 任务。`submit()` 方法返回一个 `Future` 对象，通过这个 `Future` 对象可以判断任务是否执行成功，并获取任务的返回值（`get()`方法会阻塞当前线程直到任务完成， `get（long timeout，TimeUnit unit）`多了一个超时时间，如果在 `timeout` 时间内任务还没有执行完，就会抛出 `java.util.concurrent.TimeoutException`）。
+- **异常处理**：在使用 `submit()` 方法时，可以通过 `Future` 对象处理任务执行过程中抛出的异常；而在使用 `execute()` 方法时，异常处理需要通过自定义的 `ThreadFactory` （在线程工厂创建线程的时候设置`UncaughtExceptionHandler`对象来 处理异常）或 `ThreadPoolExecutor` 的 `afterExecute()` 方法来处理
 
 示例 1：使用 `get()`方法获取返回值。
 
 ```java
+// 这里只是为了演示使用，推荐使用 `ThreadPoolExecutor` 构造方法来创建线程池。
 ExecutorService executorService = Executors.newFixedThreadPool(3);
 
 Future<String> submit = executorService.submit(() -> {

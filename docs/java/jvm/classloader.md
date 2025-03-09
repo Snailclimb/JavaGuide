@@ -58,7 +58,7 @@ class Class<T> {
 }
 ```
 
-简单来说，**类加载器的主要作用就是加载 Java 类的字节码（ `.class` 文件）到 JVM 中（在内存中生成一个代表该类的 `Class` 对象）。** 字节码可以是 Java 源程序（`.java`文件）经过 `javac` 编译得来，也可以是通过工具动态生成或者通过网络下载得来。
+简单来说，**类加载器的主要作用就是动态加载 Java 类的字节码（ `.class` 文件）到 JVM 中（在内存中生成一个代表该类的 `Class` 对象）。** 字节码可以是 Java 源程序（`.java`文件）经过 `javac` 编译得来，也可以是通过工具动态生成或者通过网络下载得来。
 
 其实除了加载类之外，类加载器还可以加载 Java 应用所需的资源如文本、图像、配置文件、视频等等文件资源。本文只讨论其核心功能：加载类。
 
@@ -281,9 +281,50 @@ protected Class<?> loadClass(String name, boolean resolve)
 
 ### 双亲委派模型的好处
 
-双亲委派模型保证了 Java 程序的稳定运行，可以避免类的重复加载（JVM 区分不同类的方式不仅仅根据类名，相同的类文件被不同的类加载器加载产生的是两个不同的类），也保证了 Java 的核心 API 不被篡改。
+双亲委派模型是 Java 类加载机制的重要组成部分，它通过委派父加载器优先加载类的方式，实现了两个关键的安全目标：避免类的重复加载和防止核心 API 被篡改。
 
-如果没有使用双亲委派模型，而是每个类加载器加载自己的话就会出现一些问题，比如我们编写一个称为 `java.lang.Object` 类的话，那么程序运行的时候，系统就会出现两个不同的 `Object` 类。双亲委派模型可以保证加载的是 JRE 里的那个 `Object` 类，而不是你写的 `Object` 类。这是因为 `AppClassLoader` 在加载你的 `Object` 类时，会委托给 `ExtClassLoader` 去加载，而 `ExtClassLoader` 又会委托给 `BootstrapClassLoader`，`BootstrapClassLoader` 发现自己已经加载过了 `Object` 类，会直接返回，不会去加载你写的 `Object` 类。
+JVM 区分不同类的依据是类名加上加载该类的类加载器，即使类名相同，如果由不同的类加载器加载，也会被视为不同的类。 双亲委派模型确保核心类总是由 `BootstrapClassLoader` 加载，保证了核心类的唯一性。
+
+例如，当应用程序尝试加载 `java.lang.Object` 时，`AppClassLoader` 会首先将请求委派给 `ExtClassLoader`，`ExtClassLoader` 再委派给 `BootstrapClassLoader`。`BootstrapClassLoader` 会在 JRE 核心类库中找到并加载 `java.lang.Object`，从而保证应用程序使用的是 JRE 提供的标准版本。
+
+有很多小伙伴就要说了：“那我绕过双亲委派模型不就可以了么？”。
+
+然而，即使攻击者绕过了双亲委派模型，Java 仍然具备更底层的安全机制来保护核心类库。`ClassLoader` 的 `preDefineClass` 方法会在定义类之前进行类名校验。任何以 `"java."` 开头的类名都会触发 `SecurityException`，阻止恶意代码定义或加载伪造的核心类。
+
+JDK 8 中`ClassLoader#preDefineClass` 方法源码如下：
+
+```java
+private ProtectionDomain preDefineClass(String name,
+                                            ProtectionDomain pd)
+    {
+        // 检查类名是否合法
+        if (!checkName(name)) {
+            throw new NoClassDefFoundError("IllegalName: " + name);
+        }
+
+        // 防止在 "java.*" 包中定义类。
+        // 此检查对于安全性至关重要，因为它可以防止恶意代码替换核心 Java 类。
+        // JDK 9 利用平台类加载器增强了 preDefineClass 方法的安全性
+        if ((name != null) && name.startsWith("java.")) {
+            throw new SecurityException
+                ("禁止的包名: " +
+                 name.substring(0, name.lastIndexOf('.')));
+        }
+
+         // 如果未指定 ProtectionDomain，则使用默认域（defaultDomain）。
+        if (pd == null) {
+            pd = defaultDomain;
+        }
+
+        if (name != null) {
+            checkCerts(name, pd.getCodeSource());
+        }
+
+        return pd;
+    }
+```
+
+JDK 9 中这部分逻辑有所改变，多了平台类加载器（`getPlatformClassLoader()` 方法获取），增强了 `preDefineClass` 方法的安全性。这里就不贴源码了，感兴趣的话，可以自己去看看。
 
 ### 打破双亲委派模型方法
 
@@ -326,7 +367,7 @@ Tomcat 这四个自定义的类加载器对应的目录如下：
 
 拿 Spring 这个例子来说，当 Spring 需要加载业务类的时候，它不是用自己的类加载器，而是用当前线程的上下文类加载器。还记得我上面说的吗？每个 Web 应用都会创建一个单独的 `WebAppClassLoader`，并在启动 Web 应用的线程里设置线程线程上下文类加载器为 `WebAppClassLoader`。这样就可以让高层的类加载器（`SharedClassLoader`）借助子类加载器（ `WebAppClassLoader`）来加载业务类，破坏了 Java 的类加载委托机制，让应用逆向使用类加载器。
 
-线程线程上下文类加载器的原理是将一个类加载器保存在线程私有数据里，跟线程绑定，然后在需要的时候取出来使用。这个类加载器通常是由应用程序或者容器（如 Tomcat）设置的。
+线程上下文类加载器的原理是将一个类加载器保存在线程私有数据里，跟线程绑定，然后在需要的时候取出来使用。这个类加载器通常是由应用程序或者容器（如 Tomcat）设置的。
 
 `Java.lang.Thread` 中的`getContextClassLoader()`和 `setContextClassLoader(ClassLoader cl)`分别用来获取和设置线程的上下文类加载器。如果没有通过`setContextClassLoader(ClassLoader cl)`进行设置的话，线程将继承其父线程的上下文类加载器。
 

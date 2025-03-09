@@ -18,14 +18,26 @@ head:
 
 ### 面向对象和面向过程的区别
 
-两者的主要区别在于解决问题的方式不同：
+面向过程编程（Procedural-Oriented Programming，POP）和面向对象编程（Object-Oriented Programming，OOP）是两种常见的编程范式，两者的主要区别在于解决问题的方式不同：
 
-- 面向过程把解决问题的过程拆成一个个方法，通过一个个方法的执行解决问题。
-- 面向对象会先抽象出对象，然后用对象执行方法的方式解决问题。
+- **面向过程编程（POP）**：面向过程把解决问题的过程拆成一个个方法，通过一个个方法的执行解决问题。
+- **面向对象编程（OOP）**：面向对象会先抽象出对象，然后用对象执行方法的方式解决问题。
 
-另外，面向对象开发的程序一般更易维护、易复用、易扩展。
+相比较于 POP，OOP 开发的程序一般具有下面这些优点：
 
-相关 issue : [面向过程：面向过程性能比面向对象高？？](https://github.com/Snailclimb/JavaGuide/issues/431) 。
+- **易维护**：由于良好的结构和封装性，OOP 程序通常更容易维护。
+- **易复用**：通过继承和多态，OOP 设计使得代码更具复用性，方便扩展功能。
+- **易扩展**：模块化设计使得系统扩展变得更加容易和灵活。
+
+POP 的编程方式通常更为简单和直接，适合处理一些较简单的任务。
+
+POP 和 OOP 的性能差异主要取决于它们的运行机制，而不仅仅是编程范式本身。因此，简单地比较两者的性能是一个常见的误区（相关 issue : [面向过程：面向过程性能比面向对象高？？](https://github.com/Snailclimb/JavaGuide/issues/431) ）。
+
+![ POP 和 OOP  性能比较不合适](https://oss.javaguide.cn/github/javaguide/java/basis/pop-vs-oop-performance.png)
+
+在选择编程范式时，性能并不是唯一的考虑因素。代码的可维护性、可扩展性和开发效率同样重要。
+
+现代编程语言基本都支持多种编程范式，既可以用来进行面向过程编程，也可以进行面向对象编程。
 
 下面是一个求圆的面积和周长的示例，简单分别展示了面向对象和面向过程两种不同的解决方案。
 
@@ -136,13 +148,13 @@ true
 
 ### 构造方法有哪些特点？是否可被 override?
 
-构造方法特点如下：
+构造方法具有以下特点：
 
-- 名字与类名相同。
-- 没有返回值，但不能用 void 声明构造函数。
-- 生成类的对象时自动执行，无需调用。
+- **名称与类名相同**：构造方法的名称必须与类名完全一致。
+- **没有返回值**：构造方法没有返回类型，且不能使用 `void` 声明。
+- **自动执行**：在生成类的对象时，构造方法会自动执行，无需显式调用。
 
-构造方法不能被 override（重写）,但是可以 overload（重载）,所以你可以看到一个类中有多个构造函数的情况。
+构造方法**不能被重写（override）**，但**可以被重载（overload）**。因此，一个类中可以有多个构造方法，这些构造方法可以具有不同的参数列表，以提供不同的对象初始化方式。
 
 ### 面向对象三大特征
 
@@ -196,21 +208,71 @@ public class Student {
 - 对象类型和引用类型之间具有继承（类）/实现（接口）的关系；
 - 引用类型变量发出的方法调用的到底是哪个类中的方法，必须在程序运行期间才能确定；
 - 多态不能调用“只在子类存在但在父类不存在”的方法；
-- 如果子类重写了父类的方法，真正执行的是子类覆盖的方法，如果子类没有覆盖父类的方法，执行的是父类的方法。
+- 如果子类重写了父类的方法，真正执行的是子类重写的方法，如果子类没有重写父类的方法，执行的是父类的方法。
 
 ### 接口和抽象类有什么共同点和区别？
 
-**共同点**：
+#### 接口和抽象类的共同点
 
-- 都不能被实例化。
-- 都可以包含抽象方法。
-- 都可以有默认实现的方法（Java 8 可以用 `default` 关键字在接口中定义默认方法）。
+- **实例化**：接口和抽象类都不能直接实例化，只能被实现（接口）或继承（抽象类）后才能创建具体的对象。
+- **抽象方法**：接口和抽象类都可以包含抽象方法。抽象方法没有方法体，必须在子类或实现类中实现。
 
-**区别**：
+#### 接口和抽象类的区别
 
-- 接口主要用于对类的行为进行约束，你实现了某个接口就具有了对应的行为。抽象类主要用于代码复用，强调的是所属关系。
-- 一个类只能继承一个类，但是可以实现多个接口。
-- 接口中的成员变量只能是 `public static final` 类型的，不能被修改且必须有初始值，而抽象类的成员变量默认 default，可在子类中被重新定义，也可被重新赋值。
+- **设计目的**：接口主要用于对类的行为进行约束，你实现了某个接口就具有了对应的行为。抽象类主要用于代码复用，强调的是所属关系。
+- **继承和实现**：一个类只能继承一个类（包括抽象类），因为 Java 不支持多继承。但一个类可以实现多个接口，一个接口也可以继承多个其他接口。
+- **成员变量**：接口中的成员变量只能是 `public static final` 类型的，不能被修改且必须有初始值。抽象类的成员变量可以有任何修饰符（`private`, `protected`, `public`），可以在子类中被重新定义或赋值。
+- **方法**：
+  - Java 8 之前，接口中的方法默认是 `public abstract` ，也就是只能有方法声明。自 Java 8 起，可以在接口中定义 `default`（默认） 方法和 `static` （静态）方法。 自 Java 9 起，接口可以包含 `private` 方法。
+  - 抽象类可以包含抽象方法和非抽象方法。抽象方法没有方法体，必须在子类中实现。非抽象方法有具体实现，可以直接在抽象类中使用或在子类中重写。
+
+在 Java 8 及以上版本中，接口引入了新的方法类型：`default` 方法、`static` 方法和 `private` 方法。这些方法让接口的使用更加灵活。
+
+Java 8 引入的`default` 方法用于提供接口方法的默认实现，可以在实现类中被覆盖。这样就可以在不修改实现类的情况下向现有接口添加新功能，从而增强接口的扩展性和向后兼容性。
+
+```java
+public interface MyInterface {
+    default void defaultMethod() {
+        System.out.println("This is a default method.");
+    }
+}
+```
+
+Java 8 引入的`static` 方法无法在实现类中被覆盖，只能通过接口名直接调用（ `MyInterface.staticMethod()`），类似于类中的静态方法。`static` 方法通常用于定义一些通用的、与接口相关的工具方法，一般很少用。
+
+```java
+public interface MyInterface {
+    static void staticMethod() {
+        System.out.println("This is a static method in the interface.");
+    }
+}
+```
+
+Java 9 允许在接口中使用 `private` 方法。`private`方法可以用于在接口内部共享代码，不对外暴露。
+
+```java
+public interface MyInterface {
+    // default 方法
+    default void defaultMethod() {
+        commonMethod();
+    }
+
+    // static 方法
+    static void staticMethod() {
+        commonMethod();
+    }
+
+    // 私有静态方法，可以被 static 和 default 方法调用
+    private static void commonMethod() {
+        System.out.println("This is a private method used internally.");
+    }
+
+      // 实例私有方法，只能被 default 方法调用。
+    private void instanceCommonMethod() {
+        System.out.println("This is a private instance method used internally.");
+    }
+}
+```
 
 ### 深拷贝和浅拷贝区别了解吗？什么是引用拷贝？
 
@@ -299,13 +361,13 @@ System.out.println(person1.getAddress() == person1Copy.getAddress());
 
 我专门画了一张图来描述浅拷贝、深拷贝、引用拷贝：
 
-![浅拷贝、深拷贝、引用拷贝示意图](https://oss.javaguide.cn/github/javaguide/java/basis/shallow&deep-copy.png)
+![shallow&deep-copy](https://oss.javaguide.cn/github/javaguide/java/basis/shallow&deep-copy.png)
 
 ## Object
 
 ### Object 类的常见方法有哪些？
 
-Object 类是一个特殊的类，是所有类的父类。它主要提供了以下 11 个方法：
+Object 类是一个特殊的类，是所有类的父类，主要提供了以下 11 个方法：
 
 ```java
 /**
@@ -429,7 +491,7 @@ public boolean equals(Object anObject) {
 
 `hashCode()` 定义在 JDK 的 `Object` 类中，这就意味着 Java 中的任何类都包含有 `hashCode()` 函数。另外需要注意的是：`Object` 的 `hashCode()` 方法是本地方法，也就是用 C 语言或 C++ 实现的。
 
-> ⚠️ 注意：该方法在 **Oracle OpenJDK8** 中默认是 "使用线程局部状态来实现 Marsaglia's xor-shift 随机数生成", 并不是 "地址" 或者 "地址转换而来", 不同 JDK/VM 可能不同在 **Oracle OpenJDK8** 中有六种生成方式 (其中第五种是返回地址), 通过添加 VM 参数: -XX:hashCode=4 启用第五种。参考源码:
+> ⚠️ 注意：该方法在 **Oracle OpenJDK8** 中默认是 "使用线程局部状态来实现 Marsaglia's xor-shift 随机数生成", 并不是 "地址" 或者 "地址转换而来", 不同 JDK/VM 可能不同。在 **Oracle OpenJDK8** 中有六种生成方式 (其中第五种是返回地址), 通过添加 VM 参数: -XX:hashCode=4 启用第五种。参考源码:
 >
 > - <https://hg.openjdk.org/jdk8u/jdk8u/hotspot/file/87ee5ee27509/src/share/vm/runtime/globals.hpp>（1127 行）
 > - <https://hg.openjdk.org/jdk8u/jdk8u/hotspot/file/87ee5ee27509/src/share/vm/runtime/synchronizer.cpp>（537 行开始）
@@ -621,7 +683,7 @@ System.out.println(s);
 
 如果你使用 IDEA 的话，IDEA 自带的代码检查机制也会提示你修改代码。
 
-不过，使用 “+” 进行字符串拼接会产生大量的临时对象的问题在 JDK9 中得到了解决。在 JDK9 当中，字符串相加 “+” 改为了用动态方法 `makeConcatWithConstants()` 来实现，而不是大量的 `StringBuilder` 了。这个改进是 JDK9 的 [JEP 280](https://openjdk.org/jeps/280) 提出的，这也意味着 JDK 9 之后，你可以放心使用“+” 进行字符串拼接了。关于这部分改进的详细介绍，推荐阅读这篇文章：还在无脑用 [StringBuilder？来重温一下字符串拼接吧](https://juejin.cn/post/7182872058743750715) 。
+在 JDK 9 中，字符串相加“+”改为用动态方法 `makeConcatWithConstants()` 来实现，通过提前分配空间从而减少了部分临时对象的创建。然而这种优化主要针对简单的字符串拼接，如： `a+b+c` 。对于循环中的大量拼接操作，仍然会逐个动态分配内存（类似于两个两个 append 的概念），并不如手动使用 StringBuilder 来进行拼接效率高。这个改进是 JDK9 的 [JEP 280](https://openjdk.org/jeps/280) 提出的，关于这部分改进的详细介绍，推荐阅读这篇文章：还在无脑用 [StringBuilder？来重温一下字符串拼接吧](https://juejin.cn/post/7182872058743750715) 以及参考 [issue#2442](https://github.com/Snailclimb/JavaGuide/issues/2442)。
 
 ### String#equals() 和 Object#equals() 有何区别？
 
@@ -632,21 +694,26 @@ System.out.println(s);
 **字符串常量池** 是 JVM 为了提升性能和减少内存消耗针对字符串（String 类）专门开辟的一块区域，主要目的是为了避免字符串的重复创建。
 
 ```java
-// 在堆中创建字符串对象”ab“
-// 将字符串对象”ab“的引用保存在字符串常量池中
+// 在字符串常量池中创建字符串对象 ”ab“
+// 将字符串对象 ”ab“ 的引用赋值给 aa
 String aa = "ab";
-// 直接返回字符串常量池中字符串对象”ab“的引用
+// 直接返回字符串常量池中字符串对象 ”ab“，赋值给引用 bb
 String bb = "ab";
-System.out.println(aa==bb);// true
+System.out.println(aa==bb); // true
 ```
 
 更多关于字符串常量池的介绍可以看一下 [Java 内存区域详解](https://javaguide.cn/java/jvm/memory-area.html) 这篇文章。
 
 ### String s1 = new String("abc");这句话创建了几个字符串对象？
 
-会创建 1 或 2 个字符串对象。
+先说答案：会创建 1 或 2 个字符串对象。
 
-1、如果字符串常量池中不存在字符串对象“abc”的引用，那么它会在堆上创建两个字符串对象，其中一个字符串对象的引用会被保存在字符串常量池中。
+1. 字符串常量池中不存在 "abc"：会创建 2 个 字符串对象。一个在字符串常量池中，由 `ldc` 指令触发创建。一个在堆中，由 `new String()` 创建，并使用常量池中的 "abc" 进行初始化。
+2. 字符串常量池中已存在 "abc"：会创建 1 个 字符串对象。该对象在堆中，由 `new String()` 创建，并使用常量池中的 "abc" 进行初始化。
+
+下面开始详细分析。
+
+1、如果字符串常量池中不存在字符串对象 “abc”，那么它首先会在字符串常量池中创建字符串对象 "abc"，然后在堆内存中再创建其中一个字符串对象 "abc"。
 
 示例代码（JDK 1.8）：
 
@@ -656,16 +723,40 @@ String s1 = new String("abc");
 
 对应的字节码：
 
-![](https://oss.javaguide.cn/github/javaguide/open-source-project/image-20220413175809959.png)
+```java
+// 在堆内存中分配一个尚未初始化的 String 对象。
+// #2 是常量池中的一个符号引用，指向 java/lang/String 类。
+// 在类加载的解析阶段，这个符号引用会被解析成直接引用，即指向实际的 java/lang/String 类。
+0 new #2 <java/lang/String>
+// 复制栈顶的 String 对象引用，为后续的构造函数调用做准备。
+// 此时操作数栈中有两个相同的对象引用：一个用于传递给构造函数，另一个用于保持对新对象的引用，后续将其存储到局部变量表。
+3 dup
+// JVM 先检查字符串常量池中是否存在 "abc"。
+// 如果常量池中已存在 "abc"，则直接返回该字符串的引用；
+// 如果常量池中不存在 "abc"，则 JVM 会在常量池中创建该字符串字面量并返回它的引用。
+// 这个引用被压入操作数栈，用作构造函数的参数。
+4 ldc #3 <abc>
+// 调用构造方法，使用从常量池中加载的 "abc" 初始化堆中的 String 对象
+// 新的 String 对象将包含与常量池中的 "abc" 相同的内容，但它是一个独立的对象，存储于堆中。
+6 invokespecial #4 <java/lang/String.<init> : (Ljava/lang/String;)V>
+// 将堆中的 String 对象引用存储到局部变量表
+9 astore_1
+// 返回，结束方法
+10 return
+```
 
-`ldc` 命令用于判断字符串常量池中是否保存了对应的字符串对象的引用，如果保存了的话直接返回，如果没有保存的话，会在堆中创建对应的字符串对象并将该字符串对象的引用保存到字符串常量池中。
+`ldc (load constant)` 指令的确是从常量池中加载各种类型的常量，包括字符串常量、整数常量、浮点数常量，甚至类引用等。对于字符串常量，`ldc` 指令的行为如下：
 
-2、如果字符串常量池中已存在字符串对象“abc”的引用，则只会在堆中创建 1 个字符串对象“abc”。
+1. **从常量池加载字符串**：`ldc` 首先检查字符串常量池中是否已经有内容相同的字符串对象。
+2. **复用已有字符串对象**：如果字符串常量池中已经存在内容相同的字符串对象，`ldc` 会将该对象的引用加载到操作数栈上。
+3. **没有则创建新对象并加入常量池**：如果字符串常量池中没有相同内容的字符串对象，JVM 会在常量池中创建一个新的字符串对象，并将其引用加载到操作数栈中。
+
+2、如果字符串常量池中已存在字符串对象“abc”，则只会在堆中创建 1 个字符串对象“abc”。
 
 示例代码（JDK 1.8）：
 
 ```java
-// 字符串常量池中已存在字符串对象“abc”的引用
+// 字符串常量池中已存在字符串对象“abc”
 String s1 = "abc";
 // 下面这段代码只会在堆中创建 1 个字符串对象“abc”
 String s2 = new String("abc");
@@ -673,35 +764,48 @@ String s2 = new String("abc");
 
 对应的字节码：
 
-![](https://oss.javaguide.cn/github/javaguide/open-source-project/image-20220413180021072.png)
+```java
+0 ldc #2 <abc>
+2 astore_1
+3 new #3 <java/lang/String>
+6 dup
+7 ldc #2 <abc>
+9 invokespecial #4 <java/lang/String.<init> : (Ljava/lang/String;)V>
+12 astore_2
+13 return
+```
 
 这里就不对上面的字节码进行详细注释了，7 这个位置的 `ldc` 命令不会在堆中创建新的字符串对象“abc”，这是因为 0 这个位置已经执行了一次 `ldc` 命令，已经在堆中创建过一次字符串对象“abc”了。7 这个位置执行 `ldc` 命令会直接返回字符串常量池中字符串对象“abc”对应的引用。
 
 ### String#intern 方法有什么作用?
 
-`String.intern()` 是一个 native（本地）方法，其作用是将指定的字符串对象的引用保存在字符串常量池中，可以简单分为两种情况：
+`String.intern()` 是一个 `native` (本地) 方法，用来处理字符串常量池中的字符串对象引用。它的工作流程可以概括为以下两种情况：
 
-- 如果字符串常量池中保存了对应的字符串对象的引用，就直接返回该引用。
-- 如果字符串常量池中没有保存了对应的字符串对象的引用，那就在常量池中创建一个指向该字符串对象的引用并返回。
+1. **常量池中已有相同内容的字符串对象**：如果字符串常量池中已经有一个与调用 `intern()` 方法的字符串内容相同的 `String` 对象，`intern()` 方法会直接返回常量池中该对象的引用。
+2. **常量池中没有相同内容的字符串对象**：如果字符串常量池中还没有一个与调用 `intern()` 方法的字符串内容相同的对象，`intern()` 方法会将当前字符串对象的引用添加到字符串常量池中，并返回该引用。
+
+总结：
+
+- `intern()` 方法的主要作用是确保字符串引用在常量池中的唯一性。
+- 当调用 `intern()` 时，如果常量池中已经存在相同内容的字符串，则返回常量池中已有对象的引用；否则，将该字符串添加到常量池并返回其引用。
 
 示例代码（JDK 1.8） :
 
 ```java
-// 在堆中创建字符串对象”Java“
-// 将字符串对象”Java“的引用保存在字符串常量池中
+// s1 指向字符串常量池中的 "Java" 对象
 String s1 = "Java";
-// 直接返回字符串常量池中字符串对象”Java“对应的引用
+// s2 也指向字符串常量池中的 "Java" 对象，和 s1 是同一个对象
 String s2 = s1.intern();
-// 会在堆中在单独创建一个字符串对象
+// 在堆中创建一个新的 "Java" 对象，s3 指向它
 String s3 = new String("Java");
-// 直接返回字符串常量池中字符串对象”Java“对应的引用
+// s4 指向字符串常量池中的 "Java" 对象，和 s1 是同一个对象
 String s4 = s3.intern();
-// s1 和 s2 指向的是堆中的同一个对象
+// s1 和 s2 指向的是同一个常量池中的对象
 System.out.println(s1 == s2); // true
-// s3 和 s4 指向的是堆中不同的对象
+// s3 指向堆中的对象，s4 指向常量池中的对象，所以不同
 System.out.println(s3 == s4); // false
-// s1 和 s4 指向的是堆中的同一个对象
-System.out.println(s1 == s4); //true
+// s1 和 s4 都指向常量池中的同一个对象
+System.out.println(s1 == s4); // true
 ```
 
 ### String 类型的变量和常量做“+”运算时发生了什么？
@@ -782,6 +886,7 @@ public static String getStr() {
 ## 参考
 
 - 深入解析 String#intern：<https://tech.meituan.com/2014/03/06/in-depth-understanding-string-intern.html>
+- Java String 源码解读：<http://keaper.cn/2020/09/08/java-string-mian-mian-guan/>
 - R 大（RednaxelaFX）关于常量折叠的回答：<https://www.zhihu.com/question/55976094/answer/147302764>
 
 <!-- @include: @article-footer.snippet.md -->

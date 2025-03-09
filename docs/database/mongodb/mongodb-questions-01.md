@@ -149,7 +149,7 @@ WiredTiger maintains a table's data in memory using a data structure called a B-
 
 此外，WiredTiger 还支持 [LSM(Log Structured Merge)](https://source.wiredtiger.com/3.1.0/lsm.html) 树作为存储结构，MongoDB 在使用 WiredTiger 作为存储引擎时，默认使用的是 B+ 树。
 
-如果想要了解 MongoDB 使用 B 树的原因，可以看看这篇文章：[为什么 MongoDB 使用 B 树？](https://mp.weixin.qq.com/s/mMWdpbYRiT6LQcdaj4hgXQ)。
+如果想要了解 MongoDB 使用 B+ 树的原因，可以看看这篇文章：[【驳斥八股文系列】别瞎分析了，MongoDB 使用的是 B+ 树，不是你们以为的 B 树](https://zhuanlan.zhihu.com/p/519658576)。
 
 使用 B+ 树时，WiredTiger 以 **page** 为基本单位往磁盘读写数据。B+ 树的每个节点为一个 page，共有三种类型的 page：
 

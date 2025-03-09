@@ -14,11 +14,13 @@ head:
 
 <!-- @include: @small-advertisement.snippet.md -->
 
+<!-- markdownlint-disable MD024 -->
+
 ## 集合概述
 
 ### Java 集合概览
 
-Java 集合，也叫作容器，主要是由两大接口派生而来：一个是 `Collection`接口，主要用于存放单一元素；另一个是 `Map` 接口，主要用于存放键值对。对于`Collection` 接口，下面又有三个主要的子接口：`List`、`Set` 、 `Queue`、`Map`。
+Java 集合，也叫作容器，主要是由两大接口派生而来：一个是 `Collection`接口，主要用于存放单一元素；另一个是 `Map` 接口，主要用于存放键值对。对于`Collection` 接口，下面又有三个主要的子接口：`List`、`Set` 、 `Queue`。
 
 Java 集合框架如下图所示：
 
@@ -190,7 +192,7 @@ System.out.println(listOfStrings);
 
 - 头部插入/删除：只需要修改头结点的指针即可完成插入/删除操作，因此时间复杂度为 O(1)。
 - 尾部插入/删除：只需要修改尾结点的指针即可完成插入/删除操作，因此时间复杂度为 O(1)。
-- 指定位置插入/删除：需要先移动到指定位置，再修改指定节点的指针完成插入/删除，因此需要移动平均 n/2 个元素，时间复杂度为 O(n)。
+- 指定位置插入/删除：需要先移动到指定位置，再修改指定节点的指针完成插入/删除，不过由于有头尾指针，可以从较近的指针出发，因此需要遍历平均 n/4 个元素，时间复杂度为 O(n)。
 
 这里简单列举一个例子：假如我们要删除节点 9 的话，需要先遍历链表找到该节点。然后，再执行相应节点指针指向的更改，具体的源码可以参考：[LinkedList 源码分析](./linkedlist-source-code.md) 。
 
@@ -252,6 +254,102 @@ public interface RandomAccess {
 ### 说一说 ArrayList 的扩容机制吧
 
 详见笔主的这篇文章: [ArrayList 扩容机制分析](https://javaguide.cn/java/collection/arraylist-source-code.html#_3-1-%E5%85%88%E4%BB%8E-arraylist-%E7%9A%84%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E8%AF%B4%E8%B5%B7)。
+
+### 说说集合中的 fail-fast 和 fail-safe 是什么
+
+关于`fail-fast`引用`medium`中一篇文章关于`fail-fast`和`fail-safe`的说法：
+
+> Fail-fast systems are designed to immediately stop functioning upon encountering an unexpected condition. This immediate failure helps to catch errors early, making debugging more straightforward.
+
+快速失败的思想即针对可能发生的异常进行提前表明故障并停止运行，通过尽早的发现和停止错误，降低故障系统级联的风险。
+
+在`java.util`包下的大部分集合是不支持线程安全的，为了能够提前发现并发操作导致线程安全风险，提出通过维护一个`modCount`记录修改的次数，迭代期间通过比对预期修改次数`expectedModCount`和`modCount`是否一致来判断是否存在并发操作，从而实现快速失败，由此保证在避免在异常时执行非必要的复杂代码。
+
+对应的我们给出下面这样一段在示例，我们首先插入`100`个操作元素，一个线程迭代元素，一个线程删除元素，最终输出结果如愿抛出`ConcurrentModificationException`：
+
+```java
+// 使用线程安全的 CopyOnWriteArrayList 避免 ConcurrentModificationException
+List<Integer> list = new CopyOnWriteArrayList<>();
+CountDownLatch countDownLatch = new CountDownLatch(2);
+
+// 添加元素
+for (int i = 0; i < 100; i++) {
+    list.add(i);
+}
+
+Thread t1 = new Thread(() -> {
+    // 迭代元素 (注意：Integer 是不可变的，这里的 i++ 不会修改 list 中的值)
+    for (Integer i : list) {
+        i++; // 这行代码实际上没有修改list中的元素
+    }
+    countDownLatch.countDown();
+});
+
+Thread t2 = new Thread(() -> {
+    System.out.println("删除元素1");
+    list.remove(Integer.valueOf(1)); // 使用 Integer.valueOf(1) 删除指定值的对象
+    countDownLatch.countDown();
+});
+
+t1.start();
+t2.start();
+countDownLatch.await();
+```
+
+我们在初始化时插入了`100`个元素，此时对应的修改`modCount`次数为`100`，随后线程 2 在线程 1 迭代期间进行元素删除操作，此时对应的`modCount`就变为`101`。
+线程 1 在随后`foreach`第 2 轮循环发现`modCount` 为`101`，与预期的`expectedModCount(值为100因为初始化插入了元素100个)`不等，判定为并发操作异常，于是便快速失败，抛出`ConcurrentModificationException`：
+
+![](https://oss.javaguide.cn/github/javaguide/java/collection/fail-fast-and-fail-safe-insert-100-values.png)
+
+对此我们也给出`for`循环底层迭代器获取下一个元素时的`next`方法，可以看到其内部的`checkForComodification`具有针对修改次数比对的逻辑：
+
+```java
+ public E next() {
+ 			//检查是否存在并发修改
+            checkForComodification();
+            //......
+            //返回下一个元素
+            return (E) elementData[lastRet = i];
+        }
+
+final void checkForComodification() {
+		//当前循环遍历次数和预期修改次数不一致时，就会抛出ConcurrentModificationException
+            if (modCount != expectedModCount)
+                throw new ConcurrentModificationException();
+        }
+
+```
+
+而`fail-safe`也就是安全失败的含义，它旨在即使面对意外情况也能恢复并继续运行，这使得它特别适用于不确定或者不稳定的环境：
+
+> Fail-safe systems take a different approach, aiming to recover and continue even in the face of unexpected conditions. This makes them particularly suited for uncertain or volatile environments.
+
+该思想常运用于并发容器，最经典的实现就是`CopyOnWriteArrayList`的实现，通过写时复制的思想保证在进行修改操作时复制出一份快照，基于这份快照完成添加或者删除操作后，将`CopyOnWriteArrayList`底层的数组引用指向这个新的数组空间，由此避免迭代时被并发修改所干扰所导致并发操作安全问题，当然这种做法也存缺点即进行遍历操作时无法获得实时结果：
+
+![](https://oss.javaguide.cn/github/javaguide/java/collection/fail-fast-and-fail-safe-copyonwritearraylist.png)
+
+对应我们也给出`CopyOnWriteArrayList`实现`fail-safe`的核心代码，可以看到它的实现就是通过`getArray`获取数组引用然后通过`Arrays.copyOf`得到一个数组的快照，基于这个快照完成添加操作后，修改底层`array`变量指向的引用地址由此完成写时复制：
+
+```java
+public boolean add(E e) {
+        final ReentrantLock lock = this.lock;
+        lock.lock();
+        try {
+        	//获取原有数组
+            Object[] elements = getArray();
+            int len = elements.length;
+            //基于原有数组复制出一份内存快照
+            Object[] newElements = Arrays.copyOf(elements, len + 1);
+            //进行添加操作
+            newElements[len] = e;
+            //array指向新的数组
+            setArray(newElements);
+            return true;
+        } finally {
+            lock.unlock();
+        }
+    }
+```
 
 ## Set
 

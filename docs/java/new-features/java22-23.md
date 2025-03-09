@@ -1,0 +1,427 @@
+---
+title: Java 22 & 23 新特性概览
+category: Java
+tag:
+  - Java新特性
+---
+
+JDK 23 和 JDK 22 一样，这也是一个非 LTS（长期支持）版本，Oracle 仅提供六个月的支持。下一个长期支持版是 JDK 25，预计明年 9 月份发布。
+
+![](https://oss.javaguide.cn/github/javaguide/java/new-features/jdk8~jdk24.png)
+
+由于 JDK 22 和 JDK 23 重合的新特性较多，这里主要以 JDK 23 为主介绍，会补充 JDK 22 独有的一些特性。
+
+JDK 23 一共有 12 个新特性：
+
+- [JEP 455: 模式中的原始类型、instanceof 和 switch（预览）](https://openjdk.org/jeps/455)
+- [JEP 456: 类文件 API（第二次预览）](https://openjdk.org/jeps/466)
+- [JEP 467：Markdown 文档注释](https://openjdk.org/jeps/467)
+- [JEP 469：向量 API（第八次孵化）](https://openjdk.org/jeps/469)
+- [JEP 473：流收集器（第二次预览）](https://openjdk.org/jeps/473)
+- [JEP 471：弃用 sun.misc.Unsafe 中的内存访问方法](https://openjdk.org/jeps/471)
+- [JEP 474：ZGC：默认的分代模式](https://openjdk.org/jeps/474)
+- [JEP 476：模块导入声明 (预览)](https://openjdk.org/jeps/476)
+- [JEP 477：未命名类和实例 main 方法 （第三次预览）](https://openjdk.org/jeps/477)
+- [JEP 480：结构化并发 （第三次预览）](https://openjdk.org/jeps/480)
+- [JEP 481： 作用域值 （第三次预览）](https://openjdk.org/jeps/481)
+- [JEP 482：灵活的构造函数体（第二次预览）](https://openjdk.org/jeps/482)
+
+JDK 22 的新特性如下：
+
+![](https://oss.javaguide.cn/github/javaguide/java/new-features/jdk22-new-features.png)
+
+其中，下面这 3 条新特性我会单独拎出来详细介绍一下：
+
+- [JEP 423：G1 垃圾收集器区域固定](https://openjdk.org/jeps/423)
+- [JEP 454：外部函数与内存 API](https://openjdk.org/jeps/454)
+- [JEP 456：未命名模式和变量](https://openjdk.org/jeps/456)
+- [JEP 458：启动多文件源代码程序](https://openjdk.org/jeps/458)
+
+## JDK 23
+
+### JEP 455: 模式中的原始类型、instanceof 和 switch（预览）
+
+在 JEP 455 之前， `instanceof` 只支持引用类型，`switch` 表达式和语句的 `case` 标签只能使用整数字面量、枚举常量和字符串字面量。
+
+JEP 455 的预览特性中，`instanceof` 和 `switch` 全面支持所有原始类型，包括 `byte`, `short`, `char`, `int`, `long`, `float`, `double`, `boolean`。
+
+```java
+// 传统写法
+if (i >= -128 && i <= 127) {
+    byte b = (byte)i;
+    ... b ...
+}
+
+// 使用 instanceof 改进
+if (i instanceof byte b) {
+    ... b ...
+}
+
+long v = ...;
+// 传统写法
+if (v == 1L) {
+    // ...
+} else if (v == 2L) {
+    // ...
+} else if (v == 10_000_000_000L) {
+    // ...
+}
+
+// 使用 long 类型的 case 标签
+switch (v) {
+    case 1L:
+        // ...
+        break;
+    case 2L:
+        // ...
+        break;
+    case 10_000_000_000L:
+        // ...
+        break;
+    default:
+        // ...
+}
+```
+
+### JEP 456: 类文件 API（第二次预览）
+
+类文件 API 在 JDK 22 进行了第一次预览，由 [JEP 457](https://openjdk.org/jeps/457) 提出。
+
+类文件 API 的目标是提供一套标准化的 API，用于解析、生成和转换 Java 类文件，取代过去对第三方库（如 ASM）在类文件处理上的依赖。
+
+```java
+// 创建一个 ClassFile 对象，这是操作类文件的入口。
+ClassFile cf = ClassFile.of();
+// 解析字节数组为 ClassModel
+ClassModel classModel = cf.parse(bytes);
+
+// 构建新的类文件，移除以 "debug" 开头的所有方法
+byte[] newBytes = cf.build(classModel.thisClass().asSymbol(),
+        classBuilder -> {
+            // 遍历所有类元素
+            for (ClassElement ce : classModel) {
+                // 判断是否为方法 且 方法名以 "debug" 开头
+                if (!(ce instanceof MethodModel mm
+                        && mm.methodName().stringValue().startsWith("debug"))) {
+                    // 添加到新的类文件中
+                    classBuilder.with(ce);
+                }
+            }
+        });
+```
+
+### JEP 467：Markdown 文档注释
+
+在 JavaDoc 文档注释中可以使用 Markdown 语法，取代原本只能使用 HTML 和 JavaDoc 标签的方式。
+
+Markdown 更简洁易读，减少了手动编写 HTML 的繁琐，同时保留了对 HTML 元素和 JavaDoc 标签的支持。这个增强旨在让 API 文档注释的编写和阅读变得更加轻松，同时不会影响现有注释的解释。Markdown 提供了对常见文档元素（如段落、列表、链接等）的简化表达方式，提升了文档注释的可维护性和开发者体验。
+
+![Markdown 文档注释](https://oss.javaguide.cn/github/javaguide/java/new-features/jep467-markdown-documentation-comments.png)
+
+### JEP 469：向量 API（第八次孵化）
+
+向量计算由对向量的一系列操作组成。向量 API 用来表达向量计算，该计算可以在运行时可靠地编译为支持的 CPU 架构上的最佳向量指令，从而实现优于等效标量计算的性能。
+
+向量 API 的目标是为用户提供简洁易用且与平台无关的表达范围广泛的向量计算。
+
+这是对数组元素的简单标量计算：
+
+```java
+void scalarComputation(float[] a, float[] b, float[] c) {
+   for (int i = 0; i < a.length; i++) {
+        c[i] = (a[i] * a[i] + b[i] * b[i]) * -1.0f;
+   }
+}
+```
+
+这是使用 Vector API 进行的等效向量计算：
+
+```java
+static final VectorSpecies<Float> SPECIES = FloatVector.SPECIES_PREFERRED;
+
+void vectorComputation(float[] a, float[] b, float[] c) {
+    int i = 0;
+    int upperBound = SPECIES.loopBound(a.length);
+    for (; i < upperBound; i += SPECIES.length()) {
+        // FloatVector va, vb, vc;
+        var va = FloatVector.fromArray(SPECIES, a, i);
+        var vb = FloatVector.fromArray(SPECIES, b, i);
+        var vc = va.mul(va)
+                   .add(vb.mul(vb))
+                   .neg();
+        vc.intoArray(c, i);
+    }
+    for (; i < a.length; i++) {
+        c[i] = (a[i] * a[i] + b[i] * b[i]) * -1.0f;
+    }
+}
+```
+
+### JEP 473：流收集器（第二次预览）
+
+流收集器在 JDK 22 进行了第一次预览，由 [JEP 461](https://openjdk.org/jeps/457) 提出。
+
+这个改进使得 Stream API 可以支持自定义中间操作。
+
+```java
+source.gather(a).gather(b).gather(c).collect(...)
+```
+
+### JEP 471：弃用 sun.misc.Unsafe 中的内存访问方法
+
+JEP 471 提议弃用 `sun.misc.Unsafe` 中的内存访问方法，这些方法将来的版本中会被移除。
+
+这些不安全的方法已有安全高效的替代方案：
+
+- `java.lang.invoke.VarHandle` ：JDK 9 (JEP 193) 中引入，提供了一种安全有效地操作堆内存的方法，包括对象的字段、类的静态字段以及数组元素。
+- `java.lang.foreign.MemorySegment` ：JDK 22 (JEP 454) 中引入，提供了一种安全有效地访问堆外内存的方法，有时会与 `VarHandle` 协同工作。
+
+这两个类是 Foreign Function & Memory API（外部函数和内存 API） 的核心组件，分别用于管理和操作堆外内存。Foreign Function & Memory API 在 JDK 22 中正式转正，成为标准特性。
+
+```java
+import jdk.incubator.foreign.*;
+import java.lang.invoke.VarHandle;
+
+// 管理堆外整数数组的类
+class OffHeapIntBuffer {
+
+    // 用于访问整数元素的VarHandle
+    private static final VarHandle ELEM_VH = ValueLayout.JAVA_INT.arrayElementVarHandle();
+
+    // 内存管理器
+    private final Arena arena;
+
+    // 堆外内存段
+    private final MemorySegment buffer;
+
+    // 构造函数，分配指定数量的整数空间
+    public OffHeapIntBuffer(long size) {
+        this.arena  = Arena.ofShared();
+        this.buffer = arena.allocate(ValueLayout.JAVA_INT, size);
+    }
+
+    // 释放内存
+    public void deallocate() {
+        arena.close();
+    }
+
+    // 以volatile方式设置指定索引的值
+    public void setVolatile(long index, int value) {
+        ELEM_VH.setVolatile(buffer, 0L, index, value);
+    }
+
+    // 初始化指定范围的元素为0
+    public void initialize(long start, long n) {
+        buffer.asSlice(ValueLayout.JAVA_INT.byteSize() * start,
+                       ValueLayout.JAVA_INT.byteSize() * n)
+              .fill((byte) 0);
+    }
+
+    // 将指定范围的元素复制到新数组
+    public int[] copyToNewArray(long start, int n) {
+        return buffer.asSlice(ValueLayout.JAVA_INT.byteSize() * start,
+                              ValueLayout.JAVA_INT.byteSize() * n)
+                     .toArray(ValueLayout.JAVA_INT);
+    }
+}
+```
+
+### JEP 474：ZGC：默认的分代模式
+
+Z 垃圾回收器 (ZGC) 的默认模式切换为分代模式，并弃用非分代模式，计划在未来版本中移除。这是因为分代 ZGC 是大多数场景下的更优选择。
+
+### JEP 476：模块导入声明 (预览)
+
+模块导入声明允许在 Java 代码中简洁地导入整个模块的所有导出包，而无需逐个声明包的导入。这一特性简化了模块化库的重用，特别是在使用多个模块时，避免了大量的包导入声明，使得开发者可以更方便地访问第三方库和 Java 基本类。
+
+此特性对初学者和原型开发尤为有用，因为它无需开发者将自己的代码模块化，同时保留了对传统导入方式的兼容性，提升了开发效率和代码可读性。
+
+```java
+// 导入整个 java.base 模块，开发者可以直接访问 List、Map、Stream 等类，而无需每次手动导入相关包
+import module java.base;
+
+public class Example {
+    public static void main(String[] args) {
+        String[] fruits = { "apple", "berry", "citrus" };
+        Map<String, String> fruitMap = Stream.of(fruits)
+            .collect(Collectors.toMap(
+                s -> s.toUpperCase().substring(0, 1),
+                Function.identity()));
+
+        System.out.println(fruitMap);
+    }
+}
+```
+
+### JEP 477：未命名类和实例 main 方法 （第三次预览）
+
+这个特性主要简化了 `main` 方法的的声明。对于 Java 初学者来说，这个 `main` 方法的声明引入了太多的 Java 语法概念，不利于初学者快速上手。
+
+没有使用该特性之前定义一个 `main` 方法：
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+```
+
+使用该新特性之后定义一个 `main` 方法：
+
+```java
+class HelloWorld {
+    void main() {
+        System.out.println("Hello, World!");
+    }
+}
+```
+
+进一步简化（未命名的类允许我们省略类名）
+
+```java
+void main() {
+   System.out.println("Hello, World!");
+}
+```
+
+### JEP 480：结构化并发 （第三次预览）
+
+Java 19 引入了结构化并发，一种多线程编程方法，目的是为了通过结构化并发 API 来简化多线程编程，并不是为了取代`java.util.concurrent`，目前处于孵化器阶段。
+
+结构化并发将不同线程中运行的多个任务视为单个工作单元，从而简化错误处理、提高可靠性并增强可观察性。也就是说，结构化并发保留了单线程代码的可读性、可维护性和可观察性。
+
+结构化并发的基本 API 是[`StructuredTaskScope`](https://download.java.net/java/early_access/loom/docs/api/jdk.incubator.concurrent/jdk/incubator/concurrent/StructuredTaskScope.html)。`StructuredTaskScope` 支持将任务拆分为多个并发子任务，在它们自己的线程中执行，并且子任务必须在主任务继续之前完成。
+
+`StructuredTaskScope` 的基本用法如下：
+
+```java
+    try (var scope = new StructuredTaskScope<Object>()) {
+        // 使用fork方法派生线程来执行子任务
+        Future<Integer> future1 = scope.fork(task1);
+        Future<String> future2 = scope.fork(task2);
+        // 等待线程完成
+        scope.join();
+        // 结果的处理可能包括处理或重新抛出异常
+        ... process results/exceptions ...
+    } // close
+```
+
+结构化并发非常适合虚拟线程，虚拟线程是 JDK 实现的轻量级线程。许多虚拟线程共享同一个操作系统线程，从而允许非常多的虚拟线程。
+
+### JEP 481：作用域值 （第三次预览）
+
+作用域值（Scoped Values）可以在线程内和线程间共享不可变的数据，优于线程局部变量，尤其是在使用大量虚拟线程时。
+
+```java
+final static ScopedValue<...> V = new ScopedValue<>();
+
+// In some method
+ScopedValue.where(V, <value>)
+           .run(() -> { ... V.get() ... call methods ... });
+
+// In a method called directly or indirectly from the lambda expression
+... V.get() ...
+```
+
+作用域值允许在大型程序中的组件之间安全有效地共享数据，而无需求助于方法参数。
+
+### JEP 482：灵活的构造函数体（第二次预览）
+
+这个特性最初在 JDK 22 由 [JEP 447: Statements before super(...) (Preview)](https://openjdk.org/jeps/447)提出。
+
+Java 要求在构造函数中，`super(...)` 或 `this(...)` 调用必须作为第一条语句出现。这意味着我们无法在调用父类构造函数之前在子类构造函数中直接初始化字段。
+
+灵活的构造函数体解决了这一问题，它允许在构造函数体内，在调用 `super(..)` 或 `this(..)` 之前编写语句，这些语句可以初始化字段，但不能引用正在构造的实例。这样可以防止在父类构造函数中调用子类方法时，子类的字段未被正确初始化，增强了类构造的可靠性。
+
+这一特性解决了之前 Java 语法限制了构造函数代码组织的问题，让开发者能够更自由、更自然地表达构造函数的行为，例如在构造函数中直接进行参数验证、准备和共享，而无需依赖辅助方法或构造函数，提高了代码的可读性和可维护性。
+
+```java
+class Person {
+    private final String name;
+    private int age;
+
+    public Person(String name, int age) {
+        if (age < 0) {
+            throw new IllegalArgumentException("Age cannot be negative.");
+        }
+        this.name = name; // 在调用父类构造函数之前初始化字段
+        this.age = age;
+        // ... 其他初始化代码
+    }
+}
+
+class Employee extends Person {
+    private final int employeeId;
+
+    public Employee(String name, int age, int employeeId) {
+        this.employeeId = employeeId; // 在调用父类构造函数之前初始化字段
+        super(name, age); // 调用父类构造函数
+        // ... 其他初始化代码
+    }
+}
+```
+
+## JDK 22
+
+### JEP 423：G1 垃圾收集器区域固定
+
+JEP 423 提出在 G1 垃圾收集器中实现区域固定（Region Pinning）功能，旨在减少由于 Java Native Interface (JNI) 关键区域导致的延迟问题。
+
+JNI 关键区域内的对象不能在垃圾收集时被移动，因此 G1 以往通过禁用垃圾收集解决该问题，导致线程阻塞及严重的延迟。通过在 G1 的老年代和年轻代中引入区域固定机制，允许在关键区域内固定对象所在的内存区域，同时继续回收未固定的区域，避免了禁用垃圾回收的需求。这种改进有助于显著降低延迟，提升系统在与 JNI 交互时的吞吐量和稳定性。
+
+### JEP 454：外部函数和内存 API
+
+Java 程序可以通过该 API 与 Java 运行时之外的代码和数据进行互操作。通过高效地调用外部函数（即 JVM 之外的代码）和安全地访问外部内存（即不受 JVM 管理的内存），该 API 使 Java 程序能够调用本机库并处理本机数据，而不会像 JNI 那样危险和脆弱。
+
+外部函数和内存 API 在 Java 17 中进行了第一轮孵化，由 [JEP 412](https://openjdk.java.net/jeps/412) 提出。Java 18 中进行了第二次孵化，由[JEP 419](https://openjdk.org/jeps/419) 提出。Java 19 中是第一次预览，由 [JEP 424](https://openjdk.org/jeps/424) 提出。JDK 20 中是第二次预览，由 [JEP 434](https://openjdk.org/jeps/434) 提出。JDK 21 中是第三次预览，由 [JEP 442](https://openjdk.org/jeps/442) 提出。
+
+最终，该特性在 JDK 22 中顺利转正。
+
+在 [Java 19 新特性概览](./java19.md) 中，我有详细介绍到外部函数和内存 API，这里就不再做额外的介绍了。
+
+### JEP 456：未命名模式和变量
+
+未命名模式和变量在 JDK 21 中由 [JEP 443](https://openjdk.org/jeps/443)提出预览，JDK 22 中就已经转正。
+
+关于这个新特性的详细介绍，可以看看[Java 21 新特性概览(重要)](./java21.md)这篇文章中的介绍。
+
+### JEP 458：启动多文件源代码程序
+
+Java 11 引入了 [JEP 330：启动单文件源代码程序](https://openjdk.org/jeps/330)，增强了 `java` 启动器的功能，使其能够直接运行单个 Java 源文件。通过命令 `java HelloWorld.java`，Java 可以在内存中隐式编译源代码并立即执行，而不需要在磁盘上生成 `.class` 文件。这简化了开发者在编写小型工具程序或学习 Java 时的工作流程，避免了手动编译的额外步骤。
+
+假设文件`Prog.java`声明了两个类：
+
+```java
+class Prog {
+    public static void main(String[] args) { Helper.run(); }
+}
+
+class Helper {
+    static void run() { System.out.println("Hello!"); }
+}
+```
+
+`java Prog.java`命令会在内存中编译两个类并执行`main`该文件中声明的第一个类的方法。
+
+这种方式有一个限制，程序的所有源代码必须放在一个`.java`文件中。
+
+[JEP 458：启动多文件源代码程序](https://openjdk.org/jeps/458) 是对 JEP 330 功能的扩展，允许直接运行由多个 Java 源文件组成的程序，而无需显式的编译步骤。
+
+假设一个目录中有两个 Java 源文件 `Prog.java` 和 `Helper.java`，每个文件各自声明了一个类：
+
+```java
+// Prog.java
+class Prog {
+    public static void main(String[] args) { Helper.run(); }
+}
+
+// Helper.java
+class Helper {
+    static void run() { System.out.println("Hello!"); }
+}
+```
+
+当你运行命令 `java Prog.java` 时，Java 启动器会在内存中编译并执行 `Prog` 类的 `main` 方法。由于 `Prog` 类中的代码引用了 `Helper` 类，启动器会自动在文件系统中找到 `Helper.java` 文件，编译其中的 `Helper` 类，并在内存中执行它。这个过程是自动的，开发者无需显式调用 `javac` 来编译所有源文件。
+
+这一特性使得从小型项目到大型项目的过渡更加平滑，开发者可以自由选择何时引入构建工具，避免在快速迭代时被迫设置复杂的项目结构。该特性消除了单文件的限制，进一步简化了从单一文件到多文件程序的开发过程，特别适合原型开发、快速实验以及早期项目的探索阶段。

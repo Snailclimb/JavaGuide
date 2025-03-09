@@ -25,13 +25,13 @@ JWT 自身包含了身份验证所需要的所有信息，因此，我们的服�
 
 ## JWT 由哪些部分组成？
 
-![此图片来源于：https://supertokens.com/blog/oauth-vs-jwt](https://oss.javaguide.cn/javaguide/system-design/jwt/jwt-composition.png)
+![JWT 组成](https://oss.javaguide.cn/javaguide/system-design/jwt/jwt-composition.png)
 
 JWT 本质上就是一组字串，通过（`.`）切分成三个为 Base64 编码的部分：
 
-- **Header** : 描述 JWT 的元数据，定义了生成签名的算法以及 `Token` 的类型。
-- **Payload** : 用来存放实际需要传递的数据
-- **Signature（签名）**：服务器通过 Payload、Header 和一个密钥(Secret)使用 Header 里面指定的签名算法（默认是 HMAC SHA256）生成。
+- **Header（头部）** : 描述 JWT 的元数据，定义了生成签名的算法以及 `Token` 的类型。Header 被 Base64Url 编码后成为 JWT 的第一部分。
+- **Payload（载荷）** : 用来存放实际需要传递的数据，包含声明（Claims），如`sub`（subject，主题）、`jti`（JWT ID）。Payload 被 Base64Url 编码后成为 JWT 的第二部分。
+- **Signature（签名）**：服务器通过 Payload、Header 和一个密钥(Secret)使用 Header 里面指定的签名算法（默认是 HMAC SHA256）生成。生成的签名会成为 JWT 的第三部分。
 
 JWT 通常是这样的：`xxxxx.yyyyy.zzzzz`。
 
@@ -162,7 +162,7 @@ HMACSHA256(
 3. JWT 存放在 localStorage 中而不是 Cookie 中，避免 CSRF 风险。
 4. 一定不要将隐私信息存放在 Payload 当中。
 5. 密钥一定保管好，一定不要泄露出去。JWT 安全的核心在于签名，签名安全的核心在密钥。
-6. Payload 要加入 `exp` （JWT 的过期时间），永久有效的 JWT 不合理。并且，JWT 的过期时间不易过长。
+6. Payload 要加入 `exp` （JWT 的过期时间），永久有效的 JWT 不合理。并且，JWT 的过期时间不宜过长。
 7. ……
 
 <!-- @include: @article-footer.snippet.md -->

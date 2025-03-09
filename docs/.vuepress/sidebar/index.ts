@@ -112,6 +112,7 @@ export default sidebar({
               collapsible: true,
               children: [
                 "optimistic-lock-and-pessimistic-lock",
+                "cas",
                 "jmm",
                 "java-thread-pool-summary",
                 "java-thread-pool-best-practices",
@@ -167,6 +168,7 @@ export default sidebar({
             "java19",
             "java20",
             "java21",
+            "java22-23",
           ],
         },
       ],
@@ -412,6 +414,7 @@ export default sidebar({
                 "spring-transaction",
                 "spring-design-patterns-summary",
                 "spring-boot-auto-assembly-principles",
+                "async",
               ],
             },
           ],
@@ -579,6 +582,7 @@ export default sidebar({
       collapsible: true,
       children: [
         "high-availability-system-design",
+        "idempotency",
         "redundancy",
         "limit-request",
         "fallback-and-circuit-breaker",

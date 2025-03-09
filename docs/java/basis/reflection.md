@@ -116,7 +116,7 @@ public class TargetObject {
 }
 ```
 
-2. 使用反射操作这个类的方法以及参数
+2. 使用反射操作这个类的方法以及属性
 
 ```java
 package cn.javaguide;
@@ -177,7 +177,7 @@ I love JavaGuide
 value is JavaGuide
 ```
 
-**注意** : 有读者提到上面代码运行会抛出 `ClassNotFoundException` 异常,具体原因是你没有下面把这段代码的包名替换成自己创建的 `TargetObject` 所在的包 。
+**注意** : 有读者提到上面代码运行会抛出 `ClassNotFoundException` 异常，具体原因是你没有下面把这段代码的包名替换成自己创建的 `TargetObject` 所在的包 。
 可以参考：<https://www.cnblogs.com/chanshuyi/p/head_first_of_reflection.html> 这篇文章。
 
 ```java

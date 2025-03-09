@@ -14,11 +14,11 @@ head:
 
 <!-- @include: @article-header.snippet.md -->
 
-## JMM(Java 内存模型)
+## ⭐️JMM(Java 内存模型)
 
 JMM（Java 内存模型）相关的问题比较多，也比较重要，于是我单独抽了一篇文章来总结 JMM 相关的知识点和问题：[JMM（Java 内存模型）详解](./jmm.md) 。
 
-## volatile 关键字
+## ⭐️volatile 关键字
 
 ### 如何保证变量的可见性？
 
@@ -174,7 +174,7 @@ public void increase() {
 }
 ```
 
-## 乐观锁和悲观锁
+## ⭐️乐观锁和悲观锁
 
 ### 什么是悲观锁？
 
@@ -285,6 +285,108 @@ public final native boolean compareAndSwapLong(Object o, long offset, long expec
 
 关于 `Unsafe` 类的详细介绍可以看这篇文章：[Java 魔法类 Unsafe 详解 - JavaGuide - 2022](https://javaguide.cn/java/basis/unsafe.html) 。
 
+### Java 中 CAS 是如何实现的？
+
+在 Java 中，实现 CAS（Compare-And-Swap, 比较并交换）操作的一个关键类是`Unsafe`。
+
+`Unsafe`类位于`sun.misc`包下，是一个提供低级别、不安全操作的类。由于其强大的功能和潜在的危险性，它通常用于 JVM 内部或一些需要极高性能和底层访问的库中，而不推荐普通开发者在应用程序中使用。关于 `Unsafe`类的详细介绍，可以阅读这篇文章：📌[Java 魔法类 Unsafe 详解](https://javaguide.cn/java/basis/unsafe.html)。
+
+`sun.misc`包下的`Unsafe`类提供了`compareAndSwapObject`、`compareAndSwapInt`、`compareAndSwapLong`方法来实现的对`Object`、`int`、`long`类型的 CAS 操作：
+
+```java
+/**
+ * 以原子方式更新对象字段的值。
+ *
+ * @param o        要操作的对象
+ * @param offset   对象字段的内存偏移量
+ * @param expected 期望的旧值
+ * @param x        要设置的新值
+ * @return 如果值被成功更新，则返回 true；否则返回 false
+ */
+boolean compareAndSwapObject(Object o, long offset, Object expected, Object x);
+
+/**
+ * 以原子方式更新 int 类型的对象字段的值。
+ */
+boolean compareAndSwapInt(Object o, long offset, int expected, int x);
+
+/**
+ * 以原子方式更新 long 类型的对象字段的值。
+ */
+boolean compareAndSwapLong(Object o, long offset, long expected, long x);
+```
+
+`Unsafe`类中的 CAS 方法是`native`方法。`native`关键字表明这些方法是用本地代码（通常是 C 或 C++）实现的，而不是用 Java 实现的。这些方法直接调用底层的硬件指令来实现原子操作。也就是说，Java 语言并没有直接用 Java 实现 CAS，而是通过 C++ 内联汇编的形式实现的（通过 JNI 调用）。因此，CAS 的具体实现与操作系统以及 CPU 密切相关。
+
+`java.util.concurrent.atomic` 包提供了一些用于原子操作的类。这些类利用底层的原子指令，确保在多线程环境下的操作是线程安全的。
+
+![JUC原子类概览](https://oss.javaguide.cn/github/javaguide/java/JUC%E5%8E%9F%E5%AD%90%E7%B1%BB%E6%A6%82%E8%A7%88.png)
+
+关于这些 Atomic 原子类的介绍和使用，可以阅读这篇文章：[Atomic 原子类总结](https://javaguide.cn/java/concurrent/atomic-classes.html)。
+
+`AtomicInteger`是 Java 的原子类之一，主要用于对 `int` 类型的变量进行原子操作，它利用`Unsafe`类提供的低级别原子操作方法实现无锁的线程安全性。
+
+下面，我们通过解读`AtomicInteger`的核心源码（JDK1.8），来说明 Java 如何使用`Unsafe`类的方法来实现原子操作。
+
+`AtomicInteger`核心源码如下：
+
+```java
+// 获取 Unsafe 实例
+private static final Unsafe unsafe = Unsafe.getUnsafe();
+private static final long valueOffset;
+
+static {
+    try {
+        // 获取“value”字段在AtomicInteger类中的内存偏移量
+        valueOffset = unsafe.objectFieldOffset
+            (AtomicInteger.class.getDeclaredField("value"));
+    } catch (Exception ex) { throw new Error(ex); }
+}
+// 确保“value”字段的可见性
+private volatile int value;
+
+// 如果当前值等于预期值，则原子地将值设置为newValue
+// 使用 Unsafe#compareAndSwapInt 方法进行CAS操作
+public final boolean compareAndSet(int expect, int update) {
+    return unsafe.compareAndSwapInt(this, valueOffset, expect, update);
+}
+
+// 原子地将当前值加 delta 并返回旧值
+public final int getAndAdd(int delta) {
+    return unsafe.getAndAddInt(this, valueOffset, delta);
+}
+
+// 原子地将当前值加 1 并返回加之前的值（旧值）
+// 使用 Unsafe#getAndAddInt 方法进行CAS操作。
+public final int getAndIncrement() {
+    return unsafe.getAndAddInt(this, valueOffset, 1);
+}
+
+// 原子地将当前值减 1 并返回减之前的值（旧值）
+public final int getAndDecrement() {
+    return unsafe.getAndAddInt(this, valueOffset, -1);
+}
+```
+
+`Unsafe#getAndAddInt`源码：
+
+```java
+// 原子地获取并增加整数值
+public final int getAndAddInt(Object o, long offset, int delta) {
+    int v;
+    do {
+        // 以 volatile 方式获取对象 o 在内存偏移量 offset 处的整数值
+        v = getIntVolatile(o, offset);
+    } while (!compareAndSwapInt(o, offset, v, v + delta));
+    // 返回旧值
+    return v;
+}
+```
+
+可以看到，`getAndAddInt` 使用了 `do-while` 循环：在`compareAndSwapInt`操作失败时，会不断重试直到成功。也就是说，`getAndAddInt`方法会通过 `compareAndSwapInt` 方法来尝试更新 `value` 的值，如果更新失败（当前值在此期间被其他线程修改），它会重新获取当前值并再次尝试更新，直到操作成功。
+
+由于 CAS 操作可能会因为并发冲突而失败，因此通常会与`while`循环搭配使用，在失败后不断重试，直到操作成功。这就是 **自旋锁机制** 。
+
 ### CAS 算法存在哪些问题？
 
 ABA 问题是 CAS 算法最常见的问题。
@@ -314,14 +416,16 @@ public boolean compareAndSet(V   expectedReference,
 
 CAS 经常会用到自旋操作来进行重试，也就是不成功就一直循环执行直到成功。如果长时间不成功，会给 CPU 带来非常大的执行开销。
 
-如果 JVM 能支持处理器提供的 pause 指令那么效率会有一定的提升，pause 指令有两个作用：
+如果 JVM 能够支持处理器提供的`pause`指令，那么自旋操作的效率将有所提升。`pause`指令有两个重要作用：
 
-1. 可以延迟流水线执行指令，使 CPU 不会消耗过多的执行资源，延迟的时间取决于具体实现的版本，在一些处理器上延迟时间是零。
-2. 可以避免在退出循环的时候因内存顺序冲突而引起 CPU 流水线被清空，从而提高 CPU 的执行效率。
+1. **延迟流水线执行指令**：`pause`指令可以延迟指令的执行，从而减少 CPU 的资源消耗。具体的延迟时间取决于处理器的实现版本，在某些处理器上，延迟时间可能为零。
+2. **避免内存顺序冲突**：在退出循环时，`pause`指令可以避免由于内存顺序冲突而导致的 CPU 流水线被清空，从而提高 CPU 的执行效率。
 
 #### 只能保证一个共享变量的原子操作
 
-CAS 只对单个共享变量有效，当操作涉及跨多个共享变量时 CAS 无效。但是从 JDK 1.5 开始，提供了`AtomicReference`类来保证引用对象之间的原子性，你可以把多个变量放在一个对象里来进行 CAS 操作.所以我们可以使用锁或者利用`AtomicReference`类把多个共享变量合并成一个共享变量来操作。
+CAS 操作仅能对单个共享变量有效。当需要操作多个共享变量时，CAS 就显得无能为力。不过，从 JDK 1.5 开始，Java 提供了`AtomicReference`类，这使得我们能够保证引用对象之间的原子性。通过将多个变量封装在一个对象中，我们可以使用`AtomicReference`来执行 CAS 操作。
+
+除了 `AtomicReference` 这种方式之外，还可以利用加锁来保证。
 
 ## synchronized 关键字
 
@@ -388,11 +492,11 @@ synchronized(this) {
 
 ### 构造方法可以用 synchronized 修饰么？
 
-先说结论：**构造方法不能使用 synchronized 关键字修饰。**
+构造方法不能使用 synchronized 关键字修饰。不过，可以在构造方法内部使用 synchronized 代码块。
 
-构造方法本身就属于线程安全的，不存在同步的构造方法一说。
+另外，构造方法本身是线程安全的，但如果在构造方法中涉及到共享资源的操作，就需要采取适当的同步措施来保证整个构造过程的线程安全。
 
-### synchronized 底层原理了解吗？
+### ⭐️synchronized 底层原理了解吗？
 
 synchronized 关键字底层原理属于 JVM 层面的东西。
 
@@ -426,13 +530,13 @@ public class SynchronizedDemo {
 
 ![执行 monitorenter 获取锁](https://oss.javaguide.cn/github/javaguide/java/concurrent/synchronized-get-lock-code-block.png)
 
-对象锁的的拥有者线程才可以执行 `monitorexit` 指令来释放锁。在执行 `monitorexit` 指令后，将锁计数器设为 0，表明锁被释放，其他线程可以尝试获取锁。
+对象锁的拥有者线程才可以执行 `monitorexit` 指令来释放锁。在执行 `monitorexit` 指令后，将锁计数器设为 0，表明锁被释放，其他线程可以尝试获取锁。
 
 ![执行 monitorexit 释放锁](https://oss.javaguide.cn/github/javaguide/java/concurrent/synchronized-release-lock-block.png)
 
 如果获取对象锁失败，那当前线程就要阻塞等待，直到锁被另外一个线程释放为止。
 
-#### synchronized 修饰方法的的情况
+#### synchronized 修饰方法的情况
 
 ```java
 public class SynchronizedDemo2 {
@@ -445,7 +549,7 @@ public class SynchronizedDemo2 {
 
 ![synchronized关键字原理](https://oss.javaguide.cn/github/javaguide/synchronized%E5%85%B3%E9%94%AE%E5%AD%97%E5%8E%9F%E7%90%862.png)
 
-`synchronized` 修饰的方法并没有 `monitorenter` 指令和 `monitorexit` 指令，取得代之的确实是 `ACC_SYNCHRONIZED` 标识，该标识指明了该方法是一个同步方法。JVM 通过该 `ACC_SYNCHRONIZED` 访问标志来辨别一个方法是否声明为同步方法，从而执行相应的同步调用。
+`synchronized` 修饰的方法并没有 `monitorenter` 指令和 `monitorexit` 指令，取而代之的是 `ACC_SYNCHRONIZED` 标识，该标识指明了该方法是一个同步方法。JVM 通过该 `ACC_SYNCHRONIZED` 访问标志来辨别一个方法是否声明为同步方法，从而执行相应的同步调用。
 
 如果是实例方法，JVM 会尝试获取实例对象的锁。如果是静态方法，JVM 会尝试获取当前 class 的锁。
 
@@ -453,9 +557,9 @@ public class SynchronizedDemo2 {
 
 `synchronized` 同步语句块的实现使用的是 `monitorenter` 和 `monitorexit` 指令，其中 `monitorenter` 指令指向同步代码块的开始位置，`monitorexit` 指令则指明同步代码块的结束位置。
 
-`synchronized` 修饰的方法并没有 `monitorenter` 指令和 `monitorexit` 指令，取得代之的确实是 `ACC_SYNCHRONIZED` 标识，该标识指明了该方法是一个同步方法。
+`synchronized` 修饰的方法并没有 `monitorenter` 指令和 `monitorexit` 指令，取而代之的是 `ACC_SYNCHRONIZED` 标识，该标识指明了该方法是一个同步方法。
 
-**不过两者的本质都是对对象监视器 monitor 的获取。**
+**不过，两者的本质都是对对象监视器 monitor 的获取。**
 
 相关推荐：[Java 锁与线程的那些事 - 有赞技术团队](https://tech.youzan.com/javasuo-yu-xian-cheng-de-na-xie-shi/) 。
 
@@ -469,7 +573,31 @@ public class SynchronizedDemo2 {
 
 `synchronized` 锁升级是一个比较复杂的过程，面试也很少问到，如果你想要详细了解的话，可以看看这篇文章：[浅析 synchronized 锁升级的原理与实现](https://www.cnblogs.com/star95/p/17542850.html)。
 
-### synchronized 和 volatile 有什么区别？
+### synchronized 的偏向锁为什么被废弃了？
+
+Open JDK 官方声明：[JEP 374: Deprecate and Disable Biased Locking](https://openjdk.org/jeps/374)
+
+在 JDK15 中，偏向锁被默认关闭（仍然可以使用 `-XX:+UseBiasedLocking` 启用偏向锁），在 JDK18 中，偏向锁已经被彻底废弃（无法通过命令行打开）。
+
+在官方声明中，主要原因有两个方面：
+
+- **性能收益不明显：**
+
+偏向锁是 HotSpot 虚拟机的一项优化技术，可以提升单线程对同步代码块的访问性能。
+
+受益于偏向锁的应用程序通常使用了早期的 Java 集合 API，例如 HashTable、Vector，在这些集合类中通过 synchronized 来控制同步，这样在单线程频繁访问时，通过偏向锁会减少同步开销。
+
+随着 JDK 的发展，出现了 ConcurrentHashMap 高性能的集合类，在集合类内部进行了许多性能优化，此时偏向锁带来的性能收益就不明显了。
+
+偏向锁仅仅在单线程访问同步代码块的场景中可以获得性能收益。
+
+如果存在多线程竞争，就需要 **撤销偏向锁** ，这个操作的性能开销是比较昂贵的。偏向锁的撤销需要等待进入到全局安全点（safe point），该状态下所有线程都是暂停的，此时去检查线程状态并进行偏向锁的撤销。
+
+- **JVM 内部代码维护成本太高：**
+
+偏向锁将许多复杂代码引入到同步子系统，并且对其他的 HotSpot 组件也具有侵入性。这种复杂性为理解代码、系统重构带来了困难，因此， OpenJDK 官方希望禁用、废弃并删除偏向锁。
+
+### ⭐️synchronized 和 volatile 有什么区别？
 
 `synchronized` 关键字和 `volatile` 关键字是两个互补的存在，而不是对立的存在！
 
@@ -507,7 +635,7 @@ public ReentrantLock(boolean fair) {
 - **公平锁** : 锁被释放之后，先申请的线程先得到锁。性能较差一些，因为公平锁为了保证时间上的绝对顺序，上下文切换更频繁。
 - **非公平锁**：锁被释放之后，后申请的线程可能会先获取到锁，是随机或者按照其他优先级排序的。性能更好，但可能会导致某些线程永远无法获取到锁。
 
-### synchronized 和 ReentrantLock 有什么区别？
+### ⭐️synchronized 和 ReentrantLock 有什么区别？
 
 #### 两者都是可重入锁
 
@@ -542,15 +670,95 @@ public class SynchronizedDemo {
 
 相比`synchronized`，`ReentrantLock`增加了一些高级功能。主要来说主要有三点：
 
-- **等待可中断** : `ReentrantLock`提供了一种能够中断等待锁的线程的机制，通过 `lock.lockInterruptibly()` 来实现这个机制。也就是说正在等待的线程可以选择放弃等待，改为处理其他事情。
+- **等待可中断** : `ReentrantLock`提供了一种能够中断等待锁的线程的机制，通过 `lock.lockInterruptibly()` 来实现这个机制。也就是说当前线程在等待获取锁的过程中，如果其他线程中断当前线程「 `interrupt()` 」，当前线程就会抛出 `InterruptedException` 异常，可以捕捉该异常进行相应处理。
 - **可实现公平锁** : `ReentrantLock`可以指定是公平锁还是非公平锁。而`synchronized`只能是非公平锁。所谓的公平锁就是先等待的线程先获得锁。`ReentrantLock`默认情况是非公平的，可以通过 `ReentrantLock`类的`ReentrantLock(boolean fair)`构造方法来指定是否是公平的。
 - **可实现选择性通知（锁可以绑定多个条件）**: `synchronized`关键字与`wait()`和`notify()`/`notifyAll()`方法相结合可以实现等待/通知机制。`ReentrantLock`类当然也可以实现，但是需要借助于`Condition`接口与`newCondition()`方法。
+- **支持超时** ：`ReentrantLock` 提供了 `tryLock(timeout)` 的方法，可以指定等待获取锁的最长等待时间，如果超过了等待时间，就会获取锁失败，不会一直等待。
 
 如果你想使用上述功能，那么选择 `ReentrantLock` 是一个不错的选择。
 
 关于 `Condition`接口的补充：
 
 > `Condition`是 JDK1.5 之后才有的，它具有很好的灵活性，比如可以实现多路通知功能也就是在一个`Lock`对象中可以创建多个`Condition`实例（即对象监视器），**线程对象可以注册在指定的`Condition`中，从而可以有选择性的进行线程通知，在调度线程上更加灵活。 在使用`notify()/notifyAll()`方法进行通知时，被通知的线程是由 JVM 选择的，用`ReentrantLock`类结合`Condition`实例可以实现“选择性通知”** ，这个功能非常重要，而且是 `Condition` 接口默认提供的。而`synchronized`关键字就相当于整个 `Lock` 对象中只有一个`Condition`实例，所有的线程都注册在它一个身上。如果执行`notifyAll()`方法的话就会通知所有处于等待状态的线程，这样会造成很大的效率问题。而`Condition`实例的`signalAll()`方法，只会唤醒注册在该`Condition`实例中的所有等待线程。
+
+关于 **等待可中断** 的补充：
+
+> `lockInterruptibly()` 会让获取锁的线程在阻塞等待的过程中可以响应中断，即当前线程在获取锁的时候，发现锁被其他线程持有，就会阻塞等待。
+>
+> 在阻塞等待的过程中，如果其他线程中断当前线程 `interrupt()` ，就会抛出 `InterruptedException` 异常，可以捕获该异常，做一些处理操作。
+>
+> 为了更好理解这个方法，借用 Stack Overflow 上的一个案例，可以更好地理解 `lockInterruptibly()` 可以响应中断：
+>
+> ```JAVA
+> public class MyRentrantlock {
+>     Thread t = new Thread() {
+>         @Override
+>         public void run() {
+>             ReentrantLock r = new ReentrantLock();
+>             // 1.1、第一次尝试获取锁，可以获取成功
+>             r.lock();
+>
+>             // 1.2、此时锁的重入次数为 1
+>             System.out.println("lock() : lock count :" + r.getHoldCount());
+>
+>             // 2、中断当前线程，通过 Thread.currentThread().isInterrupted() 可以看到当前线程的中断状态为 true
+>             interrupt();
+>             System.out.println("Current thread is intrupted");
+>
+>             // 3.1、尝试获取锁，可以成功获取
+>             r.tryLock();
+>             // 3.2、此时锁的重入次数为 2
+>             System.out.println("tryLock() on intrupted thread lock count :" + r.getHoldCount());
+>             try {
+>                 // 4、打印线程的中断状态为 true，那么调用 lockInterruptibly() 方法就会抛出 InterruptedException 异常
+>                 System.out.println("Current Thread isInterrupted:" + Thread.currentThread().isInterrupted());
+>                 r.lockInterruptibly();
+>                 System.out.println("lockInterruptibly() --NOt executable statement" + r.getHoldCount());
+>             } catch (InterruptedException e) {
+>                 r.lock();
+>                 System.out.println("Error");
+>             } finally {
+>                 r.unlock();
+>             }
+>
+>             // 5、打印锁的重入次数，可以发现 lockInterruptibly() 方法并没有成功获取到锁
+>             System.out.println("lockInterruptibly() not able to Acqurie lock: lock count :" + r.getHoldCount());
+>
+>             r.unlock();
+>             System.out.println("lock count :" + r.getHoldCount());
+>             r.unlock();
+>             System.out.println("lock count :" + r.getHoldCount());
+>         }
+>     };
+>     public static void main(String str[]) {
+>         MyRentrantlock m = new MyRentrantlock();
+>         m.t.start();
+>     }
+> }
+> ```
+>
+> 输出：
+>
+> ```BASH
+> lock() : lock count :1
+> Current thread is intrupted
+> tryLock() on intrupted thread lock count :2
+> Current Thread isInterrupted:true
+> Error
+> lockInterruptibly() not able to Acqurie lock: lock count :2
+> lock count :1
+> lock count :0
+> ```
+
+关于 **支持超时** 的补充：
+
+> **为什么需要 `tryLock(timeout)` 这个功能呢？**
+>
+> `tryLock(timeout)` 方法尝试在指定的超时时间内获取锁。如果成功获取锁，则返回 `true`；如果在锁可用之前超时，则返回 `false`。此功能在以下几种场景中非常有用：
+>
+> - **防止死锁：** 在复杂的锁场景中，`tryLock(timeout)` 可以通过允许线程在合理的时间内放弃并重试来帮助防止死锁。
+> - **提高响应速度：** 防止线程无限期阻塞。
+> - **处理时间敏感的操作：** 对于具有严格时间限制的操作，`tryLock(timeout)` 允许线程在无法及时获取锁时继续执行替代操作。
 
 ### 可中断锁和不可中断锁有什么区别？
 

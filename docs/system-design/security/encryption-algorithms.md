@@ -7,18 +7,22 @@ tag:
 
 加密算法是一种用数学方法对数据进行变换的技术，目的是保护数据的安全，防止被未经授权的人读取或修改。加密算法可以分为三大类：对称加密算法、非对称加密算法和哈希算法（也叫摘要算法）。
 
-日常开发中常见的需要用到的加密算法的场景：
+日常开发中常见的需要用到加密算法的场景：
 
 1. 保存在数据库中的密码需要加盐之后使用哈希算法（比如 BCrypt）进行加密。
 2. 保存在数据库中的银行卡号、身份号这类敏感数据需要使用对称加密算法（比如 AES）保存。
 3. 网络传输的敏感数据比如银行卡号、身份号需要用 HTTPS + 非对称加密算法（如 RSA）来保证传输数据的安全性。
 4. ……
 
+ps: 严格上来说，哈希算法其实不属于加密算法，只是可以用到某些加密场景中（例如密码加密），两者可以看作是并列关系。加密算法通常指的是可以将明文转换为密文，并且能够通过某种方式（如密钥）再将密文还原为明文的算法。而哈希算法是一种单向过程，它将输入信息转换成一个固定长度的、看似随机的哈希值，但这个过程是不可逆的，也就是说，不能从哈希值还原出原始信息。
+
 ## 哈希算法
 
 哈希算法也叫散列函数或摘要算法，它的作用是对任意长度的数据生成一个固定长度的唯一标识，也叫哈希值、散列值或消息摘要（后文统称为哈希值）。
 
 ![哈希算法效果演示](https://oss.javaguide.cn/github/javaguide/system-design/security/encryption-algorithms/hash-function-effect-demonstration.png)
+
+哈希算法的是不可逆的，你无法通过哈希之后的值再得到原值。
 
 哈希值的作用是可以用来验证数据的完整性和一致性。
 
@@ -32,17 +36,19 @@ tag:
 - 不能从哈希值还原出原始数据。
 - 原始数据的任何改变都会导致哈希值的巨大变化。
 
-哈希算法分为两类：
+哈希算法可以简单分为两类：
 
-- **加密哈希算法**：安全性较高的哈希算法，它可以提供一定的数据完整性保护和数据防篡改能力，能够抵御一定的攻击手段，安全性相对较高，适用于对安全性要求较高的场景。例如，SHA-256、SHA-512、SM3、Bcrypt 等等。
-- **非加密哈希算法**：安全性相对较低的哈希算法，易受到暴力破解、冲突攻击等攻击手段的影响，但性能较高，适用于对安全性没有要求的业务场景。例如，CRC32、MurMurHash3 等等。
+1. **加密哈希算法**：安全性较高的哈希算法，它可以提供一定的数据完整性保护和数据防篡改能力，能够抵御一定的攻击手段，安全性相对较高，但性能较差，适用于对安全性要求较高的场景。例如 SHA2、SHA3、SM3、RIPEMD-160、BLAKE2、SipHash 等等。
+2. **非加密哈希算法**：安全性相对较低的哈希算法，易受到暴力破解、冲突攻击等攻击手段的影响，但性能较高，适用于对安全性没有要求的业务场景。例如 CRC32、MurMurHash3、SipHash 等等。
+
+除了这两种之外，还有一些特殊的哈希算法，例如安全性更高的**慢哈希算法**。
 
 常见的哈希算法有：
 
 - MD（Message Digest，消息摘要算法）：MD2、MD4、MD5 等，已经不被推荐使用。
 - SHA（Secure Hash Algorithm，安全哈希算法）：SHA-1 系列安全性低，SHA2，SHA3 系列安全性较高。
 - 国密算法：例如 SM2、SM3、SM4，其中 SM2 为非对称加密算法，SM4 为对称加密算法，SM3 为哈希算法（安全性及效率和 SHA-256 相当，但更适合国内的应用环境）。
-- Bcrypt（密码哈希算法）：基于 Blowfish 加密算法的密码哈希算法，专门为密码加密而设计，安全性高。
+- Bcrypt（密码哈希算法）：基于 Blowfish 加密算法的密码哈希算法，专门为密码加密而设计，安全性高，属于慢哈希算法。
 - MAC（Message Authentication Code，消息认证码算法）：HMAC 是一种基于哈希的 MAC，可以与任何安全的哈希算法结合使用，例如 SHA-256。
 - CRC：（Cyclic Redundancy Check，循环冗余校验）：CRC32 是一种 CRC 算法，它的特点是生成 32 位的校验值，通常用于数据完整性校验、文件校验等场景。
 - SipHash：加密哈希算法，它的设计目的是在速度和安全性之间达到一个平衡，用于防御[哈希泛洪 DoS 攻击](https://aumasson.jp/siphash/siphashdos_29c3_slides.pdf)。Rust 默认使用 SipHash 作为哈希算法，从 Redis4.0 开始，哈希算法被替换为 SipHash。
@@ -360,8 +366,8 @@ DSA 算法签名过程：
 
 ## 参考
 
-- 深入理解完美哈希 - 腾讯技术工程：https://mp.weixin.qq.com/s/M8Wcj8sZ7UF1CMr887Puog
-- 写给开发人员的实用密码学（二）—— 哈希函数：https://thiscute.world/posts/practical-cryptography-basics-2-hash/
+- 深入理解完美哈希 - 腾讯技术工程：<https://mp.weixin.qq.com/s/M8Wcj8sZ7UF1CMr887Puog>
+- 写给开发人员的实用密码学（二）—— 哈希函数：<https://thiscute.world/posts/practical-cryptography-basics-2-hash/>
 - 奇妙的安全旅行之 DSA 算法：<https://zhuanlan.zhihu.com/p/347025157>
 - AES-GCM 加密简介：<https://juejin.cn/post/6844904122676690951>
 - Java AES 256 GCM Encryption and Decryption Example | JCE Unlimited Strength：<https://www.javainterviewpoint.com/java-aes-256-gcm-encryption-and-decryption/>

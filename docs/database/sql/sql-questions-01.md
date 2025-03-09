@@ -1095,13 +1095,14 @@ WHERE b.prod_id = 'BR01'
 
 ```sql
 # 写法 1：子查询
-SELECT o.cust_id AS cust_id, tb.total_ordered AS total_ordered
-FROM (SELECT order_num, Sum(item_price * quantity) AS total_ordered
+SELECT o.cust_id, SUM(tb.total_ordered) AS `total_ordered`
+FROM (SELECT order_num, SUM(item_price * quantity) AS total_ordered
     FROM OrderItems
     GROUP BY order_num) AS tb,
   Orders o
 WHERE tb.order_num = o.order_num
-ORDER BY total_ordered DESC
+GROUP BY o.cust_id
+ORDER BY total_ordered DESC;
 
 # 写法 2：连接表
 SELECT b.cust_id, Sum(a.quantity * a.item_price) AS total_ordered
@@ -1110,6 +1111,8 @@ WHERE a.order_num = b.order_num
 GROUP BY cust_id
 ORDER BY total_ordered DESC
 ```
+
+关于写法一详细介绍可以参考： [issue#2402：写法 1 存在的错误以及修改方法](https://github.com/Snailclimb/JavaGuide/issues/2402)。
 
 ### 从 Products 表中检索所有的产品名称以及对应的销售总数
 
@@ -1653,12 +1656,12 @@ ORDER BY prod_name
 注意：`vend_id` 列会显示在多个表中，因此在每次引用它时都需要完全限定它。
 
 ```sql
-SELECT vend_id, COUNT(prod_id) AS prod_id
-FROM Vendors
-LEFT JOIN Products
+SELECT v.vend_id, COUNT(prod_id) AS prod_id
+FROM Vendors v
+LEFT JOIN Products p
 USING(vend_id)
-GROUP BY vend_id
-ORDER BY vend_id
+GROUP BY v.vend_id
+ORDER BY v.vend_id
 ```
 
 ## 组合查询

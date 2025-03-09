@@ -72,7 +72,7 @@ DNS 报文分为查询和回答报文，两种形式的报文结构相同。
 
 ## DNS 记录
 
-DNS 服务器在响应查询时，需要查询自己的数据库，数据库中的条目被称为**资源记录(Resource Record，RR)**。RR 提供了主机名到 IP 地址的映射。RR 是一个包含了`Name`, `Value`, `Type`, `TTL`四个字段的四元组。
+DNS 服务器在响应查询时，需要查询自己的数据库，数据库中的条目被称为 **资源记录(Resource Record，RR)** 。RR 提供了主机名到 IP 地址的映射。RR 是一个包含了`Name`, `Value`, `Type`, `TTL`四个字段的四元组。
 
 ![](https://oss.javaguide.cn/github/javaguide/cs-basics/network/20210506174303797.png)
 

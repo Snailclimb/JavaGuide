@@ -20,36 +20,36 @@ tag:
 3. **主机（host）**：连接在因特网上的计算机。
 4. **ISP（Internet Service Provider）**：因特网服务提供者（提供商）。
 
-![ISP (Internet Service Provider) Definition](https://oss.javaguide.cn/p3-juejin/e77e26123d404d438d0c5943e3c65893~tplv-k3u1fbpfcp-zoom-1.png)
+   ![ISP (Internet Service Provider) Definition](https://oss.javaguide.cn/p3-juejin/e77e26123d404d438d0c5943e3c65893~tplv-k3u1fbpfcp-zoom-1.png)
 
 5. **IXP（Internet eXchange Point）**：互联网交换点 IXP 的主要作用就是允许两个网络直接相连并交换分组，而不需要再通过第三个网络来转发分组。
 
-![IXP Traffic Levels During the Stratos Skydive — RIPE Labs](https://oss.javaguide.cn/p3-juejin/7f9a6ddaa09441ceac11cb77f7a69d8f~tplv-k3u1fbpfcp-zoom-1.png)
+   ![IXP Traffic Levels During the Stratos Skydive — RIPE Labs](https://oss.javaguide.cn/p3-juejin/7f9a6ddaa09441ceac11cb77f7a69d8f~tplv-k3u1fbpfcp-zoom-1.png)
 
-<p style="text-align:center;font-size:13px;color:gray">https://labs.ripe.net/Members/fergalc/ixp-traffic-during-stratos-skydive</p>
+   <p style="text-align:center;font-size:13px;color:gray">https://labs.ripe.net/Members/fergalc/ixp-traffic-during-stratos-skydive</p>
 
 6. **RFC(Request For Comments)**：意思是“请求评议”，包含了关于 Internet 几乎所有的重要的文字资料。
 7. **广域网 WAN（Wide Area Network）**：任务是通过长距离运送主机发送的数据。
 8. **城域网 MAN（Metropolitan Area Network）**：用来将多个局域网进行互连。
 9. **局域网 LAN（Local Area Network）**：学校或企业大多拥有多个互连的局域网。
 
-![MAN & WMAN | Red de área metropolitana, Redes informaticas, Par trenzado](https://oss.javaguide.cn/p3-juejin/eb48d21b2e984a63a26250010d7adac4~tplv-k3u1fbpfcp-zoom-1.png)
+   ![MAN & WMAN | Red de área metropolitana, Redes informaticas, Par trenzado](https://oss.javaguide.cn/p3-juejin/eb48d21b2e984a63a26250010d7adac4~tplv-k3u1fbpfcp-zoom-1.png)
 
-<p style="text-align:center;font-size:13px;color:gray">http://conexionesmanwman.blogspot.com/</p>
+   <p style="text-align:center;font-size:13px;color:gray">http://conexionesmanwman.blogspot.com/</p>
 
 10. **个人区域网 PAN（Personal Area Network）**：在个人工作的地方把属于个人使用的电子设备用无线技术连接起来的网络 。
 
-![Advantages and disadvantages of personal area network (PAN) - IT Release](https://oss.javaguide.cn/p3-juejin/54bd7b420388494fbe917e3c9c13f1a7~tplv-k3u1fbpfcp-zoom-1.png)
+    ![Advantages and disadvantages of personal area network (PAN) - IT Release](https://oss.javaguide.cn/p3-juejin/54bd7b420388494fbe917e3c9c13f1a7~tplv-k3u1fbpfcp-zoom-1.png)
 
-<p style="text-align:center;font-size:13px;color:gray">https://www.itrelease.com/2018/07/advantages-and-disadvantages-of-personal-area-network-pan/</p>
+    <p style="text-align:center;font-size:13px;color:gray">https://www.itrelease.com/2018/07/advantages-and-disadvantages-of-personal-area-network-pan/</p>
 
-12. **分组（packet ）**：因特网中传送的数据单元。由首部 header 和数据段组成。分组又称为包，首部可称为包头。
-13. **存储转发（store and forward ）**：路由器收到一个分组，先检查分组是否正确，并过滤掉冲突包错误。确定包正确后，取出目的地址，通过查找表找到想要发送的输出端口地址，然后将该包发送出去。
+11. **分组（packet ）**：因特网中传送的数据单元。由首部 header 和数据段组成。分组又称为包，首部可称为包头。
+12. **存储转发（store and forward ）**：路由器收到一个分组，先检查分组是否正确，并过滤掉冲突包错误。确定包正确后，取出目的地址，通过查找表找到想要发送的输出端口地址，然后将该包发送出去。
 
-![](https://oss.javaguide.cn/p3-juejin/addb6b2211444a4da9e0ffc129dd444f~tplv-k3u1fbpfcp-zoom-1.gif)
+    ![](https://oss.javaguide.cn/p3-juejin/addb6b2211444a4da9e0ffc129dd444f~tplv-k3u1fbpfcp-zoom-1.gif)
 
-14. **带宽（bandwidth）**：在计算机网络中，表示在单位时间内从网络中的某一点到另一点所能通过的“最高数据率”。常用来表示网络的通信线路所能传送数据的能力。单位是“比特每秒”，记为 b/s。
-15. **吞吐量（throughput ）**：表示在单位时间内通过某个网络（或信道、接口）的数据量。吞吐量更经常地用于对现实世界中的网络的一种测量，以便知道实际上到底有多少数据量能够通过网络。吞吐量受网络的带宽或网络的额定速率的限制。
+13. **带宽（bandwidth）**：在计算机网络中，表示在单位时间内从网络中的某一点到另一点所能通过的“最高数据率”。常用来表示网络的通信线路所能传送数据的能力。单位是“比特每秒”，记为 b/s。
+14. **吞吐量（throughput ）**：表示在单位时间内通过某个网络（或信道、接口）的数据量。吞吐量更经常地用于对现实世界中的网络的一种测量，以便知道实际上到底有多少数据量能够通过网络。吞吐量受网络的带宽或网络的额定速率的限制。
 
 ### 1.2. 重要知识点总结
 
@@ -81,11 +81,11 @@ tag:
 5. **半双工（half duplex ）**：通信的双方都可以发送信息，但不能双方同时发送(当然也就不能同时接收)。
 6. **全双工（full duplex）**：通信的双方可以同时发送和接收信息。
 
-![](https://oss.javaguide.cn/p3-juejin/b1f02095b7c34eafb3c255ee81f58c2a~tplv-k3u1fbpfcp-zoom-1.png)
+   ![](https://oss.javaguide.cn/p3-juejin/b1f02095b7c34eafb3c255ee81f58c2a~tplv-k3u1fbpfcp-zoom-1.png)
 
 7. **失真**：失去真实性，主要是指接受到的信号和发送的信号不同，有磨损和衰减。影响失真程度的因素：1.码元传输速率 2.信号传输距离 3.噪声干扰 4.传输媒体质量
 
-![](https://oss.javaguide.cn/p3-juejin/f939342f543046459ffabdc476f7bca4~tplv-k3u1fbpfcp-zoom-1.png)
+   ![](https://oss.javaguide.cn/p3-juejin/f939342f543046459ffabdc476f7bca4~tplv-k3u1fbpfcp-zoom-1.png)
 
 8. **奈氏准则**：在任何信道中，码元的传输的效率是有上限的，传输速率超过此上限，就会出现严重的码间串扰问题，使接收端对码元的判决（即识别）成为不可能。
 9. **香农定理**：在带宽受限且有噪声的信道中，为了不产生误差，信息的数据传输速率有上限值。
@@ -95,7 +95,7 @@ tag:
 13. **信噪比（signal-to-noise ratio ）**：指信号的平均功率和噪声的平均功率之比，记为 S/N。信噪比（dB）=10\*log10（S/N）。
 14. **信道复用（channel multiplexing ）**：指多个用户共享同一个信道。（并不一定是同时）。
 
-![信道复用技术](https://oss.javaguide.cn/p3-juejin/5d9bf7b3db324ae7a88fcedcbace45d8~tplv-k3u1fbpfcp-zoom-1.png)
+    ![信道复用技术](https://oss.javaguide.cn/p3-juejin/5d9bf7b3db324ae7a88fcedcbace45d8~tplv-k3u1fbpfcp-zoom-1.png)
 
 15. **比特率（bit rate ）**：单位时间（每秒）内传送的比特数。
 16. **波特率（baud rate）**：单位时间载波调制状态改变的次数。针对数据信号对载波的调制速率。
@@ -151,7 +151,7 @@ tag:
    ![PPP](https://oss.javaguide.cn/p3-juejin/6b0310d3103c4149a725a28aaf001899~tplv-k3u1fbpfcp-zoom-1.jpeg)
 8. **MAC 地址（Media Access Control 或者 Medium Access Control）**：意译为媒体访问控制，或称为物理地址、硬件地址，用来定义网络设备的位置。在 OSI 模型中，第三层网络层负责 IP 地址，第二层数据链路层则负责 MAC 地址。因此一个主机会有一个 MAC 地址，而每个网络位置会有一个专属于它的 IP 地址 。地址是识别某个系统的重要标识符，“名字指出我们所要寻找的资源，地址指出资源所在的地方，路由告诉我们如何到达该处。”
 
-![ARP (Address Resolution Protocol) explained](https://oss.javaguide.cn/p3-juejin/057b83e7ec5b4c149e56255a3be89141~tplv-k3u1fbpfcp-zoom-1.png)
+   ![ARP (Address Resolution Protocol) explained](https://oss.javaguide.cn/p3-juejin/057b83e7ec5b4c149e56255a3be89141~tplv-k3u1fbpfcp-zoom-1.png)
 
 9. **网桥（bridge）**：一种用于数据链路层实现中继，连接两个或多个局域网的网络互连设备。
 10. **交换机（switch ）**：广义的来说，交换机指的是一种通信系统中完成信息交换的设备。这里工作在数据链路层的交换机指的是交换式集线器，其实质是一个多接口的网桥
@@ -218,7 +218,7 @@ tag:
 4. **TCP（Transmission Control Protocol）**：传输控制协议。
 5. **UDP（User Datagram Protocol）**：用户数据报协议。
 
-![TCP和UDP](https://oss.javaguide.cn/p3-juejin/b136e69e0b9b426782f77623dcf098bd~tplv-k3u1fbpfcp-zoom-1.png)
+   ![TCP 和 UDP](https://oss.javaguide.cn/p3-juejin/b136e69e0b9b426782f77623dcf098bd~tplv-k3u1fbpfcp-zoom-1.png)
 
 6. **端口（port）**：端口的目的是为了确认对方机器的哪个进程在与自己进行交互，比如 MSN 和 QQ 的端口不同，如果没有端口就可能出现 QQ 进程和 MSN 交互错误。端口又称协议端口号。
 7. **停止等待协议（stop-and-wait）**：指发送方每发送完一个分组就停止发送，等待对方确认，在收到确认之后在发送下一个分组。
@@ -267,34 +267,34 @@ tag:
 
 1. **域名系统（DNS）**：域名系统（DNS，Domain Name System）将人类可读的域名 (例如，www.baidu.com) 转换为机器可读的 IP 地址 (例如，220.181.38.148)。我们可以将其理解为专为互联网设计的电话薄。
 
-![](https://oss.javaguide.cn/p3-juejin/e7da4b07947f4c0094d46dc96a067df0~tplv-k3u1fbpfcp-zoom-1.png)
+   ![](https://oss.javaguide.cn/p3-juejin/e7da4b07947f4c0094d46dc96a067df0~tplv-k3u1fbpfcp-zoom-1.png)
 
-<p style="text-align:right;font-size:12px">https://www.seobility.net/en/wiki/HTTP_headers</p>
+   <p style="text-align:right;font-size:12px">https://www.seobility.net/en/wiki/HTTP_headers</p>
 
 2. **文件传输协议（FTP）**：FTP 是 File Transfer Protocol（文件传输协议）的英文简称，而中文简称为“文传协议”。用于 Internet 上的控制文件的双向传输。同时，它也是一个应用程序（Application）。基于不同的操作系统有不同的 FTP 应用程序，而所有这些应用程序都遵守同一种协议以传输文件。在 FTP 的使用当中，用户经常遇到两个概念："下载"（Download）和"上传"（Upload）。 "下载"文件就是从远程主机拷贝文件至自己的计算机上；"上传"文件就是将文件从自己的计算机中拷贝至远程主机上。用 Internet 语言来说，用户可通过客户机程序向（从）远程主机上传（下载）文件。
 
-![FTP工作过程](https://oss.javaguide.cn/p3-juejin/f3f2caaa361045a38fb89bb9fee15bd3~tplv-k3u1fbpfcp-zoom-1.png)
+   ![FTP工作过程](https://oss.javaguide.cn/p3-juejin/f3f2caaa361045a38fb89bb9fee15bd3~tplv-k3u1fbpfcp-zoom-1.png)
 
 3. **简单文件传输协议（TFTP）**：TFTP（Trivial File Transfer Protocol,简单文件传输协议）是 TCP/IP 协议族中的一个用来在客户机与服务器之间进行简单文件传输的协议，提供不复杂、开销不大的文件传输服务。端口号为 69。
 4. **远程终端协议（TELNET）**：Telnet 协议是 TCP/IP 协议族中的一员，是 Internet 远程登陆服务的标准协议和主要方式。它为用户提供了在本地计算机上完成远程主机工作的能力。在终端使用者的电脑上使用 telnet 程序，用它连接到服务器。终端使用者可以在 telnet 程序中输入命令，这些命令会在服务器上运行，就像直接在服务器的控制台上输入一样。可以在本地就能控制服务器。要开始一个 telnet 会话，必须输入用户名和密码来登录服务器。Telnet 是常用的远程控制 Web 服务器的方法。
 5. **万维网（WWW）**：WWW 是环球信息网的缩写，（亦作“Web”、“WWW”、“'W3'”，英文全称为“World Wide Web”），中文名字为“万维网”，"环球网"等，常简称为 Web。分为 Web 客户端和 Web 服务器程序。WWW 可以让 Web 客户端（常用浏览器）访问浏览 Web 服务器上的页面。是一个由许多互相链接的超文本组成的系统，通过互联网访问。在这个系统中，每个有用的事物，称为一样“资源”；并且由一个全局“统一资源标识符”（URI）标识；这些资源通过超文本传输协议（Hypertext Transfer Protocol）传送给用户，而后者通过点击链接来获得资源。万维网联盟（英语：World Wide Web Consortium，简称 W3C），又称 W3C 理事会。1994 年 10 月在麻省理工学院（MIT）计算机科学实验室成立。万维网联盟的创建者是万维网的发明者蒂姆·伯纳斯-李。万维网并不等同互联网，万维网只是互联网所能提供的服务其中之一，是靠着互联网运行的一项服务。
 6. **万维网的大致工作工程：**
 
-![万维网的大致工作工程](https://oss.javaguide.cn/p3-juejin/ba628fd37fdc4ba59c1a74eae32e03b1~tplv-k3u1fbpfcp-zoom-1.jpeg)
+   ![万维网的大致工作工程](https://oss.javaguide.cn/p3-juejin/ba628fd37fdc4ba59c1a74eae32e03b1~tplv-k3u1fbpfcp-zoom-1.jpeg)
 
 7. **统一资源定位符（URL）**：统一资源定位符是对可以从互联网上得到的资源的位置和访问方法的一种简洁的表示，是互联网上标准资源的地址。互联网上的每个文件都有一个唯一的 URL，它包含的信息指出文件的位置以及浏览器应该怎么处理它。
 8. **超文本传输协议（HTTP）**：超文本传输协议（HTTP，HyperText Transfer Protocol)是互联网上应用最为广泛的一种网络协议。所有的 WWW 文件都必须遵守这个标准。设计 HTTP 最初的目的是为了提供一种发布和接收 HTML 页面的方法。1960 年美国人 Ted Nelson 构思了一种通过计算机处理文本信息的方法，并称之为超文本（hypertext）,这成为了 HTTP 超文本传输协议标准架构的发展根基。
 
-HTTP 协议的本质就是一种浏览器与服务器之间约定好的通信格式。HTTP 的原理如下图所示：
+   HTTP 协议的本质就是一种浏览器与服务器之间约定好的通信格式。HTTP 的原理如下图所示：
 
-![](https://oss.javaguide.cn/p3-juejin/8e3efca026654874bde8be88c96e1783~tplv-k3u1fbpfcp-zoom-1.jpeg)
+   ![](https://oss.javaguide.cn/p3-juejin/8e3efca026654874bde8be88c96e1783~tplv-k3u1fbpfcp-zoom-1.jpeg)
 
-10. **代理服务器（Proxy Server）**：代理服务器（Proxy Server）是一种网络实体，它又称为万维网高速缓存。 代理服务器把最近的一些请求和响应暂存在本地磁盘中。当新请求到达时，若代理服务器发现这个请求与暂时存放的的请求相同，就返回暂存的响应，而不需要按 URL 的地址再次去互联网访问该资源。代理服务器可在客户端或服务器工作，也可以在中间系统工作。
-11. **简单邮件传输协议(SMTP)** : SMTP（Simple Mail Transfer Protocol）即简单邮件传输协议,它是一组用于由源地址到目的地址传送邮件的规则，由它来控制信件的中转方式。 SMTP 协议属于 TCP/IP 协议簇，它帮助每台计算机在发送或中转信件时找到下一个目的地。 通过 SMTP 协议所指定的服务器,就可以把 E-mail 寄到收信人的服务器上了，整个过程只要几分钟。SMTP 服务器则是遵循 SMTP 协议的发送邮件服务器，用来发送或中转发出的电子邮件。
+9. **代理服务器（Proxy Server）**：代理服务器（Proxy Server）是一种网络实体，它又称为万维网高速缓存。 代理服务器把最近的一些请求和响应暂存在本地磁盘中。当新请求到达时，若代理服务器发现这个请求与暂时存放的的请求相同，就返回暂存的响应，而不需要按 URL 的地址再次去互联网访问该资源。代理服务器可在客户端或服务器工作，也可以在中间系统工作。
+10. **简单邮件传输协议(SMTP)** : SMTP（Simple Mail Transfer Protocol）即简单邮件传输协议,它是一组用于由源地址到目的地址传送邮件的规则，由它来控制信件的中转方式。 SMTP 协议属于 TCP/IP 协议簇，它帮助每台计算机在发送或中转信件时找到下一个目的地。 通过 SMTP 协议所指定的服务器,就可以把 E-mail 寄到收信人的服务器上了，整个过程只要几分钟。SMTP 服务器则是遵循 SMTP 协议的发送邮件服务器，用来发送或中转发出的电子邮件。
 
-![一个电子邮件被发送的过程](https://oss.javaguide.cn/p3-juejin/2bdccb760474435aae52559f2ef9652f~tplv-k3u1fbpfcp-zoom-1.png)
+    ![一个电子邮件被发送的过程](https://oss.javaguide.cn/p3-juejin/2bdccb760474435aae52559f2ef9652f~tplv-k3u1fbpfcp-zoom-1.png)
 
-<p style="text-align:right;font-size:12px">https://www.campaignmonitor.com/resources/knowledge-base/what-is-the-code-that-makes-bcc-or-cc-operate-in-an-email/</p>
+    <p style="text-align:right;font-size:12px">https://www.campaignmonitor.com/resources/knowledge-base/what-is-the-code-that-makes-bcc-or-cc-operate-in-an-email/</p>
 
 11. **搜索引擎** :搜索引擎（Search Engine）是指根据一定的策略、运用特定的计算机程序从互联网上搜集信息，在对信息进行组织和处理后，为用户提供检索服务，将用户检索相关的信息展示给用户的系统。搜索引擎包括全文索引、目录索引、元搜索引擎、垂直搜索引擎、集合式搜索引擎、门户搜索引擎与免费链接列表等。
 

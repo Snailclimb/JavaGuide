@@ -59,7 +59,6 @@ icon: "xitongsheji"
 - [Retrofit](https://github.com/square/retrofit)：适用于 Android 和 Java 的类型安全的 HTTP 客户端。Retrofit 的 HTTP 请求使用的是 [OkHttp](https://square.github.io/okhttp/) 库（一款被广泛使用网络框架）。
 - [Forest](https://gitee.com/dromara/forest)：轻量级 HTTP 客户端 API 框架，让 Java 发送 HTTP/HTTPS 请求不再难。它比 OkHttp 和 HttpClient 更高层，是封装调用第三方 restful api client 接口的好帮手，是 retrofit 和 feign 之外另一个选择。
 - [netty-websocket-spring-boot-starter](https://github.com/YeautyYE/netty-websocket-spring-boot-starter) :帮助你在 Spring Boot 中使用 Netty 来开发 WebSocket 服务器，并像 spring-websocket 的注解开发一样简单。
-- [SMS4J](https://github.com/dromara/SMS4J)：短信聚合框架，解决接入多个短信 SDK 的繁琐流程。
 
 ## 数据库
 
@@ -72,7 +71,8 @@ icon: "xitongsheji"
 
 - [MyBatis-Plus](https://github.com/baomidou/mybatis-plus) : [MyBatis](http://www.mybatis.org/mybatis-3/) 增强工具，在 MyBatis 的基础上只做增强不做改变，为简化开发、提高效率而生。
 - [MyBatis-Flex](https://gitee.com/mybatis-flex/mybatis-flex)：一个优雅的 MyBatis 增强框架，无其他任何第三方依赖，支持 CRUD、分页查询、多表查询、批量操作。
-- [Redisson](https://github.com/redisson/redisson "redisson")：Redis 基础上的一个 Java 驻内存数据网格（In-Memory Data Grid）,支持超过 30 个对象和服务:`Set`,`SortedSet`, `Map`, `List`, `Queue`, `Deque` ……，并且提供了多种分布式锁的实现。更多介绍请看：[《Redisson 项目介绍》](https://github.com/redisson/redisson/wiki/Redisson%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D "Redisson项目介绍")。
+- [jOOQ](https://github.com/jOOQ/jOOQ)：用 Java 编写 SQL 的最佳方式。
+- [Redisson](https://github.com/redisson/redisson "redisson")：Redisson 是一款架设在 Redis 基础之上的 Java 驻内存数据网格 (In-Memory Data Grid)，它充分利用了 Redis 键值数据库的优势，为 Java 开发者提供了一系列具有分布式特性的常用工具类。例如，分布式 Java 对象（`Set`，`SortedSet`，`Map`，`List`，`Queue`，`Deque` 等）、分布式锁等。详细介绍请看：[Redisson 项目介绍](https://github.com/redisson/redisson/wiki/Redisson%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D "Redisson项目介绍")。
 
 ### 数据同步
 
@@ -115,9 +115,12 @@ icon: "xitongsheji"
 
 ### API 调试
 
-- [Insomnia](https://insomnia.rest/) :像人类而不是机器人一样调试 API。我平时经常用的，界面美观且轻量，总之很喜欢。
-- [Postman](https://www.getpostman.com/)：API 请求生成器。
-- [Postwoman](https://github.com/liyasthomas/postwoman "postwoman")：API 请求生成器-一个免费、快速、漂亮的 Postma 替代品。
+- [Reqable](https://reqable.com/zh-CN/)：新一代开源 API 开发工具。Reqable = Fiddler + Charles + Postman, 让 API 调试更快。
+- [Insomnia](https://insomnia.rest/) :像人类而不是机器人一样调试 API。我平时经常用的一款 API 开发工具，界面美观且轻量，总之很喜欢。
+- [RapidAPI](https://paw.cloud/)：一款功能齐全的 HTTP 客户端，但仅支持 Mac。
+- [Postcat](https://github.com/Postcatlab/postcat)：一个可扩展的开源 API 工具平台。
+- [Postman](https://www.getpostman.com/)：开发者最常用的 API 测试工具之一。
+- [Hoppscotch](https://github.com/liyasthomas/postwoman "postwoman")（原 Postwoman）：开源 API 测试工具。官方定位是 Postman、Insomnia 等产品的开源替代品。
 - [Restful Fast Request](https://gitee.com/dromara/fast-request)：IDEA 版 Postman，API 调试工具 + API 管理工具 + API 搜索工具。
 
 ## 任务调度
@@ -125,9 +128,15 @@ icon: "xitongsheji"
 - [Quartz](https://github.com/quartz-scheduler/quartz)：一个很火的开源任务调度框架，Java 定时任务领域的老大哥或者说参考标准， 很多其他任务调度框架都是基于 `quartz` 开发的，比如当当网的`elastic-job`就是基于`quartz`二次开发之后的分布式调度解决方案
 - [XXL-JOB](https://github.com/xuxueli/xxl-job) :XXL-JOB 是一个分布式任务调度平台，其核心设计目标是开发迅速、学习简单、轻量级、易扩展。现已开放源代码并接入多家公司线上产品线，开箱即用。
 - [Elastic-Job](http://elasticjob.io/index_zh.html)：Elastic-Job 是当当网开源的一个基于 Quartz 和 Zookeeper 的分布式调度解决方案，由两个相互独立的子项目 Elastic-Job-Lite 和 Elastic-Job-Cloud 组成，一般我们只要使用 Elastic-Job-Lite 就好。
-- [EasyScheduler](https://github.com/analysys/EasyScheduler "EasyScheduler") （已经更名为 DolphinScheduler，已经成为 Apache 孵化器项目）：Easy Scheduler 是一个分布式工作流任务调度系统，主要解决“复杂任务依赖但无法直接监控任务健康状态”的问题。Easy Scheduler 以 DAG 方式组装任务，可以实时监控任务的运行状态。同时，它支持重试，重新运行等操作... 。
+- [EasyScheduler](https://github.com/analysys/EasyScheduler "EasyScheduler") （已经更名为 DolphinScheduler，已经成为 Apache 孵化器项目）：分布式易扩展的可视化工作流任务调度平台，主要解决“复杂任务依赖但无法直接监控任务健康状态”的问题。
 - [PowerJob](https://gitee.com/KFCFans/PowerJob)：新一代分布式任务调度与计算框架，支持 CRON、API、固定频率、固定延迟等调度策略，提供工作流来编排任务解决依赖关系，使用简单，功能强大，文档齐全，欢迎各位接入使用！<http://www.powerjob.tech/> 。
-- [DolphinScheduler](https://github.com/apache/dolphinscheduler)：分布式易扩展的可视化工作流任务调度平台。
+
+## 工作流
+
+1. [Flowable](https://github.com/flowable/flowable-engine) ：Activiti5 的一个分支发展而来，功能丰富，在 Activiti 的基础上，引入了更多高级功能，如更强大的 CMMN（案例管理模型与符号）、DMN（决策模型与符号）支持，以及更灵活的集成选项。
+2. [Activiti](https://github.com/Activiti/Activiti)：功能扩展相对保守，适合需要稳定 BPMN 2.0 工作流引擎的传统企业应用。
+3. [Warm-Flow](https://gitee.com/dromara/warm-flow)：国产开源工作流引擎，其特点简洁轻量但又不简单，五脏俱全，组件独立，可扩展。
+4. [FlowLong](https://gitee.com/aizuda/flowlong)：国产开源工作流引擎，专门中国特色流程审批打造。
 
 ## 分布式
 
@@ -152,6 +161,11 @@ icon: "xitongsheji"
 - [CAT](https://github.com/dianping/cat "cat")：CAT 作为服务端项目基础组件，提供了 Java, C/C++, Node.js, Python, Go 等多语言客户端，已经在美团点评的基础架构中间件框架（MVC 框架，RPC 框架，数据库框架，缓存框架等，消息队列，配置系统等）深度集成，为美团点评各业务线提供系统丰富的性能指标、健康状况、实时告警等。
 
 相关阅读：[Skywalking 官网对于主流开源链路追踪系统的对比](https://skywalking.apache.org/zh/blog/2019-03-29-introduction-of-skywalking-and-simple-practice.html)
+
+### 分布式锁
+
+- [Lock4j](https://gitee.com/baomidou/lock4j)：支持 Redisson、ZooKeeper 等不同方案的高性能分布式锁。
+- [Redisson](https://github.com/redisson/redisson "redisson")：Redisson 在分布式锁方面提供全面且强大的支持，超越了简单的 Redis 锁实现。
 
 ## 高性能
 
@@ -185,7 +199,7 @@ icon: "xitongsheji"
 **分布式队列**：
 
 - [RocketMQ](https://github.com/apache/rocketmq "RocketMQ")：阿里巴巴开源的一款高性能、高吞吐量的分布式消息中间件。
-- [Kafaka](https://github.com/apache/kafka "Kafaka"): Kafka 是一种分布式的，基于发布 / 订阅的消息系统。
+- [Kafka](https://github.com/apache/kafka "Kafka"): Kafka 是一种分布式的，基于发布 / 订阅的消息系统。
 - [RabbitMQ](https://github.com/rabbitmq "RabbitMQ") :由 erlang 开发的基于 AMQP（Advanced Message Queue 高级消息队列协议）协议实现的消息队列。
 
 **内存队列**：

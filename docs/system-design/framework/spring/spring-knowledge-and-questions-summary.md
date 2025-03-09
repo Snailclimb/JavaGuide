@@ -279,6 +279,78 @@ private SmsService smsService;
 - 当一个接口存在多个实现类的情况下，`@Autowired` 和`@Resource`都需要通过名称才能正确匹配到对应的 Bean。`Autowired` 可以通过 `@Qualifier` 注解来显式指定名称，`@Resource`可以通过 `name` 属性来显式指定名称。
 - `@Autowired` 支持在构造函数、方法、字段和参数上使用。`@Resource` 主要用于字段和方法上的注入，不支持在构造函数或参数上使用。
 
+### 注入 Bean 的方式有哪些？
+
+依赖注入 (Dependency Injection, DI) 的常见方式：
+
+1. 构造函数注入：通过类的构造函数来注入依赖项。
+1. Setter 注入：通过类的 Setter 方法来注入依赖项。
+1. Field（字段） 注入：直接在类的字段上使用注解（如 `@Autowired` 或 `@Resource`）来注入依赖项。
+
+构造函数注入示例：
+
+```java
+@Service
+public class UserService {
+
+    private final UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    //...
+}
+```
+
+Setter 注入示例：
+
+```java
+@Service
+public class UserService {
+
+    private UserRepository userRepository;
+
+    // 在 Spring 4.3 及以后的版本，特定情况下 @Autowired 可以省略不写
+    @Autowired
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    //...
+}
+```
+
+Field 注入示例：
+
+```java
+@Service
+public class UserService {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    //...
+}
+```
+
+### 构造函数注入还是 Setter 注入？
+
+Spring 官方有对这个问题的回答：<https://docs.spring.io/spring-framework/reference/core/beans/dependencies/factory-collaborators.html#beans-setter-injection>。
+
+我这里主要提取总结完善一下 Spring 官方的建议。
+
+**Spring 官方推荐构造函数注入**，这种注入方式的优势如下：
+
+1. 依赖完整性：确保所有必需依赖在对象创建时就被注入，避免了空指针异常的风险。
+2. 不可变性：有助于创建不可变对象，提高了线程安全性。
+3. 初始化保证：组件在使用前已完全初始化，减少了潜在的错误。
+4. 测试便利性：在单元测试中，可以直接通过构造函数传入模拟的依赖项，而不必依赖 Spring 容器进行注入。
+
+构造函数注入适合处理**必需的依赖项**，而 **Setter 注入** 则更适合**可选的依赖项**，这些依赖项可以有默认值或在对象生命周期中动态设置。虽然 `@Autowired` 可以用于 Setter 方法来处理必需的依赖项，但构造函数注入仍然是更好的选择。
+
+在某些情况下（例如第三方类不提供 Setter 方法），构造函数注入可能是**唯一的选择**。
+
 ### Bean 的作用域有哪些?
 
 Spring 中 Bean 的作用域通常有下面几种：
@@ -316,12 +388,68 @@ Spring 框架中的 Bean 是否线程安全，取决于其作用域和状态。
 
 prototype 作用域下，每次获取都会创建一个新的 bean 实例，不存在资源竞争问题，所以不存在线程安全问题。singleton 作用域下，IoC 容器中只有唯一的 bean 实例，可能会存在资源竞争问题（取决于 Bean 是否有状态）。如果这个 bean 是有状态的话，那就存在线程安全问题（有状态 Bean 是指包含可变的成员变量的对象）。
 
+有状态 Bean 示例：
+
+```java
+// 定义了一个购物车类，其中包含一个保存用户的购物车里商品的 List
+@Component
+public class ShoppingCart {
+    private List<String> items = new ArrayList<>();
+
+    public void addItem(String item) {
+        items.add(item);
+    }
+
+    public List<String> getItems() {
+        return items;
+    }
+}
+```
+
 不过，大部分 Bean 实际都是无状态（没有定义可变的成员变量）的（比如 Dao、Service），这种情况下， Bean 是线程安全的。
 
-对于有状态单例 Bean 的线程安全问题，常见的有两种解决办法：
+无状态 Bean 示例：
 
-1. 在 Bean 中尽量避免定义可变的成员变量。
-2. 在类中定义一个 `ThreadLocal` 成员变量，将需要的可变成员变量保存在 `ThreadLocal` 中（推荐的一种方式）。
+```java
+// 定义了一个用户服务，它仅包含业务逻辑而不保存任何状态。
+@Component
+public class UserService {
+
+    public User findUserById(Long id) {
+        //...
+    }
+    //...
+}
+```
+
+对于有状态单例 Bean 的线程安全问题，常见的三种解决办法是：
+
+1. **避免可变成员变量**: 尽量设计 Bean 为无状态。
+2. **使用`ThreadLocal`**: 将可变成员变量保存在 `ThreadLocal` 中，确保线程独立。
+3. **使用同步机制**: 利用 `synchronized` 或 `ReentrantLock` 来进行同步控制，确保线程安全。
+
+这里以 `ThreadLocal`为例，演示一下`ThreadLocal` 保存用户登录信息的场景：
+
+```java
+public class UserThreadLocal {
+
+    private UserThreadLocal() {}
+
+    private static final ThreadLocal<SysUser> LOCAL = ThreadLocal.withInitial(() -> null);
+
+    public static void put(SysUser sysUser) {
+        LOCAL.set(sysUser);
+    }
+
+    public static SysUser get() {
+        return LOCAL.get();
+    }
+
+    public static void remove() {
+        LOCAL.remove();
+    }
+}
+```
 
 ### Bean 的生命周期了解么?
 
@@ -456,13 +584,24 @@ AOP 切面编程涉及到的一些专业术语：
 
 ### Spring AOP 和 AspectJ AOP 有什么区别？
 
-**Spring AOP 属于运行时增强，而 AspectJ 是编译时增强。** Spring AOP 基于代理(Proxying)，而 AspectJ 基于字节码操作(Bytecode Manipulation)。
+| 特性           | Spring AOP                                               | AspectJ                                    |
+| -------------- | -------------------------------------------------------- | ------------------------------------------ |
+| **增强方式**   | 运行时增强（基于动态代理）                               | 编译时增强、类加载时增强（直接操作字节码） |
+| **切入点支持** | 方法级（Spring Bean 范围内，不支持 final 和 staic 方法） | 方法级、字段、构造器、静态方法等           |
+| **性能**       | 运行时依赖代理，有一定开销，切面多时性能较低             | 运行时无代理开销，性能更高                 |
+| **复杂性**     | 简单，易用，适合大多数场景                               | 功能强大，但相对复杂                       |
+| **使用场景**   | Spring 应用下比较简单的 AOP 需求                         | 高性能、高复杂度的 AOP 需求                |
 
-Spring AOP 已经集成了 AspectJ ，AspectJ 应该算的上是 Java 生态系统中最完整的 AOP 框架了。AspectJ 相比于 Spring AOP 功能更加强大，但是 Spring AOP 相对来说更简单，
+**如何选择？**
 
-如果我们的切面比较少，那么两者性能差异不大。但是，当切面太多的话，最好选择 AspectJ ，它比 Spring AOP 快很多。
+- **功能考量**：AspectJ 支持更复杂的 AOP 场景，Spring AOP 更简单易用。如果你需要增强 `final` 方法、静态方法、字段访问、构造器调用等，或者需要在非 Spring 管理的对象上应用增强逻辑，AspectJ 是唯一的选择。
+- **性能考量**：切面数量较少时两者性能差异不大，但切面较多时 AspectJ 性能更优。
 
-### AspectJ 定义的通知类型有哪些？
+**一句话总结**：简单场景优先使用 Spring AOP；复杂场景或高性能需求时，选择 AspectJ。
+
+### AOP 常见的通知类型有哪些？
+
+![](https://oss.javaguide.cn/github/javaguide/system-design/framework/spring/aspectj-advice-types.jpg)
 
 - **Before**（前置通知）：目标对象的方法调用之前触发
 - **After** （后置通知）：目标对象的方法调用之后触发
@@ -569,6 +708,16 @@ MVC 是一种设计模式，Spring MVC 是一款很优秀的 MVC 框架。Spring
 6. `DispaterServlet` 把返回的 `Model` 传给 `View`（视图渲染）。
 7. 把 `View` 返回给请求者（浏览器）
 
+上述流程是传统开发模式（JSP，Thymeleaf 等）的工作原理。然而现在主流的开发方式是前后端分离，这种情况下 Spring MVC 的 `View` 概念发生了一些变化。由于 `View` 通常由前端框架（Vue, React 等）来处理，后端不再负责渲染页面，而是只负责提供数据，因此：
+
+- 前后端分离时，后端通常不再返回具体的视图，而是返回**纯数据**（通常是 JSON 格式），由前端负责渲染和展示。
+- `View` 的部分在前后端分离的场景下往往不需要设置，Spring MVC 的控制器方法只需要返回数据，不再返回 `ModelAndView`，而是直接返回数据，Spring 会自动将其转换为 JSON 格式。相应的，`ViewResolver` 也将不再被使用。
+
+怎么做到呢？
+
+- 使用 `@RestController` 注解代替传统的 `@Controller` 注解，这样所有方法默认会返回 JSON 格式的数据，而不是试图解析视图。
+- 如果你使用的是 `@Controller`，可以结合 `@ResponseBody` 注解来返回 JSON。
+
 ### 统一异常处理怎么做？
 
 推荐使用注解的方式统一异常处理，具体会使用到 `@ControllerAdvice` + `@ExceptionHandler` 这两个注解 。
@@ -630,6 +779,164 @@ public class GlobalExceptionHandler {
 - **包装器设计模式** : 我们的项目需要连接多个数据库，而且不同的客户在每次访问中根据需要会去访问不同的数据库。这种模式让我们可以根据客户的需求能够动态切换不同的数据源。
 - **观察者模式:** Spring 事件驱动模型就是观察者模式很经典的一个应用。
 - **适配器模式** : Spring AOP 的增强或通知(Advice)使用到了适配器模式、spring MVC 中也是用到了适配器模式适配`Controller`。
+- ……
+
+## Spring 的循环依赖
+
+### Spring 循环依赖了解吗，怎么解决？
+
+循环依赖是指 Bean 对象循环引用，是两个或多个 Bean 之间相互持有对方的引用，例如 CircularDependencyA → CircularDependencyB → CircularDependencyA。
+
+```java
+@Component
+public class CircularDependencyA {
+    @Autowired
+    private CircularDependencyB circB;
+}
+
+@Component
+public class CircularDependencyB {
+    @Autowired
+    private CircularDependencyA circA;
+}
+```
+
+单个对象的自我依赖也会出现循环依赖，但这种概率极低，属于是代码编写错误。
+
+```java
+@Component
+public class CircularDependencyA {
+    @Autowired
+    private CircularDependencyA circA;
+}
+```
+
+Spring 框架通过使用三级缓存来解决这个问题，确保即使在循环依赖的情况下也能正确创建 Bean。
+
+Spring 中的三级缓存其实就是三个 Map，如下：
+
+```java
+// 一级缓存
+/** Cache of singleton objects: bean name to bean instance. */
+private final Map<String, Object> singletonObjects = new ConcurrentHashMap<>(256);
+
+// 二级缓存
+/** Cache of early singleton objects: bean name to bean instance. */
+private final Map<String, Object> earlySingletonObjects = new HashMap<>(16);
+
+// 三级缓存
+/** Cache of singleton factories: bean name to ObjectFactory. */
+private final Map<String, ObjectFactory<?>> singletonFactories = new HashMap<>(16);
+```
+
+简单来说，Spring 的三级缓存包括：
+
+1. **一级缓存（singletonObjects）**：存放最终形态的 Bean（已经实例化、属性填充、初始化），单例池，为“Spring 的单例属性”⽽⽣。一般情况我们获取 Bean 都是从这里获取的，但是并不是所有的 Bean 都在单例池里面，例如原型 Bean 就不在里面。
+2. **二级缓存（earlySingletonObjects）**：存放过渡 Bean（半成品，尚未属性填充），也就是三级缓存中`ObjectFactory`产生的对象，与三级缓存配合使用的，可以防止 AOP 的情况下，每次调用`ObjectFactory#getObject()`都是会产生新的代理对象的。
+3. **三级缓存（singletonFactories）**：存放`ObjectFactory`，`ObjectFactory`的`getObject()`方法（最终调用的是`getEarlyBeanReference()`方法）可以生成原始 Bean 对象或者代理对象（如果 Bean 被 AOP 切面代理）。三级缓存只会对单例 Bean 生效。
+
+接下来说一下 Spring 创建 Bean 的流程：
+
+1. 先去 **一级缓存 `singletonObjects`** 中获取，存在就返回；
+2. 如果不存在或者对象正在创建中，于是去 **二级缓存 `earlySingletonObjects`** 中获取；
+3. 如果还没有获取到，就去 **三级缓存 `singletonFactories`** 中获取，通过执行 `ObjectFacotry` 的 `getObject()` 就可以获取该对象，获取成功之后，从三级缓存移除，并将该对象加入到二级缓存中。
+
+在三级缓存中存储的是 `ObjectFacoty` ：
+
+```java
+public interface ObjectFactory<T> {
+    T getObject() throws BeansException;
+}
+```
+
+Spring 在创建 Bean 的时候，如果允许循环依赖的话，Spring 就会将刚刚实例化完成，但是属性还没有初始化完的 Bean 对象给提前暴露出去，这里通过 `addSingletonFactory` 方法，向三级缓存中添加一个 `ObjectFactory` 对象：
+
+```java
+// AbstractAutowireCapableBeanFactory # doCreateBean #
+public abstract class AbstractAutowireCapableBeanFactory ... {
+	protected Object doCreateBean(...) {
+        //...
+
+        // 支撑循环依赖：将 ()->getEarlyBeanReference 作为一个 ObjectFactory 对象的 getObject() 方法加入到三级缓存中
+		addSingletonFactory(beanName, () -> getEarlyBeanReference(beanName, mbd, bean));
+    }
+}
+```
+
+那么上边在说 Spring 创建 Bean 的流程时说了，如果一级缓存、二级缓存都取不到对象时，会去三级缓存中通过 `ObjectFactory` 的 `getObject` 方法获取对象。
+
+```java
+class A {
+    // 使用了 B
+    private B b;
+}
+class B {
+    // 使用了 A
+    private A a;
+}
+```
+
+以上面的循环依赖代码为例，整个解决循环依赖的流程如下：
+
+- 当 Spring 创建 A 之后，发现 A 依赖了 B ，又去创建 B，B 依赖了 A ，又去创建 A；
+- 在 B 创建 A 的时候，那么此时 A 就发生了循环依赖，由于 A 此时还没有初始化完成，因此在 **一二级缓存** 中肯定没有 A；
+- 那么此时就去三级缓存中调用 `getObject()` 方法去获取 A 的 **前期暴露的对象** ，也就是调用上边加入的 `getEarlyBeanReference()` 方法，生成一个 A 的 **前期暴露对象**；
+- 然后就将这个 `ObjectFactory` 从三级缓存中移除，并且将前期暴露对象放入到二级缓存中，那么 B 就将这个前期暴露对象注入到依赖，来支持循环依赖。
+
+**只用两级缓存够吗？** 在没有 AOP 的情况下，确实可以只使用一级和二级缓存来解决循环依赖问题。但是，当涉及到 AOP 时，三级缓存就显得非常重要了，因为它确保了即使在 Bean 的创建过程中有多次对早期引用的请求，也始终只返回同一个代理对象，从而避免了同一个 Bean 有多个代理对象的问题。
+
+**最后总结一下 Spring 如何解决三级缓存**：
+
+在三级缓存这一块，主要记一下 Spring 是如何支持循环依赖的即可，也就是如果发生循环依赖的话，就去 **三级缓存 `singletonFactories`** 中拿到三级缓存中存储的 `ObjectFactory` 并调用它的 `getObject()` 方法来获取这个循环依赖对象的前期暴露对象（虽然还没初始化完成，但是可以拿到该对象在堆中的存储地址了），并且将这个前期暴露对象放到二级缓存中，这样在循环依赖时，就不会重复初始化了！
+
+不过，这种机制也有一些缺点，比如增加了内存开销（需要维护三级缓存，也就是三个 Map），降低了性能（需要进行多次检查和转换）。并且，还有少部分情况是不支持循环依赖的，比如非单例的 bean 和`@Async`注解的 bean 无法支持循环依赖。
+
+### @Lazy 能解决循环依赖吗？
+
+`@Lazy` 用来标识类是否需要懒加载/延迟加载，可以作用在类上、方法上、构造器上、方法参数上、成员变量中。
+
+Spring Boot 2.2 新增了**全局懒加载属性**，开启后全局 bean 被设置为懒加载，需要时再去创建。
+
+配置文件配置全局懒加载：
+
+```properties
+#默认false
+spring.main.lazy-initialization=true
+```
+
+编码的方式设置全局懒加载：
+
+```java
+SpringApplication springApplication=new SpringApplication(Start.class);
+springApplication.setLazyInitialization(false);
+springApplication.run(args);
+```
+
+如非必要，尽量不要用全局懒加载。全局懒加载会让 Bean 第一次使用的时候加载会变慢，并且它会延迟应用程序问题的发现（当 Bean 被初始化时，问题才会出现）。
+
+如果一个 Bean 没有被标记为懒加载，那么它会在 Spring IoC 容器启动的过程中被创建和初始化。如果一个 Bean 被标记为懒加载，那么它不会在 Spring IoC 容器启动时立即实例化，而是在第一次被请求时才创建。这可以帮助减少应用启动时的初始化时间，也可以用来解决循环依赖问题。
+
+循环依赖问题是如何通过`@Lazy` 解决的呢？这里举一个例子，比如说有两个 Bean，A 和 B，他们之间发生了循环依赖，那么 A 的构造器上添加 `@Lazy` 注解之后（延迟 Bean B 的实例化），加载的流程如下：
+
+- 首先 Spring 会去创建 A 的 Bean，创建时需要注入 B 的属性；
+- 由于在 A 上标注了 `@Lazy` 注解，因此 Spring 会去创建一个 B 的代理对象，将这个代理对象注入到 A 中的 B 属性；
+- 之后开始执行 B 的实例化、初始化，在注入 B 中的 A 属性时，此时 A 已经创建完毕了，就可以将 A 给注入进去。
+
+从上面的加载流程可以看出： `@Lazy` 解决循环依赖的关键点在于代理对象的使用。
+
+- **没有 `@Lazy` 的情况下**：在 Spring 容器初始化 `A` 时会立即尝试创建 `B`，而在创建 `B` 的过程中又会尝试创建 `A`，最终导致循环依赖（即无限递归，最终抛出异常）。
+- **使用 `@Lazy` 的情况下**：Spring 不会立即创建 `B`，而是会注入一个 `B` 的代理对象。由于此时 `B` 仍未被真正初始化，`A` 的初始化可以顺利完成。等到 `A` 实例实际调用 `B` 的方法时，代理对象才会触发 `B` 的真正初始化。
+
+`@Lazy` 能够在一定程度上打破循环依赖链，允许 Spring 容器顺利地完成 Bean 的创建和注入。但这并不是一个根本性的解决方案，尤其是在构造函数注入、复杂的多级依赖等场景中，`@Lazy` 无法有效地解决问题。因此，最佳实践仍然是尽量避免设计上的循环依赖。
+
+### SpringBoot 允许循环依赖发生么？
+
+SpringBoot 2.6.x 以前是默认允许循环依赖的，也就是说你的代码出现了循环依赖问题，一般情况下也不会报错。SpringBoot 2.6.x 以后官方不再推荐编写存在循环依赖的代码，建议开发者自己写代码的时候去减少不必要的互相依赖。这其实也是我们最应该去做的，循环依赖本身就是一种设计缺陷，我们不应该过度依赖 Spring 而忽视了编码的规范和质量，说不定未来某个 SpringBoot 版本就彻底禁止循环依赖的代码了。
+
+SpringBoot 2.6.x 以后，如果你不想重构循环依赖的代码的话，也可以采用下面这些方法：
+
+- 在全局配置文件中设置允许循环依赖存在：`spring.main.allow-circular-references=true`。最简单粗暴的方式，不太推荐。
+- 在导致循环依赖的 Bean 上添加 `@Lazy` 注解，这是一种比较推荐的方式。`@Lazy` 用来标识类是否需要懒加载/延迟加载，可以作用在类上、方法上、构造器上、方法参数上、成员变量中。
 - ……
 
 ## Spring 事务
