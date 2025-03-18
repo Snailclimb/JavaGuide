@@ -118,8 +118,8 @@ BufferedReader bufferedReader = new BufferedReader(isr);
 
 ```java
 public class InputStreamReader extends Reader {
- //用于解码的对象
- private final StreamDecoder sd;
+    //用于解码的对象
+    private final StreamDecoder sd;
     public InputStreamReader(InputStream in) {
         super(in);
         try {
@@ -130,7 +130,7 @@ public class InputStreamReader extends Reader {
         }
     }
     // 使用 StreamDecoder 对象做具体的读取工作
- public int read() throws IOException {
+    public int read() throws IOException {
         return sd.read();
     }
 }
