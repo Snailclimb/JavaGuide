@@ -20,6 +20,7 @@ icon: guide
 - [写给大家看的中文排版指南 - 知乎](https://zhuanlan.zhihu.com/p/20506092)
 - [中文文案排版细则 - Dawner](https://dawner.top/posts/chinese-copywriting-rules/)
 - [中文技术文档写作风格指南](https://github.com/yikeke/zh-style-guide/)
+- [中文排版需求](https://www.w3.org/TR/clreq/)
 
 如果要提 issue/question 的话，强烈推荐阅读下面这些资料：
 
