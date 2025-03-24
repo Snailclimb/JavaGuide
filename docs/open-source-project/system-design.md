@@ -10,6 +10,7 @@ icon: "xitongsheji"
 
 - [Spring Boot](https://github.com/spring-projects/spring-boot "spring-boot")：Spring Boot 可以轻松创建独立的生产级基于 Spring 的应用程序，内置 web 服务器让你可以像运行普通 Java 程序一样运行项 目。另外，大部分 Spring Boot 项目只需要少量的配置即可，这有别于 Spring 的重配置。
 - [SOFABoot](https://github.com/sofastack/sofa-boot)：SOFABoot 基于 Spring Boot ，不过在其基础上增加了 Readiness Check，类隔离，日志空间隔离等等能力。 配套提供的还有：SOFARPC（RPC 框架）、SOFABolt（基于 Netty 的远程通信框架）、SOFARegistry（注册中心）...详情请参考：[SOFAStack](https://github.com/sofastack) 。
+- [Solon](https://gitee.com/opensolon/solon)：国产面向全场景的 Java 企业级应用开发框架。
 - [Javalin](https://github.com/tipsy/javalin)：一个轻量级的 Web 框架，同时支持 Java 和 Kotlin，被微软、红帽、Uber 等公司使用。
 - [Play Framework](https://github.com/playframework/playframework)：面向 Java 和 Scala 的高速 Web 框架。
 - [Blade](https://github.com/lets-blade/blade)：一款追求简约、高效的 Web 框架，基于 Java8 + Netty4。
@@ -18,6 +19,7 @@ icon: "xitongsheji"
 
 - [Armeria](https://github.com/line/armeria)：适合任何情况的微服务框架。你可以用你喜欢的技术构建任何类型的微服务，包括[gRPC](https://grpc.io/)、 [Thrift](https://thrift.apache.org/)、[Kotlin](https://kotlinlang.org/)、 [Retrofit](https://square.github.io/retrofit/)、[Reactive Streams](https://www.reactive-streams.org/)、 [Spring Boot](https://spring.io/projects/spring-boot)和[Dropwizard](https://www.dropwizard.io/)
 - [Quarkus](https://github.com/quarkusio/quarkus) : 用于编写 Java 应用程序的云原生和容器优先的框架。
+- [Helidon](https://github.com/helidon-io/helidon)：一组用于编写微服务的 Java 库，支持 Helidon MP 和 Helidon SE 两种编程模型。
 
 ### API 文档
 
