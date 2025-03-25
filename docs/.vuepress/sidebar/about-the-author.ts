@@ -19,6 +19,7 @@ export const aboutTheAuthor = arraySidebar([
     collapsible: false,
     children: [
       "writing-technology-blog-six-years",
+      "deprecated-java-technologies",
       "my-article-was-stolen-and-made-into-video-and-it-became-popular",
       "dog-that-copies-other-people-essay",
       "zhishixingqiu-two-years",
