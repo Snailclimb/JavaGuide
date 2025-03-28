@@ -6,13 +6,13 @@ icon: codelibrary-fill
 
 ## 代码质量
 
-- [lombok](https://github.com/rzwitserloot/lombok) :使用 Lombok 我们可以简化我们的 Java 代码，比如使用它之后我们通过注释就可以实现 getter/setter、equals 等方法。
-- [guava](https://github.com/google/guava "guava")：Guava 是一组核心库，其中包括新的集合类型（例如 multimap 和 multiset），不可变集合，图形库以及用于并发、I / O、哈希、原始类型、字符串等的实用程序！
-- [hutool](https://github.com/looly/hutool "hutool") : Hutool 是一个 Java 工具包，也只是一个工具包，它帮助我们简化每一行代码，减少每一个方法，让 Java 语言也可以“甜甜的”。
+- [Lombok](https://github.com/rzwitserloot/lombok) :一个能够简化 Java 代码的强大工具库。通过使用 Lombok 的注解，我们可以自动生成常用的代码逻辑，例如 `getter`、`setter`、`equals`、`hashCode`、`toString` 方法，以及构造器、日志变量等内容。
+- [Guava](https://github.com/google/guava "guava")： Google 开发的一组功能强大的核心库，扩展了 Java 的标准库功能。它提供了许多有用的工具类和集合类型，例如 `Multimap`（多值映射）、`Multiset`（多重集合）、`BiMap`（双向映射）和不可变集合，此外还包含图形处理库和并发工具。Guava 还支持 I/O 操作、哈希算法、字符串处理、缓存等多种实用功能。
+- [Hutool](https://github.com/looly/hutool "hutool") : 一个全面且用户友好的 Java 工具库，旨在通过最小的依赖简化开发任务。它封装了许多实用的功能，例如文件操作、缓存、加密/解密、日志、文件操作。
 
 ## 问题排查和性能优化
 
-- [arthas](https://github.com/alibaba/arthas "arthas")：Alibaba 开源的 Java 诊断工具，可以实时监控和诊断 Java 应用程序。它提供了丰富的命令和功能，用于分析应用程序的性能问题，包括启动过程中的资源消耗和加载时间。
+- [Arthas](https://github.com/alibaba/arthas "arthas")：Alibaba 开源的 Java 诊断工具，可以实时监控和诊断 Java 应用程序。它提供了丰富的命令和功能，用于分析应用程序的性能问题，包括启动过程中的资源消耗和加载时间。
 - [Async Profiler](https://github.com/async-profiler/async-profiler)：低开销的异步 Java 性能分析工具，用于收集和分析应用程序的性能数据。
 - [Spring Boot Startup Report](https://github.com/maciejwalkowiak/spring-boot-startup-report)：用于生成 Spring Boot 应用程序启动报告的工具。它可以提供详细的启动过程信息，包括每个 bean 的加载时间、自动配置的耗时等，帮助你分析和优化启动过程。
 - [Spring Startup Analyzer](https://github.com/linyimin0812/spring-startup-analyzer/blob/main/README_ZH.md)：采集 Spring 应用启动过程数据，生成交互式分析报告(HTML)，用于分析 Spring 应用启动卡点，支持 Spring Bean 异步初始化，减少优化 Spring 应用启动时间。UI 参考[Spring Boot Startup Report](https://github.com/maciejwalkowiak/spring-boot-startup-report)实现。
@@ -25,9 +25,10 @@ icon: codelibrary-fill
 
 ### Excel
 
-- [easyexcel](https://github.com/alibaba/easyexcel) :快速、简单避免 OOM 的 Java 处理 Excel 工具。
-- [excel-streaming-reader](https://github.com/monitorjbl/excel-streaming-reader)：Excel 流式代码风格读取工具（只支持读取 XLSX 文件），基于 Apache POI 封装，同时保留标准 POI API 的语法。
-- [myexcel](https://github.com/liaochong/myexcel)：一个集导入、导出、加密 Excel 等多项功能的工具包。
+- [EasyExcel](https://github.com/alibaba/easyexcel) :快速、简单避免 OOM 的 Java 处理 Excel 工具。不过，这个个项目不再维护，迁移至了 [FastExcel](https://github.com/fast-excel/fastexcel)。
+- [Excel Spring Boot Starter](https://github.com/pig-mesh/excel-spring-boot-starter)：基于 FastExcel 实现的 Spring Boot Starter，用于简化 Excel 的读写操作。
+- [Excel Streaming Reader](https://github.com/monitorjbl/excel-streaming-reader)：Excel 流式代码风格读取工具（只支持读取 XLSX 文件），基于 Apache POI 封装，同时保留标准 POI API 的语法。
+- [MyExcel](https://github.com/liaochong/myexcel)：一个集导入、导出、加密 Excel 等多项功能的工具包。
 
 ### Word
 
@@ -65,7 +66,7 @@ icon: codelibrary-fill
 
 ## 在线支付
 
-- [jeepay](https://gitee.com/jeequan/jeepay)：一套适合互联网企业使用的开源支付系统，已实现交易、退款、转账、分账等接口，支持服务商特约商户和普通商户接口。已对接微信，支付宝，云闪付官方接口，支持聚合码支付。
+- [Jeepay](https://gitee.com/jeequan/jeepay)：一套适合互联网企业使用的开源支付系统，已实现交易、退款、转账、分账等接口，支持服务商特约商户和普通商户接口。已对接微信，支付宝，云闪付官方接口，支持聚合码支付。
 - [YunGouOS-PAY-SDK](https://gitee.com/YunGouOS/YunGouOS-PAY-SDK)：YunGouOS 微信支付接口、微信官方个人支付接口、非二维码收款，非第四方清算。个人用户可提交资料开通微信支付商户，完成对接。
 - [IJPay](https://gitee.com/javen205/IJPay)：聚合支付，IJPay 让支付触手可及，封装了微信支付、QQ 支付、支付宝支付、京东支付、银联支付、PayPal 支付等常用的支付方式以及各种常用的接口。
 
