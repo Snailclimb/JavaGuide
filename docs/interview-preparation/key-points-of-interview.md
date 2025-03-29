@@ -1,11 +1,11 @@
 ---
-title: Java面试重点总结(重要)
+title: Java后端面试重点总结
 category: 面试准备
 icon: star
 ---
 
 ::: tip 友情提示
-本文节选自 **[《Java 面试指北》](../zhuanlan/java-mian-shi-zhi-bei.md)**。这是一份教你如何更高效地准备面试的小册，涵盖常见八股文（系统设计、常见框架、分布式、高并发 ……）、优质面经等内容。
+本文节选自 **[《Java 面试指北》](../zhuanlan/java-mian-shi-zhi-bei.md)**。这是一份教你如何更高效地准备面试的专栏，内容和 JavaGuide 互补，涵盖常见八股文（系统设计、常见框架、分布式、高并发 ……）、优质面经等内容。
 :::
 
 ## Java 后端面试哪些知识点是重点？

@@ -20,14 +20,14 @@ export default sidebar({
   // 必须放在最后面
   "/": [
     {
-      text: "必看",
+      text: "项目介绍",
       icon: "star",
       collapsible: true,
       prefix: "javaguide/",
       children: ["intro", "use-suggestion", "contribution-guideline", "faq"],
     },
     {
-      text: "面试准备",
+      text: "面试准备（必看）",
       icon: "interview",
       collapsible: true,
       prefix: "interview-preparation/",
