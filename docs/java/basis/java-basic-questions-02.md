@@ -6,7 +6,7 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: 面向对象,构造方法,接口,抽象类,String,Object
+      content: 面向对象, 面向过程, OOP, POP, Java对象, 构造方法, 封装, 继承, 多态, 接口, 抽象类, 默认方法, 静态方法, 私有方法, 深拷贝, 浅拷贝, 引用拷贝, Object类, equals, hashCode, ==, 字符串, String, StringBuffer, StringBuilder, 不可变性, 字符串常量池, intern, 字符串拼接, Java基础, 面试题
   - - meta
     - name: description
       content: 全网质量最高的Java基础常见知识点和面试题总结，希望对你有帮助！

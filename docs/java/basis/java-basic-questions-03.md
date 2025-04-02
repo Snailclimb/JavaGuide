@@ -6,7 +6,7 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: Java异常,泛型,反射,IO,注解
+      content: Java异常处理, Java泛型, Java反射, Java注解, Java SPI机制, Java序列化, Java反序列化, Java IO流, Java语法糖, Java基础面试题, Checked Exception, Unchecked Exception, try-with-resources, 反射应用场景, 序列化协议, BIO, NIO, AIO, IO模型
   - - meta
     - name: description
       content: 全网质量最高的Java基础常见知识点和面试题总结，希望对你有帮助！

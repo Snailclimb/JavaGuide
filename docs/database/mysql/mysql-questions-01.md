@@ -158,10 +158,10 @@ DATETIME 类型没有时区信息，TIMESTAMP 和时区有关。
 
 TIMESTAMP 只需要使用 4 个字节的存储空间，但是 DATETIME 需要耗费 8 个字节的存储空间。但是，这样同样造成了一个问题，Timestamp 表示的时间范围更小。
 
-- DATETIME：1000-01-01 00:00:00 ~ 9999-12-31 23:59:59
-- Timestamp：1970-01-01 00:00:01 ~ 2037-12-31 23:59:59
+- DATETIME：'1000-01-01 00:00:00.000000' 到 '9999-12-31 23:59:59.999999'
+- Timestamp：'1970-01-01 00:00:01.000000' UTC 到 '2038-01-19 03:14:07.999999' UTC
 
-关于两者的详细对比，请参考我写的[MySQL 时间类型数据存储建议](./some-thoughts-on-database-storage-time.md)。
+关于两者的详细对比，请参考我写的 [MySQL 时间类型数据存储建议](./some-thoughts-on-database-storage-time.md)。
 
 ### NULL 和 '' 的区别是什么？
 
