@@ -475,8 +475,8 @@ synchronized static void method() {
 
 对括号里指定的对象/类加锁：
 
-- `synchronized(object)` 表示进入同步代码库前要获得 **给定对象的锁**。
-- `synchronized(类.class)` 表示进入同步代码前要获得 **给定 Class 的锁**
+- `synchronized(object)` 表示进入同步代码块前要获得 **给定对象的锁**。
+- `synchronized(类.class)` 表示进入同步代码块前要获得 **给定 Class 的锁**
 
 ```java
 synchronized(this) {
