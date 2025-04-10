@@ -1,3 +1,10 @@
+---
+title: Java 24 新特性概览
+category: Java
+tag:
+  - Java新特性
+---
+
 [JDK 24](https://openjdk.org/projects/jdk/24/) 是自 JDK 21 以来的第三个非长期支持版本，和 [JDK 22](https://javaguide.cn/java/new-features/java22-23.html)、[JDK 23](https://javaguide.cn/java/new-features/java22-23.html)一样。下一个长期支持版是 **JDK 25**，预计今年 9 月份发布。
 
 JDK 24 带来的新特性还是蛮多的，一共 24 个。JDK 22 和 JDK 23 都只有 12 个，JDK 24 的新特性相当于这两次的总和了。因此，这个版本还是非常有必要了解一下的。

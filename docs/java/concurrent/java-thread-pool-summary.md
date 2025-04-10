@@ -162,11 +162,15 @@ public static class CallerRunsPolicy implements RejectedExecutionHandler {
 
 ### 线程池创建的两种方式
 
-**方式一：通过`ThreadPoolExecutor`构造函数来创建（推荐）。**
+在 Java 中，创建线程池主要有两种方式：
 
-![通过构造方法实现](./images/java-thread-pool-summary/threadpoolexecutor构造函数.png)
+**方式一：通过 `ThreadPoolExecutor` 构造函数直接创建 (推荐)**
 
-**方式二：通过 `Executor` 框架的工具类 `Executors` 来创建。**
+![](https://oss.javaguide.cn/github/javaguide/java/concurrent/threadpoolexecutor-construtors.png)
+
+这是最推荐的方式，因为它允许开发者明确指定线程池的核心参数，对线程池的运行行为有更精细的控制，从而避免资源耗尽的风险。
+
+**方式二：通过 `Executors` 工具类创建 (不推荐用于生产环境)**
 
 `Executors`工具类提供的创建线程池的方法如下图所示：
 
