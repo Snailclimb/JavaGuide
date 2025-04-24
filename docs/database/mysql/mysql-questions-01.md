@@ -553,31 +553,26 @@ MVCC 在 MySQL 中实现所依赖的手段主要是: **隐藏字段、read view�
 
 ### SQL 标准定义了哪些事务隔离级别?
 
-SQL 标准定义了四个隔离级别：
+SQL 标准定义了四种事务隔离级别，用来平衡事务的隔离性（Isolation）和并发性能。级别越高，数据一致性越好，但并发性能可能越低。这四个级别是：
 
-- **READ-UNCOMMITTED(读取未提交)** ：最低的隔离级别，允许读取尚未提交的数据变更，可能会导致脏读、幻读或不可重复读。
-- **READ-COMMITTED(读取已提交)** ：允许读取并发事务已经提交的数据，可以阻止脏读，但是幻读或不可重复读仍有可能发生。
-- **REPEATABLE-READ(可重复读)** ：对同一字段的多次读取结果都是一致的，除非数据是被本身事务自己所修改，可以阻止脏读和不可重复读，但幻读仍有可能发生。
+- **READ-UNCOMMITTED(读取未提交)** ：最低的隔离级别，允许读取尚未提交的数据变更，可能会导致脏读、幻读或不可重复读。这种级别在实际应用中很少使用，因为它对数据一致性的保证太弱。
+- **READ-COMMITTED(读取已提交)** ：允许读取并发事务已经提交的数据，可以阻止脏读，但是幻读或不可重复读仍有可能发生。这是大多数数据库（如 Oracle, SQL Server）的默认隔离级别。
+- **REPEATABLE-READ(可重复读)** ：对同一字段的多次读取结果都是一致的，除非数据是被本身事务自己所修改，可以阻止脏读和不可重复读，但幻读仍有可能发生。MySQL InnoDB 存储引擎的默认隔离级别正是 REPEATABLE READ。并且，InnoDB 在此级别下通过 MVCC（多版本并发控制） 和 Next-Key Locks（间隙锁+行锁） 机制，在很大程度上解决了幻读问题。
 - **SERIALIZABLE(可串行化)** ：最高的隔离级别，完全服从 ACID 的隔离级别。所有的事务依次逐个执行，这样事务之间就完全不可能产生干扰，也就是说，该级别可以防止脏读、不可重复读以及幻读。
 
----
-
-|     隔离级别     | 脏读 | 不可重复读 | 幻读 |
-| :--------------: | :--: | :--------: | :--: |
-| READ-UNCOMMITTED |  √   |     √      |  √   |
-|  READ-COMMITTED  |  ×   |     √      |  √   |
-| REPEATABLE-READ  |  ×   |     ×      |  √   |
-|   SERIALIZABLE   |  ×   |     ×      |  ×   |
-
-### MySQL 的隔离级别是基于锁实现的吗？
-
-MySQL 的隔离级别基于锁和 MVCC 机制共同实现的。
-
-SERIALIZABLE 隔离级别是通过锁来实现的，READ-COMMITTED 和 REPEATABLE-READ 隔离级别是基于 MVCC 实现的。不过， SERIALIZABLE 之外的其他隔离级别可能也需要用到锁机制，就比如 REPEATABLE-READ 在当前读情况下需要使用加锁读来保证不会出现幻读。
+| 隔离级别         | 脏读 (Dirty Read) | 不可重复读 (Non-Repeatable Read) | 幻读 (Phantom Read)    |
+| ---------------- | ----------------- | -------------------------------- | ---------------------- |
+| READ UNCOMMITTED | √                 | √                                | √                      |
+| READ COMMITTED   | ×                 | √                                | √                      |
+| REPEATABLE READ  | ×                 | ×                                | √ (标准) / ≈× (InnoDB) |
+| SERIALIZABLE     | ×                 | ×                                | ×                      |
 
 ### MySQL 的默认隔离级别是什么?
 
-MySQL InnoDB 存储引擎的默认支持的隔离级别是 **REPEATABLE-READ（可重读）**。我们可以通过`SELECT @@tx_isolation;`命令来查看，MySQL 8.0 该命令改为`SELECT @@transaction_isolation;`
+MySQL InnoDB 存储引擎的默认隔离级别是 **REPEATABLE READ**。可以通过以下命令查看：
+
+- MySQL 8.0 之前：`SELECT @@tx_isolation;`
+- MySQL 8.0 及之后：`SELECT @@transaction_isolation;`
 
 ```sql
 mysql> SELECT @@tx_isolation;
@@ -589,6 +584,12 @@ mysql> SELECT @@tx_isolation;
 ```
 
 关于 MySQL 事务隔离级别的详细介绍，可以看看我写的这篇文章：[MySQL 事务隔离级别详解](./transaction-isolation-level.md)。
+
+### MySQL 的隔离级别是基于锁实现的吗？
+
+MySQL 的隔离级别基于锁和 MVCC 机制共同实现的。
+
+SERIALIZABLE 隔离级别是通过锁来实现的，READ-COMMITTED 和 REPEATABLE-READ 隔离级别是基于 MVCC 实现的。不过， SERIALIZABLE 之外的其他隔离级别可能也需要用到锁机制，就比如 REPEATABLE-READ 在当前读情况下需要使用加锁读来保证不会出现幻读。
 
 ## MySQL 锁
 
