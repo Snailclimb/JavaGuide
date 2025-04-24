@@ -7,78 +7,77 @@ tag:
 
 > 本文由 JavaGuide 翻译自 [https://www.baeldung.com/jvm-parameters](https://www.baeldung.com/jvm-parameters)，并对文章进行了大量的完善补充。
 > 文档参数 [https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html](https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html)
-> 
-> JDK 版本：1.8
+>
+> JDK 版本：1.8 为主，也会补充新版本常用参数
 
-## 1.概述
+在本篇文章中，我们将一起掌握 Java 虚拟机（JVM）中最常用的一些参数配置，帮助你更好地理解和调优 Java 应用的运行环境。
 
-在本篇文章中，你将掌握最常用的 JVM 参数配置。
+## 堆内存相关
 
-## 2.堆内存相关
-
-> Java 虚拟机所管理的内存中最大的一块，Java 堆是所有线程共享的一块内存区域，在虚拟机启动时创建。**此内存区域的唯一目的就是存放对象实例，几乎所有的对象实例以及数组都在这里分配内存。**
+> Java 堆（Java Heap）是 JVM 所管理的内存中最大的一块区域，**所有线程共享**，在虚拟机启动时创建。**此内存区域的唯一目的就是存放对象实例，几乎所有的对象实例以及数组都要在堆上分配内存。**
 
 ![内存区域常见配置参数](./pictures/内存区域常见配置参数.png)
 
-### 2.1.显式指定堆内存`–Xms`和`-Xmx`
+### 设置堆内存大小 (-Xms 和 -Xmx)
 
-与性能有关的最常见实践之一是根据应用程序要求初始化堆内存。如果我们需要指定最小和最大堆大小（推荐显示指定大小），以下参数可以帮助你实现：
+根据应用程序的实际需求设置初始和最大堆内存大小，是性能调优中最常见的实践之一。**推荐显式设置这两个参数，并且通常建议将它们设置为相同的值**，以避免运行时堆内存的动态调整带来的性能开销。
 
-```bash
--Xms<heap size>[unit]
--Xmx<heap size>[unit]
-```
-
-- **heap size** 表示要初始化内存的具体大小。
-- **unit** 表示要初始化内存的单位。单位为 **_“ g”_** (GB)、**_“ m”_**（MB）、**_“ k”_**（KB）。
-
-举个栗子 🌰，如果我们要为 JVM 分配最小 2 GB 和最大 5 GB 的堆内存大小，我们的参数应该这样来写：
+使用以下参数进行设置：
 
 ```bash
--Xms2G -Xmx5G
+-Xms<heap size>[unit]  # 设置 JVM 初始堆大小
+-Xmx<heap size>[unit]  # 设置 JVM 最大堆大小
 ```
 
-### 2.2.显式新生代内存(Young Generation)
+- `<heap size>`: 指定内存的具体数值。
+- `[unit]`: 指定内存的单位，如 g (GB)、m (MB)、k (KB)。
 
-根据[Oracle 官方文档](https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/sizing.html)，在堆总可用内存配置完成之后，第二大影响因素是为 `Young Generation` 在堆内存所占的比例。默认情况下，YG 的最小大小为 1310 _MB_，最大大小为 _无限制_。
+**示例：** 将 JVM 的初始堆和最大堆都设置为 4GB：
 
-一共有两种指定 新生代内存(Young Generation)大小的方法：
+```bash
+-Xms4G -Xmx4G
+```
+
+### 设置新生代内存大小 (Young Generation)
+
+根据[Oracle 官方文档](https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/sizing.html)，在堆总可用内存配置完成之后，第二大影响因素是为 `Young Generation` 在堆内存所占的比例。默认情况下，YG 的最小大小为 **1310 MB**，最大大小为 **无限制**。
+
+可以通过以下两种方式设置新生代内存大小：
 
 **1.通过`-XX:NewSize`和`-XX:MaxNewSize`指定**
 
 ```bash
--XX:NewSize=<young size>[unit]
--XX:MaxNewSize=<young size>[unit]
+-XX:NewSize=<young size>[unit]    # 设置新生代初始大小
+-XX:MaxNewSize=<young size>[unit] # 设置新生代最大大小
 ```
 
-举个栗子 🌰，如果我们要为 新生代分配 最小 256m 的内存，最大 1024m 的内存我们的参数应该这样来写：
+**示例：** 设置新生代最小 512MB，最大 1024MB：
 
 ```bash
--XX:NewSize=256m
--XX:MaxNewSize=1024m
+-XX:NewSize=512m -XX:MaxNewSize=1024m
 ```
 
 **2.通过`-Xmn<young size>[unit]`指定**
 
-举个栗子 🌰，如果我们要为 新生代分配 256m 的内存（NewSize 与 MaxNewSize 设为一致），我们的参数应该这样来写：
+**示例：** 将新生代大小固定为 512MB：
 
 ```bash
--Xmn256m
+-Xmn512m
 ```
 
 GC 调优策略中很重要的一条经验总结是这样说的：
 
-> 将新对象预留在新生代，由于 Full GC 的成本远高于 Minor GC，因此尽可能将对象分配在新生代是明智的做法，实际项目中根据 GC 日志分析新生代空间大小分配是否合理，适当通过“-Xmn”命令调节新生代大小，最大限度降低新对象直接进入老年代的情况。
+> 尽量让新创建的对象在新生代分配内存并被回收，因为 Minor GC 的成本通常远低于 Full GC。通过分析 GC 日志，判断新生代空间分配是否合理。如果大量新对象过早进入老年代（Promotion），可以适当通过 `-Xmn` 或 -`XX:NewSize/-XX:MaxNewSize` 调整新生代大小，目标是最大限度地减少对象直接进入老年代的情况。
 
-另外，你还可以通过 **`-XX:NewRatio=<int>`** 来设置新生代与老年代内存的比例。
+另外，你还可以通过 **`-XX:NewRatio=<int>`** 参数来设置**老年代与新生代（不含 Survivor 区）的内存大小比例**。
 
-比如下面的参数就是设置新生代与老年代内存的比例为 1:2（默认值）。也就是说新生代占整个堆栈的 1/3。
+例如，`-XX:NewRatio=2` （默认值）表示老年代 : 新生代 = 2 : 1。即新生代占整个堆大小的 1/3。
 
-```plain
+```bash
 -XX:NewRatio=2
 ```
 
-### 2.3.显式指定永久代/元空间的大小
+### 设置永久代/元空间大小 (PermGen/Metaspace)
 
 **从 Java 8 开始，如果我们没有指定 Metaspace 的大小，随着更多类的创建，虚拟机会耗尽所有可用的系统内存（永久代并不会出现这种情况）。**
 
@@ -102,7 +101,7 @@ JDK 1.8 之前永久代还没被彻底移除的时候通常通过下面这些参
 
 **🐛 修正（参见：[issue#1947](https://github.com/Snailclimb/JavaGuide/issues/1947)）**：
 
-1、Metaspace 的初始容量并不是 `-XX:MetaspaceSize` 设置，无论 `-XX:MetaspaceSize` 配置什么值，对于 64 位 JVM 来说，Metaspace 的初始容量都是 21807104（约 20.8m）。
+**1、`-XX:MetaspaceSize` 并非初始容量：** Metaspace 的初始容量并不是 `-XX:MetaspaceSize` 设置，无论 `-XX:MetaspaceSize` 配置什么值，对于 64 位 JVM，元空间的初始容量通常是一个固定的较小值（Oracle 文档提到约 12MB 到 20MB 之间，实际观察约 20.8MB）。
 
 可以参考 Oracle 官方文档 [Other Considerations](https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/considerations.html) 中提到的：
 
@@ -112,11 +111,7 @@ JDK 1.8 之前永久代还没被彻底移除的时候通常通过下面这些参
 
 另外，还可以看一下这个试验：[JVM 参数 MetaspaceSize 的误解](https://mp.weixin.qq.com/s/jqfppqqd98DfAJHZhFbmxA)。
 
-2、Metaspace 由于使用不断扩容到`-XX:MetaspaceSize`参数指定的量，就会发生 FGC，且之后每次 Metaspace 扩容都会发生 Full GC。
-
-也就是说，MetaspaceSize 表示 Metaspace 使用过程中触发 Full GC 的阈值，只对触发起作用。
-
-垃圾搜集器内部是根据变量 `_capacity_until_GC`来判断 Metaspace 区域是否达到阈值的，初始化代码如下所示：
+**2、扩容与 Full GC：** 当 Metaspace 的使用量增长并首次达到`-XX:MetaspaceSize` 指定的阈值时，会触发一次 Full GC。在此之后，JVM 会动态调整这个触发 GC 的阈值。如果元空间继续增长，每次达到新的阈值需要扩容时，仍然可能触发 Full GC（具体行为与垃圾收集器和版本有关）。垃圾搜集器内部是根据变量 `_capacity_until_GC`来判断 Metaspace 区域是否达到阈值的，初始化代码如下所示：
 
 ```c
 void MetaspaceGC::initialize() {
@@ -126,111 +121,120 @@ void MetaspaceGC::initialize() {
 }
 ```
 
+**3、`-XX:MaxMetaspaceSize` 的重要性：**如果不显式设置 -`XX:MaxMetaspaceSize`，元空间的最大大小理论上受限于可用的本地内存。在极端情况下（如类加载器泄漏导致不断加载类），这确实**可能耗尽大量本地内存**。因此，**强烈建议设置一个合理的 `-XX:MaxMetaspaceSize` 上限**，以防止对系统造成影响。
+
 相关阅读：[issue 更正：MaxMetaspaceSize 如果不指定大小的话，不会耗尽内存 #1204](https://github.com/Snailclimb/JavaGuide/issues/1204) 。
 
-## 3.垃圾收集相关
+## 垃圾收集相关
 
-### 3.1.垃圾回收器
+### 选择垃圾回收器
 
-为了提高应用程序的稳定性，选择正确的[垃圾收集](http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html)算法至关重要。
+选择合适的垃圾收集器（Garbage Collector, GC）对于应用的吞吐量和响应延迟至关重要。关于垃圾收集算法和收集器的详细介绍，可以看笔者写的这篇：[JVM 垃圾回收详解（重点）](https://javaguide.cn/java/jvm/jvm-garbage-collection.html)。
 
-JVM 具有四种类型的 GC 实现：
+JVM 提供了多种 GC 实现，适用于不同的场景：
 
-- 串行垃圾收集器
-- 并行垃圾收集器
-- CMS 垃圾收集器
-- G1 垃圾收集器
+- **Serial GC (串行垃圾收集器):** 单线程执行 GC，适用于客户端模式或单核 CPU 环境。参数：`-XX:+UseSerialGC`。
+- **Parallel GC (并行垃圾收集器):** 多线程执行新生代 GC (Minor GC)，以及可选的多线程执行老年代 GC (Full GC，通过 `-XX:+UseParallelOldGC`)。关注吞吐量，是 JDK 8 的默认 GC。参数：`-XX:+UseParallelGC`。
+- **CMS GC (Concurrent Mark Sweep 并发标记清除收集器):** 以获取最短回收停顿时间为目标，大部分 GC 阶段可与用户线程并发执行。适用于对响应时间要求高的应用。在 JDK 9 中被标记为弃用，JDK 14 中被移除。参数：`-XX:+UseConcMarkSweepGC`。
+- **G1 GC (Garbage-First Garbage Collector):** JDK 9 及之后版本的默认 GC。将堆划分为多个 Region，兼顾吞吐量和停顿时间，试图在可预测的停顿时间内完成 GC。参数：`-XX:+UseG1GC`。
+- **ZGC:** 更新的低延迟 GC，目标是将 GC 停顿时间控制在几毫秒甚至亚毫秒级别，需要较新版本的 JDK 支持。参数（具体参数可能随版本变化）：`-XX:+UseZGC`、`-XX:+UseShenandoahGC`。
 
-可以使用以下参数声明这些实现：
+### GC 日志记录
 
-```bash
--XX:+UseSerialGC
--XX:+UseParallelGC
--XX:+UseConcMarkSweepGC
--XX:+UseG1GC
-```
+在生产环境或进行 GC 问题排查时，**务必开启 GC 日志记录**。详细的 GC 日志是分析和解决 GC 问题的关键依据。
 
-有关 _垃圾回收_ 实施的更多详细信息，请参见[此处](https://github.com/Snailclimb/JavaGuide/blob/master/docs/java/jvm/JVM%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.md)。
-
-### 3.2.GC 日志记录
-
-生产环境上，或者其他要测试 GC 问题的环境上，一定会配置上打印 GC 日志的参数，便于分析 GC 相关的问题。
+以下是一些推荐配置的 GC 日志参数（适用于 JDK 8/11 等常见版本）：
 
 ```bash
-# 必选
-# 打印基本 GC 信息
+# --- 推荐的基础配置 ---
+# 打印详细 GC 信息
 -XX:+PrintGCDetails
+# 打印 GC 发生的时间戳 (相对于 JVM 启动时间)
+# -XX:+PrintGCTimeStamps
+# 打印 GC 发生的日期和时间 (更常用)
 -XX:+PrintGCDateStamps
-# 打印对象分布
+# 指定 GC 日志文件的输出路径，%t 可以输出日期时间戳
+-Xloggc:/path/to/gc-%t.log
+
+# --- 推荐的进阶配置 ---
+# 打印对象年龄分布 (有助于判断对象晋升老年代的情况)
 -XX:+PrintTenuringDistribution
-# 打印堆数据
+# 在 GC 前后打印堆信息
 -XX:+PrintHeapAtGC
-# 打印Reference处理信息
-# 强引用/弱引用/软引用/虚引用/finalize 相关的方法
+# 打印各种类型引用 (强/软/弱/虚) 的处理信息
 -XX:+PrintReferenceGC
-# 打印STW时间
+# 打印应用暂停时间 (Stop-The-World, STW)
 -XX:+PrintGCApplicationStoppedTime
 
-# 可选
-# 打印safepoint信息，进入 STW 阶段之前，需要要找到一个合适的 safepoint
--XX:+PrintSafepointStatistics
--XX:PrintSafepointStatisticsCount=1
-
-# GC日志输出的文件路径
--Xloggc:/path/to/gc-%t.log
-# 开启日志文件分割
+# --- GC 日志文件滚动配置 ---
+# 启用 GC 日志文件滚动
 -XX:+UseGCLogFileRotation
-# 最多分割几个文件，超过之后从头文件开始写
+# 设置滚动日志文件的数量 (例如，保留最近 14 个)
 -XX:NumberOfGCLogFiles=14
-# 每个文件上限大小，超过就触发分割
+# 设置每个日志文件的最大大小 (例如，50MB)
 -XX:GCLogFileSize=50M
+
+# --- 可选的辅助诊断配置 ---
+# 打印安全点 (Safepoint) 统计信息 (有助于分析 STW 原因)
+# -XX:+PrintSafepointStatistics
+# -XX:PrintSafepointStatisticsCount=1
 ```
 
-## 4.处理 OOM
+**注意:** JDK 9 及之后版本引入了统一的 JVM 日志框架 (`-Xlog`)，配置方式有所不同，但上述 `-Xloggc` 和滚动参数通常仍然兼容或有对应的新参数。
+
+## 处理 OOM
 
 对于大型应用程序来说，面对内存不足错误是非常常见的，这反过来会导致应用程序崩溃。这是一个非常关键的场景，很难通过复制来解决这个问题。
 
 这就是为什么 JVM 提供了一些参数，这些参数将堆内存转储到一个物理文件中，以后可以用来查找泄漏:
 
 ```bash
+# 在发生 OOM 时生成堆转储文件
 -XX:+HeapDumpOnOutOfMemoryError
--XX:HeapDumpPath=./java_pid<pid>.hprof
--XX:OnOutOfMemoryError="< cmd args >;< cmd args >"
+
+# 指定堆转储文件的输出路径。<pid> 会被替换为进程 ID
+-XX:HeapDumpPath=/path/to/heapdump/java_pid<pid>.hprof
+# 示例：-XX:HeapDumpPath=/data/dumps/
+
+# (可选) 在发生 OOM 时执行指定的命令或脚本
+# 例如，发送告警通知或尝试重启服务（需谨慎使用）
+# -XX:OnOutOfMemoryError="<command> <args>"
+# 示例：-XX:OnOutOfMemoryError="sh /path/to/notify.sh"
+
+# (可选) 启用 GC 开销限制检查
+# 如果 GC 时间占总时间比例过高（默认 98%）且回收效果甚微（默认小于 2% 堆内存），
+# 会提前抛出 OOM，防止应用长时间卡死在 GC 中。
 -XX:+UseGCOverheadLimit
 ```
 
-这里有几点需要注意:
+## 其他常用参数
 
-- **HeapDumpOnOutOfMemoryError** 指示 JVM 在遇到 **OutOfMemoryError** 错误时将 heap 转储到物理文件中。
-- **HeapDumpPath** 表示要写入文件的路径; 可以给出任何文件名; 但是，如果 JVM 在名称中找到一个 `<pid>` 标记，则当前进程的进程 id 将附加到文件名中，并使用`.hprof`格式
-- **OnOutOfMemoryError** 用于发出紧急命令，以便在内存不足的情况下执行; 应该在 `cmd args` 空间中使用适当的命令。例如，如果我们想在内存不足时重启服务器，我们可以设置参数: `-XX:OnOutOfMemoryError="shutdown -r"` 。
-- **UseGCOverheadLimit** 是一种策略，它限制在抛出 OutOfMemory 错误之前在 GC 中花费的 VM 时间的比例
+- `-server`: 明确启用 Server 模式的 HotSpot VM。（在 64 位 JVM 上通常是默认值）。
+- `-XX:+UseStringDeduplication`: (JDK 8u20+) 尝试识别并共享底层 `char[]` 数组相同的 String 对象，以减少内存占用。适用于存在大量重复字符串的场景。
+- `-XX:SurvivorRatio=<ratio>`: 设置 Eden 区与单个 Survivor 区的大小比例。例如 `-XX:SurvivorRatio=8` 表示 Eden:Survivor = 8:1。
+- `-XX:MaxTenuringThreshold=<threshold>`: 设置对象从新生代晋升到老年代的最大年龄阈值（对象每经历一次 Minor GC 且存活，年龄加 1）。默认值通常是 15。
+- `-XX:+DisableExplicitGC`: 禁止代码中显式调用 `System.gc()`。推荐开启，避免人为触发不必要的 Full GC。
+- `-XX:+UseLargePages`: (需要操作系统支持) 尝试使用大内存页（如 2MB 而非 4KB），可能提升内存密集型应用的性能，但需谨慎测试。
+- -`XX:MinHeapFreeRatio=<percent> / -XX:MaxHeapFreeRatio=<percent>`: 控制 GC 后堆内存保持空闲的最小/最大百分比，用于动态调整堆大小（如果 `-Xms` 和 `-Xmx` 不相等）。通常建议将 `-Xms` 和 `-Xmx` 设为一致，避免调整开销。
 
-## 5.其他
+**注意：** 以下参数在现代 JVM 版本中可能已**弃用、移除或默认开启且无需手动设置**：
 
-- `-server` : 启用“ Server Hotspot VM”; 此参数默认用于 64 位 JVM
-- `-XX:+UseStringDeduplication` : _Java 8u20_ 引入了这个 JVM 参数，通过创建太多相同 String 的实例来减少不必要的内存使用; 这通过将重复 String 值减少为单个全局 `char []` 数组来优化堆内存。
-- `-XX:+UseLWPSynchronization`: 设置基于 LWP (轻量级进程)的同步策略，而不是基于线程的同步。
-- `-XX:LargePageSizeInBytes`: 设置用于 Java 堆的较大页面大小; 它采用 GB/MB/KB 的参数; 页面大小越大，我们可以更好地利用虚拟内存硬件资源; 然而，这可能会导致 PermGen 的空间大小更大，这反过来又会迫使 Java 堆空间的大小减小。
-- `-XX:MaxHeapFreeRatio` : 设置 GC 后, 堆空闲的最大百分比，以避免收缩。
-- `-XX:SurvivorRatio` : eden/survivor 空间的比例, 例如`-XX:SurvivorRatio=6` 设置每个 survivor 和 eden 之间的比例为 1:6。
-- `-XX:+UseLargePages` : 如果系统支持，则使用大页面内存; 请注意，如果使用这个 JVM 参数，OpenJDK 7 可能会崩溃。
-- `-XX:+UseStringCache` : 启用 String 池中可用的常用分配字符串的缓存。
-- `-XX:+UseCompressedStrings` : 对 String 对象使用 `byte []` 类型，该类型可以用纯 ASCII 格式表示。
-- `-XX:+OptimizeStringConcat` : 它尽可能优化字符串串联操作。
+- `-XX:+UseLWPSynchronization`: 较旧的同步策略选项，现代 JVM 通常有更优化的实现。
+- `-XX:LargePageSizeInBytes`: 通常由 `-XX:+UseLargePages` 自动确定或通过 OS 配置。
+- `-XX:+UseStringCache`: 已被移除。
+- `-XX:+UseCompressedStrings`: 已被 Java 9 及之后默认开启的 Compact Strings 特性取代。
+- `-XX:+OptimizeStringConcat`: 字符串连接优化（invokedynamic）在 Java 9 及之后是默认行为。
 
-## 文章推荐
+## 总结
 
-这里推荐了非常多优质的 JVM 实践相关的文章，推荐阅读，尤其是 JVM 性能优化和问题排查相关的文章。
+本文为 Java 开发者提供了一份实用的 JVM 常用参数配置指南，旨在帮助读者理解和优化 Java 应用的性能与稳定性。文章重点强调了以下几个方面：
 
-- [JVM 参数配置说明 - 阿里云官方文档 - 2022](https://help.aliyun.com/document_detail/148851.html)
-- [JVM 内存配置最佳实践 - 阿里云官方文档 - 2022](https://help.aliyun.com/document_detail/383255.html)
-- [求你了，GC 日志打印别再瞎配置了 - 思否 - 2022](https://segmentfault.com/a/1190000039806436)
-- [一次大量 JVM Native 内存泄露的排查分析（64M 问题） - 掘金 - 2022](https://juejin.cn/post/7078624931826794503)
-- [一次线上 JVM 调优实践，FullGC40 次/天到 10 天一次的优化过程 - HeapDump - 2021](https://heapdump.cn/article/1859160)
-- [听说 JVM 性能优化很难？今天我小试了一把！ - 陈树义 - 2021](https://shuyi.tech/archives/have-a-try-in-jvm-combat)
-- [你们要的线上 GC 问题案例来啦 - 编了个程 - 2021](https://mp.weixin.qq.com/s/df1uxHWUXzhErxW1sZ6OvQ)
-- [Java 中 9 种常见的 CMS GC 问题分析与解决 - 美团技术团队 - 2020](https://tech.meituan.com/2020/11/12/java-9-cms-gc.html)
-- [从实际案例聊聊 Java 应用的 GC 优化-美团技术团队 - 美团技术团队 - 2017](https://tech.meituan.com/2017/12/29/jvm-optimize.html)
+1. **堆内存配置：** 建议显式设置初始与最大堆内存 (`-Xms`, -`Xmx`，通常设为一致) 和新生代大小 (`-Xmn` 或 `-XX:NewSize/-XX:MaxNewSize`)，这对 GC 性能至关重要。
+2. **元空间管理 (Java 8+)：** 澄清了 `-XX:MetaspaceSize` 的实际作用（首次触发 Full GC 的阈值，而非初始容量），并强烈建议设置 `-XX:MaxMetaspaceSize` 以防止潜在的本地内存耗尽。
+3. **垃圾收集器选择与日志：**介绍了不同 GC 算法的适用场景，并强调在生产和测试环境中开启详细 GC 日志 (`-Xloggc`, `-XX:+PrintGCDetails` 等) 对于问题排查的必要性。
+4. **OOM 故障排查：** 说明了如何通过 `-XX:+HeapDumpOnOutOfMemoryError` 等参数在发生 OOM 时自动生成堆转储文件，以便进行后续的内存泄漏分析。
+5. **其他参数：** 简要介绍了如字符串去重等其他有用参数，并指出了部分旧参数的现状。
+
+具体的问题排查和调优案例，可以参考笔者整理的这篇文章：[JVM 线上问题排查和性能调优案例](https://javaguide.cn/java/jvm/jvm-in-action.html)。
 
 <!-- @include: @article-footer.snippet.md -->
