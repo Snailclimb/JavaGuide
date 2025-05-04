@@ -469,6 +469,7 @@ export default sidebar({
             "encryption-algorithms",
             "sentive-words-filter",
             "data-desensitization",
+            "data-validation",
           ],
         },
         "system-design-questions",

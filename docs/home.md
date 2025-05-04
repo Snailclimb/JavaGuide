@@ -299,15 +299,13 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 - [JWT 优缺点分析以及常见问题解决方案](./system-design/security/advantages-and-disadvantages-of-jwt.md)
 - [SSO 单点登录详解](./system-design/security/sso-intro.md)
 - [权限系统设计详解](./system-design/security/design-of-authority-system.md)
+
+#### 数据安全
+
 - [常见加密算法总结](./system-design/security/encryption-algorithms.md)
-
-#### 数据脱敏
-
-数据脱敏说的就是我们根据特定的规则对敏感信息数据进行变形，比如我们把手机号、身份证号某些位数使用 \* 来代替。
-
-#### 敏感词过滤
-
-[敏感词过滤方案总结](./system-design/security/sentive-words-filter.md)
+- [敏感词过滤方案总结](./system-design/security/sentive-words-filter.md)
+- [数据脱敏方案总结](./system-design/security/data-desensitization.md)
+- [为什么前后端都要做数据校验](./system-design/security/data-validation.md)
 
 ### 定时任务
 
