@@ -516,11 +516,94 @@ private void increment(int x){
 1 2 3 4 5 6 7 8 9
 ```
 
-在上面的例子中，使用两个线程去修改`int`型属性`a`的值，并且只有在`a`的值等于传入的参数`x`减一时，才会将`a`的值变为`x`，也就是实现对`a`的加一的操作。流程如下所示：
+如果你把上面这段代码贴到 IDE 中运行，会发现并不能得到目标输出结果。有朋友已经在 Github 上指出了这个问题：[issue#2650](https://github.com/Snailclimb/JavaGuide/issues/2650)。下面是修正后的代码：
+
+```java
+private volatile int a = 0; // 共享变量，初始值为 0
+private static final Unsafe unsafe;
+private static final long fieldOffset;
+
+static {
+    try {
+        // 获取 Unsafe 实例
+        Field theUnsafe = Unsafe.class.getDeclaredField("theUnsafe");
+        theUnsafe.setAccessible(true);
+        unsafe = (Unsafe) theUnsafe.get(null);
+        // 获取 a 字段的内存偏移量
+        fieldOffset = unsafe.objectFieldOffset(CasTest.class.getDeclaredField("a"));
+    } catch (Exception e) {
+        throw new RuntimeException("Failed to initialize Unsafe or field offset", e);
+    }
+}
+
+public static void main(String[] args) {
+    CasTest casTest = new CasTest();
+
+    Thread t1 = new Thread(() -> {
+        for (int i = 1; i <= 4; i++) {
+            casTest.incrementAndPrint(i);
+        }
+    });
+
+    Thread t2 = new Thread(() -> {
+        for (int i = 5; i <= 9; i++) {
+            casTest.incrementAndPrint(i);
+        }
+    });
+
+    t1.start();
+    t2.start();
+
+    // 等待线程结束，以便观察完整输出 (可选，用于演示)
+    try {
+        t1.join();
+        t2.join();
+    } catch (InterruptedException e) {
+        Thread.currentThread().interrupt();
+    }
+}
+
+// 将递增和打印操作封装在一个原子性更强的方法内
+private void incrementAndPrint(int targetValue) {
+    while (true) {
+        int currentValue = a; // 读取当前 a 的值
+        // 只有当 a 的当前值等于目标值的前一个值时，才尝试更新
+        if (currentValue == targetValue - 1) {
+            if (unsafe.compareAndSwapInt(this, fieldOffset, currentValue, targetValue)) {
+                // CAS 成功，说明成功将 a 更新为 targetValue
+                System.out.print(targetValue + " ");
+                break; // 成功更新并打印后退出循环
+            }
+            // 如果 CAS 失败，意味着在读取 currentValue 和执行 CAS 之间，a 的值被其他线程修改了，
+            // 此时 currentValue 已经不是 a 的最新值，需要重新读取并重试。
+        }
+        // 如果 currentValue != targetValue - 1，说明还没轮到当前线程更新，
+        // 或者已经被其他线程更新超过了，让出CPU给其他线程机会。
+        // 对于严格顺序递增的场景，如果 current > targetValue - 1，可能意味着逻辑错误或死循环，
+        // 但在此示例中，我们期望线程能按顺序执行。
+        Thread.yield(); // 提示CPU调度器可以切换线程，减少无效自旋
+    }
+}
+```
+
+在上述例子中，我们创建了两个线程，它们都尝试修改共享变量 a。每个线程在调用 `incrementAndPrint(targetValue)` 方法时：
+
+1. 会先读取 a 的当前值 `currentValue`。
+2. 检查 `currentValue` 是否等于 `targetValue - 1` (即期望的前一个值)。
+3. 如果条件满足，则调用`unsafe.compareAndSwapInt()` 尝试将 `a` 从 `currentValue` 更新到 `targetValue`。
+4. 如果 CAS 操作成功（返回 true），则打印 `targetValue` 并退出循环。
+5. 如果 CAS 操作失败，或者 `currentValue` 不满足条件，则当前线程会继续循环（自旋），并通过 `Thread.yield()` 尝试让出 CPU，直到成功更新并打印或者条件满足。
+
+这种机制确保了每个数字（从 1 到 9）只会被成功设置并打印一次，并且是按顺序进行的。
 
 ![](https://oss.javaguide.cn/github/javaguide/java/basis/unsafe/image-20220717144939826.png)
 
-需要注意的是，在调用`compareAndSwapInt`方法后，会直接返回`true`或`false`的修改结果，因此需要我们在代码中手动添加自旋的逻辑。在`AtomicInteger`类的设计中，也是采用了将`compareAndSwapInt`的结果作为循环条件，直至修改成功才退出死循环的方式来实现的原子性的自增操作。
+需要注意的是：
+
+1. **自旋逻辑：** `compareAndSwapInt` 方法本身只执行一次比较和交换操作，并立即返回结果。因此，为了确保操作最终成功（在值符合预期的情况下），我们需要在代码中显式地实现自旋逻辑（如 `while(true)` 循环），不断尝试直到 CAS 操作成功。
+2. **`AtomicInteger` 的实现：** JDK 中的 `java.util.concurrent.atomic.AtomicInteger` 类内部正是利用了类似的 CAS 操作和自旋逻辑来实现其原子性的 `getAndIncrement()`, `compareAndSet()` 等方法。直接使用 `AtomicInteger` 通常是更安全、更推荐的做法，因为它封装了底层的复杂性。
+3. **ABA 问题：** CAS 操作本身存在 ABA 问题（一个值从 A 变为 B，再变回 A，CAS 检查时会认为值没有变过）。在某些场景下，如果值的变化历史很重要，可能需要使用 `AtomicStampedReference` 来解决。但在本例的简单递增场景中，ABA 问题通常不构成影响。
+4. **CPU 消耗：** 长时间的自旋会消耗 CPU 资源。在竞争激烈或条件长时间不满足的情况下，可以考虑加入更复杂的退避策略（如 `Thread.sleep()` 或 `LockSupport.parkNanos()`）来优化。
 
 ### 线程调度
 
