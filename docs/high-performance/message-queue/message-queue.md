@@ -101,7 +101,7 @@ RocketMQ、 Kafka、Pulsar、QMQ 都提供了事务相关的功能。事务允�
 
 ### 延时/定时处理
 
-消息发送后不会立即被消费，而是指定一个时间，到时间后再消费。大部分消息队列，例如 RocketMQ、RabbitMQ、Pulsar、Kafka，都支持定时/延时消息。
+消息发送后不会立即被消费，而是指定一个时间，到时间后再消费。大部分消息队列，例如 RocketMQ、RabbitMQ、Pulsar，都支持定时/延时消息。
 
 ![](https://oss.javaguide.cn/github/javaguide/tools/docker/rocketmq-schedule-message.png)
 
