@@ -182,7 +182,7 @@ Redis 中的 List 其实就是链表数据结构的实现。我在 [线性数据
 "value3"
 ```
 
-我专门画了一个图方便大家理解 `RPUSH` , `LPOP` , `lpush` , `RPOP` 命令：
+我专门画了一个图方便大家理解 `RPUSH` , `LPOP` , `LPUSH` , `RPOP` 命令：
 
 ![](https://oss.javaguide.cn/github/javaguide/database/redis/redis-list.png)
 
