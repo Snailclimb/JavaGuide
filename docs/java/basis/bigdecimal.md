@@ -230,7 +230,7 @@ public class BigDecimalUtil {
 
     /**
      * 提供（相对）精确的除法运算，当发生除不尽的情况时，精确到
-     * 小数点以后10位，以后的数字四舍五入。
+     * 小数点以后10位，以后的数字四舍六入五成双。
      *
      * @param v1 被除数
      * @param v2 除数
@@ -242,7 +242,7 @@ public class BigDecimalUtil {
 
     /**
      * 提供（相对）精确的除法运算。当发生除不尽的情况时，由scale参数指
-     * 定精度，以后的数字四舍五入。
+     * 定精度，以后的数字四舍六入五成双。
      *
      * @param v1    被除数
      * @param v2    除数
@@ -260,11 +260,11 @@ public class BigDecimalUtil {
     }
 
     /**
-     * 提供精确的小数位四舍五入处理。
+     * 提供精确的小数位四舍六入五成双处理。
      *
-     * @param v     需要四舍五入的数字
+     * @param v     需要四舍六入五成双的数字
      * @param scale 小数点后保留几位
-     * @return 四舍五入后的结果
+     * @return 四舍六入五成双后的结果
      */
     public static double round(double v, int scale) {
         if (scale < 0) {
@@ -288,7 +288,7 @@ public class BigDecimalUtil {
     }
 
     /**
-     * 提供精确的类型转换(Int)不进行四舍五入
+     * 提供精确的类型转换(Int)不进行四舍六入五成双
      *
      * @param v 需要被转换的数字
      * @return 返回转换结果
