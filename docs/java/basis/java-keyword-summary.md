@@ -54,7 +54,7 @@ super 关键字用于从子类访问父类的变量和方法。 例如：
 ```java
 public class Super {
     protected int number;
-    protected showNumber() {
+    protected void showNumber() {
         System.out.println("number = " + number);
     }
 }
@@ -199,7 +199,7 @@ public class Singleton {
 ```java
  //将Math中的所有静态资源导入，这时候可以直接使用里面的静态方法，而不用通过类名进行调用
  //如果只想导入单一某个静态方法，只需要将*换成对应的方法名即可
-import static java.lang.Math.*;//换成import static java.lang.Math.max;具有一样的效果
+import static java.lang.Math.*;//换成import static java.lang.Math.max;即可指定单一静态方法max导入
 public class Demo {
   public static void main(String[] args) {
     int max = max(1,2);
@@ -250,7 +250,7 @@ bar.method2();
 不同点：静态代码块在非静态代码块之前执行(静态代码块 -> 非静态代码块 -> 构造方法)。静态代码块只在第一次 new 执行一次，之后不再执行，而非静态代码块在每 new 一次就执行一次。 非静态代码块可在普通方法中定义(不过作用不大)；而静态代码块不行。
 
 > **🐛 修正（参见：[issue #677](https://github.com/Snailclimb/JavaGuide/issues/677)）**：静态代码块可能在第一次 new 对象的时候执行，但不一定只在第一次 new 的时候执行。比如通过 `Class.forName("ClassDemo")`创建 Class 对象的时候也会执行，即 new 或者 `Class.forName("ClassDemo")` 都会执行静态代码块。
-> 一般情况下,如果有些代码比如一些项目最常用的变量或对象必须在项目启动的时候就执行的时候,需要使用静态代码块,这种代码是主动执行的。如果我们想要设计不需要创建对象就可以调用类中的方法，例如：`Arrays` 类，`Character` 类，`String` 类等，就需要使用静态方法, 两者的区别是 静态代码块是自动执行的而静态方法是被调用的时候才执行的.
+> 一般情况下,如果有些代码比如一些项目最常用的变量或对象必须在项目启动的时候就执行,需要使用静态代码块,这种代码是主动执行的。如果我们想要设计不需要创建对象就可以调用类中的方法，例如：`Arrays` 类，`Character` 类，`String` 类等，就需要使用静态方法, 两者的区别是 静态代码块是自动执行的而静态方法是被调用的时候才执行的.
 
 Example：
 
