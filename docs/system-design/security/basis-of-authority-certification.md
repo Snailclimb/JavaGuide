@@ -137,15 +137,16 @@ public String readAllCookies(HttpServletRequest request) {
 ![](https://oss.javaguide.cn/github/javaguide/system-design/security/session-cookie-authentication-process.png)
 
 1. 用户向服务器发送用户名、密码、验证码用于登陆系统。
-2. 服务器验证通过后，服务器为用户创建一个 `Session`，并将 `Session` 信息存储起来。
-3. 服务器向用户返回一个 `SessionID`，写入用户的 `Cookie`。
-4. 当用户保持登录状态时，`Cookie` 将与每个后续请求一起被发送出去。
-5. 服务器可以将存储在 `Cookie` 上的 `SessionID` 与存储在内存中或者数据库中的 `Session` 信息进行比较，以验证用户的身份，返回给用户客户端响应信息的时候会附带用户当前的状态。
+2. 服务器验证通过后，会为这个用户创建一个专属的 Session 对象（可以理解为服务器上的一块内存，存放该用户的状态数据，如购物车、登录信息等）存储起来，并给这个 Session 分配一个唯一的 `SessionID`。
+3. 服务器通过 HTTP 响应头中的 `Set-Cookie` 指令，把这个 `SessionID` 发送给用户的浏览器。
+4. 浏览器接收到 `SessionID` 后，会将其以 Cookie 的形式保存在本地。当用户保持登录状态时，每次向该服务器发请求，浏览器都会自动带上这个存有 `SessionID` 的 Cookie。
+5. 服务器收到请求后，从 Cookie 中拿出 `SessionID`，就能找到之前保存的那个 Session 对象，从而知道这是哪个用户以及他之前的状态了。
 
-使用 `Session` 的时候需要注意下面几个点：
+使用 Session 的时候需要注意下面几个点：
 
-- 依赖 `Session` 的关键业务一定要确保客户端开启了 `Cookie`。
-- 注意 `Session` 的过期时间。
+- **客户端 Cookie 支持**：依赖 Session 的核心功能要确保用户浏览器开启了 Cookie。
+- **Session 过期管理**：合理设置 Session 的过期时间，平衡安全性和用户体验。
+- **Session ID 安全**：为包含 `SessionID` 的 Cookie 设置 `HttpOnly` 标志可以防止客户端脚本（如 JavaScript）窃取，设置 Secure 标志可以保证 `SessionID` 只在 HTTPS 连接下传输，增加安全性。
 
 另外，Spring Session 提供了一种跨多个应用程序或实例管理用户会话信息的机制。如果想详细了解可以查看下面几篇很不错的文章：
 

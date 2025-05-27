@@ -258,13 +258,64 @@ HTTP/1.1 队头阻塞的主要原因是无法多路复用：
 
 ### HTTP 是不保存状态的协议, 如何保存用户状态?
 
-HTTP 是一种不保存状态，即无状态（stateless）协议。也就是说 HTTP 协议自身不对请求和响应之间的通信状态进行保存。那么我们如何保存用户状态呢？Session 机制的存在就是为了解决这个问题，Session 的主要作用就是通过服务端记录用户的状态。典型的场景是购物车，当你要添加商品到购物车的时候，系统不知道是哪个用户操作的，因为 HTTP 协议是无状态的。服务端给特定的用户创建特定的 Session 之后就可以标识这个用户并且跟踪这个用户了（一般情况下，服务器会在一定时间内保存这个 Session，过了时间限制，就会销毁这个 Session）。
+HTTP 协议本身是 **无状态的 (stateless)** 。这意味着服务器默认情况下无法区分两个连续的请求是否来自同一个用户，或者同一个用户之前的操作是什么。这就像一个“健忘”的服务员，每次你跟他说话，他都不知道你是谁，也不知道你之前点过什么菜。
 
-在服务端保存 Session 的方法很多，最常用的就是内存和数据库(比如是使用内存数据库 redis 保存)。既然 Session 存放在服务器端，那么我们如何实现 Session 跟踪呢？大部分情况下，我们都是通过在 Cookie 中附加一个 Session ID 来方式来跟踪。
+但在实际的 Web 应用中，比如网上购物、用户登录等场景，我们显然需要记住用户的状态（例如购物车里的商品、用户的登录信息）。为了解决这个问题，主要有以下几种常用机制：
 
-**Cookie 被禁用怎么办?**
+**方案一：Session (会话) 配合 Cookie (主流方式)：**
 
-最常用的就是利用 URL 重写把 Session ID 直接附加在 URL 路径的后面。
+![](https://oss.javaguide.cn/github/javaguide/system-design/security/session-cookie-authentication-process.png)
+
+这可以说是最经典也是最常用的方法了。基本流程是这样的：
+
+1. 用户向服务器发送用户名、密码、验证码用于登陆系统。
+2. 服务器验证通过后，会为这个用户创建一个专属的 Session 对象（可以理解为服务器上的一块内存，存放该用户的状态数据，如购物车、登录信息等）存储起来，并给这个 Session 分配一个唯一的 `SessionID`。
+3. 服务器通过 HTTP 响应头中的 `Set-Cookie` 指令，把这个 `SessionID` 发送给用户的浏览器。
+4. 浏览器接收到 `SessionID` 后，会将其以 Cookie 的形式保存在本地。当用户保持登录状态时，每次向该服务器发请求，浏览器都会自动带上这个存有 `SessionID` 的 Cookie。
+5. 服务器收到请求后，从 Cookie 中拿出 `SessionID`，就能找到之前保存的那个 Session 对象，从而知道这是哪个用户以及他之前的状态了。
+
+使用 Session 的时候需要注意下面几个点：
+
+- **客户端 Cookie 支持**：依赖 Session 的核心功能要确保用户浏览器开启了 Cookie。
+- **Session 过期管理**：合理设置 Session 的过期时间，平衡安全性和用户体验。
+- **Session ID 安全**：为包含 `SessionID` 的 Cookie 设置 `HttpOnly` 标志可以防止客户端脚本（如 JavaScript）窃取，设置 Secure 标志可以保证 `SessionID` 只在 HTTPS 连接下传输，增加安全性。
+
+Session 数据本身存储在服务器端。常见的存储方式有：
+
+- **服务器内存**:实现简单，访问速度快，但服务器重启数据会丢失，且不利于多服务器间的负载均衡。这种方式适合简单且用户量不大的业务场景。
+- **数据库 (如 MySQL, PostgreSQL)**:数据持久化，但读写性能相对较低，一般不会使用这种方式。
+- **分布式缓存 (如 Redis)**:性能高，支持分布式部署，是目前大规模应用中非常主流的方案。
+
+**方案二：当 Cookie 被禁用时：URL 重写 (URL Rewriting)**
+
+如果用户的浏览器禁用了 Cookie，或者某些情况下不便使用 Cookie，还有一种备选方案是 URL 重写。这种方式会将 `SessionID` 直接附加到 URL 的末尾，作为参数传递。例如：<http://www.example.com/page?sessionid=xxxxxx>。服务器端会解析 URL 中的 `sessionid` 参数来获取 `SessionID`，进而找到对应的 Session 数据。
+
+这种方法一般不会使用，存在以下缺点：
+
+- URL 会变长且不美观；
+- `SessionID` 暴露在 URL 中，安全性较低（容易被复制、分享或记录在日志中）；
+- 对搜索引擎优化 (SEO) 可能不友好。
+
+**方案三：Token-based 认证 (如 JWT - JSON Web Tokens)**
+
+这是一种越来越流行的无状态认证方式，尤其适用于前后端分离的架构和微服务。
+
+![ JWT 身份验证示意图](https://oss.javaguide.cn/github/javaguide/system-design/jwt/jwt-authentication%20process.png)
+
+以 JWT 为例（普通 Token 方案也可以），简化后的步骤如下
+
+1. 用户向服务器发送用户名、密码以及验证码用于登陆系统；
+2. 如果用户用户名、密码以及验证码校验正确的话，服务端会返回已经签名的 Token，也就是 JWT；
+3. 客户端收到 Token 后自己保存起来（比如浏览器的 `localStorage` ）；
+4. 用户以后每次向后端发请求都在 Header 中带上这个 JWT ；
+5. 服务端检查 JWT 并从中获取用户相关信息。
+
+JWT 详细介绍可以查看这两篇文章：
+
+- [JWT 基础概念详解](https://javaguide.cn/system-design/security/jwt-intro.html)
+- [JWT 身份认证优缺点分析](https://javaguide.cn/system-design/security/advantages-and-disadvantages-of-jwt.html)
+
+总结来说，虽然 HTTP 本身是无状态的，但通过 Cookie + Session、URL 重写或 Token 等机制，我们能够有效地在 Web 应用中跟踪和管理用户状态。其中，**Cookie + Session 是最传统也最广泛使用的方式，而 Token-based 认证则在现代 Web 应用中越来越受欢迎。**
 
 ### URI 和 URL 的区别是什么?
 

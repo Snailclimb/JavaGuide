@@ -39,6 +39,7 @@ icon: project
 
 ## 文件管理系统/网盘
 
+- [cloud-drive](https://gitee.com/SnailClimb/cloud-drive)：一个极简的现代化云存储系统，基于阿里云 OSS，提供文件上传、下载、分享等功能。系统采用前后端分离架构，提供安全可靠的文件存储服务。
 - [qiwen-file](https://gitee.com/qiwen-cloud/qiwen-file)：基于 SpringBoot+Vue 实现的分布式文件系统，支持本地磁盘、阿里云 OSS 对象存储、FastDFS 存储、MinIO 存储等多种存储方式，支持 office 在线编辑、分片上传、技术秒传、断点续传等功能。
 - [free-fs](https://gitee.com/dh_free/free-fs)：基于 SpringBoot + MyBatis Plus + MySQL + Sa-Token + Layui 等搭配七牛云， 阿里云 OSS 实现的云存储管理系统。 包含文件上传、删除、在线预览、云资源列表查询、下载、文件移动、重命名、目录管理、登录、注册、以及权限控制等功能。
 - [zfile](https://github.com/zfile-dev/zfile)：基于 Spring Boot + Vue 实现的在线网盘，支持对接 S3、OneDrive、SharePoint、Google Drive、多吉云、又拍云、本地存储、FTP、SFTP 等存储源，支持在线浏览图片、播放音视频，文本文件、Office、obj（3d）等文件类型。
@@ -79,6 +80,7 @@ icon: project
 - [guide-rpc-framework](https://github.com/Snailclimb/guide-rpc-framework)：一款基于 Netty+Kyro+Zookeeper 实现的自定义 RPC 框架-附详细实现过程和相关教程。
 - [mini-spring](https://github.com/DerekYRC/mini-spring)：简化版的 Spring 框架，能帮助你快速熟悉 Spring 源码和掌握 Spring 的核心原理。代码极度简化，保留了 Spring 的核心功能，如 IoC 和 AOP、资源加载器等核心功能。
 - [mini-spring-cloud](https://github.com/DerekYRC/mini-spring-cloud)：一个手写的简化版的 Spring Cloud，旨在帮助你快速熟悉 Spring Cloud 源码及掌握其核心原理。相关阅读：[手写一个简化版的 Spring Cloud！](https://mp.weixin.qq.com/s/v3FUp-keswE2EhcTaLpSMQ) 。
+- [haidnorJVM](https://github.com/FranzHaidnor/haidnorJVM)：使用 Java 实现的简易版 Java 虚拟机，介绍：<https://www.zhihu.com/question/28125278/answer/3137240457>。
 - [itstack-demo-jvm](https://github.com/fuzhengwei/itstack-demo-jvm)：通过 Java 代码来实现 JVM 的基础功能（搜索解析 class 文件、字节码命令、运行时数据区等。相关阅读：[《zachaxy 的手写 JVM 系列》](https://zachaxy.github.io/tags/JVM/)。
 - [Freedom](https://github.com/alchemystar/Freedom)：自己 DIY 一个具有 ACID 的数据库。相关项目：[MYDB](https://github.com/CN-GuoZiyang/MYDB)（一个简单的数据库实现）、[toyDB](https://github.com/erikgrinaker/toydb)（Rust 实现的分布式 SQL 数据库）。
 - [lu-raft-kv](https://github.com/stateIs0/lu-raft-kv)：一个 Java 版本的 Raft(CP) KV 分布式存储实现，非常适合想要深入学习 Raft 协议的小伙伴研究。lu-raft-kv 已经实现了 Raft 协议其中的两个核心功能：leader 选举和日志复制。如果你想要学习这个项目的话，建议你提前看一下作者写的项目介绍，比较详细，地址：<http://thinkinjava.cn/2019/01/12/2019/2019-01-12-lu-raft-kv/> 。

@@ -8,6 +8,8 @@
 
 [GitHub](https://github.com/Snailclimb/JavaGuide) | [Gitee](https://gitee.com/SnailClimb/JavaGuide)
 
+<a href="https://trendshift.io/repositories/1319" target="_blank"><img src="https://trendshift.io/api/badge/repositories/1319" alt="Snailclimb%2FJavaGuide | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+
 </div>
 
 > - **面试专版**：准备 Java 面试的小伙伴可以考虑面试专版：**[《Java 面试指北 》](./docs/zhuanlan/java-mian-shi-zhi-bei.md)** (质量很高，专为面试打造，配合 JavaGuide 食用)。

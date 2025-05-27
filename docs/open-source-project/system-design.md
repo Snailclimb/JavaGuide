@@ -29,6 +29,7 @@ icon: "xitongsheji"
 ### Bean 映射
 
 - [MapStruct](https://github.com/mapstruct/mapstruct)（推荐）：满足 JSR269 规范的一个 Java 注解处理器，用于为 Java Bean 生成类型安全且高性能的映射。它基于编译阶段生成 get/set 代码，此实现过程中没有反射，不会造成额外的性能损失。
+- [MapStruct Plus](https://github.com/linpeilie/mapstruct-plus)：MapStruct 增强版本，支持自动生成 Mapper 接口。
 - [JMapper](https://github.com/jmapper-framework/jmapper-core) : 一个高性能且易于使用的 Bean 映射框架。
 
 ### 其他
