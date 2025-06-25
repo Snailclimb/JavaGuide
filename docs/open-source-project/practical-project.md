@@ -67,6 +67,7 @@ icon: project
 ## 售票系统
 
 - [12306](https://gitee.com/nageoffer/12306) ：基于 JDK17 + SpringBoot3 + SpringCloud 微服务架构的高并发 12306 购票服务。
+- [大麦](https://gitee.com/java-up-up/damai)：提供热门演唱会的购票功能，并且对如何解决高并发下的抢票而产生的各种问题，从而设计出了实际落地的解决方案。
 
 ## 权限管理系统
 
