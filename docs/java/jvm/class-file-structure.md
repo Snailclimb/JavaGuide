@@ -174,7 +174,7 @@ Java 类的继承关系由类索引、父类索引和接口索引集合三项确
 
 **字段的 access_flag 的取值:**
 
-![字段的 access_flag 的取值](https://oss.javaguide.cn/JVM/image-20201031084342859.png)
+![字段的 access_flag 的取值](https://oss.javaguide.cn/github/javaguide/java/jvm/class-file-fields-access_flag.png)
 
 ### 方法表集合（Methods）
 
@@ -193,7 +193,7 @@ Class 文件存储格式中对方法的描述与对字段的描述几乎采用�
 
 **方法表的 access_flag 取值：**
 
-![方法表的 access_flag 取值](https://oss.javaguide.cn/JVM/image-20201031084248965.png)
+![方法表的 access_flag 取值](https://oss.javaguide.cn/github/javaguide/java/jvm/class-file-methods-access_flag.png)
 
 注意：因为`volatile`修饰符和`transient`修饰符不可以修饰方法，所以方法表的访问标志中没有这两个对应的标志，但是增加了`synchronized`、`native`、`abstract`等关键字修饰方法，所以也就多了这些关键字对应的标志。
 
