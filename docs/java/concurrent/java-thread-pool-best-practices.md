@@ -273,7 +273,7 @@ public class ThreadPoolExecutorConfig {
         int maxPoolSize = (int) (processNum / (1 - 0.5));
         threadPoolExecutor.setCorePoolSize(corePoolSize); // 核心池大小
         threadPoolExecutor.setMaxPoolSize(maxPoolSize); // 最大线程数
-        threadPoolExecutor.setQueueCapacity(maxPoolSize * 1000); // 队列程度
+        threadPoolExecutor.setQueueCapacity(maxPoolSize * 1000); // 队列长度
         threadPoolExecutor.setThreadPriority(Thread.MAX_PRIORITY);
         threadPoolExecutor.setDaemon(false);
         threadPoolExecutor.setKeepAliveSeconds(300);// 线程空闲时间
