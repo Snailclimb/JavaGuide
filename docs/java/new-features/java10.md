@@ -81,11 +81,11 @@ list.stream().collect(Collectors.toUnmodifiableSet());
 
 ## Optional 增强
 
-`Optional` 新增了`orElseThrow()`方法来在没有值时抛出指定的异常。
+`Optional` 新增了一个无参的 `orElseThrow()` 方法，作为带参数的 `orElseThrow(Supplier<? extends X> exceptionSupplier)` 的简化版本，在没有值时默认抛出一个 NoSuchElementException 异常。
 
 ```java
-Optional.ofNullable(cache.getIfPresent(key))
-        .orElseThrow(() -> new PrestoException(NOT_FOUND, "Missing entry found for key: " + key));
+Optional<String> optional = Optional.empty();
+String result = optional.orElseThrow();
 ```
 
 ## 应用程序类数据共享(扩展 CDS 功能)
