@@ -792,7 +792,7 @@ public interface ReadWriteLock {
 
 ![](https://oss.javaguide.cn/github/javaguide/java/concurrent/reentrantreadwritelock-class-diagram.png)
 
-`ReentrantReadWriteLock` 也支持公平锁和非公平锁，默认使用非公平锁，可以通过构造器来显示的指定。
+`ReentrantReadWriteLock` 也支持公平锁和非公平锁，默认使用非公平锁，可以通过构造器来显式地指定。
 
 ```java
 // 传入一个 boolean 值，true 时为公平锁，false 时为非公平锁
