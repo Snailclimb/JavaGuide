@@ -16,7 +16,7 @@ head:
 
 ## 面向对象基础
 
-### 面向对象和面向过程的区别
+### ⭐️面向对象和面向过程的区别
 
 面向过程编程（Procedural-Oriented Programming，POP）和面向对象编程（Object-Oriented Programming，OOP）是两种常见的编程范式，两者的主要区别在于解决问题的方式不同：
 
@@ -104,7 +104,7 @@ new 运算符，new 创建对象实例（对象实例在堆内存中），对象
 - 一个对象引用可以指向 0 个或 1 个对象（一根绳子可以不系气球，也可以系一个气球）；
 - 一个对象可以有 n 个引用指向它（可以用 n 条绳子系住一个气球）。
 
-### 对象的相等和引用相等的区别
+### ⭐️对象的相等和引用相等的区别
 
 - 对象的相等一般比较的是内存中存放的内容是否相等。
 - 引用相等一般比较的是他们指向的内存地址是否相等。
@@ -156,7 +156,7 @@ true
 
 构造方法**不能被重写（override）**，但**可以被重载（overload）**。因此，一个类中可以有多个构造方法，这些构造方法可以具有不同的参数列表，以提供不同的对象初始化方式。
 
-### 面向对象三大特征
+### ⭐️面向对象三大特征
 
 #### 封装
 
@@ -210,7 +210,7 @@ public class Student {
 - 多态不能调用“只在子类存在但在父类不存在”的方法；
 - 如果子类重写了父类的方法，真正执行的是子类重写的方法，如果子类没有重写父类的方法，执行的是父类的方法。
 
-### 接口和抽象类有什么共同点和区别？
+### ⭐️接口和抽象类有什么共同点和区别？
 
 #### 接口和抽象类的共同点
 
@@ -363,7 +363,7 @@ System.out.println(person1.getAddress() == person1Copy.getAddress());
 
 ![shallow&deep-copy](https://oss.javaguide.cn/github/javaguide/java/basis/shallow&deep-copy.png)
 
-## Object
+## ⭐️Object
 
 ### Object 类的常见方法有哪些？
 
@@ -551,7 +551,7 @@ public native int hashCode();
 
 ## String
 
-### String、StringBuffer、StringBuilder 的区别？
+### ⭐️String、StringBuffer、StringBuilder 的区别？
 
 **可变性**
 
@@ -589,7 +589,7 @@ abstract class AbstractStringBuilder implements Appendable, CharSequence {
 - 单线程操作字符串缓冲区下操作大量数据: 适用 `StringBuilder`
 - 多线程操作字符串缓冲区下操作大量数据: 适用 `StringBuffer`
 
-### String 为什么是不可变的?
+### ⭐️String 为什么是不可变的?
 
 `String` 类中使用 `final` 关键字修饰字符数组来保存字符串，~~所以`String` 对象是不可变的。~~
 
@@ -636,7 +636,7 @@ public final class String implements java.io.Serializable, Comparable<String>, C
 >
 > 这是官方的介绍：<https://openjdk.java.net/jeps/254> 。
 
-### 字符串拼接用“+” 还是 StringBuilder?
+### ⭐️字符串拼接用“+” 还是 StringBuilder?
 
 Java 语言本身并不支持运算符重载，“+”和“+=”是专门为 String 类重载过的运算符，也是 Java 中仅有的两个重载过的运算符。
 
@@ -689,7 +689,7 @@ System.out.println(s);
 
 `String` 中的 `equals` 方法是被重写过的，比较的是 String 字符串的值是否相等。 `Object` 的 `equals` 方法是比较的对象的内存地址。
 
-### 字符串常量池的作用了解吗？
+### ⭐️字符串常量池的作用了解吗？
 
 **字符串常量池** 是 JVM 为了提升性能和减少内存消耗针对字符串（String 类）专门开辟的一块区域，主要目的是为了避免字符串的重复创建。
 
@@ -704,7 +704,7 @@ System.out.println(aa==bb); // true
 
 更多关于字符串常量池的介绍可以看一下 [Java 内存区域详解](https://javaguide.cn/java/jvm/memory-area.html) 这篇文章。
 
-### String s1 = new String("abc");这句话创建了几个字符串对象？
+### ⭐️String s1 = new String("abc");这句话创建了几个字符串对象？
 
 先说答案：会创建 1 或 2 个字符串对象。
 

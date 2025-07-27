@@ -28,7 +28,7 @@ Java 集合框架如下图所示：
 
 注：图中只列举了主要的继承派生关系，并没有列举所有关系。比方省略了`AbstractList`, `NavigableSet`等抽象类以及其他的一些辅助类，如想深入了解，可自行查看源码。
 
-### 说说 List, Set, Queue, Map 四者的区别？
+### ⭐️说说 List, Set, Queue, Map 四者的区别？
 
 - `List`(对付顺序的好帮手): 存储的元素是有序的、可重复的。
 - `Set`(注重独一无二的性质): 存储的元素不可重复的。
@@ -79,7 +79,7 @@ Java 集合框架如下图所示：
 
 ## List
 
-### ArrayList 和 Array（数组）的区别？
+### ⭐️ArrayList 和 Array（数组）的区别？
 
 `ArrayList` 内部基于动态数组实现，比 `Array`（静态数组） 使用起来更加灵活：
 
@@ -154,7 +154,7 @@ System.out.println(listOfStrings);
 [null, java]
 ```
 
-### ArrayList 插入和删除元素的时间复杂度？
+### ⭐️ArrayList 插入和删除元素的时间复杂度？
 
 对于插入：
 
@@ -188,13 +188,13 @@ System.out.println(listOfStrings);
   0   1   2   3   4   5   6   7   8   9
 ```
 
-### LinkedList 插入和删除元素的时间复杂度？
+### ⭐️LinkedList 插入和删除元素的时间复杂度？
 
 - 头部插入/删除：只需要修改头结点的指针即可完成插入/删除操作，因此时间复杂度为 O(1)。
 - 尾部插入/删除：只需要修改尾结点的指针即可完成插入/删除操作，因此时间复杂度为 O(1)。
 - 指定位置插入/删除：需要先移动到指定位置，再修改指定节点的指针完成插入/删除，不过由于有头尾指针，可以从较近的指针出发，因此需要遍历平均 n/4 个元素，时间复杂度为 O(n)。
 
-这里简单列举一个例子：假如我们要删除节点 9 的话，需要先遍历链表找到该节点。然后，再执行相应节点指针指向的更改，具体的源码可以参考：[LinkedList 源码分析](./linkedlist-source-code.md) 。
+这里简单列举一个例子：假如我们要删除节点 9 的话，需要先遍历链表找到该节点。然后，再执行相应节点指针指向的更改，具体的源码可以参考：[LinkedList 源码分析](https://javaguide.cn/java/collection/linkedlist-source-code.html) 。
 
 ![unlink 方法逻辑](https://oss.javaguide.cn/github/javaguide/java/collection/linkedlist-unlink.jpg)
 
@@ -202,7 +202,7 @@ System.out.println(listOfStrings);
 
 `RandomAccess` 是一个标记接口，用来表明实现该接口的类支持随机访问（即可以通过索引快速访问元素）。由于 `LinkedList` 底层数据结构是链表，内存地址不连续，只能通过指针来定位，不支持随机快速访问，所以不能实现 `RandomAccess` 接口。
 
-### ArrayList 与 LinkedList 区别?
+### ⭐️ArrayList 与 LinkedList 区别?
 
 - **是否保证线程安全：** `ArrayList` 和 `LinkedList` 都是不同步的，也就是不保证线程安全；
 - **底层数据结构：** `ArrayList` 底层使用的是 **`Object` 数组**；`LinkedList` 底层使用的是 **双向链表** 数据结构（JDK1.6 之前为循环链表，JDK1.7 取消了循环。注意双向链表和双向循环链表的区别，下面有介绍到！）
@@ -251,11 +251,11 @@ public interface RandomAccess {
 
 `ArrayList` 实现了 `RandomAccess` 接口， 而 `LinkedList` 没有实现。为什么呢？我觉得还是和底层数据结构有关！`ArrayList` 底层是数组，而 `LinkedList` 底层是链表。数组天然支持随机访问，时间复杂度为 O(1)，所以称为快速随机访问。链表需要遍历到特定位置才能访问特定位置的元素，时间复杂度为 O(n)，所以不支持快速随机访问。`ArrayList` 实现了 `RandomAccess` 接口，就表明了他具有快速随机访问功能。 `RandomAccess` 接口只是标识，并不是说 `ArrayList` 实现 `RandomAccess` 接口才具有快速随机访问功能的！
 
-### 说一说 ArrayList 的扩容机制吧
+### ⭐️说一说 ArrayList 的扩容机制吧
 
-详见笔主的这篇文章: [ArrayList 扩容机制分析](https://javaguide.cn/java/collection/arraylist-source-code.html#_3-1-%E5%85%88%E4%BB%8E-arraylist-%E7%9A%84%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E8%AF%B4%E8%B5%B7)。
+详见笔主的这篇文章: [ArrayList 扩容机制分析](https://javaguide.cn/java/collection/arraylist-source-code.html#arraylist-扩容机制分析)。
 
-### 说说集合中的 fail-fast 和 fail-safe 是什么
+### ⭐️集合中的 fail-fast 和 fail-safe 是什么？
 
 关于`fail-fast`引用`medium`中一篇文章关于`fail-fast`和`fail-safe`的说法：
 
@@ -579,7 +579,7 @@ Java 中常用的阻塞队列实现类有以下几种：
 
 日常开发中，这些队列使用的其实都不多，了解即可。
 
-### ArrayBlockingQueue 和 LinkedBlockingQueue 有什么区别？
+### ⭐️ArrayBlockingQueue 和 LinkedBlockingQueue 有什么区别？
 
 `ArrayBlockingQueue` 和 `LinkedBlockingQueue` 是 Java 并发包中常用的两种阻塞队列实现，它们都是线程安全的。不过，不过它们之间也存在下面这些区别：
 

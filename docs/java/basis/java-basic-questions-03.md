@@ -27,7 +27,7 @@ head:
 - **`Exception`** :程序本身可以处理的异常，可以通过 `catch` 来进行捕获。`Exception` 又可以分为 Checked Exception (受检查异常，必须处理) 和 Unchecked Exception (不受检查异常，可以不处理)。
 - **`Error`**：`Error` 属于程序无法处理的错误 ，~~我们没办法通过 `catch` 来进行捕获~~不建议通过`catch`捕获 。例如 Java 虚拟机运行错误（`Virtual MachineError`）、虚拟机内存不够错误(`OutOfMemoryError`)、类定义错误（`NoClassDefFoundError`）等 。这些异常发生时，Java 虚拟机（JVM）一般会选择线程终止。
 
-### Checked Exception 和 Unchecked Exception 有什么区别？
+### ⭐️Checked Exception 和 Unchecked Exception 有什么区别？
 
 **Checked Exception** 即 受检查异常 ，Java 代码在编译过程中，如果受检查异常没有被 `catch`或者`throws` 关键字处理的话，就没办法通过编译。
 
@@ -205,7 +205,7 @@ catch (IOException e) {
 }
 ```
 
-### 异常使用有哪些需要注意的地方？
+### ⭐️异常使用有哪些需要注意的地方？
 
 - 不要把异常定义为静态变量，因为这样会导致异常栈信息错乱。每次手动抛出异常，我们都需要手动 new 一个异常对象抛出。
 - 抛出的异常信息一定要有意义。
@@ -317,9 +317,9 @@ printArray( stringArray  );
 - 构建集合工具类（参考 `Collections` 中的 `sort`, `binarySearch` 方法）。
 - ……
 
-## 反射
+## ⭐️反射
 
-关于反射的详细解读，请看这篇文章 [Java 反射机制详解](./reflection.md) 。
+关于反射的详细解读，请看这篇文章 [Java 反射机制详解](https://javaguide.cn/java/basis/reflection.html) 。
 
 ### 什么是反射？
 
@@ -413,9 +413,9 @@ JDK 提供了很多内置的注解（比如 `@Override`、`@Deprecated`），同
 - **编译期直接扫描**：编译器在编译 Java 代码的时候扫描对应的注解并处理，比如某个方法使用`@Override` 注解，编译器在编译的时候就会检测当前的方法是否重写了父类对应的方法。
 - **运行期通过反射处理**：像框架中自带的注解(比如 Spring 框架的 `@Value`、`@Component`)都是通过反射来进行处理的。
 
-## SPI
+## ⭐️SPI
 
-关于 SPI 的详细解读，请看这篇文章 [Java SPI 机制详解](./spi.md) 。
+关于 SPI 的详细解读，请看这篇文章 [Java SPI 机制详解](https://javaguide.cn/java/basis/spi.html) 。
 
 ### 何谓 SPI?
 
@@ -449,9 +449,9 @@ SPI 将服务接口和具体的服务实现分离开来，将服务调用方和�
 - 需要遍历加载所有的实现类，不能做到按需加载，这样效率还是相对较低的。
 - 当多个 `ServiceLoader` 同时 `load` 时，会有并发问题。
 
-## 序列化和反序列化
+## ⭐️序列化和反序列化
 
-关于序列化和反序列化的详细解读，请看这篇文章 [Java 序列化详解](./serialization.md) ，里面涉及到的知识点和面试题更全面。
+关于序列化和反序列化的详细解读，请看这篇文章 [Java 序列化详解](https://javaguide.cn/java/basis/serialization.html) ，里面涉及到的知识点和面试题更全面。
 
 ### 什么是序列化?什么是反序列化?
 
@@ -526,9 +526,9 @@ JDK 自带的序列化方式一般不会用 ，因为序列化效率低并且存
 
 关于 I/O 的详细解读，请看下面这几篇文章，里面涉及到的知识点和面试题更全面。
 
-- [Java IO 基础知识总结](../io/io-basis.md)
-- [Java IO 设计模式总结](../io/io-design-patterns.md)
-- [Java IO 模型详解](../io/io-model.md)
+- [Java IO 基础知识总结](https://javaguide.cn/java/io/io-basis.html)
+- [Java IO 设计模式总结](https://javaguide.cn/java/io/io-design-patterns.html)
+- [Java IO 模型详解](https://javaguide.cn/java/io/io-model.html)
 
 ### Java IO 流了解吗？
 
@@ -550,11 +550,11 @@ Java IO 流的 40 多个类都是从如下 4 个抽象类基类中派生出来�
 
 ### Java IO 中的设计模式有哪些？
 
-参考答案：[Java IO 设计模式总结](../io/io-design-patterns.md)
+参考答案：[Java IO 设计模式总结](https://javaguide.cn/java/io/io-design-patterns.html)
 
 ### BIO、NIO 和 AIO 的区别？
 
-参考答案：[Java IO 模型详解](../io/io-model.md)
+参考答案：[Java IO 模型详解](https://javaguide.cn/java/io/io-model.html)
 
 ## 语法糖
 

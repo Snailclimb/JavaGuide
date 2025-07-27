@@ -18,7 +18,7 @@ footer: |-
 
 ## 关于网站
 
-JavaGuide 已经持续维护 6 年多了，累计提交了 **5600+** commit ，共有 **550+** 多位贡献者共同参与维护和完善。真心希望能够把这个项目做好，真正能够帮助到有需要的朋友！
+JavaGuide 已经持续维护 6 年多了，累计提交了接近 **6000** commit ，共有 **570+** 多位贡献者共同参与维护和完善。真心希望能够把这个项目做好，真正能够帮助到有需要的朋友！
 
 如果觉得 JavaGuide 的内容对你有帮助的话，还请点个免费的 Star（绝不强制点 Star，觉得内容不错有收获再点赞就好），这是对我最大的鼓励，感谢各位一路同行，共勉！传送门：[GitHub](https://github.com/Snailclimb/JavaGuide) | [Gitee](https://gitee.com/SnailClimb/JavaGuide)。
 
