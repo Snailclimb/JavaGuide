@@ -330,10 +330,10 @@ public class DebugMethodInterceptor implements MethodInterceptor {
 
 
     /**
-     * @param o           被代理的对象（需要增强的对象）
+     * @param o           代理对象本身（注意不是原始对象，如果使用method.invoke(o, args)会导致循环调用）
      * @param method      被拦截的方法（需要增强的方法）
      * @param args        方法入参
-     * @param methodProxy 用于调用原始方法
+     * @param methodProxy 高性能的方法调用机制，避免反射开销
      */
     @Override
     public Object intercept(Object o, Method method, Object[] args, MethodProxy methodProxy) throws Throwable {
@@ -387,7 +387,7 @@ after method send
 
 ### 3.3. JDK 动态代理和 CGLIB 动态代理对比
 
-1. **JDK 动态代理只能代理实现了接口的类或者直接代理接口，而 CGLIB 可以代理未实现任何接口的类。** 另外， CGLIB 动态代理是通过生成一个被代理类的子类来拦截被代理类的方法调用，因此不能代理声明为 final 类型的类和方法。
+1. **JDK 动态代理只能代理实现了接口的类或者直接代理接口，而 CGLIB 可以代理未实现任何接口的类。** 另外， CGLIB 动态代理是通过生成一个被代理类的子类来拦截被代理类的方法调用，因此不能代理声明为 final 类型的类和方法，private 方法也无法代理。
 2. 就二者的效率来说，大部分情况都是 JDK 动态代理更优秀，随着 JDK 版本的升级，这个优势更加明显。
 
 ## 4. 静态代理和动态代理的对比
