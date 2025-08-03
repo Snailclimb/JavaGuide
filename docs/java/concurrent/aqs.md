@@ -626,7 +626,7 @@ private Node addWaiter(Node mode) {
 
 ### AQS 资源获取源码分析（共享模式）
 
-AQS 中以独占模式获取资源的入口方法是 `acquireShared()` ，如下：
+AQS 中以共享模式获取资源的入口方法是 `acquireShared()` ，如下：
 
 ```JAVA
 // AQS
