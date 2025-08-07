@@ -773,7 +773,7 @@ CPU 密集型简单理解就是利用 CPU 计算能力的任务比如你在内�
 
 ![动态配置线程池参数最终效果](https://oss.javaguide.cn/github/javaguide/java/concurrent/meituan-dynamically-configuring-thread-pool-parameters.png)
 
-还没看够？我在[《后端面试高频系统设计&场景题》](https://javaguide.cn/zhuanlan/back-end-interview-high-frequency-system-design-and-scenario-questions.html#%E4%BB%8B%E7%BB%8D)中详细介绍了如何设计一个动态线程池，这也是面试中常问的一道系统设计题。
+还没看够？我在[《后端面试高频系统设计&场景题》](https://javaguide.cn/zhuanlan/back-end-interview-high-frequency-system-design-and-scenario-questions.html)中详细介绍了如何设计一个动态线程池，这也是面试中常问的一道系统设计题。
 
 ![《后端面试高频系统设计&场景题》](https://oss.javaguide.cn/xingqiu/back-end-interview-high-frequency-system-design-and-scenario-questions-fengmian.png)
 
@@ -815,7 +815,7 @@ CPU 密集型简单理解就是利用 CPU 计算能力的任务比如你在内�
 
 重点是要掌握 `CompletableFuture` 的使用以及常见面试题。
 
-除了下面的面试题之外，还推荐你看看我写的这篇文章： [CompletableFuture 详解](./completablefuture-intro.md)。
+除了下面的面试题之外，还推荐你看看我写的这篇文章： [CompletableFuture 详解](https://javaguide.cn/java/concurrent/completablefuture-intro.html)。
 
 ### Future 类有什么用？
 
@@ -975,7 +975,7 @@ CompletableFuture.runAsync(() -> {
 
 ## AQS
 
-关于 AQS 源码的详细分析，可以看看这一篇文章：[AQS 详解](./aqs.md)。
+关于 AQS 源码的详细分析，可以看看这一篇文章：[AQS 详解](https://javaguide.cn/java/concurrent/aqs.html)。
 
 ### AQS 是什么？
 
@@ -1349,9 +1349,13 @@ public int await() throws InterruptedException, BrokenBarrierException {
 
 ## 虚拟线程
 
-虚拟线程在 Java 21 正式发布，这是一项重量级的更新。
+虚拟线程在 Java 21 正式发布，这是一项重量级的更新。虽然目前面试中问的不多，但还是建议大家去简单了解一下。我写了一篇文章来总结虚拟线程常见的问题：[虚拟线程常见问题总结](https://javaguide.cn/java/concurrent/virtual-thread.html)，包含下面这些问题：
 
-虽然目前面试中问的不多，但还是建议大家去简单了解一下，具体可以阅读这篇文章：[虚拟线程极简入门](./virtual-thread.md) 。重点搞清楚虚拟线程和平台线程的关系以及虚拟线程的优势即可。
+1. 什么是虚拟线程？
+2. 虚拟线程和平台线程有什么关系？
+3. 虚拟线程有什么优点和缺点？
+4. 如何创建虚拟线程？
+5. 虚拟线程的底层原理是什么？
 
 ## 参考
 
