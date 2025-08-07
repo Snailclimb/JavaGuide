@@ -399,7 +399,7 @@ public void allowCoreThreadTimeOut(boolean value) {
 
 如果「设置了核心线程的存活时间」或者「线程数量超过了核心线程数量」，则将 `timed` 标记为 `true` ，表明获取任务时需要使用 `poll()` 指定超时时间。
 
-- `timed == true` ：使用 `poll()` 来获取任务。使用 `poll()` 方法获取任务超时的话，则当前线程会退出执行（ `TERMINATED` ），该线程从线程池中被移除。
+- `timed == true` ：使用 `poll(timeout, unit)` 来获取任务。使用 `poll(timeout, unit)` 方法获取任务超时的话，则当前线程会退出执行（ `TERMINATED` ），该线程从线程池中被移除。
 - `timed == false` ：使用 `take()` 来获取任务。使用 `take()` 方法获取任务会让当前线程一直阻塞等待（`WAITING`）。
 
 源码如下：
