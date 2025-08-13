@@ -27,7 +27,7 @@ tag:
 
 ![osi七层模型2](https://oss.javaguide.cn/github/javaguide/osi七层模型2.png)
 
-#### TCP/IP 四层模型是什么？每一层的作用是什么？
+#### ⭐️TCP/IP 四层模型是什么？每一层的作用是什么？
 
 **TCP/IP 四层模型** 是目前被广泛采用的一种模型,我们可以将 TCP / IP 模型看作是 OSI 七层模型的精简版本，由以下 4 层组成：
 
@@ -40,7 +40,7 @@ tag:
 
 ![TCP/IP 四层模型](https://oss.javaguide.cn/github/javaguide/cs-basics/network/tcp-ip-4-model.png)
 
-关于每一层作用的详细介绍，请看 [OSI 和 TCP/IP 网络分层模型详解（基础）](./osi-and-tcp-ip-model.md) 这篇文章。
+关于每一层作用的详细介绍，请看 [OSI 和 TCP/IP 网络分层模型详解（基础）](https://javaguide.cn/cs-basics/network/osi-and-tcp-ip-model.html) 这篇文章。
 
 #### 为什么网络要分层？
 
@@ -64,7 +64,7 @@ tag:
 
 ### 常见网络协议
 
-#### 应用层有哪些常见的协议？
+#### ⭐️应用层有哪些常见的协议？
 
 ![应用层常见协议](https://oss.javaguide.cn/github/javaguide/cs-basics/network/application-layer-protocol.png)
 
@@ -100,7 +100,7 @@ tag:
 
 ## HTTP
 
-### 从输入 URL 到页面展示到底发生了什么？（非常重要）
+### ⭐️从输入 URL 到页面展示到底发生了什么？（非常重要）
 
 > 类似的问题：打开一个网页，整个过程会使用哪些协议？
 
@@ -120,15 +120,15 @@ tag:
 6. 浏览器收到 HTTP 响应报文后，解析响应体中的 HTML 代码，渲染网页的结构和样式，同时根据 HTML 中的其他资源的 URL（如图片、CSS、JS 等），再次发起 HTTP 请求，获取这些资源的内容，直到网页完全加载显示。
 7. 浏览器在不需要和服务器通信时，可以主动关闭 TCP 连接，或者等待服务器的关闭请求。
 
-详细介绍可以查看这篇文章：[访问网页的全过程（知识串联）](./the-whole-process-of-accessing-web-pages.md)（强烈推荐）。
+详细介绍可以查看这篇文章：[访问网页的全过程（知识串联）](https://javaguide.cn/cs-basics/network/the-whole-process-of-accessing-web-pages.html)（强烈推荐）。
 
-### HTTP 状态码有哪些？
+### ⭐️HTTP 状态码有哪些？
 
 HTTP 状态码用于描述 HTTP 请求的结果，比如 2xx 就代表请求被成功处理。
 
 ![常见 HTTP 状态码](https://oss.javaguide.cn/github/javaguide/cs-basics/network/http-status-code.png)
 
-关于 HTTP 状态码更详细的总结，可以看我写的这篇文章：[HTTP 常见状态码总结（应用层）](./http-status-codes.md)。
+关于 HTTP 状态码更详细的总结，可以看我写的这篇文章：[HTTP 常见状态码总结（应用层）](https://javaguide.cn/cs-basics/network/http-status-codes.html)。
 
 ### HTTP Header 中常见的字段有哪些？
 
@@ -167,7 +167,7 @@ HTTP 状态码用于描述 HTTP 请求的结果，比如 2xx 就代表请求被�
 | Via                 | 向服务器告知，这个请求是由哪些代理发出的。                                                                                                                                    | Via: 1.0 fred, 1.1 example.com (Apache/1.1)                                      |
 | Warning             | 一个一般性的警告，告知，在实体内容体中可能存在错误。                                                                                                                          | Warning: 199 Miscellaneous warning                                               |
 
-### HTTP 和 HTTPS 有什么区别？（重要）
+### ⭐️HTTP 和 HTTPS 有什么区别？（重要）
 
 ![HTTP 和 HTTPS 对比](https://oss.javaguide.cn/github/javaguide/cs-basics/network/http-vs-https.png)
 
@@ -176,7 +176,7 @@ HTTP 状态码用于描述 HTTP 请求的结果，比如 2xx 就代表请求被�
 - **安全性和资源消耗**：HTTP 协议运行在 TCP 之上，所有传输的内容都是明文，客户端和服务器端都无法验证对方的身份。HTTPS 是运行在 SSL/TLS 之上的 HTTP 协议，SSL/TLS 运行在 TCP 之上。所有传输的内容都经过加密，加密采用对称加密，但对称加密的密钥用服务器方的证书进行了非对称加密。所以说，HTTP 安全性没有 HTTPS 高，但是 HTTPS 比 HTTP 耗费更多服务器资源。
 - **SEO（搜索引擎优化）**：搜索引擎通常会更青睐使用 HTTPS 协议的网站，因为 HTTPS 能够提供更高的安全性和用户隐私保护。使用 HTTPS 协议的网站在搜索结果中可能会被优先显示，从而对 SEO 产生影响。
 
-关于 HTTP 和 HTTPS 更详细的对比总结，可以看我写的这篇文章：[HTTP vs HTTPS（应用层）](./http-vs-https.md) 。
+关于 HTTP 和 HTTPS 更详细的对比总结，可以看我写的这篇文章：[HTTP vs HTTPS（应用层）](https://javaguide.cn/cs-basics/network/http-vs-https.html) 。
 
 ### HTTP/1.0 和 HTTP/1.1 有什么区别？
 
@@ -188,9 +188,9 @@ HTTP 状态码用于描述 HTTP 请求的结果，比如 2xx 就代表请求被�
 - **带宽**：HTTP/1.0 中，存在一些浪费带宽的现象，例如客户端只是需要某个对象的一部分，而服务器却将整个对象送过来了，并且不支持断点续传功能，HTTP/1.1 则在请求头引入了 range 头域，它允许只请求资源的某个部分，即返回码是 206（Partial Content），这样就方便了开发者自由的选择以便于充分利用带宽和连接。
 - **Host 头（Host Header）处理** :HTTP/1.1 引入了 Host 头字段，允许在同一 IP 地址上托管多个域名，从而支持虚拟主机的功能。而 HTTP/1.0 没有 Host 头字段，无法实现虚拟主机。
 
-关于 HTTP/1.0 和 HTTP/1.1 更详细的对比总结，可以看我写的这篇文章：[HTTP/1.0 vs HTTP/1.1（应用层）](./http1.0-vs-http1.1.md) 。
+关于 HTTP/1.0 和 HTTP/1.1 更详细的对比总结，可以看我写的这篇文章：[HTTP/1.0 vs HTTP/1.1（应用层）](https://javaguide.cn/cs-basics/network/http1.0-vs-http1.1.html) 。
 
-### HTTP/1.1 和 HTTP/2.0 有什么区别？
+### ⭐️HTTP/1.1 和 HTTP/2.0 有什么区别？
 
 ![HTTP/1.0 和 HTTP/1.1 对比](https://oss.javaguide.cn/github/javaguide/cs-basics/network/http1.1-vs-http2.0.png)
 
@@ -256,7 +256,7 @@ HTTP/1.1 队头阻塞的主要原因是无法多路复用：
 | **缓解方法**   | 开启多个并行的 TCP 连接                  | 减少网络掉包或者使用基于 UDP 的 QUIC 协议                        |
 | **影响场景**   | 每次都会发生，尤其是大文件阻塞小文件时。 | 丢包率较高的网络环境下更容易发生。                               |
 
-### HTTP 是不保存状态的协议, 如何保存用户状态?
+### ⭐️HTTP 是不保存状态的协议, 如何保存用户状态?
 
 HTTP 协议本身是 **无状态的 (stateless)** 。这意味着服务器默认情况下无法区分两个连续的请求是否来自同一个用户，或者同一个用户之前的操作是什么。这就像一个“健忘”的服务员，每次你跟他说话，他都不知道你是谁，也不知道你之前点过什么菜。
 
@@ -326,9 +326,9 @@ URI 的作用像身份证号一样，URL 的作用更像家庭住址一样。URL
 
 ### Cookie 和 Session 有什么区别？
 
-准确点来说，这个问题属于认证授权的范畴，你可以在 [认证授权基础概念详解](../../system-design/security/basis-of-authority-certification.md) 这篇文章中找到详细的答案。
+准确点来说，这个问题属于认证授权的范畴，你可以在 [认证授权基础概念详解](https://javaguide.cn/system-design/security/basis-of-authority-certification.html) 这篇文章中找到详细的答案。
 
-### GET 和 POST 的区别
+### ⭐️GET 和 POST 的区别
 
 这个问题在知乎上被讨论的挺火热的，地址：<https://www.zhihu.com/question/28586791> 。
 
@@ -365,7 +365,7 @@ WebSocket 协议本质上是应用层的协议，用于弥补 HTTP 协议在持�
 - 社交聊天
 - ……
 
-### WebSocket 和 HTTP 有什么区别？
+### ⭐️WebSocket 和 HTTP 有什么区别？
 
 WebSocket 和 HTTP 两者都是基于 TCP 的应用层协议，都可以在网络中传输数据。
 
@@ -387,7 +387,7 @@ WebSocket 的工作过程可以分为以下几个步骤：
 
 另外，建立 WebSocket 连接之后，通过心跳机制来保持 WebSocket 连接的稳定性和活跃性。
 
-### WebSocket 与短轮询、长轮询的区别
+### ⭐️WebSocket 与短轮询、长轮询的区别
 
 这三种方式，都是为了解决“**客户端如何及时获取服务器最新数据，实现实时更新**”的问题。它们的实现方式和效率、实时性差异较大。
 
@@ -422,7 +422,7 @@ WebSocket 的工作过程可以分为以下几个步骤：
 
 ![Websocket 示意图](https://oss.javaguide.cn/github/javaguide/system-design/web-real-time-message-push/1460000042192394.png)
 
-### SSE 与 WebSocket 有什么区别？
+### ⭐️SSE 与 WebSocket 有什么区别？
 
 SSE (Server-Sent Events) 和 WebSocket 都是用来实现服务器向浏览器实时推送消息的技术，让网页内容能自动更新，而不需要用户手动刷新。虽然目标相似，但它们在工作方式和适用场景上有几个关键区别：
 
@@ -446,7 +446,7 @@ SSE (Server-Sent Events) 和 WebSocket 都是用来实现服务器向浏览器�
 
 这里以 DeepSeek 为例，我们发送一个请求并打开浏览器控制台验证一下：
 
-![](https://oss.javaguide.cn/github/javaguide/cs-basics/network/deepseek-sse.png)
+![DeepSeek 响应标头](https://oss.javaguide.cn/github/javaguide/cs-basics/network/deepseek-sse.png)
 
 ![](https://oss.javaguide.cn/github/javaguide/cs-basics/network/deepseek-sse-eventstream.png)
 
@@ -521,9 +521,9 @@ DNS 服务器自底向上可以依次分为以下几个层级(所有 DNS 服务�
 
 世界上并不是只有 13 台根服务器，这是很多人普遍的误解，网上很多文章也是这么写的。实际上，现在根服务器数量远远超过这个数量。最初确实是为 DNS 根服务器分配了 13 个 IP 地址，每个 IP 地址对应一个不同的根 DNS 服务器。然而，由于互联网的快速发展和增长，这个原始的架构变得不太适应当前的需求。为了提高 DNS 的可靠性、安全性和性能，目前这 13 个 IP 地址中的每一个都有多个服务器，截止到 2023 年底，所有根服务器之和达到了 1700 多台，未来还会继续增加。
 
-### DNS 解析的过程是什么样的？
+### ⭐️DNS 解析的过程是什么样的？
 
-整个过程的步骤比较多，我单独写了一篇文章详细介绍：[DNS 域名系统详解（应用层）](./dns.md) 。
+整个过程的步骤比较多，我单独写了一篇文章详细介绍：[DNS 域名系统详解（应用层）](https://javaguide.cn/cs-basics/network/dns.html) 。
 
 ### DNS 劫持了解吗？如何应对？
 

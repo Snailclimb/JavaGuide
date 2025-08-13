@@ -20,18 +20,18 @@
     ".md": "markdownlint-cli2"
   },
   "dependencies": {
-    "@vuepress/bundler-vite": "2.0.0-rc.19",
-    "@vuepress/plugin-feed": "2.0.0-rc.70",
-    "@vuepress/plugin-search": "2.0.0-rc.70",
+    "@vuepress/bundler-vite": "2.0.0-rc.24",
+    "@vuepress/plugin-feed": "2.0.0-rc.112",
+    "@vuepress/plugin-search": "2.0.0-rc.112",
     "husky": "9.1.7",
     "markdownlint-cli2": "0.17.1",
     "mathjax-full": "3.2.2",
     "nano-staged": "0.8.0",
     "prettier": "3.4.2",
-    "sass-embedded": "1.83.1",
-    "vue": "^3.5.13",
-    "vuepress": "2.0.0-rc.19",
-    "vuepress-theme-hope": "2.0.0-rc.68"
+    "sass-embedded": "1.89.2",
+    "vue": "^3.5.18",
+    "vuepress": "2.0.0-rc.24",
+    "vuepress-theme-hope": "2.0.0-rc.94"
   },
   "packageManager": "pnpm@10.0.0"
 }

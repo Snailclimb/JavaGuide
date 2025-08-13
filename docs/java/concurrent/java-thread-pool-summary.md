@@ -526,7 +526,7 @@ Finished all threads  // 任务全部执行完了才会跳出来，因为executo
     }
 ```
 
-更多关于线程池源码分析的内容推荐这篇文章：硬核干货：[4W 字从源码上分析 JUC 线程池 ThreadPoolExecutor 的实现原理](https://www.throwx.cn/2020/08/23/java-concurrency-thread-pool-executor/)
+更多关于线程池源码分析的内容推荐这篇文章：硬核干货：[4W 字从源码上分析 JUC 线程池 ThreadPoolExecutor 的实现原理](https://www.cnblogs.com/throwable/p/13574306.html)。
 
 现在，让我们在回到示例代码， 现在应该是不是很容易就可以搞懂它的原理了呢？
 

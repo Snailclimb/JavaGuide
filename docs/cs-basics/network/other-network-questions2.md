@@ -9,7 +9,7 @@ tag:
 
 ## TCP 与 UDP
 
-### TCP 与 UDP 的区别（重要）
+### ⭐️TCP 与 UDP 的区别（重要）
 
 1. **是否面向连接**：
    - TCP 是面向连接的。在传输数据之前，必须先通过“三次握手”建立连接；数据传输完成后，还需要通过“四次挥手”来释放连接。这保证了双方都准备好通信。
@@ -47,7 +47,7 @@ tag:
 | **通信模式** | 点对点 (单播)              | 单播、多播、广播                    |
 | **常见应用** | HTTP/HTTPS, FTP, SMTP, SSH | DNS, DHCP, SNMP, TFTP, VoIP, 视频流 |
 
-### 什么时候选择 TCP，什么时候选 UDP?
+### ⭐️什么时候选择 TCP，什么时候选 UDP?
 
 选择 TCP 还是 UDP，主要取决于你的应用**对数据传输的可靠性要求有多高，以及对实时性和效率的要求有多高**。
 
@@ -136,7 +136,7 @@ TCP (传输控制协议) 和 UDP (用户数据报协议) 是互联网传输层�
 - **TCP** 更适合那些对数据**可靠性、完整性和顺序性**要求高的应用，如网页浏览 (HTTP/HTTPS)、文件传输 (FTP/SFTP)、邮件收发 (SMTP/POP3/IMAP)。
 - **UDP** 则更适用于那些对**实时性要求高、能容忍少量数据丢失**的应用，如域名解析 (DNS)、实时音视频 (RTP)、在线游戏、网络管理 (SNMP) 等。
 
-### TCP 三次握手和四次挥手（非常重要）
+### ⭐️TCP 三次握手和四次挥手（非常重要）
 
 **相关面试题**：
 
@@ -147,11 +147,11 @@ TCP (传输控制协议) 和 UDP (用户数据报协议) 是互联网传输层�
 - 如果第二次挥手时服务器的 ACK 没有送达客户端，会怎样？
 - 为什么第四次挥手客户端需要等待 2\*MSL（报文段最长寿命）时间后才进入 CLOSED 状态？
 
-**参考答案**：[TCP 三次握手和四次挥手（传输层）](./tcp-connection-and-disconnection.md) 。
+**参考答案**：[TCP 三次握手和四次挥手（传输层）](https://javaguide.cn/cs-basics/network/tcp-connection-and-disconnection.html) 。
 
-### TCP 如何保证传输的可靠性？（重要）
+### ⭐️TCP 如何保证传输的可靠性？（重要）
 
-[TCP 传输可靠性保障（传输层）](./tcp-reliability-guarantee.md)
+[TCP 传输可靠性保障（传输层）](https://javaguide.cn/cs-basics/network/tcp-reliability-guarantee.html)
 
 ## IP
 
@@ -179,7 +179,7 @@ TCP (传输控制协议) 和 UDP (用户数据报协议) 是互联网传输层�
 
 IP 地址过滤是一种简单的网络安全措施，实际应用中一般会结合其他网络安全措施，如认证、授权、加密等一起使用。单独使用 IP 地址过滤并不能完全保证网络的安全。
 
-### IPv4 和 IPv6 有什么区别？
+### ⭐️IPv4 和 IPv6 有什么区别？
 
 **IPv4（Internet Protocol version 4）** 是目前广泛使用的 IP 地址版本，其格式是四组由点分隔的数字，例如：123.89.46.72。IPv4 使用 32 位地址作为其 Internet 地址，这意味着共有约 42 亿（ 2^32）个可用 IP 地址。
 
@@ -224,7 +224,7 @@ NAT 不光可以缓解 IPv4 地址资源短缺的问题，还可以隐藏内部�
 
 ![NAT 实现 IP地址转换](https://oss.javaguide.cn/github/javaguide/cs-basics/network/network-address-translation.png)
 
-相关阅读：[NAT 协议详解（网络层）](./nat.md)。
+相关阅读：[NAT 协议详解（网络层）](https://javaguide.cn/cs-basics/network/nat.html)。
 
 ## ARP
 
@@ -244,13 +244,13 @@ MAC 地址具有可携带性、永久性，身份证号永久地标识一个人�
 
 最后，记住，MAC 地址有一个特殊地址：FF-FF-FF-FF-FF-FF（全 1 地址），该地址表示广播地址。
 
-### ARP 协议解决了什么问题？
+### ⭐️ARP 协议解决了什么问题？
 
 ARP 协议，全称 **地址解析协议（Address Resolution Protocol）**，它解决的是网络层地址和链路层地址之间的转换问题。因为一个 IP 数据报在物理上传输的过程中，总是需要知道下一跳（物理上的下一个目的地）该去往何处，但 IP 地址属于逻辑地址，而 MAC 地址才是物理地址，ARP 协议解决了 IP 地址转 MAC 地址的一些问题。
 
 ### ARP 协议的工作原理？
 
-[ARP 协议详解(网络层)](./arp.md)
+[ARP 协议详解(网络层)](https://javaguide.cn/cs-basics/network/arp.html)
 
 ## 复习建议
 

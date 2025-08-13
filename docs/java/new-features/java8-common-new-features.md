@@ -857,7 +857,7 @@ LocalDate date = LocalDate.of(2021, 1, 26);
 LocalDate.parse("2021-01-26");
 
 LocalDateTime dateTime = LocalDateTime.of(2021, 1, 26, 12, 12, 22);
-LocalDateTime.parse("2021-01-26 12:12:22");
+LocalDateTime.parse("2021-01-26T12:12:22");
 
 LocalTime time = LocalTime.of(12, 12, 22);
 LocalTime.parse("12:12:22");
