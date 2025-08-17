@@ -41,26 +41,53 @@ tag:
 写法 1：
 
 ```sql
-SELECT exam_id,
-       count(submit_time IS NULL OR NULL) incomplete_cnt,
-       ROUND(count(submit_time IS NULL OR NULL) / count(*), 3) complete_rate
-FROM exam_record
-GROUP BY exam_id
-HAVING incomplete_cnt <> 0
+SELECT
+    exam_id,
+    (COUNT(*) - COUNT(submit_time)) AS incomplete_cnt,
+    ROUND((COUNT(*) - COUNT(submit_time)) / COUNT(*), 3) AS incomplete_rate
+FROM
+    exam_record
+GROUP BY
+    exam_id
+HAVING
+    (COUNT(*) - COUNT(submit_time)) > 0;
 ```
+
+利用 `COUNT(*) `统计分组内的总记录数，`COUNT(submit_time)` 只统计 `submit_time` 字段不为 NULL 的记录数（即已完成数）。两者相减，就是未完成数。
 
 写法 2：
 
 ```sql
-SELECT exam_id,
-       count(submit_time IS NULL OR NULL) incomplete_cnt,
-       ROUND(count(submit_time IS NULL OR NULL) / count(*), 3) complete_rate
-FROM exam_record
-GROUP BY exam_id
-HAVING incomplete_cnt <> 0
+SELECT
+    exam_id,
+    COUNT(CASE WHEN submit_time IS NULL THEN 1 END) AS incomplete_cnt,
+    ROUND(COUNT(CASE WHEN submit_time IS NULL THEN 1 END) / COUNT(*), 3) AS incomplete_rate
+FROM
+    exam_record
+GROUP BY
+    exam_id
+HAVING
+    COUNT(CASE WHEN submit_time IS NULL THEN 1 END) > 0;
 ```
 
-两种写法都可以，只有中间的写法不一样，一个是对符合条件的才`COUNT`，一个是直接上`IF`,后者更为直观，最后这个`having`解释一下， 无论是 `complete_rate` 还是 `incomplete_cnt`，只要不为 0 即可，不为 0 就意味着有未完成的。
+使用 `CASE` 表达式，当条件满足时返回一个非 `NULL` 值（例如 1），否则返回 `NULL`。然后用 `COUNT` 函数来统计非 `NULL` 值的数量。
+
+写法 3：
+
+```sql
+SELECT
+    exam_id,
+    SUM(submit_time IS NULL) AS incomplete_cnt,
+    ROUND(SUM(submit_time IS NULL) / COUNT(*), 3) AS incomplete_rate
+FROM
+    exam_record
+GROUP BY
+    exam_id
+HAVING
+    incomplete_cnt > 0;
+```
+
+利用 `SUM` 函数对一个表达式求和。当 `submit_time` 为 `NULL` 时，表达式 `(submit_time IS NULL)` 的值为 1 (TRUE)，否则为 0 (FALSE)。将这些 1 和 0 加起来，就得到了未完成的数量。
 
 ### 0 级用户高难度试卷的平均用时和平均得分
 
