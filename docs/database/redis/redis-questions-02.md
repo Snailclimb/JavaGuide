@@ -184,7 +184,7 @@ Redis 从 2.6 版本开始支持执行 Lua 脚本，它的功能和事务非常�
 
 如果想要让 Lua 脚本中的命令全部执行，必须保证语句语法和命令都是对的。
 
-另外，Redis 7.0 新增了 [Redis functions](https://redis.io/docs/manual/programmability/functions-intro/) 特性，你可以将 Redis functions 看作是比 Lua 更强大的脚本。
+另外，Redis 7.0 新增了 [Redis functions](https://redis.io/docs/latest/develop/programmability/functions-intro/) 特性，你可以将 Redis functions 看作是比 Lua 更强大的脚本。
 
 ## Redis 性能优化（重要）
 
