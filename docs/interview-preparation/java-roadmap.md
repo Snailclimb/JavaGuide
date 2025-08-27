@@ -12,7 +12,13 @@ icon: path
 
 历时一个月精心打磨，笔者基于当下 Java 后端开发岗位招聘的最新要求，对既有学习路线进行了全面升级。本次升级涵盖技术栈增删、学习路径优化、配套学习资源更新等维度，力争构建出更符合 Java 开发者成长曲线的知识体系。
 
-![Java 学习路线 PDF 概览](https://oss.javaguide.cn/github/javaguide/interview-preparation/java-road-map-pdf.png)
+亮色板概览：
+
+![Java 学习路线 PDF 概览 - 亮色板](https://oss.javaguide.cn/github/javaguide/interview-preparation/java-road-map-pdf.png)
+
+暗色板概览：
+
+![Java 学习路线 PDF 概览 - 暗色版](https://oss.javaguide.cn/github/javaguide/interview-preparation/java-road-map-pdf-dark.png)
 
 这可能是你见过的最用心、最全面的 Java 后端学习路线。这份学习路线共包含 **4w+** 字，但你完全不用担心内容过多而学不完。我会根据学习难度，划分出适合找小厂工作必学的内容，以及适合逐步提升 Java 后端开发能力的学习路径。
 
@@ -22,8 +28,8 @@ icon: path
 
 在看这份学习路线的过程中，建议搭配 [Java 面试重点总结(重要)](https://javaguide.cn/interview-preparation/key-points-of-interview.html)，可以让你在学习过程中更有目的性。
 
-由于这份学习路线内容太多，因此我将其整理成了 PDF 版本（共 **61** 页），方便大家阅读。这份 PDF 有黑夜和白天两种阅读版本，满足大家的不同需求。
+由于这份学习路线内容太多，因此我将其整理成了 PDF 版本（共 **55** 页），方便大家阅读。这份 PDF 有黑夜和白天两种阅读版本，满足大家的不同需求。
 
-这份学习路线的获取方法很简单：直接在公众号「**JavaGuide**」后台回复“**学习路线**”即可获取。
+这份学习路线的获取方法很简单：直接在公众号「**JavaGuide**」后台回复“**路线**”即可获取。
 
 ![JavaGuide 官方公众号](https://oss.javaguide.cn/github/javaguide/gongzhonghaoxuanchuan.png)
