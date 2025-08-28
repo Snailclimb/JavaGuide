@@ -503,9 +503,9 @@ private void setHead(Node node) {
 
 // 靠前驱节点判断当前线程是否应该被阻塞
 private static boolean shouldParkAfterFailedAcquire(Node pred, Node node) {
-  // 获取头结点的节点状态
+  // 获取前驱结点的节点状态
   int ws = pred.waitStatus;
-  // 说明头结点处于唤醒状态
+  // 说明前驱结点处于唤醒状态
   if (ws == Node.SIGNAL)
     return true;
   // 通过枚举值我们知道waitStatus>0是取消状态
