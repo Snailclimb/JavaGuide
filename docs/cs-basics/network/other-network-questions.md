@@ -442,7 +442,7 @@ SSE (Server-Sent Events) 和 WebSocket 都是用来实现服务器向浏览器�
    - **SSE:** **主要设计用来传输文本** (UTF-8 编码)。如果需要传输二进制数据，需要先进行 Base64 等编码转换成文本。
    - **WebSocket:** **原生支持传输文本和二进制数据**，无需额外编码。
 
-为了提供更好的用户体验和利用其简单、高效、基于标准 HTTP 的特性，**Server-Sent Events (SSE) 是目前大型语言模型 API（如 OpenAI、DeepSeek 等）实现流式响应的常用甚至可以说是标准的技木选择**。
+为了提供更好的用户体验和利用其简单、高效、基于标准 HTTP 的特性，**Server-Sent Events (SSE) 是目前大型语言模型 API（如 OpenAI、DeepSeek 等）实现流式响应的常用甚至可以说是标准的技术选择**。
 
 这里以 DeepSeek 为例，我们发送一个请求并打开浏览器控制台验证一下：
 
