@@ -246,7 +246,7 @@ public static transient void print(String strs[])
 }
 ```
 
-从反编译后代码可以看出，可变参数在被使用的时候，他首先会创建一个数组，数组的长度就是调用该方法是传递的实参的个数，然后再把参数值全部放到这个数组当中，然后再把这个数组作为参数传递到被调用的方法中。（注：`trasient` 仅在修饰成员变量时有意义，此处 “修饰方法” 是由于在 javassist 中使用相同数值分别表示 `trasient` 以及 `vararg`，见 [此处](https://github.com/jboss-javassist/javassist/blob/7302b8b0a09f04d344a26ebe57f29f3db43f2a3e/src/main/javassist/bytecode/AccessFlag.java#L32)。）
+从反编译后代码可以看出，可变参数在被使用的时候，他首先会创建一个数组，数组的长度就是调用该方法是传递的实参的个数，然后再把参数值全部放到这个数组当中，然后再把这个数组作为参数传递到被调用的方法中。（注：`transient` 仅在修饰成员变量时有意义，此处 “修饰方法” 是由于在 javassist 中使用相同数值分别表示 `transient` 以及 `vararg`，见 [此处](https://github.com/jboss-javassist/javassist/blob/7302b8b0a09f04d344a26ebe57f29f3db43f2a3e/src/main/javassist/bytecode/AccessFlag.java#L32)。）
 
 ### 枚举
 
@@ -263,7 +263,8 @@ public enum t {
 然后我们使用反编译，看看这段代码到底是怎么实现的，反编译后代码内容如下：
 
 ```java
-public final class T extends Enum
+//Java编译器会自动将枚举名处理为合法类名（首字母大写）: t -> T
+public final class T extends Enum 
 {
     private T(String s, int i)
     {
@@ -308,7 +309,7 @@ public final class T extends Enum
 **内部类之所以也是语法糖，是因为它仅仅是一个编译时的概念，`outer.java`里面定义了一个内部类`inner`，一旦编译成功，就会生成两个完全不同的`.class`文件了，分别是`outer.class`和`outer$inner.class`。所以内部类的名字完全可以和它的外部类名字相同。**
 
 ```java
-public class OutterClass {
+public class OuterClass {
     private String userName;
 
     public String getUserName() {
@@ -337,10 +338,10 @@ public class OutterClass {
 }
 ```
 
-以上代码编译后会生成两个 class 文件：`OutterClass$InnerClass.class`、`OutterClass.class` 。当我们尝试对`OutterClass.class`文件进行反编译的时候，命令行会打印以下内容：`Parsing OutterClass.class...Parsing inner class OutterClass$InnerClass.class... Generating OutterClass.jad` 。他会把两个文件全部进行反编译，然后一起生成一个`OutterClass.jad`文件。文件内容如下：
+以上代码编译后会生成两个 class 文件：`OuterClass$InnerClass.class`、`OuterClass.class` 。当我们尝试对`OuterClass.class`文件进行反编译的时候，命令行会打印以下内容：`Parsing OuterClass.class...Parsing inner class OuterClass$InnerClass.class... Generating OuterClass.jad` 。他会把两个文件全部进行反编译，然后一起生成一个`OuterClass.jad`文件。文件内容如下：
 
 ```java
-public class OutterClass
+public class OuterClass
 {
     class InnerClass
     {
@@ -353,16 +354,16 @@ public class OutterClass
             this.name = name;
         }
         private String name;
-        final OutterClass this$0;
+        final OuterClass this$0;
 
         InnerClass()
         {
-            this.this$0 = OutterClass.this;
+            this.this$0 = OuterClass.this;
             super();
         }
     }
 
-    public OutterClass()
+    public OuterClass()
     {
     }
     public String getUserName()
@@ -385,37 +386,37 @@ public class OutterClass
 
 ```java
 //省略其他属性
-public class OutterClass {
+public class OuterClass {
     private String userName;
     ......
     class InnerClass{
     ......
         public void printOut(){
-            System.out.println("Username from OutterClass:"+userName);
+            System.out.println("Username from OuterClass:"+userName);
         }
     }
 }
 
-// 此时，使用javap -p命令对OutterClass反编译结果：
-public classOutterClass {
+// 此时，使用javap -p命令对OuterClass反编译结果：
+public classOuterClass {
     private String userName;
     ......
-    static String access$000(OutterClass);
+    static String access$000(OuterClass);
 }
 // 此时，InnerClass的反编译结果：
-class OutterClass$InnerClass {
-    final OutterClass this$0;
+class OuterClass$InnerClass {
+    final OuterClass this$0;
     ......
     public void printOut();
 }
 
 ```
 
-实际上，在编译完成之后，inner 实例内部会有指向 outer 实例的引用`this$0`，但是简单的`outer.name`是无法访问 private 属性的。从反编译的结果可以看到，outer 中会有一个桥方法`static String access$000(OutterClass)`，恰好返回 String 类型，即 userName 属性。正是通过这个方法实现内部类访问外部类私有属性。所以反编译后的`printOut()`方法大致如下：
+实际上，在编译完成之后，inner 实例内部会有指向 outer 实例的引用`this$0`，但是简单的`outer.name`是无法访问 private 属性的。从反编译的结果可以看到，outer 中会有一个桥方法`static String access$000(OuterClass)`，恰好返回 String 类型，即 userName 属性。正是通过这个方法实现内部类访问外部类私有属性。所以反编译后的`printOut()`方法大致如下：
 
 ```java
 public void printOut() {
-    System.out.println("Username from OutterClass:" + OutterClass.access$000(this.this$0));
+    System.out.println("Username from OuterClass:" + OuterClass.access$000(this.this$0));
 }
 ```
 
@@ -426,7 +427,7 @@ public void printOut() {
 3. 匿名内部类、局部内部类通过复制使用局部变量，该变量初始化之后就不能被修改。以下是一个案例：
 
 ```java
-public class OutterClass {
+public class OuterClass {
     private String userName;
 
     public void test(){
@@ -447,10 +448,10 @@ public class OutterClass {
 ```java
 //javap命令反编译Inner的结果
 //i被复制进内部类，且为final
-class OutterClass$1Inner {
+class OuterClass$1Inner {
   final int val$i;
-  final OutterClass this$0;
-  OutterClass$1Inner();
+  final OuterClass this$0;
+  OuterClass$1Inner();
   public void printName();
 }
 
@@ -701,7 +702,7 @@ public static transient void main(String args[])
                 }
             else
                 br.close();
-            break MISSING_BLOCK_LABEL_113;
+            break MISSING_BLOCK_LABEL_113; //该标签为反编译工具的生成错误，（不是Java语法本身的内容）属于反编译工具的临时占位符。正常情况下编译器生成的字节码不会包含这种无效标签。
             Exception exception;
             exception;
             if(br != null)
