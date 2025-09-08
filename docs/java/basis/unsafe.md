@@ -134,20 +134,34 @@ public native void freeMemory(long address);
 ```java
 private void memoryTest() {
     int size = 4;
-    long addr = unsafe.allocateMemory(size);
-    long addr3 = unsafe.reallocateMemory(addr, size * 2);
-    System.out.println("addr: "+addr);
-    System.out.println("addr3: "+addr3);
+    // 1. 分配初始内存
+    long oldAddr = unsafe.allocateMemory(size);
+    System.out.println("Initial address: " + oldAddr);
+
+    // 2. 向初始内存写入数据
+    unsafe.putInt(oldAddr, 16843009); // 写入 0x01010101
+    System.out.println("Value at oldAddr: " + unsafe.getInt(oldAddr));
+
+    // 3. 重新分配内存
+    long newAddr = unsafe.reallocateMemory(oldAddr, size * 2);
+    System.out.println("New address: " + newAddr);
+
+    // 4. reallocateMemory 已经将数据从 oldAddr 拷贝到 newAddr
+    // 所以 newAddr 的前4个字节应该和 oldAddr 的内容一样
+    System.out.println("Value at newAddr (first 4 bytes): " + unsafe.getInt(newAddr));
+
+    // 关键：之后所有操作都应该基于 newAddr，oldAddr 已失效！
     try {
-        unsafe.setMemory(null,addr ,size,(byte)1);
-        for (int i = 0; i < 2; i++) {
-            unsafe.copyMemory(null,addr,null,addr3+size*i,4);
-        }
-        System.out.println(unsafe.getInt(addr));
-        System.out.println(unsafe.getLong(addr3));
-    }finally {
-        unsafe.freeMemory(addr);
-        unsafe.freeMemory(addr3);
+        // 5. 在新内存块的后半部分写入新数据
+        unsafe.putInt(newAddr + size, 33686018); // 写入 0x02020202
+
+        // 6. 读取整个8字节的long值
+        System.out.println("Value at newAddr (full 8 bytes): " + unsafe.getLong(newAddr));
+
+    } finally {
+        // 7. 只释放最后有效的内存地址
+        unsafe.freeMemory(newAddr);
+        // 如果尝试 freeMemory(oldAddr)，将会导致 double free 错误！
     }
 }
 ```
@@ -155,34 +169,55 @@ private void memoryTest() {
 先看结果输出：
 
 ```plain
-addr: 2433733895744
-addr3: 2433733894944
-16843009
-72340172838076673
+Initial address: 140467048086752
+Value at oldAddr: 16843009
+New address: 140467048086752
+Value at newAddr (first 4 bytes): 16843009
+Value at newAddr (full 8 bytes): 144680345659310337
 ```
 
-分析一下运行结果，首先使用`allocateMemory`方法申请 4 字节长度的内存空间，调用`setMemory`方法向每个字节写入内容为`byte`类型的 1，当使用 Unsafe 调用`getInt`方法时，因为一个`int`型变量占 4 个字节，会一次性读取 4 个字节，组成一个`int`的值，对应的十进制结果为 16843009。
+`reallocateMemory` 的行为类似于 C 语言中的 realloc 函数，它会尝试在不移动数据的情况下扩展或收缩内存块。其行为主要有两种情况：
 
-你可以通过下图理解这个过程：
+1. **原地扩容**：如果当前内存块后面有足够的连续空闲空间，`reallocateMemory` 会直接在原地址上扩展内存，并返回原始地址。
+2. **异地扩容**：如果当前内存块后面空间不足，它会寻找一个新的、足够大的内存区域，将旧数据拷贝过去，然后释放旧的内存地址，并返回新地址。
 
-![](https://oss.javaguide.cn/github/javaguide/java/basis/unsafe/image-20220717144344005.png)
+**结合本次的运行结果，我们可以进行如下分析：**
 
-在代码中调用`reallocateMemory`方法重新分配了一块 8 字节长度的内存空间，通过比较`addr`和`addr3`可以看到和之前申请的内存地址是不同的。在代码中的第二个 for 循环里，调用`copyMemory`方法进行了两次内存的拷贝，每次拷贝内存地址`addr`开始的 4 个字节，分别拷贝到以`addr3`和`addr3+4`开始的内存空间上：
+**第一步：初始分配与写入**
 
-![](https://oss.javaguide.cn/github/javaguide/java/basis/unsafe/image-20220717144354582.png)
+- `unsafe.allocateMemory(size)` 分配了 4 字节的堆外内存，地址为 `140467048086752`。
+- `unsafe.putInt(oldAddr, 16843009)` 向该地址写入了 int 值 `16843009`，其十六进制表示为 `0x01010101`。`getInt` 读取正确，证明写入成功。
 
-拷贝完成后，使用`getLong`方法一次性读取 8 个字节，得到`long`类型的值为 72340172838076673。
+**第二步：原地内存扩容**
 
-需要注意，通过这种方式分配的内存属于 堆外内存 ，是无法进行垃圾回收的，需要我们把这些内存当做一种资源去手动调用`freeMemory`方法进行释放，否则会产生内存泄漏。通用的操作内存方式是在`try`中执行对内存的操作，最终在`finally`块中进行内存的释放。
+- `long newAddr = unsafe.reallocateMemory(oldAddr, size * 2)` 尝试将内存块扩容至 8 字节。
+- 观察输出 New address: `140467048086752`，我们发现 `newAddr` 与 `oldAddr` 的值**完全相同**。
+- 这表明本次操作触发了“原地扩容”。系统在原地址 `140467048086752` 后面找到了足够的空间，直接将内存块扩展到了 8 字节。在这个过程中，旧的地址 `oldAddr` 依然有效，并且就是 `newAddr`，数据也并未发生移动。
+
+**第三步：验证数据与写入新数据**
+
+- `unsafe.getInt(newAddr)` 再次读取前 4 个字节，结果仍是 `16843009`，验证了原数据完好无损。
+- `unsafe.putInt(newAddr + size, 33686018)` 在扩容出的后 4 个字节（偏移量为 4）写入了新的 int 值 `33686018`（十六进制为 `0x02020202`）。
+
+**第四步：读取完整数据**
+
+- `unsafe.getLong(newAddr)` 从起始地址读取一个 long 值（8 字节）。此时内存中的 8 字节内容为 `0x01010101` (低地址) 和 `0x02020202` (高地址) 的拼接。
+- 在小端字节序（Little-Endian）的机器上，这 8 字节在内存中会被解释为十六进制数 `0x0202020201010101`。
+- 这个十六进制数转换为十进制，结果正是 `144680345659310337`。这完美地解释了最终的输出结果。
+
+**第五步：安全的内存释放**
+
+- `finally` 块中，`unsafe.freeMemory(newAddr)` 安全地释放了整个 8 字节的内存块。
+- 由于本次是原地扩容（`oldAddr == newAddr`），所以即使错误地多写一句 `freeMemory(oldAddr)` 也会导致二次释放的严重错误。
+
+#### 典型应用
+
+`DirectByteBuffer` 是 Java 用于实现堆外内存的一个重要类，通常用在通信过程中做缓冲池，如在 Netty、MINA 等 NIO 框架中应用广泛。`DirectByteBuffer` 对于堆外内存的创建、使用、销毁等逻辑均由 Unsafe 提供的堆外内存 API 来实现。
 
 **为什么要使用堆外内存？**
 
 - 对垃圾回收停顿的改善。由于堆外内存是直接受操作系统管理而不是 JVM，所以当我们使用堆外内存时，即可保持较小的堆内内存规模。从而在 GC 时减少回收停顿对于应用的影响。
 - 提升程序 I/O 操作的性能。通常在 I/O 通信过程中，会存在堆内内存到堆外内存的数据拷贝操作，对于需要频繁进行内存间数据拷贝且生命周期较短的暂存数据，都建议存储到堆外内存。
-
-#### 典型应用
-
-`DirectByteBuffer` 是 Java 用于实现堆外内存的一个重要类，通常用在通信过程中做缓冲池，如在 Netty、MINA 等 NIO 框架中应用广泛。`DirectByteBuffer` 对于堆外内存的创建、使用、销毁等逻辑均由 Unsafe 提供的堆外内存 API 来实现。
 
 下图为 `DirectByteBuffer` 构造函数，创建 `DirectByteBuffer` 的时候，通过 `Unsafe.allocateMemory` 分配内存、`Unsafe.setMemory` 进行内存初始化，而后构建 `Cleaner` 对象用于跟踪 `DirectByteBuffer` 对象的垃圾回收，以实现当 `DirectByteBuffer` 被垃圾回收时，分配的堆外内存一起被释放。
 
