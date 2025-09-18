@@ -171,6 +171,7 @@ export default sidebar({
             "java21",
             "java22-23",
             "java24",
+            "java25",
           ],
         },
       ],
