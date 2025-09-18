@@ -450,7 +450,7 @@ SSE (Server-Sent Events) 和 WebSocket 都是用来实现服务器向浏览器�
 
 ![](https://oss.javaguide.cn/github/javaguide/cs-basics/network/deepseek-sse-eventstream.png)
 
-可以看到，响应头应里包含了 `text/event-stream`，说明使用的确实是SSE。并且，响应数据也确实是持续分块传输。
+可以看到，响应头应里包含了 `text/event-stream`，说明使用的确实是 SSE。并且，响应数据也确实是持续分块传输。
 
 ## PING
 

@@ -53,7 +53,7 @@ HAVING
     (COUNT(*) - COUNT(submit_time)) > 0;
 ```
 
-利用 `COUNT(*) `统计分组内的总记录数，`COUNT(submit_time)` 只统计 `submit_time` 字段不为 NULL 的记录数（即已完成数）。两者相减，就是未完成数。
+利用 `COUNT(*)`统计分组内的总记录数，`COUNT(submit_time)` 只统计 `submit_time` 字段不为 NULL 的记录数（即已完成数）。两者相减，就是未完成数。
 
 写法 2：
 

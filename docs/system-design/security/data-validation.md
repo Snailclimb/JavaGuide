@@ -79,7 +79,7 @@ Bean Validation 规范及其实现（如 Hibernate Validator）提供了丰富�
 - `@Email`: 检查被注解的 `CharSequence`（如 `String`）是否符合 Email 格式（内置了一个相对宽松的正则表达式）。
 - `@Past` / `@Future`: 检查被注解的日期或时间类型（`java.util.Date`、`java.util.Calendar`、JSR 310 `java.time` 包下的类型）是否在当前时间之前 / 之后。
 - `@PastOrPresent` / `@FutureOrPresent`: 类似 `@Past` / `@Future`，但允许等于当前时间。
-- ......
+- ……
 
 当 Controller 方法使用 `@RequestBody` 注解来接收请求体并将其绑定到一个对象时，可以在该参数前添加 `@Valid` 注解来触发对该对象的校验。如果验证失败，它将抛出`MethodArgumentNotValidException`。
 
@@ -161,7 +161,7 @@ Bean Validation 主要解决的是**数据格式、语法层面**的校验。但
 - 游客能访问管理员后台接口吗？（不行）
 - 游客能管理其他用户的信息吗？（不行）
 - VIP 用户能使用专属的优惠券吗？（可以）
-- ......
+- ……
 
 权限校验发生在**数据校验之后**，它关心的是“**谁 (Who)** 能对 **什么资源 (What)** 执行 **什么操作 (Action)**”。
 

@@ -134,7 +134,8 @@ public static <T> T requireNonNull(T obj) {
     return obj;
 }
 ```
-> `Collectors`也提供了无需mergeFunction的`toMap()`方法，但此时若出现key冲突，则会抛出`duplicateKeyException`异常，因此强烈建议使用`toMap()`方法必填mergeFunction。
+
+> `Collectors`也提供了无需 mergeFunction 的`toMap()`方法，但此时若出现 key 冲突，则会抛出`duplicateKeyException`异常，因此强烈建议使用`toMap()`方法必填 mergeFunction。
 
 ## 集合遍历
 
