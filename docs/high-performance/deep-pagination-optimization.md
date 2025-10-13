@@ -63,8 +63,8 @@ SELECT * FROM t_order WHERE id > 100000 LIMIT 10
 > ![](https://oss.javaguide.cn/github/javaguide/mysql/alibaba-java-development-handbook-paging.png)
 
 ```sql
-# 通过子查询来获取 id 的起始值，把 limit 1000000 的条件转移到子查询
-SELECT * FROM t_order WHERE id >= (SELECT id FROM t_order where id > 1000000 limit 1) LIMIT 10;
+-- 先通过子查询在主键索引上进行偏移，快速找到起始ID
+SELECT * FROM t_order WHERE id >= (SELECT id FROM t_order LIMIT 1000000, 1) LIMIT 10;
 ```
 
 **工作原理**:
@@ -84,7 +84,10 @@ SELECT * FROM t_order WHERE id >= (SELECT id FROM t_order where id > 1000000 lim
 -- 使用 INNER JOIN 进行延迟关联
 SELECT t1.*
 FROM t_order t1
-INNER JOIN (SELECT id FROM t_order where id > 1000000 LIMIT 10) t2 ON t1.id = t2.id;
+INNER JOIN (
+    -- 这里的子查询可以利用覆盖索引，性能极高
+    SELECT id FROM t_order LIMIT 1000000, 10
+) t2 ON t1.id = t2.id;
 ```
 
 **工作原理**:

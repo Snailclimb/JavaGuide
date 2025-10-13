@@ -361,6 +361,22 @@ Tomcat 这四个自定义的类加载器对应的目录如下：
 
 比如，SPI 中，SPI 的接口（如 `java.sql.Driver`）是由 Java 核心库提供的，由`BootstrapClassLoader` 加载。而 SPI 的实现（如`com.mysql.cj.jdbc.Driver`）是由第三方供应商提供的，它们是由应用程序类加载器或者自定义类加载器来加载的。默认情况下，一个类及其依赖类由同一个类加载器加载。所以，加载 SPI 的接口的类加载器（`BootstrapClassLoader`）也会用来加载 SPI 的实现。按照双亲委派模型，`BootstrapClassLoader` 是无法找到 SPI 的实现类的，因为它无法委托给子类加载器去尝试加载。
 
+这里需要注意：JDK 9+ 之后引入模块化，JDBC API 被拆分到 `java.sql` 模块中，不再是 `BootstrapClassLoader` 直接加载，而是由 `PlatformClassLoader` 加载。
+
+```java
+public class ClassLoaderTest {
+    public static void main(String[] args) throws ClassNotFoundException {
+        Class<?> clazz = Class.forName("java.sql.Driver");
+        ClassLoader loader = clazz.getClassLoader();
+        System.out.println("Loader for java.sql.Driver: " + loader);
+
+        // .jdks/corretto-1.8.0_442/bin/java 环境下为 Loader for java.sql.Driver: null
+
+        // .jdks/jbr-17.0.12/bin/java 环境下为 Loader for java.sql.Driver: jdk.internal.loader.ClassLoaders$PlatformClassLoader@30f39991
+    }
+}
+```
+
 再比如，假设我们的项目中有 Spring 的 jar 包，由于其是 Web 应用之间共享的，因此会由 `SharedClassLoader` 加载（Web 服务器是 Tomcat）。我们项目中有一些用到了 Spring 的业务类，比如实现了 Spring 提供的接口、用到了 Spring 提供的注解。所以，加载 Spring 的类加载器（也就是 `SharedClassLoader`）也会用来加载这些业务类。但是业务类在 Web 应用目录下，不在 `SharedClassLoader` 的加载路径下，所以 `SharedClassLoader` 无法找到业务类，也就无法加载它们。
 
 如何解决这个问题呢？ 这个时候就需要用到 **线程上下文类加载器（`ThreadContextClassLoader`）** 了。

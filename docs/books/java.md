@@ -110,20 +110,6 @@ Java 8 算是一个里程碑式的版本，现在一般企业还是用 Java 8 �
 
 另外，R 大在豆瓣发的[《从表到里学习 JVM 实现》](https://www.douban.com/doulist/2545443/)这篇文章中也推荐了很多不错的 JVM 相关的书籍，推荐小伙伴们去看看。
 
-再推荐两个视频给喜欢看视频学习的小伙伴。
-
-第 1 个是尚硅谷的宋红康老师讲的[《JVM 全套教程》](https://www.bilibili.com/video/BV1PJ411n7xZ)。这个课程的内容非常硬，一共有接近 400 小节。
-
-课程的内容分为 3 部分：
-
-1. 《内存与垃圾回收篇》
-2. 《字节码与类的加载篇》
-3. 《性能监控与调优篇》
-
-第 2 个是你假笨大佬的 **[《JVM 参数【Memory 篇】》](https://club.perfma.com/course/438755/list)** 教程，很厉害了！
-
-![](https://oss.javaguide.cn/java-guide-blog/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0MzM3Mjcy,size_16,color_FFFFFF,t_70.png)
-
 ## 常用工具
 
 非常重要！非常重要！特别是 Git 和 Docker。

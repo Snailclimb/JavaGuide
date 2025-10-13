@@ -185,7 +185,7 @@ TIMESTAMP 只需要使用 4 个字节的存储空间，但是 DATETIME 需要耗
 
 ### Boolean 类型如何表示？
 
-MySQL 中没有专门的布尔类型，而是用 TINYINT(1) 类型来表示布尔值。TINYINT(1) 类型可以存储 0 或 1，分别对应 false 或 true。
+MySQL 中没有专门的布尔类型，而是用 `TINYINT(1)` 类型来表示布尔值。`TINYINT(1)` 类型可以存储 0 或 1，分别对应 false 或 true。
 
 ### 手机号存储用 INT 还是 VARCHAR？
 

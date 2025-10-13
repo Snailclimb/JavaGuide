@@ -577,8 +577,6 @@ Redis 通过 **IO 多路复用程序** 来监听来自客户端的大量连接�
 
 ![文件事件处理器（file event handler）](https://oss.javaguide.cn/github/javaguide/database/redis/redis-event-handler.png)
 
-相关阅读：[Redis 事件机制详解](http://remcarpediem.net/article/1aa2da89/)。
-
 ### Redis6.0 之前为什么不使用多线程？
 
 虽然说 Redis 是单线程模型，但实际上，**Redis 在 4.0 之后的版本中就已经加入了对多线程的支持。**
