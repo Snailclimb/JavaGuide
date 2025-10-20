@@ -241,41 +241,40 @@ private int levelCount = 1;
 private Node h = new Node();
 
 public void add(int value) {
-
-    //随机生成高度
-    int level = randomLevel();
+    int level = randomLevel(); // 新节点的随机高度
 
     Node newNode = new Node();
     newNode.data = value;
     newNode.maxLevel = level;
 
-    //创建一个node数组，用于记录小于当前value的最大值
-    Node[] maxOfMinArr = new Node[level];
-    //默认情况下指向头节点
+    // 用于记录每层前驱节点的数组
+    Node[] update = new Node[level];
     for (int i = 0; i < level; i++) {
-        maxOfMinArr[i] = h;
+        update[i] = h;
     }
 
-    //基于上述结果拿到当前节点的后继节点
     Node p = h;
-    for (int i = level - 1; i >= 0; i--) {
+    // 关键修正：从跳表的当前最高层开始查找
+    for (int i = levelCount - 1; i >= 0; i--) {
         while (p.forwards[i] != null && p.forwards[i].data < value) {
             p = p.forwards[i];
         }
-        maxOfMinArr[i] = p;
+        // 只记录需要更新的层的前驱节点
+        if (i < level) {
+            update[i] = p;
+        }
     }
 
-    //更新前驱节点的后继节点为当前节点newNode
+    // 插入新节点
     for (int i = 0; i < level; i++) {
-        newNode.forwards[i] = maxOfMinArr[i].forwards[i];
-        maxOfMinArr[i].forwards[i] = newNode;
+        newNode.forwards[i] = update[i].forwards[i];
+        update[i].forwards[i] = newNode;
     }
 
-    //如果当前newNode高度大于跳表最高高度则更新levelCount
+    // 更新跳表的总高度
     if (levelCount < level) {
         levelCount = level;
     }
-
 }
 ```
 
@@ -380,7 +379,7 @@ public class SkipList {
     /**
      * 每个节点添加一层索引高度的概率为二分之一
      */
-    private static final float PROB = 0.5 f;
+    private static final float PROB = 0.5f;
 
     /**
      * 默认情况下的高度为1，即只有自己一个节点
@@ -392,9 +391,11 @@ public class SkipList {
      */
     private Node h = new Node();
 
-    public SkipList() {}
+    public SkipList() {
+    }
 
     public class Node {
+
         private int data = -1;
         /**
          *
@@ -404,58 +405,55 @@ public class SkipList {
 
         @Override
         public String toString() {
-            return "Node{" +
-                "data=" + data +
-                ", maxLevel=" + maxLevel +
-                '}';
+            return "Node{"
+                    + "data=" + data
+                    + ", maxLevel=" + maxLevel
+                    + '}';
         }
     }
 
     public void add(int value) {
-
-        //随机生成高度
-        int level = randomLevel();
+        int level = randomLevel(); // 新节点的随机高度
 
         Node newNode = new Node();
         newNode.data = value;
         newNode.maxLevel = level;
 
-        //创建一个node数组，用于记录小于当前value的最大值
-        Node[] maxOfMinArr = new Node[level];
-        //默认情况下指向头节点
+        // 用于记录每层前驱节点的数组
+        Node[] update = new Node[level];
         for (int i = 0; i < level; i++) {
-            maxOfMinArr[i] = h;
+            update[i] = h;
         }
 
-        //基于上述结果拿到当前节点的后继节点
         Node p = h;
-        for (int i = level - 1; i >= 0; i--) {
+        // 关键修正：从跳表的当前最高层开始查找
+        for (int i = levelCount - 1; i >= 0; i--) {
             while (p.forwards[i] != null && p.forwards[i].data < value) {
                 p = p.forwards[i];
             }
-            maxOfMinArr[i] = p;
+            // 只记录需要更新的层的前驱节点
+            if (i < level) {
+                update[i] = p;
+            }
         }
 
-        //更新前驱节点的后继节点为当前节点newNode
+        // 插入新节点
         for (int i = 0; i < level; i++) {
-            newNode.forwards[i] = maxOfMinArr[i].forwards[i];
-            maxOfMinArr[i].forwards[i] = newNode;
+            newNode.forwards[i] = update[i].forwards[i];
+            update[i].forwards[i] = newNode;
         }
 
-        //如果当前newNode高度大于跳表最高高度则更新levelCount
+        // 更新跳表的总高度
         if (levelCount < level) {
             levelCount = level;
         }
-
     }
 
     /**
      * 理论来讲，一级索引中元素个数应该占原始数据的 50%，二级索引中元素个数占 25%，三级索引12.5% ，一直到最顶层。
-     * 因为这里每一层的晋升概率是 50%。对于每一个新插入的节点，都需要调用 randomLevel 生成一个合理的层数。
-     * 该 randomLevel 方法会随机生成 1~MAX_LEVEL 之间的数，且 ：
-     * 50%的概率返回 1
-     * 25%的概率返回 2
-     *  12.5%的概率返回 3 ...
+     * 因为这里每一层的晋升概率是 50%。对于每一个新插入的节点，都需要调用 randomLevel 生成一个合理的层数。 该 randomLevel
+     * 方法会随机生成 1~MAX_LEVEL 之间的数，且 ： 50%的概率返回 1 25%的概率返回 2 12.5%的概率返回 3 ...
+     *
      * @return
      */
     private int randomLevel() {
@@ -523,11 +521,11 @@ public class SkipList {
         }
 
     }
-
 }
+
 ```
 
-对应测试代码和输出结果如下：
+测试代码：
 
 ```java
 public static void main(String[] args) {
@@ -548,61 +546,6 @@ public static void main(String[] args) {
 
 
     }
-```
-
-输出结果:
-
-```bash
-**********输出添加结果**********
-Node{data=0, maxLevel=2}
-Node{data=1, maxLevel=3}
-Node{data=2, maxLevel=1}
-Node{data=3, maxLevel=1}
-Node{data=4, maxLevel=2}
-Node{data=5, maxLevel=2}
-Node{data=6, maxLevel=2}
-Node{data=7, maxLevel=2}
-Node{data=8, maxLevel=4}
-Node{data=9, maxLevel=1}
-Node{data=10, maxLevel=1}
-Node{data=11, maxLevel=1}
-Node{data=12, maxLevel=1}
-Node{data=13, maxLevel=1}
-Node{data=14, maxLevel=1}
-Node{data=15, maxLevel=3}
-Node{data=16, maxLevel=4}
-Node{data=17, maxLevel=2}
-Node{data=18, maxLevel=1}
-Node{data=19, maxLevel=1}
-Node{data=20, maxLevel=1}
-Node{data=21, maxLevel=3}
-Node{data=22, maxLevel=1}
-Node{data=23, maxLevel=1}
-**********查询结果:Node{data=22, maxLevel=1} **********
-**********删除结果**********
-Node{data=0, maxLevel=2}
-Node{data=1, maxLevel=3}
-Node{data=2, maxLevel=1}
-Node{data=3, maxLevel=1}
-Node{data=4, maxLevel=2}
-Node{data=5, maxLevel=2}
-Node{data=6, maxLevel=2}
-Node{data=7, maxLevel=2}
-Node{data=8, maxLevel=4}
-Node{data=9, maxLevel=1}
-Node{data=10, maxLevel=1}
-Node{data=11, maxLevel=1}
-Node{data=12, maxLevel=1}
-Node{data=13, maxLevel=1}
-Node{data=14, maxLevel=1}
-Node{data=15, maxLevel=3}
-Node{data=16, maxLevel=4}
-Node{data=17, maxLevel=2}
-Node{data=18, maxLevel=1}
-Node{data=19, maxLevel=1}
-Node{data=20, maxLevel=1}
-Node{data=21, maxLevel=3}
-Node{data=23, maxLevel=1}
 ```
 
 **Redis 跳表的特点**：
