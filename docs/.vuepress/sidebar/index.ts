@@ -495,6 +495,7 @@ export default sidebar({
             "paxos-algorithm",
             "raft-algorithm",
             "gossip-protocl",
+            "consistent-hashing",
           ],
         },
         {

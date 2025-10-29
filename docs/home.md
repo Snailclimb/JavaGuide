@@ -324,6 +324,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 - [Paxos 算法解读](./distributed-system/protocol/paxos-algorithm.md)
 - [Raft 算法解读](./distributed-system/protocol/raft-algorithm.md)
 - [Gossip 协议详解](./distributed-system/protocol/gossip-protocl.md)
+- [一致性哈希算法详解](./distributed-system/protocol/consistent-hashing.md)
 
 ### RPC
 
