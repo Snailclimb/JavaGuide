@@ -283,7 +283,7 @@ public class BigDecimalUtil {
      * @return 返回转换结果
      */
     public static float convertToFloat(double v) {
-        BigDecimal b = new BigDecimal(v);
+        BigDecimal b = BigDecimal.valueOf(v);
         return b.floatValue();
     }
 
@@ -294,7 +294,7 @@ public class BigDecimalUtil {
      * @return 返回转换结果
      */
     public static int convertsToInt(double v) {
-        BigDecimal b = new BigDecimal(v);
+        BigDecimal b = BigDecimal.valueOf(v);
         return b.intValue();
     }
 
@@ -305,7 +305,7 @@ public class BigDecimalUtil {
      * @return 返回转换结果
      */
     public static long convertsToLong(double v) {
-        BigDecimal b = new BigDecimal(v);
+        BigDecimal b = BigDecimal.valueOf(v);
         return b.longValue();
     }
 
@@ -317,8 +317,8 @@ public class BigDecimalUtil {
      * @return 返回两个数中大的一个值
      */
     public static double returnMax(double v1, double v2) {
-        BigDecimal b1 = new BigDecimal(v1);
-        BigDecimal b2 = new BigDecimal(v2);
+        BigDecimal b1 = BigDecimal.valueOf(v1);
+        BigDecimal b2 = BigDecimal.valueOf(v2);
         return b1.max(b2).doubleValue();
     }
 
@@ -330,8 +330,8 @@ public class BigDecimalUtil {
      * @return 返回两个数中小的一个值
      */
     public static double returnMin(double v1, double v2) {
-        BigDecimal b1 = new BigDecimal(v1);
-        BigDecimal b2 = new BigDecimal(v2);
+        BigDecimal b1 = BigDecimal.valueOf(v1);
+        BigDecimal b2 = BigDecimal.valueOf(v2);
         return b1.min(b2).doubleValue();
     }
 
