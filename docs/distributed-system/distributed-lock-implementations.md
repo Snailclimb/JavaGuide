@@ -372,10 +372,4 @@ private static class LockData
 
 为了进一步提高系统的可靠性，建议引入一个兜底机制。例如，可以通过 **版本号（Fencing Token）机制** 来避免并发冲突。
 
-最后，再分享几篇我觉得写的还不错的文章：
-
-- [分布式锁实现原理与最佳实践 - 阿里云开发者](https://mp.weixin.qq.com/s/JzCHpIOiFVmBoAko58ZuGw)
-- [聊聊分布式锁 - 字节跳动技术团队](https://mp.weixin.qq.com/s/-N4x6EkxwAYDGdJhwvmZLw)
-- [Redis、ZooKeeper、Etcd，谁有最好用的分布式锁？ - 腾讯云开发者](https://mp.weixin.qq.com/s/yZC6VJGxt1ANZkn0SljZBg)
-
 <!-- @include: @article-footer.snippet.md -->

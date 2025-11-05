@@ -527,7 +527,7 @@ COMMIT;
 
 例如：事务 1 读取某表中的数据 A=20，事务 1 修改 A=A-1，事务 2 读取到 A = 19,事务 1 回滚导致对 A 的修改并未提交到数据库， A 的值还是 20。
 
-![脏读](./images/concurrency-consistency-issues-dirty-reading.png)
+![脏读](https://oss.javaguide.cn/github/javaguide/database/mysql/concurrency-consistency-issues-dirty-reading.png)
 
 #### 丢失修改（Lost to modify）
 
@@ -535,7 +535,7 @@ COMMIT;
 
 例如：事务 1 读取某表中的数据 A=20，事务 2 也读取 A=20，事务 1 先修改 A=A-1，事务 2 后来也修改 A=A-1，最终结果 A=19，事务 1 的修改被丢失。
 
-![丢失修改](./images/concurrency-consistency-issues-missing-modifications.png)
+![丢失修改](https://oss.javaguide.cn/github/javaguide/database/mysql/concurrency-consistency-issues-missing-modifications.png)
 
 #### 不可重复读（Unrepeatable read）
 
@@ -543,7 +543,7 @@ COMMIT;
 
 例如：事务 1 读取某表中的数据 A=20，事务 2 也读取 A=20，事务 1 修改 A=A-1，事务 2 再次读取 A =19，此时读取的结果和第一次读取的结果不同。
 
-![不可重复读](./images/concurrency-consistency-issues-unrepeatable-read.png)
+![不可重复读](https://oss.javaguide.cn/github/javaguide/database/mysql/concurrency-consistency-issues-unrepeatable-read.png)
 
 #### 幻读（Phantom read）
 
@@ -551,7 +551,7 @@ COMMIT;
 
 例如：事务 2 读取某个范围的数据，事务 1 在这个范围插入了新的数据，事务 2 再次读取这个范围的数据发现相比于第一次读取的结果多了新的数据。
 
-![幻读](./images/concurrency-consistency-issues-phantom-read.png)
+![幻读](https://oss.javaguide.cn/github/javaguide/database/mysql/concurrency-consistency-issues-phantom-read.png)
 
 ### 不可重复读和幻读有什么区别？
 
