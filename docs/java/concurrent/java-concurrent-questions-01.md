@@ -128,8 +128,6 @@ JDK 1.2 之前，Java 线程是基于绿色线程（Green Threads）实现的，
 
 严格来说，Java 就只有一种方式可以创建线程，那就是通过`new Thread().start()`创建。不管是哪种方式，最终还是依赖于`new Thread().start()`。
 
-关于这个问题的详细分析可以查看这篇文章：[大家都说 Java 有三种创建线程的方式！并发编程中的惊天骗局！](https://mp.weixin.qq.com/s/NspUsyhEmKnJ-4OprRFp9g)。
-
 ### ⭐️说说线程的生命周期和状态?
 
 Java 线程在运行的生命周期中的指定时刻只可能处于下面 6 种不同状态的其中一个状态：
