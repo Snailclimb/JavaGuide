@@ -3,6 +3,13 @@ title: 最重要的JVM参数总结
 category: Java
 tag:
   - JVM
+head:
+  - - meta
+    - name: keywords
+      content: JVM 参数,堆大小,栈大小,GC 设置,性能调优,XX 参数
+  - - meta
+    - name: description
+      content: 总结常用 JVM 参数与配置方法，结合内存与 GC 调优的实践建议。
 ---
 
 > 本文由 JavaGuide 翻译自 [https://www.baeldung.com/jvm-parameters](https://www.baeldung.com/jvm-parameters)，并对文章进行了大量的完善补充。

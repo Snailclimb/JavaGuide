@@ -4,6 +4,13 @@ category: Java
 tag:
   - Java IO
   - Java基础
+head:
+  - - meta
+    - name: keywords
+      content: IO 基础,字节流,字符流,缓冲,文件操作,InputStream,Reader,OutputStream,Writer
+  - - meta
+    - name: description
+      content: 概述 Java IO 的基础概念与核心类，理解字节/字符流、缓冲与文件读写。
 ---
 
 <!-- @include: @small-advertisement.snippet.md -->
@@ -20,7 +27,7 @@ Java IO 流的 40 多个类都是从如下 4 个抽象类基类中派生出来�
 ## 字节流
 
 ### InputStream（字节输入流）
-  
+
 `InputStream`用于从源头（通常是文件）读取数据（字节信息）到内存中，`java.io.InputStream`抽象类是所有字节输入流的父类。
 
 `InputStream` 常用方法：

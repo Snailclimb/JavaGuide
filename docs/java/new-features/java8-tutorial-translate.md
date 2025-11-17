@@ -1,3 +1,17 @@
+---
+title: 《Java8 指南》中文翻译
+category: Java
+tag:
+  - Java新特性
+head:
+  - - meta
+    - name: keywords
+      content: Java 8,指南,Lambda,方法引用,默认方法,Stream API,函数式接口,Date/Time API
+  - - meta
+    - name: description
+      content: 翻译与整理 Java 8 教程，涵盖 Lambda、方法引用、接口默认方法、Stream 等新特性与示例代码。
+---
+
 # 《Java8 指南》中文翻译
 
 随着 Java 8 的普及度越来越高，很多人都提到面试中关于 Java 8 也是非常常问的知识点。应各位要求和需要，我打算对这部分知识做一个总结。本来准备自己总结的，后面看到 GitHub 上有一个相关的仓库，地址：

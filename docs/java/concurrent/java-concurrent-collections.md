@@ -3,6 +3,13 @@ title: Java 常见并发容器总结
 category: Java
 tag:
   - Java并发
+head:
+  - - meta
+    - name: keywords
+      content: 并发容器,ConcurrentHashMap,CopyOnWriteArrayList,ConcurrentLinkedQueue,BlockingQueue,ConcurrentSkipListMap,JUC
+  - - meta
+    - name: description
+      content: 总览 JUC 并发容器及特性，涵盖线程安全 Map、读多写少 List、非阻塞队列与阻塞队列、跳表等常用数据结构。
 ---
 
 JDK 提供的这些容器大部分在 `java.util.concurrent` 包中。

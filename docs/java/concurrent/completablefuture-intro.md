@@ -3,6 +3,13 @@ title: CompletableFuture 详解
 category: Java
 tag:
   - Java并发
+head:
+  - - meta
+    - name: keywords
+      content: CompletableFuture,异步编排,并行任务,thenCompose,thenCombine,allOf,anyOf,线程池,Future
+  - - meta
+    - name: description
+      content: 介绍 CompletableFuture 的核心概念与常用 API，涵盖并行执行、任务编排与结果聚合，助力高性能接口设计。
 ---
 
 实际项目中，一个接口可能需要同时获取多种不同的数据，然后再汇总返回，这种场景还是挺常见的。举个例子：用户请求获取订单信息，可能需要同时获取用户信息、商品详情、物流信息、商品推荐等数据。

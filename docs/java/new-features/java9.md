@@ -3,6 +3,13 @@ title: Java 9 新特性概览
 category: Java
 tag:
   - Java新特性
+head:
+  - - meta
+    - name: keywords
+      content: Java 9,JDK9,模块化,JPMS,jlink,集合工厂方法,新 API
+  - - meta
+    - name: description
+      content: 解析 Java 9 的模块化系统与 jlink 等更新，理解对运行时镜像与库使用的影响。
 ---
 
 **Java 9** 发布于 2017 年 9 月 21 日 。作为 Java 8 之后 3 年半才发布的新版本，Java 9 带来了很多重大的变化其中最重要的改动是 Java 平台模块系统的引入，其他还有诸如集合、`Stream` 流……。

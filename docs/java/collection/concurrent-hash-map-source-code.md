@@ -3,6 +3,13 @@ title: ConcurrentHashMap 源码分析
 category: Java
 tag:
   - Java集合
+head:
+  - - meta
+    - name: keywords
+      content: ConcurrentHashMap,线程安全,分段锁,Segment,CAS,红黑树,链表,并发级别,JDK7,JDK8,并发容器
+  - - meta
+    - name: description
+      content: 对比 JDK7/8 的 ConcurrentHashMap 实现，解析分段锁、CAS、链表/红黑树等并发设计，理解线程安全 Map 的核心原理。
 ---
 
 > 本文来自公众号：末读代码的投稿，原文地址：<https://mp.weixin.qq.com/s/AHWzboztt53ZfFZmsSnMSw> 。

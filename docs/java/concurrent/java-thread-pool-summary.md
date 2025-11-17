@@ -3,6 +3,13 @@ title: Java 线程池详解
 category: Java
 tag:
   - Java并发
+head:
+  - - meta
+    - name: keywords
+      content: 线程池,ThreadPoolExecutor,Executor,核心线程数,最大线程数,任务队列,拒绝策略,池化技术,ScheduledThreadPoolExecutor
+  - - meta
+    - name: description
+      content: 系统梳理 Java 线程池的原理与架构，包含 Executor 框架、关键参数与队列、常见实现及配置要点。
 ---
 
 <!-- markdownlint-disable MD024 -->

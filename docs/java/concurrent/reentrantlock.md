@@ -3,6 +3,13 @@ title: 从ReentrantLock的实现看AQS的原理及应用
 category: Java
 tag:
   - Java并发
+head:
+  - - meta
+    - name: keywords
+      content: ReentrantLock,AQS,公平锁,非公平锁,可重入,lock/unlock,Sync Queue,独占锁,compareAndSetState,acquire
+  - - meta
+    - name: description
+      content: 结合 ReentrantLock 的实现剖析 AQS 工作原理，比较公平与非公平锁、与 synchronized 的差异以及独占锁的加解锁流程。
 ---
 
 > 本文转载自：<https://tech.meituan.com/2019/12/05/aqs-theory-and-apply.html>

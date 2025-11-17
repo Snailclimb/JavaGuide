@@ -3,6 +3,13 @@ title: Java 代理模式详解
 category: Java
 tag:
   - Java基础
+head:
+  - - meta
+    - name: keywords
+      content: 代理模式,静态代理,动态代理,JDK 动态代理,CGLIB,横切增强,设计模式
+  - - meta
+    - name: description
+      content: 详解 Java 代理模式的静态与动态实现，理解 JDK/CGLIB 动态代理的原理与应用场景。
 ---
 
 ## 1. 代理模式

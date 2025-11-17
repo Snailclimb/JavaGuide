@@ -1,3 +1,17 @@
+---
+title: Java 关键字总结
+category: Java
+tag:
+  - Java基础
+head:
+  - - meta
+    - name: keywords
+      content: Java 关键字,final,static,this,super,abstract,interface,enum,volatile,transient
+  - - meta
+    - name: description
+      content: 梳理常见 Java 关键字的语义与用法差异，便于快速查阅与掌握。
+---
+
 # final,static,this,super 关键字总结
 
 ## final 关键字

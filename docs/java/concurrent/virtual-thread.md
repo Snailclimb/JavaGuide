@@ -3,6 +3,13 @@ title: 虚拟线程常见问题总结
 category: Java
 tag:
   - Java并发
+head:
+  - - meta
+    - name: keywords
+      content: 虚拟线程,Virtual Threads,Project Loom,Java 21,平台线程,轻量级线程,并发,I/O 密集型,兼容性
+  - - meta
+    - name: description
+      content: 总结 Java 21 虚拟线程的概念与实践，解析与平台线程关系、适用场景、优势与限制以及常见问题。
 ---
 
 > 本文部分内容来自 [Lorin](https://github.com/Lorin-github) 的[PR](https://github.com/Snailclimb/JavaGuide/pull/2190)。

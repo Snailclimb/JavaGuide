@@ -3,6 +3,13 @@ title: ThreadLocal 详解
 category: Java
 tag:
   - Java并发
+head:
+  - - meta
+    - name: keywords
+      content: ThreadLocal,线程变量副本,ThreadLocalMap,弱引用,哈希冲突,扩容,清理机制,内存泄漏
+  - - meta
+    - name: description
+      content: 深入解析 ThreadLocal 的设计与实现，涵盖 ThreadLocalMap 的结构、弱引用与清理机制，以及常见使用坑位与规避方式。
 ---
 
 > 本文来自一枝花算不算浪漫投稿， 原文地址：[https://juejin.cn/post/6844904151567040519](https://juejin.cn/post/6844904151567040519)。

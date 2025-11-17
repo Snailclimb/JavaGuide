@@ -3,6 +3,13 @@ title: ArrayBlockingQueue 源码分析
 category: Java
 tag:
   - Java集合
+head:
+  - - meta
+    - name: keywords
+      content: ArrayBlockingQueue,阻塞队列,生产者消费者,有界队列,JUC,put,take,线程池,ReentrantLock,Condition
+  - - meta
+    - name: description
+      content: 讲解 ArrayBlockingQueue 的有界阻塞队列实现与典型生产者-消费者使用，结合线程池工作队列分析锁与条件的并发设计。
 ---
 
 ## 阻塞队列简介

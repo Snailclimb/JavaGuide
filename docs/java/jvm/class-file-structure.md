@@ -3,6 +3,13 @@ title: 类文件结构详解
 category: Java
 tag:
   - JVM
+head:
+  - - meta
+    - name: keywords
+      content: Class 文件,常量池,魔数,版本,字段,方法,属性
+  - - meta
+    - name: description
+      content: 介绍 Java 字节码 Class 文件结构与常量池等核心组成，辅助理解编译产物。
 ---
 
 ## 回顾一下字节码

@@ -3,6 +3,13 @@ title: AQS 详解
 category: Java
 tag:
   - Java并发
+head:
+  - - meta
+    - name: keywords
+      content: AQS,AbstractQueuedSynchronizer,同步器,独占锁,共享锁,CLH 队列,acquire,release,阻塞与唤醒,条件队列
+  - - meta
+    - name: description
+      content: 全面解析 AQS 的队列同步器原理与模板方法，理解其在 ReentrantLock、Semaphore 等同步器中的应用与线程阻塞唤醒机制。
 ---
 
 <!-- markdownlint-disable MD024 -->

@@ -3,6 +3,13 @@ title: ArrayList 源码分析
 category: Java
 tag:
   - Java集合
+head:
+  - - meta
+    - name: keywords
+      content: ArrayList,动态数组,ensureCapacity,RandomAccess,扩容机制,序列化,add/remove,索引访问,性能,Vector 区别,列表实现
+  - - meta
+    - name: description
+      content: 系统梳理 ArrayList 的底层原理与常见用法，包含动态数组结构、扩容策略、接口实现以及与 Vector 的差异与性能特点。
 ---
 
 <!-- @include: @small-advertisement.snippet.md -->

@@ -186,7 +186,7 @@ Redis 从 2.6 版本开始支持执行 Lua 脚本，它的功能和事务非常�
 
 另外，Redis 7.0 新增了 [Redis functions](https://redis.io/docs/latest/develop/programmability/functions-intro/) 特性，你可以将 Redis functions 看作是比 Lua 更强大的脚本。
 
-## Redis 性能优化（重要）
+## ⭐️Redis 性能优化（重要）
 
 除了下面介绍的内容之外，再推荐两篇不错的文章：
 
@@ -600,7 +600,7 @@ OK
 
 **参考答案**：[Redis 内存碎片详解](https://javaguide.cn/database/redis/redis-memory-fragmentation.html)。
 
-## Redis 生产问题（重要）
+## ⭐️Redis 生产问题（重要）
 
 ### 缓存穿透
 
@@ -760,7 +760,21 @@ Bloom Filter 会使用一个较大的 bit 数组来保存所有的数据，数�
 
 ### 哪些情况可能会导致 Redis 阻塞？
 
-单独抽了一篇文章来总结可能会导致 Redis 阻塞的情况：[Redis 常见阻塞原因总结](https://javaguide.cn/database/redis/redis-common-blocking-problems-summary.html)。
+常见的导致 Redis 阻塞原因有：
+
+- `O(n)` 复杂度命令执行（如 `KEYS *`、`HGETALL`、`LRANGE`、`SMEMBERS` 等），随着数据量增大导致执行时间过长。
+- 执行 `SAVE` 命令生成 RDB 快照时同步阻塞主线程，而 `BGSAVE` 通过 `fork` 子进程避免阻塞。
+- AOF 记录日志在主线程中进行，可能因命令执行后写日志而阻塞后续命令。
+- AOF 刷盘（fsync）时后台线程同步到磁盘，磁盘压力大导致 `fsync` 阻塞，进而阻塞主线程 `write` 操作，尤其在 `appendfsync always` 或 `everysec` 配置下明显。
+- AOF 重写过程中将重写缓冲区内容追加到新 AOF 文件时产生阻塞。
+- 操作大 key（string > 1MB 或复合类型元素 > 5000）导致客户端超时、网络阻塞和工作线程阻塞。
+- 使用 `flushdb` 或 `flushall` 清空数据库时涉及大量键值对删除和内存释放，造成主线程阻塞。
+- 集群扩容缩容时数据迁移为同步操作，大 key 迁移导致两端节点长时间阻塞，可能触发故障转移
+- 内存不足触发 Swap，操作系统将 Redis 内存换出到硬盘，读写性能急剧下降。
+- 其他进程过度占用 CPU 导致 Redis 吞吐量下降。
+- 网络问题如连接拒绝、延迟高、网卡软中断等导致 Redis 阻塞。
+
+详细介绍可以阅读这篇文章：[Redis 常见阻塞原因总结](https://javaguide.cn/database/redis/redis-common-blocking-problems-summary.html)。
 
 ## Redis 集群
 
@@ -797,8 +811,6 @@ Bloom Filter 会使用一个较大的 bit 数组来保存所有的数据，数�
 5. 禁止长时间开启 monitor：对性能影响比较大。
 6. 控制 key 的生命周期：避免 Redis 中存放了太多不经常被访问的数据。
 7. ……
-
-相关文章推荐：[阿里云 Redis 开发规范](https://developer.aliyun.com/article/531067)。
 
 ## 参考
 

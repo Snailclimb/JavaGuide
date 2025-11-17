@@ -599,20 +599,11 @@ MySQL 5.6 开始，查询缓存已默认禁用。MySQL 8.0 开始，已经不再
 
 ## ⭐️MySQL 日志
 
-MySQL 日志常见的面试题有：
-
-- MySQL 中常见的日志有哪些？
-- 慢查询日志有什么用？
-- binlog 主要记录了什么？
-- redo log 如何保证事务的持久性？
-- 页修改之后为什么不直接刷盘呢？
-- binlog 和 redolog 有什么区别？
-- undo log 如何保证事务的原子性？
-- ……
-
-上诉问题的答案可以在[《Java 面试指北》(付费)](../../zhuanlan/java-mian-shi-zhi-bei.md) 的 **「技术面试题篇」** 中找到。
+上诉问题的答案可以在[《Java 面试指北》(付费，点击链接领取优惠卷)](https://javaguide.cn/zhuanlan/java-mian-shi-zhi-bei.html) 的 **「技术面试题篇」** 中找到。
 
 ![《Java 面试指北》技术面试题篇](https://oss.javaguide.cn/javamianshizhibei/technical-interview-questions.png)
+
+文章地址：<https://www.yuque.com/snailclimb/mf2z3k/zr4kfk> （密码获取：<https://t.zsxq.com/avfM0>）。
 
 ## ⭐️MySQL 事务
 
@@ -821,8 +812,6 @@ InnoDB 行锁是通过对索引数据页上的记录加锁实现的，MySQL Inno
 
 **在 InnoDB 默认的隔离级别 REPEATABLE-READ 下，行锁默认使用的是 Next-Key Lock。但是，如果操作的索引是唯一索引或主键，InnoDB 会对 Next-Key Lock 进行优化，将其降级为 Record Lock，即仅锁住索引本身，而不是范围。**
 
-一些大厂面试中可能会问到 Next-Key Lock 的加锁范围，这里推荐一篇文章：[MySQL next-key lock 加锁范围是什么？ - 程序员小航 - 2021](https://segmentfault.com/a/1190000040129107) 。
-
 ### 共享锁和排他锁呢？
 
 不论是表级锁还是行级锁，都存在共享锁（Share Lock，S 锁）和排他锁（Exclusive Lock，X 锁）这两类：
@@ -950,7 +939,7 @@ CREATE TABLE `sequence_id` (
 
 最后，再推荐一篇文章：[为什么 MySQL 的自增主键不单调也不连续](https://draveness.me/whys-the-design-mysql-auto-increment/) 。
 
-## MySQL 性能优化
+## ⭐️MySQL 性能优化
 
 关于 MySQL 性能优化的建议总结，请看这篇文章：[MySQL 高性能优化规范建议总结](./mysql-high-performance-optimization-specification-recommendations.md) 。
 
@@ -982,6 +971,8 @@ MySQL 提供了两个方法来处理 ip 地址
 [《Java 面试指北》(付费)](https://javaguide.cn/zhuanlan/java-mian-shi-zhi-bei.html) 的 **「技术面试题篇」** 有一篇文章详细介绍了常见的 SQL 优化手段，非常全面，清晰易懂！
 
 ![常见的 SQL 优化手段](https://oss.javaguide.cn/javamianshizhibei/javamianshizhibei-sql-optimization.png)
+
+文章地址：https://www.yuque.com/snailclimb/mf2z3k/abc2sv （密码获取：<https://t.zsxq.com/avfM0>）。
 
 ### 如何分析 SQL 的性能？
 

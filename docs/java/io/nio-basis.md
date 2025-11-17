@@ -4,6 +4,13 @@ category: Java
 tag:
   - Java IO
   - Java基础
+head:
+  - - meta
+    - name: keywords
+      content: NIO,Channel,Buffer,Selector,非阻塞IO,零拷贝,文件与网络
+  - - meta
+    - name: description
+      content: 介绍 Java NIO 的核心组件与使用方式，理解 Channel/Buffer/Selector 的协作与性能优势。
 ---
 
 在学习 NIO 之前，需要先了解一下计算机 I/O 模型的基础理论知识。还不了解的话，可以参考我写的这篇文章：[Java IO 模型详解](https://javaguide.cn/java/io/io-model.html)。

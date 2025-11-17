@@ -3,6 +3,13 @@ title: Java8 新特性实战
 category: Java
 tag:
   - Java新特性
+head:
+  - - meta
+    - name: keywords
+      content: Java 8,Lambda,Stream API,Optional,Date/Time API,默认方法,函数式接口
+  - - meta
+    - name: description
+      content: 实战讲解 Java 8 的核心新特性，包括 Lambda、Stream、Optional、日期时间 API 与接口默认方法等。
 ---
 
 > 本文来自[cowbi](https://github.com/cowbi)的投稿~

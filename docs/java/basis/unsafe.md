@@ -3,6 +3,13 @@ title: Java 魔法类 Unsafe 详解
 category: Java
 tag:
   - Java基础
+head:
+  - - meta
+    - name: keywords
+      content: Unsafe,低级操作,内存访问,CAS,堆外内存,本地方法,风险
+  - - meta
+    - name: description
+      content: 介绍 sun.misc.Unsafe 的能力与典型用法，涵盖内存与对象操作、CAS 支持及风险与限制。
 ---
 
 > 本文整理完善自下面这两篇优秀的文章：

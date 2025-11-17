@@ -3,6 +3,13 @@ title: BigDecimal 详解
 category: Java
 tag:
   - Java基础
+head:
+  - - meta
+    - name: keywords
+      content: BigDecimal,浮点数精度,小数运算,compareTo,舍入规则,RoundingMode,divide,阿里巴巴规范
+  - - meta
+    - name: description
+      content: 讲解 BigDecimal 的使用场景与核心 API，解决浮点数精度问题并总结常见舍入规则与最佳实践。
 ---
 
 《阿里巴巴 Java 开发手册》中提到：“为了避免精度丢失，可以使用 `BigDecimal` 来进行浮点数的运算”。

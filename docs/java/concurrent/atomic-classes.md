@@ -3,6 +3,13 @@ title: Atomic 原子类总结
 category: Java
 tag:
   - Java并发
+head:
+  - - meta
+    - name: keywords
+      content: 原子类,AtomicInteger,AtomicLong,AtomicBoolean,AtomicReference,CAS,乐观锁,原子操作,JUC
+  - - meta
+    - name: description
+      content: 概览 JUC 原子类的类型与使用场景，基于 CAS 的原子性保障与并发性能，理解原子类相较于锁的优势与局限。
 ---
 
 ## Atomic 原子类介绍

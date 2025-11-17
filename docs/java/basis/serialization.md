@@ -3,6 +3,13 @@ title: Java 序列化详解
 category: Java
 tag:
   - Java基础
+head:
+  - - meta
+    - name: keywords
+      content: 序列化,反序列化,Serializable,transient,serialVersionUID,ObjectInputStream,ObjectOutputStream,协议
+  - - meta
+    - name: description
+      content: 讲解 Java 对象的序列化/反序列化机制与关键细节，涵盖 transient、版本号与常见应用场景。
 ---
 
 ## 什么是序列化和反序列化?

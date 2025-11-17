@@ -3,6 +3,13 @@ title: JVM垃圾回收详解（重点）
 category: Java
 tag:
   - JVM
+head:
+  - - meta
+    - name: keywords
+      content: 垃圾回收,GC 算法,分代回收,标记清除,复制,整理,G1,ZGC
+  - - meta
+    - name: description
+      content: 总结 JVM 垃圾回收的算法与回收器，解析内存管理与调优要点。
 ---
 
 > 如果没有特殊说明，都是针对的是 HotSpot 虚拟机。

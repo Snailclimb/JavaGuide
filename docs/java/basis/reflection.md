@@ -3,6 +3,13 @@ title: Java 反射机制详解
 category: Java
 tag:
   - Java基础
+head:
+  - - meta
+    - name: keywords
+      content: 反射,Class,Method,Field,动态代理,运行时分析,框架原理
+  - - meta
+    - name: description
+      content: 系统讲解 Java 反射的核心概念与常见用法，结合动态代理与框架底层机制理解运行时能力。
 ---
 
 ## 何为反射？

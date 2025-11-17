@@ -3,6 +3,13 @@ title: LinkedHashMap 源码分析
 category: Java
 tag:
   - Java集合
+head:
+  - - meta
+    - name: keywords
+      content: LinkedHashMap,插入顺序,访问顺序,双向链表,LRU,迭代有序,HashMap 扩展,遍历效率
+  - - meta
+    - name: description
+      content: 解析 LinkedHashMap 在 HashMap 基础上维护双向链表以实现插入/访问有序的机制，及其在 LRU 缓存等场景的应用。
 ---
 
 ## LinkedHashMap 简介

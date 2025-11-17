@@ -3,6 +3,13 @@ title: Java 18 新特性概览
 category: Java
 tag:
   - Java新特性
+head:
+  - - meta
+    - name: keywords
+      content: Java 18,JDK18,预览特性,API 更新,JEP
+  - - meta
+    - name: description
+      content: 概览 JDK 18 的更新与预览特性，理解新 API 带来的改进。
 ---
 
 Java 18 在 2022 年 3 月 22 日正式发布，非长期支持版本。

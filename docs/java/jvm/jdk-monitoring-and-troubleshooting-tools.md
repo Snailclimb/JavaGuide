@@ -3,6 +3,13 @@ title: JDK监控和故障处理工具总结
 category: Java
 tag:
   - JVM
+head:
+  - - meta
+    - name: keywords
+      content: JDK 工具,jps,jstat,jmap,jstack,jvisualvm,诊断,监控
+  - - meta
+    - name: description
+      content: 汇总 JDK 常用监控与排错工具及使用示例，辅助定位与分析 JVM 问题。
 ---
 
 ## JDK 命令行工具

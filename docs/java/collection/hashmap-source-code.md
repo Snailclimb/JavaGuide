@@ -3,6 +3,13 @@ title: HashMap 源码分析
 category: Java
 tag:
   - Java集合
+head:
+  - - meta
+    - name: keywords
+      content: HashMap,哈希表,散列冲突,拉链法,红黑树,JDK1.8,扰动函数,负载因子,扩容,rehash,树化阈值,TREEIFY_THRESHOLD,MIN_TREEIFY_CAPACITY,非线程安全,hashCode,数组+链表
+  - - meta
+    - name: description
+      content: 深入解析 HashMap 底层实现，涵盖 JDK1.7/1.8 结构差异、hash 计算与扰动函数、负载因子与扩容、链表转红黑树的树化机制等关键细节。
 ---
 
 <!-- @include: @article-header.snippet.md -->

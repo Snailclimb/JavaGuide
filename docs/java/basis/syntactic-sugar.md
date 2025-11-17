@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: Java 语法糖
+      content: 语法糖,自动装箱拆箱,泛型,增强 for,可变参数,枚举,内部类,类型推断
   - - meta
     - name: description
-      content: 这篇文章介绍了 12 种 Java 中常用的语法糖。所谓语法糖就是提供给开发人员便于开发的一种语法而已。但是这种语法只有开发人员认识。要想被执行，需要进行解糖，即转成 JVM 认识的语法。当我们把语法糖解糖之后，你就会发现其实我们日常使用的这些方便的语法，其实都是一些其他更简单的语法构成的。有了这些语法糖，我们在日常开发的时候可以大大提升效率，但是同时也要避免过渡使用。使用之前最好了解下原理，避免掉坑。
+      content: 总结 Java 常见语法糖及编译期的“解糖”原理，帮助在提升效率的同时理解底层机制并避免误用。
 ---
 
 > 作者：Hollis
@@ -264,7 +264,7 @@ public enum t {
 
 ```java
 //Java编译器会自动将枚举名处理为合法类名（首字母大写）: t -> T
-public final class T extends Enum 
+public final class T extends Enum
 {
     private T(String s, int i)
     {

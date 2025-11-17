@@ -3,6 +3,13 @@ title: CopyOnWriteArrayList 源码分析
 category: Java
 tag:
   - Java集合
+head:
+  - - meta
+    - name: keywords
+      content: CopyOnWriteArrayList,写时复制,COW,读多写少,线程安全 List,快照,并发性能,内存占用
+  - - meta
+    - name: description
+      content: 解析 CopyOnWriteArrayList 的写时复制策略，适用读多写少场景的并发优化与权衡，理解其线程安全 List 的实现方式。
 ---
 
 ## CopyOnWriteArrayList 简介

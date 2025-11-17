@@ -3,6 +3,13 @@ title: 类加载器详解（重点）
 category: Java
 tag:
   - JVM
+head:
+  - - meta
+    - name: keywords
+      content: 类加载器,双亲委派,加载链接初始化,自定义 ClassLoader,ClassPath
+  - - meta
+    - name: description
+      content: 深入讲解 JVM 类加载机制与双亲委派模型，包含加载流程与常见实践。
 ---
 
 ## 回顾一下类加载过程

@@ -3,6 +3,13 @@ title: Java 值传递详解
 category: Java
 tag:
   - Java基础
+head:
+  - - meta
+    - name: keywords
+      content: 值传递,引用传递,参数传递,对象引用,示例解析,方法调用
+  - - meta
+    - name: description
+      content: 通过示例解释 Java 参数传递模型，澄清值传递与引用传递的常见误区。
 ---
 
 开始之前，我们先来搞懂下面这两个概念：

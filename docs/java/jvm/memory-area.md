@@ -3,6 +3,13 @@ title: Java内存区域详解（重点）
 category: Java
 tag:
   - JVM
+head:
+  - - meta
+    - name: keywords
+      content: 运行时数据区,堆,方法区,虚拟机栈,本地方法栈,程序计数器,对象创建
+  - - meta
+    - name: description
+      content: 详解 JVM 运行时数据区的组成与作用，覆盖对象创建与访问定位等核心机制。
 ---
 
 <!-- @include: @small-advertisement.snippet.md -->

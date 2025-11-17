@@ -3,6 +3,13 @@ title: 大白话带你认识 JVM
 category: Java
 tag:
   - JVM
+head:
+  - - meta
+    - name: keywords
+      content: JVM 基础,类加载,方法区,堆栈,程序计数器,运行时数据区
+  - - meta
+    - name: description
+      content: 用通俗方式介绍 JVM 的基本组成与类加载执行流程，帮助快速入门虚拟机原理。
 ---
 
 > 来自[说出你的愿望吧丷](https://juejin.im/user/5c2400afe51d45451758aa96)投稿，原文地址：<https://juejin.im/post/5e1505d0f265da5d5d744050>。

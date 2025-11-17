@@ -3,6 +3,13 @@ title: LinkedList 源码分析
 category: Java
 tag:
   - Java集合
+head:
+  - - meta
+    - name: keywords
+      content: LinkedList,双向链表,Deque,插入删除复杂度,随机访问,头尾操作,List 接口,链表结构
+  - - meta
+    - name: description
+      content: 详解 LinkedList 的数据结构与接口实现，分析头尾插入删除的时间复杂度、与 ArrayList 的差异以及不支持随机访问的原因。
 ---
 
 <!-- @include: @article-header.snippet.md -->
