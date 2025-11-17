@@ -3,6 +3,13 @@ title: 常见数据结构经典LeetCode题目推荐
 category: 计算机基础
 tag:
   - 算法
+head:
+  - - meta
+    - name: keywords
+      content: LeetCode,数组,链表,栈,队列,二叉树,题目推荐,刷题
+  - - meta
+    - name: description
+      content: 按数据结构类别整理经典 LeetCode 题目清单，聚焦高频与核心考点，助力系统化刷题与巩固。
 ---
 
 ## 数组

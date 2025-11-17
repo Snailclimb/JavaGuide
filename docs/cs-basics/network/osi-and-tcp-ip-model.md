@@ -3,6 +3,13 @@ title: OSI 和 TCP/IP 网络分层模型详解（基础）
 category: 计算机基础
 tag:
   - 计算机网络
+head:
+  - - meta
+    - name: keywords
+      content: OSI 七层,TCP/IP 四层,分层模型,职责划分,协议栈,对比
+  - - meta
+    - name: description
+      content: 详解 OSI 与 TCP/IP 的分层模型与职责划分，结合历史与实践对比两者差异与工程取舍。
 ---
 
 ## OSI 七层模型

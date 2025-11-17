@@ -3,6 +3,13 @@ title: NAT 协议详解（网络层）
 category: 计算机基础
 tag:
   - 计算机网络
+head:
+  - - meta
+    - name: keywords
+      content: NAT,地址转换,端口映射,LAN,WAN,连接跟踪,DHCP
+  - - meta
+    - name: description
+      content: 解析 NAT 的地址转换与端口映射机制，结合 LAN/WAN 通信与转换表，理解家庭与企业网络的实践细节。
 ---
 
 ## 应用场景

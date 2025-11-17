@@ -4,6 +4,13 @@ category: 数据库
 tag:
   - 数据库基础
   - SQL
+head:
+  - - meta
+    - name: keywords
+      content: SQL 面试题,空值处理,统计,未完成率,CASE,聚合
+  - - meta
+    - name: description
+      content: 解析空值处理与统计类题目，结合 CASE 与聚合函数给出稳健实现，避免常见陷阱。
 ---
 
 > 题目来源于：[牛客题霸 - SQL 进阶挑战](https://www.nowcoder.com/exam/oj?page=1&tab=SQL%E7%AF%87&topicId=240)

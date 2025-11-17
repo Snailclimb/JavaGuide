@@ -3,6 +3,13 @@ title: 几道常见的字符串算法题
 category: 计算机基础
 tag:
   - 算法
+head:
+  - - meta
+    - name: keywords
+      content: 字符串算法,KMP,BM,滑动窗口,子串,匹配,复杂度
+  - - meta
+    - name: description
+      content: 总结字符串高频算法与题型，重点讲解 KMP/BM 原理、滑动窗口等技巧，助力高效匹配与实现。
 ---
 
 > 作者：wwwxmu

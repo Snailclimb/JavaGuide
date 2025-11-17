@@ -4,6 +4,13 @@ category: 数据库
 tag:
   - MySQL
   - 性能优化
+head:
+  - - meta
+    - name: keywords
+      content: 隐式转换,索引失效,类型不匹配,函数计算,优化器,性能退化
+  - - meta
+    - name: description
+      content: 解析隐式转换导致的索引失效与性能退化，给出类型规范、语句改写与参数配置建议，避免查询退化。
 ---
 
 > 本次测试使用的 MySQL 版本是 `5.7.26`，随着 MySQL 版本的更新某些特性可能会发生改变，本文不代表所述观点和结论于 MySQL 所有版本均准确无误，版本差异请自行甄别。

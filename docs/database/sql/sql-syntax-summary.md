@@ -4,6 +4,13 @@ category: 数据库
 tag:
   - 数据库基础
   - SQL
+head:
+  - - meta
+    - name: keywords
+      content: SQL 语法,DDL,DML,DQL,约束,事务,索引,范式
+  - - meta
+    - name: description
+      content: 系统整理 SQL 基础语法与术语，覆盖 DDL/DML/DQL、约束与事务索引，形成入门到实践的知识路径。
 ---
 
 > 本文整理完善自下面这两份资料：

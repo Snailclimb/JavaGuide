@@ -3,6 +3,13 @@ title: InnoDB存储引擎对MVCC的实现
 category: 数据库
 tag:
   - MySQL
+head:
+  - - meta
+    - name: keywords
+      content: InnoDB,MVCC,快照读,当前读,一致性视图,隐藏列,事务版本,间隙锁
+  - - meta
+    - name: description
+      content: 深入解析 InnoDB 的 MVCC 实现细节与读写隔离，覆盖一致性视图、快照/当前读与隐藏列、间隙锁的配合。
 ---
 
 ## 多版本并发控制 (Multi-Version Concurrency Control)

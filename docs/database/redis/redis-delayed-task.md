@@ -3,6 +3,13 @@ title: 如何基于Redis实现延时任务
 category: 数据库
 tag:
   - Redis
+head:
+  - - meta
+    - name: keywords
+      content: Redis,延时任务,过期事件,Redisson,DelayedQueue,可靠性,一致性
+  - - meta
+    - name: description
+      content: 对比 Redis 过期事件与 Redisson 延时队列两种方案，分析可靠性与一致性权衡，给出工程选型建议。
 ---
 
 基于 Redis 实现延时任务的功能无非就下面两种方案：

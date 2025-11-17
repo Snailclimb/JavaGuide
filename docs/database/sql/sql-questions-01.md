@@ -4,6 +4,13 @@ category: 数据库
 tag:
   - 数据库基础
   - SQL
+head:
+  - - meta
+    - name: keywords
+      content: SQL 面试题,查询,分组,排序,连接,子查询,聚合
+  - - meta
+    - name: description
+      content: 收录 SQL 基础高频题与解法，涵盖查询/分组/排序/连接等典型场景，强调可读性与性能的兼顾。
 ---
 
 > 题目来源于：[牛客题霸 - SQL 必知必会](https://www.nowcoder.com/exam/oj?page=1&tab=SQL%E7%AF%87&topicId=298)

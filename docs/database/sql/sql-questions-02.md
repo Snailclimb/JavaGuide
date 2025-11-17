@@ -4,6 +4,13 @@ category: 数据库
 tag:
   - 数据库基础
   - SQL
+head:
+  - - meta
+    - name: keywords
+      content: SQL 面试题,增删改,批量插入,导入,替换插入,约束
+  - - meta
+    - name: description
+      content: 聚焦增删改等基础操作的题目解析，总结批量插入/导入与替换插入等技巧与注意事项。
 ---
 
 > 题目来源于：[牛客题霸 - SQL 进阶挑战](https://www.nowcoder.com/exam/oj?page=1&tab=SQL%E7%AF%87&topicId=240)

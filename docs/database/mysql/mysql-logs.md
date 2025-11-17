@@ -3,6 +3,13 @@ title: MySQL三大日志(binlog、redo log和undo log)详解
 category: 数据库
 tag:
   - MySQL
+head:
+  - - meta
+    - name: keywords
+      content: MySQL 日志,binlog,redo log,undo log,两阶段提交,崩溃恢复,复制
+  - - meta
+    - name: description
+      content: 系统解析 MySQL 的 binlog/redo/undo 三大日志与两阶段提交，理解崩溃恢复与主从复制的实现原理与取舍。
 ---
 
 > 本文来自公号程序猿阿星投稿，JavaGuide 对其做了补充完善。

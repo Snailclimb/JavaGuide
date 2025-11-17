@@ -3,6 +3,13 @@ title: 红黑树
 category: 计算机基础
 tag:
   - 数据结构
+head:
+  - - meta
+    - name: keywords
+      content: 红黑树,自平衡,旋转,插入删除,性质,黑高,时间复杂度
+  - - meta
+    - name: description
+      content: 深入讲解红黑树的五大性质与旋转调整过程，理解自平衡机制及在标准库与索引结构中的应用。
 ---
 
 ## 红黑树介绍

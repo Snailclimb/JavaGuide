@@ -3,6 +3,13 @@ title: 线性数据结构
 category: 计算机基础
 tag:
   - 数据结构
+head:
+  - - meta
+    - name: keywords
+      content: 数组,链表,栈,队列,双端队列,复杂度分析,随机访问,插入删除
+  - - meta
+    - name: description
+      content: 总结数组/链表/栈/队列的特性与操作，配合复杂度分析与典型应用，掌握线性结构的选型与实现。
 ---
 
 ## 1. 数组

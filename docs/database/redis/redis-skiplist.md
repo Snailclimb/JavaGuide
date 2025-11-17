@@ -3,6 +3,13 @@ title: Redis为什么用跳表实现有序集合
 category: 数据库
 tag:
   - Redis
+head:
+  - - meta
+    - name: keywords
+      content: Redis,跳表,有序集合,ZSet,时间复杂度,平衡树对比,实现原理
+  - - meta
+    - name: description
+      content: 深入讲解 Redis 有序集合为何选择跳表实现，结合时间复杂度与平衡树对比，理解工程权衡与源码细节。
 ---
 
 ## 前言

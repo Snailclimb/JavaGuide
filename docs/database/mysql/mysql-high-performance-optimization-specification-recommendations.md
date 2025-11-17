@@ -3,6 +3,13 @@ title: MySQL高性能优化规范建议总结
 category: 数据库
 tag:
   - MySQL
+head:
+  - - meta
+    - name: keywords
+      content: MySQL 优化,索引设计,SQL 规范,表结构,慢查询,参数调优,实践清单
+  - - meta
+    - name: description
+      content: 提炼 MySQL 高性能优化规范，涵盖索引与 SQL、表结构与慢查询、参数与实用清单，提升线上稳定与效率。
 ---
 
 > 作者: 听风 原文地址: <https://www.cnblogs.com/huchong/p/10219318.html>。

@@ -3,6 +3,13 @@ title: HTTP 常见状态码总结（应用层）
 category: 计算机基础
 tag:
   - 计算机网络
+head:
+  - - meta
+    - name: keywords
+      content: HTTP 状态码,2xx,3xx,4xx,5xx,重定向,错误码,201 Created,204 No Content
+  - - meta
+    - name: description
+      content: 汇总常见 HTTP 状态码含义与使用场景，强调 201/204 等易混淆点，提升接口设计与调试效率。
 ---
 
 HTTP 状态码用于描述 HTTP 请求的结果，比如 2xx 就代表请求被成功处理。

@@ -3,6 +3,13 @@ title: 3种常用的缓存读写策略详解
 category: 数据库
 tag:
   - Redis
+head:
+  - - meta
+    - name: keywords
+      content: 缓存读写策略,Cache Aside,Read Through,Write Through,一致性,失效
+  - - meta
+    - name: description
+      content: 总结三种常见缓存读写策略及适用场景，分析一致性与失效处理，指导业务选型与问题规避。
 ---
 
 看到很多小伙伴简历上写了“**熟练使用缓存**”，但是被我问到“**缓存常用的 3 种读写策略**”的时候却一脸懵逼。

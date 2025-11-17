@@ -3,6 +3,13 @@ title: TCP 三次握手和四次挥手（传输层）
 category: 计算机基础
 tag:
   - 计算机网络
+head:
+  - - meta
+    - name: keywords
+      content: TCP,三次握手,四次挥手,状态机,SYN,ACK,FIN,半连接队列,全连接队列
+  - - meta
+    - name: description
+      content: 详解 TCP 建连与断连过程，结合状态迁移与队列机制解析可靠通信保障与高并发连接处理。
 ---
 
 TCP 是一种面向连接的、可靠的传输层协议。为了在两个不可靠的端点之间建立一个可靠的连接，TCP 采用了三次握手（Three-way Handshake）的策略。

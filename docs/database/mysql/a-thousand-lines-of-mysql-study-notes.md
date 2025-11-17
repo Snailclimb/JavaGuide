@@ -3,6 +3,13 @@ title: 一千行 MySQL 学习笔记
 category: 数据库
 tag:
   - MySQL
+head:
+  - - meta
+    - name: keywords
+      content: MySQL 笔记,调优,索引,事务,工具,经验总结,实践
+  - - meta
+    - name: description
+      content: 整理 MySQL 学习与实践的千行笔记，凝练调优思路、索引与事务要点及工具使用，便于快速查阅与复盘。
 ---
 
 > 原文地址：<https://shockerli.net/post/1000-line-mysql-note/> ，JavaGuide 对本文进行了简答排版，新增了目录。

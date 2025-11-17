@@ -5,6 +5,13 @@ tag:
   - NoSQL
   - MongoDB
   - Redis
+head:
+  - - meta
+    - name: keywords
+      content: NoSQL,键值,文档,列族,图数据库,分布式,扩展性,数据模型
+  - - meta
+    - name: description
+      content: 总结 NoSQL 的分类与特性，对比关系型数据库，结合分布式与扩展性场景，指导模型与选型。
 ---
 
 ## NoSQL 是什么？

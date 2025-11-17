@@ -8,6 +8,9 @@ head:
   - - meta
     - name: description
       content: Shell 编程在我们的日常开发工作中非常实用，目前 Linux 系统下最流行的运维自动化语言就是 Shell 和 Python 了。这篇文章我会简单总结一下 Shell 编程基础知识，带你入门 Shell 编程！
+  - - meta
+    - name: keywords
+      content: Shell,脚本,命令,自动化,运维,Linux,基础语法
 ---
 
 Shell 编程在我们的日常开发工作中非常实用，目前 Linux 系统下最流行的运维自动化语言就是 Shell 和 Python 了。

@@ -3,6 +3,13 @@ title: 几道常见的链表算法题
 category: 计算机基础
 tag:
   - 算法
+head:
+  - - meta
+    - name: keywords
+      content: 链表算法,两数相加,反转链表,环检测,合并链表,复杂度分析
+  - - meta
+    - name: description
+      content: 精选链表高频题的思路与实现，覆盖两数相加、反转、环检测等场景，强调边界处理与复杂度分析。
 ---
 
 <!-- markdownlint-disable MD024 -->

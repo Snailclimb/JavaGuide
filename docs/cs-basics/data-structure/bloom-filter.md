@@ -3,6 +3,13 @@ title: 布隆过滤器
 category: 计算机基础
 tag:
   - 数据结构
+head:
+  - - meta
+    - name: keywords
+      content: 布隆过滤器,Bloom Filter,误判率,哈希函数,位数组,去重,缓存穿透
+  - - meta
+    - name: description
+      content: 解析 Bloom Filter 的原理与误判特性，结合哈希与位数组实现，适用于海量数据去重与缓存穿透防护。
 ---
 
 布隆过滤器相信大家没用过的话，也已经听过了。

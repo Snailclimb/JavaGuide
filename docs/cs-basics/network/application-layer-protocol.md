@@ -3,6 +3,13 @@ title: 应用层常见协议总结（应用层）
 category: 计算机基础
 tag:
   - 计算机网络
+head:
+  - - meta
+    - name: keywords
+      content: 应用层协议,HTTP,WebSocket,DNS,SMTP,FTP,特性,场景
+  - - meta
+    - name: description
+      content: 汇总应用层常见协议的核心概念与典型场景，重点对比 HTTP 与 WebSocket 的通信模型与能力边界。
 ---
 
 ## HTTP:超文本传输协议

@@ -3,6 +3,13 @@ title: 计算机网络常见面试题总结(上)
 category: 计算机基础
 tag:
   - 计算机网络
+head:
+  - - meta
+    - name: keywords
+      content: 计算机网络面试,基础概念,OSI,HTTP,DNS,应用层,高频题
+  - - meta
+    - name: description
+      content: 汇总网络基础与应用层高频面试题，附图示与要点解析，帮助快速查漏补缺与记忆。
 ---
 
 <!-- @include: @small-advertisement.snippet.md -->

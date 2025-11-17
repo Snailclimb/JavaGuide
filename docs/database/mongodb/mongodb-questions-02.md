@@ -4,6 +4,13 @@ category: 数据库
 tag:
   - NoSQL
   - MongoDB
+head:
+  - - meta
+    - name: keywords
+      content: MongoDB 索引,复合索引,多键索引,文本索引,地理索引,查询优化
+  - - meta
+    - name: description
+      content: 讲解 MongoDB 常见索引类型与适用场景，结合查询优化与写入开销权衡，提升检索性能与稳定性。
 ---
 
 ## MongoDB 索引

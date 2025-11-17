@@ -3,6 +3,13 @@ title: Docker实战
 category: 开发工具
 tag:
   - Docker
+head:
+  - - meta
+    - name: keywords
+      content: Docker 实战,镜像构建,容器管理,环境一致性,部署,性能
+  - - meta
+    - name: description
+      content: 通过实战理解 Docker 的镜像与容器管理，解决环境一致性与交付效率问题，提升开发测试部署的协同效率。
 ---
 
 ## Docker 介绍

@@ -3,6 +3,13 @@ title: MySQL索引详解
 category: 数据库
 tag:
   - MySQL
+head:
+  - - meta
+    - name: keywords
+      content: MySQL 索引,B+树,覆盖索引,联合索引,选择性,回表,索引下推
+  - - meta
+    - name: description
+      content: 深入解析 MySQL 索引结构与选型，覆盖 B+ 树、联合与覆盖索引、选择性与回表等关键优化点与实践。
 ---
 
 > 感谢[WT-AHA](https://github.com/WT-AHA)对本文的完善，相关 PR：<https://github.com/Snailclimb/JavaGuide/pull/1648> 。

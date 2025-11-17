@@ -3,6 +3,13 @@ title: TCP 传输可靠性保障（传输层）
 category: 计算机基础
 tag:
   - 计算机网络
+head:
+  - - meta
+    - name: keywords
+      content: TCP,可靠性,重传,SACK,流量控制,拥塞控制,滑动窗口,校验和
+  - - meta
+    - name: description
+      content: 系统梳理 TCP 的可靠性保障机制，覆盖重传/选择确认、流量与拥塞控制，明确端到端可靠传输的实现要点。
 ---
 
 ## TCP 如何保证传输的可靠性？

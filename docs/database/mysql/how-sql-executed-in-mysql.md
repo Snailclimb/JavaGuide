@@ -3,6 +3,13 @@ title: SQL语句在MySQL中的执行过程
 category: 数据库
 tag:
   - MySQL
+head:
+  - - meta
+    - name: keywords
+      content: MySQL 执行流程,解析器,优化器,执行器,缓冲池,日志,架构
+  - - meta
+    - name: description
+      content: 拆解 SQL 在 MySQL 的执行路径，从解析优化到执行与缓存，结合存储引擎交互，构建完整的运行时视角。
 ---
 
 > 本文来自[木木匠](https://github.com/kinglaw1204)投稿。

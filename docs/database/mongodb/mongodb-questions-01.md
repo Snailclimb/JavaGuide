@@ -4,6 +4,13 @@ category: 数据库
 tag:
   - NoSQL
   - MongoDB
+head:
+  - - meta
+    - name: keywords
+      content: MongoDB 面试,文档存储,无模式,副本集,分片,索引,一致性
+  - - meta
+    - name: description
+      content: 汇总 MongoDB 基础与架构高频题，涵盖文档模型、索引、副本集与分片，强调高可用与一致性实践。
 ---
 
 > 少部分内容参考了 MongoDB 官方文档的描述，在此说明一下。

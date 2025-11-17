@@ -3,6 +3,13 @@ title: 十大经典排序算法总结
 category: 计算机基础
 tag:
   - 算法
+head:
+  - - meta
+    - name: keywords
+      content: 排序算法,快速排序,归并排序,堆排序,冒泡排序,选择排序,插入排序,希尔排序,桶排序,计数排序,基数排序,时间复杂度,空间复杂度,稳定性
+  - - meta
+    - name: description
+      content: 系统梳理十大经典排序算法，附复杂度与稳定性对比，覆盖比较类与非比较类排序的核心原理与实现场景，帮助快速选型与优化。
 ---
 
 > 本文转自：<http://www.guoyaohua.com/sorting.html>，JavaGuide 对其做了补充完善。

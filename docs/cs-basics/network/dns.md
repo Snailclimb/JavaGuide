@@ -3,6 +3,13 @@ title: DNS 域名系统详解（应用层）
 category: 计算机基础
 tag:
   - 计算机网络
+head:
+  - - meta
+    - name: keywords
+      content: DNS,域名解析,递归查询,迭代查询,缓存,权威DNS,端口53,UDP
+  - - meta
+    - name: description
+      content: 详解 DNS 的层次结构与解析流程，覆盖递归/迭代、缓存与权威服务器，明确应用层端口与性能优化要点。
 ---
 
 DNS（Domain Name System）域名管理系统，是当用户使用浏览器访问网址之后，使用的第一个重要协议。DNS 要解决的是**域名和 IP 地址的映射问题**。

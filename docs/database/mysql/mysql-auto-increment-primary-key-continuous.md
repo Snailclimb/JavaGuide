@@ -4,6 +4,13 @@ category: 数据库
 tag:
   - MySQL
   - 大厂面试
+head:
+  - - meta
+    - name: keywords
+      content: 自增主键,不连续,事务回滚,并发插入,计数器,聚簇索引
+  - - meta
+    - name: description
+      content: 解析自增主键不连续的根因与触发场景，结合事务回滚与并发插入，说明 InnoDB 计数器与聚簇索引的行为。
 ---
 
 > 作者：飞天小牛肉

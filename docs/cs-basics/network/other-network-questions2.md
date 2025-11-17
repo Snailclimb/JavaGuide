@@ -3,6 +3,13 @@ title: 计算机网络常见面试题总结(下)
 category: 计算机基础
 tag:
   - 计算机网络
+head:
+  - - meta
+    - name: keywords
+      content: 网络面试,TCP,UDP,传输层,网络层,可靠性,差异,高频题
+  - - meta
+    - name: description
+      content: 汇总传输层与网络层高频面试题，聚焦 TCP/UDP 差异与可靠性机制，快速复习与应对面试。
 ---
 
 下篇主要是传输层和网络层相关的内容。

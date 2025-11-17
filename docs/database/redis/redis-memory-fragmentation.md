@@ -3,6 +3,13 @@ title: Redis内存碎片详解
 category: 数据库
 tag:
   - Redis
+head:
+  - - meta
+    - name: keywords
+      content: Redis,内存碎片,分配器,内存管理,内存占用,优化
+  - - meta
+    - name: description
+      content: 解析 Redis 内存碎片的成因与影响，结合分配器与内存管理策略，给出观测与优化方向，降低资源浪费。
 ---
 
 ## 什么是内存碎片?
