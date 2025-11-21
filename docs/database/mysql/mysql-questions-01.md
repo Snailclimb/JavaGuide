@@ -7,10 +7,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: MySQL基础,MySQL基础架构,MySQL存储引擎,MySQL查询缓存,MySQL事务,MySQL锁等内容。
+      content: MySQL面试题,MySQL基础架构,InnoDB存储引擎,MySQL索引,B+树索引,事务隔离级别,redo log,undo log,binlog,MVCC,行级锁,慢查询优化
   - - meta
     - name: description
-      content: 一篇文章总结MySQL常见的知识点和面试题，涵盖MySQL基础、MySQL基础架构、MySQL存储引擎、MySQL查询缓存、MySQL事务、MySQL锁等内容。
+      content: MySQL高频面试题精讲：基础架构、InnoDB引擎、索引原理、B+树、事务ACID、MVCC、redo/undo/binlog日志、行锁/表锁、慢查询优化，一文速通大厂必考点！
 ---
 
 <!-- @include: @small-advertisement.snippet.md -->

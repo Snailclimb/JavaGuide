@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: 计算机网络面试,基础概念,OSI,HTTP,DNS,应用层,高频题
+      content: 计算机网络面试题,TCP/IP四层模型,HTTP面试,HTTPS vs HTTP,HTTP/1.1 vs HTTP/2,HTTP/3 QUIC,TCP三次握手,UDP区别,DNS解析,WebSocket vs SSE,GET vs POST,应用层协议,网络分层,队头阻塞,PING命令,ARP协议
   - - meta
     - name: description
-      content: 汇总网络基础与应用层高频面试题，附图示与要点解析，帮助快速查漏补缺与记忆。
+      content: 最新计算机网络高频面试题总结（上）：TCP/IP四层模型、HTTP全版本对比、TCP三次握手、DNS解析、WebSocket/SSE实时推送等，附图解+⭐️重点标注，一文搞定应用层&传输层&网络层核心考点，快速备战后端面试！
 ---
 
 <!-- @include: @small-advertisement.snippet.md -->

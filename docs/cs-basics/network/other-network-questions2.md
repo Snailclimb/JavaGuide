@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: 网络面试,TCP,UDP,传输层,网络层,可靠性,差异,高频题
+      content: 计算机网络面试题,TCP vs UDP,TCP三次握手,HTTP/3 QUIC,IPv4 vs IPv6,TCP可靠性,IP地址,NAT协议,ARP协议,传输层面试,网络层高频题,基于TCP协议,基于UDP协议,队头阻塞,四次挥手
   - - meta
     - name: description
-      content: 汇总传输层与网络层高频面试题，聚焦 TCP/UDP 差异与可靠性机制，快速复习与应对面试。
+      content: 最新计算机网络高频面试题总结（下）：TCP/UDP深度对比、三次握手四次挥手、HTTP/3 QUIC优化、IPv6优势、NAT/ARP详解，附表格+⭐️重点标注，一文掌握传输层&网络层核心考点，快速通关后端技术面试！
 ---
 
 下篇主要是传输层和网络层相关的内容。
