@@ -1,0 +1,238 @@
+---
+title: 数据库基础知识总结
+category: 数据库
+tag:
+  - 数据库基础
+---
+
+<!-- @include: @small-advertisement.snippet.md -->
+
+数据库知识基础，这部分内容一定要理解记忆。虽然这部分内容只是理论知识，但是非常重要，这是后面学习 MySQL 数据库的基础。PS: 这部分内容由于涉及太多概念性内容，所以参考了维基百科和百度百科相应的介绍。
+
+## 什么是数据库, 数据库管理系统, 数据库系统, 数据库管理员?
+
+这四个概念描述了从数据本身到管理整个体系的不同层次，我们常用一个图书馆的例子来把它们串联起来理解。
+
+- **数据库 (Database - DB):** 它就像是图书馆里，书架上存放的所有书籍和资料。从技术上讲，数据库就是按照一定数据模型组织、描述和储存起来的、可以被各种用户共享的结构化数据的集合。它就是我们最终要存取的核心——信息本身。
+- **数据库管理系统 (Database Management System - DBMS):** 它就像是整个图书馆的管理系统，包括图书的分类编目规则、借阅归还流程、安全检查系统等等。从技术上讲，DBMS 是一种大型软件，比如我们常用的 MySQL、Oracle、PostgreSQL 软件。它的核心职责是科学地组织和存储数据、高效地获取和维护数据；为我们屏蔽了底层文件操作的复杂性，提供了一套标准接口（如 SQL）来操纵数据，并负责并发控制、事务管理、权限控制等复杂问题。
+- **数据库系统 (Database System - DBS):** 它就是整个正常运转的图书馆。这是一个更大的概念，不仅包括书(DB)和管理系统(DBMS)，还包括了硬件、应用和使用的人。
+- **数据库管理员 (Database Administrator - DBA ):** 他就是图书馆的馆长，负责整个数据库系统正常运行。他的职责非常广泛，包括数据库的设计、安装、监控、性能调优、备份与恢复、安全管理等等，确保整个系统的稳定、高效和安全。
+
+DB 和 DBMS 我们通常会搞混，这里再简单提一下：**通常我们说“用 MySQL 数据库”，其实是用 MySQL（DBMS）来管理一个或多个数据库（DB）。**
+
+## DBMS 有哪些主要的功能
+
+DBMS 通常提供四大核心功能：
+
+1. **数据定义：** 这是 DBMS 的基础。它提供了一套数据定义语言（Data Definition Language - DDL），让我们能够创建、修改和删除数据库中的各种对象。这不仅仅是定义表的结构（比如字段名、数据类型），还包括定义视图、索引、触发器、存储过程等。
+2. **数据操作：** 这是我们作为开发者日常使用最多的功能。它提供了一套数据操作语言（Data Manipulation Language - DML），核心就是我们熟悉的增、删、改、查（CRUD）操作。它让我们能够方便地对数据库中的数据进行操作和检索。
+3. **数据控制：** 这是保证数据正确、安全、可靠的关键。通常包含并发控制、事务管理、完整性约束、权限控制、安全性限制等功能。
+4. **数据库维护：** 这部分功能是为了保障数据库系统的长期稳定运行。它包括了数据的导入导出、数据库的备份与恢复、性能监控与分析、以及系统日志管理等。
+
+## 你知道哪些类型的 DBMS？
+
+### 关系型数据库
+
+除了我们最常用的关系型数据库（RDBMS），比如 MySQL（开源首选）、PostgreSQL（功能最全）、Oracle（企业级），它们基于严格的表结构和 SQL，非常适合结构化数据和需要事务保证的场景，例如银行交易、订单系统。
+
+近年来，为了应对互联网应用带来的海量数据、高并发和多样化数据结构的需求，涌现出了一大批 NoSQL 和 NewSQL 数据库。
+
+### NoSQL 数据库
+
+它们的共同特点是为了极致的性能和水平扩展能力，在某些方面（通常是事务）做了妥协。
+
+**1. 键值数据库，代表是 Redis。**
+
+- **特点：** 数据模型极其简单，就是一个巨大的 Map，通过 Key 来存取 Value。内存操作，性能极高。
+- **适用场景：** 非常适合做缓存、会话存储、计数器等对读写性能要求极高的场景。
+
+**2. 文档数据库，代表是 MongoDB。**
+
+- **特点：** 它存储的是半结构化的文档（比如 JSON/BSON），结构灵活，不需要预先定义表结构。
+- **适用场景：** 特别适合那些数据结构多变、快速迭代的业务，比如用户画像、内容管理系统、日志存储等。
+
+**3. 列式数据库，代表是 HBase, Cassandra。**
+
+- **特点：** 数据是按列族而不是按行来存储的。这使得它在对大量行进行少量列的读取时，性能极高。
+- **适用场景：** 专为海量数据存储和分析设计，非常适合做大数据分析、监控数据存储、推荐系统等需要高吞吐量写入和范围扫描的场景。
+
+**4. 图形数据库，代表是 Neo4j。**
+
+- **特点：** 数据模型是节点（Nodes）和边（Edges），专门用来存储和查询实体之间的复杂关系。
+- **适用场景：** 在社交网络（好友关系）、推荐引擎（用户-商品关系）、知识图谱、欺诈检测（资金流动关系）等场景下，表现远超关系型数据库。
+
+### NewSQL 数据库
+
+由于 NoSQL 不支持事务，很多对于数据安全要去非常高的系统（比如财务系统、订单系统、交易系统）就不太适合使用了。不过，这类系统往往有存储大量数据的需求。
+
+这些系统往往只能通过购买性能更强大的计算机，或者通过数据库中间件来提高存储能力。不过，前者的金钱成本太高，后者的开发成本太高。
+
+于是，**NewSQL** 就来了！
+
+简单来说，NewSQL 就是：**分布式存储+SQL+事务** 。NewSQL 不仅具有 NoSQL 对海量数据的存储管理能力，还保持了传统数据库支持 ACID 和 SQL 等特性。因此，NewSQL 也可以称为 **分布式关系型数据库**。
+
+NewSQL 数据库设计的一些目标：
+
+1. 横向扩展（Scale Out） ： 通过增加机器的方式来提高系统的负载能力。与之类似的是 Scale Up(纵向扩展)，升级硬件设备的方式来提高系统的负载能力。
+2. 强一致性（Strict Consistency）：在任意时刻，所有节点中的数据是一样的。
+3. 高可用（High Availability）：系统几乎可以一直提供服务。
+4. 支持标准 SQL（Structured Query Language） ：PostgreSQL、MySQL、Oracle 等关系型数据库都支持 SQL 。
+5. 事务（ACID） ： 原子性（Atomicity）、一致性（Consistency）、 隔离性（Isolation）; 持久性（Durability）。
+6. 兼容主流关系型数据库 ： 兼容 MySQL、Oracle、PostgreSQL 等常用关系型数据库。
+7. 云原生 （Cloud Native）：可在公有云、私有云、混合云中实现部署工具化、自动化。
+8. HTAP（Hybrid Transactional/Analytical Processing） ：支持 OLTP 和 OLAP 混合处理。
+
+NewSQL 数据库代表：Google 的 F1/Spanner、阿里的 [OceanBase](https://open.oceanbase.com/)、PingCAP 的 [TiDB](https://pingcap.com/zh/product-community/) 。
+
+## 什么是元组, 码, 候选码, 主码, 外码, 主属性, 非主属性？
+
+- **元组**：元组（tuple）是关系数据库中的基本概念，关系是一张表，表中的每行（即数据库中的每条记录）就是一个元组，每列就是一个属性。 在二维表里，元组也称为行。
+- **码**：码就是能唯一标识实体的属性，对应表中的列。
+- **候选码**：若关系中的某一属性或属性组的值能唯一的标识一个元组，而其任何、子集都不能再标识，则称该属性组为候选码。例如：在学生实体中，“学号”是能唯一的区分学生实体的，同时又假设“姓名”、“班级”的属性组合足以区分学生实体，那么{学号}和{姓名，班级}都是候选码。
+- **主码** : 主码也叫主键。主码是从候选码中选出来的。 一个实体集中只能有一个主码，但可以有多个候选码。
+- **外码** : 外码也叫外键。如果一个关系中的一个属性是另外一个关系中的主码则这个属性为外码。
+- **主属性**：候选码中出现过的属性称为主属性。比如关系 工人（工号，身份证号，姓名，性别，部门）. 显然工号和身份证号都能够唯一标示这个关系，所以都是候选码。工号、身份证号这两个属性就是主属性。如果主码是一个属性组，那么属性组中的属性都是主属性。
+- **非主属性：** 不包含在任何一个候选码中的属性称为非主属性。比如在关系——学生（学号，姓名，年龄，性别，班级）中，主码是“学号”，那么其他的“姓名”、“年龄”、“性别”、“班级”就都可以称为非主属性。
+
+## 什么是 ER 图？
+
+我们做一个项目的时候一定要试着画 ER 图来捋清数据库设计，这个也是面试官问你项目的时候经常会被问到的。
+
+**ER 图** 全称是 Entity Relationship Diagram（实体联系图），提供了表示实体类型、属性和联系的方法。
+
+ER 图由下面 3 个要素组成：
+
+- **实体**：通常是现实世界的业务对象，当然使用一些逻辑对象也可以。比如对于一个校园管理系统，会涉及学生、教师、课程、班级等等实体。在 ER 图中，实体使用矩形框表示。
+- **属性**：即某个实体拥有的属性，属性用来描述组成实体的要素，对于产品设计来说可以理解为字段。在 ER 图中，属性使用椭圆形表示。
+- **联系**：即实体与实体之间的关系，在 ER 图中用菱形表示，这个关系不仅有业务关联关系，还能通过数字表示实体之间的数量对照关系。例如，一个班级会有多个学生就是一种实体间的联系。
+
+下图是一个学生选课的 ER 图，每个学生可以选若干门课程，同一门课程也可以被若干人选择，所以它们之间的关系是多对多（M: N）。另外，还有其他两种实体之间的关系是：1 对 1（1:1）、1 对多（1: N）。
+
+![学生与课程之间联系的E-R图](https://oss.javaguide.cn/github/javaguide/csdn/c745c87f6eda9a439e0eea52012c7f4a.png)
+
+## 数据库范式了解吗?
+
+数据库范式有 3 种：
+
+- 1NF(第一范式)：属性不可再分。
+- 2NF(第二范式)：1NF 的基础之上，消除了非主属性对于码的部分函数依赖。
+- 3NF(第三范式)：3NF 在 2NF 的基础之上，消除了非主属性对于码的传递函数依赖 。
+
+### 1NF(第一范式)
+
+属性（对应于表中的字段）不能再被分割，也就是这个字段只能是一个值，不能再分为多个其他的字段了。**1NF 是所有关系型数据库的最基本要求** ，也就是说关系型数据库中创建的表一定满足第一范式。
+
+### 2NF(第二范式)
+
+2NF 在 1NF 的基础之上，消除了非主属性对于码的部分函数依赖。如下图所示，展示了第一范式到第二范式的过渡。第二范式在第一范式的基础上增加了一个列，这个列称为主键，非主属性都依赖于主键。
+
+![第二范式](https://oss.javaguide.cn/github/javaguide/csdn/bd1d31be3779342427fc9e462bf7f05c.png)
+
+一些重要的概念：
+
+- **函数依赖（functional dependency）**：若在一张表中，在属性（或属性组）X 的值确定的情况下，必定能确定属性 Y 的值，那么就可以说 Y 函数依赖于 X，写作 X → Y。
+- **部分函数依赖（partial functional dependency）**：如果 X→Y，并且存在 X 的一个真子集 X0，使得 X0→Y，则称 Y 对 X 部分函数依赖。比如学生基本信息表 R 中（学号，身份证号，姓名）当然学号属性取值是唯一的，在 R 关系中，（学号，身份证号）->（姓名），（学号）->（姓名），（身份证号）->（姓名）；所以姓名部分函数依赖于（学号，身份证号）；
+- **完全函数依赖(Full functional dependency)**：在一个关系中，若某个非主属性数据项依赖于全部关键字称之为完全函数依赖。比如学生基本信息表 R（学号，班级，姓名）假设不同的班级学号有相同的，班级内学号不能相同，在 R 关系中，（学号，班级）->（姓名），但是（学号）->(姓名)不成立，（班级）->(姓名)不成立，所以姓名完全函数依赖与（学号，班级）；
+- **传递函数依赖**：在关系模式 R(U)中，设 X，Y，Z 是 U 的不同的属性子集，如果 X 确定 Y、Y 确定 Z，且有 X 不包含 Y，Y 不确定 X，（X∪Y）∩Z=空集合，则称 Z 传递函数依赖(transitive functional dependency) 于 X。传递函数依赖会导致数据冗余和异常。传递函数依赖的 Y 和 Z 子集往往同属于某一个事物，因此可将其合并放到一个表中。比如在关系 R(学号 , 姓名, 系名，系主任)中，学号 → 系名，系名 → 系主任，所以存在非主属性系主任对于学号的传递函数依赖。
+
+### 3NF(第三范式)
+
+3NF 在 2NF 的基础之上，消除了非主属性对于码的传递函数依赖 。符合 3NF 要求的数据库设计，**基本**上解决了数据冗余过大，插入异常，修改异常，删除异常的问题。比如在关系 R(学号 , 姓名, 系名，系主任)中，学号 → 系名，系名 → 系主任，所以存在非主属性系主任对于学号的传递函数依赖，所以该表的设计，不符合 3NF 的要求。
+
+## 主键和外键有什么区别?
+
+从定义和属性上看，它们的区别是：
+
+- **主键 (Primary Key):** 它的核心作用是唯一标识表中的每一行数据。因此，主键列的值必须是唯一的 (Unique) 且不能为空 (Not Null)。一张表只能有一个主键。主键保证了实体完整性。
+- **外键 (Foreign Key):** 它的核心作用是建立并强制两张表之间的关联关系。一张表中的外键列，其值必须对应另一张表中某行的主键值（或者是一个 NULL 值）。因此，外键的值可以重复，也可以为空。一张表可以有多个外键，分别关联到不同的表。外键保证了引用完整性。
+
+用一个简单的电商例子来说明：假设我们有两张表：`users` (用户表) 和 `orders` (订单表)。
+
+- 在 `users` 表中，`user_id` 列是**主键**。每个用户的 `user_id` 都是独一无二的，我们用它来区分张三和李四。
+- 在 `orders` 表中，`order_id` 是它自己的**主键**。同时，它会有一个 `user_id` 列，这个列就是一个**外键**，它引用了 `users` 表的 `user_id` 主键。
+
+这个外键约束就保证了：
+
+1. 你不能创建一个不属于任何已知用户的订单（ `user_id` 在 `users` 表中不存在）。
+2. 你不能删除一个已经下了订单的用户（除非设置了级联删除等特殊规则）。
+
+## 为什么不推荐使用外键与级联？
+
+对于外键和级联，阿里巴巴开发手册这样说到：
+
+> 【强制】不得使用外键与级联，一切外键概念必须在应用层解决。
+>
+> 说明: 以学生和成绩的关系为例，学生表中的 student_id 是主键，那么成绩表中的 student_id 则为外键。如果更新学生表中的 student_id，同时触发成绩表中的 student_id 更新，即为级联更新。外键与级联更新适用于单机低并发，不适合分布式、高并发集群；级联更新是强阻塞，存在数据库更新风暴的风险；外键影响数据库的插入速度
+
+为什么不要用外键呢？大部分人可能会这样回答：
+
+1. **增加了复杂性：** a. 每次做 DELETE 或者 UPDATE 都必须考虑外键约束，会导致开发的时候很痛苦, 测试数据极为不方便; b. 外键的主从关系是定的，假如哪天需求有变化，数据库中的这个字段根本不需要和其他表有关联的话就会增加很多麻烦。
+2. **增加了额外工作**：数据库需要增加维护外键的工作，比如当我们做一些涉及外键字段的增，删，更新操作之后，需要触发相关操作去检查，保证数据的的一致性和正确性，这样会不得不消耗数据库资源。如果在应用层面去维护的话，可以减小数据库压力；
+3. **对分库分表不友好**：因为分库分表下外键是无法生效的。
+4. ……
+
+我个人觉得上面这种回答不是特别的全面，只是说了外键存在的一个常见的问题。实际上，我们知道外键也是有很多好处的，比如：
+
+1. 保证了数据库数据的一致性和完整性；
+2. 级联操作方便，减轻了程序代码量；
+3. ……
+
+所以说，不要一股脑的就抛弃了外键这个概念，既然它存在就有它存在的道理，如果系统不涉及分库分表，并发量不是很高的情况还是可以考虑使用外键的。
+
+## 什么是存储过程?
+
+我们可以把存储过程看成是一些 SQL 语句的集合，中间加了点逻辑控制语句。存储过程在业务比较复杂的时候是非常实用的，比如很多时候我们完成一个操作可能需要写一大串 SQL 语句，这时候我们就可以写有一个存储过程，这样也方便了我们下一次的调用。存储过程一旦调试完成通过后就能稳定运行，另外，使用存储过程比单纯 SQL 语句执行要快，因为存储过程是预编译过的。
+
+存储过程在互联网公司应用不多，因为存储过程难以调试和扩展，而且没有移植性，还会消耗数据库资源。
+
+阿里巴巴 Java 开发手册里要求禁止使用存储过程。
+
+![阿里巴巴Java开发手册: 禁止存储过程](https://oss.javaguide.cn/github/javaguide/csdn/0fa082bc4d4f919065767476a41b2156.png)
+
+## drop、delete 与 truncate 区别？
+
+### 用法不同
+
+- `drop`(丢弃数据): `drop table 表名` ，直接将表都删除掉，在删除表的时候使用。
+- `truncate` (清空数据) : `truncate table 表名` ，只删除表中的数据，再插入数据的时候自增长 id 又从 1 开始，在清空表中数据的时候使用。
+- `delete`（删除数据） : `delete from 表名 where 列名=值`，删除某一行的数据，如果不加 `where` 子句和`truncate table 表名`作用类似。
+
+`truncate`, `delete` without `where` clause, and `drop` will delete the data in the table, but **`truncate` and `delete` only delete the data without deleting the structure (definition) of the table. When the `drop` statement is executed, the structure of the table will also be deleted, that is, the corresponding table no longer exists after executing `drop`. **
+
+### Belong to different database languages
+
+`truncate` and `drop` belong to DDL (data definition language) statements, and the operation takes effect immediately. The original data is not placed in the rollback segment, cannot be rolled back, and the operation does not trigger the trigger. The `delete` statement is a DML (database operation language) statement. This operation will be placed in the rollback segment and will only take effect after the transaction is submitted.
+
+**Differences between DML statements and DDL statements:**
+
+- DML is the abbreviation of Database Manipulation Language (Data Manipulation Language). It refers to the operation of table records in the database, mainly including the insertion, update, deletion and query of table records. It is the most frequently used operation by developers in daily life.
+- DDL (Data Definition Language) is the abbreviation of data definition language. Simply put, it is an operating language for creating, deleting, and modifying objects within the database. The biggest difference between it and the DML language is that DML only operates on the internal data of the table, and does not involve the definition of the table, modification of the structure, nor other objects. DDL statements are more commonly used by database administrators (DBAs) and are rarely used by general developers.
+
+In addition, since `select` will not destroy the table, some places also distinguish `select` separately and call it database query language DQL (Data Query Language).
+
+### Different execution speeds
+
+Generally speaking: `drop` > `truncate` > `delete` (I have not actually tested this).
+
+- When the `delete` command is executed, the `binlog` log of the database will be generated. Logging takes time, but it also has the advantage of facilitating data rollback and recovery.
+- The `truncate` command does not generate database logs when executed, so it is faster than `delete`. In addition, the auto-increment value of the table and the index will be restored to the initial size, etc.
+- The `drop` command will release all the space occupied by the table.
+
+Tips: You should focus more on usage scenarios rather than execution efficiency.
+
+## What are the usual steps of database design?
+
+1. **Requirements Analysis**: Analyze user needs, including data, functional and performance requirements.
+2. **Conceptual Structure Design**: Mainly use E-R model for design, including drawing E-R diagram.
+3. **Logical structure design**: Realize the conversion from E-R model to relational model by converting E-R diagram into table.
+4. **Physical structure design**: Mainly to select the appropriate storage structure and access path for the designed database.
+5. **Database Implementation**: including programming, testing and trial operation
+6. **Database Operation and Maintenance**: System operation and daily maintenance of the database.
+
+## Reference
+
+- <https://blog.csdn.net/rl529014/article/details/48391465>
+- <https://www.zhihu.com/question/24696366/answer/29189700>
+- <https://blog.csdn.net/bieleyang/article/details/77149954>
+
+<!-- @include: @article-footer.snippet.md -->

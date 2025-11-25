@@ -1,0 +1,267 @@
+---
+title: 负载均衡原理及算法详解
+category: 高性能
+head:
+  - - meta
+    - name: keywords
+      content: 客户端负载均衡,服务负载均衡,Nginx,负载均衡算法,七层负载均衡,DNS解析
+  - - meta
+    - name: description
+      content: 负载均衡指的是将用户请求分摊到不同的服务器上处理，以提高系统整体的并发处理能力。负载均衡可以简单分为服务端负载均衡和客户端负载均衡 这两种。服务端负载均衡涉及到的知识点更多，工作中遇到的也比较多，因为，我会花更多时间来介绍。
+---
+
+## 什么是负载均衡？
+
+**负载均衡** 指的是将用户请求分摊到不同的服务器上处理，以提高系统整体的并发处理能力以及可靠性。负载均衡服务可以有由专门的软件或者硬件来完成，一般情况下，硬件的性能更好，软件的价格更便宜（后文会详细介绍到）。
+
+下图是[《Java 面试指北》](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247519384&idx=1&sn=bc7e71af75350b755f04ca4178395b1a&chksm=cea1c353f9d64a458f797696d4144b4d6e58639371a4612b8e4d106d83a66d2289e7b2cd7431&token=660789642&lang=zh_CN&scene=21#wechat_redirect) 「高并发篇」中的一篇文章的配图，从图中可以看出，系统的商品服务部署了多份在不同的服务器上，为了实现访问商品服务请求的分流，我们用到了负载均衡。
+
+![多服务实例-负载均衡](https://oss.javaguide.cn/github/javaguide/high-performance/load-balancing/multi-service-load-balancing.drawio.png)
+
+负载均衡是一种比较常用且实施起来较为简单的提高系统并发能力和可靠性的手段，不论是单体架构的系统还是微服务架构的系统几乎都会用到。
+
+## 负载均衡分为哪几种？
+
+负载均衡可以简单分为 **服务端负载均衡** 和 **客户端负载均衡** 这两种。
+
+服务端负载均衡涉及到的知识点更多，工作中遇到的也比较多，因此，我会花更多时间来介绍。
+
+### 服务端负载均衡
+
+**服务端负载均衡** 主要应用在 **系统外部请求** 和 **网关层** 之间，可以使用 **软件** 或者 **硬件** 实现。
+
+下图是我画的一个简单的基于 Nginx 的服务端负载均衡示意图：
+
+![基于 Nginx 的服务端负载均衡](https://oss.javaguide.cn/github/javaguide/high-performance/load-balancing/server-load-balancing.png)
+
+**硬件负载均衡** 通过专门的硬件设备（比如 **F5、A10、Array** ）实现负载均衡功能。
+
+硬件负载均衡的优势是性能很强且稳定，缺点就是实在是太贵了。像基础款的 F5 最低也要 20 多万，绝大部分公司是根本负担不起的，业务量不大的话，真没必要非要去弄个硬件来做负载均衡，用软件负载均衡就足够了！
+
+在我们日常开发中，一般很难接触到硬件负载均衡，接触的比较多的还是 **软件负载均衡** 。软件负载均衡通过软件（比如 **LVS、Nginx、HAproxy** ）实现负载均衡功能，性能虽然差一些，但价格便宜啊！像基础款的 Linux 服务器也就几千，性能好一点的 2~3 万的就很不错了。
+
+根据 OSI 模型，服务端负载均衡还可以分为：
+
+- 二层负载均衡
+- 三层负载均衡
+- 四层负载均衡
+- 七层负载均衡
+
+最常见的是四层和七层负载均衡，因此，本文也是重点介绍这两种负载均衡。
+
+> Nginx 官网对四层负载和七层负载均衡均衡做了详细介绍，感兴趣的可以看看。
+>
+> - [What Is Layer 4 Load Balancing?](https://www.nginx.com/resources/glossary/layer-4-load-balancing/)
+> - [What Is Layer 7 Load Balancing?](https://www.nginx.com/resources/glossary/layer-7-load-balancing/)
+
+![OSI 七层模型](https://oss.javaguide.cn/github/javaguide/cs-basics/network/osi-7-model.png)
+
+- **四层负载均衡** 工作在 OSI 模型第四层，也就是传输层，这一层的主要协议是 TCP/UDP，负载均衡器在这一层能够看到数据包里的源端口地址以及目的端口地址，会基于这些信息通过一定的负载均衡算法将数据包转发到后端真实服务器。也就是说，四层负载均衡的核心就是 IP+端口层面的负载均衡，不涉及具体的报文内容。
+- **七层负载均衡** 工作在 OSI 模型第七层，也就是应用层，这一层的主要协议是 HTTP 。这一层的负载均衡比四层负载均衡路由网络请求的方式更加复杂，它会读取报文的数据部分（比如说我们的 HTTP 部分的报文），然后根据读取到的数据内容（如 URL、Cookie）做出负载均衡决策。也就是说，七层负载均衡器的核心是报文内容（如 URL、Cookie）层面的负载均衡，执行第七层负载均衡的设备通常被称为 **反向代理服务器** 。
+
+七层负载均衡比四层负载均衡会消耗更多的性能，不过，也相对更加灵活，能够更加智能地路由网络请求，比如说你可以根据请求的内容进行优化如缓存、压缩、加密。
+
+简单来说，**四层负载均衡性能很强，七层负载均衡功能更强！** 不过，对于绝大部分业务场景来说，四层负载均衡和七层负载均衡的性能差异基本可以忽略不计的。
+
+下面这段话摘自 Nginx 官网的 [What Is Layer 4 Load Balancing?](https://www.nginx.com/resources/glossary/layer-4-load-balancing/) 这篇文章。
+
+> Layer 4 load balancing was a popular architectural approach to traffic handling when commodity hardware was not as powerful as it is now, and the interaction between clients and application servers was much less complex. It requires less computation than more sophisticated load balancing methods (such as Layer 7), but CPU and memory are now sufficiently fast and cheap that the performance advantage for Layer 4 load balancing has become negligible or irrelevant in most situations.
+>
+> 第 4 层负载平衡是一种流行的流量处理体系结构方法，当时商用硬件没有现在这么强大，客户端和应用程序服务器之间的交互也不那么复杂。它比更复杂的负载平衡方法(如第 7 层)需要更少的计算量，但是 CPU 和内存现在足够快和便宜，在大多数情况下，第 4 层负载平衡的性能优势已经变得微不足道或无关紧要。
+
+在工作中，我们通常会使用 **Nginx** 来做七层负载均衡，LVS(Linux Virtual Server 虚拟服务器， Linux 内核的 4 层负载均衡)来做四层负载均衡。
+
+关于 Nginx 的常见知识点总结，[《Java 面试指北》](https://javaguide.cn/zhuanlan/java-mian-shi-zhi-bei.html) 中「技术面试题篇」中已经有对应的内容了，感兴趣的小伙伴可以去看看。
+
+![](https://oss.javaguide.cn/github/javaguide/image-20220328105759300.png)
+
+不过，LVS 这个绝大部分公司真用不上，像阿里、百度、腾讯、eBay 等大厂才会使用到，用的最多的还是 Nginx。
+
+### 客户端负载均衡
+
+**客户端负载均衡** 主要应用于系统内部的不同的服务之间，可以使用现成的负载均衡组件来实现。
+
+在客户端负载均衡中，客户端会自己维护一份服务器的地址列表，发送请求之前，客户端会根据对应的负载均衡算法来选择具体某一台服务器处理请求。
+
+客户端负载均衡器和服务运行在同一个进程或者说 Java 程序里，不存在额外的网络开销。不过，客户端负载均衡的实现会受到编程语言的限制，比如说 Spring Cloud Load Balancer 就只能用于 Java 语言。
+
+Java 领域主流的微服务框架 Dubbo、Spring Cloud 等都内置了开箱即用的客户端负载均衡实现。Dubbo 属于是默认自带了负载均衡功能，Spring Cloud 是通过组件的形式实现的负载均衡，属于可选项，比较常用的是 Spring Cloud Load Balancer（官方，推荐） 和 Ribbon（Netflix，已被弃用）。
+
+下图是我画的一个简单的基于 Spring Cloud Load Balancer（Ribbon 也类似） 的客户端负载均衡示意图：
+
+![](https://oss.javaguide.cn/github/javaguide/high-performance/load-balancing/spring-cloud-lb-gateway.png)
+
+## 负载均衡常见的算法有哪些？
+
+### 随机法
+
+**随机法** 是最简单粗暴的负载均衡算法。
+
+如果没有配置权重的话，所有的服务器被访问到的概率都是相同的。如果配置权重的话，权重越高的服务器被访问的概率就越大。
+
+未加权重的随机算法适合于服务器性能相近的集群，其中每个服务器承载相同的负载。加权随机算法适合于服务器性能不等的集群，权重的存在可以使请求分配更加合理化。
+
+不过，随机算法有一个比较明显的缺陷：部分机器在一段时间之内无法被随机到，毕竟是概率算法，就算是大家权重一样， 也可能会出现这种情况。
+
+于是，**轮询法** 来了！
+
+### 轮询法
+
+轮询法是挨个轮询服务器处理，也可以设置权重。
+
+如果没有配置权重的话，每个请求按时间顺序逐一分配到不同的服务器处理。如果配置权重的话，权重越高的服务器被访问的次数就越多。
+
+未加权重的轮询算法适合于服务器性能相近的集群，其中每个服务器承载相同的负载。加权轮询算法适合于服务器性能不等的集群，权重的存在可以使请求分配更加合理化。
+
+在加权轮询的基础上，还有进一步改进得到的负载均衡算法，比如平滑的加权轮训算法。
+
+平滑的加权轮训算法最早是在 Nginx 中被实现，可以参考这个 commit：<https://github.com/phusion/nginx/commit/27e94984486058d73157038f7950a0a36ecc6e35>。如果你认真学习过 Dubbo 负载均衡策略的话，就会发现 Dubbo 的加权轮询就借鉴了该算法实现并进一步做了优化。
+
+![Dubbo 加权轮询负载均衡算法](https://oss.javaguide.cn/github/javaguide/high-performance/load-balancing/dubbo-round-robin-load-balance.png)
+
+### 两次随机法
+
+两次随机法在随机法的基础上多增加了一次随机，多选出一个服务器。随后再根据两台服务器的负载等情况，从其中选择出一个最合适的服务器。
+
+两次随机法的好处是可以动态地调节后端节点的负载，使其更加均衡。如果只使用一次随机法，可能会导致某些服务器过载，而某些服务器空闲。
+
+### 哈希法
+
+将请求的参数信息通过哈希函数转换成一个哈希值，然后根据哈希值来决定请求被哪一台服务器处理。
+
+在服务器数量不变的情况下，相同参数的请求总是发到同一台服务器处理，比如同个 IP 的请求、同一个用户的请求。
+
+### 一致性 Hash 法
+
+和哈希法类似，一致性 Hash 法也可以让相同参数的请求总是发到同一台服务器处理。不过，它解决了哈希法存在的一些问题。
+
+常规哈希法在服务器数量变化时，哈希值会重新落在不同的服务器上，这明显违背了使用哈希法的本意。而一致性哈希法的核心思想是将数据和节点都映射到一个哈希环上，然后根据哈希值的顺序来确定数据属于哪个节点。当服务器增加或删除时，只影响该服务器的哈希，而不会导致整个服务集群的哈希键值重新分布。
+
+### 最小连接法
+
+当有新的请求出现时，遍历服务器节点列表并选取其中连接数最小的一台服务器来响应当前请求。相同连接的情况下，可以进行加权随机。
+
+最少连接数基于一个服务器连接数越多，负载就越高这一理想假设。然而， 实际情况是连接数并不能代表服务器的实际负载，有些连接耗费系统资源更多，有些连接不怎么耗费系统资源。
+
+### 最少活跃法
+
+最少活跃法和最小连接法类似，但要更科学一些。最少活跃法以活动连接数为标准，活动连接数可以理解为当前正在处理的请求数。活跃数越低，说明处理能力越强，这样就可以使处理能力强的服务器处理更多请求。相同活跃数的情况下，可以进行加权随机。
+
+### 最快响应时间法
+
+不同于最小连接法和最少活跃法，最快响应时间法以响应时间为标准来选择具体是哪一台服务器处理。客户端会维持每个服务器的响应时间，每次请求挑选响应时间最短的。相同响应时间的情况下，可以进行加权随机。
+
+这种算法可以使得请求被更快处理，但可能会造成流量过于集中于高性能服务器的问题。
+
+## 七层负载均衡可以怎么做？
+
+简单介绍两种项目中常用的七层负载均衡解决方案：DNS 解析和反向代理。
+
+除了我介绍的这两种解决方案之外，HTTP 重定向等手段也可以用来实现负载均衡，不过，相对来说，还是 DNS 解析和反向代理用的更多一些，也更推荐一些。
+
+### DNS 解析
+
+DNS 解析是比较早期的七层负载均衡实现方式，非常简单。
+
+DNS 解析实现负载均衡的原理是这样的：在 DNS 服务器中为同一个主机记录配置多个 IP 地址，这些 IP 地址对应不同的服务器。当用户请求域名的时候，DNS 服务器采用轮询算法返回 IP 地址，这样就实现了轮询版负载均衡。
+
+![](https://oss.javaguide.cn/github/javaguide/high-performance/load-balancing/6997605302452f07e8b28d257d349bf0.png)
+
+现在的 DNS 解析几乎都支持 IP 地址的权重配置，这样的话，在服务器性能不等的集群中请求分配会更加合理化。像我自己目前正在用的阿里云 DNS 就支持权重配置。
+
+![](https://oss.javaguide.cn/github/javaguide/aliyun-dns-weight-setting.png)
+
+### 反向代理
+
+客户端将请求发送到反向代理服务器，由反向代理服务器去选择目标服务器，获取数据后再返回给客户端。对外暴露的是反向代理服务器地址，隐藏了真实服务器 IP 地址。反向代理“代理”的是目标服务器，这一个过程对于客户端而言是透明的。
+
+Nginx 就是最常用的反向代理服务器，它可以将接收到的客户端请求以一定的规则（负载均衡策略）均匀地分配到这个服务器集群中所有的服务器上。
+
+反向代理负载均衡同样属于七层负载均衡。
+
+![](https://oss.javaguide.cn/github/javaguide/nginx-load-balance.png)
+
+## 客户端负载均衡通常是怎么做的？
+
+我们上面也说了，客户端负载均衡可以使用现成的负载均衡组件来实现。
+
+**Netflix Ribbon** 和 **Spring Cloud Load Balancer** 就是目前 Java 生态最流行的两个负载均衡组件。
+
+Ribbon 是老牌负载均衡组件，由 Netflix 开发，功能比较全面，支持的负载均衡策略也比较多。 Spring Cloud Load Balancer 是 Spring 官方为了取代 Ribbon 而推出的，功能相对更简单一些，支持的负载均衡也少一些。
+
+Ribbon 支持的 7 种负载均衡策略：
+
+- `RandomRule`：随机策略。
+- `RoundRobinRule`（默认）：轮询策略
+- `WeightedResponseTimeRule`：权重（根据响应时间决定权重）策略
+- `BestAvailableRule`：最小连接数策略
+- `RetryRule`：重试策略（按照轮询策略来获取服务，如果获取的服务实例为 null 或已经失效，则在指定的时间之内不断地进行重试来获取服务，如果超过指定时间依然没获取到服务实例则返回 null）
+- `AvailabilityFilteringRule`：可用敏感性策略（先过滤掉非健康的服务实例，然后再选择连接数较小的服务实例）
+- `ZoneAvoidanceRule`：区域敏感性策略（根据服务所在区域的性能和服务的可用性来选择服务实例）
+
+Spring Cloud Load Balancer 支持的 2 种负载均衡策略：
+
+- `RandomLoadBalancer`：随机策略
+- `RoundRobinLoadBalancer`（默认）：轮询策略
+
+```java
+public class CustomLoadBalancerConfiguration {
+
+    @Bean
+    ReactorLoadBalancer<ServiceInstance> randomLoadBalancer(Environment environment,
+            LoadBalancerClientFactory loadBalancerClientFactory) {
+        String name = environment.getProperty(LoadBalancerClientFactory.PROPERTY_NAME);
+        return new RandomLoadBalancer(loadBalancerClientFactory
+                .getLazyProvider(name, ServiceInstanceListSupplier.class),
+                name);
+    }
+}
+```
+
+However, Spring Cloud Load Balancer actually supports more than these two load balancing strategies. The implementation class of ServiceInstanceListSupplier also allows it to support load balancing strategies similar to Ribbon. This should be gradually improved and introduced in the future. You really can’t find it without reading the official documents, so reading the official documents is really important!
+
+Here are two official examples:
+
+- `ZonePreferenceServiceInstanceListSupplier`: implements zone-based load balancing
+- `HintBasedServiceInstanceListSupplier`: implements load balancing based on hint hints
+
+```java
+public class CustomLoadBalancerConfiguration {
+    //Use zone-based load balancing method
+    @Bean
+    public ServiceInstanceListSupplier discoveryClientServiceInstanceListSupplier(
+            ConfigurableApplicationContext context) {
+        return ServiceInstanceListSupplier.builder()
+                    .withDiscoveryClient()
+                    .withZonePreference()
+                    .withCaching()
+                    .build(context);
+    }
+}
+```
+
+For a more detailed and updated introduction to Spring Cloud Load Balancer, it is recommended that you read the official document: <https://docs.spring.io/spring-cloud-commons/docs/current/reference/html/#spring-cloud-loadbalancer>. Everything is based on the official document.
+
+The polling strategy can basically meet the needs of most projects. If there are no special needs in our actual projects, the default polling strategy is usually used. Moreover, both Ribbon and Spring Cloud Load Balancer support custom load balancing strategies.
+
+Personally, I suggest that if you don’t need any of Ribbon’s unique features or load balancing strategies, you should give priority to the Spring Cloud Load Balancer officially provided by Spring.
+
+Finally, let me talk about why I don’t recommend using Ribbon.
+
+Spring Cloud 2020.0.0 version removes all Netflix components except Eureka. Spring Cloud Hoxton.M2 ​​is the first version to support Spring Cloud Load Balancer as a replacement for Netfix Ribbon.
+
+In our early days of learning microservices, we must have come into contact with the components necessary for building well-known microservice systems such as Netflix's open source Feign, Ribbon, Zuul, Hystrix, and Eureka. Many companies are still using these components today. It is no exaggeration to say that Netflix has led the development of microservices under the Java technology stack.
+
+![](https://oss.javaguide.cn/github/javaguide/SpringCloudNetflix.png)
+
+**So why is Spring Cloud so eager to remove Netflix components? ** Mainly because in 2018, Netflix announced that its open source core components Hystrix, Ribbon, Zuul, Eureka, etc. would enter maintenance status and would no longer develop new features and would only fix bugs. As a result, Spring officials had to consider removing the Netflix component.
+
+**Spring Cloud Alibaba** is a good choice, especially for domestic companies and individual developers.
+
+## Reference
+
+- Dry information | eBay’s 4-layer software load balancing implementation: <https://mp.weixin.qq.com/s/bZMxLTECOK3mjdgiLbHj-g>
+- HTTP Load Balancing (Nginx official documentation): <https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/>
+- A simple explanation of load balancing - vivo Internet technology: <https://www.cnblogs.com/vivotech/p/14859041.html>
+
+<!-- @include: @article-footer.snippet.md -->
