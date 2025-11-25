@@ -87,8 +87,6 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
 
 ![](https://oss.javaguide.cn/github/javaguide/java/concurrent/completablefuture-class-diagram.jpg)
 
-`CompletionStage` 接口描述了一个异步计算的阶段。很多计算可以分成多个阶段或步骤，此时可以通过它将所有步骤组合起来，形成异步计算的流水线。
-
 `CompletableFuture` 除了提供了更为好用和强大的 `Future` 特性之外，还提供了函数式编程的能力。
 
 ![](https://oss.javaguide.cn/javaguide/image-20210902092441434.png)
