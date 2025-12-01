@@ -508,7 +508,16 @@ public native int hashCode();
 
 下面这段内容摘自我的 Java 启蒙书《Head First Java》:
 
-> 当你把对象加入 `HashSet` 时，`HashSet` 会先计算对象的 `hashCode` 值来判断对象加入的位置，同时也会与其他已经加入的对象的 `hashCode` 值作比较，如果没有相符的 `hashCode`，`HashSet` 会假设对象没有重复出现。但是如果发现有相同 `hashCode` 值的对象，这时会调用 `equals()` 方法来检查 `hashCode` 相等的对象是否真的相同。如果两者相同，`HashSet` 就不会让其加入操作成功。如果不同的话，就会重新散列到其他位置。这样我们就大大减少了 `equals` 的次数，相应就大大提高了执行速度。
+> 当你把对象加入 `HashSet` 时，`HashSet` 会先计算对象的 `hashCode` 值来判断对象加入的位置，同时也会与其他已经加入的对象的 `hashCode` 值作比较，如果没有相符的 `hashCode`，`HashSet` 会假设对象没有重复出现。但是如果发现有相同 `hashCode` 值的对象，这时会调用 `equals()` 方法来检查 `hashCode` 相等的对象是否真的相同。如果两者相同，`HashSet` 就不会让其加入操作成功。~~如果不同的话，就会重新散列到其他位置~~。这样我们就大大减少了 `equals` 的次数，相应就大大提高了执行速度。
+
+> 当向 HashSet 添加对象时：
+HashSet 会计算对象的 hashCode，用它决定元素存放到哪个 bucket。
+如果 bucket 是空的，就直接存入。
+如果 bucket 中已有元素，则逐个与它们比较：
+若 hashCode 不同 → 不会调用 equals。
+若 hashCode 相同 → 调用 equals。
+如果 equals 返回 true，认为对象重复，不加入。
+若 equals 返回 false，则将该对象添加到该 bucket 的链表或树中。
 
 其实， `hashCode()` 和 `equals()`都是用于比较两个对象是否相等。
 
