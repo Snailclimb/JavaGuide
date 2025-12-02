@@ -26,15 +26,28 @@ JavaGuide 已经持续维护 6 年多了，累计提交了接近 **6000** commit
 - [贡献指南](./javaguide/contribution-guideline.md)
 - [常见问题](./javaguide/faq.md)
 
-## 关于作者
+## 面试突击版本
 
-- [我曾经也是网瘾少年](./about-the-author/internet-addiction-teenager.md)
-- [害，毕业三年了！](./about-the-author/my-college-life.md)
-- [我的知识星球快 3 岁了！](./about-the-author/zhishixingqiu-two-years.md)
-- [坚持写技术博客六年了](./about-the-author/writing-technology-blog-six-years.md)
+很多同学有“临时突击面试”的需求，所以我专门做了一个 [JavaGuide 面试突击版](https://interview.javaguide.cn/home.html)：在 [JavaGuide](https://javaguide.cn/home.html) 原有内容基础上做了大幅精简，只保留高频必考重点，并一直持续更新。
 
-## 公众号
+在这些“精简后的重点”里，我又额外用 ⭐️ 标出了**重点中的重点**，方便你优先浏览、快速记忆。
 
-最新更新会第一时间同步在公众号，推荐关注！另外，公众号上有很多干货不会同步在线阅读网站。
+同时提供亮色（白天）和暗色（夜间）PDF，**需要打印的同学记得选亮色版本**，纸质阅读体验会更好。
 
-![JavaGuide 官方公众号](https://oss.javaguide.cn/github/javaguide/gongzhonghaoxuanchuan.png)
+如果你**时间比较充裕**，更推荐直接在 [JavaGuide 官网](https://javaguide.cn/) 上**系统学习**：内容比突击版更全面、更深入，更适合打基础和长期提升。
+
+**突击版本网站入口**：[interview.javaguide.cn](https://interview.javaguide.cn/)
+
+对应的 PDF 版本，可以直接在公众号后台回复“**PDF**”获取：
+
+<img src="https://oss.javaguide.cn/github/javaguide/gongzhonghao-javaguide.png" alt="JavaGuide 公众号"  style="zoom: 43%; display: block; margin: 0 auto;" />
+
+## 面试辅导
+
+给自己打个小广告，如果需要面试辅导（比如简历优化、一对一模拟问答、高频考点突击资料等），欢迎了解我的[知识星球](https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html)。已经坚持维护六年，内容持续更新，虽白菜价（**0.4元/天**）但质量很高，主打一个良心！
+
+<a href="https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html" target="_blank" rel="noopener noreferrer">
+  <img src="https://oss.javaguide.cn/github/javaguide/zhishixingqiuhaibao.png"
+       alt="JavaGuide 公众号"
+       style="zoom:63%; display:block; margin:0 auto;" />
+</a>

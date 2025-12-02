@@ -88,7 +88,7 @@ Spring 团队提倡测试驱动开发（TDD）。有了控制反转 (IoC)的帮�
 
 Spring 的测试模块对 JUnit（单元测试框架）、TestNG（类似 JUnit）、Mockito（主要用来 Mock 对象）、PowerMock（解决 Mockito 的问题比如无法模拟 final, static， private 方法）等等常用的测试框架支持的都比较好。
 
-### Spring,Spring MVC,Spring Boot 之间什么关系?
+### ⭐️Spring,Spring MVC,Spring Boot 之间什么关系?
 
 很多人对 Spring,Spring MVC,Spring Boot 这三者傻傻分不清楚！这里简单介绍一下这三者，其实很简单，没有什么高深的东西。
 
@@ -110,7 +110,7 @@ Spring Boot 只是简化了配置，如果你需要构建 MVC 架构的 Web 程�
 
 ## Spring IoC
 
-### 什么是 IoC?
+### ⭐️什么是 IoC?
 
 IoC （Inversion of Control ）即控制反转/反转控制。它是一种思想不是一个技术实现。描述的是：Java 开发领域对象的创建以及管理的问题。
 
@@ -128,7 +128,7 @@ IoC （Inversion of Control ）即控制反转/反转控制。它是一种思想
 
 ![IoC 图解](https://oss.javaguide.cn/github/javaguide/system-design/framework/spring/IoC&Aop-ioc-illustration.png)
 
-### IoC 解决了什么问题?
+### ⭐️IoC 解决了什么问题?
 
 IoC 的思想就是两方之间不互相依赖，由第三方容器来管理相关资源。这样有什么好处呢？
 
@@ -230,7 +230,7 @@ Spring 内置的 `@Autowired` 以及 JDK 内置的 `@Resource` 和 `@Inject` 都
 
 `@Autowired` 和`@Resource`使用的比较多一些。
 
-### @Autowired 和 @Resource 的区别是什么？
+### ⭐️@Autowired 和 @Resource 的区别是什么？
 
 `@Autowired` 是 Spring 内置的注解，默认注入逻辑为**先按类型（byType）匹配，若存在多个同类型 Bean，则再尝试按名称（byName）筛选**。
 
@@ -354,7 +354,7 @@ public class UserService {
 }
 ```
 
-### 构造函数注入还是 Setter 注入？
+### ⭐️构造函数注入还是 Setter 注入？
 
 Spring 官方有对这个问题的回答：<https://docs.spring.io/spring-framework/reference/core/beans/dependencies/factory-collaborators.html#beans-setter-injection>。
 
@@ -371,7 +371,7 @@ Spring 官方有对这个问题的回答：<https://docs.spring.io/spring-framew
 
 在某些情况下（例如第三方类不提供 Setter 方法），构造函数注入可能是**唯一的选择**。
 
-### Bean 的作用域有哪些?
+### ⭐️Bean 的作用域有哪些?
 
 Spring 中 Bean 的作用域通常有下面几种：
 
@@ -400,7 +400,7 @@ public Person personPrototype() {
 }
 ```
 
-### Bean 是线程安全的吗？
+### ⭐️Bean 是线程安全的吗？
 
 Spring 框架中的 Bean 是否线程安全，取决于其作用域和状态。
 
@@ -471,7 +471,7 @@ public class UserThreadLocal {
 }
 ```
 
-### Bean 的生命周期了解么?
+### ⭐️Bean 的生命周期了解么?
 
 1. **创建 Bean 的实例**：Bean 容器首先会找到配置文件中的 Bean 定义，然后使用 Java 反射 API 来创建 Bean 的实例。
 2. **Bean 属性赋值/填充**：为 Bean 设置相关属性和依赖，例如`@Autowired` 等注解注入的对象、`@Value` 注入的值、`setter`方法或构造函数注入依赖和值、`@Resource`注入的各种资源。
@@ -580,7 +580,7 @@ public interface InitializingBean {
 
 ## Spring AOP
 
-### 谈谈自己对于 AOP 的了解
+### ⭐️谈谈自己对于 AOP 的了解
 
 AOP(Aspect-Oriented Programming:面向切面编程)能够将那些与业务无关，却为业务模块所共同调用的逻辑或责任（例如事务处理、日志管理、权限控制等）封装起来，便于减少系统的重复代码，降低模块间的耦合度，并有利于未来的可拓展性和可维护性。
 
@@ -602,7 +602,7 @@ AOP 切面编程涉及到的一些专业术语：
 | 切面(Aspect)      |                     切入点(Pointcut)+通知(Advice)                     |
 | Weaving(织入)     |           将通知应用到目标对象，进而生成代理对象的过程动作            |
 
-### Spring AOP 和 AspectJ AOP 有什么区别？
+### ⭐️Spring AOP 和 AspectJ AOP 有什么区别？
 
 | 特性           | Spring AOP                                               | AspectJ                                    |
 | -------------- | -------------------------------------------------------- | ------------------------------------------ |
@@ -619,7 +619,7 @@ AOP 切面编程涉及到的一些专业术语：
 
 **一句话总结**：简单场景优先使用 Spring AOP；复杂场景或高性能需求时，选择 AspectJ。
 
-### AOP 常见的通知类型有哪些？
+### ⭐️AOP 常见的通知类型有哪些？
 
 ![](https://oss.javaguide.cn/github/javaguide/system-design/framework/spring/aspectj-advice-types.jpg)
 
@@ -710,7 +710,7 @@ MVC 是一种设计模式，Spring MVC 是一款很优秀的 MVC 框架。Spring
 - **`Handler`**：**请求处理器**，处理实际请求的处理器。
 - **`ViewResolver`**：**视图解析器**，根据 `Handler` 返回的逻辑视图 / 视图，解析并渲染真正的视图，并传递给 `DispatcherServlet` 响应客户端
 
-### SpringMVC 工作原理了解吗?
+### ⭐️SpringMVC 工作原理了解吗?
 
 **Spring MVC 原理如下图所示：**
 
@@ -801,7 +801,7 @@ public class GlobalExceptionHandler {
 - **适配器模式** : Spring AOP 的增强或通知(Advice)使用到了适配器模式、spring MVC 中也是用到了适配器模式适配`Controller`。
 - ……
 
-## Spring 的循环依赖
+## ⭐️Spring 的循环依赖
 
 ### Spring 循环依赖了解吗，怎么解决？
 
@@ -959,7 +959,7 @@ SpringBoot 2.6.x 以后，如果你不想重构循环依赖的代码的话，也
 - 在导致循环依赖的 Bean 上添加 `@Lazy` 注解，这是一种比较推荐的方式。`@Lazy` 用来标识类是否需要懒加载/延迟加载，可以作用在类上、方法上、构造器上、方法参数上、成员变量中。
 - ……
 
-## Spring 事务
+## ⭐️Spring 事务
 
 关于 Spring 事务的详细介绍，可以看我写的 [Spring 事务详解](https://javaguide.cn/system-design/framework/spring/spring-transaction.html) 这篇文章。
 
@@ -1172,7 +1172,7 @@ Spring Security 重要的是实战，这里仅对小部分知识点进行总结�
 
 可以看看松哥的这篇文章：[Spring Security 中的 hasRole 和 hasAuthority 有区别吗？](https://mp.weixin.qq.com/s/GTNOa2k9_n_H0w24upClRw)，介绍的比较详细。
 
-### 如何对密码进行加密？
+### ⭐️如何对密码进行加密？
 
 如果我们需要保存密码这类敏感数据到数据库的话，需要先加密再保存。
 

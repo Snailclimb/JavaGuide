@@ -1,7 +1,7 @@
-推荐你通过在线阅读网站进行阅读，体验更好，速度更快！地址：[javaguide.cn](https://javaguide.cn/)。
+- 推荐在线阅读（体验更好，速度更快）：[javaguide.cn](https://javaguide.cn/)
+- 面试突击版本（只保留重点，附带精美 PDF 下载）：[interview.javaguide.cn](https://interview.javaguide.cn/)
 
 <div align="center">
-
 [![logo](https://oss.javaguide.cn/github/javaguide/csdn/1c00413c65d1995993bf2b0daf7b4f03.png)](https://github.com/Snailclimb/JavaGuide)
 
 [GitHub](https://github.com/Snailclimb/JavaGuide) | [Gitee](https://gitee.com/SnailClimb/JavaGuide)
@@ -16,18 +16,23 @@
 > - **求个Star**：如果觉得 JavaGuide 的内容对你有帮助的话，还请点个免费的 Star，这是对我最大的鼓励，感谢各位一起同行，共勉！Github 地址：[https://github.com/Snailclimb/JavaGuide](https://github.com/Snailclimb/JavaGuide) 。
 > - **转载须知**：以下所有文章如非文首说明为转载皆为 JavaGuide 原创，转载请在文首注明出处。如发现恶意抄袭/搬运，会动用法律武器维护自己的权益。让我们一起维护一个良好的技术创作环境！
 
-<div align="center">
-  <img src="https://oss.javaguide.cn/github/javaguide/gongzhonghaoxuanchuan.png" style="margin: 0 auto;" />  
-</div>
-
 <!-- #region home -->
 
-## 项目相关
+## 面试突击版本
 
-- [项目介绍](https://javaguide.cn/javaguide/intro.html)
-- [使用建议](https://javaguide.cn/javaguide/use-suggestion.html)
-- [贡献指南](https://javaguide.cn/javaguide/contribution-guideline.html)
-- [常见问题](https://javaguide.cn/javaguide/faq.html)
+很多同学有“临时突击面试”的需求，所以我专门做了一个 [JavaGuide 面试突击版](https://interview.javaguide.cn/home.html)：在 [JavaGuide](https://javaguide.cn/home.html) 原有内容基础上做了大幅精简，只保留高频必考重点，并一直持续更新。
+
+在这些“精简后的重点”里，我又额外用 ⭐️ 标出了**重点中的重点**，方便你优先浏览、快速记忆。
+
+同时提供亮色（白天）和暗色（夜间）PDF，**需要打印的同学记得选亮色版本**，纸质阅读体验会更好。
+
+如果你**时间比较充裕**，更推荐直接在 [JavaGuide 官网](https://javaguide.cn/) 上**系统学习**：内容比突击版更全面、更深入，更适合打基础和长期提升。
+
+**突击版本网站入口**：[interview.javaguide.cn](https://interview.javaguide.cn/)
+
+对应的 PDF 版本，可以直接在公众号后台回复“**PDF**”获取：
+
+<img src="https://oss.javaguide.cn/github/javaguide/gongzhonghao-javaguide.png" alt="JavaGuide 公众号"  style="zoom: 43%; display: block; margin: 0 auto;" />
 
 ## Java
 
