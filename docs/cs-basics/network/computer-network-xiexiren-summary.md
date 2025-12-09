@@ -152,7 +152,7 @@ head:
 2. **数据链路（data link）**：把实现控制数据运输的协议的硬件和软件加到链路上就构成了数据链路。
 3. **循环冗余检验 CRC（Cyclic Redundancy Check）**：为了保证数据传输的可靠性，CRC 是数据链路层广泛使用的一种检错技术。
 4. **帧（frame）**：一个数据链路层的传输单元，由一个数据链路层首部和其携带的封包所组成协议数据单元。
-5. **MTU（Maximum Transfer Uint ）**：最大传送单元。帧的数据部分的的长度上限。
+5. **MTU（Maximum Transfer Uint ）**：最大传送单元。帧的数据部分的长度上限。
 6. **误码率 BER（Bit Error Rate ）**：在一段时间内，传输错误的比特占所传输比特总数的比率。
 7. **PPP（Point-to-Point Protocol ）**：点对点协议。即用户计算机和 ISP 进行通信时所使用的数据链路层协议。以下是 PPP 帧的示意图：
    ![PPP](https://oss.javaguide.cn/p3-juejin/6b0310d3103c4149a725a28aaf001899~tplv-k3u1fbpfcp-zoom-1.jpeg)
@@ -296,7 +296,7 @@ head:
 
    ![](https://oss.javaguide.cn/p3-juejin/8e3efca026654874bde8be88c96e1783~tplv-k3u1fbpfcp-zoom-1.jpeg)
 
-9. **代理服务器（Proxy Server）**：代理服务器（Proxy Server）是一种网络实体，它又称为万维网高速缓存。 代理服务器把最近的一些请求和响应暂存在本地磁盘中。当新请求到达时，若代理服务器发现这个请求与暂时存放的的请求相同，就返回暂存的响应，而不需要按 URL 的地址再次去互联网访问该资源。代理服务器可在客户端或服务器工作，也可以在中间系统工作。
+9. **代理服务器（Proxy Server）**：代理服务器（Proxy Server）是一种网络实体，它又称为万维网高速缓存。 代理服务器把最近的一些请求和响应暂存在本地磁盘中。当新请求到达时，若代理服务器发现这个请求与暂时存放的请求相同，就返回暂存的响应，而不需要按 URL 的地址再次去互联网访问该资源。代理服务器可在客户端或服务器工作，也可以在中间系统工作。
 10. **简单邮件传输协议(SMTP)** : SMTP（Simple Mail Transfer Protocol）即简单邮件传输协议,它是一组用于由源地址到目的地址传送邮件的规则，由它来控制信件的中转方式。 SMTP 协议属于 TCP/IP 协议簇，它帮助每台计算机在发送或中转信件时找到下一个目的地。 通过 SMTP 协议所指定的服务器,就可以把 E-mail 寄到收信人的服务器上了，整个过程只要几分钟。SMTP 服务器则是遵循 SMTP 协议的发送邮件服务器，用来发送或中转发出的电子邮件。
 
     ![一个电子邮件被发送的过程](https://oss.javaguide.cn/p3-juejin/2bdccb760474435aae52559f2ef9652f~tplv-k3u1fbpfcp-zoom-1.png)
