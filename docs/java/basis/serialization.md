@@ -108,7 +108,7 @@ public class RpcRequest implements Serializable {
 
 对于不想进行序列化的变量，可以使用 `transient` 关键字修饰。
 
-`transient` 关键字的作用是：阻止实例中那些用此关键字修饰的的变量序列化；当对象被反序列化时，被 `transient` 修饰的变量值不会被持久化和恢复。
+`transient` 关键字的作用是：阻止实例中那些用此关键字修饰的变量序列化；当对象被反序列化时，被 `transient` 修饰的变量值不会被持久化和恢复。
 
 关于 `transient` 还有几点注意：
 

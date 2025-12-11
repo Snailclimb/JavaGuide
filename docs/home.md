@@ -384,7 +384,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 - [Disruptor 常见知识点&面试题总结](./high-performance/message-queue/disruptor-questions.md)
 - [RabbitMQ 常见知识点&面试题总结](./high-performance/message-queue/rabbitmq-questions.md)
 - [RocketMQ 常见知识点&面试题总结](./high-performance/message-queue/rocketmq-questions.md)
-- [Kafka 常常见知识点&面试题总结](./high-performance/message-queue/kafka-questions-01.md)
+- [Kafka 常见知识点&面试题总结](./high-performance/message-queue/kafka-questions-01.md)
 
 ## 高可用
 
@@ -414,7 +414,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 
 **灾备** = 容灾 + 备份。
 
-- **备份**：将系统所产生的的所有重要数据多备份几份。
+- **备份**：将系统所产生的所有重要数据多备份几份。
 - **容灾**：在异地建立两个完全相同的系统。当某个地方的系统突然挂掉，整个应用系统可以切换到另一个，这样系统就可以正常提供服务了。
 
 **异地多活** 描述的是将服务部署在异地并且服务同时对外提供服务。和传统的灾备设计的最主要区别在于“多活”，即所有站点都是同时在对外提供服务的。异地多活是为了应对突发状况比如火灾、地震等自然或者人为灾害。

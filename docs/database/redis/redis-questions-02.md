@@ -578,7 +578,7 @@ CONFIG SET slowlog-max-len 128
 5. **客户端信息 (Client IP:Port)**: 执行命令的客户端地址和端口。
 6. **客户端名称 (Client Name)**: 如果客户端设置了名称 (CLIENT SETNAME)。
 
-`SLOWLOG GET` 命令默认返回最近 10 条的的慢查询命令，你也自己可以指定返回的慢查询命令的数量 `SLOWLOG GET N`。
+`SLOWLOG GET` 命令默认返回最近 10 条的慢查询命令，你也自己可以指定返回的慢查询命令的数量 `SLOWLOG GET N`。
 
 下面是其他比较常用的慢查询相关的命令：
 

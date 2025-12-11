@@ -283,7 +283,7 @@ JConsole 可以显示当前内存的详细信息。不仅包括堆内存/非堆�
 
 点击右边的“执行 GC(G)”按钮可以强制应用程序执行一个 Full GC。
 
-> - **新生代 GC（Minor GC）**:指发生新生代的的垃圾收集动作，Minor GC 非常频繁，回收速度一般也比较快。
+> - **新生代 GC（Minor GC）**:指发生新生代的垃圾收集动作，Minor GC 非常频繁，回收速度一般也比较快。
 > - **老年代 GC（Major GC/Full GC）**:指发生在老年代的 GC，出现了 Major GC 经常会伴随至少一次的 Minor GC（并非绝对），Major GC 的速度一般会比 Minor GC 的慢 10 倍以上。
 
 ![内存监控 ](./pictures/jdk监控和故障处理工具总结/3内存监控.png)
