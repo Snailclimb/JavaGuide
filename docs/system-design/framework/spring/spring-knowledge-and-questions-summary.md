@@ -265,7 +265,7 @@ private SmsService smsService;
 
 实际开发实践中，我们还是建议通过 `@Qualifier` 注解来显式指定名称而不是依赖变量的名称。
 
-`@Resource`属于 JDK 提供的注解，默认注入逻辑为**先按名称（byName）匹配，若存在多个同类型 Bean，则再尝试按类型（byType）筛选**。
+`@Resource`属于 JDK 提供的注解，默认注入逻辑为**先按名称（byName）** 匹配，若找不到则尝试**按类型（byType）筛选**，按**类型（byType）** 筛选到0个或多个bean都会抛出异常，只有在只筛选到一个bean时注入。
 
 `@Resource` 有两个比较重要且日常开发常用的属性：`name`（名称）、`type`（类型）。
 
