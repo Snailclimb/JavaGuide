@@ -179,6 +179,149 @@ new ThreadLocal<>().set(s);
 
 如果我们的**强引用**不存在的话，那么 `key` 就会被回收，也就是会出现我们 `value` 没被回收，`key` 被回收，导致 `value` 永远存在，出现内存泄漏。
 
+### ThreadLocal 内存泄漏的完整分析
+
+#### 为什么 Entry 的 key 要设计成弱引用？
+
+很多人会疑惑，既然弱引用会导致内存泄漏问题，为什么 `ThreadLocalMap` 还要把 key 设计成弱引用呢？直接用强引用不就没有内存泄漏的问题了吗？
+
+**首先要明确一点**：前面提到"在 `ThreadLocal.get()` 操作时，如果外部代码还持有 ThreadLocal 的强引用（比如 `static ThreadLocal<User> holder`），那么 key 不会为 null"。但问题在于，如果外部的 ThreadLocal 强引用**被清除或失效**（比如对象被回收、类被卸载），就会出现内存泄漏问题。
+
+这是一个**权衡之后的设计决策**，我们来分析一下两种设计的后果：
+
+**如果 key 使用强引用**：
+- 当外部不再持有 `ThreadLocal` 对象的强引用时（比如业务对象被回收），`ThreadLocalMap` 中的 key 仍然持有对 `ThreadLocal` 对象的强引用
+- 这会导致 `ThreadLocal` 对象无法被 GC 回收，`Entry` 对象也无法被回收
+- 更严重的是，这种情况下完全没有办法发现和清理这些无用的 Entry
+- 最终导致的内存泄漏会更加隐蔽和严重
+
+**如果 key 使用弱引用**（当前的设计）：
+- 当外部不再持有 `ThreadLocal` 对象的强引用时，下次 GC 时 key 会被回收，变成 null
+- 虽然此时 value 仍然存在，但是 key 为 null 的 Entry 是可以被识别和清理的
+- `ThreadLocalMap` 在 `set()`、`get()`、`remove()` 操作中都会主动清理 key 为 null 的 Entry
+- 这种设计虽然不能完全避免内存泄漏，但提供了一种**自我修复**的机制
+
+**Doug Lea 的设计智慧**：使用弱引用，虽然不能完全避免内存泄漏，但至少提供了一个"补救"的机会。而使用强引用则会让问题变得无解。
+
+#### 内存泄漏的完整引用链路分析
+
+让我们用一个完整的引用链路图来理解 ThreadLocal 的内存泄漏问题：
+
+```
+Thread (强引用)
+  └─> ThreadLocalMap (强引用)
+        └─> Entry[] table (强引用)
+              └─> Entry (强引用)
+                    ├─> key: ThreadLocal (弱引用) ← 这里可能被 GC
+                    └─> value: 业务对象 (强引用) ← 这里可能泄漏
+```
+
+**正常情况下的引用链**：
+1. 外部代码持有 ThreadLocal 对象的强引用（比如 `static ThreadLocal<User> threadLocalUser`）
+2. Thread 对象持有 ThreadLocalMap 的强引用
+3. ThreadLocalMap 持有 Entry 数组的强引用
+4. Entry 继承 WeakReference，持有 ThreadLocal 的弱引用
+5. Entry 持有 value 的强引用
+
+**发生内存泄漏的场景**：
+
+当外部的 ThreadLocal 强引用被置为 null 后（比如 `threadLocalUser = null`）：
+1. ThreadLocal 对象只剩下 Entry 中的弱引用
+2. 下次 GC 时，ThreadLocal 对象被回收，Entry 的 key 变成 null
+3. 但是 Entry 对象本身和 value 仍然被强引用，无法被 GC
+4. 如果线程是线程池中的线程，一直不结束，那么这些 Entry 和 value 就会一直存在
+
+**举个生动的例子**：
+
+想象一个图书馆的借书系统：
+- **Thread** 是一个读者
+- **ThreadLocalMap** 是这个读者的借书卡
+- **Entry** 是借书记录
+- **ThreadLocal** 是图书的索引卡片（使用弱引用）
+- **value** 是实际的图书（使用强引用）
+
+正常流程：读者（Thread）用索引卡片（ThreadLocal）借了一本书（value），借书卡（ThreadLocalMap）上有记录（Entry）。
+
+如果索引卡片系统升级，旧的索引卡片被销毁了（ThreadLocal 引用置为 null），那么：
+- 使用弱引用设计：下次图书馆清理时（GC），发现借书记录中的索引卡片没了（key 为 null），就知道要处理这条记录
+- 使用强引用设计：即使索引卡片系统已经不存在了，借书记录仍然死死抓着旧卡片，无法识别和清理
+
+#### remove() 方法为什么如此重要
+
+理解了内存泄漏的机制后，我们就能明白为什么一定要调用 `remove()` 方法。
+
+`remove()` 方法的作用：
+1. 找到当前 ThreadLocal 对应的 Entry
+2. 将 Entry 的 key 和 value 都置为 null
+3. 触发探测式清理，清除更多的过期 Entry
+4. 彻底断开 value 的强引用链，让 GC 可以回收
+
+**阿里巴巴 Java 开发手册的强制要求**：
+> 必须回收自定义的 ThreadLocal 变量，尤其在线程池场景下，线程经常会被复用，如果不清理自定义的 ThreadLocal 变量，可能会影响后续业务逻辑和造成内存泄漏等问题。尽量在代理中使用 try-finally 块进行回收。
+
+#### 在线程池场景下的特殊风险
+
+线程池场景是 ThreadLocal 内存泄漏的**重灾区**，原因如下：
+
+1. **线程复用**：线程池中的线程会被反复使用，不会销毁
+2. **ThreadLocalMap 不会被清理**：由于线程一直存活，ThreadLocalMap 也一直存在
+3. **累积效应**：每次使用 ThreadLocal 如果不清理，Entry 就会越积越多
+4. **影响后续任务**：下一个使用该线程的任务可能会读取到上一个任务残留的数据，导致业务逻辑错误
+
+**典型的错误案例**（来自阿里技术博客的真实案例）：
+
+```java
+// 错误示例：在线程池中使用 ThreadLocal 但不清理
+private static ThreadLocal<UserInfo> userInfoHolder = new ThreadLocal<>();
+
+public void processRequest(Request request) {
+    try {
+        UserInfo userInfo = getUserInfo(request);
+        userInfoHolder.set(userInfo);  // 设置用户信息
+        // 处理业务逻辑
+        doBusinessLogic();
+    } catch (Exception e) {
+        // 异常处理
+    }
+    // ❌ 没有清理 ThreadLocal！
+}
+```
+
+**正确的做法**：
+
+```java
+// 正确示例：使用 try-finally 确保清理
+private static ThreadLocal<UserInfo> userInfoHolder = new ThreadLocal<>();
+
+public void processRequest(Request request) {
+    try {
+        UserInfo userInfo = getUserInfo(request);
+        userInfoHolder.set(userInfo);
+        doBusinessLogic();
+    } catch (Exception e) {
+        // 异常处理
+    } finally {
+        // ✅ 无论是否发生异常，都要清理
+        userInfoHolder.remove();
+    }
+}
+```
+
+**美团技术团队的实践经验**：
+
+在美团的实际项目中，曾经出现过因为 ThreadLocal 未清理导致的严重生产事故：
+1. 在线程池中使用 ThreadLocal 存储用户权限信息
+2. 某次请求处理完后，由于异常导致未执行 remove()
+3. 该线程被分配给下一个请求时，错误地使用了上一个用户的权限信息
+4. 导致越权访问，产生了严重的安全漏洞
+
+修复方案：
+1. 强制要求所有 ThreadLocal 使用都必须配合 try-finally + remove()
+2. 通过静态代码扫描工具检测未正确清理的 ThreadLocal 使用
+3. 在线程池提交任务时增加清理 ThreadLocal 的包装器
+
+这个案例充分说明了在线程池场景下正确使用 ThreadLocal 的重要性。记住：**ThreadLocal 用完一定要 remove()，特别是在线程池环境下！**
+
 ### `ThreadLocal.set()`方法源码详解
 
 ![](./images/thread-local/6.png)

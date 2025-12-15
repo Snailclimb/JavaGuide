@@ -147,6 +147,86 @@ public boolean compareAndSet(V   expectedReference,
 }
 ```
 
+#### ABA 问题的实际影响场景
+
+虽然 ABA 问题在理论上存在,但在实际应用中是否真的会造成影响需要具体分析:
+
+**无影响场景**: 如果只关心变量的当前值而不关心变更历史,ABA 问题通常不会造成实际影响。例如 `AtomicInteger` 的累加操作,即使值经历了 A→B→A 的变化,最终累加结果仍然正确。
+
+**有影响场景**: 在需要维护数据结构完整性的场景中,ABA 问题可能导致严重错误。典型案例是**无锁栈**的出栈操作:
+
+```
+线程 1 准备 CAS 弹出节点 A (A→B→C)
+线程 2 弹出 A 和 B,然后重新压入 A (栈变为 A→C)
+线程 1 的 CAS 成功(发现栈顶仍是 A),将 next 指向原来的 B
+结果: 节点 C 丢失,B 可能已被回收导致悬挂指针
+```
+
+因此,涉及指针操作和数据结构维护时,应使用 `AtomicStampedReference` 或 `AtomicMarkableReference` 避免 ABA 问题。
+
+### CAS 的 CPU 层面实现
+
+在 x86 架构下,CAS 操作最终会被编译为 **CMPXCHG 指令**,并配合 **LOCK 前缀**保证原子性:
+
+```assembly
+LOCK CMPXCHG [内存地址], 新值
+```
+
+**LOCK 前缀的作用:**
+
+1. **锁定总线或缓存行**: 在多核处理器中,LOCK 前缀会锁定相关的缓存行(而非整个总线),防止其他 CPU 同时修改该内存位置
+2. **保证内存可见性**: 强制将写缓冲区的数据刷新到主内存,并使其他 CPU 的缓存行失效
+
+这就是为什么 CAS 能够在硬件层面保证原子性的原因。相比 synchronized 的重量级锁,CAS 仅锁定单个缓存行,因此开销小得多。
+
+### 自旋与阻塞的性能权衡
+
+CAS 失败时会进行自旋重试,这在不同竞争程度下有不同的性能表现:
+
+**低竞争场景**: CAS 几乎不会失败,自旋开销极小,性能远超加锁方式(避免了线程上下文切换)。
+
+**高竞争场景**: CAS 频繁失败导致大量自旋,CPU 空转消耗资源。此时 synchronized 或 Lock 的阻塞机制反而更优,因为线程会被挂起释放 CPU。
+
+JDK 的 **自适应自旋锁** 就是基于这种权衡:JVM 会根据历史竞争情况动态调整自旋次数,在高竞争时及时转为阻塞。
+
+### LongAdder 的分段 CAS 优化
+
+在高并发计数场景下,多个线程对同一个 `AtomicLong` 进行 CAS 更新会导致激烈竞争。`LongAdder` 通过**分段计数**大幅降低竞争:
+
+**核心思想**: 维护一个 `Cell` 数组,每个线程优先更新自己的 Cell,最终求和获取总值。
+
+```java
+// LongAdder 内部结构
+transient volatile Cell[] cells;
+transient volatile long base;
+
+final void longAccumulate(long x, ...) {
+    // 如果 cells 为空,先尝试更新 base
+    if (cells == null) {
+        if (casBase(b = base, b + x))
+            return;
+    }
+    // 否则找到线程对应的 Cell 进行更新
+    Cell c = cells[getProbe() & m];
+    if (c.cas(v = c.value, v + x))
+        return;
+    // 更新失败则扩容或rehash
+}
+
+public long sum() {
+    Cell[] cs = cells;
+    long sum = base;
+    if (cs != null) {
+        for (Cell c : cs)
+            if (c != null)
+                sum += c.value;
+    }
+    return sum;
+}
+```
+
+这种设计与 `ConcurrentHashMap` 的 `counterCells` 机制完全一致,都是通过**分散热点、化整为零**的思想实现高并发下的性能优化。在累加场景下,`LongAdder` 的性能可比 `AtomicLong` 高出数倍。
+
 ### 循环时间长开销大
 
 CAS 经常会用到自旋操作来进行重试，也就是不成功就一直循环执行直到成功。如果长时间不成功，会给 CPU 带来非常大的执行开销。

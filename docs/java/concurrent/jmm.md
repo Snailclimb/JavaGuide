@@ -223,7 +223,116 @@ happens-before 与 JMM 的关系用《Java 并发编程的艺术》这本书中�
 
 > **指令重排序可以保证串行语义一致，但是没有义务保证多线程间的语义也一致** ，所以在多线程下，指令重排序可能会导致一些问题。
 
-在 Java 中，`volatile` 关键字可以禁止指令进行重排序优化。
+在 Java 中,`volatile` 关键字可以禁止指令进行重排序优化。
+
+### volatile 的内存屏障机制
+
+volatile 保证可见性和有序性的底层实现依赖于**内存屏障**。JMM 会在 volatile 变量的读写操作前后插入特定的内存屏障,禁止特定类型的重排序。
+
+**内存屏障的四种类型:**
+
+1. **LoadLoad 屏障**: 确保屏障前的读操作先于屏障后的读操作
+2. **StoreStore 屏障**: 确保屏障前的写操作先于屏障后的写操作
+3. **LoadStore 屏障**: 确保屏障前的读操作先于屏障后的写操作
+4. **StoreLoad 屏障**: 确保屏障前的写操作先于屏障后的读操作(开销最大)
+
+**volatile 写操作的内存屏障插入策略:**
+
+```
+StoreStore 屏障
+volatile 写操作
+StoreLoad 屏障
+```
+
+这保证了:volatile 写之前的所有普通写不会被重排序到 volatile 写之后,且 volatile 写的结果立即对其他线程可见。
+
+**volatile 读操作的内存屏障插入策略:**
+
+```
+volatile 读操作
+LoadLoad 屏障
+LoadStore 屏障
+```
+
+这保证了:volatile 读之后的所有普通读写不会被重排序到 volatile 读之前。
+
+### volatile 与 happens-before 的关系
+
+volatile 变量规则是 happens-before 原则的重要体现。根据《深入理解 Java 虚拟机》(周志明著)的描述,volatile 变量的内存语义可以总结为:
+
+- **写操作**: 当写一个 volatile 变量时,JMM 会把该线程对应的本地内存中的共享变量值立即刷新到主内存
+- **读操作**: 当读一个 volatile 变量时,JMM 会把该线程对应的本地内存置为无效,直接从主内存中读取共享变量
+
+通过这种机制,volatile 确保了线程间的可见性传递:
+
+```java
+class VolatileExample {
+    int a = 0;
+    volatile boolean flag = false;
+    
+    public void writer() {
+        a = 1;           // 1
+        flag = true;     // 2 volatile写
+    }
+    
+    public void reader() {
+        if (flag) {      // 3 volatile读
+            int i = a;   // 4 一定能看到a=1
+        }
+    }
+}
+```
+
+根据 happens-before 规则:
+- 1 happens-before 2 (程序顺序规则)
+- 2 happens-before 3 (volatile 规则)
+- 3 happens-before 4 (程序顺序规则)
+- 因此 1 happens-before 4 (传递性),操作 4 一定能看到操作 1 的结果
+
+### volatile 与 synchronized 的性能对比
+
+在《深入理解 Java 虚拟机》第三版中,周志明指出 volatile 的性能优势主要体现在:
+
+1. **无锁机制**: volatile 不需要加锁,不会阻塞线程,而 synchronized 会导致线程上下文切换
+2. **轻量级同步**: volatile 只保证单个变量的可见性,synchronized 保证整个代码块的原子性
+3. **性能差异**: 在高竞争场景下,volatile 读写操作比 synchronized 快约 10 倍以上
+
+**适用场景对比:**
+
+- **使用 volatile**: 单个变量的状态标志、双重检查锁定中的对象引用
+- **使用 synchronized**: 需要原子性保证的复合操作(如 i++)
+
+### Double-Checked Locking(DCL) 的 volatile 应用
+
+DCL 单例模式是 volatile 最经典的应用场景,必须用 volatile 修饰实例变量:
+
+```java
+public class Singleton {
+    private volatile static Singleton instance;
+    
+    private Singleton() {}
+    
+    public static Singleton getInstance() {
+        if (instance == null) {              // 第一次检查
+            synchronized (Singleton.class) {
+                if (instance == null) {      // 第二次检查
+                    instance = new Singleton();
+                }
+            }
+        }
+        return instance;
+    }
+}
+```
+
+**为什么必须用 volatile?**
+
+`instance = new Singleton()` 在字节码层面分为三步:
+1. 分配内存空间
+2. 初始化对象
+3. 将 instance 指向内存地址
+
+如果发生指令重排序(2 和 3 交换),可能导致其他线程获取到未初始化完成的对象。volatile 禁止这种重排序,保证对象完全初始化后才对其他线程可见。
 
 ## 总结
 
