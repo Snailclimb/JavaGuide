@@ -265,7 +265,15 @@ private SmsService smsService;
 
 实际开发实践中，我们还是建议通过 `@Qualifier` 注解来显式指定名称而不是依赖变量的名称。
 
-`@Resource`属于 JDK 提供的注解，默认注入逻辑为**先按名称（byName）** 匹配，若找不到则尝试**按类型（byType）筛选**，按**类型（byType）** 筛选到0个或多个bean都会抛出异常，只有在只筛选到一个bean时注入。
+`@Resource` 源自 **JSR-250** 规范（标准 Java 规范），在 JDK 6 到 JDK 10 中，它确实存在于 JDK 提供的包中。不过，从 JDK 11 开始，它不再默认存在于 JDK 内部，你需要引入额外的依赖 `javax.annotation-api`才能使用。
+
+Spring 对 `@Resource`（无参数情况）的处理逻辑如下：
+
+1. **按名称（byName）匹配：**默认取字段名（Field Name）作为 bean 的名称去容器中查找。如果找到了该名称的 Bean，则直接注入。
+2. **回退到按类型（byType）匹配：**如果**没有**找到同名的 Bean，Spring 会退而求其次，尝试根据字段的**类型**去查找。**按类型匹配的结果判定**
+   - **找到 1 个 Bean**：注入成功。
+   - **找到 0 个 Bean**：抛出异常 (`NoSuchBeanDefinitionException`)。
+   - **找到 >1 个 Bean**：抛出异常 (`NoUniqueBeanDefinitionException`)。
 
 `@Resource` 有两个比较重要且日常开发常用的属性：`name`（名称）、`type`（类型）。
 
