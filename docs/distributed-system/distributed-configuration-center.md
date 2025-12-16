@@ -8,5 +8,3 @@ category: 分布式
 ![](https://oss.javaguide.cn/javamianshizhibei/distributed-system.png)
 
 <!-- @include: @planet.snippet.md -->
-
-<!-- @include: @article-footer.snippet.md -->

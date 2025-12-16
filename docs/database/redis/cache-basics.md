@@ -17,5 +17,3 @@ head:
 ![](https://oss.javaguide.cn/javamianshizhibei/database-questions.png)
 
 <!-- @include: @planet.snippet.md -->
-
-<!-- @include: @article-footer.snippet.md -->

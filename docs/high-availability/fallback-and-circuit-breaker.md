@@ -9,5 +9,3 @@ icon: circuit
 ![](https://oss.javaguide.cn/xingqiu/mianshizhibei-gaobingfa.png)
 
 <!-- @include: @planet.snippet.md -->
-
-<!-- @include: @article-footer.snippet.md -->

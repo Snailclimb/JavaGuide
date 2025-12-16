@@ -10,9 +10,11 @@
 
 [![星球服务](https://oss.javaguide.cn/xingqiu/xingqiufuwu.png)](../about-the-author/zhishixingqiu-two-years.md)
 
-**我有自己的原则，不割韭菜，用心做内容，真心希望帮助到你！**
+下面是今年收到了部分好评，每一条都是真实存在的。我看到很多培训班或者机构通过虚构一些不存在的好评来欺骗他人购买高价服务（行业内非常常见），真的很难理解。
 
-如果你感兴趣的话，不妨花 3 分钟左右看看星球的详细介绍：[JavaGuide 知识星球详细介绍](../about-the-author/zhishixingqiu-two-years.md)。
+![球友对星球的真实评价](https://oss.javaguide.cn/xingqiu/praise-that-the-planet-received.png)
+
+**我有自己的原则，不割韭菜，用心做内容，真心希望帮助到你！** 如果你感兴趣的话，不妨花 3 分钟左右看看星球的详细介绍：[JavaGuide 知识星球详细介绍](../about-the-author/zhishixingqiu-two-years.md) 。
 
 ## 星球限时优惠
 
@@ -20,7 +22,10 @@
 
 ![知识星球30元优惠卷](https://oss.javaguide.cn/xingqiu/xingqiuyouhuijuan-30.jpg)
 
-进入星球之后，记得查看 **[星球使用指南](https://t.zsxq.com/0d18KSarv)** （一定要看！！！） 和 **[星球优质主题汇总](https://www.yuque.com/snailclimb/rpkqw1/ncxpnfmlng08wlf1)** 。
+🚀 **入圈必做**（干货满满，一定要看！）：
+
+1. [星球使用指南](https://t.zsxq.com/0d18KSarv)
+2. [优质主题汇总](https://t.zsxq.com/12uSKgTIm)
 
 **无任何套路，无任何潜在收费项。用心做内容，不割韭菜！**
 

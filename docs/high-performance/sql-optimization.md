@@ -15,5 +15,3 @@ head:
 ![](https://oss.javaguide.cn/javamianshizhibei/sql-optimization.png)
 
 <!-- @include: @planet.snippet.md -->
-
-<!-- @include: @article-footer.snippet.md -->

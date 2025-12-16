@@ -10,5 +10,3 @@ tag:
 ![](https://oss.javaguide.cn/xingqiu/mianshizhibei-database.png)
 
 <!-- @include: @planet.snippet.md -->
-
-<!-- @include: @article-footer.snippet.md -->
