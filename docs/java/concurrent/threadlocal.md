@@ -307,20 +307,23 @@ public void processRequest(Request request) {
 }
 ```
 
-**美团技术团队的实践经验**：
+**大厂实践经验总结**：
 
-在美团的实际项目中，曾经出现过因为 ThreadLocal 未清理导致的严重生产事故：
-1. 在线程池中使用 ThreadLocal 存储用户权限信息
-2. 某次请求处理完后，由于异常导致未执行 remove()
-3. 该线程被分配给下一个请求时，错误地使用了上一个用户的权限信息
-4. 导致越权访问，产生了严重的安全漏洞
+在实际生产环境中，线程池与 ThreadLocal 使用不当可能导致严重问题：
 
-修复方案：
-1. 强制要求所有 ThreadLocal 使用都必须配合 try-finally + remove()
-2. 通过静态代码扫描工具检测未正确清理的 ThreadLocal 使用
-3. 在线程池提交任务时增加清理 ThreadLocal 的包装器
+**常见问题场景**：
+1. 线程池中使用 ThreadLocal 存储用户上下文信息（如用户ID、权限等）
+2. 任务执行完成后，未在 finally 块中调用 remove()
+3. 线程被复用时，下一个任务读取到上一个任务的残留数据
+4. 可能导致数据混乱、业务逻辑错误、甚至安全漏洞（如权限信息错乱）
 
-这个案例充分说明了在线程池场景下正确使用 ThreadLocal 的重要性。记住：**ThreadLocal 用完一定要 remove()，特别是在线程池环境下！**
+**推荐的修复方案**（参考阿里巴巴规范）：
+1. **强制使用 try-finally**：所有 ThreadLocal 操作都必须在 finally 中调用 remove()
+2. **代码审查工具**：通过静态分析工具（如阿里的 p3c）检测未正确清理的 ThreadLocal
+3. **线程池包装器**：在任务提交和执行前后自动清理 ThreadLocal
+4. **监控告警**：监控线程池内存使用情况，及时发现内存泄漏
+
+这些最佳实践充分说明：**ThreadLocal 用完一定要 remove()，特别是在线程池环境下！**
 
 ### `ThreadLocal.set()`方法源码详解
 
@@ -1060,5 +1063,26 @@ public class MyThreadPoolTaskExecutor extends ThreadPoolTaskExecutor {
 #### 使用 MQ 发送消息给第三方系统
 
 在 MQ 发送的消息体中自定义属性`requestId`，接收方消费消息后，自己解析`requestId`使用即可。
+
+## 参考资料
+
+### 官方文档与规范
+1. [OpenJDK ThreadLocal 源码](http://hg.openjdk.java.net/jdk8/jdk8/jdk/file/tip/src/share/classes/java/lang/ThreadLocal.java) - JDK 8 官方实现
+2. [Java Language Specification](https://docs.oracle.com/javase/specs/) - Java 语言规范
+
+### 开源规范
+1. [阿里巴巴 Java 开发手册](https://github.com/alibaba/p3c) - GitHub 开源版本
+   - 第一章"编程规约" → (七)并发处理
+   - 强制规范："必须回收自定义的 ThreadLocal 变量，尤其在线程池场景下..."
+
+### 技术书籍
+1. 《深入理解 Java 虚拟机（第3版）》- 周志明，机械工业出版社
+   - 第2章"自动内存管理" - 引用类型详解
+2. 《Java 并发编程实战》(Java Concurrency in Practice) - Brian Goetz 等
+   - 第3章"对象的共享" - ThreadLocal 的使用与陷阱
+
+### 在线资源
+1. [Why is ThreadLocal's key a weak reference?](https://stackoverflow.com/questions/10739289) - StackOverflow 深度讨论
+2. [Understanding Weak References](https://docs.oracle.com/javase/8/docs/api/java/lang/ref/WeakReference.html) - Oracle 官方文档
 
 <!-- @include: @article-footer.snippet.md -->

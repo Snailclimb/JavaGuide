@@ -225,7 +225,7 @@ public long sum() {
 }
 ```
 
-这种设计与 `ConcurrentHashMap` 的 `counterCells` 机制完全一致,都是通过**分散热点、化整为零**的思想实现高并发下的性能优化。在累加场景下,`LongAdder` 的性能可比 `AtomicLong` 高出数倍。
+这种设计与 `ConcurrentHashMap` 的 `counterCells` 机制完全一致,都是通过**分散热点、化整为零**的思想实现高并发下的性能优化。在高并发累加场景下,`LongAdder` 的性能优于 `AtomicLong`。
 
 ### 循环时间长开销大
 
@@ -247,3 +247,12 @@ CAS 操作仅能对单个共享变量有效。当需要操作多个共享变量�
 在 Java 中，CAS 通过 `Unsafe` 类中的 `native` 方法实现，这些方法调用底层的硬件指令来完成原子操作。由于其实现依赖于 C++ 内联汇编和 JNI 调用，因此 CAS 的具体实现与操作系统以及 CPU 密切相关。
 
 CAS 虽然具有高效的无锁特性，但也需要注意 ABA 、循环时间长开销大等问题。
+
+## 参考资料
+
+- 《Java 并发编程的艺术》方腾飞等著, 第 2 章 Java 并发机制的底层实现原理
+- 《深入理解 Java 虚拟机(第 3 版)》周志明著, 第 13 章 线程安全与锁优化
+- OpenJDK Unsafe 源码: <https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/jdk/internal/misc/Unsafe.java>
+- Intel® 64 and IA-32 Architectures Software Developer's Manual, Volume 3A: System Programming Guide, Part 1, Chapter 8: Multiple-Processor Management
+- Doug Lea - A Java Fork/Join Framework: <http://gee.cs.oswego.edu/dl/papers/fj.pdf>
+- Oracle Docs - java.util.concurrent.atomic Package Summary: <https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/atomic/package-summary.html>

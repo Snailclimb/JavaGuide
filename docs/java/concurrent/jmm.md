@@ -295,7 +295,7 @@ class VolatileExample {
 
 1. **无锁机制**: volatile 不需要加锁,不会阻塞线程,而 synchronized 会导致线程上下文切换
 2. **轻量级同步**: volatile 只保证单个变量的可见性,synchronized 保证整个代码块的原子性
-3. **性能差异**: 在高竞争场景下,volatile 读写操作比 synchronized 快约 10 倍以上
+3. **性能差异**: 在高竞争场景下,volatile 读写操作比 synchronized 快得多,因为避免了线程阻塞和上下文切换的开销
 
 **适用场景对比:**
 
@@ -349,5 +349,14 @@ public class Singleton {
 - Java 内存访问重排序的研究：<https://tech.meituan.com/2014/09/23/java-memory-reordering.html>
 - 嘿，同学，你要的 Java 内存模型 (JMM) 来了：<https://xie.infoq.cn/article/739920a92d0d27e2053174ef2>
 - JSR 133 (Java Memory Model) FAQ：<https://www.cs.umd.edu/~pugh/java/memoryModel/jsr-133-faq.html>
+
+## 参考资料
+
+- 《深入理解 Java 虚拟机(第 3 版)》周志明著, 第 12 章 Java 内存模型与线程
+- 《Java 并发编程实战》Brian Goetz 著, 第 16 章 Java 内存模型
+- JSR-133: Java Memory Model and Thread Specification: <https://jcp.org/en/jsr/detail?id=133>
+- The JSR-133 Cookbook for Compiler Writers: <http://gee.cs.oswego.edu/dl/jmm/cookbook.html>
+- Java Memory Model Examples: <http://www.cs.umd.edu/~pugh/java/memoryModel/>
+- Doug Lea's Workstation - JSR-133 (Java Memory Model) FAQ: <https://www.cs.umd.edu/~pugh/java/memoryModel/jsr-133-faq.html>
 
 <!-- @include: @article-footer.snippet.md -->
