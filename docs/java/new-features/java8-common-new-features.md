@@ -366,7 +366,7 @@ Stream<T> limit(long maxSize);
 Stream<T> sorted(Comparator<? super T> comparator);
 
 /**
-* 在丢弃流的第一个 n元素后，返回由该流的 n元素组成的流。
+* 丢弃此流中的前 n 个元素，返回由剩余元素组成的新流。
 */
 Stream<T> skip(long n);
 
