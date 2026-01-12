@@ -4,6 +4,12 @@ import { aboutTheAuthor } from "./about-the-author.js";
 import { books } from "./books.js";
 import { highQualityTechnicalArticles } from "./high-quality-technical-articles.js";
 import { openSourceProject } from "./open-source-project.js";
+import { zhuanlan } from "./zhuanlan.js";
+import {
+  ICONS,
+  createImportantSection,
+  createSourceCodeSection,
+} from "./constants.js";
 
 export default sidebar({
   // 应该把更精确的路径放置在前边
@@ -11,25 +17,19 @@ export default sidebar({
   "/books/": books,
   "/about-the-author/": aboutTheAuthor,
   "/high-quality-technical-articles/": highQualityTechnicalArticles,
-  "/zhuanlan/": [
-    "java-mian-shi-zhi-bei",
-    "interview-guide",
-    "back-end-interview-high-frequency-system-design-and-scenario-questions",
-    "handwritten-rpc-framework",
-    "source-code-reading",
-  ],
+  "/zhuanlan/": zhuanlan,
   // 必须放在最后面
   "/": [
     {
       text: "项目介绍",
-      icon: "star",
+      icon: ICONS.STAR,
       collapsible: true,
       prefix: "javaguide/",
       children: ["intro", "use-suggestion", "contribution-guideline", "faq"],
     },
     {
       text: "面试准备（必看）",
-      icon: "interview",
+      icon: ICONS.INTERVIEW,
       collapsible: true,
       prefix: "interview-preparation/",
       children: [
@@ -44,101 +44,86 @@ export default sidebar({
     },
     {
       text: "Java",
-      icon: "java",
+      icon: ICONS.JAVA,
       collapsible: true,
       prefix: "java/",
       children: [
         {
           text: "基础",
           prefix: "basis/",
-          icon: "basic",
+          icon: ICONS.BASIC,
           children: [
             "java-basic-questions-01",
             "java-basic-questions-02",
             "java-basic-questions-03",
-            {
-              text: "重要知识点",
-              icon: "star",
-              collapsible: true,
-              children: [
-                "why-there-only-value-passing-in-java",
-                "serialization",
-                "generics-and-wildcards",
-                "reflection",
-                "proxy",
-                "bigdecimal",
-                "unsafe",
-                "spi",
-                "syntactic-sugar",
-              ],
-            },
+            createImportantSection([
+              "why-there-only-value-passing-in-java",
+              "serialization",
+              "generics-and-wildcards",
+              "reflection",
+              "proxy",
+              "bigdecimal",
+              "unsafe",
+              "spi",
+              "syntactic-sugar",
+            ]),
           ],
         },
         {
           text: "集合",
           prefix: "collection/",
-          icon: "container",
+          icon: ICONS.CONTAINER,
           children: [
             "java-collection-questions-01",
             "java-collection-questions-02",
             "java-collection-precautions-for-use",
-            {
-              text: "源码分析",
-              icon: "star",
-              collapsible: true,
-              children: [
-                "arraylist-source-code",
-                "linkedlist-source-code",
-                "hashmap-source-code",
-                "concurrent-hash-map-source-code",
-                "linkedhashmap-source-code",
-                "copyonwritearraylist-source-code",
-                "arrayblockingqueue-source-code",
-                "priorityqueue-source-code",
-                "delayqueue-source-code",
-              ],
-            },
+            createSourceCodeSection([
+              "arraylist-source-code",
+              "linkedlist-source-code",
+              "hashmap-source-code",
+              "concurrent-hash-map-source-code",
+              "linkedhashmap-source-code",
+              "copyonwritearraylist-source-code",
+              "arrayblockingqueue-source-code",
+              "priorityqueue-source-code",
+              "delayqueue-source-code",
+            ]),
           ],
         },
         {
           text: "并发编程",
           prefix: "concurrent/",
-          icon: "et-performance",
+          icon: ICONS.PERFORMANCE,
           children: [
             "java-concurrent-questions-01",
             "java-concurrent-questions-02",
             "java-concurrent-questions-03",
-            {
-              text: "重要知识点",
-              icon: "star",
-              collapsible: true,
-              children: [
-                "optimistic-lock-and-pessimistic-lock",
-                "cas",
-                "jmm",
-                "java-thread-pool-summary",
-                "java-thread-pool-best-practices",
-                "java-concurrent-collections",
-                "aqs",
-                "atomic-classes",
-                "threadlocal",
-                "completablefuture-intro",
-                "virtual-thread",
-              ],
-            },
+            createImportantSection([
+              "optimistic-lock-and-pessimistic-lock",
+              "cas",
+              "jmm",
+              "java-thread-pool-summary",
+              "java-thread-pool-best-practices",
+              "java-concurrent-collections",
+              "aqs",
+              "atomic-classes",
+              "threadlocal",
+              "completablefuture-intro",
+              "virtual-thread",
+            ]),
           ],
         },
         {
           text: "IO",
           prefix: "io/",
-          icon: "code",
+          icon: ICONS.CODE,
           collapsible: true,
           children: ["io-basis", "io-design-patterns", "io-model", "nio-basis"],
         },
         {
           text: "JVM",
           prefix: "jvm/",
-          icon: "virtual_machine",
+          icon: ICONS.VIRTUAL_MACHINE,
           collapsible: true,
           children: [
             "memory-area",
@@ -154,7 +139,7 @@ export default sidebar({
         {
           text: "新特性",
           prefix: "new-features/",
-          icon: "featured",
+          icon: ICONS.FEATURED,
           collapsible: true,
           children: [
             "java8-common-new-features",
@@ -179,50 +164,45 @@ export default sidebar({
     },
     {
       text: "计算机基础",
-      icon: "computer",
+      icon: ICONS.COMPUTER,
       prefix: "cs-basics/",
       collapsible: true,
       children: [
         {
           text: "网络",
           prefix: "network/",
-          icon: "network",
+          icon: ICONS.NETWORK,
           children: [
             "other-network-questions",
             "other-network-questions2",
             // "computer-network-xiexiren-summary",
-            {
-              text: "重要知识点",
-              icon: "star",
-              collapsible: true,
-              children: [
-                "osi-and-tcp-ip-model",
-                "the-whole-process-of-accessing-web-pages",
-                "application-layer-protocol",
-                "http-vs-https",
-                "http1.0-vs-http1.1",
-                "http-status-codes",
-                "dns",
-                "tcp-connection-and-disconnection",
-                "tcp-reliability-guarantee",
-                "arp",
-                "nat",
-                "network-attack-means",
-              ],
-            },
+            createImportantSection([
+              "osi-and-tcp-ip-model",
+              "the-whole-process-of-accessing-web-pages",
+              "application-layer-protocol",
+              "http-vs-https",
+              "http1.0-vs-http1.1",
+              "http-status-codes",
+              "dns",
+              "tcp-connection-and-disconnection",
+              "tcp-reliability-guarantee",
+              "arp",
+              "nat",
+              "network-attack-means",
+            ]),
           ],
         },
         {
           text: "操作系统",
           prefix: "operating-system/",
-          icon: "caozuoxitong",
+          icon: ICONS.OS,
           children: [
             "operating-system-basic-questions-01",
             "operating-system-basic-questions-02",
             {
               text: "Linux",
               collapsible: true,
-              icon: "linux",
+              icon: ICONS.LINUX,
               children: ["linux-intro", "shell-intro"],
             },
           ],
@@ -230,7 +210,7 @@ export default sidebar({
         {
           text: "数据结构",
           prefix: "data-structure/",
-          icon: "people-network-full",
+          icon: ICONS.DATA_STRUCTURE,
           collapsible: true,
           children: [
             "linear-data-structure",
@@ -244,7 +224,7 @@ export default sidebar({
         {
           text: "算法",
           prefix: "algorithms/",
-          icon: "suanfaku",
+          icon: ICONS.ALGORITHM,
           collapsible: true,
           children: [
             "classical-algorithm-problems-recommendations",
@@ -259,20 +239,20 @@ export default sidebar({
     },
     {
       text: "数据库",
-      icon: "database",
+      icon: ICONS.DATABASE,
       prefix: "database/",
       collapsible: true,
       children: [
         {
           text: "基础",
-          icon: "basic",
+          icon: ICONS.BASIC,
           children: [
             "basis",
             "nosql",
             "character-set",
             {
               text: "SQL",
-              icon: "SQL",
+              icon: ICONS.SQL,
               prefix: "sql/",
               collapsible: true,
               children: [
@@ -289,69 +269,59 @@ export default sidebar({
         {
           text: "MySQL",
           prefix: "mysql/",
-          icon: "mysql",
+          icon: ICONS.MYSQL,
           children: [
             "mysql-questions-01",
             "mysql-high-performance-optimization-specification-recommendations",
-            {
-              text: "重要知识点",
-              icon: "star",
-              collapsible: true,
-              children: [
-                "mysql-index",
-                {
-                  text: "MySQL三大日志详解",
-                  link: "mysql-logs",
-                },
-                "transaction-isolation-level",
-                "innodb-implementation-of-mvcc",
-                "how-sql-executed-in-mysql",
-                "mysql-query-cache",
-                "mysql-query-execution-plan",
-                "mysql-auto-increment-primary-key-continuous",
-                "some-thoughts-on-database-storage-time",
-                "index-invalidation-caused-by-implicit-conversion",
-              ],
-            },
+            createImportantSection([
+              "mysql-index",
+              {
+                text: "MySQL三大日志详解",
+                link: "mysql-logs",
+              },
+              "transaction-isolation-level",
+              "innodb-implementation-of-mvcc",
+              "how-sql-executed-in-mysql",
+              "mysql-query-cache",
+              "mysql-query-execution-plan",
+              "mysql-auto-increment-primary-key-continuous",
+              "some-thoughts-on-database-storage-time",
+              "index-invalidation-caused-by-implicit-conversion",
+            ]),
           ],
         },
         {
           text: "Redis",
           prefix: "redis/",
-          icon: "redis",
+          icon: ICONS.REDIS,
           children: [
             "cache-basics",
             "redis-questions-01",
             "redis-questions-02",
-            {
-              text: "重要知识点",
-              icon: "star",
-              collapsible: true,
-              children: [
-                "redis-delayed-task",
-                "3-commonly-used-cache-read-and-write-strategies",
-                "redis-data-structures-01",
-                "redis-data-structures-02",
-                "redis-skiplist",
-                "redis-persistence",
-                "redis-memory-fragmentation",
-                "redis-common-blocking-problems-summary",
-                "redis-cluster",
-              ],
-            },
+            createImportantSection([
+              "redis-delayed-task",
+              "3-commonly-used-cache-read-and-write-strategies",
+              "redis-data-structures-01",
+              "redis-data-structures-02",
+              "redis-skiplist",
+              "redis-persistence",
+              "redis-memory-fragmentation",
+              "redis-common-blocking-problems-summary",
+              "redis-cluster",
+            ]),
           ],
         },
         {
           text: "Elasticsearch",
           prefix: "elasticsearch/",
-          icon: "elasticsearch",
+          icon: ICONS.ELASTICSEARCH,
           collapsible: true,
           children: ["elasticsearch-questions-01"],
         },
         {
           text: "MongoDB",
           prefix: "mongodb/",
-          icon: "mongodb",
+          icon: ICONS.MONGODB,
           collapsible: true,
           children: ["mongodb-questions-01", "mongodb-questions-02"],
         },
@@ -359,37 +329,37 @@ export default sidebar({
     },
     {
       text: "开发工具",
-      icon: "tool",
+      icon: ICONS.TOOL,
       prefix: "tools/",
       collapsible: true,
       children: [
         {
           text: "Maven",
-          icon: "configuration",
+          icon: ICONS.MAVEN,
           prefix: "maven/",
           children: ["maven-core-concepts", "maven-best-practices"],
         },
         {
           text: "Gradle",
-          icon: "gradle",
+          icon: ICONS.GRADLE,
           prefix: "gradle/",
           children: ["gradle-core-concepts"],
         },
         {
           text: "Git",
-          icon: "git",
+          icon: ICONS.GIT,
           prefix: "git/",
           children: ["git-intro", "github-tips"],
         },
         {
           text: "Docker",
-          icon: "docker1",
+          icon: ICONS.DOCKER,
           prefix: "docker/",
           children: ["docker-intro", "docker-in-action"],
         },
         {
           text: "IDEA",
-          icon: "intellijidea",
+          icon: ICONS.IDEA,
           link: "https://gitee.com/SnailClimb/awesome-idea-tutorial",
         },
       ],
@@ -397,30 +367,25 @@ export default sidebar({
     {
       text: "常用框架",
       prefix: "system-design/framework/",
-      icon: "component",
+      icon: ICONS.COMPONENT,
       collapsible: true,
       children: [
         {
           text: "Spring&Spring Boot",
-          icon: "bxl-spring-boot",
+          icon: ICONS.SPRING_BOOT,
           prefix: "spring/",
           children: [
             "spring-knowledge-and-questions-summary",
             "springboot-knowledge-and-questions-summary",
             "spring-common-annotations",
             "springboot-source-code",
-            {
-              text: "重要知识点",
-              icon: "star",
-              collapsible: true,
-              children: [
-                "ioc-and-aop",
-                "spring-transaction",
-                "spring-design-patterns-summary",
-                "spring-boot-auto-assembly-principles",
-                "async",
-              ],
-            },
+            createImportantSection([
+              "ioc-and-aop",
+              "spring-transaction",
+              "spring-design-patterns-summary",
+              "spring-boot-auto-assembly-principles",
+              "async",
+            ]),
           ],
         },
         "mybatis/mybatis-interview",
@@ -429,14 +394,14 @@ export default sidebar({
     },
     {
       text: "系统设计",
-      icon: "design",
+      icon: ICONS.DESIGN,
       prefix: "system-design/",
       collapsible: true,
       children: [
         {
           text: "基础知识",
           prefix: "basis/",
-          icon: "basic",
+          icon: ICONS.BASIC,
           collapsible: true,
           children: [
             "RESTfulAPI",
@@ -452,7 +417,7 @@ export default sidebar({
         {
           text: "认证授权",
           prefix: "security/",
-          icon: "security-fill",
+          icon: ICONS.SECURITY,
           collapsible: true,
           children: [
             "basis-of-authority-certification",
@@ -465,7 +430,7 @@ export default sidebar({
         {
           text: "数据安全",
           prefix: "security/",
-          icon: "security-fill",
+          icon: ICONS.SECURITY,
           collapsible: true,
           children: [
             "encryption-algorithms",
@@ -482,13 +447,13 @@ export default sidebar({
     },
     {
       text: "分布式",
-      icon: "distributed-network",
+      icon: ICONS.DISTRIBUTED,
       prefix: "distributed-system/",
       collapsible: true,
       children: [
         {
           text: "理论&算法&协议",
-          icon: "suanfaku",
+          icon: ICONS.ALGORITHM,
           prefix: "protocol/",
           collapsible: true,
           children: [
@@ -501,40 +466,40 @@ export default sidebar({
         },
         {
           text: "API网关",
-          icon: "gateway",
+          icon: ICONS.GATEWAY,
           children: ["api-gateway", "spring-cloud-gateway-questions"],
         },
         {
           text: "分布式ID",
-          icon: "id",
+          icon: ICONS.ID,
           children: ["distributed-id", "distributed-id-design"],
         },
         {
           text: "分布式锁",
-          icon: "lock",
+          icon: ICONS.LOCK,
           children: ["distributed-lock", "distributed-lock-implementations"],
         },
         {
           text: "分布式事务",
-          icon: "transanction",
+          icon: ICONS.TRANSACTION,
           children: ["distributed-transaction"],
         },
         {
           text: "分布式配置中心",
-          icon: "configuration",
+          icon: ICONS.MAVEN,
           children: ["distributed-configuration-center"],
         },
         {
           text: "RPC",
           prefix: "rpc/",
-          icon: "network",
+          icon: ICONS.RPC,
           collapsible: true,
           children: ["rpc-intro", "dubbo"],
         },
         {
           text: "ZooKeeper",
           prefix: "distributed-process-coordination/zookeeper/",
-          icon: "framework",
+          icon: ICONS.FRAMEWORK,
           collapsible: true,
           children: ["zookeeper-intro", "zookeeper-plus"],
         },
@@ -542,23 +507,23 @@ export default sidebar({
     },
     {
       text: "高性能",
-      icon: "et-performance",
+      icon: ICONS.PERFORMANCE,
       prefix: "high-performance/",
       collapsible: true,
       children: [
         {
           text: "CDN",
-          icon: "cdn",
+          icon: ICONS.CDN,
           children: ["cdn"],
         },
         {
           text: "负载均衡",
-          icon: "fuzaijunheng",
+          icon: ICONS.LOAD_BALANCING,
           children: ["load-balancing"],
         },
         {
           text: "数据库优化",
-          icon: "mysql",
+          icon: ICONS.MYSQL,
           children: [
             "read-and-write-separation-and-library-subtable",
             "data-cold-hot-separation",
@@ -569,7 +534,7 @@ export default sidebar({
         {
           text: "消息队列",
           prefix: "message-queue/",
-          icon: "MQ",
+          icon: ICONS.MQ,
           collapsible: true,
           children: [
             "message-queue",
@@ -583,7 +548,7 @@ export default sidebar({
     },
     {
       text: "高可用",
-      icon: "highavailable",
+      icon: ICONS.HIGH_AVAILABLE,
       prefix: "high-availability/",
       collapsible: true,
       children: [

@@ -1,9 +1,10 @@
 import { arraySidebar } from "vuepress-theme-hope";
+import { ICONS } from "./constants.js";
 
 export const aboutTheAuthor = arraySidebar([
   {
     text: "个人经历",
-    icon: "experience",
+    icon: ICONS.EXPERIENCE,
     collapsible: false,
     children: [
       "internet-addiction-teenager",
@@ -15,7 +16,7 @@ export const aboutTheAuthor = arraySidebar([
   },
   {
     text: "杂谈",
-    icon: "chat",
+    icon: ICONS.CHAT,
     collapsible: false,
     children: [
       "writing-technology-blog-six-years",

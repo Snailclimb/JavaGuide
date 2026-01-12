@@ -1,9 +1,10 @@
 import { arraySidebar } from "vuepress-theme-hope";
+import { ICONS } from "./constants.js";
 
 export const highQualityTechnicalArticles = arraySidebar([
   {
     text: "练级攻略",
-    icon: "et-performance",
+    icon: ICONS.PERFORMANCE,
     prefix: "advanced-programmer/",
     collapsible: false,
     children: [
@@ -18,7 +19,7 @@ export const highQualityTechnicalArticles = arraySidebar([
   },
   {
     text: "个人经历",
-    icon: "experience",
+    icon: ICONS.EXPERIENCE,
     prefix: "personal-experience/",
     collapsible: false,
     children: [
@@ -30,7 +31,7 @@ export const highQualityTechnicalArticles = arraySidebar([
   },
   {
     text: "程序员",
-    icon: "code",
+    icon: ICONS.CODE,
     prefix: "programmer/",
     collapsible: false,
     children: [
@@ -41,7 +42,7 @@ export const highQualityTechnicalArticles = arraySidebar([
   },
   {
     text: "面试",
-    icon: "interview",
+    icon: ICONS.INTERVIEW,
     prefix: "interview/",
     collapsible: true,
     children: [
@@ -57,7 +58,7 @@ export const highQualityTechnicalArticles = arraySidebar([
   },
   {
     text: "工作",
-    icon: "work",
+    icon: ICONS.WORK,
     prefix: "work/",
     collapsible: true,
     children: [

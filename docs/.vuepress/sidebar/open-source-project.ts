@@ -1,39 +1,40 @@
 import { arraySidebar } from "vuepress-theme-hope";
+import { ICONS } from "./constants.js";
 
 export const openSourceProject = arraySidebar([
   {
     text: "技术教程",
     link: "tutorial",
-    icon: "book",
+    icon: ICONS.BOOK,
   },
   {
     text: "实战项目",
     link: "practical-project",
-    icon: "project",
+    icon: ICONS.PROJECT,
   },
   {
     text: "系统设计",
     link: "system-design",
-    icon: "design",
+    icon: ICONS.DESIGN,
   },
   {
     text: "工具类库",
     link: "tool-library",
-    icon: "codelibrary-fill",
+    icon: ICONS.LIBRARY,
   },
   {
     text: "开发工具",
     link: "tools",
-    icon: "tool",
+    icon: ICONS.TOOL,
   },
   {
     text: "机器学习",
     link: "machine-learning",
-    icon: "a-MachineLearning",
+    icon: ICONS.MACHINE_LEARNING,
   },
   {
     text: "大数据",
     link: "big-data",
-    icon: "big-data",
+    icon: ICONS.BIG_DATA,
   },
 ]);

@@ -31,7 +31,6 @@ export default hopeTheme({
 
   blog: {
     intro: "/about-the-author/",
-    sidebarDisplay: "mobile",
     medias: {
       Zhihu: "https://www.zhihu.com/people/javaguide",
       Github: "https://github.com/Snailclimb",
