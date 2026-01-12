@@ -13,6 +13,7 @@ export default sidebar({
   "/high-quality-technical-articles/": highQualityTechnicalArticles,
   "/zhuanlan/": [
     "java-mian-shi-zhi-bei",
+    "interview-guide",
     "back-end-interview-high-frequency-system-design-and-scenario-questions",
     "handwritten-rpc-framework",
     "source-code-reading",

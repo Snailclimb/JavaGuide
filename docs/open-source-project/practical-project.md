@@ -4,6 +4,10 @@ category: 开源项目
 icon: project
 ---
 
+## AI
+
+- [interview-guide](https://github.com/Snailclimb/interview-guide)：基于 Spring Boot 4.0 + Java 21 + Spring AI + PostgreSQL + pgvector + RustFS + Redis，实现简历智能分析、AI 模拟面试、知识库 RAG 检索等核心功能。非常适合作为学习和简历项目，学习门槛低。
+
 ## 快速开发平台
 
 - [Snowy](https://gitee.com/xiaonuobase/snowy)：国内首个国密前后端分离快速开发平台。详细介绍：[5.1k！这是我见过最强的前后端分离快速开发脚手架！！](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247534316&idx=1&sn=69938397674fc33ecda43c8c9d0a4039&chksm=cea10927f9d68031bc862485c6be984ade5af233d4d871d498c38f22164a84314678c0c67cd7&token=1464380539&lang=zh_CN#rd)。
@@ -68,13 +72,6 @@ icon: project
 
 - [12306](https://gitee.com/nageoffer/12306) ：基于 JDK17 + SpringBoot3 + SpringCloud 微服务架构的高并发 12306 购票服务。
 - [大麦](https://gitee.com/java-up-up/damai)：提供热门演唱会的购票功能，并且对如何解决高并发下的抢票而产生的各种问题，从而设计出了实际落地的解决方案。
-
-## 权限管理系统
-
-权限管理系统在企业级的项目中一般都是非常重要的，如果你需求去实际了解一个不错的权限系统是如何设计的话，推荐你可以参考下面这些开源项目。
-
-- [SpringBoot-Shiro-Vue](https://github.com/Heeexy/SpringBoot-Shiro-Vue)：基于 Spring Boot-Shiro-Vue 的权限管理思路，前后端都加以控制，可以做到按钮/接口级别的权限。
-- [renren-security](https://gitee.com/renrenio/renren-security)：一套灵活的权限控制系统，可控制到页面或按钮，满足绝大部分的权限需求
 
 ## 造轮子
 

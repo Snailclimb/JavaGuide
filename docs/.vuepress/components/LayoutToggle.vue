@@ -7,8 +7,8 @@
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
+      width="18"
+      height="18"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -25,7 +25,6 @@
         d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"
       />
     </svg>
-    <span class="btn-text">{{ isHidden ? "退出沉浸" : "沉浸阅读" }}</span>
   </button>
 </template>
 
@@ -75,29 +74,27 @@ onMounted(() => {
 <style lang="scss" scoped>
 .layout-toggle-btn {
   position: fixed;
-  right: 20px;
-  bottom: 150px;
+  right: 90px;
+  bottom: 62px;
   z-index: 999;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  height: 36px;
-  padding: 0 14px;
-  font-size: 13px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
   color: var(--vp-c-text);
   background: var(--vp-c-bg);
   border: 1px solid var(--vp-c-border);
-  border-radius: 18px;
+  border-radius: 50%;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: all 0.3s ease;
-  white-space: nowrap;
 
   &:hover {
     color: var(--vp-c-accent);
     border-color: var(--vp-c-accent);
-    transform: scale(1.02);
+    transform: scale(1.05);
   }
 
   &.is-hidden {
@@ -107,13 +104,9 @@ onMounted(() => {
   }
 
   svg {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     flex-shrink: 0;
-  }
-
-  .btn-text {
-    font-weight: 500;
   }
 }
 
