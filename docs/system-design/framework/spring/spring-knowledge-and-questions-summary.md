@@ -269,8 +269,8 @@ private SmsService smsService;
 
 Spring 对 `@Resource`（无参数情况）的处理逻辑如下：
 
-1. **按名称（byName）匹配：**默认取字段名（Field Name）作为 bean 的名称去容器中查找。如果找到了该名称的 Bean，则直接注入。
-2. **回退到按类型（byType）匹配：**如果**没有**找到同名的 Bean，Spring 会退而求其次，尝试根据字段的**类型**去查找。**按类型匹配的结果判定**
+1. **按名称（byName）匹配：** 默认取字段名（Field Name）作为 bean 的名称去容器中查找。如果找到了该名称的 Bean，则直接注入。
+2. **回退到按类型（byType）匹配：** 如果**没有**找到同名的 Bean，Spring 会退而求其次，尝试根据字段的**类型**去查找。**按类型匹配的结果判定**
    - **找到 1 个 Bean**：注入成功。
    - **找到 0 个 Bean**：抛出异常 (`NoSuchBeanDefinitionException`)。
    - **找到 >1 个 Bean**：抛出异常 (`NoUniqueBeanDefinitionException`)。

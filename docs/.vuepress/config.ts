@@ -46,23 +46,7 @@ export default defineUserConfig({
     ],
   ],
 
-  bundler: viteBundler({
-    viteOptions: {
-      build: {
-        chunkSizeWarningLimit: 1000,
-        rollupOptions: {
-          output: {
-            manualChunks: {
-              // 将大型第三方库分离成单独的 chunk
-              vue: ["vue", "vue-router"],
-              // VuePress 相关
-              vuepress: ["vuepress"],
-            },
-          },
-        },
-      },
-    },
-  }),
+  bundler: viteBundler(),
 
   theme,
 

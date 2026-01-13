@@ -20,7 +20,10 @@ footer: |-
 
 - [Java 面试指南](./home.md)（⭐网站核心）：Java 学习&面试指南（Go、Python 后端面试通用,计算机基础面试总结）。
 - [Java 优质开源项目](./open-source-project/)：收集整理了 Gitee/Github 上非常棒的 Java 开源项目集合，按实战项目、系统设计、工具类库等维度做了精细分类，持续更新维护！
-- [优质技术书籍推荐](./open-source-project/)：优质技术书籍推荐合集，涵盖了从计算机基础、数据库、搜索引擎到分布式系统、高可用架构的全方位内容，持续更新维护！
+- [优质技术书籍推荐](./books/)：优质技术书籍推荐合集，涵盖了从计算机基础、数据库、搜索引擎到分布式系统、高可用架构的全方位内容，持续更新维护！
+- **面试资料补充**：
+  - [《Java 面试指北》](https://javaguide.cn/zhuanlan/java-mian-shi-zhi-bei.html)：四年打磨，和 JavaGuide 开源版的内容互补，带你从零开始系统准备后端面试！
+  - [《后端面试高频系统设计&场景题》](https://javaguide.cn/zhuanlan/back-end-interview-high-frequency-system-design-and-scenario-questions.html)：30+ 道高频系统设计和场景面试，助你应对当下中大厂面试趋势。
 
 ## 💻 实战项目
 
