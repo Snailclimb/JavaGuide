@@ -22,6 +22,60 @@ DB 和 DBMS 我们通常会搞混，这里再简单提一下：**通常我们说
 
 ## DBMS 有哪些主要的功能
 
+```mermaid
+graph TD
+    DBMS["🗄️ DBMS<br/><b>数据库管理系统</b>"]
+
+    subgraph define["数据定义"]
+        DDL["📐 DDL<br/>Data Definition Language"]
+        DDL_Items["• 创建/修改/删除对象<br/>• 定义表结构<br/>• 定义视图、索引<br/>• 定义触发器<br/>• 定义存储过程"]
+    end
+
+    subgraph operate["数据操作"]
+        DML["⚡ DML<br/>Data Manipulation Language"]
+        CRUD["<b>CRUD 操作</b><br/>• Create 创建<br/>• Read 读取<br/>• Update 更新<br/>• Delete 删除"]
+    end
+
+    subgraph control["数据控制"]
+        DCL["🔐 数据控制功能"]
+        Control_Items["• 并发控制<br/>• 事务管理<br/>• 完整性约束<br/>• 权限控制<br/>• 安全性限制"]
+    end
+
+    subgraph maintain["数据库维护"]
+        Maintenance["🛠️ 维护功能"]
+        Maintain_Items["• 数据导入/导出<br/>• 备份与恢复<br/>• 性能监控与分析<br/>• 系统日志管理"]
+    end
+
+    DBMS --> DDL
+    DBMS --> DML
+    DBMS --> DCL
+    DBMS --> Maintenance
+
+    DDL --> DDL_Items
+    DML --> CRUD
+    DCL --> Control_Items
+    Maintenance --> Maintain_Items
+
+    style DBMS fill:#005D7B,stroke:#00838F,stroke-width:4px,color:#fff
+
+    style DDL fill:#4CA497,stroke:#00838F,stroke-width:3px,color:#fff
+    style DDL_Items fill:#f0fffe,stroke:#4CA497,stroke-width:2px,color:#333
+
+    style DML fill:#E99151,stroke:#C44545,stroke-width:3px,color:#fff
+    style CRUD fill:#fff5e6,stroke:#E99151,stroke-width:2px,color:#333
+
+    style DCL fill:#00838F,stroke:#005D7B,stroke-width:3px,color:#fff
+    style Control_Items fill:#e6f7ff,stroke:#00838F,stroke-width:2px,color:#333
+
+    style Maintenance fill:#C44545,stroke:#8B0000,stroke-width:3px,color:#fff
+    style Maintain_Items fill:#ffe6e6,stroke:#C44545,stroke-width:2px,color:#333
+
+    style define fill:#E4C189,stroke:#E99151,stroke-width:2px,stroke-dasharray: 5 5,opacity:0.3
+    style operate fill:#E4C189,stroke:#E99151,stroke-width:2px,stroke-dasharray: 5 5,opacity:0.3
+    style control fill:#E4C189,stroke:#E99151,stroke-width:2px,stroke-dasharray: 5 5,opacity:0.3
+    style maintain fill:#E4C189,stroke:#E99151,stroke-width:2px,stroke-dasharray: 5 5,opacity:0.3
+```
+
 DBMS 通常提供四大核心功能：
 
 1. **数据定义：** 这是 DBMS 的基础。它提供了一套数据定义语言（Data Definition Language - DDL），让我们能够创建、修改和删除数据库中的各种对象。这不仅仅是定义表的结构（比如字段名、数据类型），还包括定义视图、索引、触发器、存储过程等。
@@ -86,13 +140,60 @@ NewSQL 数据库代表：Google 的 F1/Spanner、阿里的 [OceanBase](https://o
 
 ## 什么是元组, 码, 候选码, 主码, 外码, 主属性, 非主属性？
 
-- **元组**：元组（tuple）是关系数据库中的基本概念，关系是一张表，表中的每行（即数据库中的每条记录）就是一个元组，每列就是一个属性。 在二维表里，元组也称为行。
-- **码**：码就是能唯一标识实体的属性，对应表中的列。
-- **候选码**：若关系中的某一属性或属性组的值能唯一的标识一个元组，而其任何、子集都不能再标识，则称该属性组为候选码。例如：在学生实体中，“学号”是能唯一的区分学生实体的，同时又假设“姓名”、“班级”的属性组合足以区分学生实体，那么{学号}和{姓名，班级}都是候选码。
-- **主码** : 主码也叫主键。主码是从候选码中选出来的。 一个实体集中只能有一个主码，但可以有多个候选码。
-- **外码** : 外码也叫外键。如果一个关系中的一个属性是另外一个关系中的主码则这个属性为外码。
-- **主属性**：候选码中出现过的属性称为主属性。比如关系 工人（工号，身份证号，姓名，性别，部门）. 显然工号和身份证号都能够唯一标示这个关系，所以都是候选码。工号、身份证号这两个属性就是主属性。如果主码是一个属性组，那么属性组中的属性都是主属性。
-- **非主属性：** 不包含在任何一个候选码中的属性称为非主属性。比如在关系——学生（学号，姓名，年龄，性别，班级）中，主码是“学号”，那么其他的“姓名”、“年龄”、“性别”、“班级”就都可以称为非主属性。
+在关系型数据库理论中，理解元组、码、候选码、主码、外码、主属性和非主属性这些核心概念，对于数据库设计和规范化至关重要。这些概念构成了关系数据库的理论基础。
+
+```mermaid
+graph TD
+    A[关系数据库概念] --> B[数据组织]
+    A --> C[码的类型]
+    A --> D[属性分类]
+
+    B --> B1[元组<br/>表中的行记录]
+    B --> B2[属性<br/>表中的列]
+
+    C --> C1[码<br/>唯一标识]
+    C1 --> C2[候选码<br/>最小唯一标识集]
+    C2 --> C3[主码<br/>选定的候选码]
+    C1 --> C4[外码<br/>引用其他表主码]
+
+    D --> D1[主属性<br/>候选码中的属性]
+    D --> D2[非主属性<br/>不在候选码中的属性]
+
+    C3 -.关联.-> C4
+    C2 -.构成.-> D1
+
+    style A fill:#4CA497,stroke:#00838F,stroke-width:3px,color:#fff
+    style B fill:#00838F,stroke:#005D7B,stroke-width:2px,color:#fff
+    style C fill:#E99151,stroke:#005D7B,stroke-width:2px,color:#fff
+    style D fill:#005D7B,stroke:#00838F,stroke-width:2px,color:#fff
+
+    style B1 fill:#E4C189,stroke:#00838F,stroke-width:1px
+    style B2 fill:#E4C189,stroke:#00838F,stroke-width:1px
+
+    style C1 fill:#E4C189,stroke:#E99151,stroke-width:1px
+    style C2 fill:#E4C189,stroke:#E99151,stroke-width:1px
+    style C3 fill:#C44545,stroke:#005D7B,stroke-width:2px,color:#fff
+    style C4 fill:#E4C189,stroke:#E99151,stroke-width:1px
+
+    style D1 fill:#E4C189,stroke:#005D7B,stroke-width:1px
+    style D2 fill:#E4C189,stroke:#005D7B,stroke-width:1px
+```
+
+### 基础概念
+
+- **元组（Tuple）：** 元组是关系数据库中的基本单位，在二维表中对应一行记录。每个元组包含了一个实体的完整信息。例如，在学生表中，每个学生的完整信息（学号、姓名、年龄等）构成一个元组。
+- **码（Key）：** 码是能够唯一标识关系中元组的一个或多个属性的集合。码的主要作用是保证数据的唯一性和完整性。
+
+### 码的分类
+
+- **候选码（Candidate Key）：** 候选码是能够唯一标识元组的最小属性集合，其任何真子集都不能唯一标识元组。一个关系可能有多个候选码。例如，在学生表中，如果"学号"能唯一标识学生，同时"身份证号"也能唯一标识学生，那么{学号}和{身份证号}都是候选码。
+- **主码/主键（Primary Key）：** 主码是从候选码中选择的一个，用于唯一标识关系中的元组。每个关系只能有一个主码，但可以有多个候选码。选择主码时通常考虑：简单性、稳定性、无业务含义等因素。
+- **外码/外键（Foreign Key）：** 外码是一个关系中的属性或属性组，它对应另一个关系的主码。外码用于建立和维护两个关系之间的联系，是实现参照完整性的重要机制。例如，在选课表中的"学号"如果引用学生表的主码"学号"，则选课表中的"学号"就是外码。
+
+### 属性分类
+
+- **主属性（Prime Attribute）：** 主属性是包含在任何一个候选码中的属性。如果一个关系有多个候选码，那么这些候选码中出现的所有属性都是主属性。例如，工人关系（工号，身份证号，姓名，性别，部门）中，如果{工号}和{身份证号}都是候选码，那么"工号"和"身份证号"都是主属性。
+- **非主属性（Non-prime Attribute）：** 非主属性是不包含在任何候选码中的属性。这些属性完全依赖于候选码来确定其值。在上述工人关系中，"姓名"、"性别"、"部门"都是非主属性。
 
 ## 什么是 ER 图？
 
@@ -108,7 +209,37 @@ ER 图由下面 3 个要素组成：
 
 下图是一个学生选课的 ER 图，每个学生可以选若干门课程，同一门课程也可以被若干人选择，所以它们之间的关系是多对多（M: N）。另外，还有其他两种实体之间的关系是：1 对 1（1:1）、1 对多（1: N）。
 
-![学生与课程之间联系的E-R图](https://oss.javaguide.cn/github/javaguide/csdn/c745c87f6eda9a439e0eea52012c7f4a.png)
+```mermaid
+erDiagram
+    STUDENT {
+        string student_id PK "学号"
+        string name "姓名"
+        string gender "性别"
+        date birth_date "出生日期"
+        string department "学院名称"
+    }
+
+    COURSE {
+        string course_id PK "课程编号"
+        string course_name "课程名称"
+        string location "课程地点"
+        string instructor "开课教师"
+        float credits "成绩"
+    }
+
+    ENROLLMENT {
+        string student_id FK "学号"
+        string course_id FK "课程编号"
+        float grade "成绩"
+    }
+
+    STUDENT ||--o{ ENROLLMENT : "选课"
+    COURSE ||--o{ ENROLLMENT : "被选"
+
+    style STUDENT fill:#4CA497,stroke:#00838F,stroke-width:2px
+    style COURSE fill:#005D7B,stroke:#00838F,stroke-width:2px
+    style ENROLLMENT fill:#E99151,stroke:#C44545,stroke-width:2px
+```
 
 ## 数据库范式了解吗?
 
@@ -181,53 +312,239 @@ ER 图由下面 3 个要素组成：
 
 ## 什么是存储过程?
 
-我们可以把存储过程看成是一些 SQL 语句的集合，中间加了点逻辑控制语句。存储过程在业务比较复杂的时候是非常实用的，比如很多时候我们完成一个操作可能需要写一大串 SQL 语句，这时候我们就可以写有一个存储过程，这样也方便了我们下一次的调用。存储过程一旦调试完成通过后就能稳定运行，另外，使用存储过程比单纯 SQL 语句执行要快，因为存储过程是预编译过的。
+```mermaid
+graph LR
+    A[存储过程] --> B[定义特征]
+    A --> C[优势]
+    A --> D[劣势]
+    A --> E[应用现状]
 
-存储过程在互联网公司应用不多，因为存储过程难以调试和扩展，而且没有移植性，还会消耗数据库资源。
+    B --> B1[SQL语句集合]
+    B --> B2[包含逻辑控制]
+    B --> B3[预编译机制]
 
-阿里巴巴 Java 开发手册里要求禁止使用存储过程。
+    C --> C1[执行速度快]
+    C --> C2[运行稳定]
+    C --> C3[简化复杂操作]
+
+    D --> D1[调试困难]
+    D --> D2[扩展性差]
+    D --> D3[无移植性]
+    D --> D4[占用数据库资源]
+
+    E --> E1[传统企业<br/>使用较多]
+    E --> E2[互联网公司<br/>很少使用]
+    E --> E3[阿里规范<br/>明确禁用]
+
+    style A fill:#4CA497,stroke:#00838F,stroke-width:3px,color:#fff
+    style B fill:#00838F,stroke:#005D7B,stroke-width:2px,color:#fff
+    style C fill:#E99151,stroke:#C44545,stroke-width:2px,color:#fff
+    style D fill:#C44545,stroke:#005D7B,stroke-width:2px,color:#fff
+    style E fill:#005D7B,stroke:#00838F,stroke-width:2px,color:#fff
+
+    style B1 fill:#E4C189,stroke:#00838F,stroke-width:1px
+    style B2 fill:#E4C189,stroke:#00838F,stroke-width:1px
+    style B3 fill:#E4C189,stroke:#00838F,stroke-width:1px
+
+    style C1 fill:#E4C189,stroke:#E99151,stroke-width:1px
+    style C2 fill:#E4C189,stroke:#E99151,stroke-width:1px
+    style C3 fill:#E4C189,stroke:#E99151,stroke-width:1px
+
+    style D1 fill:#E4C189,stroke:#C44545,stroke-width:1px
+    style D2 fill:#E4C189,stroke:#C44545,stroke-width:1px
+    style D3 fill:#E4C189,stroke:#C44545,stroke-width:1px
+    style D4 fill:#E4C189,stroke:#C44545,stroke-width:1px
+
+    style E1 fill:#E4C189,stroke:#005D7B,stroke-width:1px
+    style E2 fill:#E4C189,stroke:#005D7B,stroke-width:1px
+    style E3 fill:#E4C189,stroke:#005D7B,stroke-width:1px
+```
+
+存储过程是数据库中预编译的SQL语句集合，它将多条SQL语句和程序逻辑控制语句（如IF-ELSE、WHILE循环等）封装在一起，形成一个可重复调用的数据库对象。
+
+**存储过程的优势：**
+
+在传统企业级应用中，存储过程具有一定的实用价值。当业务逻辑复杂时，需要执行大量SQL语句才能完成一个业务操作，此时可以将这些语句封装成存储过程，简化调用过程。由于存储过程在创建时就已经编译并存储在数据库中，执行时无需重新编译，因此相比动态SQL语句具有更好的执行性能。同时，一旦存储过程调试完成，其运行相对稳定可靠。
+
+**存储过程的局限性：**
+
+然而，在现代互联网架构中，存储过程的使用越来越少。主要原因包括：调试困难，缺乏成熟的调试工具；扩展性差，修改业务逻辑需要直接修改数据库对象；移植性差，不同数据库系统的存储过程语法差异较大；占用数据库资源，增加数据库服务器负担；版本管理困难，不便于进行代码版本控制。
+
+**行业规范：**
+
+基于以上原因，许多互联网公司的开发规范中明确限制或禁止使用存储过程。例如，《阿里巴巴Java开发手册》中明确规定禁止使用存储过程，推荐将业务逻辑放在应用层实现，保持数据库的简单和高效。
 
 ![阿里巴巴Java开发手册: 禁止存储过程](https://oss.javaguide.cn/github/javaguide/csdn/0fa082bc4d4f919065767476a41b2156.png)
 
-## drop、delete 与 truncate 区别？
+## DROP、DELETE、TRUNCATE 有什么区别？
 
-### 用法不同
+在数据库操作中，`DROP`、`DELETE` 和 `TRUNCATE` 是三个常用的数据删除命令，它们在功能、性能和使用场景上存在显著差异。
 
-- `drop`(丢弃数据): `drop table 表名` ，直接将表都删除掉，在删除表的时候使用。
-- `truncate` (清空数据) : `truncate table 表名` ，只删除表中的数据，再插入数据的时候自增长 id 又从 1 开始，在清空表中数据的时候使用。
-- `delete`（删除数据） : `delete from 表名 where 列名=值`，删除某一行的数据，如果不加 `where` 子句和`truncate table 表名`作用类似。
+**DROP命令：**
 
-`truncate` 和不带 `where`子句的 `delete`、以及 `drop` 都会删除表内的数据，但是 **`truncate` 和 `delete` 只删除数据不删除表的结构(定义)，执行 `drop` 语句，此表的结构也会删除，也就是执行`drop` 之后对应的表不复存在。**
+- 语法：`DROP TABLE 表名`
+- 作用：完全删除整个表，包括表结构、数据、索引、触发器、约束等所有相关对象
+- 使用场景：当表不再需要时使用
 
-### 属于不同的数据库语言
+**TRUNCATE命令：**
 
-`truncate` 和 `drop` 属于 DDL(数据定义语言)语句，操作立即生效，原数据不放到 rollback segment 中，不能回滚，操作不触发 trigger。而 `delete` 语句是 DML (数据库操作语言)语句，这个操作会放到 rollback segment 中，事务提交之后才生效。
+- 语法：`TRUNCATE TABLE 表名`
+- 作用：清空表中所有数据，但保留表结构
+- 特点：自增长字段（AUTO_INCREMENT）会重置为初始值（通常为1）
+- 使用场景：需要快速清空表数据但保留表结构时使用
 
-**DML 语句和 DDL 语句区别：**
+**DELETE命令：**
+
+- 语法：`DELETE FROM 表名 WHERE 条件`
+- 作用：删除满足条件的数据行，不带WHERE子句时删除所有数据
+- 特点：自增长字段不会重置，继续从之前的值递增
+- 使用场景：需要有选择地删除部分数据时使用
+
+`TRUNCATE` 和不带 `WHERE`子句的 `DELETE`、以及 `DROP` 都会删除表内的数据，但是 **`TRUNCATE` 和 `DELETE` 只删除数据不删除表的结构(定义)，执行 `DROP` 语句，此表的结构也会删除，也就是执行`DROP` 之后对应的表不复存在。**
+
+### 对表结构的影响
+
+- `DROP`：删除表结构和所有数据，表将不复存在
+- `TRUNCATE`：仅删除数据，保留表结构和定义
+- `DELETE`：仅删除数据，保留表结构和定义
+
+### 触发器
+
+- `DELETE` 操作会触发相关的DELETE触发器
+- `TRUNCATE` 和 `DROP` 不会触发DELETE触发器
+
+### 事务和回滚
+
+- `DROP` 和 `TRUNCATE` 属于DDL操作，执行后立即生效，不能回滚
+- `DELETE` 属于DML操作，可以回滚（在事务中）
+
+### 执行速度
+
+一般来说：`DROP` > `TRUNCATE` > `DELETE`（这个我没有实际测试过）。
+
+- `DELETE`命令执行的时候会产生数据库的`binlog`日志，而日志记录是需要消耗时间的，但是也有个好处方便数据回滚恢复。
+- `TRUNCATE`命令执行的时候不会产生数据库日志，因此比`DELETE`要快。除此之外，还会把表的自增值重置和索引恢复到初始大小等。
+- `DROP`命令会把表占用的空间全部释放掉。
+
+Tips：你应该更多地关注在使用场景上，而不是执行效率。
+
+## DML 语句和 DDL 语句区别是？
 
 - DML 是数据库操作语言（Data Manipulation Language）的缩写，是指对数据库中表记录的操作，主要包括表记录的插入、更新、删除和查询，是开发人员日常使用最频繁的操作。
 - DDL （Data Definition Language）是数据定义语言的缩写，简单来说，就是对数据库内部的对象进行创建、删除、修改的操作语言。它和 DML 语言的最大区别是 DML 只是对表内部数据的操作，而不涉及到表的定义、结构的修改，更不会涉及到其他对象。DDL 语句更多的被数据库管理员（DBA）所使用，一般的开发人员很少使用。
 
-另外，由于`select`不会对表进行破坏，所以有的地方也会把`select`单独区分开叫做数据库查询语言 DQL（Data Query Language）。
-
-### 执行速度不同
-
-一般来说：`drop` > `truncate` > `delete`（这个我没有实际测试过）。
-
-- `delete`命令执行的时候会产生数据库的`binlog`日志，而日志记录是需要消耗时间的，但是也有个好处方便数据回滚恢复。
-- `truncate`命令执行的时候不会产生数据库日志，因此比`delete`要快。除此之外，还会把表的自增值重置和索引恢复到初始大小等。
-- `drop`命令会把表占用的空间全部释放掉。
-
-Tips：你应该更多地关注在使用场景上，而不是执行效率。
+另外，由于`SELECT`不会对表进行破坏，所以有的地方也会把`SELECT`单独区分开叫做数据库查询语言 DQL（Data Query Language）。
 
 ## 数据库设计通常分为哪几步?
 
-1. **需求分析** : 分析用户的需求，包括数据、功能和性能需求。
-2. **概念结构设计** : 主要采用 E-R 模型进行设计，包括画 E-R 图。
-3. **逻辑结构设计** : 通过将 E-R 图转换成表，实现从 E-R 模型到关系模型的转换。
-4. **物理结构设计** : 主要是为所设计的数据库选择合适的存储结构和存取路径。
-5. **数据库实施** : 包括编程、测试和试运行
-6. **数据库的运行和维护** : 系统的运行与数据库的日常维护。
+```mermaid
+graph TD
+    A[数据库设计流程] --> B[1.需求分析]
+    B --> C[2.概念结构设计]
+    C --> D[3.逻辑结构设计]
+    D --> E[4.物理结构设计]
+    E --> F[5.数据库实施]
+    F --> G[6.运行和维护]
+
+    B --> B1[数据需求<br/>功能需求<br/>性能需求]
+    C --> C1[E-R建模<br/>实体关系图]
+    D --> D1[关系模型<br/>表结构设计<br/>规范化]
+    E --> E1[存储结构<br/>索引设计<br/>分区策略]
+    F --> F1[编程开发<br/>测试部署<br/>数据迁移]
+    G --> G1[性能监控<br/>备份恢复<br/>优化调整]
+
+    G -.反馈.-> B
+
+    style A fill:#4CA497,stroke:#00838F,stroke-width:3px,color:#fff
+    style B fill:#00838F,stroke:#005D7B,stroke-width:2px,color:#fff
+    style C fill:#E99151,stroke:#005D7B,stroke-width:2px,color:#fff
+    style D fill:#005D7B,stroke:#00838F,stroke-width:2px,color:#fff
+    style E fill:#C44545,stroke:#005D7B,stroke-width:2px,color:#fff
+    style F fill:#E99151,stroke:#005D7B,stroke-width:2px,color:#fff
+    style G fill:#00838F,stroke:#005D7B,stroke-width:2px,color:#fff
+
+    style B1 fill:#E4C189,stroke:#00838F,stroke-width:1px
+    style C1 fill:#E4C189,stroke:#E99151,stroke-width:1px
+    style D1 fill:#E4C189,stroke:#005D7B,stroke-width:1px
+    style E1 fill:#E4C189,stroke:#C44545,stroke-width:1px
+    style F1 fill:#E4C189,stroke:#E99151,stroke-width:1px
+    style G1 fill:#E4C189,stroke:#00838F,stroke-width:1px
+```
+
+### 1. 需求分析阶段
+
+**目标：** 深入了解和分析用户需求，明确系统边界
+**主要工作：**
+
+- 收集和分析数据需求：确定需要存储哪些数据，数据量大小，数据更新频率
+- 明确功能需求：系统需要支持哪些业务操作，各操作的优先级
+- 定义性能需求：响应时间要求，并发用户数，数据吞吐量
+- 确定安全需求：数据访问权限，加密要求，审计要求
+  **产出物：** 需求规格说明书、数据字典初稿
+
+### 2. 概念结构设计阶段
+
+**目标：** 将需求转化为信息世界的概念模型
+**主要工作：**
+
+- 识别实体：确定系统中的主要对象
+- 定义属性：明确每个实体的特征
+- 建立联系：确定实体之间的关系（一对一、一对多、多对多）
+- 绘制E-R图（实体-关系图）
+  **产出物：** E-R图、概念数据模型文档
+
+### 3. 逻辑结构设计阶段
+
+**目标：** 将概念模型转换为特定DBMS支持的逻辑模型
+**主要工作：**
+
+- E-R图向关系模型转换：将实体转换为表，属性转换为字段
+- 规范化处理：通过范式化消除数据冗余和更新异常（通常达到3NF）
+- 定义完整性约束：主键、外键、唯一性约束、检查约束
+- 优化模型：根据性能需求进行适当的反规范化
+  **产出物：** 逻辑数据模型、表结构设计文档
+
+### 4. 物理结构设计阶段
+
+**目标：** 确定数据的物理存储方案和访问方法
+**主要工作：**
+
+- 选择存储引擎：如MySQL的InnoDB、MyISAM等
+- 设计索引策略：确定需要建立的索引类型和字段
+- 分区设计：对大表进行分区以提高性能
+- 确定存储参数：表空间大小、数据文件位置、缓冲区配置
+- 制定备份策略：全量备份、增量备份的频率和方式
+  **产出物：** 物理设计文档、索引设计方案
+
+### 5. 数据库实施阶段
+
+**目标：** 将设计转化为实际运行的数据库系统
+**主要工作：**
+
+- 创建数据库和表结构：编写和执行DDL语句
+- 开发存储过程和触发器（如需要）
+- 编写应用程序接口
+- 导入初始数据
+- 系统集成测试：功能测试、性能测试、压力测试
+- 用户培训和文档编写
+  **产出物：** 数据库脚本、测试报告、用户手册
+
+### 6. 运行和维护阶段
+
+**目标：** 确保数据库系统稳定高效运行
+**主要工作：**
+
+- 日常监控：性能监控、空间监控、错误日志分析
+- 性能优化：查询优化、索引调整、参数调优
+- 数据备份和恢复：定期备份、恢复演练
+- 安全管理：权限管理、安全补丁更新、审计
+- 容量规划：预测数据增长，提前扩容
+- 变更管理：需求变更的评估和实施
+  **产出物：** 运维报告、优化方案、变更记录
+
+### 设计原则
+
+在整个设计过程中应遵循：数据独立性原则、完整性原则、安全性原则、可扩展性原则和标准化原则。
 
 ## 参考
 
