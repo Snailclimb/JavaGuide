@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: HashMap,哈希表,散列冲突,拉链法,红黑树,JDK1.8,扰动函数,负载因子,扩容,rehash,树化阈值,TREEIFY_THRESHOLD,MIN_TREEIFY_CAPACITY,非线程安全,hashCode,数组+链表
+      content: HashMap源码,哈希表,红黑树,链表,扰动函数,负载因子,HashMap扩容,哈希冲突,JDK1.8优化
   - - meta
     - name: description
-      content: 深入解析 HashMap 底层实现，涵盖 JDK1.7/1.8 结构差异、hash 计算与扰动函数、负载因子与扩容、链表转红黑树的树化机制等关键细节。
+      content: HashMap源码深度剖析：详解JDK1.7/1.8结构差异、hash扰动函数、0.75负载因子、扩容rehash机制、链表转红黑树阈值等HashMap核心原理。
 ---
 
 <!-- @include: @article-header.snippet.md -->

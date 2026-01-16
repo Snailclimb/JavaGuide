@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: 值传递,引用传递,参数传递,对象引用,示例解析,方法调用
+      content: Java值传递,引用传递,参数传递,形参实参,对象引用,方法调用,Java传参机制
   - - meta
     - name: description
-      content: 通过示例解释 Java 参数传递模型，澄清值传递与引用传递的常见误区。
+      content: 详解Java为什么只有值传递：通过示例深入分析Java参数传递机制，澄清值传递与引用传递的常见误区，理解形参实参本质区别。
 ---
 
 开始之前，我们先来搞懂下面这两个概念：

@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: 字符集,编码,UTF-8,UTF-16,GBK,utf8mb4,emoji,存储与传输
+      content: 字符集,字符编码,UTF-8,UTF-16,GBK,GB2312,utf8mb4,ASCII,Unicode,MySQL字符集,emoji存储
   - - meta
     - name: description
-      content: 从编码与字符集原理入手，解释 utf8 与 utf8mb4 差异与 emoji 存储问题，指导数据库与应用的正确配置。
+      content: 详解字符集与字符编码原理，深入分析ASCII、GB2312、GBK、UTF-8、UTF-16等常见编码，解释MySQL中utf8与utf8mb4的区别以及emoji存储问题的解决方案。
 ---
 
 MySQL 字符编码集中有两套 UTF-8 编码实现：**`utf8`** 和 **`utf8mb4`**。

@@ -7,10 +7,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: IO 模型,阻塞IO,非阻塞IO,同步异步,多路复用,Reactor,Proactor
+      content: Java IO模型,BIO,NIO,AIO,阻塞IO,非阻塞IO,多路复用,Reactor模式,Proactor模式
   - - meta
     - name: description
-      content: 总结常见 IO 模型与并发处理方式，理解阻塞/非阻塞与同步/异步差异。
+      content: Java IO模型详解：深入剖析BIO阻塞IO、NIO非阻塞IO、AIO异步IO三种模型、多路复用机制、Reactor/Proactor模式、同步异步阻塞非阻塞概念辨析。
 ---
 
 IO 模型这块确实挺难理解的，需要太多计算机底层知识。写这篇文章用了挺久，就非常希望能把我所知道的讲出来吧!希望朋友们能有收获！为了写这篇文章，还翻看了一下《UNIX 网络编程》这本书，太难了，我滴乖乖！心痛~

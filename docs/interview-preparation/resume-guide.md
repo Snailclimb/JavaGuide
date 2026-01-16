@@ -2,6 +2,13 @@
 title: 程序员简历编写指南
 category: 面试准备
 icon: jianli
+head:
+  - - meta
+    - name: keywords
+      content: 程序员简历,Java简历,简历优化,项目经历写法,简历模板,校招简历,社招简历,面试准备
+  - - meta
+    - name: description
+      content: 程序员简历编写指南：从筛选逻辑出发讲清简历结构、项目经历与技能描述写法，提供简历模板与避坑建议，帮助你提高简历通过率并让面试官更好地深挖你的亮点。
 ---
 
 ::: tip 友情提示

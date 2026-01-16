@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: ReentrantLock,AQS,公平锁,非公平锁,可重入,lock/unlock,Sync Queue,独占锁,compareAndSetState,acquire
+      content: ReentrantLock,AQS,公平锁,非公平锁,可重入锁,lock unlock,ReentrantLock原理,synchronized对比
   - - meta
     - name: description
-      content: 结合 ReentrantLock 的实现剖析 AQS 工作原理，比较公平与非公平锁、与 synchronized 的差异以及独占锁的加解锁流程。
+      content: ReentrantLock与AQS原理深度解析：详解ReentrantLock可重入锁实现、公平锁与非公平锁区别、基于AQS的加锁解锁流程、与synchronized性能对比。
 ---
 
 > 本文转载自：<https://tech.meituan.com/2019/12/05/aqs-theory-and-apply.html>

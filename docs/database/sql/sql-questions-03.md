@@ -7,10 +7,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: SQL 面试题,聚合函数,截断平均,窗口,难题解析,性能
+      content: SQL面试题,聚合函数,COUNT,SUM,AVG,MAX,MIN,GROUP BY,HAVING,截断平均值
   - - meta
     - name: description
-      content: 围绕聚合函数与复杂统计题型，讲解截断平均等解法与实现要点，兼顾性能与正确性。
+      content: SQL常见面试题总结第三篇，深入讲解聚合函数COUNT、SUM、AVG、MAX、MIN的使用，以及GROUP BY分组、HAVING过滤、截断平均值计算等进阶技巧。
 ---
 
 > 题目来源于：[牛客题霸 - SQL 进阶挑战](https://www.nowcoder.com/exam/oj?page=1&tab=SQL%E7%AF%87&topicId=240)

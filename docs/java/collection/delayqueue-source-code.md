@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: DelayQueue,延迟队列,Delayed,getDelay,任务调度,PriorityQueue,无界队列,ReentrantLock,Condition
+      content: DelayQueue源码,延迟队列,Delayed接口,延时任务,定时任务,订单超时,PriorityQueue实现
   - - meta
     - name: description
-      content: 介绍 DelayQueue 的延时任务队列原理与常见场景，用例包含延时执行与过期删除，解析基于 PriorityQueue 的线程安全实现。
+      content: DelayQueue源码深度解析：详解延迟队列实现原理、Delayed接口使用、延时任务调度、订单超时取消等应用场景、基于PriorityQueue的线程安全设计。
 ---
 
 ## DelayQueue 简介

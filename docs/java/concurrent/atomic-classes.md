@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: 原子类,AtomicInteger,AtomicLong,AtomicBoolean,AtomicReference,CAS,乐观锁,原子操作,JUC
+      content: Atomic原子类,AtomicInteger,AtomicLong,AtomicReference,CAS原子操作,JUC并发包,原子类使用
   - - meta
     - name: description
-      content: 概览 JUC 原子类的类型与使用场景，基于 CAS 的原子性保障与并发性能，理解原子类相较于锁的优势与局限。
+      content: Java原子类详解：全面总结JUC包Atomic原子类体系、AtomicInteger/AtomicLong/AtomicReference等常用类、基于CAS的线程安全实现、使用场景与性能优势。
 ---
 
 ## Atomic 原子类介绍

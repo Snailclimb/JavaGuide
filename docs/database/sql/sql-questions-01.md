@@ -7,10 +7,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: SQL 面试题,查询,分组,排序,连接,子查询,聚合
+      content: SQL面试题,SELECT查询,WHERE条件,ORDER BY排序,DISTINCT去重,LIMIT分页,SQL基础
   - - meta
     - name: description
-      content: 收录 SQL 基础高频题与解法，涵盖查询/分组/排序/连接等典型场景，强调可读性与性能的兼顾。
+      content: SQL常见面试题总结第一篇，涵盖SELECT检索数据、WHERE条件过滤、ORDER BY排序、DISTINCT去重、LIMIT分页等基础查询操作及牛客真题解析。
 ---
 
 > 题目来源于：[牛客题霸 - SQL 必知必会](https://www.nowcoder.com/exam/oj?page=1&tab=SQL%E7%AF%87&topicId=298)

@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: LinkedHashMap,插入顺序,访问顺序,双向链表,LRU,迭代有序,HashMap 扩展,遍历效率
+      content: LinkedHashMap源码,插入顺序,访问顺序,LRU缓存,双向链表,有序Map,LinkedHashMap实现原理
   - - meta
     - name: description
-      content: 解析 LinkedHashMap 在 HashMap 基础上维护双向链表以实现插入/访问有序的机制，及其在 LRU 缓存等场景的应用。
+      content: LinkedHashMap源码深度剖析：详解LinkedHashMap维护双向链表实现插入/访问有序、LRU缓存实现、与HashMap区别及遍历效率优化。
 ---
 
 ## LinkedHashMap 简介

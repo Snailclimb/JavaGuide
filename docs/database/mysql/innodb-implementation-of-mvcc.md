@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: InnoDB,MVCC,快照读,当前读,一致性视图,隐藏列,事务版本,间隙锁
+      content: MVCC,多版本并发控制,InnoDB,快照读,当前读,一致性视图,ReadView,undo log,隐藏列,事务隔离
   - - meta
     - name: description
-      content: 深入解析 InnoDB 的 MVCC 实现细节与读写隔离，覆盖一致性视图、快照/当前读与隐藏列、间隙锁的配合。
+      content: 深入剖析InnoDB存储引擎MVCC的实现原理，详解隐藏列、undo log版本链、ReadView机制，以及快照读与当前读的区别，理解MySQL如何实现事务隔离。
 ---
 
 ## 多版本并发控制 (Multi-Version Concurrency Control)

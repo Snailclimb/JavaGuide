@@ -3,6 +3,13 @@ title: 数据库基础知识总结
 category: 数据库
 tag:
   - 数据库基础
+head:
+  - - meta
+    - name: keywords
+      content: 数据库,数据库管理系统,DBMS,数据库系统,DBA,SQL,DDL,DML,数据模型,关系型数据库,主键,外键,ER图
+  - - meta
+    - name: description
+      content: 数据库基础知识总结，包括数据库、DBMS、数据库系统、DBA的概念区别，DBMS核心功能，元组、码、主键外键等关系型数据库核心概念，以及ER图的使用方法。
 ---
 
 <!-- @include: @small-advertisement.snippet.md -->

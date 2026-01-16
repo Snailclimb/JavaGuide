@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: CAS,Compare-And-Swap,Unsafe,原子操作,ABA 问题,自旋,乐观锁,原子类
+      content: CAS,Compare-And-Swap,原子操作,ABA问题,自旋锁,乐观锁,Unsafe,CAS原理
   - - meta
     - name: description
-      content: 解析 Java 中 CAS 的实现与原理，涵盖 Unsafe 提供的原子操作、常见问题如 ABA 以及与锁的对比。
+      content: CAS比较并交换深度解析：详解CAS原子操作原理、Unsafe类实现、ABA问题及解决方案、自旋锁机制、与悲观锁性能对比。
 ---
 
 乐观锁和悲观锁的介绍以及乐观锁常见实现方式可以阅读笔者写的这篇文章：[乐观锁和悲观锁详解](https://javaguide.cn/java/concurrent/optimistic-lock-and-pessimistic-lock.html)。

@@ -7,10 +7,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: SQL 面试题,空值处理,统计,未完成率,CASE,聚合
+      content: SQL面试题,NULL空值处理,IFNULL,COALESCE,CASE WHEN,条件统计,完成率计算
   - - meta
     - name: description
-      content: 解析空值处理与统计类题目，结合 CASE 与聚合函数给出稳健实现，避免常见陷阱。
+      content: SQL常见面试题总结第五篇，详解NULL空值处理技巧，包括IFNULL、COALESCE函数，以及使用CASE WHEN进行条件统计和完成率计算。
 ---
 
 > 题目来源于：[牛客题霸 - SQL 进阶挑战](https://www.nowcoder.com/exam/oj?page=1&tab=SQL%E7%AF%87&topicId=240)

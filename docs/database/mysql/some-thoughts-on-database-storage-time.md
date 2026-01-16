@@ -6,7 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: MySQL 日期类型选择, MySQL 时间存储最佳实践, MySQL 时间存储效率, MySQL DATETIME 和 TIMESTAMP 区别, MySQL 时间戳存储, MySQL 数据库时间存储类型, MySQL 开发日期推荐, MySQL 字符串存储日期的缺点, MySQL 时区设置方法, MySQL 日期范围对比, 高性能 MySQL 日期存储, MySQL UNIX_TIMESTAMP 用法, 数值型时间戳优缺点, MySQL 时间存储性能优化, MySQL TIMESTAMP 时区转换, MySQL 时间格式转换, MySQL 时间存储空间对比, MySQL 时间类型选择建议, MySQL 日期类型性能分析, 数据库时间存储优化
+      content: MySQL时间存储,DATETIME,TIMESTAMP,时间戳,时区处理,日期类型选择,MySQL日期函数
+  - - meta
+    - name: description
+      content: 深入对比MySQL中DATETIME和TIMESTAMP的区别，分析时区处理、存储空间、取值范围等差异，给出日期类型选择的最佳实践建议。
 ---
 
 在日常的软件开发工作中，存储时间是一项基础且常见的需求。无论是记录数据的操作时间、金融交易的发生时间，还是行程的出发时间、用户的下单时间等等，时间信息与我们的业务逻辑和系统功能紧密相关。因此，正确选择和使用 MySQL 的日期时间类型至关重要，其恰当与否甚至可能对业务的准确性和系统的稳定性产生显著影响。

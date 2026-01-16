@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: HashMap,ConcurrentHashMap,Hashtable,List,Set
+      content: HashMap,ConcurrentHashMap,Hashtable,红黑树,哈希冲突,线程安全,集合面试题
   - - meta
     - name: description
-      content: Java集合常见知识点和面试题总结，希望对你有帮助！
+      content: Java集合高频面试题：深入分析HashMap底层原理、红黑树转换、哈希冲突解决、ConcurrentHashMap线程安全机制、与Hashtable区别等核心知识点。
 ---
 
 <!-- @include: @article-header.snippet.md -->

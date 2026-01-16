@@ -7,10 +7,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: SQL 语法,DDL,DML,DQL,约束,事务,索引,范式
+      content: SQL语法,DDL,DML,DQL,DCL,CREATE,SELECT,INSERT,UPDATE,DELETE,JOIN连接,子查询
   - - meta
     - name: description
-      content: 系统整理 SQL 基础语法与术语，覆盖 DDL/DML/DQL、约束与事务索引，形成入门到实践的知识路径。
+      content: SQL语法基础知识总结，系统讲解DDL数据定义、DML数据操作、DQL数据查询、DCL数据控制语言，涵盖表操作、约束、索引、事务、连接查询等核心知识点。
 ---
 
 > 本文整理完善自下面这两份资料：

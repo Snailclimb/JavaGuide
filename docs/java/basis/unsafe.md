@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: Unsafe,低级操作,内存访问,CAS,堆外内存,本地方法,风险
+      content: Unsafe类,内存操作,CAS原子操作,堆外内存,直接内存,sun.misc.Unsafe,JUC底层实现
   - - meta
     - name: description
-      content: 介绍 sun.misc.Unsafe 的能力与典型用法，涵盖内存与对象操作、CAS 支持及风险与限制。
+      content: 深入解析Java魔法类Unsafe：讲解Unsafe直接内存操作、CAS原子操作、对象实例化等底层能力，理解JUC并发工具类实现原理及使用风险。
 ---
 
 > 本文整理完善自下面这两篇优秀的文章：

@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: 代理模式,静态代理,动态代理,JDK 动态代理,CGLIB,横切增强,设计模式
+      content: Java代理模式,静态代理,动态代理,JDK动态代理,CGLIB代理,AOP,设计模式,代理实现
   - - meta
     - name: description
-      content: 详解 Java 代理模式的静态与动态实现，理解 JDK/CGLIB 动态代理的原理与应用场景。
+      content: 详解Java代理模式原理与实现：对比静态代理与动态代理差异，深入分析JDK动态代理和CGLIB代理机制，理解AOP横切关注点实现。
 ---
 
 ## 1. 代理模式

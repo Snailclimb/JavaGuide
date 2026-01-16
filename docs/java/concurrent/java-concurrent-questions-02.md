@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: 多线程,死锁,synchronized,ReentrantLock,volatile,ThreadLocal,线程池,CAS,AQS
+      content: synchronized,ReentrantLock,volatile,JMM,happens-before,可见性,原子性,有序性,并发面试题
   - - meta
     - name: description
-      content: Java并发常见知识点和面试题总结（含详细解答）。
+      content: Java并发进阶面试题：深入解析synchronized与ReentrantLock区别、volatile可见性保证、JMM内存模型、happens-before原则等并发编程核心机制。
 ---
 
 <!-- @include: @article-header.snippet.md -->

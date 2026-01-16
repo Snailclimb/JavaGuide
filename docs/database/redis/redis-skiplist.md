@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: Redis,跳表,有序集合,ZSet,时间复杂度,平衡树对比,实现原理
+      content: Redis跳表,SkipList,有序集合,Zset,跳表原理,平衡树对比,Redis数据结构
   - - meta
     - name: description
-      content: 深入讲解 Redis 有序集合为何选择跳表实现，结合时间复杂度与平衡树对比，理解工程权衡与源码细节。
+      content: 深入讲解Redis有序集合Zset为何选择跳表而非红黑树、B+树实现，详解跳表的数据结构原理、时间复杂度分析和Redis源码实现。
 ---
 
 ## 前言

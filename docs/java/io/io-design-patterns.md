@@ -7,10 +7,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: IO 设计模式,装饰器,适配器,职责链,流式处理,FilterInputStream
+      content: Java IO设计模式,装饰器模式,适配器模式,模板方法模式,FilterInputStream,IO流设计
   - - meta
     - name: description
-      content: 结合设计模式理解 Java IO 的类结构与扩展方式，掌握流式处理的典型用法。
+      content: Java IO设计模式深度解析：详解装饰器模式在BufferedInputStream中应用、适配器模式InputStreamReader实现、模板方法模式InputStream设计，理解Java IO类库架构。
 ---
 
 这篇文章我们简单来看看我们从 IO 中能够学习到哪些设计模式的应用。

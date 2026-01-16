@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: 虚拟线程,Virtual Threads,Project Loom,Java 21,平台线程,轻量级线程,并发,I/O 密集型,兼容性
+      content: Java虚拟线程,Virtual Threads,Project Loom,Java 21新特性,轻量级线程,协程,虚拟线程原理
   - - meta
     - name: description
-      content: 总结 Java 21 虚拟线程的概念与实践，解析与平台线程关系、适用场景、优势与限制以及常见问题。
+      content: Java 21虚拟线程详解：全面解析Virtual Threads虚拟线程原理、与平台线程区别、Project Loom项目、适用IO密集型场景、使用注意事项与最佳实践。
 ---
 
 > 本文部分内容来自 [Lorin](https://github.com/Lorin-github) 的[PR](https://github.com/Snailclimb/JavaGuide/pull/2190)。

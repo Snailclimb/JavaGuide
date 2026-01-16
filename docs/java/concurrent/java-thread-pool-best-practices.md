@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: 线程池最佳实践,ThreadPoolExecutor,Executors 风险,有界队列,OOM,拒绝策略,监控,线程命名,参数配置
+      content: 线程池最佳实践,ThreadPoolExecutor配置,Executors陷阱,OOM风险,拒绝策略,线程池监控,线程命名
   - - meta
     - name: description
-      content: 总结线程池使用的关键实践与避坑指南，强调手动配置、避免 Executors OOM 风险、监控与命名等重要事项。
+      content: Java线程池最佳实践总结：详解线程池参数配置、避免Executors工厂方法OOM风险、拒绝策略选择、线程池监控、线程命名规范等生产级实践。
 ---
 
 简单总结一下我了解的使用线程池的时候应该注意的东西，网上似乎还没有专门写这方面的文章。

@@ -7,10 +7,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: 自增主键,不连续,事务回滚,并发插入,计数器,聚簇索引
+      content: MySQL自增主键,AUTO_INCREMENT,主键不连续,事务回滚,批量插入,唯一键冲突,innodb_autoinc_lock_mode
   - - meta
     - name: description
-      content: 解析自增主键不连续的根因与触发场景，结合事务回滚与并发插入，说明 InnoDB 计数器与聚簇索引的行为。
+      content: 详解MySQL自增主键不连续的原因，分析唯一键冲突、事务回滚、批量插入等场景下自增值的分配机制，以及InnoDB自增锁模式的配置与影响。
 ---
 
 > 作者：飞天小牛肉

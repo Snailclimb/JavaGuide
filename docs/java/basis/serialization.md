@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: 序列化,反序列化,Serializable,transient,serialVersionUID,ObjectInputStream,ObjectOutputStream,协议
+      content: Java序列化,反序列化,Serializable接口,transient关键字,serialVersionUID,序列化协议,对象持久化
   - - meta
     - name: description
-      content: 讲解 Java 对象的序列化/反序列化机制与关键细节，涵盖 transient、版本号与常见应用场景。
+      content: 深入解析Java序列化与反序列化机制：详解Serializable接口、transient关键字、serialVersionUID作用、序列化协议选择及RPC、缓存等应用场景。
 ---
 
 ## 什么是序列化和反序列化?

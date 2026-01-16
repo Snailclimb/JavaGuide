@@ -7,10 +7,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: SQL 面试题,窗口函数,ROW_NUMBER,排名,分组,MySQL 8
+      content: SQL面试题,窗口函数,ROW_NUMBER,RANK,DENSE_RANK,NTILE,LAG,LEAD,MySQL 8.0
   - - meta
     - name: description
-      content: 总结 MySQL 8 引入的窗口函数用法，包含排序与分组统计场景的高频题与实现技巧。
+      content: SQL常见面试题总结第四篇，详解MySQL 8.0窗口函数ROW_NUMBER、RANK、DENSE_RANK、NTILE、LAG、LEAD等的用法和应用场景。
 ---
 
 > 题目来源于：[牛客题霸 - SQL 进阶挑战](https://www.nowcoder.com/exam/oj?page=1&tab=SQL%E7%AF%87&topicId=240)

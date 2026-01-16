@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: Redis,内存碎片,分配器,内存管理,内存占用,优化
+      content: Redis内存碎片,内存碎片率,jemalloc,内存分配,activedefrag,内存优化,Redis内存管理
   - - meta
     - name: description
-      content: 解析 Redis 内存碎片的成因与影响，结合分配器与内存管理策略，给出观测与优化方向，降低资源浪费。
+      content: 深入解析Redis内存碎片产生的原因、判断方法和优化方案，包括内存碎片率计算、jemalloc分配器原理、自动内存碎片清理配置等。
 ---
 
 ## 什么是内存碎片?

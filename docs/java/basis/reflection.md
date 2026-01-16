@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: 反射,Class,Method,Field,动态代理,运行时分析,框架原理
+      content: Java反射,反射机制,Class类,Method方法,Field字段,动态代理,框架原理,运行时操作
   - - meta
     - name: description
-      content: 系统讲解 Java 反射的核心概念与常见用法，结合动态代理与框架底层机制理解运行时能力。
+      content: 深入讲解Java反射机制原理与应用：掌握Class、Method、Field核心API，理解反射在Spring、MyBatis等框架中的应用，学习动态代理实现。
 ---
 
 ## 何为反射？

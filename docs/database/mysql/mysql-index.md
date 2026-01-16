@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: MySQL 索引,B+树,覆盖索引,联合索引,选择性,回表,索引下推
+      content: MySQL索引,B+树索引,聚簇索引,覆盖索引,联合索引,索引下推,回表查询,索引失效,最左前缀原则
   - - meta
     - name: description
-      content: 深入解析 MySQL 索引结构与选型，覆盖 B+ 树、联合与覆盖索引、选择性与回表等关键优化点与实践。
+      content: MySQL索引详解，深入剖析B+树索引结构、聚簇索引与二级索引的区别、联合索引与最左前缀原则、覆盖索引与索引下推优化，以及常见的索引失效场景。
 ---
 
 > 感谢[WT-AHA](https://github.com/WT-AHA)对本文的完善，相关 PR：<https://github.com/Snailclimb/JavaGuide/pull/1648> 。

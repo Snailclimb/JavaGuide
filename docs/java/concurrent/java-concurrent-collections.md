@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: 并发容器,ConcurrentHashMap,CopyOnWriteArrayList,ConcurrentLinkedQueue,BlockingQueue,ConcurrentSkipListMap,JUC
+      content: Java并发容器,ConcurrentHashMap,CopyOnWriteArrayList,BlockingQueue,ConcurrentLinkedQueue,线程安全容器
   - - meta
     - name: description
-      content: 总览 JUC 并发容器及特性，涵盖线程安全 Map、读多写少 List、非阻塞队列与阻塞队列、跳表等常用数据结构。
+      content: Java并发容器全面总结：详解ConcurrentHashMap/CopyOnWriteArrayList/BlockingQueue等JUC线程安全容器特性、适用场景与性能对比。
 ---
 
 JDK 提供的这些容器大部分在 `java.util.concurrent` 包中。

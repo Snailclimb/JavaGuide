@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: ConcurrentHashMap,线程安全,分段锁,Segment,CAS,红黑树,链表,并发级别,JDK7,JDK8,并发容器
+      content: ConcurrentHashMap源码,线程安全Map,分段锁Segment,CAS操作,并发容器,JDK7与JDK8区别
   - - meta
     - name: description
-      content: 对比 JDK7/8 的 ConcurrentHashMap 实现，解析分段锁、CAS、链表/红黑树等并发设计，理解线程安全 Map 的核心原理。
+      content: ConcurrentHashMap源码深入解析：对比JDK1.7分段锁Segment与JDK1.8 CAS+Synchronized实现，理解高并发Map的线程安全机制与性能优化。
 ---
 
 > 本文来自末读代码投稿：<https://mp.weixin.qq.com/s/AHWzboztt53ZfFZmsSnMSw> ，JavaGuide 对原文进行了大篇幅改进优化。

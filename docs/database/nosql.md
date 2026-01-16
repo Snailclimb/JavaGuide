@@ -8,10 +8,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: NoSQL,键值,文档,列族,图数据库,分布式,扩展性,数据模型
+      content: NoSQL,Redis,MongoDB,HBase,Cassandra,键值数据库,文档数据库,图数据库,宽列存储,SQL与NoSQL区别
   - - meta
     - name: description
-      content: 总结 NoSQL 的分类与特性，对比关系型数据库，结合分布式与扩展性场景，指导模型与选型。
+      content: NoSQL数据库基础知识总结，包括NoSQL与SQL的区别、NoSQL的优势、四种NoSQL数据库类型（键值、文档、图形、宽列）及其代表产品Redis、MongoDB、Neo4j等的应用场景。
 ---
 
 ## NoSQL 是什么？

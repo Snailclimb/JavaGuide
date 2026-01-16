@@ -7,10 +7,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: IO 基础,字节流,字符流,缓冲,文件操作,InputStream,Reader,OutputStream,Writer
+      content: Java IO,字节流,字符流,InputStream,OutputStream,Reader,Writer,文件操作,缓冲流
   - - meta
     - name: description
-      content: 概述 Java IO 的基础概念与核心类，理解字节/字符流、缓冲与文件读写。
+      content: Java IO基础知识全面总结：详解字节流与字符流区别、InputStream/OutputStream字节流、Reader/Writer字符流、缓冲流优化、文件读写操作。
 ---
 
 <!-- @include: @small-advertisement.snippet.md -->

@@ -7,10 +7,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: MongoDB 索引,复合索引,多键索引,文本索引,地理索引,查询优化
+      content: MongoDB索引,复合索引,多键索引,文本索引,地理位置索引,TTL索引,MongoDB查询优化,索引设计
   - - meta
     - name: description
-      content: 讲解 MongoDB 常见索引类型与适用场景，结合查询优化与写入开销权衡，提升检索性能与稳定性。
+      content: MongoDB常见面试题总结下篇，深入讲解MongoDB各类索引（单字段、复合、多键、文本、地理位置、TTL）的原理、使用场景和查询优化技巧。
 ---
 
 ## MongoDB 索引

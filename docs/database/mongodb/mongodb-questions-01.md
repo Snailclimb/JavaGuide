@@ -7,10 +7,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: MongoDB 面试,文档存储,无模式,副本集,分片,索引,一致性
+      content: MongoDB面试题,文档数据库,BSON,副本集,分片集群,MongoDB索引,WiredTiger,聚合管道
   - - meta
     - name: description
-      content: 汇总 MongoDB 基础与架构高频题，涵盖文档模型、索引、副本集与分片，强调高可用与一致性实践。
+      content: MongoDB常见面试题总结上篇，详解MongoDB基础概念、存储结构、数据类型、副本集高可用、分片集群水平扩展等核心知识点，助力后端面试准备。
 ---
 
 > 少部分内容参考了 MongoDB 官方文档的描述，在此说明一下。

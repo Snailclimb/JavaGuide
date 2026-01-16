@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: Redis,延时任务,过期事件,Redisson,DelayedQueue,可靠性,一致性
+      content: Redis延时任务,延时队列,过期事件监听,Redisson DelayedQueue,订单超时,定时任务
   - - meta
     - name: description
-      content: 对比 Redis 过期事件与 Redisson 延时队列两种方案，分析可靠性与一致性权衡，给出工程选型建议。
+      content: 详解基于Redis实现延时任务的两种方案：过期事件监听和Redisson延时队列，分析各方案的优缺点、可靠性问题和适用场景。
 ---
 
 基于 Redis 实现延时任务的功能无非就下面两种方案：

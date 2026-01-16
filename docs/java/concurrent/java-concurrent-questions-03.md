@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: 多线程,死锁,线程池,CAS,AQS
+      content: ThreadLocal,线程池,Executor框架,Future,CompletableFuture,并发工具类,并发容器,并发面试题
   - - meta
     - name: description
-      content: Java并发常见知识点和面试题总结（含详细解答），希望对你有帮助！
+      content: Java并发高级面试题：详解ThreadLocal原理与内存泄漏、线程池参数配置与工作原理、Future/CompletableFuture异步编程、并发容器与工具类使用。
 ---
 
 <!-- @include: @article-header.snippet.md -->

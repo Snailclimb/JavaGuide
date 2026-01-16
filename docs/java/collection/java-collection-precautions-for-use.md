@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: Java集合,使用注意,判空,isEmpty,size,并发容器,最佳实践,ConcurrentLinkedQueue
+      content: Java集合最佳实践,集合判空,Arrays.asList,subList,并发容器,集合使用注意事项,性能优化
   - - meta
     - name: description
-      content: 总结 Java 集合常见使用注意事项与最佳实践，覆盖判空、并发容器特性等，帮助避免易错点与性能问题。
+      content: Java集合使用注意事项总结：基于阿里巴巴开发手册梳理集合判空、Arrays.asList陷阱、subList问题、并发容器选择等最佳实践，避免常见错误。
 ---
 
 这篇文章我根据《阿里巴巴 Java 开发手册》总结了关于集合使用常见的注意事项以及其具体原理。

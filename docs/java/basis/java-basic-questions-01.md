@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: Java特点,Java SE,Java EE,Java ME,Java虚拟机,JVM,JDK,JRE,字节码,Java编译与解释,AOT编译,云原生,AOT与JIT对比,GraalVM,Oracle JDK与OpenJDK区别,OpenJDK,LTS支持,多线程支持,静态变量,成员变量与局部变量区别,包装类型缓存机制,自动装箱与拆箱,浮点数精度丢失,BigDecimal,Java基本数据类型,Java标识符与关键字,移位运算符,Java注释,静态方法与实例方法,方法重载与重写,可变长参数,Java性能优化
+      content: Java基础,JVM,JDK,JRE,Java SE,字节码,Java编译,自动装箱,基本数据类型,方法重载,Java面试题
   - - meta
     - name: description
-      content: 全网质量最高的Java基础常见知识点和面试题总结，希望对你有帮助！
+      content: Java基础常见面试题总结：包含Java语言特点、JVM/JDK/JRE区别、字节码详解、基本数据类型、自动装箱拆箱、方法重载与重写等核心知识点，助力Java开发者面试通关。
 ---
 
 <!-- @include: @small-advertisement.snippet.md -->

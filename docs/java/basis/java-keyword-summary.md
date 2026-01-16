@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: Java 关键字,final,static,this,super,abstract,interface,enum,volatile,transient
+      content: Java关键字,final关键字,static关键字,this关键字,super关键字,volatile,transient,synchronized
   - - meta
     - name: description
-      content: 梳理常见 Java 关键字的语义与用法差异，便于快速查阅与掌握。
+      content: 系统总结Java常用关键字：详解final、static、this、super、volatile、transient、synchronized等关键字用法与区别，助力Java开发者掌握核心语法。
 ---
 
 # final,static,this,super 关键字总结

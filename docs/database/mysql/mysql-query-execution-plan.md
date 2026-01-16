@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: MySQL基础,MySQL执行计划,EXPLAIN,查询优化器
+      content: MySQL执行计划,EXPLAIN,查询优化器,SQL性能分析,索引命中,type访问类型,Extra字段,慢查询优化
   - - meta
     - name: description
-      content: 执行计划是指一条 SQL 语句在经过MySQL 查询优化器的优化会后，具体的执行方式。优化 SQL 的第一步应该是读懂 SQL 的执行计划。
+      content: 详解MySQL EXPLAIN执行计划的各列含义，包括id、select_type、type、key、rows、Extra等关键字段解读，帮助你分析SQL性能瓶颈并进行针对性优化。
 ---
 
 > 本文来自公号 MySQL 技术，JavaGuide 对其做了补充完善。原文地址：<https://mp.weixin.qq.com/s/d5OowNLtXBGEAbT31sSH4g>

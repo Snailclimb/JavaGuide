@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: Java异常处理, Java泛型, Java反射, Java注解, Java SPI机制, Java序列化, Java反序列化, Java IO流, Java语法糖, Java基础面试题, Checked Exception, Unchecked Exception, try-with-resources, 反射应用场景, 序列化协议, BIO, NIO, AIO, IO模型
+      content: Java异常,泛型,反射,注解,SPI,序列化,IO流,语法糖,try-with-resources,BIO NIO AIO,Java面试题
   - - meta
     - name: description
-      content: 全网质量最高的Java基础常见知识点和面试题总结，希望对你有帮助！
+      content: Java高级特性面试题总结：深入讲解异常处理机制、泛型原理、反射应用、注解使用、SPI机制、序列化、IO流模型(BIO/NIO/AIO)、语法糖等核心知识点。
 ---
 
 <!-- @include: @article-header.snippet.md -->

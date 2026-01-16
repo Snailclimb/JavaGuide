@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: AQS,AbstractQueuedSynchronizer,同步器,独占锁,共享锁,CLH 队列,acquire,release,阻塞与唤醒,条件队列
+      content: AQS,AbstractQueuedSynchronizer,队列同步器,独占锁,共享锁,CLH队列,ReentrantLock实现原理
   - - meta
     - name: description
-      content: 全面解析 AQS 的队列同步器原理与模板方法，理解其在 ReentrantLock、Semaphore 等同步器中的应用与线程阻塞唤醒机制。
+      content: AQS抽象队列同步器深度解析：详解AQS核心原理、CLH队列结构、独占锁与共享锁实现、ReentrantLock/Semaphore等同步器应用、线程阻塞唤醒机制。
 ---
 
 <!-- markdownlint-disable MD024 -->

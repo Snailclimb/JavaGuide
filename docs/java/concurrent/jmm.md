@@ -6,15 +6,17 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: CPU 缓存模型,指令重排序,Java 内存模型（JMM）,happens-before
+      content: JMM,Java内存模型,CPU缓存,指令重排序,happens-before,内存可见性,并发编程模型
   - - meta
     - name: description
-      content: 对于 Java 来说，你可以把 JMM 看作是 Java 定义的并发编程相关的一组规范，除了抽象了线程和主内存之间的关系之外，其还规定了从 Java 源代码到 CPU 可执行指令的这个转化过程要遵守哪些和并发相关的原则和规范，其主要目的是为了简化多线程编程，增强程序可移植性的。
+      content: 深入解析Java内存模型JMM：详解CPU缓存模型、指令重排序机制、happens-before原则、内存可见性保证，理解多线程并发编程的底层规范。
 ---
 
-JMM(Java 内存模型)主要定义了对于一个共享变量，当另一个线程对这个共享变量执行写操作后，这个线程对这个共享变量的可见性。
+对于 Java 来说，你可以把 **JMM（Java 内存模型）** 看作是 Java 定义的并发编程相关的一组规范。除了抽象了线程和主内存之间的关系之外，其还规定了从 Java 源代码到 CPU 可执行指令的转化过程要遵守哪些并发相关的原则和规范。其主要目的是为了**简化多线程编程**，**增强程序的可移植性**。
 
-要想理解透彻 JMM（Java 内存模型），我们先要从 **CPU 缓存模型和指令重排序** 说起！
+JMM 主要定义了对于一个共享变量，当一个线程执行写操作后，该变量对其他线程的**可见性**。
+
+要想透彻理解 JMM，我们需要从 **CPU 缓存模型**和**指令重排序**说起。
 
 ## 从 CPU 缓存模型说起
 
@@ -152,9 +154,9 @@ JSR 133 引入了 happens-before 这个概念来描述两个操作之间的内�
 - 为了对编译器和处理器的约束尽可能少，只要不改变程序的执行结果（单线程程序和正确执行的多线程程序），编译器和处理器怎么进行重排序优化都行。
 - 对于会改变程序执行结果的重排序，JMM 要求编译器和处理器必须禁止这种重排序。
 
-下面这张是 《Java 并发编程的艺术》这本书中的一张 JMM 设计思想的示意图，非常清晰。
+下面这张是我根据 《Java 并发编程的艺术》这本书中的一张 JMM 设计思想示意图重新绘制的。
 
-![](https://oss.javaguide.cn/github/javaguide/java/concurrent/image-20220731155332375.png)
+![ JMM 设计思想](https://oss.javaguide.cn/github/javaguide/java/concurrent/jmm-design-idea.png)
 
 了解了 happens-before 原则的设计思想，我们再来看看 JSR-133 对 happens-before 原则的定义：
 
@@ -193,9 +195,15 @@ happens-before 的规则就 8 条，说多不多，重点了解下面列举的 5
 
 ### happens-before 和 JMM 什么关系？
 
-happens-before 与 JMM 的关系用《Java 并发编程的艺术》这本书中的一张图就可以非常好的解释清楚。
+happens-before 与 JMM 的关系如下图所示：
 
-![happens-before 与 JMM 的关系](https://oss.javaguide.cn/github/javaguide/java/concurrent/image-20220731084604667.png)
+![jmm-vs-happens-before](https://oss.javaguide.cn/github/javaguide/java/concurrent/jmm-vs-happens-before.png)
+
+- JMM 向程序员提供了 **“ happens-before 规则 ”**（如程序顺序规则、`volatile` 变量规则等）。这是一种 **“ 强内存模型 ”** 的假象：程序员不需要关心底层复杂的重排序细节，只需要按照这些规则编写代码，就能保证多线程下的内存可见性。
+- JVM 在执行时，会将 happens-before 规则映射到具体的实现上。为了在保证正确性的前提下不丧失性能，JMM 只会 **“ 禁止影响执行结果的重排序 ”**。对于不影响单线程执行结果的重排序，JMM 是允许的。
+- 最底层是编译器和处理器真实的 **“ 重排序规则 ”**。
+
+总结来说，JMM 就像是一个中间层：它向上通过 happens-before 为程序员提供简单的编程模型；向下通过禁止特定重排序，利用底层硬件性能。这种设计既保证了多线程的安全性，又最大限度释放了硬件的性能。
 
 ## 再看并发编程三个重要特性
 

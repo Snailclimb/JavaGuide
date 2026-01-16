@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: ArrayList,动态数组,ensureCapacity,RandomAccess,扩容机制,序列化,add/remove,索引访问,性能,Vector 区别,列表实现
+      content: ArrayList源码,ArrayList扩容机制,动态数组,RandomAccess,ArrayList序列化,ArrayList与Vector区别
   - - meta
     - name: description
-      content: 系统梳理 ArrayList 的底层原理与常见用法，包含动态数组结构、扩容策略、接口实现以及与 Vector 的差异与性能特点。
+      content: ArrayList源码深度解析：详解ArrayList底层数组结构、1.5倍扩容机制、RandomAccess快速随机访问、序列化实现及与Vector性能对比。
 ---
 
 <!-- @include: @small-advertisement.snippet.md -->

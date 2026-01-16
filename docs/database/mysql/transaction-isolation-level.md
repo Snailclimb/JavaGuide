@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: 事务,隔离级别,读未提交,读已提交,可重复读,可串行化,MVCC,锁
+      content: MySQL事务隔离级别,读未提交,读已提交,可重复读,串行化,脏读,不可重复读,幻读,MVCC,间隙锁
   - - meta
     - name: description
-      content: 梳理四大事务隔离级别与并发现象，结合 InnoDB 的 MVCC 与锁机制，明确幻读/不可重复读的应对策略。
+      content: 详解MySQL四种事务隔离级别（读未提交、读已提交、可重复读、串行化）的特点与区别，分析脏读、不可重复读、幻读等并发问题，以及InnoDB如何通过MVCC和锁机制解决幻读。
 ---
 
 > 本文由 [SnailClimb](https://github.com/Snailclimb) 和 [guang19](https://github.com/guang19) 共同完成。

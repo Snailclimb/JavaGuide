@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: 语法糖,自动装箱拆箱,泛型,增强 for,可变参数,枚举,内部类,类型推断
+      content: Java语法糖,自动装箱拆箱,泛型擦除,增强for循环,可变参数,枚举,内部类,Lambda表达式,语法糖原理
   - - meta
     - name: description
-      content: 总结 Java 常见语法糖及编译期的“解糖”原理，帮助在提升效率的同时理解底层机制并避免误用。
+      content: 深入剖析Java语法糖原理：详解自动装箱拆箱、泛型擦除、增强for、可变参数、枚举、Lambda等语法糖的编译期实现机制，避免使用误区。
 ---
 
 > 作者：Hollis

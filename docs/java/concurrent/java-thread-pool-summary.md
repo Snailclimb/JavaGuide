@@ -6,10 +6,10 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: 线程池,ThreadPoolExecutor,Executor,核心线程数,最大线程数,任务队列,拒绝策略,池化技术,ScheduledThreadPoolExecutor
+      content: Java线程池,ThreadPoolExecutor,Executor框架,线程池参数,拒绝策略,任务队列,线程池原理
   - - meta
     - name: description
-      content: 系统梳理 Java 线程池的原理与架构，包含 Executor 框架、关键参数与队列、常见实现及配置要点。
+      content: Java线程池详解：深入讲解ThreadPoolExecutor核心参数配置、Executor框架体系、任务队列选择、拒绝策略、线程池工作原理及最佳实践。
 ---
 
 <!-- markdownlint-disable MD024 -->
