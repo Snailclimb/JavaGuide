@@ -1,5 +1,6 @@
 ---
 title: 软件质量必读经典书籍
+description: 软件质量与代码整洁书籍推荐，重构、Clean Code、Effective Java、架构整洁之道等经典书籍，提升代码质量和架构设计能力。
 category: 计算机书籍
 icon: "highavailable"
 head:

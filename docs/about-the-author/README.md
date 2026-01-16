@@ -1,5 +1,6 @@
 ---
 title: 个人介绍 Q&A
+description: JavaGuide作者Guide个人介绍，19年本科毕业、大学期间变现20w+实现经济独立、坚持写博客的经历与收获分享。
 category: 走近作者
 ---
 

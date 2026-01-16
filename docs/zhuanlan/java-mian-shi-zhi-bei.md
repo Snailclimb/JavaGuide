@@ -1,5 +1,6 @@
 ---
 title: 《Java 面试指北》
+description: Java面试指北专栏，四年打磨的Java后端面试指南，涵盖核心知识点与高频面试题系统讲解。
 category: 知识星球
 star: 5
 ---

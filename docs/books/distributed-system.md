@@ -1,5 +1,6 @@
 ---
 title: 分布式必读经典书籍
+description: 分布式系统书籍推荐，DDIA、分布式事务、共识算法、微服务架构等经典书籍，掌握分布式系统设计核心知识。
 category: 计算机书籍
 icon: "distributed-network"
 ---

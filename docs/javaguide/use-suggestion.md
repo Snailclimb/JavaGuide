@@ -1,5 +1,6 @@
 ---
 title: 使用建议
+description: JavaGuide使用建议，讲解如何高效利用本站内容进行Java学习与面试准备的方法指南。
 category: 走近项目
 icon: star
 ---

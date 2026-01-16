@@ -1,5 +1,6 @@
 ---
 title: 接口幂等方案总结(付费)
+description: 接口幂等性设计详解，涵盖幂等性概念、常见实现方案及在支付、订单等场景中的应用实践。
 category: 高可用
 icon: security-fill
 ---

@@ -1,5 +1,6 @@
 ---
 title: Gossip 协议详解
+description: Gossip协议原理详解，讲解去中心化信息传播机制、三种传播模式及在Redis Cluster等系统中的应用。
 category: 分布式
 tag:
   - 分布式协议&算法

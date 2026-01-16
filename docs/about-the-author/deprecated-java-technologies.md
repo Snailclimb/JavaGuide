@@ -1,5 +1,6 @@
 ---
 title: 已经淘汰的 Java 技术，不要再学了！
+description: 已淘汰的Java技术盘点，JSP、Struts、EJB、Java Applets、SOAP等过时技术不建议学习，附现代替代方案推荐。
 category: 走近作者
 tag:
   - 杂谈

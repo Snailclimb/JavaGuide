@@ -1,5 +1,6 @@
 ---
 title: 《Java 必读源码系列》
+description: Java必读源码系列专栏，涵盖Dubbo、Netty、SpringBoot等主流框架源码解析，助力深入理解底层原理。
 category: 知识星球
 star: true
 ---

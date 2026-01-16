@@ -1,5 +1,6 @@
 ---
 title: Spring 事务详解
+description: Spring事务管理详解，涵盖@Transactional注解、事务传播行为、隔离级别、事务失效场景及回滚规则。
 category: 框架
 tag:
   - Spring

@@ -1,5 +1,6 @@
 ---
 title: 入职培训一个月后的感受
+description: ThoughtWorks入职培训一个月感受，从Windows切换到Mac的适应、TWU培训内容、Feedback反馈文化等新人入职体验分享。
 category: 走近作者
 tag:
   - 个人经历

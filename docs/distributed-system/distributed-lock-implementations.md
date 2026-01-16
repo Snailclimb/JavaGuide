@@ -1,5 +1,6 @@
 ---
 title: 分布式锁常见实现方案总结
+description: 分布式锁常见实现方案详解，包括基于Redis、ZooKeeper实现分布式锁的原理、优缺点及最佳实践。
 category: 分布式
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: RPC基础知识总结
+description: RPC远程过程调用基础详解，讲解RPC核心原理、调用流程、序列化协议及常见RPC框架对比分析。
 category: 分布式
 tag:
   - rpc

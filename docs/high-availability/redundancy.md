@@ -1,5 +1,6 @@
 ---
 title: 冗余设计详解
+description: 冗余设计原理详解，涵盖高可用集群、同城灾备、异地多活等冗余架构方案的设计与实现。
 category: 高可用
 icon: cluster
 ---

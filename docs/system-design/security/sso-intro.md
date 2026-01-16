@@ -1,5 +1,6 @@
 ---
 title: SSO 单点登录详解
+description: SSO单点登录原理详解，涵盖统一认证中心设计、CAS协议、跨域登录实现及登录态同步机制。
 category: 系统设计
 tag:
   - 安全

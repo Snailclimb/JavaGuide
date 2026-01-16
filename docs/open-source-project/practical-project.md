@@ -1,5 +1,6 @@
 ---
 title: Java 优质开源实战项目
+description: Java优质开源实战项目推荐，涵盖快速开发平台、电商系统、权限管理等可用于学习和简历的实战项目精选。
 category: 开源项目
 icon: project
 ---

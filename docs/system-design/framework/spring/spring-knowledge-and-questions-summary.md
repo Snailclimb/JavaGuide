@@ -1,5 +1,6 @@
 ---
 title: Spring常见面试题总结
+description: Spring框架核心面试题详解，涵盖IoC容器、AOP原理、Bean生命周期、依赖注入等Spring核心知识点。
 category: 框架
 tag:
   - Spring

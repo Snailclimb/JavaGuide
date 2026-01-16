@@ -1,5 +1,6 @@
 ---
 title: Java 优质开源 AI 项目
+description: Java优质开源AI项目推荐，涵盖Spring AI、LangChain4j、Deeplearning4j等Java人工智能和机器学习框架介绍。
 category: 开源项目
 icon: a-MachineLearning
 ---

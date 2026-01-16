@@ -1,5 +1,6 @@
 ---
 title: 数据库必读经典书籍
+description: 数据库书籍推荐，MySQL、PostgreSQL、Redis等数据库经典书籍，涵盖入门教程、原理剖析、性能优化等内容。
 category: 计算机书籍
 icon: "database"
 head:

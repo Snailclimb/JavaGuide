@@ -1,5 +1,6 @@
 ---
 title: Raft 算法详解
+description: Raft共识算法原理详解，涵盖Leader选举、日志复制、安全性保证等核心机制及与Paxos的对比分析。
 category: 分布式
 tag:
   - 分布式协议&算法

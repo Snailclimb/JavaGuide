@@ -1,5 +1,6 @@
 ---
 title: Java 优质开源工具类
+description: Java优质开源工具类库推荐，涵盖Lombok、Guava、Hutool、Arthas等提升开发效率和代码质量的常用工具。
 category: 开源项目
 icon: codelibrary-fill
 ---

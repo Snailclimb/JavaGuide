@@ -1,5 +1,6 @@
 ---
 title: Java 优质开源开发工具
+description: Java优质开源开发工具推荐，涵盖代码质量检查、项目构建、测试框架、容器化部署等开发必备工具精选。
 category: 开源项目
 icon: tool
 ---

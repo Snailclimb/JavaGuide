@@ -1,5 +1,6 @@
 ---
 title: Spring Boot核心源码解读（付费）
+description: Spring Boot核心源码深度解读，涵盖启动流程、自动配置机制、条件注解及SpringApplication源码分析。
 category: 框架
 tag:
   - Spring

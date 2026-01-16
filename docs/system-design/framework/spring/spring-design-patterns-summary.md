@@ -1,5 +1,6 @@
 ---
 title: Spring 中的设计模式详解
+description: Spring框架设计模式详解，涵盖工厂模式、代理模式、单例模式、模板方法等在Spring源码中的应用实践。
 category: 框架
 tag:
   - Spring

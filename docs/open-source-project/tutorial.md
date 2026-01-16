@@ -1,5 +1,6 @@
 ---
 title: Java 优质开源技术教程
+description: Java优质开源技术教程推荐，涵盖Java核心知识、计算机基础、算法、系统设计等领域的高质量学习资源汇总。
 category: 开源项目
 icon: "book"
 ---

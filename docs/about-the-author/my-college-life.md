@@ -1,5 +1,6 @@
 ---
 title: 害，毕业三年了！
+description: 双非一本程序员的大学四年，从参加社团活动到办补习班赚钱、确定Java后端方向、创建JavaGuide、最终拿到ThoughtWorks offer的真实经历。
 category: 走近作者
 star: 1
 tag:

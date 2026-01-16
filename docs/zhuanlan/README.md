@@ -1,5 +1,6 @@
 ---
 title: 星球专属优质专栏概览
+description: JavaGuide知识星球专属专栏汇总，包含Java面试指北、手写RPC框架、源码解读等优质学习资源。
 category: 知识星球
 ---
 

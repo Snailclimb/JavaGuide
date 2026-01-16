@@ -1,5 +1,6 @@
 ---
 title: 敏感词过滤方案总结
+description: 敏感词过滤方案详解，涵盖Trie树、DFA算法等高性能敏感词匹配算法的原理与实现方法。
 category: 系统设计
 tag:
   - 安全

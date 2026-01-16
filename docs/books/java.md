@@ -1,5 +1,6 @@
 ---
 title: Java 必读经典书籍
+description: Java程序员必读书籍推荐，Java基础、并发编程、JVM虚拟机、Spring/SpringBoot框架、Netty网络编程、性能调优等经典书籍精选。
 category: 计算机书籍
 icon: "java"
 ---

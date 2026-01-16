@@ -1,5 +1,6 @@
 ---
 title: 服务限流详解
+description: 服务限流原理与实现详解，涵盖固定窗口、滑动窗口、令牌桶、漏桶等主流限流算法的原理与应用。
 category: 高可用
 icon: limit_rate
 ---

@@ -1,5 +1,6 @@
 ---
 title: RocketMQ常见问题总结
+description: "RocketMQ常见问题总结：围绕高性能与性能优化实践梳理关键概念、常见问题与实践要点，帮助你高效学习与备战面试。"
 category: 高性能
 tag:
   - RocketMQ

@@ -1,5 +1,6 @@
 ---
 title: 有了 HTTP 协议，为什么还要有 RPC ？
+description: HTTP与RPC对比详解，讲解两种通信方式的本质区别、性能差异及在微服务架构中的选型建议。
 category: 分布式
 tag:
   - rpc

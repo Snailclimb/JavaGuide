@@ -1,5 +1,6 @@
 ---
 title: JWT 身份认证优缺点分析
+description: JWT身份认证优缺点深度分析，讲解JWT无法主动失效、Token续期等问题及对应的解决方案。
 category: 系统设计
 tag:
   - 安全

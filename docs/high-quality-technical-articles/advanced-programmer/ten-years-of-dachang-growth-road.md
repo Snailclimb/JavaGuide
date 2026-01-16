@@ -1,5 +1,6 @@
 ---
 title: 十年大厂成长之路
+description: "十年大厂成长之路：围绕技术知识与面试总结梳理关键概念、常见问题与实践要点，帮助你高效学习与备战面试。"
 category: 技术文章精选集
 author: CodingBetterLife
 tag:

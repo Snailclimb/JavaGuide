@@ -1,5 +1,6 @@
 ---
 title: Java 优质开源系统设计项目
+description: Java优质开源系统设计项目推荐，涵盖Web框架、微服务、消息队列、搜索引擎、数据库等基础架构组件精选。
 category: 开源项目
 icon: "xitongsheji"
 ---

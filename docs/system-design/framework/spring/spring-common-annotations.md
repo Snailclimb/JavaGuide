@@ -1,5 +1,6 @@
 ---
 title: Spring&SpringBoot常用注解总结
+description: Spring和SpringBoot常用注解大全，涵盖@Autowired、@Component、@RequestMapping等核心注解的用法详解。
 category: 框架
 tag:
   - SpringBoot

@@ -1,5 +1,6 @@
 ---
 title: 搜索引擎必读经典书籍
+description: 搜索引擎书籍推荐，Lucene入门、Elasticsearch核心技术与实战、源码解析与优化实战等经典书籍精选。
 category: 计算机书籍
 icon: "search"
 ---

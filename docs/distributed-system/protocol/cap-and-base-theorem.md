@@ -1,5 +1,6 @@
 ---
 title: CAP & BASE理论详解
+description: CAP定理与BASE理论详解，深入讲解分布式系统一致性、可用性、分区容错性的权衡与实际应用。
 category: 分布式
 tag:
   - 分布式理论

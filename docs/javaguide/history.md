@@ -1,5 +1,6 @@
 ---
 title: 网站历史
+description: JavaGuide网站发展历程记录，涵盖项目重要里程碑、版本更新及功能迭代的完整时间线。
 category: 走近项目
 ---
 

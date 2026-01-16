@@ -1,5 +1,6 @@
 ---
 title: 程序员高效出书避坑和实践指南
+description: "程序员高效出书避坑和实践指南：围绕技术知识与面试总结梳理关键概念、常见问题与实践要点，帮助你高效学习与备战面试。"
 category: 技术文章精选集
 author: hsm_computer
 tag:

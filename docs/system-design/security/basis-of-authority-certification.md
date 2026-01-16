@@ -1,5 +1,6 @@
 ---
 title: 认证授权基础概念详解
+description: 认证与授权基础概念详解，讲解Authentication和Authorization的区别、Session、Token、OAuth2等核心知识。
 category: 系统设计
 tag:
   - 安全

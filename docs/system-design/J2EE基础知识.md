@@ -1,5 +1,6 @@
 ---
 title: J2EE 基础知识
+description: J2EE基础知识详解，涵盖Servlet生命周期、请求转发与重定向、Session与Cookie机制等Java Web核心概念。
 category: 系统设计
 head:
   - - meta

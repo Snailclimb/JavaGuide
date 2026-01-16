@@ -1,5 +1,6 @@
 ---
 title: 代码命名指南
+description: 代码命名规范指南，涵盖变量、方法、类的命名原则与技巧，提升代码可读性和可维护性。
 category: 代码质量
 head:
   - - meta

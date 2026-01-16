@@ -1,5 +1,6 @@
 ---
 title: 《SpringAI 智能面试平台+RAG 知识库》
+description: Spring AI智能面试平台实战项目，基于Spring Boot 4.0和Spring AI 2.0开发，集成RAG知识库和简历分析功能。
 category: 知识星球
 star: 5
 ---

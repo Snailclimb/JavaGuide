@@ -1,5 +1,6 @@
 ---
 title: 常见加密算法总结
+description: 常见加密算法详解，涵盖AES、RSA等对称与非对称加密算法及MD5、SHA等哈希算法的原理与应用场景。
 category: 系统设计
 tag:
   - 安全

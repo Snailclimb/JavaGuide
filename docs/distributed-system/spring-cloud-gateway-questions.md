@@ -1,5 +1,6 @@
 ---
 title: Spring Cloud Gateway常见问题总结
+description: Spring Cloud Gateway核心原理详解，包括路由配置、过滤器机制、限流熔断等常见面试题与实践要点。
 category: 分布式
 ---
 

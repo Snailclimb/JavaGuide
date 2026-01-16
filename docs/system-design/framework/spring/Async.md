@@ -1,5 +1,6 @@
 ---
 title: Async 注解原理分析
+description: Spring @Async异步注解原理详解，涵盖异步任务配置、线程池设置、@EnableAsync机制及常见使用问题。
 category: 框架
 tag:
   - Spring

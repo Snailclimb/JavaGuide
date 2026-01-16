@@ -1,5 +1,6 @@
 ---
 title: Paxos 算法详解
+description: Paxos共识算法原理详解，涵盖Basic Paxos、Multi-Paxos的执行流程及在分布式系统中的应用。
 category: 分布式
 tag:
   - 分布式协议&算法

@@ -1,5 +1,6 @@
 ---
 title: ZooKeeper相关概念总结(进阶)
+description: ZooKeeper进阶详解，深入讲解ZAB协议、Leader选举机制、集群部署及与Eureka等注册中心的对比。
 category: 分布式
 tag:
   - ZooKeeper

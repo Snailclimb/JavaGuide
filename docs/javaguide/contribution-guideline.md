@@ -1,5 +1,6 @@
 ---
 title: 贡献指南
+description: JavaGuide开源项目贡献指南，讲解如何参与项目维护、提交PR及成为Contributor的完整流程。
 category: 走近项目
 icon: guide
 ---

@@ -1,5 +1,6 @@
 ---
 title: ZooKeeper 实战
+description: ZooKeeper实战教程，涵盖Docker安装部署、常用命令操作及Curator客户端的使用方法详解。
 category: 分布式
 tag:
   - ZooKeeper

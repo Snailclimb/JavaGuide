@@ -1,5 +1,6 @@
 ---
 title: 我的知识星球 4 岁了！
+description: JavaGuide知识星球介绍，提供Java面试指北专栏、简历修改、一对一答疑等服务，已帮助9000+球友提升求职竞争力。
 category: 知识星球
 star: 2
 ---

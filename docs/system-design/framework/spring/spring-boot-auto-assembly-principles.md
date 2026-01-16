@@ -1,5 +1,6 @@
 ---
 title: SpringBoot 自动装配原理详解
+description: SpringBoot自动装配原理深度解析，详解@EnableAutoConfiguration、SpringFactories加载机制及条件注解工作原理。
 category: 框架
 tag:
   - SpringBoot

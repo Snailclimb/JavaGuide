@@ -1,6 +1,7 @@
 ---
 icon: creative
 title: JavaGuide（Java学习&面试指南）
+description: JavaGuide是一份涵盖Java核心知识的学习与面试指南，包括Java基础、集合、并发、JVM、数据库、分布式等内容。
 ---
 
 ::: tip 友情提示

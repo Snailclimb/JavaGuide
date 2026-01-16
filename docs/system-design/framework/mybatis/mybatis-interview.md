@@ -1,6 +1,6 @@
 ---
 title: MyBatis常见面试题总结
-description: 几道常见的 MyBatis 常见
+description: MyBatis常见面试题详解，涵盖#{}与${}区别、动态SQL、一级二级缓存、分页插件及Mapper映射原理。
 category: 框架
 icon: "database"
 tag:

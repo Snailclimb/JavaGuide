@@ -1,5 +1,6 @@
 ---
 title: JavaGuide 开源项目 100K Star 了！
+description: JavaGuide开源项目达成100K Star里程碑，从2018年创建到突破十万星标的复盘总结，分享开源维护心得与未来规划。
 category: 走近作者
 tag:
   - 个人经历

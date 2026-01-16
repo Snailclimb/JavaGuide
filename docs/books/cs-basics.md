@@ -1,5 +1,6 @@
 ---
 title: 计算机基础必读经典书籍
+description: 计算机基础书籍推荐，操作系统、计算机网络、算法与数据结构、编译原理等核心课程经典教材和学习资源汇总。
 category: 计算机书籍
 icon: "computer"
 head:

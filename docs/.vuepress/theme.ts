@@ -60,6 +60,7 @@ export default hopeTheme({
 
   plugins: {
     blog: true,
+    sitemap: true,
 
     copyright: {
       author: "JavaGuide(javaguide.cn)",

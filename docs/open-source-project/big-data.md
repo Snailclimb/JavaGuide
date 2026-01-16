@@ -1,5 +1,6 @@
 ---
 title: Java 优质开源大数据项目
+description: Java优质开源大数据项目推荐，涵盖Spark、Flink、HBase、Storm等主流大数据处理框架介绍与对比。
 category: 开源项目
 icon: big-data
 ---

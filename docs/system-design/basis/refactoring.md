@@ -1,5 +1,6 @@
 ---
 title: 代码重构指南
+description: 代码重构实践指南，涵盖重构定义、重构原则、代码坏味道识别及常用重构技巧与最佳实践。
 category: 代码质量
 head:
   - - meta

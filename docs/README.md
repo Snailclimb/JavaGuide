@@ -1,24 +1,24 @@
 ---
 home: true
 icon: home
-title: Java 面试指南
-description: 「Java 学习指北 + Java 面试指南」覆盖 Java 基础、集合、并发、JVM、数据库、Redis、Spring、系统设计等核心知识，帮助你系统学习与高效备战校招/社招后端面试。
+title: JavaGuide（后端学习 & 面试指南）
+description: JavaGuide 是一份面向后端开发/后端面试的学习与复习指南，覆盖 Java 基础、并发、JVM、数据库/MySQL、Redis、分布式、高并发、高可用、系统设计等核心知识，适用于校招/社招。
 heroImage: /logo.svg
 heroText: JavaGuide
-tagline: 「Java学习 + 面试指南」涵盖 Java 程序员需要掌握的核心知识
+tagline: 面向后端学习和面试：Java + 数据库 + 分布式 + 高并发 + 系统设计
 head:
   - - meta
     - name: keywords
-      content: JavaGuide,Java面试,Java学习,Java基础,JVM,并发编程,Spring,MySQL,Redis,系统设计,后端面试
+      content: JavaGuide,后端面试,后端开发,Java面试,数据库面试,MySQL面试,Redis面试,分布式,高并发,高性能,高可用,系统设计,消息队列,缓存,计算机网络,Linux
   - - meta
     - property: og:site_name
       content: JavaGuide
   - - meta
     - property: og:title
-      content: JavaGuide（Java学习&面试指南）
+      content: JavaGuide（后端学习&面试指南）
   - - meta
     - property: og:description
-      content: 「Java 学习指北 + Java 面试指南」覆盖 Java 基础、集合、并发、JVM、数据库、Redis、Spring、系统设计等核心知识，帮助你系统学习与高效备战校招/社招后端面试。
+      content: JavaGuide 是一份面向后端开发/后端面试的学习与复习指南，覆盖 Java、数据库/MySQL、Redis、分布式、高并发、高可用、系统设计等核心知识。
   - - meta
     - property: og:type
       content: website
@@ -29,14 +29,17 @@ head:
     - property: og:image
       content: https://javaguide.cn/logo.png
   - - meta
+    - property: og:locale
+      content: zh_CN
+  - - meta
     - name: twitter:card
       content: summary_large_image
   - - meta
     - name: twitter:title
-      content: JavaGuide（Java学习&面试指南）
+      content: JavaGuide（后端学习&面试指南）
   - - meta
     - name: twitter:description
-      content: 「Java 学习指北 + Java 面试指南」覆盖 Java 基础、集合、并发、JVM、数据库、Redis、Spring、系统设计等核心知识，帮助你系统学习与高效备战校招/社招后端面试。
+      content: JavaGuide 覆盖 Java、数据库/MySQL、Redis、分布式、高并发、高可用、系统设计等核心知识，帮助你系统学习与高效备战后端面试。
   - - meta
     - name: twitter:image
       content: https://javaguide.cn/logo.png
@@ -51,8 +54,13 @@ head:
         "@type": "WebSite",
         "name": "JavaGuide",
         "url": "https://javaguide.cn/",
-        "description": "「Java 学习指北 + Java 面试指南」覆盖 Java 基础、集合、并发、JVM、数据库、Redis、Spring、系统设计等核心知识，帮助你系统学习与高效备战校招/社招后端面试。",
-        "inLanguage": "zh-CN"
+        "description": "JavaGuide 是一份面向后端开发/后端面试的学习与复习指南，覆盖 Java、数据库/MySQL、Redis、分布式、高并发、高可用、系统设计等核心知识。",
+        "inLanguage": "zh-CN",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://javaguide.cn/search.html?query={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
       }
 actions:
   - text: 开始阅读

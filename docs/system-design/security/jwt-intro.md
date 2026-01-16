@@ -1,5 +1,6 @@
 ---
 title: JWT 基础概念详解
+description: JWT基础概念详解，涵盖JSON Web Token的组成结构、签名算法、工作原理及在登录鉴权中的应用。
 category: 系统设计
 tag:
   - 安全

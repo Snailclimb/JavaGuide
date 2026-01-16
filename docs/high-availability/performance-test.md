@@ -1,5 +1,6 @@
 ---
 title: 性能测试入门
+description: 性能测试入门指南，涵盖性能测试指标、压测工具选型、常见性能问题分析及调优方法详解。
 category: 高可用
 icon: et-performance
 ---

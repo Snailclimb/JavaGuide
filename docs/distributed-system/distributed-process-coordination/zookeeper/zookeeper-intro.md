@@ -1,5 +1,6 @@
 ---
 title: ZooKeeper相关概念总结(入门)
+description: ZooKeeper入门指南，讲解ZooKeeper核心概念、数据模型、Watcher机制及作为注册中心和分布式锁的应用。
 category: 分布式
 tag:
   - ZooKeeper

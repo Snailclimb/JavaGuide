@@ -1,5 +1,6 @@
 ---
 title: IoC & AOP详解（快速搞懂）
+description: Spring IoC与AOP核心原理详解，深入讲解控制反转、依赖注入、切面编程及动态代理的实现机制。
 category: 框架
 tag:
   - Spring

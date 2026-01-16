@@ -1,5 +1,6 @@
 ---
 title: 降级&熔断详解(付费)
+description: 服务降级与熔断机制详解，讲解降级策略、熔断器原理及Hystrix、Sentinel等框架的应用实践。
 category: 高可用
 icon: circuit
 ---

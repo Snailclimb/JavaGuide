@@ -1,5 +1,6 @@
 ---
 title: 《手写 RPC 框架》
+description: 手写RPC框架实战教程，基于Netty+Kyro+Zookeeper从零实现RPC框架，深入理解RPC底层原理。
 category: 知识星球
 ---
 

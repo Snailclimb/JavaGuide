@@ -1,5 +1,6 @@
 ---
 title: RestFul API 简明教程
+description: RESTful API设计规范详解，涵盖REST架构原则、资源路径设计、HTTP方法使用及状态码规范等内容。
 category: 代码质量
 head:
   - - meta

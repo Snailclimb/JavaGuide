@@ -1,5 +1,6 @@
 ---
 title: Java 开源项目精选
+description: GitHub和Gitee上优质Java开源项目精选汇总，涵盖实战项目、工具库、系统设计等多种类型的开源资源推荐。
 category: 开源项目
 ---
 

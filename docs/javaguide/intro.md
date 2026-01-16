@@ -1,5 +1,6 @@
 ---
 title: 项目介绍
+description: JavaGuide项目介绍，一个涵盖Java核心知识体系的学习与面试指南，助力Java开发者成长。
 category: 走近项目
 icon: about
 ---

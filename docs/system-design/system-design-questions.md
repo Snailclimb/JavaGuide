@@ -1,5 +1,6 @@
 ---
 title: 系统设计常见面试题总结(付费)
+description: 系统设计高频面试题解析，涵盖短链系统、秒杀系统、海量数据处理等场景题的设计思路与解决方案。
 category: Java面试指北
 icon: "design"
 head:

@@ -1,5 +1,6 @@
 ---
 title: SpringBoot常见面试题总结(付费)
+description: SpringBoot核心面试题详解，涵盖自动配置原理、Starter机制、配置文件加载及Actuator监控等核心知识。
 category: 框架
 tag:
   - Spring

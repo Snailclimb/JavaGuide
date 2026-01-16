@@ -1,5 +1,6 @@
 ---
 title: 数据脱敏方案总结
+description: 数据脱敏方案详解，涵盖手机号、身份证、银行卡等敏感数据的脱敏规则及Hutool工具实现方法。
 category: 系统设计
 tag:
   - 安全
