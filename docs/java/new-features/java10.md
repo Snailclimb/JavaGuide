@@ -1,5 +1,6 @@
 ---
 title: Java 10 新特性概览
+description: 概览 JDK 10 的主要更新，重点介绍 var 类型推断与其他平台改进。
 category: Java
 tag:
   - Java新特性
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: Java 10,JDK10,var 局部变量类型推断,垃圾回收改进,性能
-  - - meta
-    - name: description
-      content: 概览 JDK 10 的主要更新，重点介绍 var 类型推断与其他平台改进。
 ---
 
 **Java 10** 发布于 2018 年 3 月 20 日，最知名的特性应该是 `var` 关键字（局部变量类型推断）的引入了，其他还有垃圾收集器改善、GC 改进、性能提升、线程管控等一批新特性。

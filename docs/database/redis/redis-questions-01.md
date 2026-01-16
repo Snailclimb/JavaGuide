@@ -1,5 +1,6 @@
 ---
 title: Redis常见面试题总结(上)
+description: 最新Redis面试题总结（上）：深入讲解Redis基础、五大常用数据结构、单线程模型原理、持久化机制、内存淘汰与过期策略、分布式锁与消息队列实现。适合准备后端面试的开发者！
 category: 数据库
 tag:
   - Redis
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: Redis面试题,Redis基础,Redis数据结构,Redis线程模型,Redis持久化,Redis内存管理,Redis性能优化,Redis分布式锁,Redis消息队列,Redis延时队列,Redis缓存策略,Redis单线程,Redis多线程,Redis过期策略,Redis淘汰策略
-  - - meta
-    - name: description
-      content: 最新Redis面试题总结（上）：深入讲解Redis基础、五大常用数据结构、单线程模型原理、持久化机制、内存淘汰与过期策略、分布式锁与消息队列实现。适合准备后端面试的开发者！
 ---
 
 <!-- @include: @small-advertisement.snippet.md -->

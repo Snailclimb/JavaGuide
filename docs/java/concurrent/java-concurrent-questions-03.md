@@ -1,5 +1,6 @@
 ---
 title: Java并发常见面试题总结（下）
+description: Java并发高级面试题：详解ThreadLocal原理与内存泄漏、线程池参数配置与工作原理、Future/CompletableFuture异步编程、并发容器与工具类使用。
 category: Java
 tag:
   - Java并发
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: ThreadLocal,线程池,Executor框架,Future,CompletableFuture,并发工具类,并发容器,并发面试题
-  - - meta
-    - name: description
-      content: Java并发高级面试题：详解ThreadLocal原理与内存泄漏、线程池参数配置与工作原理、Future/CompletableFuture异步编程、并发容器与工具类使用。
 ---
 
 <!-- @include: @article-header.snippet.md -->

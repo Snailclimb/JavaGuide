@@ -1,5 +1,6 @@
 ---
 title: SQL常见面试题总结（3）
+description: SQL常见面试题总结第三篇，深入讲解聚合函数COUNT、SUM、AVG、MAX、MIN的使用，以及GROUP BY分组、HAVING过滤、截断平均值计算等进阶技巧。
 category: 数据库
 tag:
   - 数据库基础
@@ -8,9 +9,6 @@ head:
   - - meta
     - name: keywords
       content: SQL面试题,聚合函数,COUNT,SUM,AVG,MAX,MIN,GROUP BY,HAVING,截断平均值
-  - - meta
-    - name: description
-      content: SQL常见面试题总结第三篇，深入讲解聚合函数COUNT、SUM、AVG、MAX、MIN的使用，以及GROUP BY分组、HAVING过滤、截断平均值计算等进阶技巧。
 ---
 
 > 题目来源于：[牛客题霸 - SQL 进阶挑战](https://www.nowcoder.com/exam/oj?page=1&tab=SQL%E7%AF%87&topicId=240)

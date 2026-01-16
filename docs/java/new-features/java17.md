@@ -1,5 +1,6 @@
 ---
 title: Java 17 新特性概览（重要）
+description: 总结 JDK 17 的重要更新与 JEP，涵盖密封类、记录类与模式匹配等特性。
 category: Java
 tag:
   - Java新特性
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: Java 17,JDK17,LTS,密封类,记录类,模式匹配,API 更新,JEP
-  - - meta
-    - name: description
-      content: 总结 JDK 17 的重要更新与 JEP，涵盖密封类、记录类与模式匹配等特性。
 ---
 
 Java 17 在 2021 年 9 月 14 日正式发布，是一个长期支持（LTS）版本。

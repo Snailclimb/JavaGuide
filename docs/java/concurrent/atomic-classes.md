@@ -1,5 +1,6 @@
 ---
 title: Atomic 原子类总结
+description: Java原子类详解：全面总结JUC包Atomic原子类体系、AtomicInteger/AtomicLong/AtomicReference等常用类、基于CAS的线程安全实现、使用场景与性能优势。
 category: Java
 tag:
   - Java并发
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: Atomic原子类,AtomicInteger,AtomicLong,AtomicReference,CAS原子操作,JUC并发包,原子类使用
-  - - meta
-    - name: description
-      content: Java原子类详解：全面总结JUC包Atomic原子类体系、AtomicInteger/AtomicLong/AtomicReference等常用类、基于CAS的线程安全实现、使用场景与性能优势。
 ---
 
 ## Atomic 原子类介绍

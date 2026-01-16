@@ -2,9 +2,58 @@
 home: true
 icon: home
 title: Java 面试指南
+description: 「Java 学习指北 + Java 面试指南」覆盖 Java 基础、集合、并发、JVM、数据库、Redis、Spring、系统设计等核心知识，帮助你系统学习与高效备战校招/社招后端面试。
 heroImage: /logo.svg
 heroText: JavaGuide
 tagline: 「Java学习 + 面试指南」涵盖 Java 程序员需要掌握的核心知识
+head:
+  - - meta
+    - name: keywords
+      content: JavaGuide,Java面试,Java学习,Java基础,JVM,并发编程,Spring,MySQL,Redis,系统设计,后端面试
+  - - meta
+    - property: og:site_name
+      content: JavaGuide
+  - - meta
+    - property: og:title
+      content: JavaGuide（Java学习&面试指南）
+  - - meta
+    - property: og:description
+      content: 「Java 学习指北 + Java 面试指南」覆盖 Java 基础、集合、并发、JVM、数据库、Redis、Spring、系统设计等核心知识，帮助你系统学习与高效备战校招/社招后端面试。
+  - - meta
+    - property: og:type
+      content: website
+  - - meta
+    - property: og:url
+      content: https://javaguide.cn/
+  - - meta
+    - property: og:image
+      content: https://javaguide.cn/logo.png
+  - - meta
+    - name: twitter:card
+      content: summary_large_image
+  - - meta
+    - name: twitter:title
+      content: JavaGuide（Java学习&面试指南）
+  - - meta
+    - name: twitter:description
+      content: 「Java 学习指北 + Java 面试指南」覆盖 Java 基础、集合、并发、JVM、数据库、Redis、Spring、系统设计等核心知识，帮助你系统学习与高效备战校招/社招后端面试。
+  - - meta
+    - name: twitter:image
+      content: https://javaguide.cn/logo.png
+  - - link
+    - rel: canonical
+      href: https://javaguide.cn/
+  - - script
+    - type: application/ld+json
+    - |-
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "JavaGuide",
+        "url": "https://javaguide.cn/",
+        "description": "「Java 学习指北 + Java 面试指南」覆盖 Java 基础、集合、并发、JVM、数据库、Redis、Spring、系统设计等核心知识，帮助你系统学习与高效备战校招/社招后端面试。",
+        "inLanguage": "zh-CN"
+      }
 actions:
   - text: 开始阅读
     link: /home.md

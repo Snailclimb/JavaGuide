@@ -1,5 +1,6 @@
 ---
 title: 虚拟线程常见问题总结
+description: Java 21虚拟线程详解：全面解析Virtual Threads虚拟线程原理、与平台线程区别、Project Loom项目、适用IO密集型场景、使用注意事项与最佳实践。
 category: Java
 tag:
   - Java并发
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: Java虚拟线程,Virtual Threads,Project Loom,Java 21新特性,轻量级线程,协程,虚拟线程原理
-  - - meta
-    - name: description
-      content: Java 21虚拟线程详解：全面解析Virtual Threads虚拟线程原理、与平台线程区别、Project Loom项目、适用IO密集型场景、使用注意事项与最佳实践。
 ---
 
 > 本文部分内容来自 [Lorin](https://github.com/Lorin-github) 的[PR](https://github.com/Snailclimb/JavaGuide/pull/2190)。

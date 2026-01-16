@@ -1,5 +1,6 @@
 ---
 title: CopyOnWriteArrayList 源码分析
+description: CopyOnWriteArrayList源码深度解析：详解写时复制COW机制、适用读多写少场景、线程安全List实现、快照一致性保证及内存开销权衡。
 category: Java
 tag:
   - Java集合
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: CopyOnWriteArrayList源码,写时复制COW,线程安全List,读多写少,并发容器,快照一致性
-  - - meta
-    - name: description
-      content: CopyOnWriteArrayList源码深度解析：详解写时复制COW机制、适用读多写少场景、线程安全List实现、快照一致性保证及内存开销权衡。
 ---
 
 ## CopyOnWriteArrayList 简介

@@ -1,5 +1,6 @@
 ---
 title: 经典算法思想总结（含LeetCode题目推荐）
+description: 总结常见算法思想与解题模板，配合典型题目推荐，强调思维路径与复杂度权衡，快速构建解题体系。
 category: 计算机基础
 tag:
   - 算法
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: 贪心,分治,回溯,动态规划,二分,双指针,算法思想,题目推荐
-  - - meta
-    - name: description
-      content: 总结常见算法思想与解题模板，配合典型题目推荐，强调思维路径与复杂度权衡，快速构建解题体系。
 ---
 
 ## 贪心算法

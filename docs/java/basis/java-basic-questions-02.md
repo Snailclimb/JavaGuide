@@ -1,5 +1,6 @@
 ---
 title: Java基础常见面试题总结(中)
+description: Java面向对象编程核心知识点总结：涵盖封装继承多态三大特性、接口与抽象类区别、Object类方法详解、深拷贝浅拷贝、String/StringBuffer/StringBuilder对比等，帮助快速掌握Java OOP精髓。
 category: Java
 tag:
   - Java基础
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: 面向对象,封装继承多态,接口,抽象类,深拷贝浅拷贝,Object类,equals,hashCode,String,字符串常量池,Java面试题
-  - - meta
-    - name: description
-      content: Java面向对象编程核心知识点总结：涵盖封装继承多态三大特性、接口与抽象类区别、Object类方法详解、深拷贝浅拷贝、String/StringBuffer/StringBuilder对比等，帮助快速掌握Java OOP精髓。
 ---
 
 <!-- @include: @article-header.snippet.md -->

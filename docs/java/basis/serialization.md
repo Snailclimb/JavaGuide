@@ -1,5 +1,6 @@
 ---
 title: Java 序列化详解
+description: 深入解析Java序列化与反序列化机制：详解Serializable接口、transient关键字、serialVersionUID作用、序列化协议选择及RPC、缓存等应用场景。
 category: Java
 tag:
   - Java基础
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: Java序列化,反序列化,Serializable接口,transient关键字,serialVersionUID,序列化协议,对象持久化
-  - - meta
-    - name: description
-      content: 深入解析Java序列化与反序列化机制：详解Serializable接口、transient关键字、serialVersionUID作用、序列化协议选择及RPC、缓存等应用场景。
 ---
 
 ## 什么是序列化和反序列化?

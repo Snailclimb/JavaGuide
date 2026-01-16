@@ -1,5 +1,6 @@
 ---
 title: Java IO 设计模式总结
+description: Java IO设计模式深度解析：详解装饰器模式在BufferedInputStream中应用、适配器模式InputStreamReader实现、模板方法模式InputStream设计，理解Java IO类库架构。
 category: Java
 tag:
   - Java IO
@@ -8,9 +9,6 @@ head:
   - - meta
     - name: keywords
       content: Java IO设计模式,装饰器模式,适配器模式,模板方法模式,FilterInputStream,IO流设计
-  - - meta
-    - name: description
-      content: Java IO设计模式深度解析：详解装饰器模式在BufferedInputStream中应用、适配器模式InputStreamReader实现、模板方法模式InputStream设计，理解Java IO类库架构。
 ---
 
 这篇文章我们简单来看看我们从 IO 中能够学习到哪些设计模式的应用。

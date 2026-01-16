@@ -1,5 +1,6 @@
 ---
 title: Java 16 新特性概览
+description: 介绍 JDK 16 的语言与平台更新，包含记录类与其他 JEP 改动。
 category: Java
 tag:
   - Java新特性
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: Java 16,JDK16,记录类改进,新 API,JEP,性能
-  - - meta
-    - name: description
-      content: 介绍 JDK 16 的语言与平台更新，包含记录类与其他 JEP 改动。
 ---
 
 Java 16 在 2021 年 3 月 16 日正式发布，非长期支持（LTS）版本。

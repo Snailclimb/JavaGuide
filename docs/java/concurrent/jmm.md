@@ -1,5 +1,6 @@
 ---
 title: JMM（Java 内存模型）详解
+description: 深入解析Java内存模型JMM：详解CPU缓存模型、指令重排序机制、happens-before原则、内存可见性保证，理解多线程并发编程的底层规范。
 category: Java
 tag:
   - Java并发
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: JMM,Java内存模型,CPU缓存,指令重排序,happens-before,内存可见性,并发编程模型
-  - - meta
-    - name: description
-      content: 深入解析Java内存模型JMM：详解CPU缓存模型、指令重排序机制、happens-before原则、内存可见性保证，理解多线程并发编程的底层规范。
 ---
 
 对于 Java 来说，你可以把 **JMM（Java 内存模型）** 看作是 Java 定义的并发编程相关的一组规范。除了抽象了线程和主内存之间的关系之外，其还规定了从 Java 源代码到 CPU 可执行指令的转化过程要遵守哪些并发相关的原则和规范。其主要目的是为了**简化多线程编程**，**增强程序的可移植性**。

@@ -4,6 +4,10 @@ category: 框架
 tag:
   - SpringBoot
   - Spring
+head:
+  - - meta
+    - name: keywords
+      content: Spring注解,Spring Boot注解,@SpringBootApplication,@Autowired,@RequestMapping,@Configuration,@Component,常用注解
 ---
 
 可以毫不夸张地说，这篇文章介绍的 Spring/SpringBoot 常用注解基本已经涵盖你工作中遇到的大部分常用的场景。对于每一个注解本文都提供了具体用法，掌握这些内容后，使用 Spring Boot 来开发项目基本没啥大问题了！

@@ -1,5 +1,6 @@
 ---
 title: TCP 三次握手和四次挥手（传输层）
+description: 一文讲清 TCP 三次握手与四次挥手：SEQ/ACK/SYN/FIN 如何同步，TIME_WAIT 与 2MSL 的原因，半连接队列(SYN Queue)与全连接队列(Accept Queue)的工作机制，以及 backlog/somaxconn/syncookies 在高并发与 SYN Flood 下的影响。
 category: 计算机基础
 tag:
   - 计算机网络
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: TCP,三次握手,四次挥手,三次握手为什么,四次挥手为什么,TIME_WAIT,CLOSE_WAIT,2MSL,状态机,SEQ,ACK,SYN,FIN,RST,半连接队列,全连接队列,SYN队列,Accept队列,backlog,somaxconn,SYN Flood,syncookies
-  - - meta
-    - name: description
-      content: 一文讲清 TCP 三次握手与四次挥手：SEQ/ACK/SYN/FIN 如何同步，TIME_WAIT 与 2MSL 的原因，半连接队列(SYN Queue)与全连接队列(Accept Queue)的工作机制，以及 backlog/somaxconn/syncookies 在高并发与 SYN Flood 下的影响。
 ---
 
 TCP（Transmission Control Protocol）是一种**面向连接**、**可靠**的传输层协议。所谓“可靠”，通常体现在：按序交付、差错检测、丢包重传、流量控制与拥塞控制等。为了在不可靠的网络之上建立一条逻辑可靠的端到端连接，TCP 在传输数据前必须先完成连接建立过程，即 **三次握手（Three-way Handshake）**。

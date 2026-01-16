@@ -1,5 +1,6 @@
 ---
 title: ConcurrentHashMap 源码分析
+description: ConcurrentHashMap源码深入解析：对比JDK1.7分段锁Segment与JDK1.8 CAS+Synchronized实现，理解高并发Map的线程安全机制与性能优化。
 category: Java
 tag:
   - Java集合
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: ConcurrentHashMap源码,线程安全Map,分段锁Segment,CAS操作,并发容器,JDK7与JDK8区别
-  - - meta
-    - name: description
-      content: ConcurrentHashMap源码深入解析：对比JDK1.7分段锁Segment与JDK1.8 CAS+Synchronized实现，理解高并发Map的线程安全机制与性能优化。
 ---
 
 > 本文来自末读代码投稿：<https://mp.weixin.qq.com/s/AHWzboztt53ZfFZmsSnMSw> ，JavaGuide 对原文进行了大篇幅改进优化。

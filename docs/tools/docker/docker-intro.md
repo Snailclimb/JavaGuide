@@ -1,5 +1,6 @@
 ---
 title: Docker核心概念总结
+description: 梳理 Docker 的核心概念与容器/虚拟机差异，掌握镜像、容器与仓库的关系及在交付部署中的实际价值。
 category: 开发工具
 tag:
   - Docker
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: Docker,容器,镜像,仓库,引擎,隔离,虚拟机对比,部署
-  - - meta
-    - name: description
-      content: 梳理 Docker 的核心概念与容器/虚拟机差异，掌握镜像、容器与仓库的关系及在交付部署中的实际价值。
 ---
 
 本文只是对 Docker 的概念做了较为详细的介绍，并不涉及一些像 Docker 环境的安装以及 Docker 的一些常见操作和命令。

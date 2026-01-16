@@ -1,5 +1,6 @@
 ---
 title: MongoDB常见面试题总结（上）
+description: MongoDB常见面试题总结上篇，详解MongoDB基础概念、存储结构、数据类型、副本集高可用、分片集群水平扩展等核心知识点，助力后端面试准备。
 category: 数据库
 tag:
   - NoSQL
@@ -8,9 +9,6 @@ head:
   - - meta
     - name: keywords
       content: MongoDB面试题,文档数据库,BSON,副本集,分片集群,MongoDB索引,WiredTiger,聚合管道
-  - - meta
-    - name: description
-      content: MongoDB常见面试题总结上篇，详解MongoDB基础概念、存储结构、数据类型、副本集高可用、分片集群水平扩展等核心知识点，助力后端面试准备。
 ---
 
 > 少部分内容参考了 MongoDB 官方文档的描述，在此说明一下。

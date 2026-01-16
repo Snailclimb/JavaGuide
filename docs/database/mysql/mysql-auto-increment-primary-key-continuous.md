@@ -1,5 +1,6 @@
 ---
 title: MySQL自增主键一定是连续的吗
+description: 详解MySQL自增主键不连续的原因，分析唯一键冲突、事务回滚、批量插入等场景下自增值的分配机制，以及InnoDB自增锁模式的配置与影响。
 category: 数据库
 tag:
   - MySQL
@@ -8,9 +9,6 @@ head:
   - - meta
     - name: keywords
       content: MySQL自增主键,AUTO_INCREMENT,主键不连续,事务回滚,批量插入,唯一键冲突,innodb_autoinc_lock_mode
-  - - meta
-    - name: description
-      content: 详解MySQL自增主键不连续的原因，分析唯一键冲突、事务回滚、批量插入等场景下自增值的分配机制，以及InnoDB自增锁模式的配置与影响。
 ---
 
 > 作者：飞天小牛肉

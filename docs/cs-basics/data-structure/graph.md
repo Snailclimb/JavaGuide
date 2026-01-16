@@ -1,5 +1,6 @@
 ---
 title: 图
+description: 介绍图的基本概念与常用表示，结合 DFS/BFS 等核心算法与应用场景，掌握图论入门必备知识。
 category: 计算机基础
 tag:
   - 数据结构
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: 图,邻接表,邻接矩阵,DFS,BFS,度,有向图,无向图,连通性
-  - - meta
-    - name: description
-      content: 介绍图的基本概念与常用表示，结合 DFS/BFS 等核心算法与应用场景，掌握图论入门必备知识。
 ---
 
 图是一种较为复杂的非线性结构。 **为啥说其较为复杂呢？**

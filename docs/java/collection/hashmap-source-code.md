@@ -1,5 +1,6 @@
 ---
 title: HashMap 源码分析
+description: HashMap源码深度剖析：详解JDK1.7/1.8结构差异、hash扰动函数、0.75负载因子、扩容rehash机制、链表转红黑树阈值等HashMap核心原理。
 category: Java
 tag:
   - Java集合
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: HashMap源码,哈希表,红黑树,链表,扰动函数,负载因子,HashMap扩容,哈希冲突,JDK1.8优化
-  - - meta
-    - name: description
-      content: HashMap源码深度剖析：详解JDK1.7/1.8结构差异、hash扰动函数、0.75负载因子、扩容rehash机制、链表转红黑树阈值等HashMap核心原理。
 ---
 
 <!-- @include: @article-header.snippet.md -->

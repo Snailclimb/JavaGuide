@@ -1,5 +1,6 @@
 ---
 title: AQS 详解
+description: AQS抽象队列同步器深度解析：详解AQS核心原理、CLH队列结构、独占锁与共享锁实现、ReentrantLock/Semaphore等同步器应用、线程阻塞唤醒机制。
 category: Java
 tag:
   - Java并发
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: AQS,AbstractQueuedSynchronizer,队列同步器,独占锁,共享锁,CLH队列,ReentrantLock实现原理
-  - - meta
-    - name: description
-      content: AQS抽象队列同步器深度解析：详解AQS核心原理、CLH队列结构、独占锁与共享锁实现、ReentrantLock/Semaphore等同步器应用、线程阻塞唤醒机制。
 ---
 
 <!-- markdownlint-disable MD024 -->

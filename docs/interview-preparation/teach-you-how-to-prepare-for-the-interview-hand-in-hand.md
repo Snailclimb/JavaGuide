@@ -1,14 +1,12 @@
 ---
 title: 如何高效准备Java面试？
+description: 如何高效准备Java面试：从求职导向学习、技能清单制定到简历优化与面试冲刺，提供系统化备战方法，帮助你少走弯路、提高面试通过率。
 category: 知识星球
 icon: path
 head:
   - - meta
     - name: keywords
       content: Java面试准备,高效备战面试,求职导向学习,面试冲刺,简历优化,项目准备,校招,Java后端
-  - - meta
-    - name: description
-      content: 如何高效准备Java面试：从求职导向学习、技能清单制定到简历优化与面试冲刺，提供系统化备战方法，帮助你少走弯路、提高面试通过率。
 ---
 
 ::: tip 友情提示

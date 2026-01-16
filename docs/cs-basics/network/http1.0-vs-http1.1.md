@@ -1,5 +1,6 @@
 ---
 title: HTTP 1.0 vs HTTP 1.1（应用层）
+description: 细致对比 HTTP/1.0 与 HTTP/1.1 的协议差异，涵盖长连接、管道化、缓存与状态码增强等关键变更与实践影响。
 category: 计算机基础
 tag:
   - 计算机网络
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: HTTP/1.0,HTTP/1.1,长连接,管道化,缓存,状态码,Host,带宽优化
-  - - meta
-    - name: description
-      content: 细致对比 HTTP/1.0 与 HTTP/1.1 的协议差异，涵盖长连接、管道化、缓存与状态码增强等关键变更与实践影响。
 ---
 
 这篇文章会从下面几个维度来对比 HTTP 1.0 和 HTTP 1.1：

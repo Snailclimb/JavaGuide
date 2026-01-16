@@ -1,5 +1,6 @@
 ---
 title: HTTP vs HTTPS（应用层）
+description: 对比 HTTP 与 HTTPS 的协议与安全机制，解析 SSL/TLS 工作原理与握手流程，明确应用层安全落地细节。
 category: 计算机基础
 tag:
   - 计算机网络
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: HTTP,HTTPS,SSL,TLS,加密,认证,端口,安全性,握手流程
-  - - meta
-    - name: description
-      content: 对比 HTTP 与 HTTPS 的协议与安全机制，解析 SSL/TLS 工作原理与握手流程，明确应用层安全落地细节。
 ---
 
 ## HTTP 协议

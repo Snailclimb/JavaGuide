@@ -3,6 +3,10 @@ title: 为什么前后端都要做数据校验
 category: 系统设计
 tag:
   - 安全
+head:
+  - - meta
+    - name: keywords
+      content: 数据校验,前端校验,后端校验,参数校验,权限校验,输入验证,安全防护,防注入
 ---
 
 > 相关面试题：

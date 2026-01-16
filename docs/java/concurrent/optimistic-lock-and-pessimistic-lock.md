@@ -1,5 +1,6 @@
 ---
 title: 乐观锁和悲观锁详解
+description: 乐观锁与悲观锁深度对比：详解synchronized/ReentrantLock悲观锁实现、CAS/版本号乐观锁机制、适用场景分析、性能对比与选型建议。
 category: Java
 tag:
   - Java并发
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: 乐观锁,悲观锁,synchronized,ReentrantLock,CAS,版本号机制,并发控制,锁优化
-  - - meta
-    - name: description
-      content: 乐观锁与悲观锁深度对比：详解synchronized/ReentrantLock悲观锁实现、CAS/版本号乐观锁机制、适用场景分析、性能对比与选型建议。
 ---
 
 如果将悲观锁（Pessimistic Lock）和乐观锁（Optimistic Lock）对应到现实生活中来。悲观锁有点像是一位比较悲观（也可以说是未雨绸缪）的人，总是会假设最坏的情况，避免出现问题。乐观锁有点像是一位比较乐观的人，总是会假设最好的情况，在要出现问题之前快速解决问题。

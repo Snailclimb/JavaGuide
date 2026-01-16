@@ -4,6 +4,10 @@ category: 技术文章精选集
 author: hsm_computer
 tag:
   - 程序员
+head:
+  - - meta
+    - name: keywords
+      content: 程序员出书,技术书籍出版,出版社合作,图书公司,写书技巧,稿酬收益,技术写作,畅销书
 ---
 
 > **推荐语**：详细介绍了程序员应该如何从头开始出一本自己的书籍。

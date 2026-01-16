@@ -1,5 +1,6 @@
 ---
 title: MySQL高性能优化规范建议总结
+description: MySQL高性能优化规范建议总结，涵盖数据库命名规范、表设计规范、字段设计规范、索引设计规范、SQL编写规范等，帮助你构建高效稳定的数据库系统。
 category: 数据库
 tag:
   - MySQL
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: MySQL优化规范,数据库设计规范,索引设计,SQL编写规范,慢查询优化,字段类型选择,表结构设计
-  - - meta
-    - name: description
-      content: MySQL高性能优化规范建议总结，涵盖数据库命名规范、表设计规范、字段设计规范、索引设计规范、SQL编写规范等，帮助你构建高效稳定的数据库系统。
 ---
 
 > 作者: 听风 原文地址: <https://www.cnblogs.com/huchong/p/10219318.html>。

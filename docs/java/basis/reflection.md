@@ -1,5 +1,6 @@
 ---
 title: Java 反射机制详解
+description: 深入讲解Java反射机制原理与应用：掌握Class、Method、Field核心API，理解反射在Spring、MyBatis等框架中的应用，学习动态代理实现。
 category: Java
 tag:
   - Java基础
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: Java反射,反射机制,Class类,Method方法,Field字段,动态代理,框架原理,运行时操作
-  - - meta
-    - name: description
-      content: 深入讲解Java反射机制原理与应用：掌握Class、Method、Field核心API，理解反射在Spring、MyBatis等框架中的应用，学习动态代理实现。
 ---
 
 ## 何为反射？

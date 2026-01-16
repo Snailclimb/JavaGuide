@@ -1,5 +1,6 @@
 ---
 title: Java内存区域详解（重点）
+description: JVM内存区域详解：深入剖析Java运行时数据区（堆、方法区、虚拟机栈、本地方法栈、程序计数器）、对象创建过程、内存分配策略、对象访问定位方式。
 category: Java
 tag:
   - JVM
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: JVM内存区域,运行时数据区,堆内存,方法区,虚拟机栈,程序计数器,对象创建,Java内存模型
-  - - meta
-    - name: description
-      content: JVM内存区域详解：深入剖析Java运行时数据区（堆、方法区、虚拟机栈、本地方法栈、程序计数器）、对象创建过程、内存分配策略、对象访问定位方式。
 ---
 
 <!-- @include: @small-advertisement.snippet.md -->

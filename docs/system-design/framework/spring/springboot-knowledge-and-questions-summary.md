@@ -3,6 +3,10 @@ title: SpringBoot常见面试题总结(付费)
 category: 框架
 tag:
   - Spring
+head:
+  - - meta
+    - name: keywords
+      content: Spring Boot面试题,SpringBoot原理,自动配置,Starter,配置文件,Actuator,SpringBoot常见问题
 ---
 
 **Spring Boot** 相关的面试题为我的[知识星球](https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html)（点击链接即可查看详细介绍以及加入方法）专属内容，已经整理到了[《Java 面试指北》](https://javaguide.cn/zhuanlan/java-mian-shi-zhi-bei.html)中。

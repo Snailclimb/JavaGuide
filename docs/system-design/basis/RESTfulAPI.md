@@ -1,6 +1,10 @@
 ---
 title: RestFul API 简明教程
 category: 代码质量
+head:
+  - - meta
+    - name: keywords
+      content: RESTful API,REST,API设计,资源路径,HTTP方法,状态码,幂等性,接口规范
 ---
 
 这篇文章简单聊聊后端程序员必备的 RESTful API 相关的知识。

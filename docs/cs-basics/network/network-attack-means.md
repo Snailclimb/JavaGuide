@@ -1,5 +1,6 @@
 ---
 title: 网络攻击常见手段总结
+description: 总结常见 TCP/IP 攻击与防护思路，覆盖 DDoS、IP/ARP 欺骗、中间人等手段，强调工程防护实践。
 category: 计算机基础
 tag:
   - 计算机网络
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: 网络攻击,DDoS,IP 欺骗,ARP 欺骗,中间人攻击,扫描,防护
-  - - meta
-    - name: description
-      content: 总结常见 TCP/IP 攻击与防护思路，覆盖 DDoS、IP/ARP 欺骗、中间人等手段，强调工程防护实践。
 ---
 
 > 本文整理完善自[TCP/IP 常见攻击手段 - 暖蓝笔记 - 2021](https://mp.weixin.qq.com/s/AZwWrOlLxRSSi-ywBgZ0fA)这篇文章。

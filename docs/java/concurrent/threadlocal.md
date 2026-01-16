@@ -1,5 +1,6 @@
 ---
 title: ThreadLocal 详解
+description: ThreadLocal深度解析：详解ThreadLocal线程本地变量原理、ThreadLocalMap实现机制、弱引用与内存泄漏问题、使用场景与最佳实践。
 category: Java
 tag:
   - Java并发
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: ThreadLocal,线程本地变量,ThreadLocalMap,内存泄漏,弱引用,ThreadLocal原理,线程隔离
-  - - meta
-    - name: description
-      content: ThreadLocal深度解析：详解ThreadLocal线程本地变量原理、ThreadLocalMap实现机制、弱引用与内存泄漏问题、使用场景与最佳实践。
 ---
 
 > 本文来自一枝花算不算浪漫投稿， 原文地址：[https://juejin.cn/post/6844904151567040519](https://juejin.cn/post/6844904151567040519)。

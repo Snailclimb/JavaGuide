@@ -1,5 +1,6 @@
 ---
 title: MySQL三大日志(binlog、redo log和undo log)详解
+description: 深入解析MySQL三大日志binlog、redo log和undo log的作用与原理，详解两阶段提交保证数据一致性的机制，以及日志在崩溃恢复和主从复制中的应用。
 category: 数据库
 tag:
   - MySQL
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: MySQL日志,binlog,redo log,undo log,两阶段提交,崩溃恢复,主从复制,WAL,事务日志
-  - - meta
-    - name: description
-      content: 深入解析MySQL三大日志binlog、redo log和undo log的作用与原理，详解两阶段提交保证数据一致性的机制，以及日志在崩溃恢复和主从复制中的应用。
 ---
 
 > 本文来自公号程序猿阿星投稿，JavaGuide 对其做了补充完善。

@@ -1,5 +1,6 @@
 ---
 title: Github实用小技巧总结
+description: 汇总 Github 的高效使用技巧，包括个性化主页、自动简历与统计展示，提升个人品牌与开源协作体验。
 category: 开发工具
 tag:
   - Git
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: Github 技巧,个人主页,README,统计信息,开源贡献,简历
-  - - meta
-    - name: description
-      content: 汇总 Github 的高效使用技巧，包括个性化主页、自动简历与统计展示，提升个人品牌与开源协作体验。
 ---
 
 我使用 Github 已经有 6 年多了，今天毫无保留地把自己觉得比较有用的 Github 小技巧送给关注 JavaGuide 的各位小伙伴。

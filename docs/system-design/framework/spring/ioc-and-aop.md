@@ -3,6 +3,10 @@ title: IoC & AOP详解（快速搞懂）
 category: 框架
 tag:
   - Spring
+head:
+  - - meta
+    - name: keywords
+      content: IoC,DI,AOP,Spring IoC容器,依赖注入,切面编程,动态代理,Spring原理
 ---
 
 这篇文章会从下面从以下几个问题展开对 IoC & AOP 的解释

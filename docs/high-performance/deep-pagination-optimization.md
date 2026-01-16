@@ -1,13 +1,11 @@
 ---
 title: 深度分页介绍及优化建议
+description: 查询偏移量过大的场景我们称为深度分页，这会导致查询性能较低。深度分页可以采用范围查询、子查询、INNER JOIN 延迟关联、覆盖索引等方法进行优化。
 category: 高性能
 head:
   - - meta
     - name: keywords
       content: 深度分页
-  - - meta
-    - name: description
-      content: 查询偏移量过大的场景我们称为深度分页，这会导致查询性能较低。深度分页可以采用范围查询、子查询、INNER JOIN 延迟关联、覆盖索引等方法进行优化。
 ---
 
 ## 深度分页介绍

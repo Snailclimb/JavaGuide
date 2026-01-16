@@ -1,5 +1,6 @@
 ---
 title: MySQL执行计划分析
+description: 详解MySQL EXPLAIN执行计划的各列含义，包括id、select_type、type、key、rows、Extra等关键字段解读，帮助你分析SQL性能瓶颈并进行针对性优化。
 category: 数据库
 tag:
   - MySQL
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: MySQL执行计划,EXPLAIN,查询优化器,SQL性能分析,索引命中,type访问类型,Extra字段,慢查询优化
-  - - meta
-    - name: description
-      content: 详解MySQL EXPLAIN执行计划的各列含义，包括id、select_type、type、key、rows、Extra等关键字段解读，帮助你分析SQL性能瓶颈并进行针对性优化。
 ---
 
 > 本文来自公号 MySQL 技术，JavaGuide 对其做了补充完善。原文地址：<https://mp.weixin.qq.com/s/d5OowNLtXBGEAbT31sSH4g>

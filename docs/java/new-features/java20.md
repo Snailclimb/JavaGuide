@@ -1,5 +1,6 @@
 ---
 title: Java 20 新特性概览
+description: 总结 JDK 20 的语言与并发改动，延续虚拟线程与模式匹配相关增强。
 category: Java
 tag:
   - Java新特性
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: Java 20,JDK20,记录模式预览,虚拟线程改进,语言增强,JEP
-  - - meta
-    - name: description
-      content: 总结 JDK 20 的语言与并发改动，延续虚拟线程与模式匹配相关增强。
 ---
 
 JDK 20 于 2023 年 3 月 21 日发布，非长期支持版本。

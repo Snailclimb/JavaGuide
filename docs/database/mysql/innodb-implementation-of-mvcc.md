@@ -1,5 +1,6 @@
 ---
 title: InnoDB存储引擎对MVCC的实现
+description: 深入剖析InnoDB存储引擎MVCC的实现原理，详解隐藏列、undo log版本链、ReadView机制，以及快照读与当前读的区别，理解MySQL如何实现事务隔离。
 category: 数据库
 tag:
   - MySQL
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: MVCC,多版本并发控制,InnoDB,快照读,当前读,一致性视图,ReadView,undo log,隐藏列,事务隔离
-  - - meta
-    - name: description
-      content: 深入剖析InnoDB存储引擎MVCC的实现原理，详解隐藏列、undo log版本链、ReadView机制，以及快照读与当前读的区别，理解MySQL如何实现事务隔离。
 ---
 
 ## 多版本并发控制 (Multi-Version Concurrency Control)

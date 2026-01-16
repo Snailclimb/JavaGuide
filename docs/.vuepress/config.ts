@@ -14,22 +14,22 @@ export default defineUserConfig({
     // meta
     ["meta", { name: "robots", content: "all" }],
     ["meta", { name: "author", content: "Guide" }],
-    [
-      "meta",
-      {
-        name: "keywords",
-        content:
-          "Java基础, 多线程, JVM, 虚拟机, 数据库, MySQL, Spring, Redis, MyBatis, 系统设计, 分布式, RPC, 高可用, 高并发",
-      },
-    ],
-    [
-      "meta",
-      {
-        name: "description",
-        content:
-          "「Java学习 + 面试指南」一份涵盖大部分 Java 程序员所需要掌握的核心知识。准备 Java 面试，首选 JavaGuide！",
-      },
-    ],
+    // [
+    //   "meta",
+    //   {
+    //     name: "keywords",
+    //     content:
+    //       "Java基础, 多线程, JVM, 虚拟机, 数据库, MySQL, Spring, Redis, MyBatis, 系统设计, 分布式, RPC, 高可用, 高并发",
+    //   },
+    // ],
+    // [
+    //   "meta",
+    //   {
+    //     name: "description",
+    //     content:
+    //       "「Java学习 + 面试指南」一份涵盖大部分 Java 程序员所需要掌握的核心知识。准备 Java 面试，首选 JavaGuide！",
+    //   },
+    // ],
     ["meta", { name: "apple-mobile-web-app-capable", content: "yes" }],
     // 添加百度统计 - 异步加载避免阻塞渲染
     [

@@ -1,5 +1,6 @@
 ---
 title: RabbitMQ常见问题总结
+description: RabbitMQ 是一个在 AMQP（Advanced Message Queuing Protocol ）基础上实现的，可复用的企业消息系统。它可以用于大型软件系统各个模块之间的高效通信，支持高并发，支持可扩展。它支持多种客户端如：Python、Ruby、.NET、Java、JMS、C、PHP、ActionScript、XMPP、STOMP等，支持AJAX，持久化，用于在分布式系统中存储转发消息，在易用性、扩展性、高可用性等方面表现不俗。
 category: 高性能
 tag:
   - 消息队列
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: RabbitMQ,AMQP,Broker,Exchange,优先级队列,延迟队列
-  - - meta
-    - name: description
-      content: RabbitMQ 是一个在 AMQP（Advanced Message Queuing Protocol ）基础上实现的，可复用的企业消息系统。它可以用于大型软件系统各个模块之间的高效通信，支持高并发，支持可扩展。它支持多种客户端如：Python、Ruby、.NET、Java、JMS、C、PHP、ActionScript、XMPP、STOMP等，支持AJAX，持久化，用于在分布式系统中存储转发消息，在易用性、扩展性、高可用性等方面表现不俗。
 ---
 
 > 本篇文章由 JavaGuide 收集自网络，原出处不明。

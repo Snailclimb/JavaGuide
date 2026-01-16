@@ -1,13 +1,11 @@
 ---
 title: CDN工作原理详解
+description: CDN 就是将静态资源分发到多个不同的地方以实现就近访问，进而加快静态资源的访问速度，减轻服务器以及带宽的负担。
 category: 高性能
 head:
   - - meta
     - name: keywords
       content: CDN,内容分发网络
-  - - meta
-    - name: description
-      content: CDN 就是将静态资源分发到多个不同的地方以实现就近访问，进而加快静态资源的访问速度，减轻服务器以及带宽的负担。
 ---
 
 ## 什么是 CDN ？

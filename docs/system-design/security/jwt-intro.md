@@ -3,6 +3,10 @@ title: JWT 基础概念详解
 category: 系统设计
 tag:
   - 安全
+head:
+  - - meta
+    - name: keywords
+      content: JWT,JSON Web Token,Token认证,无状态,Header Payload Signature,签名算法,登录鉴权,CSRF
 ---
 
 <!-- @include: @article-header.snippet.md -->

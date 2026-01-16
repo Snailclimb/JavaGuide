@@ -1,13 +1,11 @@
 ---
 title: Maven最佳实践
+description: Maven 是一种广泛使用的 Java 项目构建自动化工具。它简化了构建过程并帮助管理依赖关系，使开发人员的工作更轻松。在这篇博文中，我们将讨论一些最佳实践、提示和技巧，以优化我们在项目中对 Maven 的使用并改善我们的开发体验。
 category: 开发工具
 head:
   - - meta
     - name: keywords
       content: Maven坐标,Maven仓库,Maven生命周期,Maven多模块管理
-  - - meta
-    - name: description
-      content: Maven 是一种广泛使用的 Java 项目构建自动化工具。它简化了构建过程并帮助管理依赖关系，使开发人员的工作更轻松。在这篇博文中，我们将讨论一些最佳实践、提示和技巧，以优化我们在项目中对 Maven 的使用并改善我们的开发体验。
 ---
 
 > 本文由 JavaGuide 翻译并完善，原文地址：<https://medium.com/@AlexanderObregon/maven-best-practices-tips-and-tricks-for-java-developers-438eca03f72b> 。

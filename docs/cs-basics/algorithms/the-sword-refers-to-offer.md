@@ -1,5 +1,6 @@
 ---
 title: 剑指offer部分编程题
+description: 选编《剑指 Offer》常见编程题，给出递归与迭代等多种思路与示例，实现对高频题型的高效复盘。
 category: 计算机基础
 tag:
   - 算法
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: 剑指Offer,斐波那契,递归,迭代,链表,数组,面试题
-  - - meta
-    - name: description
-      content: 选编《剑指 Offer》常见编程题，给出递归与迭代等多种思路与示例，实现对高频题型的高效复盘。
 ---
 
 ## 斐波那契数列

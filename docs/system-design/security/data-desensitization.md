@@ -3,6 +3,10 @@ title: 数据脱敏方案总结
 category: 系统设计
 tag:
   - 安全
+head:
+  - - meta
+    - name: keywords
+      content: 数据脱敏,隐私保护,手机号脱敏,身份证脱敏,掩码规则,敏感数据,测试数据,合规
 ---
 
 <!-- @include: @article-header.snippet.md -->

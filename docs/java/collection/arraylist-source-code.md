@@ -1,5 +1,6 @@
 ---
 title: ArrayList 源码分析
+description: ArrayList源码深度解析：详解ArrayList底层数组结构、1.5倍扩容机制、RandomAccess快速随机访问、序列化实现及与Vector性能对比。
 category: Java
 tag:
   - Java集合
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: ArrayList源码,ArrayList扩容机制,动态数组,RandomAccess,ArrayList序列化,ArrayList与Vector区别
-  - - meta
-    - name: description
-      content: ArrayList源码深度解析：详解ArrayList底层数组结构、1.5倍扩容机制、RandomAccess快速随机访问、序列化实现及与Vector性能对比。
 ---
 
 <!-- @include: @small-advertisement.snippet.md -->

@@ -2,6 +2,10 @@
 title: 系统设计常见面试题总结(付费)
 category: Java面试指北
 icon: "design"
+head:
+  - - meta
+    - name: keywords
+      content: 系统设计面试题,场景题,短链系统,秒杀系统,海量数据,限流,缓存,分布式锁,一致性
 ---
 
 **系统设计** 相关的面试题为我的[知识星球](https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html)（点击链接即可查看详细介绍以及加入方法）专属内容，已经整理到了[《后端面试高频系统设计&场景题》](https://javaguide.cn/zhuanlan/back-end-interview-high-frequency-system-design-and-scenario-questions.html)中。

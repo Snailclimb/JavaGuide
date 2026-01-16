@@ -1,5 +1,6 @@
 ---
 title: Java 魔法类 Unsafe 详解
+description: 深入解析Java魔法类Unsafe：讲解Unsafe直接内存操作、CAS原子操作、对象实例化等底层能力，理解JUC并发工具类实现原理及使用风险。
 category: Java
 tag:
   - Java基础
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: Unsafe类,内存操作,CAS原子操作,堆外内存,直接内存,sun.misc.Unsafe,JUC底层实现
-  - - meta
-    - name: description
-      content: 深入解析Java魔法类Unsafe：讲解Unsafe直接内存操作、CAS原子操作、对象实例化等底层能力，理解JUC并发工具类实现原理及使用风险。
 ---
 
 > 本文整理完善自下面这两篇优秀的文章：

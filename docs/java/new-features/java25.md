@@ -1,5 +1,6 @@
 ---
 title: Java 25 新特性概览
+description: 概览 JDK 25 的关键新特性与预览改动，关注并发、GC 与语言/平台增强。
 category: Java
 tag:
   - Java新特性
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: Java 25,JDK25,LTS,作用域值,紧凑对象头,分代 Shenandoah,模块导入,结构化并发
-  - - meta
-    - name: description
-      content: 概览 JDK 25 的关键新特性与预览改动，关注并发、GC 与语言/平台增强。
 ---
 
 JDK 25 于 2025 年 9 月 16 日 发布，这是一个非常重要的版本，里程碑式。

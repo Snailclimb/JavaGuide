@@ -1,5 +1,6 @@
 ---
 title: JVM垃圾回收详解（重点）
+description: JVM垃圾回收详解：全面讲解GC算法（标记清除、复制、标记整理）、分代回收机制、常用垃圾回收器（Serial、Parallel、CMS、G1、ZGC）、GC调优实践。
 category: Java
 tag:
   - JVM
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: JVM垃圾回收,GC算法,垃圾回收器,分代回收,标记清除,复制算法,G1 GC,ZGC,GC调优
-  - - meta
-    - name: description
-      content: JVM垃圾回收详解：全面讲解GC算法（标记清除、复制、标记整理）、分代回收机制、常用垃圾回收器（Serial、Parallel、CMS、G1、ZGC）、GC调优实践。
 ---
 
 > 如果没有特殊说明，都是针对的是 HotSpot 虚拟机。

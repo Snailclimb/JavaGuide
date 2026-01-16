@@ -1,5 +1,6 @@
 ---
 title: MyBatis常见面试题总结
+description: 几道常见的 MyBatis 常见
 category: 框架
 icon: "database"
 tag:
@@ -7,10 +8,7 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: MyBatis
-  - - meta
-    - name: description
-      content: 几道常见的 MyBatis 常见
+      content: MyBatis,MyBatis面试题,#{}与${},动态SQL,一级缓存,二级缓存,分页插件,Mapper映射
 ---
 
 <!-- @include: @small-advertisement.snippet.md -->

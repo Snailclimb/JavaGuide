@@ -3,6 +3,10 @@ title: Async 注解原理分析
 category: 框架
 tag:
   - Spring
+head:
+  - - meta
+    - name: keywords
+      content: Spring异步,@Async,EnableAsync,线程池,TaskExecutor,异步任务,Spring注解,方法异步
 ---
 
 `@Async` 注解由 Spring 框架提供，被该注解标注的类或方法会在 **异步线程** 中执行。这意味着当方法被调用时，调用者将不会等待该方法执行完成，而是可以继续执行后续的代码。

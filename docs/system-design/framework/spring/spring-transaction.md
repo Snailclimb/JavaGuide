@@ -3,6 +3,10 @@ title: Spring 事务详解
 category: 框架
 tag:
   - Spring
+head:
+  - - meta
+    - name: keywords
+      content: Spring事务,@Transactional,事务传播,隔离级别,事务失效,回滚规则,声明式事务,AOP事务
 ---
 
 前段时间答应读者的 **Spring 事务** 分析总结终于来了。这部分内容比较重要，不论是对于工作还是面试，但是网上比较好的参考资料比较少。
@@ -425,14 +429,18 @@ Class B {
 - 如果外部方法无事务，则单独开启一个事务，与 `PROPAGATION_REQUIRED` 类似。
 
 `TransactionDefinition.PROPAGATION_NESTED`代表的嵌套事务以父子关系呈现，其核心理念是子事务不会独立提交，依赖于父事务，在父事务中运行；当父事务提交时，子事务也会随着提交，理所当然的，当父事务回滚时，子事务也会回滚；
+
 > 与`TransactionDefinition.PROPAGATION_REQUIRES_NEW`区别于：`PROPAGATION_REQUIRES_NEW`是独立事务，不依赖于外部事务，以平级关系呈现，执行完就会立即提交，与外部事务无关；
 
 子事务也有自己的特性，可以独立进行回滚，不会引发父事务的回滚，但是前提是需要处理子事务的异常，避免异常被父事务感知导致外部事务回滚；
 
-举个例子： 
+举个例子：
+
 - 如果 `aMethod()` 回滚的话，作为嵌套事务的`bMethod()`会回滚。
 - 如果 `bMethod()` 回滚的话，`aMethod()`是否回滚，要看`bMethod()`的异常是否被处理：
+
   - `bMethod()`的异常没有被处理，即`bMethod()`内部没有处理异常，且`aMethod()`也没有处理异常，那么`aMethod()`将感知异常致使整体回滚。
+
     ```java
     @Service
     Class A {
@@ -444,7 +452,7 @@ Class B {
             b.bMethod();
         }
     }
-    
+
     @Service
     Class B {
         @Transactional(propagation = Propagation.NESTED)
@@ -453,6 +461,7 @@ Class B {
         }
     }
     ```
+
   - `bMethod()`处理异常或`aMethod()`处理异常，`aMethod()`不会回滚。
 
     ```java
@@ -470,7 +479,7 @@ Class B {
             }
         }
     }
-    
+
     @Service
     Class B {
         @Transactional(propagation = Propagation.NESTED)

@@ -1,5 +1,6 @@
 ---
 title: Java 24 新特性概览
+description: 总结 JDK 24 的新特性与改动，便于跟踪 Java 演进。
 category: Java
 tag:
   - Java新特性
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: Java 24,JDK24,JEP 更新,语言特性,GC 改进,平台增强
-  - - meta
-    - name: description
-      content: 总结 JDK 24 的新特性与改动，便于跟踪 Java 演进。
 ---
 
 [JDK 24](https://openjdk.org/projects/jdk/24/) 是自 JDK 21 以来的第三个非长期支持版本，和 [JDK 22](https://javaguide.cn/java/new-features/java22-23.html)、[JDK 23](https://javaguide.cn/java/new-features/java22-23.html)一样。下一个长期支持版是 **JDK 25**，预计今年 9 月份发布。

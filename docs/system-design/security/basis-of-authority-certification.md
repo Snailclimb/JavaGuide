@@ -3,6 +3,10 @@ title: 认证授权基础概念详解
 category: 系统设计
 tag:
   - 安全
+head:
+  - - meta
+    - name: keywords
+      content: 认证,授权,Authentication,Authorization,Session,Token,OAuth2,权限控制,安全基础
 ---
 
 ## 认证 (Authentication) 和授权 (Authorization)的区别是什么？

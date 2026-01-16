@@ -1,5 +1,6 @@
 ---
 title: Redis为什么用跳表实现有序集合
+description: 深入讲解Redis有序集合Zset为何选择跳表而非红黑树、B+树实现，详解跳表的数据结构原理、时间复杂度分析和Redis源码实现。
 category: 数据库
 tag:
   - Redis
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: Redis跳表,SkipList,有序集合,Zset,跳表原理,平衡树对比,Redis数据结构
-  - - meta
-    - name: description
-      content: 深入讲解Redis有序集合Zset为何选择跳表而非红黑树、B+树实现，详解跳表的数据结构原理、时间复杂度分析和Redis源码实现。
 ---
 
 ## 前言

@@ -1,13 +1,11 @@
 ---
 title: Linux 基础知识总结
+description: 简单介绍一下 Java 程序员必知的 Linux 的一些概念以及常见命令。
 category: 计算机基础
 tag:
   - 操作系统
   - Linux
 head:
-  - - meta
-    - name: description
-      content: 简单介绍一下 Java 程序员必知的 Linux 的一些概念以及常见命令。
   - - meta
     - name: keywords
       content: Linux,基础命令,发行版,文件系统,权限,进程,网络

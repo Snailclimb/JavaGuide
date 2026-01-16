@@ -1,13 +1,11 @@
 ---
 title: Maven核心概念总结
+description: Apache Maven 的本质是一个软件项目管理和理解工具。基于项目对象模型 (Project Object Model，POM) 的概念，Maven 可以从一条中心信息管理项目的构建、报告和文档。
 category: 开发工具
 head:
   - - meta
     - name: keywords
       content: Maven坐标,Maven仓库,Maven生命周期,Maven多模块管理
-  - - meta
-    - name: description
-      content: Apache Maven 的本质是一个软件项目管理和理解工具。基于项目对象模型 (Project Object Model，POM) 的概念，Maven 可以从一条中心信息管理项目的构建、报告和文档。
 ---
 
 > 这部分内容主要根据 Maven 官方文档整理，做了对应的删减，主要保留比较重要的部分，不涉及实战，主要是一些重要概念的介绍。

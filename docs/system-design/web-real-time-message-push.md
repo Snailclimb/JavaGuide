@@ -1,14 +1,12 @@
 ---
 title: Web 实时消息推送详解
+description: 消息推送通常是指网站的运营工作等人员，通过某种工具对用户当前网页或移动设备 APP 进行的主动消息推送。
 category: 系统设计
 icon: "messages"
 head:
   - - meta
     - name: keywords
-      content: 消息推送,短轮询,长轮询,SSE,Websocket,MQTT
-  - - meta
-    - name: description
-      content: 消息推送通常是指网站的运营工作等人员，通过某种工具对用户当前网页或移动设备 APP 进行的主动消息推送。
+      content: Web消息推送,实时消息,WebSocket,SSE,长轮询,短轮询,MQTT,实时通信方案
 ---
 
 > 原文地址：<https://juejin.cn/post/7122014462181113887，JavaGuide> 对本文进行了完善总结。

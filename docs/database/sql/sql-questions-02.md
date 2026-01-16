@@ -1,5 +1,6 @@
 ---
 title: SQL常见面试题总结（2）
+description: SQL常见面试题总结第二篇，详解INSERT、UPDATE、DELETE等DML数据操作语句，包括批量插入、从其他表导入、带更新的插入等实战技巧。
 category: 数据库
 tag:
   - 数据库基础
@@ -8,9 +9,6 @@ head:
   - - meta
     - name: keywords
       content: SQL面试题,INSERT插入,UPDATE更新,DELETE删除,批量插入,REPLACE INTO,数据操作
-  - - meta
-    - name: description
-      content: SQL常见面试题总结第二篇，详解INSERT、UPDATE、DELETE等DML数据操作语句，包括批量插入、从其他表导入、带更新的插入等实战技巧。
 ---
 
 > 题目来源于：[牛客题霸 - SQL 进阶挑战](https://www.nowcoder.com/exam/oj?page=1&tab=SQL%E7%AF%87&topicId=240)

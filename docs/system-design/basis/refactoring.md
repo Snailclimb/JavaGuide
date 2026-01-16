@@ -1,6 +1,10 @@
 ---
 title: 代码重构指南
 category: 代码质量
+head:
+  - - meta
+    - name: keywords
+      content: 代码重构,重构技巧,重构原则,设计模式,SOLID,代码坏味道,可维护性,单元测试
 ---
 
 前段时间重读了[《重构：改善代码既有设计》](https://book.douban.com/subject/30468597/)，收货颇多。于是，简单写了一篇文章来聊聊我对重构的看法。

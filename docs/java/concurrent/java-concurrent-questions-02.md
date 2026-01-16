@@ -1,5 +1,6 @@
 ---
 title: Java并发常见面试题总结（中）
+description: Java并发进阶面试题：深入解析synchronized与ReentrantLock区别、volatile可见性保证、JMM内存模型、happens-before原则等并发编程核心机制。
 category: Java
 tag:
   - Java并发
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: synchronized,ReentrantLock,volatile,JMM,happens-before,可见性,原子性,有序性,并发面试题
-  - - meta
-    - name: description
-      content: Java并发进阶面试题：深入解析synchronized与ReentrantLock区别、volatile可见性保证、JMM内存模型、happens-before原则等并发编程核心机制。
 ---
 
 <!-- @include: @article-header.snippet.md -->

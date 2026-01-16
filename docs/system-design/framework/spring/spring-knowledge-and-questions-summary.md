@@ -3,6 +3,10 @@ title: Spring常见面试题总结
 category: 框架
 tag:
   - Spring
+head:
+  - - meta
+    - name: keywords
+      content: Spring面试题,Spring框架,Bean生命周期,IoC,AOP,依赖注入,事务,Spring常见问题
 ---
 
 <!-- @include: @small-advertisement.snippet.md -->

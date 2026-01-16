@@ -1,5 +1,6 @@
 ---
 title: Java SPI 机制详解
+description: 全面讲解Java SPI机制原理与应用：理解ServiceLoader服务发现机制、SPI在JDBC/Dubbo/Spring中的应用、与API对比及最佳实践。
 category: Java
 tag:
   - Java基础
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: Java SPI,SPI机制,ServiceLoader,服务发现,插件化,JDBC驱动加载,Dubbo扩展,SPI应用
-  - - meta
-    - name: description
-      content: 全面讲解Java SPI机制原理与应用：理解ServiceLoader服务发现机制、SPI在JDBC/Dubbo/Spring中的应用、与API对比及最佳实践。
 ---
 
 > 本文来自 [Kingshion](https://github.com/jjx0708) 投稿。欢迎更多朋友参与到 JavaGuide 的维护工作，这是一件非常有意义的事情。详细信息请看：[JavaGuide 贡献指南](https://javaguide.cn/javaguide/contribution-guideline.html) 。

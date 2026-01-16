@@ -1,5 +1,6 @@
 ---
 title: ArrayBlockingQueue 源码分析
+description: ArrayBlockingQueue源码深度解析：详解有界阻塞队列实现、生产者消费者模式应用、ReentrantLock+Condition并发控制、线程池工作队列机制。
 category: Java
 tag:
   - Java集合
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: ArrayBlockingQueue源码,阻塞队列,有界队列,生产者消费者模式,ReentrantLock,Condition,线程池工作队列
-  - - meta
-    - name: description
-      content: ArrayBlockingQueue源码深度解析：详解有界阻塞队列实现、生产者消费者模式应用、ReentrantLock+Condition并发控制、线程池工作队列机制。
 ---
 
 ## 阻塞队列简介

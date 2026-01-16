@@ -1,5 +1,6 @@
 ---
 title: BigDecimal 详解
+description: 详解BigDecimal使用方法：解决浮点数精度丢失问题，掌握加减乘除运算、RoundingMode舍入规则、compareTo比较方法，适用金融计算等高精度场景。
 category: Java
 tag:
   - Java基础
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: BigDecimal,浮点数精度,小数运算,RoundingMode舍入模式,BigDecimal比较,金额计算,精度丢失
-  - - meta
-    - name: description
-      content: 详解BigDecimal使用方法：解决浮点数精度丢失问题，掌握加减乘除运算、RoundingMode舍入规则、compareTo比较方法，适用金融计算等高精度场景。
 ---
 
 《阿里巴巴 Java 开发手册》中提到：“为了避免精度丢失，可以使用 `BigDecimal` 来进行浮点数的运算”。

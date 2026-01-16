@@ -1,5 +1,6 @@
 ---
 title: Java集合常见面试题总结(上)
+description: Java集合框架面试题总结：深入解析Collection/List/Set/Queue接口，对比ArrayList/LinkedList/HashMap等常用集合类，掌握集合底层数据结构与使用场景。
 category: Java
 tag:
   - Java集合
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: Java集合,Collection,List,Set,Queue,ArrayList,LinkedList,HashMap,集合框架,Java面试题
-  - - meta
-    - name: description
-      content: Java集合框架面试题总结：深入解析Collection/List/Set/Queue接口，对比ArrayList/LinkedList/HashMap等常用集合类，掌握集合底层数据结构与使用场景。
 ---
 
 <!-- @include: @small-advertisement.snippet.md -->

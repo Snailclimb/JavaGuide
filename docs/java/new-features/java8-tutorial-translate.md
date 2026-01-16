@@ -1,5 +1,6 @@
 ---
 title: 《Java8 指南》中文翻译
+description: 翻译与整理 Java 8 教程，涵盖 Lambda、方法引用、接口默认方法、Stream 等新特性与示例代码。
 category: Java
 tag:
   - Java新特性
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: Java 8,指南,Lambda,方法引用,默认方法,Stream API,函数式接口,Date/Time API
-  - - meta
-    - name: description
-      content: 翻译与整理 Java 8 教程，涵盖 Lambda、方法引用、接口默认方法、Stream 等新特性与示例代码。
 ---
 
 # 《Java8 指南》中文翻译

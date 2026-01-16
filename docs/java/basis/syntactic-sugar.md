@@ -1,5 +1,6 @@
 ---
 title: Java 语法糖详解
+description: 深入剖析Java语法糖原理：详解自动装箱拆箱、泛型擦除、增强for、可变参数、枚举、Lambda等语法糖的编译期实现机制，避免使用误区。
 category: Java
 tag:
   - Java基础
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: Java语法糖,自动装箱拆箱,泛型擦除,增强for循环,可变参数,枚举,内部类,Lambda表达式,语法糖原理
-  - - meta
-    - name: description
-      content: 深入剖析Java语法糖原理：详解自动装箱拆箱、泛型擦除、增强for、可变参数、枚举、Lambda等语法糖的编译期实现机制，避免使用误区。
 ---
 
 > 作者：Hollis

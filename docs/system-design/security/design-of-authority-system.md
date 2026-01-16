@@ -1,15 +1,13 @@
 ---
 title: 权限系统设计详解
+description: 基于角色的访问控制（Role-Based Access Control，简称 RBAC）指的是通过用户的角色（Role）授权其相关权限，实现了灵活的访问控制，相比直接授予用户权限，要更加简单、高效、可扩展。
 category: 系统设计
 tag:
   - 安全
 head:
   - - meta
     - name: keywords
-      content: 权限系统设计,RBAC,ABAC
-  - - meta
-    - name: description
-      content: 基于角色的访问控制（Role-Based Access Control，简称 RBAC）指的是通过用户的角色（Role）授权其相关权限，实现了灵活的访问控制，相比直接授予用户权限，要更加简单、高效、可扩展。
+      content: 权限系统设计,RBAC,ABAC,用户角色权限,资源权限,权限模型,权限校验,授权系统
 ---
 
 <!-- @include: @article-header.snippet.md -->

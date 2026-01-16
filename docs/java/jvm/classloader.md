@@ -1,5 +1,6 @@
 ---
 title: 类加载器详解（重点）
+description: Java类加载器详解：深入剖析ClassLoader类加载机制、双亲委派模型原理、启动类加载器/扩展类加载器/应用类加载器、自定义类加载器实现、打破双亲委派场景。
 category: Java
 tag:
   - JVM
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: 类加载器,ClassLoader,双亲委派模型,类加载过程,自定义类加载器,打破双亲委派
-  - - meta
-    - name: description
-      content: Java类加载器详解：深入剖析ClassLoader类加载机制、双亲委派模型原理、启动类加载器/扩展类加载器/应用类加载器、自定义类加载器实现、打破双亲委派场景。
 ---
 
 ## 回顾一下类加载过程

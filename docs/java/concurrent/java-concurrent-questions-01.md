@@ -1,5 +1,6 @@
 ---
 title: Java并发常见面试题总结（上）
+description: Java并发编程基础面试题：深入讲解线程与进程区别、多线程创建方式、线程生命周期状态、死锁四个条件及预防、并发与并行概念等核心知识。
 category: Java
 tag:
   - Java并发
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: Java并发,线程与进程,多线程,死锁,线程生命周期,并发编程,Java面试题,线程创建方式
-  - - meta
-    - name: description
-      content: Java并发编程基础面试题：深入讲解线程与进程区别、多线程创建方式、线程生命周期状态、死锁四个条件及预防、并发与并行概念等核心知识。
 ---
 
 <!-- @include: @small-advertisement.snippet.md -->

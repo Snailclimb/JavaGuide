@@ -4,6 +4,10 @@ category: 技术文章精选集
 author: Kaito
 tag:
   - 练级攻略
+head:
+  - - meta
+    - name: keywords
+      content: 程序员坏习惯,编程规范,代码注释,技术文档,团队协作,代码提交,职业素养,编程修养
 ---
 
 > **推荐语**：Kaito 大佬的一篇文章，很实用的建议！

@@ -1,5 +1,6 @@
 ---
 title: 类加载过程详解
+description: 拆解 JVM 类加载的各阶段与关键细节，理解验证、准备、解析与初始化的具体行为。
 category: Java
 tag:
   - JVM
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: 类加载,加载,验证,准备,解析,初始化,clinit,常量池
-  - - meta
-    - name: description
-      content: 拆解 JVM 类加载的各阶段与关键细节，理解验证、准备、解析与初始化的具体行为。
 ---
 
 ## 类的生命周期

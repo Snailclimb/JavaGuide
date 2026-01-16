@@ -1,14 +1,12 @@
 ---
 title: Java 学习路线(最新版，4w+字)
+description: Java学习路线最新版：结合当下 Java 后端招聘要求，提供从基础到进阶的系统学习路径与资料建议，覆盖Java核心、数据库、缓存、中间件、框架与面试重点，帮助高效规划与提速上岸。
 category: 面试准备
 icon: path
 head:
   - - meta
     - name: keywords
       content: Java学习路线,Java后端路线,Java学习计划,校招准备,面试路线,Spring Boot,MySQL,Redis,JVM
-  - - meta
-    - name: description
-      content: Java学习路线最新版：结合当下 Java 后端招聘要求，提供从基础到进阶的系统学习路径与资料建议，覆盖Java核心、数据库、缓存、中间件、框架与面试重点，帮助高效规划与提速上岸。
 ---
 
 ::: tip 重要说明

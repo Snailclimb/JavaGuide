@@ -1,5 +1,6 @@
 ---
 title: Java 19 新特性概览
+description: 介绍 JDK 19 的预览特性与并发相关更新，为后续虚拟线程铺垫。
 category: Java
 tag:
   - Java新特性
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: Java 19,JDK19,虚拟线程预览,结构化并发,外部函数 API,JEP
-  - - meta
-    - name: description
-      content: 介绍 JDK 19 的预览特性与并发相关更新，为后续虚拟线程铺垫。
 ---
 
 JDK 19 定于 2022 年 9 月 20 日正式发布以供生产使用，非长期支持版本。不过，JDK 19 中有一些比较重要的新特性值得关注。

@@ -1,5 +1,6 @@
 ---
 title: Java IO 基础知识总结
+description: Java IO基础知识全面总结：详解字节流与字符流区别、InputStream/OutputStream字节流、Reader/Writer字符流、缓冲流优化、文件读写操作。
 category: Java
 tag:
   - Java IO
@@ -8,9 +9,6 @@ head:
   - - meta
     - name: keywords
       content: Java IO,字节流,字符流,InputStream,OutputStream,Reader,Writer,文件操作,缓冲流
-  - - meta
-    - name: description
-      content: Java IO基础知识全面总结：详解字节流与字符流区别、InputStream/OutputStream字节流、Reader/Writer字符流、缓冲流优化、文件读写操作。
 ---
 
 <!-- @include: @small-advertisement.snippet.md -->

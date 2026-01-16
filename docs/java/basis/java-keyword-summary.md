@@ -1,5 +1,6 @@
 ---
 title: Java 关键字总结
+description: 系统总结Java常用关键字：详解final、static、this、super、volatile、transient、synchronized等关键字用法与区别，助力Java开发者掌握核心语法。
 category: Java
 tag:
   - Java基础
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: Java关键字,final关键字,static关键字,this关键字,super关键字,volatile,transient,synchronized
-  - - meta
-    - name: description
-      content: 系统总结Java常用关键字：详解final、static、this、super、volatile、transient、synchronized等关键字用法与区别，助力Java开发者掌握核心语法。
 ---
 
 # final,static,this,super 关键字总结

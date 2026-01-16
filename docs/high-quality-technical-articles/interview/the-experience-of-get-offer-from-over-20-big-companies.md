@@ -4,6 +4,10 @@ category: 技术文章精选集
 author: 业余码农
 tag:
   - 面试
+head:
+  - - meta
+    - name: keywords
+      content: 大厂面试,面试技巧,自我介绍,项目经历,技术面试,编码能力,HR面试,offer选择
 ---
 
 > **推荐语**：很实用的面试经验分享！

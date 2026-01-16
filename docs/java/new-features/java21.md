@@ -1,5 +1,6 @@
 ---
 title: Java 21 新特性概览(重要)
+description: 概览 JDK 21 的关键新特性与实践影响，重点介绍字符串模板、Sequenced Collections、分代 ZGC、虚拟线程等。
 category: Java
 tag:
   - Java新特性
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: Java 21,JDK21,LTS,字符串模板,Sequenced Collections,分代 ZGC,记录模式,switch 模式匹配,虚拟线程,外部函数与内存 API
-  - - meta
-    - name: description
-      content: 概览 JDK 21 的关键新特性与实践影响，重点介绍字符串模板、Sequenced Collections、分代 ZGC、虚拟线程等。
 ---
 
 JDK 21 于 2023 年 9 月 19 日 发布，这是一个非常重要的版本，里程碑式。

@@ -3,6 +3,10 @@ title: SSO 单点登录详解
 category: 系统设计
 tag:
   - 安全
+head:
+  - - meta
+    - name: keywords
+      content: SSO,单点登录,统一认证,登录态,票据,TGT,ST,CAS协议,跨域登录
 ---
 
 > 本文授权转载自：<https://ken.io/note/sso-design-implement> 作者：ken.io

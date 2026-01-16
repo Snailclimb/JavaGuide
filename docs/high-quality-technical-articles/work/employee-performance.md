@@ -3,6 +3,10 @@ title: 聊聊大厂的绩效考核
 category: 技术文章精选集
 tag:
   - 工作
+head:
+  - - meta
+    - name: keywords
+      content: 大厂绩效,绩效考核,KPI,OKR,271制度,年终奖,职级晋升,向上管理
 ---
 
 > **内容概览**：

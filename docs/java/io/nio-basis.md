@@ -1,5 +1,6 @@
 ---
 title: Java NIO 核心知识总结
+description: Java NIO核心知识全面总结：详解Channel通道、Buffer缓冲区、Selector选择器三大核心组件、非阻塞IO实现、零拷贝技术、与传统IO性能对比。
 category: Java
 tag:
   - Java IO
@@ -8,9 +9,6 @@ head:
   - - meta
     - name: keywords
       content: Java NIO,Channel,Buffer,Selector,非阻塞IO,多路复用,零拷贝,NIO核心组件
-  - - meta
-    - name: description
-      content: Java NIO核心知识全面总结：详解Channel通道、Buffer缓冲区、Selector选择器三大核心组件、非阻塞IO实现、零拷贝技术、与传统IO性能对比。
 ---
 
 在学习 NIO 之前，需要先了解一下计算机 I/O 模型的基础理论知识。还不了解的话，可以参考我写的这篇文章：[Java IO 模型详解](https://javaguide.cn/java/io/io-model.html)。

@@ -1,5 +1,6 @@
 ---
 title: SQL常见面试题总结（5）
+description: SQL常见面试题总结第五篇，详解NULL空值处理技巧，包括IFNULL、COALESCE函数，以及使用CASE WHEN进行条件统计和完成率计算。
 category: 数据库
 tag:
   - 数据库基础
@@ -8,9 +9,6 @@ head:
   - - meta
     - name: keywords
       content: SQL面试题,NULL空值处理,IFNULL,COALESCE,CASE WHEN,条件统计,完成率计算
-  - - meta
-    - name: description
-      content: SQL常见面试题总结第五篇，详解NULL空值处理技巧，包括IFNULL、COALESCE函数，以及使用CASE WHEN进行条件统计和完成率计算。
 ---
 
 > 题目来源于：[牛客题霸 - SQL 进阶挑战](https://www.nowcoder.com/exam/oj?page=1&tab=SQL%E7%AF%87&topicId=240)

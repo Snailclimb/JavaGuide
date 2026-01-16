@@ -1,5 +1,6 @@
 ---
 title: Java基础常见面试题总结(下)
+description: Java高级特性面试题总结：深入讲解异常处理机制、泛型原理、反射应用、注解使用、SPI机制、序列化、IO流模型(BIO/NIO/AIO)、语法糖等核心知识点。
 category: Java
 tag:
   - Java基础
@@ -7,9 +8,6 @@ head:
   - - meta
     - name: keywords
       content: Java异常,泛型,反射,注解,SPI,序列化,IO流,语法糖,try-with-resources,BIO NIO AIO,Java面试题
-  - - meta
-    - name: description
-      content: Java高级特性面试题总结：深入讲解异常处理机制、泛型原理、反射应用、注解使用、SPI机制、序列化、IO流模型(BIO/NIO/AIO)、语法糖等核心知识点。
 ---
 
 <!-- @include: @article-header.snippet.md -->
