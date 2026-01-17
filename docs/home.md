@@ -1,7 +1,11 @@
 ---
 icon: creative
-title: JavaGuide（Java学习&面试指南）
-description: JavaGuide是一份涵盖Java核心知识的学习与面试指南，包括Java基础、集合、并发、JVM、数据库、分布式等内容。
+title: JavaGuide（Java 面试 & 后端通用面试指南）
+description: Java 面试指南（Java 八股文/面试题总结）：覆盖 Java 基础、集合、并发、JVM、Spring、MySQL、Redis、系统设计与分布式等核心知识，适用于校招/社招后端面试复习。
+head:
+  - - meta
+    - name: keywords
+      content: Java面试,Java面试指南,Java八股文,Java面试题,Java基础面试,JVM面试,并发面试,线程池面试,Spring面试,MySQL面试,Redis面试,系统设计面试,分布式面试,后端面试
 ---
 
 ::: tip 友情提示

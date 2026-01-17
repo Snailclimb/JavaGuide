@@ -9,6 +9,8 @@ head:
       content: Java学习路线,Java后端路线,Java学习计划,校招准备,面试路线,Spring Boot,MySQL,Redis,JVM
 ---
 
+<!-- @include: @small-advertisement.snippet.md -->
+
 ::: tip 重要说明
 
 本学习路线保持**年度系统性修订**，严格同步 Java 技术生态与招聘市场的最新动态，**确保内容时效性与前瞻性**。

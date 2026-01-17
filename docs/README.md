@@ -1,24 +1,24 @@
 ---
 home: true
 icon: home
-title: JavaGuide（后端学习 & 面试指南）
-description: JavaGuide 是一份面向后端开发/后端面试的学习与复习指南，覆盖 Java 基础、并发、JVM、数据库/MySQL、Redis、分布式、高并发、高可用、系统设计等核心知识，适用于校招/社招。
+title: JavaGuide（Java 面试 & 后端通用面试指南）
+description: JavaGuide 是一份面向后端学习与面试的指南，以 Java 面试为核心，同时覆盖数据库/MySQL、Redis、分布式、高并发、高可用、系统设计等通用后端知识，适用于校招/社招复习。
 heroImage: /logo.svg
 heroText: JavaGuide
-tagline: 面向后端学习和面试：Java + 数据库 + 分布式 + 高并发 + 系统设计
+tagline: Java 面试 & 后端通用面试指南，覆盖计算机基础、数据库、分布式、高并发与系统设计
 head:
   - - meta
     - name: keywords
-      content: JavaGuide,后端面试,后端开发,Java面试,数据库面试,MySQL面试,Redis面试,分布式,高并发,高性能,高可用,系统设计,消息队列,缓存,计算机网络,Linux
+      content: JavaGuide,Java面试,Java面试指南,Java八股文,后端面试,后端开发,数据库面试,MySQL面试,Redis面试,分布式,高并发,高性能,高可用,系统设计,消息队列,缓存,计算机网络,Linux
   - - meta
     - property: og:site_name
       content: JavaGuide
   - - meta
     - property: og:title
-      content: JavaGuide（后端学习&面试指南）
+      content: JavaGuide（Java 面试&后端通用面试指南）
   - - meta
     - property: og:description
-      content: JavaGuide 是一份面向后端开发/后端面试的学习与复习指南，覆盖 Java、数据库/MySQL、Redis、分布式、高并发、高可用、系统设计等核心知识。
+      content: JavaGuide 以 Java 面试为核心，同时覆盖数据库/MySQL、Redis、分布式、高并发、高可用、系统设计等通用后端知识。
   - - meta
     - property: og:type
       content: website
@@ -36,10 +36,10 @@ head:
       content: summary_large_image
   - - meta
     - name: twitter:title
-      content: JavaGuide（后端学习&面试指南）
+      content: JavaGuide（Java 面试&后端通用面试指南）
   - - meta
     - name: twitter:description
-      content: JavaGuide 覆盖 Java、数据库/MySQL、Redis、分布式、高并发、高可用、系统设计等核心知识，帮助你系统学习与高效备战后端面试。
+      content: JavaGuide 以 Java 面试为核心，同时覆盖数据库/MySQL、Redis、分布式、高并发、高可用、系统设计等通用后端知识。
   - - meta
     - name: twitter:image
       content: https://javaguide.cn/logo.png

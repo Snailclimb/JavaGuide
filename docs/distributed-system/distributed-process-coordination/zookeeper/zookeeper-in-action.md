@@ -6,6 +6,8 @@ tag:
   - ZooKeeper
 ---
 
+<!-- @include: @small-advertisement.snippet.md -->
+
 这篇文章简单给演示一下 ZooKeeper 常见命令的使用以及 ZooKeeper Java 客户端 Curator 的基本使用。介绍到的内容都是最基本的操作，能满足日常工作的基本需要。
 
 如果文章有任何需要改善和完善的地方，欢迎在评论区指出，共同进步！

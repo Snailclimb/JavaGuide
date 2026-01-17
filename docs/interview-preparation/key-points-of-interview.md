@@ -9,6 +9,8 @@ head:
       content: Java后端面试,面试重点,八股文,Java基础,Java集合,Java并发,MySQL,Redis,Spring Boot,项目经验
 ---
 
+<!-- @include: @small-advertisement.snippet.md -->
+
 ::: tip 友情提示
 本文节选自 **[《Java 面试指北》](../zhuanlan/java-mian-shi-zhi-bei.md)**。这是一份教你如何更高效地准备面试的专栏，内容和 JavaGuide 互补，涵盖常见八股文（系统设计、常见框架、分布式、高并发 ……）、优质面经等内容。
 :::

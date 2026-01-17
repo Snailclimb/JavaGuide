@@ -10,6 +10,8 @@ head:
       content: 计算机网络面试题,TCP vs UDP,TCP三次握手,HTTP/3 QUIC,IPv4 vs IPv6,TCP可靠性,IP地址,NAT协议,ARP协议,传输层面试,网络层高频题,基于TCP协议,基于UDP协议,队头阻塞,四次挥手
 ---
 
+<!-- @include: @article-header.snippet.md -->
+
 下篇主要是传输层和网络层相关的内容。
 
 ## TCP 与 UDP

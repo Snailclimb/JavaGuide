@@ -50,7 +50,17 @@ export default defineUserConfig({
     ],
   ],
 
-  bundler: viteBundler(),
+  bundler: viteBundler({
+    viteOptions: {
+      css: {
+        preprocessorOptions: {
+          scss: {
+            silenceDeprecations: ["if-function"],
+          },
+        },
+      },
+    },
+  }),
 
   theme,
 

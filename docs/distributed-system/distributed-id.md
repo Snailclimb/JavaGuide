@@ -4,6 +4,8 @@ description: 分布式ID生成方案详解，涵盖UUID、数据库自增、号�
 category: 分布式
 ---
 
+<!-- @include: @small-advertisement.snippet.md -->
+
 ## 分布式 ID 介绍
 
 ### 什么是 ID？

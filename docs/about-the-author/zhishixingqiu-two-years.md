@@ -47,15 +47,20 @@ star: 2
 - **独家面试手册**：多本原创 PDF 后端面试手册免费领取，全网独家。
 - **有问必答**：一对一免费提问，提供专属求职指南，拒绝焦虑。
 
+**🚀 实战项目**
+
+星球已经推出的实战项目如下：
+
+- [⭐AI 智能面试辅助平台 + RAG 知识库](https://javaguide.cn/zhuanlan/interview-guide.html)：基于 Spring Boot 4.0 + Java 21 + Spring AI 2.0 开发。非常适合作为学习和简历项目，学习门槛低，帮助提升求职竞争力，是主打就业的实战项目。
+- [手写 RPC 框架](https://javaguide.cn/zhuanlan/handwritten-rpc-framework.html)：从零开始基于 Netty+Kyro+Zookeeper 实现一个简易的 RPC 框架。麻雀虽小五脏俱全，项目代码注释详细，结构清晰。
+
+今年陆续还会推出更多企业级实战案例！
+
 🔥 **氛围与福利**
 
 - **海量资源**：Java 优质面试资源持续更新分享。
 - **抱团成长**：打卡活动、读书交流、线下聚会，让学习之路不再孤单。
 - **惊喜福利**：不定期节日抽奖、送书送课，福利拿到手软。
-
-🚀 **拥抱 AI**
-
-星球目前正在深度分享 **AI 编程** 方法论，并计划推出 **AI 实战项目**。
 
 💡 **总结**：这里的任何一项服务（尤其是简历修改和面试资料），单独拎出来的价值都已远超星球门票。
 
@@ -76,6 +81,17 @@ star: 2
 ![《Java 面试指北》内容概览](https://oss.javaguide.cn/javamianshizhibei/javamianshizhibei-content-overview.png)
 
 进入星球之后，这些专栏即可免费永久阅读，永久同步更新！
+
+### 实战项目
+
+星球已经推出的实战项目如下：
+
+- [⭐AI 智能面试辅助平台 + RAG 知识库](https://javaguide.cn/zhuanlan/interview-guide.html)：基于 Spring Boot 4.0 + Java 21 + Spring AI 2.0 开发。非常适合作为学习和简历项目，学习门槛低，帮助提升求职竞争力，是主打就业的实战项目。
+- [手写 RPC 框架](https://javaguide.cn/zhuanlan/handwritten-rpc-framework.html)：从零开始基于 Netty+Kyro+Zookeeper 实现一个简易的 RPC 框架。麻雀虽小五脏俱全，项目代码注释详细，结构清晰。
+
+今年陆续还会推出更多企业级实战案例！并且，星球还分享了很多高频项目经历的优化版介绍和面试准备（持续更新中）。
+
+![高频项目经历的优化版介绍和面试准备](https://oss.javaguide.cn/xingqiu/practical-project-introduction-template.png)
 
 ### PDF 面试手册
 
@@ -137,15 +153,7 @@ JavaGuide 知识星球优质主题汇总传送门：<https://www.yuque.com/snail
 
 ![](https://oss.javaguide.cn/xingqiu/%E7%90%83%E5%8F%8B%E6%AF%8F%E6%97%A5%E6%89%93%E5%8D%A1%E4%B9%9F%E8%83%BD%E5%AD%A6%E5%88%B0%E5%BE%88%E5%A4%9A%E4%B8%9C%E8%A5%BF.jpg)
 
-![](https://oss.javaguide.cn/xingqiu/%E7%A1%AE%E5%AE%9E%E6%98%AF%E5%AD%A6%E4%B9%A0%E4%BA%A4%E6%B5%81%E7%9A%84%E5%A5%BD%E5%9C%B0%E6%96%B9.jpg)
-
-### 读书活动
-
-定期会举办读书活动（奖励丰厚），我会带着大家一起读一些优秀的技术书籍！
-
-![](https://oss.javaguide.cn/xingqiu/image-20220211233642079.png)
-
-每一期读书活动的获奖率都非常非常非常高！直接超过门票价！！！
+![](https://oss.javaguide.cn/xingqiu/%E7%A1%AE%E5%AE%9E%E6%98%AF%E5%AD%A6%E4%B9%A0%E4%BA%A4%E6%B5%81%E7%9A%84%E5%A5%BD%E5%9C%B0%E6%96%B9.jpg)！
 
 ### 不定时福利
 
