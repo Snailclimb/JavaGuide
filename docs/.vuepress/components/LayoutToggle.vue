@@ -30,44 +30,60 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch } from "vue";
+import { ref, onMounted, watch, computed } from "vue";
+import { usePageData } from "vuepress/client";
 
 const isHidden = ref(false);
+const pageData = usePageData();
 
 const STORAGE_KEY = "javaguide-layout-hidden";
+const IMMERSIVE_TITLE = "JavaGuide - 沉浸式阅读中";
+
+// 计算当前页面的原始标题
+const originalTitle = computed(() => {
+  const title = pageData.value.title;
+  const siteTitle = "JavaGuide";
+  return title ? `${title} | ${siteTitle}` : siteTitle;
+});
 
 const toggleLayout = () => {
   isHidden.value = !isHidden.value;
 };
 
-// 应用隐藏状态
-const applyHiddenState = (hidden: boolean) => {
-  if (typeof document !== "undefined") {
-    if (hidden) {
-      document.documentElement.classList.add("layout-hidden");
-    } else {
-      document.documentElement.classList.remove("layout-hidden");
-    }
-  }
+// 更新浏览器标题
+const updateBrowserTitle = (hidden: boolean) => {
+  if (typeof document === "undefined") return;
+  document.title = hidden ? IMMERSIVE_TITLE : originalTitle.value;
 };
 
-// 监听状态变化
+// 应用隐藏状态
+const applyHiddenState = (hidden: boolean) => {
+  if (typeof document === "undefined") return;
+  document.documentElement.classList.toggle("layout-hidden", hidden);
+  updateBrowserTitle(hidden);
+};
+
+// 监听沉浸模式状态变化
 watch(isHidden, (newVal) => {
   applyHiddenState(newVal);
-  // 保存到 localStorage
-  if (typeof localStorage !== "undefined") {
-    localStorage.setItem(STORAGE_KEY, String(newVal));
-  }
+  localStorage?.setItem(STORAGE_KEY, String(newVal));
 });
 
-onMounted(() => {
-  // 从 localStorage 读取状态
-  if (typeof localStorage !== "undefined") {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved === "true") {
-      isHidden.value = true;
-      applyHiddenState(true);
+// 监听页面切换，更新标题
+watch(
+  () => pageData.value.path,
+  () => {
+    if (isHidden.value) {
+      updateBrowserTitle(true);
     }
+  },
+);
+
+onMounted(() => {
+  const saved = localStorage?.getItem(STORAGE_KEY);
+  if (saved === "true") {
+    isHidden.value = true;
+    applyHiddenState(true);
   }
 });
 </script>

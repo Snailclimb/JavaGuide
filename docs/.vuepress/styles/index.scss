@@ -38,6 +38,18 @@ html.layout-hidden {
     width: 0 !important;
   }
 
+  // 隐藏侧边栏切换按钮（小屏幕下的展开按钮）
+  .toggle-sidebar-wrapper {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  // 隐藏侧边栏遮罩层
+  .vp-sidebar-mask {
+    display: none !important;
+  }
+
   // 侧边栏包装器
   .vp-sidebar-wrapper,
   .sidebar-wrapper {
