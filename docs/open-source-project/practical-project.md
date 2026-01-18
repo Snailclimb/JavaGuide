@@ -8,6 +8,7 @@ icon: project
 ## AI
 
 - [interview-guide](https://github.com/Snailclimb/interview-guide)：基于 Spring Boot 4.0 + Java 21 + Spring AI + PostgreSQL + pgvector + RustFS + Redis，实现简历智能分析、AI 模拟面试、知识库 RAG 检索等核心功能。非常适合作为学习和简历项目，学习门槛低。
+- [PaiAgent](https://github.com/itwanger/PaiAgent)：一个企业级的 AI 工作流可视化编排平台，让 AI 能力的组合和调度变得简单高效。通过直观的拖拽式界面，开发者和业务人员都能快速构建复杂的 AI 处理流程，无需编写代码即可实现多种大模型的协同工作。
 
 ## 快速开发平台
 

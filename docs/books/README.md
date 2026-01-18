@@ -15,8 +15,17 @@ category: 计算机书籍
 
 如果内容对你有帮助的话，欢迎给本项目点个 Star。我会用我的业余时间持续完善这份书单，感谢！
 
+内容概览：
+
+- [计算机基础书籍推荐](./cs-basics.md)：操作系统、网络、数据结构与算法等基础书单，打底必备。
+- [数据库书籍推荐](./database.md)：MySQL/Redis/NoSQL/数据工程相关书籍，偏后端与数据方向。
+- [分布式系统书籍推荐](./distributed-system.md)：分布式理论、系统架构、中间件与工程实践相关书籍。
+- [Java 书籍推荐](./java.md)：Java 基础、并发、JVM、框架、性能优化等方向经典书单。
+- [搜索引擎书籍推荐](./search-engine.md)：信息检索/搜索架构/Elasticsearch 等相关书籍与资料。
+- [软件质量书籍推荐](./software-quality.md)：代码质量、重构、测试、工程化与团队协作相关书籍。
+
 ## 公众号
 
 最新更新会第一时间同步在公众号，推荐关注！另外，公众号上有很多干货不会同步在线阅读网站。
 
-![JavaGuide 官方公众号](https://oss.javaguide.cn/github/javaguide/gongzhonghaoxuanchuan.png)
+<img src="https://oss.javaguide.cn/github/javaguide/gongzhonghao-javaguide.png" alt="JavaGuide 公众号"  style="zoom: 43%; display: block; margin: 0 auto;" />
