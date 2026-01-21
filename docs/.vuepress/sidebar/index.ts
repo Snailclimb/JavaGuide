@@ -36,6 +36,7 @@ export default sidebar({
         "teach-you-how-to-prepare-for-the-interview-hand-in-hand",
         "resume-guide",
         "key-points-of-interview",
+        "pdf-interview-javaguide",
         "java-roadmap",
         "project-experience-guide",
         "how-to-handle-interview-nerves",

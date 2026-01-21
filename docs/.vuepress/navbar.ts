@@ -39,6 +39,11 @@ export default navbar([
     children: [
       { text: "关于作者", icon: "zuozhe", link: "/about-the-author/" },
       {
+        text: "PDF下载",
+        icon: "pdf",
+        link: "/interview-preparation/pdf-interview-javaguide.md",
+      },
+      {
         text: "面试突击",
         icon: "pdf",
         link: "https://interview.javaguide.cn/home.html",

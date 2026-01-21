@@ -13,6 +13,11 @@ export const openSourceProject = arraySidebar([
     icon: ICONS.PROJECT,
   },
   {
+    text: "AI",
+    link: "machine-learning",
+    icon: ICONS.MACHINE_LEARNING,
+  },
+  {
     text: "系统设计",
     link: "system-design",
     icon: ICONS.DESIGN,
@@ -26,11 +31,6 @@ export const openSourceProject = arraySidebar([
     text: "开发工具",
     link: "tools",
     icon: ICONS.TOOL,
-  },
-  {
-    text: "机器学习",
-    link: "machine-learning",
-    icon: ICONS.MACHINE_LEARNING,
   },
   {
     text: "大数据",

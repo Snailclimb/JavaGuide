@@ -1,9 +1,13 @@
 ---
 title: Disruptor常见问题总结
-description: "Disruptor常见问题总结：围绕高性能与性能优化实践梳理关键概念、常见问题与实践要点，帮助你高效学习与备战面试。"
+description: 本文总结 Disruptor 高性能内存队列的核心知识与面试要点，涵盖 Disruptor 架构（RingBuffer/Sequencer/WaitStrategy）、高性能原理（无锁设计/缓存行填充/预分配内存）、与 ArrayBlockingQueue 对比、生产者消费者模式等，助力 Disruptor 学习与面试。
 category: 高性能
 tag:
   - 消息队列
+head:
+  - - meta
+    - name: keywords
+      content: Disruptor,高性能队列,RingBuffer,无锁队列,缓存行填充,LMAX,内存队列,Disruptor面试
 ---
 
 Disruptor 是一个相对冷门一些的知识点，不过，如果你的项目经历中用到了 Disruptor 的话，那面试中就很可能会被问到。

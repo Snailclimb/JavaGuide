@@ -1,10 +1,14 @@
 ---
 title: RocketMQ常见问题总结
-description: "RocketMQ常见问题总结：围绕高性能与性能优化实践梳理关键概念、常见问题与实践要点，帮助你高效学习与备战面试。"
+description: 本文总结 RocketMQ 常见面试题与核心知识点，涵盖 RocketMQ 架构（NameServer/Broker）、消息类型（普通/顺序/事务/延迟消息）、消息存储机制（CommitLog/ConsumeQueue）、高性能原理（零拷贝/顺序写）、消息可靠性保障等，助力 RocketMQ 学习与面试。
 category: 高性能
 tag:
   - RocketMQ
   - 消息队列
+head:
+  - - meta
+    - name: keywords
+      content: RocketMQ,消息队列,NameServer,Broker,顺序消息,事务消息,延迟消息,消息存储,RocketMQ面试
 ---
 
 > [本文由 FrancisQ 投稿！](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247485969&idx=1&sn=6bd53abde30d42a778d5a35ec104428c&chksm=cea245daf9d5cccce631f93115f0c2c4a7634e55f5bef9009fd03f5a0ffa55b745b5ef4f0530&token=294077121&lang=zh_CN#rd) 相比原文主要进行了下面这些完善：

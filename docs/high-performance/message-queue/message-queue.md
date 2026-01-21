@@ -1,9 +1,13 @@
 ---
 title: 消息队列基础知识总结
-description: "消息队列基础知识总结：围绕高性能与性能优化实践梳理关键概念、常见问题与实践要点，帮助你高效学习与备战面试。"
+description: 本文系统总结消息队列的核心知识，涵盖消息队列的应用场景（异步处理/解耦/削峰）、消息模型（点对点/发布订阅）、如何保证消息不丢失、消息幂等性、消息顺序性、消息积压处理等常见问题，以及 Kafka、RocketMQ、RabbitMQ 技术选型对比。
 category: 高性能
 tag:
   - 消息队列
+head:
+  - - meta
+    - name: keywords
+      content: 消息队列,MQ,异步解耦,削峰填谷,消息丢失,消息幂等,消息顺序,Kafka,RocketMQ,RabbitMQ
 ---
 
 ::: tip

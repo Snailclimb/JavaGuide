@@ -1,13 +1,13 @@
 ---
 title: RabbitMQ常见问题总结
-description: RabbitMQ 是一个在 AMQP（Advanced Message Queuing Protocol ）基础上实现的，可复用的企业消息系统。它可以用于大型软件系统各个模块之间的高效通信，支持高并发，支持可扩展。它支持多种客户端如：Python、Ruby、.NET、Java、JMS、C、PHP、ActionScript、XMPP、STOMP等，支持AJAX，持久化，用于在分布式系统中存储转发消息，在易用性、扩展性、高可用性等方面表现不俗。
+description: 本文总结 RabbitMQ 常见面试题与核心知识点，涵盖 AMQP 协议、Exchange 交换机类型（Direct/Topic/Fanout）、消息确认机制、死信队列、延迟队列、优先级队列、高可用集群（镜像队列）等，助力 RabbitMQ 学习与面试准备。
 category: 高性能
 tag:
   - 消息队列
 head:
   - - meta
     - name: keywords
-      content: RabbitMQ,AMQP,Broker,Exchange,优先级队列,延迟队列
+      content: RabbitMQ,AMQP协议,Exchange交换机,消息确认,死信队列,延迟队列,优先级队列,RabbitMQ集群,消息队列面试
 ---
 
 > 本篇文章由 JavaGuide 收集自网络，原出处不明。

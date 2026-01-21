@@ -1,9 +1,13 @@
 ---
 title: Kafka常见问题总结
-description: "Kafka常见问题总结：围绕高性能与性能优化实践梳理关键概念、常见问题与实践要点，帮助你高效学习与备战面试。"
+description: 本文总结 Kafka 常见面试题与核心知识点，涵盖 Kafka 架构（Broker/Topic/Partition/Consumer Group）、高性能原理（零拷贝/顺序写/批量处理）、消息可靠性（ACK机制/ISR副本）、消息顺序性、Rebalance 机制、Kafka 与 RocketMQ 对比等，助力 Kafka 学习与面试。
 category: 高性能
 tag:
   - 消息队列
+head:
+  - - meta
+    - name: keywords
+      content: Kafka,消息队列,Kafka分区,Kafka副本,ISR,消费者组,Rebalance,零拷贝,Kafka面试
 ---
 
 ## Kafka 基础
