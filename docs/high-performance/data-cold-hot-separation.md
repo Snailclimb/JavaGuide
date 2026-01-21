@@ -74,7 +74,7 @@ head:
 
 典型流程如下：
 
-![冷热分离 - 冷数据迁移](../../../../../Desktop/data-cold-hot-separation.png)
+![冷热分离 - 冷数据迁移](https://oss.javaguide.cn/github/javaguide/high-performance/data-cold-hot-separation.png)
 
 > **实践建议**：若公司有 DBA 支持，可先进行一次**存量冷数据的人工迁移**，将历史数据批量导入冷库；后续再通过任务调度实现**增量迁移**的自动化。
 
