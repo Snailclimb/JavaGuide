@@ -12,7 +12,7 @@ head:
 
 JDK 24 于 2025 年 3 月发布，这是一个非 LTS（长期支持版）版本。下一个长期支持版是 **JDK 25**，预计于 2025 年 9 月发布。
 
-JDK 24 共有 12 个新特性，这篇文章会挑选其中较为重要的一些新特性进行详细介绍：
+JDK 24 共有 24 个新特性，这篇文章会挑选其中较为重要的一些新特性进行详细介绍：
 
 - [JEP 478: Key Derivation Function API (密钥派生函数 API)](https://openjdk.org/jeps/478)
 - [JEP 483: Early Class-File Loading & Linking (提前类加载和链接)](https://openjdk.org/jeps/483)

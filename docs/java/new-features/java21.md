@@ -36,7 +36,7 @@ String Templates(字符串模板) 目前仍然是 JDK 21 中的一个预览功�
 
 String Templates 提供了一种更简洁、更直观的方式来动态构建字符串。通过使用占位符`${}`，我们可以将变量的值直接嵌入到字符串中，而不需要手动处理。在运行时，Java 编译器会将这些占位符替换为实际的变量值。并且，表达式支持局部变量、静态/非静态字段甚至方法、计算结果等特性。
 
-实际上，String Templates（字符串模板）再大多数编程语言中都存在:
+实际上，String Templates（字符串模板）在大多数编程语言中都存在:
 
 ```typescript
 "Greetings {{ name }}!";  //Angular

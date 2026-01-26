@@ -36,7 +36,7 @@ var list = List.of(1, 2, 3);
 var map = new HashMap<String, String>();
 var p = Paths.of("src/test/java/Java9FeaturesTest.java");
 var numbers = List.of("a", "b", "c");
-for (var n : list)
+for (var n : numbers)
     System.out.print(n+ " ");
 ```
 
