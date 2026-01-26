@@ -12,36 +12,31 @@ head:
 
 Java 17 在 2021 年 9 月 14 日正式发布，是一个长期支持（LTS）版本。
 
-下面这张图是 Oracle 官方给出的 Oracle JDK 支持的时间线。可以看得到，Java
-
-17 最多可以支持到 2029 年 9 月份。
+下面这张图是 Oracle 官方给出的 Oracle JDK 支持的时间线。可以看得到，Java 17 最多可以支持到 2029 年 9 月份。
 
 ![](https://oss.javaguide.cn/github/javaguide/java/new-features/4c1611fad59449edbbd6e233690e9fa7.png)
 
 Java 17 将是继 Java 8 以来最重要的长期支持（LTS）版本，是 Java 社区八年努力的成果。Spring 6.x 和 Spring Boot 3.x 最低支持的就是 Java 17。
 
-这次更新共带来 14 个新特性：
+JDK 17 共有 14 个新特性，这篇文章会挑选其中较为重要的一些新特性进行详细介绍：
 
-- [JEP 306:Restore Always-Strict Floating-Point Semantics（恢复始终严格的浮点语义）](https://openjdk.java.net/jeps/306)
-- [JEP 356:Enhanced Pseudo-Random Number Generators（增强的伪随机数生成器）](https://openjdk.java.net/jeps/356)
-- [JEP 382:New macOS Rendering Pipeline（新的 macOS 渲染管道）](https://openjdk.java.net/jeps/382)
-- [JEP 391:macOS/AArch64 Port（支持 macOS AArch64）](https://openjdk.java.net/jeps/391)
-- [JEP 398:Deprecate the Applet API for Removal（删除已弃用的 Applet API）](https://openjdk.java.net/jeps/398)
-- [JEP 403:Strongly Encapsulate JDK Internals（更强大的封装 JDK 内部元素）](https://openjdk.java.net/jeps/403)
-- [JEP 406:Pattern Matching for switch (switch 的类型匹配)](https://openjdk.java.net/jeps/406)（预览）
-- [JEP 407:Remove RMI Activation（删除远程方法调用激活机制）](https://openjdk.java.net/jeps/407)
-- [JEP 409:Sealed Classes（密封类）](https://openjdk.java.net/jeps/409)（转正）
-- [JEP 410:Remove the Experimental AOT and JIT Compiler（删除实验性的 AOT 和 JIT 编译器）](https://openjdk.java.net/jeps/410)
-- [JEP 411:Deprecate the Security Manager for Removal（弃用安全管理器以进行删除）](https://openjdk.java.net/jeps/411)
-- [JEP 412:Foreign Function & Memory API (外部函数和内存 API)](https://openjdk.java.net/jeps/412)（孵化）
-- [JEP 414:Vector（向量） API](https://openjdk.java.net/jeps/414)（第二次孵化）
-- [JEP 415:Context-Specific Deserialization Filters](https://openjdk.java.net/jeps/415)
+- [JEP 356: Enhanced Pseudo-Random Number Generators（增强的伪随机数生成器）](https://openjdk.java.net/jeps/356)
+- [JEP 398: Deprecate the Applet API for Removal（标记弃用 Applet API 以便移除）](https://openjdk.java.net/jeps/398)
+- [JEP 406: Pattern Matching for switch (Preview)（switch 模式匹配，预览）](https://openjdk.java.net/jeps/406)
+- [JEP 407: Remove RMI Activation（移除 RMI 激活机制）](https://openjdk.java.net/jeps/407)
+- [JEP 409: Sealed Classes（密封类，转正）](https://openjdk.java.net/jeps/409)
+- [JEP 410: Remove the Experimental AOT and JIT Compiler（移除实验性的 AOT 和 JIT 编译器）](https://openjdk.java.net/jeps/410)
+- [JEP 411: Deprecate the Security Manager for Removal（标记弃用安全管理器以便移除）](https://openjdk.java.net/jeps/411)
+- [JEP 412: Foreign Function & Memory API (Incubator)（外部函数和内存 API，第一次孵化）](https://openjdk.java.net/jeps/412)
+- [JEP 414: Vector API (Second Incubator)（向量 API，第二次孵化）](https://openjdk.java.net/jeps/414)
 
-这里只对 356、398、413、406、407、409、410、411、412、414 这几个我觉得比较重要的新特性进行详细介绍。
+下图是从 JDK 8 到 JDK 16 每个版本的更新带来的新特性数量和更新时间：
+
+![](https://oss.javaguide.cn/github/javaguide/java/new-features/jdk8~jdk24.png)
 
 相关阅读：[OpenJDK Java 17 文档](https://openjdk.java.net/projects/jdk/17/) 。
 
-## JEP 356:增强的伪随机数生成器
+## JEP 356: Enhanced Pseudo-Random Number Generators（增强的伪随机数生成器）
 
 JDK 17 之前，我们可以借助 `Random`、`ThreadLocalRandom`和`SplittableRandom`来生成随机数。不过，这 3 个类都各有缺陷，且缺少常见的伪随机算法支持。
 
@@ -59,13 +54,13 @@ RandomGenerator randomGenerator = l128X256MixRandom.create(System.currentTimeMil
 randomGenerator.nextInt(10);
 ```
 
-## JEP 398:弃用 Applet API 以进行删除
+## JEP 398: Deprecate the Applet API for Removal（标记弃用 Applet API 以便移除）
 
 Applet API 用于编写在 Web 浏览器端运行的 Java 小程序，很多年前就已经被淘汰了，已经没有理由使用了。
 
 Applet API 在 Java 9 时被标记弃用（[JEP 289](https://openjdk.java.net/jeps/289)），但不是为了删除。
 
-## JEP 406:switch 的类型匹配（预览）
+## JEP 406: Pattern Matching for switch（switch 模式匹配，预览）
 
 正如 `instanceof` 一样， `switch` 也紧跟着增加了类型匹配自动转换功能。
 
@@ -140,29 +135,29 @@ static void testFooBar(String s) {
 }
 ```
 
-## JEP 407:删除远程方法调用激活机制
+## JEP 407: Remove RMI Activation（移除 RMI 激活机制）
 
 删除远程方法调用 (RMI) 激活机制，同时保留 RMI 的其余部分。RMI 激活机制已过时且不再使用。
 
-## JEP 409:密封类（转正）
+## JEP 409: Sealed Classes（密封类）
 
 密封类由 [JEP 360](https://openjdk.java.net/jeps/360) 提出预览，集成到了 Java 15 中。在 JDK 16 中， 密封类得到了改进（更加严格的引用检查和密封类的继承关系），由 [JEP 397](https://openjdk.java.net/jeps/397) 提出了再次预览。
 
 在 [Java 14 & 15 新特性概览](./java14-15.md) 中，我有详细介绍到密封类，这里就不再做额外的介绍了。
 
-## JEP 410:删除实验性的 AOT 和 JIT 编译器
+## JEP 410: Remove the Experimental AOT and JIT Compiler（移除实验性的 AOT 和 JIT 编译器）
 
 在 Java 9 的 [JEP 295](https://openjdk.java.net/jeps/295) ,引入了实验性的提前 (AOT) 编译器，在启动虚拟机之前将 Java 类编译为本机代码。
 
 Java 17，删除实验性的提前 (AOT) 和即时 (JIT) 编译器，因为该编译器自推出以来很少使用，维护它所需的工作量很大。保留实验性的 Java 级 JVM 编译器接口 (JVMCI)，以便开发人员可以继续使用外部构建的编译器版本进行 JIT 编译。
 
-## JEP 411:弃用安全管理器以进行删除
+## JEP 411: Deprecate the Security Manager for Removal（标记弃用安全管理器以便移除）
 
 弃用安全管理器以便在将来的版本中删除。
 
 安全管理器可追溯到 Java 1.0，多年来，它一直不是保护客户端 Java 代码的主要方法，也很少用于保护服务器端代码。为了推动 Java 向前发展，Java 17 弃用安全管理器，以便与旧版 Applet API ( [JEP 398](https://openjdk.java.net/jeps/398) ) 一起移除。
 
-## JEP 412:外部函数和内存 API（孵化）
+## JEP 412: Foreign Function & Memory API（外部函数和内存 API，孵化）
 
 Java 程序可以通过该 API 与 Java 运行时之外的代码和数据进行互操作。通过高效地调用外部函数（即 JVM 之外的代码）和安全地访问外部内存（即不受 JVM 管理的内存），该 API 使 Java 程序能够调用本机库并处理本机数据，而不会像 JNI 那样危险和脆弱。
 
@@ -170,7 +165,7 @@ Java 程序可以通过该 API 与 Java 运行时之外的代码和数据进行�
 
 在 [Java 19 新特性概览](./java19.md) 中，我有详细介绍到外部函数和内存 API，这里就不再做额外的介绍了。
 
-## JEP 414:向量 API（第二次孵化）
+## JEP 414: Vector API（向量 API，第二次孵化）
 
 向量（Vector） API 最初由 [JEP 338](https://openjdk.java.net/jeps/338) 提出，并作为[孵化 API](http://openjdk.java.net/jeps/11)集成到 Java 16 中。第二轮孵化由 [JEP 414](https://openjdk.java.net/jeps/414) 提出并集成到 Java 17 中，第三轮孵化由 [JEP 417](https://openjdk.java.net/jeps/417) 提出并集成到 Java 18 中，第四轮由 [JEP 426](https://openjdk.java.net/jeps/426) 提出并集成到了 Java 19 中。
 

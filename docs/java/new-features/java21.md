@@ -12,28 +12,25 @@ head:
 
 JDK 21 于 2023 年 9 月 19 日 发布，这是一个非常重要的版本，里程碑式。
 
-JDK21 是 LTS（长期支持版），至此为止，目前有 JDK8、JDK11、JDK17 和 JDK21 这四个长期支持版了。
+JDK 21 是 LTS（长期支持版），至此为止，目前有 JDK8、JDK11、JDK17 和 JDK21 这四个长期支持版了。
 
 JDK 21 共有 15 个新特性，这篇文章会挑选其中较为重要的一些新特性进行详细介绍：
 
-- [JEP 430：String Templates（字符串模板）](https://openjdk.org/jeps/430)（预览）
-- [JEP 431：Sequenced Collections（序列化集合）](https://openjdk.org/jeps/431)
+- [JEP 430: String Templates（字符串模板）](https://openjdk.org/jeps/430)（预览）
+- [JEP 431: Sequenced Collections（序列化集合）](https://openjdk.org/jeps/431)
+- [JEP 439: Generational ZGC（分代 ZGC）](https://openjdk.org/jeps/439)
+- [JEP 440: Record Patterns（记录模式）](https://openjdk.org/jeps/440)
+- [JEP 441: Pattern Matching for switch（switch 的模式匹配）](https://openjdk.org/jeps/441)
+- [JEP 442: Foreign Function & Memory API（外部函数和内存 API）](https://openjdk.org/jeps/442)（第三次预览）
+- [JEP 443: Unnamed Patterns and Variables（未命名模式和变量）](https://openjdk.org/jeps/443)（预览）
+- [JEP 444: Virtual Threads（虚拟线程）](https://openjdk.org/jeps/444)
+- [JEP 445: Unnamed Classes and Instance Main Methods（未命名类和实例 main 方法）](https://openjdk.org/jeps/445)（预览）
 
-- [JEP 439：Generational ZGC（分代 ZGC）](https://openjdk.org/jeps/439)
+下图是从 JDK 8 到 JDK 24 每个版本的更新带来的新特性数量和更新时间：
 
-- [JEP 440：Record Patterns（记录模式）](https://openjdk.org/jeps/440)
+![](https://oss.javaguide.cn/github/javaguide/java/new-features/jdk8~jdk24.png)
 
-- [JEP 441：Pattern Matching for switch（switch 的模式匹配）](https://openjdk.org/jeps/442)
-
-- [JEP 442：Foreign Function & Memory API（外部函数和内存 API）](https://openjdk.org/jeps/442)（第三次预览）
-
-- [JEP 443：Unnamed Patterns and Variables（未命名模式和变量](https://openjdk.org/jeps/443)（预览）
-
-- [JEP 444：Virtual Threads（虚拟线程）](https://openjdk.org/jeps/444)
-
-- [JEP 445：Unnamed Classes and Instance Main Methods（未命名类和实例 main 方法 ）](https://openjdk.org/jeps/445)（预览）
-
-## JEP 430：字符串模板（预览）
+## JEP 430: String Templates（字符串模板，预览）
 
 String Templates(字符串模板) 目前仍然是 JDK 21 中的一个预览功能。
 
@@ -130,7 +127,7 @@ String time = STR."The current time is \{
   }.";
 ```
 
-## JEP431：序列化集合
+## JEP 431: Sequenced Collections（序列化集合）
 
 JDK 21 引入了一种新的集合类型：**Sequenced Collections（序列化集合，也叫有序集合）**，这是一种具有确定出现顺序（encounter order）的集合（无论我们遍历这样的集合多少次，元素的出现顺序始终是固定的）。序列化集合提供了处理集合的第一个和最后一个元素以及反向视图（与原始集合相反的顺序）的简单方法。
 
@@ -261,7 +258,7 @@ System.out.println(map);  //{1=One, 2=Two, 3=Three}
 System.out.println(map.reversed());   //{3=Three, 2=Two, 1=One}
 ```
 
-## JEP 439：分代 ZGC
+## JEP 439: Generational ZGC（分代 ZGC）
 
 JDK21 中对 ZGC 进行了功能扩展，增加了分代 GC 功能。不过，默认是关闭的，需要通过配置打开：
 
@@ -278,13 +275,13 @@ java -XX:+UseZGC -XX:+ZGenerational ...
 
 分代 ZGC 可以显著减少垃圾回收过程中的停顿时间，并提高应用程序的响应性能。这对于大型 Java 应用程序和高并发场景下的性能优化非常有价值。
 
-## JEP 440：记录模式
+## JEP 440: Record Patterns（记录模式）
 
 记录模式在 Java 19 进行了第一次预览， 由 [JEP 405](https://openjdk.org/jeps/405) 提出。JDK 20 中是第二次预览，由 [JEP 432](https://openjdk.org/jeps/432) 提出。最终，记录模式在 JDK21 顺利转正。
 
 [Java 20 新特性概览](./java20.md)已经详细介绍过记录模式，这里就不重复了。
 
-## JEP 441：switch 的模式匹配
+## JEP 441: Pattern Matching for switch（switch 的模式匹配）
 
 增强 Java 中的 switch 表达式和语句，允许在 case 标签中使用模式。当模式匹配时，执行 case 标签对应的代码。
 
@@ -302,7 +299,7 @@ static String formatterPatternSwitch(Object obj) {
 }
 ```
 
-## JEP 442：外部函数和内存 API（第三次预览）
+## JEP 442: Foreign Function & Memory API（外部函数和内存 API，第三次预览）
 
 Java 程序可以通过该 API 与 Java 运行时之外的代码和数据进行互操作。通过高效地调用外部函数（即 JVM 之外的代码）和安全地访问外部内存（即不受 JVM 管理的内存），该 API 使 Java 程序能够调用本机库并处理本机数据，而不会像 JNI 那样危险和脆弱。
 
@@ -310,7 +307,7 @@ Java 程序可以通过该 API 与 Java 运行时之外的代码和数据进行�
 
 在 [Java 19 新特性概览](./java19.md) 中，我有详细介绍到外部函数和内存 API，这里就不再做额外的介绍了。
 
-## JEP 443：未命名模式和变量（预览）
+## JEP 443: Unnamed Patterns and Variables（未命名模式和变量，预览）
 
 未命名模式和变量使得我们可以使用下划线 `_` 表示未命名的变量以及模式匹配时不使用的组件，旨在提高代码的可读性和可维护性。
 
@@ -341,7 +338,7 @@ switch (b) {
 }
 ```
 
-## JEP 444：虚拟线程
+## JEP 444: Virtual Threads（虚拟线程）
 
 虚拟线程是一项重量级的更新，一定一定要重视！
 
@@ -349,7 +346,7 @@ switch (b) {
 
 [Java 20 新特性概览](./java20.md)已经详细介绍过虚拟线程，这里就不重复了。
 
-## JEP 445：未命名类和实例 main 方法 （预览）
+## JEP 445: Unnamed Classes and Instance Main Methods（未命名类和实例 main 方法，预览）
 
 这个特性主要简化了 `main` 方法的声明。对于 Java 初学者来说，这个 `main` 方法的声明引入了太多的 Java 语法概念，不利于初学者快速上手。
 

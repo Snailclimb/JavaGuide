@@ -10,19 +10,25 @@ head:
       content: Java 24,JDK24,JEP 更新,语言特性,GC 改进,平台增强
 ---
 
-[JDK 24](https://openjdk.org/projects/jdk/24/) 是自 JDK 21 以来的第三个非长期支持版本，和 [JDK 22](https://javaguide.cn/java/new-features/java22-23.html)、[JDK 23](https://javaguide.cn/java/new-features/java22-23.html)一样。下一个长期支持版是 **JDK 25**，预计今年 9 月份发布。
+JDK 24 于 2025 年 3 月发布，这是一个非 LTS（长期支持版）版本。下一个长期支持版是 **JDK 25**，预计于 2025 年 9 月发布。
 
-JDK 24 带来的新特性还是蛮多的，一共 24 个。JDK 22 和 JDK 23 都只有 12 个，JDK 24 的新特性相当于这两次的总和了。因此，这个版本还是非常有必要了解一下的。
+JDK 24 共有 12 个新特性，这篇文章会挑选其中较为重要的一些新特性进行详细介绍：
 
-JDK 24 新特性概览：
-
-![JDK 24 新特性](https://oss.javaguide.cn/github/javaguide/java/new-features/jdk24-features.png)
+- [JEP 478: Key Derivation Function API (密钥派生函数 API)](https://openjdk.org/jeps/478)
+- [JEP 483: Early Class-File Loading & Linking (提前类加载和链接)](https://openjdk.org/jeps/483)
+- [JEP 484: Class File API (类文件 API)](https://openjdk.org/jeps/484)
+- [JEP 485: Stream Gatherers (流收集器)](https://openjdk.org/jeps/485)
+- [JEP 486: Disable the Security Manager (永久禁用安全管理器)](https://openjdk.org/jeps/486)
+- [JEP 487: Scoped Values (作用域值, 第四次预览)](https://openjdk.org/jeps/487)
+- [JEP 495: Simplified Source Files and Instance Main Methods (简化的源文件和实例主方法, 第四次预览)](https://openjdk.org/jeps/495)
+- [JEP 497: Quantum-Resistant Digital Signature Algorithm (ML-DSA) (量子抗性数字签名算法)](https://openjdk.org/jeps/497)
+- [JEP 499: Structured Concurrency (结构化并发, 第四次预览)](https://openjdk.org/jeps/499)
 
 下图是从 JDK 8 到 JDK 24 每个版本的更新带来的新特性数量和更新时间：
 
 ![](https://oss.javaguide.cn/github/javaguide/java/new-features/jdk8~jdk24.png)
 
-## JEP 478: 密钥派生函数 API（预览）
+## JEP 478: Key Derivation Function API (密钥派生函数 API)
 
 密钥派生函数 API 是一种用于从初始密钥和其他数据派生额外密钥的加密算法。它的核心作用是为不同的加密目的（如加密、认证等）生成多个不同的密钥，避免密钥重复使用带来的安全隐患。 这在现代加密中是一个重要的里程碑，为后续新兴的量子计算环境打下了基础
 
@@ -45,13 +51,13 @@ SecretKey key = hkdf.deriveKey("AES", params);
 // 可以使用相同的 KDF 对象进行其他密钥派生操作
 ```
 
-## JEP 483: 提前类加载和链接
+## JEP 483: Early Class-File Loading & Linking (提前类加载和链接)
 
 在传统 JVM 中，应用在每次启动时需要动态加载和链接类。这种机制对启动时间敏感的应用（如微服务或无服务器函数）带来了显著的性能瓶颈。该特性通过缓存已加载和链接的类，显著减少了重复工作的开销，显著减少 Java 应用程序的启动时间。测试表明，对大型应用（如基于 Spring 的服务器应用），启动时间可减少 40% 以上。
 
 这个优化是零侵入性的，对应用程序、库或框架的代码无需任何更改，启动也方式保持一致，仅需添加相关 JVM 参数（如 `-XX:+ClassDataSharing`）。
 
-## JEP 484: 类文件 API
+## JEP 484: Class File API (类文件 API)
 
 类文件 API 在 JDK 22 进行了第一次预览（[JEP 457](https://openjdk.org/jeps/457)），在 JDK 23 进行了第二次预览并进一步完善（[JEP 466](https://openjdk.org/jeps/466)）。最终，该特性在 JDK 24 中顺利转正。
 
@@ -78,7 +84,7 @@ byte[] newBytes = cf.build(classModel.thisClass().asSymbol(),
         });
 ```
 
-## JEP 485: 流收集器
+## JEP 485: Stream Gatherers (流收集器)
 
 流收集器 `Stream::gather(Gatherer)` 是一个强大的新特性，它允许开发者定义自定义的中间操作，从而实现更复杂、更灵活的数据转换。`Gatherer` 接口是该特性的核心，它定义了如何从流中收集元素，维护中间状态，并在处理过程中生成结果。
 
@@ -102,11 +108,11 @@ var result = Stream.of("foo", "bar", "baz", "quux")
 // 输出结果 ==> [foo, quux]
 ```
 
-## JEP 486: 永久禁用安全管理器
+## JEP 486: Disable the Security Manager (永久禁用安全管理器)
 
 JDK 24 不再允许启用 `Security Manager`，即使通过 `java -Djava.security.manager`命令也无法启用，这是逐步移除该功能的关键一步。虽然 `Security Manager` 曾经是 Java 中限制代码权限（如访问文件系统或网络、读取或写入敏感文件、执行系统命令）的重要工具，但由于复杂性高、使用率低且维护成本大，Java 社区决定最终移除它。
 
-## JEP 487: 作用域值 （第四次预览）
+## JEP 487: Scoped Values (作用域值, 第四次预览)
 
 作用域值（Scoped Values）可以在线程内和线程间共享不可变的数据，优于线程局部变量，尤其是在使用大量虚拟线程时。
 
@@ -123,13 +129,13 @@ ScopedValue.where(V, <value>)
 
 作用域值允许在大型程序中的组件之间安全有效地共享数据，而无需求助于方法参数。
 
-## JEP 491: 虚拟线程的同步而不固定平台线程
+## JEP 491: Virtual Threads Synchronization Without Pinning (虚拟线程的同步而不固定平台线程)
 
 优化了虚拟线程与 `synchronized` 的工作机制。 虚拟线程在 `synchronized` 方法和代码块中阻塞时，通常能够释放其占用的操作系统线程（平台线程），避免了对平台线程的长时间占用，从而提升应用程序的并发能力。 这种机制避免了“固定 (Pinning)”——即虚拟线程长时间占用平台线程，阻止其服务于其他虚拟线程的情况。
 
 现有的使用 `synchronized` 的 Java 代码无需修改即可受益于虚拟线程的扩展能力。 例如，一个 I/O 密集型的应用程序，如果使用传统的平台线程，可能会因为线程阻塞而导致并发能力下降。 而使用虚拟线程，即使在 `synchronized` 块中发生阻塞，也不会固定平台线程，从而允许平台线程继续服务于其他虚拟线程，提高整体的并发性能。
 
-## JEP 493: 在没有 JMOD 文件的情况下链接运行时镜像
+## JEP 493: Linking Run-Time Images Without JMOD Files (在没有 JMOD 文件的情况下链接运行时镜像)
 
 默认情况下，JDK 同时包含运行时镜像（运行时所需的模块）和 JMOD 文件。这个特性使得 jlink 工具无需使用 JDK 的 JMOD 文件就可以创建自定义运行时镜像，减少了 JDK 的安装体积（约 25%）。
 
@@ -138,7 +144,7 @@ ScopedValue.where(V, <value>)
 - Jlink 是随 Java 9 一起发布的新命令行工具。它允许开发人员为基于模块的 Java 应用程序创建自己的轻量级、定制的 JRE。
 - JMOD 文件是 Java 模块的描述文件，包含了模块的元数据和资源。
 
-## JEP 495: 简化的源文件和实例主方法（第四次预览）
+## JEP 495: Simplified Source Files and Instance Main Methods (简化的源文件和实例主方法, 第四次预览)
 
 这个特性主要简化了 `main` 方法的声明。对于 Java 初学者来说，这个 `main` 方法的声明引入了太多的 Java 语法概念，不利于初学者快速上手。
 
@@ -170,13 +176,13 @@ void main() {
 }
 ```
 
-## JEP 497: 量子抗性数字签名算法 (ML-DSA)
+## JEP 497: Quantum-Resistant Digital Signature Algorithm (ML-DSA) (量子抗性数字签名算法)
 
 JDK 24 引入了支持实施抗量子的基于模块晶格的数字签名算法 （Module-Lattice-Based Digital Signature Algorithm, **ML-DSA**），为抵御未来量子计算机可能带来的威胁做准备。
 
 ML-DSA 是美国国家标准与技术研究院（NIST）在 FIPS 204 中标准化的量子抗性算法，用于数字签名和身份验证。
 
-## JEP 498: 使用 `sun.misc.Unsafe` 内存访问方法时发出警告
+## JEP 498: Warnings When Using `sun.misc.Unsafe` Memory Access Methods (使用 `sun.misc.Unsafe` 内存访问方法时发出警告)
 
 JDK 23([JEP 471](https://openjdk.org/jeps/471)) 提议弃用 `sun.misc.Unsafe` 中的内存访问方法，这些方法将来的版本中会被移除。在 JDK 24 中，当首次调用 `sun.misc.Unsafe` 的任何内存访问方法时，运行时会发出警告。
 
@@ -235,7 +241,7 @@ class OffHeapIntBuffer {
 }
 ```
 
-## JEP 499: 结构化并发（第四次预览）
+## JEP 499: Structured Concurrency (结构化并发, 第四次预览)
 
 JDK 19 引入了结构化并发，一种多线程编程方法，目的是为了通过结构化并发 API 来简化多线程编程，并不是为了取代`java.util.concurrent`，目前处于孵化器阶段。
 

@@ -14,6 +14,21 @@ head:
 
 <!-- markdownlint-disable MD024 -->
 
+JDK 8 于 2014 年 3 月 18 日发布，这是一个 LTS（长期支持版）版本，是目前市场上使用最多的 JDK 版本。至此为止，目前有 JDK8、JDK11、JDK17、JDK21 和 JDK 25 这五个长期支持版了。
+
+JDK 8 引入了许多重要的新特性，这篇文章会挑选其中较为重要的一些新特性进行详细介绍：
+
+- Lambda 表达式
+- Stream API
+- Optional 类
+- Date-Time API
+- 接口默认方法
+- 函数式接口
+
+下图是从 JDK 8 到 JDK 24 每个版本的更新带来的新特性数量和更新时间：
+
+![](https://oss.javaguide.cn/github/javaguide/java/new-features/jdk8~jdk24.png)
+
 Oracle 于 2014 发布了 Java8（jdk1.8），诸多原因使它成为目前市场上使用最多的 jdk 版本。虽然发布距今已将近 7 年，但很多程序员对其新特性还是不够了解，尤其是用惯了 Java8 之前版本的老程序员，比如我。
 
 为了不脱离队伍太远，还是有必要对这些新特性做一些总结梳理。它较 jdk.7 有很多变化或者说是优化，比如 interface 里可以有静态方法，并且可以有方法体，这一点就颠覆了之前的认知；`java.util.HashMap` 数据结构里增加了红黑树；还有众所周知的 Lambda 表达式等等。本文不能把所有的新特性都给大家一一分享，只列出比较常用的新特性给大家做详细讲解。更多相关内容请看[官网关于 Java8 的新特性的介绍](https://www.oracle.com/java/technologies/javase/8-whats-new.html)。

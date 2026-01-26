@@ -10,19 +10,21 @@ head:
       content: Java 10,JDK10,var 局部变量类型推断,垃圾回收改进,性能
 ---
 
-**Java 10** 发布于 2018 年 3 月 20 日，最知名的特性应该是 `var` 关键字（局部变量类型推断）的引入了，其他还有垃圾收集器改善、GC 改进、性能提升、线程管控等一批新特性。
+**Java 10** 发布于 2018 年 3 月 20 日，这是一个非 LTS（长期支持）版本，Oracle 仅提供六个月的支持。
 
-**概览（精选了一部分）**：
+![](https://oss.javaguide.cn/github/javaguide/java/new-features/jdk8~jdk24.png)
 
-- [JEP 286：局部变量类型推断](https://openjdk.java.net/jeps/286)
-- [JEP 304：垃圾回收器接口](https://openjdk.java.net/jeps/304)
-- [JEP 307：G1 并行 Full GC](https://openjdk.java.net/jeps/307)
-- [JEP 310：应用程序类数据共享(扩展 CDS 功能)](https://openjdk.java.net/jeps/310)
-- [JEP 317：实验性的基于 Java 的 JIT 编译器](https://openjdk.java.net/jeps/317)
+这篇文章会挑选其中较为重要的一些新特性进行详细介绍：
 
-## 局部变量类型推断(var)
+- [JEP 286: Local-Variable Type Inference（局部变量类型推断）](https://openjdk.org/jeps/286)
+- [JEP 304: Garbage-Collector Interface（垃圾回收器接口）](https://openjdk.org/jeps/304)
+- [JEP 307: Parallel Full GC for G1（G1 并行 Full GC）](https://openjdk.org/jeps/307)
+- [JEP 310: Application Class-Data Sharing（应用程序类数据共享）](https://openjdk.org/jeps/310)
+- [JEP 317: Experimental Java-Based JIT Compiler（实验性的基于 Java 的 JIT 编译器）](https://openjdk.org/jeps/317)
 
-由于太多 Java 开发者希望 Java 中引入局部变量推断，于是 Java 10 的时候它来了，也算是众望所归了！
+## JEP 286: Local-Variable Type Inference
+
+由于太多 Java 开发者希望 Java 中引入局部变量类型推断，于是 Java 10 的时候它来了，也算是众望所归了！
 
 Java 10 提供了 `var` 关键字声明局部变量。
 
@@ -50,19 +52,35 @@ var 并不会改变 Java 是一门静态类型语言的事实，编译器负责�
 
 另外，Scala 和 Kotlin 中已经有了 `val` 关键字 ( `final var` 组合关键字)。
 
-相关阅读：[《Java 10 新特性之局部变量类型推断》](https://zhuanlan.zhihu.com/p/34911982)。
-
-## 垃圾回收器接口
+## JEP 304: Garbage-Collector Interface
 
 在早期的 JDK 结构中，组成垃圾收集器 (GC) 实现的组件分散在代码库的各个部分。 Java 10 通过引入一套纯净的垃圾收集器接口来将不同垃圾收集器的源代码分隔开。
 
-## G1 并行 Full GC
+## JEP 307: Parallel Full GC for G1
 
 从 Java9 开始 G1 就成了默认的垃圾回收器，G1 是以一种低延时的垃圾回收器来设计的，旨在避免进行 Full GC,但是 Java9 的 G1 的 FullGC 依然是使用单线程去完成标记清除算法,这可能会导致垃圾回收器在无法回收内存的时候触发 Full GC。
 
 为了最大限度地减少 Full GC 造成的应用停顿的影响，从 Java10 开始，G1 的 FullGC 改为并行的标记清除算法，同时会使用与年轻代回收和混合回收相同的并行工作线程数量，从而减少了 Full GC 的发生，以带来更好的性能提升、更大的吞吐量。
 
-## 集合增强
+## JEP 310: **应用程序类数据共享(扩展 CDS 功能)**
+
+在 Java 5 中就已经引入了类数据共享机制 (Class Data Sharing，简称 CDS)，允许将一组类预处理为共享归档文件，以便在运行时能够进行内存映射以减少 Java 程序的启动时间，当多个 Java 虚拟机（JVM）共享相同的归档文件时，还可以减少动态内存的占用量，同时减少多个虚拟机在同一个物理或虚拟的机器上运行时的资源占用。CDS 在当时还是 Oracle JDK 的商业特性。
+
+Java 10 在现有的 CDS 功能基础上再次拓展，以允许应用类放置在共享存档中。CDS 特性在原来的 bootstrap 类基础之上，扩展加入了应用类的 CDS 为 (Application Class-Data Sharing，AppCDS) 支持，大大加大了 CDS 的适用范围。其原理为：在启动时记录加载类的过程，写入到文本文件中，再次启动时直接读取此启动文本并加载。设想如果应用环境没有大的变化，启动速度就会得到提升。
+
+## JEP 317: **实验性的基于 Java 的 JIT 编译器**
+
+Graal 是一个基于 Java 语言编写的 JIT 编译器，是 JDK 9 中引入的实验性 Ahead-of-Time (AOT) 编译器的基础。
+
+Oracle 的 HotSpot VM 便附带两个用 C++ 实现的 JIT compiler：C1 及 C2。在 Java 10 (Linux/x64, macOS/x64) 中，默认情况下 HotSpot 仍使用 C2，但通过向 java 命令添加 `-XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler` 参数便可将 C2 替换成 Graal。
+
+## API 增强
+
+并不是所有的 API 改动都会通过 JEP（Java Enhancement Proposal）来发布。
+
+在 JDK 的开发流程中：**JEP** 通常用于重大的改变，例如引入新的语言特性（如 `var`）、新的 JVM 机制（如 ZGC）或者大规模的库重构。像 `List.copyOf()` 这种在现有类中增加几个静态方法的操作，通常被视为常规的库维护。它们由 JDK 开发者直接通过 **JBS (JDK Bug System)** 的工单（Ticket）进行提交和评审，然后随版本直接发布。
+
+### 集合增强
 
 `List`，`Set`，`Map` 提供了静态方法`copyOf()`返回入参集合的一个不可变拷贝。
 
@@ -74,7 +92,7 @@ static <E> List<E> copyOf(Collection<? extends E> coll) {
 
 使用 `copyOf()` 创建的集合为不可变集合，不能进行添加、删除、替换、 排序等操作，不然会报 `java.lang.UnsupportedOperationException` 异常。 IDEA 也会有相应的提示。
 
-![](https://oss.javaguide.cn/java-guide-blog/image-20210816154125579.png)
+![使用 `copyOf()` 创建的集合为不可变集合](https://oss.javaguide.cn/java-guide-blog/image-20210816154125579.png)
 
 并且，`java.util.stream.Collectors` 中新增了静态方法，用于将流中的元素收集为不可变的集合。
 
@@ -84,7 +102,7 @@ list.stream().collect(Collectors.toUnmodifiableList());
 list.stream().collect(Collectors.toUnmodifiableSet());
 ```
 
-## Optional 增强
+### Optional 增强
 
 `Optional` 新增了一个无参的 `orElseThrow()` 方法，作为带参数的 `orElseThrow(Supplier<? extends X> exceptionSupplier)` 的简化版本，在没有值时默认抛出一个 NoSuchElementException 异常。
 
@@ -92,20 +110,6 @@ list.stream().collect(Collectors.toUnmodifiableSet());
 Optional<String> optional = Optional.empty();
 String result = optional.orElseThrow();
 ```
-
-## 应用程序类数据共享(扩展 CDS 功能)
-
-在 Java 5 中就已经引入了类数据共享机制 (Class Data Sharing，简称 CDS)，允许将一组类预处理为共享归档文件，以便在运行时能够进行内存映射以减少 Java 程序的启动时间，当多个 Java 虚拟机（JVM）共享相同的归档文件时，还可以减少动态内存的占用量，同时减少多个虚拟机在同一个物理或虚拟的机器上运行时的资源占用。CDS 在当时还是 Oracle JDK 的商业特性。
-
-Java 10 在现有的 CDS 功能基础上再次拓展，以允许应用类放置在共享存档中。CDS 特性在原来的 bootstrap 类基础之上，扩展加入了应用类的 CDS 为 (Application Class-Data Sharing，AppCDS) 支持，大大加大了 CDS 的适用范围。其原理为：在启动时记录加载类的过程，写入到文本文件中，再次启动时直接读取此启动文本并加载。设想如果应用环境没有大的变化，启动速度就会得到提升。
-
-## 实验性的基于 Java 的 JIT 编译器
-
-Graal 是一个基于 Java 语言编写的 JIT 编译器，是 JDK 9 中引入的实验性 Ahead-of-Time (AOT) 编译器的基础。
-
-Oracle 的 HotSpot VM 便附带两个用 C++ 实现的 JIT compiler：C1 及 C2。在 Java 10 (Linux/x64, macOS/x64) 中，默认情况下 HotSpot 仍使用 C2，但通过向 java 命令添加 `-XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler` 参数便可将 C2 替换成 Graal。
-
-相关阅读：[深入浅出 Java 10 的实验性 JIT 编译器 Graal - 郑雨迪](https://www.infoq.cn/article/java-10-jit-compiler-graal)
 
 ## 其他
 

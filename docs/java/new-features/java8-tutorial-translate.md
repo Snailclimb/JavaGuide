@@ -12,6 +12,23 @@ head:
 
 # 《Java8 指南》中文翻译
 
+JDK 8 于 2014 年 3 月 18 日发布，这是一个 LTS（长期支持版）版本，是 Java 历史上最重要的版本之一。至此为止，目前有 JDK8、JDK11、JDK17、JDK21 和 JDK 25 这五个长期支持版了。
+
+JDK 8 引入了许多重要的新特性，这篇文章会挑选其中较为重要的一些新特性进行详细介绍：
+
+- Lambda 表达式
+- 方法引用
+- 接口默认方法
+- Stream API
+- 函数式接口
+- Optional 类
+- Date/Time API
+- 注解增强
+
+下图是从 JDK 8 到 JDK 24 每个版本的更新带来的新特性数量和更新时间：
+
+![](https://oss.javaguide.cn/github/javaguide/java/new-features/jdk8~jdk24.png)
+
 随着 Java 8 的普及度越来越高，很多人都提到面试中关于 Java 8 也是非常常问的知识点。应各位要求和需要，我打算对这部分知识做一个总结。本来准备自己总结的，后面看到 GitHub 上有一个相关的仓库，地址：
 [https://github.com/winterbe/java8-tutorial](https://github.com/winterbe/java8-tutorial)。这个仓库是英文的，我对其进行了翻译并添加和修改了部分内容，下面是正文。
 

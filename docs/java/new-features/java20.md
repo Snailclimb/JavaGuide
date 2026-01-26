@@ -14,19 +14,21 @@ JDK 20 于 2023 年 3 月 21 日发布，非长期支持版本。
 
 根据开发计划，下一个 LTS 版本就是将于 2023 年 9 月发布的 JDK 21。
 
-![](https://oss.javaguide.cn/github/javaguide/java/new-features/640.png)
+JDK 20 共有 7 个新特性，这篇文章会挑选其中较为重要的一些新特性进行详细介绍：
 
-JDK 20 只有 7 个新特性：
-
-- [JEP 429：Scoped Values（作用域值）](https://openjdk.org/jeps/429)（第一次孵化）
-- [JEP 432：Record Patterns（记录模式）](https://openjdk.org/jeps/432)（第二次预览）
-- [JEP 433：switch 模式匹配](https://openjdk.org/jeps/433)（第四次预览）
+- [JEP 429: Scoped Values（作用域值）](https://openjdk.org/jeps/429)（第一次孵化）
+- [JEP 432: Record Patterns（记录模式）](https://openjdk.org/jeps/432)（第二次预览）
+- [JEP 433: Pattern Matching for switch（switch 模式匹配）](https://openjdk.org/jeps/433)（第四次预览）
 - [JEP 434: Foreign Function & Memory API（外部函数和内存 API）](https://openjdk.org/jeps/434)（第二次预览）
 - [JEP 436: Virtual Threads（虚拟线程）](https://openjdk.org/jeps/436)（第二次预览）
-- [JEP 437:Structured Concurrency（结构化并发）](https://openjdk.org/jeps/437)(第二次孵化)
-- [JEP 438:向量 API（第五次孵化）](https://openjdk.org/jeps/438)
+- [JEP 437: Structured Concurrency（结构化并发）](https://openjdk.org/jeps/437)（第二次孵化）
+- [JEP 438: Vector API（向量 API）](https://openjdk.org/jeps/438)（第五次孵化）
 
-## JEP 429：作用域值（第一次孵化）
+下图是从 JDK 8 到 JDK 24 每个版本的更新带来的新特性数量和更新时间：
+
+![](https://oss.javaguide.cn/github/javaguide/java/new-features/jdk8~jdk24.png)
+
+## JEP 429: Scoped Values（作用域值，第一次孵化）
 
 作用域值（Scoped Values）它可以在线程内和线程间共享不可变的数据，优于线程局部变量，尤其是在使用大量虚拟线程时。
 
@@ -45,7 +47,7 @@ ScopedValue.where(V, <value>)
 
 关于作用域值的详细介绍，推荐阅读[作用域值常见问题解答](https://www.happycoders.eu/java/scoped-values/)这篇文章。
 
-## JEP 432：记录模式（第二次预览）
+## JEP 432: Record Patterns（记录模式，第二次预览）
 
 记录模式（Record Patterns） 可对 record 的值进行解构，也就是更方便地从记录类（Record Class）中提取数据。并且，还可以嵌套记录模式和类型模式结合使用，以实现强大的、声明性的和可组合的数据导航和处理形式。
 
@@ -146,7 +148,7 @@ switch(shape) {
 
 **注意**：不要把记录模式和 [JDK16](./java16.md) 正式引入的记录类搞混了。
 
-## JEP 433：switch 模式匹配（第四次预览）
+## JEP 433: Pattern Matching for switch（switch 模式匹配，第四次预览）
 
 正如 `instanceof` 一样， `switch` 也紧跟着增加了类型匹配自动转换功能。
 
@@ -197,7 +199,7 @@ static String formatterPatternSwitch(Object o) {
 
 `switch` 模式匹配分别在 Java17、Java18、Java19 中进行了预览，Java20 是第四次预览了。每一次的预览基本都会有一些小改进，这里就不细提了。
 
-## JEP 434: 外部函数和内存 API（第二次预览）
+## JEP 434: Foreign Function & Memory API（外部函数和内存 API，第二次预览）
 
 Java 程序可以通过该 API 与 Java 运行时之外的代码和数据进行互操作。通过高效地调用外部函数（即 JVM 之外的代码）和安全地访问外部内存（即不受 JVM 管理的内存），该 API 使 Java 程序能够调用本机库并处理本机数据，而不会像 JNI 那样危险和脆弱。
 
@@ -211,7 +213,7 @@ JDK 20 中是第二次预览，由 [JEP 434](https://openjdk.org/jeps/434) 提�
 
 在 [Java 19 新特性概览](./java19.md) 中，我有详细介绍到外部函数和内存 API，这里就不再做额外的介绍了。
 
-## JEP 436: 虚拟线程（第二次预览）
+## JEP 436: Virtual Threads（虚拟线程，第二次预览）
 
 虚拟线程（Virtual Thread）是 JDK 而不是 OS 实现的轻量级线程(Lightweight Process，LWP），由 JVM 调度。许多虚拟线程共享同一个操作系统线程，虚拟线程的数量可以远大于操作系统线程的数量。
 
@@ -279,7 +281,7 @@ thread.start();
 
 通过上述列举的 4 种创建虚拟线程的方式可以看出，官方为了降低虚拟线程的门槛，尽力复用原有的 `Thread` 线程类，这样可以平滑的过渡到虚拟线程的使用。
 
-## JEP 437: 结构化并发(第二次孵化)
+## JEP 437: Structured Concurrency（结构化并发，第二次孵化）
 
 Java 19 引入了结构化并发，一种多线程编程方法，目的是为了通过结构化并发 API 来简化多线程编程，并不是为了取代`java.util.concurrent`，目前处于孵化器阶段。
 
@@ -305,7 +307,7 @@ Java 19 引入了结构化并发，一种多线程编程方法，目的是为了
 
 JDK 20 中对结构化并发唯一变化是更新为支持在任务范围内创建的线程`StructuredTaskScope`继承范围值 这简化了跨线程共享不可变数据，详见[JEP 429](https://openjdk.org/jeps/429)。
 
-## JEP 432：向量 API（第五次孵化）
+## JEP 438: Vector API（向量 API，第五次孵化）
 
 向量计算由对向量的一系列操作组成。向量 API 用来表达向量计算，该计算可以在运行时可靠地编译为支持的 CPU 架构上的最佳向量指令，从而实现优于等效标量计算的性能。
 

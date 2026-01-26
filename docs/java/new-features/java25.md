@@ -14,9 +14,9 @@ JDK 25 于 2025 年 9 月 16 日 发布，这是一个非常重要的版本，�
 
 JDK 25 是 LTS（长期支持版），至此为止，目前有 JDK8、JDK11、JDK17、JDK21 和 JDK 25 这五个长期支持版了。
 
-JDK 21 共有 18 个新特性，这篇文章会挑选其中较为重要的一些新特性进行详细介绍：
+JDK 25 共有 18 个新特性，这篇文章会挑选其中较为重要的一些新特性进行详细介绍：
 
-- [JEP 506: Scoped Values (作用域值)](https://openjdk.org/projects/jdk/25/)
+- [JEP 506: Scoped Values (作用域值)](https://openjdk.org/jeps/506)
 - [JEP 512: Compact Source Files and Instance Main Methods (紧凑源文件与实例主方法)](https://openjdk.org/jeps/512)
 - [JEP 519: Compact Object Headers (紧凑对象头)](https://openjdk.org/jeps/519)
 - [JEP 521: Generational Shenandoah (分代 Shenandoah GC)](https://openjdk.org/jeps/521)

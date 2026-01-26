@@ -10,19 +10,23 @@ head:
       content: Java 9,JDK9,模块化,JPMS,jlink,集合工厂方法,新 API
 ---
 
-**Java 9** 发布于 2017 年 9 月 21 日 。作为 Java 8 之后 3 年半才发布的新版本，Java 9 带来了很多重大的变化其中最重要的改动是 Java 平台模块系统的引入，其他还有诸如集合、`Stream` 流……。
+**Java 9** 发布于 2017 年 9 月 21 日。作为 Java 8 之后 3 年半才发布的新版本，Java 9 带来了很多重大的变化其中最重要的改动是 Java 平台模块系统的引入，其他还有诸如集合、`Stream` 流……
 
-你可以在 [Archived OpenJDK General-Availability Releases](http://jdk.java.net/archive/) 上下载自己需要的 JDK 版本！官方的新特性说明文档地址：<https://openjdk.java.net/projects/jdk/> 。
+JDK 9 不是 LTS（长期支持版），至此为止，目前有 JDK8、JDK11、JDK17、JDK21 这四个长期支持版了。
 
-**概览（精选了一部分）**：
+这篇文章会挑选其中较为重要的一些新特性进行详细介绍：
 
-- [JEP 222: Java 命令行工具](https://openjdk.java.net/jeps/222)
-- [JEP 261: 模块化系统](https://openjdk.java.net/jeps/261)
-- [JEP 248：G1 成为默认垃圾回收器](https://openjdk.java.net/jeps/248)
-- [JEP 193: 变量句柄](https://openjdk.java.net/jeps/193)
-- [JEP 254：字符串存储结构优化](https://openjdk.java.net/jeps/254)
+- [JEP 222: Java Shell Tool (JShell)](https://openjdk.org/jeps/222)
+- [JEP 261: Module System (模块化系统)](https://openjdk.org/jeps/261)
+- [JEP 248: G1 Becomes the Default Garbage Collector (G1 成为默认垃圾回收器)](https://openjdk.org/jeps/248)
+- [JEP 254: Compact Strings (紧凑字符串)](https://openjdk.org/jeps/254)
+- [JEP 193: Variable Handles (变量句柄)](https://openjdk.org/jeps/193)
 
-## JShell
+下图是从 JDK 8 到 JDK 24 每个版本的更新带来的新特性数量和更新时间：
+
+![](https://oss.javaguide.cn/github/javaguide/java/new-features/jdk8~jdk24.png)
+
+## JEP 222: Java Shell Tool (JShell)
 
 JShell 是 Java 9 新增的一个实用工具。为 Java 提供了类似于 Python 的实时命令行交互工具。
 
@@ -43,7 +47,7 @@ JShell 是 Java 9 新增的一个实用工具。为 Java 提供了类似于 Pyth
 3. JShell 支持独立的表达式比如普通的加法运算 `1 + 1`。
 4. ……
 
-## 模块化系统
+## JEP 261: Module System (模块化系统)
 
 模块系统是[Jigsaw Project](https://openjdk.java.net/projects/jigsaw/)的一部分，把模块化开发实践引入到了 Java 平台中，可以让我们的代码可重用性更好！
 
@@ -79,13 +83,27 @@ module my.module {
 - [《Java 9 Modules: part 1》](https://stacktraceguru.com/java9/module-introduction)
 - [Java 9 揭秘（2. 模块化系统）](http://www.cnblogs.com/IcanFixIt/p/6947763.html)
 
-## G1 成为默认垃圾回收器
+## JEP 248: G1 Becomes the Default Garbage Collector (G1 成为默认垃圾回收器)
 
 在 Java 8 的时候，默认垃圾回收器是 Parallel Scavenge（新生代）+Parallel Old（老年代）。到了 Java 9, CMS 垃圾回收器被废弃了，**G1（Garbage-First Garbage Collector）** 成为了默认垃圾回收器。
 
 G1 还是在 Java 7 中被引入的，经过两个版本优异的表现成为成为默认垃圾回收器。
 
-## 快速创建不可变集合
+## JEP 193: Variable Handles (变量句柄)
+
+变量句柄是一个变量或一组变量的引用，包括静态域，非静态域，数组元素和堆外数据结构中的组成部分等。
+
+变量句柄的含义类似于已有的方法句柄 `MethodHandle` ，由 Java 类 `java.lang.invoke.VarHandle` 来表示，可以使用类 `java.lang.invoke.MethodHandles.Lookup` 中的静态工厂方法来创建 `VarHandle` 对象。
+
+`VarHandle` 的出现替代了 `java.util.concurrent.atomic` 和 `sun.misc.Unsafe` 的部分操作。并且提供了一系列标准的内存屏障操作，用于更加细粒度的控制内存排序。在安全性、可用性、性能上都要优于现有的 API。
+
+## API 增强
+
+并不是所有的 API 改动都会通过 JEP（Java Enhancement Proposal）来发布。
+
+在 JDK 的开发流程中：**JEP** 通常用于重大的改变，例如引入新的语言特性、新的 JVM 机制或者大规模的库重构。像 `List.of()` 这种在现有类中增加几个工厂方法的操作，通常被视为常规的库维护。它们由 JDK 开发者直接通过 **JBS (JDK Bug System)** 的工单（Ticket）进行提交和评审，然后随版本直接发布。
+
+### 集合增强
 
 增加了`List.of()`、`Set.of()`、`Map.of()` 和 `Map.ofEntries()`等工厂方法来创建不可变集合（有点参考 Guava 的味道）：
 
@@ -97,59 +115,11 @@ Map.of("Java", 1, "C++", 2);
 
 使用 `of()` 创建的集合为不可变集合，不能进行添加、删除、替换、 排序等操作，不然会报 `java.lang.UnsupportedOperationException` 异常。
 
-## String 存储结构优化
-
-Java 8 及之前的版本，`String` 一直是用 `char[]` 存储。在 Java 9 之后，`String` 的实现改用 `byte[]` 数组存储字符串，节省了空间。
-
-```java
-public final class String implements java.io.Serializable,Comparable<String>, CharSequence {
-    // @Stable 注解表示变量最多被修改一次，称为“稳定的”。
-    @Stable
-    private final byte[] value;
-}
-```
-
-## 接口私有方法
-
-Java 9 允许在接口中使用私有方法。这样的话，接口的使用就更加灵活了，有点像是一个简化版的抽象类。
-
-```java
-public interface MyInterface {
-    private void methodPrivate(){
-    }
-}
-```
-
-## try-with-resources 增强
-
-在 Java 9 之前，我们只能在 `try-with-resources` 块中声明变量：
-
-```java
-try (Scanner scanner = new Scanner(new File("testRead.txt"));
-    PrintWriter writer = new PrintWriter(new File("testWrite.txt"))) {
-    // omitted
-}
-```
-
-在 Java 9 之后，在 `try-with-resources` 语句中可以使用 effectively-final 变量。
-
-```java
-final Scanner scanner = new Scanner(new File("testRead.txt"));
-PrintWriter writer = new PrintWriter(new File("testWrite.txt"))
-try (scanner;writer) {
-    // omitted
-}
-```
-
-**什么是 effectively-final 变量？** 简单来说就是没有被 `final` 修饰但是值在初始化后从未更改的变量。
-
-正如上面的代码所演示的那样，即使 `writer` 变量没有被显示声明为 `final`，但它在第一次被赋值后就不会改变了，因此，它就是 effectively-final 变量。
-
-## Stream & Optional 增强
+### Stream 增强
 
 `Stream` 中增加了新的方法 `ofNullable()`、`dropWhile()`、`takeWhile()` 以及 `iterate()` 方法的重载方法。
 
-Java 9 中的 `ofNullable()` 方 法允许我们创建一个单元素的 `Stream`，可以包含一个非空元素，也可以创建一个空 `Stream`。 而在 Java 8 中则不可以创建空的 `Stream` 。
+Java 9 中的 `ofNullable()` 方 法允许我们创建一个单元素的 `Stream`，可以包含一个非空元素，也可以创建一个空 `Stream` 。 而在 Java 8 中则不可以创建空的 `Stream` 。
 
 ```java
 Stream<String> stringStream = Stream.ofNullable("Java");
@@ -192,6 +162,8 @@ Stream.iterate(1, i -> i + 1).limit(10).forEach(System.out::println);
 Stream.iterate(1, i -> i <= 10, i -> i + 1).forEach(System.out::println);
 ```
 
+### Optional 增强
+
 `Optional` 类中新增了 `ifPresentOrElse()`、`or()` 和 `stream()` 等方法
 
 `ifPresentOrElse()` 方法接受两个参数 `Consumer` 和 `Runnable` ，如果 `Optional` 不为空调用 `Consumer` 参数，为空则调用 `Runnable` 参数。
@@ -212,7 +184,55 @@ Optional<Object> objectOptional = Optional.empty();
 objectOptional.or(() -> Optional.of("java")).ifPresent(System.out::println);//java
 ```
 
-## 进程 API
+### String 增强
+
+Java 8 及之前的版本，`String` 一直是用 `char[]` 存储。在 Java 9 之后，`String` 的实现改用 `byte[]` 数组存储字符串，节省了空间。
+
+```java
+public final class String implements java.io.Serializable,Comparable<String>, CharSequence {
+    // @Stable 注解表示变量最多被修改一次，称为"稳定的"。
+    @Stable
+    private final byte[] value;
+}
+```
+
+### 接口增强
+
+Java 9 允许在接口中使用私有方法。这样的话，接口的使用就更加灵活了，有点像是一个简化版的抽象类。
+
+```java
+public interface MyInterface {
+    private void methodPrivate(){
+    }
+}
+```
+
+### IO 增强
+
+在 Java 9 之前，我们只能在 `try-with-resources` 块中声明变量：
+
+```java
+try (Scanner scanner = new Scanner(new File("testRead.txt"));
+    PrintWriter writer = new PrintWriter(new File("testWrite.txt"))) {
+    // omitted
+}
+```
+
+在 Java 9 之后，在 `try-with-resources` 语句中可以使用 effectively-final 变量。
+
+```java
+final Scanner scanner = new Scanner(new File("testRead.txt"));
+PrintWriter writer = new PrintWriter(new File("testWrite.txt"))
+try (scanner;writer) {
+    // omitted
+}
+```
+
+**什么是 effectively-final 变量？** 简单来说就是没有被 `final` 修饰但是值在初始化后从未更改的变量。
+
+正如上面的代码所演示的那样，即使 `writer` 变量没有被显示声明为 `final`，但它在第一次被赋值后就不会改变了，因此，它就是 effectively-final 变量。
+
+### 进程 API
 
 Java 9 增加了 `java.lang.ProcessHandle` 接口来实现对原生进程进行管理，尤其适合于管理长时间运行的进程。
 
@@ -229,21 +249,15 @@ System.out.println(currentProcess.info());
 
 ![](https://oss.javaguide.cn/java-guide-blog/image-20210816104614414.png)
 
-## 响应式流 （ Reactive Streams ）
+### 其他 API 增强
+
+**响应式流（Reactive Streams）**
 
 在 Java 9 中的 `java.util.concurrent.Flow` 类中新增了反应式流规范的核心接口 。
 
 `Flow` 中包含了 `Flow.Publisher`、`Flow.Subscriber`、`Flow.Subscription` 和 `Flow.Processor` 等 4 个核心接口。Java 9 还提供了`SubmissionPublisher` 作为`Flow.Publisher` 的一个实现。
 
 关于 Java 9 响应式流更详细的解读，推荐你看 [Java 9 揭秘（17. Reactive Streams ）- 林本托](https://www.cnblogs.com/IcanFixIt/p/7245377.html) 这篇文章。
-
-## 变量句柄
-
-变量句柄是一个变量或一组变量的引用，包括静态域，非静态域，数组元素和堆外数据结构中的组成部分等。
-
-变量句柄的含义类似于已有的方法句柄 `MethodHandle` ，由 Java 类 `java.lang.invoke.VarHandle` 来表示，可以使用类 `java.lang.invoke.MethodHandles.Lookup` 中的静态工厂方法来创建 `VarHandle` 对象。
-
-`VarHandle` 的出现替代了 `java.util.concurrent.atomic` 和 `sun.misc.Unsafe` 的部分操作。并且提供了一系列标准的内存屏障操作，用于更加细粒度的控制内存排序。在安全性、可用性、性能上都要优于现有的 API。
 
 ## 其它
 

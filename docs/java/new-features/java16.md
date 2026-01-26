@@ -12,9 +12,24 @@ head:
 
 Java 16 在 2021 年 3 月 16 日正式发布，非长期支持（LTS）版本。
 
+JDK 16 共有 17 个新特性，这篇文章会挑选其中较为重要的一些新特性进行详细介绍：
+
+- [JEP 338: Vector API (Incubator)（向量 API，第一次孵化）](https://openjdk.java.net/jeps/338)
+- [JEP 376: ZGC: Concurrent Thread-Stack Processing（ZGC 并发线程栈处理）](https://openjdk.java.net/jeps/376)
+- [JEP 387: Elastic Metaspace（弹性元空间）](https://openjdk.java.net/jeps/387)
+- [JEP 390: Warnings for Value-Based Classes（基于值的类的警告）](https://openjdk.java.net/jeps/390)
+- [JEP 394: Pattern Matching for instanceof（instanceof 模式匹配，转正）](https://openjdk.java.net/jeps/394)
+- [JEP 395: Records（record 类，转正）](https://openjdk.java.net/jeps/395)
+- [JEP 396: Strongly Encapsulate JDK Internals by Default（默认强封装 JDK 内部元素）](https://openjdk.java.net/jeps/396)
+- [JEP 397: Sealed Classes (Second Preview)（密封类，第二次预览）](https://openjdk.java.net/jeps/397)
+
+下图是从 JDK 8 到 JDK 15 每个版本的更新带来的新特性数量和更新时间：
+
+![](https://oss.javaguide.cn/github/javaguide/java/new-features/jdk8~jdk24.png)
+
 相关阅读：[OpenJDK Java 16 文档](https://openjdk.java.net/projects/jdk/16/) 。
 
-## JEP 338:向量 API(第一次孵化)
+## JEP 338: Vector API（向量 API，第一次孵化）
 
 向量（Vector） API 最初由 [JEP 338](https://openjdk.java.net/jeps/338) 提出，并作为[孵化 API](http://openjdk.java.net/jeps/11)集成到 Java 16 中。第二轮孵化由 [JEP 414](https://openjdk.java.net/jeps/414) 提出并集成到 Java 17 中，第三轮孵化由 [JEP 417](https://openjdk.java.net/jeps/417) 提出并集成到 Java 18 中，第四轮由 [JEP 426](https://openjdk.java.net/jeps/426) 提出并集成到了 Java 19 中。
 
@@ -22,23 +37,23 @@ Java 16 在 2021 年 3 月 16 日正式发布，非长期支持（LTS）版本�
 
 在 [Java 18 新特性概览](./java18.md) 中，我有详细介绍到向量 API，这里就不再做额外的介绍了。
 
-## JEP 347:启用 C++ 14 语言特性
+## JEP 347: Enable C++ 14 Language Features（启用 C++ 14 语言特性）
 
 Java 16 允许在 JDK 的 C++ 源代码中使用 C++14 语言特性，并提供在 HotSpot 代码中可以使用哪些特性的具体指导。
 
 在 Java 15 中，JDK 中 C++ 代码使用的语言特性仅限于 C++98/03 语言标准。它要求更新各种平台编译器的最低可接受版本。
 
-## JEP 376:ZGC 并发线程堆栈处理
+## JEP 376: ZGC: Concurrent Thread-Stack Processing（ZGC 并发线程栈处理）
 
 Java16 将 ZGC 线程栈处理从安全点转移到一个并发阶段，甚至在大堆上也允许在毫秒内暂停 GC 安全点。消除 ZGC 垃圾收集器中最后一个延迟源可以极大地提高应用程序的性能和效率。
 
-## JEP 387:弹性元空间
+## JEP 387: Elastic Metaspace（弹性元空间）
 
 自从引入了 Metaspace 以来，根据反馈，Metaspace 经常占用过多的堆外内存，从而导致内存浪费。弹性元空间这个特性可将未使用的 HotSpot 类元数据（即元空间，metaspace）内存更快速地返回到操作系统，从而减少元空间的占用空间。
 
 并且，这个提案还简化了元空间的代码以降低维护成本。
 
-## JEP 390:对基于值的类发出警告
+## JEP 390: Warnings for Value-Based Classes（基于值的类的警告）
 
 > 以下介绍摘自：[实操 | 剖析 Java16 新语法特性](https://xie.infoq.cn/article/8304c894c4e38318d38ceb116)，原文写的很不错，推荐阅读。
 
@@ -62,7 +77,7 @@ public void inc(Integer count) {
 
 当执行上述程序示例时，最终的输出结果一定会与你的期望产生差异，这是许多新人经常犯错的一个点，因为在并发环境下，`Integer` 对象根本无法通过 `synchronized` 来保证线程安全，这是因为每次的`count++`操作，所产生的 `hashcode` 均不同，简而言之，每次加锁都锁在了不同的对象上。因此，如果希望在实际的开发过程中保证其原子性，应该使用 `AtomicInteger`。
 
-## JEP 392:打包工具
+## JEP 392: Packaging Tool（打包工具，转正）
 
 在 Java 14 中，JEP 343 引入了打包工具，命令是 `jpackage`。在 Java 15 中，继续孵化，现在在 Java 16 中，终于成为了正式功能。
 
@@ -70,7 +85,7 @@ public void inc(Integer count) {
 
 关于这个打包工具的实际使用，可以看这个视频 [Playing with Java 16 jpackage](https://www.youtube.com/watch?v=KahYIVzRIkQ)（需要梯子）。
 
-## JEP 393:外部内存访问 API(第三次孵化)
+## JEP 393: Foreign Memory Access API（外部内存访问 API，第三次孵化）
 
 引入外部内存访问 API 以允许 Java 程序安全有效地访问 Java 堆之外的外部内存。
 
@@ -83,7 +98,7 @@ Java 14([JEP 370](https://openjdk.org/jeps/370)) 的时候，第一次孵化外�
 - 控制：可以自由的选择如何释放内存（显式、隐式等）。
 - 可用：如果需要访问外部内存，API 应该是 `sun.misc.Unsafe`.
 
-## JEP 394:instanceof 模式匹配(转正)
+## JEP 394: Pattern Matching for instanceof（instanceof 模式匹配，转正）
 
 | JDK 版本   | 更新类型          | JEP                                     | 更新内容                                 |
 | ---------- | ----------------- | --------------------------------------- | ---------------------------------------- |
@@ -106,7 +121,7 @@ if (o instanceof String s) {
 }
 ```
 
-## JEP 395:记录类型(转正)
+## JEP 395: Records（record 类，转正）
 
 记录类型变更历史：
 
@@ -128,11 +143,11 @@ public class Outer {
 
 > 在 JDK 16 之前，如果写上面这种代码，IDE 会提示你静态字段 age 不能在非静态的内部类中定义，除非它用一个常量表达式初始化。（The field age cannot be declared static in a non-static inner type, unless initialized with a constant expression）
 
-## JEP 396:默认强封装 JDK 内部元素
+## JEP 396: Strongly Encapsulate JDK Internals by Default（默认强封装 JDK 内部元素）
 
 此特性会默认强封装 JDK 的所有内部元素，但关键内部 API（例如 `sun.misc.Unsafe`）除外。默认情况下，使用早期版本成功编译的访问 JDK 内部 API 的代码可能不再起作用。鼓励开发人员从使用内部元素迁移到使用标准 API 的方法上，以便他们及其用户都可以无缝升级到将来的 Java 版本。强封装由 JDK 9 的启动器选项–illegal-access 控制，到 JDK 15 默认改为 warning，从 JDK 16 开始默认为 deny。（目前）仍然可以使用单个命令行选项放宽对所有软件包的封装，将来只有使用–add-opens 打开特定的软件包才行。
 
-## JEP 397:密封类(预览)
+## JEP 397: Sealed Classes（密封类，第二次预览）
 
 密封类由 [JEP 360](https://openjdk.java.net/jeps/360) 提出预览，集成到了 Java 15 中。在 JDK 16 中， 密封类得到了改进（更加严格的引用检查和密封类的继承关系），由 [JEP 397](https://openjdk.java.net/jeps/397) 提出了再次预览。
 

@@ -10,21 +10,18 @@ head:
       content: Java 19,JDK19,虚拟线程预览,结构化并发,外部函数 API,JEP
 ---
 
-JDK 19 定于 2022 年 9 月 20 日正式发布以供生产使用，非长期支持版本。不过，JDK 19 中有一些比较重要的新特性值得关注。
+JDK 19 定于 2022 年 9 月 20 日正式发布以供生产使用，非长期支持版本。
 
-JDK 19 只有 7 个新特性：
+JDK 19 共有 7 个新特性，这篇文章会挑选其中较为重要的一些新特性进行详细介绍：
 
-- [JEP 405: Record Patterns（记录模式）](https://openjdk.org/jeps/405)（预览）
-- [JEP 422: Linux/RISC-V Port](https://openjdk.org/jeps/422)
 - [JEP 424: Foreign Function & Memory API（外部函数和内存 API）](https://openjdk.org/jeps/424)（预览）
 - [JEP 425: Virtual Threads（虚拟线程）](https://openjdk.org/jeps/425)（预览）
-- [JEP 426: Vector（向量）API](https://openjdk.java.net/jeps/426)（第四次孵化）
-- [JEP 427: Pattern Matching for switch（switch 模式匹配）](https://openjdk.java.net/jeps/427)
+- [JEP 426: Vector API（向量 API）](https://openjdk.java.net/jeps/426)（第四次孵化）
 - [JEP 428: Structured Concurrency（结构化并发）](https://openjdk.org/jeps/428)（孵化）
 
-这里只对 424、425、426、428 这 4 个我觉得比较重要的新特性进行详细介绍。
+下图是从 JDK 8 到 JDK 24 每个版本的更新带来的新特性数量和更新时间：
 
-相关阅读：[OpenJDK Java 19 文档](https://openjdk.org/projects/jdk/19/)
+![](https://oss.javaguide.cn/github/javaguide/java/new-features/jdk8~jdk24.png)
 
 ## JEP 424: 外部函数和内存 API（预览）
 
