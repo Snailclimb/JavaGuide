@@ -34,7 +34,7 @@ Java 17 将是继 Java 8 以来最重要的长期支持（LTS）版本，是 Jav
 - [JEP 410:Remove the Experimental AOT and JIT Compiler（删除实验性的 AOT 和 JIT 编译器）](https://openjdk.java.net/jeps/410)
 - [JEP 411:Deprecate the Security Manager for Removal（弃用安全管理器以进行删除）](https://openjdk.java.net/jeps/411)
 - [JEP 412:Foreign Function & Memory API (外部函数和内存 API)](https://openjdk.java.net/jeps/412)（孵化）
-- [JEP 414:Vector（向量） API](https://openjdk.java.net/jeps/417)（第二次孵化）
+- [JEP 414:Vector（向量） API](https://openjdk.java.net/jeps/414)（第二次孵化）
 - [JEP 415:Context-Specific Deserialization Filters](https://openjdk.java.net/jeps/415)
 
 这里只对 356、398、413、406、407、409、410、411、412、414 这几个我觉得比较重要的新特性进行详细介绍。

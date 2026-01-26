@@ -24,7 +24,7 @@ JDK 20 只有 7 个新特性：
 - [JEP 434: Foreign Function & Memory API（外部函数和内存 API）](https://openjdk.org/jeps/434)（第二次预览）
 - [JEP 436: Virtual Threads（虚拟线程）](https://openjdk.org/jeps/436)（第二次预览）
 - [JEP 437:Structured Concurrency（结构化并发）](https://openjdk.org/jeps/437)(第二次孵化)
-- [JEP 432:向量 API（](https://openjdk.org/jeps/438)第五次孵化）
+- [JEP 438:向量 API（第五次孵化）](https://openjdk.org/jeps/438)
 
 ## JEP 429：作用域值（第一次孵化）
 
@@ -103,7 +103,7 @@ switch (shape) {
         break;
 
     case Rectangle r:
-        System.out.println("The shape is Rectangle with area: + " + r.length() * r.width());
+        System.out.println("The shape is Rectangle with area: " + r.length() * r.width());
         break;
 
     default:
@@ -127,7 +127,7 @@ switch(shape) {
     break;
 
   case Rectangle(double length, double width):
-    System.out.println("The shape is Rectangle with area: + " + length * width);
+    System.out.println("The shape is Rectangle with area: " + length * width);
     break;
 
   default:
@@ -136,7 +136,7 @@ switch(shape) {
 }
 ```
 
-记录模式可以避免不必要的转换，使得代码更建简洁易读。而且，用了记录模式后不必再担心 `null` 或者 `NullPointerException`，代码更安全可靠。
+记录模式可以避免不必要的转换，使得代码更简洁易读。而且，用了记录模式后不必再担心 `null` 或者 `NullPointerException`，代码更安全可靠。
 
 记录模式在 Java 19 进行了第一次预览， 由 [JEP 405](https://openjdk.org/jeps/405) 提出。JDK 20 中是第二次预览，由 [JEP 432](https://openjdk.org/jeps/432) 提出。这次的改进包括：
 

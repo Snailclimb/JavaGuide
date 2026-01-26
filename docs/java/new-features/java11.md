@@ -27,7 +27,7 @@ head:
 
 Java 11 对 Java 9 中引入并在 Java 10 中进行了更新的 Http Client API 进行了标准化，在前两个版本中进行孵化的同时，Http Client 几乎被完全重写，并且现在完全支持异步非阻塞。
 
-并且，Java 11 中，Http Client 的包名由 `jdk.incubator.http` 改为`java.net.http`，该 API 通过 `CompleteableFuture` 提供非阻塞请求和响应语义。使用起来也很简单，如下：
+并且，Java 11 中，Http Client 的包名由 `jdk.incubator.http` 改为`java.net.http`，该 API 通过 `CompletableFuture` 提供非阻塞请求和响应语义。使用起来也很简单，如下：
 
 ```java
 var request = HttpRequest.newBuilder()
@@ -118,7 +118,7 @@ Consumer<String> consumer = (String i) -> System.out.println(i);
 
 这意味着我们可以运行单一文件的 Java 源代码。此功能允许使用 Java 解释器直接执行 Java 源代码。源代码在内存中编译，然后由解释器执行，不需要在磁盘上生成 `.class` 文件了。唯一的约束在于所有相关的类必须定义在同一个 Java 文件中。
 
-对于 Java 初学者并希望尝试简单程序的人特别有用，并且能和 jshell 一起使用。一定能程度上增强了使用 Java 来写脚本程序的能力。
+对于 Java 初学者并希望尝试简单程序的人特别有用，并且能和 jshell 一起使用，一定程度上增强了使用 Java 来写脚本程序的能力。
 
 ## 其他新特性
 
