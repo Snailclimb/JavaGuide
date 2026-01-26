@@ -137,11 +137,21 @@ JDK、JRE、JVM、JIT 这四者的关系如下图所示。
 
 JDK 9 引入了一种新的编译模式 **AOT(Ahead of Time Compilation)** 。和 JIT 不同的是，这种编译模式会在程序被执行前就将其编译成机器码，属于静态编译（C、 C++，Rust，Go 等语言就是静态编译）。AOT 避免了 JIT 预热等各方面的开销，可以提高 Java 程序的启动速度，避免预热时间长。并且，AOT 还能减少内存占用和增强 Java 程序的安全性（AOT 编译后的代码不容易被反编译和修改），特别适合云原生场景。
 
-**JIT 与 AOT 两者的关键指标对比**:
+**JIT 与 AOT 两者的关键指标对比**：
+
+| 对比维度         | JIT（即时编译）    | AOT（提前编译）              |
+| ---------------- | ------------------ | ---------------------------- |
+| **编译时机**     | 运行时编译         | 运行前编译                   |
+| **启动速度**     | 较慢（需要预热）   | 快（无需预热）               |
+| **峰值性能**     | 更高（运行时优化） | 较低（缺少运行时信息）       |
+| **内存占用**     | 较高               | 较低                         |
+| **打包体积**     | 较小               | 较大（包含机器码）           |
+| **动态特性支持** | 完全支持           | 受限（反射、动态代理等）     |
+| **适用场景**     | 长时间运行的服务   | 云原生、Serverless、CLI 工具 |
 
 <img src="https://oss.javaguide.cn/github/javaguide/java/basis/jit-vs-aot.png" alt="JIT vs AOT" style="zoom: 25%;" />
 
-可以看出，AOT 的主要优势在于启动时间、内存占用和打包体积。JIT 的主要优势在于具备更高的极限处理能力，可以降低请求的最大延迟。
+可以看出，**AOT 的主要优势在于启动时间、内存占用和打包体积**。**JIT 的主要优势在于具备更高的极限处理能力**，可以降低请求的最大延迟。
 
 提到 AOT 就不得不提 [GraalVM](https://www.graalvm.org/) 了！GraalVM 是一种高性能的 JDK（完整的 JDK 发行版本），它可以运行 Java 和其他 JVM 语言，以及 JavaScript、Python 等非 JVM 语言。 GraalVM 不仅能提供 AOT 编译，还能提供 JIT 编译。感兴趣的同学，可以去看看 GraalVM 的官方文档：<https://www.graalvm.org/latest/docs/>。如果觉得官方文档看着比较难理解的话，也可以找一些文章来看看，比如：
 
@@ -291,6 +301,29 @@ Java 中的注释有三种：
 
 为了方便记忆，可以使用下面的口诀：**符号在前就先加/减，符号在后就后加/减**。
 
+```mermaid
+flowchart LR
+    subgraph Prefix["前缀形式 ++a / --a"]
+        direction TB
+        P1["第一步：变量自增/自减"] --> P2["第二步：使用新值参与运算"]
+        P3["示例：b = ++a<br/>先 a=a+1，再 b=a"]
+    end
+
+    subgraph Suffix["后缀形式 a++ / a--"]
+        direction TB
+        S1["第一步：使用当前值参与运算"] --> S2["第二步：变量自增/自减"]
+        S3["示例：b = a++<br/>先 b=a，再 a=a+1"]
+    end
+
+    classDef prefix fill:#4CA497,stroke:#333,color:#fff
+    classDef suffix fill:#00838F,stroke:#333,color:#fff
+    classDef example fill:#E99151,stroke:#333,color:#333
+
+    class P1,P2 prefix
+    class S1,S2 suffix
+    class P3,S3 example
+```
+
 下面来看一个考察自增自减运算符的高频笔试题：执行下面的代码后，`a` 、`b` 、 `c` 、`d`和`e`的值是？
 
 ```java
@@ -334,6 +367,42 @@ static final int hash(Object key) {
 - **内存对齐**：通过移位操作，可以轻松计算和调整数据的对齐地址。
 
 掌握最基本的移位运算符知识还是很有必要的，这不光可以帮助我们在代码中使用，还可以帮助我们理解源码中涉及到移位运算符的代码。
+
+```mermaid
+flowchart TB
+    subgraph ShiftOps["Java 三种移位运算符"]
+        direction TB
+
+        subgraph Left["左移 <<"]
+            L1["操作：向左移动 n 位"]
+            L2["规则：高位丢弃，低位补 0"]
+            L3["效果：相当于 × 2^n"]
+            L4["示例：8 << 2 = 32"]
+        end
+
+        subgraph Right["带符号右移 >>"]
+            R1["操作：向右移动 n 位"]
+            R2["规则：低位丢弃，高位补符号位"]
+            R3["效果：相当于 ÷ 2^n"]
+            R4["示例：-8 >> 2 = -2"]
+        end
+
+        subgraph URight["无符号右移 >>>"]
+            U1["操作：向右移动 n 位"]
+            U2["规则：低位丢弃，高位补 0"]
+            U3["效果：逻辑右移"]
+            U4["示例：-8 >>> 2 = 1073741822"]
+        end
+    end
+
+    classDef left fill:#4CA497,stroke:#333,color:#fff
+    classDef right fill:#00838F,stroke:#333,color:#fff
+    classDef uright fill:#E99151,stroke:#333,color:#333
+
+    class L1,L2,L3,L4 left
+    class R1,R2,R3,R4 right
+    class U1,U2,U3,U4 uright
+```
 
 Java 中有三种移位运算符：
 
@@ -398,6 +467,40 @@ System.out.println("左移 10 位后的数据对应的二进制字符 " + Intege
 1. `return;`：直接使用 return 结束方法执行，用于没有返回值函数的方法
 2. `return value;`：return 一个特定值，用于有返回值函数的方法
 
+```mermaid
+flowchart TB
+    subgraph Method["方法体"]
+        direction TB
+        Start["方法开始"] --> Loop
+
+        subgraph Loop["循环体 for/while"]
+            direction TB
+            L1["循环条件判断"] -->|"满足"| L2["执行循环体"]
+            L2 --> L3{{"遇到关键字？"}}
+            L3 -->|"continue"| Continue["跳过本次<br/>继续下一次循环"]
+            L3 -->|"break"| Break["跳出整个循环"]
+            L3 -->|"无"| L1
+            Continue --> L1
+        end
+
+        Break --> AfterLoop["循环后的代码"]
+        L1 -->|"不满足"| AfterLoop
+        AfterLoop --> L4{{"遇到 return？"}}
+        L4 -->|"是"| Return["结束整个方法"]
+        L4 -->|"否"| End["方法正常结束"]
+    end
+
+    classDef start fill:#E99151,stroke:#333,color:#fff
+    classDef loop fill:#4CA497,stroke:#333,color:#fff
+    classDef decision fill:#00838F,stroke:#333,color:#fff
+    classDef alert fill:#C44545,stroke:#333,color:#fff
+
+    class Start,End start
+    class L1,L2,AfterLoop loop
+    class L3,L4 decision
+    class Continue,Break,Return alert
+```
+
 思考一下：下列语句的运行结果是什么？
 
 ```java
@@ -451,6 +554,35 @@ Java 中有 8 种基本数据类型，分别为：
   - 2 种浮点型：`float`、`double`
 - 1 种字符类型：`char`
 - 1 种布尔型：`boolean`。
+
+```mermaid
+flowchart TB
+    Root["Java 8种基本数据类型"] --> Numeric["数字类型（6种）"]
+    Root --> Char["字符类型"]
+    Root --> Bool["布尔类型"]
+
+    Numeric --> IntType["整数型（4种）"]
+    Numeric --> FloatType["浮点型（2种）"]
+
+    IntType --> byte["byte<br/>8位"]
+    IntType --> short["short<br/>16位"]
+    IntType --> int["int<br/>32位"]
+    IntType --> long["long<br/>64位"]
+
+    FloatType --> float["float<br/>32位"]
+    FloatType --> double["double<br/>64位"]
+
+    Char --> char["char<br/>16位"]
+    Bool --> boolean["boolean<br/>1位"]
+
+    classDef root fill:#E99151,stroke:#333,color:#fff
+    classDef category fill:#00838F,stroke:#333,color:#fff
+    classDef type fill:#4CA497,stroke:#333,color:#fff
+
+    class Root root
+    class Numeric,Char,Bool,IntType,FloatType category
+    class byte,short,int,long,float,double,char,boolean type
+```
 
 这 8 种基本数据类型的默认值以及所占空间的大小如下：
 
@@ -602,8 +734,33 @@ System.out.println(i1==i2);
 
 **什么是自动拆装箱？**
 
-- **装箱**：将基本类型用它们对应的引用类型包装起来；
-- **拆箱**：将包装类型转换为基本数据类型；
+- **装箱（Boxing）**：将基本类型用它们对应的引用类型包装起来；
+- **拆箱（Unboxing）**：将包装类型转换为基本数据类型；
+
+```mermaid
+flowchart LR
+  subgraph Row["装箱与拆箱对比"]
+    direction LR
+
+    subgraph Unboxing["拆箱过程"]
+      direction LR
+      D["Integer obj"] -->|"自动拆箱"| E["obj.intValue()"]
+      E --> F["int 基本类型"]
+    end
+
+    subgraph Boxing["装箱过程"]
+      direction LR
+      A["int i = 10"] -->|"自动装箱"| B["Integer.valueOf(10)"]
+      B --> C["Integer 对象"]
+    end
+  end
+
+  classDef core fill:#4CA497,stroke:#333,color:#fff
+  classDef highlight fill:#E99151,stroke:#333,color:#fff
+
+  class A,D core
+  class C,F highlight
+```
 
 举例：
 
