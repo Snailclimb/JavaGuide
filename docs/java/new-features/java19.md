@@ -10,7 +10,7 @@ head:
       content: Java 19,JDK19,虚拟线程预览,结构化并发,外部函数 API,JEP
 ---
 
-JDK 19 定于 2022 年 9 月 20 日正式发布以供生产使用，非长期支持版本。
+JDK 19 于 2022 年 9 月 20 日正式发布，非长期支持版本。
 
 JDK 19 共有 7 个新特性，这篇文章会挑选其中较为重要的一些新特性进行详细介绍：
 
@@ -19,9 +19,9 @@ JDK 19 共有 7 个新特性，这篇文章会挑选其中较为重要的一些�
 - [JEP 426: Vector API（向量 API）](https://openjdk.java.net/jeps/426)（第四次孵化）
 - [JEP 428: Structured Concurrency（结构化并发）](https://openjdk.org/jeps/428)（孵化）
 
-下图是从 JDK 8 到 JDK 24 每个版本的更新带来的新特性数量和更新时间：
+下图是从 JDK 8 到 JDK 25 每个版本的更新带来的新特性数量和更新时间：
 
-![](https://oss.javaguide.cn/github/javaguide/java/new-features/jdk8~jdk24.png)
+![ JDK 8 到 JDK 25 每个版本的更新带来的新特性数量和更新时间](https://oss.javaguide.cn/github/javaguide/java/new-features/jdk8~jdk24.png)
 
 ## JEP 424: 外部函数和内存 API（预览）
 
@@ -32,21 +32,21 @@ Java 程序可以通过该 API 与 Java 运行时之外的代码和数据进行�
 在没有外部函数和内存 API 之前：
 
 - Java 通过 [`sun.misc.Unsafe`](https://hg.openjdk.java.net/jdk/jdk/file/tip/src/jdk.unsupported/share/classes/sun/misc/Unsafe.java) 提供一些执行低级别、不安全操作的方法（如直接访问系统内存资源、自主管理内存资源等），`Unsafe` 类让 Java 语言拥有了类似 C 语言指针一样操作内存空间的能力的同时，也增加了 Java 语言的不安全性，不正确使用 `Unsafe` 类会使得程序出错的概率变大。
-- Java 1.1 就已通过 Java 原生接口（JNI）支持了原生方法调用，但并不好用。JNI 实现起来过于复杂，步骤繁琐（具体的步骤可以参考这篇文章：[Guide to JNI (Java Native Interface)](https://www.baeldung.com/jni) ），不受 JVM 的语言安全机制控制，影响 Java 语言的跨平台特性。并且，JNI 的性能也不行，因为 JNI 方法调用不能从许多常见的 JIT 优化(如内联)中受益。虽然[JNA](https://github.com/java-native-access/jna)、[JNR](https://github.com/jnr/jnr-ffi)和[JavaCPP](https://github.com/bytedeco/javacpp)等框架对 JNI 进行了改进，但效果还是不太理想。
+- Java 1.1 就已通过 Java 原生接口（JNI）支持了原生方法调用，但并不好用。JNI 实现起来过于复杂，步骤繁琐（具体的步骤可以参考这篇文章：[Guide to JNI (Java Native Interface)](https://www.baeldung.com/jni)），不受 JVM 的语言安全机制控制，影响 Java 语言的跨平台特性。并且，JNI 的性能也不行，因为 JNI 方法调用不能从许多常见的 JIT 优化（如内联）中受益。虽然 [JNA](https://github.com/java-native-access/jna)、[JNR](https://github.com/jnr/jnr-ffi) 和 [JavaCPP](https://github.com/bytedeco/javacpp) 等框架对 JNI 进行了改进，但效果还是不太理想。
 
 引入外部函数和内存 API 就是为了解决 Java 访问外部函数和外部内存存在的一些痛点。
 
 Foreign Function & Memory API (FFM API) 定义了类和接口：
 
-- 分配外部内存：`MemorySegment`、`MemoryAddress`和`SegmentAllocator`；
-- 操作和访问结构化的外部内存：`MemoryLayout`, `VarHandle`；
-- 控制外部内存的分配和释放：`MemorySession`；
-- 调用外部函数：`Linker`、`FunctionDescriptor`和`SymbolLookup`。
+- 分配外部内存：`MemorySegment`、`MemoryAddress` 和 `SegmentAllocator`
+- 操作和访问结构化的外部内存：`MemoryLayout`、`VarHandle`
+- 控制外部内存的分配和释放：`MemorySession`
+- 调用外部函数：`Linker`、`FunctionDescriptor` 和 `SymbolLookup`
 
 下面是 FFM API 使用示例，这段代码获取了 C 库函数的 `radixsort` 方法句柄，然后使用它对 Java 数组中的四个字符串进行排序。
 
 ```java
-// 1. 在C库路径上查找外部函数
+// 1. 在 C 库路径上查找外部函数
 Linker linker = Linker.nativeLinker();
 SymbolLookup stdlib = linker.defaultLookup();
 MethodHandle radixSort = linker.downcallHandle(
@@ -64,7 +64,7 @@ for (int i = 0; i < javaStrings.length; i++) {
 }
 // 5. 通过调用外部函数对堆外数据进行排序
 radixSort.invoke(offHeap, javaStrings.length, MemoryAddress.NULL, '\0');
-// 6. 将(重新排序的)字符串从堆外复制到堆上
+// 6. 将（重新排序的）字符串从堆外复制到堆上
 for (int i = 0; i < javaStrings.length; i++) {
     MemoryAddress cStringPtr = offHeap.getAtIndex(ValueLayout.ADDRESS, i);
     javaStrings[i] = cStringPtr.getUtf8String(0);
@@ -74,7 +74,7 @@ assert Arrays.equals(javaStrings, new String[] {"car", "cat", "dog", "mouse"}); 
 
 ## JEP 425: 虚拟线程（预览）
 
-虚拟线程（Virtual Thread-）是 JDK 而不是 OS 实现的轻量级线程(Lightweight Process，LWP），许多虚拟线程共享同一个操作系统线程，虚拟线程的数量可以远大于操作系统线程的数量。
+虚拟线程（Virtual Thread）是 JDK 而不是 OS 实现的轻量级线程（Lightweight Process，LWP），许多虚拟线程共享同一个操作系统线程，虚拟线程的数量可以远大于操作系统线程的数量。
 
 虚拟线程在其他多线程语言中已经被证实是十分有用的，比如 Go 中的 Goroutine、Erlang 中的进程。
 

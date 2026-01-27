@@ -22,7 +22,7 @@ JDK 9 不是 LTS（长期支持版），至此为止，目前有 JDK8、JDK11、
 - [JEP 254: Compact Strings (紧凑字符串)](https://openjdk.org/jeps/254)
 - [JEP 193: Variable Handles (变量句柄)](https://openjdk.org/jeps/193)
 
-下图是从 JDK 8 到 JDK 24 每个版本的更新带来的新特性数量和更新时间：
+下图是从 JDK 8 到 JDK 25 每个版本的更新带来的新特性数量和更新时间：
 
 ![](https://oss.javaguide.cn/github/javaguide/java/new-features/jdk8~jdk24.png)
 
@@ -63,7 +63,7 @@ JShell 是 Java 9 新增的一个实用工具。为 Java 提供了类似于 Pyth
 
 在引入了模块系统之后，JDK 被重新组织成 94 个模块。Java 应用可以通过新增的 **[jlink](http://openjdk.java.net/jeps/282) 工具** (Jlink 是随 Java 9 一起发布的新命令行工具。它允许开发人员为基于模块的 Java 应用程序创建自己的轻量级、定制的 JRE)，创建出只包含所依赖的 JDK 模块的自定义运行时镜像。这样可以极大的减少 Java 运行时环境的大小。
 
-我们可以通过 `exports` 关键词精准控制哪些类可以对外开放使用，哪些类只能内部使用。
+我们可以通过 `exports` 关键字精准控制哪些类可以对外开放使用，哪些类只能内部使用。
 
 ```java
 module my.module {
@@ -73,7 +73,7 @@ module my.module {
 
 module my.module {
      //exports…to 限制访问的成员范围
-    export com.my.package.name to com.specific.package;
+    exports com.my.package.name to com.specific.package;
 }
 ```
 
@@ -222,8 +222,8 @@ try (Scanner scanner = new Scanner(new File("testRead.txt"));
 
 ```java
 final Scanner scanner = new Scanner(new File("testRead.txt"));
-PrintWriter writer = new PrintWriter(new File("testWrite.txt"))
-try (scanner;writer) {
+PrintWriter writer = new PrintWriter(new File("testWrite.txt"));
+try (scanner; writer) {
     // omitted
 }
 ```

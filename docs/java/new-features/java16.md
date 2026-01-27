@@ -23,9 +23,9 @@ JDK 16 共有 17 个新特性，这篇文章会挑选其中较为重要的一些
 - [JEP 396: Strongly Encapsulate JDK Internals by Default（默认强封装 JDK 内部元素）](https://openjdk.java.net/jeps/396)
 - [JEP 397: Sealed Classes (Second Preview)（密封类，第二次预览）](https://openjdk.java.net/jeps/397)
 
-下图是从 JDK 8 到 JDK 15 每个版本的更新带来的新特性数量和更新时间：
+下图是从 JDK 8 到 JDK 25 每个版本的更新带来的新特性数量和更新时间：
 
-![](https://oss.javaguide.cn/github/javaguide/java/new-features/jdk8~jdk24.png)
+![ JDK 8 到 JDK 25 每个版本的更新带来的新特性数量和更新时间](https://oss.javaguide.cn/github/javaguide/java/new-features/jdk8~jdk24.png)
 
 相关阅读：[OpenJDK Java 16 文档](https://openjdk.java.net/projects/jdk/16/) 。
 
@@ -39,7 +39,7 @@ JDK 16 共有 17 个新特性，这篇文章会挑选其中较为重要的一些
 
 ## JEP 347: Enable C++ 14 Language Features（启用 C++ 14 语言特性）
 
-Java 16 允许在 JDK 的 C++ 源代码中使用 C++14 语言特性，并提供在 HotSpot 代码中可以使用哪些特性的具体指导。
+Java 16 允许在 JDK 的 C++ 源代码中使用 C++ 14 语言特性，并提供在 HotSpot 代码中可以使用哪些特性的具体指导。
 
 在 Java 15 中，JDK 中 C++ 代码使用的语言特性仅限于 C++98/03 语言标准。它要求更新各种平台编译器的最低可接受版本。
 

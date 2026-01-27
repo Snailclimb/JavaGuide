@@ -201,7 +201,7 @@ Channel 最核心的两个方法：
 这里我们以 `FileChannel` 为例演示一下是读取文件数据的。
 
 ```java
-RandomAccessFile reader = new RandomAccessFile("/Users/guide/Documents/test_read.in", "r"))
+RandomAccessFile reader = new RandomAccessFile("/Users/guide/Documents/test_read.in", "r");
 FileChannel channel = reader.getChannel();
 ByteBuffer buffer = ByteBuffer.allocate(1024);
 channel.read(buffer);

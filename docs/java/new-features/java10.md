@@ -12,7 +12,9 @@ head:
 
 **Java 10** 发布于 2018 年 3 月 20 日，这是一个非 LTS（长期支持）版本，Oracle 仅提供六个月的支持。
 
-![](https://oss.javaguide.cn/github/javaguide/java/new-features/jdk8~jdk24.png)
+下图是从 JDK 8 到 JDK 25 每个版本的更新带来的新特性数量和更新时间：
+
+![ JDK 8 到 JDK 25 每个版本的更新带来的新特性数量和更新时间](https://oss.javaguide.cn/github/javaguide/java/new-features/jdk8~jdk24.png)
 
 这篇文章会挑选其中较为重要的一些新特性进行详细介绍：
 
@@ -40,15 +42,15 @@ for (var n : numbers)
     System.out.print(n+ " ");
 ```
 
-var 关键字只能用于带有构造器的局部变量和 for 循环中。
+`var` 关键字只能用于带有构造器的局部变量和 for 循环中。
 
 ```java
-var count=null; //❌编译不通过，不能声明为 null
-var r = () -> Math.random();//❌编译不通过,不能声明为 Lambda表达式
-var array = {1,2,3};//❌编译不通过,不能声明数组
+var count = null; //❌编译不通过，不能声明为 null
+var r = () -> Math.random();//❌编译不通过，不能声明为 Lambda表达式
+var array = {1, 2, 3};//❌编译不通过，不能声明数组
 ```
 
-var 并不会改变 Java 是一门静态类型语言的事实，编译器负责推断出类型。
+`var` 并不会改变 Java 是一门静态类型语言的事实，编译器负责推断出类型。
 
 另外，Scala 和 Kotlin 中已经有了 `val` 关键字 ( `final var` 组合关键字)。
 
@@ -58,7 +60,7 @@ var 并不会改变 Java 是一门静态类型语言的事实，编译器负责�
 
 ## JEP 307: Parallel Full GC for G1
 
-从 Java9 开始 G1 就成了默认的垃圾回收器，G1 是以一种低延时的垃圾回收器来设计的，旨在避免进行 Full GC,但是 Java9 的 G1 的 FullGC 依然是使用单线程去完成标记清除算法,这可能会导致垃圾回收器在无法回收内存的时候触发 Full GC。
+从 Java 9 开始 G1 就成了默认的垃圾回收器，G1 是以一种低延时的垃圾回收器来设计的，旨在避免进行 Full GC，但是 Java 9 的 G1 的 Full GC 依然是使用单线程去完成标记清除算法，这可能会导致垃圾回收器在无法回收内存的时候触发 Full GC。
 
 为了最大限度地减少 Full GC 造成的应用停顿的影响，从 Java10 开始，G1 的 FullGC 改为并行的标记清除算法，同时会使用与年轻代回收和混合回收相同的并行工作线程数量，从而减少了 Full GC 的发生，以带来更好的性能提升、更大的吞吐量。
 

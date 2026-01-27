@@ -26,7 +26,7 @@ JDK 25 共有 18 个新特性，这篇文章会挑选其中较为重要的一些
 - [JEP 513: Flexible Constructor Bodies (灵活的构造函数体)](https://openjdk.org/jeps/513)
 - [JEP 508: Vector API (向量 API, 第十次孵化)](https://openjdk.org/jeps/508)
 
-下图是从 JDK 8 到 JDK 24 每个版本的更新带来的新特性数量和更新时间：
+下图是从 JDK 8 到 JDK 25 每个版本的更新带来的新特性数量和更新时间：
 
 ![](https://oss.javaguide.cn/github/javaguide/java/new-features/jdk8~jdk24.png)
 

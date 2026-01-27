@@ -57,7 +57,7 @@ try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream("inpu
 }
 ```
 
-这个时候，你可以会想了：**为啥我们直接不弄一个`BufferedFileInputStream`（字符缓冲文件输入流）呢？**
+这个时候，你可能会想了：**为啥我们不直接弄一个`BufferedFileInputStream`（字符缓冲文件输入流）呢？**
 
 ```java
 BufferedFileInputStream bfis = new BufferedFileInputStream("input.txt");

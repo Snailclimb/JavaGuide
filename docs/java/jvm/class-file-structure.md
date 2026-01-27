@@ -41,7 +41,7 @@ ClassFile {
     u2             fields_count;//字段数量
     field_info     fields[fields_count];//一个类可以有多个字段
     u2             methods_count;//方法数量
-    method_info    methods[methods_count];//一个类可以有个多个方法
+    method_info    methods[methods_count];//一个类可以有多个方法
     u2             attributes_count;//此类的属性表中的属性数
     attribute_info attributes[attributes_count];//属性表集合
 }
@@ -185,7 +185,7 @@ Java 类的继承关系由类索引、父类索引和接口索引集合三项确
 
 ```java
     u2             methods_count;//方法数量
-    method_info    methods[methods_count];//一个类可以有个多个方法
+    method_info    methods[methods_count];//一个类可以有多个方法
 ```
 
 methods_count 表示方法的数量，而 method_info 表示方法表。

@@ -24,13 +24,13 @@ JDK 24 共有 24 个新特性，这篇文章会挑选其中较为重要的一些
 - [JEP 497: Quantum-Resistant Digital Signature Algorithm (ML-DSA) (量子抗性数字签名算法)](https://openjdk.org/jeps/497)
 - [JEP 499: Structured Concurrency (结构化并发, 第四次预览)](https://openjdk.org/jeps/499)
 
-下图是从 JDK 8 到 JDK 24 每个版本的更新带来的新特性数量和更新时间：
+下图是从 JDK 8 到 JDK 25 每个版本的更新带来的新特性数量和更新时间：
 
 ![](https://oss.javaguide.cn/github/javaguide/java/new-features/jdk8~jdk24.png)
 
 ## JEP 478: Key Derivation Function API (密钥派生函数 API)
 
-密钥派生函数 API 是一种用于从初始密钥和其他数据派生额外密钥的加密算法。它的核心作用是为不同的加密目的（如加密、认证等）生成多个不同的密钥，避免密钥重复使用带来的安全隐患。 这在现代加密中是一个重要的里程碑，为后续新兴的量子计算环境打下了基础
+密钥派生函数 API 是一种用于从初始密钥和其他数据派生额外密钥的加密算法。它的核心作用是为不同的加密目的（如加密、认证等）生成多个不同的密钥，避免密钥重复使用带来的安全隐患。这在新代加密中是一个重要的里程碑，为后续新兴的量子计算环境打下了基础。
 
 通过该 API，开发者可以使用最新的密钥派生算法（如 HKDF 和未来的 Argon2）：
 
