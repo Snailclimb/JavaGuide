@@ -72,14 +72,17 @@ head:
 ```mermaid
 flowchart LR
     subgraph Input["输入参数"]
+        style Input fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
         A["并发数<br/>Concurrency"]
     end
 
     subgraph Process["处理过程"]
+        style Process fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
         B["响应时间 RT"]
     end
 
     subgraph Output["输出指标"]
+        style Output fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
         C["QPS/TPS<br/>吞吐量"]
     end
 
@@ -88,13 +91,15 @@ flowchart LR
 
     D["公式：QPS = 并发数 / RT"]
 
-    classDef core fill:#4CA497,stroke:#333,color:#fff
-    classDef decision fill:#00838F,stroke:#333,color:#fff
-    classDef highlight fill:#E99151,stroke:#333,color:#fff
+    classDef core fill:#4CA497,color:#fff,rx:10,ry:10
+    classDef decision fill:#00838F,color:#fff,rx:10,ry:10
+    classDef highlight fill:#E99151,color:#fff,rx:10,ry:10
 
     class A core
     class B decision
     class C,D highlight
+
+    linkStyle default stroke-width:1.5px,opacity:0.8
 ```
 
 ### 响应时间

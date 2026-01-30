@@ -303,25 +303,25 @@ Java 中的注释有三种：
 
 ```mermaid
 flowchart LR
+    %% 定义全局样式
+    classDef step fill:#4CA497,color:#fff,rx:10,ry:10
+    classDef example fill:#E99151,color:#fff,rx:10,ry:10
+
     subgraph Prefix["前缀形式 ++a / --a"]
         direction TB
-        P1["第一步：变量自增/自减"] --> P2["第二步：使用新值参与运算"]
-        P3["示例：b = ++a<br/>先 a=a+1，再 b=a"]
+        style Prefix fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
+        P1["第一步：变量自增/自减"]:::step --> P2["第二步：使用新值参与运算"]:::step
+        P3["示例：b = ++a<br先 a=a+1，再 b=a"]:::example
     end
 
     subgraph Suffix["后缀形式 a++ / a--"]
         direction TB
-        S1["第一步：使用当前值参与运算"] --> S2["第二步：变量自增/自减"]
-        S3["示例：b = a++<br/>先 b=a，再 a=a+1"]
+        style Suffix fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
+        S1["第一步：使用当前值参与运算"]:::step --> S2["第二步：变量自增/自减"]:::step
+        S3["示例：b = a++<br先 b=a，再 a=a+1"]:::example
     end
 
-    classDef prefix fill:#4CA497,stroke:#333,color:#fff
-    classDef suffix fill:#00838F,stroke:#333,color:#fff
-    classDef example fill:#E99151,stroke:#333,color:#333
-
-    class P1,P2 prefix
-    class S1,S2 suffix
-    class P3,S3 example
+    linkStyle default stroke-width:1.5px,opacity:0.8
 ```
 
 下面来看一个考察自增自减运算符的高频笔试题：执行下面的代码后，`a` 、`b` 、 `c` 、`d`和`e`的值是？
@@ -370,38 +370,41 @@ static final int hash(Object key) {
 
 ```mermaid
 flowchart TB
+    %% 定义全局样式，保持统一风格
+    classDef left fill:#4CA497,color:#fff,rx:10,ry:10
+    classDef right fill:#00838F,color:#fff,rx:10,ry:10
+    classDef uright fill:#E99151,color:#fff,rx:10,ry:10
+
     subgraph ShiftOps["Java 三种移位运算符"]
         direction TB
+        style ShiftOps fill:#F0F2F5,stroke:#E0E6ED,stroke-width:1.5px
 
         subgraph Left["左移 <<"]
-            L1["操作：向左移动 n 位"]
-            L2["规则：高位丢弃，低位补 0"]
-            L3["效果：相当于 × 2^n"]
-            L4["示例：8 << 2 = 32"]
+            style Left fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
+            L1["操作：向左移动 n 位"]:::left
+            L2["规则：高位丢弃，低位补 0"]:::left
+            L3["效果：相当于 × 2^n"]:::left
+            L4["示例：8 << 2 = 32"]:::left
         end
 
         subgraph Right["带符号右移 >>"]
-            R1["操作：向右移动 n 位"]
-            R2["规则：低位丢弃，高位补符号位"]
-            R3["效果：相当于 ÷ 2^n"]
-            R4["示例：-8 >> 2 = -2"]
+            style Right fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
+            R1["操作：向右移动 n 位"]:::right
+            R2["规则：低位丢弃，高位补符号位"]:::right
+            R3["效果：相当于 ÷ 2^n"]:::right
+            R4["示例：-8 >> 2 = -2"]:::right
         end
 
         subgraph URight["无符号右移 >>>"]
-            U1["操作：向右移动 n 位"]
-            U2["规则：低位丢弃，高位补 0"]
-            U3["效果：逻辑右移"]
-            U4["示例：-8 >>> 2 = 1073741822"]
+            style URight fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
+            U1["操作：向右移动 n 位"]:::uright
+            U2["规则：低位丢弃，高位补 0"]:::uright
+            U3["效果：逻辑右移"]:::uright
+            U4["示例：-8 >>> 2 = 1073741822"]:::uright
         end
     end
 
-    classDef left fill:#4CA497,stroke:#333,color:#fff
-    classDef right fill:#00838F,stroke:#333,color:#fff
-    classDef uright fill:#E99151,stroke:#333,color:#333
-
-    class L1,L2,L3,L4 left
-    class R1,R2,R3,R4 right
-    class U1,U2,U3,U4 uright
+    linkStyle default stroke-width:1.5px,opacity:0.8
 ```
 
 Java 中有三种移位运算符：
@@ -471,10 +474,12 @@ System.out.println("左移 10 位后的数据对应的二进制字符 " + Intege
 flowchart TB
     subgraph Method["方法体"]
         direction TB
+        style Method fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
         Start["方法开始"] --> Loop
 
         subgraph Loop["循环体 for/while"]
             direction TB
+            style Loop fill:#F0F2F5,stroke:#E0E6ED,stroke-width:1.5px
             L1["循环条件判断"] -->|"满足"| L2["执行循环体"]
             L2 --> L3{{"遇到关键字？"}}
             L3 -->|"continue"| Continue["跳过本次<br/>继续下一次循环"]
@@ -490,15 +495,17 @@ flowchart TB
         L4 -->|"否"| End["方法正常结束"]
     end
 
-    classDef start fill:#E99151,stroke:#333,color:#fff
-    classDef loop fill:#4CA497,stroke:#333,color:#fff
-    classDef decision fill:#00838F,stroke:#333,color:#fff
-    classDef alert fill:#C44545,stroke:#333,color:#fff
+    classDef start fill:#E99151,color:#fff,rx:10,ry:10
+    classDef loop fill:#4CA497,color:#fff,rx:10,ry:10
+    classDef decision fill:#00838F,color:#fff,rx:10,ry:10
+    classDef alert fill:#C44545,color:#fff,rx:10,ry:10
 
     class Start,End start
     class L1,L2,AfterLoop loop
     class L3,L4 decision
     class Continue,Break,Return alert
+
+    linkStyle default stroke-width:1.5px,opacity:0.8
 ```
 
 思考一下：下列语句的运行结果是什么？
@@ -575,13 +582,15 @@ flowchart TB
     Char --> char["char<br/>16位"]
     Bool --> boolean["boolean<br/>1位"]
 
-    classDef root fill:#E99151,stroke:#333,color:#fff
-    classDef category fill:#00838F,stroke:#333,color:#fff
-    classDef type fill:#4CA497,stroke:#333,color:#fff
+    classDef root fill:#E99151,color:#fff,rx:10,ry:10
+    classDef category fill:#00838F,color:#fff,rx:10,ry:10
+    classDef type fill:#4CA497,color:#fff,rx:10,ry:10
 
     class Root root
     class Numeric,Char,Bool,IntType,FloatType category
     class byte,short,int,long,float,double,char,boolean type
+
+    linkStyle default stroke-width:1.5px,opacity:0.8
 ```
 
 这 8 种基本数据类型的默认值以及所占空间的大小如下：
@@ -741,25 +750,30 @@ System.out.println(i1==i2);
 flowchart LR
   subgraph Row["装箱与拆箱对比"]
     direction LR
+    style Row fill:#F0F2F5,stroke:#E0E6ED,stroke-width:1.5px
 
     subgraph Unboxing["拆箱过程"]
       direction LR
+      style Unboxing fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
       D["Integer obj"] -->|"自动拆箱"| E["obj.intValue()"]
       E --> F["int 基本类型"]
     end
 
     subgraph Boxing["装箱过程"]
       direction LR
+      style Boxing fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
       A["int i = 10"] -->|"自动装箱"| B["Integer.valueOf(10)"]
       B --> C["Integer 对象"]
     end
   end
 
-  classDef core fill:#4CA497,stroke:#333,color:#fff
-  classDef highlight fill:#E99151,stroke:#333,color:#fff
+  classDef core fill:#4CA497,color:#fff,rx:10,ry:10
+  classDef highlight fill:#E99151,color:#fff,rx:10,ry:10
 
   class A,D core
   class C,F highlight
+
+  linkStyle default stroke-width:1.5px,opacity:0.8
 ```
 
 举例：

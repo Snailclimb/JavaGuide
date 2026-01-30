@@ -98,16 +98,18 @@ flowchart TB
     O -->|"是"| P["返回结果"]
     O -->|"否"| D
 
-    classDef core fill:#4CA497,stroke:#333,color:#fff
-    classDef decision fill:#00838F,stroke:#333,color:#fff
-    classDef alert fill:#C44545,stroke:#333,color:#fff
-    classDef highlight fill:#E99151,stroke:#333,color:#fff
+    classDef core fill:#4CA497,color:#fff,rx:10,ry:10
+    classDef decision fill:#00838F,color:#fff,rx:10,ry:10
+    classDef alert fill:#C44545,color:#fff,rx:10,ry:10
+    classDef highlight fill:#E99151,color:#fff,rx:10,ry:10
 
     class A,N core
     class B,D,E,O decision
     class C alert
     class P highlight
     class F,G,H,I,J,K,L,M core
+
+    linkStyle default stroke-width:1.5px,opacity:0.8
 ```
 
 常见的重试策略对比如下：

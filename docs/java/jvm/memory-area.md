@@ -59,12 +59,12 @@ Java 虚拟机规范对于运行时数据区域的规定是相当宽松的。以
 ```mermaid
 graph LR
     %% 颜色定义
-    classDef main fill:#005D7B,stroke:#fff,stroke-width:2px,color:#fff;
-    classDef feature fill:#00838F,stroke:#fff,stroke-width:2px,color:#fff;
-    classDef function fill:#4CA497,stroke:#fff,stroke-width:2px,color:#fff;
-    classDef state fill:#E99151,stroke:#fff,stroke-width:2px,color:#fff;
-    classDef lifecycle fill:#E4C189,stroke:#333,stroke-width:2px,color:#333;
-    classDef warning fill:#C44545,stroke:#fff,stroke-width:2px,color:#fff;
+    classDef main fill:#005D7B,color:#fff,rx:10,ry:10;
+    classDef feature fill:#00838F,color:#fff,rx:10,ry:10;
+    classDef function fill:#4CA497,color:#fff,rx:10,ry:10;
+    classDef state fill:#E99151,color:#fff,rx:10,ry:10;
+    classDef lifecycle fill:#E4C189,color:#333,rx:10,ry:10;
+    classDef warning fill:#C44545,color:#fff,rx:10,ry:10;
 
     %% 核心节点
     Root(JVM 程序计数器):::main
@@ -90,7 +90,7 @@ graph LR
     Life --> Life2[唯一不报 OutOfMemoryError 区域]:::warning
 
     %% 线条样式
-    linkStyle default stroke:#005D7B,stroke-width:2px;
+    linkStyle default stroke:#005D7B,stroke-width:1.5px,opacity:0.8
 ```
 
 程序计数器是一块较小的内存空间，可以看作是当前线程所执行的字节码的行号指示器。字节码解释器工作时通过改变这个计数器的值来选取下一条需要执行的字节码指令，分支、循环、跳转、异常处理、线程恢复等功能都需要依赖这个计数器来完成。
@@ -116,10 +116,10 @@ graph LR
 ```mermaid
 graph LR
     %% 颜色定义
-    classDef main fill:#005D7B,stroke:#fff,stroke-width:2px,color:#fff;
-    classDef compare fill:#00838F,stroke:#fff,stroke-width:2px,color:#fff;
-    classDef structure fill:#4CA497,stroke:#fff,stroke-width:2px,color:#fff;
-    classDef error fill:#C44545,stroke:#fff,stroke-width:2px,color:#fff;
+    classDef main fill:#005D7B,color:#fff,rx:10,ry:10;
+    classDef compare fill:#00838F,color:#fff,rx:10,ry:10;
+    classDef structure fill:#4CA497,color:#fff,rx:10,ry:10;
+    classDef error fill:#C44545,color:#fff,rx:10,ry:10;
 
     %% 核心节点
     Root(虚拟机栈<br/>Java Stack):::main
@@ -140,7 +140,7 @@ graph LR
     Err --> Err2[OutOfMemoryError: 内存扩展失败]:::error
 
     %% 线条样式
-    linkStyle default stroke:#005D7B,stroke-width:2px;
+    linkStyle default stroke:#005D7B,stroke-width:1.5px,opacity:0.8
 ```
 
 与程序计数器一样，Java 虚拟机栈（后文简称栈）也是线程私有的，它的生命周期和线程相同，随着线程的创建而创建，随着线程的死亡而死亡。
@@ -186,11 +186,11 @@ graph LR
 ```mermaid
 graph LR
     %% 颜色定义
-    classDef main fill:#005D7B,stroke:#fff,stroke-width:2px,color:#fff;
-    classDef compare fill:#00838F,stroke:#fff,stroke-width:2px,color:#fff;
-    classDef structure fill:#4CA497,stroke:#fff,stroke-width:2px,color:#fff;
-    classDef implement fill:#E99151,stroke:#fff,stroke-width:2px,color:#fff;
-    classDef error fill:#C44545,stroke:#fff,stroke-width:2px,color:#fff;
+    classDef main fill:#005D7B,color:#fff,rx:10,ry:10;
+    classDef compare fill:#00838F,color:#fff,rx:10,ry:10;
+    classDef structure fill:#4CA497,color:#fff,rx:10,ry:10;
+    classDef implement fill:#E99151,color:#fff,rx:10,ry:10;
+    classDef error fill:#C44545,color:#fff,rx:10,ry:10;
 
     %% 核心节点
     Root(本地方法栈):::main
@@ -214,7 +214,7 @@ graph LR
     Err --> Err2[OutOfMemoryError: 内存扩展失败]:::error
 
     %% 线条样式
-    linkStyle default stroke:#005D7B,stroke-width:2px;
+    linkStyle default stroke:#005D7B,stroke-width:1.5px,opacity:0.8
 ```
 
 和虚拟机栈所发挥的作用非常相似，区别是：**虚拟机栈为虚拟机执行 Java 方法 （也就是字节码）服务，而本地方法栈则为虚拟机使用到的 Native 方法服务。** 在 HotSpot 虚拟机中和 Java 虚拟机栈合二为一。
@@ -228,11 +228,11 @@ graph LR
 ```mermaid
 graph LR
     %% 颜色定义
-    classDef main fill:#005D7B,stroke:#fff,stroke-width:2px,color:#fff;
-    classDef compare fill:#00838F,stroke:#fff,stroke-width:2px,color:#fff;
-    classDef structure fill:#4CA497,stroke:#fff,stroke-width:2px,color:#fff;
-    classDef implement fill:#E99151,stroke:#fff,stroke-width:2px,color:#fff;
-    classDef error fill:#C44545,stroke:#fff,stroke-width:2px,color:#fff;
+    classDef main fill:#005D7B,color:#fff,rx:10,ry:10;
+    classDef compare fill:#00838F,color:#fff,rx:10,ry:10;
+    classDef structure fill:#4CA497,color:#fff,rx:10,ry:10;
+    classDef implement fill:#E99151,color:#fff,rx:10,ry:10;
+    classDef error fill:#C44545,color:#fff,rx:10,ry:10;
 
     %% 核心节点
     Root(Java 堆):::main
@@ -251,14 +251,12 @@ graph LR
 
     %% 分3：分代结构 (GC 堆)
     Root --> GC[分代结构]:::implement
-   		Root --> GC[分代结构]:::implement
     GC --> GC1[新生代：Eden 区 + 两个 Survivor 区]:::implement
     GC --> GC2[老年代：Old Generation]:::implement
     GC --> GC3[目的：优化垃圾回收效率]:::implement
 
-
     %% 线条样式
-    linkStyle default stroke:#005D7B,stroke-width:2px;
+    linkStyle default stroke:#005D7B,stroke-width:1.5px,opacity:0.8
 ```
 
 Java 虚拟机所管理的内存中最大的一块，Java 堆是所有线程共享的一块内存区域，在虚拟机启动时创建。**此内存区域的唯一目的就是存放对象实例，几乎所有的对象实例以及数组都在这里分配内存。**
@@ -330,11 +328,11 @@ MaxTenuringThreshold of 20 is invalid; must be between 0 and 15
 ```mermaid
 graph LR
     %% 颜色定义
-    classDef main fill:#005D7B,stroke:#fff,stroke-width:2px,color:#fff;
-    classDef compare fill:#00838F,stroke:#fff,stroke-width:2px,color:#fff;
-    classDef structure fill:#4CA497,stroke:#fff,stroke-width:2px,color:#fff;
-    classDef implement fill:#E99151,stroke:#fff,stroke-width:2px,color:#fff;
-    classDef error fill:#C44545,stroke:#fff,stroke-width:2px,color:#fff;
+    classDef main fill:#005D7B,color:#fff,rx:10,ry:10;
+    classDef compare fill:#00838F,color:#fff,rx:10,ry:10;
+    classDef structure fill:#4CA497,color:#fff,rx:10,ry:10;
+    classDef implement fill:#E99151,color:#fff,rx:10,ry:10;
+    classDef error fill:#C44545,color:#fff,rx:10,ry:10;
 
     %% 核心节点
     Root(方法区):::main
@@ -358,7 +356,7 @@ graph LR
     Change --> Change3[JIT 代码缓存: 独立 Code Cache 区域]:::implement
 
     %% 线条样式
-    linkStyle default stroke:#005D7B,stroke-width:2px;
+    linkStyle default stroke:#005D7B,stroke-width:1.5px,opacity:0.8
 ```
 
 方法区属于是 JVM 运行时数据区域的一块逻辑区域，是各个线程共享的内存区域。
@@ -426,11 +424,11 @@ JDK 1.8 的时候，方法区（HotSpot 的永久代）被彻底移除了（JDK1
 ```mermaid
 graph LR
     %% 颜色定义
-    classDef main fill:#005D7B,stroke:#fff,stroke-width:2px,color:#fff;
-    classDef compare fill:#00838F,stroke:#fff,stroke-width:2px,color:#fff;
-    classDef structure fill:#4CA497,stroke:#fff,stroke-width:2px,color:#fff;
-    classDef implement fill:#E99151,stroke:#fff,stroke-width:2px,color:#fff;
-    classDef error fill:#C44545,stroke:#fff,stroke-width:2px,color:#fff;
+    classDef main fill:#005D7B,color:#fff,rx:10,ry:10;
+    classDef compare fill:#00838F,color:#fff,rx:10,ry:10;
+    classDef structure fill:#4CA497,color:#fff,rx:10,ry:10;
+    classDef implement fill:#E99151,color:#fff,rx:10,ry:10;
+    classDef error fill:#C44545,color:#fff,rx:10,ry:10;
 
     %% 核心节点
     Root(运行时常量池):::main
@@ -451,7 +449,7 @@ graph LR
     Error --> Error2[无法申请内存时抛出 OutOfMemoryError]:::error
 
     %% 线条样式
-    linkStyle default stroke:#005D7B,stroke-width:2px;
+    linkStyle default stroke:#005D7B,stroke-width:1.5px,opacity:0.8
 ```
 
 Class 文件中除了有类的版本、字段、方法、接口等描述信息外，还有用于存放编译期生成的各种字面量（Literal）和符号引用（Symbolic Reference）的 **常量池表(Constant Pool Table)** 。
@@ -473,11 +471,11 @@ Class 文件中除了有类的版本、字段、方法、接口等描述信息�
 ```mermaid
 graph LR
     %% 颜色定义
-    classDef main fill:#005D7B,stroke:#fff,stroke-width:2px,color:#fff;
-    classDef compare fill:#00838F,stroke:#fff,stroke-width:2px,color:#fff;
-    classDef structure fill:#4CA497,stroke:#fff,stroke-width:2px,color:#fff;
-    classDef implement fill:#E99151,stroke:#fff,stroke-width:2px,color:#fff;
-    classDef error fill:#C44545,stroke:#fff,stroke-width:2px,color:#fff;
+    classDef main fill:#005D7B,color:#fff,rx:10,ry:10;
+    classDef compare fill:#00838F,color:#fff,rx:10,ry:10;
+    classDef structure fill:#4CA497,color:#fff,rx:10,ry:10;
+    classDef implement fill:#E99151,color:#fff,rx:10,ry:10;
+    classDef error fill:#C44545,color:#fff,rx:10,ry:10;
 
     %% 核心节点
     Root(字符串常量池):::main
@@ -501,7 +499,7 @@ graph LR
     Tuning --> Param[-XX:StringTableSize 调优参数]:::error
 
     %% 线条样式
-    linkStyle default stroke:#005D7B,stroke-width:2px;
+    linkStyle default stroke:#005D7B,stroke-width:1.5px,opacity:0.8
 ```
 
 **字符串常量池** 是 JVM 为了提升性能和减少内存消耗针对字符串（String 类）专门开辟的一块区域，主要目的是为了避免字符串的重复创建。
@@ -538,11 +536,11 @@ JDK1.7 之前，字符串常量池存放在永久代。JDK1.7 字符串常量池
 ```mermaid
 graph LR
     %% 颜色定义
-    classDef main fill:#005D7B,stroke:#fff,stroke-width:2px,color:#fff;
-    classDef compare fill:#00838F,stroke:#fff,stroke-width:2px,color:#fff;
-    classDef structure fill:#4CA497,stroke:#fff,stroke-width:2px,color:#fff;
-    classDef implement fill:#E99151,stroke:#fff,stroke-width:2px,color:#fff;
-    classDef error fill:#C44545,stroke:#fff,stroke-width:2px,color:#fff;
+    classDef main fill:#005D7B,color:#fff,rx:10,ry:10;
+    classDef compare fill:#00838F,color:#fff,rx:10,ry:10;
+    classDef structure fill:#4CA497,color:#fff,rx:10,ry:10;
+    classDef implement fill:#E99151,color:#fff,rx:10,ry:10;
+    classDef error fill:#C44545,color:#fff,rx:10,ry:10;
 
     %% 核心节点
     Root(直接内存):::main
@@ -566,7 +564,7 @@ graph LR
     Error --> Error3[内存不足时抛出 OutOfMemoryError]:::error
 
     %% 线条样式
-    linkStyle default stroke:#005D7B,stroke-width:2px;
+    linkStyle default stroke:#005D7B,stroke-width:1.5px,opacity:0.8
 ```
 
 直接内存是一种特殊的内存缓冲区，并不在 Java 堆或方法区中分配的，而是通过 JNI 的方式在本地内存上分配的。
@@ -592,10 +590,10 @@ Java 对象的创建过程我建议最好是能默写出来，并且要掌握每
 ```mermaid
 graph TD
     %% 颜色定义
-    classDef root fill:#004D61,stroke:#fff,stroke-width:2px,color:#fff;
-    classDef step fill:#005D7B,stroke:#fff,stroke-width:2px,color:#fff;
-    classDef detail fill:#4CA497,stroke:#fff,stroke-width:2px,color:#fff;
-    classDef logic fill:#E99151,stroke:#fff,stroke-width:2px,color:#fff;
+    classDef root fill:#004D61,color:#fff,rx:10,ry:10;
+    classDef step fill:#005D7B,color:#fff,rx:10,ry:10;
+    classDef detail fill:#4CA497,color:#fff,rx:10,ry:10;
+    classDef logic fill:#E99151,color:#fff,rx:10,ry:10;
 
     %% 核心流程
     Start(new 指令触发):::root
@@ -625,7 +623,7 @@ graph TD
     S5_2 --> End((对象创建完成)):::root
 
     %% 线条样式
-    linkStyle default stroke:#005D7B,stroke-width:2px;
+    linkStyle default stroke:#005D7B,stroke-width:1.5px,opacity:0.8
 ```
 
 #### Step1:类加载检查

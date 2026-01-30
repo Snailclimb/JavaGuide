@@ -42,11 +42,14 @@ flowchart TB
   A -.->|"数据丢失窗口（RPO）"| B
   B -.->|"恢复时间窗口（RTO）"| C
 
-  classDef core fill:#4CA497,stroke:#333,color:#fff
-  classDef highlight fill:#E99151,stroke:#333,color:#fff
+  classDef core fill:#4CA497,color:#fff,rx:10,ry:10
+  classDef highlight fill:#E99151,color:#fff,rx:10,ry:10
 
   class A,B,C core
-  class D,E highlight
+
+  style Timeline fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
+
+  linkStyle default stroke-width:1.5px,opacity:0.8
 ```
 
 - **RPO（Recovery Point Objective，恢复点目标）**：可容忍的 **最大数据丢失量**，即从上次备份到故障发生之间的数据。RPO = 0 表示不允许丢失任何数据。
@@ -69,38 +72,46 @@ flowchart TB
 flowchart TB
   subgraph Grid["冗余架构方案对比"]
     direction LR
+    style Grid fill:#F0F2F5,stroke:#E0E6ED,stroke-width:1.5px
 
     subgraph HACluster["高可用集群"]
       direction LR
+      style HACluster fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
       A1["主节点"] --> A2["从节点"]
     end
 
     subgraph LocalDR["同城灾备"]
       direction LR
+      style LocalDR fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
       B1["主机房<br/>（处理请求）"] -.->|"同步"| B2["备机房<br/>（不处理请求）"]
     end
 
     subgraph RemoteDR["异地灾备"]
       direction LR
+      style RemoteDR fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
       C1["主机房<br/>北京"] -.->|"异步同步"| C2["备机房<br/>上海"]
     end
 
     subgraph LocalActive["同城多活"]
       direction LR
+      style LocalActive fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
       D1["机房A<br/>（处理请求）"] <-->|"双向同步"| D2["机房B<br/>（处理请求）"]
     end
 
     subgraph RemoteActive["异地多活"]
       direction LR
+      style RemoteActive fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
       E1["北京机房<br/>（处理请求）"] <-->|"双向同步"| E2["上海机房<br/>（处理请求）"]
     end
   end
 
-  classDef core fill:#4CA497,stroke:#333,color:#fff
-  classDef external fill:#005D7B,stroke:#333,color:#fff
+  classDef core fill:#4CA497,color:#fff,rx:10,ry:10
+  classDef external fill:#005D7B,color:#fff,rx:10,ry:10
 
   class A1,B1,C1,D1,D2,E1,E2 core
   class A2,B2,C2 external
+
+  linkStyle default stroke-width:1.5px,opacity:0.8
 ```
 
 ### 高可用集群

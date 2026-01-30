@@ -108,6 +108,7 @@ head:
 ```mermaid
 flowchart LR
     subgraph MQ["消息队列三大应用场景"]
+        style MQ fill:#F0F2F5,stroke:#E0E6ED,stroke-width:1.5px
         Async["异步处理"]
         Decouple["解耦"]
         Peak["削峰"]
@@ -122,11 +123,13 @@ flowchart LR
     Peak --> P1["缓解系统压力"]
     Peak --> P2["保证系统稳定"]
 
-    classDef app fill:#4CA497,stroke:#333,color:#fff
-    classDef benefit fill:#00838F,stroke:#333,color:#fff
+    classDef app fill:#4CA497,color:#fff,rx:10,ry:10
+    classDef benefit fill:#00838F,color:#fff,rx:10,ry:10
 
     class Async,Decouple,Peak app
     class A1,A2,D1,D2,P1,P2 benefit
+
+    linkStyle default stroke-width:1.5px,opacity:0.8
 ```
 
 ### 消息队列会带来副作用吗？
@@ -197,10 +200,15 @@ flowchart LR
     Q --> C1["消费者1"]
     Q --> C2["消费者2"]
 
-    style P fill:#4CA497,stroke:#333,color:#fff
-    style Q fill:#E99151,stroke:#333,color:#fff
-    style C1 fill:#00838F,stroke:#333,color:#fff
-    style C2 fill:#00838F,stroke:#333,color:#fff
+    classDef producer fill:#4CA497,color:#fff,rx:10,ry:10
+    classDef queue fill:#E99151,color:#fff,rx:10,ry:10
+    classDef consumer fill:#00838F,color:#fff,rx:10,ry:10
+
+    class P producer
+    class Q queue
+    class C1,C2 consumer
+
+    linkStyle default stroke-width:1.5px,opacity:0.8
 ```
 
 在一开始我跟你提到了一个 **"广播"** 的概念，也就是说如果我们此时我们需要将一个消息发送给多个消费者(比如此时我需要将信息发送给短信系统和邮件系统)，这个时候单个队列即不能满足需求了。
@@ -229,12 +237,15 @@ flowchart LR
     T --> S2["订阅者2"]
     T --> S3["订阅者3"]
 
-    style P1 fill:#4CA497,stroke:#333,color:#fff
-    style P2 fill:#4CA497,stroke:#333,color:#fff
-    style T fill:#E99151,stroke:#333,color:#fff
-    style S1 fill:#00838F,stroke:#333,color:#fff
-    style S2 fill:#00838F,stroke:#333,color:#fff
-    style S3 fill:#00838F,stroke:#333,color:#fff
+    classDef publisher fill:#4CA497,color:#fff,rx:10,ry:10
+    classDef topic fill:#E99151,color:#fff,rx:10,ry:10
+    classDef subscriber fill:#00838F,color:#fff,rx:10,ry:10
+
+    class P1,P2 publisher
+    class T topic
+    class S1,S2,S3 subscriber
+
+    linkStyle default stroke-width:1.5px,opacity:0.8
 ```
 
 ### RocketMQ 中的消息模型
@@ -262,6 +273,7 @@ RocketMQ 中的消息模型就是按照 **主题模型** 所实现的。那么 *
 ```mermaid
 flowchart TB
     subgraph Queue["队列粒度负载均衡 4.x"]
+        style Queue fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
         direction TB
         Q1["队列1"] --> C1["消费者1"]
         Q2["队列2"] --> C2["消费者2"]
@@ -270,27 +282,22 @@ flowchart TB
     end
 
     subgraph Message["消息粒度负载均衡 5.x"]
+        style Message fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
         direction TB
         MQ1["队列1"] --> MC1["消费者1<br/>消费消息1"]
         MQ1 --> MC2["消费者2<br/>消费消息2"]
         MQ1 --> MC3["消费者3<br/>消费消息3"]
     end
 
-    %% 优化：统一样式格式，修正颜色显示优先级，提升可读性
-    style Q1 fill:#4CA497,stroke:#333,color:#fff,stroke-width:1px
-    style Q2 fill:#4CA497,stroke:#333,color:#fff,stroke-width:1px
-    style Q3 fill:#4CA497,stroke:#333,color:#fff,stroke-width:1px
-    style Q4 fill:#4CA497,stroke:#333,color:#fff,stroke-width:1px
-    style MQ1 fill:#4CA497,stroke:#333,color:#fff,stroke-width:1px
+    classDef queue fill:#4CA497,color:#fff,rx:10,ry:10
+    classDef consumer4x fill:#E99151,color:#fff,rx:10,ry:10
+    classDef consumer5x fill:#00838F,color:#fff,rx:10,ry:10
 
-    style C1 fill:#E99151,stroke:#333,color:#fff,stroke-width:1px
-    style C2 fill:#E99151,stroke:#333,color:#fff,stroke-width:1px
-    style C3 fill:#E99151,stroke:#333,color:#fff,stroke-width:1px
-    style C4 fill:#E99151,stroke:#333,color:#fff,stroke-width:1px
+    class Q1,Q2,Q3,Q4,MQ1 queue
+    class C1,C2,C3,C4 consumer4x
+    class MC1,MC2,MC3 consumer5x
 
-    style MC1 fill:#00838F,stroke:#333,color:#fff,stroke-width:1px
-    style MC2 fill:#00838F,stroke:#333,color:#fff,stroke-width:1px
-    style MC3 fill:#00838F,stroke:#333,color:#fff,stroke-width:1px
+    linkStyle default stroke-width:1.5px,opacity:0.8
 ```
 
 - **队列粒度负载均衡（4.x 默认策略）**：一个队列只会被一个消费者消费。如果某个消费者挂掉，分组内其它消费者会接替挂掉的消费者继续消费。就像上图中 `Consumer1` 和 `Consumer2` 分别对应着两个队列，而 `Consumer3` 是没有队列对应的，所以一般来讲要控制 **消费者组中的消费者个数和主题中队列个数相同** 。这种模式的缺点是容易产生 **长尾效应**：如果某个消费者处理速度较慢，会导致其对应的队列消息堆积，而其他消费者却处于空闲状态。
@@ -326,9 +333,11 @@ RocketMQ 的核心组件包括 **NameServer、Broker、Producer、Consumer**，�
 flowchart TB
     subgraph RocketMQ["RocketMQ 系统架构"]
         direction TB
+        style RocketMQ fill:#F0F2F5,stroke:#E0E6ED,stroke-width:1.5px
 
         subgraph Components["核心组件"]
             direction TB
+            style Components fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
             NS["NameServer<br/>注册中心"]
             BK["Broker<br/>消息存储"]
             PX["Proxy<br/>代理层（5.0+）"]
@@ -338,11 +347,13 @@ flowchart TB
 
         subgraph Protocol["通信协议"]
             direction LR
+            style Protocol fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
             RP["Remoting<br/>私有协议"]
             GP["gRPC<br/>云原生协议"]
         end
 
         subgraph Network["网络层"]
+            style Network fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
             NB["Netty<br/>高性能通信框架"]
         end
     end
@@ -359,14 +370,25 @@ flowchart TB
     RP --> NB
     GP --> NB
 
-    style NS fill:#E99151,stroke:#333,color:#fff
-    style BK fill:#4CA497,stroke:#333,color:#fff
-    style PX fill:#005D7B,stroke:#333,color:#fff
-    style PD fill:#00838F,stroke:#333,color:#fff
-    style CM fill:#7E57C2,stroke:#333,color:#fff
-    style RP fill:#FFC107,stroke:#333,color:#333
-    style GP fill:#26A69A,stroke:#333,color:#fff
-    style NB fill:#EF5350,stroke:#333,color:#fff
+    classDef ns fill:#E99151,color:#fff,rx:10,ry:10
+    classDef broker fill:#4CA497,color:#fff,rx:10,ry:10
+    classDef proxy fill:#005D7B,color:#fff,rx:10,ry:10
+    classDef producer fill:#00838F,color:#fff,rx:10,ry:10
+    classDef consumer fill:#7E57C2,color:#fff,rx:10,ry:10
+    classDef remoting fill:#FFC107,color:#333,rx:10,ry:10
+    classDef grpc fill:#26A69A,color:#fff,rx:10,ry:10
+    classDef netty fill:#EF5350,color:#fff,rx:10,ry:10
+
+    class NS ns
+    class BK broker
+    class PX proxy
+    class PD producer
+    class CM consumer
+    class RP remoting
+    class GP grpc
+    class NB netty
+
+    linkStyle default stroke-width:1.5px,opacity:0.8
 ```
 
 ### 核心组件要点
@@ -393,6 +415,7 @@ NameServer 负责元数据的存储，扮演着集群"中枢神经系统"的角�
 ```mermaid
 flowchart LR
     subgraph Heartbeat["心跳机制"]
+        style Heartbeat fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
         direction TB
         BK["Broker"] -->|启动时| Reg["注册元数据"]
         BK -->|每隔30秒| HB["发送心跳包"]
@@ -401,10 +424,19 @@ flowchart LR
         Check -->|超时| Down["标记Broker宕机"]
     end
 
-    style BK fill:#4CA497,stroke:#333,color:#fff
-    style NS fill:#E99151,stroke:#333,color:#fff
-    style Check fill:#FFC107,stroke:#333,color:#333
-    style Down fill:#EF5350,stroke:#333,color:#fff
+    classDef broker fill:#4CA497,color:#fff,rx:10,ry:10
+    classDef ns fill:#E99151,color:#fff,rx:10,ry:10
+    classDef check fill:#FFC107,color:#333,rx:10,ry:10
+    classDef down fill:#EF5350,color:#fff,rx:10,ry:10
+    classDef default fill:#4CA497,color:#fff,rx:10,ry:10
+
+    class BK broker
+    class NS ns
+    class Check check
+    class Down down
+    class Reg,HB default
+
+    linkStyle default stroke-width:1.5px,opacity:0.8
 ```
 
 **元数据包含：**
@@ -439,6 +471,7 @@ Topic 消息量都比较均匀的情况下，如果某个 Broker 上的队列越
 flowchart TB
     subgraph ProducerFlow["生产者发送流程"]
         direction TB
+        style ProducerFlow fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
 
         P["Producer 启动"] -->|1.建立长连接| NS1["连接 NameServer<br/>获取路由表"]
         NS1 -->|2.选择队列| LB["负载均衡算法<br/>选择 MessageQueue"]
@@ -446,11 +479,19 @@ flowchart TB
         BK -->|4.发送消息| MSG["发送消息到<br/>MessageQueue"]
     end
 
-    style P fill:#00838F,stroke:#333,color:#fff
-    style NS1 fill:#E99151,stroke:#333,color:#fff
-    style LB fill:#FFC107,stroke:#333,color:#333
-    style BK fill:#4CA497,stroke:#333,color:#fff
-    style MSG fill:#7E57C2,stroke:#333,color:#fff
+    classDef producer fill:#00838F,color:#fff,rx:10,ry:10
+    classDef ns fill:#E99151,color:#fff,rx:10,ry:10
+    classDef lb fill:#FFC107,color:#333,rx:10,ry:10
+    classDef broker fill:#4CA497,color:#fff,rx:10,ry:10
+    classDef msg fill:#7E57C2,color:#fff,rx:10,ry:10
+
+    class P producer
+    class NS1 ns
+    class LB lb
+    class BK broker
+    class MSG msg
+
+    linkStyle default stroke-width:1.5px,opacity:0.8
 ```
 
 **三种发送方式：**
@@ -467,6 +508,7 @@ flowchart TB
 flowchart TB
     subgraph ConsumerFlow["消费者消费流程"]
         direction TB
+        style ConsumerFlow fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
 
         C["Consumer 启动"] -->|1.建立长连接| NS2["连接 NameServer<br/>获取路由表"]
         NS2 -->|2.建立连接| BK2["与 Broker 建立连接"]
@@ -474,11 +516,19 @@ flowchart TB
         CONS -->|4.提交位点| OFFSET["提交消费位点<br/>保存消费进度"]
     end
 
-    style C fill:#7E57C2,stroke:#333,color:#fff
-    style NS2 fill:#E99151,stroke:#333,color:#fff
-    style BK2 fill:#4CA497,stroke:#333,color:#fff
-    style CONS fill:#00838F,stroke:#333,color:#fff
-    style OFFSET fill:#FFC107,stroke:#333,color:#333
+    classDef consumer fill:#7E57C2,color:#fff,rx:10,ry:10
+    classDef ns fill:#E99151,color:#fff,rx:10,ry:10
+    classDef broker fill:#4CA497,color:#fff,rx:10,ry:10
+    classDef consume fill:#00838F,color:#fff,rx:10,ry:10
+    classDef offset fill:#FFC107,color:#333,rx:10,ry:10
+
+    class C consumer
+    class NS2 ns
+    class BK2 broker
+    class CONS consume
+    class OFFSET offset
+
+    linkStyle default stroke-width:1.5px,opacity:0.8
 ```
 
 **三种消费模式：**
@@ -568,11 +618,13 @@ NameServer 是 **无状态的、各节点之间互不通信** 的。这与 ZooKe
   flowchart LR
       N1["初始化"] --> N2["待消费"] --> N3["消费中"] --> N4["消费提交"] --> N5["消息删除"]
 
-      classDef default fill:#4CA497,stroke:#333,color:#fff
-      class N5 fill:#00838F,stroke:#333,color:#fff
+      classDef default fill:#4CA497,color:#fff,rx:10,ry:10
+      classDef final fill:#00838F,color:#fff,rx:10,ry:10
 
       class N1,N2,N3,N4 default
       class N5 final
+
+      linkStyle default stroke-width:1.5px,opacity:0.8
 ```
 
 - 初始化：消息被生产者构建并完成初始化，待发送到服务端的状态。
@@ -624,11 +676,13 @@ RocketMQ 定时消息设置的定时时间是一个预期触发的系统时间�
   flowchart LR
       T1["初始化"] --> T2["定时中"] --> T3["待消费"] --> T4["消费中"] --> T5["消费提交"] --> T6["消息删除"]
 
-      classDef default fill:#E99151,stroke:#333,color:#fff
-      class T6 fill:#00838F,stroke:#333,color:#fff
+      classDef default fill:#E99151,color:#fff,rx:10,ry:10
+      classDef final fill:#00838F,color:#fff,rx:10,ry:10
 
       class T1,T2,T3,T4,T5 default
       class T6 final
+
+      linkStyle default stroke-width:1.5px,opacity:0.8
 ```
 
 - **初始化**：消息被生产者构建并完成初始化，待发送到服务端的状态。
@@ -685,16 +739,19 @@ RocketMQ 顺序消息的顺序关系通过消息组（MessageGroup）判定和�
 ```mermaid
 flowchart TB
     subgraph Order["订单系统"]
+        style Order fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
         O1["订单A<br/>消息组: orderA"]
         O2["订单B<br/>消息组: orderB"]
         O3["订单C<br/>消息组: orderC"]
     end
 
     subgraph Queue["队列"]
+        style Queue fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
         Q["队列1<br/>(混合存储不同消息组)"]
     end
 
     subgraph Storage["存储顺序"]
+        style Storage fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
         direction LR
         S1["orderA-M1<br/>↓"]
         S2["orderB-M1<br/>↓"]
@@ -708,11 +765,19 @@ flowchart TB
     O3 --> Q
     Q --> Storage
 
-    style O1 fill:#4CA497,stroke:#333,color:#fff
-    style O2 fill:#E99151,stroke:#333,color:#fff
-    style O3 fill:#7E57C2,stroke:#333,color:#fff
-    style Q fill:#00838F,stroke:#333,color:#fff
-    style S1,S2,S3,S4,S5 fill:#FFC107,stroke:#333,color:#333
+    classDef orderA fill:#4CA497,color:#fff,rx:10,ry:10
+    classDef orderB fill:#E99151,color:#fff,rx:10,ry:10
+    classDef orderC fill:#7E57C2,color:#fff,rx:10,ry:10
+    classDef queue fill:#00838F,color:#fff,rx:10,ry:10
+    classDef storage fill:#FFC107,color:#333,rx:10,ry:10
+
+    class O1 orderA
+    class O2 orderB
+    class O3 orderC
+    class Q queue
+    class S1,S2,S3,S4,S5 storage
+
+    linkStyle default stroke-width:1.5px,opacity:0.8
 ```
 
 **说明**：
@@ -784,6 +849,7 @@ RocketMQ 事务消息的方案，具备高性能、可扩展、业务开发简�
 flowchart TB
     subgraph Phase1["阶段一: 发送半事务消息"]
         direction TB
+        style Phase1 fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
         M1["生产者构建消息"] --> M2["发送至服务端"]
         M2 --> M3["服务端持久化消息"]
         M3 --> M4["返回 Ack 确认"]
@@ -792,6 +858,7 @@ flowchart TB
 
     subgraph Phase2["阶段二: 执行本地事务"]
         direction TB
+        style Phase2 fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
         L1["生产者开始执行<br/>本地事务逻辑"] --> L2{"本地事务<br/>执行结果"}
         L2 -->|Commit| L3["提交二次确认 Commit"]
         L2 -->|Rollback| L4["提交二次确认 Rollback"]
@@ -800,12 +867,14 @@ flowchart TB
 
     subgraph Phase3["阶段三: 事务回查机制"]
         direction TB
+        style Phase3 fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
         C1["服务端未收到确认<br/>或收到 Unknown"] --> C2["固定时间后<br/>发起消息回查"]
         C2 --> C3["生产者检查本地事务<br/>最终状态"]
         C3 --> C4["再次提交二次确认"]
     end
 
     subgraph Result["最终处理"]
+        style Result fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
         direction TB
         R1["Commit: 消息投递给消费者"]
         R2["Rollback: 回滚事务<br/>不投递消息"]
@@ -817,9 +886,15 @@ flowchart TB
     L5 --> Phase3
     C4 --> R1
 
-    style M1,M2,M3,M4,M5,L1,C1,C2,C3,C4 fill:#4CA497,stroke:#333,color:#fff
-    style L2,L3,L4,L5 fill:#E99151,stroke:#333,color:#fff
-    style R1,R2 fill:#00838F,stroke:#333,color:#fff
+    classDef normal fill:#4CA497,color:#fff,rx:10,ry:10
+    classDef decision fill:#E99151,color:#fff,rx:10,ry:10
+    classDef result fill:#00838F,color:#fff,rx:10,ry:10
+
+    class M1,M2,M3,M4,M5,L1,C1,C2,C3,C4 normal
+    class L2,L3,L4,L5 decision
+    class R1,R2 result
+
+    linkStyle default stroke-width:1.5px,opacity:0.8
 ```
 
 1. 生产者将消息发送至 RocketMQ 服务端
@@ -1131,9 +1206,11 @@ RocketMQ 服务端 5.x 版本开始，**生产者是匿名的**，无需管理�
 flowchart TB
     subgraph ConsumerGroup["消费者组概念"]
         direction TB
+        style ConsumerGroup fill:#F0F2F5,stroke:#E0E6ED,stroke-width:1.5px
 
         subgraph Cluster["集群消费模式"]
             direction TB
+            style Cluster fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
             CG["消费者组"] --> C1["消费者1<br/>消费队列1、2"]
             CG --> C2["消费者2<br/>消费队列3、4"]
             CG --> C3["消费者3<br/>空闲"]
@@ -1142,6 +1219,7 @@ flowchart TB
 
         subgraph Broadcast["广播消费模式"]
             direction TB
+            style Broadcast fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
             BG["消费者组"] --> B1["消费者1<br/>消费所有消息"]
             BG --> B2["消费者2<br/>消费所有消息"]
             BG --> B3["消费者3<br/>消费所有消息"]
@@ -1157,19 +1235,15 @@ flowchart TB
         B3 -.-> Note2
     end
 
-    %% 优化：拆分批量样式，提升兼容性，统一边框宽度
-    style CG fill:#4CA497,stroke:#333,color:#fff,stroke-width:1px
-    style BG fill:#4CA497,stroke:#333,color:#fff,stroke-width:1px
+    classDef cg fill:#4CA497,color:#fff,rx:10,ry:10
+    classDef consumer fill:#E99151,color:#fff,rx:10,ry:10
+    classDef note fill:#00838F,color:#fff,rx:10,ry:10
 
-    style C1 fill:#E99151,stroke:#333,color:#fff,stroke-width:1px
-    style C2 fill:#E99151,stroke:#333,color:#fff,stroke-width:1px
-    style C3 fill:#E99151,stroke:#333,color:#fff,stroke-width:1px
-    style B1 fill:#E99151,stroke:#333,color:#fff,stroke-width:1px
-    style B2 fill:#E99151,stroke:#333,color:#fff,stroke-width:1px
-    style B3 fill:#E99151,stroke:#333,color:#fff,stroke-width:1px
+    class CG,BG cg
+    class C1,C2,C3,B1,B2,B3 consumer
+    class Note1,Note2 note
 
-    style Note1 fill:#00838F,stroke:#333,color:#fff,stroke-width:1px
-    style Note2 fill:#00838F,stroke:#333,color:#fff,stroke-width:1px
+    linkStyle default stroke-width:1.5px,opacity:0.8
 ```
 
 消费者分组中的订阅关系、投递顺序性、消费重试策略是一致的。
