@@ -130,7 +130,9 @@ public class MyBloomFilter {
     public boolean contains(Object value) {
         boolean ret = true;
         for (SimpleHash f : func) {
-            ret = ret && bits.get(f.hash(value));
+            ret = bits.get(f.hash(value));
+            if(!ret)
+              return ret;
         }
         return ret;
     }
