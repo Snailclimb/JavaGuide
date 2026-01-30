@@ -208,6 +208,39 @@ public class Student {
 - 多态不能调用“只在子类存在但在父类不存在”的方法；
 - 如果子类重写了父类的方法，真正执行的是子类重写的方法，如果子类没有重写父类的方法，执行的是父类的方法。
 
+```mermaid
+flowchart LR
+    subgraph OOP["面向对象三大特征"]
+        style OOP fill:#F0F2F5,stroke:#E0E6ED,stroke-width:1.5px
+
+        subgraph Encapsulation["封装 Encapsulation"]
+            style Encapsulation fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
+            E1["隐藏内部状态"]:::core
+            E2["提供公共方法"]:::core
+            E3["保护数据安全"]:::core
+        end
+
+        subgraph Inheritance["继承 Inheritance"]
+            style Inheritance fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
+            I1["代码复用"]:::core
+            I2["扩展功能"]:::core
+            I3["单继承限制"]:::highlight
+        end
+
+        subgraph Polymorphism["多态 Polymorphism"]
+            style Polymorphism fill:#F5F7FA,stroke:#E0E6ED,stroke-width:1.5px
+            P1["父类引用指向子类"]:::core
+            P2["运行时动态绑定"]:::core
+            P3["方法重写实现"]:::core
+        end
+    end
+
+    classDef core fill:#4CA497,color:#fff,rx:10,ry:10
+    classDef highlight fill:#E99151,color:#fff,rx:10,ry:10
+
+    linkStyle default stroke-width:1.5px,opacity:0.8
+```
+
 ### ⭐️接口和抽象类有什么共同点和区别？
 
 #### 接口和抽象类的共同点
@@ -273,6 +306,18 @@ public interface MyInterface {
 ```
 
 ### 深拷贝和浅拷贝区别了解吗？什么是引用拷贝？
+
+```mermaid
+flowchart LR
+    Copy["对象拷贝"] --> RefCopy["引用拷贝<br/>两个引用指向同一对象"]
+    Copy --> ShallowCopy["浅拷贝<br/>复制基本类型，共享引用类型"]
+    Copy --> DeepCopy["深拷贝<br/>递归复制所有属性"]
+
+    classDef main fill:#005D7B,color:#fff,rx:10,ry:10
+    class Copy main
+
+    linkStyle default stroke-width:1.5px,opacity:0.8
+```
 
 关于深拷贝和浅拷贝区别，我这里先给结论：
 
@@ -357,9 +402,9 @@ System.out.println(person1.getAddress() == person1Copy.getAddress());
 
 **那什么是引用拷贝呢？** 简单来说，引用拷贝就是两个不同的引用指向同一个对象。
 
-我专门画了一张图来描述浅拷贝、深拷贝、引用拷贝：
+我专门画了一张图来描述浅拷贝、深拷贝和引用拷贝：
 
-![shallow&deep-copy](https://oss.javaguide.cn/github/javaguide/java/basis/shallow&deep-copy.png)
+![图解浅拷贝、深拷贝和引用拷贝](https://oss.javaguide.cn/github/javaguide/java/basis/shallow&deep-copy.png)
 
 ## ⭐️Object
 
@@ -715,6 +760,8 @@ System.out.println(aa==bb); // true
 
 1. 字符串常量池中不存在 "abc"：会创建 2 个 字符串对象。一个在字符串常量池中，由 `ldc` 指令触发创建。一个在堆中，由 `new String()` 创建，并使用常量池中的 "abc" 进行初始化。
 2. 字符串常量池中已存在 "abc"：会创建 1 个 字符串对象。该对象在堆中，由 `new String()` 创建，并使用常量池中的 "abc" 进行初始化。
+
+下面开始详细分析。
 
 下面开始详细分析。
 

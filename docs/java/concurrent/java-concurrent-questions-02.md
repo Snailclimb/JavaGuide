@@ -425,6 +425,19 @@ CAS 操作仅能对单个共享变量有效。当需要操作多个共享变量�
 
 除了 `AtomicReference` 这种方式之外，还可以利用加锁来保证。
 
+### 总结
+
+| **对比维度**    | **乐观锁 (Optimistic Locking)**             | **悲观锁 (Pessimistic Locking)**             |
+| --------------- | ------------------------------------------- | -------------------------------------------- |
+| **核心假设**    | 假设冲突很少发生，提交时才验证。            | 假设冲突必然发生，读取时就加锁。             |
+| **底层原理**    | **CAS (Compare And Swap)** 或版本号机制。   | **操作系统互斥锁**，涉及内核态切换。         |
+| **阻塞情况**    | **非阻塞**。失败后由业务逻辑决定是否重试。  | **阻塞**。其他线程必须排队等待锁释放。       |
+| **并发开销**    | **CPU 消耗**（高并发写时频繁自旋重试）。    | **上下文切换开销**（线程挂起与唤醒）。       |
+| **死锁风险**    | **无死锁**（因为不涉及持有锁的等待）。      | **有死锁风险**（多个锁相互等待）。           |
+| **数据库实现**  | `UPDATE ... SET version = version + 1`      | `SELECT ... FOR UPDATE`                      |
+| **Java 代表类** | `AtomicInteger`、`LongAdder`、`StampedLock` | `synchronized`、`ReentrantLock`              |
+| **适用场景**    | **多读少写**、并发冲突概率低的业务。        | **多写少读**、数据一致性要求极高的核心业务。 |
+
 ## synchronized 关键字
 
 ### synchronized 是什么？有什么用？
@@ -830,6 +843,32 @@ public ReentrantReadWriteLock(boolean fair) {
 另外，还可能会有死锁问题发生。举个例子：假设两个线程的读锁都想升级写锁，则需要对方都释放自己锁，而双方都不释放，就会产生死锁。
 
 ## StampedLock
+
+```mermaid
+flowchart TB
+    subgraph StampedLock["StampedLock(JDK1.8+)"]
+        style StampedLock fill:#F0F2F5,stroke:#E0E6ED,rx:10,ry:10
+        subgraph Modes["模式分类"]
+            style Modes fill:#F5F7FA,stroke:#E0E6ED,rx:10,ry:10
+            Write(["写锁（独占）：单线程持有，阻塞其他读写"]):::write
+            Read(["读锁（悲观读）：无写锁时多线程共享"]):::read
+            Optimistic(["乐观读：无写锁时直接访问，提交时验证"]):::optimistic
+        end
+        subgraph Features["核心特点"]
+            style Features fill:#F5F7FA,stroke:#E0E6ED,rx:10,ry:10
+            F1(["不可重入，不支持Condition"]):::feature
+            F2(["性能优秀（乐观读减少阻塞）"]):::feature
+            F3(["适用场景：读多写少，无重入需求"]):::feature
+        end
+    end
+
+    classDef write fill:#C44545,color:#fff,rx:10,ry:10
+    classDef read fill:#00838F,color:#fff,rx:10,ry:10
+    classDef optimistic fill:#4CA497,color:#fff,rx:10,ry:10
+    classDef feature fill:#E99151,color:#333,rx:10,ry:10
+
+    linkStyle default stroke-width:1.5px,opacity:0.8
+```
 
 `StampedLock` 面试中问的比较少，不是很重要，简单了解即可。
 

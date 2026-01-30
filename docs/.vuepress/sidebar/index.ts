@@ -127,6 +127,10 @@ export default sidebar({
           icon: ICONS.VIRTUAL_MACHINE,
           collapsible: true,
           children: [
+            {
+              text: "JVM常见面试题总结",
+              link: "https://interview.javaguide.cn/java/java-jvm.html",
+            },
             "memory-area",
             "jvm-garbage-collection",
             "class-file-structure",

@@ -11,9 +11,7 @@
 
 </div>
 
-> - **实战项目**：
->   - [⭐AI 智能面试辅助平台 + RAG 知识库](https://javaguide.cn/zhuanlan/interview-guide.html)：基于 Spring Boot 4.0 + Java 21 + Spring AI 2.0 开发。非常适合作为学习和简历项目，学习门槛低，帮助提升求职竞争力，是主打就业的实战项目。
->   - [手写 RPC 框架](https://javaguide.cn/zhuanlan/handwritten-rpc-framework.html)：从零开始基于 Netty+Kyro+Zookeeper 实现一个简易的 RPC 框架。麻雀虽小五脏俱全，项目代码注释详细，结构清晰。
+> - **大模型实战项目**： [⭐AI 智能面试辅助平台 + RAG 知识库](https://javaguide.cn/zhuanlan/interview-guide.html)（基于 Spring Boot 4.0 + Java 21 + Spring AI 2.0 ，非常适合作为学习和简历项目，学习门槛低）。
 > - **面试资料补充**：
 >   - [《Java 面试指北》](https://javaguide.cn/zhuanlan/java-mian-shi-zhi-bei.html)：四年打磨，和 [JavaGuide 开源版](https://javaguide.cn/)的内容互补，带你从零开始系统准备面试！
 >   - [《后端面试高频系统设计&场景题》](https://javaguide.cn/zhuanlan/back-end-interview-high-frequency-system-design-and-scenario-questions.html)：30+ 道高频系统设计和场景面试，助你应对当下中大厂面试趋势。
@@ -22,22 +20,6 @@
 > - **转载须知**：以下所有文章如非文首说明为转载皆为 JavaGuide 原创，转载请在文首注明出处。如发现恶意抄袭/搬运，会动用法律武器维护自己的权益。让我们一起维护一个良好的技术创作环境！
 
 <!-- #region home -->
-
-## 面试突击版本
-
-很多同学有“临时突击面试”的需求，所以我专门做了一个 [JavaGuide 面试突击版](https://interview.javaguide.cn/home.html)：在 [JavaGuide](https://javaguide.cn/home.html) 原有内容基础上做了大幅精简，只保留高频必考重点，并一直持续更新。
-
-在这些“精简后的重点”里，我又额外用 ⭐️ 标出了**重点中的重点**，方便你优先浏览、快速记忆。
-
-同时提供亮色（白天）和暗色（夜间）PDF，**需要打印的同学记得选亮色版本**，纸质阅读体验会更好。
-
-如果你**时间比较充裕**，更推荐直接在 [JavaGuide 官网](https://javaguide.cn/) 上**系统学习**：内容比突击版更全面、更深入，更适合打基础和长期提升。
-
-**突击版本网站入口**：[interview.javaguide.cn](https://interview.javaguide.cn/)
-
-对应的 PDF 版本，可以直接在公众号后台回复“**PDF**”获取：
-
-<img src="https://oss.javaguide.cn/github/javaguide/gongzhonghao-javaguide.png" alt="JavaGuide 公众号"  style="zoom: 43%; display: block; margin: 0 auto;" />
 
 ## Java
 

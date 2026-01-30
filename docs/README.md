@@ -11,15 +11,6 @@ head:
     - name: keywords
       content: JavaGuide,Java面试,Java面试指南,Java八股文,后端面试,后端开发,数据库面试,MySQL面试,Redis面试,分布式,高并发,高性能,高可用,系统设计,消息队列,缓存,计算机网络,Linux
   - - meta
-    - property: og:site_name
-      content: JavaGuide
-  - - meta
-    - property: og:title
-      content: JavaGuide（Java 面试&后端通用面试指南）
-  - - meta
-    - property: og:description
-      content: JavaGuide 以 Java 面试为核心，同时覆盖数据库/MySQL、Redis、分布式、高并发、高可用、系统设计等通用后端知识。
-  - - meta
     - property: og:type
       content: website
   - - meta
@@ -28,40 +19,6 @@ head:
   - - meta
     - property: og:image
       content: https://javaguide.cn/logo.png
-  - - meta
-    - property: og:locale
-      content: zh_CN
-  - - meta
-    - name: twitter:card
-      content: summary_large_image
-  - - meta
-    - name: twitter:title
-      content: JavaGuide（Java 面试&后端通用面试指南）
-  - - meta
-    - name: twitter:description
-      content: JavaGuide 以 Java 面试为核心，同时覆盖数据库/MySQL、Redis、分布式、高并发、高可用、系统设计等通用后端知识。
-  - - meta
-    - name: twitter:image
-      content: https://javaguide.cn/logo.png
-  - - link
-    - rel: canonical
-      href: https://javaguide.cn/
-  - - script
-    - type: application/ld+json
-    - |-
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "JavaGuide",
-        "url": "https://javaguide.cn/",
-        "description": "JavaGuide 是一份面向后端开发/后端面试的学习与复习指南，覆盖 Java、数据库/MySQL、Redis、分布式、高并发、高可用、系统设计等核心知识。",
-        "inLanguage": "zh-CN",
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": "https://javaguide.cn/search.html?query={search_term_string}",
-          "query-input": "required name=search_term_string"
-        }
-      }
 actions:
   - text: 开始阅读
     link: /home.md
@@ -81,26 +38,21 @@ footer: |-
 - **面试资料补充**：
   - [《Java 面试指北》](https://javaguide.cn/zhuanlan/java-mian-shi-zhi-bei.html)：四年打磨，和 JavaGuide 开源版的内容互补，带你从零开始系统准备后端面试！
   - [《后端面试高频系统设计&场景题》](https://javaguide.cn/zhuanlan/back-end-interview-high-frequency-system-design-and-scenario-questions.html)：30+ 道高频系统设计和场景面试，助你应对当下中大厂面试趋势。
+- **大模型实战项目**： [⭐AI 智能面试辅助平台 + RAG 知识库](https://javaguide.cn/zhuanlan/interview-guide.html)（基于 Spring Boot 4.0 + Java 21 + Spring AI 2.0 ，非常适合作为学习和简历项目，学习门槛低）。
 
-## 🚀 PDF 后端面试资料
+## 🌟文章推荐
 
-如果你更喜欢 **PDF**（比如通勤/离线阅读/打印学习），可以直接在 **JavaGuide 公众号**后台回复“**PDF**”获取最新版（持续更新）：
+- **Java 系列**：[Java 学习路线 (最新版，4w + 字)](https://javaguide.cn/interview-preparation/java-roadmap.html)、[Java 基础常见面试题总结](https://javaguide.cn/java/basis/java-basic-questions-01.html)、[Java 集合常见面试题总结](https://javaguide.cn/java/collection/java-collection-questions-01.html)、[JVM 常见面试题总结](https://interview.javaguide.cn/java/java-jvm.html)
+- **计算机基础**：[计算机网络常见面试题总结](https://javaguide.cn/cs-basics/network/other-network-questions.html)、[操作系统常见面试题总结](https://javaguide.cn/cs-basics/operating-system/operating-system-basic-questions-01.html)
+- **数据库系列**：[MySQL 常见面试题总结](https://javaguide.cn/database/mysql/mysql-questions-01.html)、[Redis 常见面试题总结](https://javaguide.cn/database/redis/redis-questions-01.html)
+- **分布式系列**：[分布式 ID 介绍 & 实现方案总结](https://javaguide.cn/distributed-system/distributed-id.html)、[分布式锁常见实现方案总结](https://javaguide.cn/distributed-system/distributed-lock-implementations.html)
+
+## 🚀 PDF 后端面试资料 & 面试群
+
+- 如果你更喜欢 **PDF**（比如通勤/离线阅读/打印学习），扫描下方二维码，后台回复“**PDF**”即可获取最新版（持续更新，详细介绍见：**[2026 最新后端面试 PDF 资料](./interview-preparation/pdf-interview-javaguide.md)**）。
+- 如果你需要加入后端面试交流群，扫描下方二维码，后台回复“**微信**”即可加群。
 
 <img src="https://oss.javaguide.cn/github/javaguide/gongzhonghao-javaguide.png" alt="JavaGuide 公众号" style="zoom: 43%; display: block; margin: 0 auto;" />
-
-详细介绍见：**[2026 最新后端面试 PDF 资料](./interview-preparation/pdf-interview-javaguide.md)**。
-
-## 🚀 面试突击版本（在线速刷）
-
-很多同学有“临时突击面试”的需求，所以我专门做了一个 **JavaGuide 面试突击版**：在 JavaGuide 原有内容基础上做了大幅精简，只保留高频必考重点，并一直持续更新。
-
-- **突击版本网站入口**：[interview.javaguide.cn](https://interview.javaguide.cn/)
-- **建议搭配阅读**：时间充裕更推荐在 [JavaGuide 官网](https://javaguide.cn/) 系统学习（更全面、更深入）
-
-## 💻 实战项目
-
-- [⭐AI 智能面试辅助平台 + RAG 知识库](https://javaguide.cn/zhuanlan/interview-guide.html)：基于 Spring Boot 4.0 + Java 21 + Spring AI 2.0 开发。非常适合作为学习和简历项目，学习门槛低，帮助提升求职竞争力，是主打就业的实战项目。
-- [手写 RPC 框架](https://javaguide.cn/zhuanlan/handwritten-rpc-framework.html)：从零开始基于 Netty+Kyro+Zookeeper 实现一个简易的 RPC 框架。麻雀虽小五脏俱全，项目代码注释详细，结构清晰。
 
 ## 🌐 关于网站
 
