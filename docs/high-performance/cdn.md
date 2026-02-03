@@ -156,7 +156,7 @@ CDN 服务提供商几乎都支持这种基础的防盗链机制：
 时间戳防盗链 URL 示例：
 
 ```plain
-http://cdn.example.com/video/123.mp4?wsSecret=79aead3bd7b5db4adeffb93a010298b5&wsTime=1601026312
+http://cdn.example.com/video/123.mp4?wsSecret=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&wsTime=1601026312
 ```
 
 - `wsSecret`：签名字符串，由服务端根据密钥和请求信息计算生成。
