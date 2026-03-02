@@ -15,11 +15,22 @@
 > - **面试资料补充**：
 >   - [《Java 面试指北》](https://javaguide.cn/zhuanlan/java-mian-shi-zhi-bei.html)：四年打磨，和 [JavaGuide 开源版](https://javaguide.cn/)的内容互补，带你从零开始系统准备面试！
 >   - [《后端面试高频系统设计&场景题》](https://javaguide.cn/zhuanlan/back-end-interview-high-frequency-system-design-and-scenario-questions.html)：30+ 道高频系统设计和场景面试，助你应对当下中大厂面试趋势。
-> - **使用建议** ：有水平的面试官都是顺着项目经历挖掘技术问题。一定不要死记硬背技术八股文！详细的学习建议请参考：[JavaGuide 使用建议](https://javaguide.cn/javaguide/use-suggestion.html)。
+> - **使用建议** ：如果你想要系统准备 Java 后端面试但又不知道如何开始的，可以参考 [Java 后端面试通关计划（后端通用）](https://javaguide.cn/interview-preparation/backend-interview-plan.html)。
 > - **求个 Star**：如果觉得 JavaGuide 的内容对你有帮助的话，还请点个免费的 Star，这是对我最大的鼓励，感谢各位一起同行，共勉！传送门：[GitHub](https://github.com/Snailclimb/JavaGuide) | [Gitee](https://gitee.com/SnailClimb/JavaGuide)。
 > - **转载须知**：以下所有文章如非文首说明为转载皆为 JavaGuide 原创，转载请在文首注明出处。如发现恶意抄袭/搬运，会动用法律武器维护自己的权益。让我们一起维护一个良好的技术创作环境！
 
 <!-- #region home -->
+
+## 面试准备
+
+- [⭐Java 后端面试通关计划（4-8周全阶段指南）](./docs/interview-preparation/backend-interview-plan.md) (必看 :+1:)
+- [如何高效准备 Java 面试？](./docs/interview-preparation/teach-you-how-to-prepare-for-the-interview-hand-in-hand.md)
+- [Java 后端面试重点总结](./docs/interview-preparation/key-points-of-interview.md)
+- [Java 学习路线（最新版，4w+ 字）](./docs/interview-preparation/java-roadmap.md)
+- [程序员简历编写指南](./docs/interview-preparation/resume-guide.md)
+- [项目经验指南](./docs/interview-preparation/project-experience-guide.md)
+- [面试太紧张怎么办？](./docs/interview-preparation/how-to-handle-interview-nerves.md)
+- [校招没有实习经历怎么办？](./docs/interview-preparation/internship-experience.md)
 
 ## Java
 

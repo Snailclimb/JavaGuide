@@ -33,6 +33,7 @@ export default sidebar({
       collapsible: true,
       prefix: "interview-preparation/",
       children: [
+        "backend-interview-plan",
         "teach-you-how-to-prepare-for-the-interview-hand-in-hand",
         "resume-guide",
         "key-points-of-interview",
@@ -446,7 +447,10 @@ export default sidebar({
           ],
         },
         "system-design-questions",
-        "design-pattern",
+        {
+          text: "设计模式常见面试题总结",
+          link: "https://interview.javaguide.cn/system-design/design-pattern.html",
+        },
         "schedule-task",
         "web-real-time-message-push",
       ],

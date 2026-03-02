@@ -42,6 +42,7 @@ footer: |-
 
 ## 🌟文章推荐
 
+- **面试准备**： [Java 后端面试通关计划（涵盖后端通用体系）](https://javaguide.cn/interview-preparation/backend-interview-plan.html)（如果你想要系统准备 Java 后端面试但又不知道如何开始的，一定要看这篇）
 - **Java 系列**：[Java 学习路线 (最新版，4w + 字)](https://javaguide.cn/interview-preparation/java-roadmap.html)、[Java 基础常见面试题总结](https://javaguide.cn/java/basis/java-basic-questions-01.html)、[Java 集合常见面试题总结](https://javaguide.cn/java/collection/java-collection-questions-01.html)、[JVM 常见面试题总结](https://interview.javaguide.cn/java/java-jvm.html)
 - **计算机基础**：[计算机网络常见面试题总结](https://javaguide.cn/cs-basics/network/other-network-questions.html)、[操作系统常见面试题总结](https://javaguide.cn/cs-basics/operating-system/operating-system-basic-questions-01.html)
 - **数据库系列**：[MySQL 常见面试题总结](https://javaguide.cn/database/mysql/mysql-questions-01.html)、[Redis 常见面试题总结](https://javaguide.cn/database/redis/redis-questions-01.html)
