@@ -359,7 +359,7 @@ Snowflake 是 Twitter 开源的分布式 ID 生成算法。Snowflake 由 64 bit 
 
 #### Snowflake Worker ID 分配难题
 
-在**容器化部署（Kubernetes）**环境下，Snowflake 的 Worker ID 分配成为最大痛点：
+在**容器化部署（Kubernetes）** 环境下，Snowflake 的 Worker ID 分配成为最大痛点：
 
 **问题场景**：
 
