@@ -131,12 +131,14 @@ head:
 
 - [设计模式常见面试题总结](https://interview.javaguide.cn/system-design/design-pattern.html)
 
+#### 框架
+
 **Spring / Spring Boot**
 
 - [Spring 常见面试题](https://javaguide.cn/system-design/framework/spring/spring-knowledge-and-questions-summary.html)、[SpringBoot 常见面试题](https://javaguide.cn/system-design/framework/spring/springboot-knowledge-and-questions-summary.html)
 - [常用注解](https://javaguide.cn/system-design/framework/spring/spring-common-annotations.html)、[IoC 与 AOP](https://javaguide.cn/system-design/framework/spring/ioc-and-aop.html)、[Spring 事务](https://javaguide.cn/system-design/framework/spring/spring-transaction.html)
-- [Spring 中的设计模式](https://javaguide.cn/system-design/framework/spring/spring-design-patterns-summary.html)、[SpringBoot 自动装配](https://javaguide.cn/system-design/framework/spring/spring-boot-auto-assembly-principles.html)、[Async 原理](https://javaguide.cn/system-design/framework/spring/async.html)
-- [MyBatis 常见面试题](https://javaguide.cn/system-design/framework/mybatis/mybatis-interview.html)、[Netty 常见面试题](https://javaguide.cn/system-design/framework/netty.html)
+- [Spring 中的设计模式](https://javaguide.cn/system-design/framework/spring/spring-design-patterns-summary.html)、[SpringBoot 自动装配](https://javaguide.cn/system-design/framework/spring/spring-boot-auto-assembly-principles.html)、[Async 原理](https://javaguide.cn/system-design/framework/spring/async.html)（原理性知识，时间不够可跳过）
+- [MyBatis 常见面试题](https://javaguide.cn/system-design/framework/mybatis/mybatis-interview.html)（不重要，可跳过，考查不多）、[Netty 常见面试题](https://javaguide.cn/system-design/framework/netty.html)（用到才需要准备）
 
 **自测**：能说清项目里用到的 Spring 注解、IoC/AOP 在项目中的体现、事务失效场景；设计模式能举出项目或框架中的例子。
 
@@ -144,23 +146,14 @@ head:
 
 - [认证授权基础](https://javaguide.cn/system-design/security/basis-of-authority-certification.html)、[JWT](https://javaguide.cn/system-design/security/jwt-intro.html) 与[优缺点](https://javaguide.cn/system-design/security/advantages-and-disadvantages-of-jwt.html)、[权限系统设计](https://javaguide.cn/system-design/security/design-of-authority-system.html)、[SSO](https://javaguide.cn/system-design/security/sso-intro.html)、[常见加密算法](https://javaguide.cn/system-design/security/encryption-algorithms.html)
 
-**项目开发基础补充**：
-
-- [日志记录方案有哪些？](https://javaguide.cn/system-design/basis/log.html)
-- [单元测试](https://javaguide.cn/system-design/basis/unit-test.html)
-- CI/CD 相关：Jenkins、GitLab CI 等
-
-**服务器**：
-
-- [Nginx 入门](https://javaguide.cn/cs-basics/server/nginx.html)
-- [Tomcat 入门](https://javaguide.cn/cs-basics/server/tomcat.html)
-
 #### 系统设计与场景题
 
 面试官常会穿插一两道系统设计或场景题，考察整体思路和方案权衡。
 
 - **系统设计 / 场景题汇总**：[系统设计常见面试题总结](https://javaguide.cn/system-design/system-design-questions.html)（付费内容在 [《后端面试高频系统设计&场景题》](https://javaguide.cn/zhuanlan/back-end-interview-high-frequency-system-design-and-scenario-questions.html) 专栏，含短链、秒杀、海量数据处理等 30+ 道）。
 - **本站可参考的设计类文章**（思路可迁移到面试口述）：[定时任务](https://javaguide.cn/system-design/schedule-task.html)、[Web 实时消息推送](https://javaguide.cn/system-design/web-real-time-message-push.html)。
+
+![《后端面试高频系统设计&场景题》](https://oss.javaguide.cn/xingqiu/back-end-interview-high-frequency-system-design-and-scenario-questions-fengmian.png)
 
 **自测**：能口述 1～2 个经典系统设计（如短链、秒杀、限流）的整体思路与关键取舍；场景题（如海量数据去重、第三方登录）能说出常见方案。
 
@@ -180,11 +173,11 @@ head:
 若简历或岗位涉及分布式/微服务/高并发，再系统过一遍；否则可只过「项目会用到的点」。
 
 - **分布式理论**：[CAP 与 BASE](https://javaguide.cn/distributed-system/protocol/cap-and-base-theorem.html)、[Paxos](https://javaguide.cn/distributed-system/protocol/paxos-algorithm.html)、[Raft](https://javaguide.cn/distributed-system/protocol/raft-algorithm.html)、[Gossip](https://javaguide.cn/distributed-system/protocol/gossip-protocol.html)、[一致性哈希](https://javaguide.cn/distributed-system/protocol/consistent-hashing.html)
-- **RPC**：[RPC 基础](https://javaguide.cn/distributed-system/rpc/rpc-intro.html)、[Dubbo](https://javaguide.cn/distributed-system/rpc/dubbo.html)
-- **分布式 ID / 网关 / 锁**：[分布式 ID](https://javaguide.cn/distributed-system/distributed-id.html)、[设计指南](https://javaguide.cn/distributed-system/distributed-id-design.html)、[API 网关](https://javaguide.cn/distributed-system/api-gateway.html)、[Spring Cloud Gateway](https://javaguide.cn/distributed-system/spring-cloud-gateway-questions.html)、[分布式锁](https://javaguide.cn/distributed-system/distributed-lock.html)、[实现方案](https://javaguide.cn/distributed-system/distributed-lock-implementations.html)
-- **高并发与 MQ**：[CDN](https://javaguide.cn/high-performance/cdn.html)、[读写分离与分库分表](https://javaguide.cn/high-performance/read-and-write-separation-and-library-subtable.html)、[冷热分离](https://javaguide.cn/high-performance/data-cold-hot-separation.html)、[SQL 优化](https://javaguide.cn/high-performance/sql-optimization.html)、[深度分页](https://javaguide.cn/high-performance/deep-pagination-optimization.html)、[负载均衡](https://javaguide.cn/high-performance/load-balancing.html)
+- **RPC**：[RPC 基础](https://javaguide.cn/distributed-system/rpc/rpc-intro.html)、[Dubbo](https://javaguide.cn/distributed-system/rpc/dubbo.html)（目前问的很少，可跳过）
+- **分布式 ID / 网关 / 锁 / 事务**（项目涉及再重点看）：[分布式 ID](https://javaguide.cn/distributed-system/distributed-id.html)、[设计指南](https://javaguide.cn/distributed-system/distributed-id-design.html)、[API 网关](https://javaguide.cn/distributed-system/api-gateway.html)、[Spring Cloud Gateway](https://javaguide.cn/distributed-system/spring-cloud-gateway-questions.html)、[分布式锁](https://javaguide.cn/distributed-system/distributed-lock-implementations.html)、[分布式事务](https://javaguide.cn/distributed-system/distributed-transaction.html)
+- **高并发**（项目涉及再重点看）：[CDN](https://javaguide.cn/high-performance/cdn.html)、[读写分离与分库分表](https://javaguide.cn/high-performance/read-and-write-separation-and-library-subtable.html)、[冷热分离](https://javaguide.cn/high-performance/data-cold-hot-separation.html)、[SQL 优化](https://javaguide.cn/high-performance/sql-optimization.html)、[深度分页](https://javaguide.cn/high-performance/deep-pagination-optimization.html)、[负载均衡](https://javaguide.cn/high-performance/load-balancing.html)
 - **高可用**（项目涉及再重点看）：[高可用系统设计](https://javaguide.cn/high-availability/high-availability-system-design.html)、[限流](https://javaguide.cn/high-availability/limit-request.html)、[熔断与降级](https://javaguide.cn/high-availability/fallback-and-circuit-breaker.html)、[超时与重试](https://javaguide.cn/high-availability/timeout-and-retry.html)、[幂等设计](https://javaguide.cn/high-availability/idempotency.html)、[冗余设计](https://javaguide.cn/high-availability/redundancy.html)
-- **消息队列**：[MQ 基础](https://javaguide.cn/high-performance/message-queue/message-queue.html)、[Disruptor](https://javaguide.cn/high-performance/message-queue/disruptor-questions.html)、[RabbitMQ](https://javaguide.cn/high-performance/message-queue/rabbitmq-questions.html)、[RocketMQ](https://javaguide.cn/high-performance/message-queue/rocketmq-questions.html)、[Kafka](https://javaguide.cn/high-performance/message-queue/kafka-questions-01.html)
+- **消息队列**（项目涉及再重点看）：[MQ 基础](https://javaguide.cn/high-performance/message-queue/message-queue.html)、[Disruptor](https://javaguide.cn/high-performance/message-queue/disruptor-questions.html)、[RabbitMQ](https://javaguide.cn/high-performance/message-queue/rabbitmq-questions.html)、[RocketMQ](https://javaguide.cn/high-performance/message-queue/rocketmq-questions.html)、[Kafka](https://javaguide.cn/high-performance/message-queue/kafka-questions-01.html)
 
 **自测**：能讲清项目里用到的分布式方案（如分布式锁、ID、MQ）及选型理由；CAP/BASE、一致性哈希等能举例说明。
 
