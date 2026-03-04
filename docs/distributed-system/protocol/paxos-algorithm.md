@@ -204,17 +204,17 @@ sequenceDiagram
 
 为防止多个 Proposer 竞争导致活锁，生产级实现通常引入随机退避：
 
-```
 当 Proposer 的 Prepare 请求被拒绝（编号过小）时：
-1. 等待随机时间：base_delay * random(1, 2^attempt)
-2. 选择更大的提案编号（如：n = n + k，k > 0）
+
+1. 等待随机时间：`base_delay * random(1, 2^attempt)`
+2. 选择更大的提案编号（如：`n = n + k`，`k > 0`）
 3. 重试 Prepare 阶段
 
 参数示例：
-- base_delay: 10ms
-- attempt: 重试次数（1, 2, 3...）
-- 最大退避时间：max(1s, base_delay * 2^10)
-```
+
+- `base_delay`: 10ms
+- `attempt`: 重试次数（1, 2, 3...）
+- 最大退避时间：`max(1s, base_delay * 2^10)`
 
 这种机制确保竞争者不会同时重试，最终某个 Proposer 能成功完成 Phase 1。
 

@@ -272,7 +272,7 @@ ZAB 协议包括两种基本的模式，分别是
 关于 **ZAB 协议&Paxos 算法** 需要讲和理解的东西太多了，具体可以看下面这几篇文章：
 
 - [Paxos 算法详解](https://javaguide.cn/distributed-system/protocol/paxos-algorithm.html)
-- [ZooKeeper 与 Zab 协议 · Analyze](https://wingsxdu.com/posts/database/zookeeper/)
+- [Zab 协议详解](https://javaguide.cn/distributed-system/protocol/zab.html)
 - [Raft 算法详解](https://javaguide.cn/distributed-system/protocol/raft-algorithm.html)
 
 ## ZooKeeper VS ETCD

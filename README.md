@@ -23,14 +23,14 @@
 
 ## 面试准备
 
-- [⭐Java 后端面试通关计划（4-8周全阶段指南）](./docs/interview-preparation/backend-interview-plan.md) (必看 :+1:)
+- [⭐Java 后端面试通关计划（涵盖后端通用体系）](./docs/interview-preparation/backend-interview-plan.md) (一定要看 :+1:)
 - [如何高效准备 Java 面试？](./docs/interview-preparation/teach-you-how-to-prepare-for-the-interview-hand-in-hand.md)
 - [Java 后端面试重点总结](./docs/interview-preparation/key-points-of-interview.md)
 - [Java 学习路线（最新版，4w+ 字）](./docs/interview-preparation/java-roadmap.md)
 - [程序员简历编写指南](./docs/interview-preparation/resume-guide.md)
 - [项目经验指南](./docs/interview-preparation/project-experience-guide.md)
 - [面试太紧张怎么办？](./docs/interview-preparation/how-to-handle-interview-nerves.md)
-- [校招没有实习经历怎么办？](./docs/interview-preparation/internship-experience.md)
+- [校招没有实习经历怎么办？实习经历怎么写？](./docs/interview-preparation/internship-experience.md)
 
 ## Java
 
@@ -341,6 +341,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 - [CAP 理论和 BASE 理论解读](https://javaguide.cn/distributed-system/protocol/cap-and-base-theorem.html)
 - [Paxos 算法解读](https://javaguide.cn/distributed-system/protocol/paxos-algorithm.html)
 - [Raft 算法解读](https://javaguide.cn/distributed-system/protocol/raft-algorithm.html)
+- [ZAB 协议解读](https://javaguide.cn/distributed-system/protocol/zab.html)
 - [Gossip 协议详解](https://javaguide.cn/distributed-system/protocol/gossip-protocol.html)
 - [一致性哈希算法详解](https://javaguide.cn/distributed-system/protocol/consistent-hashing.html)
 

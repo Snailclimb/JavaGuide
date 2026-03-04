@@ -22,6 +22,17 @@ head:
 
 :::
 
+## 面试准备
+
+- [⭐Java 后端面试通关计划（涵盖后端通用体系）](./interview-preparation/backend-interview-plan.md) (一定要看 :+1:)
+- [如何高效准备 Java 面试？](./interview-preparation/teach-you-how-to-prepare-for-the-interview-hand-in-hand.md)
+- [Java 后端面试重点总结](./interview-preparation/key-points-of-interview.md)
+- [Java 学习路线（最新版，4w+ 字）](./interview-preparation/java-roadmap.md)
+- [程序员简历编写指南](./interview-preparation/resume-guide.md)
+- [项目经验指南](./interview-preparation/project-experience-guide.md)
+- [面试太紧张怎么办？](./interview-preparation/how-to-handle-interview-nerves.md)
+- [校招没有实习经历怎么办？实习经历怎么写？](./interview-preparation/internship-experience.md)
+
 ## Java
 
 ### 基础
@@ -333,6 +344,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 - [CAP 理论和 BASE 理论解读](./distributed-system/protocol/cap-and-base-theorem.md)
 - [Paxos 算法解读](./distributed-system/protocol/paxos-algorithm.md)
 - [Raft 算法解读](./distributed-system/protocol/raft-algorithm.md)
+- [ZAB 协议解读](./distributed-system/protocol/zab.md)
 - [Gossip 协议详解](./distributed-system/protocol/gossip-protocol.md)
 - [一致性哈希算法详解](./distributed-system/protocol/consistent-hashing.md)
 
