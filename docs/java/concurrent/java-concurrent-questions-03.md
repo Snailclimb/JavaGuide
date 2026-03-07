@@ -160,6 +160,80 @@ static class Entry extends WeakReference<ThreadLocal<?>> {
 1. 在使用完 `ThreadLocal` 后，务必调用 `remove()` 方法。 这是最安全和最推荐的做法。 `remove()` 方法会从 `ThreadLocalMap` 中显式地移除对应的 entry，彻底解决内存泄漏的风险。 即使将 `ThreadLocal` 定义为 `static final`，也强烈建议在每次使用后调用 `remove()`。
 2. 在线程池等线程复用的场景下，使用 `try-finally` 块可以确保即使发生异常，`remove()` 方法也一定会被执行。
 
+#### 为什么 Entry 的 key 要设计为弱引用？
+
+这是一个经典的面试追问。很多同学知道 `ThreadLocalMap` 的 key 是弱引用，但不清楚**为什么要这样设计**，以及如果换成强引用会怎样。
+
+我们先来看完整的引用链路。当一个线程使用 `ThreadLocal` 时，涉及以下引用关系：
+
+```
+强引用（栈/静态变量）──→ ThreadLocal 实例
+                              ↑
+Thread ──→ ThreadLocalMap ──→ Entry ─── key（WeakReference）──┘
+                              │
+                              └─── value（强引用）──→ 实际存储的对象
+```
+
+理解了这条引用链路，我们来对比两种设计方案：
+
+**假设 key 使用强引用（实际没有采用）：**
+
+当业务代码中的 `ThreadLocal` 引用被置为 `null`（例如方法执行结束、对象被回收），此时虽然业务代码已经不再需要这个 `ThreadLocal`，但由于 `ThreadLocalMap` 的 Entry 对 key 持有**强引用**，`ThreadLocal` 实例仍然无法被 GC 回收。只要线程不终止，这个 `ThreadLocal` 和它对应的 value 都会一直存在于内存中，造成 key 和 value **都无法回收**的内存泄漏。
+
+**key 使用弱引用（实际采用的方案）：**
+
+当业务代码中的 `ThreadLocal` 引用被置为 `null` 后，由于 Entry 的 key 是弱引用，`ThreadLocal` 实例在下次 GC 时会被回收，key 变为 `null`。此时虽然 value 仍然存在（强引用），但 `ThreadLocalMap` 在执行 `get()`、`set()`、`remove()` 等操作时，会主动探测并清理这些 key 为 `null` 的 "stale entry"（过期条目），从而释放 value 对象。
+
+也就是说，**弱引用的设计是一种"兜底"防御机制**——即便开发者忘记调用 `remove()`，JVM 的 GC 配合 `ThreadLocalMap` 的自清理逻辑，仍然有机会回收泄漏的数据。而如果使用强引用，一旦忘记 `remove()`，就完全没有任何补救机会了。
+
+> 需要注意的是，这种自清理机制是**被动触发**的（只在 `get`/`set`/`remove` 操作时顺便清理），并不能保证所有过期条目都被及时清理。因此，**弱引用只是降低了内存泄漏的风险，并没有彻底消除它**，手动调用 `remove()` 仍然是必须的。
+
+#### 线程池场景下的特殊风险
+
+上面提到内存泄漏的条件之一是"线程持续存活"。在使用 `new Thread()` 创建线程的场景下，线程执行完毕后会被销毁，其持有的 `ThreadLocalMap` 也会随之被 GC 回收，泄漏的影响相对有限。
+
+但在**线程池**场景下，问题会被严重放大。线程池中的核心线程默认不会被销毁，它们会被反复复用来执行不同的任务。这意味着：
+
+1. **内存泄漏持续累积**：每个任务如果使用了 `ThreadLocal` 却没有清理，其 value 就会一直残留在该线程的 `ThreadLocalMap` 中。随着任务不断提交和执行，泄漏的数据会越积越多，最终可能导致 OOM。
+2. **数据污染（脏数据）**：上一个任务设置的 `ThreadLocal` 值，如果没有被清理，下一个被分配到同一线程的任务就能读取到这个残留值。这可能导致严重的业务逻辑错误，比如用户 A 的请求读取到了用户 B 的身份信息。
+
+**美团技术团队的真实事故案例：**
+
+美团技术团队在[《Java 线程池实现原理及其在美团业务中的实践》](https://tech.meituan.com/2020/04/02/java-pooling-pratice-in-meituan.html)一文中就记录了一次因 `ThreadLocal` 使用不当引发的线上事故：在一个依赖 `ThreadLocal` 传递用户上下文的 Web 应用中，由于使用了线程池处理请求，且没有在请求结束后清理 `ThreadLocal`，导致**后续请求复用了同一线程时，读取到了前一个请求遗留的用户信息**，造成了用户数据串号的严重问题。
+
+#### 阿里巴巴 Java 开发手册的强制规约
+
+正因为线程池 + `ThreadLocal` 的组合如此容易踩坑，《阿里巴巴 Java 开发手册》在"并发处理"章节中对此做出了**强制**级别的要求：
+
+> **【强制】** 必须回收自定义的 `ThreadLocal` 变量记录的当前线程的值，尤其在线程池场景下，线程经常会被复用，如果不清理自定义的 `ThreadLocal` 变量，可能会影响后续业务逻辑和造成内存泄露等问题。尽量在代理中使用 `try-finally` 块进行回收。
+
+正确的使用模式如下：
+
+```java
+// 定义为 static final，避免重复创建 ThreadLocal 实例
+private static final ThreadLocal<UserContext> userContextHolder = new ThreadLocal<>();
+
+public void processRequest(HttpServletRequest request) {
+    try {
+        // 在 try 块中设置值
+        UserContext context = buildUserContext(request);
+        userContextHolder.set(context);
+
+        // 执行业务逻辑
+        doBusinessLogic();
+    } finally {
+        // 在 finally 块中必须清理，确保无论是否发生异常都会执行
+        userContextHolder.remove();
+    }
+}
+```
+
+这里有三个关键要点：
+
+1. **`ThreadLocal` 声明为 `static final`**：确保整个应用只有一个 `ThreadLocal` 实例，避免因重复创建导致旧实例失去强引用后 key 被回收，加剧内存泄漏。
+2. **`try-finally` 保证 `remove()` 一定被执行**：即使业务逻辑抛出异常，`finally` 块也能确保 `ThreadLocal` 被清理。
+3. **在使用完毕后立即清理，而不是在下次使用前设置**：在使用前 `set()` 虽然可以覆盖旧值解决脏数据问题，但无法解决上一次任务遗留 value 的内存占用问题。只有在用完后 `remove()`，才能同时避免内存泄漏和数据污染。
+
 ### ⭐️如何跨线程传递 ThreadLocal 的值？
 
 **为什么 ThreadLocal 在异步场景下会失效？**
