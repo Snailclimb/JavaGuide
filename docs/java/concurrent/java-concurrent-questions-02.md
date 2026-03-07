@@ -44,6 +44,49 @@ public native void fullFence();
 
 理论上来说，你通过这个三个方法也可以实现和`volatile`禁止重排序一样的效果，只是会麻烦一些。
 
+#### 4 种内存屏障类型
+
+JMM（Java 内存模型）定义了 4 种内存屏障（Memory Barrier），用于控制特定条件下的指令重排序和内存可见性：
+
+| 屏障类型 | 指令示例 | 说明 |
+| --- | --- | --- |
+| **LoadLoad** | `Load1; LoadLoad; Load2` | 保证 `Load1` 的读取操作在 `Load2` 及其后续读取操作之前完成 |
+| **StoreStore** | `Store1; StoreStore; Store2` | 保证 `Store1` 的写入操作对其他处理器可见（刷新到内存），先于 `Store2` 及其后续写入操作 |
+| **LoadStore** | `Load1; LoadStore; Store2` | 保证 `Load1` 的读取操作在 `Store2` 及其后续写入操作刷新到内存之前完成 |
+| **StoreLoad** | `Store1; StoreLoad; Load2` | 保证 `Store1` 的写入操作对其他处理器可见，先于 `Load2` 及其后续读取操作。`StoreLoad` 屏障的开销是四种屏障中最大的，它同时具有其他三种屏障的效果，因此也称为 **全能屏障（Full Barrier）** |
+
+#### volatile 读写操作的内存屏障插入策略
+
+JMM 针对编译器制定了 `volatile` 读写操作的内存屏障插入策略，以确保在任意处理器平台上都能获得正确的 volatile 内存语义：
+
+**volatile 写操作的内存屏障插入策略：**
+
+在每个 volatile 写操作的 **前面** 插入一个 `StoreStore` 屏障，在 **后面** 插入一个 `StoreLoad` 屏障。
+
+```
+StoreStore 屏障
+volatile 写操作
+StoreLoad 屏障
+```
+
+- 前面的 `StoreStore` 屏障：保证在 volatile 写之前，其前面的所有普通写操作已经对任意处理器可见（刷新到主内存）。
+- 后面的 `StoreLoad` 屏障：保证 volatile 写之后，其写入的值对后续的 volatile 读/写操作可见。这是开销最大的屏障，但也是最关键的——它避免了 volatile 写与后面可能有的 volatile 读/写操作发生重排序。
+
+**volatile 读操作的内存屏障插入策略：**
+
+在每个 volatile 读操作的 **后面** 插入一个 `LoadLoad` 屏障和一个 `LoadStore` 屏障。
+
+```
+volatile 读操作
+LoadLoad 屏障
+LoadStore 屏障
+```
+
+- `LoadLoad` 屏障：保证 volatile 读之后的普通读操作不会被重排序到 volatile 读之前。
+- `LoadStore` 屏障：保证 volatile 读之后的普通写操作不会被重排序到 volatile 读之前。
+
+这样一来，volatile 写-读的组合就建立了一个类似于 **锁的释放-获取** 的语义：**volatile 写操作之前的所有操作结果，对于后续对该 volatile 变量的读操作之后的所有操作都是可见的。**
+
 下面我以一个常见的面试题为例讲解一下 `volatile` 关键字禁止指令重排序的效果。
 
 面试中面试官经常会说：“单例模式了解吗？来给我手写一下！给我解释一下双重检验锁方式实现单例模式的原理呗！”
@@ -80,6 +123,67 @@ public class Singleton {
 3. 将 `uniqueInstance` 指向分配的内存地址
 
 但是由于 JVM 具有指令重排的特性，执行顺序有可能变成 1->3->2。指令重排在单线程环境下不会出现问题，但是在多线程环境下会导致一个线程获得还没有初始化的实例。例如，线程 T1 执行了 1 和 3，此时 T2 调用 `getUniqueInstance`() 后发现 `uniqueInstance` 不为空，因此返回 `uniqueInstance`，但此时 `uniqueInstance` 还未被初始化。
+
+#### 从内存屏障角度理解 DCL 必须使用 volatile
+
+上面从指令重排序的角度解释了 DCL 单例中 `uniqueInstance` 为什么需要 `volatile` 修饰。下面从内存屏障的角度进一步分析 `volatile` 是如何解决这个问题的。
+
+`uniqueInstance = new Singleton();` 这行代码的三个步骤（分配内存、初始化对象、赋值引用）中，如果不加 `volatile`，步骤 2 和步骤 3 可能会被重排序为 1→3→2。加了 `volatile` 之后，由于 `uniqueInstance` 是 volatile 变量，对它的写操作（步骤 3：将引用赋值给 `uniqueInstance`）会按照前面介绍的 volatile 写的内存屏障插入策略来处理：
+
+1. 在 volatile 写 **之前** 插入 `StoreStore` 屏障：保证步骤 1（分配内存）和步骤 2（初始化对象）的写操作在步骤 3（赋值引用）之前完成，**禁止了步骤 2 和步骤 3 的重排序**。
+2. 在 volatile 写 **之后** 插入 `StoreLoad` 屏障：保证步骤 3 的写入结果对其他线程立即可见。
+
+这样，当线程 T2 读取 `uniqueInstance` 时（volatile 读），如果发现 `uniqueInstance != null`，那么可以保证该对象一定已经被完全初始化了。
+
+### volatile 与 happens-before 的关系
+
+JMM 中的 happens-before 原则是判断数据是否存在竞争、线程是否安全的重要依据。`volatile` 变量的读写操作与 happens-before 原则有着密切的关系。
+
+> 关于 happens-before 原则的详细介绍，可以参考 [JMM（Java 内存模型）详解](https://javaguide.cn/java/concurrent/jmm.html) 这篇文章。
+
+happens-before 原则中与 `volatile` 直接相关的是 **volatile 变量规则**：
+
+> **对一个 volatile 变量的写操作 happens-before 于后续对该 volatile 变量的读操作。**
+
+也就是说，如果线程 A 写入了一个 volatile 变量，线程 B 随后读取了同一个 volatile 变量，那么线程 A 在写入 volatile 变量之前所做的所有修改（包括对非 volatile 变量的修改），对线程 B 都是可见的。
+
+这个规则配合 happens-before 的 **传递性规则**（如果 A happens-before B，B happens-before C，那么 A happens-before C），可以实现一种轻量级的线程间通信。下面通过一个示例来说明：
+
+```java
+public class VolatileHappensBeforeDemo {
+    private int a = 0;
+    private int b = 0;
+    private volatile boolean flag = false;
+
+    // 线程 A 执行
+    public void writer() {
+        a = 1;           // 操作1：普通写
+        b = 2;           // 操作2：普通写
+        flag = true;     // 操作3：volatile 写
+    }
+
+    // 线程 B 执行
+    public void reader() {
+        if (flag) {      // 操作4：volatile 读
+            int x = a;   // 操作5：普通读，x 一定等于 1
+            int y = b;   // 操作6：普通读，y 一定等于 2
+            System.out.println("x=" + x + ", y=" + y);
+        }
+    }
+}
+```
+
+上面代码中，happens-before 关系链如下：
+
+1. 操作1、操作2 happens-before 操作3（**程序顺序规则**：同一线程中，前面的操作 happens-before 后面的操作）
+2. 操作3 happens-before 操作4（**volatile 变量规则**：volatile 写 happens-before volatile 读）
+3. 操作4 happens-before 操作5、操作6（**程序顺序规则**）
+
+根据 **传递性**：操作1、操作2 happens-before 操作5、操作6。
+
+因此，当线程 B 在操作4 读取到 `flag == true` 时，线程 A 在操作3 之前对 `a` 和 `b` 的修改对线程 B 一定是可见的。这里的关键在于：**volatile 变量的写-读操作，不仅保证了 volatile 变量本身的可见性，还通过 happens-before 的传递性"顺带"保证了其前后普通变量的可见性。**
+
+这也解释了为什么在实际开发中，`volatile` 经常被用作 **状态标志位**（如上面例子中的 `flag`），它可以在不使用锁的情况下，安全地在线程间传递状态信息，同时保证相关数据的可见性。
 
 ### volatile 可以保证原子性么？
 
@@ -615,6 +719,29 @@ Open JDK 官方声明：[JEP 374: Deprecate and Disable Biased Locking](https://
 - `volatile` 关键字是线程同步的轻量级实现，所以 `volatile`性能肯定比`synchronized`关键字要好 。但是 `volatile` 关键字只能用于变量而 `synchronized` 关键字可以修饰方法以及代码块 。
 - `volatile` 关键字能保证数据的可见性，但不能保证数据的原子性。`synchronized` 关键字两者都能保证。
 - `volatile`关键字主要用于解决变量在多个线程之间的可见性，而 `synchronized` 关键字解决的是多个线程之间访问资源的同步性。
+
+#### volatile 与 synchronized 的性能对比
+
+上面提到 `volatile` 是线程同步的轻量级实现，性能比 `synchronized` 要好。下面从底层原理的角度分析为什么 `volatile` 性能更好，以及在什么情况下应该选择哪个。
+
+周志明在《深入理解 Java 虚拟机》中指出：
+
+> volatile 变量的读操作的性能消耗与普通变量几乎没有什么差别，但是写操作则可能会慢上一些，因为它需要在本地代码中插入许多内存屏障指令来保证处理器不发生乱序执行。不过即便如此，大多数场景下 volatile 的总开销仍然要比锁来得更低。
+
+二者性能差异的根本原因在于底层实现机制不同：
+
+| 对比维度 | `volatile` | `synchronized` |
+| --- | --- | --- |
+| **实现层面** | 通过插入内存屏障指令实现，不涉及线程阻塞和上下文切换 | 依赖操作系统的互斥锁（Mutex Lock），涉及用户态与内核态的切换 |
+| **读操作开销** | 与普通变量几乎相同 | 需要获取 monitor 锁，即使无竞争也有一定开销（偏向锁/轻量级锁 CAS） |
+| **写操作开销** | 需要插入 `StoreStore` + `StoreLoad` 内存屏障，有一定开销但不会导致线程阻塞 | 需要获取和释放 monitor 锁，有竞争时会导致线程阻塞和上下文切换 |
+| **竞争时的表现** | 不会导致线程阻塞，始终是非阻塞的 | 线程竞争激烈时，会频繁发生阻塞和唤醒，上下文切换开销大 |
+| **功能范围** | 只能修饰变量，只保证可见性和有序性 | 可以修饰方法和代码块，同时保证可见性、有序性和原子性 |
+
+**选择建议：**
+
+- 如果只需要保证变量的可见性（如状态标志位、DCL 单例中的实例引用），优先使用 `volatile`，因为它的开销更小。
+- 如果需要保证复合操作的原子性（如 `i++`、先检查后执行等），则必须使用 `synchronized`、`Lock` 或原子类，`volatile` 无法胜任。
 
 ## ReentrantLock
 
