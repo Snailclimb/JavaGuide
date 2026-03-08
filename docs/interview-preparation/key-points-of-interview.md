@@ -19,7 +19,7 @@ head:
 
 **准备面试的时候，具体哪些知识点是重点呢？如何把握重点？**
 
-先来一张图（后续会详细解读）：
+先看下面这张全局图（后续会详细解读）：
 
 ![Java 后端面试重点](https://oss.javaguide.cn/github/javaguide/interview-preparation/back-end-interview-focus.png)
 
@@ -57,4 +57,4 @@ head:
 
 ## 详细面试准备计划（后端通用）
 
-[Java 后端面试重点和详细准备计划](./java-interview-plan.md)
+[Java 后端面试重点和详细准备计划](https://javaguide.cn/interview-preparation/backend-interview-plan.html)
