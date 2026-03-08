@@ -286,7 +286,7 @@ echo "Total value : $val"
 #!/bin/bash
 score=90;
 maxscore=100;
-if [ $score -eq $maxscore ]
+if [[ $score -eq $maxscore ]]
 then
    echo "A"
 else
@@ -329,7 +329,7 @@ echo $a;
 #!/bin/bash
 a="abc";
 b="efg";
-if [ $a = $b ]
+if [[ $a = $b ]]
 then
    echo "a 等于 b"
 else
@@ -359,10 +359,10 @@ a 不等于 b
 #!/bin/bash
 a=3;
 b=9;
-if [ $a -eq $b ]
+if [[ $a -eq $b ]]
 then
    echo "a 等于 b"
-elif [ $a -gt $b ]
+elif [[ $a -gt $b ]]
 then
    echo "a 大于 b"
 else
