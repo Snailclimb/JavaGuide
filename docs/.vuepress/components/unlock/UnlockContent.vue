@@ -9,17 +9,17 @@
       <div v-if="!isUnlocked" class="unlock-section">
         <div class="unlock-header">
           <span class="lock-icon">🔒</span>
-          <h3 class="lock-title">继续阅读全文</h3>
+          <h3 class="lock-title">人机验证</h3>
         </div>
 
         <p class="lock-reason">
-          抱歉，由于近期遭受大规模爬虫攻击，为保障正常阅读体验，本站深度内容已开启一次性验证。验证通过后，全站内容将自动解锁。
+          为保障正常阅读体验，本站部分内容已开启一次性验证。验证后全站自动解锁。
         </p>
 
         <div class="qr-container">
           <img :src="qrCodeUrl" alt="公众号二维码" class="qr-image" />
           <p class="qr-tip">
-            扫码关注公众号，回复 <span class="highlight">“验证码”</span> 获取
+            扫码关注公众号，回复 <span class="highlight">“验证码”</span>
           </p>
         </div>
 

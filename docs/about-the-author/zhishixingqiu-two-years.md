@@ -74,7 +74,7 @@ star: 2
 
 星球更新了 **《Java 面试指北》**、**《Java 必读源码系列》**（目前已经整理了 Dubbo 2.6.x、Netty 4.x、SpringBoot2.1 的源码）、 **《从零开始写一个 RPC 框架》**（已更新完）、**《Kafka 常见面试题/知识点总结》** 等多个优质专栏。
 
-![](https://oss.javaguide.cn/xingqiu/image-20220211231206733.png)
+![星球专属专栏](https://oss.javaguide.cn/xingqiu/image-20220211231206733.png)
 
 《Java 面试指北》内容概览：
 
@@ -137,7 +137,7 @@ JavaGuide 知识星球优质主题汇总传送门：<https://www.yuque.com/snail
 
 下面是今年做的一小部分答疑，感受一下：
 
-![](https://oss.javaguide.cn/xingqiu/image-20220211223559179.png)
+![部分星球答疑](https://oss.javaguide.cn/xingqiu/image-20220211223559179.png)
 
 我没法保证每个问题都能像上面这样写一长段，这也会取决于你的提问本身。但我可以承诺的是：**我会认真看完每一个问题，尽我所能帮你少走弯路、少花冤枉钱。**
 

@@ -18,12 +18,12 @@
         >
           <div class="unlock-modal">
             <div class="unlock-modal-header">
-              <h3 class="lock-title">继续阅读全文</h3>
+              <h3 class="lock-title">人机验证</h3>
               <button class="close-btn" @click="showDialog = false">×</button>
             </div>
 
             <p class="lock-reason">
-              抱歉，由于近期遭受爬虫攻击，为保障正常阅读体验，本站部分内容已开启一次性验证。验证后全站自动解锁。
+              为保障正常阅读体验，本站部分内容已开启一次性验证。验证后全站解锁。
             </p>
 
             <div class="qr-container">
@@ -34,11 +34,9 @@
               />
               <p class="qr-tip">
                 扫码/微信搜索关注
-                <span class="highlight">JavaGuide</span> 官方公众号
+                <span class="highlight">“JavaGuide”</span>
               </p>
-              <p class="qr-tip">
-                回复 <span class="highlight">“验证码”</span> 获取
-              </p>
+              <p class="qr-tip">回复 <span class="highlight">“验证码”</span></p>
             </div>
 
             <div class="input-wrapper">
@@ -357,13 +355,13 @@ watch(
 }
 
 .qr-image {
-  width: 136px;
-  height: 136px;
+  width: 180px;
+  height: 180px;
 }
 
 .qr-tip {
   margin: 0.45rem 0 0;
-  font-size: 0.86rem;
+  font-size: 0.96rem;
 }
 
 .highlight {
