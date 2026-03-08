@@ -688,36 +688,21 @@ public static transient void main(String args[])
             throwable = throwable2;
             throw throwable2;
         }
-        if(br != null)
-            if(throwable != null)
-                try
-                {
-                    br.close();
-                }
-                catch(Throwable throwable1)
-                {
-                    throwable.addSuppressed(throwable1);
-                }
-            else
-                br.close();
-            break MISSING_BLOCK_LABEL_113; //该标签为反编译工具的生成错误，（不是Java语法本身的内容）属于反编译工具的临时占位符。正常情况下编译器生成的字节码不会包含这种无效标签。
-            Exception exception;
-            exception;
+        finally
+        {
             if(br != null)
                 if(throwable != null)
                     try
                     {
                         br.close();
                     }
-                    catch(Throwable throwable3)
-                      {
-                        throwable.addSuppressed(throwable3);
+                    catch(Throwable throwable1)
+                    {
+                        throwable.addSuppressed(throwable1);
                     }
                 else
                     br.close();
-        throw exception;
-        IOException ioexception;
-        ioexception;
+        }
     }
 }
 ```
