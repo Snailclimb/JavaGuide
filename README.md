@@ -214,6 +214,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 **重要知识点：**
 
 - [MySQL 索引详解](./docs/database/mysql/mysql-index.md)
+- [MySQL 索引失效场景总结](./docs/database/mysql/mysql-index-invalidation.md)
 - [MySQL 事务隔离级别图文详解)](./docs/database/mysql/transaction-isolation-level.md)
 - [MySQL 三大日志(binlog、redo log 和 undo log)详解](./docs/database/mysql/mysql-logs.md)
 - [InnoDB 存储引擎对 MVCC 的实现](./docs/database/mysql/innodb-implementation-of-mvcc.md)

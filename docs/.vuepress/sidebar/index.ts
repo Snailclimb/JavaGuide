@@ -281,6 +281,7 @@ export default sidebar({
             "mysql-high-performance-optimization-specification-recommendations",
             createImportantSection([
               "mysql-index",
+              "mysql-index-invalidation",
               {
                 text: "MySQL三大日志详解",
                 link: "mysql-logs",
