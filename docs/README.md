@@ -2,7 +2,7 @@
 home: true
 icon: home
 title: JavaGuide（Java 面试 & 后端通用面试指南）
-description: JavaGuide 是一份面向后端学习与面试的指南，以 Java 面试为核心，同时覆盖数据库/MySQL、Redis、分布式、高并发、高可用、系统设计等通用后端知识，适用于校招/社招复习。
+description: JavaGuide 是一份 Java 面试和后端通用面试指南，同时覆盖数据库/MySQL、Redis、分布式、高并发、高可用、系统设计等通用后端知识，适用于校招/社招复习。
 heroImage: /logo.svg
 heroText: JavaGuide
 tagline: Java 面试 & 后端通用面试指南，覆盖计算机基础、数据库、分布式、高并发与系统设计
