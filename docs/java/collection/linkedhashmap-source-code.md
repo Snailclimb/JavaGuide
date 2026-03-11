@@ -319,6 +319,55 @@ void afterNodeAccess(Node < K, V > e) { // move node to last
 
 看不太懂也没关系，知道这个方法的作用就够了，后续有时间再慢慢消化。
 
+### newNode——新节点尾插链表
+
+上文介绍了 `afterNodeAccess` 如何将**已存在的节点**移动到链表尾部，那么**新插入的节点**是如何被添加到链表中的呢？
+
+答案在于 `LinkedHashMap` 重写了 `HashMap` 的 `newNode` 方法。当 `HashMap` 插入新键值对时，会调用 `newNode` 创建节点对象，`LinkedHashMap` 在重写的方法中不仅创建了 `Entry` 节点，还额外调用了 `linkNodeLast` 将其链接到双向链表的尾部：
+
+```java
+// HashMap 的 newNode 是普通实现
+Node<K,V> newNode(int hash, K key, V value, Node<K,V> next) {
+    return new Node<>(hash, key, value, next);
+}
+
+// LinkedHashMap 重写 newNode，额外调用 linkNodeLast
+Node<K,V> newNode(int hash, K key, V value, Node<K,V> e) {
+    LinkedHashMap.Entry<K,V> p =
+        new LinkedHashMap.Entry<>(hash, key, value, e);
+    linkNodeLast(p);  // 关键：将新节点链接到链表尾部
+    return p;
+}
+```
+
+`linkNodeLast` 方法的实现如下：
+
+```java
+// 将节点链接到双向链表尾部
+private void linkNodeLast(LinkedHashMap.Entry<K,V> p) {
+    LinkedHashMap.Entry<K,V> last = tail;
+    tail = p;  // tail 指向新节点
+    if (last == null)
+        head = p;  // 链表为空，head 也指向新节点
+    else {
+        p.before = last;  // 新节点的前驱指向原尾节点
+        last.after = p;   // 原尾节点的后继指向新节点
+    }
+}
+```
+
+**这就是 LinkedHashMap 实现插入有序的核心机制**：每次插入新节点时，通过重写 `newNode` 并调用 `linkNodeLast`，将新节点追加到双向链表尾部。这样遍历时从头节点 `head` 开始沿着 `after` 指针遍历，就能按插入顺序获取所有元素。
+
+同理，`LinkedHashMap` 也重写了 `newTreeNode` 方法，确保树节点插入时同样会被链接到链表尾部：
+
+```java
+TreeNode<K,V> newTreeNode(int hash, K key, V value, Node<K,V> next) {
+    TreeNode<K,V> p = new TreeNode<K,V>(hash, key, value, next);
+    linkNodeLast(p);
+    return p;
+}
+```
+
 ### remove 方法后置操作——afterNodeRemoval
 
 `LinkedHashMap` 并没有对 `remove` 方法进行重写，而是直接继承 `HashMap` 的 `remove` 方法，为了保证键值对移除后双向链表中的节点也会同步被移除，`LinkedHashMap` 重写了 `HashMap` 的空实现方法 `afterNodeRemoval`。

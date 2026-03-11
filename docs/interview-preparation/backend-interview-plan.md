@@ -54,7 +54,7 @@ head:
 
 - **技术好≠面试能过**，必须系统准备——尽早以求职为导向学习，根据招聘要求制定技能清单。
 - **掌握投递简历的黄金时间**：秋招 7-9 月，春招 3-4 月；多渠道获取招聘信息（官网、招聘网站、牛客网、内推等）。
-- **花 2-3 天完善简历**，重视项目经历描述；**校招简历不超过 2 页，社招不超过 3 页**。
+- **花 2-3 天完善简历**，重视项目经历描述；**校招简历不超过 2 页，社招不超过 3 页**。一定要把包装润色，但也要避免简历夸大事实，面试时易被深挖暴露。
 - **八股文很有意义**，日常开发也会用到；不要抱侥幸心理，打铁还需自身硬。
 - **提前准备 1-2 分钟自我介绍话术**，能流畅讲出个人背景、技术栈和求职意向。
 - **多多自测**，可以用 AI 辅助模拟面试，找同学朋友互相模拟面试。
@@ -93,6 +93,7 @@ head:
 - 优化成果要量化（QPS、响应时间、成本节省等），非真实项目包装合理数值即可。
 - 工作内容介绍控制在 6~8 条左右比较好，多了少了都有影响，一定要至少有 3-4 条是有技术亮点的，能吸引到面试官。
 - 避免模糊性描述（如"负责开发"），要具体（技术+场景+效果）。
+- 一定要包装项目，但也不要过度包装，准备时多想“如果面试官问为什么”，确保逻辑自洽。
 
 ### 第二阶段：Java 核心 + MySQL + Redis （约 2～3 周）
 
@@ -125,11 +126,15 @@ head:
 - [5 种基本数据类型](https://javaguide.cn/database/redis/redis-data-structures-01.html)、[3 种特殊类型](https://javaguide.cn/database/redis/redis-data-structures-02.html)、[跳表实现有序集合](https://javaguide.cn/database/redis/redis-skiplist.html)
 - [持久化](https://javaguide.cn/database/redis/redis-persistence.html)、[内存碎片](https://javaguide.cn/database/redis/redis-memory-fragmentation.html)、[常见阻塞原因](https://javaguide.cn/database/redis/redis-common-blocking-problems-summary.html)
 
+**自测**：随机抽题，能用自己的话讲出来，不死记硬背，理解记忆，重点记关键词。尤其是要重点测试 MySQL 和 Redis 部分，面试考察重点中的重点。
+
 ### 第三阶段：框架和系统设计（约 1～3 周）
 
 #### 设计模式
 
 - [设计模式常见面试题总结](https://interview.javaguide.cn/system-design/design-pattern.html)
+
+**自测**：掌握单例模式至少两种常见写法；代理模式、责任链模式、策略模式一定要搞懂，最好能够结合你的项目经历或者开源框架中的运用讲出来。
 
 #### 框架
 
@@ -140,7 +145,7 @@ head:
 - [Spring 中的设计模式](https://javaguide.cn/system-design/framework/spring/spring-design-patterns-summary.html)、[SpringBoot 自动装配](https://javaguide.cn/system-design/framework/spring/spring-boot-auto-assembly-principles.html)、[Async 原理](https://javaguide.cn/system-design/framework/spring/async.html)（原理性知识，时间不够可跳过）
 - [MyBatis 常见面试题](https://javaguide.cn/system-design/framework/mybatis/mybatis-interview.html)（不重要，可跳过，考查不多）、[Netty 常见面试题](https://javaguide.cn/system-design/framework/netty.html)（用到才需要准备）
 
-**自测**：能说清项目里用到的 Spring 注解、IoC/AOP 在项目中的体现、事务失效场景；设计模式能举出项目或框架中的例子。
+**自测**：能说清项目里用到的 Spring 注解、IoC/AOP 在项目中的体现、事务失效场景。
 
 **权限与安全**
 
@@ -172,7 +177,7 @@ head:
 
 若简历或岗位涉及分布式/微服务/高并发，再系统过一遍；否则可只过「项目会用到的点」。
 
-- **分布式理论**：[CAP 与 BASE](https://javaguide.cn/distributed-system/protocol/cap-and-base-theorem.html)、[Paxos](https://javaguide.cn/distributed-system/protocol/paxos-algorithm.html)、[Raft](https://javaguide.cn/distributed-system/protocol/raft-algorithm.html)、[Gossip](https://javaguide.cn/distributed-system/protocol/gossip-protocol.html)、[一致性哈希](https://javaguide.cn/distributed-system/protocol/consistent-hashing.html)
+- **分布式理论**：[CAP 与 BASE](https://javaguide.cn/distributed-system/protocol/cap-and-base-theorem.html)、[Paxos](https://javaguide.cn/distributed-system/protocol/paxos-algorithm.html)、[Raft](https://javaguide.cn/distributed-system/protocol/raft-algorithm.html)、[ZAB](https://javaguide.cn/distributed-system/protocol/zab.html)、[Gossip](https://javaguide.cn/distributed-system/protocol/gossip-protocol.html)、[一致性哈希](https://javaguide.cn/distributed-system/protocol/consistent-hashing.html)
 - **RPC**：[RPC 基础](https://javaguide.cn/distributed-system/rpc/rpc-intro.html)、[Dubbo](https://javaguide.cn/distributed-system/rpc/dubbo.html)（目前问的很少，可跳过）
 - **分布式 ID / 网关 / 锁 / 事务**（项目涉及再重点看）：[分布式 ID](https://javaguide.cn/distributed-system/distributed-id.html)、[设计指南](https://javaguide.cn/distributed-system/distributed-id-design.html)、[API 网关](https://javaguide.cn/distributed-system/api-gateway.html)、[Spring Cloud Gateway](https://javaguide.cn/distributed-system/spring-cloud-gateway-questions.html)、[分布式锁](https://javaguide.cn/distributed-system/distributed-lock-implementations.html)、[分布式事务](https://javaguide.cn/distributed-system/distributed-transaction.html)
 - **高并发**（项目涉及再重点看）：[CDN](https://javaguide.cn/high-performance/cdn.html)、[读写分离与分库分表](https://javaguide.cn/high-performance/read-and-write-separation-and-library-subtable.html)、[冷热分离](https://javaguide.cn/high-performance/data-cold-hot-separation.html)、[SQL 优化](https://javaguide.cn/high-performance/sql-optimization.html)、[深度分页](https://javaguide.cn/high-performance/deep-pagination-optimization.html)、[负载均衡](https://javaguide.cn/high-performance/load-balancing.html)
