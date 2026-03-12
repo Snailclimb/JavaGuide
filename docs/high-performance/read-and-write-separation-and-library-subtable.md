@@ -8,6 +8,8 @@ head:
       content: 读写分离,分库分表,主从复制,水平分表,垂直分库,ShardingSphere,MyCat,分布式ID,跨库查询
 ---
 
+<!-- @include: @small-advertisement.snippet.md -->
+
 ## 读写分离
 
 ### 什么是读写分离？

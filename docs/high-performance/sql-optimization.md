@@ -8,6 +8,8 @@ head:
       content: SQL优化,慢SQL,EXPLAIN执行计划,索引优化,MySQL优化,查询优化,分页优化,Show Profile
 ---
 
+<!-- @include: @small-advertisement.snippet.md -->
+
 ## 避免使用 SELECT \*
 
 - `SELECT *` 会消耗更多的 CPU。

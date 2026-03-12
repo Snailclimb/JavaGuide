@@ -10,6 +10,8 @@ head:
       content: 配置中心,分布式配置中心,Apollo,Nacos,Spring Cloud Config,配置中心面试题,灰度发布,长轮询
 ---
 
+<!-- @include: @small-advertisement.snippet.md -->
+
 ## 为什么要用配置中心？
 
 微服务架构下，业务发展通常会导致服务数量增加，进而导致程序配置（服务地址、数据库参数、功能开关等）增多。传统配置文件方式存在以下问题：
@@ -25,7 +27,7 @@ head:
 - **版本管理**：记录每次配置变更的修改人、修改时间、修改内容，支持一键回滚。
 - **灰度发布**：先将配置推送给部分实例验证，降低变更风险（Apollo、Nacos 1.1.0+ 支持）。
 
-![view-release-history](https://oss.javaguide.cn/github/javaguide/config-center/view-release-history.png)
+![Applo 配置中心](https://oss.javaguide.cn/github/javaguide/config-center/view-release-history.png)
 
 ## 常见的配置中心有哪些？如何选择？
 

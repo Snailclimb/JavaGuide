@@ -115,7 +115,7 @@ hash（服务器ip）% 2^32
 
 如下图所示，Node1、Node2、Node3、Node4 这 4 个节点都对应 3 个虚拟节点（下图只是为了演示，实际情况节点分布不会这么有规律）。
 
-![](https://oss.javaguide.cn/github/javaguide/distributed-system/protocol/consistent-hashing/consistent-hashing-circle-virtual-node.png)
+![虚拟节点](https://oss.javaguide.cn/github/javaguide/distributed-system/protocol/consistent-hashing/consistent-hashing-circle-virtual-node.png)
 
 对于上图来说，每个节点最终负责的数据情况如下：
 

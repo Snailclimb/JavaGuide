@@ -8,6 +8,8 @@ head:
       content: CDN,内容分发网络,GSLB,CDN缓存,CDN回源,CDN预热,防盗链,时间戳防盗链,静态资源加速
 ---
 
+<!-- @include: @small-advertisement.snippet.md -->
+
 ## 什么是 CDN ？
 
 **CDN** 全称是 Content Delivery Network/Content Distribution Network，翻译过的意思是 **内容分发网络** 。
