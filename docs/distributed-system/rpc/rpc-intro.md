@@ -1,9 +1,13 @@
 ---
 title: RPC基础知识总结
-description: RPC远程过程调用基础详解，讲解RPC核心原理、调用流程、序列化协议及常见RPC框架对比分析。
 category: 分布式
+description: RPC远程过程调用基础详解，讲解RPC核心原理、调用流程（客户端Stub/服务端Stub/网络传输）、序列化协议（Protobuf/Hessian/Kryo）及Dubbo/gRPC/Thrift等常见RPC框架对比分析。
 tag:
-  - rpc
+  - RPC
+head:
+  - - meta
+    - name: keywords
+      content: RPC,远程过程调用,RPC原理,RPC框架,Dubbo,gRPC,序列化,Stub,动态代理,RPC面试题
 ---
 
 这篇文章会简单介绍一下 RPC 相关的基础概念。

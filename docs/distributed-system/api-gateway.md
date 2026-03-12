@@ -1,7 +1,13 @@
 ---
 title: API网关基础知识总结
-description: API网关基础知识详解，涵盖网关核心功能、请求转发、安全认证、流量控制及常见网关选型对比。
 category: 分布式
+description: API网关基础知识详解，涵盖网关核心功能（路由转发、身份认证、限流熔断、负载均衡）、工作原理及Zuul、Spring Cloud Gateway、Nginx等常见网关选型对比。
+tag:
+  - API网关
+head:
+  - - meta
+    - name: keywords
+      content: API网关,网关,微服务网关,Spring Cloud Gateway,Zuul,限流熔断,负载均衡,网关面试题
 ---
 
 ## 什么是网关？

@@ -1,9 +1,13 @@
 ---
-title: ZooKeeper相关概念总结(进阶)
-description: ZooKeeper进阶详解，深入讲解ZAB协议、Leader选举机制、集群部署及与Eureka等注册中心的对比。
+title: ZooKeeper进阶详解
 category: 分布式
+description: ZooKeeper进阶详解，深入讲解ZAB协议原理、Leader选举机制（FastLeaderElection）、集群部署策略（奇数节点）、会话管理及与Eureka、Nacos等注册中心的对比分析。
 tag:
   - ZooKeeper
+head:
+  - - meta
+    - name: keywords
+      content: ZooKeeper,ZAB协议,Leader选举,集群部署,会话管理,Eureka对比,Nacos对比,分布式协调,CP系统
 ---
 
 > [FrancisQ](https://juejin.im/user/5c33853851882525ea106810) 投稿。

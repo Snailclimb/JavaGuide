@@ -1,7 +1,13 @@
 ---
-title: 分布式ID介绍&实现方案总结
-description: 分布式ID生成方案详解，涵盖UUID、数据库自增、号段模式、雪花算法等主流方案的原理与优缺点对比。
+title: 分布式ID生成方案总结
 category: 分布式
+description: 分布式ID生成方案详解，涵盖UUID、数据库自增ID、号段模式、雪花算法（Snowflake）、Leaf等主流方案的原理、优缺点对比及适用场景分析。
+tag:
+  - 分布式ID
+head:
+  - - meta
+    - name: keywords
+      content: 分布式ID,雪花算法,Snowflake,UUID,号段模式,Leaf,分布式ID生成,全局唯一ID,分布式ID面试题
 ---
 
 <!-- @include: @small-advertisement.snippet.md -->

@@ -1,10 +1,14 @@
 ---
-title: Paxos 算法详解
-description: Paxos 共识算法原理详解，涵盖 Basic Paxos 两阶段提交流程、Multi-Paxos 优化思想及与 Raft 的对比分析。
+title: Paxos算法详解
 category: 分布式
-tags:
+description: Paxos共识算法原理详解，涵盖Basic Paxos两阶段提交（Prepare/Accept）流程、Proposer/Proposer/Acceptor角色、Multi-Paxos优化思想以及与Raft算法的对比分析。
+tag:
   - 分布式协议&算法
   - 共识算法
+head:
+  - - meta
+    - name: keywords
+      content: Paxos算法,Paxos,Basic Paxos,Multi-Paxos,共识算法,两阶段提交,分布式共识,Raft,Leslie Lamport,分布式算法
 ---
 
 ## 背景

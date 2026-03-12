@@ -1,7 +1,13 @@
 ---
 title: 分布式锁常见实现方案总结
-description: 分布式锁常见实现方案详解，包括基于Redis、ZooKeeper实现分布式锁的原理、优缺点及最佳实践。
 category: 分布式
+description: 分布式锁常见实现方案详解，包括基于Redis SETNX、Redlock、ZooKeeper临时节点实现分布式锁的原理、优缺点对比及最佳实践。
+tag:
+  - 分布式锁
+head:
+  - - meta
+    - name: keywords
+      content: 分布式锁,Redis分布式锁,ZooKeeper分布式锁,SETNX,Redlock,分布式锁实现,分布式锁面试题
 ---
 
 <!-- @include: @small-advertisement.snippet.md -->

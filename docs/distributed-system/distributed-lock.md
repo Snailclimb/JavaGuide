@@ -1,7 +1,13 @@
 ---
-title: 分布式锁介绍
-description: 分布式锁基础概念详解，讲解为什么需要分布式锁、分布式锁的核心特性及常见应用场景分析。
+title: 分布式锁入门介绍
 category: 分布式
+description: 分布式锁基础概念详解，讲解为什么需要分布式锁、分布式锁的核心特性（互斥性、防死锁、可重入）、常见应用场景（秒杀、库存扣减）分析。
+tag:
+  - 分布式锁
+head:
+  - - meta
+    - name: keywords
+      content: 分布式锁,分布式锁介绍,为什么需要分布式锁,分布式锁应用场景,秒杀超卖,分布式锁面试题
 ---
 
 <!-- @include: @small-advertisement.snippet.md -->

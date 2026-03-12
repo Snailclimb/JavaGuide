@@ -1,12 +1,14 @@
 ---
-title: ZAB 协议详解
-description: ZooKeeper 的核心共识协议 ZAB（原子广播协议）详解，包括消息广播模式、崩溃恢复模式、Leader 选举和数据恢复机制
-category: 分布式系统
-tag: 分布式理论
+title: ZAB协议详解
+category: 分布式
+description: ZooKeeper的核心共识协议ZAB（ZooKeeper Atomic Broadcast，原子广播协议）详解，包括消息广播模式、崩溃恢复模式、Leader选举机制（ZXID/epoch）、数据恢复机制及Follower/Observer角色解析。
+tag:
+  - 分布式协议&算法
+  - 共识算法
 head:
   - - meta
     - name: keywords
-      content: ZAB协议,ZooKeeper,原子广播,分布式一致性,Leader选举,崩溃恢复
+      content: ZAB协议,ZooKeeper,原子广播,分布式一致性,Leader选举,崩溃恢复,ZXID,epoch,ZooKeeper原理
 ---
 
 作为一款极其优秀的分布式协调框架，ZooKeeper 的高可用和数据一致性备受业界推崇。很多人误以为 ZooKeeper 使用的是大名鼎鼎的 Paxos 算法，但实际上，它的"灵魂"是一个专门为其定制的共识协议——**ZAB（ZooKeeper Atomic Broadcast，原子广播协议）**。

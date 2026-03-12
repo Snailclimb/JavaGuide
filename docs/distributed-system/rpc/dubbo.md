@@ -1,9 +1,14 @@
 ---
-title: Dubbo常见问题总结
-description: Dubbo核心知识与面试题详解，涵盖Dubbo架构原理、SPI机制、负载均衡策略及服务治理等核心内容。
+title: Dubbo面试题总结
 category: 分布式
+description: Dubbo核心知识与面试题详解，涵盖Dubbo架构原理、SPI扩展机制、负载均衡策略（随机/轮询/一致性哈希）、服务注册发现、集群容错、服务治理等核心内容。
 tag:
-  - rpc
+  - RPC
+  - Dubbo
+head:
+  - - meta
+    - name: keywords
+      content: Dubbo,Dubbo面试题,Dubbo原理,SPI机制,负载均衡,服务注册,集群容错,服务治理,RPC框架
 ---
 
 ::: tip

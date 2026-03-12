@@ -1,9 +1,13 @@
 ---
-title: ZooKeeper 实战
-description: ZooKeeper实战教程，涵盖Docker安装部署、常用命令操作及Curator客户端的使用方法详解。
+title: ZooKeeper实战教程
 category: 分布式
+description: ZooKeeper实战教程，涵盖Docker安装部署、zkCli常用命令操作（create/get/set/delete/ls）、四字命令（stat/srvr/dump）及Curator Java客户端的CRUD操作与分布式锁实现。
 tag:
   - ZooKeeper
+head:
+  - - meta
+    - name: keywords
+      content: ZooKeeper,ZooKeeper安装,ZooKeeper命令,Curator,zkCli,分布式锁,Docker部署,四字命令,ZooKeeper实战
 ---
 
 <!-- @include: @small-advertisement.snippet.md -->

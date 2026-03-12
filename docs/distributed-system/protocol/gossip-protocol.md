@@ -1,11 +1,15 @@
 ---
-title: Gossip 协议详解
-description: Gossip协议原理详解，讲解去中心化信息传播机制、两种典型传播模式（反熵与谣言传播）及在Redis Cluster等系统中的应用。
+title: Gossip协议详解
 category: 分布式
+description: Gossip协议原理详解，讲解去中心化信息传播机制、两种典型传播模式（反熵Anti-Entropy与谣言传播Rumor-Mongering）、SWIM协议及在Redis Cluster、Cassandra等分布式系统中的应用。
 tag:
   - 分布式协议&算法
   - 数据复制协议
   - 最终一致性
+head:
+  - - meta
+    - name: keywords
+      content: Gossip协议,反熵,谣言传播,去中心化,Redis Cluster,SWIM,分布式通信,最终一致性,分布式协议
 ---
 
 ## 背景

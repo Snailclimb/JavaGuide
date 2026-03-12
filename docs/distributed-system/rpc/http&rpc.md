@@ -1,9 +1,13 @@
 ---
-title: 有了 HTTP 协议，为什么还要有 RPC ？
-description: HTTP与RPC对比详解，讲解两种通信方式的本质区别、性能差异及在微服务架构中的选型建议。
+title: HTTP与RPC对比
 category: 分布式
+description: HTTP与RPC对比详解，从TCP层出发讲解两种通信方式的本质区别、性能差异（序列化/连接复用）、传输协议对比及在微服务架构中的选型建议。
 tag:
-  - rpc
+  - RPC
+head:
+  - - meta
+    - name: keywords
+      content: HTTP,RPC,HTTP vs RPC,微服务通信,RPC协议,TCP通信,序列化,RESTful,服务调用
 ---
 
 > 本文来自[小白 debug](https://juejin.cn/user/4001878057422087)投稿，原文：<https://juejin.cn/post/7121882245605883934> 。

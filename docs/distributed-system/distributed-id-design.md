@@ -1,7 +1,13 @@
 ---
-title: 分布式ID设计指南
-description: 分布式ID设计实战指南，结合订单系统、优惠券等业务场景讲解分布式ID的设计要点与技术选型。
+title: 分布式ID设计实战指南
 category: 分布式
+description: 分布式ID设计实战指南，结合订单系统、一码付、优惠券等业务场景讲解分布式ID的设计要点、技术选型及不同场景下的ID生成策略。
+tag:
+  - 分布式ID
+head:
+  - - meta
+    - name: keywords
+      content: 分布式ID,分布式ID设计,订单ID生成,优惠券ID,一码付,ID生成策略,分布式系统设计
 ---
 
 ::: tip

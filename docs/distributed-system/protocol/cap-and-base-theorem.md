@@ -1,9 +1,13 @@
 ---
-title: CAP & BASE理论详解
-description: CAP定理与BASE理论详解，深入讲解分布式系统一致性、可用性、分区容错性的权衡与实际应用。
+title: CAP定理与BASE理论详解
 category: 分布式
+description: CAP定理与BASE理论详解，深入讲解分布式系统一致性（Consistency）、可用性（Availability）、分区容错性（Partition Tolerance）的权衡取舍及BASE理论的基本可用、软状态、最终一致性在实际系统中的应用。
 tag:
   - 分布式理论
+head:
+  - - meta
+    - name: keywords
+      content: CAP定理,BASE理论,分布式系统,一致性,可用性,分区容错,最终一致性,分布式理论,分布式面试题
 ---
 
 <!-- @include: @small-advertisement.snippet.md -->

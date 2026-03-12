@@ -1,10 +1,14 @@
 ---
-title: Raft 算法详解
-description: Raft共识算法原理详解，涵盖Leader选举、日志复制、安全性保证等核心机制及与Paxos的对比分析。
+title: Raft算法详解
 category: 分布式
+description: Raft共识算法原理详解，涵盖Leader选举（随机超时机制）、日志复制（Log Replication）、安全性保证（选举限制/日志匹配）、成员变更等核心机制，以及与Paxos算法的对比分析。etcd、Consul均采用Raft实现。
 tag:
   - 分布式协议&算法
   - 共识算法
+head:
+  - - meta
+    - name: keywords
+      content: Raft算法,Raft,共识算法,Leader选举,日志复制,etcd,Consul,分布式共识,Paxos,分布式算法
 ---
 
 > 本文由 [SnailClimb](https://github.com/Snailclimb) 和 [Xieqijun](https://github.com/jun0315) 共同完成。
