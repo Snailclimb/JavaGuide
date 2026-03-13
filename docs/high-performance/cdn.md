@@ -70,7 +70,7 @@ CDN 缓存的完整生命周期如下图所示：
 
 ![CDN 缓存的完整生命周期](https://oss.javaguide.cn/github/javaguide/high-performance/cdn/cdn-full-life-cycle-of-cdn-cache.png)
 
-如果资源有更新，可以对其进行**刷新（Purge）**操作，删除 CDN 节点上缓存的旧资源，并强制 CDN 节点在下次请求时回源获取最新资源。
+如果资源有更新，可以对其进行**刷新**操作，删除 CDN 节点上缓存的旧资源，并强制 CDN 节点在下次请求时回源获取最新资源。
 
 几乎所有云厂商提供的 CDN 服务都具备缓存的刷新和预热功能（下图是阿里云 CDN 服务提供的相应功能）：
 
