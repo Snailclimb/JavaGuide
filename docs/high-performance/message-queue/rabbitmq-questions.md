@@ -130,7 +130,7 @@ RabbitMQ 常用的 Exchange Type 有 **fanout**、**direct**、**topic**、**hea
 
 **示例**：
 
-- 路由键为 `"com.rabbitmq.client"` 的消息会同时路由到绑定 `"*.rabbitmq.*"` 和 `"*.client.#"` 的队列
+- 路由键为 `"com.rabbitmq.client"` 的消息会同时路由到绑定 `"*.rabbitmq.*"` 和 `"#.client.#"` 的队列
 - 路由键为 `"order.china.beijing"` 的消息会路由到绑定 `"order.china.*"` 的队列
 
 **4、headers（不推荐）**
