@@ -46,7 +46,7 @@ footer: |-
 - **Java 系列**：[Java 学习路线 (最新版，4w + 字)](https://javaguide.cn/interview-preparation/java-roadmap.html)、[Java 基础常见面试题总结](https://javaguide.cn/java/basis/java-basic-questions-01.html)、[Java 集合常见面试题总结](https://javaguide.cn/java/collection/java-collection-questions-01.html)、[JVM 常见面试题总结](https://interview.javaguide.cn/java/java-jvm.html)
 - **计算机基础**：[计算机网络常见面试题总结](https://javaguide.cn/cs-basics/network/other-network-questions.html)、[操作系统常见面试题总结](https://javaguide.cn/cs-basics/operating-system/operating-system-basic-questions-01.html)
 - **数据库系列**：[MySQL 常见面试题总结](https://javaguide.cn/database/mysql/mysql-questions-01.html)、[Redis 常见面试题总结](https://javaguide.cn/database/redis/redis-questions-01.html)
-- **分布式系列**：[分布式 ID 介绍 & 实现方案总结](https://javaguide.cn/distributed-system/distributed-id.html)、[分布式锁常见实现方案总结](https://javaguide.cn/distributed-system/distributed-lock-implementations.html)
+- **分布式系列**：[分布式高频面试题总结](https://interview.javaguide.cn/distributed-system/distributed-system.html)
 
 ## 🚀 PDF 版本 & 面试交流群
 

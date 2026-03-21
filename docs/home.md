@@ -340,6 +340,8 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 
 ## 分布式
 
+- [⭐分布式高频面试题](https://interview.javaguide.cn/distributed-system/distributed-system.html)
+
 ### 理论&算法&协议
 
 - [CAP 理论和 BASE 理论解读](./distributed-system/protocol/cap-and-base-theorem.md)

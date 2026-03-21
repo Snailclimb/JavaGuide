@@ -463,6 +463,10 @@ export default sidebar({
       collapsible: true,
       children: [
         {
+          text: "⭐分布式高频面试题",
+          link: "https://interview.javaguide.cn/distributed-system/distributed-system.html",
+        },
+        {
           text: "理论&算法&协议",
           icon: ICONS.ALGORITHM,
           prefix: "protocol/",
