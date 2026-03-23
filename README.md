@@ -277,8 +277,8 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 
 ## 系统设计
 
-- [系统设计常见面试题总结](./docs/system-design/system-design-questions.md)
-- [设计模式常见面试题总结](./docs/system-design/design-pattern.md)
+- [⭐系统设计常见面试题总结](./docs/system-design/system-design-questions.md)
+- [⭐设计模式常见面试题总结](https://interview.javaguide.cn/system-design/design-pattern.html)
 
 ### 基础
 
@@ -326,6 +326,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 - [敏感词过滤方案总结](./docs/system-design/security/sentive-words-filter.md)
 - [数据脱敏方案总结](./docs/system-design/security/data-desensitization.md)
 - [为什么前后端都要做数据校验](./docs/system-design/security/data-validation.md)
+- [为什么忘记密码时只能重置，不能告诉你原密码？](./docs/system-design/security/why-password-reset-instead-of-retrieval.md)
 
 ### 定时任务
 

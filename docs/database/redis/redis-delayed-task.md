@@ -1,5 +1,5 @@
 ---
-title: 如何基于Redis实现延时任务
+title: 如何基于Redis实现延时任务？
 description: 详解基于Redis实现延时任务的两种方案：过期事件监听和Redisson延时队列，分析各方案的优缺点、可靠性问题和适用场景。
 category: 数据库
 tag:

@@ -1,5 +1,5 @@
 ---
-title: Redis 能做消息队列吗？怎么实现？
+title: 如何基于Redis实现消息队列？
 description: 讲解 Redis 做消息队列的三种方式：List、Pub/Sub、Stream。对比生产级 MQ 核心能力，详解 Redis 5.0 Stream 的消费者组、ACK 机制及与 Kafka/RabbitMQ 的适用场景对比。
 category: 数据库
 tag:

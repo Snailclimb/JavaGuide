@@ -445,11 +445,12 @@ export default sidebar({
             "sentive-words-filter",
             "data-desensitization",
             "data-validation",
+            "why-password-reset-instead-of-retrieval",
           ],
         },
         "system-design-questions",
         {
-          text: "设计模式常见面试题总结",
+          text: "⭐设计模式常见面试题总结",
           link: "https://interview.javaguide.cn/system-design/design-pattern.html",
         },
         "schedule-task",

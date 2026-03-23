@@ -1,5 +1,5 @@
 ---
-title: MySQL自增主键一定是连续的吗
+title: MySQL自增主键一定是连续的吗？
 description: 详解MySQL自增主键不连续的原因，分析唯一键冲突、事务回滚、批量插入等场景下自增值的分配机制，以及InnoDB自增锁模式的配置与影响。
 category: 数据库
 tag:
