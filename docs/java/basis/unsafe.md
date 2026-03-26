@@ -559,80 +559,31 @@ private void increment(int x){
 如果你把上面这段代码贴到 IDE 中运行，会发现并不能得到目标输出结果。有朋友已经在 Github 上指出了这个问题：[issue#2650](https://github.com/Snailclimb/JavaGuide/issues/2650)。下面是修正后的代码：
 
 ```java
-private volatile int a = 0; // 共享变量，初始值为 0
-private static final Unsafe unsafe;
-private static final long fieldOffset;
-
-static {
-    try {
-        // 获取 Unsafe 实例
-        Field theUnsafe = Unsafe.class.getDeclaredField("theUnsafe");
-        theUnsafe.setAccessible(true);
-        unsafe = (Unsafe) theUnsafe.get(null);
-        // 获取 a 字段的内存偏移量
-        fieldOffset = unsafe.objectFieldOffset(CasTest.class.getDeclaredField("a"));
-    } catch (Exception e) {
-        throw new RuntimeException("Failed to initialize Unsafe or field offset", e);
-    }
-}
-
-public static void main(String[] args) {
-    CasTest casTest = new CasTest();
-
-    Thread t1 = new Thread(() -> {
-        for (int i = 1; i <= 4; i++) {
-            casTest.incrementAndPrint(i);
-        }
-    });
-
-    Thread t2 = new Thread(() -> {
-        for (int i = 5; i <= 9; i++) {
-            casTest.incrementAndPrint(i);
-        }
-    });
-
-    t1.start();
-    t2.start();
-
-    // 等待线程结束，以便观察完整输出 (可选，用于演示)
-    try {
-        t1.join();
-        t2.join();
-    } catch (InterruptedException e) {
-        Thread.currentThread().interrupt();
-    }
-}
-
 // 将递增和打印操作封装在一个原子性更强的方法内
 private void incrementAndPrint(int targetValue) {
     while (true) {
         int currentValue = a; // 读取当前 a 的值
-        // 只有当 a 的当前值等于目标值的前一个值时，才尝试更新
-        if (currentValue == targetValue - 1) {
-            if (unsafe.compareAndSwapInt(this, fieldOffset, currentValue, targetValue)) {
-                // CAS 成功，说明成功将 a 更新为 targetValue
-                System.out.print(targetValue + " ");
-                break; // 成功更新并打印后退出循环
-            }
-            // 如果 CAS 失败，意味着在读取 currentValue 和执行 CAS 之间，a 的值被其他线程修改了，
-            // 此时 currentValue 已经不是 a 的最新值，需要重新读取并重试。
+        // 如果当前值已经达到或超过目标值，说明已被其他线程处理，跳过
+        if (currentValue >= targetValue) {
+            return;
         }
-        // 如果 currentValue != targetValue - 1，说明还没轮到当前线程更新，
-        // 或者已经被其他线程更新超过了，让出CPU给其他线程机会。
-        // 对于严格顺序递增的场景，如果 current > targetValue - 1，可能意味着逻辑错误或死循环，
-        // 但在此示例中，我们期望线程能按顺序执行。
-        Thread.yield(); // 提示CPU调度器可以切换线程，减少无效自旋
+        // 尝试 CAS 操作：如果当前值等于 targetValue - 1，则原子地设置为 targetValue
+        if (unsafe.compareAndSwapInt(this, fieldOffset, currentValue, targetValue)) {
+            // CAS 成功后立即打印，确保打印的就是本次设置的值
+            System.out.print(targetValue + " ");
+            return;
+        }
+        // CAS 失败，重新读取并重试
     }
 }
 ```
-
 在上述例子中，我们创建了两个线程，它们都尝试修改共享变量 a。每个线程在调用 `incrementAndPrint(targetValue)` 方法时：
 
 1. 会先读取 a 的当前值 `currentValue`。
 2. 检查 `currentValue` 是否等于 `targetValue - 1` (即期望的前一个值)。
 3. 如果条件满足，则调用`unsafe.compareAndSwapInt()` 尝试将 `a` 从 `currentValue` 更新到 `targetValue`。
 4. 如果 CAS 操作成功（返回 true），则打印 `targetValue` 并退出循环。
-5. 如果 CAS 操作失败，或者 `currentValue` 不满足条件，则当前线程会继续循环（自旋），并通过 `Thread.yield()` 尝试让出 CPU，直到成功更新并打印或者条件满足。
+5. 如果 CAS 操作失败，说明有其他线程同时竞争，此时会重新读取 `currentValue` 并重试，直到成功为止。
 
 这种机制确保了每个数字（从 1 到 9）只会被成功设置并打印一次，并且是按顺序进行的。
 
