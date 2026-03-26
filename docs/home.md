@@ -10,6 +10,7 @@ head:
 
 ::: tip 友情提示
 
+- **AI 面试**：[AI 应用开发面试指南](../ai/) - 深入浅出掌握大模型基础、Agent、RAG、MCP 协议等高频面试考点。
 - **实战项目**：
   - [⭐AI 智能面试辅助平台 + RAG 知识库](https://javaguide.cn/zhuanlan/interview-guide.html)：基于 Spring Boot 4.0 + Java 21 + Spring AI 2.0 开发。非常适合作为学习和简历项目，学习门槛低，帮助提升求职竞争力，是主打就业的实战项目。
   - [手写 RPC 框架](https://javaguide.cn/zhuanlan/handwritten-rpc-framework.html)：从零开始基于 Netty+Kyro+Zookeeper 实现一个简易的 RPC 框架。麻雀虽小五脏俱全，项目代码注释详细，结构清晰。

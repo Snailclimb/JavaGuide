@@ -1,8 +1,8 @@
 import { navbar } from "vuepress-theme-hope";
 
 export default navbar([
-  { text: "面试指南", icon: "java", link: "/home.md" },
-  { text: "开源项目", icon: "github", link: "/open-source-project/" },
+  { text: "后端面试", icon: "java", link: "/home.md" },
+  { text: "AI面试", icon: "machine-learning", link: "/ai/" },
   { text: "实战项目", icon: "project", link: "/zhuanlan/interview-guide.md" },
   {
     text: "知识星球",
@@ -25,6 +25,7 @@ export default navbar([
     text: "推荐阅读",
     icon: "book",
     children: [
+      { text: "开源项目", icon: "github", link: "/open-source-project/" },
       { text: "技术书籍", icon: "book", link: "/books/" },
       {
         text: "程序人生",

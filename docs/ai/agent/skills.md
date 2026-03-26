@@ -1,12 +1,24 @@
+---
+title: 万字详解 Agent Skills：是什么？怎么用？和 Prompt、MCP 有什么区别？
+description: 深入解析 Agent Skills 概念，探讨 Skills 与 Prompt、MCP、Function Calling 的本质区别，以及如何在实战中设计优秀的 Skill 固化代码规范。
+category: AI 应用开发
+icon: “skill”
+head:
+  - - meta
+    - name: keywords
+      content: Agent Skills,MCP,Function Calling,Prompt,AI Agent,智能体,延迟加载,上下文注入
+---
+
 2025 年初，Anthropic 在推出 **MCP（Model Context Protocol）** 之后，进一步提出了 **Agent Skills** 的概念。这不是技术倒退，而是对智能体架构的深度思考——**连接性（Connectivity）与能力（Capability）应该分离**。
 
 很多开发者认为”只要提示词写得好，AI 就能帮我做一切”。但事实是：**Prompt 适合单次任务，Skills 才是构建可复用 AI 能力的正确方式**。
 
-Skills 的出现，标志着 AI 应用从”玩具”走向”工具”、从”个人技巧”走向”工程化”的关键转折。今天 Guide 就带大家彻底搞懂这个概念，深入探讨 Skills 的设计理念、与相关技术的本质区别，以及如何在实战中用好这个能力。
+Skills 的出现，标志着 AI 应用从”玩具”走向”工具”、从”个人技巧”走向”工程化”的关键转折。今天 Guide 就带大家彻底搞懂这个概念，深入探讨 Skills 的设计理念、与相关技术的本质区别，以及如何在实战中用好这个能力。本文接近 1.2w 字，建议收藏，通过本文你将搞懂：
 
-1. ⭐️ **Skills 是什么？** 为什么它被称为”延迟加载”的 sub-agent？
-2. ⭐️ **面试必考盲区：** Skills 和 Prompt、MCP、Function Calling 到底有什么本质区别？
-3. ⭐️ **项目实战：** 优秀的 Skill 长什么样？如何在真实开发中用它来固化代码规范？
+1. ⭐ **Skills 是什么**：为什么说 Skill 是”延迟加载”的 sub-agent？它的核心机制——上下文注入和延迟加载是如何工作的？
+2. ⭐ **Skills vs Prompt vs MCP vs Function Calling**：这四者的本质区别是什么？它们分别适用于什么场景？这是面试中的高频盲区。
+3. ⭐ **优秀的 Skill 长什么样**：一个设计良好的 Skill 应该包含哪些要素？元数据、触发条件、执行流程如何设计？
+4. ⭐ **项目实战**：如何在真实开发中用 Skills 固化代码规范、排查流程、Review 标准？如何把团队中的”隐性知识”变成可复用的 AI 能力？
 
 ## Skills 是什么？
 

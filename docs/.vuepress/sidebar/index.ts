@@ -1,6 +1,7 @@
 import { sidebar } from "vuepress-theme-hope";
 
 import { aboutTheAuthor } from "./about-the-author.js";
+import { ai } from "./ai.js";
 import { books } from "./books.js";
 import { highQualityTechnicalArticles } from "./high-quality-technical-articles.js";
 import { openSourceProject } from "./open-source-project.js";
@@ -13,6 +14,7 @@ import {
 
 export default sidebar({
   // 应该把更精确的路径放置在前边
+  "/ai/": ai,
   "/open-source-project/": openSourceProject,
   "/books/": books,
   "/about-the-author/": aboutTheAuthor,
