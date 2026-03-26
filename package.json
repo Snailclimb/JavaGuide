@@ -8,7 +8,7 @@
   "pnpm": {
     "overrides": {
       "vite": ">=7.0.8",
-      "undici": ">=7.18.2",
+      "undici": ">=7.24.6",
       "mdast-util-to-hast": ">=13.2.1",
       "markdownlint-cli2>js-yaml": ">=4.1.1",
       "rollup": ">=4.59.0"
