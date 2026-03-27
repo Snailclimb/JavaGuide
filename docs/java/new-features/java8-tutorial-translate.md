@@ -592,7 +592,7 @@ for (int i = 0; i < max; i++) {
 ```java
 //串行排序
 long t0 = System.nanoTime();
-long count = values.stream().sorted().count();
+long count = Arrays.stream(list.stream().sorted().toArray()).count();
 System.out.println(count);
 
 long t1 = System.nanoTime();
@@ -612,7 +612,7 @@ sequential sort took: 709 ms//串行排序所用的时间
 //并行排序
 long t0 = System.nanoTime();
 
-long count = values.parallelStream().sorted().count();
+long count = Arrays.stream(list.parallelStream().sorted().toArray()).count();
 System.out.println(count);
 
 long t1 = System.nanoTime();
