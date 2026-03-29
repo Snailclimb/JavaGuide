@@ -21,6 +21,10 @@
 
 <!-- #region home -->
 
+## AI 应用开发面试指南
+
+[AI 应用开发面试指南](https://javaguide.cn/ai/)（⭐新增，正在持续更新）：专门后端开发准备的 AI 应用开发核心知识，涵盖大模型基础、Agent、RAG、MCP 协议等高频面试考点。
+
 ## 面试准备
 
 - [⭐Java 后端面试通关计划（涵盖后端通用体系）](./docs/interview-preparation/backend-interview-plan.md) (一定要看 :+1:)

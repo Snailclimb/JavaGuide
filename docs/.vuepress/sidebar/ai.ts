@@ -33,4 +33,19 @@ export const ai = arraySidebar([
       },
     ],
   },
+  {
+    text: "AI 编程实战",
+    icon: ICONS.CODE,
+    prefix: "ai-coding/",
+    children: [
+      {
+        text: "IDEA + Qoder 插件多场景实战",
+        link: "idea-qoder-plugin",
+      },
+      {
+        text: "Trae + MiniMax 多场景实战",
+        link: "trae-m2.7",
+      },
+    ],
+  },
 ]);

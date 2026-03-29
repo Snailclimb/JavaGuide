@@ -1,3 +1,13 @@
+---
+title: IDEA + Qoder 插件多场景实战：接口优化与代码重构
+description: 通过两个真实实战案例，展示 IDEA 搭配 Qoder 插件在深分页优化、祖传代码重构等场景下的实际效果，分享从执行者到指挥者的工作模式转变。
+category: AI 编程实战
+head:
+  - - meta
+    - name: keywords
+      content: Qoder,IDEA插件,AI编程,AI辅助开发,代码重构,深分页优化,JetBrains,智能编码
+---
+
 大家好，我是 Guide。如果你是 JetBrains IDE 的重度用户，大概率有过这样的纠结：想用 AI 辅助编程，但主流工具——Cursor、Trae、Qoder——大多基于 VS Code。切过去？舍不得 JetBrains 调试和重构体验。不切？又感觉错过了 AI 的效率红利。
 
 有朋友会说：Claude Code、Gemini CLI 这些终端工具不是挺香的吗？确实香，但说实话，CLI 模式也有明显的短板：没有原生 UI 交互，看代码、审 diff 都不够直观。虽然可以通过一些开源项目（如 vibe kanban、1Code）来缓解，但在做复杂项目时，还是存在一些局限性。
