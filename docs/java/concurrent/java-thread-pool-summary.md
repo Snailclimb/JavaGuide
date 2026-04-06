@@ -429,14 +429,14 @@ Finished all threads  // 任务全部执行完了才会跳出来，因为executo
         int c = ctl.get();
 
         //  下面会涉及到 3 步 操作
-        // 1.首先判断当前线程池中执行的任务数量是否小于 corePoolSize
+        // 1.首先判断当前线程池中的工作线程总数是否小于 corePoolSize
         // 如果小于的话，通过addWorker(command, true)新建一个线程，并将任务(command)添加到该线程中；然后，启动该线程从而执行任务。
         if (workerCountOf(c) < corePoolSize) {
             if (addWorker(command, true))
                 return;
             c = ctl.get();
         }
-        // 2.如果当前执行的任务数量大于等于 corePoolSize 的时候就会走到这里，表明创建新的线程失败。
+        // 2.如果当前工作线程总数大于等于 corePoolSize 的时候就会走到这里，表明没有走核心线程的创建分支。
         // 通过 isRunning 方法判断线程池状态，线程池处于 RUNNING 状态并且队列可以加入任务，该任务才会被加入进去
         if (isRunning(c) && workQueue.offer(command)) {
             int recheck = ctl.get();
@@ -457,10 +457,10 @@ Finished all threads  // 任务全部执行完了才会跳出来，因为executo
 
 这里简单分析一下整个流程（对整个逻辑进行了简化，方便理解）：
 
-1. 如果当前运行的线程数小于核心线程数，那么就会新建一个线程来执行任务。
-2. 如果当前运行的线程数等于或大于核心线程数，但是小于最大线程数，那么就把该任务放入到任务队列里等待执行。
-3. 如果向任务队列投放任务失败（任务队列已经满了），但是当前运行的线程数是小于最大线程数的，就新建一个线程来执行任务。
-4. 如果当前运行的线程数已经等同于最大线程数了，新建线程将会使当前运行的线程超出最大线程数，那么当前任务会被拒绝，拒绝策略会调用`RejectedExecutionHandler.rejectedExecution()`方法。
+1. 如果当前工作线程总数小于核心线程数，那么就会新建一个线程来执行任务。
+2. 如果当前工作线程总数已经达到核心线程数，先尝试把任务放入任务队列中等待执行。
+3. 如果向任务队列投放任务失败（任务队列已经满了），并且当前工作线程总数小于最大线程数，就新建一个非核心线程来执行任务。
+4. 如果当前工作线程总数已经等同于最大线程数，任务队列也无法继续接收任务，那么当前任务会被拒绝，拒绝策略会调用 `RejectedExecutionHandler.rejectedExecution()` 方法。
 
 ![图解线程池实现原理](https://oss.javaguide.cn/github/javaguide/java/concurrent/thread-pool-principle.png)
 
@@ -723,8 +723,8 @@ Exception in thread "main" java.util.concurrent.TimeoutException
 
 **上图说明：**
 
-1. 如果当前运行的线程数小于 `corePoolSize`， 如果再来新任务的话，就创建新的线程来执行任务；
-2. 当前运行的线程数等于 `corePoolSize` 后， 如果再来新任务的话，会将任务加入 `LinkedBlockingQueue`；
+1. 如果当前工作线程总数小于 `corePoolSize`，如果再来新任务的话，就创建新的线程来执行任务；
+2. 当前工作线程总数达到 `corePoolSize` 后，如果再来新任务的话，会将任务加入 `LinkedBlockingQueue`；
 3. 线程池中的线程执行完 手头的任务后，会在循环中反复从 `LinkedBlockingQueue` 中获取任务来执行；
 
 #### 为什么不推荐使用`FixedThreadPool`？
