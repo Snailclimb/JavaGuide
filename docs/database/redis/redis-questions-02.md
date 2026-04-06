@@ -163,7 +163,7 @@ Redis 不同于 Memcached 的很重要一点就是，Redis 支持持久化，而
 与 RDB 持久化相比，AOF 持久化的实时性更好。在 Redis 的配置文件中存在三种不同的 AOF 持久化方式（`fsync` 策略），它们分别是：
 
 ```bash
-appendfsync always    #每次有数据修改发生时，都会调用fsync函数同步AOF文件，fsync完成后线程返回，这样会严重降低Redis的速度
+appendfsync always    #每次有数据修改发生时，主线程直接调用fsync同步AOF文件（刷盘），fsync完成后返回。always由主线程执行而非后台线程，严重降低Redis性能
 appendfsync everysec  #每秒钟调用fsync函数同步一次AOF文件
 appendfsync no        #让操作系统决定何时进行同步，一般为30秒一次
 ```
