@@ -290,7 +290,7 @@ protected Class<?> loadClass(String name, boolean resolve)
 
 JVM 区分不同类的依据是类名加上加载该类的类加载器，即使类名相同，如果由不同的类加载器加载，也会被视为不同的类。 双亲委派模型确保核心类总是由 `BootstrapClassLoader` 加载，保证了核心类的唯一性。
 
-例如，当应用程序尝试加载 `java.lang.Object` 时，`AppClassLoader` 会首先将请求委派给 `ExtClassLoader`，`ExtClassLoader` 再委派给 `BootstrapClassLoader`。`BootstrapClassLoader` 会在 JRE 核心类库中找到并加载 `java.lang.Object`，从而保证应用程序使用的是 JRE 提供的标准版本。
+例如，JVM 会优先将 `java.lang.Object` 这类核心类的加载请求交给 `BootstrapClassLoader` 处理；但实际上，`ClassLoader#preDefineClass` 还会在定义阶段校验类名，任何以 `java.` 开头的类名都会被拒绝，因此不能通过自定义加载器去伪造核心类。
 
 有很多小伙伴就要说了：“那我绕过双亲委派模型不就可以了么？”。
 
