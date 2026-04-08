@@ -9,6 +9,8 @@ head:
       content: LLM,大语言模型,Token,上下文窗口,Temperature,Top-p,采样参数,AI 应用开发
 ---
 
+<!-- @include: @article-header.snippet.md -->
+
 在探讨 RAG、Agent 工作流、MCP 协议等复杂架构的过程中，我发现一个非常普遍的现象：很多开发者在构建 Agent 工作流或调优 RAG 检索时，往往会在最底层的 LLM 参数上踩坑。比如，为什么明明设置了温度为 0，结构化输出还是偶尔崩溃？为什么往模型里塞了长文档后，它好像失忆了，忽略了 System Prompt 里的关键指令？
 
 **万丈高楼平地起。** 如果不搞懂底层 LLM 吞吐数据的基本原理，再高级的设计模式在生产环境中也会变得脆弱不堪。
