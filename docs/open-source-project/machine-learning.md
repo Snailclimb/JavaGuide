@@ -98,7 +98,7 @@ AgentScope 提供了 Python 和 Java 版本，二者核心能力完全对齐！
 
 > **提示**：架构图采用 draw.io 绘制，导出为 svg 格式，在 Github Dark 模式下的显示效果会有问题。
 
-![](https://oss.javaguide.cn/xingqiu/pratical-project/interview-guide/interview-guide-architecture-diagram.svg)
+![系统架构图](https://oss.javaguide.cn/xingqiu/pratical-project/interview-guide/interview-guide-architecture-diagram.png)
 
 ### AI 工作流编排系统
 

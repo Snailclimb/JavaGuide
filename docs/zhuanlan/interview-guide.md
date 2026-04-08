@@ -125,7 +125,7 @@ star: 5
 
 系统采用前后端分离架构，整体分为三层：前端展示层、后端服务层、数据存储层。
 
-![系统架构](https://oss.javaguide.cn/xingqiu/pratical-project/interview-guide/interview-guide-architecture-diagram.svg)
+![系统架构图](https://oss.javaguide.cn/xingqiu/pratical-project/interview-guide/interview-guide-architecture-diagram.png)
 
 **后端层**：
 

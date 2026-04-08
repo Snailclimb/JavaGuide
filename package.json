@@ -34,8 +34,8 @@
   },
   "dependencies": {
     "@vuepress/bundler-vite": "2.0.0-rc.26",
-    "@vuepress/plugin-feed": "2.0.0-rc.121",
-    "@vuepress/plugin-search": "2.0.0-rc.121",
+    "@vuepress/plugin-feed": "2.0.0-rc.127",
+    "@vuepress/plugin-search": "2.0.0-rc.127",
     "husky": "9.1.7",
     "markdownlint-cli2": "0.17.1",
     "mathjax-full": "3.2.2",
@@ -44,7 +44,7 @@
     "sass-embedded": "1.97.2",
     "vue": "^3.5.26",
     "vuepress": "2.0.0-rc.26",
-    "vuepress-theme-hope": "2.0.0-rc.102"
+    "vuepress-theme-hope": "2.0.0-rc.105"
   },
   "packageManager": "pnpm@10.0.0",
   "devDependencies": {
