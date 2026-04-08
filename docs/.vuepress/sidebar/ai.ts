@@ -46,6 +46,10 @@ export const ai = arraySidebar([
         text: "Trae + MiniMax 多场景实战",
         link: "trae-m2.7",
       },
+      {
+        text: "Claude Code 接入第三方模型实战",
+        link: "cc-glm5.1",
+      },
     ],
   },
 ]);
