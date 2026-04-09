@@ -861,9 +861,9 @@ for (Student stu : students) {
 
 会抛出`ConcurrentModificationException`异常。
 
-Iterator 是工作在一个独立的线程中，并且拥有一个 mutex 锁。 Iterator 被创建之后会建立一个指向原来对象的单链索引表，当原来的对象数量发生变化时，这个索引表的内容不会同步改变，所以当索引指针往后移动的时候就找不到要迭代的对象，所以按照 fail-fast 原则 Iterator 会马上抛出`java.util.ConcurrentModificationException`异常。
+这里涉及集合的 **fail-fast（快速失败）** 机制。以 `ArrayList` 为例，其内部维护了一个 `modCount` 计数器，每次对集合结构进行修改（如添加、删除）时都会递增该计数器。当创建 `Iterator` 时，会将当前的 `modCount` 记录为 `expectedModCount`。在每次调用 `next()` 时，`Iterator` 都会检查 `modCount` 是否等于 `expectedModCount`，如果不等，说明集合在遍历期间被其他方式修改了，就会抛出`java.util.ConcurrentModificationException`异常。
 
-所以 `Iterator` 在工作的时候是不允许被迭代的对象被改变的。但你可以使用 `Iterator` 本身的方法`remove()`来删除对象，`Iterator.remove()` 方法会在删除当前迭代对象的同时维护索引的一致性。
+所以 `Iterator` 在工作的时候是不允许被迭代的对象被改变的。但你可以使用 `Iterator` 本身的方法`remove()`来删除对象，`Iterator.remove()` 方法会在删除元素后同步更新 `expectedModCount`，从而避免触发该异常。
 
 ## 总结
 
