@@ -222,9 +222,9 @@ export default sidebar({
           collapsible: true,
           children: [
             "linear-data-structure",
+            "tree",
             "graph",
             "heap",
-            "tree",
             "red-black-tree",
             "bloom-filter",
           ],
