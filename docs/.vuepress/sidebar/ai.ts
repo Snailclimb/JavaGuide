@@ -20,7 +20,7 @@ export const ai = arraySidebar([
       { text: "万字详解 Agent Skills", link: "skills" },
       { text: "万字拆解 MCP 协议", link: "mcp" },
       {
-        text: "一文搞懂 Harness Engineering：六层架构、上下文管理与一线团队实战",
+        text: "一文搞懂 Harness Engineering",
         link: "harness-engineering",
       },
     ],
