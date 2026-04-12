@@ -224,7 +224,7 @@ public class FileReader extends InputStreamReader {
 try (FileReader fileReader = new FileReader("input.txt");) {
     int content;
     long skip = fileReader.skip(3);
-    System.out.println("The actual number of bytes skipped:" + skip);
+    System.out.println("The actual number of characters skipped:" + skip);
     System.out.print("The content read from file:");
     while ((content = fileReader.read()) != -1) {
         System.out.print((char) content);
@@ -241,7 +241,7 @@ try (FileReader fileReader = new FileReader("input.txt");) {
 输出：
 
 ```plain
-The actual number of bytes skipped:3
+The actual number of characters skipped:3
 The content read from file:我是Guide。
 ```
 
