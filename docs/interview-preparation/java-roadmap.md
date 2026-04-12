@@ -21,15 +21,15 @@ head:
 
 亮色板概览：
 
-![Java 学习路线 PDF 概览 - 亮色板](https://oss.javaguide.cn/github/javaguide/interview-preparation/java-road-map-pdf.png)
+![Java 学习路线 PDF 概览 - 亮色板](/oss/github/javaguide/interview-preparation/java-road-map-pdf.png)
 
 暗色板概览：
 
-![Java 学习路线 PDF 概览 - 暗色版](https://oss.javaguide.cn/github/javaguide/interview-preparation/java-road-map-pdf-dark.png)
+![Java 学习路线 PDF 概览 - 暗色版](/oss/github/javaguide/interview-preparation/java-road-map-pdf-dark.png)
 
 这可能是你见过的最用心、最全面的 Java 后端学习路线。这份学习路线共包含 **4w+** 字，但你完全不用担心内容过多而学不完。我会根据学习难度，划分出适合找小厂工作必学的内容，以及适合逐步提升 Java 后端开发能力的学习路径。
 
-![Java 学习路线图](https://oss.javaguide.cn/github/javaguide/interview-preparation/java-road-map.png)
+![Java 学习路线图](/oss/github/javaguide/interview-preparation/java-road-map.png)
 
 对于初学者，你可以按照这篇文章推荐的学习路线和资料进行系统性的学习；对于有经验的开发者，你可以根据这篇文章更一步地深入学习 Java 后端开发，提升个人竞争力。
 
@@ -39,4 +39,4 @@ head:
 
 这份学习路线的获取方法很简单：直接在公众号「**JavaGuide**」后台回复“**路线**”即可获取。
 
-![JavaGuide 官方公众号](https://oss.javaguide.cn/github/javaguide/gongzhonghaoxuanchuan.png)
+![JavaGuide 官方公众号](/oss/github/javaguide/gongzhonghaoxuanchuan.png)

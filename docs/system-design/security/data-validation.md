@@ -20,7 +20,7 @@ head:
 
 为啥这么说？你想啊，前端校验主要是为了用户体验和挡掉一些明显的“瞎填”数据，但懂点技术的人绕过前端校验简直不要太轻松（比如直接用 Postman 之类的工具发请求）。所以，**后端校验才是咱们系统安全和数据准确性的最后一道，也是最硬核的防线**。它得确保进到系统里的数据不仅格式对，还得符合业务规矩，最重要的是，执行这个操作的人得有**权限**！
 
-![](https://oss.javaguide.cn/github/javaguide/system-design/security/user-input-validation.png)
+![](/oss/github/javaguide/system-design/security/user-input-validation.png)
 
 ## 前端校验
 
@@ -190,7 +190,7 @@ Bean Validation 主要解决的是**数据格式、语法层面**的校验。但
 
 一般情况下，绝大部分系统都使用的是 RBAC 权限模型或者其简化版本。用一个图来描述如下：
 
-![RBAC 权限模型示意图](https://oss.javaguide.cn/github/javaguide/system-design/security/design-of-authority-system/rbac.png)
+![RBAC 权限模型示意图](/oss/github/javaguide/system-design/security/design-of-authority-system/rbac.png)
 
 关于权限系统设计的详细介绍，可以看这篇文章：[权限系统设计详解](https://javaguide.cn/system-design/security/design-of-authority-system.html)。
 

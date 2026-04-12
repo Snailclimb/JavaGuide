@@ -262,7 +262,7 @@ erDiagram
 
 2NF 在 1NF 的基础之上，消除了非主属性对于码的部分函数依赖。如下图所示，展示了第一范式到第二范式的过渡。第二范式在第一范式的基础上增加了一个列，这个列称为主键，非主属性都依赖于主键。
 
-![第二范式](https://oss.javaguide.cn/github/javaguide/csdn/bd1d31be3779342427fc9e462bf7f05c.png)
+![第二范式](/oss/github/javaguide/csdn/bd1d31be3779342427fc9e462bf7f05c.png)
 
 一些重要的概念：
 
@@ -379,7 +379,7 @@ graph LR
 
 基于以上原因，许多互联网公司的开发规范中明确限制或禁止使用存储过程。例如，《阿里巴巴Java开发手册》中明确规定禁止使用存储过程，推荐将业务逻辑放在应用层实现，保持数据库的简单和高效。
 
-![阿里巴巴Java开发手册: 禁止存储过程](https://oss.javaguide.cn/github/javaguide/csdn/0fa082bc4d4f919065767476a41b2156.png)
+![阿里巴巴Java开发手册: 禁止存储过程](/oss/github/javaguide/csdn/0fa082bc4d4f919065767476a41b2156.png)
 
 ## DROP、DELETE、TRUNCATE 有什么区别？
 

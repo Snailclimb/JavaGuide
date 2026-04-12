@@ -28,7 +28,7 @@ icon: about
 
 下面是星球提供的部分服务（点击下方图片即可获取知识星球的详细介绍）：
 
-[![星球服务](https://oss.javaguide.cn/xingqiu/xingqiufuwu.png)](../about-the-author/zhishixingqiu-two-years.md)
+[![星球服务](/oss/xingqiu/xingqiufuwu.png)](../about-the-author/zhishixingqiu-two-years.md)
 
 ## 项目说明
 

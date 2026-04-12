@@ -25,7 +25,7 @@ head:
 
 ## 操作系统基础
 
-![](https://oss.javaguide.cn/2020-8/image-20200807161118901.png)
+![](/oss/2020-8/image-20200807161118901.png)
 
 ### 什么是操作系统？
 
@@ -43,7 +43,7 @@ head:
 
 下图清晰说明了应用程序、内核、CPU 这三者的关系。
 
-![Kernel_Layout](https://oss.javaguide.cn/2020-8/Kernel_Layout.png)
+![Kernel_Layout](/oss/2020-8/Kernel_Layout.png)
 
 ### 操作系统主要有哪些功能？
 
@@ -82,7 +82,7 @@ _玩玩电脑游戏还是必须要有 Windows 的，所以我现在是一台 Win
 >
 > **很多人更倾向使用 “GNU/Linux” 一词来表达人们通常所说的 “Linux”。**
 
-![Linux 操作系统](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/linux/linux.png)
+![Linux 操作系统](/oss/github/javaguide/cs-basics/operating-system/linux/linux.png)
 
 #### Mac OS
 
@@ -96,7 +96,7 @@ _玩玩电脑游戏还是必须要有 Windows 的，所以我现在是一台 Win
 
 根据进程访问资源的特点，我们可以把进程在系统上的运行分为两个级别：
 
-![用户态和内核态](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/usermode-and-kernelmode.png)
+![用户态和内核态](/oss/github/javaguide/cs-basics/operating-system/usermode-and-kernelmode.png)
 
 - **用户态(User Mode)** : 用户态运行的进程可以直接读取用户程序的数据，拥有较低的权限。当应用程序需要执行某些需要特殊权限的操作，例如读写磁盘、网络通信等，就需要向操作系统发起系统调用请求，进入内核态。
 - **内核态(Kernel Mode)** ：内核态运行的进程几乎可以访问计算机的任何资源包括系统的内存空间、设备、驱动程序等，不受限制，拥有非常高的权限。当操作系统接收到进程的系统调用请求时，就会从用户态切换到内核态，执行相应的系统调用，并将结果返回给进程，最后再从内核态切换回用户态。
@@ -114,7 +114,7 @@ _玩玩电脑游戏还是必须要有 Windows 的，所以我现在是一台 Win
 
 #### 用户态和内核态是如何切换的？
 
-![用户态切换到内核态的 3 种方式](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/the-way-switch-between-user-mode-and-kernel-mode.drawio.png)
+![用户态切换到内核态的 3 种方式](/oss/github/javaguide/cs-basics/operating-system/the-way-switch-between-user-mode-and-kernel-mode.drawio.png)
 
 用户态切换到内核态的 3 种方式：
 
@@ -134,7 +134,7 @@ _玩玩电脑游戏还是必须要有 Windows 的，所以我现在是一台 Win
 
 也就是说在我们运行的用户程序中，凡是与系统态级别的资源有关的操作（如文件管理、进程控制、内存管理等)，都必须通过系统调用方式向操作系统提出服务请求，并由操作系统代为完成。
 
-![系统调用](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/system-call.png)
+![系统调用](/oss/github/javaguide/cs-basics/operating-system/system-call.png)
 
 这些系统调用按功能大致可分为如下几类：
 
@@ -155,7 +155,7 @@ _玩玩电脑游戏还是必须要有 Windows 的，所以我现在是一台 Win
 2. 发生中断后，当前 CPU 执行的程序会中断，跳转到中断处理程序。内核程序开始执行，也就是开始处理系统调用。
 3. 当系统调用处理完成后，操作系统使用特权指令（如 `iret`、`sysret` 或 `eret`）切换回用户态，恢复用户态的上下文，继续执行用户程序。
 
-![系统调用的过程](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/system-call-procedure.png)
+![系统调用的过程](/oss/github/javaguide/cs-basics/operating-system/system-call-procedure.png)
 
 ## 进程和线程
 
@@ -169,11 +169,11 @@ _玩玩电脑游戏还是必须要有 Windows 的，所以我现在是一台 Win
 
 这是我用 AI 绘制的一张图片，可以说是非常形象了：
 
-![](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/process-and-thread-difference-wechat-factory-as-an-example.png)
+![](/oss/github/javaguide/cs-basics/operating-system/process-and-thread-difference-wechat-factory-as-an-example.png)
 
 下图是 Java 内存区域，我们从 JVM 的角度来说一下线程和进程之间的关系吧！
 
-![Java 运行时数据区域（JDK1.8 之后）](https://oss.javaguide.cn/github/javaguide/java/jvm/java-runtime-data-areas-jdk1.8.png)
+![Java 运行时数据区域（JDK1.8 之后）](/oss/github/javaguide/java/jvm/java-runtime-data-areas-jdk1.8.png)
 
 从上图可以看出：一个进程中可以有多个线程，多个线程共享进程的**堆**和**方法区 (JDK1.8 之后的元空间)**资源，但是每个线程有自己的**程序计数器**、**虚拟机栈** 和 **本地方法栈**。
 
@@ -238,7 +238,7 @@ PCB 主要包含下面几部分的内容：
 - **阻塞状态(waiting)**：又称为等待状态，进程正在等待某一事件而暂停运行如等待某资源为可用或等待 IO 操作完成。即使处理器空闲，该进程也不能运行。
 - **结束状态(terminated)**：进程正在从系统中消失。可能是进程正常结束或其他原因中断退出运行。
 
-![进程状态图转换图](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/state-transition-of-process.png)
+![进程状态图转换图](/oss/github/javaguide/cs-basics/operating-system/state-transition-of-process.png)
 
 ### 进程间的通信方式有哪些？
 
@@ -254,7 +254,7 @@ PCB 主要包含下面几部分的内容：
 
 ### 进程的调度算法有哪些?
 
-![常见进程调度算法](https://oss.javaguide.cn/github/javaguide/cs-basics/network/scheduling-algorithms-of-process.png)
+![常见进程调度算法](/oss/github/javaguide/cs-basics/network/scheduling-algorithms-of-process.png)
 
 进程调度算法的核心目标是决定就绪队列中的哪个进程应该获得 CPU 资源，其设计目标通常是在**吞吐量、周转时间、响应时间**和**公平性**之间做权衡。
 
@@ -301,7 +301,7 @@ PCB 主要包含下面几部分的内容：
 
 这时，线程 1 等着线程 2 释放锁 B，而线程 2 等着线程 1 释放锁 A，双方都持有对方需要的资源，并等待对方释放，就形成了一个“死结”。
 
-<img src="https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/deadlock-two-threads-waiting-for-each-other-to-release-lock.png" style="zoom: 50%;" />
+<img src="/oss/github/javaguide/cs-basics/operating-system/deadlock-two-threads-waiting-for-each-other-to-release-lock.png" style="zoom: 50%;" />
 
 ### 产生死锁的四个必要条件是什么?
 
@@ -322,7 +322,7 @@ PCB 主要包含下面几部分的内容：
 
 下面通过一个实际的例子来模拟下图展示的线程死锁：
 
-![线程死锁示意图 ](https://oss.javaguide.cn/github/javaguide/java/2019-4%E6%AD%BB%E9%94%811-20230814005444749.png)
+![线程死锁示意图 ](/oss/github/javaguide/java/2019-4%E6%AD%BB%E9%94%811-20230814005444749.png)
 
 ```java
 public class DeadLockDemo {
@@ -432,7 +432,7 @@ Thread[线程 2,5,main]waiting get resource1
 
 图中 2-21 是**进程-资源分配图**的一个例子，其中共有三个资源类，每个进程的资源占有和申请情况已清楚地表示在图中。在这个例子中，由于存在 **占有和等待资源的环路** ，导致一组进程永远处于等待资源的状态，发生了 **死锁**。
 
-![进程-资源分配图](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/process-resource-allocation-diagram.jpg)
+![进程-资源分配图](/oss/github/javaguide/cs-basics/operating-system/process-resource-allocation-diagram.jpg)
 
 进程-资源分配图中存在环路并不一定是发生了死锁。因为循环等待资源仅仅是死锁发生的必要条件，而不是充分条件。图 2-22 便是一个有环路而无死锁的例子。虽然进程 P1 和进程 P3 分别占用了一个资源 R1 和一个资源 R2，并且因为等待另一个资源 R2 和另一个资源 R1 形成了环路，但进程 P2 和进程 P4 分别占有了一个资源 R1 和一个资源 R2，它们申请的资源得到了满足，在有限的时间里会归还资源，于是进程 P1 或 P3 都能获得另一个所需的资源，环路自动解除，系统也就不存在死锁状态了。
 

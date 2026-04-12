@@ -44,7 +44,7 @@ head:
 
 如下图所示，包括任务执行机制的核心接口 **`Executor`** ，以及继承自 `Executor` 接口的 **`ExecutorService` 接口。`ThreadPoolExecutor`** 和 **`ScheduledThreadPoolExecutor`** 这两个关键类实现了 **`ExecutorService`** 接口。
 
-![](https://oss.javaguide.cn/github/javaguide/java/concurrent/executor-class-diagram.png)
+![](/oss/github/javaguide/java/concurrent/executor-class-diagram.png)
 
 这里提了很多底层的类关系，但是，实际上我们需要更多关注的是 `ThreadPoolExecutor` 这个类，这个类在我们实际使用线程池的过程中，使用频率还是非常高的。
 
@@ -134,7 +134,7 @@ public class ScheduledThreadPoolExecutor
 
 下面这张图可以加深你对线程池中各个参数的相互关系的理解（图片来源：《Java 性能调优实战》）：
 
-![线程池各个参数的关系](https://oss.javaguide.cn/github/javaguide/java/concurrent/relationship-between-thread-pool-parameters.png)
+![线程池各个参数的关系](/oss/github/javaguide/java/concurrent/relationship-between-thread-pool-parameters.png)
 
 ### 线程池生命周期状态
 
@@ -209,7 +209,7 @@ public static class CallerRunsPolicy implements RejectedExecutionHandler {
 
 **方式一：通过 `ThreadPoolExecutor` 构造函数直接创建 (推荐)**
 
-![](https://oss.javaguide.cn/github/javaguide/java/concurrent/threadpoolexecutor-construtors.png)
+![](/oss/github/javaguide/java/concurrent/threadpoolexecutor-construtors.png)
 
 这是最推荐的方式，因为它允许开发者明确指定线程池的核心参数，对线程池的运行行为有更精细的控制，从而避免资源耗尽的风险。
 
@@ -217,7 +217,7 @@ public static class CallerRunsPolicy implements RejectedExecutionHandler {
 
 `Executors`工具类提供的创建线程池的方法如下图所示：
 
-![](https://oss.javaguide.cn/github/javaguide/java/concurrent/executors-new-thread-pool-methods.png)
+![](/oss/github/javaguide/java/concurrent/executors-new-thread-pool-methods.png)
 
 可以看出，通过`Executors`工具类可以创建多种类型的线程池，包括：
 
@@ -462,7 +462,7 @@ Finished all threads  // 任务全部执行完了才会跳出来，因为executo
 3. 如果向任务队列投放任务失败（任务队列已经满了），并且当前工作线程总数小于最大线程数，就新建一个非核心线程来执行任务。
 4. 如果当前工作线程总数已经等同于最大线程数，任务队列也无法继续接收任务，那么当前任务会被拒绝，拒绝策略会调用 `RejectedExecutionHandler.rejectedExecution()` 方法。
 
-![图解线程池实现原理](https://oss.javaguide.cn/github/javaguide/java/concurrent/thread-pool-principle.png)
+![图解线程池实现原理](/oss/github/javaguide/java/concurrent/thread-pool-principle.png)
 
 在 `execute` 方法中，多次调用 `addWorker` 方法。`addWorker` 这个方法主要用来创建新的工作线程，如果返回 true 说明创建和启动工作线程成功，否则的话返回的就是 false。
 

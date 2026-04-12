@@ -45,7 +45,7 @@ echo $BASH_VERSION
 
 另外，了解 shell 编程也是大部分互联网公司招聘后端开发人员的要求。下图是我截取的一些知名互联网公司对于 Shell 编程的要求。
 
-![大型互联网公司对于shell编程技能的要求](https://oss.javaguide.cn/github/javaguide/cs-basics/shell/60190220.jpg)
+![大型互联网公司对于shell编程技能的要求](/oss/github/javaguide/cs-basics/shell/60190220.jpg)
 
 ### 什么是 Shell？
 
@@ -84,7 +84,7 @@ shell 中 # 符号表示注释。**shell 的第一行比较特殊，一般都会
 
 (4) 运行脚本:`./helloworld.sh` 。（注意，一定要写成 `./helloworld.sh` ，而不是 `helloworld.sh` ，运行其它二进制的程序也一样，直接写 `helloworld.sh` ，linux 系统会去 PATH 里寻找有没有叫 helloworld.sh 的，而只有 /bin, /sbin, /usr/bin，/usr/sbin 等在 PATH 里，你的当前目录通常不在 PATH 里，所以写成 `helloworld.sh` 是会找不到命令的，要用`./helloworld.sh` 告诉系统说，就在当前目录找。）
 
-![shell 编程Hello World](https://oss.javaguide.cn/github/javaguide/cs-basics/shell/55296212.jpg)
+![shell 编程Hello World](/oss/github/javaguide/cs-basics/shell/55296212.jpg)
 
 ## Shell 变量
 
@@ -122,7 +122,7 @@ echo $hello
 echo  "helloworld!"
 ```
 
-![使用自己定义的变量](https://oss.javaguide.cn/github/javaguide/cs-basics/shell/19835037.jpg)
+![使用自己定义的变量](/oss/github/javaguide/cs-basics/shell/19835037.jpg)
 
 **Shell 编程中的变量名的命名的注意事项：**
 
@@ -196,7 +196,7 @@ echo $greeting_2  $greeting_3
 
 输出结果：
 
-![输出结果](https://oss.javaguide.cn/github/javaguide/cs-basics/shell/51148933.jpg)
+![输出结果](/oss/github/javaguide/cs-basics/shell/51148933.jpg)
 
 **获取字符串长度：**
 

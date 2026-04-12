@@ -23,15 +23,15 @@ head:
 
 类似于京东建立的庞大仓储运输体系，京东物流在全国拥有非常多的仓库，仓储网络几乎覆盖全国所有区县。这样的话，用户下单的第一时间，商品就从距离用户最近的仓库直接发往对应的配送站，再由京东小哥送到你家。
 
-![京东仓配系统](https://oss.javaguide.cn/github/javaguide/high-performance/cdn/jingdong-wuliu-cangpei.png)
+![京东仓配系统](/oss/github/javaguide/high-performance/cdn/jingdong-wuliu-cangpei.png)
 
 你可以将 CDN 看作是服务上一层的**特殊缓存服务**，分布在全国各地，主要用来处理静态资源的请求。
 
-![CDN 简易示意图](https://oss.javaguide.cn/github/javaguide/high-performance/cdn/cdn-101.png)
+![CDN 简易示意图](/oss/github/javaguide/high-performance/cdn/cdn-101.png)
 
 我们经常拿全站加速和内容分发网络做对比，不要把两者搞混了！**全站加速**（不同云服务商叫法不同，腾讯云叫 ECDN、阿里云叫 DCDN）既可以加速静态资源又可以加速动态资源，而**内容分发网络（CDN）** 主要针对的是 **静态资源** 。
 
-![阿里云文档：https://help.aliyun.com/document_detail/64836.html](https://oss.javaguide.cn/github/javaguide/high-performance/cdn/cdn-aliyun-dcdn.png)
+![阿里云文档：https://help.aliyun.com/document_detail/64836.html](/oss/github/javaguide/high-performance/cdn/cdn-aliyun-dcdn.png)
 
 绝大部分公司都会在项目开发中使用 CDN 服务，但很少会有自建 CDN 服务的公司。基于成本、稳定性和易用性考虑，建议直接选择专业的云厂商（比如阿里云、腾讯云、华为云、青云）或者 CDN 厂商（比如网宿、蓝汛）提供的开箱即用的 CDN 服务。
 
@@ -68,13 +68,13 @@ CDN 缓存静态资源的方式主要有两种：**预热**和**回源**。
 
 CDN 缓存的完整生命周期如下图所示：
 
-![CDN 缓存的完整生命周期](https://oss.javaguide.cn/github/javaguide/high-performance/cdn/cdn-full-life-cycle-of-cdn-cache.png)
+![CDN 缓存的完整生命周期](/oss/github/javaguide/high-performance/cdn/cdn-full-life-cycle-of-cdn-cache.png)
 
 如果资源有更新，可以对其进行**刷新**操作，删除 CDN 节点上缓存的旧资源，并强制 CDN 节点在下次请求时回源获取最新资源。
 
 几乎所有云厂商提供的 CDN 服务都具备缓存的刷新和预热功能（下图是阿里云 CDN 服务提供的相应功能）：
 
-![CDN 缓存的刷新和预热](https://oss.javaguide.cn/github/javaguide/high-performance/cdn/cdn-refresh-warm-up.png)
+![CDN 缓存的刷新和预热](/oss/github/javaguide/high-performance/cdn/cdn-refresh-warm-up.png)
 
 **命中率**和**回源率**是衡量 CDN 服务质量的两个核心指标：
 
@@ -145,7 +145,7 @@ sequenceDiagram
 
 CDN 服务提供商几乎都支持这种基础的防盗链机制：
 
-![腾讯云 CDN Referer 防盗链配置](https://oss.javaguide.cn/github/javaguide/high-performance/cdn/cnd-tencent-cloud-anti-theft.png)
+![腾讯云 CDN Referer 防盗链配置](/oss/github/javaguide/high-performance/cdn/cnd-tencent-cloud-anti-theft.png)
 
 > **注意**：如果防盗链配置允许 Referer 为空，攻击者可以通过隐藏 Referer 的方式绕过防盗链检查。因此，Referer 防盗链通常需要配合其他机制一起使用。
 
@@ -164,11 +164,11 @@ http://cdn.example.com/video/123.mp4?wsSecret=79aead3bd7b5db4adeffb93a010298b5&w
 - `wsSecret`：签名字符串，由服务端根据密钥和请求信息计算生成。
 - `wsTime`：过期时间戳（Unix 时间戳格式）。
 
-![](https://oss.javaguide.cn/github/javaguide/high-performance/cdn/timestamp-anti-theft.png)
+![](/oss/github/javaguide/high-performance/cdn/timestamp-anti-theft.png)
 
 绝大部分 CDN 服务提供商都支持开箱即用的时间戳防盗链机制：
 
-![七牛云时间戳防盗链配置](https://oss.javaguide.cn/github/javaguide/high-performance/cdn/qiniuyun-timestamp-anti-theft.png)
+![七牛云时间戳防盗链配置](/oss/github/javaguide/high-performance/cdn/qiniuyun-timestamp-anti-theft.png)
 
 > **推荐实践**：生产环境建议采用 **Referer 防盗链 + 时间戳防盗链**的组合方案，兼顾安全性与实现成本。对于安全性要求极高的场景（如付费内容），可进一步引入 Token 鉴权机制。
 

@@ -144,7 +144,7 @@ public void print(List<String> list)  { }
 public void print(List<Integer> list) { }
 ```
 
-![泛型擦除的问题](https://oss.javaguide.cn/github/javaguide/java/basis/generics-runtime-erasure.png)
+![泛型擦除的问题](/oss/github/javaguide/java/basis/generics-runtime-erasure.png)
 
 原因也很简单，泛型擦除之后，`List<String>` 与 `List<Integer>` 在编译以后都变成了 `List` 。
 

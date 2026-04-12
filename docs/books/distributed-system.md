@@ -7,7 +7,7 @@ icon: "distributed-network"
 
 ## 《深入理解分布式系统》
 
-![](https://oss.javaguide.cn/github/javaguide/books/deep-understanding-of-distributed-system.png)
+![](/oss/github/javaguide/books/deep-understanding-of-distributed-system.png)
 
 **[《深入理解分布式系统》](https://book.douban.com/subject/35794814/)** 是 2022 年出版的一本分布式中文原创书籍，主要讲的是分布式领域的基本概念、常见挑战以及共识算法。
 
@@ -15,7 +15,7 @@ icon: "distributed-network"
 
 实话说，我还没有开始看这本书。但是！这本书的作者的博客上的分布式相关的文章我几乎每一篇都认真看过。作者从 2019 年开始构思《深入理解分布式系统》，2020 年开始动笔，花了接近两年的时间才最终交稿。
 
-![](https://oss.javaguide.cn/github/javaguide/books/image-20220706121952258.png)
+![](/oss/github/javaguide/books/image-20220706121952258.png)
 
 作者专门写了一篇文章来介绍这本书的背后的故事，感兴趣的小伙伴可以自行查阅：<https://zhuanlan.zhihu.com/p/487534882> 。
 
@@ -23,7 +23,7 @@ icon: "distributed-network"
 
 ## 《数据密集型应用系统设计》
 
-![](https://oss.javaguide.cn/github/javaguide/books/ddia.png)
+![](/oss/github/javaguide/books/ddia.png)
 
 强推一波 **[《Designing Data-Intensive Application》](https://book.douban.com/subject/30329536/)** （DDIA，数据密集型应用系统设计），值得读很多遍！豆瓣有接近 90% 的人看了这本书之后给了五星好评。
 
@@ -35,7 +35,7 @@ icon: "distributed-network"
 
 ## 《深入理解分布式事务》
 
-![](https://oss.javaguide.cn/github/javaguide/books/In-depth-understanding-of-distributed-transactions-xiaoyu.png)
+![](/oss/github/javaguide/books/In-depth-understanding-of-distributed-transactions-xiaoyu.png)
 
 **[《深入理解分布式事务》](https://book.douban.com/subject/35626925/)** 这本书的其中一位作者是 Apache ShenYu（incubating）网关创始人、Hmily、RainCat、Myth 等分布式事务框架的创始人。
 
@@ -43,7 +43,7 @@ icon: "distributed-network"
 
 ## 《从 Paxos 到 Zookeeper》
 
-![](https://oss.javaguide.cn/github/javaguide/books/image-20211216161350118.png)
+![](/oss/github/javaguide/books/image-20211216161350118.png)
 
 **[《从 Paxos 到 Zookeeper》](https://book.douban.com/subject/26292004/)** 是一本带你入门分布式理论的好书。这本书主要介绍几种典型的分布式一致性协议，以及解决分布式一致性问题的思路，其中重点讲解了 Paxos 和 ZAB 协议。
 
@@ -51,19 +51,19 @@ PS：Zookeeper 现在用的不多，可以不用重点学习，但 Paxos 和 ZAB
 
 ## 《深入理解分布式共识算法》
 
-![](https://oss.javaguide.cn/github/javaguide/books/deep-dive-into-distributed-consensus-algorithms.png)
+![](/oss/github/javaguide/books/deep-dive-into-distributed-consensus-algorithms.png)
 
 **[《深入理解分布式共识算法》](https://book.douban.com/subject/36335459/)** 详细剖析了 Paxos、Raft、Zab 等主流分布式共识算法的核心原理和实现细节。如果你想要了解分布式共识算法的话，不妨参考一下这本书的总结。
 
 ## 《微服务架构设计模式》
 
-![](https://oss.javaguide.cn/github/javaguide/books/microservices-patterns.png)
+![](/oss/github/javaguide/books/microservices-patterns.png)
 
 **[《微服务架构设计模式》](https://book.douban.com/subject/33425123/)** 的作者 Chris Richardson 被评为世界十大软件架构师之一、微服务架构先驱。这本书汇集了 44 个经过实践验证的架构设计模式，这些模式用来解决诸如服务拆分、事务管理、查询和跨服务通信等难题。书中的内容不仅理论扎实，还通过丰富的 Java 代码示例，引导读者一步步掌握开发和部署生产级别的微服务架构应用。
 
 ## 《凤凰架构》
 
-![](https://oss.javaguide.cn/github/javaguide/books/f5bec14d3b404ac4b041d723153658b5.png)
+![](/oss/github/javaguide/books/f5bec14d3b404ac4b041d723153658b5.png)
 
 **[《凤凰架构》](https://book.douban.com/subject/35492898/)** 这本书是周志明老师多年架构和研发经验的总结，内容非常干货，深度与广度并存，理论结合实践！
 

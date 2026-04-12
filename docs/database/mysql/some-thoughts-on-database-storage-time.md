@@ -113,7 +113,7 @@ SET GLOBAL time_zone = 'Europe/Helsinki';
 
 下图是 MySQL 日期类型所占的存储空间（官方文档传送门：<https://dev.mysql.com/doc/refman/8.0/en/storage-requirements.html>）：
 
-![](https://oss.javaguide.cn/github/javaguide/FhRGUVHFK0ujRPNA75f6CuOXQHTE.jpeg)
+![](/oss/github/javaguide/FhRGUVHFK0ujRPNA75f6CuOXQHTE.jpeg)
 
 在 MySQL 5.6.4 之前，DateTime 和 TIMESTAMP 的存储空间是固定的，分别为 8 字节和 4 字节。但是从 MySQL 5.6.4 开始，它们的存储空间会根据毫秒精度的不同而变化，DateTime 的范围是 5~8 字节，TIMESTAMP 的范围是 4~7 字节。
 
@@ -166,7 +166,7 @@ mysql> SELECT FROM_UNIXTIME(1578707612);
 
 由于有读者提到 PostgreSQL（PG） 的时间类型，因此这里拓展补充一下。PG 官方文档对时间类型的描述地址：<https://www.postgresql.org/docs/current/datatype-datetime.html>。
 
-![PostgreSQL 时间类型总结](https://oss.javaguide.cn/github/javaguide/mysql/pg-datetime-types.png)
+![PostgreSQL 时间类型总结](/oss/github/javaguide/mysql/pg-datetime-types.png)
 
 可以看到，PG 没有名为 `DATETIME` 的类型：
 
@@ -183,7 +183,7 @@ MySQL 中时间到底怎么存储才好？`DATETIME`?`TIMESTAMP`?还是数值时
 
 《高性能 MySQL 》这本神书的作者就是推荐 TIMESTAMP，原因是数值表示时间不够直观。下面是原文：
 
-<img src="https://oss.javaguide.cn/github/javaguide/%E9%AB%98%E6%80%A7%E8%83%BDmysql-%E4%B8%8D%E6%8E%A8%E8%8D%90%E7%94%A8%E6%95%B0%E5%80%BC%E6%97%B6%E9%97%B4%E6%88%B3.jpg" style="zoom:50%;" />
+<img src="/oss/github/javaguide/%E9%AB%98%E6%80%A7%E8%83%BDmysql-%E4%B8%8D%E6%8E%A8%E8%8D%90%E7%94%A8%E6%95%B0%E5%80%BC%E6%97%B6%E9%97%B4%E6%88%B3.jpg" style="zoom:50%;" />
 
 每种方式都有各自的优势，根据实际场景选择最合适的才是王道。下面再对这三种方式做一个简单的对比，以供大家实际开发中选择正确的存放时间的数据类型：
 

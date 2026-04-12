@@ -43,7 +43,7 @@ head:
 
 [《Java 面试指北》](https://javaguide.cn/zhuanlan/java-mian-shi-zhi-bei.html) 的 「技术面试题自测篇」概览：
 
-![技术面试题自测篇](https://oss.javaguide.cn/javamianshizhibei/technical-interview-questions-self-test.png)
+![技术面试题自测篇](/oss/javamianshizhibei/technical-interview-questions-self-test.png)
 
 ### 多表达
 

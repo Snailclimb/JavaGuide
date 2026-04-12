@@ -25,7 +25,7 @@ JDK 16 共有 17 个新特性，这篇文章会挑选其中较为重要的一些
 
 下图是从 JDK 8 到 JDK 25 每个版本的更新带来的新特性数量和更新时间：
 
-![ JDK 8 到 JDK 25 每个版本的更新带来的新特性数量和更新时间](https://oss.javaguide.cn/github/javaguide/java/new-features/jdk8~jdk24.png)
+![ JDK 8 到 JDK 25 每个版本的更新带来的新特性数量和更新时间](/oss/github/javaguide/java/new-features/jdk8~jdk24.png)
 
 相关阅读：[OpenJDK Java 16 文档](https://openjdk.java.net/projects/jdk/16/) 。
 

@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500" style="background-color: #F8FAFC; font-family: system-ui, sans-serif;">
+    <defs>
+        <pattern id="dot-grid-6" width="20" height="20" patternUnits="userSpaceOnUse">
+            <circle cx="2" cy="2" r="1" fill="#E2E8F0" />
+        </pattern>
+        <filter id="card-shadow-6">
+            <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#005D7B" flood-opacity="0.08" />
+        </filter>
+    </defs>
+
+    <rect width="100%" height="100%" fill="url(#dot-grid-6)" />
+    
+    <text x="300" y="50" text-anchor="middle" font-size="22" font-weight="bold" fill="#005D7B">持续进化的 Harness 防错反馈闭环</text>
+
+    <g transform="translate(225, 200)">
+        <rect width="150" height="80" rx="12" fill="#FFFFFF" stroke="#005D7B" stroke-width="2" filter="url(#card-shadow-6)" />
+        <text x="75" y="35" text-anchor="middle" font-size="16" font-weight="bold" fill="#005D7B">AGENTS.md</text>
+        <text x="75" y="60" text-anchor="middle" font-size="12" fill="#64748B">事实源与规则库</text>
+    </g>
+
+    <g transform="translate(420, 200)">
+        <rect width="140" height="80" rx="8" fill="#FFFFFF" filter="url(#card-shadow-6)" />
+        <rect width="6" height="80" x="0" y="0" rx="3" fill="#4CA497" />
+        <text x="70" y="35" text-anchor="middle" font-size="14" font-weight="bold" fill="#005D7B">Agent 执行</text>
+        <text x="70" y="60" text-anchor="middle" font-size="12" fill="#64748B">读取现有规则执行</text>
+    </g>
+
+    <g transform="translate(225, 360)">
+        <rect width="150" height="80" rx="8" fill="#FFFFFF" filter="url(#card-shadow-6)" />
+        <rect width="150" height="6" x="0" y="0" rx="3" fill="#E99151" />
+        <text x="75" y="35" text-anchor="middle" font-size="14" font-weight="bold" fill="#005D7B">触发错误/偏离</text>
+        <text x="75" y="60" text-anchor="middle" font-size="12" fill="#64748B">识别出新的失败类型</text>
+    </g>
+
+    <g transform="translate(40, 200)">
+        <rect width="140" height="80" rx="8" fill="#FFFFFF" filter="url(#card-shadow-6)" />
+        <rect width="6" height="80" x="134" y="0" rx="3" fill="#005D7B" />
+        <text x="70" y="35" text-anchor="middle" font-size="14" font-weight="bold" fill="#005D7B">工程化兜底</text>
+        <text x="70" y="60" text-anchor="middle" font-size="12" fill="#64748B">转化为 Linter 规则或</text>
+        <text x="70" y="75" text-anchor="middle" font-size="12" fill="#64748B">追加一行防错文档</text>
+    </g>
+
+    <path d="M 375 240 L 420 240" fill="none" stroke="#005D7B" stroke-width="2" />
+    <path d="M 490 280 Q 490 400 375 400" fill="none" stroke="#E99151" stroke-width="2" stroke-dasharray="5,5" />
+    <polygon points="375,400 385,395 385,405" fill="#E99151" />
+    <path d="M 225 400 Q 110 400 110 280" fill="none" stroke="#005D7B" stroke-width="2" />
+    <polygon points="110,280 105,290 115,290" fill="#005D7B" />
+    <path d="M 180 240 L 225 240" fill="none" stroke="#4CA497" stroke-width="2" />
+    <polygon points="225,240 215,235 215,245" fill="#4CA497" />
+
+</svg>

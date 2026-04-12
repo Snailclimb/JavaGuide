@@ -1,6 +1,6 @@
 [《Java 必读源码系列》](../zhuanlan/source-code-reading.md)（点击链接即可查看详细介绍）的部分内容展示如下。
 
-![《Java 必读源码系列》](https://oss.javaguide.cn/xingqiu/image-20220621091832348.png)
+![《Java 必读源码系列》](/oss/xingqiu/image-20220621091832348.png)
 
 为了帮助更多同学准备 Java 面试以及学习 Java ，我创建了一个纯粹的[Java 面试知识星球](../about-the-author/zhishixingqiu-two-years.md)。虽然收费只有培训班/训练营的百分之一，但是知识星球里的内容质量更高，提供的服务也更全面，非常适合准备 Java 面试和学习 Java 的同学。
 
@@ -8,7 +8,7 @@
 
 下面是星球提供的部分服务（点击下方图片即可获取知识星球的详细介绍）：
 
-[![星球服务](https://oss.javaguide.cn/xingqiu/xingqiufuwu.png)](../about-the-author/zhishixingqiu-two-years.md)
+[![星球服务](/oss/xingqiu/xingqiufuwu.png)](../about-the-author/zhishixingqiu-two-years.md)
 
 **我有自己的原则，不割韭菜，用心做内容，真心希望帮助到你！**
 
@@ -16,7 +16,7 @@
 
 这里再送一个 **30** 元的星球专属优惠券，数量有限（价格即将上调。老用户续费半价 ，微信扫码即可续费）！
 
-![知识星球30元优惠卷](https://oss.javaguide.cn/xingqiu/xingqiuyouhuijuan-30.jpg)
+![知识星球30元优惠卷](/oss/xingqiu/xingqiuyouhuijuan-30.jpg)
 
 进入星球之后，记得查看 **[星球使用指南](https://t.zsxq.com/0d18KSarv)** （一定要看！！！） 和 **[星球优质主题汇总](https://t.zsxq.com/12uSKgTIm)** 。
 

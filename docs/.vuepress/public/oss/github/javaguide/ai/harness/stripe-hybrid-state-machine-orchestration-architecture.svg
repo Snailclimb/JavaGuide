@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 350" style="background-color: #F8FAFC; font-family: system-ui, sans-serif;">
+    <defs>
+        <pattern id="grid-5" width="30" height="30" patternUnits="userSpaceOnUse">
+            <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#E2E8F0" stroke-width="1"/>
+        </pattern>
+        <filter id="shadow-5">
+            <feDropShadow dx="2" dy="6" stdDeviation="8" flood-color="#005D7B" flood-opacity="0.05" />
+        </filter>
+        <filter id="glow-teal">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feMerge>
+                <feMergeNode in="blur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+
+    <rect width="100%" height="100%" fill="url(#grid-5)" />
+    
+    <text x="450" y="40" text-anchor="middle" font-size="22" font-weight="bold" fill="#005D7B">Stripe 混合状态机编排架构</text>
+
+    <g transform="translate(30, 150)">
+        <rect width="100" height="50" rx="8" fill="#FFFFFF" filter="url(#shadow-5)" />
+        <text x="50" y="30" text-anchor="middle" font-size="14" font-weight="bold" fill="#005D7B">Slack 触发</text>
+    </g>
+
+    <path d="M 130 175 L 180 175" fill="none" stroke="#4CA497" stroke-width="2" />
+    <g transform="translate(180, 140)">
+        <rect width="140" height="70" rx="8" fill="#FFFFFF" stroke="#4CA497" stroke-width="2" filter="url(#shadow-5)" />
+        <circle cx="10" cy="10" r="4" fill="#4CA497" filter="url(#glow-teal)" />
+        <text x="70" y="30" text-anchor="middle" font-size="14" font-weight="bold" fill="#4CA497">实现功能</text>
+        <text x="70" y="50" text-anchor="middle" font-size="12" fill="#64748B">(Agent 节点)</text>
+    </g>
+
+    <path d="M 320 175 L 370 175" fill="none" stroke="#005D7B" stroke-width="2" />
+    <g transform="translate(370, 140)">
+        <rect width="140" height="70" rx="8" fill="#FFFFFF" filter="url(#shadow-5)" />
+        <rect width="4" height="70" x="0" y="0" rx="2" fill="#005D7B" />
+        <text x="70" y="30" text-anchor="middle" font-size="14" font-weight="bold" fill="#005D7B">代码检查与推送</text>
+        <text x="70" y="50" text-anchor="middle" font-size="12" fill="#64748B">(确定性节点)</text>
+    </g>
+
+    <path d="M 510 175 L 560 175" fill="none" stroke="#005D7B" stroke-width="2" />
+    <g transform="translate(560, 140)">
+        <rect width="120" height="70" rx="8" fill="#FFFFFF" filter="url(#shadow-5)" />
+        <rect width="4" height="70" x="0" y="0" rx="2" fill="#005D7B" />
+        <text x="60" y="30" text-anchor="middle" font-size="14" font-weight="bold" fill="#005D7B">CI / CD</text>
+        <text x="60" y="50" text-anchor="middle" font-size="12" fill="#64748B">300万+ 测试</text>
+    </g>
+
+    <path d="M 680 175 L 750 175" fill="none" stroke="#4CA497" stroke-width="2" />
+    <g transform="translate(750, 150)">
+        <rect width="100" height="50" rx="8" fill="#F8FAFC" stroke="#4CA497" stroke-width="1" />
+        <text x="50" y="30" text-anchor="middle" font-size="14" font-weight="bold" fill="#4CA497">自动合入 PR</text>
+    </g>
+
+    <path d="M 620 140 L 620 80 L 250 80 L 250 140" fill="none" stroke="#E99151" stroke-width="2" stroke-dasharray="6,4" />
+    <circle cx="620" cy="140" r="4" fill="#E99151" />
+    <polygon points="250,140 245,130 255,130" fill="#E99151" />
+    <text x="435" y="70" text-anchor="middle" font-size="13" font-weight="bold" fill="#E99151">CI 失败：Agent 自动修复 (最多2轮)</text>
+</svg>

@@ -45,7 +45,7 @@ SSO 英文全称 Single Sign On，单点登录。SSO 是在多个应用系统中
 
 ### 核心应用与依赖
 
-![单点登录（SSO）设计](https://oss.javaguide.cn/github/javaguide/system-design/security/sso/sso-system.png-kblb.png)
+![单点登录（SSO）设计](/oss/github/javaguide/system-design/security/sso/sso-system.png-kblb.png)
 
 | 应用/模块/对象    | 说明                                |
 | ----------------- | ----------------------------------- |
@@ -77,7 +77,7 @@ SSO 英文全称 Single Sign On，单点登录。SSO 是在多个应用系统中
 
 **登录时序图**
 
-![SSO系统设计-登录时序图](https://oss.javaguide.cn/github/javaguide/system-design/security/sso/sso-login-sequence.png-kbrb.png)
+![SSO系统设计-登录时序图](/oss/github/javaguide/system-design/security/sso/sso-login-sequence.png-kbrb.png)
 
 按照上图，用户登录后 AuthToken 保存在 Cookie 中。 domain=test.com
 浏览器会将 domain 设置成 .test.com，
@@ -87,7 +87,7 @@ SSO 英文全称 Single Sign On，单点登录。SSO 是在多个应用系统中
 
 **登录信息获取/登录状态校验**
 
-![SSO系统设计-登录信息获取/登录状态校验](https://oss.javaguide.cn/github/javaguide/system-design/security/sso/sso-logincheck-sequence.png-kbrb.png)
+![SSO系统设计-登录信息获取/登录状态校验](/oss/github/javaguide/system-design/security/sso/sso-logincheck-sequence.png-kbrb.png)
 
 ### 用户登出
 
@@ -98,7 +98,7 @@ SSO 英文全称 Single Sign On，单点登录。SSO 是在多个应用系统中
 
 **登出时序图**
 
-![SSO系统设计-用户登出](https://oss.javaguide.cn/github/javaguide/system-design/security/sso/sso-logout-sequence.png-kbrb.png)
+![SSO系统设计-用户登出](/oss/github/javaguide/system-design/security/sso/sso-logout-sequence.png-kbrb.png)
 
 ### 跨域登录、登出
 
@@ -111,15 +111,15 @@ SSO 英文全称 Single Sign On，单点登录。SSO 是在多个应用系统中
 
 **跨域登录（主域名已登录）**
 
-![SSO系统设计-跨域登录（主域名已登录）](https://oss.javaguide.cn/github/javaguide/system-design/security/sso/sso-crossdomain-login-loggedin-sequence.png-kbrb.png)
+![SSO系统设计-跨域登录（主域名已登录）](/oss/github/javaguide/system-design/security/sso/sso-crossdomain-login-loggedin-sequence.png-kbrb.png)
 
 **跨域登录（主域名未登录）**
 
-![SSO系统设计-跨域登录（主域名未登录）](https://oss.javaguide.cn/github/javaguide/system-design/security/sso/sso-crossdomain-login-unlogin-sequence.png-kbrb.png)
+![SSO系统设计-跨域登录（主域名未登录）](/oss/github/javaguide/system-design/security/sso/sso-crossdomain-login-unlogin-sequence.png-kbrb.png)
 
 **跨域登出**
 
-![SSO系统设计-跨域登出](https://oss.javaguide.cn/github/javaguide/system-design/security/sso/sso-crossdomain-logout-sequence.png-kbrb.png)
+![SSO系统设计-跨域登出](/oss/github/javaguide/system-design/security/sso/sso-crossdomain-logout-sequence.png-kbrb.png)
 
 ## 说明
 

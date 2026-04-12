@@ -67,9 +67,9 @@ Skills 把 AI 应用从”个人技巧”拉到了”工程化”的层面。今
 - **Skills 解决的是编排逻辑** ：它像一份说明书，告诉 AI 如何执行复杂任务流——这些任务完全可以包括调用多个 MCP 工具。
 - **两者的关系** ：它们解决的是不同层面的问题。MCP 负责把外部系统接入进来，Skills 负责决定什么时候用、怎么组合这些能力。一个高级 Skill 的底层往往就是调用多个 MCP 工具。
 
-![MCP 图解](https://oss.javaguide.cn/github/javaguide/ai/skills/mcp-simple-diagram.png)
+![MCP 图解](/oss/github/javaguide/ai/skills/mcp-simple-diagram.png)
 
-![Skills vs MCP](https://oss.javaguide.cn/github/javaguide/ai/skills/mcp-mcp-vs-skills.png)
+![Skills vs MCP](/oss/github/javaguide/ai/skills/mcp-mcp-vs-skills.png)
 
 **3. Function Calling vs Skills**
 
@@ -144,11 +144,11 @@ skill-name/
 
 **https://skills.sh/** 这个网站上可以查找自己需要和热门的 Skiils。
 
-![查找自己需要和热门的 Skiils](https://oss.javaguide.cn/github/javaguide/ai/skills/skillssh.png)
+![查找自己需要和热门的 Skiils](/oss/github/javaguide/ai/skills/skillssh.png)
 
 这里 Guide 多提一下，回答这个问题的时候，你也可以说自己团队用到了一些开源的软件开发 Skills 集合，例如 Superpowers 中内置的。
 
-![Superpowers 内置的 skills](https://oss.javaguide.cn/github/javaguide/ai/skills/superpowers-skills.png)
+![Superpowers 内置的 skills](/oss/github/javaguide/ai/skills/superpowers-skills.png)
 
 另外，很多 AI 编程 CLI 和 IDE 也会内置一些开箱即用的 Skills，例如 Claude Code 就内置了：
 

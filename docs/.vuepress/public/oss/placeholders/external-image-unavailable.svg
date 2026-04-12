@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">External image unavailable</title>
+  <desc id="desc">The original external image could not be downloaded, so a local placeholder is shown instead.</desc>
+  <rect width="1200" height="630" fill="#f4f4f5" />
+  <rect x="40" y="40" width="1120" height="550" rx="24" fill="#ffffff" stroke="#d4d4d8" stroke-width="4" />
+  <path d="M220 430l160-180 130 140 90-90 180 130h120" fill="none" stroke="#94a3b8" stroke-linecap="round" stroke-linejoin="round" stroke-width="28" />
+  <circle cx="400" cy="220" r="42" fill="#cbd5e1" />
+  <text x="600" y="250" fill="#111827" font-family="Segoe UI, Arial, sans-serif" font-size="44" font-weight="600" text-anchor="middle">
+    External image unavailable
+  </text>
+  <text x="600" y="320" fill="#4b5563" font-family="Segoe UI, Arial, sans-serif" font-size="28" text-anchor="middle">
+    The source URL returned 404, so this placeholder is used on GitHub Pages.
+  </text>
+</svg>

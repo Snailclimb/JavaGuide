@@ -12,7 +12,7 @@ head:
 
 > **推荐语**：这是[《Java 面试指北》](https://javaguide.cn/zhuanlan/java-mian-shi-zhi-bei.html)练级攻略篇中的一篇文章，分享了我对于如何快速学习一门新技术的看法。
 >
-> ![《Java 面试指北》练级攻略篇](https://oss.javaguide.cn/javamianshizhibei/training-strategy-articles.png)
+> ![《Java 面试指北》练级攻略篇](/oss/javamianshizhibei/training-strategy-articles.png)
 
 很多时候，我们因为工作原因需要快速学习某项技术，进而在项目中应用。或者说，我们想要去面试的公司要求的某项技术我们之前没有接触过，为了应对面试需要，我们需要快速掌握这项技术。
 
@@ -22,7 +22,7 @@ head:
 
 比如说我们在学习 Spring 的时候，通过 Spring 官方文档你就可以知道 Spring 最新的技术动态，Spring 包含哪些模块 以及 Spring 可以帮你解决什么问题。
 
-![](https://oss.javaguide.cn/github/javaguide/system-design/web-real-time-message-push/20210506110341207.png)
+![](/oss/github/javaguide/system-design/web-real-time-message-push/20210506110341207.png)
 
 再比如说我在学习消息队列的时候，我会先去了解这个消息队列一般在系统中有什么作用，帮助我们解决了什么问题。消息队列的种类很多，具体学习研究某个消息队列的时候，我会将其和自己已经学习过的消息队列作比较。像我自己在学习 RocketMQ 的时候，就会先将其和自己曾经学习过的第 1 个消息队列 ActiveMQ 进行比较，思考 RocketMQ 相对于 ActiveMQ 有了哪些提升，解决了 ActiveMQ 的哪些痛点，两者有哪些相似的地方，又有哪些不同的地方。
 

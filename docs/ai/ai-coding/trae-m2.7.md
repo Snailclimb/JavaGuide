@@ -29,15 +29,15 @@ Trae 支持接入多种大模型，下面以接入自定义模型为例，演示
 
 **第二步**：在 Trae 中点击"Add Model"添加自定义模型：
 
-![Trae添加模型入口](https://oss.javaguide.cn/github/javaguide/ai/coding/m2.7/trae-add-model-entry.png)
+![Trae添加模型入口](/oss/github/javaguide/ai/coding/m2.7/trae-add-model-entry.png)
 
 **第三步**：选择"Other Models"并手动输入模型 ID 和 API Key：
 
-![选择Other Models](https://oss.javaguide.cn/github/javaguide/ai/coding/m2.7/select-other-models.png)
+![选择Other Models](/oss/github/javaguide/ai/coding/m2.7/select-other-models.png)
 
 **第四步**：输入模型 ID（如 `MiniMax-M2.7`）和申请的 API Key，点击"Add Model"。若无报错提示，即表示接入成功：
 
-![输入模型ID和API Key](https://oss.javaguide.cn/github/javaguide/ai/coding/m2.7/input-minimax-m2.7-api-key.png)
+![输入模型ID和API Key](/oss/github/javaguide/ai/coding/m2.7/input-minimax-m2.7-api-key.png)
 
 接入完成后，就可以在 Trae 中使用该模型进行 AI 辅助编程了。接下来通过两个实战场景，分享具体的使用方式和技巧。
 
@@ -87,7 +87,7 @@ public String getConfigValue(String configKey, String environment) {
 ...... 异常堆栈关键信息：`java.net.SocketTimeoutException: Read timed out`
 ```
 
-![向M2.7下达的诊断指令截图](https://oss.javaguide.cn/github/javaguide/ai/coding/m2.7/m2.7-diagnostic-instruction.png)
+![向M2.7下达的诊断指令截图](/oss/github/javaguide/ai/coding/m2.7/m2.7-diagnostic-instruction.png)
 
 模型收到请求后，很快定位到指定代码的上下文，并推理出4种可能的根因：
 
@@ -96,7 +96,7 @@ public String getConfigValue(String configKey, String environment) {
 - Redis 连接泄漏（连接未正确关闭）
 - Redis 服务器负载过高
 
-![M2.7推理结果截图](https://oss.javaguide.cn/github/javaguide/ai/coding/m2.7/m2.7-inference-result.png)
+![M2.7推理结果截图](/oss/github/javaguide/ai/coding/m2.7/m2.7-inference-result.png)
 
 到这一步，模型已经把问题空间从"N处Redis调用"压缩到了"4种可能根因"——这种**快速收敛问题范围**的能力，是 AI 辅助排查的核心价值。接下来看它的止血思路。
 
@@ -104,11 +104,11 @@ public String getConfigValue(String configKey, String environment) {
 
 模型针对既定异常栈帧快速梳理了代码调用逻辑，准确地指出：列表查询接口被切面拦截，连接池耗尽是500错误的根因。另外一个关键点，它指出了这段代码缺乏降级策略——这一点笔者是在复盘会上才意识到的。
 
-![M2.7代码调用链路分析截图](https://oss.javaguide.cn/github/javaguide/ai/coding/m2.7/m2.7-call-chain-analysis.png)
+![M2.7代码调用链路分析截图](/oss/github/javaguide/ai/coding/m2.7/m2.7-call-chain-analysis.png)
 
 针对线上问题，止血策略是最关键的环节。模型给出了几个解决方案，第一个就是临时关闭权限校验开关——原因在于方案一需要清除Redis缓存数据。虽然方案有些激进，不过，它详细指出了代码的调用链路和表结构信息，这也能很好地辅助我通过业务语义猜测可能的场景和原因。
 
-![M2.7调用链路分析](https://oss.javaguide.cn/github/javaguide/ai/coding/m2.7/m2.7-call-chain-analysis-2.png)
+![M2.7调用链路分析](/oss/github/javaguide/ai/coding/m2.7/m2.7-call-chain-analysis-2.png)
 
 基于模型提供的调用链路信息，笔者进一步询问方案一的技术依据，确保业务理解上快速对齐：
 
@@ -120,11 +120,11 @@ public String getConfigValue(String configKey, String environment) {
 
 经过不到10分钟的交互，笔者不仅迅速获得一个宏观的架构视角，理解了当前复杂架构的故障和各解决方案的依据，例如方案一：通过修改数据库配置重启刷新缓存来规避权限校验。
 
-![M2.7调用链路图截图](https://oss.javaguide.cn/github/javaguide/ai/coding/m2.7/m2.7-call-chain-diagram.png)
+![M2.7调用链路图截图](/oss/github/javaguide/ai/coding/m2.7/m2.7-call-chain-diagram.png)
 
 我们再来看看方案三的思路：当Redis不可用时，使用本地缓存或默认值，避免级联失败。模型结合当前工程代码段给出了修改建议：
 
-![M2.7方案三代码片段](https://oss.javaguide.cn/github/javaguide/ai/coding/m2.7/m2.7-solution-3-code.png)
+![M2.7方案三代码片段](/oss/github/javaguide/ai/coding/m2.7/m2.7-solution-3-code.png)
 
 模型分析后，我们对问题有了初步的判断：Redis客户端连接池耗尽，导致日常业务接口基于缓存开关查询逻辑崩溃，进而引发雪崩效应。综合模型的多个建议，本着保守、快速止血、业务高峰期不压垮数据库的原则，得出以下hotfix方案：
 
@@ -139,11 +139,11 @@ public String getConfigValue(String configKey, String environment) {
 
 ```
 
-![hotfix方案指令](https://oss.javaguide.cn/github/javaguide/ai/coding/m2.7/hotfix-instruction.png)
+![hotfix方案指令](/oss/github/javaguide/ai/coding/m2.7/hotfix-instruction.png)
 
 模型收到指令后，准确理解了问题，完成任务拆解并逐步执行：
 
-![M2.7任务拆解过程](https://oss.javaguide.cn/github/javaguide/ai/coding/m2.7/m2.7-task-breakdown.png)
+![M2.7任务拆解过程](/oss/github/javaguide/ai/coding/m2.7/m2.7-task-breakdown.png)
 
 最终输出的代码结果如下：模型在原有权限校验逻辑中整合了数据库降级查询，对权限校验逻辑的理解和复杂设计的整合做得比较到位。
 
@@ -300,19 +300,19 @@ public class LocalCacheManager {
 结合本次发生的具体故障现象和表现特征，对项目进行全面的系统性全局分析。分析范围应覆盖项目架构、代码实现、依赖管理、环境配置、数据交互等多个维度，重点识别并输出可能导致生产故障的直接原因。
 ```
 
-![M2.7全局分析指令](https://oss.javaguide.cn/github/javaguide/ai/coding/m2.7/m2.7-global-analysis-instruction.png)
+![M2.7全局分析指令](/oss/github/javaguide/ai/coding/m2.7/m2.7-global-analysis-instruction.png)
 
 此时模型开始基于全局项目结构和上下文进行详细的阅读和推理分析：
 
-![M2.7项目结构分析](https://oss.javaguide.cn/github/javaguide/ai/coding/m2.7/m2.7-project-structure-analysis.png)
+![M2.7项目结构分析](/oss/github/javaguide/ai/coding/m2.7/m2.7-project-structure-analysis.png)
 
 最终模型给出了详细的故障分析报告，指出根因：不当的Redis数据结构设计使用scan操作导致连接池夯死。同时，还结合上下文给出了该操作的业务流程，便于我们迅速理解这条故障链路：
 
-![M2.7故障根因分析](https://oss.javaguide.cn/github/javaguide/ai/coding/m2.7/m2.7-root-cause-analysis.png)
+![M2.7故障根因分析](/oss/github/javaguide/ai/coding/m2.7/m2.7-root-cause-analysis.png)
 
 而解决方案也是非常干净利落，通过优化数据结构的方式降低Redis读写操作的时间复杂度，避免连接池夯死：
 
-![M2.7优化方案建议](https://oss.javaguide.cn/github/javaguide/ai/coding/m2.7/m2.7-optimization-suggestion.png)
+![M2.7优化方案建议](/oss/github/javaguide/ai/coding/m2.7/m2.7-optimization-suggestion.png)
 
 场景一整体体验不错。从N处Redis调用中精准定位根因，到给出完整止血方案，整个推理链条清晰完整。
 
@@ -334,15 +334,15 @@ public class LocalCacheManager {
 
 等待片刻后，模型明确指出技术要求，自底向上地介绍数据结构到执行链路，进行了详尽的分析和介绍：
 
-![M2.7慢查询数据结构分析](https://oss.javaguide.cn/github/javaguide/ai/coding/m2.7/m2.7-slowlog-data-structure.png)
+![M2.7慢查询数据结构分析](/oss/github/javaguide/ai/coding/m2.7/m2.7-slowlog-data-structure.png)
 
 查看其对慢查询切面逻辑的定位非常准确，在主流程上输出了必要的注释，让我快速了解慢查询的整体处理流程：
 
-![M2.7慢查询切面逻辑](https://oss.javaguide.cn/github/javaguide/ai/coding/m2.7/m2.7-slowlog-aspect-logic.png)
+![M2.7慢查询切面逻辑](/oss/github/javaguide/ai/coding/m2.7/m2.7-slowlog-aspect-logic.png)
 
 再看其对slot get指令的理解，也非常到位，思路和资深开发一样，抓大放小，明确核心逻辑，在主流程上输出必要的注释：
 
-![M2.7 slot get指令分析](https://oss.javaguide.cn/github/javaguide/ai/coding/m2.7/m2.7-slot-get-instruction.png)
+![M2.7 slot get指令分析](/oss/github/javaguide/ai/coding/m2.7/m2.7-slot-get-instruction.png)
 
 确认模型对慢查询有了准确的理解后，接下来让它以开发专家的视角进行功能拆解、落地、测试回归的完整设计文档：
 
@@ -388,29 +388,29 @@ public class LocalCacheManager {
 ```
 
 等待片刻后，我们收到一份设计文档。模型结合Redis源代码上下文，梳理出慢查询的核心脉络和关键定义，并规划出完整的开发步骤：
-![慢查询设计文档](https://oss.javaguide.cn/github/javaguide/ai/coding/m2.7/m2.7-slowlog-design-doc.png)
+![慢查询设计文档](/oss/github/javaguide/ai/coding/m2.7/m2.7-slowlog-design-doc.png)
 
 ### 编码实现
 
 我们从Redis源代码中抽取设计文档后，为确保C语言工程的设计思路能在个人Go语言项目工程规范中准确落地，将其复制到mini-redis项目，让模型分析方案的可行性和修改建议：
 
-![M2.7可行性分析](https://oss.javaguide.cn/github/javaguide/ai/coding/m2.7/m2.7-feasibility-analysis.png)
+![M2.7可行性分析](/oss/github/javaguide/ai/coding/m2.7/m2.7-feasibility-analysis.png)
 
 等待片刻后模型完成文档最后的可行性分析和整理，我们开始对其设计方案进行进一步的复核确认。从项目概述上可以看到，模型针对mini-redis项目结构进行了分析，准确地定位到慢查询可以直接复用的链表结构体并完成文档微调：
 
-![M2.7链表结构体分析](https://oss.javaguide.cn/github/javaguide/ai/coding/m2.7/m2.7-linked-list-structure.png)
+![M2.7链表结构体分析](/oss/github/javaguide/ai/coding/m2.7/m2.7-linked-list-structure.png)
 
 再来看看最关键的数据结构实现思路，模型也结合mini-redis的编码规范，生成了Go语言风格的结构体：
 
-![M2.7 Go风格结构体](https://oss.javaguide.cn/github/javaguide/ai/coding/m2.7/m2.7-go-style-struct.png)
+![M2.7 Go风格结构体](/oss/github/javaguide/ai/coding/m2.7/m2.7-go-style-struct.png)
 
 针对慢查询时间测量，有个细节值得提一下。个人实现的指令处理入口和原生Redis有些设计上的出入：由于Go语言语法糖特性，笔者对指针、指针函数以及文件编排做了特殊处理。模型准确地基于笔者的协程模型定位到时间测量的切面，完成前置计时和后置统计，实现慢查询监控。
 
-![M2.7时间测量切面](https://oss.javaguide.cn/github/javaguide/ai/coding/m2.7/m2.7-time-measurement-aspect.png)
+![M2.7时间测量切面](/oss/github/javaguide/ai/coding/m2.7/m2.7-time-measurement-aspect.png)
 
 最后就是核心的慢查询指令实现，无论是参数解析还是指令查询和响应处理函数，模型都结合笔者的当前项目封装的逻辑给出了明确的编码方案：
 
-![M2.7慢查询指令实现](https://oss.javaguide.cn/github/javaguide/ai/coding/m2.7/m2.7-slowlog-command-implementation.png)
+![M2.7慢查询指令实现](/oss/github/javaguide/ai/coding/m2.7/m2.7-slowlog-command-implementation.png)
 
 经过仔细复核设计文档，整体开发思路基本一致，但在代码组织细节上仍有调优空间——例如模型将`slowlog`指令独立成文件，而未遵循项目惯例统一放入`command.go`。考虑到慢查询功能并非核心内存读写指令，且其日志管理逻辑相对独立，这一处理也算合理折中。权衡之后，我们决定保留模型的实现方式，同时手动调整部分文件布局以符合既有工程规范，随后推进剩余开发工作。
 
@@ -426,7 +426,7 @@ public class LocalCacheManager {
 
 因为笔者需要将慢查询时间设置为0，方便对慢查询指令做最后的验收工作，所以笔者索性再次对其提出加载配置的需求：
 
-![M2.7配置加载实现](https://oss.javaguide.cn/github/javaguide/ai/coding/m2.7/m2.7-config-loading.png)
+![M2.7配置加载实现](/oss/github/javaguide/ai/coding/m2.7/m2.7-config-loading.png)
 
 整个逻辑梳理和开发工作不到1小时，笔者顺利完成了慢查询指令复刻和验收，为了演示慢查询功能，将mini-redis的慢查询阈值设置为0：
 
@@ -440,15 +440,15 @@ slowlog-log-slower-than 0
 
 启动mini-redis服务端后，键入slowlog get 默认返回空：
 
-![slowlog get初始状态](https://oss.javaguide.cn/github/javaguide/ai/coding/m2.7/slowlog-get-initial-state.png)
+![slowlog get初始状态](/oss/github/javaguide/ai/coding/m2.7/slowlog-get-initial-state.png)
 
 执行简单的set操作后，键入slowlog get，这条指令如预期被判定为慢查询指令并输出：
 
-![slowlog get记录set命令](https://oss.javaguide.cn/github/javaguide/ai/coding/m2.7/slowlog-get-record-set-command.png)
+![slowlog get记录set命令](/oss/github/javaguide/ai/coding/m2.7/slowlog-get-record-set-command.png)
 
 同理，我们依次键入后续几条指令，也都准确按照链表头插法入队，实现按照时间降序排列输出：
 
-![slowlog get多条记录](https://oss.javaguide.cn/github/javaguide/ai/coding/m2.7/slowlog-get-multiple-records.png)
+![slowlog get多条记录](/oss/github/javaguide/ai/coding/m2.7/slowlog-get-multiple-records.png)
 
 ## 实战总结：AI 辅助编程的工作流思考
 

@@ -23,7 +23,7 @@ head:
 
 > 【强制】超过三个表禁止 join。需要 join 的字段，数据类型保持绝对一致;多表关联查询时，保证被关联 的字段需要有索引。
 
-![尽量避免多表做 join](https://oss.javaguide.cn/github/javaguide/mysql/alibaba-java-development-handbook-multi-table-join.png)
+![尽量避免多表做 join](/oss/github/javaguide/mysql/alibaba-java-development-handbook-multi-table-join.png)
 
 join 的效率比较低，主要原因是因为其使用嵌套循环（Nested Loop）来实现关联查询，以前常见的实现效率都不是很高：
 
@@ -75,7 +75,7 @@ join 的效率比较低，主要原因是因为其使用嵌套循环（Nested Lo
 
 > 不得使用外键与级联，一切外键概念必须在应用层解决。
 
-![](https://oss.javaguide.cn/github/javaguide/mysql/alibaba-java-development-handbook-multi-table-join-foreign-keys-and-cascades.png)
+![](/oss/github/javaguide/mysql/alibaba-java-development-handbook-multi-table-join-foreign-keys-and-cascades.png)
 
 网络上已经有非常多分析外键与级联缺陷的文章了，个人认为不建议使用外键主要是因为对分库分表不友好，性能方面的影响其实是比较小的。
 
@@ -206,7 +206,7 @@ MySQL 在 5.0.37 版本之后才支持 Profiling，`select @@have_profiling` 命
 
 你可以通过 `SHOW VARIABLES` 命令查看其状态：
 
-![](https://oss.javaguide.cn/github/javaguide/mysql/mysql-show-variables-profiling.png)
+![](/oss/github/javaguide/mysql/mysql-show-variables-profiling.png)
 
 也可以通过 `SELECT @@profiling`命令进行查看：
 
@@ -226,7 +226,7 @@ mysql> SELECT @@profiling;
 
 具体能收集多少个 SQL，由参数 `profiling_history_size` 决定，默认值为 15，最大值为 100。如果设置为 0，等同于关闭 Profiling。
 
-![](https://oss.javaguide.cn/github/javaguide/mysql/mysql-show-profiles-ranking-list-table.png)
+![](/oss/github/javaguide/mysql/mysql-show-profiles-ranking-list-table.png)
 
 如果想要展示一个 SQL 语句的执行耗时细节，可以使用`SHOW PROFILE` 命令。
 
@@ -258,7 +258,7 @@ SHOW PROFILE CPU,IPC FOR QUERY 8;
 
 如果不加 `FOR QUERY {n}`子句，默认展示最新的一次 SQL 的执行情况，加了 `FOR QUERY {n}`，表示展示 Query_ID 为 n 的 SQL 的执行情况。
 
-![](https://oss.javaguide.cn/github/javaguide/mysql/mysql-show-profiles-cpu-ipc.png)
+![](/oss/github/javaguide/mysql/mysql-show-profiles-cpu-ipc.png)
 
 ## 优化慢 SQL
 

@@ -31,7 +31,7 @@ head:
 
 它允许 AI 接入数据源（如本地文件、数据库）、工具（如搜索引擎、计算器）以及工作流（如特定提示词），使其能够获取关键信息并执行具体任务。
 
-![MCP 图解](https://oss.javaguide.cn/github/javaguide/ai/skills/mcp-simple-diagram.png)
+![MCP 图解](/oss/github/javaguide/ai/skills/mcp-simple-diagram.png)
 
 在 MCP 出现之前，开发者为不同 LLM（OpenAI GPT、Claude、文心一言等）和不同后端系统集成工具时，需要编写大量**定制化的适配代码**。这导致了：
 
@@ -111,7 +111,7 @@ MCP 让 LLM 能够：
 
 **关系图解：**
 
-![ MCP、Function Calling 和 Agent 区别](https://oss.javaguide.cn/github/javaguide/ai/skills/mcp-fc-agent-relations.png)
+![ MCP、Function Calling 和 Agent 区别](/oss/github/javaguide/ai/skills/mcp-fc-agent-relations.png)
 
 **典型场景举例：**
 
@@ -338,7 +338,7 @@ MCP 采用 **JSON-RPC 2.0** 作为应用层通信协议，原因如下：
 
 **选型决策**：
 
-![MCP 传输方式选择](https://oss.javaguide.cn/github/javaguide/ai/skills/mcp-transport-decision.png)
+![MCP 传输方式选择](/oss/github/javaguide/ai/skills/mcp-transport-decision.png)
 
 #### 传输层异常与背压分析（生产级考量）
 

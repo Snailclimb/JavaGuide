@@ -55,7 +55,7 @@ footer: |-
 - 如果你更喜欢 **PDF**（比如通勤/离线阅读/打印学习），扫描下方二维码，后台回复“**PDF**”即可获取最新版（持续更新，详细介绍见：**[2026 最新后端面试 PDF 资料](./interview-preparation/pdf-interview-javaguide.md)**）。
 - 如果你需要加入后端面试交流群，扫描下方二维码，后台回复“**微信**”即可加群。
 
-<img src="https://oss.javaguide.cn/github/javaguide/gongzhonghao-javaguide.png" alt="JavaGuide 公众号" style="zoom: 43%; display: block; margin: 0 auto;" />
+<img src="/oss/github/javaguide/gongzhonghao-javaguide.png" alt="JavaGuide 公众号" style="zoom: 43%; display: block; margin: 0 auto;" />
 
 ## 🌐 关于网站
 

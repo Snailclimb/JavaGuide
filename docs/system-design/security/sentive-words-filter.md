@@ -69,7 +69,7 @@ public List<String> bruteForceMatch(String text, List<String> words) {
 
 浏览器搜索框的关键词提示功能就可以基于 Trie 树实现：
 
-![浏览器 Trie 树效果展示](https://oss.javaguide.cn/github/javaguide/system-design/security/brower-trie.png)
+![浏览器 Trie 树效果展示](/oss/github/javaguide/system-design/security/brower-trie.png)
 
 #### 基本性质
 
@@ -90,7 +90,7 @@ Trie 树具有以下 3 个基本性质：
 
 构造的 Trie 树结构如下（红色节点表示字符串终止）：
 
-![敏感词 Trie 树](https://oss.javaguide.cn/github/javaguide/system-design/security/sensitive-word-trie.png)
+![敏感词 Trie 树](/oss/github/javaguide/system-design/security/sensitive-word-trie.png)
 
 当查找字符串“东京热”时，将其拆分为单个字符“东”、“京”、“热”，然后从根节点逐层匹配。
 
@@ -203,7 +203,7 @@ AC 自动机的运行依赖于三个核心函数：
 
 AC 自动机的构建分为三步：
 
-![AC 自动机构建与匹配流程](https://oss.javaguide.cn/github/javaguide/system-design/security/sensitive-word-ac-automaton-flow.png)
+![AC 自动机构建与匹配流程](/oss/github/javaguide/system-design/security/sensitive-word-ac-automaton-flow.png)
 
 **第一步：构建 Trie 树**
 
@@ -361,7 +361,7 @@ DAT 由日本的 Aoe Jun-ichi 等人在 1989 年的论文[《An Efficient Implem
 
 [Hutool 5.8.x](https://hutool.cn/docs/#/dfa/%E6%A6%82%E8%BF%B0) 提供了基于 DFA 的敏感词过滤实现（底层为 Trie）：
 
-![Hutool 的 DFA 算法](https://oss.javaguide.cn/github/javaguide/system-design/security/hutool-dfa.png)
+![Hutool 的 DFA 算法](/oss/github/javaguide/system-design/security/hutool-dfa.png)
 
 ```java
 WordTree wordTree = new WordTree();
@@ -602,7 +602,7 @@ private boolean quickCheck(String text, int maxWordLen) {
 
 ### 架构建议
 
-![](https://oss.javaguide.cn/github/javaguide/system-design/security/sensitive-word-filter-arch.png)
+![](/oss/github/javaguide/system-design/security/sensitive-word-filter-arch.png)
 
 ## 参考资料
 

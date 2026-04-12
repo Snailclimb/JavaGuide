@@ -27,7 +27,7 @@ JDK 26 共有 10 个新特性，这篇文章会挑选其中较为重要的一些
 
 下图是从 JDK 8 到 JDK 25 每个版本的更新带来的新特性数量和更新时间：
 
-![](https://oss.javaguide.cn/github/javaguide/java/new-features/jdk8~jdk24.png)
+![](/oss/github/javaguide/java/new-features/jdk8~jdk24.png)
 
 ## JEP 517: 为 HTTP Client API 引入 HTTP/3 支持
 

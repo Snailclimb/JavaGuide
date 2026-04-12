@@ -33,25 +33,25 @@ head:
 
 **第一步**：点击 **Settings | Plugins** 搜索 **"qoder"**，选择 Qoder - Agentic AI Coding Platform 并安装。
 
-![插件安装界面](https://oss.javaguide.cn/github/javaguide/ai/coding/qoder/idea-plugin/plugin-install-interface.png)
+![插件安装界面](/oss/github/javaguide/ai/coding/qoder/idea-plugin/plugin-install-interface.png)
 
 **第二步**：安装完成后，点击 Sign In 登录注册。
 
-![登录界面](https://oss.javaguide.cn/github/javaguide/ai/coding/qoder/idea-plugin/login-interface.png)
+![登录界面](/oss/github/javaguide/ai/coding/qoder/idea-plugin/login-interface.png)
 
 **第三步（可选）**：默认界面为英文，习惯中文可点击右上角 Plugin Settings，将 Display Language 设为简体中文。
 
-![语言设置界面](https://oss.javaguide.cn/github/javaguide/ai/coding/qoder/idea-plugin/language-settings-interface.png)
+![语言设置界面](/oss/github/javaguide/ai/coding/qoder/idea-plugin/language-settings-interface.png)
 
 **第四步（可选）**：配置数据库连接。Qoder 支持 `@database` 上下文，可直接引用数据库表结构。建议提前配置项目相关数据库。
 
 以 MySQL 为例，打开右侧 Database 工具窗口，点击 **+** 号，选择 **Data Source | MySQL**：
 
-![添加数据源](https://oss.javaguide.cn/github/javaguide/ai/coding/qoder/idea-plugin/add-data-source.png)
+![添加数据源](/oss/github/javaguide/ai/coding/qoder/idea-plugin/add-data-source.png)
 
 填写连接信息，测试通过后点击 OK。
 
-![数据库配置完成](https://oss.javaguide.cn/github/javaguide/ai/coding/qoder/idea-plugin/database-config-complete.png)
+![数据库配置完成](/oss/github/javaguide/ai/coding/qoder/idea-plugin/database-config-complete.png)
 
 至此，前期准备工作完成。
 
@@ -135,7 +135,7 @@ public OrderListResponse getOrderList(OrderListRequest request) {
 1. 点击 **+Add Context** 按钮
 2. 选择 **@database**，选择对应的数据库 Schema
 
-![添加数据库上下文](https://oss.javaguide.cn/github/javaguide/ai/coding/qoder/idea-plugin/add-database-context-1.png)
+![添加数据库上下文](/oss/github/javaguide/ai/coding/qoder/idea-plugin/add-database-context-1.png)
 
 #### 问题分析与方案输出
 
@@ -143,25 +143,25 @@ public OrderListResponse getOrderList(OrderListRequest request) {
 
 Qoder 精准定位到代码入口，完成分析并给出问题根因——无需人工逐行阅读代码：
 
-![代码分析结果](https://oss.javaguide.cn/github/javaguide/ai/coding/qoder/idea-plugin/code-analysis-result.png)
+![代码分析结果](/oss/github/javaguide/ai/coding/qoder/idea-plugin/code-analysis-result.png)
 
 **独到之处：代码与数据库联合诊断**
 
 结合数据库 Schema，Qoder 给出了综合分析报告。这一点是日常工作中容易忽略的——传统方式下，开发者往往只关注代码层面，而 Qoder 会主动关联数据库结构：
 
-![综合分析报告](https://oss.javaguide.cn/github/javaguide/ai/coding/qoder/idea-plugin/comprehensive-analysis-report.png)
+![综合分析报告](/oss/github/javaguide/ai/coding/qoder/idea-plugin/comprehensive-analysis-report.png)
 
 **代码层面优化**
 
 Qoder 给出了三套方案，包括延迟关联查询（子查询只返回 ID，利用覆盖索引快速定位）：
 
-![代码优化方案](https://oss.javaguide.cn/github/javaguide/ai/coding/qoder/idea-plugin/code-optimization-solution.png)
+![代码优化方案](/oss/github/javaguide/ai/coding/qoder/idea-plugin/code-optimization-solution.png)
 
 **值得注意的方案**
 
 分页查询总记录计算，Qoder 给出了一个比较少见的方案——通过主键索引页数和页内平均行数进行数学估算。这种方案对大数据量且精度要求不高的场景适用：
 
-![数据库优化建议](https://oss.javaguide.cn/github/javaguide/ai/coding/qoder/idea-plugin/database-optimization-suggestion.png)
+![数据库优化建议](/oss/github/javaguide/ai/coding/qoder/idea-plugin/database-optimization-suggestion.png)
 
 #### 方案实施与验收
 
@@ -181,27 +181,27 @@ Qoder 完成实施后，`getOrderList` 方法的改造：
 
 代码风格符合《阿里巴巴 Java 开发手册》最佳实践：
 
-![重构后代码](https://oss.javaguide.cn/github/javaguide/ai/coding/qoder/idea-plugin/refactored-code.png)
+![重构后代码](/oss/github/javaguide/ai/coding/qoder/idea-plugin/refactored-code.png)
 
 索引脚本可直接在 IDE 中执行，整个工作流无需切换窗口：
 
-![索引执行](https://oss.javaguide.cn/github/javaguide/ai/coding/qoder/idea-plugin/index-execution.png)
+![索引执行](/oss/github/javaguide/ai/coding/qoder/idea-plugin/index-execution.png)
 
 **回归测试**：Qoder 完成代码分支梳理，并针对不同场景生成单元测试：
 
-![单元测试](https://oss.javaguide.cn/github/javaguide/ai/coding/qoder/idea-plugin/unit-test-1.png)
+![单元测试](/oss/github/javaguide/ai/coding/qoder/idea-plugin/unit-test-1.png)
 
 **压测环节**：Qoder 完成了所有压力测试编写，并完成了代码预热，编译优化为机器码，尽可能贴合生产实际运行情况：
 
-![压力测试](https://oss.javaguide.cn/github/javaguide/ai/coding/qoder/idea-plugin/stress-test.png)
+![压力测试](/oss/github/javaguide/ai/coding/qoder/idea-plugin/stress-test.png)
 
 最后，Qoder 输出了完整的工作总结，包括技术方案和沟通汇报建议：
 
-![工作总结](https://oss.javaguide.cn/github/javaguide/ai/coding/qoder/idea-plugin/work-summary.png)
+![工作总结](/oss/github/javaguide/ai/coding/qoder/idea-plugin/work-summary.png)
 
 在代码提交窗口点击 Qoder，自动生成本次提交说明。**至此，不到 10 分钟完成了一个接口的优化工作。**
 
-![提交说明](https://oss.javaguide.cn/github/javaguide/ai/coding/qoder/idea-plugin/commit-message.png)
+![提交说明](/oss/github/javaguide/ai/coding/qoder/idea-plugin/commit-message.png)
 
 ### 任务二：祖传代码不敢动？2-3 天的工作，现在半天搞定
 
@@ -225,19 +225,19 @@ Qoder 完成实施后，`getOrderList` 方法的改造：
 
 为了保证 Agent 输出的准确性，把存量的 Schema 作为上下文提交给 Qoder：
 
-![添加数据库上下文](https://oss.javaguide.cn/github/javaguide/ai/coding/qoder/idea-plugin/add-database-context-2.png)
+![添加数据库上下文](/oss/github/javaguide/ai/coding/qoder/idea-plugin/add-database-context-2.png)
 
 Qoder 收到任务后，从整体概述开始，通过逐个分支梳理注释的方式执行任务：
 
-![逻辑梳理过程](https://oss.javaguide.cn/github/javaguide/ai/coding/qoder/idea-plugin/logic-analysis-process.png)
+![逻辑梳理过程](/oss/github/javaguide/ai/coding/qoder/idea-plugin/logic-analysis-process.png)
 
 对应注释代码非常整洁清晰，结合 Agent 给出的数据流，稍加调测就可以快速完成逻辑梳理：
 
-![注释代码示例](https://oss.javaguide.cn/github/javaguide/ai/coding/qoder/idea-plugin/commented-code-example.png)
+![注释代码示例](/oss/github/javaguide/ai/coding/qoder/idea-plugin/commented-code-example.png)
 
 任务结束后，Qoder 清晰地归纳了接口逻辑和特殊规则点：
 
-![摘要总结](https://oss.javaguide.cn/github/javaguide/ai/coding/qoder/idea-plugin/summary-conclusion.png)
+![摘要总结](/oss/github/javaguide/ai/coding/qoder/idea-plugin/summary-conclusion.png)
 
 #### 代码重构：增量重构，安全可控
 
@@ -313,7 +313,7 @@ private RefundResponse processPartialRefund(RefundApplyRequest request, Order or
 
 Qoder 自动进行的单元测试验收，非常高效地完成了 80% 既有逻辑的分支覆盖：
 
-![单元测试验收](https://oss.javaguide.cn/github/javaguide/ai/coding/qoder/idea-plugin/unit-test-verification.png)
+![单元测试验收](/oss/github/javaguide/ai/coding/qoder/idea-plugin/unit-test-verification.png)
 
 #### 功能迭代：一行指令，规则上线
 
@@ -325,7 +325,7 @@ Qoder 自动进行的单元测试验收，非常高效地完成了 80% 既有逻
 
 对应实现代码如下。可以看到，完成既有逻辑的梳理后，职责单一的校验框架和配套的单元测试已经就位，后续的增量迭代也变得容易处理和回归：
 
-![功能迭代实现](https://oss.javaguide.cn/github/javaguide/ai/coding/qoder/idea-plugin/feature-iteration-implementation.png)
+![功能迭代实现](/oss/github/javaguide/ai/coding/qoder/idea-plugin/feature-iteration-implementation.png)
 
 #### 记忆沉淀：越用越懂你的编程习惯
 
@@ -337,7 +337,7 @@ Qoder 自动进行的单元测试验收，非常高效地完成了 80% 既有逻
 
 Qoder 考虑到订单退款功能的重要性，在记忆列表中明确记录了与其交互的理念和规范。这使得后续的增量迭代时，只要 Qoder 能够准确将这份记忆召回，退款核心功能的维护就会随着迭代愈发从容：
 
-![记忆沉淀](https://oss.javaguide.cn/github/javaguide/ai/coding/qoder/idea-plugin/memory-accumulation.png)
+![记忆沉淀](/oss/github/javaguide/ai/coding/qoder/idea-plugin/memory-accumulation.png)
 
 ## 能力拆解：Qoder 在这个示例中做了什么
 

@@ -20,13 +20,13 @@ head:
 
 **分散式传播** 的 **Gossip 协议** 提供了一种去中心化的替代方案。
 
-![分布式系统通信机制：中心化 vs 去中心化](https://oss.javaguide.cn/github/javaguide/distributed-system/protocol/gossip-centralized-vs-decentralized.png)
+![分布式系统通信机制：中心化 vs 去中心化](/oss/github/javaguide/distributed-system/protocol/gossip-centralized-vs-decentralized.png)
 
 ## Gossip 协议介绍
 
 **Gossip**（闲话协议）也称 **Epidemic 协议**（流行病协议），灵感来源于流行病传播的随机特性。其核心思想是：每个节点周期性地随机选择若干其他节点交换信息，使数据像病毒传播一样扩散至整个网络。
 
-![Gossip 翻译](https://oss.javaguide.cn/github/javaguide/distributed-system/protocol/gossip.png)
+![Gossip 翻译](/oss/github/javaguide/distributed-system/protocol/gossip.png)
 
 Gossip 协议最早由 Demers 等人在 1987 年的论文 [《Epidemic Algorithms for Replicated Database Maintenance》](https://dl.acm.org/doi/10.1145/41840.41841) 中提出，用于解决分布式数据库的副本同步问题。
 
@@ -54,7 +54,7 @@ Gossip 协议被广泛应用于分布式系统：
 
 Redis Cluster 是一个去中心化的分布式缓存方案，各节点通过 Gossip 协议交换集群状态，包括：节点信息、槽位分配、节点状态（在线/PFAIL/FAIL）。
 
-![Redis 的官方集群解决方案](https://oss.javaguide.cn/github/javaguide/distributed-system/protocol/up-fcacc1eefca6e51354a5f1fc9f2919f51ec.png)
+![Redis 的官方集群解决方案](/oss/github/javaguide/distributed-system/protocol/up-fcacc1eefca6e51354a5f1fc9f2919f51ec.png)
 
 **Gossip 消息类型**：
 
@@ -74,7 +74,7 @@ Redis Cluster 是一个去中心化的分布式缓存方案，各节点通过 Go
 
 下图就是主从架构的 Redis Cluster 的示意图，图中的虚线代表的就是各个节点之间使用 Gossip 进行通信，实线表示主从复制。
 
-![Redis Cluster  各个节点之间使用 Gossip 进行通信](https://oss.javaguide.cn/github/javaguide/distributed-system/protocol/redis-cluster-gossip.png)
+![Redis Cluster  各个节点之间使用 Gossip 进行通信](/oss/github/javaguide/distributed-system/protocol/redis-cluster-gossip.png)
 
 > 注：Redis Cluster 主要通过 PING/PONG 的增量 gossip 传播节点/槽位/故障信息（带时间戳/标志位等），而不是采用像 Dynamo 那样基于 Merkle tree 的反熵对账流程。
 
@@ -104,17 +104,17 @@ Gossip 协议有两种主要传播模式：**反熵** 和 **谣言传播**。
 | Pull      | 接收方拉取发送方的全部数据         | 接收方数据陈旧 |
 | Push-Pull | 双向交换数据，并比较差异           | 最高效，最常用 |
 
-![反熵机制：Push-Pull 交互时序图 (Anti-Entropy)](https://oss.javaguide.cn/github/javaguide/distributed-system/protocol/gossip-anti-entropy-pushpull.png)
+![反熵机制：Push-Pull 交互时序图 (Anti-Entropy)](/oss/github/javaguide/distributed-system/protocol/gossip-anti-entropy-pushpull.png)
 
 伪代码如下：
 
-![反熵伪代码](https://oss.javaguide.cn/github/javaguide/distributed-system/protocol/up-df16e98bf71e872a7e1f01ca31cee93d77b.png)
+![反熵伪代码](/oss/github/javaguide/distributed-system/protocol/up-df16e98bf71e872a7e1f01ca31cee93d77b.png)
 
 **收敛特性**：在均匀随机选点、fanout 为常数的模型下，期望 O(log N) 轮覆盖全部节点（常见估算可用 log₂N 量级）
 
 部分系统（如 InfluxDB）采用**确定性闭环调度**（如环形拓扑）代替随机选择，可在确定轮次内完成同步。这属于反熵的**工程衍生实现**，而非标准 Gossip 协议的核心机制。确定性调度牺牲了随机性的容错优势，换取可预测的收敛时间。
 
-![确定性闭环调度](https://oss.javaguide.cn/github/javaguide/distributed-system/protocol/raft-anti-entropyclosed-loop.png)
+![确定性闭环调度](/oss/github/javaguide/distributed-system/protocol/raft-anti-entropyclosed-loop.png)
 
 1. 节点 A 推送数据给节点 B，节点 B 获取到节点 A 中的最新数据。
 2. 节点 B 推送数据给 C，节点 C 获取到节点 A，B 中的最新数据。
@@ -141,11 +141,11 @@ Gossip 协议有两种主要传播模式：**反熵** 和 **谣言传播**。
 
 如下图所示（下图来自于[INTRODUCTION TO GOSSIP](https://managementfromscratch.wordpress.com/2016/04/01/introduction-to-gossip/) 这篇文章）：
 
-![Gossip 传播示意图](https://oss.javaguide.cn/github/javaguide/distributed-system/protocol/gossip-rumor-mongering.gif)
+![Gossip 传播示意图](/oss/github/javaguide/distributed-system/protocol/gossip-rumor-mongering.gif)
 
 伪代码如下：
 
-![](https://oss.javaguide.cn/github/javaguide/csdn/20210605170707933.png)
+![](/oss/github/javaguide/csdn/20210605170707933.png)
 
 **收敛特性**：在均匀随机选点、fanout 为常数的模型下，O(log N) 轮后以高概率覆盖全部节点。
 
@@ -156,7 +156,7 @@ Gossip 协议有两种主要传播模式：**反熵** 和 **谣言传播**。
 - 避免高频更新导致消息风暴
 - 使用 **Jitter（随机抖动）**打散同步时间，避免多节点同时发起传播造成雪崩
 
-![Gossip 协议：随机传播与收敛过程](https://oss.javaguide.cn/github/javaguide/distributed-system/protocol/gossip-propagation.png)
+![Gossip 协议：随机传播与收敛过程](/oss/github/javaguide/distributed-system/protocol/gossip-propagation.png)
 
 ### 总结
 

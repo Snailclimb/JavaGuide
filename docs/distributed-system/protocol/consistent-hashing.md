@@ -33,13 +33,13 @@ node_number = hash(key) % N
 - `hash(key)`: 使用哈希函数（建议使用性能较好的非加密哈希函数，例如 SipHash、MurMurHash3、CRC32、DJB）对唯一键进行哈希。
 - `% N`: 对哈希值取模，将哈希值映射到一个介于 0 到 N-1 之间的值，N 为节点数/服务器数。
 
-![哈希取模](https://oss.javaguide.cn/github/javaguide/distributed-system/protocol/consistent-hashing/hashqumo.png)
+![哈希取模](/oss/github/javaguide/distributed-system/protocol/consistent-hashing/hashqumo.png)
 
 然而，传统的哈希取模算法有一个比较大的缺陷就是：**无法很好的解决机器/节点动态减少（比如某台机器宕机）或者增加的场景（比如又增加了一台机器）。**
 
 想象一下，服务器的初始数量为 4 台 (N = 4)，如果其中一台服务器宕机，N 就变成了 3。此时，对于同一个 key，`hash(key) % 3` 的结果很可能与 `hash(key) % 4` 完全不同。
 
-![哈希取模-移除节点Node2](https://oss.javaguide.cn/github/javaguide/distributed-system/protocol/consistent-hashing/hashqumo-remove-node2.png)
+![哈希取模-移除节点Node2](/oss/github/javaguide/distributed-system/protocol/consistent-hashing/hashqumo-remove-node2.png)
 
 这意味着几乎所有的数据映射关系都会错乱。在分布式缓存场景下，这会导致**大规模的缓存失效和缓存穿透**，瞬间将压力全部打到后端的数据库上，引发系统雪崩。
 
@@ -71,7 +71,7 @@ hash（服务器ip）% 2^32
 
 如下图所示：
 
-![哈希环](https://oss.javaguide.cn/github/javaguide/distributed-system/protocol/consistent-hashing/consistent-hashing-circle.png)
+![哈希环](/oss/github/javaguide/distributed-system/protocol/consistent-hashing/consistent-hashing-circle.png)
 
 我们将数据和节点都映射到哈希环上，环上的每个节点都负责一个区间。对于上图来说，每个节点负责的数据情况如下：
 
@@ -86,17 +86,17 @@ hash（服务器ip）% 2^32
 
 还是用上面分享的哈希环示意图为例，假设 Node2 节点被移除的话，那 Node3 就要负责 Node2 的数据，直接迁移 Node2 的数据到 Node3 即可，其他节点不受影响。
 
-![节点移除](https://oss.javaguide.cn/github/javaguide/distributed-system/protocol/consistent-hashing/consistent-hashing-circle-remove-node2.png)
+![节点移除](/oss/github/javaguide/distributed-system/protocol/consistent-hashing/consistent-hashing-circle-remove-node2.png)
 
 同样地，如果我们在 Node1 和 Node2 之间新增一个节点 Node5，那么原本应该由 Node2 负责的一部分数据（即哈希值落在 Node1 和 Node5 之间的数据，如图中的 value1）现在会由 Node5 负责。我们只需要将这部分数据从 Node2 迁移到 Node5 即可，同样只影响了相邻的节点，影响范围非常小。
 
-![节点增加](https://oss.javaguide.cn/github/javaguide/distributed-system/protocol/consistent-hashing/consistent-hashing-circle-add-node5.png)
+![节点增加](/oss/github/javaguide/distributed-system/protocol/consistent-hashing/consistent-hashing-circle-add-node5.png)
 
 ### 数据倾斜问题
 
 理想情况下，节点在环上是均匀分布的。然而，现实可能并不是这样的，尤其是节点数量比较少的时候。节点可能被映射到附近的区域，这样的话，就会导致绝大部分数据都由其中一个节点负责。
 
-![数据倾斜](https://oss.javaguide.cn/github/javaguide/distributed-system/protocol/consistent-hashing/consistent-hashing-circle-unbalance.png)
+![数据倾斜](/oss/github/javaguide/distributed-system/protocol/consistent-hashing/consistent-hashing-circle-unbalance.png)
 
 对于上图来说，每个节点负责的数据情况如下：
 
@@ -115,7 +115,7 @@ hash（服务器ip）% 2^32
 
 如下图所示，Node1、Node2、Node3、Node4 这 4 个节点都对应 3 个虚拟节点（下图只是为了演示，实际情况节点分布不会这么有规律）。
 
-![虚拟节点](https://oss.javaguide.cn/github/javaguide/distributed-system/protocol/consistent-hashing/consistent-hashing-circle-virtual-node.png)
+![虚拟节点](/oss/github/javaguide/distributed-system/protocol/consistent-hashing/consistent-hashing-circle-virtual-node.png)
 
 对于上图来说，每个节点最终负责的数据情况如下：
 

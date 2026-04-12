@@ -21,7 +21,7 @@ head:
 
 先看下面这张全局图（后续会详细解读）：
 
-![Java 后端面试重点](https://oss.javaguide.cn/github/javaguide/interview-preparation/back-end-interview-focus.png)
+![Java 后端面试重点](/oss/github/javaguide/interview-preparation/back-end-interview-focus.png)
 
 给你几点靠谱的建议：
 
@@ -37,7 +37,7 @@ head:
 
 ## 如何更高效地准备八股文？
 
-<img src="https://oss.javaguide.cn/github/javaguide/interview-preparation/preparation-for%20eight-part%20essay.png" style="zoom:50%;" />
+<img src="/oss/github/javaguide/interview-preparation/preparation-for%20eight-part%20essay.png" style="zoom:50%;" />
 
 对于技术八股文来说，尽量不要死记硬背，这种方式非常枯燥且对自身能力提升有限！但是！想要一点不背是不太现实的，只是说要结合实际应用场景和实战来理解记忆。
 

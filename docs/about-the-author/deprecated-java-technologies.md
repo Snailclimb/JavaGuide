@@ -62,7 +62,7 @@ tag:
 
 > “学的不是技术，是思想。那爬也是人类不需要的技术吗？为啥你一生下来得先学会爬？如果基础思想都不会就去学各种框架，到最后只能是只会 CV 的废物！”
 
-<img src="https://oss.javaguide.cn/github/javaguide/about-the-author/prattle/deprecated-java-technologies-zhihu-comments.png" style="zoom:50%;" />
+<img src="/oss/github/javaguide/about-the-author/prattle/deprecated-java-technologies-zhihu-comments.png" style="zoom:50%;" />
 
 这句话表面上看似有道理，但实际上却暴露了一个人的**无知和偏执**。
 
@@ -72,7 +72,7 @@ tag:
 
 在我上大学那会儿，这本书的很多内容其实已经过时了，比如它花了大量篇幅介绍 JSP、Struts、Hibernate、EJB 和 SVN 等技术。不过，直到现在，我依然非常感谢这本书，带我走进了 Java 后端开发的大门。
 
-![](https://oss.javaguide.cn/github/javaguide/about-the-author/prattle/java-web-integration-development-king-returns.png)
+![](/oss/github/javaguide/about-the-author/prattle/java-web-integration-development-king-returns.png)
 
 这本书一共 **1010** 页，我当时可以说是废寝忘食地学，花了很长时间才把整本书完全“啃”下来。
 

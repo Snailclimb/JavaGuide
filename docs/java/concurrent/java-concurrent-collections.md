@@ -26,13 +26,13 @@ JDK 提供的这些容器大部分在 `java.util.concurrent` 包中。
 
 在 JDK1.7 的时候，`ConcurrentHashMap` 对整个桶数组进行了分割分段(`Segment`，分段锁)，每一把锁只锁容器其中一部分数据（下面有示意图），多线程访问容器里不同数据段的数据，就不会存在锁竞争，提高并发访问率。
 
-![Java7 ConcurrentHashMap 存储结构](https://oss.javaguide.cn/github/javaguide/java/collection/java7_concurrenthashmap.png)
+![Java7 ConcurrentHashMap 存储结构](/oss/github/javaguide/java/collection/java7_concurrenthashmap.png)
 
 到了 JDK1.8 的时候，`ConcurrentHashMap` 取消了 `Segment` 分段锁，采用 `Node + CAS + synchronized` 来保证并发安全。数据结构跟 `HashMap` 1.8 的结构类似，数组+链表/红黑二叉树。Java 8 在链表长度超过一定阈值（8）时将链表（寻址时间复杂度为 O(N)）转换为红黑树（寻址时间复杂度为 O(log(N))）。
 
 Java 8 中，锁粒度更细，`synchronized` 只锁定当前链表或红黑二叉树的首节点，这样只要 hash 不冲突，就不会产生并发，就不会影响其他 Node 的读写，效率大幅提升。
 
-![Java8 ConcurrentHashMap 存储结构](https://oss.javaguide.cn/github/javaguide/java/collection/java8_concurrenthashmap.png)
+![Java8 ConcurrentHashMap 存储结构](/oss/github/javaguide/java/collection/java8_concurrenthashmap.png)
 
 关于 `ConcurrentHashMap` 的详细介绍，请看我写的这篇文章：[`ConcurrentHashMap` 源码分析](./../collection/concurrent-hash-map-source-code.md)。
 
@@ -70,7 +70,7 @@ Java 提供的线程安全的 `Queue` 可以分为**阻塞队列**和**非阻塞
 
 `BlockingQueue` 是一个接口，继承自 `Queue`，所以其实现类也可以作为 `Queue` 的实现来使用，而 `Queue` 又继承自 `Collection` 接口。下面是 `BlockingQueue` 的相关实现类：
 
-![BlockingQueue 的实现类](https://oss.javaguide.cn/github/javaguide/java/51622268.jpg)
+![BlockingQueue 的实现类](/oss/github/javaguide/java/51622268.jpg)
 
 下面主要介绍一下 3 个常见的 `BlockingQueue` 的实现类：`ArrayBlockingQueue`、`LinkedBlockingQueue`、`PriorityBlockingQueue` 。
 
@@ -143,13 +143,13 @@ private static ArrayBlockingQueue<Integer> blockingQueue = new ArrayBlockingQueu
 
 跳表的本质是同时维护了多个链表，并且链表是分层的，
 
-![2级索引跳表](https://oss.javaguide.cn/github/javaguide/java/93666217.jpg)
+![2级索引跳表](/oss/github/javaguide/java/93666217.jpg)
 
 最低层的链表维护了跳表内所有的元素，每上面一层链表都是下面一层的子集。
 
 跳表内的所有链表的元素都是排序的。查找时，可以从顶级链表开始找。一旦发现被查找的元素小于当前访问节点的后继节点（或后继节点为空），就会转入下一层链表继续找。这也就是说在查找过程中，搜索是跳跃式的。如上图所示，在跳表中查找元素 18。
 
-![在跳表中查找元素18](https://oss.javaguide.cn/github/javaguide/java/32005738.jpg)
+![在跳表中查找元素18](/oss/github/javaguide/java/32005738.jpg)
 
 查找 18 的时候原来需要遍历 18 次，现在只需要 7 次即可。针对链表长度比较大的时候，构建索引查找效率的提升就会非常明显。
 

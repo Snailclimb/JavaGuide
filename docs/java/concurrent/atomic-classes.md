@@ -22,7 +22,7 @@ head:
 
 这篇文章我们只介绍 Atomic 原子类的概念，具体实现原理可以阅读笔者写的这篇文章：[CAS 详解](./cas.md)。
 
-![JUC原子类概览](https://oss.javaguide.cn/github/javaguide/java/JUC%E5%8E%9F%E5%AD%90%E7%B1%BB%E6%A6%82%E8%A7%88.png)
+![JUC原子类概览](/oss/github/javaguide/java/JUC%E5%8E%9F%E5%AD%90%E7%B1%BB%E6%A6%82%E8%A7%88.png)
 
 根据操作的数据类型，可以将 JUC 包中的原子类分为 4 类：
 

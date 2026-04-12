@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" style="background-color: #F8FAFC; font-family: system-ui, sans-serif;">
+    <defs>
+        <pattern id="fine-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E2E8F0" stroke-width="1"/>
+        </pattern>
+        <linearGradient id="smart-fade" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#4CA497" stop-opacity="0.3"/>
+            <stop offset="100%" stop-color="#4CA497" stop-opacity="0.0"/>
+        </linearGradient>
+        <linearGradient id="dumb-fade" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#E99151" stop-opacity="0.3"/>
+            <stop offset="100%" stop-color="#E99151" stop-opacity="0.0"/>
+        </linearGradient>
+        <filter id="line-glow-teal">
+            <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#4CA497" flood-opacity="0.4" />
+        </filter>
+        <filter id="line-glow-orange">
+            <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#E99151" flood-opacity="0.4" />
+        </filter>
+    </defs>
+
+    <rect width="100%" height="100%" fill="url(#fine-grid)" />
+    
+    <text x="400" y="50" text-anchor="middle" font-size="24" font-weight="bold" fill="#005D7B">上下文利用率与输出质量关系监测</text>
+
+    <g transform="translate(100, 100)">
+        <line x1="0" y1="280" x2="650" y2="280" stroke="#005D7B" stroke-width="2" />
+        <line x1="0" y1="0" x2="0" y2="280" stroke="#005D7B" stroke-width="2" />
+
+        <text x="-15" y="20" text-anchor="end" fill="#64748B">高</text>
+        <text x="-15" y="140" text-anchor="end" fill="#64748B">输出质量</text>
+        <text x="-15" y="270" text-anchor="end" fill="#64748B">低</text>
+
+        <text x="0" y="305" text-anchor="middle" fill="#64748B">0%</text>
+        <text x="260" y="305" text-anchor="middle" fill="#E99151" font-weight="bold">40% 阈值</text>
+        <text x="600" y="305" text-anchor="middle" fill="#64748B">100%</text>
+
+        <line x1="260" y1="0" x2="260" y2="280" stroke="#E99151" stroke-dasharray="6,4" stroke-width="2" />
+
+        <path d="M 0 40 Q 130 50 260 80 L 260 280 L 0 280 Z" fill="url(#smart-fade)" />
+        <path d="M 0 40 Q 130 50 260 80" fill="none" stroke="#4CA497" stroke-width="4" filter="url(#line-glow-teal)" />
+        <text x="130" y="150" text-anchor="middle" font-size="20" font-weight="bold" fill="#4CA497">Smart Zone</text>
+        <text x="130" y="175" text-anchor="middle" font-size="12" fill="#64748B">工具调用准确 / 推理聚焦</text>
+
+        <path d="M 260 80 Q 400 240 600 260 L 600 280 L 260 280 Z" fill="url(#dumb-fade)" />
+        <path d="M 260 80 Q 400 240 600 260" fill="none" stroke="#E99151" stroke-width="4" filter="url(#line-glow-orange)" />
+        <text x="430" y="150" text-anchor="middle" font-size="20" font-weight="bold" fill="#E99151">Dumb Zone</text>
+        <text x="430" y="175" text-anchor="middle" font-size="12" fill="#64748B">幻觉增多 / 兜圈子 / 性能降级</text>
+        
+        <circle cx="260" cy="80" r="6" fill="#FFFFFF" stroke="#E99151" stroke-width="3" filter="url(#line-glow-orange)" />
+    </g>
+</svg>

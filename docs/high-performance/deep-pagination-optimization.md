@@ -23,11 +23,11 @@ SELECT * FROM t_order ORDER BY id LIMIT 1000000, 10
 
 **深度分页变慢的根本原因**在于 MySQL 的执行机制：对于 `LIMIT offset, N`，MySQL 并非直接跳到 `offset` 处，而是必须从头扫描 `offset + N` 条记录。如果查询依赖二级索引且不满足覆盖索引，这意味着 MySQL 需要对前 `offset` 条记录执行毫无意义的**回表查询（产生海量的随机 I/O）**，最后再将这些辛苦查出的数据丢弃。即便优化器最终因代价过高退化为全表扫描，顺序扫描百万行的成本依然巨大。
 
-![深度分页问题](https://oss.javaguide.cn/github/javaguide/mysql/deep-pagination-phenomenon.png)
+![深度分页问题](/oss/github/javaguide/mysql/deep-pagination-phenomenon.png)
 
 不同机器上这个查询偏移量过大的临界点可能不同，取决于多个因素，包括硬件配置（如 CPU 性能、磁盘速度）、表的大小、索引的类型和统计信息等。
 
-![转全表扫描的临界点](https://oss.javaguide.cn/github/javaguide/mysql/deep-pagination-phenomenon-critical-point.png)
+![转全表扫描的临界点](/oss/github/javaguide/mysql/deep-pagination-phenomenon-critical-point.png)
 
 MySQL 的查询优化器采用基于成本的策略来选择最优的查询执行计划。它会根据 CPU 和 I/O 的成本来决定是否使用索引扫描或全表扫描。如果优化器认为全表扫描的成本更低，它就会放弃使用索引。不过，即使偏移量很大，如果查询中使用了覆盖索引（covering index），MySQL 仍然可能会使用索引，避免回表操作。
 
@@ -62,7 +62,7 @@ SELECT * FROM t_order WHERE id > 100000 ORDER BY id LIMIT 10
 
 > 利用延迟关联或者子查询优化超多分页场景。
 >
-> ![](https://oss.javaguide.cn/github/javaguide/mysql/alibaba-java-development-handbook-paging.png)
+> ![](/oss/github/javaguide/mysql/alibaba-java-development-handbook-paging.png)
 
 ```sql
 -- 先通过子查询在主键索引上进行偏移，快速找到起始ID

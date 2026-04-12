@@ -14,11 +14,11 @@ head:
 
 如果是串行（按顺序依次执行每个任务）执行的话，接口的响应速度会非常慢。考虑到这些任务之间有大部分都是 **无前后顺序关联** 的，可以 **并行执行** ，就比如说调用获取商品详情的时候，可以同时调用获取物流信息。通过并行执行多个任务的方式，接口的响应速度会得到大幅优化。
 
-![](https://oss.javaguide.cn/github/javaguide/high-performance/serial-to-parallel.png)
+![](/oss/github/javaguide/high-performance/serial-to-parallel.png)
 
 对于存在前后调用顺序关系的任务，可以进行任务编排。
 
-![](https://oss.javaguide.cn/github/javaguide/high-performance/serial-to-parallel2.png)
+![](/oss/github/javaguide/high-performance/serial-to-parallel2.png)
 
 1. 获取用户信息之后，才能调用商品详情和物流信息接口。
 2. 成功获取商品详情和物流信息之后，才能调用商品推荐接口。
@@ -83,11 +83,11 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
 
 可以看到，`CompletableFuture` 同时实现了 `Future` 和 `CompletionStage` 接口。
 
-![](https://oss.javaguide.cn/github/javaguide/java/concurrent/completablefuture-class-diagram.jpg)
+![](/oss/github/javaguide/java/concurrent/completablefuture-class-diagram.jpg)
 
 `CompletableFuture` 除了提供了更为好用和强大的 `Future` 特性之外，还提供了函数式编程的能力。
 
-![](https://oss.javaguide.cn/javaguide/image-20210902092441434.png)
+![](/oss/javaguide/image-20210902092441434.png)
 
 `Future` 接口有 5 个方法：
 
@@ -101,7 +101,7 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
 
 `CompletionStage` 接口中的方法比较多，`CompletableFuture` 的函数式能力就是这个接口赋予的。从这个接口的方法参数你就可以发现其大量使用了 Java8 引入的函数式编程。
 
-![](https://oss.javaguide.cn/javaguide/image-20210902093026059.png)
+![](/oss/javaguide/image-20210902093026059.png)
 
 由于方法众多，所以这里不能一一讲解，下文中我会介绍大部分常见方法的使用。
 
@@ -721,7 +721,7 @@ CompletableFuture.runAsync(() -> {
 
 实际使用中，我们还可以利用或者参考现成的异步任务编排框架，比如京东的 [asyncTool](https://gitee.com/jd-platform-opensource/asyncTool) 。
 
-![asyncTool README 文档](https://oss.javaguide.cn/github/javaguide/java/concurrent/asyncTool-readme.png)
+![asyncTool README 文档](/oss/github/javaguide/java/concurrent/asyncTool-readme.png)
 
 ## 后记
 

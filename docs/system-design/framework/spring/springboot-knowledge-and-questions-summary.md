@@ -14,7 +14,7 @@ head:
 
 很多 Spring Boot 重要的新特性都已经同步到了这篇文章中，质量很高，保证内容与时俱进！
 
-![SpringBoot 面试题](https://oss.javaguide.cn/javamianshizhibei/springboot-questions.png)
+![SpringBoot 面试题](/oss/javamianshizhibei/springboot-questions.png)
 
 <!-- @include: @planet.snippet.md -->
 

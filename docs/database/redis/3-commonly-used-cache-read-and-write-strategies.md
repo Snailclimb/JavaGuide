@@ -35,7 +35,7 @@ head:
 
 简单画了一张图帮助大家理解写的步骤。
 
-![](https://oss.javaguide.cn/github/javaguide/database/redis/cache-aside-write.png)
+![](/oss/github/javaguide/database/redis/cache-aside-write.png)
 
 **读操作：**
 
@@ -45,7 +45,7 @@ head:
 
 简单画了一张图帮助大家理解读的步骤。
 
-![](https://oss.javaguide.cn/github/javaguide/database/redis/cache-aside-read.png)
+![](/oss/github/javaguide/database/redis/cache-aside-read.png)
 
 你仅仅了解了上面这些内容的话是远远不够的，我们还要搞懂其中的原理。
 
@@ -115,7 +115,7 @@ head:
 
 简单画了一张图帮助大家理解写的步骤。
 
-![](https://oss.javaguide.cn/github/javaguide/database/redis/write-through.png)
+![](/oss/github/javaguide/database/redis/write-through.png)
 
 **读(Read Through)：**
 
@@ -125,7 +125,7 @@ head:
 
 简单画了一张图帮助大家理解读的步骤。
 
-![](https://oss.javaguide.cn/github/javaguide/database/redis/read-through.png)
+![](/oss/github/javaguide/database/redis/read-through.png)
 
 Read-Through 实际只是在 Cache-Aside 之上进行了封装。在 Cache-Aside 下，发生读请求的时候，如果 Cache 中不存在对应的数据，是由客户端自己负责把数据写入 Cache，而 Read Through 则是 Cache 服务自己来写入缓存的，这对客户端是透明的。
 

@@ -58,7 +58,7 @@ head:
 
 更多书籍推荐建议大家看 [JavaGuide](https://javaguide.cn/books/) 这个网站上的书籍推荐，比较全面。
 
-![](https://oss.javaguide.cn/p3-juejin/62099c9b2fd24d3cb6511e49756f486b~tplv-k3u1fbpfcp-zoom-1.png)
+![](/oss/p3-juejin/62099c9b2fd24d3cb6511e49756f486b~tplv-k3u1fbpfcp-zoom-1.png)
 
 ### 教程推荐
 

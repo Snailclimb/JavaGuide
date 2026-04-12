@@ -14,7 +14,7 @@ head:
 
 下图是从 JDK 8 到 JDK 25 每个版本的更新带来的新特性数量和更新时间：
 
-![ JDK 8 到 JDK 25 每个版本的更新带来的新特性数量和更新时间](https://oss.javaguide.cn/github/javaguide/java/new-features/jdk8~jdk24.png)
+![ JDK 8 到 JDK 25 每个版本的更新带来的新特性数量和更新时间](/oss/github/javaguide/java/new-features/jdk8~jdk24.png)
 
 这篇文章会挑选其中较为重要的一些新特性进行详细介绍：
 
@@ -94,7 +94,7 @@ static <E> List<E> copyOf(Collection<? extends E> coll) {
 
 使用 `copyOf()` 创建的集合为不可变集合，不能进行添加、删除、替换、 排序等操作，不然会报 `java.lang.UnsupportedOperationException` 异常。 IDEA 也会有相应的提示。
 
-![使用 `copyOf()` 创建的集合为不可变集合](https://oss.javaguide.cn/java-guide-blog/image-20210816154125579.png)
+![使用 `copyOf()` 创建的集合为不可变集合](/oss/java-guide-blog/image-20210816154125579.png)
 
 并且，`java.util.stream.Collectors` 中新增了静态方法，用于将流中的元素收集为不可变的集合。
 

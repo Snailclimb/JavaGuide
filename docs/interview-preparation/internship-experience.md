@@ -81,7 +81,7 @@ head:
 
 下面是[星球](https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html)一位球友分享的实习经历介绍，整体写的还是非常不错的：
 
-![实习经历模板](https://oss.javaguide.cn/github/javaguide/interview-preparation/qiuyou-shixijingli-demo.png)
+![实习经历模板](/oss/github/javaguide/interview-preparation/qiuyou-shixijingli-demo.png)
 
 📌关于实习经历这块再多提一点：很多同学实习期间可能接触不到什么实际的开发任务，大部分时间可能都是在熟悉和维护项目。
 

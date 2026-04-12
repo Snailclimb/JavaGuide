@@ -16,7 +16,7 @@ category: 走近作者
 
 下面这张是当时拍的毕业照（后排最中间的就是我）：
 
-![](https://oss.javaguide.cn/javaguide/%E4%B8%AA%E4%BA%BA%E4%BB%8B%E7%BB%8D.png)
+![](/oss/javaguide/%E4%B8%AA%E4%BA%BA%E4%BB%8B%E7%BB%8D.png)
 
 ## 我坚持写了多久博客？
 
@@ -34,11 +34,11 @@ category: 走近作者
 
 下面这张是我大一下学期办补习班的时候拍的（离开前的最后一顿饭）：
 
-![补习班的最后一顿晚餐](https://oss.javaguide.cn/p3-juejin/f36bfd719b9b4463b2f1d3edc51faa97~tplv-k3u1fbpfcp-zoom-1.jpeg)
+![补习班的最后一顿晚餐](/oss/p3-juejin/f36bfd719b9b4463b2f1d3edc51faa97~tplv-k3u1fbpfcp-zoom-1.jpeg)
 
 下面这张是我大三去三亚的时候拍的：
 
-![](https://oss.javaguide.cn/javaguide/psc.jpeg)
+![](/oss/javaguide/psc.jpeg)
 
 其实，我在大学就这么努力地开始赚钱，也主要是因为家庭条件太一般，父母赚钱都太辛苦了！也正是因为我自己迫切地想要减轻父母的负担，所以才会去尝试这么多赚钱的方法。
 
@@ -48,7 +48,7 @@ category: 走近作者
 
 ::: center
 
-![](https://oss.javaguide.cn/github/javaguide/gongzhonghaoxuanchuan.png)
+![](/oss/github/javaguide/gongzhonghaoxuanchuan.png)
 
 :::
 
@@ -60,7 +60,7 @@ category: 走近作者
 
 我早期写文章用的笔名是 SnailClimb 。很多人不知道这个名字是啥意思，给大家拆解一下就清楚了。SnailClimb=Snail（蜗牛）+Climb(攀登)。我从小就非常喜欢听周杰伦的歌曲，特别是他的《蜗牛》🐌 这首歌曲，另外，当年我高考发挥的算是比较失常，上了大学之后还算是比较“奋青”，所以，我就给自己起的笔名叫做 SnailClimb ，寓意自己要不断向上攀登，嘿嘿 😁
 
-![](https://oss.javaguide.cn/p3-juejin/37599546f3b34b92a32db579a225aa45~tplv-k3u1fbpfcp-watermark.png)
+![](/oss/p3-juejin/37599546f3b34b92a32db579a225aa45~tplv-k3u1fbpfcp-watermark.png)
 
 ## 后记
 
@@ -68,4 +68,4 @@ category: 走近作者
 
 生活本就是有苦有甜。共勉！
 
-![JavaGuide 官方公众号](https://oss.javaguide.cn/github/javaguide/gongzhonghaoxuanchuan.png)
+![JavaGuide 官方公众号](/oss/github/javaguide/gongzhonghaoxuanchuan.png)

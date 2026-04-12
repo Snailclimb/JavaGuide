@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 750" style="background-color: #F8FAFC; font-family: system-ui, sans-serif;">
+    <defs>
+        <pattern id="dot-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+            <circle cx="2" cy="2" r="1.5" fill="#E2E8F0" />
+        </pattern>
+        <filter id="glass-shadow" x="-10%" y="-10%" width="120%" height="120%">
+            <feDropShadow dx="0" dy="10" stdDeviation="15" flood-color="#005D7B" flood-opacity="0.06" />
+            <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#005D7B" flood-opacity="0.04" />
+        </filter>
+        <filter id="glow-orange">
+            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+
+    <rect width="100%" height="100%" fill="url(#dot-grid)" />
+
+    <text x="400" y="60" text-anchor="middle" font-size="28" font-weight="bold" fill="#005D7B">Harness Engineering 六层体系架构</text>
+    <text x="400" y="90" text-anchor="middle" font-size="16" fill="#64748B">从定义边界到兜底恢复的系统级闭环</text>
+
+    <g transform="translate(150, 120)">
+        <g transform="translate(0, 0)">
+            <rect width="500" height="70" rx="12" fill="#FFFFFF" filter="url(#glass-shadow)" />
+            <rect width="8" height="40" x="16" y="15" rx="4" fill="#E99151" />
+            <text x="40" y="35" font-size="18" font-weight="bold" fill="#005D7B">L6 约束、校验与恢复层</text>
+            <text x="40" y="55" font-size="14" fill="#64748B">预设红线规则，API 超时重试，状态回滚机制</text>
+            <circle cx="470" cy="35" r="6" fill="#E99151" filter="url(#glow-orange)" />
+        </g>
+
+        <line x1="250" y1="70" x2="250" y2="100" stroke="#005D7B" stroke-width="2" stroke-dasharray="4,4" />
+
+        <g transform="translate(0, 100)">
+            <rect width="500" height="70" rx="12" fill="#FFFFFF" filter="url(#glass-shadow)" />
+            <rect width="8" height="40" x="16" y="15" rx="4" fill="#4CA497" />
+            <text x="40" y="35" font-size="18" font-weight="bold" fill="#005D7B">L5 评估与观测层</text>
+            <text x="40" y="55" font-size="14" fill="#64748B">独立验证机制，沙箱环境测试，可观测性接入</text>
+        </g>
+
+        <line x1="250" y1="170" x2="250" y2="200" stroke="#005D7B" stroke-width="2" stroke-dasharray="4,4" />
+
+        <g transform="translate(0, 200)">
+            <rect width="500" height="70" rx="12" fill="#FFFFFF" filter="url(#glass-shadow)" />
+            <rect width="8" height="40" x="16" y="15" rx="4" fill="#4CA497" />
+            <text x="40" y="35" font-size="18" font-weight="bold" fill="#005D7B">L4 记忆与状态层</text>
+            <text x="40" y="55" font-size="14" fill="#64748B">独立管理任务状态，跨会话记忆，上下文压缩</text>
+        </g>
+
+        <line x1="250" y1="270" x2="250" y2="300" stroke="#005D7B" stroke-width="2" stroke-dasharray="4,4" />
+
+        <g transform="translate(0, 300)">
+            <rect width="500" height="70" rx="12" fill="#FFFFFF" filter="url(#glass-shadow)" />
+            <rect width="8" height="40" x="16" y="15" rx="4" fill="#4CA497" />
+            <text x="40" y="35" font-size="18" font-weight="bold" fill="#005D7B">L3 执行编排层</text>
+            <text x="40" y="55" font-size="14" fill="#64748B">多步骤任务串联，混合状态机编排</text>
+        </g>
+
+        <line x1="250" y1="370" x2="250" y2="400" stroke="#005D7B" stroke-width="2" stroke-dasharray="4,4" />
+
+        <g transform="translate(0, 400)">
+            <rect width="500" height="70" rx="12" fill="#FFFFFF" filter="url(#glass-shadow)" />
+            <rect width="8" height="40" x="16" y="15" rx="4" fill="#4CA497" />
+            <text x="40" y="35" font-size="18" font-weight="bold" fill="#005D7B">L2 工具系统层</text>
+            <text x="40" y="55" font-size="14" fill="#64748B">文件系统抽象，Bash 执行环境，MCP 工具挂载</text>
+        </g>
+
+        <line x1="250" y1="470" x2="250" y2="500" stroke="#005D7B" stroke-width="2" stroke-dasharray="4,4" />
+
+        <g transform="translate(0, 500)">
+            <rect width="500" height="70" rx="12" fill="#FFFFFF" filter="url(#glass-shadow)" />
+            <rect width="8" height="40" x="16" y="15" rx="4" fill="#005D7B" />
+            <text x="40" y="35" font-size="18" font-weight="bold" fill="#005D7B">L1 信息边界层</text>
+            <text x="40" y="55" font-size="14" fill="#64748B">角色目标定义，信息隔离，AGENTS.md 规范</text>
+        </g>
+    </g>
+</svg>

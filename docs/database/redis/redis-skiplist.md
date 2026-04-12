@@ -18,7 +18,7 @@ head:
 
 本文整体脉络如下图所示，笔者会从有序集合的基本使用到跳表的源码分析和实现，让你会对 Redis 的有序集合底层实现的跳表有着更深刻的理解和掌握。
 
-![](https://oss.javaguide.cn/javaguide/database/redis/skiplist/202401222005468.png)
+![](/oss/javaguide/database/redis/skiplist/202401222005468.png)
 
 ## 跳表在 Redis 中的运用
 
@@ -87,7 +87,7 @@ zset-max-ziplist-entries 128
 
 可能这里说的有些抽象，我们举个例子，以下图跳表为例，其原始链表存储按序存储 1-10，有 2 级索引，每级索引的索引个数都是基于下层元素个数的一半。
 
-![](https://oss.javaguide.cn/javaguide/database/redis/skiplist/202401222005436.png)
+![](/oss/javaguide/database/redis/skiplist/202401222005436.png)
 
 假如我们需要查询元素 6，其工作流程如下：
 
@@ -97,7 +97,7 @@ zset-max-ziplist-entries 128
 
 相较于原始有序链表需要 6 次，我们的跳表通过建立多级索引，我们只需两次就直接定位到了目标元素，其查寻的复杂度被直接优化为**O(log n)**。
 
-![](https://oss.javaguide.cn/javaguide/database/redis/skiplist/202401222005524.png)
+![](/oss/javaguide/database/redis/skiplist/202401222005524.png)
 
 对应的添加也是一个道理，假如我们需要在这个有序集合中添加一个元素 7，那么我们就需要通过跳表找到**小于元素 7 的最大值**，也就是下图元素 6 的位置，将其插入到元素 6 的后面，让元素 6 的索引指向新插入的节点 7，其工作流程如下：
 
@@ -107,7 +107,7 @@ zset-max-ziplist-entries 128
 4. 继续比较 6 的后继节点为索引 8，大于元素 7，索引继续向下。
 5. 最终我们来到 6 的原始节点，发现其后继节点为 7，指针没有继续向下的空间，自此我们可知元素 6 就是小于插入元素 7 的最大值，于是便将元素 7 插入。
 
-![](https://oss.javaguide.cn/javaguide/database/redis/skiplist/202401222005480.png)
+![](/oss/javaguide/database/redis/skiplist/202401222005480.png)
 
 这里我们又面临一个问题，我们是否需要为元素 7 建立索引，索引多高合适？
 
@@ -155,7 +155,7 @@ r=n/2^k
 
 我们回过头，上述插入 7 之后，我们通过随机算法得到 2，即要为其建立 1 级索引：
 
-![](https://oss.javaguide.cn/javaguide/database/redis/skiplist/202401222005505.png)
+![](/oss/javaguide/database/redis/skiplist/202401222005505.png)
 
 最后我们再来说说删除，假设我们这里要删除元素 10，我们必须定位到当前跳表**各层**元素小于 10 的最大值，索引执行步骤为：
 
@@ -165,7 +165,7 @@ r=n/2^k
 4. 1 级索引完成定位后，指针向下，后继节点为 9，指针推进。
 5. 9 的后继节点为 10，同理需要让其指向 null，将 10 删除。
 
-![](https://oss.javaguide.cn/javaguide/database/redis/skiplist/202401222005503.png)
+![](/oss/javaguide/database/redis/skiplist/202401222005503.png)
 
 ### 模板定义
 
@@ -179,7 +179,7 @@ r=n/2^k
 
 以下图为例，我们**forwards**数组长度为 5，其中**索引 0**记录的是原始链表节点的后继节点地址，而其余自底向上表示从 1 级索引到 4 级索引的后继节点指向。
 
-![](https://oss.javaguide.cn/javaguide/database/redis/skiplist/202401222005347.png)
+![](/oss/javaguide/database/redis/skiplist/202401222005347.png)
 
 于是我们的就有了这样一个代码定义，可以看出笔者对于数组的长度设置为固定的 16**(上文的推算最大高度建议是 16)**，默认**data**为-1，节点最大高度**maxLevel**初始化为 1，注意这个**maxLevel**的值代表原始链表加上索引的总高度。
 
@@ -226,11 +226,11 @@ private int randomLevel() {
 
 假设我们要插入的**value**为 5，我们的数组查找结果当前节点的前驱节点和 1 级索引、2 级索引的前驱节点都为 4，三级索引为空。
 
-![](https://oss.javaguide.cn/javaguide/database/redis/skiplist/202401222005299.png)
+![](/oss/javaguide/database/redis/skiplist/202401222005299.png)
 
 然后我们基于这个数组**maxOfMinArr** 定位到各级的后继节点，让插入的元素 5 指向这些后继节点，而**maxOfMinArr**指向 5，结果如下图：
 
-![](https://oss.javaguide.cn/javaguide/database/redis/skiplist/202401222005369.png)
+![](/oss/javaguide/database/redis/skiplist/202401222005369.png)
 
 转化成代码就是下面这个形式，是不是很简单呢？我们继续：
 
@@ -287,7 +287,7 @@ public void add(int value) {
 
 查询逻辑比较简单，从跳表最高级的索引开始定位找到小于要查的 value 的最大值，以下图为例，我们希望查找到节点 8：
 
-![](https://oss.javaguide.cn/javaguide/database/redis/skiplist/202401222005323.png)
+![](/oss/javaguide/database/redis/skiplist/202401222005323.png)
 
 - **从最高层级开始 (3 级索引)** ：查找指针 `p` 从头节点开始。在 3 级索引上，`p` 的后继 `forwards[2]`（假设最高 3 层，索引从 0 开始）指向节点 `5`。由于 `5 < 8`，指针 `p` 向右移动到节点 `5`。节点 `5` 在 3 级索引上的后继 `forwards[2]` 为 `null`（或指向一个大于 `8` 的节点，图中未画出）。当前层级向右查找结束，指针 `p` 保持在节点 `5`，**向下移动到 2 级索引**。
 - **在 2 级索引**：当前指针 `p` 为节点 `5`。`p` 的后继 `forwards[1]` 指向节点 `8`。由于 `8` 不小于 `8`（即 `8 < 8` 为 `false`），当前层级向右查找结束（`p` 不会移动到节点 `8`）。指针 `p` 保持在节点 `5`，**向下移动到 1 级索引**。
@@ -333,7 +333,7 @@ public Node get(int value) {
 4. 原始节点找到 9。
 5. 从最高级索引开始，查看每个小于 10 的节点后继节点是否为 10，如果等于 10，则让这个节点指向 10 的后继节点，将节点 10 及其索引交由 GC 回收。
 
-![](https://oss.javaguide.cn/javaguide/database/redis/skiplist/202401222005350.png)
+![](/oss/javaguide/database/redis/skiplist/202401222005350.png)
 
 ```java
 /**
@@ -569,11 +569,11 @@ public static void main(String[] args) {
 
 对于范围查询来说，它也可以通过中序遍历的方式达到和跳表一样的效果。但是它的每一次插入或者删除操作都需要保证整颗树左右节点的绝对平衡，只要不平衡就要通过旋转操作来保持平衡，这个过程是比较耗时的。
 
-![](https://oss.javaguide.cn/javaguide/database/redis/skiplist/202401222005312.png)
+![](/oss/javaguide/database/redis/skiplist/202401222005312.png)
 
 跳表诞生的初衷就是为了克服平衡树的一些缺点，跳表的发明者在论文[《Skip lists: a probabilistic alternative to balanced trees》](https://15721.courses.cs.cmu.edu/spring2018/papers/08-oltpindexes1/pugh-skiplists-cacm1990.pdf)中有详细提到：
 
-![](https://oss.javaguide.cn/github/javaguide/database/redis/skiplist-a-probabilistic-alternative-to-balanced-trees.png)
+![](/oss/github/javaguide/database/redis/skiplist-a-probabilistic-alternative-to-balanced-trees.png)
 
 > Skip lists are a data structure that can be used in place of balanced trees. Skip lists use probabilistic balancing rather than strictly enforced balancing and as a result the algorithms for insertion and deletion in skip lists are much simpler and significantly faster than equivalent algorithms for balanced trees.
 >
@@ -640,7 +640,7 @@ private Node add(Node node, K key, V value) {
 
 相比较于红黑树来说，跳表的实现也更简单一些。并且，按照区间来查找数据这个操作，红黑树的效率没有跳表高。
 
-![](https://oss.javaguide.cn/javaguide/database/redis/skiplist/202401222005709.png)
+![](/oss/javaguide/database/redis/skiplist/202401222005709.png)
 
 对应红黑树添加的核心代码如下，读者可自行参阅理解：
 
@@ -690,7 +690,7 @@ private Node < K, V > add(Node < K, V > node, K key, V val) {
 4. **顺序访问**：叶子节点间通过链表指针相连，范围查询表现出色。
 5. **数据均匀分布**：B+树插入时可能会导致数据重新分布，使得数据在整棵树分布更加均匀，保证范围查询和删除效率。
 
-![](https://oss.javaguide.cn/javaguide/database/redis/skiplist/202401222005649.png)
+![](/oss/javaguide/database/redis/skiplist/202401222005649.png)
 
 所以，B+树更适合作为数据库和文件系统中常用的索引结构之一，它的核心思想是通过可能少的 IO 定位到尽可能多的索引来获得查询数据。对于 Redis 这种内存数据库来说，它对这些并不感冒，因为 Redis 作为内存数据库它不可能存储大量的数据，所以对于索引不需要通过 B+树这种方式进行维护，只需按照概率进行随机维护即可，节约内存。而且使用跳表实现 zset 时相较前者来说更简单一些，在进行插入时只需通过索引将数据插入到链表中合适的位置再随机维护一定高度的索引即可，也不需要像 B+树那样插入时发现失衡时还需要对节点分裂与合并。
 

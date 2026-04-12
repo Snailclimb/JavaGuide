@@ -13,7 +13,7 @@ head:
 
 **《后端面试高频系统设计&场景题》** 包含了常见的系统设计案例比如短链系统、秒杀系统以及高频的场景题比如海量数据去重、第三方授权登录。
 
-![《后端面试高频系统设计&场景题》](https://oss.javaguide.cn/xingqiu/back-end-interview-high-frequency-system-design-and-scenario-questions-fengmian.png)
+![《后端面试高频系统设计&场景题》](/oss/xingqiu/back-end-interview-high-frequency-system-design-and-scenario-questions-fengmian.png)
 
 近年来，随着国内的技术面试越来越卷，越来越多的公司开始在面试中考察系统设计和场景问题，以此来更全面的考察求职者，不论是校招还是社招。不过，正常面试全是场景题的情况还是极少的，面试官一般会在面试中穿插一两个系统设计和场景题来考察你。
 

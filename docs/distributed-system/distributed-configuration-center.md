@@ -27,7 +27,7 @@ head:
 - **版本管理**：记录每次配置变更的修改人、修改时间、修改内容，支持一键回滚。
 - **灰度发布**：先将配置推送给部分实例验证，降低变更风险（Apollo、Nacos 1.1.0+ 支持）。
 
-![Applo 配置中心](https://oss.javaguide.cn/github/javaguide/config-center/view-release-history.png)
+![Applo 配置中心](/oss/github/javaguide/config-center/view-release-history.png)
 
 ## 常见的配置中心有哪些？如何选择？
 

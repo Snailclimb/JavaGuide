@@ -22,7 +22,7 @@ Java 集合，也叫作容器，主要是由两大接口派生而来：一个是
 
 Java 集合框架如下图所示：
 
-![Java 集合框架概览](https://oss.javaguide.cn/github/javaguide/java/collection/java-collection-hierarchy.png)
+![Java 集合框架概览](/oss/github/javaguide/java/collection/java-collection-hierarchy.png)
 
 注：图中只列举了主要的继承派生关系，并没有列举所有关系。比方省略了`AbstractList`, `NavigableSet`等抽象类以及其他的一些辅助类，如想深入了解，可自行查看源码。
 
@@ -194,7 +194,7 @@ System.out.println(listOfStrings);
 
 这里简单列举一个例子：假如我们要删除节点 9 的话，需要先遍历链表找到该节点。然后，再执行相应节点指针指向的更改，具体的源码可以参考：[LinkedList 源码分析](https://javaguide.cn/java/collection/linkedlist-source-code.html) 。
 
-![unlink 方法逻辑](https://oss.javaguide.cn/github/javaguide/java/collection/linkedlist-unlink.jpg)
+![unlink 方法逻辑](/oss/github/javaguide/java/collection/linkedlist-unlink.jpg)
 
 ### LinkedList 为什么不能实现 RandomAccess 接口？
 
@@ -212,7 +212,7 @@ System.out.println(listOfStrings);
 
 我们在项目中一般是不会使用到 `LinkedList` 的，需要用到 `LinkedList` 的场景几乎都可以使用 `ArrayList` 来代替，并且，性能通常会更好！就连 `LinkedList` 的作者约书亚 · 布洛克（Josh Bloch）自己都说从来不会使用 `LinkedList` 。
 
-![](https://oss.javaguide.cn/github/javaguide/redisimage-20220412110853807.png)
+![](/oss/github/javaguide/redisimage-20220412110853807.png)
 
 另外，不要下意识地认为 `LinkedList` 作为链表就最适合元素增删的场景。我在上面也说了，`LinkedList` 仅仅在头尾插入或者删除元素的时候时间复杂度近似 O(1)，其他情况增删元素的平均时间复杂度都是 O(n) 。
 
@@ -220,11 +220,11 @@ System.out.println(listOfStrings);
 
 **双向链表：** 包含两个指针，一个 prev 指向前一个节点，一个 next 指向后一个节点。
 
-![双向链表](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/bidirectional-linkedlist.png)
+![双向链表](/oss/github/javaguide/cs-basics/data-structure/bidirectional-linkedlist.png)
 
 **双向循环链表：** 最后一个节点的 next 指向 head，而 head 的 prev 指向最后一个节点，构成一个环。
 
-![双向循环链表](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/bidirectional-circular-linkedlist.png)
+![双向循环链表](/oss/github/javaguide/cs-basics/data-structure/bidirectional-circular-linkedlist.png)
 
 #### 补充内容:RandomAccess 接口
 
@@ -350,7 +350,7 @@ final void checkForComodification() {
 
 该思想常运用于并发容器，最经典的实现就是`CopyOnWriteArrayList`的实现，通过写时复制（Copy-On-Write）的思想保证在进行修改操作时复制出一份快照，基于这份快照完成添加或者删除操作后，将`CopyOnWriteArrayList`底层的数组引用指向这个新的数组空间，由此避免迭代时被并发修改所干扰所导致并发操作安全问题，当然这种做法也存在缺点，即进行遍历操作时无法获得实时结果：
 
-![](https://oss.javaguide.cn/github/javaguide/java/collection/fail-fast-and-fail-safe-copyonwritearraylist.png)
+![](/oss/github/javaguide/java/collection/fail-fast-and-fail-safe-copyonwritearraylist.png)
 
 对应我们也给出`CopyOnWriteArrayList`实现`fail-safe`的核心代码，可以看到它的实现就是通过`getArray`获取数组引用然后通过`Arrays.copyOf`得到一个数组的快照，基于这个快照完成添加操作后，修改底层`array`变量指向的引用地址由此完成写时复制：
 
@@ -586,11 +586,11 @@ public interface BlockingQueue<E> extends Queue<E> {
 
 `BlockingQueue` 常用于生产者-消费者模型中，生产者线程会向队列中添加数据，而消费者线程会从队列中取出数据进行处理。
 
-![BlockingQueue](https://oss.javaguide.cn/github/javaguide/java/collection/blocking-queue.png)
+![BlockingQueue](/oss/github/javaguide/java/collection/blocking-queue.png)
 
 ### BlockingQueue 的实现类有哪些？
 
-![BlockingQueue 的实现类](https://oss.javaguide.cn/github/javaguide/java/collection/blocking-queue-hierarchy.png)
+![BlockingQueue 的实现类](/oss/github/javaguide/java/collection/blocking-queue-hierarchy.png)
 
 Java 中常用的阻塞队列实现类有以下几种：
 

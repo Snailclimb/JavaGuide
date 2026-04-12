@@ -26,7 +26,7 @@ JDK 24 共有 24 个新特性，这篇文章会挑选其中较为重要的一些
 
 下图是从 JDK 8 到 JDK 25 每个版本的更新带来的新特性数量和更新时间：
 
-![](https://oss.javaguide.cn/github/javaguide/java/new-features/jdk8~jdk24.png)
+![](/oss/github/javaguide/java/new-features/jdk8~jdk24.png)
 
 ## JEP 478: Key Derivation Function API (密钥派生函数 API)
 

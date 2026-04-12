@@ -28,4 +28,4 @@ category: 计算机书籍
 
 最新更新会第一时间同步在公众号，推荐关注！另外，公众号上有很多干货不会同步在线阅读网站。
 
-<img src="https://oss.javaguide.cn/github/javaguide/gongzhonghao-javaguide.png" alt="JavaGuide 公众号"  style="zoom: 43%; display: block; margin: 0 auto;" />
+<img src="/oss/github/javaguide/gongzhonghao-javaguide.png" alt="JavaGuide 公众号"  style="zoom: 43%; display: block; margin: 0 auto;" />

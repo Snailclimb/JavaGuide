@@ -7,7 +7,7 @@ star: 2
 
 在 **2019 年 12 月 29 号**，经过了大概一年左右的犹豫期，我正式确定要开始做一个自己的星球，帮助学习 Java 和准备 Java 面试的同学。一转眼，已经六年了。感谢大家一路陪伴，我会信守承诺，继续认真维护这个纯粹的 Java 知识星球，不让信任我的读者失望。
 
-![星球创立日期](https://oss.javaguide.cn/xingqiu/640-20230727145252757.png)
+![星球创立日期](/oss/xingqiu/640-20230727145252757.png)
 
 我是比较早一批做星球的技术号主，也是坚持做下来的那一少部人（大部分博主割一波韭菜就不维护星球了）。最开始的一两年，纯粹靠爱发电。当初定价非常低（一顿饭钱），加上刚工作的时候比较忙，提供的服务也没有现在这么多。
 
@@ -21,7 +21,7 @@ star: 2
 
 下面是今年收到了部分好评，每一条都是真实存在的。我看到很多培训班或者机构通过虚构一些不存在的好评来欺骗他人购买高价服务（行业内非常常见），真的很难理解。
 
-![球友对星球的真实评价](https://oss.javaguide.cn/xingqiu/praise-that-the-planet-received.png)
+![球友对星球的真实评价](/oss/xingqiu/praise-that-the-planet-received.png)
 
 在这里，不只有理论，更有具体、可落地的求职/转行指导：
 
@@ -34,7 +34,7 @@ star: 2
 
 下面是部分球友今年的求职战绩分享（只是一小部分，有校招，也有社招），同样完全真实。每年面试季之后，星球就有大量的球友询问 offer 如何选择。
 
-![部分球友今年的求职战绩](https://oss.javaguide.cn/xingqiu/job-hunting-results-from-members-2025.png)
+![部分球友今年的求职战绩](/oss/xingqiu/job-hunting-results-from-members-2025.png)
 
 ## 我的知识星球能为你提供什么？
 
@@ -68,17 +68,17 @@ star: 2
 
 这里再提供一张 **30**元的优惠卷（**价格马上上调，老用户扫码续费半价** ）：
 
-![知识星球30元优惠卷](https://oss.javaguide.cn/xingqiu/xingqiuyouhuijuan-30.jpg)
+![知识星球30元优惠卷](/oss/xingqiu/xingqiuyouhuijuan-30.jpg)
 
 ### 专属专栏
 
 星球更新了 **《Java 面试指北》**、**《Java 必读源码系列》**（目前已经整理了 Dubbo 2.6.x、Netty 4.x、SpringBoot2.1 的源码）、 **《从零开始写一个 RPC 框架》**（已更新完）、**《Kafka 常见面试题/知识点总结》** 等多个优质专栏。
 
-![星球专属专栏](https://oss.javaguide.cn/xingqiu/image-20220211231206733.png)
+![星球专属专栏](/oss/xingqiu/image-20220211231206733.png)
 
 《Java 面试指北》内容概览：
 
-![《Java 面试指北》内容概览](https://oss.javaguide.cn/javamianshizhibei/javamianshizhibei-content-overview.png)
+![《Java 面试指北》内容概览](/oss/javamianshizhibei/javamianshizhibei-content-overview.png)
 
 进入星球之后，这些专栏即可免费永久阅读，永久同步更新！
 
@@ -91,43 +91,43 @@ star: 2
 
 今年陆续还会推出更多企业级实战案例！并且，星球还分享了很多高频项目经历的优化版介绍和面试准备（持续更新中）。
 
-![高频项目经历的优化版介绍和面试准备](https://oss.javaguide.cn/xingqiu/practical-project-introduction-template.png)
+![高频项目经历的优化版介绍和面试准备](/oss/xingqiu/practical-project-introduction-template.png)
 
 ### PDF 面试手册
 
 进入星球就免费赠送多本优质 PDF 面试手册。
 
-![星球 PDF 面试手册](https://oss.javaguide.cn/xingqiu/image-20220723120918434.png)
+![星球 PDF 面试手册](/oss/xingqiu/image-20220723120918434.png)
 
 ### 优质精华主题沉淀
 
 星球沉淀了几年的优质精华主题，内容涵盖面经、面试题、工具网站、技术资源、程序员进阶攻略等内容，干货非常多。
 
-![](https://oss.javaguide.cn/xingqiu/image-20230421154518800.png)
+![](/oss/xingqiu/image-20230421154518800.png)
 
 并且，每个月都会整理出当月优质的主题，方便大家阅读学习，避免错过优质的内容。毫不夸张，单纯这些优质主题就足够门票价值了。
 
-![星球每月优质主题整理概览](https://oss.javaguide.cn/xingqiu/image-20230902091117181.png)
+![星球每月优质主题整理概览](/oss/xingqiu/image-20230902091117181.png)
 
 加入星球之后，一定要记得抽时间把星球精华主题看看，相信你一定会有所收货！
 
 JavaGuide 知识星球优质主题汇总传送门：<https://www.yuque.com/snailclimb/rpkqw1/ncxpnfmlng08wlf1>（为了避免这里成为知识杂货铺，我会对严格筛选入选的优质主题）。
 
-![星球优质主题汇总](https://oss.javaguide.cn/xingqiu/Xnip2023-04-21_15-48-13.png)
+![星球优质主题汇总](/oss/xingqiu/Xnip2023-04-21_15-48-13.png)
 
 ### 简历修改
 
 一到面试季，我平均一天晚上至少要看 15 ~30 份简历。过了面试季的话，找我看简历的话会稍微少一些。要不然的话，是真心顶不住！
 
-![](https://oss.javaguide.cn/xingqiu/image-20220304123156348.png)
+![](/oss/xingqiu/image-20220304123156348.png)
 
 简单统计了一下，到目前为止，我至少帮助 **9000+** 位球友提供了免费的简历修改服务。
 
-![](https://oss.javaguide.cn/xingqiu/%E7%AE%80%E5%8E%86%E4%BF%AE%E6%94%B92.jpg)
+![](/oss/xingqiu/%E7%AE%80%E5%8E%86%E4%BF%AE%E6%94%B92.jpg)
 
 我会针对每一份简历给出详细的修改完善建议，用心修改，深受好评！
 
-![](https://oss.javaguide.cn/xingqiu/image-20220725093504807.png)
+![](/oss/xingqiu/image-20220725093504807.png)
 
 ### 一对一提问
 
@@ -137,7 +137,7 @@ JavaGuide 知识星球优质主题汇总传送门：<https://www.yuque.com/snail
 
 下面是今年做的一小部分答疑，感受一下：
 
-![部分星球答疑](https://oss.javaguide.cn/xingqiu/image-20220211223559179.png)
+![部分星球答疑](/oss/xingqiu/image-20220211223559179.png)
 
 我没法保证每个问题都能像上面这样写一长段，这也会取决于你的提问本身。但我可以承诺的是：**我会认真看完每一个问题，尽我所能帮你少走弯路、少花冤枉钱。**
 
@@ -147,19 +147,19 @@ JavaGuide 知识星球优质主题汇总传送门：<https://www.yuque.com/snail
 
 星球的学习打卡活动可以督促自己和其他球友们一起学习交流。
 
-![](https://oss.javaguide.cn/xingqiu/image-20220308143815840.png)
+![](/oss/xingqiu/image-20220308143815840.png)
 
 看球友们的打卡也能有收货，最重要的是这个学习氛围对于自己自律非常有帮助！
 
-![](https://oss.javaguide.cn/xingqiu/%E7%90%83%E5%8F%8B%E6%AF%8F%E6%97%A5%E6%89%93%E5%8D%A1%E4%B9%9F%E8%83%BD%E5%AD%A6%E5%88%B0%E5%BE%88%E5%A4%9A%E4%B8%9C%E8%A5%BF.jpg)
+![](/oss/xingqiu/%E7%90%83%E5%8F%8B%E6%AF%8F%E6%97%A5%E6%89%93%E5%8D%A1%E4%B9%9F%E8%83%BD%E5%AD%A6%E5%88%B0%E5%BE%88%E5%A4%9A%E4%B8%9C%E8%A5%BF.jpg)
 
-![](https://oss.javaguide.cn/xingqiu/%E7%A1%AE%E5%AE%9E%E6%98%AF%E5%AD%A6%E4%B9%A0%E4%BA%A4%E6%B5%81%E7%9A%84%E5%A5%BD%E5%9C%B0%E6%96%B9.jpg)！
+![](/oss/xingqiu/%E7%A1%AE%E5%AE%9E%E6%98%AF%E5%AD%A6%E4%B9%A0%E4%BA%A4%E6%B5%81%E7%9A%84%E5%A5%BD%E5%9C%B0%E6%96%B9.jpg)！
 
 ### 不定时福利
 
 不定时地在星球送书、送专栏、发红包，福利多多，
 
-![](https://oss.javaguide.cn/xingqiu/1682063464099.png)
+![](/oss/xingqiu/1682063464099.png)
 
 ## 是否收费？
 
@@ -176,7 +176,7 @@ JavaGuide 知识星球优质主题汇总传送门：<https://www.yuque.com/snail
 
 这里再提供一张 **30**元的优惠卷（**价格马上上调，老用户扫码续费半价** ）：
 
-![知识星球30元优惠卷](https://oss.javaguide.cn/xingqiu/xingqiuyouhuijuan-30.jpg)
+![知识星球30元优惠卷](/oss/xingqiu/xingqiuyouhuijuan-30.jpg)
 
 🚀 **入圈必做**：星球大部分资料都已经整理分类好放在了[星球使用指南](https://t.zsxq.com/0d18KSarv)中，干货满满，一定要看！
 

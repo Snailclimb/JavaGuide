@@ -39,7 +39,7 @@ ZXID 是一个 64 位的长整型（long）：
 - **高 32 位（Epoch 纪元）：** 代表当前 Leader 的任期年代。当选出一个新的 Leader 时，Epoch 就会在前一个的基础上加 1。这相当于朝代更替。
 - **低 32 位（事务 ID）：** 一个简单的递增计数器。针对客户端的每一个写请求，计数器都会加 1。新 Leader 上位时，这个低 32 位会被清零重置。
 
-![ZXID 结构](https://oss.javaguide.cn/github/javaguide/distributed-system/protocol/zab-zxid-structure.png)
+![ZXID 结构](/oss/github/javaguide/distributed-system/protocol/zab-zxid-structure.png)
 
 ## ZAB 的两种基本模式
 
@@ -47,7 +47,7 @@ ZAB 协议的运作可以精简为两种基本模式的交替：**消息广播**
 
 ### 1. 消息广播模式（正常处理写请求）
 
-![ZAB 消息广播模式](https://oss.javaguide.cn/github/javaguide/distributed-system/protocol/zab-message-broadcast-flow.png)
+![ZAB 消息广播模式](/oss/github/javaguide/distributed-system/protocol/zab-message-broadcast-flow.png)
 
 当集群拥有健康的 Leader，且过半的节点完成了状态同步后，就会进入消息广播模式。这个过程类似于一个简化的“两阶段提交（2PC）”：
 
@@ -60,7 +60,7 @@ ZAB 协议的运作可以精简为两种基本模式的交替：**消息广播**
 
 当系统刚启动，或者 Leader 服务器崩溃、与过半 Follower 失去联系时，整个集群就会暂停对外服务，进入 `LOOKING` 状态，触发崩溃恢复模式。崩溃恢复主要包含两个阶段：**Leader 选举**和**数据恢复**。
 
-![zab-crash-recovery-flow](https://oss.javaguide.cn/github/javaguide/distributed-system/protocol/zab-crash-recovery-flow.png)
+![zab-crash-recovery-flow](/oss/github/javaguide/distributed-system/protocol/zab-crash-recovery-flow.png)
 
 #### 阶段一：Leader 选举
 

@@ -39,7 +39,7 @@ icon: guide
 
 这种方式最适合修正笔误或小范围的内容优化。
 
-![](https://oss.javaguide.cn/github/javaguide/about/javaguide-contribution-edit-page.png)
+![](/oss/github/javaguide/about/javaguide-contribution-edit-page.png)
 
 ### 进阶模式：Fork + PR（标准开源流程）
 
@@ -49,7 +49,7 @@ icon: guide
 2. **本地开发**：你可以将项目克隆到本地，在本地自由修改，编写内容。内容修改或者编写完成之后，直接提交到副本仓库即可。
 3. **发起 PR**：提交完成后，点击 `New Pull Request`，将你的修改请求合并到 JavaGuide 的主分支。
 
-![](https://oss.javaguide.cn/github/javaguide/about/javaguide-contribution-pr.png)
+![](/oss/github/javaguide/about/javaguide-contribution-pr.png)
 
 Git 相关的技能非常重要，建议在正式工作之前一定要熟练掌握。
 

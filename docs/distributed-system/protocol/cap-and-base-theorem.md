@@ -30,7 +30,7 @@ CAP 定理讨论 Consistency（一致性）、Availability（可用性）和 Par
 
 > **重要说明**：下文使用「偏 CP / 偏 AP」仅作直觉描述。严格按 CAP 定义（C=Linearizability，A=每个非故障节点都必须响应）时，许多系统并不能被干净归类——同一系统内不同操作的一致性/可用性特征不同，很多系统既不满足 CAP-C 也不满足 CAP-A。
 
-![](https://oss.javaguide.cn/2020-11/cap.png)
+![](/oss/2020-11/cap.png)
 
 CAP 理论的提出者布鲁尔在提出 CAP 猜想的时候，并没有对 **Consistency**、**Availability**、**Partition Tolerance** 给出严格定义。
 
@@ -46,7 +46,7 @@ CAP 理论的提出者布鲁尔在提出 CAP 猜想的时候，并没有对 **Co
 
 分布式系统中，多个节点之间的网络本来是连通的，但是因为某些故障（比如部分节点网络出了问题）某些节点之间不连通了，整个网络就分成了几块区域，这就叫 **网络分区**。
 
-![partition-tolerance](https://oss.javaguide.cn/2020-11/partition-tolerance.png)
+![partition-tolerance](/oss/2020-11/partition-tolerance.png)
 
 ### 不是所谓的「3 选 2」
 
@@ -231,7 +231,7 @@ flowchart TB
 
 注册中心负责服务地址的注册与查找，相当于目录服务，服务提供者和消费者只在启动时与注册中心交互，注册中心不转发请求，压力较小。
 
-![](https://oss.javaguide.cn/2020-11/dubbo-architecture.png)
+![](/oss/2020-11/dubbo-architecture.png)
 
 常见的可以作为注册中心的组件有：ZooKeeper、Eureka、Nacos...。
 

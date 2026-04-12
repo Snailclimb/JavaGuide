@@ -158,7 +158,7 @@ head:
 - **系统设计 / 场景题汇总**：[系统设计常见面试题总结](https://javaguide.cn/system-design/system-design-questions.html)（付费内容在 [《后端面试高频系统设计&场景题》](https://javaguide.cn/zhuanlan/back-end-interview-high-frequency-system-design-and-scenario-questions.html) 专栏，含短链、秒杀、海量数据处理等 30+ 道）。
 - **本站可参考的设计类文章**（思路可迁移到面试口述）：[定时任务](https://javaguide.cn/system-design/schedule-task.html)、[Web 实时消息推送](https://javaguide.cn/system-design/web-real-time-message-push.html)。
 
-![《后端面试高频系统设计&场景题》](https://oss.javaguide.cn/xingqiu/back-end-interview-high-frequency-system-design-and-scenario-questions-fengmian.png)
+![《后端面试高频系统设计&场景题》](/oss/xingqiu/back-end-interview-high-frequency-system-design-and-scenario-questions-fengmian.png)
 
 **自测**：能口述 1～2 个经典系统设计（如短链、秒杀、限流）的整体思路与关键取舍；场景题（如海量数据去重、第三方登录）能说出常见方案。
 

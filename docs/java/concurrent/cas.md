@@ -51,7 +51,7 @@ boolean compareAndSwapLong(Object o, long offset, long expected, long x);
 
 `java.util.concurrent.atomic` 包提供了一些用于原子操作的类。
 
-![JUC原子类概览](https://oss.javaguide.cn/github/javaguide/java/JUC%E5%8E%9F%E5%AD%90%E7%B1%BB%E6%A6%82%E8%A7%88.png)
+![JUC原子类概览](/oss/github/javaguide/java/JUC%E5%8E%9F%E5%AD%90%E7%B1%BB%E6%A6%82%E8%A7%88.png)
 
 关于这些 Atomic 原子类的介绍和使用，可以阅读这篇文章：[Atomic 原子类总结](https://javaguide.cn/java/concurrent/atomic-classes.html)。
 
