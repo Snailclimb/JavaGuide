@@ -5,18 +5,21 @@ import navbar from "./navbar.js";
 import sidebar from "./sidebar/index.js";
 
 const __dirname = getDirname(import.meta.url);
+const siteHostname = "https://ltimax.github.io";
+const repoUrl = "https://github.com/LTimax/JavaGuide";
+const profileUrl = "https://github.com/LTimax";
 
 export default hopeTheme({
-  hostname: "https://javaguide.cn/",
+  hostname: siteHostname,
   logo: "/logo.png",
   favicon: "/favicon.ico",
 
   author: {
     name: "Guide",
-    url: "https://javaguide.cn/article/",
+    url: repoUrl,
   },
 
-  repo: "https://github.com/Snailclimb/JavaGuide",
+  repo: repoUrl,
   docsDir: "docs",
   pure: true,
   focus: false,
@@ -24,7 +27,7 @@ export default hopeTheme({
   navbar,
   sidebar,
   footer:
-    '<a href="https://beian.miit.gov.cn/" target="_blank">鄂ICP备2020015769号-1</a>',
+    '本站基于 JavaGuide fork，并部署在 GitHub Pages。',
   displayFooter: true,
 
   pageInfo: ["Author", "Category", "Tag", "Original", "Word", "ReadingTime"],
@@ -33,7 +36,7 @@ export default hopeTheme({
     intro: "/about-the-author/",
     medias: {
       Zhihu: "https://www.zhihu.com/people/javaguide",
-      Github: "https://github.com/Snailclimb",
+      Github: profileUrl,
       Gitee: "https://gitee.com/SnailClimb",
     },
   },
@@ -63,11 +66,11 @@ export default hopeTheme({
     sitemap: true,
 
     copyright: {
-      author: "JavaGuide(javaguide.cn)",
+      author: "Guide (fork by LTimax)",
       license: "MIT",
       triggerLength: 100,
       maxLength: 700,
-      canonical: "https://javaguide.cn/",
+      canonical: siteHostname,
       global: true,
     },
 

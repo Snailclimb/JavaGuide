@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://javaguide.cn/sitemap.xml
-Host: https://javaguide.cn/
+Sitemap: https://ltimax.github.io/JavaGuide/sitemap.xml
+Host: https://ltimax.github.io/

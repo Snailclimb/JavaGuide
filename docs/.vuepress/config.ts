@@ -2,7 +2,12 @@ import { viteBundler } from "@vuepress/bundler-vite";
 import { defineUserConfig } from "vuepress";
 import theme from "./theme.js";
 
+const siteBase = "/JavaGuide/";
+const siteUrl = "https://ltimax.github.io/JavaGuide/";
+
 export default defineUserConfig({
+  // GitHub Pages 项目页需要带上仓库名作为基础路径。
+  base: siteBase,
   dest: "./dist",
 
   title: "JavaGuide",
@@ -33,21 +38,8 @@ export default defineUserConfig({
     ["meta", { property: "og:site_name", content: "JavaGuide" }],
     ["meta", { property: "og:type", content: "website" }],
     ["meta", { property: "og:locale", content: "zh_CN" }],
-    ["meta", { property: "og:url", content: "https://javaguide.cn/" }],
+    ["meta", { property: "og:url", content: siteUrl }],
     ["meta", { name: "apple-mobile-web-app-capable", content: "yes" }],
-    // 添加百度统计 - 异步加载避免阻塞渲染
-    [
-      "script",
-      { defer: true },
-      `var _hmt = _hmt || [];
-        (function() {
-          var hm = document.createElement("script");
-          hm.src = "https://hm.baidu.com/hm.js?5dd2e8c97962d57b7b8fea1737c01743";
-          hm.async = true;
-          var s = document.getElementsByTagName("script")[0]; 
-          s.parentNode.insertBefore(hm, s);
-        })();`,
-    ],
   ],
 
   bundler: viteBundler({
