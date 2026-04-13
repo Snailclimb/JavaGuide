@@ -333,7 +333,7 @@ PhantomReference phantomReference2 = new PhantomReference(new String("abc"), que
 
 ### 如何判断一个常量是废弃常量？
 
-运行时常量池主要回收的是废弃的常量。那么，我们如何判断一个常量是废弃常量呢？
+字符串常量池主要回收的是废弃的常量。那么，我们如何判断一个常量是废弃常量呢？
 
 ~~**JDK1.7 及之后版本的 JVM 已经将运行时常量池从方法区中移了出来，在 Java 堆（Heap）中开辟了一块区域存放运行时常量池。**~~
 
