@@ -2,7 +2,6 @@
 title: 上下文工程实战指南：让 Agent 少犯蠢的工程方法论
 description: 深入解析 Context Engineering 核心概念，涵盖静态规则编排、动态信息挂载、Token 预算降级、按需加载策略及长任务上下文持久化，帮助开发者构建高信噪比的 Agent 上下文供给系统。
 category: AI 应用开发
-icon: "context"
 head:
   - - meta
     - name: keywords

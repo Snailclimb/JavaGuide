@@ -2,7 +2,6 @@
 title: 万字详解 Agent Skills：是什么？怎么用？和 Prompt、MCP 有什么区别？
 description: 深入解析 Agent Skills 概念，探讨 Skills 与 Prompt、MCP、Function Calling 的本质区别，以及如何在实战中设计优秀的 Skill 固化代码规范。
 category: AI 应用开发
-icon: “skill”
 head:
   - - meta
     - name: keywords

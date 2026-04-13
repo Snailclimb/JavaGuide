@@ -2,7 +2,6 @@
 title: 大模型提示词工程实践指南
 description: 深入解析 Prompt Engineering 核心概念，涵盖四要素框架、六大核心技巧（角色扮演、思维链、少样本学习、任务分解、结构化输出、XML 标签与预填充）、高级工程技巧及企业级安全实践。
 category: AI 应用开发
-icon: "prompt"
 head:
   - - meta
     - name: keywords

@@ -2,7 +2,6 @@
 title: 万字拆解 MCP，附带工程实践
 description: 深入解析 MCP 协议核心概念，涵盖 MCP 四大核心能力、四层分层架构、JSON-RPC 2.0 通信机制及生产级 MCP Server 开发最佳实践。
 category: AI 应用开发
-icon: “plug”
 head:
   - - meta
     - name: keywords

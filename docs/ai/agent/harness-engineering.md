@@ -2,7 +2,6 @@
 title: 一文搞懂 Harness Engineering：六层架构、上下文管理与一线团队实战
 description: 深度解析 Harness Engineering，梳理 Agent = Model + Harness 的核心定义，拆解 OpenAI、Anthropic、Stripe 等一线团队的实战经验与踩坑教训。
 category: AI 应用开发
-icon: "robot"
 head:
   - - meta
     - name: keywords

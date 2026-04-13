@@ -2,7 +2,6 @@
 title: 一文搞懂 AI Agent 核心概念：Agent Loop、Context Engineering、Tools 注册
 description: 深入解析 AI Agent 核心概念，梳理从被动响应到常驻自治的六代进化史，对比 Agent、传统编程、Workflow 的本质区别。
 category: AI 应用开发
-icon: "robot"
 head:
   - - meta
     - name: keywords
