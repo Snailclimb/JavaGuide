@@ -25,6 +25,16 @@
 
 [AI 应用开发面试指南](https://javaguide.cn/ai/)（⭐新增，正在持续更新）：专门后端开发准备的 AI 应用开发核心知识，涵盖大模型基础、Agent、RAG、MCP 协议等高频面试考点。
 
+### AI Agent
+
+- [一文搞懂 AI Agent 核心概念](./docs/ai/agent/agent-basis.md)
+- [大模型提示词工程实践指南](./docs/ai/agent/prompt-engineering.md)
+- [上下文工程实战指南](./docs/ai/agent/context-engineering.md)
+- [万字详解 Agent Skills](./docs/ai/agent/skills.md)
+- [万字拆解 MCP 协议](./docs/ai/agent/mcp.md)
+- [一文搞懂 Harness Engineering](./docs/ai/agent/harness-engineering.md)
+- [AI 工作流中的 Workflow、Graph 与 Loop](./docs/ai/agent/workflow-graph-loop.md)
+
 ## 面试准备
 
 - [⭐Java 后端面试通关计划（涵盖后端通用体系）](./docs/interview-preparation/backend-interview-plan.md) (一定要看 :+1:)

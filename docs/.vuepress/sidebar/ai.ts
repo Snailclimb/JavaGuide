@@ -25,6 +25,10 @@ export const ai = arraySidebar([
         text: "一文搞懂 Harness Engineering",
         link: "harness-engineering",
       },
+      {
+        text: "AI 工作流中的 Workflow、Graph 与 Loop",
+        link: "workflow-graph-loop",
+      },
     ],
   },
   {
