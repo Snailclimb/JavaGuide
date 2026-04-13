@@ -17,6 +17,8 @@ export const ai = arraySidebar([
     prefix: "agent/",
     children: [
       { text: "一文搞懂 AI Agent 核心概念", link: "agent-basis" },
+      { text: "大模型提示词工程实践指南", link: "prompt-engineering" },
+      { text: "上下文工程实战指南", link: "context-engineering" },
       { text: "万字详解 Agent Skills", link: "skills" },
       { text: "万字拆解 MCP 协议", link: "mcp" },
       {
