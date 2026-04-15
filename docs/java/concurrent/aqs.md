@@ -106,10 +106,10 @@ AQS(`AbstractQueuedSynchronizer`)的核心原理图：
 
 AQS 使用 **int 成员变量 `state` 表示同步状态**，通过内置的 **FIFO 线程等待/等待队列** 来完成获取资源线程的排队工作。
 
-`state` 变量由 `volatile` 修饰，用于展示当前临界资源的获取情况。
+`state` 变量由 `volatile` 修饰，用于展示当前临界资源的获取情况。这里 `volatile` 的作用不仅仅是保证可见性，更重要的是通过 happens-before 规则（volatile 变量的写操作先行发生于后续的读操作）防止编译器和处理器对指令进行重排序，从而保证锁语义的正确性。
 
 ```java
-// 共享变量，使用volatile修饰保证线程可见性
+// 共享变量，使用volatile修饰，保证线程可见性并防止指令重排序
 private volatile int state;
 ```
 
