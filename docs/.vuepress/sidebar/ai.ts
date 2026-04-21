@@ -60,6 +60,14 @@ export const ai = arraySidebar([
         text: "Claude Code 接入第三方模型实战",
         link: "cc-glm5.1",
       },
+      {
+        text: "Claude Code 使用指南",
+        link: "claudecode-tips",
+      },
+      {
+        text: "OpenAI Codex 最佳实践指南",
+        link: "codex-best-practices",
+      },
     ],
   },
 ]);
