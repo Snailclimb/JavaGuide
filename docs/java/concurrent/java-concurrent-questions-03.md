@@ -1355,7 +1355,7 @@ public final boolean releaseShared(int arg) {
 
 ### CountDownLatch 有什么用？
 
-`CountDownLatch` 允许 `count` 个线程阻塞在一个地方，直至所有线程的任务都执行完毕。
+`CountDownLatch` 允许 `任意数量` 个线程阻塞在一个地方，直至`count`个线程的任务都执行完毕(`count`次countDown方法)。
 
 `CountDownLatch` 是一次性的，计数器的值只能在构造方法中初始化一次，之后没有任何机制再次对其设置值，当 `CountDownLatch` 使用完毕后，它不能再次被使用。
 
@@ -1365,11 +1365,11 @@ public final boolean releaseShared(int arg) {
 
 ### 用过 CountDownLatch 么？什么场景下用的？
 
-`CountDownLatch` 的作用就是 允许 count 个线程阻塞在一个地方，直至所有线程的任务都执行完毕。之前在项目中，有一个使用多线程读取多个文件处理的场景，我用到了 `CountDownLatch` 。具体场景是下面这样的：
+`CountDownLatch` 的作用就是 允许 `任意数量` 个线程阻塞在一个地方，直至`count`个线程的任务都执行完毕(`count`次countDown方法)。之前在项目中，有一个使用多线程读取多个文件处理的场景，我用到了 `CountDownLatch` 。具体场景是下面这样的：
 
 我们要读取处理 6 个文件，这 6 个任务都是没有执行顺序依赖的任务，但是我们需要返回给用户的时候将这几个文件的处理的结果进行统计整理。
 
-为此我们定义了一个线程池和 count 为 6 的`CountDownLatch`对象 。使用线程池处理读取任务，每一个线程处理完之后就将 count-1，调用`CountDownLatch`对象的 `await()`方法，直到所有文件读取完之后，才会接着执行后面的逻辑。
+为此我们定义了一个线程池和 count 为 6 的`CountDownLatch`对象 。使用线程池处理读取任务，每一个线程处理完之后就将 count-1，调用`CountDownLatch`对象的 `countDown()`方法，直到所有文件读取完之后，才会接着执行后面的逻辑。
 
 伪代码是下面这样的：
 
