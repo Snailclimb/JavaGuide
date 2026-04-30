@@ -8,6 +8,8 @@ head:
       content: Java面试,Java面试指南,Java八股文,Java面试题,Java基础面试,JVM面试,并发面试,线程池面试,Spring面试,MySQL面试,Redis面试,系统设计面试,分布式面试,后端面试
 ---
 
+<!-- @include: @small-advertisement.snippet.md -->
+
 ::: tip 友情提示
 
 - **AI 面试**：[AI 应用开发面试指南](../ai/) - 深入浅出掌握大模型基础、Agent、RAG、MCP 协议等高频面试考点。
