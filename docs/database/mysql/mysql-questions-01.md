@@ -197,7 +197,7 @@ TIMESTAMP 只需要使用 4 个字节的存储空间，但是 DATETIME 需要耗
 
 ### ⭐️Boolean 类型如何表示？
 
-MySQL 中没有专门的布尔类型，而是用 `bit(1)` 类型来表示布尔值。`bit(1)` 类型可以存储 0 或 1，分别对应 false 或 true。
+MySQL 中没有专门的布尔类型，`BOOL` 和 `BOOLEAN` 是 `TINYINT(1)` 的同义词，通常用 0 表示 false、非 0 表示 true。`BIT(1)` 是位字段类型，也可以存储 0 或 1，但它并不是 `BOOL`/`BOOLEAN` 的实际映射。
 
 ### ⭐️手机号存储用 INT 还是 VARCHAR？
 
