@@ -54,6 +54,6 @@
   },
   "packageManager": "pnpm@10.0.0",
   "devDependencies": {
-    "mermaid": "^11.12.2"
+    "mermaid": "^11.15.0"
   }
 }
