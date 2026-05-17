@@ -1,11 +1,11 @@
 ---
-title: AI 编程实战指南
-description: AI 编程实战与技巧分享，涵盖 Claude Code、Cursor、Codex 等主流 AI 编程工具的实战案例和使用技巧。
+title: AI 编程实战指南：Claude Code、Cursor、Codex 使用技巧与面试题
+description: AI 辅助编程工具实战指南，覆盖 Claude Code 使用技巧、Cursor 实战、Codex 最佳实践、AI 编程 CLI vs IDE 选型，以及 AI 编程面试题汇总，适合后端开发者提升 AI 辅助开发效率。
 icon: "mdi:code-tags"
 head:
   - - meta
     - name: keywords
-      content: AI编程,Claude Code,Cursor,Codex,AI编程实战,AI编程技巧,AI辅助开发
+      content: AI编程,AI编程实战,AI编程技巧,AI编程面试题,AI辅助编程,Claude Code,Claude Code教程,Claude Code使用技巧,Cursor,Cursor使用技巧,Codex,Codex最佳实践,AI编程工具对比,CLI vs IDE,AI编程工具选型,Trae,AI编程效率
 ---
 
 <!-- @include: @small-advertisement.snippet.md -->
@@ -16,12 +16,12 @@ head:
 
 AI 编程工具不是"把需求告诉 AI，等它出代码"这么简单。上下文怎么给、任务怎么拆、多模型怎么协同、出了幻觉怎么识别——这些工作方法不掌握，换再贵的模型也白搭。
 
-这个专栏记录的就是这些工具真正好用的姿势，包括 Claude Code、Cursor、Codex、Trae 等主流工具的**真实场景实战案例**和**具体使用技巧**。不是"5 分钟上手"类的入门介绍，而是跑过真实项目、踩过坑之后整理出来的东西。
+这个专栏记录的就是这些工具真正好用的姿势，包括 Claude Code、Cursor、Codex、Trae 等主流 **AI 编程工具**的**真实场景实战案例**和**具体使用技巧**。不是"5 分钟上手"类的入门介绍，而是跑过真实项目、踩过坑之后整理出来的东西。也覆盖了**AI 编程面试题**，包括 AI 工具选型、AI 对开发效率的影响等面试高频问题。
 
 本专栏所属 AIGuide 项目（免费开源）：
 
 - **项目地址**：<https://github.com/Snailclimb/AIGuide>
-- **在线阅读**：<https://javaguide.cn/ai/>
+- **在线阅读**：<https://javaguide.cn/ai-coding/>
 
 ## AI 编程实战
 

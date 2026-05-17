@@ -1,11 +1,11 @@
 ---
-title: AI 应用开发面试指南
-description: 深入浅出掌握 AI 应用开发核心知识，涵盖大模型基础、Agent、RAG、MCP 协议、AI 编程实战等高频面试考点，适合校招/社招 AI 应用开发岗位面试复习。
+title: AI 应用开发面试指南：大模型、Agent、RAG、MCP 高频考点
+description: 面向后端开发者的 AI 应用开发面试指南，系统覆盖大模型面试题、Agent 面试题、RAG 面试题、MCP 协议、Prompt 工程等高频考点，适合校招/社招 AI 工程师、AI 应用开发岗位面试复习。
 icon: "mdi:robot-outline"
 head:
   - - meta
     - name: keywords
-      content: AI面试,AI面试指南,AI应用开发,LLM面试,Agent面试,RAG面试,MCP面试,AI编程面试,AI编程实战
+      content: AI面试,AI面试指南,AI应用开发面试,AI工程师面试,大模型面试,大模型面试题,LLM面试,LLM面试题,Agent面试,Agent面试题,RAG面试,RAG面试题,MCP面试,MCP面试题,Prompt工程面试,向量数据库面试,AI系统设计面试,AI编程面试
 ---
 
 <!-- @include: @small-advertisement.snippet.md -->
@@ -18,9 +18,9 @@ head:
 
 :::
 
-你好，我是 [JavaGuide](https://javaguide.cn/) 的作者。最近几个月一直在继续补充完善 AI 应用开发部分的内容。
+你好，我是 [JavaGuide](https://javaguide.cn/) 的作者。最近几个月一直在持续补充完善 AI 应用开发面试相关内容。
 
-目前的话，这份面向后端开发者的 AI 应用开发、AI 编程实战与面试指南已免费开源，涵盖 LLM、Agent、RAG、MCP、Claude Code、Codex 等核心技术与工程实践。对标 [JavaGuide](https://javaguide.cn/home.html)！有帮助的话，欢迎 Star！
+这是一份面向后端开发者的 **AI 应用开发面试指南**，免费开源，涵盖大模型面试题、Agent 面试题、RAG 面试题、MCP 协议、Prompt 工程、AI 系统设计等高频考点，对标 [JavaGuide](https://javaguide.cn/home.html) 的质量标准。有帮助的话，欢迎 Star！
 
 - **项目地址**：<https://github.com/Snailclimb/AIGuide>
 - **在线阅读**：<https://javaguide.cn/ai/>

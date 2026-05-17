@@ -234,7 +234,7 @@ SSH 使用客户端-服务器模型。SSH Server 监听客户端连接请求，S
 
 ## RTP：实时传输协议
 
-**RTP（Real-time Transport Protocol，实时传输协议）** 是一种用于传输音频、视频等实时数据的协议。它通常运行在 UDP 之上。在 TCP/IP 分层模型中，UDP 之上就是应用层，所以 RTP 按分层规则被归入应用层。但它承担的职责（序列号、时间戳、同步、质量反馈）更接近传输层功能，RFC 3550 也说它"通常会集成到应用处理中，而不是作为独立层实现"。
+**RTP（Real-time Transport Protocol，实时传输协议）** 是一种用于传输音频、视频等实时数据的协议。它通常运行在 UDP 之上。在 TCP/IP 分层模型中，UDP 之上就是应用层，所以 RTP 按分层规则被归入应用层。但它承担的职责（序列号、时间戳、同步、质量反馈）更接近传输层功能，RFC 3550 也说它“通常会集成到应用处理中，而不是作为独立层实现”。
 
 ![RTP：实时传输协议概览](https://oss.javaguide.cn/github/javaguide/cs-basics/network/rtp-overview.png)
 
