@@ -49,6 +49,7 @@ head:
 
 如果你想先按面试题快速过一遍，可以直接看这几份模块级总结：
 
+- [AI 应用开发面试指南](./interview-questions/ai-interview-guide.md)：AI 应用开发面试题总入口，适合先建立复习路线。
 - [大模型基础面试题总结](./interview-questions/llm-interview-questions.md)：覆盖 Token、上下文窗口、采样参数、API 调用、结构化输出和评测体系。
 - [AI Agent 面试题总结](./interview-questions/agent-interview-questions.md)：覆盖 Agent Loop、Memory、Prompt、Context、MCP、Skills、Harness Engineering 和工作流。
 - [RAG 面试题总结](./interview-questions/rag-interview-questions.md)：覆盖 RAG 基础、向量数据库、文档处理、检索优化、GraphRAG、知识库更新和评测。
@@ -121,6 +122,7 @@ Claude Code、Cursor、Codex 等工具的使用实战、面试准备与效率技
 
 ### 面试题
 
+- [AI 应用开发面试指南](./interview-questions/ai-interview-guide.md) - AI 应用开发面试题总入口，按大模型基础、AI Agent、RAG、AI 系统设计组织复习路线
 - [大模型基础面试题总结](./interview-questions/llm-interview-questions.md) - 系统整理大模型/LLM 高频面试题，覆盖 Token、上下文窗口、采样参数、API 调用、结构化输出、Function Calling、MCP 与 AI 应用评测
 - [AI Agent 面试题总结](./interview-questions/agent-interview-questions.md) - 系统整理 AI Agent 高频面试题，覆盖 Agent 核心概念、Memory、Prompt Engineering、Context Engineering、MCP、Agent Skills、Harness Engineering 与 AI 工作流
 - [RAG 面试题总结](./interview-questions/rag-interview-questions.md) - 系统整理 RAG 高频面试题，覆盖 RAG 基础、Embedding、向量数据库、Chunk 策略、文档处理、检索优化、GraphRAG、知识库更新与 RAG 评测
@@ -162,21 +164,21 @@ Claude Code、Cursor、Codex 等工具的使用实战、面试准备与效率技
 
 每篇文章都画了大量配图，挑几张看看：
 
-_Prompt 六大核心技巧_
+_AI Agent 核心架构_
 
-![六大核心技巧](https://oss.javaguide.cn/github/javaguide/ai/context-engineering/prompt-six-core-techniques.svg)
+![AI Agent 核心架构](https://oss.javaguide.cn/github/javaguide/ai/agent/agent-core-arch.png)
 
-_上下文窗口组成_
+_Agent Loop 工作流程_
 
-![上下文窗口示意图](https://oss.javaguide.cn/github/javaguide/ai/llm/llm-context-window.png)
+![Agent Loop 工作流程](https://oss.javaguide.cn/github/javaguide/ai/agent/agent-loop-flow.png)
 
-_Harness 和 Prompt/Context Engineering 三者不是并列关系，而是嵌套关系。更重要的是，每一层解决的是完全不同的问题：_
+_Harness 和 Prompt/Context Engineering 的关系：_
 
 ![Harness 和 Prompt/Context Engineering 的关系](https://oss.javaguide.cn/github/javaguide/ai/harness/harness-engineering-layers-arch.png)
 
-_MCP 被称为“AI 领域的 USB-C 接口”，统一了 LLM 与外部工具的通信规范_
+_Agent 记忆分类全景图：_
 
-![MCP 图解](https://oss.javaguide.cn/github/javaguide/ai/skills/mcp-simple-diagram.png)
+![Agent 记忆分类全景图](https://oss.javaguide.cn/github/javaguide/ai/agent/agent-memory-memory-taxonomy.svg)
 
 ## 写在最后
 

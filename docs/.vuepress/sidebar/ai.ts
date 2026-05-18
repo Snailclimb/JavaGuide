@@ -7,6 +7,7 @@ export const ai = arraySidebar([
     icon: ICONS.INTERVIEW,
     prefix: "interview-questions/",
     children: [
+      { text: "⭐️AI 应用开发面试指南", link: "ai-interview-guide" },
       { text: "大模型基础面试题总结", link: "llm-interview-questions" },
       { text: "AI Agent 面试题总结", link: "agent-interview-questions" },
       { text: "RAG 面试题总结", link: "rag-interview-questions" },
@@ -35,8 +36,8 @@ export const ai = arraySidebar([
     icon: ICONS.CHAT,
     prefix: "agent/",
     children: [
-      { text: "AI Agent 核心概念详解", link: "agent-basis" },
-      { text: "AI Agent 记忆系统详解", link: "agent-memory" },
+      { text: "⭐️AI Agent 核心概念详解", link: "agent-basis" },
+      { text: "⭐️AI Agent 记忆系统详解", link: "agent-memory" },
       { text: "提示词工程实战指南", link: "prompt-engineering" },
       { text: "上下文工程实战指南", link: "context-engineering" },
       { text: "万字详解 Agent Skills", link: "skills" },
@@ -50,13 +51,13 @@ export const ai = arraySidebar([
     icon: ICONS.SEARCH,
     prefix: "rag/",
     children: [
-      { text: "RAG 基础概念详解", link: "rag-basis" },
+      { text: "⭐️RAG 基础概念详解", link: "rag-basis" },
       {
         text: "RAG 文档处理与切分策略",
         link: "rag-document-processing",
       },
       {
-        text: "RAG 向量索引算法和向量数据库",
+        text: "⭐️RAG 向量索引算法和向量数据库",
         link: "rag-vector-store",
       },
       {

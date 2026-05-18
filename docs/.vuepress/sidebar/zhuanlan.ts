@@ -16,7 +16,6 @@ export const zhuanlan = arraySidebar([
     icon: ICONS.INTERVIEW,
     collapsible: false,
     children: [
-      { text: "AI 应用开发面试指南", link: "ai-interview-guide" },
       { text: "Java 面试指北", link: "java-mian-shi-zhi-bei" },
       {
         text: "后端高频系统设计&场景题",
