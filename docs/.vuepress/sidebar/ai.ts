@@ -3,6 +3,20 @@ import { ICONS } from "./constants.js";
 
 export const ai = arraySidebar([
   {
+    text: "面试题",
+    icon: ICONS.INTERVIEW,
+    prefix: "interview-questions/",
+    children: [
+      { text: "大模型基础面试题总结", link: "llm-interview-questions" },
+      { text: "AI Agent 面试题总结", link: "agent-interview-questions" },
+      { text: "RAG 面试题总结", link: "rag-interview-questions" },
+      {
+        text: "AI 系统设计面试题总结",
+        link: "ai-system-design-interview-questions",
+      },
+    ],
+  },
+  {
     text: "大模型基础",
     icon: ICONS.MACHINE_LEARNING,
     prefix: "llm-basis/",
@@ -13,6 +27,7 @@ export const ai = arraySidebar([
         text: "大模型结构化输出详解",
         link: "structured-output-function-calling",
       },
+      { text: "AI 应用评测体系", link: "llm-evaluation" },
     ],
   },
   {
@@ -50,6 +65,18 @@ export const ai = arraySidebar([
       },
       { text: "GraphRAG 详解", link: "graphrag" },
       { text: "RAG 检索优化", link: "rag-optimization" },
+    ],
+  },
+  {
+    text: "AI 系统设计",
+    icon: ICONS.DESIGN,
+    prefix: "system-design/",
+    children: [
+      {
+        text: "AI 应用系统设计",
+        link: "ai-application-architecture",
+      },
+      { text: "AI 语音技术详解", link: "ai-voice" },
     ],
   },
 ]);
