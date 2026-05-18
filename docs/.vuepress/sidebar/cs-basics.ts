@@ -101,6 +101,7 @@ export const csBasics = [
     text: "数据结构",
     prefix: "data-structure/",
     icon: ICONS.DATA_STRUCTURE,
+    collapsible: true,
     children: [
       { text: "线性数据结构", link: "linear-data-structure" },
       { text: "树结构", link: "tree" },
@@ -114,6 +115,7 @@ export const csBasics = [
     text: "算法",
     prefix: "algorithms/",
     icon: ICONS.ALGORITHM,
+    collapsible: true,
     children: [
       "classical-algorithm-problems-recommendations",
       "common-data-structures-leetcode-recommendations",

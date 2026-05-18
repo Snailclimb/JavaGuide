@@ -62,8 +62,8 @@ head:
 
 ## 堆
 
-215.数组中的第 K 个最大元素:<https://leetcode.cn/problems/kth-largest-element-in-an-array/>
+215.数组中的第 K 个最大元素：<https://leetcode.cn/problems/kth-largest-element-in-an-array/>
 
-216.数据流的中位数:<https://leetcode.cn/problems/find-median-from-data-stream/>
+216.数据流的中位数：<https://leetcode.cn/problems/find-median-from-data-stream/>
 
 217.前 K 个高频元素：<https://leetcode.cn/problems/top-k-frequent-elements/>

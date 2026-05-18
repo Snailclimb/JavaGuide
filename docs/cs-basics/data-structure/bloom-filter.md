@@ -10,6 +10,8 @@ head:
       content: 布隆过滤器,Bloom Filter,误判率,哈希函数,位数组,去重,缓存穿透
 ---
 
+# 布隆过滤器
+
 布隆过滤器相信大家没用过的话，也已经听过了。
 
 布隆过滤器主要是为了解决海量数据的存在性问题。对于海量数据中判定某个数据是否存在且容忍轻微误差这一场景（比如缓存穿透、海量数据去重）来说，非常适合。
@@ -29,7 +31,7 @@ head:
 
 布隆过滤器（Bloom Filter，BF）是一个叫做 Bloom 的老哥于 1970 年提出的。我们可以把它看作由二进制向量（或者说位数组）和一系列随机映射函数（哈希函数）两部分组成的数据结构。相比于我们平时常用的 List、Map、Set 等数据结构，它占用空间更少并且效率更高，但是缺点是其返回的结果是概率性的，而不是非常准确的。理论情况下添加到集合中的元素越多，误报的可能性就越大。并且，存放在布隆过滤器的数据不容易删除。
 
-Bloom Filter 会使用一个较大的 bit 数组来保存所有的数据，数组中的每个元素都只占用 1 bit ，并且每个元素只能是 0 或者 1（代表 false 或者 true），这也是 Bloom Filter 节省内存的核心所在。这样来算的话，申请一个 100w 个元素的位数组只占用 1000000Bit / 8 = 125000 Byte = 125000/1024 KB ≈ 122KB 的空间。
+Bloom Filter 会使用一个较大的 bit 数组来保存所有的数据，数组中的每个元素都只占用 1 bit，并且每个元素只能是 0 或者 1（代表 false 或者 true），这也是 Bloom Filter 节省内存的核心所在。这样来算的话，申请一个 100w 个元素的位数组只占用 1000000 Bit / 8 = 125000 Byte = 125000 / 1024 KB ≈ 122 KB 的空间。
 
 ![位数组](https://oss.javaguide.cn/github/javaguide/cs-basics/algorithms/bloom-filter-bit-table.png)
 
@@ -61,7 +63,7 @@ Bloom Filter 的简单原理图如下：
 
 ## 布隆过滤器使用场景
 
-1. 判断给定数据是否存在：比如判断一个数字是否存在于包含大量数字的数字集中（数字集很大，上亿）、 防止缓存穿透（判断请求的数据是否有效避免直接绕过缓存请求数据库）等等、邮箱的垃圾邮件过滤（判断一个邮件地址是否在垃圾邮件列表中）、黑名单功能（判断一个 IP 地址或手机号码是否在黑名单中）等等。
+1. 判断给定数据是否存在：比如判断一个数字是否存在于包含大量数字的数字集中（数字集很大，上亿）、防止缓存穿透（判断请求的数据是否有效避免直接绕过缓存请求数据库）等等、邮箱的垃圾邮件过滤（判断一个邮件地址是否在垃圾邮件列表中）、黑名单功能（判断一个 IP 地址或手机号码是否在黑名单中）等等。
 2. 去重：比如爬给定网址的时候对已经爬取过的 URL 去重、对巨量的 QQ 号/订单号去重。
 
 去重场景也需要用到判断给定数据是否存在，因此布隆过滤器主要是为了解决海量数据的存在性问题。
@@ -214,7 +216,7 @@ true
 
 首先我们需要在项目中引入 Guava 的依赖：
 
-```java
+```xml
 <dependency>
     <groupId>com.google.guava</groupId>
     <artifactId>guava</artifactId>
@@ -224,7 +226,7 @@ true
 
 实际使用如下：
 
-我们创建了一个最多存放 最多 1500 个整数的布隆过滤器，并且我们可以容忍误判的概率为百分之（0.01）
+我们创建了一个最多存放 1500 个整数的布隆过滤器，并且我们可以容忍误判的概率为百分之（0.01）
 
 ```java
 // 创建布隆过滤器对象
@@ -242,7 +244,7 @@ System.out.println(filter.mightContain(1));
 System.out.println(filter.mightContain(2));
 ```
 
-在我们的示例中，当 `mightContain()` 方法返回 _true_ 时，我们可以 99％确定该元素在过滤器中，当过滤器返回 _false_ 时，我们可以 100％确定该元素不存在于过滤器中。
+在我们的示例中，当 `mightContain()` 方法返回 true 时，我们可以 99% 确定该元素在过滤器中，当过滤器返回 false 时，我们可以 100% 确定该元素不存在于过滤器中。
 
 **Guava 提供的布隆过滤器的实现还是很不错的（想要详细了解的可以看一下它的源码实现），但是它有一个重大的缺陷就是只能单机使用（另外，容量扩展也不容易），而现在互联网一般都是分布式的场景。为了解决这个问题，我们就需要用到 Redis 中的布隆过滤器了。**
 
@@ -250,12 +252,12 @@ System.out.println(filter.mightContain(2));
 
 ### 介绍
 
-Redis v4.0 之后有了 Module（模块/插件） 功能，Redis Modules 让 Redis 可以使用外部模块扩展其功能 。布隆过滤器就是其中的 Module。详情可以查看 Redis 官方对 Redis Modules 的介绍：<https://redis.io/modules>
+Redis v4.0 之后有了 Module（模块/插件）功能，Redis Modules 让 Redis 可以使用外部模块扩展其功能。布隆过滤器就是其中的 Module。详情可以查看 Redis 官方对 Redis Modules 的介绍：<https://redis.io/modules>
 
 另外，官网推荐了一个 RedisBloom 作为 Redis 布隆过滤器的 Module，地址：<https://github.com/RedisBloom/RedisBloom>
 其他还有：
 
-- redis-lua-scaling-bloom-filter（lua 脚本实现）：<https://github.com/erikdubbelboer/redis-lua-scaling-bloom-filter>
+- redis-lua-scaling-bloom-filter（Lua 脚本实现）：<https://github.com/erikdubbelboer/redis-lua-scaling-bloom-filter>
 - pyreBloom（Python 中的快速 Redis 布隆过滤器）：<https://github.com/seomoz/pyreBloom>
 - ……
 
@@ -263,7 +265,7 @@ RedisBloom 提供了多种语言的客户端支持，包括：Python、Java、Ja
 
 ### 使用 Docker 安装
 
-如果我们需要体验 Redis 中的布隆过滤器非常简单，通过 Docker 就可以了！我们直接在 Google 搜索 **docker redis bloomfilter** 然后在排除广告的第一条搜素结果就找到了我们想要的答案（这是我平常解决问题的一种方式，分享一下），具体地址：<https://hub.docker.com/r/redislabs/rebloom/> （介绍的很详细 ）。
+如果我们需要体验 Redis 中的布隆过滤器非常简单，通过 Docker 就可以了！我们直接在 Google 搜索 **docker redis bloomfilter** 然后在排除广告的第一条搜索结果就找到了我们想要的答案（这是我平常解决问题的一种方式，分享一下），具体地址：<https://hub.docker.com/r/redislabs/rebloom/> （介绍的很详细）。
 
 **具体操作如下：**
 
@@ -274,32 +276,32 @@ root@21396d02c252:/data# redis-cli
 127.0.0.1:6379>
 ```
 
-**注意：当前 rebloom 镜像已经被废弃，官方推荐使用[redis-stack](https://hub.docker.com/r/redis/redis-stack)**
+**注意：当前 rebloom 镜像已经被废弃，官方推荐使用 [redis-stack](https://hub.docker.com/r/redis/redis-stack)**
 
 ### 常用命令一览
 
-> 注意：key : 布隆过滤器的名称，item : 添加的元素。
+> 注意：key：布隆过滤器的名称，item：添加的元素。
 
 1. `BF.ADD`：将元素添加到布隆过滤器中，如果该过滤器尚不存在，则创建该过滤器。格式：`BF.ADD {key} {item}`。
-2. `BF.MADD` : 将一个或多个元素添加到“布隆过滤器”中，并创建一个尚不存在的过滤器。该命令的操作方式`BF.ADD`与之相同，只不过它允许多个输入并返回多个值。格式：`BF.MADD {key} {item} [item ...]` 。
-3. `BF.EXISTS` : 确定元素是否在布隆过滤器中存在。格式：`BF.EXISTS {key} {item}`。
-4. `BF.MEXISTS`：确定一个或者多个元素是否在布隆过滤器中存在格式：`BF.MEXISTS {key} {item} [item ...]`。
+2. `BF.MADD`：将一个或多个元素添加到布隆过滤器中，并创建一个尚不存在的过滤器。该命令的操作方式与 `BF.ADD` 相同，只不过它允许多个输入并返回多个值。格式：`BF.MADD {key} {item} [item ...]`。
+3. `BF.EXISTS`：确定元素是否在布隆过滤器中存在。格式：`BF.EXISTS {key} {item}`。
+4. `BF.MEXISTS`：确定一个或者多个元素是否在布隆过滤器中存在。格式：`BF.MEXISTS {key} {item} [item ...]`。
 
-另外， `BF.RESERVE` 命令需要单独介绍一下：
+另外，`BF.RESERVE` 命令需要单独介绍一下：
 
 这个命令的格式如下：
 
-`BF.RESERVE {key} {error_rate} {capacity} [EXPANSION expansion]` 。
+`BF.RESERVE {key} {error_rate} {capacity} [EXPANSION expansion]`。
 
 下面简单介绍一下每个参数的具体含义：
 
 1. key：布隆过滤器的名称
-2. error_rate : 期望的误报率。该值必须介于 0 到 1 之间。例如，对于期望的误报率 0.1％（1000 中为 1），error_rate 应该设置为 0.001。该数字越接近零，则每个项目的内存消耗越大，并且每个操作的 CPU 使用率越高。
-3. capacity: 过滤器的容量。当实际存储的元素个数超过这个值之后，性能将开始下降。实际的降级将取决于超出限制的程度。随着过滤器元素数量呈指数增长，性能将线性下降。
+2. error_rate：期望的误报率。该值必须介于 0 到 1 之间。例如，对于期望的误报率 0.1%（1000 中为 1），error_rate 应该设置为 0.001。该数字越接近零，则每个项目的内存消耗越大，并且每个操作的 CPU 使用率越高。
+3. capacity：过滤器的容量。当实际存储的元素个数超过这个值之后，性能将开始下降。实际的降级将取决于超出限制的程度。随着过滤器元素数量呈指数增长，性能将线性下降。
 
 可选参数：
 
-- expansion：如果创建了一个新的子过滤器，则其大小将是当前过滤器的大小乘以`expansion`。默认扩展值为 2。这意味着每个后续子过滤器将是前一个子过滤器的两倍。
+- expansion：如果创建了一个新的子过滤器，则其大小将是当前过滤器的大小乘以 `expansion`。默认扩展值为 2。这意味着每个后续子过滤器将是前一个子过滤器的两倍。
 
 ### 实际使用
 
