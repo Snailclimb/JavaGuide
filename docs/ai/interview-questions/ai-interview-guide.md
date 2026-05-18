@@ -19,6 +19,8 @@ head:
       content: 系统整理 2026 AI 应用开发高频面试题，覆盖大模型、AI Agent、RAG、MCP、Prompt 工程、向量数据库与 AI 系统设计，包含答案思路、图解和参考文章。
 ---
 
+<!-- @include: @small-advertisement.snippet.md -->
+
 AI 应用开发面试和传统后端面试不太一样。
 
 传统后端面试更多围绕 Java、JVM、并发、MySQL、Redis、消息队列、分布式和系统设计展开。AI 应用开发面试除了这些基础，还会继续追问：

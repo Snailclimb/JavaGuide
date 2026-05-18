@@ -59,7 +59,12 @@ set -e
 
 SITE_DIR="/www/wwwroot/javaguide.cn"
 DIST_DIR="/github/dist"
-VERIFY_FILE="/www/wwwroot/googleca8171acadbdab54.html"
+VERIFY_FILE_GOOGLE="/www/wwwroot/googleca8171acadbdab54.html"
+
+# 如果启用了 IndexNow，把 key 文件放在站点根目录可访问的位置。
+# 文件名通常是 ${INDEXNOW_KEY}.txt，文件内容也是 INDEXNOW_KEY。
+# 不启用时可以删掉这一行和下面的 cp。
+VERIFY_FILE_BING="/www/wwwroot/300af4bf44b34b5daf5182f3f4be2c6f.txt"
 
 mkdir -p "$SITE_DIR/assets"
 
@@ -72,8 +77,16 @@ rsync -av --delete \
 rsync -av \
   "$DIST_DIR/assets/" "$SITE_DIR/assets/"
 
-cp "$VERIFY_FILE" "$SITE_DIR/"
+# 恢复搜索引擎验证文件和 IndexNow key 文件。
+cp "$VERIFY_FILE_GOOGLE" "$SITE_DIR/"
+cp "$VERIFY_FILE_BING" "$SITE_DIR/"
 ```
+
+如果暂时没有启用 IndexNow，可以先删除脚本里的 `INDEXNOW_KEY_FILE` 和对应 `cp`。启用后需要确认：
+
+- `https://javaguide.cn/300af4bf44b34b5daf5182f3f4be2c6f.txt` 可以访问。
+- `https://javaguide.cn/{INDEXNOW_KEY}.txt` 可以访问。
+- `{INDEXNOW_KEY}.txt` 的文件内容就是 `INDEXNOW_KEY` 本身。
 
 部署后 CDN 刷新建议：
 
@@ -99,11 +112,12 @@ pnpm docs:build:clean
 
 ### 2. 部署静态文件
 
-按上面的 `rsync` 方式发布：
+按上面的 `rsync` 方式发布，核心是“非 assets 跟随新版本删除，assets 只增量覆盖”：
 
 - 非 assets 文件使用 `--delete`，让 HTML、sitemap、robots、manifest 跟随新版本。
 - `/assets/` 只增量覆盖，不在每次部署时删除旧 hash 文件。
 - 保留站点验证文件，例如 Google/Bing 的验证文件。
+- 如果启用了 IndexNow，保留 `{INDEXNOW_KEY}.txt`。
 
 ### 3. 刷新 CDN
 
@@ -136,14 +150,14 @@ pnpm docsearch:index
 小范围改动优先只提交变更 URL：
 
 ```bash
-INDEXNOW_KEY=你的 IndexNow Key \
+INDEXNOW_KEY=300af4bf44b34b5daf5182f3f4be2c6f \
 pnpm indexnow:submit /home.html /ai/ /cs-basics/
 ```
 
 大范围内容更新、导航调整或 sitemap 变化后，可以提交 sitemap 中的全部 URL：
 
 ```bash
-INDEXNOW_KEY=你的 IndexNow Key \
+INDEXNOW_KEY=300af4bf44b34b5daf5182f3f4be2c6f \
 pnpm indexnow:submit --sitemap
 ```
 

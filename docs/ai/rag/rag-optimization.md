@@ -8,8 +8,6 @@ head:
       content: RAG优化,RAG调优,Hybrid Search,Rerank,Query Rewrite,Context Compression,RAG评估,上下文工程,检索增强生成
 ---
 
-<!-- @include: @article-header.snippet.md -->
-
 第一次做 RAG 时，很多人的体验都差不多：文档切了，向量库建了，Top-K 也调大了，模型还是一本正经地胡说八道。
 
 更难受的是，问题可能出在文档解析、Chunk 切分、上下文质量等多个环节，而不是单纯的 embedding 或 Top-K 参数。

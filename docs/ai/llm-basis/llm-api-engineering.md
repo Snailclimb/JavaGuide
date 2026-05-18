@@ -8,8 +8,6 @@ head:
       content: 大模型 API,LLM API,流式输出,Streaming,SSE,WebSocket,重试,限流,结构化返回,JSON Schema,AI 应用开发
 ---
 
-<!-- @include: @article-header.snippet.md -->
-
 很多 AI 应用的第一个版本都很“顺”：本地调通一个大模型 API，页面上能看到回答，Demo 就算跑起来了。
 
 但一上生产，麻烦马上变得具体：

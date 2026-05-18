@@ -8,7 +8,7 @@ head:
       content: RAG,检索增强生成,LLM,知识库,Embedding,语义检索,向量检索,微调,Fine-tuning,长上下文,企业知识库
 ---
 
-<!-- @include: @article-header.snippet.md -->
+<!-- @include: @small-advertisement.snippet.md -->
 
 做企业知识库问答时，很多团队的第一反应都是：把文档全塞给大模型，让它自己读。
 

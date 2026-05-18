@@ -8,7 +8,7 @@ head:
       content: RAG,向量数据库,向量索引,HNSW,IVFFLAT,pgvector,ANN,Embedding,相似度搜索
 ---
 
-<!-- @include: @article-header.snippet.md -->
+<!-- @include: @small-advertisement.snippet.md -->
 
 前段时间面某大厂的时候，面试官问我：“你们 RAG 系统的向量检索怎么做的？”
 

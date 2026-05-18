@@ -9,8 +9,6 @@ head:
       content: AI Workflow,Graph,Loop,AI工作流,Spring AI Alibaba,LangGraph,状态机,Agent,工作流引擎
 ---
 
-<!-- @include: @article-header.snippet.md -->
-
 刚上手 AI 工作流时，很容易有类似的困惑——这不就是传统工作流换了个壳吗？为什么不用 Camunda、Temporal 这些成熟引擎？甚至觉得把几个 Prompt 用 if-else 串起来就算“工作流”了。
 
 但真正上手做项目后，这些想法很快会被现实打脸。LLM 的输出天然不确定，单次生成往往不达标，工具调用随时可能失败，上下文窗口还有硬上限。光“跑一遍就完事”的线性流程不够用，你需要的是一套能**动态决策、自动修正、可控收敛**的执行机制。

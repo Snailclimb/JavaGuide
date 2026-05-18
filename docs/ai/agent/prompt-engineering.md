@@ -8,8 +8,6 @@ head:
       content: Prompt Engineering,提示词工程,CoT,Few-Shot,结构化输出,Prompt注入,AI Agent,LLM
 ---
 
-<!-- @include: @article-header.snippet.md -->
-
 刚学 Prompt 的时候，很多人都会犯一个毛病：恨不得把所有背景、要求、限制都塞进去。
 
 看起来很认真，实际效果不一定好。

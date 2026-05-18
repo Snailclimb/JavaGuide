@@ -8,8 +8,6 @@ head:
       content: Harness Engineering,AI Agent,智能体,Claude Code,Codex,AGENTS.md,上下文工程,Agent架构
 ---
 
-<!-- @include: @article-header.snippet.md -->
-
 别只盯模型。
 
 很多人第一次做 Agent，直觉都是先买更贵的模型。结果模型换了，Agent 还是会重复犯错，做到一半放弃，上下文一长就开始不稳定。这个时候继续调 Prompt，收益往往也很有限，因为问题可能根本不在模型本身。

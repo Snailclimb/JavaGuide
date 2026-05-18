@@ -11,38 +11,18 @@ head:
       content: Java面试,Java面试指南,Java八股文,Java面试题,Java基础面试,JVM面试,并发面试,线程池面试,Spring面试,MySQL面试,Redis面试,系统设计面试,分布式面试,后端面试
 ---
 
+<!-- @include: @small-advertisement.snippet.md -->
+
 <!-- markdownlint-disable MD024 -->
 
-JavaGuide 是一份系统化的 **Java 面试指南** 和后端通用面试复习资料，内容覆盖 Java 基础、集合、并发编程、JVM、Spring/Spring Boot、MySQL、Redis、分布式、高并发、高可用和系统设计等核心知识点。
+JavaGuide 是一份系统化的 **Java 面试指南** 和**后端通用面试复习资料**，内容覆盖 Java 基础、集合、并发编程、JVM、Spring/Spring Boot、MySQL、Redis、分布式、高并发、高可用和系统设计等核心知识点。
 
 如果你正在准备校招、社招或跳槽面试，可以从 [Java 后端面试通关计划](./interview-preparation/backend-interview-plan.md) 开始，再按下面的模块逐步复习高频 Java 八股文和后端面试题。
 
-## Java 面试核心内容
+本站所有内容都已免费开源，欢迎一起[维护完善](http://localhost:8080/javaguide/contribution-guideline.html)，有帮助的话，欢迎 Star！
 
-- **Java 基础**：[Java 基础常见知识点&面试题总结(上)](./java/basis/java-basic-questions-01.md)、[中](./java/basis/java-basic-questions-02.md)、[下](./java/basis/java-basic-questions-03.md)
-- **集合框架**：[Java 集合常见知识点&面试题总结(上)](./java/collection/java-collection-questions-01.md)、[下](./java/collection/java-collection-questions-02.md)
-- **并发编程**：[Java 并发常见知识点&面试题总结（上）](./java/concurrent/java-concurrent-questions-01.md)、[中](./java/concurrent/java-concurrent-questions-02.md)、[下](./java/concurrent/java-concurrent-questions-03.md)
-- **JVM**：[Java 内存区域](./java/jvm/memory-area.md)、[JVM 垃圾回收](./java/jvm/jvm-garbage-collection.md)、[类加载过程](./java/jvm/class-loading-process.md)
-- **常用框架**：[Spring 常见知识点&面试题总结](./system-design/framework/spring/spring-knowledge-and-questions-summary.md)、[SpringBoot 常见知识点&面试题总结](./system-design/framework/spring/springboot-knowledge-and-questions-summary.md)、[MyBatis 常见面试题总结](./system-design/framework/mybatis/mybatis-interview.md)
-- **数据库与缓存**：[MySQL 常见知识点&面试题总结](./database/mysql/mysql-questions-01.md)、[Redis 常见知识点&面试题总结(上)](./database/redis/redis-questions-01.md)、[Redis 常见知识点&面试题总结(下)](./database/redis/redis-questions-02.md)
-- **系统设计与分布式**：[系统设计常见面试题总结](./system-design/system-design-questions.md)、[分布式 ID 常见知识点&面试题总结](./distributed-system/distributed-id.md)、[分布式锁介绍](./distributed-system/distributed-lock.md)
-
-<!-- @include: @small-advertisement.snippet.md -->
-
-::: tip 友情提示
-
-- **AI 应用开发**：[面向后端开发者的 AI 应用开发、AI 编程实战与面试指南](https://javaguide.cn/ai/)
-- **实战项目**：
-  - [⭐AI 智能面试辅助平台 + RAG 知识库](https://javaguide.cn/zhuanlan/interview-guide.html)：基于 Spring Boot 4.0 + Java 21 + Spring AI 2.0 开发。非常适合作为学习和简历项目，学习门槛低，帮助提升求职竞争力，是主打就业的实战项目。
-  - [手写 RPC 框架](https://javaguide.cn/zhuanlan/handwritten-rpc-framework.html)：从零开始基于 Netty+Kyro+Zookeeper 实现一个简易的 RPC 框架。麻雀虽小五脏俱全，项目代码注释详细，结构清晰。
-- **面试资料补充**：
-  - [《Java 面试指北》](https://javaguide.cn/zhuanlan/java-mian-shi-zhi-bei.html)：四年打磨，和 JavaGuide 开源版的内容互补，带你从零开始系统准备后端面试！
-  - [《后端面试高频系统设计&场景题》](https://javaguide.cn/zhuanlan/back-end-interview-high-frequency-system-design-and-scenario-questions.html)：30+ 道高频系统设计和场景面试，助你应对当下中大厂面试趋势。
-- **使用建议** ：如果你想要系统准备 Java 后端面试但又不知道如何开始的，可以参考 [Java 后端面试通关计划（后端通用）](https://javaguide.cn/interview-preparation/backend-interview-plan.html)。
-- **求个 Star**：如果觉得 JavaGuide 的内容对你有帮助的话，还请点个免费的 Star，这是对我最大的鼓励，感谢各位一起同行，共勉！传送门：[GitHub](https://github.com/Snailclimb/JavaGuide) | [Gitee](https://gitee.com/SnailClimb/JavaGuide)。
-- **转载须知**：以下所有文章如非文首说明为转载皆为 JavaGuide 原创，转载请在文首注明出处。如发现恶意抄袭/搬运，会动用法律武器维护自己的权益。让我们一起维护一个良好的技术创作环境！
-
-:::
+- **项目地址**：<https://github.com/Snailclimb/JavaGuide>
+- **在线阅读**：<https://javaguide.cn/>
 
 ## 面试准备
 

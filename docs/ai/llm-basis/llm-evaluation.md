@@ -8,8 +8,6 @@ head:
       content: AI评测,LLM评测,RAG评测,Agent评测,LLM-as-Judge,Golden Set,离线评测,Trace回放,灰度评测,评测体系,AI应用开发
 ---
 
-<!-- @include: @article-header.snippet.md -->
-
 有个做智能客服的团队，花了三个月把 RAG 知识库从向量检索升级到混合检索，再加了一层 Reranker。上线前，工程师在本地测了几十条问题，感觉效果好了不少，于是就推了上线。
 
 一周后，业务方反馈：“有些问题感觉还不如以前准。”

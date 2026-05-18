@@ -8,8 +8,6 @@ head:
       content: MCP,Model Context Protocol,JSON-RPC,Function Calling,AI Agent,工具接入,Anthropic
 ---
 
-<!-- @include: @article-header.snippet.md -->
-
 做 LLM 应用开发，最麻烦的通常不是换模型——各家 SDK 已经把模型 API 封装得比较成熟。真正耗精力的是工具接入：想让 AI 调 GitHub API、读本地文件、查 MySQL，往往要为 Claude、GPT、DeepSeek 等不同宿主分别写适配代码。接口一改，多套代码都要同步维护。
 
 这篇文章会把 MCP 拆开讲清楚。全文接近 3000 字，主要看这几块：

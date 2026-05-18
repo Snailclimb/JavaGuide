@@ -8,8 +8,6 @@ head:
       content: 结构化输出,JSON Schema,JSON Mode,Structured Outputs,Function Calling,Tool Calling,MCP,Agent Skill,AI 应用开发,Java
 ---
 
-<!-- @include: @article-header.snippet.md -->
-
 很多开发者第一次接大模型到业务系统里，都会经历一个很尴尬的阶段：本地 Demo 跑得挺顺，Prompt 里写一句“请返回 JSON”，模型也乖乖吐出一个对象；一到生产环境，问题就开始冒头。
 
 有时它会在 JSON 前面加一句“好的，以下是结果”；有时少一个必填字段；有时本来应该是数字的 `orderId` 变成字符串；更麻烦的是，边界条件一复杂，模型会补出一个业务系统根本不认识的枚举值。解析器一报错，整条链路就断了。

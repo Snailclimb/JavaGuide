@@ -8,8 +8,6 @@ head:
       content: GraphRAG,RAG,知识图谱,向量检索,全局检索,局部检索,Neo4j GraphRAG,LangChain,LlamaIndex,FalkorDB,社区发现
 ---
 
-<!-- @include: @article-header.snippet.md -->
-
 第一次做企业知识库问答时，通常会经历一个很相似的阶段：文档切块、Embedding、向量库、Top-K 检索、把片段塞给大模型。
 
 Demo 很顺，领导问几个制度类问题也能回答。然后业务同事突然问：

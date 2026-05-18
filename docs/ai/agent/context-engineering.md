@@ -8,8 +8,6 @@ head:
       content: Context Engineering,上下文工程,Agent,LLM,RAG,Prompt Engineering,Compaction,Sub-agent
 ---
 
-<!-- @include: @article-header.snippet.md -->
-
 同样的模型，同样的 Agent 框架，为什么有的人跑起来很稳，你的一跑就开始迷路？
 
 它会重复调用工具，查了一堆没用的信息，最后还输出一段看起来很像结论、实际根本跑不通的东西。

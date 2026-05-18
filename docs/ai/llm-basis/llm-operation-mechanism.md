@@ -9,7 +9,7 @@ head:
       content: LLM,大语言模型,Token,上下文窗口,Temperature,Top-p,采样参数,AI 应用开发
 ---
 
-<!-- @include: @article-header.snippet.md -->
+<!-- @include: @small-advertisement.snippet.md -->
 
 在探讨 RAG、Agent 工作流、MCP 协议这些高深概念之前，我想先聊聊一个让 Guide 踩过不少坑的基础问题：明明设置了温度为 0，结构化输出还是崩；往模型里塞了一堆文档，它好像直接失忆，关键指令全当空气。
 

@@ -8,8 +8,6 @@ head:
       content: Agent Skills,MCP,Function Calling,Prompt,AI Agent,智能体,延迟加载,上下文注入
 ---
 
-<!-- @include: @article-header.snippet.md -->
-
 2025 年前后，MCP 已经把“工具怎么接进来”这个问题炒得很热，后面 Agent Skills 又冒出来，很多人第一反应都是：这不还是提示词吗？
 
 这个疑问挺正常。因为 Skills 的载体确实经常就是一个 Markdown 文件，里面写规则、流程、示例，看起来和 Prompt、`AGENTS.md`、`.cursorrules` 没有特别夸张的区别。
