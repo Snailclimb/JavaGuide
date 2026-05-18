@@ -10,8 +10,6 @@ head:
       content: Redis面试题,Redis基础,Redis数据结构,Redis线程模型,Redis持久化,Redis内存管理,Redis性能优化,Redis分布式锁,Redis消息队列,Redis延时队列,Redis缓存策略,Redis单线程,Redis多线程,Redis过期策略,Redis淘汰策略
 ---
 
-<!-- @include: @small-advertisement.snippet.md -->
-
 ## Redis 基础
 
 ### 什么是 Redis？

@@ -17,7 +17,7 @@ head:
       content: 系统整理 AI 应用开发高频面试考点，覆盖大模型/LLM、Agent、RAG、MCP、Prompt 工程、向量数据库与 AI 系统设计。
 ---
 
-<!-- @include: @small-advertisement.snippet.md -->
+<!-- @include: @article-header.snippet.md -->
 
 这是一份面向后端开发者的 **AI 应用开发面试指南**，免费开源，涵盖大模型/LLM 面试题、Agent 面试题、RAG 面试题、MCP 协议、Prompt 工程、向量数据库、AI 系统设计等高频考点，对标 [JavaGuide](https://javaguide.cn/home.html) 的质量标准。
 

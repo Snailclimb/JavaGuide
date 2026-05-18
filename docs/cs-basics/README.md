@@ -17,13 +17,15 @@ head:
       content: 系统整理计算机网络、操作系统、数据结构与算法等计算机基础知识和后端面试高频考点，适合校招/社招复习。
 ---
 
+<!-- @include: @small-advertisement.snippet.md -->
+
 这份 **计算机基础知识总结** 系统整理了计算机网络、操作系统、数据结构与算法、Linux 等高频考点。内容既包括常见面试题，也包括 TCP/IP、HTTP、DNS、进程线程、内存管理、数组链表、树、图、排序算法等基础知识。
 
 如果你正在准备 Java 后端、校招、社招或大厂技术面试，可以先从 [计算机网络常见面试题总结](./network/other-network-questions.md) 和[操作系统常见面试题总结](./operating-system/operating-system-basic-questions-01.md) 开始。
 
-这个专栏把网络、操作系统、数据结构与算法的核心知识点系统整理了出来，整站配有 **280+ 张技术配图**，用图解的方式把抽象概念讲清楚，不是干巴巴的文字堆砌。
+这个专栏把网络、操作系统、数据结构与算法的核心知识点系统整理了出来，整站配有 **300+ 张技术配图**，用图解的方式把抽象概念讲清楚，不是干巴巴的文字堆砌。
 
-<!-- @include: @small-advertisement.snippet.md -->
+![计算机基础知识总结内容概览](https://oss.javaguide.cn/github/javaguide/cs-basics/network/cs-basics-overview.png)
 
 ## 计算机网络
 
@@ -95,3 +97,5 @@ head:
 - [几道常见的链表算法题](./algorithms/linkedlist-algorithm-problems.md)
 - [剑指offer部分编程题](./algorithms/the-sword-refers-to-offer.md)
 - [十大经典排序算法总结](./algorithms/10-classical-sorting-algorithms.md)
+
+<!-- @include: @article-footer.snippet.md -->

@@ -1,17 +1,19 @@
 ---
-title: Spring Boot 4 + Spring AI 实战 | RAG 知识库 | AI 面试平台（大模型项目）
-description: 基于 Spring Boot 4.0 + Java 21 + Spring AI 2.0 的 AI 大模型实战项目，集成 RAG 知识库、AI 模拟面试、简历分析、语音面试等功能，适合后端开发者学习 AI 应用开发和 Spring AI 框架实战。
+title: 大模型实战项目 + Agent实战项目：Spring AI 面试平台与 RAG 知识库
+description: 基于 Spring Boot 4.0 + Java 21 + Spring AI 2.0 的大模型实战项目和 Agent实战项目，集成 RAG 知识库、AI 模拟面试、简历分析、语音面试等功能，适合后端开发者学习 AI 应用开发、Spring AI 框架实战和 RAG/Agent 工程落地。
 category: 知识星球
 star: 5
 head:
   - - meta
     - name: keywords
-      content: Spring AI实战,Spring AI项目,Spring Boot AI,RAG知识库,AI面试平台,大模型项目,AI应用开发实战,Spring Boot 4,AI模拟面试,RAG实战,Java AI项目,大模型落地项目,AI简历项目,Spring AI 2.0
+      content: Spring AI实战,Spring AI项目,Spring Boot AI,RAG知识库,AI面试平台,大模型实战项目,Agent实战项目,大模型项目,Agent项目,AI应用开发实战,Spring Boot 4,AI模拟面试,RAG实战,Java AI项目,大模型落地项目,AI简历项目,Spring AI 2.0
 ---
 
-很多小伙伴跟我反馈：“我的简历上全是增删改查（CRUD），面试官看都不看，怎么办？”
+很多后端同学准备简历项目时都会遇到同一个问题：项目里全是增删改查（CRUD），技术栈看起来不少，但面试官很难继续深挖，也很难体现你对 **大模型应用开发、RAG 知识库、Agent 工程落地** 这些新方向的理解。
 
-既然 AI 浪潮已至，我们就直接把大模型能力、向量数据库、RAG 架构装进你的项目里。
+这篇要介绍的就是一个面向 Java 后端的 **大模型实战项目 + Agent 实战项目**：基于 **Spring Boot 4.0、Java 21、Spring AI 2.0** 构建 AI 智能面试辅助平台，把简历分析、AI 模拟面试、RAG 知识库问答、语音面试、异步任务处理、分布式限流等能力串成一个完整项目。
+
+如果你想找一个能写进简历、能用于面试讲解、也能系统学习 Spring AI 和 RAG/Agent 实战的项目，这个项目会比单纯堆业务表的 CRUD 项目更适合你。
 
 ## 项目介绍
 

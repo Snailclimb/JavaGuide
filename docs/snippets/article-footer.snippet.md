@@ -1,17 +1,7 @@
 ## 写在最后
 
-感谢你能看到这里，也希望这篇文章对你有点用。
+如果内容对你有帮助的话，欢迎顺手给 JavaGuide 点一个免费的 Star 支持一下：[GitHub](https://github.com/Snailclimb/JavaGuide) | [Gitee](https://gitee.com/SnailClimb/JavaGuide)。
 
-JavaGuide 坚持更新 6 年多，近 6000 次提交、600+ 位贡献者一起打磨。如果这些内容对你有帮助，非常欢迎点个免费的 Star 支持下（完全自愿，觉得有收获再点就好）：[GitHub](https://github.com/Snailclimb/JavaGuide) | [Gitee](https://gitee.com/SnailClimb/JavaGuide)。
+JavaGuide 已持续维护近七年，累计 **6100+** 次提交，来自 **620+** 位贡献者共同完善。你的 Star、反馈和 PR，都是这个项目继续更新的动力。
 
-如果你想要付费支持/面试辅导（比如实战项目、简历优化、一对一提问、高频考点突击资料等）的话，欢迎了解我的[知识星球](https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html)。已经坚持维护六年，内容持续更新，虽白菜价（0.4元/天）但质量很高，主打一个良心！
-
-<img
-  class="article-footer-qrcode"
-  src="https://oss.javaguide.cn/github/javaguide/gongzhonghao-javaguide.png"
-  alt="JavaGuide 公众号"
-  width="1424"
-  height="752"
-  loading="lazy"
-  decoding="async"
-/>
+如果你正在准备后端/AI 应用开发面试，也可以了解一下我的[知识星球](https://javaguide.cn/about-the-author/zhishixingqiu-two-years.html)，里面包括后端和 AI 实战项目、简历优化、一对一提问和高频考点资料，已经持续维护六年。
