@@ -6,16 +6,13 @@ description: JavaGuide 是一份 Java 面试和后端通用面试指南，同时
 heroImage: /logo.svg
 heroText: JavaGuide
 tagline: Java 面试 & 后端通用面试指南，覆盖计算机基础、数据库、分布式、高并发、系统设计与 AI 应用开发
+sitemap:
+  changefreq: weekly
+  priority: 0.9
 head:
   - - meta
     - name: keywords
       content: JavaGuide,Java面试,Java面试指南,Java八股文,后端面试,后端开发,数据库面试,MySQL面试,Redis面试,分布式,高并发,高性能,高可用,系统设计,消息队列,缓存,计算机网络,Linux,AI面试,AI应用开发,Agent,RAG,MCP,LLM,AI编程
-  - - meta
-    - property: og:type
-      content: website
-  - - meta
-    - property: og:url
-      content: https://javaguide.cn/
   - - meta
     - property: og:image
       content: https://javaguide.cn/logo.png
@@ -30,9 +27,11 @@ footer: |-
   <a href="https://beian.miit.gov.cn/" target="_blank">鄂ICP备2020015769号-1</a> | 主题: <a href="https://theme-hope.vuejs.press/" target="_blank">VuePress Theme Hope</a>
 ---
 
+<!-- markdownlint-disable MD033 -->
+
 ## 🔥必看
 
-- [后端面试指南](./home.md)（⭐网站核心）：Java 学习&面试指南（Go、Python 后端面试通用,计算机基础面试总结）。
+- [Java 面试指南](./home.md)（⭐网站核心）：系统整理 Java 八股文、Java 面试题和后端通用面试知识。
 - [AI 应用开发面试指南](./ai/)（⭐新增）：深入浅出掌握 AI 应用开发核心知识，涵盖大模型基础、Agent、RAG、MCP 协议等高频面试考点。
 - [Java 优质开源项目](./open-source-project/)：收集整理了 Gitee/Github 上非常棒的 Java 开源项目集合，按实战项目、系统设计、工具类库等维度做了精细分类，持续更新维护！
 - [优质技术书籍推荐](./books/)：优质技术书籍推荐合集，涵盖了从计算机基础、数据库、搜索引擎到分布式系统、高可用架构的全方位内容，持续更新维护！

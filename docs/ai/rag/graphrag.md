@@ -612,7 +612,7 @@ GraphRAG 不是唯一的 RAG 增强路线，了解横向坐标有助于做技术
 
 GraphRAG 是目前唯一系统性解决“关系推理 + 全局归纳”的方案，但代价也最高。
 
-<!-- @include: @rag-project.md -->
+<!-- @include: @rag-project.snippet.md -->
 
 ## 总结
 

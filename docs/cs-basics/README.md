@@ -2,6 +2,9 @@
 title: 计算机基础知识总结：计算机网络、操作系统、数据结构与算法面试题
 description: 计算机基础知识与面试题系统总结，覆盖计算机网络、操作系统、数据结构、算法、Linux、TCP/IP、HTTP、DNS 等后端面试高频考点，适合校招/社招复习。
 icon: "mdi:desktop-classic"
+sitemap:
+  changefreq: weekly
+  priority: 0.95
 head:
   - - meta
     - name: keywords
@@ -14,17 +17,13 @@ head:
       content: 系统整理计算机网络、操作系统、数据结构与算法等计算机基础知识和后端面试高频考点，适合校招/社招复习。
 ---
 
-<!-- @include: @small-advertisement.snippet.md -->
+这份 **计算机基础知识总结** 系统整理了计算机网络、操作系统、数据结构与算法、Linux 等高频考点。内容既包括常见面试题，也包括 TCP/IP、HTTP、DNS、进程线程、内存管理、数组链表、树、图、排序算法等基础知识。
 
-你好，我是 [JavaGuide](https://javaguide.cn/) 的作者 Guide。
-
-很多同学准备后端面试时，精力全砸在 Java、Spring、Redis 上，结果面试官一问"TCP 为什么三次握手不是两次""进程和线程有什么区别""红黑树的应用场景"，直接卡壳。
-
-计算机基础不是锦上添花，是面试的**硬门槛**。校招、社招都会考，躲不过。
-
-这份 **计算机基础知识总结** 面向后端开发学习和面试复习，系统整理了计算机网络、操作系统、数据结构与算法、Linux 等高频考点。内容既包括常见面试题，也包括 TCP/IP、HTTP、DNS、进程线程、内存管理、数组链表、树、图、排序算法等基础知识。
+如果你正在准备 Java 后端、校招、社招或大厂技术面试，可以先从 [计算机网络常见面试题总结](./network/other-network-questions.md) 和[操作系统常见面试题总结](./operating-system/operating-system-basic-questions-01.md) 开始。
 
 这个专栏把网络、操作系统、数据结构与算法的核心知识点系统整理了出来，整站配有 **280+ 张技术配图**，用图解的方式把抽象概念讲清楚，不是干巴巴的文字堆砌。
+
+<!-- @include: @small-advertisement.snippet.md -->
 
 ## 计算机网络
 

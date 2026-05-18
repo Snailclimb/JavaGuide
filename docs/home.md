@@ -1,12 +1,31 @@
 ---
 icon: "mdi:head-lightbulb-outline"
-title: JavaGuide（Java 面试 & 后端通用面试指南）
-description: Java 面试指南（Java 八股文/面试题总结）：覆盖 Java 基础、集合、并发、JVM、Spring、MySQL、Redis、系统设计与分布式等核心知识，适用于校招/社招后端面试复习。
+title: Java 面试指南（JavaGuide 后端通用面试题总结）
+description: JavaGuide Java 面试指南，系统整理 Java 八股文和后端面试题，覆盖 Java 基础、集合、并发、JVM、Spring、MySQL、Redis、系统设计与分布式，适用于校招和社招复习。
+sitemap:
+  changefreq: weekly
+  priority: 1
 head:
   - - meta
     - name: keywords
       content: Java面试,Java面试指南,Java八股文,Java面试题,Java基础面试,JVM面试,并发面试,线程池面试,Spring面试,MySQL面试,Redis面试,系统设计面试,分布式面试,后端面试
 ---
+
+<!-- markdownlint-disable MD024 -->
+
+JavaGuide 是一份系统化的 **Java 面试指南** 和后端通用面试复习资料，内容覆盖 Java 基础、集合、并发编程、JVM、Spring/Spring Boot、MySQL、Redis、分布式、高并发、高可用和系统设计等核心知识点。
+
+如果你正在准备校招、社招或跳槽面试，可以从 [Java 后端面试通关计划](./interview-preparation/backend-interview-plan.md) 开始，再按下面的模块逐步复习高频 Java 八股文和后端面试题。
+
+## Java 面试核心内容
+
+- **Java 基础**：[Java 基础常见知识点&面试题总结(上)](./java/basis/java-basic-questions-01.md)、[中](./java/basis/java-basic-questions-02.md)、[下](./java/basis/java-basic-questions-03.md)
+- **集合框架**：[Java 集合常见知识点&面试题总结(上)](./java/collection/java-collection-questions-01.md)、[下](./java/collection/java-collection-questions-02.md)
+- **并发编程**：[Java 并发常见知识点&面试题总结（上）](./java/concurrent/java-concurrent-questions-01.md)、[中](./java/concurrent/java-concurrent-questions-02.md)、[下](./java/concurrent/java-concurrent-questions-03.md)
+- **JVM**：[Java 内存区域](./java/jvm/memory-area.md)、[JVM 垃圾回收](./java/jvm/jvm-garbage-collection.md)、[类加载过程](./java/jvm/class-loading-process.md)
+- **常用框架**：[Spring 常见知识点&面试题总结](./system-design/framework/spring/spring-knowledge-and-questions-summary.md)、[SpringBoot 常见知识点&面试题总结](./system-design/framework/spring/springboot-knowledge-and-questions-summary.md)、[MyBatis 常见面试题总结](./system-design/framework/mybatis/mybatis-interview.md)
+- **数据库与缓存**：[MySQL 常见知识点&面试题总结](./database/mysql/mysql-questions-01.md)、[Redis 常见知识点&面试题总结(上)](./database/redis/redis-questions-01.md)、[Redis 常见知识点&面试题总结(下)](./database/redis/redis-questions-02.md)
+- **系统设计与分布式**：[系统设计常见面试题总结](./system-design/system-design-questions.md)、[分布式 ID 常见知识点&面试题总结](./distributed-system/distributed-id.md)、[分布式锁介绍](./distributed-system/distributed-lock.md)
 
 <!-- @include: @small-advertisement.snippet.md -->
 

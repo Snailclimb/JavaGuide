@@ -444,7 +444,7 @@ MySQL 这边要分版本看。MySQL 8.x 系列，包括 8.4 LTS，没有官方 `
 
 关于 MySQL 和 PostgreSQL 的详细对比，可以参考我写的这篇文章：[MySQL vs PostgreSQL，如何选择？](https://mp.weixin.qq.com/s/APWD-PzTcTqGUuibAw7GGw)。
 
-<!-- @include: @rag-project.md -->
+<!-- @include: @rag-project.snippet.md -->
 
 ## 总结
 

@@ -243,7 +243,7 @@ Naive RAG 是起点，能跑通 Demo，但离生产通常还有距离。Advanced
 
 **Token 成本同样要算清楚。** RAG 省了训练成本，但每次请求都要带上下文，输入 Token 往往比普通对话高不少。文档片段塞得越多，账单和延迟都会一起涨。
 
-<!-- @include: @rag-project.md -->
+<!-- @include: @rag-project.snippet.md -->
 
 ## 总结
 

@@ -10,6 +10,8 @@ head:
       content: 计算机网络面试题,TCP/IP四层模型,HTTP面试,HTTPS vs HTTP,HTTP/1.1 vs HTTP/2,HTTP/3 QUIC,TCP三次握手,UDP区别,DNS解析,WebSocket vs SSE,GET vs POST,应用层协议,网络分层,队头阻塞,PING命令,ARP协议
 ---
 
+<!-- markdownlint-disable MD033 -->
+
 <!-- @include: @small-advertisement.snippet.md -->
 
 上篇主要是计算机网络基础和应用层相关的内容。

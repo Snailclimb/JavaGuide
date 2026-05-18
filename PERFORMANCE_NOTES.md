@@ -81,33 +81,47 @@ cp "$VERIFY_FILE" "$SITE_DIR/"
 - 不建议每次都刷新整个根目录；如果必须刷新根目录，前提是源站仍保留旧 assets。
 - 旧 assets 可用定时任务按 30-60 天清理，避免无限增长。
 
-## 已完成优化
+## 每次部署清单
 
-### 搜索
+这部分是实际发布时照着做的简化流程。
 
-- 移除本地客户端搜索配置。
-- 接入 DocSearch 配置入口：
-  - `DOCSEARCH_APP_ID`
-  - `DOCSEARCH_API_KEY`
-  - `DOCSEARCH_INDEX_NAME`
-- 没有 DocSearch key 时关闭搜索，避免生成本地 `searchIndex.js`。
-- clean build 后已确认 `docs/.vuepress/.temp/internal/searchIndex.js` 不再生成。
-- Algolia 应用：
-  - 当前新应用 ID：`XXQ4GI90SC`
-  - 当前前端索引名：`javaguide`
-  - 当前前端 Search-Only API Key 已验证可用，掩码记录为：`3b514f...ef027b`
-- 官方 DocSearch Crawler 当前存在抽取不稳定问题：
-  - Crawler 能访问页面，但 UI 中 `recordExtractor` 没有稳定产出 records。
-  - 线上连续抓取还可能受 CDN/安全策略影响，导致部分页面拿不到完整正文。
-- 新增兜底索引脚本：`pnpm docsearch:index`
-  - 脚本位置：`scripts/docsearch-index.mjs`
-  - 推荐从本地构建产物 `dist` 生成索引，而不是在线抓取。
-  - 原因：`dist` 就是最终部署产物，索引内容和发布内容一致，也不会受 CDN/反爬/缓存影响。
-  - 推荐流程：
+### 1. 构建
 
 ```bash
 pnpm docs:build
+```
 
+如果这次改了主题配置、构建插件、搜索配置或怀疑缓存影响构建结果，使用 clean build：
+
+```bash
+pnpm docs:build:clean
+```
+
+### 2. 部署静态文件
+
+按上面的 `rsync` 方式发布：
+
+- 非 assets 文件使用 `--delete`，让 HTML、sitemap、robots、manifest 跟随新版本。
+- `/assets/` 只增量覆盖，不在每次部署时删除旧 hash 文件。
+- 保留站点验证文件，例如 Google/Bing 的验证文件。
+
+### 3. 刷新 CDN
+
+部署后优先刷新这些入口文件：
+
+- `/`
+- `/home.html`
+- `/sitemap.xml`
+- `/robots.txt`
+- 这次改动涉及的栏目页和文章页 HTML
+
+不建议每次刷新整个根目录；如果刷新根目录，源站必须仍保留旧 `/assets/*` 文件。
+
+### 4. 更新站内搜索索引
+
+内容变更或文章结构变更后，从本地 `dist` 写入 Algolia DocSearch 索引：
+
+```bash
 DOCSEARCH_APP_ID=XXQ4GI90SC \
 DOCSEARCH_INDEX_NAME=javaguide \
 DOCSEARCH_SOURCE_DIR=dist \
@@ -115,10 +129,57 @@ DOCSEARCH_ADMIN_API_KEY=你的写入索引专用 Key \
 pnpm docsearch:index
 ```
 
-- 注意：
-  - `DOCSEARCH_ADMIN_API_KEY` 只用于本地/CI 写索引，不能提交到仓库，不能放到前端环境变量里。
-  - 前端 `DOCSEARCH_API_KEY` 必须使用 `XXQ4GI90SC` 应用下的 Search-Only API Key，不能继续用旧应用 `U3RN7F5WI0` 的 key。
-  - 前端本地/部署构建环境变量示例：
+只改样式、缓存、Nginx 或不影响正文内容时，可以不重建搜索索引。
+
+### 5. 提交 IndexNow
+
+小范围改动优先只提交变更 URL：
+
+```bash
+INDEXNOW_KEY=你的 IndexNow Key \
+pnpm indexnow:submit /home.html /ai/ /cs-basics/
+```
+
+大范围内容更新、导航调整或 sitemap 变化后，可以提交 sitemap 中的全部 URL：
+
+```bash
+INDEXNOW_KEY=你的 IndexNow Key \
+pnpm indexnow:submit --sitemap
+```
+
+`INDEXNOW_KEY` 不能提交到仓库。线上需要能访问 `https://javaguide.cn/{INDEXNOW_KEY}.txt`。
+
+### 6. 部署后检查
+
+```bash
+curl -I https://javaguide.cn/
+curl -I https://javaguide.cn/assets/app-xxx.js
+curl -s https://javaguide.cn/robots.txt
+curl -s https://javaguide.cn/sitemap.xml | head
+```
+
+重点确认：
+
+- HTML 不长期缓存。
+- hash JS/CSS 是长期缓存。
+- `robots.txt` 包含 `Sitemap: https://javaguide.cn/sitemap.xml`。
+- 重要入口页在 sitemap 中存在。
+- 栏目入口页是 `weekly`，普通文章默认是 `monthly`。
+
+## 已完成优化
+
+### 搜索
+
+- 站内搜索使用 Algolia DocSearch，不再生成 VuePress 本地客户端搜索索引。
+- 主题中保留 DocSearch 配置入口：
+  - `DOCSEARCH_APP_ID`
+  - `DOCSEARCH_API_KEY`
+  - `DOCSEARCH_INDEX_NAME`
+- 没有 DocSearch key 时关闭搜索，避免生成本地 `searchIndex.js`。
+- 当前 Algolia 应用 ID：`XXQ4GI90SC`
+- 当前前端索引名：`javaguide`
+- 前端 `DOCSEARCH_API_KEY` 必须使用 `XXQ4GI90SC` 应用下的 Search-Only API Key，不能使用旧应用 `U3RN7F5WI0` 的 key。
+- 构建环境变量示例：
 
 ```bash
 DOCSEARCH_APP_ID=XXQ4GI90SC
@@ -126,8 +187,33 @@ DOCSEARCH_INDEX_NAME=javaguide
 DOCSEARCH_API_KEY=3b514f...ef027b
 ```
 
-- 上面的 `DOCSEARCH_API_KEY` 文档中只保留掩码；实际构建时使用完整 Search-Only API Key。
+- 上面的 `DOCSEARCH_API_KEY` 只记录掩码；实际构建时使用完整 Search-Only API Key。
+- `DOCSEARCH_ADMIN_API_KEY` 只用于本地/CI 写索引，不能提交到仓库，也不能放到前端环境变量里。
+- 推荐从本地构建产物 `dist` 生成索引，避免在线抓取受 CDN、反爬、缓存或页面动态渲染影响。
 - 2026-05-14 已用本地 `dist` 成功写入 `javaguide` 索引，索引 records 约 4.7 万条。
+
+### SEO 和搜索引擎提交
+
+- 全站 sitemap 默认频率是 `monthly`，匹配普通文章几个月更新一次的实际情况。
+- 首页和栏目入口页保留显式 `weekly`：
+  - `/`
+  - `/home.html`
+  - `/ai/`
+  - `/cs-basics/`
+- 普通文章不要单独写 `sitemap.changefreq: weekly`，除非它确实会频繁更新。
+- `robots.txt` 由 VuePress SEO/Sitemap 插件生成，并自动追加 sitemap 地址。
+- 已新增 `pnpm indexnow:submit`，用于部署后向 Bing/IndexNow 主动提交 URL。
+- 重要页面需要重点维护：
+  - `title`：包含核心搜索词，但不要堆砌。
+  - `description`：说明页面覆盖范围和适用人群。
+  - `keywords`：可作为补充，不要依赖它决定排名。
+  - 首屏正文：广告或提示块前尽量有一段能概括页面价值的真实内容。
+  - 内链锚文本：使用“Java 面试”“AI 应用开发面试”“计算机基础面试题”等明确词，而不是泛泛的“点击这里”。
+- 新增或重写重点栏目后，优先检查：
+  - 生成后的 `dist/sitemap.xml` 是否包含目标 URL。
+  - `changefreq` 是否符合真实更新节奏。
+  - canonical、Open Graph、JSON-LD 是否生成正常。
+  - Bing Webmaster Tools / Google Search Console 中是否能正常抓取。
 
 ### GlobalUnlock
 

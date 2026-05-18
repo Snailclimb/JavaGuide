@@ -1,5 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://javaguide.cn/sitemap.xml
-Host: https://javaguide.cn/
