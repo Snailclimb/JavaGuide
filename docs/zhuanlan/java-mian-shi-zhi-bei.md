@@ -1,8 +1,12 @@
 ---
-title: 《Java 面试指北》
-description: Java 面试指北专栏，四年打磨的 Java 后端面试指南，涵盖核心知识点与高频面试题系统讲解。
+title: Java 面试指北 | Java 后端面试指南 | Java 八股文面试题大全
+description: 四年打磨的 Java 后端面试指南，涵盖 Java 核心、并发、JVM、Spring、MySQL、Redis、系统设计等高频面试题系统讲解，适合校招/社招 Java 后端面试复习。
 category: 知识星球
 star: 5
+head:
+  - - meta
+    - name: keywords
+      content: Java面试,Java面试指南,Java八股文,Java面试题,Java后端面试,Java面试指北,Java核心面试题,JVM面试题,并发面试题,Spring面试题,MySQL面试题,系统设计面试
 ---
 
 **四年磨一剑，只为打造最优质的 Java 面试指南。**

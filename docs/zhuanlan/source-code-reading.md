@@ -1,8 +1,12 @@
 ---
-title: 《Java 必读源码系列》
-description: Java 必读源码系列专栏，涵盖 Dubbo、Netty、Spring Boot 等主流框架源码解析，助力深入理解底层原理。
+title: Java 必读源码系列 | Dubbo + Netty + Spring Boot 源码解析
+description: Java 主流框架源码解析专栏，涵盖 Dubbo、Netty、Spring Boot 等框架的源码深入解读，助力后端开发者理解底层原理与设计思想。
 category: 知识星球
 star: true
+head:
+  - - meta
+    - name: keywords
+      content: Java源码,源码解析,Dubbo源码,Netty源码,Spring Boot源码,框架源码,源码阅读,Java源码学习,开源框架源码
 ---
 
 ## 介绍

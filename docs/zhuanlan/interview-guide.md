@@ -1,8 +1,12 @@
 ---
-title: 《SpringAI 智能面试平台+RAG 知识库》
-description: Spring AI 智能面试平台实战项目，基于 Spring Boot 4.0 和 Spring AI 2.0 开发，集成 RAG 知识库和简历分析功能。
+title: Spring Boot 4 + Spring AI 实战 | RAG 知识库 | AI 面试平台（大模型项目）
+description: 基于 Spring Boot 4.0 + Java 21 + Spring AI 2.0 的 AI 大模型实战项目，集成 RAG 知识库、AI 模拟面试、简历分析、语音面试等功能，适合后端开发者学习 AI 应用开发和 Spring AI 框架实战。
 category: 知识星球
 star: 5
+head:
+  - - meta
+    - name: keywords
+      content: Spring AI实战,Spring AI项目,Spring Boot AI,RAG知识库,AI面试平台,大模型项目,AI应用开发实战,Spring Boot 4,AI模拟面试,RAG实战,Java AI项目,大模型落地项目,AI简历项目,Spring AI 2.0
 ---
 
 很多小伙伴跟我反馈：“我的简历上全是增删改查（CRUD），面试官看都不看，怎么办？”

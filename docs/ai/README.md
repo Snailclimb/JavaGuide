@@ -1,11 +1,17 @@
 ---
-title: AI 应用开发面试指南：大模型、Agent、RAG、MCP 高频考点
-description: 面向后端开发者的 AI 应用开发面试指南，系统覆盖大模型面试题、Agent 面试题、RAG 面试题、MCP 协议、Prompt 工程等高频考点，适合校招/社招 AI 工程师、AI 应用开发岗位面试复习。
+title: AI 应用开发面试指南：大模型、Agent、RAG、MCP、Prompt 工程
+description: 面向后端开发者的 AI 应用开发面试指南，系统覆盖大模型/LLM、Agent、RAG、MCP 协议、Prompt 工程、AI 系统设计、向量数据库等高频考点，适合校招/社招 AI 工程师和 AI 应用开发岗位复习。
 icon: "mdi:robot-outline"
 head:
   - - meta
     - name: keywords
-      content: AI面试,AI面试指南,AI应用开发面试,AI工程师面试,大模型面试,大模型面试题,LLM面试,LLM面试题,Agent面试,Agent面试题,RAG面试,RAG面试题,MCP面试,MCP面试题,Prompt工程面试,向量数据库面试,AI系统设计面试,AI编程面试
+      content: AI面试,AI面试指南,AI应用开发,AI应用开发面试,AI工程师面试,大模型面试,大模型面试题,LLM面试,LLM面试题,Agent面试,Agent面试题,RAG面试,RAG面试题,MCP面试,MCP面试题,Prompt工程,Prompt工程面试,向量数据库面试,AI系统设计,AI系统设计面试,Spring AI,AI编程面试
+  - - meta
+    - property: og:title
+      content: AI 应用开发面试指南：大模型、Agent、RAG、MCP、Prompt 工程
+  - - meta
+    - property: og:description
+      content: 系统整理 AI 应用开发高频面试考点，覆盖大模型/LLM、Agent、RAG、MCP、Prompt 工程、向量数据库与 AI 系统设计。
 ---
 
 <!-- @include: @small-advertisement.snippet.md -->
@@ -20,7 +26,9 @@ head:
 
 你好，我是 [JavaGuide](https://javaguide.cn/) 的作者。最近几个月一直在持续补充完善 AI 应用开发面试相关内容。
 
-这是一份面向后端开发者的 **AI 应用开发面试指南**，免费开源，涵盖大模型面试题、Agent 面试题、RAG 面试题、MCP 协议、Prompt 工程、AI 系统设计等高频考点，对标 [JavaGuide](https://javaguide.cn/home.html) 的质量标准。有帮助的话，欢迎 Star！
+这是一份面向后端开发者的 **AI 应用开发面试指南**，免费开源，涵盖大模型/LLM 面试题、Agent 面试题、RAG 面试题、MCP 协议、Prompt 工程、向量数据库、AI 系统设计等高频考点，对标 [JavaGuide](https://javaguide.cn/home.html) 的质量标准。有帮助的话，欢迎 Star！
+
+如果你正在准备 AI 工程师、AI 应用开发、后端转 AI、Java AI 应用开发相关岗位，这个专栏会按照“底层原理 -> 工程实践 -> 系统设计 -> 面试表达”的顺序，帮你把零散概念串成一套可复习、可落地的知识体系。
 
 - **项目地址**：<https://github.com/Snailclimb/AIGuide>
 - **在线阅读**：<https://javaguide.cn/ai/>
@@ -33,13 +41,13 @@ head:
 
 ![AIGuide 收到了很多读者朋友的好评和推荐](https://oss.javaguide.cn/github/aiguide/ai-guide-received-many-positive-reviews-and-recommendations-from-readers.png)
 
-## 这个专栏能帮你解决什么问题？
+## AI 应用开发面试怎么准备？
 
 很多开发者碰到的困境是：Agent、RAG、MCP 这些概念看了不少，但面试一问就卡壳，要么只知道概念说不清原理，要么知道原理但搭不出东西。
 
 这个专栏就是冲着解决这个问题来的：把 AI 应用开发的核心知识拆透，让你面试能讲清楚，上手能做出来。
 
-### 1. 扎实的大模型基础知识
+### 1. 大模型/LLM 基础知识
 
 做 Agent 工作流、调 RAG 检索，最容易踩坑的地方反而是最底层的 LLM 参数。比如：
 
@@ -78,7 +86,7 @@ RAG 是企业级 AI 应用的核心技术，但很多开发者只停留在”把
 - [《RAG 文档处理与切分策略》](./rag/rag-document-processing.md)：从文档解析、清洗、Chunking 到多模态内容处理的完整链路拆解
 - [《RAG 知识库文档更新策略》](./rag/rag-knowledge-update.md)：增量更新、版本控制、去重与全量重建的工程实践
 
-### 4. 工具与协议
+### 4. MCP 协议与工具调用
 
 AI 应用开发里，工具接入的碎片化一直是个老大难问题。MCP 协议就是来解决这个的。
 

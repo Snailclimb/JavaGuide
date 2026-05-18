@@ -18,8 +18,6 @@ export const unlockConfig = {
   protectedPaths: {
     ...withDefaultHeight([
       "/java/jvm/memory-area.html",
-      "/java/basis/java-basic-questions-02.html",
-      "/java/collection/java-collection-questions-02.html",
       "/cs-basics/network/tcp-connection-and-disconnection.html",
       "/cs-basics/network/http-vs-https.html",
       "/cs-basics/network/dns.html",
@@ -30,7 +28,13 @@ export const unlockConfig = {
   // 目录前缀 -> 可见高度（该目录下所有文章都触发验证）
   // 例如 "/java/collection/" 会匹配 "/java/collection/**"
   protectedPrefixes: {
-    ...withDefaultHeight(["/database/", "/high-performance/"]),
+    ...withDefaultHeight([
+      "/database/",
+      "/high-performance/",
+      "/java/basis/",
+      "/java/collection/",
+      "/ai/",
+    ]),
   },
 } as const;
 

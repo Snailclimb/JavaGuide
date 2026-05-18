@@ -1,7 +1,11 @@
 ---
-title: 《手写 RPC 框架》
-description: 手写RPC框架实战教程，基于Netty+Kyro+Zookeeper从零实现RPC框架，深入理解RPC底层原理。
+title: 手写 RPC 框架 | Netty + Kryo + Zookeeper 实战教程
+description: 从零开始基于 Netty + Kryo + Zookeeper 手写实现一个 RPC 框架，深入理解 RPC 底层原理与核心组件，适合后端开发者提升分布式编程能力。
 category: 知识星球
+head:
+  - - meta
+    - name: keywords
+      content: 手写RPC,RPC框架,RPC实战,Netty实战,Zookeeper,Kryo,RPC原理,分布式RPC,手写框架,RPC教程,Java RPC
 ---
 
 ## 介绍
