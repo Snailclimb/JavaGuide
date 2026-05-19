@@ -58,7 +58,9 @@ footer: |-
 
 ## 🌐 关于网站
 
-JavaGuide 已经持续维护 6 年多了，累计提交 **6000+** commit ，共有 **620+** 多位贡献者共同参与维护和完善。
+JavaGuide 已经持续维护 6 年多了，累计提交 **6200+** commit ，共有 **640+** 多位贡献者共同参与维护和完善。
+
+![JavaGuide 目前的 Star、Fork、Issue 和 PR 情况](https://oss.javaguide.cn/github/javaguide/intro/javaguide-star-issue-pr.png)
 
 网站内容覆盖：
 
