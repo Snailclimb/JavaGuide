@@ -504,14 +504,38 @@ export default sidebar({
       prefix: "high-availability/",
       collapsible: true,
       children: [
-        "high-availability-interview-questions",
-        "high-availability-system-design",
-        "idempotency",
-        "redundancy",
-        "limit-request",
-        "fallback-and-circuit-breaker",
-        "timeout-and-retry",
-        "performance-test",
+        {
+          text: "⭐高可用系统面试题总结",
+          link: "high-availability-interview-questions",
+        },
+        {
+          text: "高可用系统设计指南",
+          link: "high-availability-system-design",
+        },
+        {
+          text: "接口幂等方案总结",
+          link: "idempotency",
+        },
+        {
+          text: "冗余设计详解",
+          link: "redundancy",
+        },
+        {
+          text: "服务限流详解",
+          link: "limit-request",
+        },
+        {
+          text: "降级&熔断详解",
+          link: "fallback-and-circuit-breaker",
+        },
+        {
+          text: "超时&重试详解",
+          link: "timeout-and-retry",
+        },
+        {
+          text: "性能测试入门",
+          link: "performance-test",
+        },
       ],
     },
   ],
