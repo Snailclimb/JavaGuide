@@ -1,8 +1,8 @@
 ---
-title: 2026 最新后端面试 PDF 资料
+title: 2026最新Java面试+后端面试PDF资料
 description: 2026 版后端面试 PDF 资料整理（JavaGuide）：梳理校招/社招高频考点与复习优先级，覆盖 Java 基础、集合、并发、MySQL、Redis、Spring/Spring Boot、JVM、系统设计与项目经验准备，帮你抓重点高效备战。
 category: 面试准备
-icon: "mdi:file-pdf-box"
+icon: mdi:file-pdf-box
 head:
   - - meta
     - name: keywords

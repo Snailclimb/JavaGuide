@@ -1,8 +1,8 @@
 ---
-title: Java 后端面试通关计划（涵盖后端通用体系）
+title: 2026 最新版 Java 后端面试通关计划（涵盖后端通用体系）
 description: Java 后端面试通关计划：严格按照面试考察真实优先级编排，涵盖项目经历、Java核心、MySQL/Redis、框架、系统设计、计算机基础、分布式与JVM，适合校招/社招准备。
 category: 面试准备
-icon: "mdi:star-outline"
+icon: mdi:star-outline
 head:
   - - meta
     - name: keywords

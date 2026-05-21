@@ -14,6 +14,8 @@ head:
 
 ## RPC 是什么?
 
+![RPC 概览](https://oss.javaguide.cn/github/javaguide/distributed-system/rpc/rpc-overview..png)
+
 **RPC（Remote Procedure Call）** 即远程过程调用，通过名字我们就能看出 RPC 关注的是远程调用而非本地调用。
 
 **为什么要 RPC ？** 因为，两个不同的服务器上的服务提供的方法不在一个内存空间，所以，需要通过网络编程才能传递方法调用所需要的参数。并且，方法调用的结果也需要通过网络编程来接收。但是，如果我们自己手动网络编程来实现这个调用过程的话工作量是非常大的，因为，我们需要考虑底层传输方式（TCP 还是 UDP）、序列化方式等等方面。

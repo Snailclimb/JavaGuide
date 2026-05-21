@@ -77,6 +77,7 @@ export const ai = arraySidebar([
         text: "AI 应用系统设计",
         link: "ai-application-architecture",
       },
+      { text: "大模型网关详解", link: "llm-gateway" },
       { text: "AI 语音技术详解", link: "ai-voice" },
     ],
   },
