@@ -568,10 +568,12 @@ private void incrementAndPrint(int targetValue) {
             return;
         }
         // 尝试 CAS 操作：如果当前值等于 targetValue - 1，则原子地设置为 targetValue
-        if (unsafe.compareAndSwapInt(this, fieldOffset, currentValue, targetValue)) {
-            // CAS 成功后立即打印，确保打印的就是本次设置的值
-            System.out.print(targetValue + " ");
-            return;
+        if (currentValue == targetValue - 1) {
+          if (unsafe.compareAndSwapInt(this, fieldOffset, currentValue, targetValue)) {
+              // CAS 成功后立即打印，确保打印的就是本次设置的值
+              System.out.print(targetValue + " ");
+              return;
+          }
         }
         // CAS 失败，重新读取并重试
     }
