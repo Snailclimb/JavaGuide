@@ -1,6 +1,6 @@
 ---
-title: NoSQL基础知识总结
-description: NoSQL数据库基础知识总结，包括NoSQL与SQL的区别、NoSQL的优势、四种NoSQL数据库类型（键值、文档、图形、宽列）及其代表产品Redis、MongoDB、Neo4j等的应用场景。
+title: NoSQL基础常见面试题总结
+description: NoSQL数据库基础面试题和知识总结，包括NoSQL与SQL的区别、NoSQL的优势、四种NoSQL数据库类型（键值、文档、图形、宽列）及其代表产品Redis、MongoDB、Neo4j等的应用场景。
 category: 数据库
 tag:
   - NoSQL

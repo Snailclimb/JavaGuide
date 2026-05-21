@@ -17,6 +17,9 @@ body {
 
   img {
     display: block;
+    width: min(100%, 1774px);
+    aspect-ratio: 1774 / 887;
+    height: auto;
     margin: 0 auto;
   }
 }

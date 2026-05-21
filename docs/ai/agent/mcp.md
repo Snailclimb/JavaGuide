@@ -1,5 +1,5 @@
 ---
-title: 深入理解 MCP 协议：一次开发，多处复用
+title: 什么是 Model Context Protocol (MCP)？和 Function Calling、Agent 什么关系？
 description: MCP（Model Context Protocol）核心概念、四层分层架构、JSON-RPC 2.0 通信机制及生产级 MCP Server 开发实践。
 category: AI 应用开发
 head:

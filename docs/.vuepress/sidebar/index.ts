@@ -396,7 +396,7 @@ export default sidebar({
       children: [
         {
           text: "⭐分布式高频面试题",
-          link: "https://interview.javaguide.cn/distributed-system/distributed-system.html",
+          link: "distributed-system-interview-questions",
         },
         {
           text: "理论&算法&协议",
@@ -460,6 +460,10 @@ export default sidebar({
       collapsible: true,
       children: [
         {
+          text: "⭐高性能系统设计高频面试题",
+          link: "high-performance-interview-questions",
+        },
+        {
           text: "CDN",
           icon: ICONS.CDN,
           children: ["cdn"],
@@ -500,6 +504,7 @@ export default sidebar({
       prefix: "high-availability/",
       collapsible: true,
       children: [
+        "high-availability-interview-questions",
         "high-availability-system-design",
         "idempotency",
         "redundancy",

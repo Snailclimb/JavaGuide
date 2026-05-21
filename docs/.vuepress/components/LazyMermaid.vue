@@ -1,18 +1,20 @@
 <template>
-  <component
-    :is="MermaidComponent"
-    v-if="shouldRender && MermaidComponent"
-    :code="code"
-    :title="title"
-  />
-  <div
-    v-else
-    ref="placeholderEl"
-    class="mermaid-lazy-placeholder"
-    :class="{ 'is-error': loadError }"
-  >
-    <span v-if="!loadError" class="mermaid-lazy-spinner" aria-hidden="true" />
-    <span>{{ loadError ?? "图表加载中" }}</span>
+  <div class="mermaid-lazy-container">
+    <component
+      :is="MermaidComponent"
+      v-if="shouldRender && MermaidComponent"
+      :code="code"
+      :title="title"
+    />
+    <div
+      v-else
+      ref="placeholderEl"
+      class="mermaid-lazy-placeholder"
+      :class="{ 'is-error': loadError }"
+    >
+      <span v-if="!loadError" class="mermaid-lazy-spinner" aria-hidden="true" />
+      <span>{{ loadError ?? "图表加载中" }}</span>
+    </div>
   </div>
 </template>
 
@@ -78,15 +80,23 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
+.mermaid-lazy-container {
+  min-height: 320px;
+  margin: 0.6em 0;
+}
+
 .mermaid-lazy-placeholder {
   display: flex;
-  min-height: 120px;
+  min-height: 320px;
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  margin: 0.6em 0;
   color: var(--vp-c-text-mute);
   font-size: 0.9rem;
+}
+
+.mermaid-lazy-container :deep(.mermaid-wrapper) {
+  min-height: 320px;
 }
 
 .mermaid-lazy-placeholder.is-error {
