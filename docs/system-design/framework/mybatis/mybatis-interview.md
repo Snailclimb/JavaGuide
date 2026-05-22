@@ -248,9 +248,9 @@ MyBatis 提供了 9 种动态 sql 标签:
 
 注：我出的。
 
-答：不同的 xml 映射文件，如果配置了 namespace，那么 id 可以重复；如果没有配置 namespace，那么 id 不能重复；毕竟 namespace 不是必须的，只是最佳实践而已。
+答：不同的 xml 映射文件，id 可以重复。
 
-原因就是 namespace+id 是作为 `Map<String, MappedStatement>` 的 key 使用的，如果没有 namespace，就剩下 id，那么，id 重复会导致数据互相覆盖。有了 namespace，自然 id 就可以重复，namespace 不同，namespace+id 自然也就不同。
+原因就是 namespace+id 是作为 `Map<String, MappedStatement>` 的 key 使用的，如果 namespace 不同，即使 id 重复，key (namespace+id) 也是不同的。
 
 ### MyBatis 中如何执行批处理？
 
