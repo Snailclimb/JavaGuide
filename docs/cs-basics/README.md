@@ -49,6 +49,7 @@ head:
 - [HTTP 1.0 vs HTTP 1.1：长连接、缓存、Host 头等核心差异（应用层）](./network/http1.0-vs-http1.1.md)
 - [HTTP 常见状态码总结（应用层）](./network/http-status-codes.md)
 - [DNS 域名系统详解（应用层）](./network/dns.md)
+- [有了HTTP，为什么还要RPC？（应用层）](./network/http-vs-rpc.md)
 
 **传输层**：
 

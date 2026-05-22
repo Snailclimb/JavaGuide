@@ -68,7 +68,7 @@ API 网关示意图如下：
 
 RPC 示意图如下：
 
-![RPC 概览](https://oss.javaguide.cn/github/javaguide/distributed-system/rpc/rpc-overview..png)
+![RPC 概览](https://oss.javaguide.cn/github/javaguide/distributed-system/rpc/rpc-overview.png)
 
 重点文章：
 

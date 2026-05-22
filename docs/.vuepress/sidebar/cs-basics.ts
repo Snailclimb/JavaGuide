@@ -41,6 +41,7 @@ export const csBasics = [
         children: [
           { text: "⭐️应用层常见协议总结", link: "application-layer-protocol" },
           { text: "⭐️HTTP vs HTTPS", link: "http-vs-https" },
+          { text: "⭐️有了HTTP，为什么还要RPC？", link: "http-vs-rpc" },
           {
             text: "HTTPS 握手里的 RSA 和 ECDHE",
             link: "https-rsa-vs-ecdhe",
