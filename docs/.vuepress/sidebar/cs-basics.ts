@@ -61,6 +61,10 @@ export const csBasics = [
           },
           { text: "TCP TIME_WAIT 详解", link: "tcp-time-wait" },
           {
+            text: "TCP Keepalive和HTTP Keep-Alive有什么区别？",
+            link: "tcp-keepalive-vs-http-keepalive",
+          },
+          {
             text: "TCP 字节流 vs UDP 报文",
             link: "tcp-byte-stream-udp-datagram",
           },
