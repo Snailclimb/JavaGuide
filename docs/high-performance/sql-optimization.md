@@ -94,12 +94,14 @@ MySQL 提供了两个方法来处理 ip 地址
 
 **b.对于非负型的数据 (如自增 ID,整型 IP，年龄) 来说,要优先使用无符号整型来存储。**
 
-无符号相对于有符号可以多出一倍的存储空间
+无符号不会改变整数类型占用的存储字节数，只是把可表示范围从包含负数改为从 0 开始的非负范围；例如 `INT` 无论 signed 还是 unsigned 都占用 4 字节，范围分别如下：
 
 ```sql
 SIGNED INT -2147483648~2147483647
 UNSIGNED INT 0~4294967295
 ```
+
+具体存储字节数和取值范围可参考 MySQL 官方文档：[Integer Types](https://dev.mysql.com/doc/refman/8.0/en/integer-types.html) 和 [Data Type Storage Requirements](https://dev.mysql.com/doc/refman/8.0/en/storage-requirements.html)。
 
 **c.小数值类型（比如年龄、状态表示如 0/1）优先使用 TINYINT 类型。**
 
