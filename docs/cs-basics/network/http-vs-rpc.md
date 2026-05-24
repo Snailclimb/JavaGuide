@@ -1,17 +1,11 @@
 ---
-title: 有了 HTTP 协议，为什么还要 RPC？
+title: 有了 HTTP 协议，为什么还要 RPC？HTTP 与 RPC 区别对比
 category: 计算机基础
-description: HTTP与RPC对比详解，从TCP层出发讲解两种通信方式的本质区别、性能差异（序列化/连接复用）、传输协议对比及在微服务架构中的选型建议。
-keywords:
-  - HTTP
-  - RPC
-  - HTTP vs RPC
-  - 微服务通信
-  - RPC协议
-  - TCP通信
-  - 序列化
-  - RESTful
-  - 服务调用
+description: 深入对比 HTTP 与 RPC 的本质区别，解析微服务通信选型。涵盖序列化性能、连接复用、gRPC、RESTful、服务治理等核心知识点。
+head:
+  - - meta
+    - name: keywords
+      content: HTTP,RPC,HTTP vs RPC区别,微服务通信,RPC协议,TCP通信,序列化协议,RESTful,gRPC,Dubbo,Protobuf,服务调用,远程调用,HTTP协议,微服务选型
 ---
 
 你好，我是小 G。在我大二下学期那年，看黑马的免费课程，第一次接触到 RPC，当时还是挺懵逼的。
