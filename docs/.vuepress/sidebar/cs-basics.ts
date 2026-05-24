@@ -68,7 +68,10 @@ export const csBasics = [
             text: "TCP 字节流 vs UDP 报文",
             link: "tcp-byte-stream-udp-datagram",
           },
-          { text: "⭐️TCP 传输可靠性保障", link: "tcp-reliability-guarantee" },
+          {
+            text: "⭐️TCP 如何保证可靠传输？",
+            link: "tcp-reliability-guarantee",
+          },
         ],
       },
       {
