@@ -93,14 +93,13 @@ SELECT t1.*
 FROM t_order t1
 INNER JOIN (
     -- 这里的子查询可以利用覆盖索引，性能极高
-    SELECT id FROM t_order ORDER BY id LIMIT 1000000, 10
-) t2 ON t1.id = t2.id
-ORDER BY t1.id;
+    SELECT id FROM t_order LIMIT 1000000, 10
+) t2 ON t1.id = t2.id;
 ```
 
 **工作原理**:
 
-1. 子查询 `(SELECT id FROM t_order ORDER BY id LIMIT 1000000, 10)` 利用主键索引扫描并跳过前 1000000 条记录，返回目标分页的 10 条记录的 ID。
+1. 子查询 `(SELECT id FROM t_order LIMIT 1000000, 10)` 利用主键索引扫描并跳过前 1000000 条记录，返回目标分页的 10 条记录的 ID。
 2. 通过 `INNER JOIN` 将子查询结果与主表 `t_order` 关联，获取完整的记录数据。
 
 除了使用 INNER JOIN 之外，还可以使用逗号连接子查询。
@@ -108,9 +107,8 @@ ORDER BY t1.id;
 ```sql
 -- 使用逗号进行延迟关联
 SELECT t1.* FROM t_order t1,
-(SELECT id FROM t_order ORDER BY id LIMIT 1000000, 10) t2
-WHERE t1.id = t2.id
-ORDER BY t1.id;
+(SELECT id FROM t_order LIMIT 1000000, 10) t2
+WHERE t1.id = t2.id;
 ```
 
 **注意**: 虽然逗号连接子查询也能实现类似的效果，但为了代码可读性和可维护性，建议使用更规范的 `INNER JOIN` 语法。
