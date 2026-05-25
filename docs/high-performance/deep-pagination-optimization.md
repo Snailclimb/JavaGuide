@@ -8,8 +8,6 @@ head:
       content: 深度分页,分页优化,LIMIT优化,MySQL分页,延迟关联,覆盖索引,游标分页
 ---
 
-<!-- @include: @small-advertisement.snippet.md -->
-
 ## 什么是深度分页？怎么导致的？
 
 查询偏移量过大的场景我们称为深度分页，这会导致查询性能较低，例如：

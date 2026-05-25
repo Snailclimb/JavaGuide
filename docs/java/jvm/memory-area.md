@@ -10,8 +10,6 @@ head:
       content: JVM内存区域,运行时数据区,堆内存,方法区,虚拟机栈,程序计数器,对象创建,Java内存模型
 ---
 
-<!-- @include: @small-advertisement.snippet.md -->
-
 > 如果没有特殊说明，都是针对的是 HotSpot 虚拟机。
 >
 > 本文基于《深入理解 Java 虚拟机：JVM 高级特性与最佳实践》进行总结补充。

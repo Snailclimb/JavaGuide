@@ -10,8 +10,6 @@ head:
       content: Java并发,线程与进程,多线程,死锁,线程生命周期,并发编程,Java面试题,线程创建方式
 ---
 
-<!-- @include: @small-advertisement.snippet.md -->
-
 ## 线程
 
 ### ⭐️什么是线程和进程?

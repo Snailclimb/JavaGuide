@@ -11,8 +11,6 @@ head:
       content: MySQL面试题,MySQL基础架构,InnoDB存储引擎,MySQL索引,B+树索引,事务隔离级别,redo log,undo log,binlog,MVCC,行级锁,慢查询优化
 ---
 
-<!-- @include: @small-advertisement.snippet.md -->
-
 ## MySQL 基础
 
 ### 什么是关系型数据库？

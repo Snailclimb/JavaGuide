@@ -11,8 +11,6 @@ head:
       content: MyBatis,MyBatis面试题,#{}与${},动态SQL,一级缓存,二级缓存,分页插件,Mapper映射
 ---
 
-<!-- @include: @small-advertisement.snippet.md -->
-
 > 本篇文章由 JavaGuide 收集自网络，原出处不明。
 >
 > 比起这些枯燥的面试题，我更建议你看看文末推荐的 MyBatis 优质好文。

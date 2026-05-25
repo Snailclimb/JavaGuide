@@ -10,8 +10,6 @@ head:
       content: Java基础,JVM,JDK,JRE,Java SE,字节码,Java编译,自动装箱,基本数据类型,方法重载,Java面试题
 ---
 
-<!-- @include: @small-advertisement.snippet.md -->
-
 ## 基础概念与常识
 
 ### Java 语言有哪些特点?

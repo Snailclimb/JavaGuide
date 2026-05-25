@@ -12,8 +12,6 @@ head:
       content: 高性能面试题,高性能系统设计,CDN面试题,负载均衡面试题,读写分离面试题,分库分表面试题,SQL优化面试题,深度分页面试题,消息队列面试题,Kafka面试题,RocketMQ面试题,RabbitMQ面试题
 ---
 
-<!-- @include: @small-advertisement.snippet.md -->
-
 这部分内容摘自 [JavaGuide](https://javaguide.cn/) 下面几篇文章的重点：
 
 高性能基础：

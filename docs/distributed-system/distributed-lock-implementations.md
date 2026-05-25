@@ -10,8 +10,6 @@ head:
       content: 分布式锁,Redis分布式锁,ZooKeeper分布式锁,SETNX,Redlock,分布式锁实现,分布式锁面试题
 ---
 
-<!-- @include: @small-advertisement.snippet.md -->
-
 通常情况下，我们一般会选择基于 Redis 或者 ZooKeeper 实现分布式锁，Redis 用的要更多一点，我这里也先以 Redis 为例介绍分布式锁的实现。
 
 ## 基于 Redis 实现分布式锁

@@ -10,8 +10,6 @@ head:
       content: Java集合,Collection,List,Set,Queue,ArrayList,LinkedList,HashMap,集合框架,Java面试题
 ---
 
-<!-- @include: @small-advertisement.snippet.md -->
-
 <!-- markdownlint-disable MD024 -->
 
 ## 集合概述

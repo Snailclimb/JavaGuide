@@ -10,8 +10,6 @@ head:
       content: 配置中心,分布式配置中心,Apollo,Nacos,Spring Cloud Config,配置中心面试题,灰度发布,长轮询
 ---
 
-<!-- @include: @small-advertisement.snippet.md -->
-
 ## 为什么要用配置中心？
 
 微服务架构下，业务发展通常会导致服务数量增加，进而导致程序配置（服务地址、数据库参数、功能开关等）增多。传统配置文件方式存在以下问题：

@@ -16,8 +16,6 @@ head:
 
 这篇文章把 JavaGuide 现有高可用相关文章串成一条面试复习路线，适合准备后端开发、系统设计和中高级岗位面试。
 
-<!-- @include: @small-advertisement.snippet.md -->
-
 ## 高可用面试先建立故障视角
 
 高可用设计可以从 5 个问题开始拆：

@@ -10,8 +10,6 @@ head:
       content: Java异常,泛型,反射,注解,SPI,序列化,IO流,语法糖,try-with-resources,BIO NIO AIO,Java面试题
 ---
 
-<!-- @include: @small-advertisement.snippet.md -->
-
 ## 异常
 
 **Java 异常类层次结构图概览**：
