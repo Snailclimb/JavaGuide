@@ -1,17 +1,17 @@
 ---
-title: ZAB协议详解
+title: ZAB 协议详解：ZooKeeper 原子广播、消息广播、崩溃恢复与 Leader 选举
 category: 分布式
-description: ZooKeeper的核心共识协议ZAB（ZooKeeper Atomic Broadcast，原子广播协议）详解，包括消息广播模式、崩溃恢复模式、Leader选举机制（ZXID/epoch）、数据恢复机制及Follower/Observer角色解析。
+description: ZAB 协议详解，讲解 ZooKeeper Atomic Broadcast 的消息广播、崩溃恢复、Leader 选举、ZXID、事务日志和 Zab 与 Paxos、Raft 的关系。
 tag:
-  - 分布式协议&算法
+  - 分布式协议与算法
   - 共识算法
 head:
   - - meta
     - name: keywords
-      content: ZAB协议,ZooKeeper,原子广播,分布式一致性,Leader选举,崩溃恢复,ZXID,epoch,ZooKeeper原理
+      content: ZAB 协议,ZooKeeper Atomic Broadcast,ZooKeeper,Leader 选举,消息广播,崩溃恢复,ZXID,分布式一致性,分布式协议
 ---
 
-作为一款极其优秀的分布式协调框架，ZooKeeper 的高可用和数据一致性备受业界推崇。很多人误以为 ZooKeeper 使用的是大名鼎鼎的 Paxos 算法，但实际上，它的"灵魂"是一个专门为其定制的共识协议——**ZAB（ZooKeeper Atomic Broadcast，原子广播协议）**。
+作为一款极其优秀的分布式协调框架，ZooKeeper 的高可用和数据一致性备受业界推崇。很多人误以为 ZooKeeper 使用的是大名鼎鼎的 Paxos 算法，但实际上，它的“灵魂”是一个专门为其定制的共识协议——**ZAB（ZooKeeper Atomic Broadcast，原子广播协议）**。
 
 ZAB 并非像 Paxos 那样是通用的分布式一致性算法，它是一种**特别为 ZooKeeper 设计的、支持崩溃可恢复的原子消息广播算法**。基于 ZAB 协议，ZooKeeper 实现了一种主备模式的架构，来保持集群中各个副本之间的数据一致性。
 
@@ -81,9 +81,9 @@ ZAB 协议的运作可以精简为两种基本模式的交替：**消息广播**
 
 新 Leader 会找到当前最大的 `Epoch` 并加 1 作为新纪元，随后与所有 Follower 进行比对。Follower 会发送自己事务日志中最新记录的 `lastZxid`（包含已提议但尚未提交的提案），Leader 根据这个值采取多态同步策略：**差异化增量同步（DIFF）**、**强制丢弃未提交日志（TRUNC）** 或 **全量快照传输（SNAP）**。
 
-这一设计至关重要：Leader 需要准确识别 Follower 日志中是否残留着旧 Leader 未完成提交的"幽灵提案"，才能正确下发 TRUNC 指令让其截断回滚。如果只上报已提交的 ZXID，这些未提交的脏数据将无法被感知，TRUNC 分支就永远不会被触发。
+这一设计至关重要：Leader 需要准确识别 Follower 日志中是否残留着旧 Leader 未完成提交的“幽灵提案”，才能正确下发 TRUNC 指令让其截断回滚。如果只上报已提交的 ZXID，这些未提交的脏数据将无法被感知，TRUNC 分支就永远不会被触发。
 
-更关键的是，此时新的 Epoch 已经生效。若原 Leader 因 JVM 触发长达数十秒的 Full GC 而发生"假死"，当其苏醒并试图向集群下发旧 Epoch 的提案时，由于过半节点已记录了更高的新 Epoch 且已向新 Leader 提交 quorum，这些幽灵提案将被节点无情拒绝并抛弃。ZAB 正是通过 **Epoch 机制 + 多数派 quorum** 的组合，从根本上免疫了网络环境下的脑裂现象——单靠 Epoch 拒绝还不够，必须有过半节点已经连上新 Leader，旧 Leader 才真正失去写入能力。
+更关键的是，此时新的 Epoch 已经生效。若原 Leader 因 JVM 触发长达数十秒的 Full GC 而发生“假死”，当其苏醒并试图向集群下发旧 Epoch 的提案时，由于过半节点已记录了更高的新 Epoch 且已向新 Leader 提交 quorum，这些幽灵提案将被节点无情拒绝并抛弃。ZAB 正是通过 **Epoch 机制 + 多数派 quorum** 的组合，从根本上免疫了网络环境下的脑裂现象——单靠 Epoch 拒绝还不够，必须有过半节点已经连上新 Leader，旧 Leader 才真正失去写入能力。
 
 当过半的机器与新 Leader 完成了状态和数据同步，ZAB 协议就会平滑退出崩溃恢复模式，重新进入消息广播模式。
 

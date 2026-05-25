@@ -1,13 +1,13 @@
 ---
-title: 分布式ID生成方案总结
+title: 分布式 ID 生成方案详解：UUID、Snowflake、号段模式、Leaf 与 Tinyid 对比
 category: 分布式
-description: 分布式ID生成方案详解，涵盖UUID、数据库自增ID、号段模式、雪花算法（Snowflake）、Leaf等主流方案的原理、优缺点对比及适用场景分析。
+description: 分布式 ID 生成方案详解，系统对比 UUID、数据库自增、数据库号段模式、Redis、MongoDB ObjectId、Snowflake、Leaf、Tinyid、UidGenerator、IdGenerator 的原理、优缺点和适用场景。
 tag:
-  - 分布式ID
+  - 分布式 ID
 head:
   - - meta
     - name: keywords
-      content: 分布式ID,雪花算法,Snowflake,UUID,号段模式,Leaf,分布式ID生成,全局唯一ID,分布式ID面试题
+      content: 分布式 ID,分布式 ID 生成,Snowflake,雪花算法,UUID,UUID v7,号段模式,Leaf,Tinyid,UidGenerator,IdGenerator,全局唯一 ID,分布式 ID 面试题
 ---
 
 ## 分布式 ID 介绍

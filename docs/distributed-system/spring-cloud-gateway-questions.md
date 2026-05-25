@@ -1,14 +1,14 @@
 ---
-title: Spring Cloud Gateway面试题总结
+title: Spring Cloud Gateway 面试题总结：路由、Predicate、Filter、限流熔断与工作原理
 category: 分布式
-description: Spring Cloud Gateway核心原理详解，包括路由配置、Predicate断言、Filter过滤器机制、限流熔断、工作流程等常见面试题与实践要点。
+description: Spring Cloud Gateway 高频面试题总结，覆盖核心概念、路由匹配、Predicate、GatewayFilter、GlobalFilter、限流熔断、负载均衡、跨域处理和常见生产问题。
 tag:
-  - API网关
+  - API 网关
   - Spring Cloud
 head:
   - - meta
     - name: keywords
-      content: Spring Cloud Gateway,网关,Gateway,路由配置,Filter,限流熔断,Predicate,网关面试题
+      content: Spring Cloud Gateway,Spring Cloud Gateway 面试题,API 网关,Predicate,GatewayFilter,GlobalFilter,网关限流,网关熔断,微服务网关
 ---
 
 > 本文重构完善自[6000 字 | 16 图 | 深入理解 Spring Cloud Gateway 的原理 - 悟空聊架构](https://mp.weixin.qq.com/s/XjFYsP1IUqNzWqXZdJn-Aw)这篇文章。

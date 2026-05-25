@@ -1,6 +1,6 @@
 ---
-title: 2026 最新版分布式面试题总结：CAP、RPC、分布式锁、分布式事务、分布式 ID
-description: 分布式系统面试题和复习路线汇总，覆盖 CAP/BASE、Paxos、Raft、ZAB、Gossip、一致性哈希、RPC、API 网关、分布式 ID、分布式锁、分布式事务、配置中心和 ZooKeeper 等高频考点。
+title: 2026 最新分布式系统面试题总结：CAP、Raft、RPC、分布式锁、事务与 ID
+description: 2026 最新分布式系统面试题和复习路线汇总，覆盖 CAP、BASE、Paxos、Raft、ZAB、Gossip、一致性哈希、RPC、API 网关、分布式 ID、分布式锁、分布式事务、配置中心和 ZooKeeper 等高频考点。
 category: 分布式
 tag:
   - 分布式
@@ -9,7 +9,7 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: 分布式面试题,分布式系统面试题,CAP面试题,BASE面试题,RPC面试题,分布式锁面试题,分布式事务面试题,分布式ID面试题,ZooKeeper面试题,Raft面试题,Paxos面试题
+      content: 分布式面试题,分布式系统面试题,CAP 面试题,BASE 面试题,RPC 面试题,API 网关面试题,分布式锁面试题,分布式事务面试题,分布式 ID 面试题,ZooKeeper 面试题,Raft 面试题,Paxos 面试题
 ---
 
 准备分布式系统面试，最容易踩的坑是把知识点背成一堆孤立概念：CAP 是一个点、RPC 是一个点、分布式锁是一个点、分布式事务又是一个点。

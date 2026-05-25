@@ -1,15 +1,15 @@
 ---
-title: Gossip协议详解
+title: Gossip 协议详解：反熵、谣言传播、SWIM 与最终一致性
 category: 分布式
-description: Gossip协议原理详解，讲解去中心化信息传播机制、两种典型传播模式（反熵Anti-Entropy与谣言传播Rumor-Mongering）、SWIM协议及在Redis Cluster、Cassandra等分布式系统中的应用。
+description: Gossip 协议详解，讲解去中心化信息传播模型、反熵、谣言传播、Push/Pull 模式、SWIM 协议、最终一致性，以及在 Redis Cluster、Cassandra 等系统中的应用。
 tag:
-  - 分布式协议&算法
+  - 分布式协议与算法
   - 数据复制协议
   - 最终一致性
 head:
   - - meta
     - name: keywords
-      content: Gossip协议,反熵,谣言传播,去中心化,Redis Cluster,SWIM,分布式通信,最终一致性,分布式协议
+      content: Gossip 协议,SWIM 协议,反熵,谣言传播,最终一致性,去中心化,Redis Cluster,Cassandra,分布式协议,分布式算法
 ---
 
 ## 背景
@@ -65,7 +65,7 @@ Redis Cluster 是一个去中心化的分布式缓存方案，各节点通过 Go
 | PONG     | 响应 PING，携带自身状态信息 |
 | FAIL     | 广播节点故障标记            |
 
-> 注：在实现上，MEET/PING/PONG 共享同一类消息结构；PONG 是对 PING/MEET 的响应，MEET 相当于"强制握手"的 PING。
+> 注：在实现上，MEET/PING/PONG 共享同一类消息结构；PONG 是对 PING/MEET 的响应，MEET 相当于“强制握手”的 PING。
 
 **故障检测流程**：
 

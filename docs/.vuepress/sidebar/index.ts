@@ -404,52 +404,80 @@ export default sidebar({
           prefix: "protocol/",
           collapsible: true,
           children: [
-            "cap-and-base-theorem",
-            "paxos-algorithm",
-            "raft-algorithm",
-            "zab",
-            "gossip-protocol",
-            "consistent-hashing",
+            { text: "CAP定理与BASE理论详解", link: "cap-and-base-theorem" },
+            { text: "Paxos算法详解", link: "paxos-algorithm" },
+            { text: "Raft算法详解", link: "raft-algorithm" },
+            { text: "ZAB协议详解", link: "zab" },
+            { text: "Gossip协议详解", link: "gossip-protocol" },
+            { text: "一致性哈希算法详解", link: "consistent-hashing" },
           ],
         },
         {
           text: "API网关",
           icon: ICONS.GATEWAY,
-          children: ["api-gateway", "spring-cloud-gateway-questions"],
+          children: [
+            { text: "API网关基础知识总结", link: "api-gateway" },
+            {
+              text: "Spring Cloud Gateway面试题总结",
+              link: "spring-cloud-gateway-questions",
+            },
+          ],
         },
         {
           text: "分布式ID",
           icon: ICONS.ID,
-          children: ["distributed-id", "distributed-id-design"],
+          children: [
+            { text: "分布式ID生成方案详解", link: "distributed-id" },
+            { text: "分布式ID设计实战指南", link: "distributed-id-design" },
+          ],
         },
         {
           text: "分布式锁",
           icon: ICONS.LOCK,
-          children: ["distributed-lock", "distributed-lock-implementations"],
+          children: [
+            { text: "分布式锁入门介绍", link: "distributed-lock" },
+            {
+              text: "分布式锁常见实现方案总结",
+              link: "distributed-lock-implementations",
+            },
+          ],
         },
         {
           text: "分布式事务",
           icon: ICONS.TRANSACTION,
-          children: ["distributed-transaction"],
+          children: [
+            { text: "分布式事务解决方案总结", link: "distributed-transaction" },
+          ],
         },
         {
           text: "分布式配置中心",
           icon: ICONS.MAVEN,
-          children: ["distributed-configuration-center"],
+          children: [
+            {
+              text: "分布式配置中心面试题总结",
+              link: "distributed-configuration-center",
+            },
+          ],
         },
         {
           text: "RPC",
           prefix: "rpc/",
           icon: ICONS.RPC,
           collapsible: true,
-          children: ["rpc-intro", "dubbo"],
+          children: [
+            { text: "RPC基础知识总结", link: "rpc-intro" },
+            { text: "Dubbo面试题总结", link: "dubbo" },
+          ],
         },
         {
           text: "ZooKeeper",
           prefix: "distributed-process-coordination/zookeeper/",
           icon: ICONS.FRAMEWORK,
           collapsible: true,
-          children: ["zookeeper-intro", "zookeeper-plus"],
+          children: [
+            { text: "ZooKeeper入门指南", link: "zookeeper-intro" },
+            { text: "ZooKeeper进阶详解", link: "zookeeper-plus" },
+          ],
         },
       ],
     },

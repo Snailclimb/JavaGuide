@@ -1,13 +1,13 @@
 ---
-title: ZooKeeper入门指南
+title: ZooKeeper 入门指南：核心概念、ZNode、Watcher、ACL 与典型应用场景
 category: 分布式
-description: ZooKeeper入门指南，讲解ZooKeeper核心概念、数据模型（ZNode/节点类型）、Watcher监听机制、ACL权限控制及作为注册中心、分布式锁、配置中心的典型应用场景。
+description: ZooKeeper 入门指南，讲解 ZooKeeper 核心概念、ZNode 数据模型、节点类型、Watcher 监听机制、ACL 权限控制，以及注册中心、分布式锁、配置中心等典型场景。
 tag:
   - ZooKeeper
 head:
   - - meta
     - name: keywords
-      content: ZooKeeper,ZooKeeper入门,ZNode,Watcher,分布式锁,注册中心,分布式协调,ZAB,临时节点,持久节点
+      content: ZooKeeper,ZooKeeper 入门,ZNode,Watcher,ACL,分布式锁,注册中心,配置中心,分布式协调,ZAB,临时节点,持久节点
 ---
 
 相信大家对 ZooKeeper 应该不算陌生。但是你真的了解 ZooKeeper 到底有啥用不？如果别人/面试官让你给他讲讲对于 ZooKeeper 的认识，你能回答到什么地步呢？
