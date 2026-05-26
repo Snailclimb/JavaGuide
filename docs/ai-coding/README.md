@@ -39,6 +39,7 @@ AI 编程工具不是"把需求告诉 AI，等它出代码"这么简单。上下
 - [《Trae + MiniMax 多场景实战》](./trae-m2.7.md)：使用 Trae IDE 接入 MiniMax 大模型，通过 Redis 故障排查和跨语言重构场景，分享 AI 辅助编程的实战经验与踩坑心得
 - [《Claude Code 接入第三方模型实战》](./cc-glm5.1.md)：通过 Claude Code 接入 GLM-5.1，完成 JVM 智能诊断助手搭建和百万级数据量慢查询治理，分享 AI 辅助编程的工作方法与踩坑心得
 - [《DeepSeek V4 + Claude Code 实战》](./deepseek-v4-claude-code.md)：深入体验 DeepSeek V4 与 Claude Code 的集成，实测代码审计、Flyway 集成、多模型协同等场景，评估 V4-Pro 和 V4-Flash 的真实代码能力
+- [《IDEA + CC GUI 插件实战》](./project/cc-guide.md)：使用 CC GUI 这款开源 JetBrains 插件为 Claude Code 和 Codex 提供 GUI 可视化界面，支持 @file 引用、Diff 对比、Agent 系统和 MCP 扩展
 
 ## AI 编程工具使用技巧
 
@@ -49,4 +50,5 @@ AI 编程工具不是"把需求告诉 AI，等它出代码"这么简单。上下
 - [《Claude Code 使用指南》](./claudecode-tips.md)：整理自 Anthropic 官方技术文档并融合实战经验，系统梳理 Claude Code 的配置、能力扩展、高效工作流与进阶技巧
 - [《OpenAI Codex 最佳实践指南》](./codex-best-practices.md)：综合官方文档与实战经验，系统梳理 Codex 云端智能体和 CLI 的提示工程、工具配置与安全策略
 - [《AI 编程选 CLI 还是 IDE？》](./cli-vs-ide.md)：深度对比 Claude Code、Cursor、Kiro、TRAE 等主流 AI 编程工具，解析 CLI 与 IDE 的核心差异与选型建议
+- [《Claude Code Agent View 多会话管理》](./practices/claudecode-agentview.md)：详细介绍 Claude Code Agent View 的多会话可视化管理能力，解决多 Agent 并行时的状态追踪和权限确认问题
 - [《AI 编程开放性面试题》](./ai-ide.md)：涵盖 Cursor、Claude Code 等 AI 编程 IDE 使用技巧，以及 AI 对后端开发影响等高频面试问题
