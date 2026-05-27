@@ -1,3 +1,4 @@
+import { getText } from "@vuepress/helper";
 import { getDirname, path } from "vuepress/utils";
 import { hopeTheme } from "vuepress-theme-hope";
 
@@ -21,6 +22,176 @@ const docsearchOptions =
         },
       }
     : null;
+const MIN_META_DESCRIPTION_LENGTH = 150;
+const MAX_META_DESCRIPTION_LENGTH = 160;
+
+const segmentDisplayNames = {
+  ai: "AI",
+  "ai-coding": "AI 编程",
+  algorithms: "算法",
+  basis: "基础知识",
+  books: "技术书籍",
+  collection: "Java 集合",
+  concurrent: "Java 并发",
+  "cs-basics": "计算机基础",
+  "data-structure": "数据结构",
+  database: "数据库",
+  "distributed-process-coordination": "分布式协调",
+  "distributed-system": "分布式系统",
+  docker: "Docker",
+  elasticsearch: "Elasticsearch",
+  framework: "开发框架",
+  git: "Git",
+  gradle: "Gradle",
+  "high-availability": "高可用",
+  "high-performance": "高性能",
+  "interview-preparation": "面试准备",
+  io: "Java IO",
+  java: "Java",
+  javaguide: "JavaGuide",
+  jvm: "JVM",
+  "message-queue": "消息队列",
+  mysql: "MySQL",
+  network: "计算机网络",
+  "new-features": "Java 新特性",
+  "open-source-project": "开源项目",
+  "operating-system": "操作系统",
+  protocol: "分布式协议与算法",
+  rag: "RAG",
+  redis: "Redis",
+  rpc: "RPC",
+  security: "安全",
+  sql: "SQL",
+  "system-design": "系统设计",
+  tools: "开发工具",
+  zookeeper: "ZooKeeper",
+};
+
+const normalizeDescriptionText = (value) =>
+  String(value ?? "")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/\s+/g, " ")
+    .trim();
+
+const toArray = (value) => {
+  if (Array.isArray(value)) return value;
+  return value ? [value] : [];
+};
+
+const formatPathSegment = (segment) =>
+  segmentDisplayNames[segment] ??
+  decodeURIComponent(segment)
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+
+const getPathTopic = (page) =>
+  page.path.split("/").filter(Boolean).map(formatPathSegment).join(" / ");
+
+const getHeaderTitles = (page) =>
+  toArray(page.headers)
+    .map(({ title }) => normalizeDescriptionText(title))
+    .filter(Boolean)
+    .slice(0, 4);
+
+const getPageText = (page, app) =>
+  normalizeDescriptionText(
+    getText(
+      page.data.excerpt ?? page.contentRendered ?? page.content ?? "",
+      app.siteData.base,
+      {
+        length: 220,
+        singleLine: true,
+      },
+    ),
+  );
+
+const trimDescription = (description) => {
+  if (description.length <= MAX_META_DESCRIPTION_LENGTH) return description;
+
+  const trimmed = description.slice(0, MAX_META_DESCRIPTION_LENGTH);
+  const lastStop = Math.max(
+    trimmed.lastIndexOf("。"),
+    trimmed.lastIndexOf("！"),
+    trimmed.lastIndexOf("？"),
+    trimmed.lastIndexOf(";"),
+    trimmed.lastIndexOf("；"),
+  );
+
+  if (lastStop >= MIN_META_DESCRIPTION_LENGTH - 5)
+    return trimmed.slice(0, lastStop + 1);
+
+  const lastSoftStop = Math.max(
+    trimmed.lastIndexOf("，"),
+    trimmed.lastIndexOf("、"),
+    trimmed.lastIndexOf(","),
+  );
+
+  if (lastSoftStop >= MIN_META_DESCRIPTION_LENGTH - 5) {
+    const base = trimmed.slice(0, lastSoftStop).replace(/[，、,;\s]+$/, "");
+    const result = `${base}等核心内容。`;
+
+    return result.length <= MAX_META_DESCRIPTION_LENGTH
+      ? result
+      : `${result.slice(0, MAX_META_DESCRIPTION_LENGTH - 1)}。`;
+  }
+
+  return `${description.slice(0, MAX_META_DESCRIPTION_LENGTH - 1)}。`;
+};
+
+const buildSeoDescription = (page, app) => {
+  const existingDescription = normalizeDescriptionText(
+    page.frontmatter.description,
+  );
+
+  if (existingDescription.length >= MIN_META_DESCRIPTION_LENGTH)
+    return trimDescription(existingDescription);
+
+  if (page.path === "/")
+    return trimDescription(
+      "JavaGuide 是一份面向 Java 后端开发者和面试准备人群的学习指南，系统覆盖 Java 基础、集合、并发、JVM、MySQL、Redis、分布式、高并发、高可用、系统设计、消息队列、计算机基础和 AI 应用开发等核心知识，适合校招社招复习、查缺补漏和规划学习路线。",
+    );
+
+  if (page.path === "/home.html")
+    return trimDescription(
+      "JavaGuide 首页聚合 Java 后端学习路线、核心知识体系和高频面试题入口，覆盖 Java 基础、并发、JVM、数据库、Redis、分布式、系统设计、高性能、高可用、计算机基础和 AI 应用开发，帮助读者快速定位重点内容。",
+    );
+
+  if (page.path === "/404.html")
+    return trimDescription(
+      "JavaGuide 页面未找到提示页，帮助读者返回 Java 面试指南、后端通用面试知识、计算机基础、数据库、Redis、分布式、系统设计和 AI 应用开发等核心内容入口，继续定位学习资料、面试题总结和实践文章。",
+    );
+
+  const title = normalizeDescriptionText(page.title);
+  const category = toArray(page.frontmatter.category)
+    .map(normalizeDescriptionText)
+    .filter(Boolean);
+  const tags = toArray(page.frontmatter.tag ?? page.frontmatter.tags)
+    .map(normalizeDescriptionText)
+    .filter(Boolean)
+    .slice(0, 4);
+  const headers = getHeaderTitles(page);
+  const focusItems = [...headers, ...tags].filter(Boolean).slice(0, 5);
+  const topic = getPathTopic(page) || title || category[0] || "JavaGuide";
+  const pageText = getPageText(page, app);
+  const parts = [
+    existingDescription || (title ? `${title}：` : ""),
+    focusItems.length ? `重点围绕 ${focusItems.join("、")} 等内容展开。` : "",
+    `结合 JavaGuide 知识体系梳理 ${topic} 的核心概念、实践方法、常见问题和高频面试考点，覆盖原理分析、使用场景、方案对比与经验总结，适合后端开发者系统学习、面试复习、快速定位重点内容和查缺补漏。`,
+    pageText && !existingDescription.includes(pageText.slice(0, 24))
+      ? pageText
+      : "",
+  ];
+
+  return trimDescription(
+    normalizeDescriptionText(parts.filter(Boolean).join("")),
+  );
+};
 
 export default hopeTheme({
   hostname: "https://javaguide.cn/",
@@ -80,7 +251,17 @@ export default hopeTheme({
     seo: {
       canonical: "https://javaguide.cn",
       fallBackImage: "https://javaguide.cn/logo.png",
-      customHead: (head, page) => {
+      ogp: (ogp, page, app) => ({
+        ...ogp,
+        "og:description": buildSeoDescription(page, app),
+      }),
+      jsonLd: (jsonLD, page, app) => ({
+        ...jsonLD,
+        description: buildSeoDescription(page, app),
+      }),
+      customHead: (head, page, app) => {
+        page.frontmatter.description = buildSeoDescription(page, app);
+
         if (page.path === "/")
           head.push([
             "script",

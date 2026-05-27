@@ -39,6 +39,10 @@ export default sidebar({
       collapsible: true,
       prefix: "interview-preparation/",
       children: [
+        {
+          text: "面试准备知识体系",
+          link: "/interview-preparation/",
+        },
         "backend-interview-plan",
         "teach-you-how-to-prepare-for-the-interview-hand-in-hand",
         "resume-guide",
@@ -56,6 +60,10 @@ export default sidebar({
       collapsible: true,
       prefix: "java/",
       children: [
+        {
+          text: "Java 知识体系",
+          link: "/java/",
+        },
         {
           text: "基础",
           prefix: "basis/",
@@ -181,6 +189,10 @@ export default sidebar({
       collapsible: true,
       children: [
         {
+          text: "数据库知识体系",
+          link: "/database/",
+        },
+        {
           text: "基础",
           icon: ICONS.BASIC,
           children: [
@@ -273,6 +285,10 @@ export default sidebar({
       collapsible: true,
       children: [
         {
+          text: "开发工具知识体系",
+          link: "/tools/",
+        },
+        {
           text: "Maven",
           icon: ICONS.MAVEN,
           prefix: "maven/",
@@ -338,6 +354,10 @@ export default sidebar({
       collapsible: true,
       children: [
         {
+          text: "系统设计知识体系",
+          link: "/system-design/",
+        },
+        {
           text: "基础知识",
           prefix: "basis/",
           icon: ICONS.BASIC,
@@ -394,6 +414,10 @@ export default sidebar({
       prefix: "distributed-system/",
       collapsible: true,
       children: [
+        {
+          text: "分布式系统知识体系",
+          link: "/distributed-system/",
+        },
         {
           text: "⭐分布式高频面试题",
           link: "distributed-system-interview-questions",
@@ -488,6 +512,10 @@ export default sidebar({
       collapsible: true,
       children: [
         {
+          text: "高性能系统知识体系",
+          link: "/high-performance/",
+        },
+        {
           text: "⭐高性能系统设计高频面试题",
           link: "high-performance-interview-questions",
         },
@@ -532,6 +560,10 @@ export default sidebar({
       prefix: "high-availability/",
       collapsible: true,
       children: [
+        {
+          text: "高可用系统知识体系",
+          link: "/high-availability/",
+        },
         {
           text: "⭐高可用系统面试题总结",
           link: "high-availability-interview-questions",
