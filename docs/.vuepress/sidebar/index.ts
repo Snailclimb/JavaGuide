@@ -585,11 +585,11 @@ export default sidebar({
           link: "limit-request",
         },
         {
-          text: "降级&熔断详解",
+          text: "服务降级与熔断详",
           link: "fallback-and-circuit-breaker",
         },
         {
-          text: "超时&重试详解",
+          text: "超时和重试机制详解",
           link: "timeout-and-retry",
         },
         {

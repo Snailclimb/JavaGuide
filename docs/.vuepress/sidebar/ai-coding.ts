@@ -60,6 +60,10 @@ export const aiCoding = arraySidebar([
         text: "AI 编程开放性面试题",
         link: "ai-ide",
       },
+      {
+        text: "Spec Coding 规范驱动编程",
+        link: "spec-coding",
+      },
     ],
   },
 ]);
