@@ -72,6 +72,18 @@ export const csBasics = [
             text: "⭐️TCP 如何保证可靠传输？",
             link: "tcp-reliability-guarantee",
           },
+          {
+            text: "能 Ping 通，TCP 就一定能连通吗？",
+            link: "can-ping-but-tcp-may-not-connect",
+          },
+          {
+            text: "TCP 和 UDP 可以使用同一个端口吗？",
+            link: "can-tcp-and-udp-use-the-same-port",
+          },
+          {
+            text: "一台主机最多能保持多少个 TCP 连接？",
+            link: "maximum-number-of-tcp-connections-per-host",
+          },
         ],
       },
       {
