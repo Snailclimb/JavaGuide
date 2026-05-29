@@ -1,6 +1,6 @@
 ---
 title: Claude Code 使用指南：配置、工作流与进阶技巧
-description: 整理自 Anthropic 官方工程团队技术文档并融合实战经验，系统梳理 Claude Code 的配置、能力扩展、高效工作流、进阶技巧与实战心法。
+description: 结合 Anthropic 官方文档和真实项目用法，讲清 Claude Code 的配置、权限、MCP、Skills、Sub-Agent、上下文管理和常见工作流。
 category: AI 编程实战
 head:
   - - meta
@@ -8,512 +8,503 @@ head:
       content: Claude Code,AI编程,CLAUDE.md,MCP,Skills,Sub-Agent,Agentic Coding,AI辅助开发
 ---
 
-# Claude Code 使用指南
+大家好，我是 Guide。前面写过 [IDEA 搭配 Qoder 插件的实战](./idea-qoder-plugin.md)、[Trae 接入大模型的实战](./trae-m2.7.md) 和 [Claude Code 接入第三方模型的实战](./cc-glm5.1.md)，这篇专门把 Claude Code 的日常用法拎出来讲一遍。
 
-大家好，我是 Guide。前面分享过 [IDEA 搭配 Qoder 插件的实战](./idea-qoder-plugin.md)、[Trae 接入大模型的实战](./trae-m2.7.md) 和 [Claude Code 接入第三方模型的实战](./cc-glm5.1.md)，这篇换个角度，聊聊 **Claude Code 的使用方法与技巧**。
+很多人第一次用 Claude Code，会把它当成“能在终端里聊天的 AI”。这其实低估它了。
 
-这篇指南整理自 [Anthropic 官方工程团队的技术文档](https://www.anthropic.com/engineering/claude-code-best-practices)，并融合了我个人的实战使用经验。本文基于 Claude Code v2.1.x 撰写（笔者当前版本 v2.1.114），部分功能可能随版本更新而变化。
+它好用的地方，是能自己读仓库、搜代码、跑命令、看报错、改文件，再根据验证结果继续迭代。你给它一句“修一下登录超时后无法刷新 token 的问题”，它会去找认证流程、读测试、改实现、跑命令。问题也在这里：如果上下文、权限和验收标准没管好，它会越跑越远，最后你面对一堆 diff 发呆。
 
-Claude Code 是 Anthropic 推出的命令行工具，专为 **Agentic Coding（代理式编程）** 而生。它和传统的代码补全插件（如 Copilot）不同，能自己读代码、跑命令、看报错、再改，形成一个完整的”理解意图 → 规划 → 执行 → 修复”闭环。
+这篇文章按 2026-05-29 的 Anthropic 官方文档整理，并结合我自己的使用习惯重写。
 
-它的设计哲学是**“刻意低级且不强加观点”**——不强制你遵循特定流程，只提供最原始的模型访问权限，让你像搭积木一样构建自己的开发流。
+Claude Code 迭代很快，部分命令和版本门槛会变，具体以 `claude --version` 和官方文档为准。比如 `/run`、`/verify` 需要 Claude Code v2.1.145+；新版 `/simplify` 的官方说明出现在 v2.1.154+ 之后；`--enable-auto-mode` 已经移除，现在用 `--permission-mode auto`。
 
-这篇文章从**配置、能力扩展、工作流、进阶技巧**和**实战心法**五个方面，梳理 Claude Code 的使用技巧。看完你会搞清楚：
+国内使用 Claude Code 还有现实门槛：账号、网络、成本、第三方中转稳定性都要考虑。GLM、MiniMax、Kimi、DeepSeek 这类模型可以作为替代或补充，但如果任务是大规模代码修改、复杂重构、长链路排错，Claude 目前仍然是很值得单独研究的工具。
 
-1. ⭐ **`CLAUDE.md` 怎么写、放哪里**：四级作用域、模块化管理和动态更新的最佳实践
-2. ⭐ **如何扩展 Claude 的能力边界**：MCP、Skills、Sub-Agent、插件系统分别解决什么问题？
-3. ⭐ **哪些工作流模式最实用**：探索-规划-执行、TDD、多实例协作各自的适用场景
-4. ⭐ **上下文管理的核心心法**：`/compact`、`/clear`、`/fork`、交接文档分别在什么时候用
-5. ⭐ **如何让 Claude 自己验证自己的工作**：这是单一最高收益的改变
+## `CLAUDE.md` 非常重要
 
-Claude 系列是目前最强的编程模型，但国内使用门槛和成本较高，还可能面临封号。国内的话，一般是使用 GLM 和 MiniMax 作为替代。GLM、MiniMax 和 Kimi 都是不错的选择，但要做好心理预期，编程表现上和 Claude 还有差距。
+`CLAUDE.md` 可以理解成写给 Claude Code 的项目规则文件。
 
-## 一、基础配置：自定义你的开发环境
+它不是普通 README，也不是越长越好。Claude 每次启动都会读它，所以这里面只应该放每次会话都值得知道的东西。
 
-### ⭐️ 1. 灵魂文件：`CLAUDE.md`
+千万别写成项目说明书！应该写 Claude 容易猜错、代码里读不出来、团队又必须遵守的规则。重点放技术栈版本、常用命令、架构取舍、团队约定和项目坑点；别塞空话、默认行为和大段文档。
 
-一句话：**`CLAUDE.md` 是 Claude Code 的“项目说明书”，也是所有技巧中投入产出比最高的一项配置。**
+判断标准很简单：这行删掉后，Claude 会不会更容易犯错？
 
-Claude 在启动时会自动读取该文件，将其中内容注入系统提示，成为它思考的底层背景。你往里面写的每一条规则，都在塑造 Claude 的行为边界。
+![多智能股票分析项目中的 CLAUDE.md 和 AGENTS.md](https://oss.javaguide.cn/github/javaguide/ai/coding/claude-agents-md.png)
 
-**核心内容**：常用 Bash 命令、核心工具函数、代码风格指南（如：使用 ES Modules 而非 CommonJS）、测试指令、分支命名规范等。
+### 放在哪里
 
-**放置策略（四级作用域）**：
+Claude Code 的配置有几层作用域，不同文件解决不同问题：
 
-| 作用域                       | 文件位置                                                                                        | 用途                                          |
-| ---------------------------- | ----------------------------------------------------------------------------------------------- | --------------------------------------------- |
-| **企业级（Managed Policy）** | macOS: `/Library/Application Support/ClaudeCode/CLAUDE.md`，Linux: `/etc/claude-code/CLAUDE.md` | 组织级安全、合规要求，由 IT 管理员配置        |
-| **项目级**                   | `./CLAUDE.md` 或 `./.claude/CLAUDE.md`                                                          | 团队共享规范，提交至 Git                      |
-| **用户级**                   | `~/.claude/CLAUDE.md`                                                                           | 个人偏好，对所有项目生效                      |
-| **本地级**                   | `./CLAUDE.local.md`                                                                             | 个人在本项目中的特定配置（加入 `.gitignore`） |
+| 作用域  | 位置                                             | 适合放什么                                       |
+| ------- | ------------------------------------------------ | ------------------------------------------------ |
+| Managed | 系统级或组织级托管配置                           | 公司安全策略、合规要求，通常由 IT 或平台团队维护 |
+| User    | `~/.claude/`                                     | 个人长期偏好，比如编辑器、主题、常用插件         |
+| Project | 仓库内 `.claude/` 或项目根目录                   | 团队共享规则，适合提交到 Git                     |
+| Local   | `.claude/settings.local.json`、`CLAUDE.local.md` | 本机私有配置，通常加入 `.gitignore`              |
 
-所有层级的 `CLAUDE.md` 均会加载进上下文（**拼接而非替换**），当规则冲突时，更具体作用域的规则优先生效。子目录下的 `CLAUDE.md` 会在 Claude 访问该目录下的文件时按需加载，不会一次性全部注入上下文。工作目录上方的父目录中的 `CLAUDE.md` 则在启动时全部加载，这对 monorepo 场景特别有用，`root/CLAUDE.md` 和 `root/foo/CLAUDE.md` 会同时生效。
+项目级 `CLAUDE.md` 建议提交到仓库。一个团队里所有人都用 Claude Code 时，它会慢慢变成 AI 版 onboarding 文档。不要把它写成教程，写成“这个仓库里怎么干活”就行。
 
-> **注意**：企业级（Managed Policy）是唯一不遵循“更具体优先”规则的层级，它**不能被任何个人设置排除**（`claudeMdExcludes` 对其无效），确保组织级指令始终生效。
+如果项目比较大，可以拆开：
 
-**初始化**：在项目根目录运行 `/init`，Claude 会自动分析你的代码库并生成一份包含构建命令、测试说明和项目约定的初始 `CLAUDE.md`。如果文件已存在，它会建议改进而非覆盖。
-
-**动态更新技巧**：
-
-- 在对话中按 `#` 键，给 Claude 一个指令，让它自动把当前的上下文总结并写入 `CLAUDE.md`。
-- 更推荐的做法：每次纠正 Claude 的错误后，追加一句“更新 CLAUDE.md，确保下次不再犯同样的错误”。随着时间推移，`CLAUDE.md` 会变成一个能不断进化的规则系统。
-- 也可以运行 `/memory` 命令直接在编辑器中打开并编辑。
-
-**保持精简**：官方建议单个 `CLAUDE.md` 文件控制在 **200 行以内**，超过此阈值会显著消耗上下文并降低规则遵守率。每一条规则都应该对应一个 Claude 曾经犯过的真实错误，如果某条指令删掉后 Claude 依然能正确完成，就果断删掉。文件太长时，可以考虑拆分到 `.claude/rules/` 或用 `@path` 引用。
-
-对于必须每次都执行、零例外的操作（如代码格式化），优先考虑用 Hooks 来实现，而不是写在 `CLAUDE.md` 里。两者的本质区别：CLAUDE.md 中的规则是**建议性**的（Claude 会尽力遵守但不保证），而 Hooks 是**确定性**的（脚本在特定节点自动执行，零例外）。判断标准：问自己“这条规则被违反一次后果是什么”，后果严重的用 Hooks。
-
-> **精简判断**：问自己“没这行规则 Claude 会犯什么错”。答不上来就删掉。
-
-**模块化管理**：如果项目比较复杂，可以在根目录的 `CLAUDE.md` 中用 `@` 导入语法引入其他文件。根目录放项目概览和快速启动命令，各子模块的架构和开发规范分别放在各自的 `.claude/CLAUDE.md` 中：
-
-```
-## Project Structure
-
+```text
 my-project/
-├── backend/  # Spring Boot backend
-├── frontend/ # Vue 3 frontend
-└── admin/    # Admin console
-
-## Module Documentation
-
-- **Backend**: See `@backend/.claude/CLAUDE.md` for architecture and conventions
-- **Frontend**: See `@frontend/.claude/CLAUDE.md` for component structure
-- **Admin**: See `@admin/.claude/CLAUDE.md` for setup and state management
+├── CLAUDE.md
+├── backend/
+│   └── CLAUDE.md
+├── frontend/
+│   └── CLAUDE.md
+└── .claude/
+    ├── rules/
+    ├── skills/
+    └── agents/
 ```
 
-### 2. 权限与工具管理
+根目录的 `CLAUDE.md` 放全局约定，子目录的 `CLAUDE.md` 放局部规则。Claude 读取到某个子目录文件时，会按需加载对应目录下的说明。这个机制对 monorepo 很友好，后端、前端、管理台不用挤在一份文件里。
 
-默认情况下，Claude 执行敏感操作（如写文件、Git 提交）需要逐一授权。
+还有一个常被忽略的点：`@path` 引用并不能凭空省上下文。被引用的内容最终还是会进上下文，只是维护起来更清楚。如果某些规则只对特定目录生效，优先考虑 `.claude/rules/` 这类按路径加载的规则，而不是继续往 `CLAUDE.md` 里塞。
 
-- **白名单化**：使用 `/permissions` 命令或编辑 `.claude/settings.json`，将 `Edit`、`git commit` 等高频且你信任的操作加入白名单，大幅减少交互中断，实现“沉浸式编程”。
-- **GitHub 集成**：强烈建议安装 `gh` CLI。Claude 能够直接调用它来创建 PR、读取 Issue 或处理 Code Review 评论。
+### 初始化和维护
 
-## 二、能力扩展：MCP、Skills 与插件生态
-
-Claude Code 不只是一个对话框，它继承了你的整个 Shell 环境。光有对话能力不够，得给它装上“工具箱”。
-
-### ⭐️ 1. 模型上下文协议 (MCP)
-
-MCP 是扩展 Claude 能力的主要通道，相当于给 Claude 装上了“USB 接口”。通过连接 MCP 服务器，你可以让 Claude 具备：
-
-- **网页浏览**（如通过 Puppeteer）。
-- **数据库查询**（如连接 PostgreSQL 或 MySQL）。
-- **第三方 API 调用**（如 Sentry、Slack）。
-- **项目级共享**：将 `.mcp.json` 检入仓库，让团队成员开箱即用相同的工具集。
-
-MCP 服务器支持三种配置范围：
-
-| 范围     | 存储位置                       | 适用场景                           |
-| -------- | ------------------------------ | ---------------------------------- |
-| **本地** | `~/.claude.json`（项目路径下） | 个人实验配置、包含敏感凭据的服务器 |
-| **项目** | 项目根目录的 `.mcp.json`       | 团队共享，可提交至版本控制         |
-| **用户** | `~/.claude.json`               | 跨项目复用的个人工具               |
-
-安装 MCP 服务器的推荐方式是使用 HTTP 传输：
+新项目可以先运行：
 
 ```bash
-# 连接远程 MCP 服务器
-claude mcp add --transport http <name> <url>
-
-# 带认证头的示例
-claude mcp add --transport http notion https://mcp.notion.com/mcp \
-  --header "Authorization: Bearer your-token"
+/init
 ```
 
-### 2. 自定义斜杠命令
+Claude 会读仓库，生成一份初始 `CLAUDE.md`。这份文件只能当草稿，不要直接照单全收。它可能会猜错构建命令，也可能把显而易见的内容写得很长。
 
-对于重复性的复杂任务，可以在 `.claude/commands` 目录中创建 Markdown 模板，将其固化为命令。
+我更常用的维护方式是“错误驱动”：
 
-- **示例**：创建一个 `/fix-issue $ARGUMENTS` 命令。
-- **效果**：输入 `/fix-issue 1024`，Claude 自动执行：`查看 Issue → 搜索相关代码 → 编写修复 → 运行测试 → 提交 PR` 的全套流程。
-
-### ⭐️ 3. Skills：将重复劳动固化为技能
-
-如果一件事你一天做了两次，就值得把它变成一个 Skill。
-
-一句话：**Skill 是保存下来的工作流，启动时只加载元数据（名称和描述，约 100 个 Token），只有当任务匹配时才会读取完整指令。** 这种“延迟加载”的设计保证了能力可用，又不会挤占上下文窗口。
-
-- **手动调用**：在对话框中输入 `/skill-name`。
-- **自动发现**：Claude 根据 Skill 的描述自动匹配当前任务并激活。
-
-Skill 存放在 `~/.claude/skills/`（用户级）或 `.claude/skills/`（项目级）。一些优秀的社区 Skills：
-
-- **[Superpowers](https://github.com/obra/superpowers)**：TDD + Code Review + 自动计划，把软件工程最佳实践封装为 AI 可执行的技能（推荐首装）。
-- **[Everything Claude Code](https://github.com/affaan-m/everything-claude-code)**：Anthropic 黑客松冠军配置，多 Agent 分工协作，解决上下文腐化问题。
-
-**何时用 Skills vs CLAUDE.md**：简单来说，CLAUDE.md 是“每次都需要的全局上下文”，Skills 是“按需加载的任务指令”。如果一条规则只在特定场景下才需要（如“审查 API 代码时遵循这些规范”），放到 Skills 或 `.claude/rules/` 里；如果每次会话都需要 Claude 知道（如“项目使用 ES Modules”），放 CLAUDE.md。
-
-### ⭐️ 4. Sub-Agent：让主对话保持干净
-
-当 Claude 需要深度调查一个问题时，它会读很多文件，大量消耗上下文窗口。Sub-Agent（子代理）就是解决这个问题的：让一个独立的 Claude 实例去做调查，它有自己的独立上下文，完成后只把结论汇报给主会话。
-
-Claude Code 内置了几种子代理：
-
-| 子代理              | 模型                | 用途                           |
-| ------------------- | ------------------- | ------------------------------ |
-| **Explore**         | Haiku（快速低延迟） | 文件发现、代码搜索、代码库探索 |
-| **Plan**            | 继承自主对话        | 规划阶段的代码库研究           |
-| **General-purpose** | 继承自主对话        | 复杂研究、多步骤操作、代码修改 |
-
-你也可以在 `.claude/agents/`（项目级）或 `~/.claude/agents/`（用户级）中创建自定义子代理，指定专属系统提示、工具权限和使用的模型。
-
-典型用法：
-
-- **隔离高消耗操作**：`使用子代理运行测试套件，仅报告失败的测试及其错误消息。`
-- **并行研究**：`使用单独的子代理并行研究身份验证、数据库和 API 模块。`
-- **链式委派**：`使用 code-reviewer 子代理查找性能问题，然后使用 optimizer 子代理修复它们。`
-
-### 5. 插件系统（Plug-In）
-
-插件是 Claude Code 的“应用”——一个插件可以打包 Skills、MCP 服务器、子代理、钩子和自定义命令，一键安装、一键分享。
-
-安装方式：
-
-```bash
-# 注册插件市场
-/plugin marketplace add <owner>/<marketplace-repo>
-
-# 安装插件
-/plugin install <plugin-name>@<marketplace-name>
+```text
+你刚才又用了字段注入。更新 CLAUDE.md，后续 Spring Bean 一律使用构造器注入。
 ```
 
-也可以用 `--plugin-dir` 在开发阶段本地测试插件。
+同类错误出现两三次，再把它归纳成一条规则。这样 `CLAUDE.md` 会跟着项目演进，而不是一开始就写成 500 行的愿望清单。
 
-## 三、实战模式：高效工作流
+## 权限管理要重视
 
-搞清楚了基础配置和能力扩展，接下来就是怎么把这些能力串起来，形成真正高效的工作流。
+### 分层授权
 
-### ⭐️ 1. 探索-规划-执行
+Claude Code 默认会对敏感操作弹确认，比如写文件、执行 Bash、调用 MCP 工具。刚开始这很烦，但这个烦是有价值的。你还不熟悉它会怎么行动时，不要急着把门全打开。
 
-适用于需求模糊或复杂的场景，也是我个人最推荐的工作流。
+更稳的做法是分层授权：
 
-- **Explore**：让 Claude 阅读文件、日志或 URL，明确告诉它“先阅读，暂时不要写代码”。
-- **Plan**：进入计划模式（Plan Mode），让 Claude 输出详细的实施计划：哪些文件要改、改动顺序、可能踩的坑。复杂任务严禁直接动手。
-- **Code**：你确认计划无误后，再让它动手实现。
-- **Verify**：让它自己运行测试或检查代码。
+- 高频只读命令可以放行，比如 `git diff`、`git status`、`rg`。
+- 固定验证命令可以放行，比如 `mvn test`、`pnpm test`、`npm run lint`。
+- 破坏性命令默认不放，比如 `rm -rf`、`git push --force`、修改 `.git/`。
+- 凭据、环境文件和构建产物可以用 deny 规则挡住。
 
-**进阶做法**：一个 Claude 写计划，再起一个 Claude 以高级工程师的视角审这个计划。计划过了才开始写代码。先花 10 分钟在计划上，省下后面 2 小时的返工。
-
-> 先想清楚再动手，永远是最高效的。
-
-### 2. 测试驱动开发 (TDD)
-
-AI 编程中最稳健、幻觉最少的模式。
-
-- **写测试**：让 Claude 基于需求编写测试用例（此时不写实现代码）。
-- **红灯**：运行测试，确认失败（确保测试有效）。
-- **绿灯**：让 Claude 编写代码，直到测试通过。
-- **重构**：在测试的保护下，让 Claude 优化代码结构。
-
-也可以用并行 Session 来做 TDD：Session A 先写测试，Session B 再写让测试通过的代码。
-
-### 3. 视觉迭代 (Visual Iteration)
-
-适用于前端开发。
-
-1. **投喂**：截图、拖拽设计图给 Claude。
-2. **实现**：让 Claude 写代码。
-3. **反馈**：截图运行结果发回给 Claude，让它对比差异并修正。
-
-更进阶的做法：让 Claude 实现设计稿后，自动截图对比原图，列出差异并自行修复——形成一个自动纠错回路。
-
-### 4. 代码库问答
-
-新入职或接手陌生代码库时的神器。Claude 会自动搜索、读取文件并总结答案，大大降低认知负荷。
-
-- “日志系统是怎么工作的？”
-- "这个 `Async` 函数在第 134 行是做什么的？"
-- “用户登录的完整流程是什么，从第一个请求到 session 建立？”
-
-这些是你原本要问老员工的问题，Claude 答得一样好，还不嫌你问。
-
-### 5. Git/GitHub 自动化
-
-让 Claude 成为你的 Release Manager。
-
-- “分析刚才的修改，写一个 Commit Message。”
-- “查看 Issue #123，分析原因并修复，然后提一个 PR。”
-- “解决这个 Rebase 冲突。”
-- **PR 协作**：在 GitHub PR 评论中 `@claude` 可以触发 Claude Code 在 CI 中响应，执行代码审查、修复建议等任务。
-
-### ⭐️ 6. 多实例协作 (Multi-Claude)
-
-不要让一个 Claude 处理所有事情——**这是效率最大的杠杆之一**。核心原则是"不要等 AI，要让 AI 等你"：把耗时任务推向后台，你只需以"首席架构师"视角做决策。
-
-- **AB 角色**：一个写代码，另一个在独立终端中负责审查或写测试。
-- **Git Worktrees**：在不同的目录中检出不同分支，同时开启多个 Claude 实例处理不相关的 Feature，互不干扰。设置 Shell 别名（`za`、`zb`、`zc`）快速切换。
-- **`/batch` 命令**：输入一个大任务，Claude 会自动拆解为多个独立 Unit，为每个创建独立 Worktree，并行处理后合并。示例：
-
-```
-/batch 1、移除自选股界面，优化提示词管理
-2、自选股提取组件、K线展示单独提取组件
-3、历史记录设计优化
-```
-
-### 7. `/simplify`：三 Agent 并行代码审查
-
-这是一个容易被忽略但用一次就离不开的命令。`/simplify` 会并行启动三个审查 Agent，各自带着不同的视角去读同一份代码：
-
-- **Code Reuse Agent**：看有没有重复造轮子——手写的工具方法是不是项目里已经有了
-- **Code Quality Agent**：看设计有没有问题——硬编码、该拆没拆的类、冗余逻辑
-- **Efficiency Agent**：看性能有没有隐患——循环里重复创建对象、不必要的并发容器、该用缓存的结果每次重新算
-
-不带参数时审查 `git diff` 的增量变更（工作区干净时审查最近一次 commit）；也可以指定具体类名做全量审查：
-
-```bash
-/simplify                           # 审查当前变更
-/simplify thread safety             # 指定关注方向
-/simplify MarketDataService         # 审查指定类
-```
-
-它最大的价值在于能发现需要**领域知识**才能识别的问题——Spring 代理导致的 `@Transactional` 失效、MyBatis 的批处理行为、Redis 分布式锁的边界条件。这些是 SonarQbe 之类的规则匹配工具抓不到的。
-
-不过它做不了全项目全量扫描，也不关心代码风格（那是 formatter 的活）。架构级重构它只会建议，不会主动执行。
-
-> 一句话：**提交 PR 前跑一遍 `/simplify`，成本很低但收益可能很高。**
-
-### 8. `/loop`：自主迭代和定时调度
-
-Claude Code 创始人 Boris Cherny 多次公开推荐这个命令。它解决两类烦人的事：
-
-**定时调度（Cron 模式）**——告诉它干什么、隔多久干一次，到点自己跑：
-
-```bash
-/loop 30m /review                              # 每 30 分钟跑一次代码审查
-/loop 1h "跑一遍单元测试，看看有没有失败的"        # 每小时检查测试
-/loop 5m "检查 GitHub 上开放的 PR 状态"          # 每 5 分钟看 PR 动态
-```
-
-**自主迭代（Agentic Loop）**——给它一个目标，它自己规划、执行、验证、修正，循环往复直到完成。普通模式下 Claude 写完代码就交给你了，报错你得自己贴回去；`/loop` 模式下它自己读报错、自己改、自己重跑，不用你盯着：
-
-```bash
-/loop "修复 auth 模块里所有失败的单元测试，直到全部通过"
-/loop "把 src/legacy 下所有组件迁移到 Tailwind CSS，确保页面渲染正常"
-```
-
-需要注意：`/loop` 是比较烧 Token 的用法，指令尽量具体、完成标准要明确。循环任务创建 7 天后自动过期，且只在当前会话有效，关掉终端就没了。建议在指令里加上限（如“最多尝试 10 次”），避免无限循环。
-
-> 一个高效的组合工作流：`/loop` 自动完成任务 → `/simplify` 做代码清理 → `/review` 做安全审查。三步走下来基本不用你插手。
-
-### 9. 跨端同步（Teleport）
-
-在终端写累了？`--teleport` 功能让你把网页版 Claude Code 的会话一键拉回本地终端，包括完整的对话历史和分支状态。在终端里运行 `claude --teleport` 即可看到你的网页会话列表，选择后自动拉取远程分支并恢复上下文。反过来，在会话中输入 `/teleport`（或 `/tp`）也能跳转到网页端继续。
-
-## 四、进阶技巧：优化与自动化
-
-基础配置和工作流都搞定了，接下来是一些能进一步提升效率的进阶技巧。
-
-### 1. 无头模式（Non-interactive Mode）
-
-将 Claude 集成到脚本或 CI/CD 中。
-
-- **使用**：`claude -p "prompt" --output-format stream-json`。官方文档现在称其为“非交互模式”（以前叫 headless mode），但功能不变。
-- **场景**：自动 Issue 分类、代码风格检查、大规模数据迁移脚本生成。
-- **加 `--bare` 跳过初始化**：如果不需要 Hooks、Skills、MCP 等自动发现，加 `--bare` 可以显著加快启动速度。
-
-### ⭐️ 2. 让 Claude 自己验证自己的工作
-
-**这是单一最高收益的改变。** 不要只说“写一个邮件校验函数”，而是说：
-
-```
-写一个验证邮箱的函数。测试用例：hello@gmail.com 应该通过，
-hello@ 应该失败，@domain.com 应该失败。写完后跑一遍测试告诉我结果。
-```
-
-有了具体的验收标准，Claude 就能自主检查输出，省去你一大半的人工审查。
-
-更高阶的做法：让 Claude 给自己的答案打分——“根据预设的成功标准给你的输出评分，列出不足之处。”
-
-> 有了验收标准，Claude 才从“我觉得没问题”变成“测试证明没问题”。
-
-### 3. 提示词的反直觉技巧
-
-**① 让 Claude 审你**
-
-在提交代码之前：“用最挑剔的方式质问这些改动，直到我通过你的测试才能开 PR。”角色倒过来，Claude 成了 Reviewer。
-
-**② 让 Claude 重写一个更优雅的版本**
-
-Claude 第一次的方案往往取了个捷径。解决完之后说：“你现在知道所有背景了。把这个方案推翻重来，给我一个优雅的实现。”通常能拿到比第一次更好的答案。
-
-**③ 让 Claude 证明**
-
-别只看测试绿了就信：“证明给我看这个改动有效。把 main 分支和我的 feature 分支的行为差异展示出来。”
-
-### 4. Bug 修复：直接扔原始数据
-
-修 Bug 的最佳姿势不是把 bug 描述成文字让 Claude 猜，而是直接把原始数据扔给它，说"fix"。给 Claude 真实的信息（错误日志、Slack 线程、Docker 输出），而不是你对这些信息的描述。前者让 Claude 可以自主追踪，后者让 Claude 在你的理解框架里猜。
-
-### 5. 清单与草稿板
-
-对于超长任务（如重构 100 个文件）：
-
-- 让 Claude 先生成一个 Markdown Checklist。
-- 每完成一项，让它勾选一项。这能有效防止上下文丢失导致的“忘了自己在干嘛”。
-
-### ⭐️ 6. 路线纠偏与上下文管理
-
-上下文窗口是你最贵的资源，这部分讲的是怎么把这块白板用得更高效。
-
-- **及时中断**：按 `Esc` 键中断 Claude 的错误尝试，保留上下文并重定向。一旦它开始偏离轨道，立即停止。
-- **历史回溯**：双击 `Esc` 打开检查点菜单，可以回滚代码、对话或两者兼回。存档点甚至在你关闭终端后依然保留。
-- **`/compact`**：软重置。将对话历史压缩为结构化摘要，保留关键信息（你的意图、已修改的文件、错误和修复方案、待办任务），同时重新从磁盘加载 `CLAUDE.md` 和 Auto Memory。适用于上下文快满但还想继续当前任务的场景。
-- **`/clear`**：硬重置。彻底清空上下文，从零开始。适用于话题已经飘到五个方向、或者纠正了两次同一个错误 Claude 还是不对的时候——不要纠正第三次了，清掉上下文，结合学到的经验写一个更精准的起始 prompt，重头开始。
-
-- **`/fork`**：对话分支。在当前会话中输入 `/fork`，会创建一个新的分支对话，你可以在新分支里自由探索不同方案，而不影响原始会话的上下文。适合“我想试试另一种实现方式”的场景。
-- **交接文档（Handoff Document）**：在 `/clear` 之前，让 Claude 把当前进度写入一个 `HANDOFF.md` 文件，记录做了什么、还差什么、踩了哪些坑。清空上下文后，新会话的第一句话就是“阅读 HANDOFF.md，继续之前的工作”。这比从零开始写 prompt 高效得多。
-
-> **核心原则**：同一个问题纠正了两次还没改对，就不要再纠正第三次了。清掉上下文，写一个更好的 prompt 重新开始。上下文被污染后，继续纠正等于白费。
-
-### 7. 后台静默验证
-
-配置 `Stop` 钩子，让 Claude 在完成任务后自动运行测试或格式化工具，不需要你手动检查。Stop 钩子在主代理完成响应时触发，还可以通过返回 `decision: "block"` 来阻止 Claude 提前结束，强制它验证完再收工。也可以配置 `PostToolUse` 钩子，让 Claude 在每次工具调用后自动运行格式化工具，解决 CI 因代码格式报错的低级问题。
-
-### 8. 快捷键与效率技巧
-
-**输入框快捷键：**
-
-| 快捷键                  | 功能                                     |
-| ----------------------- | ---------------------------------------- |
-| `Ctrl + A` / `Ctrl + E` | 光标跳到行首 / 行尾                      |
-| `Ctrl + W`              | 删除前一个单词                           |
-| `Ctrl + U` / `Ctrl + K` | 删除光标前 / 后的所有内容                |
-| `\` + `Enter`           | 多行输入（适合写长提示词）               |
-| `Ctrl + G`              | 打开外部编辑器编写提示词，写完保存即提交 |
-
-**运行时快捷键：**
-
-| 快捷键      | 功能                         |
-| ----------- | ---------------------------- |
-| `Esc`       | 中断当前操作                 |
-| `Esc` `Esc` | 打开检查点菜单               |
-| `Ctrl + B`  | 将当前正在运行的操作移到后台 |
-
-**实用命令：**
-
-- **`/copy`**：快速复制 Claude 最后一次的输出到剪贴板，省去手动选择复制。
-- **终端别名**：在 Shell 配置文件中设置别名可以大幅减少输入量。推荐配置：`alias c='claude'`、`alias cr='claude --resume'`（恢复上次会话）、`alias cn='claude --new'`（新会话）。
-- **粘贴技巧**：遇到 Claude 无法直接访问的内容（如截图、加密文档片段），直接粘贴到输入框即可，Claude 支持多模态输入。
-
-### 9. 精简工具加载
-
-如果你安装了很多 MCP 服务器，启动时会拖慢速度。在 `.claude/settings.json` 中设置 `"ENABLE_TOOL_SEARCH": true`，Claude 不会在启动时加载所有工具描述，而是按需搜索和加载——只加载与当前任务相关的工具。工具多了之后，这个优化能显著减少 Token 消耗和启动时间。
-
-### 10. 模型堆叠
-
-在打开 Claude Code 之前，先用其他大模型（如 Gemini、GPT）规划项目、生成高级提示词。这个策略还能节省计划模式的 Token。
-
-## 五、实战心法：与 AI 协作的经验
-
-除了工具本身，**如何与 AI 沟通**决定了上限。这部分是我在实战中反复踩坑后总结出来的经验，不一定每条都适用于你，但每条背后都有至少一次真实的翻车经历。
-
-### 1. 说英文
-
-- **原因：** 虽然 Claude 中文很好，但编程语境下英文更具确定性。例如，"Modal" 比“弹窗”更能让 AI 联想到具体的组件库实现。
-- **收益：** 显著减少幻觉，代码逻辑更准确。这也是强迫自己二次思考需求的过程。
-
-### 2. 限制工作范围
-
-- **原则**：不要试图“一句话生成全栈应用”。
-- **做法**：明确指定修改范围（如"仅限 `/src/api` 目录“）。按照”数据库 -> 后端逻辑 -> 前端 UI"的顺序拆解任务。
-- **避免无边界调查**：让 Claude“调查”某事但没有限定范围，它会读取数百个文件填满上下文。解决办法：缩小调查范围，或明确说“用子代理来调查”。
-
-### 3. 信息过载优于信息匮乏
-
-- **反直觉：** 提示词不要太短。
-- **做法：** 即使是简单修改，也要告诉它：
-  - 文件位置在哪里？
-  - 修改的最终目的是什么？（比如“为了匹配新的设计风格”）
-  - 参考组件是什么？
-- **原理：** 大模型本质是概率预测。提供的关联信息（Context）越多，它的联想收敛得越窄，结果越精准。
-
-### 4. 提供“金标准”范例
-
-- **原理：** AI 本质上是一个高级的模式补全引擎。它在“照猫画虎”时表现最好，而让它“凭空创造”时最容易出现风格偏差。
-- **场景：** 假设你要开发一个新的 `OrderController`。如果不给参考，AI 可能会使用过时的 `@Autowired` 字段注入，或者忘记使用统一的 `Result<T>` 包装类。
-- **做法：**
-  - 先找到你项目中写得最好的现有代码（比如 `UserController.java`）。
-  - 把项目规范写进 `CLAUDE.md`（如构造器注入、统一异常处理、Swagger 注解风格等），这样即使你不手动指定参考文件，Claude 也能遵循一致的标准。
-  - **提示词示例：** "阅读 `/src/main/java/.../UserController.java` 及其对应的 Service 和 DTO。参考它的分层架构、构造器注入模式、统一异常处理以及 Swagger 注解写法，为我生成 `OrderController` 的相关代码。"
-- **收益：** 确保新旧代码风格的高度一致性。
-
-### 5. 消除样式”AI 味”：锁定样式标准与设计 Skill
-
-- **原理：** 如果不加约束，Claude 生成的页面容易出现典型的”AI Look”——千篇一律的 Inter 字体 + 紫色渐变 + 圆角卡片，毫无辨识度。
-- **做法：**
-  - 明确要求使用 Tailwind CSS 或特定的组件库（如 shadcn/ui, Ant Design）。
-  - 在提示词中加入风格关键词，例如：”使用 **Tailwind CSS**，风格参考 **Linear** 或 **Vercel**，采用极简主义、大留白、圆角矩形和深色模式。”
-  - 可以直接告诉它具体的色值（Primary Color）、间距（Spacing）和字体。
-  - **安装前端设计 Skill**：社区已有成熟的设计 Skill，可以让 Claude 在写代码前先确定视觉方向，从根源上避免”AI 味”：
-    - **Anthropic 官方 Frontend Design**（`claude plugin add anthropic/frontend-design`）：Anthropic 官方出品，强制 Claude 在编码前先确定视觉方向，内置反模式规则拦截 Inter + 紫色渐变等通用套路，要求使用真实的字体搭配和 CSS 变量体系。
-    - **Web Designer Plugin**（`claude plugin add MickeyAlton33/web-designer`）：基于 38 个 Awwwards 获奖网站提炼了 48 套设计模式，覆盖排版系统、配色理论（5 种色板原型）、动画词汇表、布局模式和 3D 技法，附带 10 个完整概念站点示例和”AI Look”反模式清单。
-- **收益：** 生成的页面直接符合项目视觉规范，告别千篇一律的”AI 味”。
-
-### 6. 安全红线与权限模式
-
-- **禁止**：不要使用 `--dangerously-skip-permissions` 跳过所有权限检查，这相当于把家门钥匙给了 AI。这个模式完全不做安全审查，所有操作立即执行，没有任何兜底机制。官方文档原话：”bypassPermissions offers no protection against prompt injection or unintended actions.”。
-- **容器隔离**：如果确实需要跳过权限检查（比如跑自动化脚本），务必在 Docker 容器等隔离环境中运行，限制文件系统访问范围，避免对主机造成不可逆的破坏。
-- **正确做法**：利用 `/permissions` 配合 `.claude/settings.json` 进行精细化的权限白名单管理，既要效率也要合规。
-
-**Auto Mode（推荐替代 bypass 模式）**
-
-如果你觉得频繁弹确认太烦，官方现在推荐用 Auto Mode 替代 `--dangerously-skip-permissions`。两者的核心区别在于：bypass 模式什么都不检查，Auto Mode 有一个独立的分类器模型（基于 Sonnet 4.6）在后台审查每个操作——读文件、改代码这些低风险操作自动放行，下载执行远程代码、发送敏感数据到外部、推送 main 分支这类高风险操作则会被拦截。
-
-开启方式：
-
-```bash
-# 命令行开启
-claude --enable-auto-mode
-
-# 或者在 settings.json 中设为默认
-# ~/.claude/settings.json 或 .claude/settings.local.json
-```
+权限可以通过 `/permissions` 配，也可以写进 `.claude/settings.json`：
 
 ```json
 {
-  “permissions”: {
-    “defaultMode”: “auto”
+  "permissions": {
+    "allow": ["Bash(git status*)", "Bash(git diff*)", "Bash(rg *)"],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./secrets/**)",
+      "Bash(rm -rf *)"
+    ]
   }
 }
 ```
 
-开启后，`Shift+Tab` 循环中会多出 `auto` 选项，可以随时切换。
+规则不是写给模型看的，是 Claude Code 自己执行的。也就是说，就算 prompt 里写了“请一定不要读 `.env`”，那仍然只是建议；deny 规则才是真正的拦截。
 
-Auto Mode 的审查逻辑：
+### Auto Mode
 
-| 操作类型                                         | 行为                         |
-| ------------------------------------------------ | ---------------------------- |
-| 只读操作（读文件、搜索）                         | 自动放行，无需审查           |
-| 工作目录内的文件编辑                             | 分类器快速审查后放行         |
-| 安装依赖、本地构建                               | 审查后放行                   |
-| 下载执行远程代码（`curl \| bash`）               | 拦截                         |
-| 发送敏感数据到外部端点                           | 拦截                         |
-| 推送到 main、force push                          | 拦截                         |
-| 修改 `.git/`、`.claude/`、`.bashrc` 等受保护路径 | 始终拦截（所有模式下都保护） |
+如果频繁确认已经影响节奏，可以用 Auto Mode：
 
-还有一些实用细节：分类器连续拦截 3 次或累计拦截 20 次后，Auto Mode 会自动暂停，恢复手动确认——防止 Claude 在错误方向上越跑越远。被拦截的操作会记录在 `/permissions` 的”Recently denied”中，按 `r` 可以重试。
+```bash
+claude --permission-mode auto
+```
 
-> **前提条件**：Auto Mode 目前要求 Claude Code v2.1.83+、Team/Enterprise/API 计划、Sonnet 4.6 或 Opus 4.6 模型、且必须通过 Anthropic API 直连（不支持 Bedrock、Vertex 或第三方中转）。Pro 和 Max 计划暂不支持。
+它会用单独的分类器判断操作风险，低风险操作自动放行，高风险操作拦截或转人工确认。这个模式适合你大致信任当前任务方向，但又不想每次文件读写都点确认的场景。
 
-## 六、常见失败模式速查表
+不过 Auto Mode 不是安全沙箱。它解决的是“少点确认”，不是“随便执行也没事”。如果要让 Claude 跑很重的自动化任务，尤其涉及下载脚本、安装依赖、访问外部服务，最好配合容器或受限环境。
 
-| 失败模式       | 症状                                  | 解决方法                                                        |
-| -------------- | ------------------------------------- | --------------------------------------------------------------- |
-| 厨房水槽会话   | 话题飘到五个方向，Claude 开始胡言乱语 | 切任务就 `/clear`                                               |
-| 纠正死循环     | 同一个错误纠正 3 次以上               | 清空上下文，重写 prompt                                         |
-| CLAUDE.md 膨胀 | 规则文件超过 200 行，Claude 忽略细节  | 问自己“没这行会犯什么错”，删掉多余的；或拆分到 `.claude/rules/` |
-| 无边界调查     | Claude 读了几百个文件，上下文耗尽     | 给调查划定范围，或用子代理隔离                                  |
-| 过度指定       | 提示词太短，AI 猜测意图               | 多给上下文、文件位置、修改目的                                  |
-| 盲目信任       | 测试绿了就信，不管实际行为            | 让 Claude 证明，对比 main 和 feature 分支的行为差异             |
+`--dangerously-skip-permissions` 我不建议在日常项目里用。除非你已经把文件系统、网络、凭据都隔离好了，否则它省下来的几次确认，可能换来一次很难收拾的误操作。
 
-## 总结
+## 用 MCP、Skills、Sub-Agent 和插件解决不同的问题
 
-回顾一下全文的关键结论：
+Claude Code 的扩展能力很多，刚接触时容易混在一起。我的理解很简单：
 
-1. **上下文窗口是你最贵的资源**——所有技巧本质上都在帮你把这块白板用得更高效。
-2. **先规划后执行**——Plan Mode 投资的是后面的时间。
-3. **`CLAUDE.md` 自我进化**——把纠正转化为规则，让 AI 越用越顺手。
-4. **并行是最大的效率杠杆**——多实例 + Worktree + 子代理。
-5. **验证优于信任**——给 Claude 验收标准，让它自己检查。
-6. **`/compact` 比反复纠正更有效**——上下文被污染后，压缩或清空重来更好。
+| 能力        | 解决的问题                 | 适合场景                                     |
+| ----------- | -------------------------- | -------------------------------------------- |
+| `CLAUDE.md` | 每次会话都要知道的项目背景 | 编码规范、常用命令、仓库约定                 |
+| MCP         | 连接外部系统               | 数据库、浏览器、Sentry、Slack、Notion、Figma |
+| Skills      | 保存可复用流程             | 发布、修 Issue、写 Review、生成迁移脚本      |
+| Sub-Agent   | 隔离高消耗支线任务         | 大量搜索、日志分析、安全审查、并行研究       |
+| Hooks       | 强制执行动作               | 格式化、测试、禁止危险命令、提交前检查       |
+| 插件        | 打包分发一整套能力         | 团队共享 Skills、MCP、Hooks、Sub-Agent       |
+
+这几个东西不要互相替代。比如“每次编辑后必须跑 formatter”，写进 `CLAUDE.md` 只能靠 Claude 记得；写成 Hook 才是确定性执行。再比如“修 GitHub Issue 的步骤”，放 `CLAUDE.md` 会污染所有会话，做成 Skill 更合适。
+
+### MCP：让 Claude 接上真实世界
+
+MCP（Model Context Protocol，模型上下文协议）像一套接线规范：**外部系统把能力封装成 MCP Server，支持 MCP 的 AI 应用连接上来之后，就能发现这些能力并调用。**
+
+![MCP 图解](https://oss.javaguide.cn/github/javaguide/ai/skills/mcp-simple-diagram.png)
+
+它是 Claude Code 连接外部工具的主要方式。
+
+你可以让它查数据库、读 Sentry 报错、访问浏览器、拉 Notion 文档、取 Figma 设计稿。
+
+添加远程 MCP 服务器的命令大概长这样：
+
+```bash
+claude mcp add --transport http notion https://mcp.notion.com/mcp \
+  --header "Authorization: Bearer your-token"
+```
+
+团队项目里，能共享的 MCP 配置可以放到 `.mcp.json`，再提交到仓库。比如某个项目统一要接 Notion、Sentry、内部文档系统，就可以把 server 名称、URL、transport 这些公共配置沉淀下来。
+
+但私密 token 不要这么干。
+
+带 token、密钥、数据库连接串的配置，放用户级配置、本地环境变量或者密钥管理系统里。
+
+### Skills：把重复流程存下来
+
+规则文件和 Skill 解决的问题不太一样。
+
+规则文件更适合放这个项目一直要遵守什么，比如：技术栈版本、启动命令、目录结构、错误码格式、哪些文件不能碰。
+
+Skill 更适合放遇到某类任务时应该怎么做。比如做代码审查、写测试、改前端页面、网页调研、写技术文章，这些任务每次流程都差不多，就没必要每次都在聊天里重新提醒一遍。
+
+小 G 之前写过两篇相关的文章：[Agent Skills 是什么？和 Prompt、MCP 到底差在哪？](https://javaguide.cn/ai/agent/skills.html) 和 [AI 编程必备 Skills 推荐](https://javaguide.cn/ai-coding/programmer-essential-skills.html)。
+
+简单说，Skill 就是一份能被 Agent 按需加载的任务说明。它不是插件，也不是 MCP 工具本身，而是把某类任务的流程、约束、检查项和踩坑经验写进 `SKILL.md`。
+
+它的正文只在需要时加载，不会像 `CLAUDE.md` 一样每次会话都占上下文。用户级 Skill 放在 `~/.claude/skills/`，项目级 Skill 放在 `.claude/skills/`。
+
+![Agent 执行链路](https://oss.javaguide.cn/github/javaguide/ai/skills/skills-agent-execution-link.png)
+
+这些重复性很强的流程，都适合沉淀成 Skill。比如写功能前固定走 TDD，先写失败测试再实现；代码审查时固定检查安全、事务、性能和边界条件；写技术文章时固定核对事实来源、引用、标题层级和 AI 味。
+
+Skill 的价值就在这里：把重复提醒变成可复用的工作手册。官方对 Skill 的定义也基本是这个意思：它是一组可复用的指令、脚本和资源，用来让 Claude 按固定流程处理某类任务。
+
+现成 Skill 也可以直接用，比如 Superpowers 把 TDD、Code Review、Spec-Driven、Git Worktree、子 Agent 协作这些流程封装好了。
+
+我在[ AI 编程必备 Skills 推荐：TDD、代码审查与网页自动化实战](https://javaguide.cn/ai-coding/programmer-essential-skills.html)这篇文章中有详细推荐。
+
+但第三方 Skill 不要拿来就跑。`SKILL.md` 也是指令，里面如果带了危险命令、奇怪脚本、过宽权限，Agent 会照着做。装之前至少看一眼正文、`scripts/` 和 `references/`，确认它没有越权操作。
+
+### Sub-Agent：让主会话保持干净
+
+Claude Code 里还有一个很实用的能力，叫 Sub-Agent。
+
+![Claude Code Sub-Agent：让主对话保持干净](https://oss.javaguide.cn/github/javaguide/ai/coding/claudecode-sub-agent.png)
+
+它解决的问题很具体：当 Claude 需要调查一个复杂问题时，往往会读很多文件、搜很多代码、跑一些命令，最后主会话的上下文被一堆日志、搜索结果、文件内容塞满。Sub-Agent 的作用，就是把这类“高消耗的支线任务”拆出去处理。
+
+你可以把它理解成一个独立上下文里的专项助手。它自己去读代码、查日志、分析问题，完成后只把结论汇报回主会话。这样主会话不用背着一大堆中间过程继续往下聊，干净很多。
+
+Claude Code 内置了几类 subagent：
+
+| **子代理**          | **模型**            | **用途**                       |
+| ------------------- | ------------------- | ------------------------------ |
+| **Explore**         | Haiku，偏快速低延迟 | 文件发现、代码搜索、代码库探索 |
+| **Plan**            | 继承自主对话        | Plan Mode 下的代码库研究       |
+| **general-purpose** | 继承自主对话        | 复杂研究、多步骤操作、代码修改 |
+
+Explore 和 Plan 更偏只读研究，不负责直接改代码。general-purpose 能处理更复杂的多步骤任务，也可能涉及代码修改。所以用的时候要注意边界，不要把所有事情都丢给它。
+
+你也可以创建自己的 subagent。项目级配置放在 `.claude/agents/`，适合团队共享；用户级配置放在 `~/.claude/agents/`，适合自己跨项目复用。每个 subagent 都可以配置自己的系统提示词、工具权限、模型，以及什么时候应该被调用。
+
+几个比较典型的用法：
+
+- **隔离高消耗操作**：让 subagent 跑测试套件，只把失败用例和错误信息汇报回来。
+- **并行研究代码模块**：让不同 subagent 分别研究认证、数据库、API 模块，最后汇总结论。
+- **链式委派任务**：先让 code-reviewer subagent 找性能问题，再让 optimizer subagent 尝试修复。
+
+不过 subagent 也不是越多越好。任务太小、边界不清、代码还在剧烈变化时，拆出去反而会增加沟通成本。比较稳的用法是：主会话负责整体目标、关键决策和最后验收，subagent 负责局部、明确、可汇报的专项任务。务。
+
+一个自定义安全审查子代理可以这么写：
+
+```markdown
+---
+name: security-reviewer
+description: Reviews Java and Spring Boot code for security risks.
+tools: Read, Grep, Glob, Bash
+model: opus
+---
+
+Review the target diff for:
+
+- SQL injection and unsafe dynamic queries.
+- Authentication and authorization bypass.
+- Secrets or credentials committed to code.
+- Unsafe deserialization or command execution.
+
+Return concrete file and line references. Do not rewrite code unless explicitly asked.
+```
+
+### Hooks：别把硬规则写成软建议
+
+Hooks 是我觉得最容易被低估的一块。它可以在 Claude Code 的生命周期节点上执行动作，比如工具调用前、文件编辑后、会话结束前、上下文压缩前后。
+
+举个例子，假设 Claude Code 准备执行：
+
+```bash
+rm -rf /tmp/build
+```
+
+`PreToolUse` Hook 会先拿到这次 Bash 调用，判断它是不是危险命令；如果命中规则，就返回 `deny`，Claude Code 会取消这次工具调用，并把拒绝原因反馈给 Claude。
+
+下面这张图展示了整个过程，图源 Claude Code 官方文档对 Hooks 的介绍。
+
+![Claude Code PreToolUse Hook](https://oss.javaguide.cn/github/javaguide/ai/coding/claude-code-runs-rm-rf-tmp-build-what-happens.svg)
+
+适合做 Hook 的事情：
+
+- 编辑后自动格式化。
+- 会话结束前跑测试。
+- 禁止改 `migrations/` 或 `.github/workflows/`。
+- 拦截 `curl | bash`、`rm -rf`、向外部端点发送敏感内容。
+- 在 Sub-Agent 启动时注入额外上下文。
+
+判断标准很简单：这件事如果漏掉一次会出问题，就用 Hook；如果只是希望 Claude 知道，才写进 `CLAUDE.md`。
+
+## 最常用的工作流
+
+### 探索、计划、执行、验证
+
+复杂任务别一上来就让 Claude 写代码。先让它读仓库，暂时不要修改文件：
+
+```text
+进入 plan mode。先阅读 src/auth 和相关测试，搞清楚登录态刷新流程。
+不要写代码，只汇报当前流程、关键文件和可能的修改点。
+```
+
+接着让它给计划：
+
+```text
+我要修复用户 session 超时后刷新 token 失败的问题。
+基于刚才的阅读，列出要改的文件、测试策略和风险点。
+```
+
+你确认计划后再执行：
+
+```text
+按这个计划实现。优先补一个能复现问题的测试，再改实现。
+完成后运行相关测试，把命令和结果贴出来。
+```
+
+这个流程慢在前面，快在后面。尤其是你不熟悉代码库，或者改动跨多个模块时，先计划通常能省掉后面大量返工。
+
+小改动可以跳过计划。比如改一个文案、加一条日志、补一个明显空指针判断，直接让它做就行。过度规划也会浪费上下文。
+
+### TDD 测试驱动开发
+
+AI 写代码最大的问题不是慢，而是它很会写“看起来合理”的代码。TDD 能把这个问题压下去。
+
+推荐提示词：
+
+```text
+先不要改实现。为 TokenRefreshService 写一个失败测试，
+覆盖 session 已过期但 refresh token 仍有效的场景。
+测试失败后再修改实现，直到测试通过。
+```
+
+这个顺序有两个好处：一是 Claude 必须先理解期望行为，二是你能看到它是不是真的复现了问题。否则它可能直接改一堆代码，然后告诉你“已修复”。
+
+### 让 Claude 自己验证
+
+Anthropic 官方最佳实践里有一句我很认同：**给 Claude 一个能运行的检查。测试、构建、lint、截图对比、脚本输出都可以。**
+
+不要只说：
+
+```text
+写一个邮箱校验函数。
+```
+
+换成：
+
+```text
+写一个邮箱校验函数。测试用例：
+
+- hello@gmail.com 应该通过
+- hello@ 应该失败
+- @domain.com 应该失败
+- a@b.co 应该通过
+
+写完后运行测试，把命令和结果贴出来。
+```
+
+有了验收标准，Claude 才能从“看起来完成了”变成“检查通过了”。
+
+如果任务会跑很久，可以再加一句“最多尝试 3 轮，仍失败就停下来汇报阻塞点”，避免它在错误方向上消耗太多 Token。
+
+### 代码库问答
+
+接手陌生项目时，Claude Code 很适合当临时向导。你可以直接问：
+
+```text
+用户登录的完整流程是什么？从 HTTP 请求进来到 session 写入为止，
+列出关键类和方法，不要修改文件。
+```
+
+或者：
+
+```text
+这个项目里订单状态机在哪里定义？每个状态之间怎么流转？
+如果有隐式约束，也一起指出来。
+```
+
+这种问题原本要问老同事，Claude 不嫌你问得细。
+
+缺点也要承认：它总结出来的内容仍然要抽查，尤其是跨服务调用、配置开关、历史兼容逻辑，别全信。
+
+### Bug 修复需要提供错误信息
+
+很多人会这样问：
+
+```text
+登录有 bug，帮我修一下。
+```
+
+更好的方式是把原始材料直接给它：
+
+```text
+下面是线上报错日志、复现步骤和相关请求参数。
+请先定位可能原因，不要马上改代码。
+找到根因后，补一个能复现的测试，再修复。
+```
+
+日志、堆栈、Slack 讨论、Docker 输出、失败测试结果，都比你转述“好像是缓存问题”更有用。你一转述，就把 Claude 限定在你的猜测里了。
+
+### 多实例和 Worktree
+
+不要让一个 Claude 做所有事。真正提效的方式，是把独立任务拆开并行跑。
+
+Claude Code 支持用 Git Worktree 隔离不同会话：
+
+```bash
+claude --worktree feature-auth
+claude --worktree bugfix-payment
+```
+
+每个 Worktree 有独立目录和分支，一个会话改认证模块，另一个会话修支付 bug，不会互相踩文件。官方桌面应用也会为新会话自动创建 Worktree，这个方向和 CLI 是一致的。
+
+![Claude Code Git Worktree](https://oss.javaguide.cn/github/javaguide/ai/coding/claude-code-git-worktree.png)
+
+如果你已经有多个后台会话，可以用：
+
+```bash
+claude agents
+```
+
+Agent View 会把后台 session 放在一个界面里，看哪些在运行、哪些需要你确认、哪些已经完成。多会话用久了以后，这比开一排终端窗口清爽很多。
+
+## 常用命令
+
+分享一些非常实用的命令，不需要记，大概知道有就好了：
+
+- `/simplify`：派三个 Agent 并行审查你刚写的代码，找到问题直接帮你改。适合提交前自审、重构后清理技术债。
+- `/batch`：把一个大需求自动拆成多个工作单元，开多个后台 Worker 在隔离 worktree 里并行干。适合边界清晰的多模块大改。
+- `/loop`：既能定时调度（每隔多久跑一次），也能自主试错（给个目标让它反复"执行—验证—修正"直到达成）。
+- `/run`：把应用启动起来，看改动是不是真生效。
+- `/verify`：比 `/run` 更轻量，主要做构建和运行验证，快速确认有没有编译或运行时问题。
+- `/review`：日常 PR 和本地变更审查的主力，关注正确性、边界条件和潜在 Bug。
+- `/diff`：看 Claude 到底改了哪些文件哪些行，`/simplify`、`/batch` 跑完必看一眼。
+- `/context`：看上下文占用，长任务变慢、变飘时先查它。
+- `/compact`：总结并压缩上下文，长会话继续推进前用。
+
+我在[Claude Code 核心命令详解：simplify、review、loop、batch、run、verify](https://javaguide.cn/ai-coding/claudecode-commands.html)这篇文章中有详细推荐。
+
+## 提示词怎么写更稳
+
+### 尽量说英文，但别迷信英文
+
+编程任务里，英文通常更稳。不是因为中文不行，而是代码、库名、错误信息、API 文档本来就大量使用英文。比如 `modal`、`debounce`、`retry policy`、`transaction boundary`，直接用英文比翻成中文更不容易歧义。
+
+但业务背景、产品规则、中文文案，当然用中文说更准。我的习惯是：代码相关的动作、约束和术语尽量英文；业务语义和验收标准用中文讲清楚。
+
+### 限制范围
+
+Claude 最怕“调查一下这个项目”。它会很认真地读一堆文件，然后把上下文吃满。
+
+更好的写法：
+
+```text
+只调查 src/payment 和 src/order 目录。
+目标是确认订单支付成功后库存扣减在哪里触发。
+不要修改文件，只列出调用链和关键类。
+```
+
+范围、目标、禁止动作，三件事写清楚，它就不容易乱跑。
+
+### 给金标准范例
+
+让 Claude 按项目风格写代码时，最好给一个现有样板：
+
+```text
+阅读 UserController.java、UserService.java 和 UserDTO.java。
+参考它们的分层方式、构造器注入、Result<T> 返回格式和异常处理。
+为订单查询补一个 OrderController，不要引入新的返回结构。
+```
+
+这比“按最佳实践写一个 Controller”靠谱得多。最佳实践太宽，项目里的既有风格才是最强约束。
+
+### 前端别只说“做得好看”
+
+如果让 Claude 写前端，别只说“现代、简洁、高级”。这类词太空，最后很容易得到 Inter 字体、紫色渐变、大圆角卡片。
+
+更具体一点：
+
+```text
+使用现有 Ant Design 组件，不新增 UI 库。
+页面是后台运营工具，信息密度优先，不要营销页风格。
+主色沿用项目 CSS 变量，不要新增紫色渐变背景。
+参考 src/pages/UserList.tsx 的筛选区和表格布局。
+```
+
+设计也可以做成 Skill，让 Claude 每次写前端前先读取项目视觉规范。重点不是“让它更有创意”，而是先把不该出现的套路挡住。
+
+## 安全边界
+
+Claude Code 很强，但它不是你的同事账号，也不该拥有同事账号的全部权限。
+
+我建议至少守住几条线：
+
+- 不把生产凭据、数据库密码、云厂商长期 token 暴露给 Claude。
+- 不让它直接操作生产环境，除非有审批和审计。
+- 不允许默认 push 到 `main` 或强推远端分支。
+- 不让它在无隔离环境里执行来源不明的远程脚本。
+- 不把 `.env`、`secrets/`、证书目录纳入可读范围。
+
+真的需要自动化高权限任务时，放进容器、临时凭据、最小权限账号里跑。AI 写错代码还能 review，AI 拿错权限就麻烦多了。
+
+## 常见失败模式
+
+| 失败模式         | 症状                                   | 更稳的处理方式                                |
+| ---------------- | -------------------------------------- | --------------------------------------------- |
+| 会话太杂         | 一个会话里同时聊需求、排错、重构、发版 | 切任务就 `/clear`，必要时写 `HANDOFF.md`      |
+| 纠正死循环       | 同一处错误纠正 3 次还不对              | 停止当前上下文，重写起始 prompt               |
+| `CLAUDE.md` 膨胀 | 规则很多，Claude 反而不遵守            | 保留真实犯错后总结出的规则                    |
+| 无边界调查       | 一次读几百个文件，上下文耗尽           | 限定目录、目标和禁止动作，或交给 Sub-Agent    |
+| 只看绿灯         | 测试通过但行为不对                     | 让 Claude 展示证据，对比 main 和 feature 分支 |
+| 权限过宽         | 为了省确认，直接 bypass                | 用 allow/deny、Auto Mode、容器隔离分层处理    |
+
+## 最后几句
+
+Claude Code 用顺手以后，感觉会从“我让 AI 写点代码”变成“我在调度几个能读代码、能跑命令的助手”。这时候最重要的不是写更玄的提示词，而是把上下文、权限、验证和任务边界管好。
+
+我自己最常用的组合很朴素：`CLAUDE.md` 写清项目规矩，复杂任务先 plan，改动后必须 verify，长调查丢给 Sub-Agent，多任务用 Worktree 隔离。剩下的技巧都可以慢慢加。
+
+别急着让 Claude 接管一切。先让它在一个小范围里稳定做对，再把边界往外推。
+
+## 参考资料
+
+- [Best practices for Claude Code](https://code.claude.com/docs/en/best-practices)
+- [Claude Code CLI reference](https://code.claude.com/docs/en/cli-reference)
+- [Claude Code commands](https://code.claude.com/docs/en/commands)
+- [Claude Code settings](https://code.claude.com/docs/en/settings)
+- [Configure permissions](https://code.claude.com/docs/en/permissions)
+- [Extend Claude with skills](https://code.claude.com/docs/en/slash-commands)
+- [Create custom subagents](https://code.claude.com/docs/en/sub-agents)
+- [Automate with hooks](https://code.claude.com/docs/en/hooks)
+- [Manage multiple agents with agent view](https://code.claude.com/docs/en/agent-view)
+- [Run parallel sessions with worktrees](https://code.claude.com/docs/en/worktrees)

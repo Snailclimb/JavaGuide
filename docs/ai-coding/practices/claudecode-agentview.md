@@ -78,7 +78,7 @@ Agent View 里最重要的东西，不是会话名，也不是最后一条摘要
 
 它决定了你现在要不要介入。
 
-![终端直接运行 claude agents 即可进入](https://oss.javaguide.cn/github/javaguide/ai/coding/claudecode/claude-agents-list-view-20260518102539932.png)
+![Claude Code Agent View](https://oss.javaguide.cn/github/javaguide/ai/coding/claudecode/claude-agents-list-view-20260518102539932.png)
 
 核心就记住三个：
 
