@@ -573,24 +573,24 @@ export default sidebar({
           link: "high-availability-system-design",
         },
         {
-          text: "接口幂等方案总结",
+          text: "⭐接口幂等方案总结",
           link: "idempotency",
+        },
+        {
+          text: "⭐服务限流详解",
+          link: "limit-request",
+        },
+        {
+          text: "⭐超时和重试机制详解",
+          link: "timeout-and-retry",
+        },
+        {
+          text: "服务降级与熔断详解",
+          link: "fallback-and-circuit-breaker",
         },
         {
           text: "冗余设计详解",
           link: "redundancy",
-        },
-        {
-          text: "服务限流详解",
-          link: "limit-request",
-        },
-        {
-          text: "服务降级与熔断详",
-          link: "fallback-and-circuit-breaker",
-        },
-        {
-          text: "超时和重试机制详解",
-          link: "timeout-and-retry",
         },
         {
           text: "性能测试入门",
