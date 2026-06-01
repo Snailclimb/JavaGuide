@@ -11,7 +11,7 @@
 
 </div>
 
-> - **大模型实战项目**： [⭐AI 智能面试辅助平台 + RAG 知识库](https://javaguide.cn/zhuanlan/interview-guide.html)（基于 Spring Boot 4.0 + Java 21 + Spring AI 2.0 ，非常适合作为学习和简历项目，学习门槛低）。
+> - **大模型实战项目**： [⭐AI 智能面试辅助平台 + RAG 知识库](https://javaguide.cn/zhuanlan/interview-guide.html)（基于 Spring Boot 4.0 + Java 21 + Spring AI 2.0，非常适合作为学习和简历项目，学习门槛低）。
 > - **面试资料补充**：
 >   - [《Java 面试指北》](https://javaguide.cn/zhuanlan/java-mian-shi-zhi-bei.html)：四年打磨，和 [JavaGuide 开源版](https://javaguide.cn/)的内容互补，带你从零开始系统准备面试！
 >   - [《后端面试高频系统设计&场景题》](https://javaguide.cn/zhuanlan/back-end-interview-high-frequency-system-design-and-scenario-questions.html)：30+ 道高频系统设计和场景面试，助你应对当下中大厂面试趋势。
@@ -43,7 +43,7 @@
 
 ### 基础
 
-**知识点/面试题总结** : (必看:+1: )：
+**知识点/面试题总结**（必看:+1:）：
 
 - [Java 基础常见知识点&面试题总结(上)](./docs/java/basis/java-basic-questions-01.md)
 - [Java 基础常见知识点&面试题总结(中)](./docs/java/basis/java-basic-questions-02.md)
@@ -65,8 +65,8 @@
 
 **知识点/面试题总结**：
 
-- [Java 集合常见知识点&面试题总结(上)](./docs/java/collection/java-collection-questions-01.md) (必看 :+1:)
-- [Java 集合常见知识点&面试题总结(下)](./docs/java/collection/java-collection-questions-02.md) (必看 :+1:)
+- [Java 集合常见知识点&面试题总结(上)](./docs/java/collection/java-collection-questions-01.md) （必看 :+1:）
+- [Java 集合常见知识点&面试题总结(下)](./docs/java/collection/java-collection-questions-02.md) （必看 :+1:）
 - [Java 容器使用注意事项总结](./docs/java/collection/java-collection-precautions-for-use.md)
 
 **源码分析**：
@@ -90,7 +90,7 @@
 
 ### 并发
 
-**知识点/面试题总结** : (必看 :+1:)
+**知识点/面试题总结**（必看 :+1:）
 
 - [Java 并发常见知识点&面试题总结（上）](./docs/java/concurrent/java-concurrent-questions-01.md)
 - [Java 并发常见知识点&面试题总结（中）](./docs/java/concurrent/java-concurrent-questions-02.md)
@@ -108,7 +108,7 @@
 - [AQS 详解](./docs/java/concurrent/aqs.md)
 - [CompletableFuture 详解](./docs/java/concurrent/completablefuture-intro.md)
 
-### JVM (必看 :+1:)
+### JVM（必看 :+1:）
 
 JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.com/javase/specs/jvms/se8/html/index.html) 和周志明老师的[《深入理解 Java 虚拟机（第 3 版）》](https://book.douban.com/subject/34907497/) （强烈建议阅读多遍！）。
 
@@ -192,7 +192,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 
 算法这部分内容非常重要，如果你不知道如何学习算法的话，可以看下我写的：
 
-- [算法学习书籍+资源推荐](https://www.zhihu.com/question/323359308/answer/1545320858) 。
+- [算法学习书籍+资源推荐](https://www.zhihu.com/question/323359308/answer/1545320858)。
 - [如何刷 Leetcode?](https://www.zhihu.com/question/31092580/answer/1534887374)
 
 **常见算法问题总结**：
@@ -202,7 +202,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 - [剑指 offer 部分编程题](./docs/cs-basics/algorithms/the-sword-refers-to-offer.md)
 - [十大经典排序算法](./docs/cs-basics/algorithms/10-classical-sorting-algorithms.md)
 
-另外，[GeeksforGeeks](https://www.geeksforgeeks.org/fundamentals-of-algorithms/) 这个网站总结了常见的算法 ，比较全面系统。
+另外，[GeeksforGeeks](https://www.geeksforgeeks.org/fundamentals-of-algorithms/) 这个网站总结了常见的算法，比较全面系统。
 
 ## 数据库
 
@@ -219,7 +219,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 
 **知识点/面试题总结：**
 
-- **[MySQL 常见知识点&面试题总结](./docs/database/mysql/mysql-questions-01.md)** (必看 :+1:)
+- **[MySQL 常见知识点&面试题总结](./docs/database/mysql/mysql-questions-01.md)** （必看 :+1:）
 - [MySQL 高性能优化规范建议总结](./docs/database/mysql/mysql-high-performance-optimization-specification-recommendations.md)
 
 **重要知识点：**
@@ -238,7 +238,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 
 ### Redis
 
-**知识点/面试题总结** : (必看:+1: )：
+**知识点/面试题总结**（必看:+1:）：
 
 - [Redis 常见知识点&面试题总结(上)](./docs/database/redis/redis-questions-01.md)
 - [Redis 常见知识点&面试题总结(下)](./docs/database/redis/redis-questions-02.md)
@@ -301,7 +301,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 
 ### 常用框架
 
-#### Spring/SpringBoot (必看 :+1:)
+#### Spring/SpringBoot（必看 :+1:）
 
 **知识点/面试题总结** :
 
