@@ -1,13 +1,13 @@
 ---
 title: AI 编程实战指南：Claude Code、Cursor、Codex、Trae 使用技巧与面试题
-description: AI 编程面试与实战学习路线，涵盖 Claude Code、Cursor、OpenAI Codex、Trae、CLI vs IDE 选型、多模型协同和代码审查。
+description: AI 编程实战指南：Claude Code 使用技巧与核心命令、Vibe Coding 技巧、OpenAI Codex 最佳实践、Spec Coding 规范驱动编程、AI 代码审查与提交管理。覆盖工具选型、真实项目案例和 AI 编程面试题，帮你把 AI 编程工具用稳、用到生产级。
 category: AI 编程
 tag:
   - AI 编程
   - AI 辅助开发
   - 开发效率
   - 后端面试
-icon: "mdi:code-tags"
+icon: mdi:code-tags
 head:
   - - meta
     - name: keywords
@@ -23,6 +23,8 @@ head:
 <!-- @include: @small-advertisement.snippet.md -->
 
 AI 编程工具好不好用，真不全看模型。很多时候，差别反而出在你怎么给上下文、怎么拆任务、怎么看 diff。
+
+当然了，这不是说模型不重要，模型的质量是根本。但使用同样的模型，在不同的人手中最终达到的效果是差别很大的。
 
 别把它想成“我把需求丢给 AI，然后代码自己就写好了”。真实项目里没这么轻松。更常见的是：AI 写到一半方向歪了，你得接回来；一次改太多文件，你得拆小；测试没过，你还得顺着错误往回追；它一本正经瞎编的时候，你得能看出来。
 

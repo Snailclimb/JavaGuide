@@ -53,7 +53,13 @@ npm install -g @anthropic-ai/claude-code
 }
 ```
 
-注意替换 `your_deepseek_api_key` 为你的 DeepSeek API Key。如果你使用的是 DeepSeek-V4-Flash，把 `ANTHROPIC_MODEL` 改为 `DeepSeek-V4-Flash` 即可。
+注意替换 `your_deepseek_api_key` 为你的 DeepSeek API Key。
+
+API Key 创建地址：<https://platform.deepseek.com/> 。
+
+![DeepSeek 创建 API Key](https://oss.javaguide.cn/github/javaguide/ai/coding/deepseek-api-keys.png)
+
+如果你使用的是 DeepSeek-V4-Flash，把 `ANTHROPIC_MODEL` 改为 `DeepSeek-V4-Flash` 即可。
 
 配置完成后启动 Claude Code：
 
