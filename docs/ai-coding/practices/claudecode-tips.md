@@ -8,7 +8,7 @@ head:
       content: Claude Code,AI编程,CLAUDE.md,MCP,Skills,Sub-Agent,Agentic Coding,AI辅助开发
 ---
 
-大家好，我是 Guide。前面写过 [IDEA 搭配 Qoder 插件的实战](./idea-qoder-plugin.md)、[Trae 接入大模型的实战](./trae-m2.7.md) 和 [Claude Code 接入第三方模型的实战](./cc-glm5.1.md)，这篇专门把 Claude Code 的日常用法拎出来讲一遍。
+大家好，我是 Guide。前面写过 [IDEA 搭配 Qoder 插件的实战](../cases/idea-qoder-plugin.md)、[Trae 接入大模型的实战](../cases/trae-m2.7.md) 和 [Claude Code 接入第三方模型的实战](../cases/cc-glm5.1.md)，这篇专门把 Claude Code 的日常用法拎出来讲一遍。
 
 很多人第一次用 Claude Code，会把它当成“能在终端里聊天的 AI”。这其实低估它了。
 
@@ -31,6 +31,10 @@ Claude Code 迭代很快，部分命令和版本门槛会变，具体以 `claude
 判断标准很简单：这行删掉后，Claude 会不会更容易犯错？
 
 ![多智能股票分析项目中的 CLAUDE.md 和 AGENTS.md](https://oss.javaguide.cn/github/javaguide/ai/coding/claude-agents-md.png)
+
+Anthropic 建议保持 `CLAUDE.md` 精简不超过 200 行，只保留 Claude 无法轻易从代码中推断的信息。如果内容继续膨胀，可以拆到带 `paths` 的 `.claude/rules/`，或者把不是每次会话都需要的参考内容放到 Skills 里。
+
+![Claude Code 官方文档对 CLAUDE.md 的建议](https://oss.javaguide.cn/github/javaguide/ai/coding/claudecode/claudemd-claude-docs.png)
 
 ### 放在哪里
 
