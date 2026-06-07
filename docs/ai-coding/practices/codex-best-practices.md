@@ -1,319 +1,494 @@
 ---
-title: OpenAI Codex 最佳实践指南：提示工程、工具配置与安全策略
-description: 综合官方文档与实战经验，系统梳理 OpenAI Codex 云端智能体和 CLI 的提示工程、工具配置、AGENTS.md 分层机制、安全模型与 API 高级特性。
+title: Codex 使用指南：配置、AGENTS.md 与 Agentic 工作流
+description: 结合 OpenAI 官方文档和 Codex CLI 社区实践，讲清 Codex 的任务描述、计划阶段、AGENTS.md、config.toml、权限控制、MCP、Skills、Subagents、Hooks 和 Automations。
 category: AI 编程实战
 head:
   - - meta
     - name: keywords
-      content: OpenAI Codex,Codex CLI,codex-1,提示工程,AGENTS.md,AI编程,AI辅助开发,o3
+      content: OpenAI Codex,Codex CLI,AI编程,AGENTS.md,Agent Skills,MCP,Subagents,Hooks,Automations,AI辅助开发
 ---
 
-大家好，我是 Guide。前面聊了 [Claude Code 的使用技巧](./claudecode-tips.md)，这篇来看看 OpenAI 阵营的主力编程工具——**Codex**。
+你好，我是小 G。前面写过一篇 [Claude Code 使用指南：配置、工作流与进阶技巧](./claudecode-tips.md)，发出去之后，有同学在后台问：Claude Code 讲了这么多，那 Codex 怎么用更稳？
 
-OpenAI 在 2025 年推出了 Codex 系列产品线，涵盖基于 o3 模型的云端软件工程智能体（codex-1）和开源的终端编码助手 Codex CLI。它和传统的代码补全不同，能自己读代码、跑测试、提 PR，完成从理解到交付的完整闭环。但想让它真正好用，提示工程、工具配置、安全策略这几环缺一不可。
+我最开始用 Codex 的时候，对它的预期其实不高。
 
-这篇文章综合 OpenAI 官方博客、Codex CLI 开源仓库 README、官方提示工程指南等多个来源，整理成一份实践指南。通过本文你将搞懂：
+毕竟从名字上看，很容易以为它就是一个更会写代码的命令行助手。真正用了一段时间之后，感受不太一样：Codex 更像一个能自己读仓库、改文件、跑命令、回来交差的工程助手。它不适合只拿来补几行代码，反而更适合处理那些有明确目标、能验证、边界也说得清的任务。
 
-1. ⭐ **Codex 云端智能体和 CLI 的定位差异**：各适合什么场景
-2. ⭐ **提示工程的核心原则**：行动优先、上下文收集、代码质量标准
-3. ⭐ **AGENTS.md 的分层机制**：怎么组织项目级指令
-4. **安全模型的三级审批**：从建议到全自动的安全边界
-5. **GPT-5.3 Codex API 的高级特性**：上下文压缩、Phase 机制、推理强度
+但这里面有个前提。
 
-## 一、认识 Codex：两条产品线与一个核心理念
+你得先把工作台摆好：任务边界、权限、项目规则和验收标准，都要提前说清楚。
 
-### Codex 云端智能体（codex-1）
+任务描述太虚，它就会到处猜；权限给得太宽，它可能顺手做出你没授权的动作；`AGENTS.md` 写成项目宣传稿，它每轮还是得重新理解仓库；验收标准不给，它很容易停在“看起来已经改完了”。
 
-OpenAI 发布了基于 o3 模型微调的 codex-1 云端智能体。它运行在 OpenAI 的安全沙箱中，可以读写代码、运行测试和命令行工具，甚至直接提交 Pull Request。三个核心特性：
+这篇文章不打算按产品发布史来介绍 Codex，也不围着某个模型名展开。模型、套餐、命令细节变得很快，写死很容易过期。更值得留下来的，是几条在真实项目里比较抗折腾的经验：任务怎么交代，什么时候先进计划阶段（Plan），`AGENTS.md` 放什么，`config.toml` 管什么，权限、Rules、Hooks 怎么分层，MCP、Skills、Subagents、Automations 又分别适合什么场景。
 
-- **自主执行**：你给出任务描述，它自行收集上下文、编写代码、运行测试，全程无需人工逐步引导
-- **安全沙箱**：每个任务在独立的容器环境中运行，没有网络访问权限，防止对生产环境造成影响
-- **AGENTS.md 指令机制**：类似于 `.cursorrules` 或 `CLAUDE.md`，你可以在仓库中放置 AGENTS.md 文件来定义项目级别的编码规范和约束
+先说个边界：本文主要面向 **Codex CLI + Codex App** 的日常使用。IDE Extension、Web/Cloud 端能看到的命令和能力不一定完全一致。
 
-Codex 云端智能体目前通过 ChatGPT Pro、Business 和 Enterprise 计划提供访问，Plus 计划也于 2025 年 6 月起陆续开放。它支持两种工作模式：交互式对话和后台任务。后台模式下，你可以同时派发多个任务，每个任务在独立容器中并行执行。
+## 任务别只写一句话
 
-> 一句话区分：**云端智能体适合“挂后台跑大任务”，CLI 适合“坐电脑前盯着改代码”。** 两者定位不同，核心理念一致——长期自主、减少人工干预、以可交付的代码为目标。
+很多人第一次把任务丢给 Codex，会这么写：
 
-### Codex CLI：开源终端编码助手
+```text
+帮我优化一下登录逻辑。
+```
 
-Codex CLI 是一个完全开源的终端工具，用 Rust 编写，可以在本地机器上执行代码修改和 shell 命令。跟云端智能体的区别主要在运行环境和安全模型上：
+这句话对人都不够用，对 Codex 当然也不够用。登录逻辑在哪里？优化的是性能、可读性、安全性，还是线上 Bug？哪些文件不能动？改完后用什么证明它真的好了？
 
-| 维度     | Codex 云端智能体             | Codex CLI                        |
-| -------- | ---------------------------- | -------------------------------- |
-| 运行环境 | OpenAI 云端沙箱              | 本地机器                         |
-| 网络访问 | 无（隔离环境）               | 取决于本地权限                   |
-| 代码访问 | GitHub 仓库集成              | 本地文件系统                     |
-| 安全模型 | 平台托管                     | 三级审批模式                     |
-| 开源状态 | 闭源                         | 完全开源（Rust）                 |
-| 适用计划 | Pro/Business/Enterprise/Plus | Plus/Pro/Business/Edu/Enterprise |
+OpenAI 官方最佳实践里有个很实在的框架：Goal、Context、Constraints、Done when。翻成日常写法，就是把“要做什么、看哪里、别碰什么、做到什么程度算完”说清楚。Done when 不要只写“功能正常”，最好写清楚测试、构建、lint、截图、日志或命令输出这类可验证证据。
 
-> **拓展一下**：Codex CLI 默认使用的模型是 `codex-mini-latest`（基于 o4-mini），面向低延迟的代码问答和编辑场景优化。而云端智能体使用的是 `codex-1`（基于 o3），面向需要深度推理的复杂工程任务。两者的定位差异类似“轻量级助手”和“高级工程师”的区别。
+比如同样是修登录问题，我会改成这样：
 
-## 二、提示工程：让 Codex 高效工作的核心
+```text
+目标：修复用户 session 过期后 refresh token 仍有效但刷新失败的问题。
+上下文：重点阅读 src/auth、src/session 和 AuthControllerTest。
+约束：不要改数据库表结构，不要引入新依赖，保持现有 Result<T> 返回格式。
+完成标准：补一个能复现问题的测试，修改实现后运行相关测试，并汇报命令和结果。
+```
 
-搞清楚了 Codex 两条产品线的区别，接下来是最关键的部分——怎么写好提示词。这部分的内容同时适用于云端智能体和 CLI。
+这样可以减少 Codex 的猜测空间。
 
-### ⭐️ 行动优先原则
+小任务可以简单一点。比如改一处文案、补一条日志、把某个参数名统一掉，直接说明目标就行。可一旦任务碰到权限、支付、订单状态、数据迁移、并发、兼容性这些东西，最好别省那几行说明。你前面多写 2 分钟，后面少看很多奇怪 diff。
 
-这是 Codex 提示设计的第一原则——**“行动偏向”（Action Bias）**。好的提示应该引导模型直接交付可工作的代码，而不是用一堆问题结束回复。具体来说：
+还有一个习惯很有用：**把原始材料给 Codex，别只给自己的判断。**
 
-- 明确告知模型“交付可工作的代码，而不仅仅是计划”
-- 模型应该默认做出合理假设并向前推进
-- 只有在真正被阻塞（缺少关键信息或存在矛盾约束）时才向用户提问
+比如线上报错，不要只说“应该是缓存没清”。把堆栈、请求参数、复现步骤、失败测试、浏览器控制台输出贴进去，让它自己定位。你先下一个结论，它很容易顺着你的猜测往下走，最后把一个配置问题修成了业务逻辑问题。
 
-**反面示例**：提示中要求模型“先列出计划，等确认后再执行”。这会让模型在完成工作前就停下来等待，严重降低效率。
+## 复杂任务先让它看路
 
-**正面示例**：提示中写明“接到任务后立即开始工作，合理假设模糊部分，完成后展示结果。如有无法自行判断的阻塞问题，再询问用户。”
+Codex 能直接改代码，但不代表每次都应该直接改。
 
-> **工程提示**：官方提示词中有一段很关键——“每次推出都应以具体编辑或明确的阻塞者加上有针对性的问题结束”。这句话直接告诉模型：不要用“我来帮你分析一下”之类的废话收尾，要么给出代码改动，要么给出阻塞原因和具体问题。
+我现在会先看任务风险。改文案、补字段、加一条明显的空值保护，这类事情直接让它做。它读文件、改文件、跑一下测试，效率很高。
 
-### ⭐️ 上下文收集策略
+另一类任务就不一样了。比如你要改订单状态机，或者把一个 600 多行的函数拆开，又或者排查一个偶发超时。你自己都还没完全摸清调用链，这时候让 Codex 上来就写代码，很容易越修越绕。
 
-Codex 在开始修改代码之前，应该先充分理解代码库——这一点听起来理所当然，但实践中经常被忽略。提示中应明确要求：
+这类任务我会先让它进入计划阶段：
 
-1. **批量读取**：在调用工具前先想清楚需要哪些文件，然后一次性并行读取
-2. **避免串行探索**：不要一个文件一个文件地逐个查看
-3. **先搜索后新增**：在添加新实现之前，先搜索代码库中是否已有类似功能
+```text
+先进入计划阶段，不要修改文件。
+阅读 src/payment、src/order 和相关测试，搞清楚支付成功后库存扣减的调用链。
+请输出关键文件、当前流程、可能修改点、风险点和建议验证命令。
+```
 
-这种“先规划、再并行”的策略可以显著减少往返轮次。
+等它读完仓库，再让它把计划拆出来：
 
-### ⭐️ 代码质量标准
+```text
+基于刚才的分析，给出一个分阶段计划。
+每个阶段写清楚要改哪些文件、补哪些测试、怎么验证。
+不要开始实现，等我确认。
+```
 
-Codex 的定位是“有判断力的高级工程师”。在提示中应体现以下工程标准：
+这个流程慢在前 10 分钟，快在后面。
 
-- 正确性优先于速度，避免冒险的捷径、投机性改动和拼凑式修复
-- 遵循代码库现有约定，偏离时需要说明理由
-- 不添加宽泛的 try/catch，错误必须显式传播
-- 保持类型安全，避免强制类型断言
-- 先搜索已有实现再决定是否新增
+老项目真正麻烦的地方，往往不是某一段代码难写，而是历史兼容逻辑、灰度开关、配置兜底和不敢动的边界混在一起。计划阶段（Plan）的价值，就是先把这些东西捞出来。
 
-对于前端任务，还要特别注明：避免千篇一律的模板化设计，追求有辨识度的视觉表达。
+计划阶段的输出只是候选方案，不是最终事实。高风险改动仍然要人工确认关键调用链、事务边界和兼容性。
 
-> **常见误区**：很多人在提示中写“代码要写得快、写得简洁”。但官方推荐的措辞恰恰相反——优先考虑正确性、清晰度和可靠性，而不是速度。把 Codex 当成“赶工的初级开发者”来用，效果反而不好。
+不过也别把计划阶段（Plan）当仪式。任务足够小、验收足够明确时，直接执行反而更好。社区里有个观点我挺认同：普通 Codex 配小任务，比复杂 workflow 更容易稳定产出。
 
-### 对 Git 脏工作区的处理
+## AGENTS.md 非常重要
 
-这个细节很多人不会想到，但在多人协作或并行任务场景下特别重要——工作区可能包含其他人的未提交改动。提示中需要明确规定：
+### 不要写成第二份 README
 
-- 永远不要恢复不是自己做的改动
-- 提交或编辑时，忽略与自己无关的变更
-- 发现意外更改时立即停下询问用户
-- 禁止使用 `git reset --hard` 等破坏性命令
+它有点像 Claude Code 里的 `CLAUDE.md`，都是给 Agent 看的项目级指令文件。更直白一点说，`AGENTS.md` 是一份 **Agent 工作说明**：告诉 Codex 这个项目怎么启动、怎么测试、哪些目录别碰、改完后要给出什么证据。
 
-## 三、工具配置：影响性能的关键环节
+![多智能股票分析项目中的 CLAUDE.md 和 AGENTS.md](https://oss.javaguide.cn/github/javaguide/ai/coding/claude-agents-md.png)
 
-提示工程搞定了，接下来是工具配置。这部分的内容偏向实操，如果你的团队直接用 Codex CLI 或云端智能体，很多配置已经内置好了；但如果你通过 API 集成 Codex，这些细节会直接影响效果。
+不过两者的定位不完全一样。
 
-### ⭐️ apply_patch：最重要的编辑工具
+`CLAUDE.md` 是 Claude Code 专属入口，主要给 Claude Code 读；`AGENTS.md` 是一个面向 coding agents 的开放指令文件格式，OpenAI Codex 官方支持它。其他工具是否读取、如何读取，要以各自文档为准，不要默认所有 Agent 都会按同一套规则加载。
 
-`apply_patch` 是 Codex 修改代码的核心工具，OpenAI 官方强烈建议使用标准实现，因为模型就是在这种 diff 格式上训练的。有两种接入方式：
+如果仓库里已经有 `AGENTS.md`，通常没必要再维护一份内容几乎一样的 `CLAUDE.md`。可以让 `CLAUDE.md` 导入 `AGENTS.md`，再补 Claude Code 特有的要求：
 
-- **Responses API 内置**：直接在工具列表中加入 `{"type": "apply_patch"}`，最简单的方式
-- **自由格式工具**：使用 Lark 语法定义上下文无关文法，适合需要自定义行为的场景
+```markdown
+@AGENTS.md
 
-两种方式输出的 diff 格式相同，模型都能正确使用。官方建议优先使用 Responses API 内置方式，因为它开箱即用且与模型训练时的格式完全一致；只有需要自定义解析逻辑或扩展行为时才考虑自由格式工具。
+## Claude Code 特定指令
 
-### shell_command：字符串优于数组
+- 使用 plan mode 处理 `src/billing/` 下的改动。
+```
 
-一个容易忽视的细节：将命令作为单个字符串传递（而非字符串数组）效果更好。同时，工具描述中应要求"始终填写工作目录，避免在命令中使用 `cd`"，这能减少路径混淆。
+这样基础规则只维护一份，Claude Code 和 Codex 都能复用。反过来，如果团队原来只有 `CLAUDE.md`，现在想让 Codex、Cursor 这类工具也读到同一套约定，可以把通用部分抽到 `AGENTS.md`，把 Claude Code 专属命令留在 `CLAUDE.md`。
 
-### 并行工具调用
+我建议 `AGENTS.md` 只放 Agent 真会用到的信息：
 
-Codex 支持并行工具调用。通过设置 `parallel_tool_calls: true`，可以让模型同时发起多个工具调用，这比串行调用快不少。提示中应明确要求：
+- Codex 容易猜错的规则
+- 代码里读不出来的约定
+- 团队必须遵守的规范
+- 技术栈版本、常用命令、架构取舍、项目坑点
 
-- 能并行的调用绝不串行
-- 工作流应该是：规划需要读取的资源 → 批量并行发出 → 分析结果 → 如有新的未知需求再重复
+### 分层怎么放
 
-### 工具响应的截断策略
+Codex 启动时会构建一条 instruction chain。当前官方文档里的发现顺序是：先读 Codex home 下的 `AGENTS.override.md`，如果没有再读 `AGENTS.md`；然后从项目根目录一路走到当前目录。每个目录按 `AGENTS.override.md`、`AGENTS.md`、fallback filenames 的顺序最多读取一个文件。越靠近当前工作目录的说明越靠后，也越容易影响本轮任务。
 
-当工具返回的内容过长时，建议截断到约 10k Token（可用字节数除以 4 近似估算）。截断方式为：前半段保留开头内容，后半段保留结尾内容，中间用 `…N tokens truncated…` 格式的省略标记连接（其中 N 为截断的 Token 数）。这样既保留了关键上下文，又不会浪费 Token 预算。
+`AGENTS.override.md` 适合临时覆盖同目录下的 `AGENTS.md`。如果你只是想短期改一条规则，不想动基础文件，可以用它。
 
-> **工程提示**：为什么要保留头尾两部分？因为工具输出的开头通常是摘要或状态信息，结尾往往是错误信息或最终结果——这两部分对模型决策最有价值。中间的重复性内容截断后影响最小。
+还有个不太起眼但很实际的限制：`project_doc_max_bytes` 默认限制的是 Codex 合并后的项目指令大小，官方默认是 32 KiB。即便能调大，也不建议把规则写成大而全的 README。文件太胖以后，重要规则会被淹掉，Codex 也不一定更听话。
 
-## 四、AGENTS.md：项目级指令的分层机制
+我的判断标准很简单：
 
-提示工程搞定了，接下来是另一个高频配置项——AGENTS.md。它的作用和 Claude Code 的 CLAUDE.md 类似，都是给 AI 注入项目级的上下文和规范。
+> 这行删掉以后，Codex 会不会更容易犯错？
 
-### ⭐️ 加载规则
+会，就留；不会，就删。
 
-Codex CLI 会自动扫描并注入 `AGENTS.md` 文件（也支持 `.codex` 等替代文件名），加载逻辑遵循分层覆盖原则：
+有些团队还会把 `AGENTS.md` 当成 Agent 的错误笔记。比如 Codex 在某类任务里反复改错测试命令、误动生成目录、忘记跑某个检查，就把原因和正确做法沉淀进去。这个思路是对的，但别把每次失败都原样粘进去。最好压成一条可执行规则，否则文件会很快变成流水账。
 
-1. 从用户主目录 `~/.codex` 开始，沿仓库根目录到当前工作目录逐层扫描
-2. 每个目录的指令独立成为一条用户消息
-3. 子目录的指令会覆盖父目录的同名配置
-4. 消息以根到叶的顺序注入对话历史
+`/init` 可以生成一份初始 `AGENTS.md`，但它只能当草稿。自动生成的内容经常会把 README 里的东西搬进来，也可能猜错测试命令。生成后最好人工删一轮，只保留会影响 Codex 行为的部分。
 
-这意味着你可以实现分层配置：
+还有一种更适合大项目的写法：让 `AGENTS.md` 只做目录。
 
-| 层级 | 路径                   | 适用范围                                           |
-| ---- | ---------------------- | -------------------------------------------------- |
-| 全局 | `~/.codex/AGENTS.md`   | 所有项目的通用默认行为（如语言偏好、通用编码风格） |
-| 项目 | 仓库根目录 `AGENTS.md` | 项目级约定（如构建命令、测试规范、依赖管理）       |
-| 模块 | 子目录 `AGENTS.md`     | 模块级特殊规则（如某个微服务的特定 API 约定）      |
+我在 [一文搞懂 Harness Engineering](https://javaguide.cn/ai/agent/harness-engineering.html) 里也提到过，OpenAI 自己的 `AGENTS.md` 大约只有 100 行，更像一个索引：先告诉 Agent 最关键的仓库规则，再指向 `docs/` 下面更细的设计文档、架构图、执行计划和质量评级。Agent 真的需要深入某个模块时，再顺着链接去读。
 
-### 实际示例：OpenAI 自己的 AGENTS.md
+这就是渐进式披露。
 
-OpenAI 在 Codex CLI 的开源仓库中放置了一份真实的 AGENTS.md，内容涵盖：
+不要把所有背景一次性塞进上下文。根目录 `AGENTS.md` 放最关键的工作规则；模块级 `AGENTS.md` 放局部约定；更长的设计说明、迁移背景、架构取舍，放到单独文档里，通过链接让 Agent 按需加载。这样既不浪费上下文，也更容易维护。
 
-- Rust 代码风格约定（使用 `#[allow(clippy::xxx)]` 而非全局禁止 clippy 警告）
-- TUI 界面的样式规则（使用 `ratatui` 框架）
-- 测试策略（集成测试优先，单元测试为辅）
-- API 开发规范（JSON 请求/响应格式、错误处理）
+## `config.toml` 管客户端行为
 
-这份文件本身就是 AGENTS.md 最佳实践的参考范本。
+`AGENTS.md` 是项目说明，`config.toml` 是 Codex 客户端自己的配置。
 
-## 五、安全模型：从建议到全自动
+常见位置有几个：用户级配置在 `~/.codex/config.toml`，项目级配置在 `.codex/config.toml`，不同 profile 可以放到 `~/.codex/<profile>.config.toml`，系统级配置在 Unix 上通常是 `/etc/codex/config.toml`。
 
-安全这一环不能跳过。Codex CLI 和云端智能体的安全机制差异较大，分开来说。
+按当前官方配置文档，优先级从高到低是：CLI flags 和 `--config` 覆盖、项目级 `.codex/config.toml`、通过 `--profile` 选择的 profile、用户级 `~/.codex/config.toml`、系统级 `/etc/codex/config.toml`、内置默认值。项目级配置只有在项目被信任后才会加载；如果项目被标记为 untrusted，项目内的 `.codex/` 配置、Hooks 和 Rules 都会被跳过。
 
-### ⭐️ Codex CLI 的三级审批模式
+日常最值得关心的不是某个模型名，而是权限和沙箱。
 
-Codex CLI 提供三种安全模式，对应不同级别的自动化需求：
+```toml
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+```
 
-| 模式          | 说明                                 | 适用场景        |
-| ------------- | ------------------------------------ | --------------- |
-| **Suggest**   | 可读取文件，但所有写操作和命令需确认 | 代码审查、学习  |
-| **Auto Edit** | 自动编辑文件，但命令行操作需确认     | 日常开发        |
-| **Full Auto** | 全自动，编辑和命令都自动执行         | CI/CD、批量任务 |
+这组配置比较适合日常开发：Codex 可以在工作区里改文件、跑验证，但遇到更敏感的命令会停下来问你。
 
-在 Full Auto 模式下，Codex CLI 还提供沙箱机制来限制潜在风险：
+`approval_policy = "never"` 或者更宽的沙箱，不是不可以用，只是要放在隔离好的环境里。比如临时 worktree、容器、一次性脚本、CI、测试账号、最小权限凭据。为了少点几次确认就把权限全放开，真实项目里不太划算。
 
-- **macOS**：使用 Apple Seatbelt（`sandbox-exec`）将文件系统设为只读白名单，并完全阻断出站网络
-- **Linux**：默认无沙箱，官方推荐使用 Docker 容器隔离，配合 `iptables`/`ipset` 防火墙脚本阻断除 OpenAI API 外的所有出站流量
+Hooks 当前默认启用。如果你确实要关闭，再在 `config.toml` 里设置：
 
-> **拓展一下**：Full Auto 模式下，Codex CLI 还会在非 Git 仓库中弹出一个警告确认，提醒你没有版本控制的安全网。这个设计细节挺贴心——在全自动模式下，Git 仓库的“可回滚性”是最后一道防线。
+```toml
+[features]
+hooks = false
+```
 
-### Codex 云端智能体的安全机制
+这个方向也更符合安全直觉：别人仓库里带的配置、Rules、Hooks 都可能影响本地执行，不能默认全信。
 
-云端智能体的安全设计更为严格：
+这几个文件和机制的分工可以先这么记：
 
-- 每个任务在独立的容器中运行，完全没有网络访问权限
-- 运行时间和资源消耗有明确限制
+| 能力               | 主要解决什么                   | 适合放什么                                   |
+| ------------------ | ------------------------------ | -------------------------------------------- |
+| `AGENTS.md`        | Agent 工作说明                 | 项目规则、常用命令、目录约定、验收标准       |
+| `config.toml`      | Codex 客户端配置               | 模型、sandbox、approval、profile、MCP 等配置 |
+| Rules              | 命令级 allow / prompt / forbid | 哪些命令可放行、哪些必须确认、哪些禁止       |
+| Hooks              | 生命周期脚本                   | 检查、审计、格式化、上下文注入               |
+| sandbox / approval | 最终执行边界                   | 文件系统、网络、命令执行和人工确认策略       |
 
-## 六、GPT-5.3 Codex API 的高级特性
+## 权限、Rules 和 Hooks 各管各的
 
-> 本节内容适用于通过 Responses API 直接调用 `gpt-5.3-codex` 模型的开发者。Codex CLI 和云端智能体在内部封装了这些机制，用户无需手动配置。
+Codex 的安全控制有好几层，刚上手时容易全写到 `AGENTS.md` 里。
 
-### 上下文压缩
+这种做法不够可靠，因为 `AGENTS.md` 只是指令，不是执行层面的硬约束。
 
-通过 Responses API 的 `/compact` 端点，Codex 可以压缩对话历史，使对话能够持续很多轮而不触碰上下文窗口限制。实际效果：
+`AGENTS.md` 是软提醒；sandbox 和 approval 管运行边界；Rules 管命令能不能跑；Hooks 管某个生命周期节点必须做什么。
 
-- 长时间任务不会因为上下文溢出而中断
-- 超长任务链不再受典型窗口长度的限制
-- Token 消耗比逐轮累积更可控
+比如“不要执行 `rm -rf`”，只写在 `AGENTS.md` 里，还是一条建议。写进 Rules，Codex 执行前就会被拦住。Rules 当前仍是实验能力，语法和成熟度可能变化；下面写法以当前 Codex Rules 文档为准。如果你的本机版本不支持，先用 `/permissions`、sandbox、approval 或 Hooks 做替代控制。
 
-> **工程提示**：`/compact` 端点是 ZDR（Zero Data Retention）兼容的，返回的是一个 `encrypted_content` 项。后续请求中直接传递这个压缩项即可，无需手动处理上下文摘要。这一点在官方文档中没有特别强调，但集成时必须注意。
+```python
+prefix_rule(
+    pattern = ["rm", "-rf"],
+    decision = "forbidden",
+    justification = "不要让 Codex 执行递归强删；请人工确认具体目录后手动处理。",
+    match = [
+        "rm -rf dist",
+    ],
+)
+```
 
-### ⭐️ Phase 机制
+Hooks 解决的是另一类问题。
 
-这是个容易踩坑的地方。GPT-5.3-Codex 引入了 `phase` 字段来区分模型输出的不同阶段：
+如果你希望 Codex 停止前跑一段校验脚本，或者在工具调用前检查 prompt 里有没有误贴 API key，或者编辑后自动跑格式化，就适合放到 Hook 里。Codex Hooks 当前支持的事件以官方文档为准，比如 `PreToolUse`、`PermissionRequest`、`PostToolUse`、`PreCompact`、`PostCompact`、`UserPromptSubmit`、`SessionStart`、`SubagentStart`、`SubagentStop`、`Stop` 等。
 
-- `null`：普通输出
-- `commentary`：工作中对用户的进度更新
-- `final_answer`：最终完成的交付
+不过 Hook 最后跑的还是本地脚本，写坏了一样麻烦。官方文档里也提到，非托管命令 Hook 需要 Review 和信任，变更后会重新等待确认。多个匹配同一事件的 command hooks 会并发启动，不能依赖 Hook 之间的执行顺序来做安全拦截。这个限制看着啰嗦，但挺有必要。
 
-**重要提示**：phase 是 gpt-5.3-codex 的**必需项**（required），不是可选功能。如果不在历史消息中正确保留 phase 元数据，会导致显著的性能下降。此外，phase 字段只能附加在 assistant 消息上，不要添加到 user 消息中，否则会引发模型行为异常。
+## 让 Codex 证明它真的改对了
 
-### Preamble（进度更新）的节奏控制
+AI 写代码最麻烦的地方，不是它写不出来，而是它很会写“看起来合理”的代码。
 
-Preamble 是模型在执行过程中向用户报告进度的机制。官方给出了明确的节奏建议：
+所以我很少只说“改完告诉我”。我更愿意把验证写进任务里：
 
-- **目标频率**：每隔 1-3 个执行步骤发送一次进度更新
-- **硬性下限**：至少每 6 个步骤或每 10 次工具调用必须发送一次
-- 如果模型连续执行了大量操作而没有任何进度输出，用户会失去对任务状态的感知
+```text
+先补一个失败测试复现这个问题。
+确认测试失败后再改实现。
+改完运行相关测试。
+如果连续两三轮仍失败，停止并汇报当前阻塞点和证据，不要继续盲改。
+```
 
-这意味着在提示工程中，应当明确要求模型保持合理的进度汇报节奏，避免过于频繁（变成日志式更新）或过于稀疏（让用户失去上下文）。
+这个顺序能挡住很多假修复。它必须先把问题复现出来，再改实现，最后用测试证明。
 
-### 两种协作个性
+Codex 结束时，我一般会看 3 件事：改了哪些文件，跑了哪些命令，还有哪些风险没覆盖。`/diff` 用来快速看改动，`/review` 可以审当前未提交改动、某个 commit，或者按你的自定义要求做检查。
 
-Codex 支持切换“友好”和“务实”两种个性风格：
+更细一点，AI Coding 的验证证据可以按这个清单要：
 
-| 风格         | 特点                                   | 适用场景                           |
-| ------------ | -------------------------------------- | ---------------------------------- |
-| **友好模式** | 更像热情的结对编程伙伴，确认多、解释细 | 新人引导、模糊需求探索、高风险改动 |
-| **务实模式** | 简洁直接，每个 Token 的信息密度更高    | 延迟敏感、用户已熟悉工作流         |
+- 失败测试先红后绿。
+- `git diff` 摘要和关键文件说明。
+- 测试、lint、build 命令和结果。
+- 没覆盖到的风险点。
+- 需要人工 Review 的重点。
+- 出问题时怎么回滚。
 
-个性配置写在系统提示中，通过描述来引导模型的措辞风格、解释深度和热情程度。
+社区实践里有两个提示词也挺好用：
 
-### 推理强度选择
+```text
+Prove to me this works. Compare the diff against main and show the evidence.
+```
 
-Codex 支持多级推理强度：
+```text
+Knowing everything you know now, scrap this approach and propose the simpler implementation.
+```
 
-| 强度       | 说明                                         | 适用场景             |
-| ---------- | -------------------------------------------- | -------------------- |
-| **medium** | 日常交互式编码推荐，在智能和速度之间取得平衡 | 大部分日常开发       |
-| **high**   | 较复杂的架构决策和重构任务                   | 跨模块重构、复杂需求 |
-| **xhigh**  | 真正困难的多系统协调、复杂 bug 排查等场景    | 多服务联调、疑难 bug |
+前一句是让它拿证据，不要只写结论。后一句适合在第一版方案能跑但很绕的时候用。Codex 已经读过一轮上下文，再让它重新想一次，往往能把实现收得更干净。
 
-选择合适的推理强度可以直接影响成本和响应速度。我的建议是：**先用 medium 跑，遇到明显推理不足的情况再升级**，不要一上来就用 xhigh。
+不过最后还是要自己看 diff。Codex 的总结不能代替 Review。它说“只改了测试”，你也得打开关键文件看一眼；它说“没有风险”，你也要自己想想事务、并发、权限、兼容性有没有漏。
 
-## 七、常见问题与调试技巧
+## MCP 只接真正能省事的工具
 
-实际使用中，有几个高频问题值得单独拿出来说。
+MCP（Model Context Protocol，模型上下文协议）像一套接线规范：**外部系统把能力封装成 MCP Server，支持 MCP 的 AI 应用连接上来之后，就能发现这些能力并调用。**
 
-### ⭐️ 三个常见失败模式
+![MCP 图解](https://oss.javaguide.cn/github/javaguide/ai/skills/mcp-simple-diagram.png)
 
-OpenAI 官方追踪到了三个高频问题，每个都有对应的解法：
+真实开发里的上下文，不只在仓库里。
 
-**1. 过度思考**
+报错在 Sentry，需求在 Linear，接口说明在内部文档，设计稿在 Figma，复现步骤在浏览器，PR 讨论在 GitHub。你当然可以一段段复制给 Codex，但次数多了就很烦。
 
-模型在执行第一次有用操作前耗时过长。解决方法是在提示中明确要求“立即开始行动”。
+MCP 适合解决这种问题。按当前 Codex MCP 文档，Codex 支持 STDIO MCP Server 和 Streamable HTTP Server，Streamable HTTP Server 支持 Bearer token 或 OAuth 认证。具体 server 类型、认证字段和配置方式，还是以当前 MCP 文档为准。
 
-**2. 日志式更新**
+比如添加 Context7 文档 MCP：
 
-模型机械地汇报状态而非自然协作。解决方法是在提示中要求“只在关键节点报告进度，避免机械式状态日志”。
+```bash
+codex mcp add context7 -- npx -y @upstash/context7-mcp
+```
 
-**3. 重复性口癖**
+加完之后，可以在 TUI 里用 `/mcp` 看当前服务器状态。
 
-反复使用“好发现”、“明白了”等填充词。解决方法是在提示中直接禁止这些表达。
+这里有个取舍：**MCP 不是越多越好。**
 
-> **工程提示**：官方给出了一个很实用的调试技巧——“元提示”。做法是在模型的回复末尾追加反馈，要求它审视自己的指令并建议改进。生成几次回复后，取其中的共性建议，就能得到有针对性的指令优化方案。本质上就是在让模型帮你写提示词。
+我更建议只接高频、明确、最好先只读的工具。经常查线上错误，就接 Sentry 或日志平台；经常改前端，就接浏览器、Playwright、Figma；经常处理 PR，就接 GitHub。带写权限、带 token、能操作外部系统的 MCP，先克制一点。
 
-### 自定义工具的调优
+可以按风险分三层：
 
-对于 Web 搜索、语义搜索、MCP 等非标准工具，模型没有专门的后训练，效果会打折扣。但可以通过以下方式弥补：
+- 只读 MCP：查文档、查错误日志、读 Sentry、看 PR 信息。
+- 半写 MCP：创建 issue、评论 PR、生成草稿、更新非生产文档。
+- 高危 MCP：发版、改生产配置、删除资源、操作云平台或数据库。
 
-- 工具命名要精确（`semantic_search` 比 `search` 好）
-- 在提示中明确说明何时、为何、如何使用每个工具，附带正反示例
-- 让自定义工具的输出格式区别于模型已熟悉的工具输出，避免混淆
+默认先接只读工具。半写工具要限定 scope，高危工具单独审批和审计，token 尽量用最小权限和短期凭据。
 
-> **常见误区**：很多人以为自定义工具只要定义好参数就行了。实际上，**工具的输出格式同样关键**——如果自定义工具的输出长得和 ripgrep 一模一样，模型可能会用错工具，因为它分不清两者的结果。让不同工具的输出在视觉上有明显区分，能有效减少混淆。
+工具越多，Codex 的选择空间越大，误用概率也会变高。
 
-## 八、团队落地建议
+自己写 MCP Server 时，别只暴露工具参数。当前 Codex MCP 文档里提到，Codex 会读取 MCP 初始化时返回的 `instructions` 字段，并建议把最重要的说明放在前 512 个字符里。什么时候该用、什么时候不该用、返回内容怎么理解，这些都值得写清楚。
 
-最后聊几句团队层面的落地经验。
+## Skills 用来存重复流程
 
-### 渐进式引入
+规则文件和 Skill 解决的问题不太一样。
 
-建议团队按以下阶段逐步引入 Codex，不要一上来就 Full Auto：
+规则文件更适合放这个项目一直要遵守什么，比如：技术栈版本、启动命令、目录结构、错误码格式、哪些文件不能碰。
 
-1. **Suggest 模式试用**：让开发者熟悉 Codex 的代码理解能力和建议质量
-2. **Auto Edit 模式日常使用**：在受控环境下逐步增加信任度
-3. **Full Auto + 沙箱模式**：在 CI/CD 流水线或批量任务中启用全自动
+Skill 更适合放遇到某类任务时应该怎么做。比如做代码审查、写测试、改前端页面、网页调研、写技术文章，这些任务每次流程都差不多，就没必要每次都在聊天里重新提醒一遍。
 
-### AGENTS.md 的团队协作
+小 G 之前写过两篇相关的文章：[Agent Skills 是什么？和 Prompt、MCP 到底差在哪？](https://javaguide.cn/ai/agent/skills.html) 和 [AI 编程必备 Skills 推荐](https://javaguide.cn/ai-coding/programmer-essential-skills.html)。
 
-为团队项目建立 AGENTS.md 时，建议覆盖以下内容：
+简单说，Skill 就是一份能被 Agent 按需加载的任务说明。它不是插件，也不是 MCP 工具本身，而是把某类任务的流程、约束、检查项和踩坑经验写进 `SKILL.md`。
 
-- 项目构建和测试命令
-- 代码风格和命名约定
-- 依赖管理策略
-- Git 工作流规范
-- 常见陷阱和注意事项
+Skill 不像 `AGENTS.md` 那样把全文每次都塞进上下文。默认情况下，Codex 会先看到 Skill 的名称和描述，用来判断是否该调用；只有真正用到这个 Skill 时，`SKILL.md` 正文和相关资源才会进入上下文。
 
-### 成本控制
+![Agent 执行链路](https://oss.javaguide.cn/github/javaguide/ai/skills/skills-agent-execution-link.png)
 
-- 合理选择推理强度（medium 能覆盖大部分日常场景）
-- 利用上下文压缩减少 Token 消耗
-- 并行任务时注意监控总资源使用量
+这些重复性很强的流程，都适合沉淀成 Skill。比如写功能前固定走 TDD，先写失败测试再实现；代码审查时固定检查安全、事务、性能和边界条件；写技术文章时固定核对事实来源、引用、标题层级和 AI 味。
 
-> 一句话：**先用 Suggest 模式建立信任，再用 Auto Edit 提效，最后才考虑 Full Auto。** AGENTS.md 在团队推广前，最好先让一两个人试跑一周，把规则调顺了再全员铺开。
+Skill 的价值就在这里：把重复提醒变成可复用的工作手册。Codex 的 Skills 和 Claude 的 Skills 在理念上接近，都是把重复任务流程沉淀成可复用能力；但两者的文件结构、触发方式、可用平台和安全模型，要分别以各自官方文档为准。
 
+一份最小可用的 `SKILL.md`，可以先写到这个粒度：
+
+```markdown
+---
+name: java-service-review
+description: Review Java service-layer changes for transaction boundaries, null handling, logging, and regression tests.
 ---
 
-**参考来源**：
+Use this skill when reviewing Java service-layer changes.
 
-- OpenAI 官方博客：[Introducing Codex](https://openai.com/index/introducing-codex/)
-- OpenAI Codex CLI 开源仓库：[github.com/openai/codex](https://github.com/openai/codex)
-- OpenAI 官方提示工程指南（中文译文参考）：[liduos.com/posts/codex-prompting-guide](https://liduos.com/posts/codex-prompting-guide)
-- OpenAI Codex 仓库 AGENTS.md 实际配置
+Input materials:
+
+- Current diff or target files.
+- Related tests and error logs, if available.
+
+Steps:
+
+1. Read the changed service methods and related tests.
+2. Check transaction boundaries, null handling, logging, and regression coverage.
+3. Return findings with file and line references.
+
+Do not rewrite code unless the user explicitly asks.
+
+Done when:
+
+- Findings are ordered by severity.
+- Each finding explains the risk and a concrete fix direction.
+```
+
+现成 Skill 也可以直接用，比如 Superpowers 把 TDD、Code Review、Spec-Driven、Git Worktree、子 Agent 协作这些流程封装好了。
+
+我在 [AI 编程必备 Skills 推荐：TDD、代码审查与网页自动化实战](https://javaguide.cn/ai-coding/programmer-essential-skills.html) 这篇文章中有详细推荐。
+
+但第三方 Skill 不要拿来就跑。`SKILL.md` 也是指令，里面如果带了危险命令、奇怪脚本、过宽权限，Agent 会照着做。装之前至少看一眼正文、`scripts/` 和 `references/`，确认它没有越权操作。
+
+## Subagents 适合处理支线调查
+
+长任务里，最占上下文的往往不是最终方案，而是中间调查过程。
+
+比如排查一个复杂 Bug，Codex 可能要读几十个文件、翻一堆日志、试几个假设。最后真正有用的结论只有几条，但主会话已经被搜索结果和中间推理塞满了。
+
+这种时候可以用 Subagents。
+
+按当前 Codex 文档，Subagent workflow 默认启用，但 Codex 只有在你明确要求时才会 spawn subagents。每个 subagent 都会执行自己的模型和工具工作，因此会比单 agent 更耗 token。
+
+当前文档里列出的内置 agent 包括：`default` 做通用兜底，`worker` 更偏执行和修复，`explorer` 更偏只读探索。自定义 agent 配置格式、内置 agent 名称和可见入口都可能随版本变化，实际以 `/agent`、官方 Subagents 文档和本机版本为准。你也可以在 `~/.codex/agents/` 或 `.codex/agents/` 里放自定义 TOML Agent。
+
+比较适合拆出去的任务长这样：
+
+```text
+Review current branch against main.
+Spawn one subagent for each topic: security, concurrency, tests, maintainability.
+Wait for all agents, then summarize findings with file references and severity.
+Do not modify files.
+```
+
+这类任务边界清楚，也天然并行。
+
+不适合拆的是很小的改动。改一个 DTO 字段还开 4 个 subagent，沟通成本可能比修改本身还高。我的习惯是：主会话负责目标、取舍和最后验收；subagent 只处理局部、明确、能独立汇报的事。
+
+还有一点要留意：Subagents 继承当前 sandbox 策略。交互式 CLI 里，非当前 thread 的 approval 请求也可能弹出来，批准前看清楚是哪个 agent 发起的请求。
+
+## Automations 别一上来就全自动
+
+Codex App 里的 Automations 适合跑重复任务，比如每天扫近期提交、每周生成 release note、定时检查 CI 失败、汇总未处理告警。
+
+它不是拿来“自动修复一切”的。
+
+Codex App 的 Automations 要区分类型。Thread automation 绑定当前 thread，适合让 Codex 回到同一个对话里继续检查；standalone / project automation 可以按 schedule 启动独立运行。项目级 automation 运行时，本地 Codex App 所在机器要开机，Codex 要运行，项目路径也要还在磁盘上。Git 仓库任务可以在本地项目里跑，也可以在 dedicated background worktree 里跑。Automations 使用默认 sandbox 设置，如果给了 full access，后台任务风险也会变高。
+
+我觉得比较稳的顺序是：先把流程写成普通 prompt，手动跑几次；如果每次都在复制同一套步骤，就沉淀成 Skill；等 Skill 稳定之后，再做成 Automation。
+
+也就是说，Skill 定方法，Automation 定时间。Automation 的 prompt 也要写成可独立运行的 durable prompt，不要依赖上一次对话里的隐含上下文。
+
+比如“每天自动修复所有 Bug 并提交 PR”，听起来很省事，真实项目里大概率制造一堆要人收拾的 diff。更靠谱的是“每天扫描最近 24 小时的 CI 失败并汇总原因”。先让它报告，再决定要不要改。
+
+## 常用命令记几类就够了
+
+Codex CLI 的 slash command 会变，CLI、Codex App、IDE Extension 看到的命令也不一定完全一致。下面这些命令只作为当前使用经验，实际以你所在 surface 的 `/` 弹窗和 `/help` 为准。
+
+我一般记几类：
+
+- 控制会话：`/permissions`、`/model`、`/fast`、`/status`、`/clear`。
+- 看上下文和改动：`/diff`、`/compact`、`/copy`。
+- 扩展能力：`/agent`、`/mcp`、`/hooks`、`/plugins`、`/apps`。
+- Review 和恢复：`/review`、`/fork`、`/resume`。
+
+命令只是入口，不是工作流本身。真正决定结果的，还是任务边界、项目规则、验证标准和权限设置。
+
+## 几个我常用的工作流
+
+接手陌生项目时，我会先让 Codex 当临时向导：
+
+```text
+不要修改文件。
+请解释用户登录流程，从 HTTP 请求进入到 session 写入为止。
+列出关键类、方法、配置项，以及你认为需要人工确认的隐式约束。
+```
+
+它总结出来的内容要抽查，尤其是跨服务调用、灰度配置、历史兼容逻辑。让它列文件和方法名，比只听自然语言总结可靠。
+
+修 Bug 时，不要只说“帮我修一下”。我更愿意把材料摊开：
+
+```text
+下面是失败测试、错误日志和复现步骤。
+先定位根因，不要马上改代码。
+找到根因后，先补一个能复现的测试，再修改实现。
+完成后运行相关测试，并说明为什么这个测试能覆盖问题。
+```
+
+如果它连续两轮都在同一个错误方向上打转，别继续追问“再试试”。停下来，让它复盘已经知道什么、哪些假设被证伪、下一步还缺什么证据。
+
+TDD 对 AI 编程也很有用：
+
+```text
+先不要改实现。
+为 OrderStatusService 写一个失败测试，覆盖已支付订单重复回调时不能重复扣库存的场景。
+测试失败后再改实现，直到测试通过。
+```
+
+这个顺序能先固定期望行为，再让 Codex 去实现。
+
+前端任务要更具体一点。别只说“现代、简洁、高级”，这类词太空，最后很容易得到紫色渐变、大圆角卡片、营销页布局。后台系统尤其容易翻车。
+
+```text
+这是后台运营页面，信息密度优先，不要营销页风格。
+使用现有 Ant Design 组件，不新增 UI 库。
+参考 src/pages/UserList.tsx 的筛选区、表格和分页布局。
+主色沿用 CSS 变量，不要新增渐变背景。
+完成后启动本地页面，检查移动端和桌面端是否有文本重叠。
+```
+
+PR Review 也一样，范围越窄越好：
+
+```text
+Review current branch against main.
+Focus only on correctness, transaction boundaries, null handling, and missing tests.
+Return findings ordered by severity with file and line references.
+Do not comment on style unless it can cause a bug.
+```
+
+Codex 有时会把“可能更好”说得像“必须修”。Review 结果里真正要优先处理的，是会导致 Bug、安全问题、数据不一致、兼容性破坏和测试缺口的发现。
+
+## 安全边界
+
+Codex 能读文件、写文件、跑命令、接 MCP、调浏览器。能力越强，边界越要清楚。
+
+我建议至少守住几条线：
+
+- 不把生产数据库密码、云厂商长期 token、SSH key 暴露给 Codex。
+- 不让它默认读取 `.env`、证书、数据库 dump、生产日志和私钥目录。
+- 不让它直接操作生产环境，除非有临时凭据、审批和审计。
+- 不允许默认 push 到主分支或强推远端分支。
+- 不在无隔离环境里执行来源不明的远程脚本。
+- 不把写权限 MCP 一次性全接上。
+
+真的要跑高权限自动化，就放进容器、临时账号、最小权限凭据和独立 worktree 里。AI 写错代码还能 Review，AI 拿错权限就麻烦多了。高权限自动化还要保留操作日志、命令输出、diff 和审批记录，并确保能快速回滚。
+
+## 容易翻车的地方
+
+任务太虚，是最常见的问题。你只说“优化一下”，Codex 就只能自己猜，最后很可能搜一堆文件、改一堆边缘代码。把目标、上下文、限制和完成标准补齐，通常能少掉很多无效探索。
+
+过度规划也会浪费时间。小改动不需要长计划，直接做、看 diff、跑验证就行。计划阶段（Plan）更适合跨模块、风险高、调用链不清楚的任务。
+
+`AGENTS.md` 太胖时，效果反而会变差。规则很多，但真正关键的几条被冲淡了。它应该从真实错误里长出来：Codex 反复踩过的坑，写进去；代码里一眼能读出来的事实，删掉。
+
+工具和权限也别一次放太开。MCP 接太多，Codex 会选错；权限给太宽，后台任务能做的事就超出你的心理预期。高权限任务放隔离环境，日常开发保持最小权限。
+
+最后是验证缺失。代码看着合理，不代表行为对。测试、lint、构建、截图、日志，这些东西至少要有一种。长会话开始变慢、变飘时，就 `/compact`，必要时 `/fork` 或新开 thread。多 agent 也一样，主会话做决策，subagent 只处理局部研究。
+
+## 按风险分层使用
+
+小任务不用复杂化。改文案、补日志、改一个明显的字段映射，直接让 Codex 执行，结束后看 `/diff`，跑对应单测就行。
+
+中等任务先走计划阶段（Plan），再执行，再验证。比如改一个模块内的业务流程、补一个接口、重构一个局部服务，最好先让 Codex 读相关文件，列出修改点和验证命令，你确认后再动手。
+
+高风险任务先只读分析。支付、权限、数据迁移、生产配置、并发一致性这类改动，先让 Codex 找调用链、风险点和测试缺口；人工确认关键判断后，再用 TDD 或小步提交推进。环境上尽量用 worktree、容器、临时凭据和更收紧的权限。
+
+自动化任务也别一步到位。先手动跑通一两次，再沉淀成 Skill；等 Skill 稳定，再做成 Automation。高权限自动化要额外保留审计记录和回滚方案。
+
+## 总结
+
+Codex 用顺之后，感觉会从“让 AI 写代码”变成“调度一个能自己读仓库、跑命令、交付 diff 的工程助手”。
+
+但越是这样，越不能只盯着 prompt。
+
+任务边界、项目规则、权限控制、验证标准、外部工具、可复用流程，这些东西一起决定了 Codex 最后交出来的质量。我的建议还是那句：先让它在一个小范围里稳定做对，再慢慢把边界往外推。
+
+别一上来就全自动。
