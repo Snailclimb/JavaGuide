@@ -8,8 +8,6 @@ head:
       content: OpenAI Codex,Codex CLI,codex-1,提示工程,AGENTS.md,AI编程,AI辅助开发,o3
 ---
 
-# OpenAI Codex 最佳实践指南
-
 大家好，我是 Guide。前面聊了 [Claude Code 的使用技巧](./claudecode-tips.md)，这篇来看看 OpenAI 阵营的主力编程工具——**Codex**。
 
 OpenAI 在 2025 年推出了 Codex 系列产品线，涵盖基于 o3 模型的云端软件工程智能体（codex-1）和开源的终端编码助手 Codex CLI。它和传统的代码补全不同，能自己读代码、跑测试、提 PR，完成从理解到交付的完整闭环。但想让它真正好用，提示工程、工具配置、安全策略这几环缺一不可。

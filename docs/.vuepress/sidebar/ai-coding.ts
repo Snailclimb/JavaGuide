@@ -15,6 +15,10 @@ export const aiCoding = arraySidebar([
         link: "practices/claudecode-tips",
       },
       {
+        text: "⭐️CLAUDE.md 最佳实践",
+        link: "practices/claude-md-best-practices",
+      },
+      {
         text: "Claude Code 核心命令详解",
         link: "practices/claudecode-commands",
       },

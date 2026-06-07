@@ -1719,7 +1719,10 @@ UNION
 SELECT prod_id, quantity
 FROM OrderItems
 WHERE prod_id LIKE 'BNBG%'
+ORDER BY prod_id;
 ```
+
+> **注意**：`UNION` 查询中使用 `ORDER BY` 时，只能在最后一个 `SELECT` 语句之后使用一次，它会对整个组合结果集进行排序。
 
 ### 将两个 SELECT 语句结合起来（二）
 
@@ -1746,6 +1749,7 @@ WHERE prod_id LIKE 'BNBG%'
 SELECT prod_id, quantity
 FROM OrderItems
 WHERE quantity = 100 OR prod_id LIKE 'BNBG%'
+ORDER BY prod_id;
 ```
 
 ### 组合 Products 表中的产品名称和 Customers 表中的顾客名称

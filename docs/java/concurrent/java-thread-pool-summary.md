@@ -462,6 +462,8 @@ Finished all threads  // 任务全部执行完了才会跳出来，因为executo
 3. 如果向任务队列投放任务失败（任务队列已经满了），并且当前工作线程总数小于最大线程数，就新建一个非核心线程来执行任务。
 4. 如果当前工作线程总数已经等同于最大线程数，任务队列也无法继续接收任务，那么当前任务会被拒绝，拒绝策略会调用 `RejectedExecutionHandler.rejectedExecution()` 方法。
 
+> **补充说明**：很多人误以为非核心线程只在任务队列满的时候才会被创建，之后就"闲着"等销毁。实际上，非核心线程执行完初始任务后，并不会立刻销毁，而是会**主动从任务队列中拉取任务执行**（通过 `getTask()` 方法）。具体来说，核心线程使用 `workQueue.take()` 阻塞等待任务，而非核心线程使用 `workQueue.poll(keepAliveTime, unit)` ——如果在存活时间内从队列中取到了任务，就会继续执行；只有超时没有取到任务，非核心线程才会被回收。这意味着，即使新任务被放入了队列，空闲的非核心线程也会抢先从队列中取走任务来执行，而不是等队列满了才被动响应。
+
 ![图解线程池实现原理](https://oss.javaguide.cn/github/javaguide/java/concurrent/thread-pool-principle.png)
 
 在 `execute` 方法中，多次调用 `addWorker` 方法。`addWorker` 这个方法主要用来创建新的工作线程，如果返回 true 说明创建和启动工作线程成功，否则的话返回的就是 false。
