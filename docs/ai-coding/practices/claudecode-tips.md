@@ -8,17 +8,25 @@ head:
       content: Claude Code,AI编程,CLAUDE.md,MCP,Skills,Sub-Agent,Agentic Coding,AI辅助开发
 ---
 
-大家好，我是 Guide。前面写过 [IDEA 搭配 Qoder 插件的实战](../cases/idea-qoder-plugin.md)、[Trae 接入大模型的实战](../cases/trae-m2.7.md) 和 [Claude Code 接入第三方模型的实战](../cases/cc-glm5.1.md)，这篇专门把 Claude Code 的日常用法拎出来讲一遍。
+你好，我是小 G。前面写过 [IDEA 搭配 Qoder 插件的实战](../cases/idea-qoder-plugin.md)、[Trae 接入大模型的实战](../cases/trae-m2.7.md) 和 [Claude Code 接入第三方模型的实战](../cases/cc-glm5.1.md)，这篇继续聊 Claude Code。
 
-很多人第一次用 Claude Code，会把它当成“能在终端里聊天的 AI”。这其实低估它了。
+正文开始之前，想先问一句：你第一次认真用 Claude Code 的时候，是什么感觉？
 
-它好用的地方，是能自己读仓库、搜代码、跑命令、看报错、改文件，再根据验证结果继续迭代。你给它一句“修一下登录超时后无法刷新 token 的问题”，它会去找认证流程、读测试、改实现、跑命令。问题也在这里：如果上下文、权限和验收标准没管好，它会越跑越远，最后你面对一堆 diff 发呆。
+我自己刚开始用的时候，最直观的感受就是：这玩意儿不像普通代码补全，也不像单纯的聊天机器人。你让它修一个问题，它会自己读仓库、搜代码、跑命令、看报错、改文件，再根据验证结果继续迭代。
 
-这篇文章按 2026-05-29 的 Anthropic 官方文档整理，并结合我自己的使用习惯重写。
+比如你丢给它一句：“修一下登录超时后无法刷新 token 的问题。”
 
-Claude Code 迭代很快，部分命令和版本门槛会变，具体以 `claude --version` 和官方文档为准。比如 `/run`、`/verify` 需要 Claude Code v2.1.145+；新版 `/simplify` 的官方说明出现在 v2.1.154+ 之后；`--enable-auto-mode` 已经移除，现在用 `--permission-mode auto`。
+它可能会去找认证流程、读相关测试、改实现、再跑一遍命令。这个过程看起来很爽，尤其是它真的把问题修掉的时候，会让人产生一种错觉：我是不是只要负责提需求就行了？
 
-国内使用 Claude Code 还有现实门槛：账号、网络、成本、第三方中转稳定性都要考虑。GLM、MiniMax、Kimi、DeepSeek 这类模型可以作为替代或补充，但如果任务是大规模代码修改、复杂重构、长链路排错，Claude 目前仍然是很值得单独研究的工具。
+但用久了之后，翻车也会越来越多。
+
+上下文没管好，它会把支线任务越扯越大；权限放太宽，它可能一口气改掉你没打算动的文件；验收标准没写清，它会用一套看起来合理、但并不符合业务的实现交差。最后你面对一堆 diff 发呆，不知道该留哪块、扔哪块。
+
+所以这篇不是“Claude Code 有多强”的安利文，而是想把我这一年多高频使用里踩过的坑、稳定下来的配置和比较管用的工作流整理出来。重点会放在 `CLAUDE.md`、权限管理、MCP、Skills、Sub-Agent、上下文管理和验证习惯这些地方。
+
+这篇文章参考了 Anthropic 官方文档。需要注意的是，Claude Code 迭代很快，部分命令和版本门槛会变，具体以 `claude --version` 和官方文档为准。比如 `/run`、`/verify` 需要 Claude Code v2.1.145+；新版 `/simplify` 的官方说明出现在 v2.1.154+ 之后；`--enable-auto-mode` 已经移除，现在用 `--permission-mode auto`。
+
+另外，国内使用 Claude Code 还有现实门槛：账号、网络、成本、第三方中转稳定性都要考虑。GLM、MiniMax、Kimi、DeepSeek 这类模型可以作为替代或补充，但如果任务是大规模代码修改、复杂重构、长链路排错，Claude 目前仍然值得单独研究。
 
 ## `CLAUDE.md` 非常重要
 

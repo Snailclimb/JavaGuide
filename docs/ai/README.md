@@ -1,13 +1,13 @@
 ---
 title: AI 应用开发知识体系：大模型、Agent、RAG、MCP、Prompt 工程与系统设计
-description: AI 应用开发面试与学习路线，面向后端开发者梳理大模型调用、Agent、RAG、MCP、Prompt 工程、向量数据库、评测和系统设计。
+description: AI 应用开发面试与学习路线，面向后端开发者梳理大模型调用、Agent、RAG、Skills、MCP、Prompt 工程、向量数据库、评测和系统设计。
 category: AI
 tag:
   - AI
   - 大模型
   - AI 应用开发
   - 后端面试
-icon: "mdi:robot-outline"
+icon: mdi:robot-outline
 sitemap:
   changefreq: weekly
   priority: 1
@@ -29,7 +29,7 @@ head:
 
 这些问题没法各解各的。大模型基础、Agent、RAG、工具调用、系统设计必须连起来理解——只懂调用 API，到了架构评审会卡住；只熟 RAG 论文，到了知识库维护还是不知道怎么处理增量更新和版本去重。
 
-如果时间有限，先看 [AI 应用开发面试指南](./interview-questions/ai-interview-guide.md)，把大模型、Agent、RAG、MCP 和 AI 系统设计里最容易被追问的问题过一遍；如果想补得扎实一些，再按下面的阅读顺序推进。
+如果时间有限，先看 [AI 应用开发面试指南](./interview-questions/ai-interview-guide.md)，把大模型、Agent、RAG、Skills、MCP 和 AI 系统设计里最容易被追问的问题过一遍；如果想补得扎实一些，再按下面的阅读顺序推进。
 
 这应该是当前最全面系统的讲解，每一篇都花费了大量时间完善和优化，每篇文章都画了大量配图辅助理解：
 

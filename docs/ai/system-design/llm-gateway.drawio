@@ -1,304 +1,682 @@
-<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.6 Chrome/144.0.7559.236 Electron/40.8.4 Safari/537.36" version="29.6.6" pages="5">
-  <diagram name="router-and-gateway-boundary" id="router-gateway-boundary">
-    <mxGraphModel dx="1229" dy="664" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="#F8FAFC" math="0" shadow="0">
-      <root>
-        <mxCell id="p3-0" />
-        <mxCell id="p3-1" parent="p3-0" />
-        <mxCell id="p3-title" parent="p3-1" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#2D3748;fontSize=24;fontStyle=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;" value="Router 负责选模型，Gateway 负责管完整调用链路" vertex="1">
-          <mxGeometry height="42" width="760" x="205" y="40" as="geometry" />
-        </mxCell>
-        <mxCell id="p3-router-box" parent="p3-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#005D7B;strokeWidth=2;dashed=1;dashPattern=8 4;fontColor=#2D3748;fontSize=16;fontStyle=1;verticalAlign=top;align=left;spacingTop=12;spacingLeft=14;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;LLM Router&lt;/font&gt;" vertex="1">
-          <mxGeometry height="300" width="360" x="90" y="150" as="geometry" />
-        </mxCell>
-        <mxCell id="p3-router" parent="p3-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#005D7B;strokeColor=none;fontColor=#FFFFFF;fontSize=16;fontStyle=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="选择目标模型&lt;br&gt;ModelRoute" vertex="1">
-          <mxGeometry height="70" width="150" x="195" y="250" as="geometry" />
-        </mxCell>
-        <mxCell id="p3-r1" parent="p3-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#94A3B8;strokeColor=none;fontColor=#FFFFFF;fontSize=16;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="场景" vertex="1">
-          <mxGeometry height="44" width="90" x="125" y="375" as="geometry" />
-        </mxCell>
-        <mxCell id="p3-r2" parent="p3-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#94A3B8;strokeColor=none;fontColor=#FFFFFF;fontSize=16;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="预算" vertex="1">
-          <mxGeometry height="44" width="90" x="225" y="375" as="geometry" />
-        </mxCell>
-        <mxCell id="p3-r3" parent="p3-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#94A3B8;strokeColor=none;fontColor=#FFFFFF;fontSize=16;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="风险" vertex="1">
-          <mxGeometry height="44" width="90" x="325" y="375" as="geometry" />
-        </mxCell>
-        <mxCell id="p3-gw-box" parent="p3-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#005D7B;strokeWidth=2;dashed=1;dashPattern=8 4;fontColor=#2D3748;fontSize=16;fontStyle=1;verticalAlign=top;align=left;spacingTop=12;spacingLeft=14;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;LLM Gateway&lt;/font&gt;" vertex="1">
-          <mxGeometry height="420" width="430" x="510" y="120" as="geometry" />
-        </mxCell>
-        <mxCell id="p3-api" parent="p3-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#005D7B;strokeColor=none;fontColor=#FFFFFF;fontSize=16;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="统一接入" vertex="1">
-          <mxGeometry height="54" width="120" x="575" y="185" as="geometry" />
-        </mxCell>
-        <mxCell id="p3-auth" parent="p3-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7C3AED;strokeColor=none;fontColor=#FFFFFF;fontSize=16;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="鉴权 / 租户" vertex="1">
-          <mxGeometry height="54" width="120" x="735" y="185" as="geometry" />
-        </mxCell>
-        <mxCell id="p3-route" parent="p3-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#005D7B;strokeColor=none;fontColor=#FFFFFF;fontSize=16;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="Router&lt;br&gt;选模型" vertex="1">
-          <mxGeometry height="58" width="120" x="655" y="275" as="geometry" />
-        </mxCell>
-        <mxCell id="p3-limit" parent="p3-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4CA497;strokeColor=none;fontColor=#FFFFFF;fontSize=16;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="限流 / 配额" vertex="1">
-          <mxGeometry height="54" width="120" x="575" y="365" as="geometry" />
-        </mxCell>
-        <mxCell id="p3-fallback" parent="p3-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E99151;strokeColor=none;fontColor=#FFFFFF;fontSize=16;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="fallback / 熔断" vertex="1">
-          <mxGeometry height="54" width="120" x="735" y="365" as="geometry" />
-        </mxCell>
-        <mxCell id="p3-trace" parent="p3-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7C3AED;strokeColor=none;fontColor=#FFFFFF;fontSize=16;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="观测 / 成本 / 审计" vertex="1">
-          <mxGeometry height="54" width="140" x="655" y="455" as="geometry" />
-        </mxCell>
-        <mxCell id="k4uc0hRvm3PPab4ajicc-0" parent="p3-1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=none;fontSize=14;fontColor=#999999;rotation=0;sketch=0;shadow=0;fontFamily=JetBrains Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DJetBrains%2BMono;fontStyle=1;textShadow=0;" value="公众号：&lt;font style=&quot;color: rgb(0, 139, 222);&quot;&gt;JavaGuide&lt;/font&gt;&lt;br&gt;AI图解网站：&lt;font style=&quot;color: rgb(0, 139, 222);&quot;&gt;javaguide.cn&lt;/font&gt;" vertex="1">
-          <mxGeometry height="40" width="260" x="140" y="469" as="geometry" />
-        </mxCell>
-      </root>
-    </mxGraphModel>
-  </diagram>
-  <diagram name="task-layering-and-model-selection" id="task-tiering">
-    <mxGraphModel dx="1164" dy="629" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="#F8FAFC" math="0" shadow="0">
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.6 Chrome/144.0.7559.236 Electron/40.8.4 Safari/537.36" version="29.6.6" pages="6">
+  <diagram name="llm-gateway-overview" id="page-overview">
+    <mxGraphModel dx="1106" dy="598" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="#F8FAFC" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#2D3748;fontSize=26;fontStyle=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;" value="不要所有请求都走最强模型" vertex="1">
-          <mxGeometry height="40" width="320" x="424" y="50" as="geometry" />
+        <mxCell id="o_title" parent="1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=20;fontStyle=1;fontColor=#2D3748;" value="LLM Gateway 整体架构" vertex="1">
+          <mxGeometry height="40" width="300" x="370" y="15" as="geometry" />
         </mxCell>
-        <mxCell id="sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#64748B;fontSize=16;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;" value="按任务价值、风险和成本分层处理" vertex="1">
-          <mxGeometry height="23" width="250" x="450" y="90" as="geometry" />
+        <mxCell id="o_left_label" parent="1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontStyle=1;fontColor=#2D3748;" value="业务服务" vertex="1">
+          <mxGeometry height="30" width="80" x="30" y="85" as="geometry" />
         </mxCell>
-        <mxCell id="tier1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4CA497;strokeColor=none;fontColor=#FFFFFF;fontSize=16;fontStyle=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="规则层&lt;br&gt;&lt;font style=&quot;font-weight: 400;&quot;&gt;过滤 / 校验 / 模板&lt;/font&gt;" vertex="1">
-          <mxGeometry height="82" width="820" x="175" y="155" as="geometry" />
+        <mxCell id="o_right_label" parent="1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontStyle=1;fontColor=#2D3748;" value="模型供应商" vertex="1">
+          <mxGeometry height="30" width="100" x="845" y="85" as="geometry" />
         </mxCell>
-        <mxCell id="tier2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#005D7B;strokeColor=none;fontColor=#FFFFFF;fontSize=16;fontStyle=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="小模型层&lt;br&gt;&lt;font style=&quot;font-weight: 400;&quot;&gt;分类 / 摘要 / 改写&lt;/font&gt;" vertex="1">
-          <mxGeometry height="82" width="700" x="235" y="305" as="geometry" />
+        <mxCell id="o_web" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#0891B2;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="Web 应用" vertex="1">
+          <mxGeometry height="50" width="150" x="20" y="150" as="geometry" />
         </mxCell>
-        <mxCell id="tier3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E99151;strokeColor=none;fontColor=#FFFFFF;fontSize=16;fontStyle=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="强模型层&lt;br&gt;&lt;font style=&quot;font-weight: 400;&quot;&gt;复杂推理 / 规划 / 高风险任务&lt;/font&gt;" vertex="1">
-          <mxGeometry height="84" width="580" x="295" y="455" as="geometry" />
+        <mxCell id="o_mobile" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#0891B2;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="移动端" vertex="1">
+          <mxGeometry height="50" width="150" x="20" y="240" as="geometry" />
         </mxCell>
-        <mxCell id="leftNote" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E2E8F0;strokeColor=none;fontColor=#2D3748;fontSize=16;fontStyle=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="低成本&lt;br&gt;低延迟" vertex="1">
-          <mxGeometry height="62" width="90" x="65" y="165" as="geometry" />
+        <mxCell id="o_agent" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#0891B2;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="Agent 服务" vertex="1">
+          <mxGeometry height="50" width="150" x="20" y="330" as="geometry" />
         </mxCell>
-        <mxCell id="rightNote" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DC2626;strokeColor=none;fontColor=#FFFFFF;fontSize=16;fontStyle=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="高风险&lt;br&gt;质量优先" vertex="1">
-          <mxGeometry height="64" width="100" x="915" y="465" as="geometry" />
+        <mxCell id="o_batch" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#0891B2;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="定时任务" vertex="1">
+          <mxGeometry height="50" width="150" x="20" y="420" as="geometry" />
         </mxCell>
-        <mxCell id="e1" edge="1" parent="1" source="tier1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#94A3B8;strokeWidth=2;endArrow=block;endFill=1;fontSize=16;" target="tier2" value="无法处理再升级">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="585" y="270" as="targetPoint" />
-          </mxGeometry>
+        <mxCell id="o_container" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=none;strokeColor=#005D7B;dashed=1;strokeWidth=2;fontColor=#005D7B;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontStyle=1;verticalAlign=top;align=center;" value="LLM 网关" vertex="1">
+          <mxGeometry height="470" width="560" x="240" y="120" as="geometry" />
         </mxCell>
-        <mxCell id="e2" edge="1" parent="1" source="tier2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#94A3B8;strokeWidth=2;endArrow=block;endFill=1;fontSize=16;" target="tier3" value="复杂任务再升级">
+        <mxCell id="o_api" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#005D7B;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="统一 API（OpenAI 兼容）" vertex="1">
+          <mxGeometry height="45" width="360" x="340" y="155" as="geometry" />
+        </mxCell>
+        <mxCell id="o_auth" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#7C3AED;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="鉴权/租户" vertex="1">
+          <mxGeometry height="45" width="120" x="260" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="o_router" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#005D7B;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="模型路由" vertex="1">
+          <mxGeometry height="45" width="120" x="400" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="o_ratelimit" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#7C3AED;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="限流/配额" vertex="1">
+          <mxGeometry height="45" width="120" x="540" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="o_budget" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#7C3AED;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="Token 预算" vertex="1">
+          <mxGeometry height="45" width="120" x="670" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="o_registry" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#005D7B;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="模型注册表" vertex="1">
+          <mxGeometry height="45" width="120" x="260" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="o_provider" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#005D7B;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="Provider Adapter" vertex="1">
+          <mxGeometry height="45" width="140" x="400" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="o_prompt" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#7C3AED;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="Prompt 渲染" vertex="1">
+          <mxGeometry height="45" width="120" x="560" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="o_retry" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#E99151;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="Retry/Fallback" vertex="1">
+          <mxGeometry height="45" width="140" x="260" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="o_cost" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#7C3AED;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="成本追踪" vertex="1">
+          <mxGeometry height="45" width="120" x="420" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="o_cache" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#4CA497;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="缓存" vertex="1">
+          <mxGeometry height="45" width="120" x="560" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="o_observe" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#7C3AED;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="可观测" vertex="1">
+          <mxGeometry height="45" width="120" x="260" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="o_audit" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#7C3AED;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="审计日志" vertex="1">
+          <mxGeometry height="45" width="120" x="400" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="o_config" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#94A3B8;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="配置/策略" vertex="1">
+          <mxGeometry height="45" width="120" x="540" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="o_openai" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#64748B;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="OpenAI" vertex="1">
+          <mxGeometry height="50" width="150" x="870" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="o_anthropic" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#64748B;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="Anthropic" vertex="1">
+          <mxGeometry height="50" width="150" x="870" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="o_gemini" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#64748B;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="Google Gemini" vertex="1">
+          <mxGeometry height="50" width="150" x="870" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="o_deepseek" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#64748B;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="DeepSeek" vertex="1">
+          <mxGeometry height="50" width="150" x="870" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="o_private" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#64748B;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="私有化模型" vertex="1">
+          <mxGeometry height="50" width="150" x="870" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="o_e1" edge="1" parent="1" source="o_web" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;labelBackgroundColor=#F8FAFC;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontColor=#64748B;" target="o_api" value="统一请求">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="em1adGPLPb8ot76SBaRQ-1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=none;fontSize=14;fontColor=#999999;rotation=0;sketch=0;shadow=0;fontFamily=JetBrains Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DJetBrains%2BMono;fontStyle=1;textShadow=0;" value="公众号：&lt;font style=&quot;color: rgb(0, 139, 222);&quot;&gt;JavaGuide&lt;/font&gt;&lt;br&gt;AI图解网站：&lt;font style=&quot;color: rgb(0, 139, 222);&quot;&gt;javaguide.cn&lt;/font&gt;" vertex="1">
-          <mxGeometry height="40" width="260" x="50" y="400" as="geometry" />
-        </mxCell>
-      </root>
-    </mxGraphModel>
-  </diagram>
-  <diagram name="07 Fallback 与幂等" id="fallback-idempotency">
-    <mxGraphModel dx="1164" dy="629" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="#F8FAFC" math="0" shadow="0">
-      <root>
-        <mxCell id="p7-0" />
-        <mxCell id="p7-1" parent="p7-0" />
-        <mxCell id="p7-title" parent="p7-1" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#2D3748;fontSize=24;fontStyle=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;" value="Fallback 不能只是换模型重试，必须和幂等、风险策略一起设计" vertex="1">
-          <mxGeometry height="42" width="940" x="60" y="40" as="geometry" />
-        </mxCell>
-        <mxCell id="p7-req" parent="p7-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0891B2;strokeColor=none;fontColor=#FFFFFF;fontSize=14;fontStyle=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="请求进入&lt;br&gt;requestId + idempotencyKey" vertex="1">
-          <mxGeometry height="74" width="170" x="70" y="180" as="geometry" />
-        </mxCell>
-        <mxCell id="p7-cache" parent="p7-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4CA497;strokeColor=none;fontColor=#FFFFFF;fontSize=14;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="幂等结果缓存&lt;br&gt;tenant + key" vertex="1">
-          <mxGeometry height="74" width="160" x="325" y="180" as="geometry" />
-        </mxCell>
-        <mxCell id="p7-hit" parent="p7-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4CA497;strokeColor=none;fontColor=#FFFFFF;fontSize=14;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="命中：直接返回历史 LLMResponse" vertex="1">
-          <mxGeometry height="58" width="230" x="570" y="130" as="geometry" />
-        </mxCell>
-        <mxCell id="p7-primary" parent="p7-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#005D7B;strokeColor=none;fontColor=#FFFFFF;fontSize=14;fontStyle=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="Primary Model&lt;br&gt;正常调用" vertex="1">
-          <mxGeometry height="72" width="170" x="570" y="270" as="geometry" />
-        </mxCell>
-        <mxCell id="p7-error" parent="p7-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E99151;strokeColor=none;fontColor=#FFFFFF;fontSize=13;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="错误分类&lt;br&gt;网络 / 5xx / 429 / 参数 / 安全拒答" vertex="1">
-          <mxGeometry height="74" width="190" x="805" y="270" as="geometry" />
-        </mxCell>
-        <mxCell id="p7-fallback" parent="p7-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E99151;strokeColor=none;fontColor=#FFFFFF;fontSize=14;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="可 fallback&lt;br&gt;切备用同级模型" vertex="1">
-          <mxGeometry height="68" width="170" x="805" y="405" as="geometry" />
-        </mxCell>
-        <mxCell id="p7-stop" parent="p7-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DC2626;strokeColor=none;fontColor=#FFFFFF;fontSize=14;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="不可 fallback&lt;br&gt;修请求 / 拒答 / 人工流程" vertex="1">
-          <mxGeometry height="68" width="180" x="570" y="405" as="geometry" />
-        </mxCell>
-        <mxCell id="p7-save" parent="p7-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4CA497;strokeColor=none;fontColor=#FFFFFF;fontSize=14;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="成功后保存结果&lt;br&gt;不是只存已处理标记" vertex="1">
-          <mxGeometry height="72" width="190" x="325" y="530" as="geometry" />
-        </mxCell>
-        <mxCell id="p7-warn" parent="p7-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DC2626;strokeColor=none;fontColor=#FFFFFF;fontSize=14;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="否则：主模型已生成但网关超时，fallback 再生成一次，报告落库两份、成本扣两遍。" vertex="1">
-          <mxGeometry height="78" width="430" x="610" y="560" as="geometry" />
-        </mxCell>
-        <mxCell id="p7-e1" edge="1" parent="p7-1" source="p7-req" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#94A3B8;strokeWidth=2;endArrow=block;endFill=1;" target="p7-cache" value="">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="p7-e2" edge="1" parent="p7-1" source="p7-cache" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#4CA497;strokeWidth=2;endArrow=block;endFill=1;fontSize=12;fontColor=#2D3748;labelBackgroundColor=#F8FAFC;" target="p7-hit" value="hit">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="p7-e3" edge="1" parent="p7-1" source="p7-cache" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#94A3B8;strokeWidth=2;endArrow=block;endFill=1;fontSize=12;fontColor=#2D3748;labelBackgroundColor=#F8FAFC;" target="p7-primary" value="miss">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="p7-e4" edge="1" parent="p7-1" source="p7-primary" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#E99151;strokeWidth=2;endArrow=block;endFill=1;fontSize=12;fontColor=#2D3748;labelBackgroundColor=#F8FAFC;" target="p7-error" value="异常">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="p7-e5" edge="1" parent="p7-1" source="p7-error" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#E99151;strokeWidth=2;endArrow=block;endFill=1;fontSize=12;fontColor=#2D3748;labelBackgroundColor=#F8FAFC;" target="p7-fallback" value="可重试">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="p7-e6" edge="1" parent="p7-1" source="p7-error" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#DC2626;strokeWidth=2;endArrow=block;endFill=1;fontSize=12;fontColor=#2D3748;labelBackgroundColor=#F8FAFC;" target="p7-stop" value="不可重试">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="p7-e7" edge="1" parent="p7-1" source="p7-primary" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#4CA497;strokeWidth=2;endArrow=block;endFill=1;fontSize=12;fontColor=#2D3748;labelBackgroundColor=#F8FAFC;" target="p7-save" value="成功">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-      </root>
-    </mxGraphModel>
-  </diagram>
-  <diagram name="10 请求生命周期" id="request-lifecycle">
-    <mxGraphModel dx="1229" dy="664" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="#F8FAFC" math="0" shadow="0">
-      <root>
-        <mxCell id="p10-0" />
-        <mxCell id="p10-1" parent="p10-0" />
-        <mxCell id="p10-title" parent="p10-1" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#2D3748;fontSize=24;fontStyle=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;" value="一次请求进入 LLM Gateway 后怎么跑" vertex="1">
-          <mxGeometry height="42" width="620" x="60" y="40" as="geometry" />
-        </mxCell>
-        <mxCell id="p10-s1" parent="p10-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7C3AED;strokeColor=none;fontColor=#FFFFFF;fontSize=13;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="1 鉴权与租户识别" vertex="1">
-          <mxGeometry height="56" width="150" x="70" y="130" as="geometry" />
-        </mxCell>
-        <mxCell id="p10-s2" parent="p10-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#94A3B8;strokeColor=none;fontColor=#FFFFFF;fontSize=13;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="2 判断任务场景" vertex="1">
-          <mxGeometry height="56" width="150" x="270" y="130" as="geometry" />
-        </mxCell>
-        <mxCell id="p10-s3" parent="p10-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7C3AED;strokeColor=none;fontColor=#FFFFFF;fontSize=13;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="3 渲染 Prompt" vertex="1">
-          <mxGeometry height="56" width="150" x="470" y="130" as="geometry" />
-        </mxCell>
-        <mxCell id="p10-s4" parent="p10-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4CA497;strokeColor=none;fontColor=#FFFFFF;fontSize=13;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="4 估算 Token 预算" vertex="1">
-          <mxGeometry height="56" width="150" x="670" y="130" as="geometry" />
-        </mxCell>
-        <mxCell id="p10-s5" parent="p10-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#005D7B;strokeColor=none;fontColor=#FFFFFF;fontSize=13;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="5 选择模型供应商" vertex="1">
-          <mxGeometry height="56" width="150" x="870" y="130" as="geometry" />
-        </mxCell>
-        <mxCell id="p10-s6" parent="p10-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4CA497;strokeColor=none;fontColor=#FFFFFF;fontSize=13;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="6 执行限流与预算扣减" vertex="1">
-          <mxGeometry height="56" width="150" x="870" y="285" as="geometry" />
-        </mxCell>
-        <mxCell id="p10-s7" parent="p10-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#64748B;strokeColor=none;fontColor=#FFFFFF;fontSize=13;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="7 调用模型" vertex="1">
-          <mxGeometry height="56" width="150" x="670" y="285" as="geometry" />
-        </mxCell>
-        <mxCell id="p10-s8" parent="p10-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#94A3B8;strokeColor=none;fontColor=#FFFFFF;fontSize=13;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="8 解析响应" vertex="1">
-          <mxGeometry height="56" width="150" x="470" y="285" as="geometry" />
-        </mxCell>
-        <mxCell id="p10-s9" parent="p10-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E99151;strokeColor=none;fontColor=#FFFFFF;fontSize=13;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="9 失败 fallback" vertex="1">
-          <mxGeometry height="56" width="150" x="270" y="285" as="geometry" />
-        </mxCell>
-        <mxCell id="p10-s10" parent="p10-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7C3AED;strokeColor=none;fontColor=#FFFFFF;fontSize=13;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="10 记录 usage 与 trace" vertex="1">
-          <mxGeometry height="56" width="150" x="70" y="285" as="geometry" />
-        </mxCell>
-        <mxCell id="p10-s11" parent="p10-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4CA497;strokeColor=none;fontColor=#FFFFFF;fontSize=13;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="11 返回业务结果" vertex="1">
-          <mxGeometry height="60" width="170" x="470" y="470" as="geometry" />
-        </mxCell>
-        <mxCell id="p10-note" parent="p10-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E4C189;strokeColor=none;fontColor=#2D3748;fontSize=14;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="骨架：幂等检查 → 渲染 Prompt → 预算估算 → 路由 → 按候选模型限流 → 调用 → 对账 → 记录 → fallback" vertex="1">
-          <mxGeometry height="70" width="760" x="210" y="610" as="geometry" />
-        </mxCell>
-        <mxCell id="p10-e1" edge="1" parent="p10-1" source="p10-s1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#94A3B8;strokeWidth=2;endArrow=block;endFill=1;" target="p10-s2" value="">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="p10-e2" edge="1" parent="p10-1" source="p10-s2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#94A3B8;strokeWidth=2;endArrow=block;endFill=1;" target="p10-s3" value="">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="p10-e3" edge="1" parent="p10-1" source="p10-s3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#94A3B8;strokeWidth=2;endArrow=block;endFill=1;" target="p10-s4" value="">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="p10-e4" edge="1" parent="p10-1" source="p10-s4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#94A3B8;strokeWidth=2;endArrow=block;endFill=1;" target="p10-s5" value="">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="p10-e5" edge="1" parent="p10-1" source="p10-s5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#94A3B8;strokeWidth=2;endArrow=block;endFill=1;" target="p10-s6" value="">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="p10-e6" edge="1" parent="p10-1" source="p10-s6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#94A3B8;strokeWidth=2;endArrow=block;endFill=1;" target="p10-s7" value="">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="p10-e7" edge="1" parent="p10-1" source="p10-s7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#94A3B8;strokeWidth=2;endArrow=block;endFill=1;" target="p10-s8" value="">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="p10-e8" edge="1" parent="p10-1" source="p10-s8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#94A3B8;strokeWidth=2;endArrow=block;endFill=1;" target="p10-s9" value="">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="p10-e9" edge="1" parent="p10-1" source="p10-s9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#94A3B8;strokeWidth=2;endArrow=block;endFill=1;" target="p10-s10" value="">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="p10-e10" edge="1" parent="p10-1" source="p10-s10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#94A3B8;strokeWidth=2;endArrow=block;endFill=1;" target="p10-s11" value="">
+        <mxCell id="o_e2" edge="1" parent="1" source="o_mobile" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" target="o_api" value="">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="460" y="313" />
-              <mxPoint x="460" y="500" />
+              <mxPoint x="520" y="290" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="o_e3" edge="1" parent="1" source="o_agent" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" target="o_api" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="o_e4" edge="1" parent="1" source="o_batch" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" target="o_api" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="o_e5" edge="1" parent="1" source="o_provider" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" target="o_openai" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="o_e6" edge="1" parent="1" source="o_provider" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;labelBackgroundColor=#F8FAFC;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontColor=#64748B;" target="o_anthropic" value="分发调用">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="o_e7" edge="1" parent="1" source="o_provider" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" target="o_gemini" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="o_e8" edge="1" parent="1" source="o_provider" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" target="o_deepseek" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="o_e9" edge="1" parent="1" source="o_provider" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" target="o_private" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="request-lifecycle" id="page-lifecycle">
+    <mxGraphModel dx="900" dy="1100" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0" background="#F8FAFC">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="l_title" value="请求生命周期" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=20;fontStyle=1;fontColor=#2D3748;" vertex="1" parent="1">
+          <mxGeometry x="270" y="15" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="l_group1" value="接入与识别" style="rounded=1;whiteSpace=wrap;fillColor=none;strokeColor=#0891B2;dashed=1;strokeWidth=2;fontColor=#0891B2;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontStyle=1;verticalAlign=top;align=center;" vertex="1" parent="1">
+          <mxGeometry x="170" y="60" width="420" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="l_start" value="业务请求进入" style="rounded=1;whiteSpace=wrap;fillColor=#0891B2;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="95" width="200" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="l_auth" value="1. 鉴权与租户识别" style="rounded=1;whiteSpace=wrap;fillColor=#7C3AED;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="265" y="163" width="230" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="l_scene" value="2. 判断任务场景" style="rounded=1;whiteSpace=wrap;fillColor=#7C3AED;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="265" y="230" width="230" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="l_group2" value="准备与决策" style="rounded=1;whiteSpace=wrap;fillColor=none;strokeColor=#005D7B;dashed=1;strokeWidth=2;fontColor=#005D7B;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontStyle=1;verticalAlign=top;align=center;" vertex="1" parent="1">
+          <mxGeometry x="170" y="295" width="420" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="l_prompt" value="3. 渲染 Prompt" style="rounded=1;whiteSpace=wrap;fillColor=#7C3AED;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="265" y="330" width="230" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="l_budget" value="4. 估算 Token 预算" style="rounded=1;whiteSpace=wrap;fillColor=#7C3AED;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="265" y="397" width="230" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="l_route" value="5. 选择模型和供应商" style="rounded=1;whiteSpace=wrap;fillColor=#005D7B;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="265" y="464" width="230" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="l_group3" value="执行与控制" style="rounded=1;whiteSpace=wrap;fillColor=none;strokeColor=#E99151;dashed=1;strokeWidth=2;fontColor=#E99151;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontStyle=1;verticalAlign=top;align=center;" vertex="1" parent="1">
+          <mxGeometry x="170" y="530" width="420" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="l_rate" value="6. 执行限流和预算扣减" style="rounded=1;whiteSpace=wrap;fillColor=#E99151;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="265" y="565" width="230" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="l_call" value="7. 调用模型" style="rounded=1;whiteSpace=wrap;fillColor=#005D7B;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="265" y="632" width="230" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="l_parse" value="8. 解析响应" style="rounded=1;whiteSpace=wrap;fillColor=#005D7B;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="265" y="699" width="230" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="l_group4" value="后处理与返回" style="rounded=1;whiteSpace=wrap;fillColor=none;strokeColor=#4CA497;dashed=1;strokeWidth=2;fontColor=#4CA497;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontStyle=1;verticalAlign=top;align=center;" vertex="1" parent="1">
+          <mxGeometry x="170" y="765" width="420" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="l_fallback" value="9. 失败 Fallback" style="rounded=1;whiteSpace=wrap;fillColor=#E99151;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="265" y="800" width="230" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="l_record" value="10. 记录 Usage 和 Trace" style="rounded=1;whiteSpace=wrap;fillColor=#7C3AED;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="265" y="867" width="230" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="l_return" value="11. 返回业务结果" style="rounded=1;whiteSpace=wrap;fillColor=#4CA497;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="265" y="934" width="230" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="l_end" value="响应返回业务服务" style="rounded=1;whiteSpace=wrap;fillColor=#0891B2;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="1005" width="200" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="l_e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" edge="1" source="l_start" target="l_auth" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l_e2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" edge="1" source="l_auth" target="l_scene" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l_e3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" edge="1" source="l_scene" target="l_prompt" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l_e4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" edge="1" source="l_prompt" target="l_budget" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l_e5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" edge="1" source="l_budget" target="l_route" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l_e6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" edge="1" source="l_route" target="l_rate" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l_e7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" edge="1" source="l_rate" target="l_call" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l_e8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" edge="1" source="l_call" target="l_parse" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l_e9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" edge="1" source="l_parse" target="l_fallback" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l_e10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" edge="1" source="l_fallback" target="l_record" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l_e11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" edge="1" source="l_record" target="l_return" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l_e12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" edge="1" source="l_return" target="l_end" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l_fb" value="失败时重试/切模型" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#E99151;dashed=1;labelBackgroundColor=#F8FAFC;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontColor=#E99151;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="l_fallback" target="l_call" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="640" y="824" />
+              <mxPoint x="640" y="656" />
             </Array>
           </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
-  <diagram name="11 演进路线与选型" id="evolution-selection">
-    <mxGraphModel dx="1383" dy="748" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="#F8FAFC" math="0" shadow="0">
+  <diagram name="fallback-strategy" id="page-fallback">
+    <mxGraphModel dx="1422" dy="827" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0" background="#F8FAFC">
       <root>
-        <mxCell id="p11-0" />
-        <mxCell id="p11-1" parent="p11-0" />
-        <mxCell id="p11-title" parent="p11-1" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#2D3748;fontSize=24;fontStyle=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;" value="落地顺序：先做工程治理，再追求智能路由" vertex="1">
-          <mxGeometry height="42" width="760" x="60" y="40" as="geometry" />
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="f_title" value="Fallback 降级策略" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=20;fontStyle=1;fontColor=#2D3748;" vertex="1" parent="1">
+          <mxGeometry x="420" y="15" width="210" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="p11-row1" parent="p11-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#005D7B;strokeWidth=2;dashed=1;dashPattern=8 4;fontColor=#2D3748;fontSize=16;fontStyle=1;verticalAlign=top;align=left;spacingTop=12;spacingLeft=14;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;" value="第一版优先级" vertex="1">
-          <mxGeometry height="220" width="1020" x="70" y="120" as="geometry" />
+        <mxCell id="f_call" value="模型调用完成" style="rounded=1;whiteSpace=wrap;fillColor=#005D7B;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="70" width="180" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="p11-p1" parent="p11-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#005D7B;strokeColor=none;fontColor=#FFFFFF;fontSize=13;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="1 统一 API&lt;br&gt;Provider Adapter" vertex="1">
-          <mxGeometry height="68" width="145" x="105" y="205" as="geometry" />
+        <mxCell id="f_q" value="成功?" style="rhombus;whiteSpace=wrap;fillColor=#005D7B;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="460" y="150" width="120" height="75" as="geometry" />
         </mxCell>
-        <mxCell id="p11-p2" parent="p11-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7C3AED;strokeColor=none;fontColor=#FFFFFF;fontSize=13;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="2 usage / 成本 / 错误 / 延迟日志" vertex="1">
-          <mxGeometry height="68" width="145" x="285" y="205" as="geometry" />
+        <mxCell id="f_ok" value="返回结果" style="rounded=1;whiteSpace=wrap;fillColor=#4CA497;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="460" y="260" width="120" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="p11-p3" parent="p11-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#005D7B;strokeColor=none;fontColor=#FFFFFF;fontSize=13;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="3 规则路由&lt;br&gt;fallback" vertex="1">
-          <mxGeometry height="68" width="145" x="465" y="205" as="geometry" />
+        <mxCell id="f_err" value="错误类型?" style="rhombus;whiteSpace=wrap;fillColor=#005D7B;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="445" y="345" width="150" height="85" as="geometry" />
         </mxCell>
-        <mxCell id="p11-p4" parent="p11-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4CA497;strokeColor=none;fontColor=#FFFFFF;fontSize=13;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="4 Token 预算&lt;br&gt;租户配额" vertex="1">
-          <mxGeometry height="68" width="145" x="645" y="205" as="geometry" />
+        <mxCell id="f_net" value="网络瞬断 / 5xx" style="rounded=1;whiteSpace=wrap;fillColor=#E99151;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="480" width="180" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="p11-p5" parent="p11-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7C3AED;strokeColor=none;fontColor=#FFFFFF;fontSize=13;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="5 观测 / 审计&lt;br&gt;质量回放" vertex="1">
-          <mxGeometry height="68" width="145" x="825" y="205" as="geometry" />
+        <mxCell id="f_429" value="429 限流" style="rounded=1;whiteSpace=wrap;fillColor=#E99151;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="480" width="130" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="p11-row2" parent="p11-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#005D7B;strokeWidth=2;dashed=1;dashPattern=8 4;fontColor=#2D3748;fontSize=16;fontStyle=1;verticalAlign=top;align=left;spacingTop=12;spacingLeft=14;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;" value="路由策略演进" vertex="1">
-          <mxGeometry height="210" width="1020" x="70" y="410" as="geometry" />
+        <mxCell id="f_ctx" value="上下文超限" style="rounded=1;whiteSpace=wrap;fillColor=#DC2626;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="480" y="480" width="130" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="p11-s1" parent="p11-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#94A3B8;strokeColor=none;fontColor=#FFFFFF;fontSize=13;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="阶段一&lt;br&gt;固定模型" vertex="1">
-          <mxGeometry height="60" width="140" x="110" y="500" as="geometry" />
+        <mxCell id="f_param" value="参数错误" style="rounded=1;whiteSpace=wrap;fillColor=#DC2626;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="480" width="130" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="p11-s2" parent="p11-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#005D7B;strokeColor=none;fontColor=#FFFFFF;fontSize=13;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="阶段二&lt;br&gt;规则路由 + fallback" vertex="1">
-          <mxGeometry height="60" width="140" x="290" y="500" as="geometry" />
+        <mxCell id="f_safe" value="安全拒答" style="rounded=1;whiteSpace=wrap;fillColor=#DC2626;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="480" width="130" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="p11-s3" parent="p11-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#005D7B;strokeColor=none;fontColor=#FFFFFF;fontSize=13;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="阶段三&lt;br&gt;轻量分类器" vertex="1">
-          <mxGeometry height="60" width="140" x="470" y="500" as="geometry" />
+        <mxCell id="f_json" value="结构化解析失败" style="rounded=1;whiteSpace=wrap;fillColor=#E99151;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="960" y="480" width="150" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="p11-s4" parent="p11-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4CA497;strokeColor=none;fontColor=#FFFFFF;fontSize=13;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="阶段四&lt;br&gt;质量反馈 + 成本回归" vertex="1">
-          <mxGeometry height="60" width="140" x="650" y="500" as="geometry" />
+        <mxCell id="f_net_do" value="短重试 + 熔断 + 切供应商" style="rounded=1;whiteSpace=wrap;fillColor=#4CA497;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="570" width="210" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="p11-s5" parent="p11-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E99151;strokeColor=none;fontColor=#FFFFFF;fontSize=13;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="阶段五&lt;br&gt;学习型 Router" vertex="1">
-          <mxGeometry height="60" width="140" x="830" y="500" as="geometry" />
+        <mxCell id="f_429_do" value="读 Retry-After + 切同级模型" style="rounded=1;whiteSpace=wrap;fillColor=#4CA497;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="245" y="570" width="210" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="p11-note" parent="p11-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DC2626;strokeColor=none;fontColor=#FFFFFF;fontSize=14;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;shadow=1;" value="没有评测集、trace 和失败样本时，智能路由只会多一个难解释的黑盒。" vertex="1">
-          <mxGeometry height="62" width="660" x="250" y="675" as="geometry" />
+        <mxCell id="f_ctx_do" value="压缩上下文 / 换长上下文模型" style="rounded=1;whiteSpace=wrap;fillColor=#E99151;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="465" y="570" width="210" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="p11-e1" edge="1" parent="p11-1" source="p11-p1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#94A3B8;strokeWidth=2;endArrow=block;endFill=1;" target="p11-p2" value="">
+        <mxCell id="f_param_do" value="修请求，不重复打供应商" style="rounded=1;whiteSpace=wrap;fillColor=#94A3B8;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="630" y="570" width="200" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="f_safe_do" value="进入业务拒答 / 人工流程" style="rounded=1;whiteSpace=wrap;fillColor=#94A3B8;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="790" y="570" width="200" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="f_json_do" value="JSON 修复 / 降级 Schema" style="rounded=1;whiteSpace=wrap;fillColor=#4CA497;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="960" y="570" width="180" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="f_result" value="记录 fallback 轨迹 + 成本 + 日志" style="rounded=1;whiteSpace=wrap;fillColor=#7C3AED;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="330" y="670" width="350" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="f_e0" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" edge="1" source="f_call" target="f_q" parent="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="p11-e2" edge="1" parent="p11-1" source="p11-p2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#94A3B8;strokeWidth=2;endArrow=block;endFill=1;" target="p11-p3" value="">
+        <mxCell id="f_e_ok" value="是" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#4CA497;labelBackgroundColor=#F8FAFC;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontColor=#4CA497;" edge="1" source="f_q" target="f_ok" parent="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="p11-e3" edge="1" parent="p11-1" source="p11-p3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#94A3B8;strokeWidth=2;endArrow=block;endFill=1;" target="p11-p4" value="">
+        <mxCell id="f_e_fail" value="否" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#DC2626;labelBackgroundColor=#F8FAFC;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontColor=#DC2626;" edge="1" source="f_q" target="f_err" parent="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="p11-e4" edge="1" parent="p11-1" source="p11-p4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#94A3B8;strokeWidth=2;endArrow=block;endFill=1;" target="p11-p5" value="">
+        <mxCell id="f_e_net" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" edge="1" source="f_err" target="f_net" parent="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="p11-e5" edge="1" parent="p11-1" source="p11-s1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#94A3B8;strokeWidth=2;endArrow=block;endFill=1;" target="p11-s2" value="">
+        <mxCell id="f_e_429" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" edge="1" source="f_err" target="f_429" parent="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="p11-e6" edge="1" parent="p11-1" source="p11-s2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#94A3B8;strokeWidth=2;endArrow=block;endFill=1;" target="p11-s3" value="">
+        <mxCell id="f_e_ctx" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" edge="1" source="f_err" target="f_ctx" parent="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="p11-e7" edge="1" parent="p11-1" source="p11-s3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#94A3B8;strokeWidth=2;endArrow=block;endFill=1;" target="p11-s4" value="">
+        <mxCell id="f_e_param" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" edge="1" source="f_err" target="f_param" parent="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="p11-e8" edge="1" parent="p11-1" source="p11-s4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#94A3B8;strokeWidth=2;endArrow=block;endFill=1;" target="p11-s5" value="">
+        <mxCell id="f_e_safe" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" edge="1" source="f_err" target="f_safe" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f_e_json" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" edge="1" source="f_err" target="f_json" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f_e_net2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" edge="1" source="f_net" target="f_net_do" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f_e_4292" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" edge="1" source="f_429" target="f_429_do" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f_e_ctx2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" edge="1" source="f_ctx" target="f_ctx_do" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f_e_param2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" edge="1" source="f_param" target="f_param_do" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f_e_safe2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" edge="1" source="f_safe" target="f_safe_do" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f_e_json2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" edge="1" source="f_json" target="f_json_do" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f_e_res1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" edge="1" source="f_net_do" target="f_result" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f_e_res2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" edge="1" source="f_429_do" target="f_result" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f_e_res3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" edge="1" source="f_json_do" target="f_result" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f_lb1" value="适合 Fallback" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontColor=#E99151;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="545" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="f_lb2" value="不适合直接重试" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontColor=#DC2626;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="510" y="545" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="f_lb3" value="可有限修复" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontColor=#E99151;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="980" y="545" width="110" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="routing-evolution" id="page-routing">
+    <mxGraphModel dx="1422" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="700" math="0" shadow="0" background="#F8FAFC">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="r_title" value="路由策略演进路线" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=20;fontStyle=1;fontColor=#2D3748;" vertex="1" parent="1">
+          <mxGeometry x="500" y="15" width="210" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="r_s1" value="阶段一&#xa;固定模型 + 手动配置" style="rounded=1;whiteSpace=wrap;fillColor=#94A3B8;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="100" width="190" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r_d1" value="把模型调用收口&#xa;避免 SDK 到处散落" style="text;html=1;align=center;verticalAlign=top;resizable=0;points=[];autosize=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontColor=#64748B;" vertex="1" parent="1">
+          <mxGeometry x="35" y="175" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="r_sig1" value="触发信号：多场景共用模型" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontColor=#0891B2;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="30" y="225" width="200" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="r_s2" value="阶段二&#xa;固定规则路由" style="rounded=1;whiteSpace=wrap;fillColor=#0891B2;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="100" width="190" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r_d2" value="按场景、租户、风险等级选模型&#xa;每次路由记录 route_reason" style="text;html=1;align=center;verticalAlign=top;resizable=0;points=[];autosize=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontColor=#64748B;" vertex="1" parent="1">
+          <mxGeometry x="230" y="175" width="230" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="r_sig2" value="触发信号：规则维护开始吃力" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontColor=#0891B2;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="230" y="225" width="220" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="r_s3" value="阶段三&#xa;成本优先 / 级联路由" style="rounded=1;whiteSpace=wrap;fillColor=#005D7B;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="470" y="100" width="190" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r_d3" value="小模型先试&#xa;失败或低置信度再升级" style="text;html=1;align=center;verticalAlign=top;resizable=0;points=[];autosize=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontColor=#64748B;" vertex="1" parent="1">
+          <mxGeometry x="470" y="175" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="r_sig3" value="触发信号：有稳定质量校验" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontColor=#0891B2;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="455" y="225" width="210" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="r_s4" value="阶段四&#xa;语义 / 分类路由" style="rounded=1;whiteSpace=wrap;fillColor=#005D7B;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="690" y="100" width="190" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r_d4" value="Query 语义编码 + 相似度匹配&#xa;轻量分类器判断复杂度" style="text;html=1;align=center;verticalAlign=top;resizable=0;points=[];autosize=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontColor=#64748B;" vertex="1" parent="1">
+          <mxGeometry x="675" y="175" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="r_sig4" value="触发信号：有足够请求样本" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontColor=#0891B2;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="675" y="225" width="200" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="r_s5" value="阶段五&#xa;质量反馈 + 成本回归" style="rounded=1;whiteSpace=wrap;fillColor=#E99151;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="910" y="100" width="190" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r_d5" value="用 trace 回放模型质量&#xa;建立评测集与质量标签" style="text;html=1;align=center;verticalAlign=top;resizable=0;points=[];autosize=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontColor=#64748B;" vertex="1" parent="1">
+          <mxGeometry x="905" y="175" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="r_sig5" value="触发信号：有评测集和反馈闭环" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontColor=#0891B2;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="885" y="225" width="230" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="r_s6" value="阶段六&#xa;学习型 / 个性化 / Agentic" style="rounded=1;whiteSpace=wrap;fillColor=#7C3AED;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1130" y="100" width="210" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r_d6" value="动态选择模型&#xa;按步骤切模型 + 用户偏好" style="text;html=1;align=center;verticalAlign=top;resizable=0;points=[];autosize=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontColor=#64748B;" vertex="1" parent="1">
+          <mxGeometry x="1125" y="175" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="r_sig6" value="触发信号：大流量 + 持续评测体系" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontColor=#0891B2;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="225" width="250" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="r_a1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=3;strokeColor=#94A3B8;" edge="1" source="r_s1" target="r_s2" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_a2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=3;strokeColor=#94A3B8;" edge="1" source="r_s2" target="r_s3" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_a3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=3;strokeColor=#94A3B8;" edge="1" source="r_s3" target="r_s4" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_a4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=3;strokeColor=#94A3B8;" edge="1" source="r_s4" target="r_s5" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_a5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=3;strokeColor=#94A3B8;" edge="1" source="r_s5" target="r_s6" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_core" value="核心原则：先可控 - 再省钱 - 最后变聪明" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontStyle=1;fontColor=#005D7B;" vertex="1" parent="1">
+          <mxGeometry x="430" y="290" width="320" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="r_guard" value="没有 trace，不上分类器；没有评测集，不上学习型 Router；没有成本上限，不上 Agentic 路由" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontColor=#DC2626;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="220" y="330" width="590" height="25" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="rate-limiting-architecture" id="page-ratelimit">
+    <mxGraphModel dx="1422" dy="827" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0" background="#F8FAFC">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="rl_title" value="多维限流与 Token 预算管控" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=20;fontStyle=1;fontColor=#2D3748;" vertex="1" parent="1">
+          <mxGeometry x="340" y="15" width="340" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="rl_g_dim" value="限流维度" style="rounded=1;whiteSpace=wrap;fillColor=none;strokeColor=#005D7B;dashed=1;strokeWidth=2;fontColor=#005D7B;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontStyle=1;verticalAlign=top;align=center;" vertex="1" parent="1">
+          <mxGeometry x="40" y="70" width="500" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="rl_user" value="用户级" style="rounded=1;whiteSpace=wrap;fillColor=#0891B2;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="115" width="120" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="rl_ud" value="防滥用、防脚本刷接口" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontColor=#64748B;" vertex="1" parent="1">
+          <mxGeometry x="210" y="120" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rl_tenant" value="租户级" style="rounded=1;whiteSpace=wrap;fillColor=#E99151;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="185" width="120" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="rl_td" value="控成本、做套餐隔离" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontColor=#64748B;" vertex="1" parent="1">
+          <mxGeometry x="210" y="190" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rl_model" value="模型级" style="rounded=1;whiteSpace=wrap;fillColor=#005D7B;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="255" width="120" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="rl_md" value="防热门模型被打满" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontColor=#64748B;" vertex="1" parent="1">
+          <mxGeometry x="210" y="260" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rl_provider" value="供应商级" style="rounded=1;whiteSpace=wrap;fillColor=#64748B;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="325" width="120" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="rl_pd" value="防外部依赖拖垮系统" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontColor=#64748B;" vertex="1" parent="1">
+          <mxGeometry x="210" y="330" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rl_token" value="Token 级" style="rounded=1;whiteSpace=wrap;fillColor=#7C3AED;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="395" width="120" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="rl_tkd" value="控真实成本和配额压力" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontColor=#64748B;" vertex="1" parent="1">
+          <mxGeometry x="210" y="400" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rl_a1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" edge="1" source="rl_user" target="rl_tenant" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rl_a2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" edge="1" source="rl_tenant" target="rl_model" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rl_a3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" edge="1" source="rl_model" target="rl_provider" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rl_a4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" edge="1" source="rl_provider" target="rl_token" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rl_g_flow" value="Token 预算管控流程" style="rounded=1;whiteSpace=wrap;fillColor=none;strokeColor=#E99151;dashed=1;strokeWidth=2;fontColor=#E99151;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontStyle=1;verticalAlign=top;align=center;" vertex="1" parent="1">
+          <mxGeometry x="580" y="70" width="540" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="rl_s1" value="1. Estimate&#xa;估算输入输出 Token" style="rounded=1;whiteSpace=wrap;fillColor=#005D7B;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="115" width="180" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="rl_s2" value="2. Reserve&#xa;按估算值扣减各桶配额" style="rounded=1;whiteSpace=wrap;fillColor=#E99151;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="810" y="115" width="190" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="rl_s3" value="3. 真实 Usage&#xa;供应商返回实际消耗" style="rounded=1;whiteSpace=wrap;fillColor=#005D7B;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="200" width="180" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="rl_s4" value="4. Reconcile&#xa;用真实值修正预算偏差" style="rounded=1;whiteSpace=wrap;fillColor=#4CA497;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="810" y="200" width="190" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="rl_f1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" edge="1" source="rl_s1" target="rl_s2" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rl_f2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" edge="1" source="rl_s2" target="rl_s3" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="905" y="190" />
+              <mxPoint x="690" y="190" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rl_f3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" edge="1" source="rl_s3" target="rl_s4" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rl_g_fail" value="限流失败处理" style="rounded=1;whiteSpace=wrap;fillColor=none;strokeColor=#DC2626;dashed=1;strokeWidth=2;fontColor=#DC2626;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontStyle=1;verticalAlign=top;align=center;" vertex="1" parent="1">
+          <mxGeometry x="580" y="310" width="540" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="rl_queue" value="排队等待" style="rounded=1;whiteSpace=wrap;fillColor=#E99151;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="610" y="350" width="130" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="rl_deg" value="降级到轻量模型" style="rounded=1;whiteSpace=wrap;fillColor=#E99151;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="765" y="350" width="160" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="rl_rej" value="拒绝请求" style="rounded=1;whiteSpace=wrap;fillColor=#DC2626;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="950" y="350" width="130" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="rl_note" value="关键原则：请求发给供应商之前，先扣预算。扣不动就排队、降级或拒绝。" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontColor=#DC2626;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="490" width="480" height="25" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="component-architecture" id="page-component">
+    <mxGraphModel dx="1475" dy="797" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="900" background="#F8FAFC" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c_title" parent="1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=20;fontStyle=1;fontColor=#2D3748;" value="LLM Gateway 组件架构" vertex="1">
+          <mxGeometry height="40" width="300" x="380" y="15" as="geometry" />
+        </mxCell>
+        <mxCell id="c_g1" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=none;strokeColor=#0891B2;dashed=1;strokeWidth=2;fontColor=#0891B2;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontStyle=1;verticalAlign=top;align=center;" value="接入层" vertex="1">
+          <mxGeometry height="110" width="950" x="40" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="c_api" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#0891B2;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="API Adapter&#xa;(OpenAI 兼容)" vertex="1">
+          <mxGeometry height="55" width="180" x="60" y="105" as="geometry" />
+        </mxCell>
+        <mxCell id="c_auth" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#7C3AED;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="Auth / Tenant&#xa;鉴权与租户识别" vertex="1">
+          <mxGeometry height="55" width="180" x="270" y="105" as="geometry" />
+        </mxCell>
+        <mxCell id="c_prompt" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#7C3AED;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="Prompt Renderer&#xa;Prompt 模板渲染" vertex="1">
+          <mxGeometry height="55" width="180" x="480" y="105" as="geometry" />
+        </mxCell>
+        <mxCell id="c_budget" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#7C3AED;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="Token Budget&#xa;估算 Token 预算" vertex="1">
+          <mxGeometry height="55" width="180" x="690" y="105" as="geometry" />
+        </mxCell>
+        <mxCell id="c_e1" edge="1" parent="1" source="c_api" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" target="c_auth" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_e2" edge="1" parent="1" source="c_auth" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" target="c_prompt" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_e3" edge="1" parent="1" source="c_prompt" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" target="c_budget" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_g2" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=none;strokeColor=#005D7B;dashed=1;strokeWidth=2;fontColor=#005D7B;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontStyle=1;verticalAlign=top;align=center;" value="控制层" vertex="1">
+          <mxGeometry height="110" width="950" x="40" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="c_router" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#005D7B;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="Router&#xa;模型路由决策" vertex="1">
+          <mxGeometry height="55" width="170" x="60" y="245" as="geometry" />
+        </mxCell>
+        <mxCell id="c_registry" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#005D7B;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="Model Registry&#xa;模型注册表" vertex="1">
+          <mxGeometry height="55" width="170" x="260" y="245" as="geometry" />
+        </mxCell>
+        <mxCell id="c_ratelimit" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#E99151;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="Rate Limiter&#xa;多维限流" vertex="1">
+          <mxGeometry height="55" width="170" x="460" y="245" as="geometry" />
+        </mxCell>
+        <mxCell id="c_cache" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#4CA497;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="Cache&#xa;语义缓存 / 精确缓存" vertex="1">
+          <mxGeometry height="55" width="190" x="660" y="245" as="geometry" />
+        </mxCell>
+        <mxCell id="c_e4" edge="1" parent="1" source="c_router" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" target="c_registry" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_e5" edge="1" parent="1" source="c_registry" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" target="c_ratelimit" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_e5b" edge="1" parent="1" source="c_ratelimit" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" target="c_cache" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_g3" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=none;strokeColor=#E99151;dashed=1;strokeWidth=2;fontColor=#E99151;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontStyle=1;verticalAlign=top;align=center;" value="执行层" vertex="1">
+          <mxGeometry height="110" width="950" x="40" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="c_provider" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#005D7B;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="Provider Adapter&#xa;统一供应商协议适配" vertex="1">
+          <mxGeometry height="55" width="220" x="180" y="385" as="geometry" />
+        </mxCell>
+        <mxCell id="c_retry" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#E99151;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="Retry / Fallback&#xa;重试与优雅降级" vertex="1">
+          <mxGeometry height="55" width="220" x="580" y="385" as="geometry" />
+        </mxCell>
+        <mxCell id="c_e6" edge="1" parent="1" source="c_provider" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" target="c_retry" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_g4" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=none;strokeColor=#7C3AED;dashed=1;strokeWidth=2;fontColor=#7C3AED;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontStyle=1;verticalAlign=top;align=center;" value="治理层" vertex="1">
+          <mxGeometry height="110" width="950" x="40" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="c_cost" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#7C3AED;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="Cost Tracker&#xa;成本统计与归因" vertex="1">
+          <mxGeometry height="55" width="190" x="60" y="525" as="geometry" />
+        </mxCell>
+        <mxCell id="c_observe" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#7C3AED;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="Observability&#xa;指标/日志/Trace/告警" vertex="1">
+          <mxGeometry height="55" width="220" x="380" y="525" as="geometry" />
+        </mxCell>
+        <mxCell id="c_audit" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#7C3AED;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="Audit Log&#xa;审计日志/脱敏/回放" vertex="1">
+          <mxGeometry height="55" width="220" x="720" y="525" as="geometry" />
+        </mxCell>
+        <mxCell id="c_e7" edge="1" parent="1" source="c_cost" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" target="c_observe" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_e8" edge="1" parent="1" source="c_observe" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" target="c_audit" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_eb" edge="1" parent="1" source="c_budget" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="c_router" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="780" y="200" />
+              <mxPoint x="145" y="200" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c_ec" edge="1" parent="1" source="c_cache" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="c_provider" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="755" y="340" />
+              <mxPoint x="290" y="340" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c_ee" edge="1" parent="1" source="c_retry" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="c_observe" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="690" y="480" />
+              <mxPoint x="490" y="480" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c_prio" parent="1" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;fontStyle=1;fontColor=#2D3748;" value="落地优先级" vertex="1">
+          <mxGeometry height="30" width="110" x="40" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="c_p1" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#DC2626;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="P1: 统一 API + Provider Adapter" vertex="1">
+          <mxGeometry height="40" width="290" x="40" y="670" as="geometry" />
+        </mxCell>
+        <mxCell id="c_p2" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#E99151;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="P2: usage、成本、错误和延迟日志" vertex="1">
+          <mxGeometry height="40" width="290" x="350" y="670" as="geometry" />
+        </mxCell>
+        <mxCell id="c_p3" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#E99151;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="P3: 规则路由和 Fallback" vertex="1">
+          <mxGeometry height="40" width="220" x="660" y="670" as="geometry" />
+        </mxCell>
+        <mxCell id="c_p4" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#005D7B;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="P4: Token 预算和租户配额" vertex="1">
+          <mxGeometry height="40" width="240" x="40" y="725" as="geometry" />
+        </mxCell>
+        <mxCell id="c_p5" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#005D7B;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="P5: 可观测、审计和质量回放" vertex="1">
+          <mxGeometry height="40" width="250" x="300" y="725" as="geometry" />
+        </mxCell>
+        <mxCell id="c_p6" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#7C3AED;strokeColor=none;fontColor=#FFFFFF;fontFamily=system-ui, -apple-system, PingFang SC, Microsoft YaHei, sans-serif;fontSize=15;shadow=1;" value="P6: 轻量分类器 / 学习型 Router" vertex="1">
+          <mxGeometry height="40" width="270" x="570" y="725" as="geometry" />
+        </mxCell>
+        <mxCell id="c_pe1" edge="1" parent="1" source="c_p1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" target="c_p2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_pe2" edge="1" parent="1" source="c_p2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" target="c_p3" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_pe3" edge="1" parent="1" source="c_p4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" target="c_p5" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_pe4" edge="1" parent="1" source="c_p5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeWidth=2;strokeColor=#94A3B8;" target="c_p6" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
