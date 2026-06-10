@@ -112,19 +112,31 @@ export const csBasics = [
         text: "面试题",
         icon: ICONS.INTERVIEW,
         children: [
-          "operating-system-basic-questions-01",
-          "operating-system-basic-questions-02",
+          {
+            text: "⭐️操作系统常见面试题总结（上）",
+            link: "operating-system-basic-questions-01",
+          },
+          {
+            text: "⭐️操作系统常见面试题总结（下）",
+            link: "operating-system-basic-questions-02",
+          },
         ],
       },
       {
         text: "面试必考",
         icon: ICONS.STAR,
         children: [
-          { text: "虚拟内存", link: "virtual-memory" },
-          { text: "I/O 多路复用", link: "io-multiplexing" },
-          { text: "零拷贝", link: "zero-copy" },
-          { text: "Linux", link: "linux-intro" },
-          { text: "Shell", link: "shell-intro" },
+          { text: "虚拟内存详解", link: "virtual-memory" },
+          { text: "I/O 多路复用详解", link: "io-multiplexing" },
+          { text: "零拷贝详解", link: "zero-copy" },
+        ],
+      },
+      {
+        text: "Linux",
+        icon: ICONS.LINUX,
+        children: [
+          { text: "Linux 基础知识总结", link: "linux-intro" },
+          { text: "Shell 编程基础知识总结", link: "shell-intro" },
         ],
       },
     ],
