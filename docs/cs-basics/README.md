@@ -37,7 +37,7 @@ head:
 ## 学习重点
 
 - 计算机网络重点理解分层模型、TCP/UDP、HTTP/HTTPS、DNS、ARP、NAT 和常见网络安全问题。
-- 操作系统重点理解进程线程、内存管理、文件系统、Linux 基础和 Shell 使用。
+- 操作系统重点理解进程线程、内存管理、虚拟内存、零拷贝、I/O 多路复用、文件系统、Linux 基础和 Shell 使用。
 - 数据结构重点理解数组、链表、栈、队列、树、图、堆、红黑树和布隆过滤器的特点与适用场景。
 - 算法重点理解常见算法思想、复杂度分析、排序、字符串、链表和 LeetCode 高频题。
 - 面试中要能把“概念 -> 原理 -> 对比 -> 场景 -> 常见问题”串成完整回答。
@@ -66,7 +66,10 @@ head:
 
 - [操作系统专题](./operating-system/)：从操作系统基础讲到 Linux 常见问题。
 - [操作系统常见面试题总结（上）](./operating-system/operating-system-basic-questions-01.md)：覆盖操作系统基础、进程线程、死锁、内存管理等问题。
-- [操作系统常见面试题总结（下）](./operating-system/operating-system-basic-questions-02.md)：继续整理文件系统、IO、Linux 等面试考点。
+- [操作系统常见面试题总结（下）](./operating-system/operating-system-basic-questions-02.md)：继续整理文件系统、I/O、Linux 等面试考点。
+- [虚拟内存详解：地址转换、TLB、缺页中断与页面置换](./operating-system/virtual-memory.md)：讲清分页、页表、TLB、缺页中断和页面置换。
+- [I/O 多路复用详解：select、poll、epoll 原理与区别](./operating-system/io-multiplexing.md)：讲清 select、poll、epoll 的实现原理、性能差异和适用场景。
+- [零拷贝详解：mmap、sendfile 与 splice](./operating-system/zero-copy.md)：讲清传统 I/O、mmap、sendfile、splice 的拷贝路径和工程应用。
 - [Linux 基础知识总结](./operating-system/linux-intro.md)：掌握 Linux 目录、文件权限、常用命令和系统基础。
 - [Shell 编程基础知识总结](./operating-system/shell-intro.md)：补齐脚本编写、变量、流程控制和常用命令能力。
 

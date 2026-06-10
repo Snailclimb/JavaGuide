@@ -110,6 +110,9 @@ export const csBasics = [
     children: [
       "operating-system-basic-questions-01",
       "operating-system-basic-questions-02",
+      { text: "虚拟内存", link: "virtual-memory" },
+      { text: "I/O 多路复用", link: "io-multiplexing" },
+      { text: "零拷贝", link: "zero-copy" },
       {
         text: "Linux",
         icon: ICONS.LINUX,

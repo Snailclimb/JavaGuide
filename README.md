@@ -145,6 +145,9 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 
 - [操作系统常见知识点&面试题总结(上)](./docs/cs-basics/operating-system/operating-system-basic-questions-01.md)
 - [操作系统常见知识点&面试题总结(下)](./docs/cs-basics/operating-system/operating-system-basic-questions-02.md)
+- [虚拟内存详解：地址转换、TLB、缺页中断与页面置换](./docs/cs-basics/operating-system/virtual-memory.md)
+- [I/O 多路复用详解：select、poll、epoll 原理与区别](./docs/cs-basics/operating-system/io-multiplexing.md)
+- [零拷贝详解：mmap、sendfile 与 splice](./docs/cs-basics/operating-system/zero-copy.md)
 - **Linux**：
   - [后端程序员必备的 Linux 基础知识总结](./docs/cs-basics/operating-system/linux-intro.md)
   - [Shell 编程基础知识总结](./docs/cs-basics/operating-system/shell-intro.md)
