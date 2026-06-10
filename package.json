@@ -44,6 +44,7 @@
   },
   "dependencies": {
     "@vuepress/bundler-vite": "2.0.0-rc.28",
+    "@vuepress/helper": "2.0.0-rc.128",
     "@vuepress/plugin-docsearch": "2.0.0-rc.128",
     "@vuepress/plugin-feed": "2.0.0-rc.128",
     "husky": "9.1.7",

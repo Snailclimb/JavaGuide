@@ -275,7 +275,7 @@ pnpm lint
 
 ## 上下文别越堆越乱
 
-小 G 之前写过一篇 [Context Engineering](https://mp.weixin.qq.com/s/qmhnwYGAYE6dWcMZw22j0A)，里面有个观点放到 Vibe Coding 里也很适用：**上下文窗口大不等于效果好——窗口能装更多东西，但模型能不能稳定找到重点，是另一回事。**
+小 G 之前写过一篇 [Context Engineering](https://javaguide.cn/ai/agent/context-engineering.html)，里面有个观点放到 Vibe Coding 里也很适用：**上下文窗口大不等于效果好——窗口能装更多东西，但模型能不能稳定找到重点，是另一回事。**
 
 ![上下文为什么会失效](https://oss.javaguide.cn/github/javaguide/ai/context-engineering/why-does-the-following-content-fail.png)
 
