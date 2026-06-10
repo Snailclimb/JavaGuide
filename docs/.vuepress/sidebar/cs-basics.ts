@@ -108,15 +108,24 @@ export const csBasics = [
     prefix: "operating-system/",
     icon: ICONS.OS,
     children: [
-      "operating-system-basic-questions-01",
-      "operating-system-basic-questions-02",
-      { text: "虚拟内存", link: "virtual-memory" },
-      { text: "I/O 多路复用", link: "io-multiplexing" },
-      { text: "零拷贝", link: "zero-copy" },
       {
-        text: "Linux",
-        icon: ICONS.LINUX,
-        children: ["linux-intro", "shell-intro"],
+        text: "面试题",
+        icon: ICONS.INTERVIEW,
+        children: [
+          "operating-system-basic-questions-01",
+          "operating-system-basic-questions-02",
+        ],
+      },
+      {
+        text: "面试必考",
+        icon: ICONS.STAR,
+        children: [
+          { text: "虚拟内存", link: "virtual-memory" },
+          { text: "I/O 多路复用", link: "io-multiplexing" },
+          { text: "零拷贝", link: "zero-copy" },
+          { text: "Linux", link: "linux-intro" },
+          { text: "Shell", link: "shell-intro" },
+        ],
       },
     ],
   },
