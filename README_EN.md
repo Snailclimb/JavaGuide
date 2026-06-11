@@ -1,39 +1,30 @@
-Recommended to read through online reading platforms for better experience and faster speed! Link: [javaguide.cn](https://javaguide.cn/).
+**English** | **[日本語](./README_JA.md)** | **[简体中文](./README.md)**
 
-<div align="center">
+Recommended to read online for a better experience and faster speed: [javaguide.cn](https://javaguide.cn/)
 
-[![logo](https://oss.javaguide.cn/github/javaguide/csdn/1c00413c65d1995993bf2b0daf7b4f03.png)](https://github.com/Snailclimb/JavaGuide)
+## AI Application Development Interview Guide
 
-[GitHub](https://github.com/Snailclimb/JavaGuide) | [Gitee](https://gitee.com/SnailClimb/JavaGuide)
+An open-source guide for backend developers on AI application development, AI programming practices, and interviews, covering core technologies and engineering practices such as LLM, Agent, RAG, MCP, Claude Code, Codex, and more. Benchmarking JavaGuide! If it helps, welcome to Star!
 
-<a href="https://trendshift.io/repositories/1319" target="_blank"><img src="https://trendshift.io/api/badge/repositories/1319" alt="Snailclimb%2FJavaGuide | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+- **Project URL**: [https://github.com/Snailclimb/AIGuide](https://github.com/Snailclimb/AIGuide)
+- **Online Reading**: [https://javaguide.cn/ai/](https://javaguide.cn/ai/)
 
-</div>
+## Backend Interview Preparation
 
-> - **Interview Edition**: Candidates preparing for Java interviews can consider the **[《Java Interview Guide》](./docs/zhuanlan/java-mian-shi-zhi-bei.md)** (high quality, specially designed for interviews, to be used with JavaGuide).
-> - **Knowledge Planet**: Exclusive interview mini-books/one-on-one communication/resume modification/exclusive job-seeking guide, welcome to join **[JavaGuide Knowledge Planet](./docs/about-the-author/zhishixingqiu-two-years.md)** (click the link to view the detailed introduction of the planet, make sure you really need it before joining).
-> - **Usage Suggestion**: Experienced interviewers always dig into technical issues along the project experience. Definitely do not memorize technical articles! For detailed learning suggestions, please refer to: [JavaGuide Usage Suggestion](./docs/javaguide/use-suggestion.md).
-> - **Seek a Star**: If you find the content of JavaGuide helpful, please give a free Star, which is the greatest encouragement to me. Thank you all for walking together and striving together! Github link: [https://github.com/Snailclimb/JavaGuide](https://github.com/Snailclimb/JavaGuide).
-> - **Reprint Notice**: All the following articles are original creations of JavaGuide unless stated otherwise at the beginning. Please indicate the source when reprinting. If malicious plagiarism/copying is discovered, legal weapons will be used to safeguard our rights. Let's together maintain a good technical creation environment!
-
-<div align="center">
-  <img src="https://oss.javaguide.cn/github/javaguide/gongzhonghaoxuanchuan.png" style="margin: 0 auto;" />  
-</div>
-
-<!-- #region home -->
-
-## Project-related
-
-- [Project Introduction](https://javaguide.cn/javaguide/intro.html)
-- [Usage Suggestion](https://javaguide.cn/javaguide/use-suggestion.html)
-- [Contribution Guide](https://javaguide.cn/javaguide/contribution-guideline.html)
-- [FAQ](https://javaguide.cn/javaguide/faq.html)
+- [⭐Java Backend Interview Preparation Plan (Covering General Backend System)](./docs/interview-preparation/backend-interview-plan.md) (Must-see :+1:)
+- [How to Efficiently Prepare for Java Interviews?](./docs/interview-preparation/teach-you-how-to-prepare-for-the-interview-hand-in-hand.md)
+- [Key Summary of Java Backend Interviews](./docs/interview-preparation/key-points-of-interview.md)
+- [Java Learning Roadmap (Latest, 4w+ Words)](./docs/interview-preparation/java-roadmap.md)
+- [Programmer Resume Writing Guide](./docs/interview-preparation/resume-guide.md)
+- [Project Experience Guide](./docs/interview-preparation/project-experience-guide.md)
+- [How to Deal with Interview Nervousness?](./docs/interview-preparation/how-to-handle-interview-nerves.md)
+- [What to Do Without Internship Experience in Campus Recruitment? How to Write About Internship Experience?](./docs/interview-preparation/internship-experience.md)
 
 ## Java
 
 ### Basics
 
-**Knowledge Points/Interview Questions Summary** : (Must-see:+1:):
+**Knowledge Points/Interview Questions Summary** (Must-see:+1:):
 
 - [Summary of Common Java Basics Knowledge Points & Interview Questions (Part 1)](./docs/java/basis/java-basic-questions-01.md)
 - [Summary of Common Java Basics Knowledge Points & Interview Questions (Part 2)](./docs/java/basis/java-basic-questions-02.md)
@@ -64,11 +55,6 @@ Recommended to read through online reading platforms for better experience and f
 - [ArrayList Core Source Code + Expansion Mechanism Analysis](./docs/java/collection/arraylist-source-code.md)
 - [LinkedList Core Source Code Analysis](./docs/java/collection/linkedlist-source-code.md)
 - [HashMap Core Source Code + Underlying Data Structure Analysis](./docs/java/collection/hashmap-source-code.md)
-
-# Java Collection & Concurrency Series
-
-## Collection
-
 - [ConcurrentHashMap Core Source Code + Underlying Data Structure Analysis](./docs/java/collection/concurrent-hash-map-source-code.md)
 - [LinkedHashMap Core Source Code Analysis](./docs/java/collection/linkedhashmap-source-code.md)
 - [CopyOnWriteArrayList Core Source Code Analysis](./docs/java/collection/copyonwritearraylist-source-code.md)
@@ -85,7 +71,7 @@ Recommended to read through online reading platforms for better experience and f
 
 ### Concurrency
 
-**Knowledge Points/Interview Questions Summary** : (Must-read :+1:)
+**Knowledge Points/Interview Questions Summary** (Must-read :+1:)
 
 - [Common Java Concurrency Knowledge Points & Interview Questions Summary (Part 1)](./docs/java/concurrent/java-concurrent-questions-01.md)
 - [Common Java Concurrency Knowledge Points & Interview Questions Summary (Part 2)](./docs/java/concurrent/java-concurrent-questions-02.md)
@@ -105,7 +91,7 @@ Recommended to read through online reading platforms for better experience and f
 
 ### JVM (Must-read :+1:)
 
-The JVM part mainly refers to the [JVM Specification - Java 8](https://docs.oracle.com/javase/specs/jvms/se8/html/index.html) and Zhong Zhiming's book [《Deep Understanding of Java Virtual Machine (3rd Edition)》](https://book.douban.com/subject/34907497/) (strongly recommend to read it several times!).
+The JVM part mainly refers to the [JVM Specification - Java 8](https://docs.oracle.com/javase/specs/jvms/se8/html/index.html) and Zhou Zhiming's book [《Deep Understanding of Java Virtual Machine (3rd Edition)》](https://book.douban.com/subject/34907497/) (strongly recommend to read it several times!).
 
 - **[Java Memory Area](./docs/java/jvm/memory-area.md)**
 - **[JVM Garbage Collection](./docs/java/jvm/jvm-garbage-collection.md)**
@@ -129,8 +115,10 @@ The JVM part mainly refers to the [JVM Specification - Java 8](https://docs.orac
 - [Java 18 New Features Overview](./docs/java/new-features/java18.md)
 - [Java 19 New Features Overview](./docs/java/new-features/java19.md)
 - [Java 20 New Features Overview](./docs/java/new-features/java20.md)
-
-# Overview of Java 21, 22, 23, 24, and 25 New Features
+- [Java 21 New Features Overview](./docs/java/new-features/java21.md)
+- [Java 22 & 23 New Features Overview](./docs/java/new-features/java22-23.md)
+- [Java 24 New Features Overview](./docs/java/new-features/java24.md)
+- [Java 25 New Features Overview](./docs/java/new-features/java25.md)
 
 ## Computer Fundamentals
 
@@ -150,7 +138,7 @@ The JVM part mainly refers to the [JVM Specification - Java 8](https://docs.orac
 - [Summary of Common Computer Network Knowledge Points & Interview Questions (Part 2)](./docs/cs-basics/network/other-network-questions2.md)
 - [Summary of Professor Xie Xiren's "Computer Network" Content (Supplementary)](./docs/cs-basics/network/computer-network-xiexiren-summary.md)
 
-**Important Concept Explanations**:
+**Important Knowledge Points Explanation**:
 
 - [Detailed Explanation of the OSI and TCP/IP Network Layer Models (Basics)](./docs/cs-basics/network/osi-and-tcp-ip-model.md)
 - [Summary of Common Application Layer Protocols (Application Layer)](./docs/cs-basics/network/application-layer-protocol.md)
@@ -159,7 +147,11 @@ The JVM part mainly refers to the [JVM Specification - Java 8](https://docs.orac
 - [Common HTTP Status Codes (Application Layer)](./docs/cs-basics/network/http-status-codes.md)
 - [Detailed Explanation of the DNS Domain Name System (Application Layer)](./docs/cs-basics/network/dns.md)
 - [TCP Three-Way Handshake and Four-Way Termination (Transport Layer)](./docs/cs-basics/network/tcp-connection-and-disconnection.md)
+- [What's the Difference Between TCP Keepalive and HTTP Keep-Alive? (Transport Layer)](./docs/cs-basics/network/tcp-keepalive-vs-http-keepalive.md)
 - [TCP Transmission Reliability Guarantee (Transport Layer)](./docs/cs-basics/network/tcp-reliability-guarantee.md)
+- [If You Can Ping Through, Does TCP Definitely Connect? (Transport Layer)](./docs/cs-basics/network/can-ping-but-tcp-may-not-connect.md)
+- [Can TCP and UDP Use the Same Port? (Transport Layer)](./docs/cs-basics/network/can-tcp-and-udp-use-the-same-port.md)
+- [What's the Maximum Number of TCP Connections a Host Can Maintain? (Transport Layer)](./docs/cs-basics/network/maximum-number-of-tcp-connections-per-host.md)
 - [Detailed Explanation of the ARP Protocol (Network Layer)](./docs/cs-basics/network/arp.md)
 - [Detailed Explanation of the NAT Protocol (Network Layer)](./docs/cs-basics/network/nat.md)
 - [Summary of Common Network Attack Means (Security)](./docs/cs-basics/network/network-attack-means.md)
@@ -208,14 +200,13 @@ Additionally, [GeeksforGeeks](https://www.geeksforgeeks.org/fundamentals-of-algo
 
 **Knowledge Points/Interview Questions Summary:**
 
-# MySQL Common Knowledge Points & Interview Questions Summary (Must-Read :+1:)
-
-- [MySQL Common Knowledge Points & Interview Questions Summary](./docs/database/mysql/mysql-questions-01.md)
+- **[MySQL Common Knowledge Points & Interview Questions Summary](./docs/database/mysql/mysql-questions-01.md)** (Must-read :+1:)
 - [MySQL High-Performance Optimization Specification Recommendations](./docs/database/mysql/mysql-high-performance-optimization-specification-recommendations.md)
 
 **Important Knowledge Points:**
 
 - [MySQL Index Details](./docs/database/mysql/mysql-index.md)
+- [Summary of MySQL Index Invalidation Scenarios](./docs/database/mysql/mysql-index-invalidation.md)
 - [Detailed Explanation of MySQL Transaction Isolation Levels (with Pictures)](./docs/database/mysql/transaction-isolation-level.md)
 - [Detailed Explanation of MySQL's Three Logs (binlog, redo log, and undo log)](./docs/database/mysql/mysql-logs.md)
 - [InnoDB Storage Engine's Implementation of MVCC](./docs/database/mysql/innodb-implementation-of-mvcc.md)
@@ -223,12 +214,12 @@ Additionally, [GeeksforGeeks](https://www.geeksforgeeks.org/fundamentals-of-algo
 - [Detailed Explanation of MySQL Query Cache](./docs/database/mysql/mysql-query-cache.md)
 - [MySQL Query Execution Plan Analysis](./docs/database/mysql/mysql-query-execution-plan.md)
 - [Are MySQL Auto-Increment Primary Keys Always Continuous?](./docs/database/mysql/mysql-auto-increment-primary-key-continuous.md)
-- [Suggestions on Storing Time-Related Data in Databases](./docs/database/mysql/some-thoughts-on-database-storage-time.md)
+- [Suggestions on Storing Time-Related Data in MySQL](./docs/database/mysql/some-thoughts-on-database-storage-time.md)
 - [Index Invalidation Caused by Implicit Conversion in MySQL](./docs/database/mysql/index-invalidation-caused-by-implicit-conversion.md)
 
 ### Redis
 
-**Knowledge Points/Interview Questions Summary** (Must-Read :+1:):
+**Knowledge Points/Interview Questions Summary** (Must-read:+1:):
 
 - [Redis Common Knowledge Points & Interview Questions Summary (Part 1)](./docs/database/redis/redis-questions-01.md)
 - [Redis Common Knowledge Points & Interview Questions Summary (Part 2)](./docs/database/redis/redis-questions-02.md)
@@ -278,8 +269,8 @@ Additionally, [GeeksforGeeks](https://www.geeksforgeeks.org/fundamentals-of-algo
 
 ## System Design
 
-- [Common System Design Interview Questions Summary](./docs/system-design/system-design-questions.md)
-- [Common Design Pattern Interview Questions Summary](./docs/system-design/design-pattern.md)
+- [⭐Common System Design Interview Questions Summary](./docs/system-design/system-design-questions.md)
+- [⭐Common Design Pattern Interview Questions Summary](https://interview.javaguide.cn/system-design/design-pattern.html)
 
 ### Basics
 
@@ -291,13 +282,13 @@ Additionally, [GeeksforGeeks](https://www.geeksforgeeks.org/fundamentals-of-algo
 
 ### Common Frameworks
 
-#### Spring/SpringBoot (Must-Read :+1:)
+#### Spring/SpringBoot (Must-read :+1:)
 
-**Knowledge Points/Interview Questions Summary**:
+**Knowledge Points/Interview Questions Summary** :
 
 - [Summary of Common Spring Knowledge Points and Interview Questions](./docs/system-design/framework/spring/spring-knowledge-and-questions-summary.md)
 - [Summary of Common SpringBoot Knowledge Points and Interview Questions](./docs/system-design/framework/spring/springboot-knowledge-and-questions-summary.md)
-- [Summary of Common Spring/SpringBoot Annotations](./docs/system-design/framework/spring/spring-common-annotations.md)
+- [Summary of Common Spring/Spring Boot Annotations](./docs/system-design/framework/spring/spring-common-annotations.md)
 - [SpringBoot Beginner's Guide](https://github.com/Snailclimb/springboot-guide)
 
 **Detailed Explanation of Important Knowledge Points**:
@@ -327,6 +318,7 @@ Additionally, [GeeksforGeeks](https://www.geeksforgeeks.org/fundamentals-of-algo
 - [Summary of Sensitive Word Filtering Solutions](./docs/system-design/security/sentive-words-filter.md)
 - [Summary of Data Desensitization Solutions](./docs/system-design/security/data-desensitization.md)
 - [Why Both Front-end and Back-end Need to Perform Data Validation](./docs/system-design/security/data-validation.md)
+- [Why Can Passwords Only Be Reset When Forgotten, Not Told the Original Password?](./docs/system-design/security/why-password-reset-instead-of-retrieval.md)
 
 ### Scheduled Tasks
 
@@ -338,11 +330,14 @@ Additionally, [GeeksforGeeks](https://www.geeksforgeeks.org/fundamentals-of-algo
 
 ## Distributed System
 
+- [⭐High-Frequency Distributed System Interview Questions](https://interview.javaguide.cn/distributed-system/distributed-system.html)
+
 ### Theory, Algorithms, and Protocols
 
 - [Interpretation of CAP Theory and BASE Theory](https://javaguide.cn/distributed-system/protocol/cap-and-base-theorem.html)
 - [Interpretation of Paxos Algorithm](https://javaguide.cn/distributed-system/protocol/paxos-algorithm.html)
 - [Interpretation of Raft Algorithm](https://javaguide.cn/distributed-system/protocol/raft-algorithm.html)
+- [Interpretation of ZAB Protocol](https://javaguide.cn/distributed-system/protocol/zab.html)
 - [Detailed Explanation of Gossip Protocol](https://javaguide.cn/distributed-system/protocol/gossip-protocol.html)
 - [Detailed Explanation of Consistent Hashing Algorithm](https://javaguide.cn/distributed-system/protocol/consistent-hashing.html)
 
@@ -369,8 +364,6 @@ Additionally, [GeeksforGeeks](https://www.geeksforgeeks.org/fundamentals-of-algo
 - [Design Guide for Distributed ID](https://javaguide.cn/distributed-system/distributed-id-design.html)
 
 ### Distributed Lock
-
-# Distributed Locks
 
 - [Introduction to Distributed Locks](https://javaguide.cn/distributed-system/distributed-lock.html)
 - [Summary of Common Distributed Lock Implementation Solutions](https://javaguide.cn/distributed-system/distributed-lock-implementations.html)
@@ -449,4 +442,6 @@ Deploying multiple instances of the same service to avoid single point of failur
 
 If you want to stay up-to-date with my latest articles and share my valuable content, you can follow my official public account.
 
-![JavaGuide Official Public Account](https://oss.javaguide.cn/github/javaguide/gongzhonghaoxuanchuan.png)
+<img src="https://oss.javaguide.cn/github/javaguide/gongzhonghao-javaguide.png" alt="JavaGuide Official Public Account"  style="zoom: 43%; display: block; margin: 0 auto;" />
+
+<!-- #endregion home -->

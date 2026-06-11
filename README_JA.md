@@ -1,26 +1,6 @@
+**[English](./README_EN.md)** | **日本語** | **[简体中文](./README.md)**
+
 より快適でスピーディーな体験のため、オンライン閲覧プラットフォームでの閲覧をおすすめします！リンク: [javaguide.cn](https://javaguide.cn/)。
-
-<div align="center">
-
-[![logo](https://oss.javaguide.cn/github/javaguide/csdn/1c00413c65d1995993bf2b0daf7b4f03.png)](https://github.com/Snailclimb/JavaGuide)
-
-[GitHub](https://github.com/Snailclimb/JavaGuide) | [Gitee](https://gitee.com/SnailClimb/JavaGuide)
-
-<a href="https://trendshift.io/repositories/1319" target="_blank"><img src="https://trendshift.io/api/badge/repositories/1319" alt="Snailclimb%2FJavaGuide | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
-
-</div>
-
-> - **面接版**: Java の面接対策をしている方は、**[《Java 面接ガイド》](./docs/zhuanlan/java-mian-shi-zhi-bei.md)**（高品質で、面接向けに特化して設計されており、JavaGuide と併用するのがおすすめです）を検討してみてください。
-> - **知識惑星（Knowledge Planet）**: 限定の面接ミニ書籍／1 対 1 のコミュニケーション／履歴書の添削／限定の就職活動ガイドなど、**[JavaGuide 知識惑星](./docs/about-the-author/zhishixingqiu-two-years.md)** への参加を歓迎します（リンクをクリックすると惑星の詳しい紹介を確認できます。本当に必要かどうかを見極めてから参加してください）。
-> - **使い方の提案**: 経験豊富な面接官は、プロジェクト経験に沿って技術的な問題を深掘りしてくるものです。技術記事を丸暗記するのは絶対にやめましょう！詳しい学習の提案については [JavaGuide 使い方の提案](./docs/javaguide/use-suggestion.md) を参照してください。
-> - **Star のお願い**: JavaGuide の内容が役に立ったと感じたら、ぜひ無料の Star をお願いします。それが私にとって最大の励みになります。共に歩み、共に努力してくれる皆さん、ありがとうございます！Github リンク: [https://github.com/Snailclimb/JavaGuide](https://github.com/Snailclimb/JavaGuide)。
-> - **転載に関する注意**: 以下のすべての記事は、冒頭に特に断りがない限り、JavaGuide のオリジナル作品です。転載の際は出典を明記してください。悪質な盗用・コピーが発見された場合は、法的手段を用いて権利を守ります。皆で良質な技術創作環境を維持していきましょう！
-
-<div align="center">
-  <img src="https://oss.javaguide.cn/github/javaguide/gongzhonghaoxuanchuan.png" style="margin: 0 auto;" />  
-</div>
-
-<!-- #region home -->
 
 ## プロジェクト関連
 

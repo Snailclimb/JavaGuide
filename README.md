@@ -1,3 +1,5 @@
+**[English](./README_EN.md)** | **[日本語](./README_JA.md)** | **简体中文**
+
 - 推荐在线阅读（体验更好，速度更快）：[javaguide.cn](https://javaguide.cn/)
 - 面试突击版本（只保留重点，附带精美 PDF 下载）：[interview.javaguide.cn](https://interview.javaguide.cn/)
 
