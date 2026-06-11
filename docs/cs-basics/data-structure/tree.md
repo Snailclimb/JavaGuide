@@ -141,7 +141,7 @@ public void preOrder(TreeNode root){
     if(root == null){
         return;
     }
-    system.out.println(root.data);
+    System.out.println(root.data);
     preOrder(root.left);
     preOrder(root.right);
 }
@@ -163,7 +163,7 @@ public void inOrder(TreeNode root){
         return;
     }
     inOrder(root.left);
-    system.out.println(root.data);
+    System.out.println(root.data);
     inOrder(root.right);
 }
 ```
@@ -183,8 +183,51 @@ public void postOrder(TreeNode root){
     }
     postOrder(root.left);
     postOrder(root.right);
-    system.out.println(root.data);
+    System.out.println(root.data);
 }
 ```
+
+## 面试复盘重点
+
+树结构面试通常会从二叉树遍历开始，逐步追问二叉搜索树、平衡树、B 树和 B+ 树。
+
+| 结构       | 特点                                     | 常见追问                       |
+| ---------- | ---------------------------------------- | ------------------------------ |
+| 二叉树     | 每个节点最多两个子节点                   | 前中后序遍历、层序遍历、树高   |
+| 二叉搜索树 | 左子树小于根，右子树大于根               | 中序遍历有序、退化成链表       |
+| AVL 树     | 高度平衡                                 | 查询快，插入删除旋转更频繁     |
+| 红黑树     | 近似平衡                                 | Java `TreeMap`、`HashMap` 树化 |
+| B 树       | 多路平衡搜索树                           | 磁盘 IO 友好                   |
+| B+ 树      | 数据通常在叶子节点，叶子节点有序链表相连 | MySQL 索引、范围查询           |
+
+二叉树遍历模板要能手写：
+
+```java
+void dfs(TreeNode root) {
+    if (root == null) {
+        return;
+    }
+    // 前序位置
+    dfs(root.left);
+    // 中序位置
+    dfs(root.right);
+    // 后序位置
+}
+```
+
+BST 高频回答：
+
+- 中序遍历二叉搜索树可以得到递增序列。
+- 如果插入数据本身有序，普通 BST 会退化成链表。
+- AVL 树比红黑树更严格平衡，查询更稳定；红黑树平衡要求宽一些，插入删除调整成本更低。
+- B+ 树适合数据库索引，一个节点能存更多 key，树高更低，叶子节点有序链表适合范围查询。
+
+## 推荐练习题
+
+- [144. 二叉树的前序遍历](https://leetcode.cn/problems/binary-tree-preorder-traversal/)
+- [102. 二叉树的层序遍历](https://leetcode.cn/problems/binary-tree-level-order-traversal/)
+- [98. 验证二叉搜索树](https://leetcode.cn/problems/validate-binary-search-tree/)
+- [236. 二叉树的最近公共祖先](https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/)
+- [105. 从前序与中序遍历序列构造二叉树](https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
 
 <!-- @include: @article-footer.snippet.md -->

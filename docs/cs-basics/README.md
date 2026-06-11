@@ -38,16 +38,16 @@ head:
 
 - 计算机网络重点理解分层模型、TCP/UDP、HTTP/HTTPS、DNS、ARP、NAT 和常见网络安全问题。
 - 操作系统重点理解进程线程、内存管理、虚拟内存、零拷贝、I/O 多路复用、文件系统、Linux 基础和 Shell 使用。
-- 数据结构重点理解数组、链表、栈、队列、树、图、堆、红黑树和布隆过滤器的特点与适用场景。
-- 算法重点理解常见算法思想、复杂度分析、排序、字符串、链表和 LeetCode 高频题。
+- 数据结构重点理解数组、链表、栈、队列、哈希表、树、图、堆、Trie、并查集、跳表、红黑树、布隆过滤器和 LRU 的特点与适用场景。
+- 算法重点理解复杂度分析、二分、双指针、滑动窗口、DFS/BFS、回溯、动态规划、贪心、Top K、排序、字符串、链表和 LeetCode 高频题。
 - 面试中要能把“概念 -> 原理 -> 对比 -> 场景 -> 常见问题”串成完整回答。
 
 ## 建议阅读顺序
 
 1. [计算机网络专题](./network/)：先从分层模型、HTTP、TCP、DNS 和常见网络面试题入手，建立网络通信的整体认知。
 2. [操作系统专题](./operating-system/)：理解进程线程、内存、文件系统、Linux 和 Shell，为并发编程、JVM、数据库打基础。
-3. [数据结构专题](./data-structure/)：掌握线性表、树、图、堆、红黑树、布隆过滤器等常见结构。
-4. [算法专题](./algorithms/)：结合经典算法思想和 LeetCode 高频题进行练习。
+3. [数据结构专题](./data-structure/)：掌握线性表、哈希表、树、图、堆、Trie、并查集、跳表、红黑树、布隆过滤器、LRU 等常见结构。
+4. [算法专题](./algorithms/)：结合复杂度分析、核心算法模板和 LeetCode 高频题进行练习。
 5. 回到面试题做查缺补漏：重点复盘网络和操作系统高频问题，再把数据结构与算法题按类型刷一遍。
 
 ## 核心文章
@@ -79,13 +79,19 @@ head:
 
 - [数据结构专题](./data-structure/)：按结构类型整理常见数据结构及图解。
 - [线性数据结构详解](./data-structure/linear-data-structure.md)：理解数组、链表、栈、队列的存储特点和操作复杂度。
+- [哈希表面试题总结](./data-structure/hash-table.md)：理解哈希函数、哈希冲突、扩容和 Java `HashMap` 关联。
 - [树结构详解](./data-structure/tree.md)：掌握二叉树、二叉搜索树、AVL、B 树、B+ 树等常见树结构。
 - [图详解](./data-structure/graph.md)：理解图的表示、DFS、BFS 和最短路径等基础算法。
 - [堆详解](./data-structure/heap.md)、[红黑树详解](./data-structure/red-black-tree.md)、[布隆过滤器详解](./data-structure/bloom-filter.md)：补齐高频工程结构和面试考点。
+- [Trie 前缀树面试题总结](./data-structure/trie.md)、[并查集面试题总结](./data-structure/union-find.md)、[跳表面试题总结](./data-structure/skip-list.md)、[LRU 缓存面试题总结](./data-structure/lru-cache.md)：补齐字符串集合、连通性、Redis ZSet 和缓存淘汰等高频场景。
 
 ### 算法
 
 - [算法专题](./algorithms/)：整理常见算法思想、LeetCode 高频题和经典排序。
+- [时间复杂度和空间复杂度面试指南](./algorithms/complexity-analysis.md)：掌握 Big O、递归复杂度和常见复杂度误判。
+- [二分查找面试题总结](./algorithms/binary-search.md)、[双指针与滑动窗口面试题总结](./algorithms/two-pointers-and-sliding-window.md)：掌握数组、字符串、链表题里最常见的手写模板。
+- [DFS 与 BFS 面试题总结](./algorithms/dfs-bfs.md)、[回溯算法面试题总结](./algorithms/backtracking.md)：掌握树、图、矩阵搜索、排列组合和路径枚举。
+- [动态规划面试题总结](./algorithms/dynamic-programming.md)、[贪心算法面试题总结](./algorithms/greedy.md)、[Top K 问题面试题总结](./algorithms/top-k.md)：补齐最优值、区间贪心、堆和数据流相关题型。
 - [经典算法思想总结](./algorithms/classical-algorithm-problems-recommendations.md)：覆盖二分、双指针、滑动窗口、回溯、动态规划等常见思想。
 - [常见数据结构经典 LeetCode 题目推荐](./algorithms/common-data-structures-leetcode-recommendations.md)：按数据结构类型整理刷题路线。
 - [几道常见的字符串算法题](./algorithms/string-algorithm-problems.md)、[几道常见的链表算法题](./algorithms/linkedlist-algorithm-problems.md)：集中练习高频题型。
@@ -101,7 +107,7 @@ head:
 - 进程和线程有什么区别？什么是死锁，如何避免？
 - 操作系统内存管理、虚拟内存、分页和分段分别是什么？
 - 数组、链表、栈、队列、树、图、堆分别适合什么场景？
-- 红黑树、B+ 树、布隆过滤器在工程中常用在哪里？
+- 哈希表、红黑树、B+ 树、跳表、布隆过滤器、LRU 在工程中常用在哪里？
 - 刷算法题时如何按题型建立解题模板？
 
 ## 相关专题

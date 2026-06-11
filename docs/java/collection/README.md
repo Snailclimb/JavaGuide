@@ -55,6 +55,8 @@ Java 集合是业务开发中使用频率最高的基础库之一，也是 Java 
 - [HashMap 源码分析](./hashmap-source-code.md)：理解数组、链表、红黑树、扰动函数、扩容和树化。
 - [LinkedHashMap 源码分析](./linkedhashmap-source-code.md)：理解访问顺序、插入顺序和 LRU 场景。
 
+如果对底层结构还不熟，可以先看 [线性数据结构详解](../../cs-basics/data-structure/linear-data-structure.md)、[哈希表面试题总结](../../cs-basics/data-structure/hash-table.md)、[红黑树详解](../../cs-basics/data-structure/red-black-tree.md) 和 [LRU 缓存面试题总结](../../cs-basics/data-structure/lru-cache.md)，再回来看集合源码会顺很多。
+
 ### 并发集合与队列
 
 - [ConcurrentHashMap 源码分析](./concurrent-hash-map-source-code.md)：理解分段锁到 CAS + synchronized 的演进。
@@ -82,5 +84,7 @@ Java 集合是业务开发中使用频率最高的基础库之一，也是 Java 
 - [Java 并发编程专题](../concurrent/)
 - [JVM 专题](../jvm/)
 - [数据结构](../../cs-basics/data-structure/)
+- [哈希表面试题总结](../../cs-basics/data-structure/hash-table.md)
+- [LRU 缓存面试题总结](../../cs-basics/data-structure/lru-cache.md)
 
 <!-- @include: @article-footer.snippet.md -->

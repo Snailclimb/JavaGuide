@@ -1,116 +1,162 @@
 ---
-title: 经典算法思想总结（含LeetCode题目推荐）
-description: 总结常见算法思想与解题模板，配合典型题目推荐，强调思维路径与复杂度权衡，快速构建解题体系。
+title: 经典算法思想总结（含 LeetCode 题目推荐）
+description: 总结二分、双指针、滑动窗口、DFS/BFS、回溯、动态规划、贪心、分治、拓扑排序、并查集、位运算等高频算法思想，并给出题型识别、模板、代表题和复盘重点。
 category: 计算机基础
 tag:
   - 算法
+  - LeetCode
+  - 面试
 head:
   - - meta
     - name: keywords
-      content: 贪心,分治,回溯,动态规划,二分,双指针,算法思想,题目推荐
+      content: 算法思想,二分查找,双指针,滑动窗口,DFS,BFS,回溯,动态规划,贪心,分治,拓扑排序,并查集,位运算,LeetCode题目推荐
 ---
 
-## 贪心算法
+算法思想不要孤立背。面试里更有用的问法是：什么信号提示我该用它？模板里最容易错的地方在哪里？如果面试官改条件，我应该从哪个变量或状态开始调整？
 
-### 算法思想
+这份题单按思想组织，每一类都给出“识别信号、常用模板、代表题、复盘重点”。题目数量控制在能代表模板的范围内，先把这些题讲明白，比机械刷更多题更划算。
 
-贪心的本质是选择每一阶段的局部最优，从而达到全局最优。
+## 怎么用这份题单
 
-### 一般解题步骤
+不要一上来就把所有题目按顺序刷完。更适合面试准备的方式是：先读对应的模板文章，确认自己能手写核心代码，再做“必刷题”，最后用“进阶题”检查边界和变体。
 
-- 将问题分解为若干个子问题
-- 找出适合的贪心策略
-- 求解每一个子问题的最优解
-- 将局部最优解堆叠成全局最优解
+| 目标           | 建议动作                                                                                                                                |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| 快速建立模板   | 先读 [二分查找](./binary-search.md)、[双指针与滑动窗口](./two-pointers-and-sliding-window.md)、[DFS/BFS](./dfs-bfs.md) 这些高频模板文章 |
+| 补齐搜索和 DP  | 继续读 [回溯算法](./backtracking.md)、[动态规划](./dynamic-programming.md)，每类至少手写 2 道基础题                                     |
+| 面试前查漏补缺 | 用 [贪心算法](./greedy.md)、[Top K 问题](./top-k.md)、[并查集](../data-structure/union-find.md) 补齐常见变体                            |
+| 复盘自己的答案 | 每题写下题型识别信号、核心变量含义、复杂度、边界样例。如果这些讲不清，说明这题还没真正掌握                                              |
 
-### LeetCode
+## 二分查找
 
-455.分发饼干：<https://leetcode.cn/problems/assign-cookies/>
+| 项目     | 内容                                                                                                                                                                                                  |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 识别信号 | 有序数组、单调条件、找边界、找最小可行值或最大可行值                                                                                                                                                  |
+| 常用模板 | 基础二分、左边界、右边界、答案二分                                                                                                                                                                    |
+| 必刷题   | [704. 二分查找](https://leetcode.cn/problems/binary-search/)、[34. 在排序数组中查找元素的第一个和最后一个位置](https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/) |
+| 进阶题   | [35. 搜索插入位置](https://leetcode.cn/problems/search-insert-position/)、[875. 爱吃香蕉的珂珂](https://leetcode.cn/problems/koko-eating-bananas/)                                                    |
+| 复盘重点 | 循环条件、`mid` 计算、边界更新后是否会死循环                                                                                                                                                          |
 
-121.买卖股票的最佳时机：<https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/>
+## 双指针
 
-122.买卖股票的最佳时机 II：<https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/>
+| 项目     | 内容                                                                                                                                                                            |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 识别信号 | 有序数组、原地修改、两端向中间收缩、链表快慢追赶                                                                                                                                |
+| 常用模板 | 左右指针、快慢指针、读写指针                                                                                                                                                    |
+| 必刷题   | [26. 删除有序数组中的重复项](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/)、[977. 有序数组的平方](https://leetcode.cn/problems/squares-of-a-sorted-array/) |
+| 进阶题   | [15. 三数之和](https://leetcode.cn/problems/3sum/)、[142. 环形链表 II](https://leetcode.cn/problems/linked-list-cycle-ii/)                                                      |
+| 复盘重点 | 指针含义要固定，去重条件不要漏，链表题先画 3 个节点                                                                                                                             |
 
-55.跳跃游戏：<https://leetcode.cn/problems/jump-game/>
+## 滑动窗口
 
-45.跳跃游戏 II：<https://leetcode.cn/problems/jump-game-ii/>
+| 项目     | 内容                                                                                                                                                                                      |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 识别信号 | 连续子数组、连续子串、最长/最短、窗口内满足某个条件                                                                                                                                       |
+| 常用模板 | 固定窗口、可变窗口、计数 Map                                                                                                                                                              |
+| 必刷题   | [3. 无重复字符的最长子串](https://leetcode.cn/problems/longest-substring-without-repeating-characters/)、[209. 长度最小的子数组](https://leetcode.cn/problems/minimum-size-subarray-sum/) |
+| 进阶题   | [76. 最小覆盖子串](https://leetcode.cn/problems/minimum-window-substring/)、[438. 找到字符串中所有字母异位词](https://leetcode.cn/problems/find-all-anagrams-in-a-string/)                |
+| 复盘重点 | 什么时候扩右边界，什么时候缩左边界，窗口内变量如何维护                                                                                                                                    |
 
-## 动态规划
+## DFS 与 BFS
 
-### 算法思想
-
-动态规划中每一个状态一定是由上一个状态推导出来的，这一点就区分于贪心，贪心没有状态推导，而是从局部直接选最优的。
-
-经典题目：01 背包、完全背包
-
-### 一般解题步骤
-
-- 确定 dp 数组（dp table）以及下标的含义
-- 确定递推公式
-- dp 数组如何初始化
-- 确定遍历顺序
-- 举例推导 dp 数组
-
-### LeetCode
-
-509.斐波那契数：<https://leetcode.cn/problems/fibonacci-number/>
-
-746.使用最小花费爬楼梯：<https://leetcode.cn/problems/min-cost-climbing-stairs/>
-
-416.分割等和子集：<https://leetcode.cn/problems/partition-equal-subset-sum/>
-
-518.零钱兑换：<https://leetcode.cn/problems/coin-change-ii/>
-
-647.回文子串：<https://leetcode.cn/problems/palindromic-substrings/>
-
-516.最长回文子序列：<https://leetcode.cn/problems/longest-palindromic-subsequence/>
+| 项目     | 内容                                                                                                                                                       |
+| -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 识别信号 | 树遍历、图遍历、矩阵连通块、最短步数、层序遍历                                                                                                             |
+| 常用模板 | 递归 DFS、栈模拟 DFS、队列 BFS、层序 BFS                                                                                                                   |
+| 必刷题   | [102. 二叉树的层序遍历](https://leetcode.cn/problems/binary-tree-level-order-traversal/)、[200. 岛屿数量](https://leetcode.cn/problems/number-of-islands/) |
+| 进阶题   | [994. 腐烂的橘子](https://leetcode.cn/problems/rotting-oranges/)、[127. 单词接龙](https://leetcode.cn/problems/word-ladder/)                               |
+| 复盘重点 | 访问标记、越界判断、BFS 层数统计                                                                                                                           |
 
 ## 回溯算法
 
-### 算法思想
+| 项目     | 内容                                                                                                                |
+| -------- | ------------------------------------------------------------------------------------------------------------------- |
+| 识别信号 | 枚举所有方案、路径选择、组合、排列、子集、棋盘约束                                                                  |
+| 常用模板 | 路径 `path`、选择列表、递归层、撤销选择                                                                             |
+| 必刷题   | [77. 组合](https://leetcode.cn/problems/combinations/)、[78. 子集](https://leetcode.cn/problems/subsets/)           |
+| 进阶题   | [39. 组合总和](https://leetcode.cn/problems/combination-sum/)、[51. N 皇后](https://leetcode.cn/problems/n-queens/) |
+| 复盘重点 | 递归参数代表什么，剪枝条件放在循环前还是循环内                                                                      |
 
-回溯算法实际上一个类似枚举的搜索尝试过程，主要是在搜索尝试过程中寻找问题的解，当发现已不满足求解条件时，就 “回溯” 返回，尝试别的路径。其本质就是穷举。
+## 动态规划
 
-经典题目：8 皇后
+| 项目     | 内容                                                                                                                                                               |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 识别信号 | 求最优值、方案数、能否到达、子序列、背包、区间合并                                                                                                                 |
+| 常用模板 | 一维 DP、二维 DP、滚动数组、背包 DP                                                                                                                                |
+| 必刷题   | [70. 爬楼梯](https://leetcode.cn/problems/climbing-stairs/)、[322. 零钱兑换](https://leetcode.cn/problems/coin-change/)                                            |
+| 进阶题   | [300. 最长递增子序列](https://leetcode.cn/problems/longest-increasing-subsequence/)、[416. 分割等和子集](https://leetcode.cn/problems/partition-equal-subset-sum/) |
+| 复盘重点 | `dp[i]` 的含义、初始化、遍历顺序、是否能压缩空间                                                                                                                   |
 
-### 一般解题步骤
+## 贪心算法
 
-- 针对所给问题，定义问题的解空间，它至少包含问题的一个（最优）解。
-- 确定易于搜索的解空间结构，使得能用回溯法方便地搜索整个解空间。
-- 以深度优先的方式搜索解空间，并且在搜索过程中用剪枝函数避免无效搜索。
-
-### LeetCode
-
-77.组合：<https://leetcode.cn/problems/combinations/>
-
-39.组合总和：<https://leetcode.cn/problems/combination-sum/>
-
-40.组合总和 II：<https://leetcode.cn/problems/combination-sum-ii/>
-
-78.子集：<https://leetcode.cn/problems/subsets/>
-
-90.子集 II：<https://leetcode.cn/problems/subsets-ii/>
-
-51.N 皇后：<https://leetcode.cn/problems/n-queens/>
+| 项目     | 内容                                                                                                                                      |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| 识别信号 | 每一步选择当前最合适的对象，常伴随排序、区间、跳跃、买卖                                                                                  |
+| 常用模板 | 排序后选择、维护最远边界、区间合并/覆盖                                                                                                   |
+| 必刷题   | [455. 分发饼干](https://leetcode.cn/problems/assign-cookies/)、[55. 跳跃游戏](https://leetcode.cn/problems/jump-game/)                    |
+| 进阶题   | [45. 跳跃游戏 II](https://leetcode.cn/problems/jump-game-ii/)、[435. 无重叠区间](https://leetcode.cn/problems/non-overlapping-intervals/) |
+| 复盘重点 | 贪心策略为什么不会错，反例能否推翻当前策略                                                                                                |
 
 ## 分治算法
 
-### 算法思想
+| 项目     | 内容                                                                                                                                                                       |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 识别信号 | 问题可以拆成同类子问题，子问题结果能合并                                                                                                                                   |
+| 常用模板 | 递归拆分、子问题求解、合并结果                                                                                                                                             |
+| 必刷题   | [108. 将有序数组转换为二叉搜索树](https://leetcode.cn/problems/convert-sorted-array-to-binary-search-tree/)、[148. 排序链表](https://leetcode.cn/problems/sort-list/)      |
+| 进阶题   | [23. 合并 K 个升序链表](https://leetcode.cn/problems/merge-k-sorted-lists/)、[215. 数组中的第 K 个最大元素](https://leetcode.cn/problems/kth-largest-element-in-an-array/) |
+| 复盘重点 | 递归出口、左右区间是否重叠、合并复杂度                                                                                                                                     |
 
-将一个规模为 N 的问题分解为 K 个规模较小的子问题，这些子问题相互独立且与原问题性质相同。求出子问题的解，就可得到原问题的解。
+## 拓扑排序
 
-经典题目：二分查找、汉诺塔问题
+| 项目     | 内容                                                                                                                                |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| 识别信号 | 课程依赖、任务依赖、有向无环图、判断是否能完成                                                                                      |
+| 常用模板 | 入度数组 + 队列，或 DFS 三色标记                                                                                                    |
+| 必刷题   | [207. 课程表](https://leetcode.cn/problems/course-schedule/)                                                                        |
+| 进阶题   | [210. 课程表 II](https://leetcode.cn/problems/course-schedule-ii/)、[269. 火星词典](https://leetcode.cn/problems/alien-dictionary/) |
+| 复盘重点 | 入度什么时候减，结果数量是否等于节点数量                                                                                            |
 
-### 一般解题步骤
+## 并查集
 
-- 将原问题分解为若干个规模较小，相互独立，与原问题形式相同的子问题；
-- 若子问题规模较小而容易被解决则直接解，否则递归地解各个子问题；
-- 将各个子问题的解合并为原问题的解。
+| 项目     | 内容                                                                                                                                                               |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 识别信号 | 连通性、分组、朋友圈、冗余边、等式关系                                                                                                                             |
+| 常用模板 | `find`、`union`、路径压缩、按大小合并                                                                                                                              |
+| 必刷题   | [547. 省份数量](https://leetcode.cn/problems/number-of-provinces/)                                                                                                 |
+| 进阶题   | [684. 冗余连接](https://leetcode.cn/problems/redundant-connection/)、[990. 等式方程的可满足性](https://leetcode.cn/problems/satisfiability-of-equality-equations/) |
+| 复盘重点 | `find` 是否路径压缩，什么时候判断冲突                                                                                                                              |
 
-### LeetCode
+## 位运算
 
-108.将有序数组转换成二叉搜索数：<https://leetcode.cn/problems/convert-sorted-array-to-binary-search-tree/>
+| 项目     | 内容                                                                                                                            |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| 识别信号 | 奇偶、是否为 2 的幂、只出现一次、状态压缩                                                                                       |
+| 常用模板 | 异或、与运算清最低位 1、位掩码枚举                                                                                              |
+| 必刷题   | [136. 只出现一次的数字](https://leetcode.cn/problems/single-number/)、[231. 2 的幂](https://leetcode.cn/problems/power-of-two/) |
+| 进阶题   | [191. 位 1 的个数](https://leetcode.cn/problems/number-of-1-bits/)、[78. 子集](https://leetcode.cn/problems/subsets/)           |
+| 复盘重点 | 异或性质、`n & (n - 1)` 的含义、负数位表示                                                                                      |
 
-148.排序列表：<https://leetcode.cn/problems/sort-list/>
+## 面试前 7 天速刷清单
 
-23.合并 k 个升序链表：<https://leetcode.cn/problems/merge-k-sorted-lists/>
+| 天数    | 重点                       | 推荐题             |
+| ------- | -------------------------- | ------------------ |
+| 第 1 天 | 二分 + 双指针              | 704、34、26、15    |
+| 第 2 天 | 滑动窗口                   | 3、209、76、438    |
+| 第 3 天 | DFS/BFS                    | 102、200、994、127 |
+| 第 4 天 | 回溯                       | 77、78、39、51     |
+| 第 5 天 | 动态规划                   | 70、322、300、416  |
+| 第 6 天 | 贪心 + 分治                | 55、45、148、215   |
+| 第 7 天 | 拓扑排序 + 并查集 + 位运算 | 207、547、684、136 |
+
+## 30 天系统刷题路线
+
+| 阶段      | 时间           | 目标                                     |
+| --------- | -------------- | ---------------------------------------- |
+| 模板入门  | 第 1 到 6 天   | 二分、双指针、滑动窗口，每类做 3 到 5 道 |
+| 搜索题    | 第 7 到 12 天  | DFS/BFS、回溯，重点写访问标记和撤销选择  |
+| DP 和贪心 | 第 13 到 20 天 | 每天 1 道 DP，穿插贪心区间题             |
+| 图和结构  | 第 21 到 25 天 | 拓扑排序、并查集、堆、Trie               |
+| 复盘      | 第 26 到 30 天 | 只看错题和变体题，练口述复杂度           |
+
+<!-- @include: @article-footer.snippet.md -->

@@ -390,4 +390,38 @@ public class Solution {
 }
 ```
 
+## 面试复盘重点
+
+链表题的代码通常不长，但指针更新顺序很容易写错。面试前至少要掌握 4 个模板：虚拟头节点、反转链表、快慢指针、合并链表。
+
+| 模板       | 适用题型                           | 关键点                           |
+| ---------- | ---------------------------------- | -------------------------------- |
+| 虚拟头节点 | 删除节点、合并链表、头节点可能变化 | 返回 `dummy.next`                |
+| 反转链表   | 整体反转、区间反转、K 个一组反转   | 保存 `next`，再改 `cur.next`     |
+| 快慢指针   | 环检测、倒数第 K 个、中点          | 先判断 `fast` 和 `fast.next`     |
+| 合并链表   | 两个有序链表、K 个有序链表         | 递归或迭代，注意尾部接上剩余链表 |
+
+反转链表的迭代模板建议背熟：
+
+```java
+ListNode reverseList(ListNode head) {
+    ListNode prev = null;
+    ListNode cur = head;
+    while (cur != null) {
+        ListNode next = cur.next;
+        cur.next = prev;
+        prev = cur;
+        cur = next;
+    }
+    return prev;
+}
+```
+
+几个易错点：
+
+- 删除倒数第 N 个节点时，虚拟头节点能统一处理删除头节点的情况。
+- 区间反转要先保存区间前一个节点和区间后一个节点。
+- 判断链表有环时，循环条件是 `fast != null && fast.next != null`。
+- 递归合并链表代码短，但链表很长时可能有递归栈风险。
+
 <!-- @include: @article-footer.snippet.md -->

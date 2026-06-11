@@ -16,6 +16,8 @@ head:
 
 本文就以这道大厂常问的面试题为切入点，带大家详细了解一下跳表这个数据结构。
 
+如果你只是想先快速了解跳表的多级索引、查询复杂度和面试回答框架，可以先看 [跳表面试题总结](../../cs-basics/data-structure/skip-list.md)，再回到本文看 Redis ZSet 的源码实现。
+
 本文整体脉络如下图所示，笔者会从有序集合的基本使用到跳表的源码分析和实现，让你会对 Redis 的有序集合底层实现的跳表有着更深刻的理解和掌握。
 
 ![](https://oss.javaguide.cn/javaguide/database/redis/skiplist/202401222005468.png)

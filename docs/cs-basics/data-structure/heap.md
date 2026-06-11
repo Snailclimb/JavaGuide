@@ -206,4 +206,42 @@ head:
 
 堆排序完成！
 
+## 面试复盘重点
+
+堆在面试里常和优先队列、Top K、定时任务、延迟队列放在一起问。
+
+| 操作     | 时间复杂度 | 说明                           |
+| -------- | ---------- | ------------------------------ |
+| 查看堆顶 | `O(1)`     | 最大堆堆顶最大，最小堆堆顶最小 |
+| 插入元素 | `O(logn)`  | 插入末尾后上浮                 |
+| 删除堆顶 | `O(logn)`  | 末尾元素换到堆顶后下沉         |
+| 建堆     | `O(n)`     | 从最后一个非叶子节点开始下沉   |
+| 堆排序   | `O(nlogn)` | 原地排序，但不稳定             |
+
+Java 里的 `PriorityQueue` 默认是小顶堆：
+
+```java
+PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a, b) -> b - a);
+```
+
+需要注意的是，`b - a` 可能溢出，更稳妥的写法是：
+
+```java
+PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a, b) -> Integer.compare(b, a));
+```
+
+Top K 问题常见选择：
+
+- 求第 K 大：维护大小为 K 的小顶堆。
+- 求前 K 高频：先用哈希表计数，再用小顶堆保留 K 个高频元素。
+- 数据流中位数：一个大顶堆维护较小的一半，一个小顶堆维护较大的一半。
+
+## 推荐练习题
+
+- [215. 数组中的第 K 个最大元素](https://leetcode.cn/problems/kth-largest-element-in-an-array/)
+- [347. 前 K 个高频元素](https://leetcode.cn/problems/top-k-frequent-elements/)
+- [703. 数据流中的第 K 大元素](https://leetcode.cn/problems/kth-largest-element-in-a-stream/)
+- [295. 数据流的中位数](https://leetcode.cn/problems/find-median-from-data-stream/)
+
 <!-- @include: @article-footer.snippet.md -->
