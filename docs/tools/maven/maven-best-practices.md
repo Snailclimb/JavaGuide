@@ -1,18 +1,18 @@
 ---
-title: Maven最佳实践
-description: Maven 是一种广泛使用的 Java 项目构建自动化工具。它简化了构建过程并帮助管理依赖关系，使开发人员的工作更轻松。在这篇博文中，我们将讨论一些最佳实践、提示和技巧，以优化我们在项目中对 Maven 的使用并改善我们的开发体验。
+title: Maven 最佳实践
+description: 总结 Maven 在 Java 项目中的常见最佳实践，涵盖标准目录结构、编译版本、依赖管理、Profile、Maven Wrapper、CI 构建和插件使用。
 category: 开发工具
 head:
   - - meta
     - name: keywords
-      content: Maven坐标,Maven仓库,Maven生命周期,Maven多模块管理
+      content: Maven坐标,Maven仓库,Maven生命周期,Maven多模块管理,Maven Wrapper,依赖管理
 ---
 
 > 本文由 JavaGuide 翻译并完善，原文地址：<https://medium.com/@AlexanderObregon/maven-best-practices-tips-and-tricks-for-java-developers-438eca03f72b> 。
 
-Maven 是一种广泛使用的 Java 项目构建自动化工具。它简化了构建过程并帮助管理依赖关系，使开发人员的工作更轻松。Maven 详细介绍可以参考我写的这篇 [Maven 核心概念总结](./maven-core-concepts.md) 。
+Maven 是一种广泛使用的 Java 项目构建自动化工具。它简化了构建过程，并帮助我们管理依赖关系。Maven 详细介绍可以参考这篇文章：[Maven 核心概念总结](./maven-core-concepts.md)。
 
-这篇文章不会涉及到 Maven 概念的介绍，主要讨论一些最佳实践、建议和技巧，以优化我们在项目中对 Maven 的使用并改善我们的开发体验。
+这篇文章不展开 Maven 基础概念，主要讨论项目中更容易踩坑的实践问题：目录结构、编译版本、依赖版本、环境配置、Wrapper、CI 和插件管理。
 
 ## Maven 标准目录结构
 
@@ -38,11 +38,21 @@ pom.xml
 
 这只是一个最简单的 Maven 项目目录示例。实际项目中，我们还会根据项目规范去做进一步的细分。
 
-## 指定 Maven 编译器插件
+## 明确指定 Java 编译版本
 
-默认情况下，Maven 使用 Java5 编译我们的项目。要使用不同的 JDK 版本，请在 `pom.xml` 文件中配置 Maven 编译器插件。
+不要依赖 Maven 或插件的默认编译版本，项目应该在 `pom.xml` 中明确声明目标 Java 版本。对于现代 Java 项目，优先使用 `maven.compiler.release`，它对应 `javac --release`，比单独配置 `source` 和 `target` 更稳妥。
 
-例如，如果你想要使用 Java8 来编译你的项目，你可以在`<build>`标签下添加以下的代码片段：
+需要注意的是，`javac --release` 从 JDK 9 开始提供；Maven Compiler Plugin 3.13.0 及之后版本在 JDK 8 上也支持 `maven.compiler.release`，会自动转换为 `source` 和 `target`。如果项目仍使用更旧的插件或构建环境，再显式配置 `source`、`target`。
+
+例如，项目需要按 Java 17 编译，可以这样写：
+
+```xml
+<properties>
+  <maven.compiler.release>17</maven.compiler.release>
+</properties>
+```
+
+如果需要直接配置 Maven Compiler Plugin，也可以这样写：
 
 ```xml
 <build>
@@ -50,23 +60,22 @@ pom.xml
     <plugin>
       <groupId>org.apache.maven.plugins</groupId>
       <artifactId>maven-compiler-plugin</artifactId>
-      <version>3.8.1</version>
+      <version>3.15.0</version>
       <configuration>
-        <source>1.8</source>
-        <target>1.8</target>
+        <release>17</release>
       </configuration>
     </plugin>
   </plugins>
 </build>
 ```
 
-这样，Maven 就会使用 Java8 的编译器来编译你的项目。如果你想要使用其他版本的 JDK，你只需要修改`<source>`和`<target>`标签的值即可。例如，如果你想要使用 Java11，你可以将它们的值改为 11。
+`release` 的值不要再写成 `1.8` 这种旧格式。比如 Java 8 写 `8`，Java 17 写 `17`，Java 21 写 `21`。
 
 ## 有效管理依赖关系
 
-Maven 的依赖管理系统是其最强大的功能之一。在顶层 pom 文件中，通过标签 `dependencyManagement` 定义公共的依赖关系，这有助于避免冲突并确保所有模块使用相同版本的依赖项。
+Maven 的依赖管理系统是其最强大的功能之一。在父 POM 中，通过 `dependencyManagement` 定义公共依赖版本，可以避免多个模块各写一份版本号，降低依赖冲突概率。
 
-例如，假设我们有一个父模块和两个子模块 A 和 B，我们想要在所有模块中使用 JUnit 5.7.2 作为测试框架。我们可以在父模块的`pom.xml`文件中使用`<dependencyManagement>`标签来定义 JUnit 的版本：
+例如，假设我们有一个父模块和两个子模块 A 和 B，想要在所有模块中使用 JUnit 5，可以在父模块的 `pom.xml` 文件中通过 `<dependencyManagement>` 定义 JUnit 的版本：
 
 ```xml
 <dependencyManagement>
@@ -74,14 +83,14 @@ Maven 的依赖管理系统是其最强大的功能之一。在顶层 pom 文件
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
-      <version>5.7.2</version>
+      <version>5.10.2</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
 </dependencyManagement>
 ```
 
-在子模块 A 和 B 的 `pom.xml` 文件中，我们只需要引用 JUnit 的 `groupId` 和 `artifactId` 即可:
+在子模块 A 和 B 的 `pom.xml` 文件中，只需要引用 JUnit 的 `groupId` 和 `artifactId` 即可：
 
 ```xml
 <dependencies>
@@ -91,6 +100,8 @@ Maven 的依赖管理系统是其最强大的功能之一。在顶层 pom 文件
   </dependency>
 </dependencies>
 ```
+
+对于 Spring Boot、Spring Cloud 这类已经提供 BOM 的生态，优先导入官方 BOM，再在业务模块里省略具体依赖版本。这样能减少“手工拼版本”带来的兼容性问题。
 
 ## 针对不同环境使用配置文件
 
@@ -128,14 +139,16 @@ mvn clean install -P production
 
 - 将相似的依赖项和插件组合在一起。
 - 使用注释来描述特定依赖项或插件的用途。
-- 将插件和依赖项的版本号保留在 `<properties>` 标签内以便于管理。
+- 将公共版本号放在 `<properties>` 标签内，或者统一放到父 POM 的 `dependencyManagement` / `pluginManagement` 中管理。
 
 ```xml
 <properties>
-  <junit.version>5.7.0</junit.version>
-  <mockito.version>3.9.0</mockito.version>
+  <junit.version>5.10.2</junit.version>
+  <mockito.version>5.12.0</mockito.version>
 </properties>
 ```
+
+插件版本也建议显式声明。不要依赖 Maven 的默认插件版本，否则不同 Maven 版本或不同构建环境下可能出现行为差异。
 
 ## 使用 Maven Wrapper
 
@@ -155,11 +168,13 @@ mvn wrapper:wrapper
 
 此命令会在我们的项目中生成 Maven Wrapper 文件。现在我们可以使用 `./mvnw` （或 Windows 上的 `./mvnw.cmd`）而不是 `mvn` 来执行 Maven 命令。
 
+团队项目建议提交 `mvnw`、`mvnw.cmd` 和 `.mvn/wrapper/` 目录。这样新成员或 CI 环境不需要预先安装指定版本的 Maven，也能用项目声明的 Maven 版本完成构建。
+
 ## 通过持续集成实现构建自动化
 
 将 Maven 项目与持续集成 (CI) 系统（例如 Jenkins 或 GitHub Actions）集成，可确保自动构建、测试和部署我们的代码。CI 有助于及早发现问题并在整个团队中提供一致的构建流程。以下是 Maven 项目的简单 GitHub Actions 工作流程示例：
 
-```groovy
+```yaml
 name: Java CI with Maven
 
 on: [push]
@@ -169,18 +184,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Set up JDK 11
-      uses: actions/setup-java@v2
-      with:
-        java-version: '11'
-        distribution: 'adopt'
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: "17"
+          distribution: "temurin"
+          cache: "maven"
 
-    - name: Build with Maven
-      run: ./mvnw clean install
+      - name: Build with Maven
+        run: ./mvnw -B clean verify
 ```
+
+CI 中建议使用 `clean verify`，它会执行测试和必要的校验流程。`install` 会把构建产物安装到本地仓库，只有后续步骤确实依赖本地安装结果时才需要使用。
 
 ## 利用 Maven 插件获得附加功能
 
@@ -190,7 +208,7 @@ jobs:
 - maven-failsafe-plugin：配置并执行集成测试。
 - maven-javadoc-plugin：生成 Javadoc 格式的项目文档。
 - maven-checkstyle-plugin：强制执行编码标准和最佳实践。
-- jacoco-maven-plugin: 单测覆盖率。
+- jacoco-maven-plugin：单测覆盖率。
 - sonar-maven-plugin：分析代码质量。
 - ……
 
@@ -202,7 +220,7 @@ jacoco-maven-plugin 使用示例：
     <plugin>
       <groupId>org.jacoco</groupId>
       <artifactId>jacoco-maven-plugin</artifactId>
-      <version>0.8.8</version>
+      <version>0.8.12</version>
       <executions>
         <execution>
           <goals>
@@ -228,4 +246,4 @@ jacoco-maven-plugin 使用示例：
 
 ## 总结
 
-Maven 是一个强大的工具，可以简化 Java 项目的构建过程和依赖关系管理。通过遵循这些最佳实践和技巧，我们可以优化 Maven 的使用并改善我们的 Java 开发体验。请记住使用标准目录结构，有效管理依赖关系，利用不同环境的配置文件，并将项目与持续集成系统集成，以确保构建一致。
+Maven 最重要的不是“能不能把项目跑起来”，而是让团队在本地、CI 和部署环境中使用一致的构建方式。实际项目里，建议优先做好这几件事：使用标准目录结构，显式声明 Java 和插件版本，通过父 POM、BOM、`dependencyManagement` 管理依赖版本，提交 Maven Wrapper，并在 CI 中固定 JDK 和 Maven 构建命令。

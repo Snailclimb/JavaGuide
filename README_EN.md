@@ -11,7 +11,7 @@ An open-source guide for backend developers on AI application development, AI pr
 
 ## Backend Interview Preparation
 
-- [⭐Java Backend Interview Preparation Plan (Covering General Backend System)](./docs/interview-preparation/backend-interview-plan.md) (Must-see :+1:)
+- [⭐Java Backend Interview Preparation Plan (Covering General Backend System)](./docs/interview-preparation/backend-interview-plan.md) (Must-read :+1:)
 - [How to Efficiently Prepare for Java Interviews?](./docs/interview-preparation/teach-you-how-to-prepare-for-the-interview-hand-in-hand.md)
 - [Key Summary of Java Backend Interviews](./docs/interview-preparation/key-points-of-interview.md)
 - [Java Learning Roadmap (Latest, 4w+ Words)](./docs/interview-preparation/java-roadmap.md)
@@ -24,7 +24,7 @@ An open-source guide for backend developers on AI application development, AI pr
 
 ### Basics
 
-**Knowledge Points/Interview Questions Summary** (Must-see:+1:):
+**Knowledge Points/Interview Questions Summary** (Must-read :+1:):
 
 - [Summary of Common Java Basics Knowledge Points & Interview Questions (Part 1)](./docs/java/basis/java-basic-questions-01.md)
 - [Summary of Common Java Basics Knowledge Points & Interview Questions (Part 2)](./docs/java/basis/java-basic-questions-02.md)
@@ -46,8 +46,8 @@ An open-source guide for backend developers on AI application development, AI pr
 
 **Knowledge Points/Interview Questions Summary**:
 
-- [Summary of Common Java Collection Knowledge Points & Interview Questions (Part 1)](./docs/java/collection/java-collection-questions-01.md) (Must-see :+1:)
-- [Summary of Common Java Collection Knowledge Points & Interview Questions (Part 2)](./docs/java/collection/java-collection-questions-02.md) (Must-see :+1:)
+- [Summary of Common Java Collection Knowledge Points & Interview Questions (Part 1)](./docs/java/collection/java-collection-questions-01.md) (Must-read :+1:)
+- [Summary of Common Java Collection Knowledge Points & Interview Questions (Part 2)](./docs/java/collection/java-collection-questions-02.md) (Must-read :+1:)
 - [Summary of Java Container Usage Precautions](./docs/java/collection/java-collection-precautions-for-use.md)
 
 **Source Code Analysis**:
@@ -219,7 +219,7 @@ Additionally, [GeeksforGeeks](https://www.geeksforgeeks.org/fundamentals-of-algo
 
 ### Redis
 
-**Knowledge Points/Interview Questions Summary** (Must-read:+1:):
+**Knowledge Points/Interview Questions Summary** (Must-read :+1:):
 
 - [Redis Common Knowledge Points & Interview Questions Summary (Part 1)](./docs/database/redis/redis-questions-01.md)
 - [Redis Common Knowledge Points & Interview Questions Summary (Part 2)](./docs/database/redis/redis-questions-02.md)
@@ -284,7 +284,7 @@ Additionally, [GeeksforGeeks](https://www.geeksforgeeks.org/fundamentals-of-algo
 
 #### Spring/SpringBoot (Must-read :+1:)
 
-**Knowledge Points/Interview Questions Summary** :
+**Knowledge Points/Interview Questions Summary**:
 
 - [Summary of Common Spring Knowledge Points and Interview Questions](./docs/system-design/framework/spring/spring-knowledge-and-questions-summary.md)
 - [Summary of Common SpringBoot Knowledge Points and Interview Questions](./docs/system-design/framework/spring/springboot-knowledge-and-questions-summary.md)

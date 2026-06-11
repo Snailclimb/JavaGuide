@@ -187,6 +187,77 @@ int maxSum(int[] nums, int k) {
 
 如果窗口里还要维护最大值或最小值，普通变量不够用，通常要用单调队列。比如“滑动窗口最大值”中，队列里存可能成为最大值的下标，队首就是当前窗口最大值。
 
+## 面试手写路径
+
+双指针和滑动窗口题，面试里最怕指针含义写到一半变了。建议按这个顺序写：
+
+1. 先判断题型：是两端收缩、快慢追赶、原地覆盖，还是连续窗口。
+2. 明确指针含义：`left`、`right`、`slow`、`fast`、`write` 分别指向哪里。
+3. 明确窗口状态：窗口内维护的是和、计数、最大值，还是匹配数量。
+4. 明确移动条件：什么时候右指针扩张，什么时候左指针收缩。
+5. 明确答案更新时机：合法后更新最长，满足条件时更新最短。
+
+一句话区分最长和最短：**最长题通常先修复窗口再更新答案，最短题通常先记录答案再继续收缩。**
+
+## 代表题精讲：最小覆盖子串
+
+[76. 最小覆盖子串](https://leetcode.cn/problems/minimum-window-substring/) 是滑动窗口里最能考细节的一题。题目要求在 `s` 中找到最短子串，使它覆盖 `t` 中所有字符和对应次数。
+
+这题的关键不是会不会用窗口，而是能不能说清两个计数：
+
+- `need`：目标字符串 `t` 里每个字符需要多少个。
+- `window`：当前窗口里每个字符已经有多少个。
+- `valid`：有多少种字符已经满足所需次数。
+
+当 `valid == need.size()` 时，说明当前窗口已经覆盖 `t`，这时要更新答案，并尝试收缩左边界。
+
+```java
+String minWindow(String s, String t) {
+    Map<Character, Integer> need = new HashMap<>();
+    Map<Character, Integer> window = new HashMap<>();
+    for (char c : t.toCharArray()) {
+        need.put(c, need.getOrDefault(c, 0) + 1);
+    }
+
+    int left = 0;
+    int valid = 0;
+    int start = 0;
+    int minLen = Integer.MAX_VALUE;
+
+    for (int right = 0; right < s.length(); right++) {
+        char in = s.charAt(right);
+        if (need.containsKey(in)) {
+            window.put(in, window.getOrDefault(in, 0) + 1);
+            if (window.get(in).equals(need.get(in))) {
+                valid++;
+            }
+        }
+
+        while (valid == need.size()) {
+            if (right - left + 1 < minLen) {
+                start = left;
+                minLen = right - left + 1;
+            }
+            char out = s.charAt(left);
+            left++;
+            if (need.containsKey(out)) {
+                if (window.get(out).equals(need.get(out))) {
+                    valid--;
+                }
+                window.put(out, window.get(out) - 1);
+            }
+        }
+    }
+
+    return minLen == Integer.MAX_VALUE ? "" : s.substring(start, start + minLen);
+}
+```
+
+这里有两个容易写错的点：
+
+- `valid--` 要发生在减少 `window[out]` 之前，因为此时窗口还刚好满足条件。
+- 更新答案要放在 `while (valid == need.size())` 里面，因为只有当前窗口已经覆盖 `t`，才有资格参与最短答案比较。
+
 ## 过程示意和边界样例
 
 以“无重复字符的最长子串”为例，字符串 `abba` 的窗口变化如下：
@@ -224,6 +295,14 @@ if (count.get(c) > 1) {
 - 窗口收缩时，窗口内的计数、和、匹配数都要同步更新。
 - 链表快慢指针要先判断 `fast` 和 `fast.next`。
 - 三数之和这类题，排序后的去重要单独处理。
+
+## 高频问题自测
+
+- 为什么双指针题通常是 `O(n)`，而不是两层循环的 `O(n^2)`？
+- 三数之和为什么需要排序？去重分别发生在哪几个位置？
+- 快慢指针找链表中点时，偶数长度返回前中点还是后中点？
+- 滑动窗口什么时候用 `if` 收缩，什么时候必须用 `while` 收缩？
+- 最长窗口和最短窗口的答案更新时机有什么区别？
 
 ## 推荐练习题
 

@@ -487,6 +487,6 @@ public class Main {
 - Java 中 `String` 不可变，频繁拼接建议使用 `StringBuilder`。
 - `char` 处理 Unicode 字符时可能不够，普通算法题多数只考 ASCII 或小写字母。
 - 回文子串和回文子序列不是一类题，前者常用中心扩展，后者常用 DP。
-- KMP 面试中不一定要求从零推导，但要知道 `next` 数组用于避免重复匹配。
+- KMP 面试中通常不要求从零推导 `next` 数组的手工计算过程，但要理解它的作用是跳过已匹配前缀，避免重复匹配。
 
 <!-- @include: @article-footer.snippet.md -->

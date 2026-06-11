@@ -74,6 +74,9 @@ boolean canJump(int[] nums) {
 
 ```java
 int eraseOverlapIntervals(int[][] intervals) {
+    if (intervals.length == 0) {
+        return 0;
+    }
     Arrays.sort(intervals, Comparator.comparingInt(a -> a[1]));
     int count = 1;
     int end = intervals[0][1];
@@ -114,6 +117,14 @@ int eraseOverlapIntervals(int[][] intervals) {
 - 区间题要看边界是否允许相等，比如 `[1,2]` 和 `[2,3]` 是否重叠。
 - 跳跃游戏 II 里“步数增加”的时机和当前覆盖边界有关。
 - 贪心策略要能解释，不要只说“每次选最优”。
+
+## 高频问题自测
+
+- 贪心和动态规划怎么区分？
+- 区间题为什么经常按右端点排序？
+- 跳跃游戏里为什么只维护最远可达位置就够了？
+- 贪心题怎样用交换或反证说明策略正确？
+- 区间边界允许相等时，判断条件应该怎么写？
 
 ## 推荐练习题
 

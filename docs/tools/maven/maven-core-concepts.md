@@ -1,5 +1,5 @@
 ---
-title: Maven核心概念总结
+title: Maven 核心概念总结
 description: Apache Maven 的本质是一个软件项目管理和理解工具。基于项目对象模型 (Project Object Model，POM) 的概念，Maven 可以从一条中心信息管理项目的构建、报告和文档。
 category: 开发工具
 head:
@@ -301,7 +301,7 @@ mvn 阶段 [阶段2] ...[阶段n]
   <phase>test-compile</phase>
   <!-- 处理从测试代码文件编译生成的文件 -->
   <phase>process-test-classes</phase>
-  <!-- 使用合适的单元测试框架（Junit 就是其中之一）运行测试 -->
+  <!-- 使用合适的单元测试框架（JUnit 就是其中之一）运行测试 -->
   <phase>test</phase>
   <!-- 在实际打包之前，执行任何的必要的操作为打包做准备 -->
   <phase>prepare-package</phase>
@@ -455,7 +455,7 @@ Maven 插件被分为下面两种类型：
 - 《Maven 实战》
 - Introduction to Repositories - Maven 官方文档：<https://maven.apache.org/guides/introduction/introduction-to-repositories.html>
 - Introduction to the Build Lifecycle - Maven 官方文档：<https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#Lifecycle_Reference>
-- Maven 依赖范围：<http://www.mvnbook.com/maven-dependency.html>
+- Maven 依赖范围：<https://www.mvnbook.com/maven-dependency.html>
 - 解决 maven 依赖冲突，这篇就够了！：<https://www.cnblogs.com/qdhxhz/p/16363532.html>
 - Multi-Module Project with Maven：<https://www.baeldung.com/maven-multi-module>
 

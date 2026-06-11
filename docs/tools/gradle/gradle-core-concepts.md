@@ -1,6 +1,6 @@
 ---
-title: Gradle核心概念总结
-description: Gradle 就是一个运行在 JVM 上的自动化的项目构建工具，用来帮助我们自动构建项目。
+title: Gradle 核心概念总结
+description: Gradle 是一个运行在 JVM 上的自动化构建工具，支持灵活的任务编排、依赖管理、插件扩展和多项目构建。
 category: 开发工具
 head:
   - - meta
@@ -10,7 +10,7 @@ head:
 
 > 这部分内容主要根据 Gradle 官方文档整理，做了对应的删减，主要保留比较重要的部分，不涉及实战，主要是一些重要概念的介绍。
 
-Gradle 这部分内容属于可选内容，可以根据自身需求决定是否学习，目前国内还是使用 Maven 普遍一些。
+Gradle 这部分内容属于可选内容，可以根据自身需求决定是否学习。国内 Java 后端项目里 Maven 仍然更常见，但 Android、部分 Spring Boot 项目以及需要高度定制构建流程的项目中，Gradle 使用得也很多。
 
 ## Gradle 介绍
 
@@ -20,7 +20,7 @@ Gradle 官方文档是这样介绍的 Gradle 的：
 >
 > Gradle 是一个开源的构建自动化工具，它足够灵活，可以构建几乎任何类型的软件。Gradle 对你要构建什么或者如何构建它做了很少的假设。这使得 Gradle 特别灵活。
 
-简单来说，Gradle 就是一个运行在 JVM 上的自动化的项目构建工具，用来帮助我们自动构建项目。
+简单来说，Gradle 就是一个运行在 JVM 上的自动化项目构建工具，用来帮助我们完成编译、测试、打包、发布等构建任务。
 
 对于开发者来说，Gradle 的主要作用主要有 3 个：
 
@@ -28,17 +28,17 @@ Gradle 官方文档是这样介绍的 Gradle 的：
 2. **依赖管理**：方便快捷的管理项目依赖的资源（jar 包），避免资源间的版本冲突问题。
 3. **统一开发结构**：提供标准的、统一的项目结构。
 
-Gradle 构建脚本是使用 Groovy 或 Kotlin 语言编写的，表达能力非常强，也足够灵活。
+Gradle 构建脚本可以使用 Groovy DSL 或 Kotlin DSL 编写。现在新项目里 Kotlin DSL 也很常见，它的类型提示和 IDE 支持通常更好。
 
 ## Groovy 介绍
 
-Gradle 是运行在 JVM 上的一个程序，它可以使用 Groovy 来编写构建脚本。
+Gradle 是运行在 JVM 上的一个程序，构建脚本可以使用 Groovy 或 Kotlin 编写。历史上很多 Gradle 示例使用 Groovy DSL，因此先了解一点 Groovy 语法对阅读老项目很有帮助。
 
 Groovy 是运行在 JVM 上的脚本语言，是基于 Java 扩展的动态语言，它的语法和 Java 非常的相似，可以使用 Java 的类库。Groovy 可以用于面向对象编程，也可以用作纯粹的脚本语言。在语言的设计上它吸纳了 Java、Python、Ruby 和 Smalltalk 语言的优秀特性，比如动态类型转换、闭包和元编程支持。
 
 我们可以用学习 Java 的方式去学习 Groovy ，学习成本相对来说还是比较低的，即使开发过程中忘记 Groovy 语法，也可以用 Java 语法继续编码。
 
-基于 JVM 的语言有很多种比如 Groovy，Kotlin，Java，Scala，他们最终都会编译生成 Java 字节码文件并在 JVM 上运行。
+基于 JVM 的语言有很多种，比如 Groovy、Kotlin、Java、Scala，它们最终都会编译生成 Java 字节码文件并在 JVM 上运行。
 
 ## Gradle 优势
 
@@ -76,12 +76,13 @@ Gradle Wrapper 会给我们带来下面这些好处：
 
 ### 生成 Gradle Wrapper
 
-如果想要生成 Gradle Wrapper 的话，需要本地配置好 Gradle 环境变量。Gradle 中已经内置了 Wrapper Task，在项目根目录执行执行`gradle wrapper`命令即可帮助我们生成 Gradle Wrapper。
+如果想要首次生成 Gradle Wrapper，需要本地先有可用的 Gradle。Gradle 中已经内置了 Wrapper Task，在项目根目录执行 `gradle wrapper` 命令即可生成 Gradle Wrapper。
 
 执行命令 `gradle wrapper` 命令时可以指定一些参数来控制 wrapper 的生成。具体有如下两个配置参数：
 
-- `--gradle-version` 用于指定使用的 Gradle 的版本
-- `--gradle-distribution-url` 用于指定下载 Gradle 版本的 URL，该值的规则是 `http://services.gradle.org/distributions/gradle-${gradleVersion}-bin.zip`
+- `--gradle-version`：用于指定使用的 Gradle 版本。
+- `--gradle-distribution-url`：用于指定下载 Gradle 发行版的 URL，该值通常类似于 `https://services.gradle.org/distributions/gradle-${gradleVersion}-bin.zip`。
+- `--gradle-distribution-sha256-sum`：用于指定发行版压缩包的 SHA-256 校验值，可以降低下载文件被篡改的风险。
 
 执行`gradle wrapper`命令之后，Gradle Wrapper 就生成完成了，项目根目录中生成如下文件：
 
@@ -98,8 +99,8 @@ Gradle Wrapper 会给我们带来下面这些好处：
 
 - `gradle-wrapper.jar`：包含了 Gradle 运行时的逻辑代码。
 - `gradle-wrapper.properties`：定义了 Gradle 的版本号和 Gradle 运行时的行为属性。
-- `gradlew`：Linux 平台下，用于执行 Gralde 命令的包装器脚本。
-- `gradlew.bat`：Windows 平台下，用于执行 Gralde 命令的包装器脚本。
+- `gradlew`：Linux/macOS 平台下，用于执行 Gradle 命令的包装器脚本。
+- `gradlew.bat`：Windows 平台下，用于执行 Gradle 命令的包装器脚本。
 
 `gradle-wrapper.properties` 文件的内容如下：
 
@@ -121,38 +122,40 @@ zipStorePath=wrapper/dists
 
 更新 Gradle Wrapper 有 2 种方式：
 
-1. 接修改`distributionUrl`字段，然后执行 Gradle 命令。
-2. 执行 gradlew 命令`gradlew wrapper –-gradle-version [version]`。
+1. 直接修改 `distributionUrl` 字段，然后执行 Gradle 命令。
+2. 执行 `./gradlew wrapper --gradle-version [version]`。
 
-下面的命令会将 Gradle 版本升级为 7.6。
+下面的命令会将 Gradle 版本升级为 9.5.1。
 
 ```shell
-gradlew wrapper --gradle-version 7.6
+./gradlew wrapper --gradle-version 9.5.1
 ```
 
 `gradle-wrapper.properties` 文件中的 `distributionUrl` 属性也发生了改变。
 
 ```properties
-distributionUrl=https\://services.gradle.org/distributions/gradle-7.6-all.zip
+distributionUrl=https\://services.gradle.org/distributions/gradle-9.5.1-bin.zip
 ```
+
+项目已经生成 Wrapper 后，日常构建优先使用 `./gradlew build`，而不是直接使用本机安装的 `gradle build`。这样可以确保团队成员和 CI 使用同一个 Gradle 版本。
 
 ### 自定义 Gradle Wrapper
 
-Gradle 已经内置了 Wrapper Task，因此构建 Gradle Wrapper 会生成 Gradle Wrapper 的属性文件，这个属性文件可以通过自定义 Wrapper Task 来设置。比如我们想要修改要下载的 Gralde 版本为 7.6，可以这么设置：
+Gradle 已经内置了 Wrapper Task，因此构建 Gradle Wrapper 会生成 Gradle Wrapper 的属性文件，这个属性文件可以通过自定义 Wrapper Task 来设置。比如我们想要修改要下载的 Gradle 版本为 9.5.1，可以这么设置：
 
-```javascript
-task wrapper(type: Wrapper) {
-    gradleVersion = '7.6'
+```groovy
+tasks.wrapper {
+    gradleVersion = '9.5.1'
 }
 ```
 
 也可以设置 Gradle 发行版压缩包的下载地址和 Gradle 解包后的本地存储路径等配置。
 
 ```groovy
-task wrapper(type: Wrapper) {
-    gradleVersion = '7.6'
-    distributionUrl = '../../gradle-7.6-bin.zip'
-    distributionPath=wrapper/dists
+tasks.wrapper {
+    gradleVersion = '9.5.1'
+    distributionUrl = '../../gradle-9.5.1-bin.zip'
+    distributionPath = 'wrapper/dists'
 }
 ```
 

@@ -222,14 +222,10 @@ Java 里的 `PriorityQueue` 默认是小顶堆：
 
 ```java
 PriorityQueue<Integer> minHeap = new PriorityQueue<>();
-PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a, b) -> b - a);
-```
-
-需要注意的是，`b - a` 可能溢出，更稳妥的写法是：
-
-```java
 PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a, b) -> Integer.compare(b, a));
 ```
+
+不要写成 `b - a`，极端整数值下可能溢出，导致比较结果错误。
 
 Top K 问题常见选择：
 

@@ -148,6 +148,8 @@ int upperBound(int[] nums, int target) {
 1. 确定答案范围。比如速度最小是 `1`，最大不超过最大那堆香蕉数。
 2. 写 `check` 函数。给定一个速度，判断能不能在 `h` 小时内吃完。
 
+这个上界成立依赖题目约束：`h >= piles.length`。因为速度等于最大堆大小时，每堆香蕉最多 1 小时吃完，总耗时不会超过堆数。
+
 ```java
 int minEatingSpeed(int[] piles, int h) {
     int left = 1;
@@ -188,6 +190,70 @@ boolean canFinish(int[] piles, int h, int speed) {
 | 找最小可行答案               | 答案二分 | 返回最终的 `left`             |
 
 如果题目里有“第一个”“最后一个”“最小可行”“最大可行”，不要急着写基础二分，先判断是不是边界问题。
+
+## 面试手写路径
+
+二分题的代码不长，面试里更容易被追问的是“你为什么敢丢掉一半”。手写时可以按这个顺序来：
+
+1. 先说明搜索空间：是在数组下标里找，还是在答案范围里找。
+2. 再说明单调性：`mid` 左右两侧为什么可以排除一边。
+3. 明确区间含义：闭区间 `[left, right]` 还是左闭右开 `[left, right)`。
+4. 写更新规则：`mid` 还能不能成为答案，决定写 `right = mid` 还是 `right = mid - 1`。
+5. 最后说返回值：循环结束时 `left`、`right` 分别代表什么。
+
+一个很实用的自检问题是：**当 `nums[mid]` 正好满足条件时，我有没有把可能的答案删掉？** 左边界、答案二分里，`mid` 经常仍然可能是答案，所以不能随手写成 `right = mid - 1`。
+
+## 代表题精讲：查找第一个和最后一个位置
+
+[34. 在排序数组中查找元素的第一个和最后一个位置](https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/) 是边界二分的典型题。题目要求返回 `target` 的起始和结束位置，如果不存在返回 `[-1, -1]`。
+
+这题不要写成“找到一个 target 后向两边扫描”。虽然能过一些用例，但最坏情况下会退化成 `O(n)`。更稳的写法是做两次边界查找：
+
+- 第一次找第一个大于等于 `target` 的位置。
+- 第二次找第一个大于 `target` 的位置，再减 1。
+
+下面两个辅助方法与上文模板一致，这里保留完整代码，方便把返回值含义和主逻辑放在一起对照。
+
+```java
+int[] searchRange(int[] nums, int target) {
+    int left = lowerBound(nums, target);
+    if (left == nums.length || nums[left] != target) {
+        return new int[] {-1, -1};
+    }
+    int right = upperBound(nums, target) - 1;
+    return new int[] {left, right};
+}
+
+int lowerBound(int[] nums, int target) {
+    int left = 0;
+    int right = nums.length;
+    while (left < right) {
+        int mid = left + (right - left) / 2;
+        if (nums[mid] >= target) {
+            right = mid;
+        } else {
+            left = mid + 1;
+        }
+    }
+    return left;
+}
+
+int upperBound(int[] nums, int target) {
+    int left = 0;
+    int right = nums.length;
+    while (left < right) {
+        int mid = left + (right - left) / 2;
+        if (nums[mid] > target) {
+            right = mid;
+        } else {
+            left = mid + 1;
+        }
+    }
+    return left;
+}
+```
+
+面试里这题常见追问是：如果数组中全是 `target` 怎么办？如果 `target` 不存在但应该插在中间怎么办？这两个问题其实都在考返回值含义。`lowerBound` 返回的是第一个满足条件的位置，不保证这个位置上的值一定等于 `target`，所以返回前要再检查一次。
 
 ## 过程示意和边界样例
 

@@ -21,6 +21,8 @@ head:
 
 如果你时间有限，建议先看 [高性能系统设计面试题总结](./high-performance-interview-questions.md)，快速建立高频问题清单；如果你想系统补基础，可以按下面的阅读顺序推进。
 
+学习这部分内容时，不建议只记“加缓存、加 MQ、分库分表”这些方案名。高性能优化更像一条链路分析题：请求从用户侧进来，经过 CDN、负载均衡、应用服务、缓存、数据库、消息队列，每一段都有可能成为瓶颈。能讲清楚瓶颈在哪里、为什么选这个方案、会引入什么新问题，才算真的掌握。
+
 ## 适合谁看
 
 - 正在系统学习高性能系统设计的后端开发者。
@@ -35,6 +37,17 @@ head:
 - 读写分离、分库分表、冷热分离、深度分页优化分别适合什么场景？
 - Kafka、RocketMQ、RabbitMQ、Disruptor 的定位和选型差异是什么？
 - 面试中如何从“瓶颈定位 -> 方案选择 -> 取舍分析 -> 落地风险”回答高性能问题？
+
+## 面试回答主线
+
+回答高性能系统设计题时，可以按下面这条线展开：
+
+1. **先确认目标**：QPS、RT、P99、数据量、读写比例、一致性要求、成本约束。
+2. **再定位瓶颈**：入口带宽、应用线程池、慢 SQL、锁竞争、缓存命中率、MQ 积压、下游依赖。
+3. **然后选方案**：入口层用 CDN/负载均衡，应用层用缓存/限流/异步化，数据层用索引/读写分离/分库分表/冷热分离，削峰层用 MQ。
+4. **最后讲取舍**：方案带来的复杂度、一致性风险、运维成本、回滚方案和监控指标。
+
+面试里最忌讳一上来就堆技术名词。比如“订单查询慢”不一定要分库分表，可能只是缺索引、深分页、历史数据太多或者热点商家查询集中。先把场景问清楚，再给方案，答案会稳很多。
 
 ## 建议阅读顺序
 
@@ -64,7 +77,7 @@ head:
 - [消息队列基础知识总结](./message-queue/message-queue.md)：理解应用场景、消息模型、消息可靠性、顺序性、幂等和积压处理。
 - [Kafka 常见问题总结](./message-queue/kafka-questions-01.md)：掌握 Kafka 架构、高性能原理、消息可靠性、顺序性和 Rebalance。
 - [RocketMQ 常见问题总结](./message-queue/rocketmq-questions.md)：理解 RocketMQ 架构、消息类型、存储机制、可靠性和 5.x 新特性。
-- [RabbitMQ 常见问题总结](./message-queue/rabbitmq-questions.md)：理解 AMQP、Exchange 类型、确认机制、死信队列、延迟队列和镜像队列。
+- [RabbitMQ 常见问题总结](./message-queue/rabbitmq-questions.md)：理解 AMQP、Exchange 类型、确认机制、死信队列、延迟队列、Quorum Queue 和 Streams。
 - [Disruptor 常见问题总结](./message-queue/disruptor-questions.md)：理解 RingBuffer、Sequencer、WaitStrategy、无锁设计和缓存行填充。
 
 ## 高频问题
