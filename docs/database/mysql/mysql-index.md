@@ -570,4 +570,11 @@ mysql> EXPLAIN SELECT `score`,`name` FROM `cus_order` ORDER BY `score` DESC;
 
 篇幅问题，我这里只是简单介绍了一下 MySQL 执行计划，详细介绍请看：[MySQL 执行计划分析](./mysql-query-execution-plan.md)这篇文章。
 
+## 数据结构延伸阅读
+
+理解 MySQL 索引时，建议回到树结构本身看一遍：
+
+- [树结构详解](../../cs-basics/data-structure/tree.md)：对比二叉搜索树、AVL、红黑树、B 树和 B+ 树。
+- [红黑树详解](../../cs-basics/data-structure/red-black-tree.md)：理解内存中自平衡搜索树的取舍，再对比 B+ 树为什么更适合磁盘索引。
+
 <!-- @include: @article-footer.snippet.md -->

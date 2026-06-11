@@ -94,7 +94,7 @@ head:
 - 减少纯业务描述，多挖掘技术亮点，结合具体业务场景描述。
 - 优化成果要量化（QPS、响应时间、成本节省等），非真实项目包装合理数值即可。
 - 工作内容介绍控制在 6~8 条左右比较好，多了少了都有影响，一定要至少有 3-4 条是有技术亮点的，能吸引到面试官。
-- 避免模糊性描述（如"负责开发"），要具体（技术+场景+效果）。
+- 避免模糊性描述（如“负责开发”），要具体（技术+场景+效果）。
 - 一定要包装项目，但也不要过度包装，准备时多想“如果面试官问为什么”，确保逻辑自洽。
 
 ### 第二阶段：Java 核心 + MySQL + Redis （约 2～3 周）
@@ -172,6 +172,8 @@ head:
 - **网络**：[计网常见面试题（上）](https://javaguide.cn/cs-basics/network/other-network-questions.html)、[（下）](https://javaguide.cn/cs-basics/network/other-network-questions2.html)、[访问网页全过程](https://javaguide.cn/cs-basics/network/the-whole-process-of-accessing-web-pages.html)、[应用层常见协议](https://javaguide.cn/cs-basics/network/application-layer-protocol.html)、[HTTP/HTTPS](https://javaguide.cn/cs-basics/network/http-vs-https.html)、[HTTP 1.0 vs 1.1](https://javaguide.cn/cs-basics/network/http1.0-vs-http1.1.html)、[DNS](https://javaguide.cn/cs-basics/network/dns.html)、[TCP 三次握手与四次挥手](https://javaguide.cn/cs-basics/network/tcp-connection-and-disconnection.html)、[TCP 可靠性](https://javaguide.cn/cs-basics/network/tcp-reliability-guarantee.html)、[ARP](https://javaguide.cn/cs-basics/network/arp.html)
 - **操作系统**：[操作系统常见面试题（上）](https://javaguide.cn/cs-basics/operating-system/operating-system-basic-questions-01.html)、[（下）](https://javaguide.cn/cs-basics/operating-system/operating-system-basic-questions-02.html)、[Linux 基础](https://javaguide.cn/cs-basics/operating-system/linux-intro.html)
 - **数据结构**：先过 [数据结构专题](https://javaguide.cn/cs-basics/data-structure/)，再重点复盘 [数组/链表/栈/队列](https://javaguide.cn/cs-basics/data-structure/linear-data-structure.html)、[哈希表](https://javaguide.cn/cs-basics/data-structure/hash-table.html)、[树](https://javaguide.cn/cs-basics/data-structure/tree.html)、[图](https://javaguide.cn/cs-basics/data-structure/graph.html)、[堆](https://javaguide.cn/cs-basics/data-structure/heap.html)、[Trie](https://javaguide.cn/cs-basics/data-structure/trie.html)、[并查集](https://javaguide.cn/cs-basics/data-structure/union-find.html)、[跳表](https://javaguide.cn/cs-basics/data-structure/skip-list.html)、[红黑树](https://javaguide.cn/cs-basics/data-structure/red-black-tree.html)、[布隆过滤器](https://javaguide.cn/cs-basics/data-structure/bloom-filter.html)、[LRU](https://javaguide.cn/cs-basics/data-structure/lru-cache.html)。
+
+算法与数据结构建议合并复习，不要只背概念或只刷题。时间紧时按 7 天路线走：复杂度和排序、数组/链表、二分/双指针/滑动窗口、树和图、回溯和动态规划、哈希/堆/Top K、错题复盘。时间充足时按 30 天路线走：先打牢线性结构和哈希表，再刷树图、回溯、动态规划、贪心、Top K，最后只复盘错题和边界样例。
 
 **自测**：能画访问网页全过程、TCP 握手挥手等等；算法题能手写常见套路；OS 进程/线程、内存、死锁能说清概念与例子。
 

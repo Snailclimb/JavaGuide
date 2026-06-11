@@ -719,6 +719,10 @@ private Node < K, V > add(Node < K, V > node, K key, V val) {
 
 本文通过大量篇幅介绍跳表的工作原理和实现，帮助读者更进一步的熟悉跳表这一数据结构的优劣，最后再结合各个数据结构操作的特点进行比对，从而帮助读者更好的理解这道面试题，建议读者实现理解跳表时，尽可能配合执笔模拟来了解跳表的增删改查详细过程。
 
+## 数据结构延伸阅读
+
+如果想从面试角度快速复盘跳表，可以看 [跳表面试题总结](../../cs-basics/data-structure/skip-list.md)。如果想对比 Redis ZSet 背后的其他结构，也可以顺手复习 [红黑树详解](../../cs-basics/data-structure/red-black-tree.md) 和 [哈希表面试题总结](../../cs-basics/data-structure/hash-table.md)。
+
 ## 参考
 
 - 为啥 redis 使用跳表(skiplist)而不是使用 red-black？:<https://www.zhihu.com/question/20202931/answer/16086538>

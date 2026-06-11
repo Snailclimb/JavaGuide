@@ -491,6 +491,14 @@ value1
 | Set      | 无序集合，集合中的元素没有先后顺序但都唯一，有点类似于 Java 中的 `HashSet` 。                                                                                                                  |
 | Zset     | 和 Set 相比，Sorted Set 增加了一个权重参数 `score`，使得集合中的元素能够按 `score` 进行有序排列，还可以通过 `score` 的范围来获取元素的列表。有点像是 Java 中 `HashMap` 和 `TreeSet` 的结合体。 |
 
+## 数据结构延伸阅读
+
+Redis 数据类型背后大量使用了基础数据结构。想从面试角度补底层，可以结合这些文章看：
+
+- [线性数据结构详解](../../cs-basics/data-structure/linear-data-structure.md)：理解 List、队列和链表的关系。
+- [哈希表面试题总结](../../cs-basics/data-structure/hash-table.md)：理解 Hash、Set 这类结构的查找和冲突处理。
+- [跳表面试题总结](../../cs-basics/data-structure/skip-list.md)：理解 Sorted Set 范围查询和排名能力背后的结构取舍。
+
 ## 参考
 
 - Redis Data Structures：<https://redis.com/redis-enterprise/data-structures/> 。

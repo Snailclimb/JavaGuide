@@ -43,12 +43,15 @@ export default sidebar({
           text: "面试准备知识体系",
           link: "/interview-preparation/",
         },
-        "backend-interview-plan",
+        { text: "Java 后端面试通关计划", link: "backend-interview-plan" },
         "teach-you-how-to-prepare-for-the-interview-hand-in-hand",
         "resume-guide",
-        "key-points-of-interview",
-        "pdf-interview-javaguide",
-        "java-roadmap",
+        { text: "Java 后端面试重点总结", link: "key-points-of-interview" },
+        {
+          text: "Java 面试 + 后端面试 PDF 资料",
+          link: "pdf-interview-javaguide",
+        },
+        { text: "Java 学习路线", link: "java-roadmap" },
         "project-experience-guide",
         "how-to-handle-interview-nerves",
         "internship-experience",
@@ -292,7 +295,10 @@ export default sidebar({
           text: "Maven",
           icon: ICONS.MAVEN,
           prefix: "maven/",
-          children: ["maven-core-concepts", "maven-best-practices"],
+          children: [
+            { text: "Maven 核心概念总结", link: "maven-core-concepts" },
+            { text: "Maven 最佳实践", link: "maven-best-practices" },
+          ],
         },
         {
           text: "Gradle",
@@ -527,7 +533,9 @@ export default sidebar({
         {
           text: "负载均衡",
           icon: ICONS.LOAD_BALANCING,
-          children: ["load-balancing"],
+          children: [
+            { text: "负载均衡原理及算法详解", link: "load-balancing" },
+          ],
         },
         {
           text: "数据库优化",

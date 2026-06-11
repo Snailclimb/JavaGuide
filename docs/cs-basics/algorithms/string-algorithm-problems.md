@@ -398,7 +398,7 @@ import java.util.Scanner;
  *
  * @author Snailclimb
  * @date 2018年9月6日
- * @Description: TODO 求给定合法括号序列的深度
+ * @Description: 求给定合法括号序列的深度
  */
 public class Main {
   public static void main(String[] args) {

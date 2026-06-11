@@ -233,6 +233,66 @@ Top K 问题常见选择：
 - 求前 K 高频：先用哈希表计数，再用小顶堆保留 K 个高频元素。
 - 数据流中位数：一个大顶堆维护较小的一半，一个小顶堆维护较大的一半。
 
+## Java 代码模板
+
+第 K 大问题可以用大小为 K 的小顶堆。堆顶始终是当前前 K 大里最小的那个元素，如果新元素比堆顶大，就替换堆顶。
+
+```java
+int findKthLargest(int[] nums, int k) {
+    PriorityQueue<Integer> heap = new PriorityQueue<>();
+    for (int num : nums) {
+        if (heap.size() < k) {
+            heap.offer(num);
+        } else if (num > heap.peek()) {
+            heap.poll();
+            heap.offer(num);
+        }
+    }
+    return heap.peek();
+}
+```
+
+前 K 高频元素通常是“哈希表计数 + 小顶堆”：
+
+```java
+int[] topKFrequent(int[] nums, int k) {
+    Map<Integer, Integer> count = new HashMap<>();
+    for (int num : nums) {
+        count.put(num, count.getOrDefault(num, 0) + 1);
+    }
+    PriorityQueue<int[]> heap = new PriorityQueue<>((a, b) -> Integer.compare(a[1], b[1]));
+    for (Map.Entry<Integer, Integer> entry : count.entrySet()) {
+        heap.offer(new int[] {entry.getKey(), entry.getValue()});
+        if (heap.size() > k) {
+            heap.poll();
+        }
+    }
+    int[] ans = new int[k];
+    for (int i = k - 1; i >= 0; i--) {
+        ans[i] = heap.poll()[0];
+    }
+    return ans;
+}
+```
+
+## 过程示意和边界样例
+
+维护大小为 K 的小顶堆时，可以把堆理解成“候选池”：
+
+```text
+1. 候选池没满：直接放入。
+2. 候选池已满，新元素 <= 堆顶：进不了前 K，跳过。
+3. 候选池已满，新元素 > 堆顶：弹出堆顶，放入新元素。
+4. 遍历结束后，堆顶就是第 K 大。
+```
+
+几个边界样例建议先过一遍：
+
+- `k == 1`：求最大值。
+- `k == nums.length`：求最小值。
+- 数组里有重复元素：第 K 大通常按排序位置算，不是第 K 个不同元素。
+- 比较器不要写 `b - a`，极端值可能溢出。
+
 ## 推荐练习题
 
 - [215. 数组中的第 K 个最大元素](https://leetcode.cn/problems/kth-largest-element-in-an-array/)

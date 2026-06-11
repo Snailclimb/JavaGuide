@@ -24,6 +24,7 @@ export const csBasics = [
       {
         text: "基础",
         icon: ICONS.STAR,
+        collapsible: true,
         children: [
           {
             text: "OSI 七层模型与 TCP/IP 四层模型详解",
@@ -38,6 +39,7 @@ export const csBasics = [
       {
         text: "应用层",
         icon: ICONS.CODE,
+        collapsible: true,
         children: [
           { text: "⭐️应用层常见协议总结", link: "application-layer-protocol" },
           { text: "⭐️HTTP vs HTTPS", link: "http-vs-https" },
@@ -54,6 +56,7 @@ export const csBasics = [
       {
         text: "传输层",
         icon: ICONS.NETWORK,
+        collapsible: true,
         children: [
           {
             text: "⭐️TCP 三次握手和四次挥手",
@@ -89,6 +92,7 @@ export const csBasics = [
       {
         text: "网络层",
         icon: ICONS.NETWORK,
+        collapsible: true,
         children: [
           { text: "ARP 协议详解", link: "arp" },
           { text: "NAT 协议详解", link: "nat" },
@@ -97,6 +101,7 @@ export const csBasics = [
       {
         text: "安全",
         icon: ICONS.SECURITY,
+        collapsible: true,
         children: [
           { text: "网络攻击常见手段总结", link: "network-attack-means" },
         ],
@@ -134,6 +139,7 @@ export const csBasics = [
       {
         text: "进程与线程",
         icon: ICONS.STAR,
+        collapsible: true,
         children: [
           { text: "⭐️进程与线程详解", link: "process-and-thread" },
           { text: "进程间通信（IPC）详解", link: "ipc" },

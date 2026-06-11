@@ -50,6 +50,8 @@ head:
 4. [算法专题](./algorithms/)：结合复杂度分析、核心算法模板和 LeetCode 高频题进行练习。
 5. 回到面试题做查缺补漏：重点复盘网络和操作系统高频问题，再把数据结构与算法题按类型刷一遍。
 
+如果你的目标公司比较重算法，建议把第 3 步和第 4 步合在一起复习：先看一个数据结构，再刷对应题型。例如，看完 [哈希表](./data-structure/hash-table.md) 就刷两数之和、前缀和；看完 [堆](./data-structure/heap.md) 就刷 [Top K](./algorithms/top-k.md)；看完 [树](./data-structure/tree.md) 和 [图](./data-structure/graph.md) 后，再集中练 [DFS 与 BFS](./algorithms/dfs-bfs.md)、[回溯](./algorithms/backtracking.md) 和 [动态规划](./algorithms/dynamic-programming.md)。
+
 ## 核心文章
 
 ### 计算机网络
@@ -85,6 +87,8 @@ head:
 - [堆详解](./data-structure/heap.md)、[红黑树详解](./data-structure/red-black-tree.md)、[布隆过滤器详解](./data-structure/bloom-filter.md)：补齐高频工程结构和面试考点。
 - [Trie 前缀树面试题总结](./data-structure/trie.md)、[并查集面试题总结](./data-structure/union-find.md)、[跳表面试题总结](./data-structure/skip-list.md)、[LRU 缓存面试题总结](./data-structure/lru-cache.md)：补齐字符串集合、连通性、Redis ZSet 和缓存淘汰等高频场景。
 
+复习数据结构时，可以同步回看 Java 和数据库专题：数组/链表/哈希表对应 [Java 集合](../java/collection/)，B+ 树对应 [MySQL 索引](../database/mysql/mysql-index.md)，跳表对应 [Redis 跳表](../database/redis/redis-skiplist.md)，LRU 和布隆过滤器对应缓存场景。
+
 ### 算法
 
 - [算法专题](./algorithms/)：整理常见算法思想、LeetCode 高频题和经典排序。
@@ -96,6 +100,8 @@ head:
 - [常见数据结构经典 LeetCode 题目推荐](./algorithms/common-data-structures-leetcode-recommendations.md)：按数据结构类型整理刷题路线。
 - [几道常见的字符串算法题](./algorithms/string-algorithm-problems.md)、[几道常见的链表算法题](./algorithms/linkedlist-algorithm-problems.md)：集中练习高频题型。
 - [剑指 Offer 部分编程题](./algorithms/the-sword-refers-to-offer.md)、[十大经典排序算法总结](./algorithms/10-classical-sorting-algorithms.md)：适合面试前复盘。
+
+算法刷题建议先把每类模板写稳，再做题单：[经典算法思想总结](./algorithms/classical-algorithm-problems-recommendations.md) 适合按题型刷，[常见数据结构经典 LeetCode 题目推荐](./algorithms/common-data-structures-leetcode-recommendations.md) 适合按结构刷。
 
 ## 高频问题
 

@@ -110,7 +110,7 @@ public class ListNode {
  *
  * @author Snailclimb
  * @date 2018年9月19日
- * @Description: TODO
+ * @Description: 反转单链表
  */
 public class Solution {
 
@@ -417,11 +417,37 @@ ListNode reverseList(ListNode head) {
 }
 ```
 
+## 过程示意和边界样例
+
+反转链表时，核心是先保存 `next`，再修改 `cur.next`。可以按下面的指针变化来记：
+
+```text
+初始：prev = null, cur = head
+
+每一轮：
+next = cur.next
+cur.next = prev
+prev = cur
+cur = next
+
+结束：cur == null，prev 指向新头节点
+```
+
+删除节点、合并链表这类题，优先考虑虚拟头节点：
+
+```java
+ListNode dummy = new ListNode(0);
+dummy.next = head;
+// 中间统一操作 dummy 后面的链表
+return dummy.next;
+```
+
 几个易错点：
 
 - 删除倒数第 N 个节点时，虚拟头节点能统一处理删除头节点的情况。
 - 区间反转要先保存区间前一个节点和区间后一个节点。
 - 判断链表有环时，循环条件是 `fast != null && fast.next != null`。
 - 递归合并链表代码短，但链表很长时可能有递归栈风险。
+- 空链表、单节点链表、删除头节点、删除尾节点都要单独过一遍。
 
 <!-- @include: @article-footer.snippet.md -->

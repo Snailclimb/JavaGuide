@@ -797,4 +797,68 @@ public static int[] radixSort(int[] arr) {
 - 插入排序什么时候表现好？数组基本有序且规模不大时。
 - 计数排序、桶排序、基数排序为什么不是通用排序？它们依赖数据范围、分布或位数。
 
+## Java 代码模板
+
+排序面试最常手写的是快速排序和归并排序。快速排序要特别注意分区边界，下面是一个常见写法：
+
+```java
+void quickSort(int[] nums, int left, int right) {
+    if (left >= right) {
+        return;
+    }
+    int pivotIndex = partition(nums, left, right);
+    quickSort(nums, left, pivotIndex - 1);
+    quickSort(nums, pivotIndex + 1, right);
+}
+
+int partition(int[] nums, int left, int right) {
+    int pivot = nums[right];
+    int less = left;
+    for (int i = left; i < right; i++) {
+        if (nums[i] <= pivot) {
+            swap(nums, less, i);
+            less++;
+        }
+    }
+    swap(nums, less, right);
+    return less;
+}
+
+void swap(int[] nums, int i, int j) {
+    int temp = nums[i];
+    nums[i] = nums[j];
+    nums[j] = temp;
+}
+```
+
+如果担心有序数组导致快排退化，可以在分区前随机选择 pivot，并把它交换到 `right` 位置。
+
+```java
+int randomIndex = left + new Random().nextInt(right - left + 1);
+swap(nums, randomIndex, right);
+```
+
+## 过程示意和边界样例
+
+快速排序的一次分区可以这样理解：
+
+```text
+原数组区间：[left ... right]
+pivot：选择 nums[right]
+less：指向“小于等于 pivot 区域”的下一个位置
+i：从 left 扫到 right - 1
+
+扫描结束后：
+[left ... less - 1] <= pivot
+[less ... right - 1] > pivot
+把 pivot 换到 less，pivot 左右两边分别递归
+```
+
+几个边界样例建议手写前先过一遍：
+
+- 空数组或只有一个元素：直接返回。
+- 已经有序或逆序：固定选择首尾元素做 pivot 容易退化。
+- 大量重复元素：普通二路分区可能不够理想，可以了解三路快排。
+- 面试官问稳定性时，不要说快排稳定；普通快排交换元素会打乱相等元素顺序。
+
 <!-- @include: @article-footer.snippet.md -->

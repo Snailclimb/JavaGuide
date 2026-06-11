@@ -29,7 +29,7 @@ Java 集合框架如下图所示：
 - `List`(对付顺序的好帮手): 存储的元素是有序的、可重复的。
 - `Set`(注重独一无二的性质): 存储的元素不可重复的。
 - `Queue`(实现排队功能的叫号机): 按特定的排队规则来确定先后顺序，存储的元素是有序的、可重复的。
-- `Map`(用 key 来搜索的专家): 使用键值对（key-value）存储，类似于数学上的函数 y=f(x)，"x" 代表 key，"y" 代表 value，key 无序、不可重复，value 无序、可重复，每个键最多映射到一个值。注意，这里的"无序"指的是 `HashMap` 这类实现——键值对之间没有显式的关联顺序。`LinkedHashMap` 和 `TreeMap` 等实现则是有序的，它们通过额外的数据结构（双向链表或红黑树）来维护键值对的顺序。
+- `Map`(用 key 来搜索的专家): 使用键值对（key-value）存储，类似于数学上的函数 y=f(x)，"x" 代表 key，"y" 代表 value，key 无序、不可重复，value 无序、可重复，每个键最多映射到一个值。注意，这里的“无序”指的是 `HashMap` 这类实现——键值对之间没有显式的关联顺序。`LinkedHashMap` 和 `TreeMap` 等实现则是有序的，它们通过额外的数据结构（双向链表或红黑树）来维护键值对的顺序。
 
 ### 集合框架底层数据结构总结
 
@@ -611,5 +611,14 @@ Java 中常用的阻塞队列实现类有以下几种：
 - 是否有界：`ArrayBlockingQueue` 是有界队列，必须在创建时指定容量大小。`LinkedBlockingQueue` 创建时可以不指定容量大小，默认是`Integer.MAX_VALUE`，也就是无界的。但也可以指定队列大小，从而成为有界的。
 - 锁是否分离： `ArrayBlockingQueue`中的锁是没有分离的，即生产和消费用的是同一个锁；`LinkedBlockingQueue`中的锁是分离的，即生产用的是`putLock`，消费是`takeLock`，这样可以防止生产者和消费者线程之间的锁争夺。
 - 内存占用：`ArrayBlockingQueue` 需要提前分配数组内存，而 `LinkedBlockingQueue` 则是动态分配链表节点内存。这意味着，`ArrayBlockingQueue` 在创建时就会占用一定的内存空间，且往往申请的内存比实际所用的内存更大，而`LinkedBlockingQueue` 则是根据元素的增加而逐渐占用内存空间。
+
+## 数据结构延伸阅读
+
+Java 集合面试经常会追到底层数据结构。建议结合下面几篇一起复习：
+
+- [线性数据结构详解](../../cs-basics/data-structure/linear-data-structure.md)：理解数组、链表、栈、队列和 `ArrayList`、`LinkedList`、`ArrayDeque` 的关系。
+- [哈希表面试题总结](../../cs-basics/data-structure/hash-table.md)：理解哈希冲突、扩容和 `HashMap` 的底层思想。
+- [红黑树详解](../../cs-basics/data-structure/red-black-tree.md)：理解 `TreeMap`、`TreeSet` 以及 `HashMap` 树化链表时涉及的红黑树。
+- [堆详解](../../cs-basics/data-structure/heap.md)：理解 `PriorityQueue` 的底层结构和 Top K 题型。
 
 <!-- @include: @article-footer.snippet.md -->
