@@ -132,6 +132,14 @@ export const csBasics = [
         ],
       },
       {
+        text: "进程与线程",
+        icon: ICONS.STAR,
+        children: [
+          { text: "⭐️进程与线程详解", link: "process-and-thread" },
+          { text: "进程间通信（IPC）详解", link: "ipc" },
+        ],
+      },
+      {
         text: "Linux",
         icon: ICONS.LINUX,
         children: [

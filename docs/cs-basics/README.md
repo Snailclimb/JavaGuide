@@ -67,6 +67,8 @@ head:
 - [操作系统专题](./operating-system/)：从操作系统基础讲到 Linux 常见问题。
 - [操作系统常见面试题总结（上）](./operating-system/operating-system-basic-questions-01.md)：覆盖操作系统基础、进程线程、死锁、内存管理等问题。
 - [操作系统常见面试题总结（下）](./operating-system/operating-system-basic-questions-02.md)：继续整理文件系统、I/O、Linux 等面试考点。
+- [进程与线程详解：区别、状态、通信、上下文切换与虚拟线程](./operating-system/process-and-thread.md)：讲清进程和线程的资源边界、状态转换、上下文切换和 Java 虚拟线程。
+- [进程间通信（IPC）详解：管道、消息队列、共享内存、Socket 与 Binder](./operating-system/ipc.md)：对比管道、消息队列、共享内存、Socket、Binder 等 IPC 机制。
 - [虚拟内存详解：地址转换、TLB、缺页中断与页面置换](./operating-system/virtual-memory.md)：讲清分页、页表、TLB、缺页中断和页面置换。
 - [I/O 多路复用详解：select、poll、epoll 原理与区别](./operating-system/io-multiplexing.md)：讲清 select、poll、epoll 的实现原理、性能差异和适用场景。
 - [零拷贝详解：mmap、sendfile 与 splice](./operating-system/zero-copy.md)：讲清传统 I/O、mmap、sendfile、splice 的拷贝路径和工程应用。
