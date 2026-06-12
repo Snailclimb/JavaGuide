@@ -26,7 +26,7 @@ head:
 
 总的来说，网络通信模型可以用下图来表示。访问网页的过程，就是数据从应用层逐层向下封装，经物理网络传输到对端，再逐层向上解封装的过程。
 
-![](https://oss.javaguide.cn/github/javaguide/cs-basics/network/five-layers.png)
+![五层网络模型在网页访问过程中的协作](https://oss.javaguide.cn/github/javaguide/cs-basics/network/five-layers.png)
 
 开始之前，先简单过一遍完整流程：
 

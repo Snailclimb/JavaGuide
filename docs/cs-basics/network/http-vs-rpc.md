@@ -32,7 +32,7 @@ HTTP 接口不是已经能调了吗？
 
 RPC 全称是 Remote Procedure Call，翻译过来就是远程过程调用。它想解决的问题很朴素：**让你调用远程服务时，尽量像调用本地方法一样。**
 
-![RPC 概览](https://oss.javaguide.cn/github/javaguide/distributed-system/rpc/rpc-overview.png)
+![RPC 通过本地代理隐藏远程调用细节](https://oss.javaguide.cn/github/javaguide/distributed-system/rpc/rpc-overview.png)
 
 比如本地代码里调用用户服务：
 
@@ -60,7 +60,7 @@ User user = userService.getUser(1001);
 
 具体到实现上，RPC 可以有很多种。Dubbo 是 RPC 框架，Thrift 是 RPC 框架，gRPC 也是 RPC 框架。gRPC 官方文档里也说得很直接：客户端可以像调用本地对象一样，调用另一台机器上服务端应用的方法；服务端定义可远程调用的方法以及参数和返回类型。 
 
-![Dubbo3](https://oss.javaguide.cn/github/javaguide/distributed-system/rpc/image-20220716111545343.png)
+![Dubbo3 使用 Triple 协议同时支持 HTTP/1、HTTP/2 和 HTTP/3](https://oss.javaguide.cn/github/javaguide/distributed-system/rpc/image-20220716111545343.png)
 
 这就解释了一个很容易绕晕的点：**gRPC 是 RPC，但它基于 HTTP/2。**
 

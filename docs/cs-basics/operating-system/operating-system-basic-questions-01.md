@@ -40,7 +40,7 @@ head:
 
 下图清晰说明了应用程序、内核、CPU 这三者的关系。
 
-![Kernel_Layout](https://oss.javaguide.cn/2020-8/Kernel_Layout.png)
+![应用程序、内核和 CPU 的关系](https://oss.javaguide.cn/2020-8/Kernel_Layout.png)
 
 ### 操作系统主要有哪些功能？
 
@@ -61,7 +61,7 @@ head:
 
 _玩玩电脑游戏还是必须要有 Windows 的，所以我现在是一台 Windows 用于玩游戏，一台 Mac 用于平时日常开发和学习使用。_
 
-![windows](./images/windows.png)
+![Windows 桌面操作系统界面](./images/windows.png)
 
 #### Unix
 
@@ -69,7 +69,7 @@ _玩玩电脑游戏还是必须要有 Windows 的，所以我现在是一台 Win
 
 目前这款操作系统已经逐渐逐渐退出操作系统的舞台。
 
-![unix](./images/unix.png)
+![Unix 操作系统标识](./images/unix.png)
 
 #### Linux
 
@@ -79,13 +79,13 @@ _玩玩电脑游戏还是必须要有 Windows 的，所以我现在是一台 Win
 >
 > **很多人更倾向使用 "GNU/Linux" 一词来表达人们通常所说的 "Linux"。**
 
-![Linux 操作系统](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/linux/linux.png)
+![Linux 操作系统桌面与命令行界面](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/linux/linux.png)
 
 #### Mac OS
 
 苹果自家的操作系统，编程体验和 Linux 相当，但是界面、软件生态以及用户体验各方面都要比 Linux 操作系统更好。
 
-![macos](./images/macos.png)
+![macOS 桌面操作系统界面](./images/macos.png)
 
 ### 用户态和内核态
 
@@ -131,7 +131,7 @@ _玩玩电脑游戏还是必须要有 Windows 的，所以我现在是一台 Win
 
 也就是说在我们运行的用户程序中，凡是与系统态级别的资源有关的操作（如文件管理、进程控制、内存管理等），都必须通过系统调用方式向操作系统提出服务请求，并由操作系统代为完成。
 
-![系统调用](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/system-call.png)
+![用户程序通过系统调用请求内核服务](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/system-call.png)
 
 这些系统调用按功能大致可分为如下几类：
 

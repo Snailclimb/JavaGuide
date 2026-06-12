@@ -31,7 +31,7 @@ SOHO 子网的“代理人”，也就是和外界的窗口，通常由路由器
 
 ## 细节
 
-![NAT 协议](https://oss.javaguide.cn/github/javaguide/cs-basics/network/nat-demo.png)
+![NAT 将内网私有地址转换为公网地址的过程](https://oss.javaguide.cn/github/javaguide/cs-basics/network/nat-demo.png)
 
 假设当前场景如上图。中间是一个路由器，它的右侧组织了一个 LAN，网络号为 `10.0.0/24`。LAN 侧接口的 IP 地址为 `10.0.0.4`，并且该子网内有至少三台主机，分别是 `10.0.0.1`、`10.0.0.2` 和 `10.0.0.3`。路由器的左侧连接的是 WAN，WAN 侧接口的 IP 地址为 `138.76.29.7`。
 

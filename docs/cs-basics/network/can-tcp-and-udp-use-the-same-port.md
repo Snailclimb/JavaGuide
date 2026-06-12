@@ -99,7 +99,7 @@ TCP 和 UDP 之间不冲突，不代表端口可以随便重复绑定。
 
 ### DNS 为什么同时用 TCP/UDP 53？
 
-![实际应用示例](https://oss.javaguide.cn/github/javaguide/cs-basics/network/can-tcp-and-udp-use-the-same-port-practical-application-example.png)
+![DNS 和 HTTP/3 同时使用 TCP 与 UDP 端口的实际案例](https://oss.javaguide.cn/github/javaguide/cs-basics/network/can-tcp-and-udp-use-the-same-port-practical-application-example.png)
 
 DNS 是最经典的例子。IANA 注册表里，`domain` 服务同时注册了 `TCP/53` 和 `UDP/53`，实际 DNS 服务也经常同时监听这两个端口。
 

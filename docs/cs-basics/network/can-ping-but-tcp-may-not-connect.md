@@ -20,7 +20,7 @@ head:
 
 ICMP 工作在网络层，TCP 工作在传输层，它们在协议栈里根本不在同一层：
 
-![TCP/IP 四层模型](https://oss.javaguide.cn/github/javaguide/cs-basics/network/tcp-ip-4-model.png)
+![ICMP 和 TCP 位于 TCP/IP 协议栈的不同层次](https://oss.javaguide.cn/github/javaguide/cs-basics/network/tcp-ip-4-model.png)
 
 ## Ping 通，只能说明 ICMP 有回应
 

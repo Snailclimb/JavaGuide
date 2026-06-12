@@ -41,9 +41,9 @@ HTTP/1.0 提供的缓存机制非常简单。服务器端使用 `Expires` 标签
 
 如果服务器判断 `If-Modified-Since` 时间后，资源被修改过，则返回给客户端一个 `200 OK` 的响应体，并附带全新的资源内容，表示“你要的我已经改过的，给你一份新的”。
 
-![HTTP1.0cache1](./images/http-vs-https/HTTP1.0cache1.png)
+![HTTP/1.0 使用 Expires 和 Last-Modified 进行缓存校验](./images/http-vs-https/HTTP1.0cache1.png)
 
-![HTTP1.0cache2](./images/http-vs-https/HTTP1.0cache2.png)
+![HTTP/1.0 缓存命中时返回 304 Not Modified](./images/http-vs-https/HTTP1.0cache2.png)
 
 ### HTTP/1.1
 
@@ -150,9 +150,9 @@ Content-Range: bytes 1000-1099/2000
 
 HTTP/1.1 中新加入了状态码 `100`。该状态码的使用场景为，存在某些较大的文件请求，服务器可能不愿意响应这种请求，此时状态码 `100` 可以作为指示请求是否会被正常响应，过程如下图：
 
-![HTTP1.1continue1](./images/http-vs-https/HTTP1.1continue1.png)
+![HTTP/1.1 使用 100 Continue 预确认大请求是否可发送](./images/http-vs-https/HTTP1.1continue1.png)
 
-![HTTP1.1continue2](./images/http-vs-https/HTTP1.1continue2.png)
+![客户端收到 100 Continue 后继续发送请求体](./images/http-vs-https/HTTP1.1continue2.png)
 
 然而在 HTTP/1.0 中，并没有 `100 (Continue)` 状态码，要想触发这一机制，可以发送一个 `Expect` 头部，其中包含一个 `100-continue` 的值。
 

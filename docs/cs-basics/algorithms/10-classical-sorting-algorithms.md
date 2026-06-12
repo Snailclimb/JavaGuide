@@ -126,7 +126,7 @@ public static int[] bubbleSort(int[] arr) {
 
 ### 图解算法
 
-![Selection Sort](https://oss.javaguide.cn/github/javaguide/cs-basics/sorting-algorithms/selection_sort.gif)
+![选择排序每轮选择最小元素放到已排序区末尾](https://oss.javaguide.cn/github/javaguide/cs-basics/sorting-algorithms/selection_sort.gif)
 
 ### 代码实现
 
@@ -180,7 +180,7 @@ public static int[] selectionSort(int[] arr) {
 
 ### 图解算法
 
-![insertion_sort](https://oss.javaguide.cn/github/javaguide/cs-basics/sorting-algorithms/insertion_sort.gif)
+![插入排序过程演示](https://oss.javaguide.cn/github/javaguide/cs-basics/sorting-algorithms/insertion_sort.gif)
 
 ### 代码实现
 
@@ -229,7 +229,7 @@ public static int[] insertionSort(int[] arr) {
 
 ### 图解算法
 
-![shell_sort](https://oss.javaguide.cn/github/javaguide/cs-basics/sorting-algorithms/shell_sort.png)
+![希尔排序按增量分组并插入排序的过程](https://oss.javaguide.cn/github/javaguide/cs-basics/sorting-algorithms/shell_sort.png)
 
 ### 代码实现
 
@@ -286,7 +286,7 @@ public static int[] shellSort(int[] arr) {
 
 ### 图解算法
 
-![MergeSort](https://oss.javaguide.cn/github/javaguide/cs-basics/sorting-algorithms/merge_sort.gif)
+![归并排序递归拆分数组并合并有序子数组](https://oss.javaguide.cn/github/javaguide/cs-basics/sorting-algorithms/merge_sort.gif)
 
 ### 代码实现
 
@@ -371,7 +371,7 @@ public static int[] merge(int[] arr_1, int[] arr_2) {
 
 ### 图解算法
 
-![RandomQuickSort](https://oss.javaguide.cn/github/javaguide/cs-basics/sorting-algorithms/random_quick_sort.gif)
+![随机快速排序选择基准并递归划分子序列](https://oss.javaguide.cn/github/javaguide/cs-basics/sorting-algorithms/random_quick_sort.gif)
 
 ### 代码实现
 
@@ -451,7 +451,7 @@ class Solution {
 
 ### 图解算法
 
-![HeapSort](https://oss.javaguide.cn/github/javaguide/cs-basics/sorting-algorithms/heap_sort.gif)
+![堆排序构建大顶堆并依次取出堆顶元素](https://oss.javaguide.cn/github/javaguide/cs-basics/sorting-algorithms/heap_sort.gif)
 
 ### 代码实现
 
@@ -545,7 +545,7 @@ public static int[] heapSort(int[] arr) {
 
 ### 图解算法
 
-![CountingSort](https://oss.javaguide.cn/github/javaguide/cs-basics/sorting-algorithms/counting_sort.gif)
+![计数排序通过统计元素出现次数确定有序位置](https://oss.javaguide.cn/github/javaguide/cs-basics/sorting-algorithms/counting_sort.gif)
 
 ### 代码实现
 
@@ -626,7 +626,7 @@ public static int[] countingSort(int[] arr) {
 
 ### 图解算法
 
-![BucketSort](https://oss.javaguide.cn/github/javaguide/cs-basics/sorting-algorithms/bucket_sort.gif)
+![桶排序将数据分配到多个桶后分别排序再合并](https://oss.javaguide.cn/github/javaguide/cs-basics/sorting-algorithms/bucket_sort.gif)
 
 ### 代码实现
 
@@ -707,7 +707,7 @@ public static List<Integer> bucketSort(List<Integer> arr, int bucket_size) {
 
 ### 图解算法
 
-![RadixSort](https://oss.javaguide.cn/github/javaguide/cs-basics/sorting-algorithms/radix_sort.gif)
+![基数排序按数字位从低到高依次排序并收集](https://oss.javaguide.cn/github/javaguide/cs-basics/sorting-algorithms/radix_sort.gif)
 
 ### 代码实现
 

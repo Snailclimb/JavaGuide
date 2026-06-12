@@ -72,7 +72,7 @@ ARP 的工作原理将分两种场景讨论：
 
 5. 主机 A 终将收到主机 B 的响应分组，提取出该分组中的 IP 地址和 MAC 地址后，构造映射信息，加入到自己的 ARP 表中。
 
-![](./images/arp/arp_same_lan.png)
+![同一局域网内通过 ARP 获取目标主机 MAC 地址](./images/arp/arp_same_lan.png)
 
 在整个过程中，有几点需要补充说明的是：
 
@@ -106,6 +106,6 @@ ARP 的工作原理将分两种场景讨论：
 
 7. 路由器接口将对 IP 数据报重新封装成链路层帧，目标 MAC 地址为主机 B 的 MAC 地址，单播发送，直到目的地。
 
-![](./images/arp/arp_different_lan.png)
+![跨局域网通信时路由器通过 ARP 获取下一跳 MAC 地址](./images/arp/arp_different_lan.png)
 
 <!-- @include: @article-footer.snippet.md -->

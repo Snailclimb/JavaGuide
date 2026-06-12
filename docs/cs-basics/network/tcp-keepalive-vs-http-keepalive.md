@@ -17,7 +17,7 @@ head:
 - **HTTP Keep-Alive** 是应用层的机制，解决的问题是：一个 TCP 连接能不能被多个 HTTP 请求复用，别每次请求都重新握手。
 - **TCP Keepalive** 是传输层的机制，解决的问题是：一条 TCP 连接长时间没有数据往来，怎么判断对端还在不在，要不要把连接占用的资源回收掉。
 
-![TCP/IP 四层模型](https://oss.javaguide.cn/github/javaguide/cs-basics/network/tcp-ip-4-model.png)
+![TCP/IP 四层模型中 HTTP 与 TCP 所在层次](https://oss.javaguide.cn/github/javaguide/cs-basics/network/tcp-ip-4-model.png)
 
 一个管"连接要不要复用"，一个管"连接还活不活着"。协议层不同，目的也不同，只是名字撞了。
 

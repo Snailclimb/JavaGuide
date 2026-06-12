@@ -113,7 +113,7 @@ NAT 做的事情是把内网地址转换成公网地址。比如内网机器 `19
 
 ## TIME_WAIT 会怎样影响连接数？
 
-![TIME_WAIT 对连接数的影响](https://oss.javaguide.cn/github/javaguide/ai/context-engineering/how-time-wait-affects-number-of-connections.png)
+![TIME_WAIT 状态占用本地端口并影响可建立连接数](https://oss.javaguide.cn/github/javaguide/ai/context-engineering/how-time-wait-affects-number-of-connections.png)
 
 典型情况下，**主动关闭连接的一方会进入 `TIME_WAIT`**——因为它需要在发送最后一个 ACK 后等待一段时间，防止最后 ACK 丢失以及旧报文影响后续连接。（同时关闭场景下，双方都会进入 TIME_WAIT，不过日常碰到的绝大多数是前者。）
 
@@ -143,7 +143,7 @@ NAT 做的事情是把内网地址转换成公网地址。比如内网机器 `19
 
 排查这类问题，优先修连接复用。确认连接池、keep-alive、超时和关闭策略都没问题之后，再考虑扩大临时端口范围，或者增加源 IP。不要一上来就改内核参数。
 
-![TIME_WAIT 与 CLOSE_WAIT 排查流程](https://oss.javaguide.cn/github/javaguide/cs-basics/network/tcp-time-wait-close-wait-troubleshooting-flowchart.png)
+![TIME_WAIT 与 CLOSE_WAIT 问题的排查流程](https://oss.javaguide.cn/github/javaguide/cs-basics/network/tcp-time-wait-close-wait-troubleshooting-flowchart.png)
 
 排查时可以用 `ss -ant` 统计各 TCP 状态数量，`ss -ant state time-wait | awk 'NR>1 {print $5}' | sort | uniq -c | sort -nr | head` 查看 TIME_WAIT 集中在哪些目标，`ss -ltn` 查看监听 socket 的 accept queue 堆积情况。看到 TIME_WAIT 集中在某个远端服务，检查短连接和连接池；看到 CLOSE_WAIT 集中在某个本地进程，优先查应用代码有没有正确关闭连接。
 

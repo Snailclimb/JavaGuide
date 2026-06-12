@@ -63,39 +63,34 @@ public class Node {
 
 ### 1. 左倾染色
 
-![幻灯片1](./pictures/红黑树/红黑树1.png)
+![红黑树左倾染色示意图](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/red-black-tree-1.png)
 
 - 染色时根据当前节点的爷爷节点，找到当前节点的叔叔节点。
 - 再把父节点染黑、叔叔节点染黑，爷爷节点染红。但爷爷节点染红是临时的，当平衡树高操作后会把根节点染黑。
 
 ### 2. 右倾染色
 
-![幻灯片2](./pictures/红黑树/红黑树2.png)
+![红黑树右倾染色示意图](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/red-black-tree-2.png)
 
 ### 3. 左旋调衡
 
 #### 3.1 一次左旋
 
-![幻灯片3](./pictures/红黑树/红黑树3.png)
+![红黑树一次左旋调衡示意图](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/red-black-tree-3.png)
 
 #### 3.2 右旋 + 左旋
 
-![幻灯片4](./pictures/红黑树/红黑树4.png)
+![红黑树右旋加左旋调衡示意图](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/red-black-tree-4.png)
 
 ### 4. 右旋调衡
 
 #### 4.1 一次右旋
 
-![幻灯片5](./pictures/红黑树/红黑树5.png)
+![红黑树一次右旋调衡示意图](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/red-black-tree-5.png)
 
 #### 4.2 左旋 + 右旋
 
-![幻灯片6](./pictures/红黑树/红黑树6.png)
-
-## 文章推荐
-
-- [《红黑树深入剖析及 Java 实现》 - 美团点评技术团队](https://zhuanlan.zhihu.com/p/24367771)
-- [漫画：什么是红黑树？ - 程序员小灰](https://juejin.im/post/5a27c6946fb9a04509096248#comment)（也介绍到了二叉查找树，非常推荐）
+![红黑树左旋加右旋调衡示意图](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/red-black-tree-6.png)
 
 ## 面试复盘重点
 

@@ -196,7 +196,7 @@ echo $greeting_2  $greeting_3
 
 输出结果：
 
-![输出结果](https://oss.javaguide.cn/github/javaguide/cs-basics/shell/51148933.jpg)
+![Shell 字符串拼接命令输出结果](https://oss.javaguide.cn/github/javaguide/cs-basics/shell/51148933.jpg)
 
 **获取字符串长度：**
 

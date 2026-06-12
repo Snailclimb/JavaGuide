@@ -23,7 +23,7 @@ head:
 - **Linux 本质是指 Linux 内核**：严格来讲，Linux 这个词本身只表示 Linux 内核，单独的 Linux 内核并不能成为一个可以正常工作的操作系统。所以，就有了各种 Linux 发行版。
 - **Linux 之父（林纳斯·本纳第克特·托瓦兹 Linus Benedict Torvalds）**：一个编程领域的传奇式人物，真大佬！我辈崇拜敬仰之楷模。他是 **Linux 内核** 的最早作者，随后发起了这个开源项目，担任 Linux 内核的首要架构师。他还发起了 Git 这个开源项目，并为主要的开发者。
 
-![Linux 之父](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/linux/linux-father.png)
+![Linux 创始人 Linus Torvalds](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/linux/linux-father.png)
 
 ### Linux 诞生
 
@@ -33,11 +33,11 @@ head:
 
 1991 年，Linus Torvalds 开源了 Linux 内核。Linux 以一只可爱的企鹅作为标志，象征着敢作敢为、热爱生活。
 
-![OPINION: Make the switch to a Linux operating system | Opinion ...](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/linux/Linux-Logo.png)
+![Linux 操作系统 Logo](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/linux/Linux-Logo.png)
 
 ### 常见的 Linux 发行版本
 
-![Linux 操作系统](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/linux/linux.png)
+![Linux 操作系统桌面与命令行界面](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/linux/linux.png)
 
 Linus Torvalds 开源的只是 Linux 内核，我们上面也提到了操作系统内核的作用。一些组织或厂商将 Linux 内核与各种软件和文档包装起来，并提供系统安装界面和系统配置、设定与管理工具，就构成了 Linux 的发行版本。
 

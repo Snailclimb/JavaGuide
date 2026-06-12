@@ -222,7 +222,7 @@ Server Random
 
 这也是很多人看到密码套件名字后最容易误会的地方。
 
-![TLS 1.2 ECDHE_RSA 握手流程](https://oss.javaguide.cn/github/javaguide/cs-basics/network/https-rsa-ecdhe-tls-1-2-ecdhe-rsa-handshake-process.png)
+![TLS 1.2 使用 ECDHE RSA 完成握手和密钥协商](https://oss.javaguide.cn/github/javaguide/cs-basics/network/https-rsa-ecdhe-tls-1-2-ecdhe-rsa-handshake-process.png)
 
 ### 密码套件名怎么读
 

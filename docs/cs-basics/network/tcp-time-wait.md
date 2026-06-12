@@ -132,7 +132,7 @@ Cannot assign requested address
 
 ## 排查时别只盯着数量，要先看谁在主动关闭
 
-![TIME_WAIT 与 CLOSE_WAIT 排查流程](https://oss.javaguide.cn/github/javaguide/cs-basics/network/tcp-time-wait-close-wait-troubleshooting-flowchart.png)
+![TIME_WAIT 与 CLOSE_WAIT 问题的排查流程](https://oss.javaguide.cn/github/javaguide/cs-basics/network/tcp-time-wait-close-wait-troubleshooting-flowchart.png)
 
 看到大量 `TIME_WAIT` 或 `CLOSE_WAIT`，可以先用下面几条命令定位方向：
 
