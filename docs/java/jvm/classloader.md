@@ -164,7 +164,7 @@ public class PrintClassLoaderTree {
 
 ### 自定义类加载器
 
-我们前面也说说了，除了 `BootstrapClassLoader` 其他类加载器均由 Java 实现且全部继承自`java.lang.ClassLoader`。如果我们要自定义自己的类加载器，很明显需要继承 `ClassLoader`抽象类。
+我们前面也说了，除了 `BootstrapClassLoader` 其他类加载器均由 Java 实现且全部继承自`java.lang.ClassLoader`。如果我们要自定义自己的类加载器，很明显需要继承 `ClassLoader`抽象类。
 
 `ClassLoader` 类有两个关键的方法：
 
