@@ -161,17 +161,51 @@ export const csBasics = [
     icon: ICONS.DATA_STRUCTURE,
     collapsible: true,
     children: [
-      { text: "线性数据结构", link: "linear-data-structure" },
-      { text: "哈希表", link: "hash-table" },
-      { text: "树结构", link: "tree" },
-      { text: "图", link: "graph" },
-      { text: "堆", link: "heap" },
-      { text: "Trie 前缀树", link: "trie" },
-      { text: "并查集", link: "union-find" },
-      { text: "跳表", link: "skip-list" },
-      { text: "红黑树", link: "red-black-tree" },
-      { text: "布隆过滤器", link: "bloom-filter" },
-      { text: "LRU 缓存", link: "lru-cache" },
+      {
+        text: "知识体系",
+        link: "/cs-basics/data-structure/",
+      },
+      {
+        text: "基础结构",
+        collapsible: true,
+        children: [
+          { text: "线性数据结构", link: "linear-data-structure" },
+          { text: "⭐️哈希表", link: "hash-table" },
+        ],
+      },
+      {
+        text: "树与堆",
+        collapsible: true,
+        children: [
+          { text: "⭐️树结构", link: "tree" },
+          { text: "⭐️堆", link: "heap" },
+          { text: "红黑树", link: "red-black-tree" },
+        ],
+      },
+      {
+        text: "图与集合",
+        collapsible: true,
+        children: [
+          { text: "图", link: "graph" },
+          { text: "⭐️并查集", link: "union-find" },
+        ],
+      },
+      {
+        text: "字符串与有序索引",
+        collapsible: true,
+        children: [
+          { text: "Trie 前缀树", link: "trie" },
+          { text: "跳表", link: "skip-list" },
+        ],
+      },
+      {
+        text: "工程型结构",
+        collapsible: true,
+        children: [
+          { text: "⭐️布隆过滤器", link: "bloom-filter" },
+          { text: "⭐️LRU 缓存", link: "lru-cache" },
+        ],
+      },
     ],
   },
   {
