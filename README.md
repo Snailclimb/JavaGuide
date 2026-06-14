@@ -100,6 +100,7 @@
 
 **重要知识点详解**：
 
+- [Java 锁详解](./docs/java/concurrent/java-lock.md)
 - [乐观锁和悲观锁详解](./docs/java/concurrent/optimistic-lock-and-pessimistic-lock.md)
 - [CAS 详解](./docs/java/concurrent/cas.md)
 - [JMM（Java 内存模型）详解](./docs/java/concurrent/jmm.md)

@@ -118,6 +118,7 @@ export default sidebar({
             "java-concurrent-questions-02",
             "java-concurrent-questions-03",
             createImportantSection([
+              { text: "Java 锁详解", link: "java-lock" },
               "optimistic-lock-and-pessimistic-lock",
               "cas",
               "jmm",

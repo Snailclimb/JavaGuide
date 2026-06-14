@@ -1,6 +1,6 @@
 ---
 title: Java 并发编程专题：线程、锁、JMM、CAS、AQS、线程池与虚拟线程
-description: Java 并发编程面试与学习路线，涵盖线程、锁、JMM、CAS、AQS、ReentrantLock、ThreadLocal、线程池、CompletableFuture 和虚拟线程。
+description: Java 并发编程面试与学习路线，涵盖线程、锁、synchronized、ReentrantLock、JMM、CAS、AQS、ThreadLocal、线程池、CompletableFuture 和虚拟线程。
 category: Java
 tag:
   - Java
@@ -12,7 +12,7 @@ sitemap:
 head:
   - - meta
     - name: keywords
-      content: Java并发,Java并发面试题,JMM,CAS,AQS,ReentrantLock,ThreadLocal,线程池,CompletableFuture,并发容器,Atomic,虚拟线程
+      content: Java并发,Java锁,synchronized,ReentrantLock,JMM,CAS,AQS,ThreadLocal,线程池,CompletableFuture,并发容器,Atomic,虚拟线程
 ---
 
 Java 并发编程是后端开发和面试中最重要、也最容易混淆的模块之一。学习并发不能只背 API，要把线程生命周期、锁机制、内存模型、原子操作、线程池和并发工具类放在同一条主线上理解。
@@ -27,7 +27,7 @@ Java 并发编程是后端开发和面试中最重要、也最容易混淆的模
 ## 学习重点
 
 - 线程创建、生命周期、上下文切换、线程安全和常见并发问题。
-- `synchronized`、`volatile`、`ReentrantLock`、乐观锁、悲观锁的适用边界。
+- `synchronized`、`volatile`、`ReentrantLock`、互斥锁、读写锁、乐观锁、悲观锁的适用边界。
 - JMM、happens-before、指令重排、可见性、原子性和有序性。
 - CAS、Atomic 原子类、AQS、并发容器和阻塞队列的底层思路。
 - 线程池核心参数、拒绝策略、任务队列、参数配置和生产实践。
@@ -37,7 +37,7 @@ Java 并发编程是后端开发和面试中最重要、也最容易混淆的模
 
 1. [Java并发常见面试题总结（上）](./java-concurrent-questions-01.md)：先建立线程、锁和线程安全的基础问题清单。
 2. [Java并发常见面试题总结（中）](./java-concurrent-questions-02.md) 和 [Java并发常见面试题总结（下）](./java-concurrent-questions-03.md)：继续补齐 JMM、CAS、AQS、线程池和并发工具。
-3. [乐观锁和悲观锁详解](./optimistic-lock-and-pessimistic-lock.md)、[CAS 详解](./cas.md)、[JMM（Java 内存模型）详解](./jmm.md)：理解并发控制的底层语义。
+3. [Java 锁详解](./java-lock.md)、[乐观锁和悲观锁详解](./optimistic-lock-and-pessimistic-lock.md)、[CAS 详解](./cas.md)、[JMM（Java 内存模型）详解](./jmm.md)：先建立锁体系，再理解并发控制的底层语义。
 4. [AQS 详解](./aqs.md)、[从ReentrantLock的实现看AQS的原理及应用](./reentrantlock.md)：深入理解 Java 锁和同步器。
 5. [Java 线程池详解](./java-thread-pool-summary.md) 和 [Java 线程池最佳实践](./java-thread-pool-best-practices.md)：掌握生产中最常用的并发基础设施。
 
@@ -51,6 +51,7 @@ Java 并发编程是后端开发和面试中最重要、也最容易混淆的模
 
 ### 锁、内存模型与同步器
 
+- [Java 锁详解](./java-lock.md)：从互斥锁、读写锁、自旋锁到 `synchronized`、`ReentrantLock`、AQS，建立 Java 锁体系。
 - [乐观锁和悲观锁详解](./optimistic-lock-and-pessimistic-lock.md)：理解不同并发冲突处理策略。
 - [CAS 详解](./cas.md)：理解比较并交换、ABA 问题和自旋开销。
 - [JMM（Java 内存模型）详解](./jmm.md)：掌握可见性、原子性、有序性和 happens-before。
@@ -71,6 +72,7 @@ Java 并发编程是后端开发和面试中最重要、也最容易混淆的模
 
 - 线程和进程有什么区别？线程有哪些状态？
 - 什么是线程安全？如何定位死锁？
+- 互斥锁、读写锁、自旋锁有什么区别？
 - `synchronized` 和 `ReentrantLock` 有什么区别？
 - `volatile` 能保证原子性吗？它解决什么问题？
 - JMM 是什么？happens-before 规则有什么用？
