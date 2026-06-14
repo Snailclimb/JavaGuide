@@ -67,7 +67,7 @@ ARQ 包括停止等待 ARQ 协议和连续 ARQ 协议。
 
 **3）确认丢失和确认迟到**
 
-- **确认丢失**：确认消息在传输过程丢失。当 A 发送 M1 消息，B 收到后，B 向 A 发送了一个 M1 确认消息，但却在传输过程中丢失。而 A 并不知道，在超时计时过后，A 重传 M1 消息，B 再次收到该消息后采取以下两点措施：1. 丢弃这个重复的 M1 消息，不向上层交付。 2. 向 A 发送确认消息。（不会认为已经发送过了，就不再发送。A 能重传，就证明 B 的确认消息丢失）。
+- **确认丢失**：确认消息在传输过程丢失。当 A 发送 M1 消息，B 收到后，B 向 A 发送了一个 M1 确认消息，但却在传输过程中丢失。而 A 并不知道，在超时计时过后，A 重传 M1 消息，B 再次收到该消息后采取以下两点措施：1. 丢弃这个重复的 M1 消息，不向上层交付。2. 向 A 发送确认消息。（不会认为已经发送过了，就不再发送。A 能重传，就证明 B 的确认消息丢失）。
 - **确认迟到**：确认消息在传输过程中迟到。A 发送 M1 消息，B 收到并发送确认。在超时时间内没有收到确认消息，A 重传 M1 消息，B 仍然收到并继续发送确认消息（B 收到了 2 份 M1）。此时 A 收到了 B 第二次发送的确认消息。接着发送其他数据。过了一会，A 收到了 B 第一次发送的对 M1 的确认消息（A 也收到了 2 份确认消息）。处理如下：1. A 收到重复的确认后，直接丢弃。2. B 收到重复的 M1 后，也直接丢弃重复的 M1。
 
 ### 连续 ARQ 协议
@@ -261,9 +261,9 @@ TCP 的可靠性不是“保证网络不丢包”，而是在不可靠的 IP 网
 9. RFC 6928 - Increasing TCP's Initial Window：<https://www.rfc-editor.org/rfc/rfc6928>
 10. RFC 5681 - TCP Congestion Control：<https://datatracker.ietf.org/doc/html/rfc5681>
 11. RFC 2018 - TCP Selective Acknowledgment Options：<https://www.rfc-editor.org/rfc/rfc2018>
-12. RFC 2883 - An Extension to the Selective Acknowledgement (SACK) Option for TCP：<https://www.rfc-editor.org/rfc/rfc2883>
+12. RFC 2883 - An Extension to the Selective Acknowledgement （SACK） Option for TCP：<https://www.rfc-editor.org/rfc/rfc2883>
 13. RFC 9438 - CUBIC for Fast and Long-Distance Networks：<https://www.rfc-editor.org/rfc/rfc9438>
-14. RFC 8257 - Data Center TCP (DCTCP)：<https://www.rfc-editor.org/rfc/rfc8257>
+14. RFC 8257 - Data Center TCP （DCTCP）：<https://www.rfc-editor.org/rfc/rfc8257>
 15. BBR: Congestion-Based Congestion Control, ACM Queue, 2016：<https://queue.acm.org/detail.cfm?id=3022184>
 16. RFC 1122 - Requirements for Internet Hosts - Communication Layers：<https://datatracker.ietf.org/doc/html/rfc1122>
 17. RFC 6298 - Computing TCP's Retransmission Timer：<https://www.rfc-editor.org/rfc/rfc6298>

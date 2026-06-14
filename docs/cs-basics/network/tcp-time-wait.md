@@ -184,7 +184,7 @@ ss -ltn
 
 ## 参考
 
-- RFC 9293: Transmission Control Protocol (TCP)：<https://www.rfc-editor.org/rfc/rfc9293>
+- RFC 9293: Transmission Control Protocol （TCP）：<https://www.rfc-editor.org/rfc/rfc9293>
 - RFC 1337: TIME-WAIT Assassination Hazards in TCP：<https://www.rfc-editor.org/rfc/rfc1337>
 - Linux 内核 ip-sysctl 文档：<https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt>
 - SoByte - 为什么 TCP 需要 TIME_WAIT 状态：<https://www.sobyte.net/post/2022-10/tcp-time-wait/>

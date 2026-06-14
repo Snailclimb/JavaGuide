@@ -65,11 +65,11 @@ echo $BASH_VERSION
 
 学习任何一门编程语言第一件事就是输出 HelloWorld 了！下面我会从新建文件到 Shell 代码编写来说下 Shell 编程如何输出 Hello World。
 
-(1) 新建一个文件 helloworld.sh：`touch helloworld.sh`，扩展名为 sh（sh 代表 Shell）（扩展名并不影响脚本执行，见名知意就好，如果你用 php 写 Shell 脚本，扩展名就用 php 好了）。
+（1）新建一个文件 helloworld.sh：`touch helloworld.sh`，扩展名为 sh（sh 代表 Shell）（扩展名并不影响脚本执行，见名知意就好，如果你用 php 写 Shell 脚本，扩展名就用 php 好了）。
 
-(2) 使脚本具有执行权限：`chmod +x helloworld.sh`
+（2）使脚本具有执行权限：`chmod +x helloworld.sh`
 
-(3) 使用 vim 命令修改 helloworld.sh 文件：`vim helloworld.sh`（vim 文件------>进入文件----->命令模式------>按 i 进入编辑模式----->编辑文件------->按 Esc 进入底行模式----->输入:wq/q!（输入 wq 代表写入内容并退出，即保存；输入 q! 代表强制退出不保存。））
+（3）使用 vim 命令修改 helloworld.sh 文件：`vim helloworld.sh`（vim 文件------>进入文件----->命令模式------>按 i 进入编辑模式----->编辑文件------->按 Esc 进入底行模式----->输入:wq/q!（输入 wq 代表写入内容并退出，即保存；输入 q! 代表强制退出不保存。））
 
 helloworld.sh 内容如下：
 
@@ -82,7 +82,7 @@ echo "helloworld!"
 
 Shell 中 `#` 符号表示注释。**Shell 的第一行比较特殊，一般都会以 `#!` 开始来指定使用的 Shell 类型。在 Linux 中，除了 bash Shell 以外，还有很多版本的 Shell，例如 zsh、dash 等等...不过 bash Shell 还是我们使用最多的。**
 
-(4) 运行脚本：`./helloworld.sh`。（注意，一定要写成 `./helloworld.sh`，而不是 `helloworld.sh`，运行其它二进制的程序也一样，直接写 `helloworld.sh`，Linux 系统会去 PATH 里寻找有没有叫 helloworld.sh 的，而只有 /bin、/sbin、/usr/bin、/usr/sbin 等在 PATH 里，你的当前目录通常不在 PATH 里，所以写成 `helloworld.sh` 是会找不到命令的，要用 `./helloworld.sh` 告诉系统说，就在当前目录找。）
+（4）运行脚本：`./helloworld.sh`。（注意，一定要写成 `./helloworld.sh`，而不是 `helloworld.sh`，运行其它二进制的程序也一样，直接写 `helloworld.sh`，Linux 系统会去 PATH 里寻找有没有叫 helloworld.sh 的，而只有 /bin、/sbin、/usr/bin、/usr/sbin 等在 PATH 里，你的当前目录通常不在 PATH 里，所以写成 `helloworld.sh` 是会找不到命令的，要用 `./helloworld.sh` 告诉系统说，就在当前目录找。）
 
 ![shell 编程Hello World](https://oss.javaguide.cn/github/javaguide/cs-basics/shell/55296212.jpg)
 
@@ -339,7 +339,7 @@ Shell 编程支持下面几种运算符：
 | ---------- | -------- | ------------------------------------------------ |
 | **+**      | 加法     | `expr $a + $b`                                   |
 | **-**      | 减法     | `expr $a - $b`                                   |
-| **\***     | 乘法     | `expr $a \* $b` (注意星号需要转义)               |
+| **\***     | 乘法     | `expr $a \* $b`（注意星号需要转义）              |
 | **/**      | 除法     | `expr $b / $a`                                   |
 | **%**      | 取余     | `expr $b % $a`                                   |
 | **=**      | 赋值     | `a=$b` 将变量 b 的值赋给 a                       |
@@ -403,10 +403,10 @@ B
 
 ### 逻辑运算符
 
-| **运算符** | **说明**       | **举例**                                        |
-| ---------- | -------------- | ----------------------------------------------- |
-| **&&**     | 逻辑的 **AND** | `[[ $a -lt 100 && $b -gt 100 ]]` (全真才为真)   |
-| **\|\|**   | 逻辑的 **OR**  | `[[ $a -lt 100 \|\| $b -gt 100 ]]` (一真即为真) |
+| **运算符** | **说明**       | **举例**                                         |
+| ---------- | -------------- | ------------------------------------------------ |
+| **&&**     | 逻辑的 **AND** | `[[ $a -lt 100 && $b -gt 100 ]]`（全真才为真）   |
+| **\|\|**   | 逻辑的 **OR**  | `[[ $a -lt 100 \|\| $b -gt 100 ]]`（一真即为真） |
 
 **算术扩展中的逻辑运算**：
 
@@ -1404,7 +1404,7 @@ set -euo pipefail  # 遇错退出、未定义变量报错、管道失败报错
 
 ### 参考资源
 
-- **官方文档**：Bash Reference Manual (GNU)
+- **官方文档**：Bash Reference Manual （GNU）
 - **代码检查**：ShellCheck - Shell Script Analysis Tool
 - **编码规范**：Google Shell Style Guide
 - **常见陷阱**：Bash Pitfalls (http://mywiki.wooledge.org/BashPitfalls)

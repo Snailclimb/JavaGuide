@@ -35,7 +35,7 @@ head:
 - **节点的层数**：节点的深度+1。
 - **树的高度**：根节点的高度。
 
-> 关于树的深度和高度的定义可以看 stackoverflow 上的这个问题：[What is the difference between tree depth and height?](https://stackoverflow.com/questions/2603692/what-is-the-difference-between-tree-depth-and-height) 。
+> 关于树的深度和高度的定义可以看 stackoverflow 上的这个问题：[What is the difference between tree depth and height?](https://stackoverflow.com/questions/2603692/what-is-the-difference-between-tree-depth-and-height)。
 
 ## 二叉树的分类
 
@@ -49,13 +49,13 @@ head:
 
 ### 满二叉树
 
-一个二叉树，如果每一个层的结点数都达到最大值，则这个二叉树就是 **满二叉树**。也就是说，如果一个二叉树的层数为 K，且结点总数是 `2^k -1` ，则它就是 **满二叉树**。如下图所示：
+一个二叉树，如果每一个层的结点数都达到最大值，则这个二叉树就是 **满二叉树**。也就是说，如果一个二叉树的层数为 K，且结点总数是 `2^k -1`，则它就是 **满二叉树**。如下图所示：
 
 ![满二叉树](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/full-binary-tree.png)
 
 ### 完全二叉树
 
-除最后一层外，若其余层都是满的，并且最后一层是满的或者是在右边缺少连续若干节点，则这个二叉树就是 **完全二叉树** 。
+除最后一层外，若其余层都是满的，并且最后一层是满的或者是在右边缺少连续若干节点，则这个二叉树就是 **完全二叉树**。
 
 大家可以想象为一棵树从根结点开始扩展，扩展完左子节点才能开始扩展右子节点，每扩展完一层，才能继续扩展下一层。如下图所示：
 

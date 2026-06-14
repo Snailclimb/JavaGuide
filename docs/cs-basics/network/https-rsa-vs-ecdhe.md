@@ -12,7 +12,7 @@ head:
 
 很多人第一次学 HTTPS，脑子里会留下一个很粗的印象：
 
-**HTTPS = HTTP + 加密，加密 = RSA。 所以，HTTPS = RSA 加密。**
+**HTTPS = HTTP + 加密，加密 = RSA。所以，HTTPS = RSA 加密。**
 
 这个理解不是凭空来的。早期很多 HTTPS 部署确实大量使用 RSA 相关的密码套件，很多入门讲解也喜欢拿 RSA 举例。
 
