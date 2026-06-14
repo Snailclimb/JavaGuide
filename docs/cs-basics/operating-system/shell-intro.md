@@ -141,7 +141,7 @@ echo  "helloworld!"
 
 - `$`：变量扩展（如 `$var`）和命令替换（如 `$(cmd)` 或 `` `cmd` ``）
 - `\`：转义字符
-- `` ` `` 或 `$()`：命令替换（推荐使用 `$()` 语法）
+- `` ` `` 或 `$()`：命令替换（推荐使用`$()` 语法）
 - `!`：历史扩展（仅在交互式 Shell 中默认开启）
 - `${}`：参数扩展
 
@@ -1404,7 +1404,7 @@ set -euo pipefail  # 遇错退出、未定义变量报错、管道失败报错
 
 ### 参考资源
 
-- **官方文档**：Bash Reference Manual （GNU）
+- **官方文档**：Bash Reference Manual（GNU）
 - **代码检查**：ShellCheck - Shell Script Analysis Tool
 - **编码规范**：Google Shell Style Guide
 - **常见陷阱**：Bash Pitfalls (http://mywiki.wooledge.org/BashPitfalls)
