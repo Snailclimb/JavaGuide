@@ -12,11 +12,11 @@ head:
 
 ## DelayQueue 简介
 
-`DelayQueue` 是 JUC 包(`java.util.concurrent)`为我们提供的延迟队列，用于实现延时任务比如订单下单 15 分钟未支付直接取消。它是 `BlockingQueue` 的一种，底层是一个基于 `PriorityQueue` 实现的一个无界队列，是线程安全的。关于`PriorityQueue`可以参考笔者编写的这篇文章：[PriorityQueue 源码分析](./priorityqueue-source-code.md) 。
+`DelayQueue` 是 JUC 包(`java.util.concurrent)` 为我们提供的延迟队列，用于实现延时任务比如订单下单 15 分钟未支付直接取消。它是 `BlockingQueue` 的一种，底层是一个基于 `PriorityQueue` 实现的一个无界队列，是线程安全的。关于 `PriorityQueue` 可以参考笔者编写的这篇文章：[PriorityQueue 源码分析](./priorityqueue-source-code.md)。
 
 ![BlockingQueue 的实现类](https://oss.javaguide.cn/github/javaguide/java/collection/blocking-queue-hierarchy.png)
 
-`DelayQueue` 中存放的元素必须实现 `Delayed` 接口，并且需要重写 `getDelay()`方法（计算是否到期）。
+`DelayQueue` 中存放的元素必须实现 `Delayed` 接口，并且需要重写 `getDelay()` 方法（计算是否到期）。
 
 ```java
 public interface Delayed extends Comparable<Delayed> {
@@ -24,7 +24,7 @@ public interface Delayed extends Comparable<Delayed> {
 }
 ```
 
-默认情况下, `DelayQueue` 会按照到期时间升序编排任务。只有当元素过期时（`getDelay()`方法返回值小于等于 0），才能从队列中取出。
+默认情况下, `DelayQueue` 会按照到期时间升序编排任务。只有当元素过期时（`getDelay()` 方法返回值小于等于 0），才能从队列中取出。
 
 ## DelayQueue 发展史
 
@@ -42,7 +42,7 @@ public interface Delayed extends Comparable<Delayed> {
 
 ![延迟任务](https://oss.javaguide.cn/github/javaguide/java/collection/delayed-task.png)
 
-对此我们可以使用 `DelayQueue` 来实现,所以我们首先需要继承 `Delayed` 实现 `DelayedTask`，实现 `getDelay` 方法以及优先级比较 `compareTo`。
+对此我们可以使用 `DelayQueue` 来实现，所以我们首先需要继承 `Delayed` 实现 `DelayedTask`，实现 `getDelay` 方法以及优先级比较 `compareTo`。
 
 ```java
 /**
@@ -152,13 +152,13 @@ private final Condition available = lock.newCondition();
 ```
 
 - `lock` : 我们都知道 `DelayQueue` 存取是线程安全的，所以为了保证存取元素时线程安全，我们就需要在存取时上锁，而 `DelayQueue` 就是基于 `ReentrantLock` 独占锁确保存取操作的线程安全。
-- `q` : 延迟队列要求元素按照到期时间进行升序排列，所以元素添加时势必需要进行优先级排序,所以 `DelayQueue` 底层元素的存取都是通过这个优先队列 `PriorityQueue` 的成员变量 `q` 来管理的。
-- `leader` : 延迟队列的任务只有到期之后才会执行,对于没有到期的任务只有等待,为了确保优先级最高的任务到期后可以即刻被执行,设计者就用 `leader` 来管理延迟任务，只有 `leader` 所指向的线程才具备定时等待任务到期执行的权限，而其他那些优先级低的任务只能无限期等待，直到 `leader` 线程执行完手头的延迟任务后唤醒它。
+- `q` : 延迟队列要求元素按照到期时间进行升序排列，所以元素添加时势必需要进行优先级排序，所以 `DelayQueue` 底层元素的存取都是通过这个优先队列 `PriorityQueue` 的成员变量 `q` 来管理的。
+- `leader` : 延迟队列的任务只有到期之后才会执行，对于没有到期的任务只有等待，为了确保优先级最高的任务到期后可以即刻被执行，设计者就用 `leader` 来管理延迟任务，只有 `leader` 所指向的线程才具备定时等待任务到期执行的权限，而其他那些优先级低的任务只能无限期等待，直到 `leader` 线程执行完手头的延迟任务后唤醒它。
 - `available` : 上文讲述 `leader` 线程时提到的等待唤醒操作的交互就是通过 `available` 实现的，假如线程 1 尝试在空的 `DelayQueue` 获取任务时，`available` 就会将其放入等待队列中。直到有一个线程添加一个延迟任务后通过 `available` 的 `signal` 方法将其唤醒。
 
 ### 构造方法
 
-相较于其他的并发容器，延迟队列的构造方法比较简单，它只有两个构造方法，因为所有成员变量在类加载时都已经初始完成了，所以默认构造方法什么也没做。还有一个传入 `Collection` 对象的构造方法，它会将调用 `addAll()`方法将集合元素存到优先队列 `q` 中。
+相较于其他的并发容器，延迟队列的构造方法比较简单，它只有两个构造方法，因为所有成员变量在类加载时都已经初始完成了，所以默认构造方法什么也没做。还有一个传入 `Collection` 对象的构造方法，它会将调用 `addAll()` 方法将集合元素存到优先队列 `q` 中。
 
 ```java
 public DelayQueue() {}
@@ -174,9 +174,9 @@ public DelayQueue(Collection<? extends E> c) {
 
 `offer` 方法的整体逻辑为:
 
-1. 尝试获取 `lock` 。
-2. 如果上锁成功,则调 `q` 的 `offer` 方法将元素存放到优先队列中。
-3. 调用 `peek` 方法看看当前队首元素是否就是本次入队的元素,如果是则说明当前这个元素是即将到期的任务(即优先级最高的元素)，于是将 `leader` 设置为空,通知因为队列为空时调用 `take` 等方法导致阻塞的线程来争抢元素。
+1. 尝试获取 `lock`。
+2. 如果上锁成功，则调 `q` 的 `offer` 方法将元素存放到优先队列中。
+3. 调用 `peek` 方法看看当前队首元素是否就是本次入队的元素，如果是则说明当前这个元素是即将到期的任务（即优先级最高的元素），于是将 `leader` 设置为空，通知因为队列为空时调用 `take` 等方法导致阻塞的线程来争抢元素。
 4. 上述步骤执行完成，释放 `lock`。
 5. 返回 true。
 
@@ -229,9 +229,9 @@ public boolean offer(E e) {
 
 ![](https://oss.javaguide.cn/github/javaguide/java/collection/delayqueue-take-2.png)
 
-如果元素不为空，则判断当前任务是否到期，如果元素到期，则直接返回出去。如果元素未到期，则判断当前 `leader` 线程(`DelayQueue` 中唯一一个可以等待并获取元素的线程引用)是否为空，若不为空，则说明当前 `leader` 正在等待执行一个优先级比当前元素还高的元素到期，故当前线程 t1 只能调用 `await` 进入无限期等待，等到 `leader` 取得元素后唤醒。反之，若 `leader` 线程为空，则将当前线程设置为 leader 并进入有限期等待,到期后取出元素并返回。
+如果元素不为空，则判断当前任务是否到期，如果元素到期，则直接返回出去。如果元素未到期，则判断当前 `leader` 线程(`DelayQueue` 中唯一一个可以等待并获取元素的线程引用)是否为空，若不为空，则说明当前 `leader` 正在等待执行一个优先级比当前元素还高的元素到期，故当前线程 t1 只能调用 `await` 进入无限期等待，等到 `leader` 取得元素后唤醒。反之，若 `leader` 线程为空，则将当前线程设置为 leader 并进入有限期等待，到期后取出元素并返回。
 
-自此我们阻塞式获取元素的逻辑都已完成后,源码如下，读者可自行参阅:
+自此我们阻塞式获取元素的逻辑都已完成后，源码如下，读者可自行参阅:
 
 ```java
 public E take() throws InterruptedException {
@@ -281,15 +281,15 @@ public E take() throws InterruptedException {
 }
 ```
 
-我们再来看看非阻塞的获取元素方法 `poll` ，逻辑比较简单，整体步骤如下:
+我们再来看看非阻塞的获取元素方法 `poll`，逻辑比较简单，整体步骤如下:
 
 1. 尝试获取可重入锁。
-2. 查看队列第一个元素,判断元素是否为空。
+2. 查看队列第一个元素，判断元素是否为空。
 3. 若元素为空，或者元素未到期，则直接返回空。
 4. 若元素不为空且到期了，直接调用 `poll` 返回出去。
-5. 释放可重入锁 `lock` 。
+5. 释放可重入锁 `lock`。
 
-源码如下,读者可自行参阅源码及注释:
+源码如下，读者可自行参阅源码及注释:
 
 ```java
 public E poll() {
@@ -346,7 +346,7 @@ public E peek() {
 
 ### DelayQueue 的使用场景有哪些？
 
-`DelayQueue` 通常用于实现定时任务调度和缓存过期删除等场景。在定时任务调度中，需要将需要执行的任务封装成延迟任务对象，并将其添加到 `DelayQueue` 中，`DelayQueue` 会自动按照剩余延迟时间进行升序排序(默认情况)，以保证任务能够按照时间先后顺序执行。对于缓存过期这个场景而言，在数据被缓存到内存之后，我们可以将缓存的 key 封装成一个延迟的删除任务，并将其添加到 `DelayQueue` 中，当数据过期时，拿到这个任务的 key，将这个 key 从内存中移除。
+`DelayQueue` 通常用于实现定时任务调度和缓存过期删除等场景。在定时任务调度中，需要将需要执行的任务封装成延迟任务对象，并将其添加到 `DelayQueue` 中，`DelayQueue` 会自动按照剩余延迟时间进行升序排序（默认情况），以保证任务能够按照时间先后顺序执行。对于缓存过期这个场景而言，在数据被缓存到内存之后，我们可以将缓存的 key 封装成一个延迟的删除任务，并将其添加到 `DelayQueue` 中，当数据过期时，拿到这个任务的 key，将这个 key 从内存中移除。
 
 ### DelayQueue 中 Delayed 接口的作用是什么？
 
@@ -359,6 +359,6 @@ public E peek() {
 ## 参考文献
 
 - 《深入理解高并发编程：JDK 核心技术》:
-- 一口气说出 Java 6 种延时队列的实现方法(面试官也得服):<https://www.jb51.net/article/186192.htm>
+- 一口气说出 Java 6 种延时队列的实现方法（面试官也得服）:<https://www.jb51.net/article/186192.htm>
 - 图解 DelayQueue 源码（java 8）——延时队列的小九九: <https://blog.csdn.net/every__day/article/details/113810985>
 <!-- @include: @article-footer.snippet.md -->

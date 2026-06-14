@@ -15,7 +15,7 @@ head:
 `LinkedHashMap` 是 Java 提供的一个集合类，它继承自 `HashMap`，并在 `HashMap` 基础上维护一条双向链表，使得具备如下特性:
 
 1. 支持遍历时会按照插入顺序有序进行迭代。
-2. 支持按照元素访问顺序排序,适用于封装 LRU 缓存工具。
+2. 支持按照元素访问顺序排序，适用于封装 LRU 缓存工具。
 3. 因为内部使用双向链表维护各个节点，所以遍历时的效率和元素个数成正比，相较于和容量成正比的 HashMap 来说，迭代效率会高很多。
 
 `LinkedHashMap` 逻辑结构如下图所示，它是在 `HashMap` 基础上在各个节点之间维护一条双向链表，使得原本散列在不同 bucket 上的节点、链表、红黑树有序关联起来。
@@ -49,11 +49,11 @@ r:1
 e:23
 ```
 
-可以看出，`LinkedHashMap` 的迭代顺序是和插入顺序一致的,这一点是 `HashMap` 所不具备的。
+可以看出，`LinkedHashMap` 的迭代顺序是和插入顺序一致的，这一点是 `HashMap` 所不具备的。
 
 ### 访问顺序遍历
 
-`LinkedHashMap` 定义了排序模式 `accessOrder`(boolean 类型，默认为 false)，访问顺序则为 true，插入顺序则为 false。
+`LinkedHashMap` 定义了排序模式 `accessOrder`（boolean 类型，默认为 false），访问顺序则为 true，插入顺序则为 false。
 
 为了实现访问顺序遍历，我们可以使用传入 `accessOrder` 属性的 `LinkedHashMap` 构造方法，并将 `accessOrder` 设置为 true，表示其具备访问有序性。
 
@@ -94,8 +94,8 @@ for (Map.Entry<Integer, String> entry : map.entrySet()) {
 具体实现思路如下：
 
 - 继承 `LinkedHashMap`;
-- 构造方法中指定 `accessOrder` 为 true ，这样在访问元素时就会把该元素移动到链表尾部，链表首元素就是最近最少被访问的元素；
-- 重写`removeEldestEntry` 方法，该方法会返回一个 boolean 值，告知 `LinkedHashMap` 是否需要移除链表首元素（缓存容量有限）。
+- 构造方法中指定 `accessOrder` 为 true，这样在访问元素时就会把该元素移动到链表尾部，链表首元素就是最近最少被访问的元素；
+- 重写 `removeEldestEntry` 方法，该方法会返回一个 boolean 值，告知 `LinkedHashMap` 是否需要移除链表首元素（缓存容量有限）。
 
 ```java
 public class LRUCache<K, V> extends LinkedHashMap<K, V> {
@@ -140,16 +140,16 @@ four
 five
 ```
 
-从输出结果来看，由于缓存容量为 3 ，因此，添加第 4 个元素时，第 1 个元素会被删除。添加第 5 个元素时，第 2 个元素会被删除。
+从输出结果来看，由于缓存容量为 3，因此，添加第 4 个元素时，第 1 个元素会被删除。添加第 5 个元素时，第 2 个元素会被删除。
 
 ## LinkedHashMap 源码解析
 
 ### Node 的设计
 
-在正式讨论 `LinkedHashMap` 前，我们先来聊聊 `LinkedHashMap` 节点 `Entry` 的设计,我们都知道 `HashMap` 的 bucket 上的因为冲突转为链表的节点会在符合以下两个条件时会将链表转为红黑树:
+在正式讨论 `LinkedHashMap` 前，我们先来聊聊 `LinkedHashMap` 节点 `Entry` 的设计，我们都知道 `HashMap` 的 bucket 上的因为冲突转为链表的节点会在符合以下两个条件时会将链表转为红黑树:
 
-1. ~~链表上的节点个数达到树化的阈值 7，即`TREEIFY_THRESHOLD - 1`。~~
-2. bucket 的容量达到最小的树化容量即`MIN_TREEIFY_CAPACITY`。
+1. ~~链表上的节点个数达到树化的阈值 7，即 `TREEIFY_THRESHOLD - 1`。~~
+2. bucket 的容量达到最小的树化容量即 `MIN_TREEIFY_CAPACITY`。
 
 > **🐛 修正（参见：[issue#2147](https://github.com/Snailclimb/JavaGuide/issues/2147)）**：
 >
@@ -157,7 +157,7 @@ five
 >
 > ![](https://oss.javaguide.cn/github/javaguide/java/jvm/LinkedHashMap-putval-TREEIFY.png)
 
-而 `LinkedHashMap` 是在 `HashMap` 的基础上为 bucket 上的每一个节点建立一条双向链表，这就使得转为红黑树的树节点也需要具备双向链表节点的特性，即每一个树节点都需要拥有两个引用存储前驱节点和后继节点的地址,所以对于树节点类 `TreeNode` 的设计就是一个比较棘手的问题。
+而 `LinkedHashMap` 是在 `HashMap` 的基础上为 bucket 上的每一个节点建立一条双向链表，这就使得转为红黑树的树节点也需要具备双向链表节点的特性，即每一个树节点都需要拥有两个引用存储前驱节点和后继节点的地址，所以对于树节点类 `TreeNode` 的设计就是一个比较棘手的问题。
 
 对此我们不妨来看看两者之间节点类的类图，可以看到:
 
@@ -166,11 +166,11 @@ five
 
 ![LinkedHashMap 和 HashMap 之间的关系](https://oss.javaguide.cn/github/javaguide/java/collection/map-hashmap-linkedhashmap.png)
 
-很多读者此时就会有这样一个疑问，为什么 `HashMap` 的树节点 `TreeNode` 要通过 `LinkedHashMap` 获取双向链表的特性呢?为什么不直接在 `Node` 上实现前驱和后继指针呢?
+很多读者此时就会有这样一个疑问，为什么 `HashMap` 的树节点 `TreeNode` 要通过 `LinkedHashMap` 获取双向链表的特性呢？为什么不直接在 `Node` 上实现前驱和后继指针呢？
 
-先来回答第一个问题，我们都知道 `LinkedHashMap` 是在 `HashMap` 基础上对节点增加双向指针实现双向链表的特性,所以 `LinkedHashMap` 内部链表转红黑树时，对应的节点会转为树节点 `TreeNode`,为了保证使用 `LinkedHashMap` 时树节点具备双向链表的特性，所以树节点 `TreeNode` 需要继承 `LinkedHashMap` 的 `Entry`。
+先来回答第一个问题，我们都知道 `LinkedHashMap` 是在 `HashMap` 基础上对节点增加双向指针实现双向链表的特性，所以 `LinkedHashMap` 内部链表转红黑树时，对应的节点会转为树节点 `TreeNode`,为了保证使用 `LinkedHashMap` 时树节点具备双向链表的特性，所以树节点 `TreeNode` 需要继承 `LinkedHashMap` 的 `Entry`。
 
-再来说说第二个问题，我们直接在 `HashMap` 的节点 `Node` 上直接实现前驱和后继指针,然后 `TreeNode` 直接继承 `Node` 获取双向链表的特性为什么不行呢？其实这样做也是可以的。只不过这种做法会使得使用 `HashMap` 时存储键值对的节点类 `Node` 多了两个没有必要的引用，占用没必要的内存空间。
+再来说说第二个问题，我们直接在 `HashMap` 的节点 `Node` 上直接实现前驱和后继指针，然后 `TreeNode` 直接继承 `Node` 获取双向链表的特性为什么不行呢？其实这样做也是可以的。只不过这种做法会使得使用 `HashMap` 时存储键值对的节点类 `Node` 多了两个没有必要的引用，占用没必要的内存空间。
 
 所以，为了保证 `HashMap` 底层的节点类 `Node` 没有多余的引用，又要保证 `LinkedHashMap` 的节点类 `Entry` 拥有存储链表的引用，设计者就让 `LinkedHashMap` 的节点 `Entry` 去继承 Node 并增加存储前驱后继节点的引用 `before`、`after`，让需要用到链表特性的节点去实现需要的逻辑。然后树节点 `TreeNode` 再通过继承 `Entry` 获取 `before`、`after` 两个指针。
 
@@ -183,7 +183,7 @@ static class Entry<K,V> extends HashMap.Node<K,V> {
     }
 ```
 
-但是这样做，不也使得使用 `HashMap` 时的 `TreeNode` 多了两个没有必要的引用吗?这不也是一种空间的浪费吗？
+但是这样做，不也使得使用 `HashMap` 时的 `TreeNode` 多了两个没有必要的引用吗？这不也是一种空间的浪费吗？
 
 ```java
 static final class TreeNode<K,V> extends LinkedHashMap.Entry<K,V> {
@@ -192,7 +192,7 @@ static final class TreeNode<K,V> extends LinkedHashMap.Entry<K,V> {
 }
 ```
 
-对于这个问题,引用作者的一段注释，作者们认为在良好的 `hashCode` 算法时，`HashMap` 转红黑树的概率不大。就算转为红黑树变为树节点，也可能会因为移除或者扩容将 `TreeNode` 变为 `Node`，所以 `TreeNode` 的使用概率不算很大，对于这一点资源空间的浪费是可以接受的。
+对于这个问题，引用作者的一段注释，作者们认为在良好的 `hashCode` 算法时，`HashMap` 转红黑树的概率不大。就算转为红黑树变为树节点，也可能会因为移除或者扩容将 `TreeNode` 变为 `Node`，所以 `TreeNode` 的使用概率不算很大，对于这一点资源空间的浪费是可以接受的。
 
 ```bash
 Because TreeNodes are about twice the size of regular nodes, we
@@ -232,7 +232,7 @@ public LinkedHashMap(int initialCapacity,
 }
 ```
 
-我们上面也提到了，默认情况下 `accessOrder` 为 false，如果我们要让 `LinkedHashMap` 实现键值对按照访问顺序排序(即将最近未访问的元素排在链表首部、最近访问的元素移动到链表尾部)，需要调用第 4 个构造方法将 `accessOrder` 设置为 true。
+我们上面也提到了，默认情况下 `accessOrder` 为 false，如果我们要让 `LinkedHashMap` 实现键值对按照访问顺序排序（即将最近未访问的元素排在链表首部、最近访问的元素移动到链表尾部），需要调用第 4 个构造方法将 `accessOrder` 设置为 true。
 
 ### get 方法
 
@@ -441,7 +441,7 @@ void afterNodeRemoval(Node<K,V> e) { // unlink
 
 同样的 `LinkedHashMap` 并没有实现插入方法，而是直接继承 `HashMap` 的所有插入方法交由用户使用，但为了维护双向链表访问的有序性，它做了这样两件事:
 
-1. 重写 `afterNodeAccess`(上文提到过),如果当前被插入的 key 已存在与 `map` 中，因为 `LinkedHashMap` 的插入操作会将新节点追加至链表末尾，所以对于存在的 key 则调用 `afterNodeAccess` 将其放到链表末端。
+1. 重写 `afterNodeAccess`（上文提到过）,如果当前被插入的 key 已存在与 `map` 中，因为 `LinkedHashMap` 的插入操作会将新节点追加至链表末尾，所以对于存在的 key 则调用 `afterNodeAccess` 将其放到链表末端。
 2. 重写了 `HashMap` 的 `afterNodeInsertion` 方法，当 `removeEldestEntry` 返回 true 时，会将链表首节点移除。
 
 这一点我们可以在 `HashMap` 的插入操作核心方法 `putVal` 中看到。
@@ -502,7 +502,7 @@ void afterNodeInsertion(boolean evict) { // possibly remove eldest
 
 从源码可以看出， `afterNodeInsertion` 方法完成了下面这些操作:
 
-1. 判断 `eldest` 是否为 true，只有为 true 才能说明可能需要将最年长的键值对(即链表首部的元素)进行移除，具体是否具体要进行移除，还得确定链表是否为空`((first = head) != null)`，以及 `removeEldestEntry` 方法是否返回 true，只有这两个方法返回 true 才能确定当前链表不为空，且链表需要进行移除操作了。
+1. 判断 `eldest` 是否为 true，只有为 true 才能说明可能需要将最年长的键值对（即链表首部的元素）进行移除，具体是否具体要进行移除，还得确定链表是否为空 `((first = head) != null)`，以及 `removeEldestEntry` 方法是否返回 true，只有这两个方法返回 true 才能确定当前链表不为空，且链表需要进行移除操作了。
 2. 获取链表第一个元素的 key。
 3. 调用 `HashMap` 的 `removeNode` 方法，该方法我们上文提到过，它会将节点从 `HashMap` 的 bucket 中移除，并且 `LinkedHashMap` 还重写了 `removeNode` 中的 `afterNodeRemoval` 方法，所以这一步将通过调用 `removeNode` 将元素从 `HashMap` 的 bucket 中移除，并和 `LinkedHashMap` 的双向链表断开，等待 gc 回收。
 

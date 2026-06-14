@@ -66,7 +66,7 @@ head:
 
 上面三个类提供的方法几乎相同，所以我们这里以 `AtomicInteger` 为例子来介绍。
 
-**`AtomicInteger` 类常用方法** ：
+**`AtomicInteger` 类常用方法**：
 
 ```java
 public final int get() //获取当前的值
@@ -348,7 +348,7 @@ Final Reference: Daisy, Final Mark: true
 
 要想原子地更新对象的属性需要两步。第一步，因为对象的属性修改类型原子类都是抽象类，所以每次使用都必须使用静态方法 newUpdater()创建一个更新器，并且需要设置想要更新的类和属性。第二步，更新的对象属性必须使用 volatile int 修饰符。
 
-上面三个类提供的方法几乎相同，所以我们这里以 `AtomicIntegerFieldUpdater`为例子来介绍。
+上面三个类提供的方法几乎相同，所以我们这里以 `AtomicIntegerFieldUpdater` 为例子来介绍。
 
 **`AtomicIntegerFieldUpdater` 类使用示例** :
 

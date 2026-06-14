@@ -10,7 +10,7 @@ head:
       content: Java序列化,反序列化,Serializable接口,transient关键字,serialVersionUID,序列化协议,对象持久化
 ---
 
-## 什么是序列化和反序列化?
+## 什么是序列化和反序列化？
 
 如果我们需要持久化 Java 对象比如将 Java 对象保存在文件中，或者在网络传输 Java 对象，这些场景都需要用到序列化。
 
@@ -19,7 +19,7 @@ head:
 - **序列化**：将数据结构或对象转换成可以存储或传输的形式，通常是二进制字节流，也可以是 JSON, XML 等文本格式
 - **反序列化**：将在序列化过程中所生成的数据转换为原始数据结构或者对象的过程
 
-对于 Java 这种面向对象编程语言来说，我们序列化的都是对象（Object）也就是实例化后的类(Class)，但是在 C++这种半面向对象的语言中，struct(结构体)定义的是数据结构类型，而 class 对应的是对象类型。
+对于 Java 这种面向对象编程语言来说，我们序列化的都是对象（Object）也就是实例化后的类(Class)，但是在 C++这种半面向对象的语言中，struct（结构体）定义的是数据结构类型，而 class 对应的是对象类型。
 
 下面是序列化和反序列化常见应用场景：
 
@@ -55,13 +55,13 @@ head:
 
 ## 常见序列化协议有哪些？
 
-JDK 自带的序列化方式一般不会用 ，因为序列化效率低并且存在安全问题。比较常用的序列化协议有 Hessian、Kryo、Protobuf、ProtoStuff，这些都是基于二进制的序列化协议。
+JDK 自带的序列化方式一般不会用，因为序列化效率低并且存在安全问题。比较常用的序列化协议有 Hessian、Kryo、Protobuf、ProtoStuff，这些都是基于二进制的序列化协议。
 
 像 JSON 和 XML 这种属于文本类序列化方式。虽然可读性比较好，但是性能较差，一般不会选择。
 
 ### JDK 自带的序列化方式
 
-JDK 自带的序列化，只需实现 `java.io.Serializable`接口即可。
+JDK 自带的序列化，只需实现 `java.io.Serializable` 接口即可。
 
 ```java
 @AllArgsConstructor
@@ -98,7 +98,7 @@ public class RpcRequest implements Serializable {
 
 > A serializable class can declare its own serialVersionUID explicitly by declaring a field named `"serialVersionUID"` that must be `static`, `final`, and of type `long`;
 >
-> 如果想显式指定 `serialVersionUID` ，则需要在类中使用 `static` 和 `final` 关键字来修饰一个 `long` 类型的变量，变量名字必须为 `"serialVersionUID"` 。
+> 如果想显式指定 `serialVersionUID`，则需要在类中使用 `static` 和 `final` 关键字来修饰一个 `long` 类型的变量，变量名字必须为 `"serialVersionUID"`。
 
 也就是说，`serialVersionUID` 本身（作为 static 变量）确实不作为对象状态被序列化。但是，它的值被 Java 序列化机制特殊处理了——作为一个版本标识符被读取并写入序列化流中，用于在反序列化时进行版本兼容性检查。
 
@@ -181,7 +181,7 @@ public class KryoSerializer implements Serializer {
 }
 ```
 
-GitHub 地址：[https://github.com/EsotericSoftware/kryo](https://github.com/EsotericSoftware/kryo) 。
+GitHub 地址：[https://github.com/EsotericSoftware/kryo](https://github.com/EsotericSoftware/kryo)。
 
 ### Protobuf
 

@@ -23,7 +23,7 @@ head:
 
 ![内存区域常见配置参数](./pictures/内存区域常见配置参数.png)
 
-### 设置堆内存大小 (-Xms 和 -Xmx)
+### 设置堆内存大小（-Xms 和 -Xmx）
 
 根据应用程序的实际需求设置初始和最大堆内存大小，是性能调优中最常见的实践之一。**推荐显式设置这两个参数，并且通常建议将它们设置为相同的值**，以避免运行时堆内存的动态调整带来的性能开销。
 
@@ -49,7 +49,7 @@ head:
 
 可以通过以下两种方式设置新生代内存大小：
 
-**1.通过`-XX:NewSize`和`-XX:MaxNewSize`指定**
+**1.通过 `-XX:NewSize` 和 `-XX:MaxNewSize` 指定**
 
 ```bash
 -XX:NewSize=<young size>[unit]    # 设置新生代初始大小
@@ -62,7 +62,7 @@ head:
 -XX:NewSize=512m -XX:MaxNewSize=1024m
 ```
 
-**2.通过`-Xmn<young size>[unit]`指定**
+**2.通过 `-Xmn<young size>[unit]` 指定**
 
 **示例：** 将新生代大小固定为 512MB：
 
@@ -76,7 +76,7 @@ GC 调优策略中很重要的一条经验总结是这样说的：
 
 另外，你还可以通过 **`-XX:NewRatio=<int>`** 参数来设置**老年代与新生代（不含 Survivor 区）的内存大小比例**。
 
-例如，`-XX:NewRatio=2` （默认值）表示老年代 : 新生代 = 2 : 1。即新生代占整个堆大小的 1/3。
+例如，`-XX:NewRatio=2`（默认值）表示老年代 : 新生代 = 2 : 1。即新生代占整个堆大小的 1/3。
 
 ```bash
 -XX:NewRatio=2
@@ -116,7 +116,7 @@ JDK 1.8 之前永久代还没被彻底移除的时候通常通过下面这些参
 
 另外，还可以看一下这个试验：[JVM 参数 MetaspaceSize 的误解](https://mp.weixin.qq.com/s/jqfppqqd98DfAJHZhFbmxA)。
 
-**2、扩容与 Full GC：** 当 Metaspace 的使用量增长并首次达到`-XX:MetaspaceSize` 指定的阈值时，会触发一次 Full GC。在此之后，JVM 会动态调整这个触发 GC 的阈值。如果元空间继续增长，每次达到新的阈值需要扩容时，仍然可能触发 Full GC（具体行为与垃圾收集器和版本有关）。垃圾搜集器内部是根据变量 `_capacity_until_GC`来判断 Metaspace 区域是否达到阈值的，初始化代码如下所示：
+**2、扩容与 Full GC：** 当 Metaspace 的使用量增长并首次达到 `-XX:MetaspaceSize` 指定的阈值时，会触发一次 Full GC。在此之后，JVM 会动态调整这个触发 GC 的阈值。如果元空间继续增长，每次达到新的阈值需要扩容时，仍然可能触发 Full GC（具体行为与垃圾收集器和版本有关）。垃圾搜集器内部是根据变量 `_capacity_until_GC` 来判断 Metaspace 区域是否达到阈值的，初始化代码如下所示：
 
 ```c
 void MetaspaceGC::initialize() {
@@ -128,7 +128,7 @@ void MetaspaceGC::initialize() {
 
 **3、`-XX:MaxMetaspaceSize` 的重要性：**如果不显式设置 -`XX:MaxMetaspaceSize`，元空间的最大大小理论上受限于可用的本地内存。在极端情况下（如类加载器泄漏导致不断加载类），这确实**可能耗尽大量本地内存**。因此，**强烈建议设置一个合理的 `-XX:MaxMetaspaceSize` 上限**，以防止对系统造成影响。
 
-相关阅读：[issue 更正：MaxMetaspaceSize 如果不指定大小的话，不会耗尽内存 #1204](https://github.com/Snailclimb/JavaGuide/issues/1204) 。
+相关阅读：[issue 更正：MaxMetaspaceSize 如果不指定大小的话，不会耗尽内存 #1204](https://github.com/Snailclimb/JavaGuide/issues/1204)。
 
 ## 垃圾收集相关
 
@@ -138,9 +138,9 @@ void MetaspaceGC::initialize() {
 
 JVM 提供了多种 GC 实现，适用于不同的场景：
 
-- **Serial GC (串行垃圾收集器):** 单线程执行 GC，适用于客户端模式或单核 CPU 环境。参数：`-XX:+UseSerialGC`。
-- **Parallel GC (并行垃圾收集器):** 多线程执行新生代 GC (Minor GC)，以及可选的多线程执行老年代 GC (Full GC，通过 `-XX:+UseParallelOldGC`)。关注吞吐量，是 JDK 8 的默认 GC。参数：`-XX:+UseParallelGC`。
-- **CMS GC (Concurrent Mark Sweep 并发标记清除收集器):** 以获取最短回收停顿时间为目标，大部分 GC 阶段可与用户线程并发执行。适用于对响应时间要求高的应用。在 JDK 9 中被标记为弃用，JDK 14 中被移除。参数：`-XX:+UseConcMarkSweepGC`。
+- **Serial GC（串行垃圾收集器）:** 单线程执行 GC，适用于客户端模式或单核 CPU 环境。参数：`-XX:+UseSerialGC`。
+- **Parallel GC（并行垃圾收集器）:** 多线程执行新生代 GC (Minor GC)，以及可选的多线程执行老年代 GC (Full GC，通过 `-XX:+UseParallelOldGC`)。关注吞吐量，是 JDK 8 的默认 GC。参数：`-XX:+UseParallelGC`。
+- **CMS GC（Concurrent Mark Sweep 并发标记清除收集器）:** 以获取最短回收停顿时间为目标，大部分 GC 阶段可与用户线程并发执行。适用于对响应时间要求高的应用。在 JDK 9 中被标记为弃用，JDK 14 中被移除。参数：`-XX:+UseConcMarkSweepGC`。
 - **G1 GC (Garbage-First Garbage Collector):** JDK 9 及之后版本的默认 GC。将堆划分为多个 Region，兼顾吞吐量和停顿时间，试图在可预测的停顿时间内完成 GC。参数：`-XX:+UseG1GC`。
 - **ZGC:** 更新的低延迟 GC，目标是将 GC 停顿时间控制在几毫秒甚至亚毫秒级别，需要较新版本的 JDK 支持。参数（具体参数可能随版本变化）：`-XX:+UseZGC`、`-XX:+UseShenandoahGC`。
 
@@ -219,7 +219,7 @@ JVM 提供了多种 GC 实现，适用于不同的场景：
 - `-XX:SurvivorRatio=<ratio>`: 设置 Eden 区与单个 Survivor 区的大小比例。例如 `-XX:SurvivorRatio=8` 表示 Eden:Survivor = 8:1。
 - `-XX:MaxTenuringThreshold=<threshold>`: 设置对象从新生代晋升到老年代的最大年龄阈值（对象每经历一次 Minor GC 且存活，年龄加 1）。默认值通常是 15。
 - `-XX:+DisableExplicitGC`: 禁止代码中显式调用 `System.gc()`。推荐开启，避免人为触发不必要的 Full GC。
-- `-XX:+UseLargePages`: (需要操作系统支持) 尝试使用大内存页（如 2MB 而非 4KB），可能提升内存密集型应用的性能，但需谨慎测试。
+- `-XX:+UseLargePages`:（需要操作系统支持） 尝试使用大内存页（如 2MB 而非 4KB），可能提升内存密集型应用的性能，但需谨慎测试。
 - -`XX:MinHeapFreeRatio=<percent> / -XX:MaxHeapFreeRatio=<percent>`: 控制 GC 后堆内存保持空闲的最小/最大百分比，用于动态调整堆大小（如果 `-Xms` 和 `-Xmx` 不相等）。通常建议将 `-Xms` 和 `-Xmx` 设为一致，避免调整开销。
 
 **注意：** 以下参数在现代 JVM 版本中可能已**弃用、移除或默认开启且无需手动设置**：

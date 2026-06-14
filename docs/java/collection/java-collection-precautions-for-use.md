@@ -22,7 +22,7 @@ head:
 
 这是因为 `isEmpty()` 方法的可读性更好，并且时间复杂度为 `O(1)`。
 
-绝大部分我们使用的集合的 `size()` 方法的时间复杂度也是 `O(1)`，不过，也有很多复杂度不是 `O(1)` 的，比如 `java.util.concurrent` 包下的 `ConcurrentLinkedQueue`。`ConcurrentLinkedQueue` 的 `isEmpty()` 方法通过 `first()` 方法进行判断，其中 `first()` 方法返回的是队列中第一个值不为 `null` 的节点（节点值为`null`的原因是在迭代器中使用的逻辑删除）
+绝大部分我们使用的集合的 `size()` 方法的时间复杂度也是 `O(1)`，不过，也有很多复杂度不是 `O(1)` 的，比如 `java.util.concurrent` 包下的 `ConcurrentLinkedQueue`。`ConcurrentLinkedQueue` 的 `isEmpty()` 方法通过 `first()` 方法进行判断，其中 `first()` 方法返回的是队列中第一个值不为 `null` 的节点（节点值为 `null` 的原因是在迭代器中使用的逻辑删除）
 
 ```java
 public boolean isEmpty() { return first() == null; }
@@ -43,7 +43,7 @@ Node<E> first() {
 }
 ```
 
-由于在插入与删除元素时，都会执行`updateHead(h, p)`方法，所以该方法的执行的时间复杂度可以近似为`O(1)`。而 `size()` 方法需要遍历整个链表，时间复杂度为`O(n)`
+由于在插入与删除元素时，都会执行 `updateHead(h, p)` 方法，所以该方法的执行的时间复杂度可以近似为 `O(1)`。而 `size()` 方法需要遍历整个链表，时间复杂度为 `O(n)`
 
 ```java
 public int size() {
@@ -56,7 +56,7 @@ public int size() {
 }
 ```
 
-此外，在`ConcurrentHashMap` 1.7 中 `size()` 方法和 `isEmpty()` 方法的时间复杂度也不太一样。`ConcurrentHashMap` 1.7 将元素数量存储在每个`Segment` 中，`size()` 方法需要统计每个 `Segment` 的数量，而 `isEmpty()` 只需要找到第一个不为空的 `Segment` 即可。但是在`ConcurrentHashMap` 1.8 中的 `size()` 方法和 `isEmpty()` 都需要调用 `sumCount()` 方法，其时间复杂度与 `Node` 数组的大小有关。下面是 `sumCount()` 方法的源码：
+此外，在 `ConcurrentHashMap` 1.7 中 `size()` 方法和 `isEmpty()` 方法的时间复杂度也不太一样。`ConcurrentHashMap` 1.7 将元素数量存储在每个 `Segment` 中，`size()` 方法需要统计每个 `Segment` 的数量，而 `isEmpty()` 只需要找到第一个不为空的 `Segment` 即可。但是在 `ConcurrentHashMap` 1.8 中的 `size()` 方法和 `isEmpty()` 都需要调用 `sumCount()` 方法，其时间复杂度与 `Node` 数组的大小有关。下面是 `sumCount()` 方法的源码：
 
 ```java
 final long sumCount() {
@@ -70,7 +70,7 @@ final long sumCount() {
 }
 ```
 
-这是因为在并发的环境下，`ConcurrentHashMap` 将每个 `Node` 中节点的数量存储在 `CounterCell[]` 数组中。在 `ConcurrentHashMap` 1.7 中，将元素数量存储在每个`Segment` 中，`size()` 方法需要统计每个 `Segment` 的数量，而 `isEmpty()` 只需要找到第一个不为空的 `Segment` 即可。
+这是因为在并发的环境下，`ConcurrentHashMap` 将每个 `Node` 中节点的数量存储在 `CounterCell[]` 数组中。在 `ConcurrentHashMap` 1.7 中，将元素数量存储在每个 `Segment` 中，`size()` 方法需要统计每个 `Segment` 的数量，而 `isEmpty()` 只需要找到第一个不为空的 `Segment` 即可。
 
 ## 集合转 Map
 
@@ -94,7 +94,7 @@ bookList.stream().collect(Collectors.toMap(Person::getName, Person::getPhoneNumb
 
 下面我们来解释一下原因。
 
-首先，我们来看 `java.util.stream.Collectors` 类的 `toMap()` 方法 ，可以看到其内部调用了 `Map` 接口的 `merge()` 方法。
+首先，我们来看 `java.util.stream.Collectors` 类的 `toMap()` 方法，可以看到其内部调用了 `Map` 接口的 `merge()` 方法。
 
 ```java
 public static <T, K, U, M extends Map<K, U>>
@@ -111,7 +111,7 @@ Collector<T, ?, M> toMap(Function<? super T, ? extends K> keyMapper,
 
 `Map` 接口的 `merge()` 方法如下，这个方法是接口中的默认实现。
 
-> 如果你还不了解 Java 8 新特性的话，请看这篇文章：[《Java8 新特性总结》](https://mp.weixin.qq.com/s/ojyl7B6PiHaTWADqmUq2rw) 。
+> 如果你还不了解 Java 8 新特性的话，请看这篇文章：[《Java8 新特性总结》](https://mp.weixin.qq.com/s/ojyl7B6PiHaTWADqmUq2rw)。
 
 ```java
 default V merge(K key, V value,
@@ -140,7 +140,7 @@ public static <T> T requireNonNull(T obj) {
 }
 ```
 
-> `Collectors`也提供了无需 mergeFunction 的`toMap()`方法，但此时若出现 key 冲突，则会抛出`duplicateKeyException`异常，因此强烈建议使用`toMap()`方法必填 mergeFunction。
+> `Collectors` 也提供了无需 mergeFunction 的 `toMap()` 方法，但此时若出现 key 冲突，则会抛出 `duplicateKeyException` 异常，因此强烈建议使用 `toMap()` 方法必填 mergeFunction。
 
 ## 集合遍历
 
@@ -148,15 +148,15 @@ public static <T> T requireNonNull(T obj) {
 
 > **不要在 foreach 循环里进行元素的 `remove/add` 操作。remove 元素请使用 `Iterator` 方式，如果并发操作，需要对 `Iterator` 对象加锁。**
 
-通过反编译你会发现 foreach 语法底层其实还是依赖 `Iterator` 。不过， `remove/add` 操作直接调用的是集合自己的方法，而不是 `Iterator` 的 `remove/add`方法
+通过反编译你会发现 foreach 语法底层其实还是依赖 `Iterator`。不过， `remove/add` 操作直接调用的是集合自己的方法，而不是 `Iterator` 的 `remove/add` 方法
 
-这就导致 `Iterator` 莫名其妙地发现自己有元素被 `remove/add` ，然后，它就会抛出一个 `ConcurrentModificationException` 来提示用户发生了并发修改异常。这就是单线程状态下产生的 **fail-fast 机制**。
+这就导致 `Iterator` 莫名其妙地发现自己有元素被 `remove/add`，然后，它就会抛出一个 `ConcurrentModificationException` 来提示用户发生了并发修改异常。这就是单线程状态下产生的 **fail-fast 机制**。
 
-> **fail-fast 机制**：多个线程对 fail-fast 集合进行修改的时候，可能会抛出`ConcurrentModificationException`。 即使是单线程下也有可能会出现这种情况，上面已经提到过。
+> **fail-fast 机制**：多个线程对 fail-fast 集合进行修改的时候，可能会抛出 `ConcurrentModificationException`。 即使是单线程下也有可能会出现这种情况，上面已经提到过。
 >
-> 相关阅读：[什么是 fail-fast](https://www.cnblogs.com/54chensongxia/p/12470446.html) 。
+> 相关阅读：[什么是 fail-fast](https://www.cnblogs.com/54chensongxia/p/12470446.html)。
 
-Java8 开始，可以使用 `Collection#removeIf()`方法删除满足特定条件的元素,如
+Java8 开始，可以使用 `Collection#removeIf()` 方法删除满足特定条件的元素，如
 
 ```java
 List<Integer> list = new ArrayList<>();
@@ -170,7 +170,7 @@ System.out.println(list); /* [1, 3, 5, 7, 9] */
 除了上面介绍的直接使用 `Iterator` 进行遍历操作之外，你还可以：
 
 - 使用普通的 for 循环
-- 使用 fail-safe 的集合类。`java.util`包下面的所有的集合类都是 fail-fast 的，而`java.util.concurrent`包下面的所有的类都是 fail-safe 的。
+- 使用 fail-safe 的集合类。`java.util` 包下面的所有的集合类都是 fail-fast 的，而 `java.util.concurrent` 包下面的所有的类都是 fail-safe 的。
 - ……
 
 ## 集合去重
@@ -249,7 +249,7 @@ public int indexOf(Object o) {
 
 > **使用集合转数组的方法，必须使用集合的 `toArray(T[] array)`，传入的是类型完全一致、长度为 0 的空数组。**
 
-`toArray(T[] array)` 方法的参数是一个泛型数组，如果 `toArray` 方法中没有传递任何参数的话返回的是 `Object`类 型数组。
+`toArray(T[] array)` 方法的参数是一个泛型数组，如果 `toArray` 方法中没有传递任何参数的话返回的是 `Object` 类 型数组。
 
 ```java
 String [] s= new String[]{
@@ -261,7 +261,7 @@ Collections.reverse(list);
 s=list.toArray(new String[0]);
 ```
 
-由于 JVM 优化，`new String[0]`作为`Collection.toArray()`方法的参数现在使用更好，`new String[0]`就是起一个模板的作用，指定了返回数组的类型，0 是为了节省空间，因为它只是为了说明返回的类型。详见：<https://shipilev.net/blog/2016/arrays-wisdom-ancients/>
+由于 JVM 优化，`new String[0]` 作为 `Collection.toArray()` 方法的参数现在使用更好，`new String[0]` 就是起一个模板的作用，指定了返回数组的类型，0 是为了节省空间，因为它只是为了说明返回的类型。详见：<https://shipilev.net/blog/2016/arrays-wisdom-ancients/>
 
 ## 数组转集合
 
@@ -271,7 +271,7 @@ s=list.toArray(new String[0]);
 
 我在之前的一个项目中就遇到一个类似的坑。
 
-`Arrays.asList()`在平时开发中还是比较常见的，我们可以使用它将一个数组转换为一个 `List` 集合。
+`Arrays.asList()` 在平时开发中还是比较常见的，我们可以使用它将一个数组转换为一个 `List` 集合。
 
 ```java
 String[] myArray = {"Apple", "Banana", "Orange"};
@@ -294,7 +294,7 @@ public static <T> List<T> asList(T... a) {
 
 下面我们来总结一下使用注意事项。
 
-**1、`Arrays.asList()`是泛型方法，传递的数组必须是对象数组，而不是基本类型。**
+**1、`Arrays.asList()` 是泛型方法，传递的数组必须是对象数组，而不是基本类型。**
 
 ```java
 int[] myArray = {1, 2, 3};
@@ -314,7 +314,7 @@ System.out.println(array[0]);//1
 Integer[] myArray = {1, 2, 3};
 ```
 
-**2、使用集合的修改方法: `add()`、`remove()`、`clear()`会抛出异常。**
+**2、使用集合的修改方法: `add()`、`remove()`、`clear()` 会抛出异常。**
 
 ```java
 List myList = Arrays.asList(1, 2, 3);
@@ -323,7 +323,7 @@ myList.remove(1);//运行时报错：UnsupportedOperationException
 myList.clear();//运行时报错：UnsupportedOperationException
 ```
 
-`Arrays.asList()` 方法返回的并不是 `java.util.ArrayList` ，而是 `java.util.Arrays` 的一个内部类,这个内部类并没有实现集合的修改方法或者说并没有重写这些方法。
+`Arrays.asList()` 方法返回的并不是 `java.util.ArrayList`，而是 `java.util.Arrays` 的一个内部类，这个内部类并没有实现集合的修改方法或者说并没有重写这些方法。
 
 ```java
 List myList = Arrays.asList(1, 2, 3);
@@ -375,7 +375,7 @@ System.out.println(myList.getClass());//class java.util.Arrays$ArrayList
     }
 ```
 
-我们再看一下`java.util.AbstractList`的 `add/remove/clear` 方法就知道为什么会抛出 `UnsupportedOperationException` 了。
+我们再看一下 `java.util.AbstractList` 的 `add/remove/clear` 方法就知道为什么会抛出 `UnsupportedOperationException` 了。
 
 ```java
 public E remove(int index) {
@@ -427,7 +427,7 @@ System.out.println(arrayToList(myArray).getClass());//class java.util.ArrayList
 List list = new ArrayList<>(Arrays.asList("a", "b", "c"))
 ```
 
-3、使用 Java8 的 `Stream`(推荐)
+3、使用 Java8 的 `Stream`（推荐）
 
 ```java
 Integer [] myArray = { 1, 2, 3 };
@@ -461,7 +461,7 @@ List<String> list = new ArrayList<String>();
 CollectionUtils.addAll(list, str);
 ```
 
-6、 使用 Java9 的 `List.of()`方法
+6、 使用 Java9 的 `List.of()` 方法
 
 ```java
 Integer[] array = {1, 2, 3};

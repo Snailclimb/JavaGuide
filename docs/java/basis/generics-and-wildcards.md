@@ -22,7 +22,7 @@ head:
 ArrayList<E> extends AbstractList<E>
 ```
 
-并且，原生 `List` 返回类型是 `Object` ，需要手动转换类型才能使用，使用泛型后编译器自动转换。
+并且，原生 `List` 返回类型是 `Object`，需要手动转换类型才能使用，使用泛型后编译器自动转换。
 
 ### 泛型的使用方式有哪几种？
 
@@ -54,7 +54,7 @@ Generic<Integer> genericInteger = new Generic<Integer>(123456);
 // JDK 7 起可写：new Generic<>(123456)
 ```
 
-**2.泛型接口** ：
+**2.泛型接口**：
 
 ```java
 public interface Generator<T> {
@@ -84,7 +84,7 @@ class GeneratorImpl implements Generator<String> {
 }
 ```
 
-**3.泛型方法** ：
+**3.泛型方法**：
 
 ```java
    public static < E > void printArray( E[] inputArray )
@@ -113,11 +113,11 @@ printArray( stringArray  );
 - 构建集合工具类（参考 `Collections` 中的 `sort`, `binarySearch` 方法）。
 - ……
 
-### 什么是泛型擦除机制？为什么要擦除?
+### 什么是泛型擦除机制？为什么要擦除？
 
-**Java 的泛型是伪泛型，这是因为 Java 在编译期间，所有的泛型信息都会被擦掉，这也就是通常所说类型擦除 。**
+**Java 的泛型是伪泛型，这是因为 Java 在编译期间，所有的泛型信息都会被擦掉，这也就是通常所说类型擦除。**
 
-编译器会在编译期间会动态地将泛型 `T` 擦除为 `Object` 或将 `T extends xxx` 擦除为其限定类型 `xxx` 。
+编译器会在编译期间会动态地将泛型 `T` 擦除为 `Object` 或将 `T extends xxx` 擦除为其限定类型 `xxx`。
 
 因此，泛型本质上其实还是编译器的行为，为了保证引入泛型机制但不创建新的类型，减少虚拟机的运行开销，编译器通过擦除将泛型类转化为一般类。
 
@@ -146,7 +146,7 @@ public void print(List<Integer> list) { }
 
 ![泛型擦除的问题](https://oss.javaguide.cn/github/javaguide/java/basis/generics-runtime-erasure.png)
 
-原因也很简单，泛型擦除之后，`List<String>` 与 `List<Integer>` 在编译以后都变成了 `List` 。
+原因也很简单，泛型擦除之后，`List<String>` 与 `List<Integer>` 在编译以后都变成了 `List`。
 
 **既然编译器要把泛型擦除，那为什么还要用泛型呢？用 Object 代替不行吗？**
 
@@ -156,7 +156,7 @@ public void print(List<Integer> list) { }
 
 - 使用 `Object` 类型需要手动添加强制类型转换，降低代码可读性，提高出错概率。
 
-- 泛型可以使用自限定类型如 `T extends Comparable` 。
+- 泛型可以使用自限定类型如 `T extends Comparable`。
 
 ### 什么是桥方法？
 
@@ -187,7 +187,7 @@ class MyNode extends Node<Integer> {
 }
 ```
 
-⚠️**注意** ：桥方法为编译器自动生成，非手写。
+⚠️**注意**：桥方法为编译器自动生成，非手写。
 
 ### 泛型有哪些限制？为什么？
 
@@ -228,7 +228,7 @@ public class Singleton<T> {
 }
 ```
 
-无法编译，因为不能使用 `static` 修饰泛型 `T` 。
+无法编译，因为不能使用 `static` 修饰泛型 `T`。
 
 ## 通配符
 
@@ -245,7 +245,7 @@ public class Singleton<T> {
 <? super Manager>
 ```
 
-### 通配符 ？和常用的泛型 T 之间有什么区别？
+### 通配符？和常用的泛型 T 之间有什么区别？
 
 - `T` 可以用于声明变量或常量而 `?` 不行。
 - `T` 一般用于声明泛型类或方法，通配符 `?` 一般用于泛型方法的调用代码和形参。
@@ -293,7 +293,7 @@ list2.add("sss");//警告信息
 <T extends XXX>
 ```
 
-**下边界通配符 `super`** 与上边界通配符 `extends`刚好相反，它可以实现泛型的向下转型即传入的类型实参必须是指定类型的父类型。
+**下边界通配符 `super`** 与上边界通配符 `extends` 刚好相反，它可以实现泛型的向下转型即传入的类型实参必须是指定类型的父类型。
 
 举个例子：
 
@@ -329,7 +329,7 @@ Node<Circle> nc = new Node<>();
 Node<Shape>  ns = nc;
 ```
 
-不能，因为`Node<Circle>` 不是 `Node<Shape>` 的子类
+不能，因为 `Node<Circle>` 不是 `Node<Shape>` 的子类
 
 ```java
 class Shape { /* ... */ }
@@ -358,5 +358,5 @@ public static void print(List<? extends Number> list) {
 
 ## 参考
 
-- Java 官方文档 ： https://docs.oracle.com/javase/tutorial/java/generics/index.html
+- Java 官方文档： https://docs.oracle.com/javase/tutorial/java/generics/index.html
 - Java 基础 一文搞懂泛型：https://www.cnblogs.com/XiiX/p/14719568.html

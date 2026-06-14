@@ -14,15 +14,15 @@ head:
 
 ## LinkedList 简介
 
-`LinkedList` 是一个基于双向链表实现的集合类，经常被拿来和 `ArrayList` 做比较。关于 `LinkedList` 和`ArrayList`的详细对比，我们 [Java 集合常见面试题总结(上)](./java-collection-questions-01.md)有详细介绍到。
+`LinkedList` 是一个基于双向链表实现的集合类，经常被拿来和 `ArrayList` 做比较。关于 `LinkedList` 和 `ArrayList` 的详细对比，我们 [Java 集合常见面试题总结(上)](./java-collection-questions-01.md)有详细介绍到。
 
 ![双向链表](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/bidirectional-linkedlist.png)
 
-不过，我们在项目中一般是不会使用到 `LinkedList` 的，需要用到 `LinkedList` 的场景几乎都可以使用 `ArrayList` 来代替，并且，性能通常会更好！就连 `LinkedList` 的作者约书亚 · 布洛克（Josh Bloch）自己都说从来不会使用 `LinkedList` 。
+不过，我们在项目中一般是不会使用到 `LinkedList` 的，需要用到 `LinkedList` 的场景几乎都可以使用 `ArrayList` 来代替，并且，性能通常会更好！就连 `LinkedList` 的作者约书亚 · 布洛克（Josh Bloch）自己都说从来不会使用 `LinkedList`。
 
 ![](https://oss.javaguide.cn/github/javaguide/redisimage-20220412110853807.png)
 
-另外，不要下意识地认为 `LinkedList` 作为链表就最适合元素增删的场景。我在上面也说了，`LinkedList` 仅仅在头尾插入或者删除元素的时候时间复杂度近似 O(1)，其他情况增删元素的平均时间复杂度都是 O(n) 。
+另外，不要下意识地认为 `LinkedList` 作为链表就最适合元素增删的场景。我在上面也说了，`LinkedList` 仅仅在头尾插入或者删除元素的时候时间复杂度近似 O(1)，其他情况增删元素的平均时间复杂度都是 O(n)。
 
 ### LinkedList 插入和删除元素的时间复杂度？
 
@@ -49,15 +49,15 @@ public class LinkedList<E>
 }
 ```
 
-`LinkedList` 继承了 `AbstractSequentialList` ，而 `AbstractSequentialList` 又继承于 `AbstractList` 。
+`LinkedList` 继承了 `AbstractSequentialList`，而 `AbstractSequentialList` 又继承于 `AbstractList`。
 
-阅读过 `ArrayList` 的源码我们就知道，`ArrayList` 同样继承了 `AbstractList` ， 所以 `LinkedList` 会有大部分方法和 `ArrayList` 相似。
+阅读过 `ArrayList` 的源码我们就知道，`ArrayList` 同样继承了 `AbstractList`， 所以 `LinkedList` 会有大部分方法和 `ArrayList` 相似。
 
 `LinkedList` 实现了以下接口：
 
 - `List` : 表明它是一个列表，支持添加、删除、查找等操作，并且可以通过下标进行访问。
-- `Deque` ：继承自 `Queue` 接口，具有双端队列的特性，支持从两端插入和删除元素，方便实现栈和队列等数据结构。需要注意，`Deque` 的发音为 "deck" [dɛk]，这个大部分人都会读错。
-- `Cloneable` ：表明它具有拷贝能力，可以进行深拷贝或浅拷贝操作。
+- `Deque`：继承自 `Queue` 接口，具有双端队列的特性，支持从两端插入和删除元素，方便实现栈和队列等数据结构。需要注意，`Deque` 的发音为 "deck" [dɛk]，这个大部分人都会读错。
+- `Cloneable`：表明它具有拷贝能力，可以进行深拷贝或浅拷贝操作。
 - `Serializable` : 表明它可以进行序列化操作，也就是可以将对象转换为字节流进行持久化存储或网络传输，非常方便。
 
 ![LinkedList 类图](https://oss.javaguide.cn/github/javaguide/java/collection/linkedlist--class-diagram.png)
@@ -99,7 +99,7 @@ public LinkedList(Collection<? extends E> c) {
 
 `LinkedList` 除了实现了 `List` 接口相关方法，还实现了 `Deque` 接口的很多方法，所以我们有很多种方式插入元素。
 
-我们这里以 `List` 接口中相关的插入方法为例进行源码讲解，对应的是`add()` 方法。
+我们这里以 `List` 接口中相关的插入方法为例进行源码讲解，对应的是 `add()` 方法。
 
 `add()` 方法有两个版本：
 
@@ -170,7 +170,7 @@ void linkBefore(E e, Node<E> succ) {
 
 ### 获取元素
 
-`LinkedList`获取元素相关的方法一共有 3 个：
+`LinkedList` 获取元素相关的方法一共有 3 个：
 
 1. `getFirst()`：获取链表的第一个元素。
 2. `getLast()`：获取链表的最后一个元素。
@@ -231,7 +231,7 @@ Node<E> node(int index) {
 
 ### 删除元素
 
-`LinkedList`删除元素相关的方法一共有 5 个：
+`LinkedList` 删除元素相关的方法一共有 5 个：
 
 1. `removeFirst()`：删除并返回链表的第一个元素。
 2. `removeLast()`：删除并返回链表的最后一个元素。
@@ -346,7 +346,7 @@ E unlink(Node<E> x) {
 
 ### 遍历链表
 
-推荐使用`for-each` 循环来遍历 `LinkedList` 中的元素， `for-each` 循环最终会转换成迭代器形式。
+推荐使用 `for-each` 循环来遍历 `LinkedList` 中的元素， `for-each` 循环最终会转换成迭代器形式。
 
 ```java
 LinkedList<String> list = new LinkedList<>();

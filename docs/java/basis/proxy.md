@@ -100,11 +100,11 @@ send message:java
 after method send()
 ```
 
-可以输出结果看出，我们已经增加了 `SmsServiceImpl` 的`send()`方法。
+可以输出结果看出，我们已经增加了 `SmsServiceImpl` 的 `send()` 方法。
 
 ## 3. 动态代理
 
-相比于静态代理来说，动态代理更加灵活。我们不需要针对每个目标类都单独创建一个代理类，并且也不需要我们必须实现接口，我们可以直接代理实现类( CGLIB 动态代理机制)。
+相比于静态代理来说，动态代理更加灵活。我们不需要针对每个目标类都单独创建一个代理类，并且也不需要我们必须实现接口，我们可以直接代理实现类（CGLIB 动态代理机制）。
 
 **从 JVM 角度来说，动态代理是在运行时动态生成类字节码，并加载到 JVM 中的。**
 
@@ -116,7 +116,7 @@ after method send()
 
 [guide-rpc-framework](https://github.com/Snailclimb/guide-rpc-framework) 使用的是 JDK 动态代理，我们先来看看 JDK 动态代理的使用。
 
-另外，虽然 [guide-rpc-framework](https://github.com/Snailclimb/guide-rpc-framework) 没有用到 **CGLIB 动态代理** ，我们这里还是简单介绍一下其使用以及和**JDK 动态代理**的对比。
+另外，虽然 [guide-rpc-framework](https://github.com/Snailclimb/guide-rpc-framework) 没有用到 **CGLIB 动态代理**，我们这里还是简单介绍一下其使用以及和**JDK 动态代理**的对比。
 
 ### 3.1. JDK 动态代理机制
 
@@ -124,7 +124,7 @@ after method send()
 
 **在 Java 动态代理机制中 `InvocationHandler` 接口和 `Proxy` 类是核心。**
 
-`Proxy` 类中使用频率最高的方法是：`newProxyInstance()` ，这个方法主要用来生成一个代理对象。
+`Proxy` 类中使用频率最高的方法是：`newProxyInstance()`，这个方法主要用来生成一个代理对象。
 
 ```java
     public static Object newProxyInstance(ClassLoader loader,
@@ -142,7 +142,7 @@ after method send()
 2. **interfaces** : 被代理类实现的一些接口；
 3. **h** : 实现了 `InvocationHandler` 接口的对象；
 
-要实现动态代理的话，还必须需要实现`InvocationHandler` 来自定义处理逻辑。 当我们的动态代理对象调用一个方法时，这个方法的调用就会被转发到实现`InvocationHandler` 接口类的 `invoke` 方法来调用。
+要实现动态代理的话，还必须需要实现 `InvocationHandler` 来自定义处理逻辑。 当我们的动态代理对象调用一个方法时，这个方法的调用就会被转发到实现 `InvocationHandler` 接口类的 `invoke` 方法来调用。
 
 ```java
 public interface InvocationHandler {
@@ -161,12 +161,12 @@ public interface InvocationHandler {
 2. **method** : 与代理类对象调用的方法相对应
 3. **args** : 当前 method 方法的参数
 
-也就是说：**你通过`Proxy` 类的 `newProxyInstance()` 创建的代理对象在调用方法的时候，实际会调用到实现`InvocationHandler` 接口的类的 `invoke()`方法。** 你可以在 `invoke()` 方法中自定义处理逻辑，比如在方法执行前后做什么事情。
+也就是说：**你通过 `Proxy` 类的 `newProxyInstance()` 创建的代理对象在调用方法的时候，实际会调用到实现 `InvocationHandler` 接口的类的 `invoke()` 方法。** 你可以在 `invoke()` 方法中自定义处理逻辑，比如在方法执行前后做什么事情。
 
 #### 3.1.2. JDK 动态代理类使用步骤
 
 1. 定义一个接口及其实现类；
-2. 自定义 `InvocationHandler` 并重写`invoke`方法，在 `invoke` 方法中我们会调用原生方法（被代理类的方法）并自定义一些处理逻辑；
+2. 自定义 `InvocationHandler` 并重写 `invoke` 方法，在 `invoke` 方法中我们会调用原生方法（被代理类的方法）并自定义一些处理逻辑；
 3. 通过 `Proxy.newProxyInstance(ClassLoader loader,Class<?>[] interfaces,InvocationHandler h)` 方法创建代理对象；
 
 #### 3.1.3. 代码示例
@@ -242,7 +242,7 @@ public class JdkProxyFactory {
 }
 ```
 
-`getProxy()`：主要通过`Proxy.newProxyInstance（）`方法获取某个类的代理对象
+`getProxy()`：主要通过 `Proxy.newProxyInstance（）` 方法获取某个类的代理对象
 
 **5.实际使用**
 
@@ -287,13 +287,13 @@ extends Callback{
 3. **args** : 方法入参
 4. **proxy** : 用于调用原始方法
 
-你可以通过 `Enhancer`类来动态获取被代理类，当代理类调用方法的时候，实际调用的是 `MethodInterceptor` 中的 `intercept` 方法。
+你可以通过 `Enhancer` 类来动态获取被代理类，当代理类调用方法的时候，实际调用的是 `MethodInterceptor` 中的 `intercept` 方法。
 
 #### 3.2.2. CGLIB 动态代理类使用步骤
 
 1. 定义一个类；
 2. 自定义 `MethodInterceptor` 并重写 `intercept` 方法，`intercept` 用于拦截增强被代理类的方法，和 JDK 动态代理中的 `invoke` 方法类似；
-3. 通过 `Enhancer` 类的 `create()`创建代理类；
+3. 通过 `Enhancer` 类的 `create()` 创建代理类；
 
 #### 3.2.3. 代码示例
 
@@ -392,12 +392,12 @@ after method send
 
 ### 3.3. JDK 动态代理和 CGLIB 动态代理对比
 
-1. JDK 动态代理是官方的，它要求被代理的类必须实现接口。它的原理是动态生成一个接口的实现类来作为代理。CGLIB 是第三方的，它不需要接口。它的原理是动态生成一个被代理类的子类来作为代理。但也正因为是继承，所以它不能代理 `final` 的类，被代理的方法也不能是 `final` 或 `private` 。
+1. JDK 动态代理是官方的，它要求被代理的类必须实现接口。它的原理是动态生成一个接口的实现类来作为代理。CGLIB 是第三方的，它不需要接口。它的原理是动态生成一个被代理类的子类来作为代理。但也正因为是继承，所以它不能代理 `final` 的类，被代理的方法也不能是 `final` 或 `private`。
 2. 就二者的效率来说，大部分情况都是 JDK 动态代理更优秀，随着 JDK 版本的升级，这个优势更加明显。
 
 ## 4. 静态代理和动态代理的对比
 
-静态代理和动态代理的核心差异在于 **代理关系的确定时机、实现灵活性及维护成本** 。
+静态代理和动态代理的核心差异在于 **代理关系的确定时机、实现灵活性及维护成本**。
 
 | 对比维度         | 静态代理 (Static Proxy)                                                                  | 动态代理 (Dynamic Proxy)                                                       |
 | ---------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
@@ -412,6 +412,6 @@ after method send
 
 这篇文章中主要介绍了代理模式的两种实现：静态代理以及动态代理。涵盖了静态代理和动态代理实战、静态代理和动态代理的区别、JDK 动态代理和 Cglib 动态代理区别等内容。
 
-文中涉及到的所有源码，你可以在这里找到：[https://github.com/Snailclimb/guide-rpc-framework-learning/tree/master/src/main/java/github/javaguide/proxy](https://github.com/Snailclimb/guide-rpc-framework-learning/tree/master/src/main/java/github/javaguide/proxy) 。
+文中涉及到的所有源码，你可以在这里找到：[https://github.com/Snailclimb/guide-rpc-framework-learning/tree/master/src/main/java/github/javaguide/proxy](https://github.com/Snailclimb/guide-rpc-framework-learning/tree/master/src/main/java/github/javaguide/proxy)。
 
 <!-- @include: @article-footer.snippet.md -->

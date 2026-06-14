@@ -52,7 +52,7 @@ URL: http://127.0.0.1:8000/
 
 ## JEP 413: Code Snippets in Java API Documentation（API 文档代码片段，转正）
 
-在 Java 18 之前，如果我们想要在 Javadoc 中引入代码片段可以使用 `<pre>{@code ...}</pre>` 。
+在 Java 18 之前，如果我们想要在 Javadoc 中引入代码片段可以使用 `<pre>{@code ...}</pre>`。
 
 ```java
 <pre>{@code
@@ -79,7 +79,7 @@ URL: http://127.0.0.1:8000/
 
 ## JEP 416: Reimplement Core Reflection with Method Handles（方法句柄重构核心反射，转正）
 
-Java 18 改进了 `java.lang.reflect.Method`、`Constructor` 的实现逻辑，使之性能更好，速度更快。这项改动不会改动相关 API ，这意味着开发中不需要改动反射相关代码，就可以体验到性能更好的反射。
+Java 18 改进了 `java.lang.reflect.Method`、`Constructor` 的实现逻辑，使之性能更好，速度更快。这项改动不会改动相关 API，这意味着开发中不需要改动反射相关代码，就可以体验到性能更好的反射。
 
 OpenJDK 官方给出了新老实现的反射性能基准测试结果。
 

@@ -52,7 +52,7 @@ public class DebugInvocationHandler implements InvocationHandler {
 
 另外，像 Java 中的一大利器 **注解** 的实现也用到了反射。
 
-为什么你使用 Spring 的时候 ，一个`@Component`注解就声明了一个类为 Spring Bean 呢？为什么你通过一个 `@Value`注解就读取到配置文件中的值呢？究竟是怎么起作用的呢？
+为什么你使用 Spring 的时候，一个 `@Component` 注解就声明了一个类为 Spring Bean 呢？为什么你通过一个 `@Value` 注解就读取到配置文件中的值呢？究竟是怎么起作用的呢？
 
 这些都是因为你可以基于反射分析类，然后获取到类/属性/方法/方法的参数上的注解。你获取到注解之后，就可以做进一步的处理。
 
@@ -76,20 +76,20 @@ Class alunbarClass = TargetObject.class;
 
 但是我们一般是不知道具体类的，基本都是通过遍历包下面的类来获取 Class 对象，通过此方式获取 Class 对象不会进行初始化
 
-**2. 通过 `Class.forName()`传入类的全路径获取：**
+**2. 通过 `Class.forName()` 传入类的全路径获取：**
 
 ```java
 Class alunbarClass1 = Class.forName("cn.javaguide.TargetObject");
 ```
 
-**3. 通过对象实例`instance.getClass()`获取：**
+**3. 通过对象实例 `instance.getClass()` 获取：**
 
 ```java
 TargetObject o = new TargetObject();
 Class alunbarClass2 = o.getClass();
 ```
 
-**4. 通过类加载器`xxxClassLoader.loadClass()`传入类路径获取:**
+**4. 通过类加载器 `xxxClassLoader.loadClass()` 传入类路径获取:**
 
 ```java
 ClassLoader.getSystemClassLoader().loadClass("cn.javaguide.TargetObject");
@@ -182,7 +182,7 @@ I love JavaGuide
 value is JavaGuide
 ```
 
-**注意** : 有读者提到上面代码运行会抛出 `ClassNotFoundException` 异常，具体原因是你没有下面把这段代码的包名替换成自己创建的 `TargetObject` 所在的包 。
+**注意** : 有读者提到上面代码运行会抛出 `ClassNotFoundException` 异常，具体原因是你没有下面把这段代码的包名替换成自己创建的 `TargetObject` 所在的包。
 可以参考：<https://www.cnblogs.com/chanshuyi/p/head_first_of_reflection.html> 这篇文章。
 
 ```java

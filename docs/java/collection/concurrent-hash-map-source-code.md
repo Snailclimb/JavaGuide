@@ -10,9 +10,9 @@ head:
       content: ConcurrentHashMap源码,线程安全Map,分段锁Segment,CAS操作,并发容器,JDK7与JDK8区别
 ---
 
-> 本文来自末读代码投稿：<https://mp.weixin.qq.com/s/AHWzboztt53ZfFZmsSnMSw> ，JavaGuide 对原文进行了大篇幅改进优化。
+> 本文来自末读代码投稿：<https://mp.weixin.qq.com/s/AHWzboztt53ZfFZmsSnMSw>，JavaGuide 对原文进行了大篇幅改进优化。
 
-上一篇文章介绍了 HashMap 源码，反响不错，也有很多同学发表了自己的观点，这次又来了，这次是 `ConcurrentHashMap` 了，作为线程安全的 HashMap ，它的使用频率也是很高。那么它的存储结构和实现原理是怎么样的呢？
+上一篇文章介绍了 HashMap 源码，反响不错，也有很多同学发表了自己的观点，这次又来了，这次是 `ConcurrentHashMap` 了，作为线程安全的 HashMap，它的使用频率也是很高。那么它的存储结构和实现原理是怎么样的呢？
 
 ## 1. ConcurrentHashMap 1.7
 
@@ -255,7 +255,7 @@ final V put(K key, int hash, V value, boolean onlyIfAbsent) {
 
 1. `tryLock()` 获取锁，获取不到使用 **`scanAndLockForPut`** 方法继续获取。
 
-2. 计算 put 的数据要放入的 index 位置，然后获取这个位置上的 `HashEntry` 。
+2. 计算 put 的数据要放入的 index 位置，然后获取这个位置上的 `HashEntry`。
 
 3. 遍历 put 新元素，为什么要遍历？因为这里获取的 `HashEntry` 可能是一个空元素，也可能是链表已存在，所以要区别对待。
 
@@ -381,7 +381,7 @@ private void rehash(HashEntry<K,V> node) {
 >
 > The nodes they replace will be garbage collectable as soon as they are no longer referenced by any reader thread that may be in the midst of concurrently traversing table
 
-为什么需要再使用一个 `for` 循环找到 `lastRun` ，其实是为了减少对象创建的次数，正如注解中所说的：
+为什么需要再使用一个 `for` 循环找到 `lastRun`，其实是为了减少对象创建的次数，正如注解中所说的：
 
 > 从统计上看，在默认的阈值下，当表容量加倍时，只有大约六分之一的节点需要被克隆。
 >
@@ -418,7 +418,7 @@ public V get(Object key) {
 
 ## 2. ConcurrentHashMap 1.8
 
-总的来说 ，`ConcurrentHashMap` 在 Java8 中相对于 Java7 来说变化还是挺大的，
+总的来说，`ConcurrentHashMap` 在 Java8 中相对于 Java7 来说变化还是挺大的，
 
 ### 1. 存储结构
 
@@ -458,7 +458,7 @@ private final Node<K,V>[] initTable() {
 }
 ```
 
-从源码中可以发现 `ConcurrentHashMap` 的初始化是通过**自旋和 CAS** 操作完成的。里面需要注意的是变量 `sizeCtl` （sizeControl 的缩写），它的值决定着当前的初始化状态。
+从源码中可以发现 `ConcurrentHashMap` 的初始化是通过**自旋和 CAS** 操作完成的。里面需要注意的是变量 `sizeCtl`（sizeControl 的缩写），它的值决定着当前的初始化状态。
 
 1. -1 说明正在初始化，其他线程需要自旋等待
 2. -N 说明 table 正在进行扩容，高 16 位表示扩容的标识戳，低 16 位减 1 为正在进行扩容的线程数
@@ -547,7 +547,7 @@ final V putVal(K key, V value, boolean onlyIfAbsent) {
 }
 ```
 
-1. 根据 key 计算出 hashcode 。
+1. 根据 key 计算出 hashcode。
 
 2. 判断是否需要进行初始化。
 
@@ -594,7 +594,7 @@ public V get(Object key) {
 
 1. 根据 hash 值计算位置。
 2. 查找到指定位置，如果头节点就是要找的，直接返回它的 value.
-3. 如果头节点 hash 值小于 0 ，说明正在扩容或者是红黑树，查找之。
+3. 如果头节点 hash 值小于 0，说明正在扩容或者是红黑树，查找之。
 4. 如果是链表，遍历查找之。
 
 ### 5. size 计数
@@ -660,7 +660,7 @@ public V get(Object key) {
 
 Java7 中 `ConcurrentHashMap` 使用的分段锁，也就是每一个 Segment 上同时只有一个线程可以操作，每一个 `Segment` 都是一个类似 `HashMap` 数组的结构，它可以扩容，它的冲突会转化为链表。但是 `Segment` 的个数一但初始化就不能改变。
 
-Java8 中的 `ConcurrentHashMap` 使用的 `Synchronized` 锁加 CAS 的机制。结构也由 Java7 中的 **`Segment` 数组 + `HashEntry` 数组 + 链表** 进化成了 **Node 数组 + 链表 / 红黑树**，Node 是类似于一个 HashEntry 的结构。它的冲突再达到一定大小时`TREEIFY_THRESHOLD = 8`会转化成红黑树，在冲突小于一定数量时`UNTREEIFY_THRESHOLD = 6`又退回链表。
+Java8 中的 `ConcurrentHashMap` 使用的 `Synchronized` 锁加 CAS 的机制。结构也由 Java7 中的 **`Segment` 数组 + `HashEntry` 数组 + 链表** 进化成了 **Node 数组 + 链表 / 红黑树**，Node 是类似于一个 HashEntry 的结构。它的冲突再达到一定大小时 `TREEIFY_THRESHOLD = 8` 会转化成红黑树，在冲突小于一定数量时 `UNTREEIFY_THRESHOLD = 6` 又退回链表。
 
 有些同学可能对 `Synchronized` 的性能存在疑问，其实 `Synchronized` 锁自从引入锁升级策略后，性能不再是问题，有兴趣的同学可以自己了解下 `Synchronized` 的**锁升级**。
 

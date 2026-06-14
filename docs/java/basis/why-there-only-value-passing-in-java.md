@@ -117,7 +117,7 @@ num2 = 20
 
 实际上，并不是的，这里传递的还是值，不过，这个值是实参的地址罢了！
 
-也就是说 `change` 方法的参数拷贝的是 `arr` （实参）的地址，因此，它和 `arr` 指向的是同一个数组对象。这也就说明了为什么方法内部对形参的修改会影响到实参。
+也就是说 `change` 方法的参数拷贝的是 `arr`（实参）的地址，因此，它和 `arr` 指向的是同一个数组对象。这也就说明了为什么方法内部对形参的修改会影响到实参。
 
 为了更强有力地反驳 Java 对引用类型的参数采用的不是引用传递，我们再来看下面这个案例！
 
@@ -159,7 +159,7 @@ xiaoLi:小李
 
 怎么回事？？？两个引用类型的形参互换并没有影响实参啊！
 
-`swap` 方法的参数 `person1` 和 `person2` 只是拷贝的实参 `xiaoZhang` 和 `xiaoLi` 的地址。因此， `person1` 和 `person2` 的互换只是拷贝的两个地址的互换罢了，并不会影响到实参 `xiaoZhang` 和 `xiaoLi` 。
+`swap` 方法的参数 `person1` 和 `person2` 只是拷贝的实参 `xiaoZhang` 和 `xiaoLi` 的地址。因此， `person1` 和 `person2` 的互换只是拷贝的两个地址的互换罢了，并不会影响到实参 `xiaoZhang` 和 `xiaoLi`。
 
 ![](https://oss.javaguide.cn/github/javaguide/java/basis/java-value-passing-03.png)
 
