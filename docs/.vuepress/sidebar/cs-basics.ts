@@ -143,6 +143,7 @@ export const csBasics = [
         children: [
           { text: "⭐️进程与线程详解", link: "process-and-thread" },
           { text: "进程间通信（IPC）详解", link: "ipc" },
+          { text: "⭐️锁与同步机制", link: "os-lock-and-sync" },
           { text: "⭐️死锁详解", link: "dead-lock" },
         ],
       },
