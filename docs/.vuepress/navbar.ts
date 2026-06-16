@@ -9,6 +9,7 @@ export default navbar([
     text: "推荐阅读",
     icon: "mdi:book-open-page-variant-outline",
     children: [
+      { text: "学习路线", icon: "mdi:map-outline", link: "/roadmap/" },
       { text: "开源项目", icon: "mdi:github", link: "/open-source-project/" },
       {
         text: "技术书籍",

@@ -7,6 +7,7 @@ import { books } from "./books.js";
 import { csBasics } from "./cs-basics.js";
 import { highQualityTechnicalArticles } from "./high-quality-technical-articles.js";
 import { openSourceProject } from "./open-source-project.js";
+import { roadmap } from "./roadmap.js";
 import { zhuanlan } from "./zhuanlan.js";
 import {
   ICONS,
@@ -18,6 +19,7 @@ export default sidebar({
   // 应该把更精确的路径放置在前边
   "/ai-coding/": aiCoding,
   "/ai/": ai,
+  "/roadmap/": roadmap,
   "/cs-basics/": csBasics,
   "/open-source-project/": openSourceProject,
   "/books/": books,

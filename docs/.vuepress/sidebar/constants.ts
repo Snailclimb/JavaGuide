@@ -8,6 +8,7 @@ export const ICONS = {
   BASIC: "mdi:book-open-page-variant-outline",
   CODE: "mdi:code-tags",
   DESIGN: "mdi:palette-swatch-outline",
+  ROADMAP: "mdi:map-outline",
 
   // 技术领域
   JAVA: "mdi:language-java",
