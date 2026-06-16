@@ -6,32 +6,6 @@ export default navbar([
   { text: "AI应用开发", icon: "mdi:robot-outline", link: "/ai/" },
   { text: "AI编程", icon: "mdi:code-tags", link: "/ai-coding/" },
   {
-    text: "知识星球",
-    icon: "mdi:earth",
-    children: [
-      {
-        text: "星球介绍",
-        icon: "mdi:information-outline",
-        link: "/about-the-author/zhishixingqiu-two-years.md",
-      },
-      {
-        text: "实战项目",
-        icon: "mdi:projector-screen-outline",
-        link: "/zhuanlan/interview-guide.md",
-      },
-      {
-        text: "星球专栏",
-        icon: "mdi:book-open-page-variant-outline",
-        link: "/zhuanlan/",
-      },
-      {
-        text: "优质主题汇总",
-        icon: "mdi:star-outline",
-        link: "https://www.yuque.com/snailclimb/rpkqw1/ncxpnfmlng08wlf1",
-      },
-    ],
-  },
-  {
     text: "推荐阅读",
     icon: "mdi:book-open-page-variant-outline",
     children: [

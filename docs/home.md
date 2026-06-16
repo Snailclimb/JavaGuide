@@ -24,6 +24,11 @@ JavaGuide 是一份系统化的 **Java 面试指南** 和**后端通用面试复
 - **项目地址**：<https://github.com/Snailclimb/JavaGuide>
 - **在线阅读**：<https://javaguide.cn/>
 
+## 延伸资料
+
+- [Java 优质开源项目](./open-source-project/)：精选 Gitee/GitHub 上适合学习、实战和写进简历的 Java 开源项目。
+- [优质技术书籍推荐](./books/)：覆盖计算机基础、数据库、搜索引擎、分布式系统、高可用架构等方向。
+
 ## 面试准备
 
 - [⭐Java 后端面试通关计划（涵盖后端通用体系）](./interview-preparation/backend-interview-plan.md) (一定要看 :+1:)
