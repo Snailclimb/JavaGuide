@@ -1,14 +1,14 @@
 ---
-title: 后端开发者转型 AI Agent 方向的学习建议
-description: 面向 Java 和 Go 后端开发者的 AI Agent 转型建议，分析是否适合转型、Java AI 与 Python AI 如何选择、Agent 岗位方向、学习节奏和项目实践。
+title: 后端开发者转型 AI Agent 学习建议（2026 最新版）
+description: 面向 Java 和 Go 后端开发者的 2026 最新版 AI Agent 转型建议，分析是否适合转型、Java AI 与 Python AI 如何选择、Agent 岗位方向、学习节奏和项目实践。
 category: 学习路线
 head:
   - - meta
     - name: keywords
-      content: 后端转AI Agent,AI Agent学习建议,Java转AI,Go转AI,AI应用工程师,Agent工程师,AI平台工程师
+      content: 后端转AI Agent,2026AI学习路线,AI Agent学习建议,Java转AI,Go转AI,AI应用工程师,Agent工程师,AI平台工程师
 ---
 
-大家好，我是 Guide。
+大家好，我是 Guide。这是后端开发者转型 AI Agent 方向的学习建议 2026 最新版。
 
 最近后台和星球里，经常看到类似的问题：
 
@@ -20,7 +20,7 @@ head:
 
 大多数后端同学说的是后者。那就不用把自己吓住。你过去做的高并发、鉴权、数据库、缓存、消息队列、部署、监控，并没有因为 LLM 出现就过期。企业真的要把 Agent 上线，最后还是要处理权限、状态、超时、成本、审计、回滚这些问题。
 
-这篇先聊转型判断和路线。更细的技术学习清单，可以看这篇：[Java/Go 开发者的 AI 应用开发/Agent 学习路线](./java-to-ai-roadmap.md)。
+这篇先聊转型判断和路线。更细的技术学习清单，可以看这篇：[Java/Go 开发者 AI 应用开发与 Agent 学习路线（2026 最新版）](./java-to-ai-roadmap.md)。
 
 ## 先判断要不要转
 

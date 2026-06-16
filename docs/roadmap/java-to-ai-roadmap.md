@@ -1,14 +1,14 @@
 ---
-title: Java/Go 开发者 AI 应用开发与 Agent 学习路线
-description: 面向 Java 和 Go 后端开发者的 AI 应用开发与 Agent 学习路线，覆盖大模型基础、Prompt 工程、RAG、Agent、LLM API、AI 系统设计、工程化和项目实战。
+title: Java/Go 开发者 AI 应用开发与 Agent 学习路线（2026 最新版）
+description: 面向 Java 和 Go 后端开发者的 2026 最新版 AI 应用开发与 Agent 学习路线，覆盖大模型基础、Prompt 工程、RAG、Agent、LLM API、AI 系统设计、工程化和项目实战。
 category: 学习路线
 head:
   - - meta
     - name: keywords
-      content: Java转AI,Go转AI,AI应用开发学习路线,Agent学习路线,RAG学习路线,大模型学习路线,后端转AI,Java AI开发
+      content: Java转AI,Go转AI,2026AI学习路线,AI应用开发学习路线,Agent学习路线,RAG学习路线,大模型学习路线,后端转AI,Java AI开发
 ---
 
-你好，我是 Guide。JavaGuide 这两年陆续写了不少 AI 应用开发文章，公众号累计阅读超过 100w+。
+你好，我是 Guide。这是面向 Java/Go 后端开发者的 AI 应用开发与 Agent 学习路线 2026 最新版。JavaGuide 这两年陆续写了不少 AI 应用开发文章，公众号累计阅读超过 100w+。
 
 公众号后台和星球里，经常看到类似的留言：
 
@@ -32,7 +32,7 @@ head:
 
 AI 框架部分以 Java 为主，Go 侧的对应方案会在关键位置补充。Prompt、RAG、Agent、评估体系这些内容，换成什么语言都绕不开。
 
-转型相关的思考和建议，可以看这篇：[后端开发者转型 AI Agent 方向的学习建议](./backend-to-ai-agent-roadmap.md)。
+转型相关的思考和建议，可以看这篇：[后端开发者转型 AI Agent 学习建议（2026 最新版）](./backend-to-ai-agent-roadmap.md)。
 
 ## 阶段零：认知校准（1~2 天）
 

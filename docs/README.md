@@ -33,9 +33,9 @@ footer: |-
 
 - **后端面试主线**：[后端面试指南](./home.md)（⭐网站核心）：系统整理 Java 面试八股文和后端高频面试题，覆盖 Java 基础、集合、并发、JVM、Spring、MySQL、Redis、分布式、高并发、高可用和系统设计。
 - **计算机基础**：[计算机基础面试指南](./cs-basics/)：系统梳理计算机网络、操作系统、数据结构与算法等后端面试底层基础，适合补齐基础短板。
-- **AI 应用开发**：[AI 应用开发面试指南](./ai/)（⭐新增）：面向后端开发者梳理大模型基础、Prompt、Agent、RAG、MCP、LLM API 工程和 AI 系统设计等高频知识；如果想系统学习，可以配合 [AI 应用开发与 Agent 学习路线](./roadmap/java-to-ai-roadmap.md) 和 [后端转 AI Agent 学习建议](./roadmap/backend-to-ai-agent-roadmap.md)。
+- **AI 应用开发**：[AI 应用开发面试指南](./ai/)（⭐新增）：面向后端开发者梳理大模型基础、Prompt、Agent、RAG、MCP、LLM API 工程和 AI 系统设计等高频知识；如果想系统学习，可以配合 [AI 应用开发与 Agent 学习路线（2026 最新版）](./roadmap/java-to-ai-roadmap.md) 和 [后端转 AI Agent 学习建议（2026 最新版）](./roadmap/backend-to-ai-agent-roadmap.md)。
 - **AI 编程实战**：[AI 编程实践指南](./ai-coding/)（⭐新增）：聚焦 Claude Code、Codex、AI IDE、CLI Agent、上下文管理和 AI 辅助开发工作流，帮助你把 AI 真正用进日常编码。
-- **学习路线**：[学习路线合集](./roadmap/)：整理 Java 后端、AI 应用开发、AI Agent 和全栈开发等方向的系统学习建议。
+- **学习路线**：[学习路线合集（2026 最新版）](./roadmap/)：整理 Java 后端、AI 应用开发、AI Agent 和全栈开发等方向的系统学习建议。
 - **延伸资料**：
   - [《Java 面试指北》](https://javaguide.cn/zhuanlan/java-mian-shi-zhi-bei.html)：四年打磨，和 JavaGuide 开源版的内容互补，带你从零开始系统准备后端面试！
   - [《后端面试高频系统设计&场景题》](https://javaguide.cn/zhuanlan/back-end-interview-high-frequency-system-design-and-scenario-questions.html)：30+ 道高频系统设计和场景面试，助你应对当下中大厂面试趋势。
@@ -43,10 +43,10 @@ footer: |-
 
 ## 精选文章
 
-- **后端面试路径**：[Java 后端面试通关计划](./interview-preparation/backend-interview-plan.md)、[Java 学习路线](./interview-preparation/java-roadmap.md)、[Java 后端面试重点总结](./interview-preparation/key-points-of-interview.md)。不知道从哪里开始复习时，优先看这一组。
+- **后端面试路径**：[Java 后端面试通关计划](./interview-preparation/backend-interview-plan.md)、[Java 学习路线（2026 最新版）](./interview-preparation/java-roadmap.md)、[Java 后端面试重点总结](./interview-preparation/key-points-of-interview.md)。不知道从哪里开始复习时，优先看这一组。
 - **Java、数据库与分布式高频题**：[Java 基础](./java/basis/java-basic-questions-01.md)、[Java 集合](./java/collection/java-collection-questions-01.md)、[Java 并发](./java/concurrent/java-concurrent-questions-01.md)、[JVM](./java/jvm/README.md)、[MySQL](./database/mysql/mysql-questions-01.md)、[Redis](./database/redis/redis-questions-01.md)、[分布式](./distributed-system/distributed-system-interview-questions.md)。适合集中刷核心八股和后端通用高频题。
 - **计算机基础补强**：[计算机网络](./cs-basics/network/other-network-questions.md)、[操作系统](./cs-basics/operating-system/operating-system-basic-questions-01.md)、[进程和线程](./cs-basics/operating-system/process-and-thread.md)、[数据结构与算法](./cs-basics/algorithms/)。适合补齐校招、社招和大厂面试都绕不开的基础能力。
-- **AI 应用开发进阶**：[AI 应用开发与 Agent 学习路线](./roadmap/java-to-ai-roadmap.md)、[后端转 AI Agent 学习建议](./roadmap/backend-to-ai-agent-roadmap.md)、[AI 应用开发知识体系](./ai/)、[LLM API 工程实践](./ai/llm-basis/llm-api-engineering.md)、[RAG 基础概念](./ai/rag/rag-basis.md)、[AI 应用系统设计](./ai/system-design/ai-application-architecture.md)。适合后端开发者先明确学习路径，再从模型调用走向可上线的 AI 应用。
+- **AI 应用开发进阶**：[AI 应用开发与 Agent 学习路线（2026 最新版）](./roadmap/java-to-ai-roadmap.md)、[后端转 AI Agent 学习建议（2026 最新版）](./roadmap/backend-to-ai-agent-roadmap.md)、[AI 应用开发知识体系](./ai/)、[LLM API 工程实践](./ai/llm-basis/llm-api-engineering.md)、[RAG 基础概念](./ai/rag/rag-basis.md)、[AI 应用系统设计](./ai/system-design/ai-application-architecture.md)。适合后端开发者先明确学习路径，再从模型调用走向可上线的 AI 应用。
 - **AI 编程效率提升**：[AI 编程实战指南](./ai-coding/)、[Claude Code 使用指南](./ai-coding/practices/claudecode-tips.md)、[Codex 使用指南](./ai-coding/practices/codex-best-practices.md)、[AI IDE 选型与实践](./ai-coding/practices/ai-ide.md)。适合把 AI 编程工具真正接入日常开发、重构和排障流程。
 
 ## 关于 JavaGuide
