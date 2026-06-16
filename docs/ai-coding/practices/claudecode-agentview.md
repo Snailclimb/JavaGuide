@@ -10,7 +10,7 @@ head:
 
 # Claude Code Agent View：多会话并行管理实战
 
-大家好，我是 Guide。
+大家好，我是小 G。
 
 前段时间，Anthropic 发布了 **Agent View**。这几天用下来，真的非常喜欢，而且使用巨简单，完全没有学习成本。
 

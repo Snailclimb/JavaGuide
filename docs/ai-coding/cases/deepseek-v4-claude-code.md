@@ -16,9 +16,9 @@ head:
 
 让模型自主分析项目结构、理解多文件依赖、给出能直接落地的工程方案——这种活没有捷径，全靠硬实力。
 
-之前各家模型在这个方向上一直在进步，但实际用过就知道，离"放心交给它独立完成"始终还差那么一点。
+之前各家模型在这个方向上一直在进步，但实际用过就知道，离“放心交给它独立完成”始终还差那么一点。
 
-所以这次 V4 发布，Guide 第一反应就是直接接入 Claude Code 上手干活。
+所以这次 V4 发布，小 G 第一反应就是直接接入 Claude Code 上手干活。
 
 这篇文章接近 **7000 字**，建议收藏，通过本文你将搞懂：
 
@@ -79,7 +79,7 @@ claude
 
 ![CC Switch 添加 DeepSeek Provider](https://oss.javaguide.cn/github/javaguide/ai/coding/deepseek-v4/cc-switch-add-deepseek-provider.png)
 
-将模型名称改为 `DeepSeek-V4-Pro`（或 `DeepSeek-V4-Flash`），完成后点击右下角的"添加"。
+将模型名称改为 `DeepSeek-V4-Pro`（或 `DeepSeek-V4-Flash`），完成后点击右下角的“添加”。
 
 ### 验证是否生效
 
@@ -215,7 +215,7 @@ V4-Pro 确实找出来不少问题，最紧急的 TOP 5：
 2. **系统管理接口无权限控制** — 普通用户可修改 LLM 配置
 3. **Redis 反序列化漏洞** — `activateDefaultTyping` 允许任意类实例化
 4. **硬编码第三方 API Key** — Bocha 真实密钥提交在代码中
-5. **功能 Bug** — History 页"重新分析"按钮因路由参数未读取而失效
+5. **功能 Bug** — History 页“重新分析”按钮因路由参数未读取而失效
 
 我大概过了一遍，基本都是合理的。安全类问题尤其值得重视，第 3 条 Redis 反序列化漏洞如果被利用，后果很严重。
 

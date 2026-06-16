@@ -8,7 +8,7 @@ head:
       content: CC GUI,Claude Code,Codex,IDEA插件,JetBrains,AI编程,Agent,MCP,可视化编程
 ---
 
-大家好，我是 Guide。前面分享过 [IDEA 搭配 Qoder 插件的实战](https://mp.weixin.qq.com/s/vz5A7fQh8WxqVBHscqHzQA)，这篇文章介绍另一款在 JetBrains 用户群体中口碑非常好的插件——**CC GUI**。
+大家好，我是小 G。前面分享过 [IDEA 搭配 Qoder 插件的实战](https://mp.weixin.qq.com/s/vz5A7fQh8WxqVBHscqHzQA)，这篇文章介绍另一款在 JetBrains 用户群体中口碑非常好的插件——**CC GUI**。
 
 ## CC GUI 是什么
 
