@@ -57,62 +57,7 @@ head:
 
 提高系统可用性的方法可以从 **预防**、**容错**、**恢复** 三个阶段来考虑：
 
-```mermaid
-flowchart TB
-  subgraph Resilience["<big>🛡️ 系统韧性三阶段<big><br/>"]
-    direction TB
-
-    %% ================= 预防 =================
-    subgraph Prevention["🧯 预防：把风险前置<br/>"]
-      direction TB
-      A["🧹 质量与测试<br/><small>Review / 静态扫描 / 单元测试</small>"]
-      B["🧩 高可用架构<br/><small>多副本 / 多 AZ / 负载均衡</small>"]
-      C["🧊 缓存与本地化<br/><small>降延迟 / 减下游压力</small>"]
-      D["🧪 灰度发布<br/><small>Canary / 分批 / 快速回滚</small>"]
-    end
-
-    P2T["⬇️ 从“少出错”到“扛得住”<br/><small>进入故障控制面</small>"]
-
-    %% ================= 容错 =================
-    subgraph Tolerance["🧱 容错：隔离止血，保核心链路<br/>"]
-      direction TB
-      E["🚦 限流<br/><small>令牌桶 / 并发控制</small>"]
-      F["⏱️ 超时与重试<br/><small>超时预算 / 指数退避 / 幂等</small>"]
-      G["🧨 熔断<br/><small>错误率阈值 / 半开探测</small>"]
-      H["🪂 降级<br/><small>兜底返回 / 关非核心</small>"]
-      I["🧵 异步与队列<br/><small>削峰填谷 / 解耦 / 最终一致</small>"]
-    end
-
-    T2R["⬇️ 从“止血”到“恢复”<br/><small>进入定位与处置</small>"]
-
-    %% ================= 恢复 =================
-    subgraph Recovery["🔧 恢复：定位修复，回到 SLO<br/>"]
-      direction TB
-      J["📡 可观测与告警<br/><small>指标 / 日志 / Trace（SLI/SLO）</small>"]
-      K["⏪ 回滚与灾备<br/><small>版本回退 / 数据回放 / 切换</small>"]
-    end
-
-    %% 主链路
-    Prevention --> P2T --> Tolerance --> T2R --> Recovery
-  end
-
-  %% =============== 样式（统一、少而清） ===============
-  classDef prevent fill:#52B788,stroke:#2E8B57,color:#fff;
-  classDef tolerate fill:#3498DB,stroke:#2980B9,color:#fff;
-  classDef recover fill:#F4D03F,stroke:#D35400,color:#333;
-  classDef pivot fill:#2C3E50,stroke:#1A252F,color:#fff;
-
-  class A,B,C,D prevent;
-  class E,F,G,H,I tolerate;
-  class J,K recover;
-  class P2T,T2R pivot;
-
-  style Prevention fill:#FFF3E0,stroke:#FFCC80,stroke-dasharray: 5 5;
-  style Tolerance  fill:#E3F2FD,stroke:#90CAF9,stroke-dasharray: 5 5;
-  style Recovery   fill:#E8F5E9,stroke:#A5D6A7,stroke-dasharray: 5 5;
-
-  style Resilience fill:#F5F5F5,stroke:#BDBDBD,rx:20,ry:20;
-```
+![高可用系统韧性三阶段](https://oss.javaguide.cn/github/javaguide/high-availability/ha-system-design-resilience-stages.png)
 
 ### 注重代码质量，测试严格把关
 

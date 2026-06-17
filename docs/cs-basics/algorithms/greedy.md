@@ -100,6 +100,34 @@ int eraseOverlapIntervals(int[][] intervals) {
 
 如果一个贪心策略不好解释，先用小样例找反例。比如“每次选长度最短的区间”看起来合理，但并不能保证选出最多不重叠区间。
 
+## 代表题精讲：用最少数量的箭引爆气球
+
+[452. 用最少数量的箭引爆气球](https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/) 是区间贪心的典型题。题目给出一组气球区间 `[start, end]`，一支箭射在某个坐标 `x` 上，只要 `start <= x <= end`，这个气球就会被引爆，要求用最少的箭引爆所有气球。
+
+这题的贪心点是：**每次把箭射在当前可选区间的最右边界**。先按右端点升序排序，第一支箭放在第一个气球的右端点。后面的气球如果左端点 `<= arrow`，说明这支箭还能覆盖它；如果左端点 `> arrow`，说明当前箭已经够不到了，必须新增一支箭，并把新箭放在这个气球的右端点。
+
+代码里要注意两个边界：空数组返回 `0`；排序比较器不要写成 `a[1] - b[1]`，极端坐标下可能溢出。
+
+```java
+int findMinArrowShots(int[][] points) {
+    if (points.length == 0) {
+        return 0;
+    }
+    Arrays.sort(points, (a, b) -> Integer.compare(a[1], b[1]));
+    int arrows = 1;
+    int arrow = points[0][1];
+    for (int i = 1; i < points.length; i++) {
+        if (points[i][0] > arrow) {
+            arrows++;
+            arrow = points[i][1];
+        }
+    }
+    return arrows;
+}
+```
+
+如果样例是 `[[10,16],[2,8],[1,6],[7,12]]`，按右端点排序后是 `[1,6]、[2,8]、[7,12]、[10,16]`。第一支箭放在 `6`，能覆盖前两个区间；遇到 `[7,12]` 时左端点已经大于 `6`，必须新增一支箭，放在 `12`，它又能覆盖 `[10,16]`。最终答案是 `2`。
+
 ## 贪心和动态规划怎么区分？
 
 | 对比点       | 贪心                     | 动态规划               |

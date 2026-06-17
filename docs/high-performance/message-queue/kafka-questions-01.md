@@ -108,7 +108,7 @@ Kafka 将生产者发布的消息发送到 **Topic（主题）** 中，需要这
 
 下图就是我的本地 ZooKeeper，它成功和我本地的 Kafka 关联上（以下文件夹结构借助 idea 插件 ZooKeeper tool 实现）。
 
-<img src="https://oss.javaguide.cn/github/javaguide/high-performance/message-queue/zookeeper-kafka.jpg" style="zoom:50%;" />
+![ZooKeeper 中与 Kafka 相关的节点信息](https://oss.javaguide.cn/github/javaguide/high-performance/message-queue/zookeeper-kafka.jpg)
 
 ZooKeeper 主要为 Kafka 提供元数据的管理的功能。
 

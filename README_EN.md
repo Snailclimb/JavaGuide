@@ -1,3 +1,5 @@
+# JavaGuide
+
 **English** | **[日本語](./README_JA.md)** | **[简体中文](./README.md)**
 
 Recommended to read online for a better experience and faster speed: [javaguide.cn](https://javaguide.cn/)
@@ -22,7 +24,7 @@ An open-source guide for backend developers on AI application development, AI pr
 
 ## Java
 
-### Basics
+### Java Basics
 
 **Knowledge Points/Interview Questions Summary** (Must-read :+1:):
 
@@ -187,7 +189,7 @@ Additionally, [GeeksforGeeks](https://www.geeksforgeeks.org/fundamentals-of-algo
 
 ## Database
 
-### Basics
+### Database Basics
 
 - [Summary of Database Basics](./docs/database/basis.md)
 - [Summary of NoSQL Basics](./docs/database/nosql.md)
@@ -272,7 +274,7 @@ Additionally, [GeeksforGeeks](https://www.geeksforgeeks.org/fundamentals-of-algo
 - [⭐Common System Design Interview Questions Summary](./docs/system-design/system-design-questions.md)
 - [⭐Common Design Pattern Interview Questions Summary](https://interview.javaguide.cn/system-design/design-pattern.html)
 
-### Basics
+### System Design Basics
 
 - [A Brief Tutorial on RESTful API](./docs/system-design/basis/RESTfulAPI.md)
 - [A Brief Tutorial on Software Engineering](./docs/system-design/basis/software-engineering.md)
@@ -442,6 +444,6 @@ Deploying multiple instances of the same service to avoid single point of failur
 
 If you want to stay up-to-date with my latest articles and share my valuable content, you can follow my official public account.
 
-<img src="https://oss.javaguide.cn/github/javaguide/gongzhonghao-javaguide.png" alt="JavaGuide Official Public Account"  style="zoom: 43%; display: block; margin: 0 auto;" />
+![JavaGuide Official Public Account](https://oss.javaguide.cn/github/javaguide/gongzhonghao-javaguide.png)
 
 <!-- #endregion home -->

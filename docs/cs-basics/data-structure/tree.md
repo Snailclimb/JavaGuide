@@ -191,14 +191,14 @@ public void postOrder(TreeNode root){
 
 树结构面试通常会从二叉树遍历开始，逐步追问二叉搜索树、平衡树、B 树和 B+ 树。
 
-| 结构       | 特点                                     | 常见追问                       |
-| ---------- | ---------------------------------------- | ------------------------------ |
-| 二叉树     | 每个节点最多两个子节点                   | 前中后序遍历、层序遍历、树高   |
-| 二叉搜索树 | 左子树小于根，右子树大于根               | 中序遍历有序、退化成链表       |
-| AVL 树     | 高度平衡                                 | 查询快，插入删除旋转更频繁     |
-| 红黑树     | 近似平衡                                 | Java `TreeMap`、`HashMap` 树化 |
-| B 树       | 多路平衡搜索树                           | 磁盘 IO 友好                   |
-| B+ 树      | 数据通常在叶子节点，叶子节点有序链表相连 | MySQL 索引、范围查询           |
+| 结构       | 特点                                     | 常见追问                         |
+| ---------- | ---------------------------------------- | -------------------------------- |
+| 二叉树     | 每个节点最多两个子节点                   | 遍历、路径、最近公共祖先、构造树 |
+| 二叉搜索树 | 左子树小于根，右子树大于根               | 中序遍历有序、退化成链表         |
+| AVL 树     | 高度平衡                                 | 查询快，插入删除旋转更频繁       |
+| 红黑树     | 近似平衡                                 | Java `TreeMap`、`HashMap` 树化   |
+| B 树       | 多路平衡搜索树                           | 磁盘 IO 友好                     |
+| B+ 树      | 数据通常在叶子节点，叶子节点有序链表相连 | MySQL 索引、范围查询             |
 
 二叉树遍历模板要能手写：
 
@@ -221,6 +221,13 @@ BST 高频回答：
 - 如果插入数据本身有序，普通 BST 会退化成链表。
 - AVL 树比红黑树更严格平衡，查询更稳定；红黑树平衡要求宽一些，插入删除调整成本更低。
 - B+ 树适合数据库索引，一个节点能存更多 key，树高更低，叶子节点有序链表适合范围查询。
+
+二叉树算法题可以先按“当前节点在递归里承担什么角色”来分类：
+
+- 路径类：当前节点要加入路径，递归结束后撤销，常见于根到叶子路径和路径总和。
+- 子树信息类：左右子树先给出结果，当前节点再合并，常见于高度、直径、平衡二叉树。
+- 分叉汇合类：左右子树分别查找目标，当前节点判断是否是交汇点，常见于最近公共祖先。
+- 构造类：先确定根节点，再把左右子树的区间切开，常见于前序 + 中序构造二叉树。
 
 ## Java 代码模板
 
@@ -271,6 +278,58 @@ boolean check(TreeNode node, long lower, long upper) {
 }
 ```
 
+最近公共祖先（LCA）可以用后序思路：左右子树先找目标节点，当前节点再根据返回值判断是否汇合。
+
+```java
+TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    if (root == null || root == p || root == q) {
+        return root;
+    }
+    TreeNode left = lowestCommonAncestor(root.left, p, q);
+    TreeNode right = lowestCommonAncestor(root.right, p, q);
+    if (left != null && right != null) {
+        return root;
+    }
+    return left != null ? left : right;
+}
+```
+
+这段代码的含义是：如果 `p` 和 `q` 分别出现在左右子树，当前节点就是最近公共祖先；如果只在一边出现，就把那一边的结果继续向上返回。
+
+前序 + 中序构造二叉树时，前序数组的第一个元素是根节点，中序数组中根节点左边是左子树，右边是右子树。为了避免每次在线性数组里查根节点，通常先用哈希表记录中序下标。
+
+```java
+TreeNode buildTree(int[] preorder, int[] inorder) {
+    Map<Integer, Integer> index = new HashMap<>();
+    for (int i = 0; i < inorder.length; i++) {
+        index.put(inorder[i], i);
+    }
+    return build(preorder, 0, preorder.length - 1, 0, inorder.length - 1, index);
+}
+
+TreeNode build(
+    int[] preorder,
+    int preLeft,
+    int preRight,
+    int inLeft,
+    int inRight,
+    Map<Integer, Integer> index
+) {
+    if (preLeft > preRight) {
+        return null;
+    }
+    int rootVal = preorder[preLeft];
+    int rootIndex = index.get(rootVal);
+    int leftSize = rootIndex - inLeft;
+    TreeNode root = new TreeNode(rootVal);
+    root.left = build(preorder, preLeft + 1, preLeft + leftSize, inLeft, rootIndex - 1, index);
+    root.right = build(preorder, preLeft + leftSize + 1, preRight, rootIndex + 1, inRight, index);
+    return root;
+}
+```
+
+构造题最容易错的是区间边界。建议先写清 `preLeft/preRight` 和 `inLeft/inRight` 的含义，再根据左子树大小 `leftSize` 切分前序数组。
+
 ## 过程示意和边界样例
 
 二叉树题可以先判断“当前节点要做什么”，再决定用前序、中序、后序还是层序。
@@ -288,6 +347,8 @@ boolean check(TreeNode node, long lower, long upper) {
 - 只有一个节点：递归出口和层序队列都要能处理。
 - 退化链表：递归深度可能达到 `n`，复杂度不要误写成 `O(logn)`。
 - BST 中存在 `Integer.MIN_VALUE` / `Integer.MAX_VALUE`：上下界建议用 `long`。
+- LCA 中一个目标节点是另一个目标节点的祖先：遇到目标节点时要直接返回当前节点。
+- 构造树时数组为空：递归区间会变成 `preLeft > preRight`，应返回 `null`。
 
 ## 推荐练习题
 

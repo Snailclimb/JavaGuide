@@ -44,6 +44,7 @@ export const ai = arraySidebar([
       { text: "万字拆解 MCP 协议", link: "mcp" },
       { text: "Harness Engineering 详解", link: "harness-engineering" },
       { text: "AI 工作流详解", link: "workflow-graph-loop" },
+      { text: "Loop Engineering 详解", link: "loop-engineering" },
     ],
   },
   {

@@ -72,38 +72,7 @@ head:
 
 性能指标是衡量系统性能的核心度量标准，理解各指标之间的关系对于性能分析至关重要。
 
-```mermaid
-flowchart LR
-    subgraph Input["输入参数"]
-        style Input fill:#F5F7FA,color:#333333,stroke:#005D7B,stroke-width:2px
-        A["并发数<br/>Concurrency"]
-    end
-
-    subgraph Process["处理过程"]
-        style Process fill:#F5F7FA,color:#333333,stroke:#005D7B,stroke-width:2px
-        B["响应时间<br/>RT"]
-    end
-
-    subgraph Output["输出指标"]
-        style Output fill:#F5F7FA,color:#333333,stroke:#005D7B,stroke-width:2px
-        C["QPS/TPS<br/>吞吐量"]
-    end
-
-    A -->|"请求"| B
-    B -->|"计算"| C
-
-    D["QPS = 并发数 / RT（秒）"]
-
-    classDef core fill:#4CA497,color:#FFFFFF,stroke:none,rx:10,ry:10
-    classDef process fill:#00838F,color:#FFFFFF,stroke:none,rx:10,ry:10
-    classDef highlight fill:#E99151,color:#FFFFFF,stroke:none,rx:10,ry:10
-
-    class A core
-    class B process
-    class C,D highlight
-
-    linkStyle default stroke-width:2px,stroke:#333333,opacity:0.8
-```
+![QPS、并发数与 RT 的关系](https://oss.javaguide.cn/github/javaguide/high-availability/performance-test-metrics-relation.png)
 
 ### 响应时间
 
@@ -144,13 +113,7 @@ flowchart LR
 
 **Little's Law（利特尔法则）**：在系统未饱和的稳态下，`并发数 = QPS × RT`，亦即 `QPS = 并发数 / RT（秒）`。例如并发数为 100，RT 为 200ms（0.2s），则 QPS 约为 `100 / 0.2 = 500`。该公式仅在系统处于线性响应区间时成立。随着并发用户数持续增加，CPU 调度消耗、锁争用（Lock Contention）加剧，RT 会呈现 **指数级上升**，吞吐量达到拐点后急速下降，形成典型的 **“曲棍球棒曲线”（Hockey Stick Curve）**。当并发继续增加但 QPS 不再增长，RT 曲线斜率突然变大时，通常就说明系统已经离开线性响应区间。下图直观展示「为什么不能用公式硬算」：拐点之后 QPS 不升反降，系统已进入非线性区。
 
-```mermaid
-xychart-beta
-    title "QPS vs 并发数（曲棍球棒曲线）"
-    x-axis "并发数" [200, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000]
-    y-axis "QPS" 0 --> 5000
-    line [1200, 2800, 4200, 4800, 5000, 4750, 3800, 2400, 1200]
-```
+![QPS 与并发数的曲棍球棒曲线](https://oss.javaguide.cn/github/javaguide/high-availability/performance-test-hockey-stick-curve.png)
 
 因此，绝不能仅靠公式推算生产容量，必须通过全链路压测验证真实极限。
 
