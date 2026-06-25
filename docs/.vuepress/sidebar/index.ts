@@ -441,7 +441,15 @@ export default sidebar({
           prefix: "protocol/",
           collapsible: true,
           children: [
+            {
+              text: "理论&算法&协议专题",
+              link: "/distributed-system/protocol/",
+            },
             { text: "CAP定理与BASE理论详解", link: "cap-and-base-theorem" },
+            {
+              text: "分布式协调详解",
+              link: "centralized-and-decentralized",
+            },
             { text: "拜占庭将军问题", link: "byzantine-generals-problem" },
             { text: "Paxos算法详解", link: "paxos-algorithm" },
             { text: "Raft算法详解", link: "raft-algorithm" },
@@ -503,6 +511,7 @@ export default sidebar({
           icon: ICONS.RPC,
           collapsible: true,
           children: [
+            { text: "RPC专题", link: "/distributed-system/rpc/" },
             { text: "RPC基础知识总结", link: "rpc-intro" },
             { text: "Dubbo面试题总结", link: "dubbo" },
           ],
@@ -513,8 +522,13 @@ export default sidebar({
           icon: ICONS.FRAMEWORK,
           collapsible: true,
           children: [
+            {
+              text: "ZooKeeper专题",
+              link: "/distributed-system/distributed-process-coordination/zookeeper/",
+            },
             { text: "ZooKeeper入门指南", link: "zookeeper-intro" },
             { text: "ZooKeeper进阶详解", link: "zookeeper-plus" },
+            { text: "ZooKeeper实战教程", link: "zookeeper-in-action" },
           ],
         },
       ],

@@ -20,6 +20,8 @@ head:
 
 **分散式传播** 的 **Gossip 协议** 提供了一种去中心化的替代方案。
 
+如果你还不清楚 Leader/Quorum 和 Gossip 分别适合解决什么问题，可以先看 [分布式协调详解](./centralized-and-decentralized.md)。这篇 Gossip 文章只展开“状态如何传播并最终收敛”，不负责解释 Leader 选举、脑裂和 Fencing Token 这类强协调问题。
+
 ![分布式系统通信机制：中心化 vs 去中心化](https://oss.javaguide.cn/github/javaguide/distributed-system/protocol/gossip-centralized-vs-decentralized.png)
 
 ## Gossip 协议介绍

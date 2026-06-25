@@ -12,6 +12,8 @@ head:
 
 通常情况下，我们一般会选择基于 Redis 或者 ZooKeeper 实现分布式锁，Redis 用的要更多一点，我这里也先以 Redis 为例介绍分布式锁的实现。
 
+这篇文章默认你已经知道为什么需要分布式锁。如果你还没搞清楚锁粒度、owner token、锁超时和业务临界区，建议先看 [分布式锁入门](./distributed-lock.md)。如果你想把锁过期、旧客户端恢复、Fencing Token 放到更大的协调模型里理解，可以结合 [分布式协调详解](./protocol/centralized-and-decentralized.md)。
+
 ## 基于 Redis 实现分布式锁
 
 ### 如何基于 Redis 实现一个最简易的分布式锁？

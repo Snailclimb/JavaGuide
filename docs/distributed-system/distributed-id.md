@@ -12,6 +12,8 @@ head:
 
 ## 分布式 ID 介绍
 
+这篇文章主要讲“ID 生成方案怎么选”，例如 UUID、数据库号段、Redis、Snowflake、Leaf、Tinyid。看完方案对比后，如果你想继续了解订单号、优惠券码、TraceId、短网址这类业务 ID 怎么设计，可以读 [分布式 ID 设计实战](./distributed-id-design.md)。
+
 ### 什么是 ID？
 
 日常开发中，我们需要对系统中的各种数据使用 ID 唯一表示，比如用户 ID 唯一标识一个用户，商品 ID 唯一标识一件商品，订单 ID 唯一标识一笔订单。
@@ -384,7 +386,7 @@ Snowflake 是 Twitter 开源的分布式 ID 生成算法。Snowflake 由 64 bit 
 | **等待追回**       | 保证 ID 唯一性 | 回拨幅度大时会长时间阻塞，可能影响业务 | 回拨幅度极小的场景              |
 | **备用 Worker ID** | 高可用         | 实现复杂，需考虑租约、脑裂和旧实例恢复 | 已有可靠注册中心/租约机制的系统 |
 
-备用 Worker ID 是一种可选方案，不是通用推荐。它适合已有可靠注册中心/租约机制的系统；更常见的处理还包括小幅回拨等待、超过阈值拒绝发号、持久化记录 last timestamp、通过注册中心保证 Worker ID 租约唯一。
+备用 Worker ID 是一种可选方案，不是通用推荐。它适合已有可靠注册中心/租约机制的系统；更常见的处理还包括小幅回拨等待、超过阈值拒绝发号、持久化记录 last timestamp、通过注册中心保证 Worker ID 租约唯一。这里涉及的租约、脑裂和旧实例恢复问题，可以结合 [分布式协调详解](./protocol/centralized-and-decentralized.md) 一起理解。
 
 #### Snowflake Worker ID 分配难题
 

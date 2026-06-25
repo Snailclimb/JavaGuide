@@ -16,6 +16,8 @@ head:
 
 我们非常有必要将这两个理论搞懂，并且能够用自己的理解给别人讲出来。
 
+这篇主要解决“分区发生时系统怎么取舍”。如果你想继续理解 Leader、Quorum、Lease、Gossip 这些设计为什么会出现，可以接着读 [分布式协调详解](./centralized-and-decentralized.md)；如果想看业务侧如何用最终一致性落地，可以继续读 [分布式事务解决方案详解](../distributed-transaction.md)。
+
 ## CAP 理论
 
 [CAP 理论/定理](https://zh.wikipedia.org/wiki/CAP%E5%AE%9A%E7%90%86)起源于 2000 年，由加州大学伯克利分校的 Eric Brewer 教授在分布式计算原理研讨会（PODC）上提出，因此 CAP 定理又被称作 **布鲁尔定理（Brewer’s theorem）**

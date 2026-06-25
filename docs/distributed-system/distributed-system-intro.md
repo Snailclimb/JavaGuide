@@ -232,7 +232,9 @@ head:
 
 第三步补数据层：复制、分片、缓存、消息队列、分布式 ID、分布式锁、分布式事务。这里要多问异常场景，比如消息重复投递怎么办、缓存和数据库不一致怎么办、锁过期但业务还没执行完怎么办。
 
-最后再看 CAP、BASE、Paxos、Raft、ZAB、Gossip、一致性哈希这些理论和协议。学它们不是为了背名词，而是为了理解 ZooKeeper、etcd、Kafka、Redis Cluster、分布式数据库这些系统为什么这样设计。
+最后再看 CAP、BASE、中心化与去中心化、Paxos、Raft、ZAB、Gossip、一致性哈希这些理论和协议。学习这些内容，重点是理解 ZooKeeper、etcd、Kafka、Redis Cluster、分布式数据库这些系统为什么这样设计。
+
+这里建议先读 [分布式协调详解](./protocol/centralized-and-decentralized.md)。它把 Leader、Quorum、脑裂、Lease、Fencing Token 和 Gossip 放在同一条主线里，能帮你在进入 Raft、ZAB、Gossip 细节之前，先明白“谁来做决定、状态怎么传播、错了会怎样”。
 
 还要分清共识和分布式事务。Paxos、Raft、ZAB 主要解决一组副本如何对日志顺序、Leader 或状态变更达成一致；TCC、Saga、事务消息主要解决多个业务参与方之间如何协调提交和补偿。它们可能出现在同一个系统里，但处理的问题不同。
 
@@ -243,6 +245,7 @@ head:
 3. 为什么分布式系统里超时不能简单等同于失败？
 4. 为什么多副本会引入一致性问题？
 5. 为什么跨服务写数据通常要考虑幂等、补偿和最终一致性？
+6. 为什么有些系统需要 Leader，有些系统更适合用 Gossip 传播状态？
 
 ## 参考资料
 

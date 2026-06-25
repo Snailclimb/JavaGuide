@@ -12,6 +12,8 @@ head:
 
 这篇文章会简单介绍一下 RPC 相关的基础概念。
 
+放到分布式系统里看，RPC 解决的是**服务之间如何互相调用**。外部请求进入系统通常先经过 [API 网关](../api-gateway.md)，进入内部服务后，服务之间才会通过 RPC、HTTP Client、消息队列等方式继续协作。如果你想看 Dubbo 这种成熟 RPC 框架的服务治理细节，可以继续读 [Dubbo 面试题总结](./dubbo.md)。
+
 ## RPC 是什么?
 
 ![RPC 概览](https://oss.javaguide.cn/github/javaguide/distributed-system/rpc/rpc-overview.png)

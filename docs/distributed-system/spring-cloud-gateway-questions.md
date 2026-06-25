@@ -13,6 +13,8 @@ head:
 
 > 本文重构完善自[6000 字 | 16 图 | 深入理解 Spring Cloud Gateway 的原理 - 悟空聊架构](https://mp.weixin.qq.com/s/XjFYsP1IUqNzWqXZdJn-Aw)这篇文章。
 
+这篇文章只展开 Spring Cloud Gateway 的面试高频点。如果你还没搞清楚 API 网关为什么存在、网关和 RPC 的关系、Zuul / Gateway / Kong / APISIX 怎么选，建议先看 [API 网关详解](./api-gateway.md)。
+
 ## 什么是 Spring Cloud Gateway？
 
 Spring Cloud Gateway 属于 Spring Cloud 生态系统中的网关，其诞生的目标主要是为了替代 **Zuul 1.x**。Zuul 1.x 基于 Servlet 阻塞 I/O 架构，在高并发场景下性能有限。而 Zuul 2.x 虽然采用了 Netty 非阻塞架构，但 Spring Cloud 官方并未正式集成 Zuul 2.x。Spring Cloud Gateway 起步要比 Zuul 2.x 更早。
@@ -48,7 +50,7 @@ Spring Cloud Gateway 的工作流程如下图所示：
 
 ## Spring Cloud Gateway 的断言是什么？
 
-断言（Predicate）这个词听起来极其深奥，它是一种编程术语，我们生活中根本就不会用它。说白了它就是对一个表达式进行 if 判断，结果为真或假，如果为真则做这件事，否则做那件事。
+断言（Predicate）这个词听起来比较抽象，它可以理解为对请求条件做一次判断：结果为真就匹配当前路由，结果为假就继续匹配其他路由。
 
 在 Gateway 中，如果客户端发送的请求满足了断言的条件，则映射到指定的路由器，就能转发到指定的服务上进行处理。
 

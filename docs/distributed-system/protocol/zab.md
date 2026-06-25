@@ -15,6 +15,8 @@ head:
 
 ZAB 并非像 Paxos 那样是通用的分布式一致性算法，它是一种**特别为 ZooKeeper 设计的、支持崩溃可恢复的原子消息广播算法**。基于 ZAB 协议，ZooKeeper 实现了一种主备模式的架构，来保持集群中各个副本之间的数据一致性。
 
+这篇文章只讲 ZAB 的协议过程。如果你还不熟悉 ZooKeeper 的 ZNode、Watcher、Session 和应用场景，建议先读 [ZooKeeper 入门指南](../distributed-process-coordination/zookeeper/zookeeper-intro.md)。如果你想先理解 Leader、Quorum 和脑裂这些通用问题，可以先读 [分布式协调详解](./centralized-and-decentralized.md)。
+
 ## ZAB 集群的核心角色与状态
 
 在深入协议运作之前，我们需要先了解 ZooKeeper 集群中的三个主要角色：

@@ -18,6 +18,8 @@ head:
 
 :::
 
+这篇文章默认你已经理解 RPC 的基本调用流程。如果你对动态代理、序列化、网络传输、服务发现这些概念还不熟，建议先看 [RPC 远程过程调用详解](./rpc-intro.md)。Dubbo 涉及注册中心、负载均衡、集群容错，这部分也可以和 [ZooKeeper 专题](../distributed-process-coordination/zookeeper/) 放在一起看。
+
 这篇文章是我根据官方文档以及自己平时的使用情况，对 Dubbo 所做的一个总结。欢迎补充！
 
 ## Dubbo 基础
