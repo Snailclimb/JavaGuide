@@ -235,6 +235,10 @@ export default sidebar({
                 text: "MySQL三大日志详解",
                 link: "mysql-logs",
               },
+              {
+                text: "MySQL备份与恢复",
+                link: "mysql-backup-and-restore",
+              },
               "transaction-isolation-level",
               "innodb-implementation-of-mvcc",
               "how-sql-executed-in-mysql",
