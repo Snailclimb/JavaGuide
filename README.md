@@ -359,10 +359,12 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 ## 分布式
 
 - [⭐分布式高频面试题](https://interview.javaguide.cn/distributed-system/distributed-system.html)
+- [分布式系统入门](https://javaguide.cn/distributed-system/distributed-system-intro.html)
 
 ### 理论&算法&协议
 
 - [CAP 理论和 BASE 理论解读](https://javaguide.cn/distributed-system/protocol/cap-and-base-theorem.html)
+- [拜占庭将军问题详解](https://javaguide.cn/distributed-system/protocol/byzantine-generals-problem.html)
 - [Paxos 算法解读](https://javaguide.cn/distributed-system/protocol/paxos-algorithm.html)
 - [Raft 算法解读](https://javaguide.cn/distributed-system/protocol/raft-algorithm.html)
 - [ZAB 协议解读](https://javaguide.cn/distributed-system/protocol/zab.html)

@@ -428,6 +428,10 @@ export default sidebar({
           link: "/distributed-system/",
         },
         {
+          text: "分布式系统入门",
+          link: "distributed-system-intro",
+        },
+        {
           text: "⭐分布式高频面试题",
           link: "distributed-system-interview-questions",
         },
@@ -438,6 +442,7 @@ export default sidebar({
           collapsible: true,
           children: [
             { text: "CAP定理与BASE理论详解", link: "cap-and-base-theorem" },
+            { text: "拜占庭将军问题", link: "byzantine-generals-problem" },
             { text: "Paxos算法详解", link: "paxos-algorithm" },
             { text: "Raft算法详解", link: "raft-algorithm" },
             { text: "ZAB协议详解", link: "zab" },

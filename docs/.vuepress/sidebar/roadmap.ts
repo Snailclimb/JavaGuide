@@ -23,6 +23,10 @@ export const roadmap = arraySidebar([
         text: "后端全栈学习路线（2026）",
         link: "full-stack-roadmap",
       },
+      {
+        text: "测试开发学习路线（2026）",
+        link: "test-development-roadmap",
+      },
     ],
   },
 ]);

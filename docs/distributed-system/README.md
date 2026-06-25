@@ -1,6 +1,6 @@
 ---
-title: 分布式系统知识体系：理论、协议、RPC、网关、分布式锁、事务与 ID
-description: 分布式系统面试与学习路线，涵盖 CAP、BASE、Paxos、Raft、ZAB、Gossip、一致性哈希、RPC、API 网关、分布式锁、分布式事务和 ZooKeeper。
+title: 分布式系统知识体系：入门、理论协议、RPC、网关、锁、事务与 ID
+description: 分布式系统面试与学习路线，涵盖分布式系统入门、CAP、BASE、拜占庭将军问题、Paxos、Raft、ZAB、Gossip、一致性哈希、RPC、API 网关、分布式锁、分布式事务和 ZooKeeper。
 category: 分布式
 tag:
   - 分布式
@@ -12,14 +12,14 @@ sitemap:
 head:
   - - meta
     - name: keywords
-      content: 分布式系统,分布式系统面试题,CAP,BASE,Paxos,Raft,ZAB,Gossip,RPC,Dubbo,API网关,分布式ID,分布式锁,分布式事务,配置中心,ZooKeeper,后端面试
+      content: 分布式系统,分布式系统入门,分布式系统面试题,CAP,BASE,拜占庭将军问题,Paxos,Raft,ZAB,Gossip,RPC,Dubbo,API网关,分布式ID,分布式锁,分布式事务,配置中心,ZooKeeper,后端面试
 ---
 
 <!-- @include: @small-advertisement.snippet.md -->
 
 这份 **分布式系统知识体系** 面向后端学习、系统设计和面试复习，按“理论基础 -> 通信调用 -> 服务治理 -> 一致性与协调 -> 工程实践”的顺序整理本站分布式相关文章。
 
-如果你时间有限，建议先看 [分布式系统面试题总结](./distributed-system-interview-questions.md)，快速建立高频问题清单；如果你想系统补基础，可以按下面的专题顺序阅读。
+如果你刚开始学分布式，建议先看 [分布式系统入门](./distributed-system-intro.md)，建立整体认知；如果你时间有限，建议先看 [分布式系统面试题总结](./distributed-system-interview-questions.md)，快速建立高频问题清单；如果你想系统补基础，可以按下面的专题顺序阅读。
 
 ## 适合谁看
 
@@ -38,20 +38,24 @@ head:
 
 ## 建议阅读顺序
 
-1. [分布式系统面试题总结](./distributed-system-interview-questions.md)：先建立高频问题清单，知道面试最常考哪些点。
-2. [CAP 定理与 BASE 理论详解](./protocol/cap-and-base-theorem.md)：理解分布式系统最核心的取舍逻辑。
-3. [RPC 远程过程调用详解](./rpc/rpc-intro.md)：掌握服务之间如何通信，以及 RPC 框架解决了哪些工程问题。
-4. [分布式 ID 生成方案详解](./distributed-id.md)、[分布式锁入门](./distributed-lock.md)、[分布式事务解决方案详解](./distributed-transaction.md)：补齐高频工程实践。
-5. [ZooKeeper 入门指南](./distributed-process-coordination/zookeeper/zookeeper-intro.md) 和 [分布式配置中心详解](./distributed-configuration-center.md)：理解分布式协调和配置治理。
+1. [分布式系统入门](./distributed-system-intro.md)：先理解什么是分布式系统，以及为什么拆成多节点后会引入通信、故障和一致性问题。
+2. [分布式系统面试题总结](./distributed-system-interview-questions.md)：建立高频问题清单，知道面试最常考哪些点。
+3. [CAP 定理与 BASE 理论详解](./protocol/cap-and-base-theorem.md)：理解分布式系统最核心的取舍逻辑。
+4. [拜占庭将军问题详解](./protocol/byzantine-generals-problem.md)：理解共识问题里的恶意节点、故障假设和 BFT 容错边界。
+5. [RPC 远程过程调用详解](./rpc/rpc-intro.md)：掌握服务之间如何通信，以及 RPC 框架解决了哪些工程问题。
+6. [分布式 ID 生成方案详解](./distributed-id.md)、[分布式锁入门](./distributed-lock.md)、[分布式事务解决方案详解](./distributed-transaction.md)：补齐高频工程实践。
+7. [ZooKeeper 入门指南](./distributed-process-coordination/zookeeper/zookeeper-intro.md) 和 [分布式配置中心详解](./distributed-configuration-center.md)：理解分布式协调和配置治理。
 
 ## 核心文章
 
-### 分布式理论与协议
+### 分布式基础与理论协议
 
 这部分适合先建立分布式系统的底层认知，重点理解一致性、可用性、分区容错、共识算法和数据分布。
 
+- [分布式系统入门](./distributed-system-intro.md)：理解分布式系统的定义、架构演进、典型特征、常见系统和学习路线。
 - [分布式理论、算法与协议专题](./protocol/)：把 CAP、BASE、Paxos、Raft、ZAB、Gossip 和一致性哈希放在同一条学习线上。
 - [CAP 定理与 BASE 理论详解](./protocol/cap-and-base-theorem.md)：理解一致性、可用性、分区容错和最终一致性。
+- [拜占庭将军问题详解](./protocol/byzantine-generals-problem.md)：理解恶意节点场景下的共识难点、`3m + 1` 节点要求和 BFT 容错。
 - [Raft 算法详解](./protocol/raft-algorithm.md)：用更易理解的共识算法入门 Leader 选举和日志复制。
 - [Paxos 算法详解](./protocol/paxos-algorithm.md)：补齐经典共识算法的角色、流程和难点。
 - [ZAB 协议详解](./protocol/zab.md)：理解 ZooKeeper 的原子广播、崩溃恢复和事务日志机制。

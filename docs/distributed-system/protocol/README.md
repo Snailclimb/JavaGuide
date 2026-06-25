@@ -1,6 +1,6 @@
 ---
-title: 分布式理论、算法与协议：CAP、BASE、Paxos、Raft、ZAB、Gossip 与一致性哈希
-description: 分布式理论与协议学习路线，涵盖 CAP、BASE、Paxos、Raft、ZAB、Gossip、一致性哈希等内容，理解一致性、容错和数据分布问题。
+title: 分布式理论、算法与协议：CAP、BASE、拜占庭将军问题、Paxos、Raft 与一致性哈希
+description: 分布式理论与协议学习路线，涵盖 CAP、BASE、拜占庭将军问题、Paxos、Raft、ZAB、Gossip、一致性哈希等内容，理解一致性、容错、共识和数据分布问题。
 category: 分布式
 tag:
   - 分布式理论
@@ -12,10 +12,10 @@ sitemap:
 head:
   - - meta
     - name: keywords
-      content: 分布式理论,分布式算法,分布式协议,CAP,BASE,Paxos,Raft,ZAB,Gossip,一致性哈希,共识算法,最终一致性,分布式系统面试题
+      content: 分布式理论,分布式算法,分布式协议,CAP,BASE,拜占庭将军问题,Paxos,Raft,ZAB,Gossip,一致性哈希,共识算法,拜占庭容错,BFT,最终一致性,分布式系统面试题
 ---
 
-分布式理论、算法与协议是理解分布式系统的基础。学习这部分内容时，不建议只背结论，更重要的是理解不同方案在一致性、可用性、容错、性能和工程复杂度之间的取舍。
+分布式理论、算法与协议是理解分布式系统的基础。学习这部分内容时，不建议只背结论，更重要的是理解不同方案在一致性、可用性、容错、共识、性能和工程复杂度之间的取舍。
 
 ## 适合谁看
 
@@ -35,16 +35,18 @@ head:
 ## 建议阅读顺序
 
 1. [CAP 定理与 BASE 理论详解](./cap-and-base-theorem.md)：先建立一致性、可用性、分区容错的取舍视角。
-2. [Raft 算法详解](./raft-algorithm.md)：用相对易懂的 Leader 选举和日志复制入门共识算法。
-3. [Paxos 算法详解](./paxos-algorithm.md)：理解经典共识算法的角色、阶段和难点。
-4. [ZAB 协议详解](./zab.md)：把共识算法落到 ZooKeeper 的消息广播和崩溃恢复场景。
-5. [Gossip 协议详解](./gossip-protocol.md) 和 [一致性哈希算法详解](./consistent-hashing.md)：理解大规模系统里的状态传播和数据分布。
+2. [拜占庭将军问题详解](./byzantine-generals-problem.md)：理解恶意节点、矛盾消息、`3m + 1` 节点要求和 BFT 容错边界。
+3. [Raft 算法详解](./raft-algorithm.md)：用相对易懂的 Leader 选举和日志复制入门共识算法。
+4. [Paxos 算法详解](./paxos-algorithm.md)：理解经典共识算法的角色、阶段和难点。
+5. [ZAB 协议详解](./zab.md)：把共识算法落到 ZooKeeper 的消息广播和崩溃恢复场景。
+6. [Gossip 协议详解](./gossip-protocol.md) 和 [一致性哈希算法详解](./consistent-hashing.md)：理解大规模系统里的状态传播和数据分布。
 
 ## 核心文章
 
 ### 一致性与分布式理论
 
 - [CAP 定理与 BASE 理论详解](./cap-and-base-theorem.md)：理解一致性、可用性、分区容错的取舍，以及 BASE 理论和最终一致性的工程含义。
+- [拜占庭将军问题详解](./byzantine-generals-problem.md)：理解存在恶意节点或异常节点时，正常节点如何对同一个结果达成一致。
 
 ### 共识算法
 
