@@ -204,7 +204,10 @@ export default sidebar({
           children: [
             "basis",
             "nosql",
-            "character-set",
+            {
+              text: "字符集详解",
+              link: "character-set",
+            },
             {
               text: "SQL",
               icon: ICONS.SQL,
