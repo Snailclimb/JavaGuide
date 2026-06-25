@@ -16,7 +16,7 @@ icon: "mdi:tools"
 
 ## 代码安全
 
-- [OpenTaint](https://github.com/seqra/opentaint/blob/main/docs/translations/README.zh.md "opentaint")：AI 时代的开源污点分析（Taint Analysis）引擎，面向 Java、Kotlin 和 Spring Boot 应用，可用于应用安全审计（SAST）。它基于字节码进行过程间（inter-procedural）数据流分析，追踪不可信数据在代码中的传播路径，能够检测 SQL 注入、XSS、SSRF、命令注入等 20 多种漏洞。相比传统的模式匹配工具，OpenTaint 还能建模 Spring 的依赖注入、单例 Bean 状态以及 JPA 持久化等跨类、跨请求的数据流，从而发现更深层次的安全问题。核心引擎采用 Apache 2.0 许可证，CLI 与规则集采用 MIT 许可证。官网：[opentaint.org](https://opentaint.org/)；延伸阅读：[Spring 污点分析原理](https://opentaint.org/blog/spring-analyzer/)、[结合 LLM Agent 的低成本安全扫描](https://opentaint.org/blog/appsec-agent/)。
+- [OpenTaint](https://github.com/seqra/opentaint/blob/main/docs/translations/README.zh.md "opentaint")：面向 Java、Kotlin 和 Spring Boot 应用的开源污点分析/SAST 工具，可用于检测 SQL 注入、XSS、SSRF 等安全风险。
 
 ## 项目构建
 
