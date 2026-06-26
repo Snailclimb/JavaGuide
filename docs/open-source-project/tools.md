@@ -1,6 +1,6 @@
 ---
 title: Java 优质开源开发工具
-description: Java优质开源开发工具推荐，涵盖代码质量检查、项目构建、测试框架、容器化部署等开发必备工具精选。
+description: Java优质开源开发工具推荐，涵盖代码质量检查、代码安全分析、项目构建、测试框架、容器化部署等开发必备工具精选。
 category: 开源项目
 icon: "mdi:tools"
 ---
@@ -13,6 +13,10 @@ icon: "mdi:tools"
 - [PMD](https://github.com/pmd/pmd "pmd") : 可扩展的多语言静态代码分析器。
 - [SpotBugs](https://github.com/spotbugs/spotbugs "spotbugs") : FindBugs 的继任者。静态分析工具，用于查找 Java 代码中的错误。
 - [P3C](https://github.com/alibaba/p3c "p3c")：Alibaba Java Coding Guidelines pmd implements and IDE plugin。Eclipse 和 IDEA 上都有该插件。
+
+## 代码安全
+
+- [OpenTaint](https://github.com/seqra/opentaint/blob/main/docs/translations/README.zh.md "opentaint")：面向 Java、Kotlin 和 Spring Boot 应用的开源污点分析/SAST 工具，可用于检测 SQL 注入、XSS、SSRF 等安全风险。
 
 ## 项目构建
 
