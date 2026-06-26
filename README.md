@@ -151,7 +151,9 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 - [进程与线程详解：区别、状态、通信、上下文切换与虚拟线程](./docs/cs-basics/operating-system/process-and-thread.md)
 - [进程间通信（IPC）详解：管道、消息队列、共享内存、Socket 与 Binder](./docs/cs-basics/operating-system/ipc.md)
 - [死锁详解：四个必要条件、Java 死锁排查与数据库死锁处理](./docs/cs-basics/operating-system/dead-lock.md)
+- [操作系统内存管理详解：分页、分段、页面置换、Swap 与 OOM](./docs/cs-basics/operating-system/memory-management.md)
 - [虚拟内存详解：地址转换、TLB、缺页中断与页面置换](./docs/cs-basics/operating-system/virtual-memory.md)
+- [操作系统文件系统详解：inode、VFS、Page Cache 与日志机制](./docs/cs-basics/operating-system/file-system.md)
 - [I/O 多路复用详解：select、poll、epoll 原理与区别](./docs/cs-basics/operating-system/io-multiplexing.md)
 - [零拷贝详解：mmap、sendfile 与 splice](./docs/cs-basics/operating-system/zero-copy.md)
 - **Linux**：

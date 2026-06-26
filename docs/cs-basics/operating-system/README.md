@@ -1,5 +1,5 @@
 ---
-title: 操作系统专题：进程线程、锁与同步、虚拟内存、I/O 多路复用、Linux 与 Shell
+title: 操作系统专题：进程线程、内存管理、文件系统、I/O 多路复用、Linux 与 Shell
 description: 操作系统面试与学习路线，涵盖进程线程、进程间通信、锁与同步机制、死锁、虚拟内存、零拷贝、I/O 多路复用、文件系统、Linux 基础、Shell 编程和常见操作系统面试题。
 category: 计算机基础
 tag:
@@ -42,11 +42,13 @@ head:
 4. [进程间通信（IPC）详解：管道、消息队列、共享内存、Socket 与 Binder](./ipc.md)：对比管道、消息队列、共享内存、信号量、Socket、Binder 等 IPC 方案。
 5. [操作系统锁与同步机制详解：mutex、semaphore、condition variable、spinlock 与 futex](./os-lock-and-sync.md)：理解临界区、互斥锁、信号量、条件变量、自旋锁和 futex 的职责边界。
 6. [死锁详解：四个必要条件、Java 死锁排查与数据库死锁处理](./dead-lock.md)：讲清死锁等待环、四个必要条件、Java 线程死锁排查和数据库事务重试。
-7. [虚拟内存详解：地址转换、TLB、缺页中断与页面置换](./virtual-memory.md)：把分页、页表、TLB、缺页中断和页面置换串起来。
-8. [I/O 多路复用详解：select、poll、epoll 原理与区别](./io-multiplexing.md)：理解一个线程处理海量连接背后的内核机制。
-9. [零拷贝详解：mmap、sendfile 与 splice](./zero-copy.md)：搞清传统 I/O、mmap、sendfile、splice 的拷贝路径和适用场景。
-10. [Linux 基础知识总结](./linux-intro.md)：掌握目录结构、文件权限、常用命令和基础排障能力。
-11. [Shell 编程基础知识总结](./shell-intro.md)：学习变量、条件、循环、函数和常用脚本写法。
+7. [操作系统内存管理详解：分页、分段、页面置换、Swap 与 OOM](./memory-management.md)：理解内存分配、碎片、页表、页面回收和 OOM。
+8. [虚拟内存详解：地址转换、TLB、缺页中断与页面置换](./virtual-memory.md)：把分页、页表、TLB、缺页中断和页面置换串起来。
+9. [操作系统文件系统详解：inode、VFS、Page Cache 与日志机制](./file-system.md)：理解文件、目录、inode、VFS、Page Cache 和日志恢复。
+10. [I/O 多路复用详解：select、poll、epoll 原理与区别](./io-multiplexing.md)：理解一个线程处理海量连接背后的内核机制。
+11. [零拷贝详解：mmap、sendfile 与 splice](./zero-copy.md)：搞清传统 I/O、mmap、sendfile、splice 的拷贝路径和适用场景。
+12. [Linux 基础知识总结](./linux-intro.md)：掌握目录结构、文件权限、常用命令和基础排障能力。
+13. [Shell 编程基础知识总结](./shell-intro.md)：学习变量、条件、循环、函数和常用脚本写法。
 
 ## 核心文章
 
@@ -56,7 +58,9 @@ head:
 - [进程间通信（IPC）详解：管道、消息队列、共享内存、Socket 与 Binder](./ipc.md)：讲清常见 IPC 方式的原理、优缺点和选型思路。
 - [操作系统锁与同步机制详解：mutex、semaphore、condition variable、spinlock 与 futex](./os-lock-and-sync.md)：讲清临界区、互斥锁、信号量、条件变量、自旋锁、futex、内存顺序和内核锁上下文。
 - [死锁详解：四个必要条件、Java 死锁排查与数据库死锁处理](./dead-lock.md)：讲清死锁形成条件、资源分配图、Java 排查工具、数据库死锁检测和应用层重试策略。
+- [操作系统内存管理详解：分页、分段、页面置换、Swap 与 OOM](./memory-management.md)：讲清 VSZ/RSS/PSS、连续分配、内存碎片、伙伴系统、页表、TLB、缺页异常、页面回收和 OOM。
 - [虚拟内存详解：地址转换、TLB、缺页中断与页面置换](./virtual-memory.md)：讲清虚拟地址、物理地址、分页、多级页表、TLB、缺页中断和页面置换算法。
+- [操作系统文件系统详解：inode、VFS、Page Cache 与日志机制](./file-system.md)：讲清文件、目录、inode、dentry、文件描述符、VFS、Page Cache、fsync 和日志机制。
 - [I/O 多路复用详解：select、poll、epoll 原理与区别](./io-multiplexing.md)：讲清网络 I/O 的两个阶段、五种 I/O 模型，以及 select、poll、epoll 的区别。
 - [零拷贝详解：mmap、sendfile 与 splice](./zero-copy.md)：讲清零拷贝到底省掉了什么，以及 Java NIO、Kafka、RocketMQ 中的典型应用。
 - [Linux 基础知识总结](./linux-intro.md)：讲解 Linux 目录树、文件权限、常用命令、用户和进程管理。

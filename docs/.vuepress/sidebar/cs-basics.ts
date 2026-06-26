@@ -131,9 +131,11 @@ export const csBasics = [
         text: "面试必考",
         icon: ICONS.STAR,
         children: [
+          { text: "⭐️内存管理详解", link: "memory-management" },
           { text: "⭐️虚拟内存详解", link: "virtual-memory" },
           { text: "⭐️I/O 多路复用详解", link: "io-multiplexing" },
           { text: "⭐️零拷贝详解", link: "zero-copy" },
+          { text: "⭐️文件系统详解", link: "file-system" },
         ],
       },
       {
