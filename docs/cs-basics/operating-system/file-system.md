@@ -186,7 +186,7 @@ Linux 官方 VFS 文档把几个对象讲得很直接：
 
 ![硬链接和软链接对比](https://oss.javaguide.cn/github/javaguide/cs-basics/operating-system/file-hardlink-symlink.webp)
 
-硬链接不能跨文件系统，原因很直接：inode 号只在当前文件系统内有意义。另一个文件系统有自己的 inode 表，同一个数字不代表同一个文件。
+硬链接不能跨文件系统，因为 inode 号只在当前文件系统内有意义。另一个文件系统有自己的 inode 表，同一个数字不代表同一个文件。
 
 可以用下面的命令做个小实验：
 
