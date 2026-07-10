@@ -379,7 +379,7 @@ public class TtlContextHolder {
             log.info("父线程上下文: {}", CONTEXT.get());
 
             // 4. 使用 Lambda 简化任务提交
-            TTL_EXECUTOR_SERVICE.submit(() -> {
+            TTL_EXECUTOR_SERVICE.execute(() -> {
                 log.info("异步任务(Runnable)读取上下文: {}", CONTEXT.get());
                 // 模拟业务逻辑
                 // 注意：子线程修改是否影响父线程，取决于 copy() 是否做了深拷贝
