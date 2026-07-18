@@ -1,0 +1,16 @@
+{
+  "name": "javaguide-blog",
+  "version": "1.0.0",
+  "description": "A project of vuepress-theme-hope",
+  "license": "MIT",
+  "scripts": {
+    "build": "vuepress build docs",
+    "clean-dev": "vuepress dev docs --no-cache",
+    "dev": "vuepress dev docs",
+    "eject-theme": "vuepress eject-hope docs"
+  },
+  "devDependencies": {
+    "vuepress": "^1.8.2",
+    "vuepress-theme-hope": "^1.20.5"
+  }
+}
