@@ -1,108 +1,102 @@
 ---
 title: AI 编程必备 Skills 推荐：TDD、代码审查、网页自动化与 MCP 实战
-description: 实战分享 10 个 AI 编程 Skills 工具，覆盖 TDD 开发流程、代码审查、UI 设计、网页自动化、本地 Web 测试、MCP 开发、Claude API 与 Skill 开发，让 AI 编程 Agent 真正成为生产力利器。
+description: 按任务场景推荐 AI 编程 Skills，覆盖需求澄清、轻量工程流程、TDD、代码审查、UI 设计、网页自动化、本地 Web 测试、MCP 开发、Claude API 与 Skill 开发，并说明哪些工具适合按需安装。
 category: AI 编程实战
 head:
   - - meta
     - name: keywords
-      content: AI编程,Skills,Superpowers,Claude Code,Cursor,代码审查,TDD,UI设计,网页自动化,MCP,Claude API
+      content: AI编程,Skills,Superpowers,mattpocock,grilling,Claude Code,Cursor,代码审查,TDD,UI设计,网页自动化,MCP,Claude API
 ---
 
-你好，我是小 G。之前写了篇[万字详解 Agent Skills](https://javaguide.cn/ai/agent/skills.html)，聊了 Skills 是什么、怎么用、和 Prompt / MCP 有什么区别。这篇不聊概念，直接分享 10 个我觉得程序员很值得装的 Skills，覆盖开发流程、代码审查、UI 设计、网页操作、前端验收、MCP 开发和 API 接入这些场景：
+你好，我是小 G。之前写过一篇[万字详解 Agent Skills](https://javaguide.cn/ai/agent/skills.html)，聊了 Skills 是什么、怎么用，以及它和 Prompt、MCP 有什么区别。这篇只解决一个更实际的问题：现成 Skill 这么多，哪些值得程序员花时间了解？
 
-- 让 AI 自动遵循 TDD 流程，先写测试再写实现
-- 把模糊需求整理成 PRD、技术方案或决策文档
-- 一键生成符合行业标准的设计系统
-- 对代码进行多维度专业审查（SOLID、安全性、性能）
-- 解决 AI 聊太久会“失忆”的上下文腐化问题
-- 给 AI 加上完整的网页浏览和自动化操作能力
-- 用 Playwright 对本地 Web 应用做交互验收和截图检查
-- 辅助开发 MCP Server，把内部 API 封装成 Agent 可调用工具
-- 写 Claude API 应用时查 SDK、流式输出、工具调用、缓存和模型迁移细节
+先说我的使用原则：**这篇文章列出的 Skill 不需要全部安装。**
 
-下面按场景来看。
+Skill 适合保存模型猜不到的偏好、需要反复执行的专业流程，以及脚本、模板和参考资料。只会提醒“先读代码、再修改、最后跑测试”的通用 Skill，强模型往往不需要。关于我为什么开始删减 Skills，可以先看 [强模型时代，AI 编程 Skills 还有必要装吗？](./skill-selection-and-pruning.md)。
+
+本文内容基于 2026 年 7 月各项目的公开版本。各项按使用场景排列，同时写明不值得安装的情况。
 
 ## Superpowers
 
-> 这个会有点重，对于个人开发的话，其实是可以不用装的，可以看看后面推荐的 Skills。
+Superpowers 把需求澄清、计划、TDD、Git Worktree、子 Agent 协作、代码审查和完成前验证串成一套开发方法。它适合陌生代码库、复杂功能和高风险改动；改文案、补空值判断、调整一条校验逻辑时，这套流程通常太重。
 
-Superpowers 是一个专为 AI 编程 Agent（Claude Code、Cursor 等）设计的软件开发工作流框架，把 TDD、Code Review、Spec-Driven、Git Worktree、子 Agent 协作等实践封装成 Skills。内置的核心技能如下：
+当前流程包括：
 
-| 技能名称                           | 触发方式                       | 核心功能                                                                                       |
-| ---------------------------------- | ------------------------------ | ---------------------------------------------------------------------------------------------- |
-| **brainstorming**                  | 命令 `/superpowers:brainstorm` | 通过苏格拉底式提问帮你理清需求，输出设计文档                                                   |
-| **using-git-worktrees**            | 自动（设计确定后）             | 创建隔离的 Git worktree 分支，避免影响主分支                                                   |
-| **writing-plans**                  | 自动（设计确定后）             | 将设计拆解成可执行的小任务（每个任务 2-5 分钟），包含文件路径、代码片段和验证步骤              |
-| **executing-plans**                | 自动（执行计划时可选）         | 批量执行任务计划，适合逻辑简单、重复性高的任务                                                 |
-| **test-driven-development**        | 自动（代码实现阶段）           | 强制红-绿-重构循环，所有代码必须先写测试才能写实现                                             |
-| **subagent-driven-development**    | 自动（执行计划时可选）         | 为每个任务派发一个全新的子代理，完成后自动进行两阶段审查（先检查是否符合设计，再评估代码质量） |
-| **code-review**                    | 自动（任务完成后）             | 双阶段代码审查，代码完成后质量把关                                                             |
-| **systematic-debugging**           | 需要时触发                     | 系统化除错，分四个阶段调查根因                                                                 |
-| **verification-before-completion** | 自动（宣称完成时）             | 强制验证，没有证据不能说完成                                                                   |
+| Skill                                             | 主要动作                               |
+| ------------------------------------------------- | -------------------------------------- |
+| `brainstorming`                                   | 编码前澄清需求、比较方案并保存设计     |
+| `using-git-worktrees`                             | 创建隔离工作区，检查测试基线           |
+| `writing-plans`                                   | 把设计拆成带文件位置和验证步骤的小任务 |
+| `subagent-driven-development` / `executing-plans` | 分派子 Agent 或按批次执行计划          |
+| `test-driven-development`                         | 执行 RED-GREEN-REFACTOR                |
+| `requesting-code-review`                          | 按严重程度审查实现                     |
+| `verification-before-completion`                  | 在宣布完成前检查证据                   |
+| `finishing-a-development-branch`                  | 验证测试并处理合并、PR 或保留分支      |
 
-这些技能不是孤立存在的，它们会串联成一条完整的工作流。
+Superpowers 已支持 Claude Code、Codex、Cursor、OpenCode 等多个 Agent。Claude Code 可以直接从官方插件市场安装：
 
-目前 Superpowers 支持 Claude Code、Cursor、Codex、OpenCode 等主流 AI 编码平台，安装后即可自动启用。这里以 Claude Code 为例说明。
-
-如果你本机没有安装 Claude Code 的话，只需要运行下面这行命令安装即可（Node.js 18+）：
-
-```bash
-npm install -g @anthropic-ai/claude-code
+```text
+/plugin install superpowers@claude-plugins-official
 ```
 
-在 Claude Code 中，首先要注册插件市场：
+Codex App 可以在侧边栏的 Plugins 中搜索 Superpowers；Codex CLI 则可以输入 `/plugins` 后搜索安装。不同 Agent 的安装方式并不互通，使用多个 Agent 时需要分别安装。
 
-```bash
-/plugin marketplace add obra/superpowers-marketplace
-```
-
-然后从这个插件市场安装插件：
-
-```
-/plugin install superpowers@superpowers-marketplace
-```
-
-一共有三个下载选项：
+Claude Code 安装界面会让你选择作用范围：
 
 ![Superpowers 下载](https://oss.javaguide.cn/github/javaguide/ai/superpowers/superpowers-download.png)
 
-| **选项**                                             | **作用范围**                                                |
-| ---------------------------------------------------- | ----------------------------------------------------------- |
-| **Install for you (user scope)**                     | **全局生效**。你在电脑上任何地方开启 Claude Code 都能调用。 |
-| **Install for all collaborators (project scope)**    | **项目成员共有**。配置会写入项目文件，同事拉代码后也能用。  |
-| **Install for you, in this repo only (local scope)** | **仅限当前文件夹**。换个目录就没了。                        |
+| 选项                               | 作用范围         | 建议                                           |
+| ---------------------------------- | ---------------- | ---------------------------------------------- |
+| Install for you                    | 所有项目生效     | 已经确认自己愿意长期使用整套流程时再选         |
+| Install for all collaborators      | 项目成员共享     | 团队已经约定采用同一开发方法时再提交           |
+| Install for you, in this repo only | 只在当前仓库生效 | 第一次体验时优先选择，方便观察它是否拖慢小任务 |
 
-这里推荐选择 **User Scope** 全局安装。因为 Superpowers 的“技能”是通用的，无论你写 Java 业务还是 Python 脚本，这套方法论在大多数场景下都能用。全局安装后，你随时都能唤起这些能力，不用每个项目都折腾一遍。
-
-安装完成后，在 Claude Code 中输入 `/plugin` 或 `/plugin list`，如果看到 Superpowers 出现在列表中，就说明安装成功了。
+我不再建议新手一上来全局安装。先在一个仓库里跑两三个真实任务，看看需求澄清、TDD 和审查流程是否真的减少返工，再决定要不要扩大范围。
 
 项目地址：<https://github.com/obra/superpowers>
 
-## Everything Claude Code
+## mattpocock/skills
 
-很多人把 Claude Code 当聊天框用。有位开发者在 8 小时内用它做完一个产品，拿了 Anthropic 黑客松冠军。
+如果你只想加强开发流程里的某一个环节，可以看看 [mattpocock/skills](https://github.com/mattpocock/skills)。这个项目把工程经验拆成较小、容易修改、可以组合的 Skills，不会要求每个任务都走完同一套流程。
 
-他把这套配置集开源了出来，在 Github 上已经斩获接近 4w Star：Everything Claude Code。
+目前比较适合程序员的模块包括：
 
-它把开发流程拆解成多个组件，让 AI 在不同角色间分工协作：
+| Skill                    | 适合解决的问题                                             |
+| ------------------------ | ---------------------------------------------------------- |
+| `grill-me` / `grilling`  | 开工前持续追问，把需求、决策和依赖关系确认清楚             |
+| `diagnosing-bugs`        | 按复现、缩小范围、提出假设、插桩、修复和回归测试的顺序排查 |
+| `tdd`                    | 用 RED-GREEN-REFACTOR 循环开发功能或修复 Bug               |
+| `code-review`            | 分别检查代码规范和实现是否符合原始需求                     |
+| `to-spec` / `to-tickets` | 把已有讨论整理成规格说明，再拆成带依赖关系的任务           |
+| `domain-modeling`        | 统一领域术语，并把关键决策写进 `CONTEXT.md` 和 ADR         |
 
-| 组件类型     | 作用说明                                             |
-| ------------ | ---------------------------------------------------- |
-| **Agents**   | 分工的子智能体，比如规划、架构、TDD、代码审查        |
-| **Skills**   | 封装好的工作流，像 TDD 方法论、后端开发经验          |
-| **Hooks**    | 自动执行的任务，改完代码自动检查有没有遗留的调试日志 |
-| **Rules**    | 全局生效的开发规范                                   |
-| **Commands** | 斜杠命令，`/tdd` 跑测试、`/code-review` 审查代码     |
+跨 Agent 安装可以使用：
 
-在实战测试中，这套方案让功能开发速度提升了 65%。代码审查出的问题减少了 75%，PR 的平均问题数从 12 个降到了 3 个。
+```bash
+npx skills@latest add mattpocock/skills
+```
 
-但它解决的一个更实际痛点是：**上下文腐化**。
+安装器会让你选择需要的 Skills 和目标 Agent。按照项目当前的安装说明，还要勾选 `/setup-matt-pocock-skills`，然后在目标仓库运行一次，完成 Issue Tracker 和文档存放位置等配置。
+
+第一次使用时，不必把整套都装上。需求经常没聊清楚，可以先选 `grill-me` 和 `grilling`；难定位的 Bug 多，再补 `diagnosing-bugs`。
+
+这套 Skills 适合已经有基本开发习惯、只想补几个薄弱环节的人。如果项目里已经有稳定的需求模板、TDD 规范和代码审查流程，重复安装对应 Skill 不会带来多少帮助。
+
+项目地址：<https://github.com/mattpocock/skills>
+
+## ECC（原 Everything Claude Code）
+
+Everything Claude Code 现在已经更名为 **ECC**。截至 2026 年 7 月，项目已经从一套 Claude Code 配置扩展为跨 Agent 的 Harness 系统，覆盖 Codex、Claude Code、Cursor、OpenCode 等工具。
+
+它提供的不只是 Skills，还包括 Agents、Hooks、Rules、记忆管理、安全扫描、持续学习和多语言工程规则。仓库当前包含数百个 Skills，适合已经明确需要统一 Agent 工作方式、记忆和安全策略的团队。
 
 ![上下文腐化](https://oss.javaguide.cn/github/javaguide/ai/harness/context-rot-diagram.png)
 
-AI 聊太久会“失忆”，输出质量下降。这套配置让 AI 始终在清晰的角色框架内工作，保持稳定输出。每个 Agent 只负责自己擅长的领域，不会越界；每个 Skill 都有明确的触发条件和执行步骤，不会乱来。
+这种规模也带来了选择成本。如果你只需要代码审查或 TDD，没有必要把整套系统装进每个项目。ECC 已经提供选择性安装能力，更合适的用法是先挑一个具体问题，例如 Java 代码审查、上下文持久化或安全扫描，再安装对应组件。
 
-项目地址：<https://github.com/affaan-m/everything-claude-code>
+原文里引用过“开发速度提升 65%”“PR 问题从 12 个降到 3 个”等数据，但当前项目 README 已经没有保留这些实验说明，因此这里不再把它们当作通用效果。真实收益仍然取决于代码库、模型、任务风险和团队验收方式。
+
+项目地址：<https://github.com/affaan-m/ECC>
 
 ## Doc Co-Authoring
 
@@ -122,7 +116,7 @@ Anthropic 官方 Skills 仓库里的 **doc-coauthoring** 就是为这类场景�
 
 这个流程很适合放在编码前面用。比如你准备让 AI 写一个订单退款模块，不要一上来就说“帮我实现退款功能”，可以先让 doc-coauthoring 产出一份短技术方案：退款状态机有哪些、哪些接口要幂等、库存和优惠券怎么回滚、失败后是否需要人工补偿。
 
-这些信息先落到文档里，再交给 Superpowers 或其他开发类 Skill 执行，返工会少很多。
+这些信息先落到文档里，再交给 Coding Agent 实现，通常比一开始就写代码更稳。任务足够复杂时，可以继续接 Superpowers；小任务直接把技术方案和验收标准交给 Agent 即可。
 
 安装 Anthropic 官方示例 Skills 的方式也很简单：
 
@@ -130,6 +124,8 @@ Anthropic 官方 Skills 仓库里的 **doc-coauthoring** 就是为这类场景�
 /plugin marketplace add anthropics/skills
 /plugin install example-skills@anthropic-agent-skills
 ```
+
+`example-skills` 是一组示例 Skill，不只包含 doc-coauthoring。已经安装过这组插件时，后面的 webapp-testing、mcp-builder 和 skill-creator 不需要重复安装。
 
 项目地址：<https://github.com/anthropics/skills/tree/main/skills/doc-coauthoring>
 
@@ -139,50 +135,47 @@ Anthropic 官方 Skills 仓库里的 **doc-coauthoring** 就是为这类场景�
 
 ![UI UX Pro Max](https://oss.javaguide.cn/github/javaguide/ai/harness/ui-ux-pro-max-skill.png)
 
-它的核心能力是**一键生成完整的设计系统**（Design System），根据产品类型和行业特性自动给出设计决策。
+它会根据产品类型和行业特性生成设计系统，再把配色、字体、布局、动效和反模式交给 Agent 执行。与只有几段审美提示词的轻量 Skill 相比，它带了一套可以检索的设计资料。
 
-v2.0 新增了 **Design System Generator**，能根据你的产品类型、行业特性、目标用户，在几秒内自动输出一套完整的设计系统。
+当前公开版本提供的主要数据包括：
 
-该技能内置的设计知识库：
+| 资源类型       | 数量   | 说明                                                    |
+| -------------- | ------ | ------------------------------------------------------- |
+| UI 风格        | 84 种  | Glassmorphism、Neumorphism、Bento Grid、AI-Native UI 等 |
+| 产品类型与色板 | 192 组 | 按 SaaS、金融、医疗、电商等产品场景匹配                 |
+| 字体搭配       | 74 组  | 包含 Google Fonts 组合                                  |
+| 图表类型       | 25 种  | 面向仪表盘和分析页面                                    |
+| 推理规则       | 161 条 | 按行业生成设计系统                                      |
+| UX 准则        | 98 条  | 覆盖反模式、交互和可访问性                              |
+| 支持技术栈     | 22 种  | React、Next.js、Vue、Nuxt、SwiftUI、Flutter、JavaFX 等  |
 
-| 资源类型       | 数量   | 说明                                                                             |
-| -------------- | ------ | -------------------------------------------------------------------------------- |
-| **UI 风格**    | 67 种  | Glassmorphism、Neumorphism、Bento Grid、AI-Native UI 等                          |
-| **行业色板**   | 161 个 | 每个行业都有专属配色方案，全部带色值说明                                         |
-| **字体搭配**   | 57 种  | 精选字体组合，附带 Google Fonts 链接                                             |
-| **推理规则**   | 161 条 | 行业特定的设计系统生成规则                                                       |
-| **UX 准则**    | 99 条  | 最佳实践、反模式和可访问性规则                                                   |
-| **支持技术栈** | 13 种  | React/Next.js + shadcn/ui、Vue/Nuxt、Tailwind、SwiftUI、Flutter、React Native 等 |
-
-**它是如何工作的？**
+### 它怎么生成设计方案
 
 当你输入“帮我做一个美容 SPA 的落地页”时，它不会随便给你一套紫色渐变，而是会推理出：这是健康养生行业 → 推荐柔和的 Soft UI 风格 → 配色用淡粉 + 鼠尾草绿 + 金色点缀 → 字体选优雅的 Cormorant Garamond，同时还会列出该行业应该避免的反模式（比如不要用 AI 感十足的紫粉渐变）。
 
-安装方式非常简单：
+Claude Code 可以从插件市场安装：
 
-**Claude Code（推荐）**：
-
-```
+```text
 /plugin marketplace add nextlevelbuilder/ui-ux-pro-max-skill
 /plugin install ui-ux-pro-max@ui-ux-pro-max-skill
 ```
 
-**Cursor / Windsurf / Continue 等**：使用官方 CLI
+Codex、Cursor、Windsurf 等工具更适合使用当前官方 CLI。包名是 `ui-ux-pro-max-cli`，旧的 `uipro-cli` 已经不再更新：
 
 ```bash
-npm install -g uipro-cli
-uipro init --ai claude      # 或 cursor、windsurf 等
+npx ui-ux-pro-max-cli init --ai codex
+npx ui-ux-pro-max-cli init --ai cursor
 ```
 
-安装后，只需自然语言描述你的 UI 需求，技能会自动激活：
+检索脚本需要 Python 3。安装后，用自然语言描述 UI 需求即可触发：
 
-```
+```text
 帮我做一个 SaaS 产品的落地页
 设计一个医疗分析仪表盘
 做一个深色主题的金融 App
 ```
 
-它还会自动生成 Pre-delivery Checklist，确保没有 emoji 当图标、hover 状态完整、reduced-motion 被尊重等专业细节。
+它还会生成交付前检查项，例如不用 emoji 充当图标、给可点击元素补 hover 状态、检查文本对比度和 `reduced-motion`。如果项目已经有成熟的设计系统，这类自动推荐可能反而会引入冲突；此时更适合把现有设计规范写成项目级 Skill。
 
 项目地址：<https://github.com/nextlevelbuilder/ui-ux-pro-max-skill>
 
@@ -190,42 +183,36 @@ uipro init --ai claude      # 或 cursor、windsurf 等
 
 ## sanyuan-skills
 
-这是一个面向生产环境的 Claude Code 技能集合，它把资深工程师的代码审查经验封装成 Skill，让 AI 从多个专业维度对代码进行审查。
+这是一个边界比较清楚的 Skill 集合。相比 Superpowers 和 ECC，它不会默认接管整条开发流程，适合只拿走当前需要的一项能力。
 
-该集合目前包含三个核心技能：
+当前仓库包含 6 个 Skill：
 
-| 技能名称               | 核心功能                                                                      | 适用场景                     |
-| ---------------------- | ----------------------------------------------------------------------------- | ---------------------------- |
-| **Code Review Expert** | 资深工程师级别的代码审查，覆盖 SOLID 原则、安全性、性能、错误处理、边界条件等 | 代码提交前的质量把关         |
-| **Sigma**              | 基于 Bloom's 2-Sigma 掌握学习理论的 1 对 1 AI 导师，采用苏格拉底式提问        | 学习新技术、深入理解某个概念 |
-| **Skill Forge**        | 元技能，用于创建高质量 Skill，内置 12 种经过实战检验的技术                    | 想自己开发 Skill 时的起点    |
+| Skill              | 适用场景                                               |
+| ------------------ | ------------------------------------------------------ |
+| Code Review Expert | 从 SOLID、安全、性能、错误处理和边界条件等维度审查代码 |
+| Sigma              | 通过苏格拉底式追问学习技术概念                         |
+| Skill Review       | 检查 Skill 的结构、描述、流程和 Token 使用             |
+| Skill Forge        | 创建新的 Skill                                         |
+| Wiki Ingest        | 把文章、文档或笔记整理成可交叉引用的 Wiki              |
+| Book Study         | 阅读辅导、掌握度测试和间隔复习                         |
 
-**Code Review Expert 的审查维度：**
+Java 开发者最容易直接用起来的是 Code Review Expert。它适合在提交前补一轮独立审查，但不能替代项目自己的检查规则。事务边界、错误码约定、日志字段和兼容性要求仍然要放进仓库的 `AGENTS.md`、审查说明或测试里。
 
-- **SOLID 原则**：单一职责、开闭原则、里氏替换等
-- **安全性**：SQL 注入、XSS、敏感信息泄露等
-- **性能**：算法复杂度、内存泄漏、不必要的循环等
-- **错误处理**：异常捕获、边界条件、空值处理等
-- **代码质量**：命名规范、注释、可读性等
-
-使用 npx 命令安装：
+每个 Skill 都可以单独安装：
 
 ```bash
-# 安装代码审查专家
 npx skills add sanyuan0704/sanyuan-skills --path skills/code-review-expert
-
-# 安装 Sigma 导师
 npx skills add sanyuan0704/sanyuan-skills --path skills/sigma
-
-# 安装 Skill Forge
+npx skills add sanyuan0704/sanyuan-skills --path skills/skill-review
 npx skills add sanyuan0704/sanyuan-skills --path skills/skill-forge
 ```
 
-安装后，在 Claude Code 中直接调用：
+安装后可以直接调用：
 
-```
+```text
 /code-review-expert    # 审查当前 git 变更
 /sigma <主题>          # 启动学习辅导，如 /sigma React Hooks
+/skill-review          # 检查已有 Skill
 /skill-forge           # 创建新技能
 ```
 
@@ -235,33 +222,35 @@ npx skills add sanyuan0704/sanyuan-skills --path skills/skill-forge
 
 ![Web Access](https://oss.javaguide.cn/github/javaguide/ai/harness/web-access.png)
 
-Claude Code 自带 WebSearch 和 WebFetch，但缺少编排策略和浏览器自动化能力。这个 Skill 补上了这块——让 Claude Code 能自主浏览网页、操作动态页面，并且跨会话积累站点经验。
+很多 Agent 能搜索和抓取网页，但遇到登录态、动态交互、Shadow DOM 或文件上传时，仍然需要浏览器控制。Web Access 把联网策略、CDP 浏览器操作和站点经验放进同一个 Skill。
 
-| 能力               | 说明                                                                      |
-| ------------------ | ------------------------------------------------------------------------- |
-| **自动工具选择**   | 根据场景自动选择 WebSearch / WebFetch / curl / Jina / CDP，可自由组合     |
-| **CDP 浏览器操作** | 直连日常使用的 Chrome，自然携带登录态；支持动态页面、交互操作、视频帧捕获 |
-| **并行分治**       | 派发子 Agent 并行处理多个目标，共享一个 Proxy，Tab 级隔离                 |
-| **站点经验积累**   | 按域名存储操作经验（URL 规律、平台特征、已知坑点），跨会话复用            |
-| **媒体提取**       | 直接从 DOM 提取图片/视频 URL，或截取任意时间点的视频帧并分析              |
+| 能力           | 说明                                                               |
+| -------------- | ------------------------------------------------------------------ |
+| 自动工具选择   | 根据场景组合 WebSearch、WebFetch、curl、Jina 和 CDP                |
+| CDP 浏览器操作 | 连接 Chrome、Edge 等 Chromium 浏览器，操作动态页面并沿用现有登录态 |
+| 本地 URL 检索  | 从浏览器书签和历史记录中查找内部系统或访问过的页面                 |
+| 并行调研       | 多个目标交给子 Agent 处理，共享 Proxy，按 Tab 隔离                 |
+| 媒体处理       | 从 DOM 提取图片、视频 URL，或者截取视频画面                        |
 
-v2.4.1 将脚本从 bash 迁移到了 Node.js，支持 Windows / Linux / macOS。还新增了 DOM 边界穿透能力，能处理 Shadow DOM、iframe 等选择器无法到达的元素。
+脚本已经迁移到 Node.js，支持 Windows、Linux 和 macOS，也能穿透 Shadow DOM、iframe 等普通选择器难以跨越的 DOM 边界。
 
-安装方式：
+推荐使用 `skills` CLI 安装：
 
 ```bash
-git clone https://github.com/eze-is/web-access ~/.claude/skills/web-access
+npx skills add eze-is/web-access
 ```
 
-前提条件：Node.js 22+，Chrome 需开启远程调试（在 `chrome://inspect/#remote-debugging` 中勾选"Allow remote debugging for this browser instance"）。
+CDP 模式要求 Node.js 22+，还要在 Chrome 的 `chrome://inspect/#remote-debugging` 或 Edge 的 `edge://inspect/#remote-debugging` 中允许远程调试。
 
 安装后可以直接用自然语言驱动：
 
-```
+```text
 搜索一下 xxx 的最新进展
 帮我去小红书搜一下 xxx 的账号
 同时调研这 5 个产品网站，给我一个对比总结
 ```
+
+Web Access 连接的是带登录态的日常浏览器，Agent 理论上能看到登录后的页面，也可能执行发布、上传等操作。第一次使用时先做只读任务；涉及发帖、上传、删除和账号设置时，逐步确认。项目 README 也提醒，自动化操作社交平台可能触发限流或封禁，不要直接拿主账号试。
 
 项目地址：<https://github.com/eze-is/web-access>
 
@@ -269,7 +258,7 @@ git clone https://github.com/eze-is/web-access ~/.claude/skills/web-access
 
 Web Access 更偏“上网和操作现有网站”，而 **webapp-testing** 更适合程序员本地开发时用：启动本地服务，打开页面，跑 Playwright 脚本，检查交互、控制台日志和截图。
 
-它解决的是另一个很具体的问题：AI 写完前端后，经常只跑 `npm run build`，但没有真的点页面。构建通过不代表按钮可点、弹窗正常、表单校验生效，也不代表移动端没有遮挡。
+AI 写完前端后，经常只跑 `npm run build`，但没有真的点页面。构建通过不代表按钮可点、弹窗正常、表单校验生效，也不代表移动端没有遮挡。
 
 webapp-testing 内置了一套 Playwright 测试流程：
 
@@ -294,7 +283,7 @@ MCP 已经是 AI 编程工具里绕不开的一层：数据库、内部平台、
 
 **mcp-builder** 是 Anthropic 官方提供的 MCP Server 开发 Skill，用来指导你构建高质量 MCP 服务。它覆盖 Python 的 FastMCP，也覆盖 Node / TypeScript 方向的 MCP SDK。
 
-我会把它放在“程序员必备”里，原因很简单：当你开始频繁让 AI 读项目、查内部文档、跑部署、查监控时，只靠复制粘贴上下文很快会到上限。MCP 的作用就是把这些重复动作变成工具。
+当你开始频繁让 AI 查内部文档、读监控、看工单时，只靠复制粘贴会越来越慢。MCP 可以把这些重复动作变成带参数和权限控制的工具。
 
 适合用它处理的场景：
 
@@ -303,7 +292,9 @@ MCP 已经是 AI 编程工具里绕不开的一层：数据库、内部平台、
 - 把部署、日志、告警平台的常用动作封装成标准工具
 - 为团队沉淀一套可复用的 Agent 工具层，而不是每个人都写一遍脚本
 
-这里要诚实一点：MCP Builder 更适合已经准备动手做工具集成的同学。刚接触 AI 编程时，可以先用 Superpowers、sanyuan-skills 这类开箱即用的 Skill；等你发现 Agent 总是在重复查同一批系统，再考虑写 MCP Server。
+MCP Builder 更适合已经准备动手做工具集成的同学。刚接触 AI 编程，或者偶尔才查一次外部系统，没有必要先写 MCP Server。等 Agent 开始反复查询同一批系统，并且复制粘贴已经影响效率时再做。
+
+把内部系统接给 Agent 之前，还要先确定只读范围、身份认证、数据脱敏、分页上限和审计记录。能查询不等于应该开放写入；部署、删除、改生产配置等操作需要单独审批。
 
 项目地址：<https://github.com/anthropics/skills/tree/main/skills/mcp-builder>
 
@@ -331,7 +322,7 @@ Anthropic 官方的 **claude-api** Skill 覆盖了模型选择、价格、参数
 
 ## skill-creator
 
-这是 Anthropic 官方 Skills 仓库中的一个元技能，专门用于**创建、修改和优化 Skill**。
+这是 Anthropic 官方 Skills 仓库中的一个元技能，用来创建、修改和评估 Skill。
 
 它提供了一套 Skill 开发工作流：
 
@@ -343,27 +334,35 @@ Anthropic 官方的 **claude-api** Skill 覆盖了模型选择、价格、参数
 | **迭代优化**      | 根据测试反馈持续改进指令                               |
 | **描述优化**      | 优化 Skill 的 description，提高触发准确性              |
 
-它还内置了**评估系统**：生成可视化评测报告，对比“使用 Skill”和“不使用 Skill”的输出差异，支持多轮迭代优化。
+它还带有评估工具，可以对比“使用 Skill”和“不使用 Skill”的输出，记录时间、Token 和断言结果，再生成可视化报告。如果没有 Skill 时模型已经能稳定完成任务，就没有必要继续维护一份额外流程。
 
 适合想给团队做专属 Skill 的开发者作为起点。
 
 项目地址：<https://github.com/anthropics/skills/tree/main/skills/skill-creator>
 
-## 总结
+## 怎么选
 
-按场景整理一下，方便按需选择：
+| 你反复遇到的问题                         | 优先考虑           | 不建议安装的情况                           |
+| ---------------------------------------- | ------------------ | ------------------------------------------ |
+| 复杂功能容易漏需求、漏测试               | Superpowers        | 主要处理小改动，现有 Agent 已能稳定完成    |
+| 只想补需求澄清、Bug 诊断、TDD 或代码审查 | mattpocock/skills  | 项目已经有稳定的等价流程                   |
+| 团队要统一 Agents、Hooks、记忆和安全策略 | ECC                | 只缺一项代码审查或 TDD 流程                |
+| PRD、技术方案经常写不清楚                | Doc Co-Authoring   | 只是改一小段已有文档                       |
+| 没有设计系统，AI 生成页面经常千篇一律    | UI UX Pro Max      | 项目已经有成熟的组件库和设计规范           |
+| 提交前想补一轮通用代码审查               | Code Review Expert | 项目风险主要来自内部规则，通用检查帮不上忙 |
+| 需要操作登录后的动态网页                 | Web Access         | 搜索、抓取公开网页已经够用                 |
+| AI 写完前端后没有真实点击验收            | Webapp Testing     | 项目已有稳定的 Playwright E2E 流程         |
+| Agent 反复访问内部 API 或平台            | MCP Builder        | 偶尔查询一次，复制粘贴成本不高             |
+| 正在开发 Claude API 应用                 | Claude API         | 只在 IDE 里使用 Coding Agent               |
+| 想把反复失败的任务沉淀成 Skill           | skill-creator      | 没做过无 Skill 基线测试                    |
 
-| 场景               | 推荐 Skill                      | 一句话说明                               |
-| ------------------ | ------------------------------- | ---------------------------------------- |
-| **完整开发流程**   | Superpowers                     | TDD + Code Review + 自动计划，装完直接用 |
-| **多角色协作**     | Everything Claude Code          | 子 Agent 分工，解决上下文腐化            |
-| **需求与技术文档** | Doc Co-Authoring                | PRD、技术方案、决策文档的协作写作流程    |
-| **UI 设计**        | UI UX Pro Max / frontend-design | 前者完整设计系统，后者轻量设计指导       |
-| **代码审查**       | sanyuan-skills                  | SOLID + 安全 + 性能多维度审查            |
-| **网页浏览与操作** | Web Access                      | CDP 浏览器自动化 + 站点经验积累          |
-| **本地 Web 验收**  | Webapp Testing                  | Playwright 交互测试 + 截图和日志检查     |
-| **工具接入**       | MCP Builder                     | 开发 MCP Server，连接内部 API 和平台     |
-| **AI 应用开发**    | Claude API                      | SDK、流式输出、工具调用、缓存和模型迁移  |
-| **自制 Skill**     | skill-creator                   | Anthropic 官方的 Skill 开发工具          |
+第一次安装第三方 Skill，我一般会做四件事：
 
-不需要全装，根据日常场景挑几个就行。刚开始接触的话，建议从 **Superpowers** 和 **sanyuan-skills** 入手，先把开发流程和代码质量兜住；如果你经常做前端，再加上 **Webapp Testing**；如果你已经开始给团队做内部 Agent，**MCP Builder** 和 **skill-creator** 会更有用。
+1. 先看 `SKILL.md`、`scripts/` 和 `references/`，确认没有危险命令和过宽权限。
+2. 先不用 Skill 跑一次同类任务，记录模型原本会在哪一步出错。
+3. 优先安装到当前仓库，不急着全局启用。
+4. 用两三个真实任务比较返工次数、执行时间和结果稳定性；没有明显改善就删除。
+
+如果你只想从这篇文章里挑一个开始，优先选自己最近反复遇到的问题。前端页面写完没人验收，就试 Webapp Testing；代码审查总漏同一类风险，就试 Code Review Expert；需求还没定清楚 Agent 就开工，可以试 Doc Co-Authoring 或更轻量的 [`grilling`](https://github.com/mattpocock/skills/blob/main/skills/productivity/grilling/SKILL.md)。
+
+Skill 列表短一点没有关系。每一个为什么存在、什么时候触发、失效后怎么删除，自己说得清楚就够了。

@@ -90,6 +90,10 @@ export const aiCoding = arraySidebar([
         link: "practices/programmer-essential-skills",
       },
       {
+        text: "AI 编程 Skills 选型与精简",
+        link: "practices/skill-selection-and-pruning",
+      },
+      {
         text: "一个好用的 AI 绘图 Skill",
         link: "practices/drawio-chart-skill",
       },
