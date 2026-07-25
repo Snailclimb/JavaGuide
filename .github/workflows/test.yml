@@ -2,7 +2,7 @@ name: Docs Test
 
 on:
   - push
-  - pull_request
+  - pull
 
 jobs:
   test-docs:
