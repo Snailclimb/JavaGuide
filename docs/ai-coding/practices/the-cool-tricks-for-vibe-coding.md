@@ -13,11 +13,9 @@ head:
       content: Vibe Coding,AI 编程技巧,Agent Skills,Claude Code,Codex,Spec Coding,Git 版本管理,AI 代码审查,多模型协作
 ---
 
-你好，我是小 G。上个周末，我通过文字消息分享了一些 Vibe Coding 的小技巧，不少 G 友反馈说分享的经验非常有用，甚至要把我的建议做成一个skill。还有一些朋友非常想要详细版。
+你好，我是小 G。上个周末，我通过文字消息分享了一些 Vibe Coding 的小技巧。这篇文章把当时没展开的内容补完整，也顺便整理一下这几年实际用 AI 编程时踩过的坑。
 
 ![ Vibe Coding 技巧分享读者评论](https://oss.javaguide.cn/github/javaguide/ai/coding/claudecode/vibe-coding-practices-comments.png)
-
-于是，我爆肝了一篇，前后反复优化完善很多遍，把我这几年所有积累的 AI 编程经验都总结分享了出来，真心希望对你有帮助。
 
 正文开始之前，想问问大家：你还记得自己第一次 Vibe Coding 的感觉吗？
 
@@ -132,7 +130,7 @@ git worktree add ../project-refactor-user -b feat/refactor-user
 
 小任务写清楚目标、约束和验收就够了；中等任务再补接口格式、错误码、表结构；大一点的需求，再拆成 `requirements.md`、`design.md`、`tasks.md`。没必要一上来就把流程拉满，不然你会先被文档劝退。
 
-关于 Spec Coding 的详细介绍，可以参考我写的这篇，质量非常高：[Spec Coding 规范驱动编程实战：从 Vibe Coding 到 AI 代码规范](https://javaguide.cn/ai-coding/spec-coding.html)。
+关于 Spec Coding 的详细介绍，可以参考：[Spec Coding 规范驱动编程实战：从 Vibe Coding 到 AI 代码规范](https://javaguide.cn/ai-coding/practices/spec-coding.html)。
 
 还有一招，比抽象规范更管用：给 AI 看项目里写得好的代码。
 
@@ -155,7 +153,7 @@ git worktree add ../project-refactor-user -b feat/refactor-user
 - Claude Code：`CLAUDE.md`
 - Codex：`AGENTS.md`
 - Cursor：Project Rules、`.cursor/rules/*.mdc`，也可以配合 `AGENTS.md`
-- GitHub Copilot / VS Code：`.github/copilot-instructions.md`
+- GitHub Copilot / VS Code：仓库级 `.github/copilot-instructions.md`、路径级 `.github/instructions/*.instructions.md`，也支持 `AGENTS.md`
 
 千万别写成项目说明书！应该写 Claude 容易猜错、代码里读不出来、团队又必须遵守的规则。重点放技术栈版本、常用命令、架构取舍、团队约定和项目坑点；别塞空话、默认行为和大段文档。
 
@@ -175,9 +173,9 @@ git worktree add ../project-refactor-user -b feat/refactor-user
 
 Skill 更适合放遇到某类任务时应该怎么做。比如做代码审查、写测试、改前端页面、网页调研、写技术文章，这些任务每次流程都差不多，就没必要每次都在聊天里重新提醒一遍。
 
-小 G 之前写过两篇相关的文章：[Agent Skills 是什么？和 Prompt、MCP 到底差在哪？](https://javaguide.cn/ai/agent/skills.html) 和 [AI 编程必备 Skills 推荐](https://javaguide.cn/ai-coding/programmer-essential-skills.html)。
+小 G 之前写过两篇相关的文章：[Agent Skills 是什么？和 Prompt、MCP 到底差在哪？](https://javaguide.cn/ai/agent/skills.html) 和 [AI 编程 Skills 选型清单](https://javaguide.cn/ai-coding/practices/programmer-essential-skills.html)。
 
-简单说，Skill 就是一份能被 Agent 按需加载的任务说明。它不是插件，也不是 MCP 工具本身，而是把某类任务的流程、约束、检查项和踩坑经验写进 `SKILL.md`。。
+简单说，Skill 就是一份能被 Agent 按需加载的任务说明。它不是插件，也不是 MCP 工具本身，而是把某类任务的流程、约束、检查项和踩坑经验写进 `SKILL.md`。
 
 ![Agent 执行链路](https://oss.javaguide.cn/github/javaguide/ai/skills/skills-agent-execution-link.png)
 
@@ -203,7 +201,7 @@ Anthropic 的建议是，`SKILL.md` 正文最好控制在 500 行以内；如果
 
 现成 Skill 也可以直接用，比如 Superpowers 把 TDD、Code Review、Spec-Driven、Git Worktree、子 Agent 协作这些流程封装好了。
 
-我在[ AI 编程必备 Skills 推荐：TDD、代码审查与网页自动化实战](https://javaguide.cn/ai-coding/programmer-essential-skills.html)这篇文章中有详细推荐。
+我在 [AI 编程 Skills 选型清单：需求澄清、TDD、代码审查与 UI 设计](https://javaguide.cn/ai-coding/practices/programmer-essential-skills.html) 这篇文章中有详细推荐。
 
 但第三方 Skill 不要拿来就跑。`SKILL.md` 也是指令，里面如果带了危险命令、奇怪脚本、过宽权限，Agent 会照着做。装之前至少看一眼正文、`scripts/` 和 `references/`，确认它没有越权操作。
 
@@ -213,18 +211,20 @@ Anthropic 的建议是，`SKILL.md` 正文最好控制在 500 行以内；如果
 
 这就像请了一个资深架构师，结果天天让他改字段名、补 getter、调 CSS，钱花了，价值没用出来。反过来也一样，为了省钱把系统设计、安全边界、复杂重构全交给便宜模型硬扛，最后返工成本可能更高。
 
-小 G 更常用的是“贵模型把方向定清楚，便宜模型去干活，最后再让贵模型验一遍”。
+小 G 更常用的是“强推理模型把方向定清楚，低成本模型去干边界明确的活，最后再用独立模型验一遍”。
 
 ```text
-第一步，让 Claude Opus 4.6 / Opus 4.7 这类顶级模型读需求和代码库。
+第一步，让推理和代码审查能力较强的模型读需求和代码库。
 只让它做方案、列风险、拆任务，不让它急着写代码。
 
-第二步，方案确认后，把一个个 Task 丢给 DeepSeek V4-Pro / GLM5.1 或同级低价模型。
+第二步，方案确认后，把一个个 Task 交给成本和延迟更合适的实现模型。
 让它按任务编码、补测试、跑命令，做完之后给出 diff 摘要。
 
-第三步，把 git diff 交回 Claude Opus 4.6 / Opus 4.7。
+第三步，把 git diff 交给独立的审查模型。
 这次只让它 Review：Bug、越权风险、事务边界、性能问题、测试缺口。
 ```
+
+具体模型变化很快。截至 2026-07-24，可选模型家族包括 Claude Fable 5、GPT-5.6、DeepSeek V4、GLM-5.2、MiniMax M3 和 Kimi K3。这里列的是时间快照，不是固定搭配；实际选择还要看账户可用性、任务实测、价格、上下文限制和工具兼容性。
 
 代码审计也可以这么干。先让便宜模型扫一遍项目，把疑似问题列出来；再让强模型复核这些问题到底成不成立。直接让高价模型全量扫，当然也不是不行，就是钱烧得快，收益未必成比例。
 
@@ -285,7 +285,7 @@ Vibe Coding 里，上下文要管三件事。
 
 **第一，别把仓库一股脑塞进去。** 当前任务只需要 Spec、相关文件、报错日志、验收命令和少量参考实现。其他内容先用路径、文件名、目录结构挂着，等需要时再让 Agent 去读。Claude Code 分析大仓库时也是这种思路：先用搜索和目录定位，再逐步读具体文件，而不是上来吞全量代码。
 
-**第二，长任务要及时压缩。** Claude Code 可以用 `/compact` 压缩上下文，用 `/clear` 清空上下文（详细用法参考 [Claude Code 核心命令详解](https://javaguide.cn/ai-coding/claudecode-commands.html)）；Codex 或其他 Agent 也有类似的摘要、压缩、重开机制。压缩是为了保留重点（如：架构决策、已改文件、未解决问题、失败命令和下一步任务），丢掉重复对话和已经消化过的工具输出。
+**第二，长任务要及时压缩。** Claude Code 可以用 `/compact` 压缩上下文，用 `/clear` 清空上下文（详细用法参考 [Claude Code 核心命令详解](https://javaguide.cn/ai-coding/practices/claudecode-commands.html)）；Codex 或其他 Agent 也有类似的摘要、压缩、重开机制。压缩是为了保留重点（如：架构决策、已改文件、未解决问题、失败命令和下一步任务），丢掉重复对话和已经消化过的工具输出。
 
 **第三，关键进展要落到文件里。** 比如让 Agent 在长任务中维护一份 `NOTES.md` 或任务 handoff，记录：
 
@@ -305,9 +305,9 @@ Vibe Coding 里，上下文要管三件事。
 
 这样就算开新会话，也不用重新解释半天。聊天记录会变长、变乱、变旧，结构化笔记反而更稳定。
 
-小 G 的习惯是：一个会话只处理一个任务；超过两次纠正还不对，就开新会话；新会话只带当前 Spec、相关文件、失败日志、验收命令和上一轮 handoff。对多数编码任务来说，3000 到 8000 tokens 的高质量上下文，通常比几十万 tokens 的杂乱对话更可靠。
+小 G 的习惯是：一个会话只处理一个任务；超过两次纠正还不对，就开新会话；新会话只带当前 Spec、相关文件、失败日志、验收命令和上一轮 handoff。上下文包该多大没有通用阈值，应以模型能否稳定找到约束、完成任务并通过验收为准；可以从最少必要材料开始，不够再补。
 
-上下文包可以写得很朴素：
+上下文包可以写得很简单：
 
 ```markdown
 ## 当前任务
@@ -424,10 +424,10 @@ rm -rf /tmp/build
 1. 新建分支，先确认工作区是干净的。
 2. 写一份轻量 Spec，把目标、约束、验收标准说清楚。
 3. 看看有没有合适的 Skill，比如 TDD、Code Review、前端设计、网页调研。
-4. 先让顶级模型出方案，只讨论方案，不急着写代码。
+4. 先让能力较强的模型出方案，只讨论方案，不急着写代码。
 5. 方案确认后，再让低价模型按 Task 一步步实现。
 6. 每完成一个 Task，就跑测试、看 diff，然后小步提交。
-7. 当前 diff 稳住后，再让顶级模型做一次 Review。
+7. 当前 diff 稳住后，再让独立模型做一次 Review。
 8. 修掉 Review 里合理的问题，再跑一遍测试。
 9. 合并前，人工看关键 diff。涉及数据、权限、支付、定时任务这类改动时，再补一下文档、回滚方案或者灰度说明。
 

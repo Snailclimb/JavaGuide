@@ -103,7 +103,6 @@ AI 生成的代码，一定要过测试、审查和可回滚的提交管理。�
 - [DeepSeek V4 + Claude Code 实战](./cases/deepseek-v4-claude-code.md)：实测代码审计、Flyway 集成、多模型协同这些更贴近项目的任务。
 - [MiniMax M3 + Claude Code 实战](./cases/cc-m3.md)：用线上 Redis SCAN 故障排查、SCAN 游标算法跨语言复刻、监控面板搭建三个案例实测 M3。
 - [Kimi K3 多场景实战](./cases/kimi-k3.md)：通过热点追踪系统、Java 项目改造和 3A 游戏 Demo，实测 K3 处理长程任务、多模态和复杂工程交付的表现。
-- [Claude Desktop 接入第三方模型实战](./cases/claude-desktop-cc-switch.md)：用 CC Switch 让 Claude Desktop 接入 DeepSeek，拆解本地代理网关的配置接管、模型映射、协议转换与故障转移原理。
 - [IDEA + CC GUI 插件实战](./project/cc-guide.md)：想在 IDEA 里用 GUI 管 Claude Code 和 Codex，可以看这个开源插件案例。
 
 ## 高频问题

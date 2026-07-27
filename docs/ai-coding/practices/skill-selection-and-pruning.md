@@ -13,15 +13,15 @@ head:
       content: AI编程,Codex,Skills,Superpowers,grilling,AGENTS.md,Subagent,Plugin
 ---
 
-前几天在知乎看到有人问：**Codex 用上 GPT-5.6 后，为什么不少人开始不用 Skills 了？**
+前几天在知乎看到一个问题：**Codex 用上 GPT-5.6 后，Skills 还有多少必要？**
 
-![为什么 Codex 搭载 GPT-5.6 后，越来越多用户开始弃用 Skills？](https://oss.javaguide.cn/github/javaguide/ai/skills/zhihu-codex-gpt56-skills-question.png)
+![关于 Codex 使用 GPT-5.6 后是否仍需要 Skills 的提问](https://oss.javaguide.cn/github/javaguide/ai/skills/zhihu-codex-gpt56-skills-question.png)
 
-确实，相信大家也发现，很多 Skill，尤其是开发相关的，真的慢慢就开始用不上了。
+一条提问和我自己的使用变化不能代表行业趋势。更准确地说，我发现手里一部分开发类 Skill 的收益正在下降，所以想重新检查哪些该留、哪些该删。
 
 我现在看到一个 Skill，会先看它到底能提供什么能力。如果没有确切作用的话，肯定是不会装的。
 
-前两年，模型干活经常漏步骤，Skill 写得越细越让人安心。现在 GPT-5.6 、K3、Claude Fable5 等模型已经很强，能自己补上大部分基础动作，手里的 Skill 也该重新过一遍。
+前两年，模型干活经常漏步骤，Skill 写得越细越让人安心。现在 GPT-5.6、Kimi K3、Claude Fable 5 等模型已经能完成不少基础动作，我也开始重新检查手里的 Skill。
 
 > 下面我会以 Codex 作为 Coding Agent 为例来谈，其他都是类似的。
 
@@ -152,7 +152,7 @@ Superpowers 用一套完整方法覆盖开发过程，[mattpocock/skills](https:
 
 同一个地方连续翻车，才值得单独写一个 Skill，尤其是出错代价不低的任务。里面只留关键判断和验证动作，够解决问题就停，不顺手扩成一套大而全的工作流。
 
-想了解目前有哪些现成 Skill，以及它们分别适合什么任务，可以继续看 [AI 编程必备 Skills 推荐](https://javaguide.cn/ai-coding/practices/programmer-essential-skills.html)。关于 Codex 里的 `AGENTS.md`、权限、MCP、Skills 和 Automations 分工，则可以参考 [OpenAI Codex 最佳实践指南](https://javaguide.cn/ai-coding/practices/codex-best-practices.html)。
+想了解目前有哪些现成 Skill，以及它们分别适合什么任务，可以继续看 [AI 编程 Skills 选型清单](https://javaguide.cn/ai-coding/practices/programmer-essential-skills.html)。关于 Codex 里的 `AGENTS.md`、权限、MCP、Skills 和 Scheduled Tasks 分工，则可以参考 [OpenAI Codex 最佳实践指南](https://javaguide.cn/ai-coding/practices/codex-best-practices.html)。
 
 这篇文章题目里虽然写了“还有必要吗”，但我没准备把 Skill 全删掉。我只是不会再看到一个就装一个。
 

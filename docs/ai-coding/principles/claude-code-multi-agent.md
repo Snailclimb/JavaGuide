@@ -1,6 +1,6 @@
 ---
-title: Claude Code Multi-Agent 机制详解：Subagent、Fork 与 Agent Teams
-description: 结合 Claude Code 官方文档和社区源码分析，梳理 Subagent、Fork Subagent、Agent Teams、任务协作、权限回流和成本控制，帮助理解 Claude Code 多 Agent 机制如何拆分任务、隔离上下文并管理协作。
+title: Claude Code Multi-Agent 机制详解：Subagent、Subtask、Fork 与 Agent Teams
+description: 结合 Claude Code 官方文档和社区源码分析，梳理 Subagent、Subtask、Fork Session、Agent Teams、任务协作、权限回流和成本控制，帮助理解 Claude Code 多 Agent 机制如何拆分任务、隔离上下文并管理协作。
 category: AI 编程原理
 tag:
   - Claude Code
@@ -10,14 +10,12 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: Claude Code,Multi-Agent,Subagent,Fork Subagent,Agent Teams,AI Agent,上下文隔离,任务协作,AI编程
+      content: Claude Code,Multi-Agent,Subagent,Subtask,Fork Session,Agent Teams,AI Agent,上下文隔离,任务协作,AI编程
 ---
 
 你好，我是小 G。最近有 G 友问我一个问题：Claude Code 里的 Subagent、Fork、Agent Teams 到底是不是一回事？如果面试里被问到 Claude Code Multi-Agent 机制，应该如何回答？
 
 这个问题我一开始也以为只是几个名字绕来绕去。真把官方文档、changelog 和社区源码分析放在一起看，才发现差别不小。
-
-虽然 A 社不干人事，但人家做的产品确实没得说，必须得学习借鉴！
 
 Claude Code 单 Agent 已经能干不少活，日常改代码、查问题、补测试，大部分时候都够用。
 
@@ -32,12 +30,12 @@ Claude Code Multi-Agent 盯着的，正是这类**上下文和任务拆分问题
 它不会把所有工作都塞给一个会话，而是按任务性质拆开：
 
 - 一次性搜索交给 Subagent；
-- 已经有上下文的分支探索交给 Fork；
+- 已经有上下文的支线探索交给 `/subtask`，需要独立继续时用 `/fork`；
 - 需要多人协作的任务，再上 Agent Teams。
 
 于是我把 Claude Code 里和 Multi-Agent 相关的几块放在一起整理了一下。本文会参考社区整理的 Claude Code 源码分析来深入到原理层面，但当前用法以官方文档和 changelog 为准。
 
-Agent Teams 这块尤其要小心旧资料。v2.1.178 之后变化比较大，早期源码里出现过的 `TeamCreate` / `TeamDelete`，现在官方已经不再推荐这种用法。
+这些功能迭代很快。本文版本信息核对到 Claude Code v2.1.218（2026-07-24）：v2.1.212 起，正常情况下，当前会话内的 forked subagent 使用 `/subtask`，`/fork` 则复制当前对话并创建独立后台 Session。关闭 Agent View 后是个例外：`/subtask` 不可用，`/fork` 会继续启动 forked subagent。旧文章把这两种行为都叫 Fork，容易混淆。
 
 ## Claude Code 为什么需要多个 Agent？
 
@@ -65,16 +63,19 @@ Agent Teams 这块尤其要小心旧资料。v2.1.178 之后变化比较大，�
 
 先放一张我自己整理的表。看 Claude Code 里的多 Agent，可以先按几类问题来区分：
 
-| 问题                             | 适合的机制    | 说明                                                            |
-| -------------------------------- | ------------- | --------------------------------------------------------------- |
-| 支线搜索太多，污染主会话         | Subagent      | 子代理自己读文件、查资料，主会话只拿结果                        |
-| 需要继承当前上下文继续分支探索   | Fork Subagent | 子代理继承父会话上下文，在后台做独立方向                        |
-| 多个角色需要协作、通信和认领任务 | Agent Teams   | 每个 teammate 是独立 Claude Code 实例，有共享任务列表和消息机制 |
+| 问题                             | 适合的机制  | 说明                                                            |
+| -------------------------------- | ----------- | --------------------------------------------------------------- |
+| 支线搜索太多，污染主会话         | Subagent    | 子代理自己读文件、查资料，主会话只拿结果                        |
+| 需要继承当前上下文做支线探索     | `/subtask`  | 当前会话内的 forked subagent 继承上下文并返回结果               |
+| 需要复制对话并独立继续           | `/fork`     | 创建可独立恢复、管理的后台 Session                              |
+| 多个角色需要协作、通信和认领任务 | Agent Teams | 每个 teammate 是独立 Claude Code 实例，有共享任务列表和消息机制 |
+
+> **环境差异**：这张表按 Agent View 已启用的默认情况整理。关闭 Agent View 后，`/subtask` 不可用，`/fork` 会启动当前会话内的 forked subagent。
 
 名字都带 Agent，干的活差得还挺远：
 
 - Subagent 的用法接近“你去查一下，查完告诉我”。
-- Fork Subagent 是从当前会话复制出一个分支，让它沿着另一个方向跑。
+- `/subtask` 在当前会话内复制上下文做支线任务；`/fork` 创建独立后台 Session。
 - Agent Teams 则让几个独立实例一起做项目，可以发消息、领任务、最后再汇总。
 
 ![Subagents 和 Agent Teams 对比](https://oss.javaguide.cn/github/javaguide/ai/coding/claude-code-subagents-vs-agent-teams.png)
@@ -132,21 +133,23 @@ Subagent 文件就是 Markdown + YAML frontmatter，里面可以配置名称、�
 
 ### Subagent 怎么跑起来？
 
-如果只从使用角度看，`AgentTool` 这几个字段最值得注意：
+从运行日志或社区源码分析里看，`Agent` 工具的这几个单次调用参数最值得注意：
 
 | 参数                | 作用                                                                       |
 | ------------------- | -------------------------------------------------------------------------- |
 | `description`       | 给主会话看的任务简述                                                       |
 | `prompt`            | 交给子代理执行的具体任务                                                   |
-| `subagent_type`     | 指定使用哪类 Subagent                                                      |
+| `subagent_type`     | 指定使用哪类 Subagent；省略时仍是 `general-purpose`，不会自动变成 fork     |
 | `model`             | 指定子代理使用的模型别名                                                   |
 | `run_in_background` | 是否后台运行；新版未显式配置时，Claude 会自己选择，v2.1.198 起默认后台运行 |
-| `name`              | 在 Agent Teams 里用于生成可寻址 teammate                                   |
+| `name`              | 给后台 Subagent 或 Agent Teams teammate 设置可寻址名称                     |
 | `team_name`         | 旧版本 Agent Teams 使用的字段；新版本仍接受但会被忽略                      |
 
-这张表不用背。重点是：`AgentTool` 会先判断这是一次普通委派、一次 fork，还是要拉一个 teammate。
+这张表展示的是 `Agent` 工具的调用参数，不是 `.claude/agents/*.md` 的 YAML frontmatter。Subagent 文件里对应的后台和工作区配置是 `background`、`isolation` 等字段。
 
-`AgentTool` 负责入口和路由，真正把子代理跑起来的是 `runAgent()`。
+这张表不用背。重点是不要依赖“省略 `subagent_type` 就隐式 fork”的旧实现说法。普通 Agent 调用在未指定类型时使用 `general-purpose`；需要继承上下文，应显式使用当前版本提供的 `/subtask` 或对应 fork 配置。
+
+内部实现中，`AgentTool` 负责入口和路由，真正把子代理跑起来的是 `runAgent()`。
 
 `runAgent()` 会先做一批运行时准备：
 
@@ -173,15 +176,13 @@ Subagent 文件就是 Markdown + YAML frontmatter，里面可以配置名称、�
 
 比如正在改一个核心文件，主会话和子代理同时动手，最后很可能没提速，反而制造冲突。我的习惯是让 Subagent 多做只读和验证，少让它直接参与主线修改。
 
-## Fork 和后台 Agent：什么时候继承上下文？
+## `/subtask`、`/fork` 和后台 Agent：什么时候继承上下文？
 
-### Fork 和普通 Subagent 的区别
+### `/subtask` 和普通 Subagent 的区别
 
 普通 Subagent 通常靠主会话给一段明确 prompt 开始工作。默认不要继承主会话的完整历史，否则“隔离过程信息”的意义就没了。
 
-Fork Subagent 走的是另一条路。
-
-源码注释里给了触发条件：当 fork 实验开启时，省略 `subagent_type` 会触发 implicit fork，child 会继承 parent 的完整 conversation context 和 system prompt，并且默认后台运行。
+`/subtask` 走的是另一条路：它在当前会话内启动 forked subagent，继承父会话已经形成的对话上下文，再把结果返回当前主线。必须显式选择这条路径；省略 `subagent_type` 不会触发 implicit fork。
 
 这适合一种比较特殊的时刻：主会话刚好有一份高质量上下文，你不想浪费它，又想分几个方向试。
 
@@ -191,15 +192,15 @@ Fork Subagent 走的是另一条路。
 - 查幂等逻辑问题；
 - 查测试覆盖缺口。
 
-这时 fork 比普通 Subagent 更合适。每个 child 都能拿到父会话刚刚建立好的上下文，不用重新读一遍项目。
+这时 `/subtask` 比普通 Subagent 更合适。每个 child 都能拿到父会话刚刚建立好的上下文，不用重新读一遍项目。
 
 ![Claude Code Fork：基于当前上下文启动后台分支](https://oss.javaguide.cn/github/javaguide/ai/coding/claude-code-fork-subagent-demo.png)
 
-上图里的 `/fork` 不是重新开一个干净任务，而是基于当前会话已有上下文启动后台分支。适合主线已经读过关键模块后，再让它从测试、方案或风险角度补一轮判断。
+上图记录的是旧版 `/fork` 行为。按 v2.1.212 之后的命名，启用 Agent View 时，当前会话内做这种上下文分支应使用 `/subtask`；现在的 `/fork` 会复制整个对话到独立后台 Session，可单独查看、恢复和继续。关闭 Agent View 后，`/subtask` 不可用，`/fork` 仍保持旧的 forked subagent 行为。
 
-### Fork 的适用时机和限制
+### 两种复制方式的适用时机和限制
 
-fork child 不重新生成 system prompt，而是直接使用父会话已经渲染好的 system prompt bytes。
+社区对内部实现的分析显示，当前会话内的 forked subagent 会复用父会话已经渲染的 system prompt 和消息历史。这有利于复用 prompt cache，但它属于实现观察，不应当作外部稳定 API。
 
 这么做主要是为了 prompt cache。
 
@@ -207,29 +208,33 @@ fork child 不重新生成 system prompt，而是直接使用父会话已经渲�
 
 字节不一致，prompt cache 命中就会受影响。
 
-fork 直接拿父会话已经渲染好的 system prompt，会影响 prompt cache，也把 Multi-Agent 和上下文、工具注册这些底层机制绑在了一起。
+复用父会话上下文会影响 prompt cache，也把 Multi-Agent 和上下文、工具注册这些底层机制绑在了一起。
 
-这也是 fork 比较省的一面：它的 system prompt、tools、model 和 message history 都跟主会话一致，第一次请求还能复用父会话的 prompt cache。如果担心文件修改互相影响，Claude 通过 Agent tool 启动 fork 时，也可以传 `isolation: "worktree"`，把改动放到独立 Git Worktree 里。
+这也是 `/subtask` 适合“上下文刚准备好、立刻补一条支线”的原因。若支线需要独立管理、稍后继续或单独恢复，更适合使用现在的 `/fork`。如果担心文件修改互相影响，可以为 Agent 配置 `isolation: "worktree"`，把改动放到独立 Git Worktree 里。
 
 **后台 Agent 解决的是等待问题。**
 
 比如你让一个 Agent 去跑完整代码审查，另一个 Agent 去分析日志，主会话可以继续做设计和拆任务。等后台 Agent 完成后，再把结果回流回来。
 
-如果后台会话开多了，管理成本会立刻上来。Claude Code 的 Agent View 就是为这类场景准备的：你可以集中看到哪些会话还在跑、哪些需要输入、哪些已经完成，不用在多个终端里来回翻。
+如果后台任务开多了，管理成本会立刻上来。当前会话里的 `/subtask` 和其他后台 Subagent 用 `/tasks` 查看、接管或停止；`/fork` 创建的独立后台 Session 则用 `claude agents` 打开 Agent View 统一管理。两者都在后台运行，但不是同一层任务。
 
 ![Claude Code Agent View](https://oss.javaguide.cn/github/javaguide/ai/coding/claudecode/claude-agents-list-view-20260518102539932.png)
 
 但后台不等于免费。后台 Agent 仍然会消耗 token、占用上下文和任务状态。开太多以后，主会话虽然没被卡住，人反而要开始管理一堆任务。
 
-Claude Code 也做了一些限制。比如 in-process teammate 不能再启动自己的 background agent；teammate 不能继续生成 teammate，避免 team roster 变成一棵难以管理的树。
+Claude Code 也设置了默认上限：Claude 通过 `Agent` 工具在每个 Session 最多生成 200 个 Subagent，默认最多并发运行 20 个。前者可通过 `CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION` 调整，后者可通过 `CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS` 调整；Ultracode Session 不执行默认并发上限。
 
-Fork 最大的问题是：它会把父会话的历史一起带过去。
+这两个上限主要阻止 `Agent` 工具继续生成新 Subagent。手动执行的 `/subtask` 仍会计入配额并占用并发槽位，但达到上限后依然可以启动；`/fork` 创建的是独立 Session，不计入当前会话的 200 个配额，并拥有自己的预算。
 
-父会话越干净，fork 越好用。刚读完一个模块、刚整理完任务计划、刚把关键文件和约束讲清楚，这时候 fork 出几个 child，能省掉不少重复读项目的成本。
+Subagent 默认不能再创建 Subagent；需要嵌套委派时，可以通过 `CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH` 设置层级。Agent Teams 里，in-process teammate 不能继续生成 teammate，它自己的 Subagent 也只能在前台运行。这些限制是保护措施，不是建议目标，日常任务通常远用不到。
+
+`/subtask` 和 `/fork` 的共同代价是：它们都会复制父会话历史。
+
+父会话越干净，复制上下文越有价值。刚读完一个模块、整理完任务计划、讲清关键文件和约束时，再开 `/subtask` 或 `/fork`，能省掉重复阅读成本。
 
 反过来，如果主会话已经聊了很久，里面塞满无关文件、旧猜测、失败方案和临时判断，再继续 fork，就等于把这团乱麻复制给每个 child。
 
-这种情况下，fork 不是在分担任务，而是在复制混乱。
+这种情况下，复制会话不是在分担任务，而是在复制混乱。
 
 ## Agent Teams：一组独立 Claude Code 实例
 
@@ -301,15 +306,15 @@ prompt 怎么写也会跟着变。用 Subagent 时，任务最好一次讲清楚
 
 旧实现里能看到 `TeamCreate` / `TeamDelete`、`team file`、`team_name` 等细节。这些内容对理解 Agent Teams 的演进有帮助，但不能直接写成当前稳定用法。
 
-v2.1.178 之后，启用 `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` 后，每个 session 都有一个隐式 team。
+v2.1.178 之后，启用 `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` 后，第一个 teammate 生成时会自动组成当前 Session 的 Agent Team，不再需要单独的创建步骤。一个 Session 同一时间只有一个 Team，不能再创建其他命名 Team。
 
-生成 teammate 不再需要先创建 team，退出时也会自动清理。`TeamCreate` 和 `TeamDelete` 工具已经移除。
+`TeamCreate` 和 `TeamDelete` 工具已经移除，运行态 Team 配置会在 Session 结束时自动清理。
 
 `Agent` 工具里的 `team_name` 参数仍然接受，但会被忽略。`TaskCreated`、`TaskCompleted`、`TeammateIdle` hook payload 里的 `team_name` 也属于兼容字段。
 
-本地也会留下两类目录：team runtime config 在 `~/.claude/teams/{team-name}/config.json`，task list 在 `~/.claude/tasks/{team-name}/`。
+Agent Team 运行期间会使用两类本地目录：Team runtime config 在 `~/.claude/teams/{team-name}/config.json`，Task list 在 `~/.claude/tasks/{team-name}/`。
 
-这两个目录由 Claude Code 自动生成和更新。config 里是 session ID、pane ID、members 这类运行态信息，不要手工改，也不要在项目里写 `.claude/teams/teams.json` 期待它生效。
+这两个目录由 Claude Code 自动生成和更新。Config 里是 Session ID、Pane ID、Members 这类运行态信息，Session 结束后会被删除；Task list 会保留在本地，恢复 Session 后还能继续使用，清理周期由 `cleanupPeriodDays` 控制。不要手工修改这些文件，也不要在项目里写 `.claude/teams/teams.json` 期待它生效。
 
 所以读旧源码时，我会分开看：
 
@@ -354,9 +359,7 @@ Agent Teams 贵，主要是因为每个 teammate 都是独立 Claude Code 实例
 
 **版本信息只能当快照看**
 
-截至本文整理时，`@anthropic-ai/claude-code` npm 最新版本是 `2.1.198`，GitHub 仓库 `anthropics/claude-code` 约 135k stars。
-
-版本信息会变，具体功能还是以官方文档和 changelog 为准。尤其是 Agent Teams、Subagent、Skills 这类还在快速迭代的功能，旧文章里的命令和工具名不一定继续有效。
+本文按 Claude Code v2.1.218（2026-07-24）核对。版本信息会变，具体功能还是以官方文档和 changelog 为准。尤其是 Agent Teams、Subagent、Skills 这类快速迭代的功能，旧文章里的命令和工具名不一定继续有效。
 
 ## 实际使用时怎么选？
 
@@ -397,21 +400,9 @@ Agent Teams 我会更谨慎一点。它适合那种单靠“查完回来汇报�
 
 ![Claude Code Git Worktree](https://oss.javaguide.cn/github/javaguide/ai/coding/claude-code-git-worktree.png)
 
-**别把 Multi-Agent 当提速按钮**
+**先拆清任务，再增加 Agent**
 
-我见到最容易踩的坑，基本都和“上强度太早”有关。
-
-任务还没拆清楚，就急着开多个 Agent，最后只是把混乱并行化。
-
-spawn prompt 写得太泛，teammate 会各走各的。lead 看起来像在指挥团队，实际上是在收拾几个方向不一致的中间结果。
-
-成本也不能忽略。每个 teammate 都会加载自己的上下文，开多了以后，token 和权限确认都会变多。
-
-我现在更愿意把 Multi-Agent 当成上下文治理工具，别急着把它当性能优化工具。
-
-先别上强度。
-
-先用单 Agent 把任务拆清楚；能独立验证的交给 Subagent；确实需要多角色协作时，再启用 Agent Teams。这个顺序虽然保守，但更不容易把主线搞乱。
+任务边界不清时，多个 Agent 只会生成更多方向不一致的中间结果。先用单 Agent 明确目标和依赖；能独立验证的交给 Subagent；当前上下文值得复用时选择 `/subtask` 或 `/fork`；确实需要角色间通信时，再启用 Agent Teams。
 
 更具体一点，可以先跑成串行流水线：Plan 只读方案，Code 做单个任务，Test 补验证，Review 只看 diff。等这套流程稳定后，再把其中能独立执行的环节拆给不同 Agent。
 
@@ -425,12 +416,19 @@ spawn prompt 写得太泛，teammate 会各走各的。lead 看起来像在指�
 
 Subagent 适合隔离过程。让它自己读文件、查日志、做只读审查，主会话只拿结论和证据。
 
-Fork 适合当前上下文已经很值钱的时候。比如刚读完一个模块，关键文件和约束都讲清楚了，这时候分一个后台分支去补测试、看方案或查风险，能省掉不少重复阅读成本。反过来，主会话已经很乱了还继续 fork，只是在复制混乱。
+`/subtask` 适合在当前会话里复用已经整理好的上下文，完成一次支线并回传结果；启用 Agent View 时，`/fork` 适合把整段对话复制成独立后台 Session，后续单独管理。主会话已经很乱时，两者都只会复制混乱。
 
 Agent Teams 再重一层。只有任务真的需要多个 teammate 认领任务、互相通信、共享 task list 时，才值得上。它花的是多个独立上下文的钱，也会带来协调成本。
 
-所以我的使用顺序会比较保守：小任务单 Agent；支线任务 Subagent；当前上下文干净时再 fork；真正跨模块协作时再开 Agent Teams。
+我的使用顺序是：小任务单 Agent；干净的支线用普通 Subagent；需要复用上下文时在 `/subtask` 和 `/fork` 之间选择；真正跨模块协作时再开 Agent Teams。它的主要价值是隔离过程和明确责任，并行只是任务可独立拆分后的结果。
 
-Multi-Agent 不是提速按钮。用得好，它能帮你保护主线，让主会话少背一点无关过程；用得太早，只是把混乱拆成了好几份。
+延伸阅读可以看 [AIGuide：AI 应用开发、AI 编程实战与面试指南](https://mp.weixin.qq.com/s/le3RzJsaAH22auUoB05y1Q) 的 [上下文工程实战指南](https://javaguide.cn/ai/agent/context-engineering.html) 和 [Spec Coding 规范驱动编程](https://javaguide.cn/ai-coding/practices/spec-coding.html)，前者更偏上下文隔离，后者更偏多代理协作流水线。
 
-延伸阅读可以看 [AIGuide：AI 应用开发、AI 编程实战与面试指南](https://mp.weixin.qq.com/s/le3RzJsaAH22auUoB05y1Q) 的 [上下文工程实战指南](https://javaguide.cn/ai/agent/context-engineering.html) 和 [Spec Coding 规范驱动编程](https://javaguide.cn/ai-coding/spec-coding.html)，前者更偏上下文隔离，后者更偏多代理协作流水线。
+## 参考资料
+
+- [Claude Code Commands](https://code.claude.com/docs/en/commands)
+- [Create custom subagents](https://code.claude.com/docs/en/sub-agents)
+- [Run agents in parallel](https://code.claude.com/docs/en/agents)
+- [Orchestrate teams of Claude Code sessions](https://code.claude.com/docs/en/agent-teams)
+- [Claude Code Changelog](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)
+- [Claude Code Source Code Deep Research Report（社区源码分析，非官方）](https://claudeai.dev/docs/mechanics/development/claude-code-source-deep-research/)

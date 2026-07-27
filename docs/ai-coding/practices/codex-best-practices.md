@@ -1,11 +1,11 @@
 ---
 title: Codex 使用指南：配置、AGENTS.md 与 Agentic 工作流
-description: 结合 OpenAI 官方文档和 Codex CLI 社区实践，讲清 Codex 的任务描述、计划阶段、AGENTS.md、config.toml、权限控制、MCP、Skills、Subagents、Hooks 和 Automations。
+description: 结合 OpenAI 官方文档和 Codex CLI 社区实践，讲清 Codex 的任务描述、计划阶段、AGENTS.md、config.toml、权限控制、MCP、Skills、Subagents、Hooks 和 Scheduled Tasks。
 category: AI 编程实战
 head:
   - - meta
     - name: keywords
-      content: OpenAI Codex,Codex CLI,AI编程,AGENTS.md,Agent Skills,MCP,Subagents,Hooks,Automations,AI辅助开发
+      content: OpenAI Codex,Codex CLI,AI编程,AGENTS.md,Agent Skills,MCP,Subagents,Hooks,Scheduled Tasks,AI辅助开发
 ---
 
 你好，我是小 G。前面写过一篇 [Claude Code 使用指南：配置、工作流与进阶技巧](./claudecode-tips.md)，发出去之后，有同学在后台问：Claude Code 讲了这么多，那 Codex 怎么用更稳？
@@ -20,7 +20,7 @@ head:
 
 任务描述太虚，它就会到处猜；权限给得太宽，它可能顺手做出你没授权的动作；`AGENTS.md` 写成项目宣传稿，它每轮还是得重新理解仓库；验收标准不给，它很容易停在“看起来已经改完了”。
 
-这篇文章不打算按产品发布史来介绍 Codex，也不围着某个模型名展开。模型、套餐、命令细节变得很快，写死很容易过期。更值得留下来的，是几条在真实项目里比较抗折腾的经验：任务怎么交代，什么时候先进计划阶段（Plan），`AGENTS.md` 放什么，`config.toml` 管什么，权限、Rules、Hooks 怎么分层，MCP、Skills、Subagents、Automations 又分别适合什么场景。
+这篇文章不打算按产品发布史来介绍 Codex，也不围着某个模型名展开。模型、套餐、命令细节变得很快，写死很容易过期。更值得留下来的，是几条在真实项目里比较抗折腾的经验：任务怎么交代，什么时候先进计划阶段（Plan），`AGENTS.md` 放什么，`config.toml` 管什么，权限、Rules、Hooks 怎么分层，MCP、Skills、Subagents、Scheduled Tasks 又分别适合什么场景。
 
 先说个边界：本文主要面向 **Codex CLI + Codex App** 的日常使用。IDE Extension、Web/Cloud 端能看到的命令和能力不一定完全一致。
 
@@ -291,7 +291,7 @@ codex mcp add context7 -- npx -y @upstash/context7-mcp
 
 Skill 更适合放遇到某类任务时应该怎么做。比如做代码审查、写测试、改前端页面、网页调研、写技术文章，这些任务每次流程都差不多，就没必要每次都在聊天里重新提醒一遍。
 
-小 G 之前写过两篇相关的文章：[Agent Skills 是什么？和 Prompt、MCP 到底差在哪？](https://javaguide.cn/ai/agent/skills.html) 和 [AI 编程必备 Skills 推荐](https://javaguide.cn/ai-coding/programmer-essential-skills.html)。
+小 G 之前写过两篇相关的文章：[Agent Skills 是什么？和 Prompt、MCP 到底差在哪？](https://javaguide.cn/ai/agent/skills.html) 和 [AI 编程 Skills 选型清单](https://javaguide.cn/ai-coding/practices/programmer-essential-skills.html)。
 
 简单说，Skill 就是一份能被 Agent 按需加载的任务说明。它不是插件，也不是 MCP 工具本身，而是把某类任务的流程、约束、检查项和踩坑经验写进 `SKILL.md`。
 
@@ -334,7 +334,7 @@ Done when:
 
 现成 Skill 也可以直接用，比如 Superpowers 把 TDD、Code Review、Spec-Driven、Git Worktree、子 Agent 协作这些流程封装好了。
 
-我在 [AI 编程必备 Skills 推荐：TDD、代码审查与网页自动化实战](https://javaguide.cn/ai-coding/programmer-essential-skills.html) 这篇文章中有详细推荐。
+我在 [AI 编程 Skills 选型清单：需求澄清、TDD、代码审查与 UI 设计](https://javaguide.cn/ai-coding/practices/programmer-essential-skills.html) 这篇文章中有详细推荐。
 
 但第三方 Skill 不要拿来就跑。`SKILL.md` 也是指令，里面如果带了危险命令、奇怪脚本、过宽权限，Agent 会照着做。装之前至少看一眼正文、`scripts/` 和 `references/`，确认它没有越权操作。
 
@@ -365,17 +365,17 @@ Do not modify files.
 
 还有一点要留意：Subagents 继承当前 sandbox 策略。交互式 CLI 里，非当前 thread 的 approval 请求也可能弹出来，批准前看清楚是哪个 agent 发起的请求。
 
-## Automations 别一上来就全自动
+## Scheduled Tasks 别一上来就全自动
 
-Codex App 里的 Automations 适合跑重复任务，比如每天扫近期提交、每周生成 release note、定时检查 CI 失败、汇总未处理告警。
+Codex App 里原先常被称为 Automations 的能力，当前 UI 主要称为 **Scheduled Tasks**。它适合跑重复任务，比如每天扫近期提交、每周生成 release note、定时检查 CI 失败、汇总未处理告警。
 
 它不是拿来“自动修复一切”的。
 
-Codex App 的 Automations 要区分类型。Thread automation 绑定当前 thread，适合让 Codex 回到同一个对话里继续检查；standalone / project automation 可以按 schedule 启动独立运行。项目级 automation 运行时，本地 Codex App 所在机器要开机，Codex 要运行，项目路径也要还在磁盘上。Git 仓库任务可以在本地项目里跑，也可以在 dedicated background worktree 里跑。Automations 使用默认 sandbox 设置，如果给了 full access，后台任务风险也会变高。
+Scheduled Tasks 要区分运行方式。绑定当前任务的计划适合回到同一上下文继续检查；独立或项目级计划可以按 schedule 启动运行。项目级任务执行时，本地 Codex App 所在机器要开机，Codex 要运行，项目路径也要还在磁盘上。Git 仓库任务可以在本地项目里跑，也可以在 dedicated background worktree 里跑。Scheduled Tasks 使用默认 sandbox 设置，如果给了 full access，后台任务风险也会变高。
 
-我觉得比较稳的顺序是：先把流程写成普通 prompt，手动跑几次；如果每次都在复制同一套步骤，就沉淀成 Skill；等 Skill 稳定之后，再做成 Automation。
+我觉得比较稳的顺序是：先把流程写成普通 prompt，手动跑几次；如果每次都在复制同一套步骤，就沉淀成 Skill；等 Skill 稳定之后，再做成 Scheduled Task。
 
-也就是说，Skill 定方法，Automation 定时间。Automation 的 prompt 也要写成可独立运行的 durable prompt，不要依赖上一次对话里的隐含上下文。
+也就是说，Skill 定方法，Scheduled Task 定时间。任务 Prompt 也要写成可独立运行的 durable prompt，不要依赖上一次对话里的隐含上下文。
 
 比如“每天自动修复所有 Bug 并提交 PR”，听起来很省事，真实项目里大概率制造一堆要人收拾的 diff。更靠谱的是“每天扫描最近 24 小时的 CI 失败并汇总原因”。先让它报告，再决定要不要改。
 
@@ -385,9 +385,9 @@ Codex CLI 的 slash command 会变，CLI、Codex App、IDE Extension 看到的�
 
 我一般记几类：
 
-- 控制会话：`/permissions`、`/model`、`/fast`、`/status`、`/clear`。
-- 看上下文和改动：`/diff`、`/compact`、`/copy`。
-- 扩展能力：`/agent`、`/mcp`、`/hooks`、`/plugins`、`/apps`。
+- 控制会话与计划：`/permissions`、`/model`、`/fast`、`/status`、`/clear`、`/plan`、`/goal`。
+- 看上下文、记忆和改动：`/diff`、`/compact`、`/copy`、`/memories`。
+- 扩展能力：`/agent`、`/mcp`、`/hooks`、`/plugins`、`/apps`、`/skills`。
 - Review 和恢复：`/review`、`/fork`、`/resume`。
 
 命令只是入口，不是工作流本身。真正决定结果的，还是任务边界、项目规则、验证标准和权限设置。
@@ -481,7 +481,7 @@ Codex 能读文件、写文件、跑命令、接 MCP、调浏览器。能力越�
 
 高风险任务先只读分析。支付、权限、数据迁移、生产配置、并发一致性这类改动，先让 Codex 找调用链、风险点和测试缺口；人工确认关键判断后，再用 TDD 或小步提交推进。环境上尽量用 worktree、容器、临时凭据和更收紧的权限。
 
-自动化任务也别一步到位。先手动跑通一两次，再沉淀成 Skill；等 Skill 稳定，再做成 Automation。高权限自动化要额外保留审计记录和回滚方案。
+自动化任务也别一步到位。先手动跑通一两次，再沉淀成 Skill；等 Skill 稳定，再做成 Scheduled Task。高权限自动化要额外保留审计记录和回滚方案。
 
 ## 总结
 

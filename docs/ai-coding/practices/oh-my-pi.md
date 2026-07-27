@@ -1,6 +1,6 @@
 ---
-title: 高颜值 Claude Code 替代：oh-my-pi 开源终端 AI 编码代理体验
-description: 介绍高颜值 Claude Code 替代工具 oh-my-pi 的核心能力，包括 Hashline 补丁机制、LSP 与 DAP 集成、内置工具、多模型路由、安装配置和使用建议。
+title: oh-my-pi 开源终端 AI 编码代理体验
+description: 介绍 oh-my-pi 的核心能力，包括 Hashline 补丁机制、LSP 与 DAP 集成、内置工具、多模型路由、安装配置和使用建议。
 category: AI 编程实战
 head:
   - - meta
@@ -8,7 +8,7 @@ head:
       content: oh-my-pi,omp,AI编程,终端AI编码代理,Claude Code替代,OpenCode,Codex CLI,Hashline,LSP,DAP,多模型路由
 ---
 
-和阿里的朋友确认了一下，从 2026 年 7 月 10 日起，阿里会把 Claude Code 列入高风险软件名单，并推荐内部员工使用 Qoder 作为替代。
+和阿里的朋友确认了一下，从 7 月 10 日起，阿里会把 Claude Code 列入高风险软件名单，并推荐内部员工使用 Qoder 作为替代。
 
 这事就不展开讨论了。
 
@@ -39,8 +39,6 @@ LSP、DAP、Hashline、browser、GitHub、子 Agent、多模型路由这些东�
 还有个很主观的小点，它的终端 UI 我还挺喜欢，很符合我的品味。
 
 这个不算核心能力，但天天盯着终端干活的人应该懂，界面顺眼真的会影响心情。
-
-截至 2026 年 7 月 4 日，这个项目在 GitHub 上大约有 **15.9k Stars**。尤其是这几天，Star 数量涨的非常快！
 
 ## Hashline
 
@@ -107,11 +105,9 @@ omp 走的是另一条路。一共 32 个内置工具，看起来有点重，但
 
 先说 `eval`。它内置常驻 Python 和 Bun JS 内核，不是跑完就扔的一次性沙箱。更关键的是，这两个内核还能反过来调用 omp 自己的工具，比如 `read`、`search`、`task`。Agent 可以在 Python cell 里读 CSV，再切到 JavaScript cell 里处理数据，过程中不用离开会话。
 
-`task` 和 `irc` 要放在一起看。`task` 负责 fan-out 子 Agent，每个 worker 可以跑自己的工具面，也可以隔离到单独 worktree。底层 isolation 支持 APFS clone、btrfs/zfs reflink、overlayfs、projfs、rcopy 这些路线。返回结果是 schema 校验过的对象，父 Agent 能直接读字段，不用再从一段自由文本里抠结果。
+当前的多 Agent 协调工具是 `task`、`hub`、`todo` 和 `ask`，不是旧资料里的 `task` / `irc`。`task` 负责 fan-out 子 Agent，每个 worker 可以使用自己的工具面，也可以隔离到单独 worktree；`hub` 用于 live Agent 的协作与消息，`todo` 管任务状态，`ask` 用于发起结构化询问。具体字段变化较快，以当前工具描述为准。
 
-`irc` 这个名字挺复古，用途也简单：给同一进程里的多个 live Agent 发短消息。配合 `task` 用时，子 Agent 之间可以简单协调，不用所有信息都绕回父 Agent 再转译一遍。
-
-`browser` 这块也比较猛。它基于 Puppeteer，默认开 stealth 模式，网页看到的更像普通用户，而不是 headless bot。同一套 API 还能接 CDP 驱动 Electron 应用。README 里的例子就很野：指向 Slack，Agent 就能像读网页一样读你的私信。
+`browser` 基于 Puppeteer，也提供 stealth 相关处理，并能通过 CDP 驱动 Electron 应用。Stealth 只能减少部分常见自动化特征，不能保证网站把它识别为普通用户，更不能绕过网站条款、登录限制或反自动化策略。
 
 `github` 是我更喜欢的一块。它没有让模型再学一堆 `gh_issue_view`、`gh_pr_view`、`gh_search`，而是把 PR 当文件系统路径读。`read pr://1428` 拿到的结构，和 `read src/foo.ts` 是同一个思路；`search` 也能像遍历目录一样遍历 diff。这个抽象还延伸出了 `pr://`、`issue://`、`agent://`、`skill://`、`rule://`、`conflict://` 等内部 scheme。
 
@@ -127,13 +123,13 @@ omp 走的是另一条路。一共 32 个内置工具，看起来有点重，但
 
 多模型、多工具、多记忆，听起来很爽，但配置、成本和权限都会跟着上来。尤其是 `bash`、`write`、`edit`、`browser`、`github`、`ssh` 这种工具，开之前最好想清楚它能碰到什么。
 
-README 里也写了，部分工具默认关闭，比如 `github`、`inspect_image`、`tts`、`checkpoint`、`rewind`、`search_tool_bm25`、`retain`、`recall`、`reflect`，需要按项目打开。
+部分工具默认关闭，清单会随版本变化，建议直接查看当前 `/tools` 或帮助信息，不在文章里维护静态名单。
 
-真要收窄工具面，也可以用 `--tools read,edit,bash,...` 只暴露一部分。隐藏的工具会被索引起来，后面再按需通过 `search_tool_bm25` 找回来。
+真要收窄工具面，可以用 `--tools read,edit,bash,...` 只暴露一部分。当前隐藏能力通过 `xd://` 资源发现机制按需暴露，不再使用旧资料里的 `search_tool_bm25`。
 
 这个默认策略是对的。终端 Agent 最麻烦的地方往往不在能力少，而在权限给太多之后，自己也记不清它能碰哪里。
 
-## 40+ 模型提供商，5 个角色路由
+## 多模型提供商与角色路由
 
 模型列表我一开始没想到会这么满。
 
@@ -196,7 +192,7 @@ omp
 
 ![Kimi Code 会员权益页面](https://oss.javaguide.cn/github/javaguide/ai/coding/oh-my-pi/oh-my-pi-kimi-code-home.png)
 
-然后切到 Web search，选 `web_search` 工具优先走哪个搜索提供商。懒一点就选 `Auto`，它会用第一个已经配好的 web search provider；也可以手动选 Perplexity、Gemini、Anthropic、OpenAI、xAI、Z.AI、Exa。
+然后切到 Web search，选择 `web_search` 工具优先使用哪个搜索后端。当前项目已扩展到约 25 个后端，静态列出名称很快会过期；选 `Auto` 时会从已经配置好的后端中选择，手动模式以当前 Setup 页面为准。
 
 ![oh-my-pi 第一次启动选择 Web search provider](https://oss.javaguide.cn/github/javaguide/ai/coding/oh-my-pi/oh-my-pi-setup-web-search.png)
 
@@ -226,13 +222,9 @@ omp --help
 
 ## 总结
 
-写到这里，相信你对 oh-my-pi 已经有了大概的了解。
+oh-my-pi 的特点主要集中在工具层：Hashline 用于提高补丁定位的稳定性，LSP 和 DAP 提供代码结构和运行时状态，`github`、`browser`、`task`、`eval` 等工具把不同资源接入同一会话。
 
-你可以将其看作是一个工具层很激进的开源终端编码 Agent。
-
-它在终端里塞进了一套更接近 IDE 和工作台的工具面：Hashline 负责让补丁落得更稳，LSP 和 DAP 负责给 Agent 提供代码结构和运行时状态，`github`、`browser`、`task`、`eval` 这些工具则把 PR、网页、子 Agent、代码执行都收进同一个会话里。
-
-当然，工具多也意味着权限面更大。`github`、`browser`、`memory`、`ssh` 这些东西，建议刚开始还是谨慎一些。尤其是 memory，记对了省事，记错了麻烦。
+工具多也意味着权限面更大。`github`、`browser`、`memory`、`ssh` 等能力建议按任务逐项启用；涉及账户、私信、仓库写操作和远程主机时，先确认权限范围、审计记录和服务条款。
 
 对于已经习惯终端工作流、愿意折腾模型、工具和权限的人，可以拿一个个人项目玩一下。只想要一个少配置、打开就能用的稳定工具，那 Claude Code 还是更省心。
 

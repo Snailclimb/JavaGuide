@@ -55,7 +55,7 @@ ghostty +version
 
 ![Ghostty 版本检查输出](https://oss.javaguide.cn/github/javaguide/ai/coding/ghostty-version.png)
 
-> 版本说明：本文按我本机的 `Ghostty 1.3.1` 校对。Ghostty 更新挺快，配置项以你本机的 `ghostty +show-config --default --docs` 为准。
+> 版本说明：本文配置按我本机的 Ghostty 1.3.1（1.3.x 系列）校对。Ghostty 更新挺快，配置项以你本机的 `ghostty +show-config --default --docs` 为准。Ghostty 1.4.0 计划提供 `ghostty +ssh`；下文保留 1.3.x 的 SSH 处理方式，1.4 用户请先看 [Ghostty SSH 文档](https://ghostty.org/docs/features/ssh)，不要直接照抄旧配置。
 
 Linux 安装方式要看发行版。Arch Linux 可以直接：
 
@@ -235,18 +235,18 @@ starship explain
 
 macOS 下先记这些：
 
-| 快捷键 | 作用 |
-| --- | --- |
-| `Cmd + T` | 新标签页 |
-| `Cmd + W` | 关闭当前终端或分屏 |
-| `Cmd + D` | 向右分屏 |
-| `Cmd + Shift + D` | 向下分屏 |
-| `Cmd + [` / `Cmd + ]` | 前后切换分屏 |
-| `Cmd + Option + 方向键` | 按方向切换分屏 |
-| `Cmd + Shift + Enter` | 放大/恢复当前分屏 |
-| `Cmd + F` | 搜索历史输出 |
-| `Cmd + Shift + ,` | 重载配置 |
-| `Cmd + Shift + P` | 命令面板 |
+| 快捷键                  | 作用               |
+| ----------------------- | ------------------ |
+| `Cmd + T`               | 新标签页           |
+| `Cmd + W`               | 关闭当前终端或分屏 |
+| `Cmd + D`               | 向右分屏           |
+| `Cmd + Shift + D`       | 向下分屏           |
+| `Cmd + [` / `Cmd + ]`   | 前后切换分屏       |
+| `Cmd + Option + 方向键` | 按方向切换分屏     |
+| `Cmd + Shift + Enter`   | 放大/恢复当前分屏  |
+| `Cmd + F`               | 搜索历史输出       |
+| `Cmd + Shift + ,`       | 重载配置           |
+| `Cmd + Shift + P`       | 命令面板           |
 
 跑 Claude Code 时，三块布局最顺手：
 
@@ -286,7 +286,7 @@ quick-terminal-animation-duration = 0.15
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
 ```
 
-Quick Terminal 没有默认快捷键，必须自己绑定 `toggle_quick_terminal`。`global:` 不是所有平台都能用：macOS 需要给 Ghostty 辅助功能权限，Linux/GTK 要看桌面环境是否支持全局快捷键协议。配置没问题但快捷键没反应时，先查系统权限、桌面环境支持和快捷键冲突。
+Quick Terminal 没有默认快捷键，必须自己绑定 `toggle_quick_terminal`。`global:` 不是所有平台都能用：macOS 需要给 Ghostty 辅助功能权限；Linux Quick Terminal 只支持 Wayland，并要求 compositor 提供 `wlr-layer-shell-v1`，X11 不支持。Linux 的滑入动画目前只支持 KDE，还要启用 KWin 的 “Sliding Popups” 插件并完整重启 Ghostty；GNOME 等环境即使配置了 `quick-terminal-animation-duration` 也不会出现该动画。配置没问题但快捷键没反应时，先查显示协议、桌面环境能力、系统权限和快捷键冲突。
 
 另外，macOS 上改 `quick-terminal-position` 后需要完整重启 Ghostty。
 
@@ -306,7 +306,7 @@ macOS 自带 `/bin/bash` 太老，官方文档说它不支持自动注入；默�
 
 ## SSH 不急着配
 
-Ghostty 有自己的 terminfo 和协议能力。远程主机不认识时，Neovim、htop 这类 TUI 可能显示异常。
+Ghostty 1.3.x 有自己的 terminfo 和协议能力。远程主机不认识时，Neovim、htop 这类 TUI 可能显示异常。
 
 如果你只是偶尔 SSH，先别动。真遇到远程显示问题，再考虑：
 
@@ -315,6 +315,8 @@ shell-integration-features = cursor,title,ssh-env,ssh-terminfo
 ```
 
 SSH 环境本来就复杂，没问题时少加一层包装。
+
+Ghostty 1.4.0 发布后，优先评估 `ghostty +ssh` 提供的集成方式，再决定是否保留上述 1.3.x 配置。
 
 ## 常见问题
 
@@ -354,10 +356,6 @@ Quick Terminal 全局快捷键没反应，查三件事：配置里有没有 `glo
 
 ## 总结
 
-如果只是想换个好看的终端，iTerm2 也能调主题和透明度。Ghostty 更适合这类人：每天在终端里跑 Agent、测试、日志，想要原生窗口、默认分屏、可读配置和更轻的长输出体验。
+如果只是想换个好看的终端，iTerm2 也能调主题和透明度。对我来说，Ghostty 在原生窗口、默认分屏、可读配置和长输出时的体感更轻；这属于个人机器和使用方式下的感受，不是统一性能结论。
 
-如果你也想体验的话，不如先用默认值跑一天，再改字体和主题；分屏用顺了，再考虑 Quick Terminal。
-
-如果你也想用我的同款配置的话，不需要自己动手，这样太累了。AI 时代，最简单的方法就是把我这篇文章发送给你最信任的 Coding Agent 例如 Codex、Claude，让它帮你安装配置。
-
-希望这篇文章对大家有帮助，我们下期再见！
+建议先用默认值跑一天，再按实际问题调整字体、主题和快捷键；分屏用顺后，再决定是否启用 Quick Terminal。也可以让 Coding Agent 根据本文生成候选配置，但写入前要先确认本机 Ghostty 版本、平台和已有配置，避免覆盖个人快捷键。

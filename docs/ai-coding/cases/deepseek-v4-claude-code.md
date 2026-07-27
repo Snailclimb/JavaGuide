@@ -10,17 +10,17 @@ head:
 
 <!-- @include: @article-header.snippet.md -->
 
-这几天 AI 圈基本被一件事刷屏了——DeepSeek V4 发布，同步开源。从技术报告里的 benchmark 数据到社区的实测反馈，到处都在讨论。
+2026 年 4 月 24 日，DeepSeek 发布并开源了 V4 Preview。技术报告和社区测试很多，但我更关心它放进真实代码库后的表现。
 
 开源模型在对话和写作上已经做得相当成熟，各家你追我赶，迭代速度肉眼可见。但 Agent Coding 是另一回事。
 
-让模型自主分析项目结构、理解多文件依赖、给出能直接落地的工程方案——这种活没有捷径，全靠硬实力。
+让模型自主分析项目结构、理解多文件依赖、给出能落地的工程方案，对代码能力和工具调用稳定性都有要求。
 
 之前各家模型在这个方向上一直在进步，但实际用过就知道，离“放心交给它独立完成”始终还差那么一点。
 
 所以这次 V4 发布，小 G 第一反应就是直接接入 Claude Code 上手干活。
 
-这篇文章接近 **7000 字**，建议收藏，通过本文你将搞懂：
+这篇文章记录四部分内容：
 
 1. **Claude Code 接入 DeepSeek V4 的两种方式**：配置文件法 + CC Switch 可视化切换
 2. **五个真实开发任务的实战记录**：V4-Pro 干起活来到底怎么样
@@ -29,7 +29,7 @@ head:
 
 ## Claude Code 接入 DeepSeek V4
 
-Claude Code 强在它的工具链和执行力，但 Claude 官方模型太贵，加上现在 Claude 太容易封号。这次 DeepSeek V4 提供了一个 **Anthropic 兼容接口**，这意味着 Claude Code 可以直接对接 DeepSeek，不需要任何第三方适配层。
+Claude Code 的工具链比较成熟，但官方模型的 API 成本不低。DeepSeek V4 提供了 **Anthropic 兼容接口**，Claude Code 可以直接对接，不需要额外的协议转换服务。不过，兼容接口不等于完整复刻 Anthropic 模型能力，工具调用、上下文和新功能仍要按实际任务验证。
 
 ### 方式一：配置文件法（推荐）
 
@@ -46,7 +46,12 @@ npm install -g @anthropic-ai/claude-code
   "env": {
     "ANTHROPIC_AUTH_TOKEN": "your_deepseek_api_key",
     "ANTHROPIC_BASE_URL": "https://api.deepseek.com/anthropic",
-    "ANTHROPIC_MODEL": "DeepSeek-V4-Pro",
+    "ANTHROPIC_MODEL": "deepseek-v4-pro[1m]",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "deepseek-v4-pro[1m]",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "deepseek-v4-pro[1m]",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "deepseek-v4-flash",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "deepseek-v4-flash",
+    "CLAUDE_CODE_EFFORT_LEVEL": "max",
     "API_TIMEOUT_MS": "3000000",
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1"
   }
@@ -59,7 +64,7 @@ API Key 创建地址：<https://platform.deepseek.com/> 。
 
 ![DeepSeek 创建 API Key](https://oss.javaguide.cn/github/javaguide/ai/coding/deepseek-api-keys.png)
 
-如果你使用的是 DeepSeek-V4-Flash，把 `ANTHROPIC_MODEL` 改为 `DeepSeek-V4-Flash` 即可。
+这里的 `[1m]` 用于请求 V4 Pro 的 1M 上下文版本。日常任务如果想优先使用 Flash，可以把 `ANTHROPIC_MODEL` 改为 `deepseek-v4-flash`；模型 ID 和映射方式以 [DeepSeek 官方接入文档](https://api-docs.deepseek.com/quick_start/agent_integrations/claude_code/)为准。
 
 配置完成后启动 Claude Code：
 
@@ -79,15 +84,15 @@ claude
 
 ![CC Switch 添加 DeepSeek Provider](https://oss.javaguide.cn/github/javaguide/ai/coding/deepseek-v4/cc-switch-add-deepseek-provider.png)
 
-将模型名称改为 `DeepSeek-V4-Pro`（或 `DeepSeek-V4-Flash`），完成后点击右下角的“添加”。
+将模型名称改为 `deepseek-v4-pro[1m]`（或 `deepseek-v4-flash`），完成后点击右下角的“添加”。
 
 ### 验证是否生效
 
-直接在命令行输入 `claude` 或者进入 Claude Code 界面之后再次输入 `/status` 确认，model 为 `DeepSeek-V4-Pro` 即表示接入成功。
+直接在命令行输入 `claude`，进入 Claude Code 后再输入 `/status` 确认。model 显示 `deepseek-v4-pro[1m]` 或 `deepseek-v4-flash`，说明路由已经生效。
 
 ![验证是否生效](https://oss.javaguide.cn/github/javaguide/ai/coding/deepseek-v4/verify-deepseek-v4-ready.png)
 
-之后你就可以用 DeepSeek V4-Pro 来驱动 Claude Code 的所有能力了。
+之后就可以通过 Claude Code 调用 DeepSeek V4。第三方模型是否支持 Claude Code 的某项新能力，还要以兼容接口和实际测试结果为准。
 
 ## 实战一：升级 LLM 多 Provider 预设模型列表
 
@@ -105,7 +110,7 @@ claude
 
 关于 Tavily 的使用可以参考：[Claude Code 对接 AI Agent 搜索引擎 Tavily 实现高质量搜索](https://mp.weixin.qq.com/s/kAk7lLVgYzZrD9xJs3AUkQ)。
 
-DeepSeek V4-Pro **一次搞定**。
+这次 V4-Pro 一轮就完成了修改。
 
 ![搜索并更新最新 LLM 模型](https://oss.javaguide.cn/github/javaguide/ai/coding/deepseek-v4/search-and-update-latest-models.png)
 
@@ -138,7 +143,7 @@ DeepSeek V4-Pro **一次搞定**。
 
 > 当前项目有两个 SQL 文件，`sql/init.sql` 在项目启动自动执行了，`sql/V2__knowledge_skill.sql` 没有自动执行。请你帮我分析一下是什么原因，然后用合理的方式优化现存的问题。
 
-DeepSeek V4-Pro 的分析很到位：**`V2__knowledge_skill.sql` 没有被挂载到 Docker 容器中，项目也没有引入任何数据库迁移工具**，而 `init.sql` 是在容器启动时自动执行的——这是 Docker Compose 配置里写死的。
+V4-Pro 找到的直接原因是：**`V2__knowledge_skill.sql` 没有被挂载到 Docker 容器中，项目也没有引入数据库迁移工具**，而 `init.sql` 的执行来自 Docker Compose 中的固定挂载。
 
 ![数据库表未执行原因分析](https://oss.javaguide.cn/github/javaguide/ai/coding/deepseek-v4/database-table-analysis.png)
 
@@ -179,7 +184,7 @@ Flyway 是 Java 生态中最成熟的数据库迁移方案之一，用文件命�
 </dependency>
 ```
 
-记住这个教训：**Spring Boot 4.x 时代，很多你习惯直接引第三方库就能自动装配的功能，现在需要找对应的官方 Starter。** 自动配置被拆出去了，但文档里不一定显眼地提醒你。
+这个案例里的结论很具体：Spring Boot 4.x 集成 Flyway 时，应使用对应的官方 Starter，不能只引入 `flyway-core` 就假定迁移会自动执行。其他第三方库是否需要独立 Starter，要分别查对应版本的 Spring Boot 文档，不能由这个案例一概而论。
 
 ## 实战三：AI 面试平台对接 DeepSeek
 
@@ -197,7 +202,7 @@ Flyway 是 Java 生态中最成熟的数据库迁移方案之一，用文件命�
 
 ![模拟面试评估结果](https://oss.javaguide.cn/github/javaguide/ai/coding/deepseek-v4/interview-guide-model-deepseek-v4-flash-interview.png)
 
-Flash 模型，非思考模式，生成质量已经不错了。考虑到 Flash 的定价，这个性价比相当能打。
+在这次简历面试题生成任务中，Flash 的非思考模式可以完成主要问题，仍有两个问题没有回答。它适合对成本敏感、允许人工检查的批量生成任务。
 
 ## 实战四：项目代码审计与多模型协同
 
@@ -219,15 +224,15 @@ V4-Pro 确实找出来不少问题，最紧急的 TOP 5：
 
 我大概过了一遍，基本都是合理的。安全类问题尤其值得重视，第 3 条 Redis 反序列化漏洞如果被利用，后果很严重。
 
-接下来我把 V4-Pro 找出来的问题直接丢给 **GPT-5.5** 复核。
+接下来我把 V4-Pro 找出来的问题直接丢给当时账户可用的 **GPT-5.5** 复核。
 
 ![GPT5.5 对 DeepSeek V4-Pro 找出的问题进行修复](https://oss.javaguide.cn/github/javaguide/ai/coding/deepseek-v4/gpt5-5-fix-problems-found-by-deepseek-v4-pro.png)
 
 **为什么不让 V4-Pro 自己修？** 因为代码审计和代码修复是两种能力，用不同模型交叉验证更靠谱——一个负责找问题，一个负责确认问题并执行修复。
 
-GPT-5.5 复核后直接执行了修复，整个过程很顺。
+GPT-5.5 复核后执行了修复。这里记录的是案例发生时的模型选择，不代表当前推荐；最终仍要以测试、代码审查和密钥轮换结果为准，不能把第二个模型的确认当成证据闭环。
 
-这个案例的重点不是 V4-Pro 有多强，而是**用便宜模型干活、用贵模型把关**这个思路。V4-Pro 做代码扫描的成本几乎可以忽略，同样的事交给 GPT-5.5 或 Claude Opus 4.6 来做，费用至少高出两个数量级。
+这个案例采用的是**低成本模型初筛、能力更强的模型复核、最后由测试和人工验收**的分工。具体能省多少取决于输入长度、缓存命中、输出量和当时的模型价格；没有完整调用记录时，不适合给出“至少两个数量级”的结论。
 
 ## 实战五：全项目扫描分析
 
@@ -237,7 +242,7 @@ GPT-5.5 复核后直接执行了修复，整个过程很顺。
 
 ![V4-Pro 扫描分析 agent-invest 的结果](https://oss.javaguide.cn/github/javaguide/ai/coding/deepseek-v4/v4-pro-scan-analyze-result-of-agent-invest.png)
 
-这是 V4-Pro 最终输出的文档，整体质量还是非常高的，很全面：
+这是 V4-Pro 最终输出的文档，覆盖了项目结构、主要模块和待处理问题：
 
 ![V4-Pro 最终输出的 agent-invest 文档](https://oss.javaguide.cn/github/javaguide/ai/coding/deepseek-v4/v4-pro-final-output-agent-invest-document.png)
 
@@ -245,9 +250,9 @@ GPT-5.5 复核后直接执行了修复，整个过程很顺。
 
 看完上面几个实战任务，再来补一下 DeepSeek V4 的硬参数，会更有体感。
 
-这次 V4 系列同时发布了两款模型：
+V4 Preview 同时提供两款模型。下表参数和 Benchmark 来自 DeepSeek 官方报告，属于厂商公布结果，不等同于本文任务的独立评测：
 
-| 规格              | DeepSeek-V4-Pro                 | DeepSeek-V4-Flash               |
+| 规格              | `deepseek-v4-pro`               | `deepseek-v4-flash`             |
 | ----------------- | ------------------------------- | ------------------------------- |
 | 总参数            | **1.6T**                        | **284B**                        |
 | 每 token 激活参数 | 49B                             | 13B                             |
@@ -255,40 +260,44 @@ GPT-5.5 复核后直接执行了修复，整个过程很顺。
 | 推理模式          | 非思考 / Think High / Think Max | 非思考 / Think High / Think Max |
 | 开源协议          | MIT                             | MIT                             |
 
-几个关键数字值得注意：
+官方报告列出的几个数据：
 
-- **V4-Pro 的 Codeforces 评分 3206**，在四家主流模型（Claude Opus 4.6、GPT-5.4 xHigh、Gemini 3.1 Pro High）中排第一
-- **SWE-bench Verified 80.6%**，跟 Claude Opus 4.6（80.8%）几乎打平，但 API 价格便宜了两个数量级
+- **V4-Pro 的 Codeforces 评分 3206**，在报告选取的对照模型中排第一
+- **SWE-bench Verified 80.6%**，报告中的 Claude Opus 4.6 对照结果为 80.8%；这组分数不能直接推出两者在具体代码库中的能力或成本等价
 - **1M 上下文场景下**，V4-Pro 的单 token 推理 FLOPs 只有 V3.2 的 **27%**，KV 缓存用量只有 **10%**
+
+这里的竞品名称和分数是 V4 Preview 发布报告的历史快照，不是截至本文核验日的模型排行榜。
 
 ![V4 Benchmark 数据](https://oss.javaguide.cn/github/javaguide/ai/coding/deepseek-v4/v4-benchmark.png)
 
 再看定价：
 
-| API 定价（每百万 token） | DeepSeek-V4-Flash | DeepSeek-V4-Pro | Claude Sonnet 4.7 |
-| ------------------------ | ----------------- | --------------- | ----------------- |
-| 输入（缓存未命中）       | $0.14             | $1.74           | $3.00             |
-| 输入（缓存命中）         | $0.028            | $0.145          | $0.30             |
-| 输出                     | $0.28             | $3.48           | $15.00            |
+| API 定价（每百万 token，截至 2026-07-24） | `deepseek-v4-flash` | `deepseek-v4-pro` |
+| ----------------------------------------- | ------------------- | ----------------- |
+| 输入（缓存未命中）                        | $0.14               | $0.435            |
+| 输入（缓存命中）                          | $0.0028             | $0.003625         |
+| 输出                                      | $0.28               | $0.87             |
 
-Flash 的输出价格不到 Claude Sonnet 的 **1/50**，Pro 的输出价格约为 Sonnet 的 **1/4**，输入端两者差距更小。
+实际账单取决于缓存命中率、上下文长度和输出规模。跨厂商成本对比还要统一输入、输出、缓存和重试口径，本文没有完整调用记录，因此不再给出固定倍数。价格会变化，使用前应再查 [DeepSeek 官方定价页](https://api-docs.deepseek.com/quick_start/pricing/)。
 
-放到这个定价体系里看，Flash 在日常对话、内容生成、简单问答场景几乎没什么对手。
+按这张价格表看，Flash 更适合成本敏感、结果容易校验的任务；是否适合日常对话、内容生成或简单问答，还要结合质量和延迟实测。
 
-另外有一点需要注意：**API 迁移零成本**，改个 model 名就行。`deepseek-chat` 和 `deepseek-reasoner` 将在 7 月 24 日后停用，尽早切换到新模型名。
+模型名迁移本身改动不大，但还要回归上下文长度、工具调用和错误处理，不能按“零成本”处理。官方给出的旧模型停用节点是 **2026-07-24 15:59 UTC（北京时间 23:59）**；阅读本文时如果已经过了这个时间，应先通过模型列表确认旧 ID 是否仍可用。
 
 ## 场景建议
 
-| 场景                               | 推荐                          | 理由                                               |
-| ---------------------------------- | ----------------------------- | -------------------------------------------------- |
-| 日常对话、内容生成、简单问答       | **V4-Flash**                  | 价格极低，性能足够                                 |
-| Agent Coding、代码重构、全项目分析 | **V4-Pro**                    | SWE-bench 80.6%，Codeforces 3206，复杂任务成功率高 |
-| 复杂编码、精准问答、前沿科学推理   | **Claude Opus 4.6 / GPT-5.5** | 和顶级模型还有差距                                 |
+| 场景                               | 建议                                    | 验证重点                                   |
+| ---------------------------------- | --------------------------------------- | ------------------------------------------ |
+| 日常对话、内容生成、简单问答       | 先试 `deepseek-v4-flash`                | 质量、延迟和缓存命中率                     |
+| Agent Coding、代码重构、全项目分析 | 先试 `deepseek-v4-pro`                  | 工具调用、跨文件修改、测试通过率和实际成本 |
+| 高风险复杂编码与独立复核           | 对比 Claude Fable 5、GPT-5.6 等当前家族 | 账户可用性、任务成功率、安全边界和总成本   |
+
+最后一行是截至 2026-07-24 的模型家族快照，具体型号与可用性以账户和官方文档为准。
 
 ## 总结
 
-DeepSeek V4 在 Agent Coding 和代码理解场景上，明显上了一个台阶。V4-Pro 在 SWE-bench Verified 上拿到了 80.6%，Codeforces 评分 3206 排第一，这个实力对应这个价格，性价比确实到位了。
+从本文几个任务看，V4-Pro 已能完成模型配置更新、迁移诊断和代码审计初筛。官方报告中的 SWE-bench Verified 80.6% 和 Codeforces 3206 可以作为参考，但不能替代团队自己的代码库评测。
 
-不过，DeepSeek-V4-Pro 在没有 Coding Plan 的情况下，价格还是偏高。V4-Flash 的定价很香，但在开发场景还无法成为主力。
+V4-Pro 是否划算要看缓存命中率和任务长度。V4-Flash 更便宜，但在本文的面试任务中仍出现了漏答，不适合不经检查就作为开发主力。
 
-另外，在复杂的编码、精准问答和前沿科学推理上，跟 Claude Opus 4.6 还有不小距离。不过考虑到 Flash 的价格优势——还要什么自行车？
+复杂编码、复杂问答和前沿科学推理仍要按任务对比不同模型。我的选择会是：低风险批量任务先试 Flash，跨文件改动和关键修复交给更强模型，并保留测试与人工验收。

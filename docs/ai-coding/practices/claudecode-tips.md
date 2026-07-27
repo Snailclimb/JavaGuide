@@ -22,7 +22,7 @@ head:
 
 下面这些内容基本来自我这一年多的使用记录，偏实战，不追求把官方文档重新讲一遍。
 
-PS：Claude Code 迭代非常快，本文按 2026 年 6 月前后的官方文档和个人使用经验整理。命令、权限模式、插件、Auto Mode、Sub-Agent 和 Worktree 行为，可能受版本、平台、账号套餐、provider 和安装渠道影响。实际使用前，最好先看 `claude --version`、`claude --help`、`/help` 和官方文档。比如 `/run`、`/verify` 需要 v2.1.145+；`/code-review` 支持 effort 等级、`--comment` 和 `--fix`；`/simplify` 当前更适合理解成 cleanup-only review，不是完整的 correctness bug review。
+PS：Claude Code 迭代非常快，本文按 v2.1.218（2026-07-24）的官方文档和个人使用经验整理。命令、权限模式、插件、Auto Mode、Sub-Agent 和 Worktree 行为，可能受版本、平台、账号套餐、provider 和安装渠道影响。实际使用前，最好先看 `claude --version`、`claude --help`、`/help` 和官方文档。比如 `/run`、`/verify` 需要 v2.1.145+；`/code-review` 支持 effort 等级、`--comment` 和 `--fix`；`/simplify` 当前更适合理解成 cleanup-only review，不是完整的 correctness bug review。
 
 国内使用还要考虑账号、网络、成本和第三方中转稳定性。GLM、MiniMax、Kimi、DeepSeek 这类国产模型可以作为替代或补充；但碰到大规模代码修改、复杂重构、长链路排错，Claude 目前仍然值得单独研究。
 
@@ -97,7 +97,7 @@ Claude 偶尔犯一次错，先别急着加规则。等同类问题出现两三�
 
 我会把规则分成两类：团队级、长期有效、必须共享的要求写进 `CLAUDE.md`；个人偏好、阶段性调试经验、临时提醒，交给 Auto Memory 或本地配置。`CLAUDE.md` 最好来自真实错误，也要定期删掉失效内容。
 
-写完规则后，也别默认它已经生效。可以用 `/memory` 看当前会话到底加载了哪些 `CLAUDE.md`、`CLAUDE.local.md` 和 rules 文件；如果某个文件不在列表里，Claude 这轮就看不到。复杂项目里用了带 `paths` 的 `.claude/rules/`，还可以用 `InstructionsLoaded` Hook 记录规则文件什么时候被加载、为什么被加载，别等出了问题才发现某条规则根本没进上下文。
+写完规则后，也别默认它已经生效。用 `/context` 查看当前会话实际加载了哪些 `CLAUDE.md`、`CLAUDE.local.md` 和 rules 文件；`/memory` 主要用于查看和编辑规则、记忆的配置位置。如果某个文件不在 `/context` 结果里，Claude 这轮就看不到。复杂项目里用了带 `paths` 的 `.claude/rules/`，还可以用 `InstructionsLoaded` Hook 记录规则文件什么时候被加载、为什么被加载。
 
 ## 权限管理要重视
 
@@ -214,7 +214,7 @@ MCP Server 要克制。工具越多，Claude 越容易选错，也越难审计�
 
 Skill 放任务步骤，比如代码审查、写测试、改前端页面、网页调研、写技术文章。这些任务每次走法都差不多，不必在聊天里反复提醒。
 
-小 G 之前写过两篇相关的文章：[Agent Skills 是什么？和 Prompt、MCP 到底差在哪？](https://javaguide.cn/ai/agent/skills.html) 和 [AI 编程必备 Skills 推荐](https://javaguide.cn/ai-coding/programmer-essential-skills.html)。
+小 G 之前写过两篇相关的文章：[Agent Skills 是什么？和 Prompt、MCP 到底差在哪？](https://javaguide.cn/ai/agent/skills.html) 和 [AI 编程 Skills 选型清单](https://javaguide.cn/ai-coding/practices/programmer-essential-skills.html)。
 
 Skill 就是一份按需加载的任务说明。某类任务怎么做、有哪些约束、要检查哪些点、踩过哪些坑，都写进 `SKILL.md`。
 
@@ -230,7 +230,7 @@ Skill 就是一份按需加载的任务说明。某类任务怎么做、有哪�
 
 现成 Skill 也可以用，比如 Superpowers 把 TDD、Code Review、Spec-Driven、Git Worktree、子 Agent 协作这些步骤封装好了。
 
-我在 [AI 编程必备 Skills 推荐：TDD、代码审查与网页自动化实战](https://javaguide.cn/ai-coding/programmer-essential-skills.html) 这篇文章中有详细推荐。
+我在 [AI 编程 Skills 选型清单：需求澄清、TDD、代码审查与 UI 设计](https://javaguide.cn/ai-coding/practices/programmer-essential-skills.html) 这篇文章中有详细推荐。
 
 第三方 Skill 不要拿来就跑。`SKILL.md` 本身就是指令，里面如果带了危险命令、奇怪脚本、过宽权限，Agent 可能会照着做。装之前至少看一眼正文、`scripts/` 和 `references/`，确认它没有越权操作。
 
@@ -365,7 +365,7 @@ AI 写代码最麻烦的地方在于，它很会写“看起来合理”的代�
 
 如果测试没有先失败过，就很难确认后面的实现到底修到了哪个问题。否则它可能直接改一堆代码，然后告诉你“已修复”。
 
-[AI 编程必备 Skills 推荐](https://javaguide.cn/ai-coding/programmer-essential-skills.html)中推荐的 Superpowers 就把 TDD 给封装好了。
+[AI 编程 Skills 选型清单](https://javaguide.cn/ai-coding/practices/programmer-essential-skills.html)中推荐的 Superpowers 就把 TDD 给封装好了。
 
 ### 让 Claude 自己验证
 
@@ -477,19 +477,19 @@ Claude 写 commit message 和 PR 描述很快，但最后别只看它的总结�
 
 命令不用背，真用的时候打 `/` 翻一下就行。我平时按两类记。
 
-第一类是基础命令。`/help` 看当前环境到底有哪些命令；`/diff` 看 Claude 改了哪些文件、哪些行；长任务变慢、变飘时，先看 `/context`，上下文太满再用 `/compact`；权限相关看 `/permissions`，记忆和规则加载情况看 `/memory`，MCP 连接看 `/mcp`，用量拆分看 `/usage`。
+第一类是基础命令。`/help` 看当前环境到底有哪些命令；`/diff` 看 Claude 改了哪些文件、哪些行；长任务变慢、变飘时，先看 `/context`，上下文太满再用 `/compact`；权限相关看 `/permissions`，规则和记忆的配置位置看 `/memory`，MCP 连接看 `/mcp`，用量拆分看 `/usage`。
 
 第二类是 bundled skills / workflow 相关命令。`/code-review` 用来扫当前改动里的 correctness bug、边界条件和潜在风险，可以指定 effort，比如 `/code-review high`；加 `--comment` 可以把发现发成 GitHub PR 行内评论；加 `--fix` 会把 review findings 应用到工作区。
 
 `/simplify` 当前更适合当成 cleanup-only review，用来处理复用、简化、效率这类清理项，并自动应用修复。它不是完整的 bug-hunting review。老版本里 `/simplify` 和 `/code-review --fix` 的关系变过，如果你看到的命令行为和本文不一致，优先看当前 `/help` 和官方 commands 文档。
 
-`/batch` 用在边界清晰的多模块大改上，会把需求拆成多个工作单元，开后台 Worker 在隔离 worktree 里并行干。`/loop` 可以定时跑任务，也可以围绕一个目标反复执行、验证、修正，跑之前最好写清停止条件，比如最多尝试 5 次。`/run` 用来把应用启动起来，看改动是否生效；`/verify` 更轻，主要做 build 和运行验证，快速确认有没有编译或运行时问题。
+`/batch` 用在边界清晰的多模块大改上，会把需求拆成多个工作单元，开后台 Worker 在隔离 worktree 里并行干。`/loop` 用来按间隔重复执行 Prompt，适合轮询 CI 或定时维护；需要立即持续修复直到满足测试全绿、迁移完成等条件时，使用 `/goal`，并写清验收与停止条件。`/run` 用来把应用启动起来，看改动是否生效；`/verify` 更轻，主要做 build 和运行验证，快速确认有没有编译或运行时问题。
 
 这些命令和 bundled skills 迭代很快，不同版本、平台和套餐看到的列表可能不一样。写文章可以介绍经验，真到自己机器上用，还是先看 `/help` 和官方 commands 文档。某个版本里的行为不一定长期保持不变。
 
 `/compact` 还有一个容易忽略的点：压缩之后，有些规则不会立刻回到上下文里。根目录的 `CLAUDE.md` 会重新注入，但子目录里的嵌套规则不一定马上回来。长任务压缩后，最好让 Claude 先复述一遍当前目标、已改文件、剩余风险和下一步验证命令，再继续往下跑。
 
-命令细节我在 [Claude Code 核心命令详解：simplify、code-review、loop、batch、run、verify](https://javaguide.cn/ai-coding/claudecode-commands.html) 这篇里展开写过，这里就不重复铺太长了。
+命令细节我在 [Claude Code 核心命令详解：code-review、loop、goal、batch、run、verify](https://javaguide.cn/ai-coding/practices/claudecode-commands.html) 这篇里展开写过，这里就不重复铺太长了。
 
 ## 提示词怎么写
 
@@ -544,7 +544,7 @@ Claude 写 commit message 和 PR 描述很快，但最后别只看它的总结�
 
 设计规范也可以做成 Skill，让 Claude 每次写前端前先读项目视觉约束。先把不该出现的套路挡住。后台工具就按后台工具来，信息密度、可扫描性、操作反馈，比“氛围感”重要得多。
 
-[AI 编程必备 Skills 推荐](https://javaguide.cn/ai-coding/programmer-essential-skills.html)中也有推荐前端相关的开源 Skills。
+[AI 编程 Skills 选型清单](https://javaguide.cn/ai-coding/practices/programmer-essential-skills.html)中也有推荐前端相关的开源 Skills。
 
 ## 常见失败模式
 
