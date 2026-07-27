@@ -391,7 +391,7 @@ public class DebugInvocationHandler implements InvocationHandler {
 
 ## 代理
 
-关于 Java 代理的详细介绍，可以看看笔者写的 [Java 代理模式详解](https://javaguide.cn/java/basis/proxy.html “Java 代理模式详解”)这篇文章。
+关于 Java 代理的详细介绍，可以看看笔者写的 [Java 代理模式详解](https://javaguide.cn/java/basis/proxy.html) 这篇文章。
 
 ### 如何实现动态代理？
 
