@@ -11,7 +11,7 @@ icon: mdi:code-tags
 head:
   - - meta
     - name: keywords
-      content: AI编程,AI辅助编程,AI编程实战,AI编程技巧,AI编程面试题,AI编程工具,Claude Code,Claude Code教程,Claude Code使用技巧,Claude Code原理,CLAUDE.md,Claude Code Hooks,Auto Memory,Multi-Agent,Cursor,OpenAI Codex,Codex最佳实践,oh-my-pi,Trae,CLI vs IDE,Spec Coding,AI Skills,AI代码审查,drawio-chart,draw.io技术图
+      content: AI编程,AI辅助编程,AI编程实战,AI编程技巧,AI编程面试题,AI编程工具,Claude Code,Claude Code教程,Claude Code使用技巧,Claude Code原理,Claude Code上下文管理,AutoCompact,CLAUDE.md,Claude Code Hooks,Auto Memory,Multi-Agent,Cursor,OpenAI Codex,Codex最佳实践,oh-my-pi,Trae,CLI vs IDE,Spec Coding,AI Skills,AI代码审查,drawio-chart,draw.io技术图
   - - meta
     - property: og:title
       content: AI 编程实战指南：Claude Code、Cursor、Codex、Trae 使用技巧与面试题
@@ -62,7 +62,7 @@ AI 生成的代码，一定要过测试、审查和可回滚的提交管理。�
 1. [AI 编程开放性面试题](./practices/ai-ide.md)：先看面试会怎么问，也顺便校准自己到底会不会用。
 2. [AI 编程选 CLI 还是 IDE？](./practices/cli-vs-ide.md)：把工具路线分清楚，别一上来就陷入工具名之争。
 3. [Ghostty 安装、配置和常见技巧](./practices/ghostty.md)、[Claude Code 使用指南](./practices/claudecode-tips.md)、[Claude Code 核心命令详解](./practices/claudecode-commands.md)、[高颜值 Claude Code 替代 OMP](./practices/oh-my-pi.md)：如果你主用 CLI Agent，先把终端工作台调顺，再看 Claude Code 和 oh-my-pi 这类终端代理的操作思路。
-4. [CLAUDE.md 最佳实践](./practices/claude-md-best-practices.md)、[Claude Code 记忆系统](./principles/claude-code-memory.md)、[Claude Code Skills 原理](./principles/claude-code-skills.md)、[Claude Code Hooks 原理](./principles/claude-code-hooks.md)、[Claude Code 多 Agent 机制](./principles/claude-code-multi-agent.md)：把规则、记忆、按需加载、生命周期钩子和任务拆分串起来。
+4. [CLAUDE.md 最佳实践](./practices/claude-md-best-practices.md)、[Claude Code 上下文管理](./principles/claude-code-context-management.md)、[Claude Code 记忆系统](./principles/claude-code-memory.md)、[Claude Code Skills 原理](./principles/claude-code-skills.md)、[Claude Code Hooks 原理](./principles/claude-code-hooks.md)、[Claude Code 多 Agent 机制](./principles/claude-code-multi-agent.md)：把规则、上下文治理、记忆、按需加载、生命周期钩子和任务拆分串起来。
 5. [AI 编程必备 Skills 推荐](./practices/programmer-essential-skills.md)、[强模型时代，AI 编程 Skills 还有必要装吗？](./practices/skill-selection-and-pruning.md)、[draw.io 绘图 Skill](./practices/drawio-chart-skill.md)、[OpenAI Codex 最佳实践指南](./practices/codex-best-practices.md)、[Spec Coding 规范驱动编程](./practices/spec-coding.md)、[Vibe Coding 实用技巧总结](./practices/the-cool-tricks-for-vibe-coding.md)：把提示词、权限、Spec、Git、多 Agent、Skill 选型和技术配图工作流串起来。
 6. 工具栈确定后，再按需看 Qoder、Trae、DeepSeek V4 + Claude Code、MiniMax M3 + Claude Code、Kimi K3、Claude Code 接入第三方模型等实战案例。
 
@@ -90,6 +90,7 @@ AI 生成的代码，一定要过测试、审查和可回滚的提交管理。�
 
 ### Claude Code 原理进阶
 
+- [Claude Code 上下文管理](./principles/claude-code-context-management.md)：从窗口预算、Context Rot 和渐进式压缩讲到 Sub-agent、handoff 与长任务状态外化。
 - [Claude Code 记忆系统](./principles/claude-code-memory.md)：拆解 `CLAUDE.md`、`.claude/rules/`、Auto Memory、Subagent Memory 和第三方记忆插件的分工。
 - [Claude Code Skills 原理](./principles/claude-code-skills.md)：讲清 Skills 的文件结构、发现加载、动态上下文、安全限制，以及和 Subagent 的配合方式。
 - [Claude Code Hooks 原理](./principles/claude-code-hooks.md)：围绕生命周期节点讲 Hooks 的触发时机、输入输出、风险拦截和自动化工作流。

@@ -52,6 +52,10 @@ export const aiCoding = arraySidebar([
     prefix: "principles/",
     children: [
       {
+        text: "Claude Code 上下文管理",
+        link: "claude-code-context-management",
+      },
+      {
         text: "Claude Code 记忆系统",
         link: "claude-code-memory",
       },
