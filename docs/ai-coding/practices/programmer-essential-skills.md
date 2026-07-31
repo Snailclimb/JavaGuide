@@ -94,19 +94,21 @@ npx skills@latest add mattpocock/skills
 
 这套 Skills 适合已经有基本开发习惯、只想补几个薄弱环节的人。如果项目里已经有稳定的需求模板、TDD 规范和代码审查流程，重复安装对应 Skill 不会带来多少帮助。
 
+这几个 Skill 的实际用法和适用边界，我单独写了一篇：[mattpocock/skills：我最推荐的 4 个 AI 编程 Skill](https://javaguide.cn/ai-coding/practices/mattpocock-skills.html)。
+
 项目地址：<https://github.com/mattpocock/skills>
 
 ## ECC（原 Everything Claude Code）
 
-Everything Claude Code 现在已经更名为 **ECC**。截至 2026 年 7 月，项目已经从一套 Claude Code 配置扩展为跨 Agent 的 Harness 系统，覆盖 Codex、Claude Code、Cursor、OpenCode 等工具。
+Everything Claude Code 现在已经更名为 **ECC**。
+
+项目已经从一套 Claude Code 配置扩展为跨 Agent 的 Harness 系统，覆盖 Codex、Claude Code、Cursor、OpenCode 等工具。
 
 ECC 仓库同时放了 Skills、Agents、Hooks、Rules，以及记忆管理、安全扫描、持续学习和多语言工程规则。仓库里的 Skills 已经达到数百个，更像一套团队级 Harness 配置库。团队需要统一 Agent 的工作方式、记忆策略和安全检查时，集中管理会省去不少重复配置。
 
 ![上下文腐化](https://oss.javaguide.cn/github/javaguide/ai/harness/context-rot-diagram.png)
 
 组件一多，选择成本也会跟着上来。项目只缺代码审查或 TDD 时，可以用 ECC 的选择性安装，只取 Java 代码审查、上下文持久化或安全扫描等对应组件，不必把整套系统塞进每个仓库。
-
-原文里引用过“开发速度提升 65%”“PR 问题从 12 个降到 3 个”等数据，但当前项目 README 已经没有保留这些实验说明，因此这里不再把它们当作通用效果。真实收益仍然取决于代码库、模型、任务风险和团队验收方式。
 
 项目地址：<https://github.com/affaan-m/ECC>
 

@@ -63,7 +63,7 @@ AI 生成的代码，一定要过测试、审查和可回滚的提交管理。�
 2. [AI 编程选 CLI 还是 IDE？](./practices/cli-vs-ide.md)：把工具路线分清楚，别一上来就陷入工具名之争。
 3. [Ghostty 安装、配置和常见技巧](./practices/ghostty.md)、[Claude Code 使用指南](./practices/claudecode-tips.md)、[Claude Code 核心命令详解](./practices/claudecode-commands.md)、[高颜值 Claude Code 替代 OMP](./practices/oh-my-pi.md)：如果你主用 CLI Agent，先把终端工作台调顺，再看 Claude Code 和 oh-my-pi 这类终端代理的操作思路。
 4. [CLAUDE.md 最佳实践](./practices/claude-md-best-practices.md)、[Claude Code 上下文管理](./principles/claude-code-context-management.md)、[Claude Code 记忆系统](./principles/claude-code-memory.md)、[Claude Code Skills 原理](./principles/claude-code-skills.md)、[Claude Code Hooks 原理](./principles/claude-code-hooks.md)、[Claude Code 多 Agent 机制](./principles/claude-code-multi-agent.md)：把规则、上下文治理、记忆、按需加载、生命周期钩子和任务拆分串起来。
-5. [AI 编程必备 Skills 推荐](./practices/programmer-essential-skills.md)、[强模型时代，AI 编程 Skills 还有必要装吗？](./practices/skill-selection-and-pruning.md)、[draw.io 绘图 Skill](./practices/drawio-chart-skill.md)、[OpenAI Codex 最佳实践指南](./practices/codex-best-practices.md)、[Spec Coding 规范驱动编程](./practices/spec-coding.md)、[Vibe Coding 实用技巧总结](./practices/the-cool-tricks-for-vibe-coding.md)：把提示词、权限、Spec、Git、多 Agent、Skill 选型和技术配图工作流串起来。
+5. [AI 编程必备 Skills 推荐](./practices/programmer-essential-skills.md)、[强模型时代，AI 编程 Skills 还有必要装吗？](./practices/skill-selection-and-pruning.md)、[mattpocock/skills 深度使用指南](./practices/mattpocock-skills.md)、[draw.io 绘图 Skill](./practices/drawio-chart-skill.md)、[OpenAI Codex 最佳实践指南](./practices/codex-best-practices.md)、[Spec Coding 规范驱动编程](./practices/spec-coding.md)、[Vibe Coding 实用技巧总结](./practices/the-cool-tricks-for-vibe-coding.md)：把提示词、权限、Spec、Git、多 Agent、Skill 选型和技术配图工作流串起来。
 6. 工具栈确定后，再按需看 Qoder、Trae、DeepSeek V4 + Claude Code、MiniMax M3 + Claude Code、Kimi K3、Claude Code 接入第三方模型等实战案例。
 
 ## 核心文章
@@ -83,6 +83,7 @@ AI 生成的代码，一定要过测试、审查和可回滚的提交管理。�
 - [Claude Code 核心命令详解](./practices/claudecode-commands.md)：专门讲 `/simplify`、`/review`、`/loop`、`/batch` 这些命令怎么用。
 - [AI 编程必备 Skills 推荐](./practices/programmer-essential-skills.md)：按任务场景整理 TDD、代码审查、UI 设计、网页自动化和 Skill 开发工作流，并说明哪些情况不值得安装。
 - [强模型时代，AI 编程 Skills 还有必要装吗？](./practices/skill-selection-and-pruning.md)：从 Superpowers 和 `grilling` 的实际使用出发，讨论哪些 Skill 值得保留，以及怎么给 Skill 列表做减法。
+- [mattpocock/skills 深度使用指南](./practices/mattpocock-skills.md)：结合真实案例拆解 `grilling`、`research`、`diagnosing-bugs` 和 `code-review` 的适用场景。
 - [drawio-chart Skill 开源](./practices/drawio-chart-skill.md)：分享如何用 Agent 自动生成可编辑的 draw.io 技术图，适合流程图、架构图和模块关系图。
 - [OpenAI Codex 最佳实践指南](./practices/codex-best-practices.md)：讲 Codex 云端智能体和 CLI 怎么配提示词、工具权限和安全策略。
 - [高颜值 Claude Code 替代 OMP](./practices/oh-my-pi.md)：介绍这个高颜值 Claude Code 替代工具的 Hashline、LSP/DAP、内置工具、多模型路由和上手配置。

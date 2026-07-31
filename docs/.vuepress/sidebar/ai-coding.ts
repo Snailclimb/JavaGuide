@@ -98,6 +98,10 @@ export const aiCoding = arraySidebar([
         link: "practices/skill-selection-and-pruning",
       },
       {
+        text: "mattpocock/skills 深度使用指南",
+        link: "practices/mattpocock-skills",
+      },
+      {
         text: "一个好用的 AI 绘图 Skill",
         link: "practices/drawio-chart-skill",
       },
