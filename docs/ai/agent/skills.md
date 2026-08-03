@@ -8,31 +8,23 @@ head:
       content: Agent Skills,MCP,Function Calling,Prompt,AI Agent,智能体,延迟加载,上下文注入,SKILL.md
 ---
 
-团队里有套完整的代码审查规范，想让 Claude 按这个来 review。最直接的做法是每次粘到 Prompt 里——它倒是照做了，但下次换个会话，换个同事，又得粘一遍。
+一次 Code Review 可能要看架构、安全、性能和项目约定。临时把这些规则放进 Prompt，换个会话后又要重新粘贴。
 
-后来有人说放进 `AGENTS.md`，情况好一些，但又不知道该放多少合适：规范太长了模型会不会忽略中间那几段？哪些约定是全局的，哪些只在某类任务里才有用？
-
-这类问题，Agent Skills 正好能接住。
-
-本文接近 9000 字，建议收藏，通过本文你将搞懂：
-
-1. Skill 到底是什么，以及它和 Prompt、Function Calling、MCP 在实际链路里怎么配合
-2. SKILL.md 怎么写——元数据、正文结构、自由度怎么把控
-3. 延迟加载、工作流设计、路由策略的实操思路，以及写 Skill 最容易踩的 8 个坑
+全局项目约定可以留在 `AGENTS.md`；Review 的检查顺序、检查项和参考资料应随 Review 任务加载。Skill 为这部分内容提供了独立入口。
 
 ## Agent Skills 是什么？
 
-简单说，Skill 是一份可被 Agent 发现、按需加载的任务说明。
+Skill 是可被 Agent 发现、按需读取的任务说明。接口返回格式、日志字段、慢 SQL 的排查路径、Review 的关注顺序，都可以写进 `SKILL.md`。
 
-它会把某类任务的经验、约束和执行顺序沉淀下来，让 Agent 在需要时再读。接口返回格式怎么统一，日志字段怎么打，慢 SQL 怎么查，Review 时先看架构还是先看异常处理——以前这些东西要么散在文档里，要么靠人反复提醒，Skills 给了它们一个固定落脚点。
-
-所以，不要把 Skill 想成一个神秘的新能力。它更像是把“老员工脑子里的规矩”写进 `SKILL.md`，再交给 Agent 在合适的任务里调用。
+Skill 本身不提供工具能力。它解决的是“这类任务该按什么规则做”，由宿主在任务命中时把对应说明交给 Agent。
 
 ## Skill 和 Prompt、MCP、Function Calling 有什么联系？
 
-先说结论：Skill 不是 Prompt、MCP、Function Calling 的替代品，它们也不是同一层的四个竞品。放到一条 Agent 执行链路里看，关系会清楚很多。
+它们处在同一条执行链路的不同位置：Prompt 说明用户要做什么，Function Calling 发起动作，MCP 接入外部能力，Skill 规定完成任务时采用的流程和约束。
 
-用户说一句“帮我分析这份报表”，这是 **Prompt**。模型判断需要调用 `read_file`，并生成结构化参数，这是 **Function Calling**。`read_file` 这个能力如果来自 MCP Server，那 **MCP** 负责的是连接和协议。至于“分析报表时先看字段含义，再看异常值，最后给业务结论，不要直接堆统计指标”，这才是 **Skill** 适合放的东西。
+拿“帮我分析这份报表”这个请求来说，用户说的话是 **Prompt**。模型决定调用 `read_file` 并生成结构化参数时，用到的是 **Function Calling**；`read_file` 若由 MCP Server 提供，**MCP** 负责的是连接和协议。
+
+“先确认字段含义，再找异常值，最后给业务结论，不要只堆统计指标”则属于 **Skill**。它描述处理顺序和约束，不替代前面的请求、调用方式或外部连接。
 
 ![ Skill 和 Prompt、MCP、Function Calling 对比](https://oss.javaguide.cn/github/javaguide/ai/skills/skill-prompt-function-calling-mcp-comparison.webp)
 
@@ -46,11 +38,9 @@ head:
 4. 宿主再把完整 `SKILL.md` 加载进来（延迟加载）
 5. 模型按照 Skill 里的流程去调工具、读资料、写结果（执行）
 
-注意重点：Skill 把复杂任务的做法提前写下来，至于执行时调不调工具看具体场景。有的 Skill 全程不需要外部工具，比如 [sanyuan-skills](https://github.com/sanyuan0704/sanyuan-skills) 里的 Code Review Expert，它只是告诉模型从 SOLID、安全、性能等维度依次审查；有的 Skill 会一路调 MCP、跑脚本、读参考文件，比如 [Superpowers](https://github.com/obra/superpowers) 里的 TDD 技能，它会让 Agent 执行测试命令、分析输出、再决定下一步。
+工具并不是 Skill 的必备部分。[sanyuan-skills](https://github.com/sanyuan0704/sanyuan-skills) 里的 Code Review Expert 只规定从 SOLID、安全、性能等维度审查；[Superpowers](https://github.com/obra/superpowers) 的 TDD Skill 则要求 Agent 跑测试、读取输出，再决定下一步。
 
-所以不建议把 Skill 说成“基于 Function Calling 的封装”，这个说法容易把人带偏。Function Calling 是执行动作时可能用到的底层能力，Skill 本身更像**上下文注入机制**：Agent 读一份文档，然后把里面的规则纳入后续推理。
-
-`load_skill()` 也要这样理解：它不是所有工具里都存在的统一 API 名字，更像一个概念，表示宿主在合适的时候读取并激活 `SKILL.md`。Claude Code、Cursor、Codex、Copilot 这些工具的触发细节会有差异，别把它当成跨平台标准函数。
+因此，Function Calling 是执行动作时可能用到的能力，Skill 更接近一次按需的**上下文注入**。`load_skill()` 也是这个意义上的概念，不是跨平台统一的 API 名称；Claude Code、Cursor、Codex、Copilot 的发现和加载方式各不相同。
 
 ## ⭐️SKILL.md 到底怎么写？
 
@@ -68,7 +58,7 @@ skill-name/
 └── assets/           # 模板和静态文件（按需加载）
 ```
 
-简单来说，`SKILL.md` 分两部分：
+一个 `SKILL.md` 包含两部分：
 
 1. 前面是 **YAML 前置元数据**，告诉宿主“我是谁、什么时候该用我”；
 2. 后面是**正文**，写具体流程、约束、示例和失败处理。
@@ -126,21 +116,9 @@ If you did not watch the test fail, the test is not trusted.
 
 ### 先看官方的 skill-creator
 
-Anthropic 官方 Skills 仓库里有一个很适合参考的 Skill，叫 [`skill-creator`](https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md)。
+[`skill-creator`](https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md) 是 Anthropic 官方 Skills 仓库提供的创建 Skill 的 Skill。它会先要求 Agent 确认任务、触发条件和边界，再决定哪些内容留在 `SKILL.md`，哪些拆到 `scripts/` 或 `references/`。
 
-它本身就是一个“用来创建 Skill 的 Skill”，可以用来创建新 Skill、修改已有 Skill、测试效果，还能帮你优化 `description` 的触发准确性。
-
-它会先引导 Agent 把问题想清楚：这个 Skill 到底解决什么任务？什么时候该触发？边界在哪里？哪些内容放进 `SKILL.md`，哪些内容应该拆到 `scripts/` 或 `references/`？
-
-这个例子值得看，主要有两点。
-
-第一，它很重视 `description`。`description` 不是随便写一句“帮助处理某某任务”就行，它会直接影响 Skill 能不能在正确场景下被触发。
-
-第二，它不会只盯着 `SKILL.md`。复杂一点的 Skill，通常不应该把所有东西都塞进主文件。能用脚本稳定执行的，就放到 `scripts/`；比较长的说明、检查清单、参考资料，可以拆到 `references/`。
-
-Claude 官方帮助文档也提到，如果单个 `Skill.md` 信息太多，可以把只在特定场景需要的内容拆成额外文件，再从 `Skill.md` 里引用，让 Claude 按需访问。
-
-不过，也没必要把 `skill-creator` 当成唯一标准答案。它更适合当学习入口。真正写自己的 Skill 时，还是那句话：主文件只放 Agent 当前任务必须读的内容，细节能拆就拆。
+它体现了两个实际取舍：`description` 要能让宿主识别适用任务；可由脚本稳定执行的步骤和只在特定场景需要的长资料，应拆出主文件。Claude 官方帮助文档也建议将这类额外内容按需访问。
 
 ### 元数据（Frontmatter）
 
@@ -201,7 +179,7 @@ description: Expert code review of current git changes with a senior engineer le
 description: 通过分析 git diff 生成描述性提交消息。当用户要求帮助编写提交消息或审查暂存更改时使用。
 ```
 
-反过来，下面这些写法就不太合适了：
+只写概念、范围过宽或缺少触发条件的 `description`，例如：
 
 ```yaml
 # Superpowers 的 TDD 反例，只写概念，不写触发时机
@@ -218,29 +196,19 @@ description: 生成提交消息。
 
 ### 正文
 
-正文是 Agent 真正要读的“操作手册”。
+正文是 Agent 命中 Skill 后才会读取的操作说明。启动阶段通常只有 `name` 和 `description` 参与路由；正文加载后，会与系统提示、用户请求和已有资料共用上下文空间。
 
-这里有个容易被忽略的点：Skill 不是一上来就把全部内容塞进上下文。通常启动时先加载的是元数据，也就是 `name` 和 `description`；只有模型判断这个 Skill 和当前任务相关时，才会继续读取 `SKILL.md` 正文。这个设计本身就是为了省上下文。
-
-但这不代表正文可以随便写。一旦 `SKILL.md` 被加载进来，里面的每一个 token 都会和系统提示、对话历史、用户请求、其他上下文一起竞争注意力。
-
-所以写正文之前，先想清楚一件事：
-
-**上下文窗口是公共资源。不是塞得越多，Agent 表现就越好。上下文越长，模型需要在更多信息里找关键线索，真正重要的规则反而可能被冲淡。**
+因此，正文只保留任务执行时需要的默认方案、项目约定、输入输出和失败处理。规则藏在大段科普里，Agent 需要时反而更难找到。
 
 ![上下文为什么会失效](https://oss.javaguide.cn/github/javaguide/ai/context-engineering/why-does-the-following-content-fail.png)
 
-不要把 Skill 写成科普文，也不要把它写成 README。正文只放 Agent 执行任务时真正需要的信息。
-
-每写一段，都可以问自己三个问题：
+筛正文时可以依次确认：
 
 - Agent 真的需要这段解释吗？
 - 这是项目里的私有知识，还是通用常识？
 - 这段话值不值得占用上下文？
 
-举个例子。
-
-好的写法：
+处理 PDF 文本时，正文直接给默认库和调用方式：
 
 ````markdown
 ## 提取 PDF 文本
@@ -254,7 +222,7 @@ with pdfplumber.open("file.pdf") as pdf:
 ```
 ````
 
-不太好的写法：
+从 PDF 定义和工具罗列开始的正文，对 Agent 的下一步没有帮助：
 
 ```markdown
 ## 提取 PDF 文本
@@ -266,41 +234,31 @@ PDF（便携式文档格式）是一种常见文件格式，通常包含文本�
 首先，你需要使用 pip 安装它，然后再编写下面的代码……
 ```
 
-第二种写法看着更完整，但其实都是废话和误导信息，对 Agent 来说没什么价值。Agent 压根不需要你解释 PDF 是什么，也不需要你介绍一圈常见库。它真正需要的是：**默认用什么、怎么调用、输出怎么处理、遇到特殊情况怎么办**。
-
-Skill 正文里最值钱的内容，往往不是概念解释，而是踩坑清单。
-
-比如：
+Agent 需要的是默认使用什么、如何调用、输出如何处理，以及遇到特殊情况时怎么分支。项目里那些无法从通用知识推断出来的约束尤其要写清楚，例如：
 
 ```markdown
 users 表使用软删除。所有正式查询都必须加 `WHERE deleted_at IS NULL`。
 ```
 
-这种信息 Agent 猜不到，必须写。
-
-但下面这种就没必要：
+这条约束会直接改变查询结果；软删除的通用定义无需放进 Skill：
 
 ```markdown
 软删除是一种常见的数据删除方式，通常不会真正删除数据库记录，而是通过字段标记记录状态。
 ```
 
-这就是通用常识，放进正文里只会占上下文。
-
-正文还有一个很实用的原则：**主文件别太长。**
-
-Anthropic 的建议是，`SKILL.md` 正文最好控制在 500 行以内；如果超过这个长度，就把细节拆到单独文件里，通过渐进式披露的方式让 Agent 按需读取。
+主文件过长时，把只在特定步骤才用到的内容拆到单独文件。Anthropic 建议将 `SKILL.md` 正文尽量控制在 500 行以内，通过渐进式披露按需读取细节。
 
 ![SKILL.md 正文最好控制在 500 行以内](https://oss.javaguide.cn/github/javaguide/ai/skills/keep-skill-md-content-under-500-lines-for-best-performance.png)
 
-比如 Code Review Skill 不一定要把所有 SOLID 检查项都塞进主文件。主文件只需要写：
+例如，Code Review Skill 的主文件只需指出何时读取 SOLID 检查项：
 
 ```markdown
 需要做 SOLID 设计检查时，读取 `references/solid-checklist.md`。
 ```
 
-具体 checklist 放到 `references/solid-checklist.md` 里。这样 Agent 只有在真的需要做设计检查时，才会把这部分内容读进来。
+`references/solid-checklist.md` 保存具体 checklist；任务不涉及设计检查时，Agent 不必读取它。
 
-可以参考几个开源 Skill 集合：
+这些开源 Skill 集合展示了主文件与参考资料的拆分方式：
 
 - [Superpowers](https://github.com/obra/superpowers)：包含 TDD、brainstorming、代码审查等 Skill，TDD 那个结构很清楚，适合看正文怎么组织。
 - [sanyuan-skills](https://github.com/sanyuan0704/sanyuan-skills)：Code Review Expert 把更细的检查项拆进 `references/`，主文件只保留触发和加载说明，适合作为渐进式披露的例子。
@@ -310,23 +268,15 @@ Anthropic 的建议是，`SKILL.md` 正文最好控制在 500 行以内；如果
 
 ![Superpowers 内置的 skills](https://oss.javaguide.cn/github/javaguide/ai/skills/superpowers-skills.png)
 
-在 Claude Code 这类工具里，Skill 不一定非要你手动点。你可以用 `/skill-name` 主动调用，也可以让 Claude 根据当前任务自己判断要不要用。
-
-传统插件更像“我点一下，你执行一下”；Skills 更像一包提前整理好的经验。模型先看描述，觉得当前任务对得上，再去读里面的流程、约束、脚本和参考文件。
+在 Claude Code 这类工具中，可以用 `/skill-name` 主动调用，也可以让模型根据任务选择；触发后再读取流程、约束、脚本和参考文件。
 
 ## 自由度怎么把控？
 
-写 Skill 时还有个问题很容易被忽略：**你到底要让 Agent 自己发挥到什么程度？**
+数据库迁移和生产部署要在 Skill 中固定命令、参数、校验与回滚条件；这类操作出错后往往要恢复数据或服务状态。
 
-这个没有固定答案，得看任务风险。
+代码审查和技术方案评估需要结合变更内容判断。Skill 固定安全、性能、可维护性和项目约定这些检查维度即可，无需为每个文件指定顺序。
 
-可以简单这么理解：如果任务出错代价很高，就别给太多自由度；如果任务本身需要判断和取舍，就别把步骤写死。
-
-比如数据库迁移、生产部署这类任务，就不适合让 Agent 自由发挥。你不能写一句“请根据情况迁移数据库”，然后指望它自己判断要不要备份、要不要校验、要不要回滚。这个场景就应该写清楚命令、参数、顺序，最好还要明确一句：不要改命令。
-
-但像代码审查、技术方案评估这种任务，情况就不一样了。它本来就需要结合上下文判断，强行写死每一步，反而会让 Agent 变笨。你可以给检查维度，比如安全、性能、可维护性、项目约定，但具体看哪里、怎么判断，要留一点空间。
-
-大概可以分成三类：
+下表按任务风险划分自由度：
 
 | **自由度** | **适合场景**                 | **写法**               |
 | ---------- | ---------------------------- | ---------------------- |
@@ -334,27 +284,19 @@ Anthropic 的建议是，`SKILL.md` 正文最好控制在 500 行以内；如果
 | 中         | 有固定模板，但允许按场景调整 | 给模板、参数和边界     |
 | 低         | 操作脆弱，出错代价高         | 给精确命令，明确不能改 |
 
-举个例子，Superpowers 的 TDD Skill 其实就是“局部低自由度”。
-
-它的 Iron Law 写得很硬：
+Superpowers 的 TDD Skill 固定了流程顺序：
 
 ```text
 NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST
 ```
 
-这条规则没什么商量空间。红、绿、重构的顺序也不能乱。你不能跳过失败测试直接写实现，也不能先写完代码再回来补测试。它甚至写了：
+Red、Green、Refactor 不能调换；实现前必须先看到预期的失败。该 Skill 还写明：
 
 ```text
 Write code before the test? Delete it. Start over.
 ```
 
-这就是低自由度：**流程不能变，红线不能碰。**
-
-但它也不是所有地方都写死。具体测哪个行为、测试名怎么写、断言怎么设计，这些还是要根据当前功能判断。所以更准确地说，它是“流程低自由度，具体测试高自由度”。
-
-再看 sanyuan-skills 的 Code Review Expert，它会给一些固定审查维度，比如 SOLID、安全风险、性能问题、可维护性。但代码审查本身很难完全模板化，因为不同项目的问题不一样。
-
-所以它更像是：**检查框架固定，具体判断留给 Agent。**
+测试对象、名称和断言则由当前功能决定。Code Review 的检查框架也可以固定为 SOLID、安全风险、性能和可维护性，具体问题仍由 Agent 根据 diff 判断。
 
 低自由度的写法可以这样：
 
@@ -372,9 +314,7 @@ python scripts/migrate.py --verify --backup
 如果命令失败，停止执行，并把错误输出返回给用户。
 ````
 
-这种场景里，重点是稳定，不是灵活。
-
-高自由度的写法可以这样：
+代码审查这类任务可以只给检查范围：
 
 ```markdown
 ## 代码审查
@@ -390,11 +330,7 @@ python scripts/migrate.py --verify --backup
 输出时优先写会影响正确性和线上稳定性的问题，不要只做格式建议。
 ```
 
-这种写法没有规定 Agent 必须按哪个文件、哪一行、哪个顺序检查，但给了它判断方向，也限制了输出重点。
-
-我自己的建议是：**凡是会改数据、发请求、部署、迁移、删除文件的任务，自由度都要收紧；凡是分析、评审、总结、生成草稿类任务，可以适当放开。**
-
-Skill 不是越详细越好，也不是越自由越好。关键是看这个任务“错一步”的代价有多高。代价高，就把路铺窄一点；代价低、判断空间大，就别把 Agent 绑得太死。
+这里没有指定文件顺序，但限定了审查范围和输出重点。改数据、发请求、部署、迁移或删除文件时收紧自由度；分析、评审、总结和生成草稿保留判断空间。
 
 ## ⭐️延迟加载与渐进式披露
 
@@ -444,7 +380,7 @@ Agent 的上下文窗口是有限的，至少现在还是这样。
 **API 参考**：所有方法请参阅 [REFERENCE.md](REFERENCE.md)
 ```
 
-Agent 只有在真的要处理表单时，才会去读 `FORMS.md`。如果当前任务只是普通文本提取，这个文件就不用进上下文。
+任务命中表单填充时，Agent 才读取 `FORMS.md`；普通文本提取无需加载该文件。
 
 ### 实际项目中怎么组织文件？
 
@@ -460,7 +396,7 @@ bigquery-analysis/
     └── marketing.md      # 活动、归因、电子邮件
 ```
 
-主文件不要把所有数据口径都写进去，只做导航：
+主文件只列出可用数据集和对应资料，数据口径留在各自的参考文件中：
 
 ```markdown
 # BigQuery 数据分析
@@ -476,15 +412,15 @@ bigquery-analysis/
 **营销**：活动、归因、电子邮件 → 参阅 [reference/marketing.md](reference/marketing.md)
 ```
 
-用户问“上个季度的销售管道怎么样”，Agent 读完 `SKILL.md` 后，只需要打开 `reference/sales.md`。财务、产品、营销这几份文件不用读，也就不会占上下文。
+用户问“上个季度的销售管道怎么样”时，Agent 只需打开 `reference/sales.md`；财务、产品和营销资料无需加载。
 
-不要写成这样：
+必需规则经过多层引用后，Agent 很难直接定位：
 
 ```markdown
 SKILL.md → advanced.md → details.md → 最关键的规则藏在这里
 ```
 
-更稳的写法是一级引用：
+把基本用法和下一层资料都列在主文件里：
 
 ```markdown
 SKILL.md
@@ -493,9 +429,7 @@ SKILL.md
 └── API 参考 → reference.md
 ```
 
-也就是说，主文件里就把可用资料列出来，让 Agent 一步就能跳到目标文件。
-
-如果参考文件比较长，建议在文件顶部放一个简短目录。就算 Agent 只先扫了开头，也能知道这个文件里有哪些内容。
+Agent 读取主文件后即可定位资料。参考文件较长时，在文件开头列出目录，方便先确认可用内容。
 
 ## 工作流和反馈循环怎么设计？
 
@@ -551,13 +485,13 @@ After green only:
 Keep tests green. Don't add behavior.
 ```
 
-这里最关键的，其实不是 RED、GREEN、REFACTOR 这几个名字，而是中间的 **Verify RED**。
+**Verify RED** 规定：Agent 必须先看到预期的失败，再开始实现。
 
-它要求 Agent 必须先看到测试失败，而且失败原因要对。不是路径错了，不是语法错了，也不是测试本身写崩了，而是因为功能还没实现，所以失败。
+失败应由功能尚未实现引起，而非路径、语法或测试本身的错误。
 
 这一步如果不写清楚，Agent 很容易直接写实现，然后补一个“看起来能过”的测试。这就不是 TDD 了。
 
-它最后还放了一份验证清单：
+完成前的验证条件也写成清单：
 
 ```markdown
 ## Verification Checklist
@@ -572,21 +506,17 @@ Before marking work complete:
 - [ ] Output has no errors or warnings
 ```
 
-这类 checklist 很适合放在 Skill 里，防止 Agent 漏掉关键步骤。
-
-需要注意的是，每一个检查项你都得写成具体一点的动作，比如所有测试都要通过、每一个方法都要有测试。千万别写大空话，例如保证质量、遵循测试最佳实践，这样写 Agent 根本无法判定自己是否达到了对应的标准。
+清单中的每一项都应是可核验的动作，例如“所有测试通过”或“每个新方法都有测试”。“保证质量”“遵循测试最佳实践”这类要求没有判定标准，无法作为验证节点。
 
 ### 反馈循环
 
-复杂任务最好不要让 Agent 一次性跑到底，而是让它在中间节点停下来验证。
-
-更稳的写法是把循环写进 Skill：
+复杂任务需要把中间验证节点写进流程：
 
 ```text
 运行 → 验证 → 修复 → 再验证
 ```
 
-比如代码审查，如果只写“请全面审查代码”，Agent 很可能一上来就开始挑命名、格式、注释，反而漏掉更重要的架构问题。
+例如，代码审查若只要求“全面审查”，Agent 容易先处理命名、格式和注释，遗漏架构问题。
 
 可以把审查拆成两轮：
 
@@ -612,13 +542,11 @@ Before marking work complete:
    - 给出可以直接修改的建议
 ```
 
-这样写以后，Agent 的关注顺序会更稳定：先看大的设计问题，再看具体实现问题，最后再输出修改建议。
+这份流程先检查设计，再检查实现，最后输出修改建议。
 
 ### 条件分支
 
-一个 Skill 如果要处理多种情况，最好把分支写出来。别让 Agent 自己猜。
-
-比如文档处理，创建新文档和编辑现有文档就是两条完全不同的路：
+Skill 同时处理多种任务时，应列出判断条件和分支。创建文档与编辑已有文档的处理路径不同：
 
 ```markdown
 ## 文档修改工作流
@@ -647,9 +575,7 @@ Before marking work complete:
    - 完成后重新打包
 ```
 
-这类分支不要写得太隐晦。最好直接用“如果是 A，走 A 流程；如果是 B，走 B 流程”的形式。
-
-如果分支越来越多，也不要全塞进 `SKILL.md`。主文件只保留判断逻辑，然后把具体流程拆出去：
+分支多起来后，主文件保留判断逻辑，具体流程拆到单独文件：
 
 ```text
 workflows/
@@ -658,86 +584,75 @@ workflows/
 └── export-document.md
 ```
 
-这样主文件不会太长，Agent 也能根据当前任务去读对应文件。
-
-简单说，工作流解决的是“按什么顺序做”，反馈循环解决的是“做完怎么确认没跑偏”。这两块写清楚，Skill 才不容易变成一份看着很完整、执行时却经常跳步骤的说明书。
+任务命中哪个分支，Agent 就读取对应文件。流程规定执行顺序，反馈节点规定检查时机；缺少其中一项时，执行容易跳步。
 
 ## Skill 路由怎么做？
 
 ![Skill 路由流程](https://oss.javaguide.cn/github/javaguide/ai/skills/agent-skills-routing-flow.webp)
 
-当 Skill 只有三五个时，靠模型读 description 判断就够了。数量上来以后，路由就变成一个小型检索问题。
+用户提交“频繁 Full GC”时，路由器应选择 JVM 诊断 Skill，并排除数据库排查和文档处理 Skill。路由完成后，要得到可直接加载的 Skill 集合。
 
-Skill 路由和 RAG 都要“先检索，再把内容放进上下文”，但目标不一样。RAG 从大量知识里多召回几段，模型还能在生成时过滤噪声；Skill 路由面对的是数量有限、结构稳定的指令集，**最怕的是选错**——选错 Skill，后面的执行路径可能整条跑偏。
+Skill 只有三五个时，模型读取 `description` 通常足以完成选择。数量增加到几十个后，按“召回候选 → 重新排序 → 作出决策”的流程处理更稳定：
 
-几十个 Skill 的规模，用轻量方案就够了：
+| 阶段   | 输入与处理                                                                          | 输出                       |
+| ------ | ----------------------------------------------------------------------------------- | -------------------------- |
+| 粗召回 | 将请求与 Skill 的名称、`description`、典型 Query 样本向量化，按余弦相似度取 top-5。 | 少量候选 Skill             |
+| 精排   | 比较名称、描述、示例的命中情况；安全、数据库等高风险 Skill 使用更高阈值。           | 按相关性和风险排序的候选   |
+| 决策   | 最高分满足阈值则加载对应 Skill；分数整体偏低时不加载任何 Skill，走默认流程。        | 一个、多个或零个已选 Skill |
 
-1. **粗召回：** 把 Skill 的名称、description、典型 Query 样本向量化。用户请求进来后也向量化，按余弦相似度取 top-5。
-2. **精排：** 同时命中 title、description、examples 的优先级更高；高风险 Skill（安全类、数据库类）阈值高一点。
-3. **兜底：** 如果最高分都很低，不选任何 Skill，走默认流程。“不选”经常比“硬选一个”更安全。
+同一请求中包含互不依赖的任务时，先拆分任务再路由。例如“分析 GC 日志并改一份部署文档”至少涉及 JVM 诊断和文档编辑，不能用一个泛化 Skill 覆盖两条流程。
+
+对“频繁 Full GC”这类请求，粗召回可能得到 `jvm-metrics-analyzer`、链路追踪和 K8s 事件查看三个候选；精排检查“Full GC”“堆栈”等示例后，JVM 诊断 Skill 排在首位。若请求只写“帮我处理一下”，没有足够的语义线索，路由器应保留默认流程，而不是猜测用户要做数据库迁移或生产操作。
 
 ![Skill 路由流程](https://oss.javaguide.cn/github/javaguide/ai/skills/skills-router.svg)
 
-**冷启动问题**容易被忽略：新 Skill 没有历史 Query，description 又写得太虚，向量匹配就会飘。补救方法是在元数据里加 triggers 字段：
+新 Skill 没有历史 Query 时，`description` 过于抽象会拉低召回质量。[Agent Skills 规范](https://agentskills.io/specification)没有规定通用的 `triggers` frontmatter 字段，各宿主也不保证读取自定义字段。自行维护调度器时，把典型 Query 放进独立的路由索引：
 
 ```yaml
-name: jvm-runtime-diagnosis
-description: Diagnose Spring Boot production runtime issues including OOM,
-  Full GC, high CPU, slow APIs, and thread deadlocks.
-triggers:
+skill: jvm-runtime-diagnosis
+examples:
   - "接口卡死了"
   - "频繁 Full GC"
   - "帮我看看这段 Java 堆栈"
   - "服务 OOM 了怎么排查"
 ```
 
-这些触发词会被一起向量化，相当于给冷启动的 Skill 喂了一批训练样本。
+自定义路由器将 `examples` 与 Skill 的 `name`、`description` 一起向量化。使用第三方宿主时，只使用它明确支持的字段；不要把这份路由索引写进所有 `SKILL.md`，更不要假设每个宿主都会读取它。
 
-高并发场景下别过度设计，几十个 Skill 用 NumPy 在内存里算相似度就够快，真正慢的通常是外部 embedding API。先做 Query 向量缓存，收益比一上来引入 FAISS 更实在。等 Skill 数量到几百上千，再考虑 ANN 索引或专门的向量数据库。
+几十个 Skill 用 NumPy 在内存中计算相似度即可，耗时通常来自外部 embedding API。先缓存 Query 向量；数量增长到数百或数千后，再评估 ANN 索引或向量数据库。
 
-如果要抽成一个通用调度器，建议拆成四块：注册中心维护元信息和向量，路由引擎负责召回与打分，加载器按需读取正文，上下文装配器决定最终拼到哪里。路由和加载最好解耦，这样改正文不会影响召回性能，换存储也不会动路由策略。
+通用调度器可拆成四个部分：
 
-## ⭐️总结下写 Skill 时最容易踩的坑
+| 部分         | 职责                                         |
+| ------------ | -------------------------------------------- |
+| 注册中心     | 保存 Skill 元数据、路由索引和向量。          |
+| 路由引擎     | 召回候选、计算分数并应用阈值。               |
+| 加载器       | 按路由结果读取 `SKILL.md` 与必要的参考资料。 |
+| 上下文装配器 | 将已加载的内容放入对应任务的上下文。         |
+
+路由引擎不负责读取 Skill 正文，加载器也不参与打分。这样更新正文不会改变召回结果，更换向量存储也无需改动加载逻辑。
+
+## 写 Skill 时容易踩的坑
 
 ### 把 Skill 当项目 README 写
 
-README 是写给人看的，需要你写清楚项目背景、安装启动、特点等内容。Skill 不一样，它主要是写给 Agent 看的，重点在于可执行性。
-
-一个好用的 Skill，至少要说清楚几件事：**什么时候用、按什么顺序做、哪些情况别做、失败了怎么兜底。**
+README 记录项目背景、安装和功能，读者可以自行判断下一步。Agent 执行任务时需要的是可操作的边界：何时使用、按什么顺序执行、哪些情况停止以及失败后如何处理。
 
 ![SKILL.md 正文最好控制在 500 行以内](https://oss.javaguide.cn/github/javaguide/ai/skills/keep-skill-md-content-under-500-lines-for-best-performance.png)
 
 ### 想把一个 Skill 写得太全
 
-很多朋友第一次写 Skill，都会想做一个“万能助手”。
-
-代码审查也能干，数据库排查也能干，线上故障也能干，性能优化也能干，文档生成也能干。
-
-听起来确实挺全能的。但真用起来，往往没那么好。
-
-比如你写了一个“系统故障排查器”，里面塞了 JVM、数据库、K8s、网关、消息队列等一堆内容。用户贴一段 GC 日志，Agent 要先想：这是 JVM 问题，还是容器资源问题？用户给了一个 TraceId，它又要判断：先查链路，还是先看网关日志？用户说 Pod 一直重启，它还得从一堆数据库、MQ、网关规则里绕出来。
-
-Skill 太大，Agent 会纠结它到底该用哪一部分，并不是直接上来就解决问题。
-
-更好的做法是拆小一点：
+把 JVM、数据库、K8s、网关和消息队列都放进一个“系统故障排查器”后，用户贴 GC 日志时，Agent 仍要在容器资源、网关日志和 JVM 规则间选择。按问题边界拆分后，输入能直接落到对应资料：
 
 - `jvm-metrics-analyzer`：只看 JVM 指标、GC、线程栈
 - `distributed-trace-finder`：只根据 TraceId 追链路耗时
 - `k8s-pod-event-viewer`：只看 Pod 状态、重启原因和事件记录
 
-这样就清楚多了。
-
-用户贴 GC 日志，就走 JVM；给 TraceId，就走链路追踪；Pod 一直重启，就走 K8s。每个 Skill 只管一类问题，Agent 不用在一份巨大的说明书里翻来翻去。
-
-所以，Skill 不怕小，怕的是边界不清楚。别老想着“我这个 Skill 什么都能干”，不如先把一个具体问题解决稳定。
+GC 日志进入 JVM 指标 Skill，TraceId 进入链路追踪 Skill，Pod 重启进入 K8s 事件 Skill。每个 Skill 只维护一类问题所需的规则和资料。
 
 ### 给 Agent 太多选择
 
-不要把一堆方案扔给 Agent，让它现场选。
-
-人看文档时，看到 pypdf、pdfplumber、PyMuPDF、pdf2image，可能会根据经验选一个。但 Agent 不一定。你给它四个选择，它可能每次选得都不一样，甚至在一个很普通的 PDF 上也绕去用 OCR。
-
-比如这种写法就不太好：
+只罗列 pypdf、pdfplumber、PyMuPDF、pdf2image，Agent 无法判断普通 PDF 与扫描版 PDF 分别该走哪条路径，可能在文本 PDF 上误用 OCR：
 
 ```markdown
 # ✗ 不推荐：选择太多
@@ -745,7 +660,7 @@ Skill 太大，Agent 会纠结它到底该用哪一部分，并不是直接上�
 你可以使用 pypdf、pdfplumber、PyMuPDF 或 pdf2image 处理 PDF。
 ```
 
-更好的写法是：先给默认方案，再给例外情况。
+默认路径与例外条件应一起写出：
 
 ```markdown
 # ✓ 推荐：默认方案 + 兜底方案
@@ -754,40 +669,34 @@ Skill 太大，Agent 会纠结它到底该用哪一部分，并不是直接上�
 如果是扫描版 PDF，需要 OCR，再改用 pdf2image + pytesseract。
 ```
 
-Skill 里不要每一步都让 Agent 做技术选型。大部分时候，你直接告诉它“正常情况走哪条路，什么情况再换方案”就够了。
+Skill 应给出正常条件下的默认选择，并明确切换条件。
 
 ### 术语别来回换
 
-同一个概念，在一个 Skill 里尽量只用一个名字，例如你前面用到了 API 端点，后面就不要再写成 URL、API 路由或路径了。
-这个问题看起来很小，但真会影响 Agent 执行。
-
-人能看出来“URL”“路径”“API 路由”大概是在说同一类东西，Agent 有时候也能看出来，但不一定每次都稳定。尤其是 Skill 里还有判断条件时，术语一混，规则就容易飘。
-
-所以别追求文采，也别怕重复。Skill 不是作文，同一个概念反复用同一个词，反而是好事。
+同一对象在一份 Skill 中应保持同一个名称。例如前文使用“API 端点”后，后文不再改写为 URL、API 路由或路径。判断条件引用术语时，名称不一致会制造歧义。
 
 ### 让 LLM 做确定性工作
 
-格式转换、精确计算、批量文件处理、会改数据的操作，能交给脚本就交给脚本。
+格式转换、精确计算、批量文件处理和改数据的操作交给脚本执行：
 
 - LLM 更适合做判断：读懂任务、提取参数、决定下一步、解释结果。
 - 脚本更适合做执行：解析文件、转换格式、批量处理、校验输出。
 
-比如文件处理，就不要让 Agent 自己猜异常原因。能在脚本里处理的，就在脚本里写清楚：
+读取必需输入文件时，脚本应返回明确错误，而不是创建空文件掩盖输入缺失：
 
 ```python
 # ✓ 推荐：错误条件写清楚
 def process_file(path):
     try:
-        with open(path) as f:
+        with open(path, encoding="utf-8") as f:
             return f.read()
-    except FileNotFoundError:
-        print(f"未找到文件 {path}，正在创建默认文件")
-        with open(path, "w") as f:
-            f.write("")
-        return ""
+    except FileNotFoundError as exc:
+        raise FileNotFoundError(
+            f"必需输入文件不存在：{path}。请检查路径或先生成该文件。"
+        ) from exc
 ```
 
-下面这种就不太行：
+下列写法只保留底层异常，Agent 无法据此判断该检查路径还是生成缺失文件：
 
 ```python
 # ✗ 不推荐：直接崩，Agent 只能猜原因
@@ -795,7 +704,7 @@ def process_file(path):
     return open(path).read()
 ```
 
-配置参数也尽量自解释，不要留一堆魔法数字：
+配置参数应说明取值的约束：
 
 ```markdown
 # ✓ 推荐：能看出为什么这样配
@@ -806,27 +715,9 @@ MAX_RETRIES = 3 # 三次重试在可靠性和耗时之间比较均衡
 
 ## 总结
 
-别把 Prompt、Function Calling、MCP、Skills 混成一回事。
+回到开头的代码审查场景：Prompt 承载这次审查请求，Function Calling 发起工具调用，MCP 连接文件、数据库或 GitHub 等外部能力，Skill 保存审查的流程与约束。
 
-简单说，**Prompt** 是用户这次要做什么；**Function Calling** 是模型怎么发起工具调用；**MCP** 是把文件、数据库、GitHub 这类外部能力接进来；**Skills** 则是把一类任务的流程、规则和经验沉淀下来，让 Agent 需要时再读。
-
-写 Skill 时重点记住几点：
-
-第一，`description` 要写准。它决定 Agent 什么时候会想到这个 Skill。别写“帮助处理文档”这种空话，要写清楚“做什么 + 什么时候用”。
-
-第二，正文别写成 README。Agent 不需要科普，真正值钱的是项目里的特殊约定、执行步骤、失败处理和踩坑提醒。
-
-第三，主文件别太长。`SKILL.md` 放主流程，细节拆到 `references/`、`scripts/` 里按需读取。
-
-第四，不同任务给不同自由度。迁移、部署、删文件这类高风险操作要写死步骤；代码审查、方案评估这类任务可以给方向，让 Agent 自己判断。
-
-第五，复杂任务要有验证点。别让 Agent 一路跑到底就说完成了，该跑测试、该检查输出、该失败重试，都要写进流程里。
-
-第六，写第一个 Skill 时，先看官方 `skill-creator`。它比普通模板更有价值，因为它会逼你先想清楚触发条件、任务边界和文件拆分。
-
-最后，第三方 Skill 不要直接拿来就用。`SKILL.md` 也是指令，里面可能夹带不安全操作。企业里至少要审一遍正文、脚本和参考文件。
-
-一个好 Skill，是一份能让 Agent 稳定干活的工作手册。
+`description` 要同时标出任务和触发场景，正文则放项目约定、执行步骤、失败处理和验证点。主文件保留主流程，细节拆到 `references/`、`scripts/`；迁移、部署、删文件等操作必须收紧步骤，审查和方案评估保留必要的判断空间。
 
 ## 参考
 

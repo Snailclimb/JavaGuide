@@ -558,7 +558,7 @@ flowchart TB
 
 生成侧需处理证据不足时的拒答与关键结论引用。灰度期间按版本记录指标，持续收集失败样本。每一轮只改变少量变量，同时记录解析器、Chunk、Embedding、索引、Query Rewrite、Rerank 和 Prompt 的版本；回归集验证的离线收益还需要在灰度流量中继续观察。
 
-## 要点回顾
+## 总结
 
 一次调优回放从解析和 Metadata 产生的可检索内容开始，经由 Chunk、Hybrid Search、Query Rewrite、Rerank 和上下文编排，最后检查模型实际读取的证据与答案。固定评估集和版本记录让每一环的改动都能被重复比较。
 

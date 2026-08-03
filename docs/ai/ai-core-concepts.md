@@ -28,7 +28,7 @@ head:
 
 ### LLM
 
-当你在输入法里打“今天天气真”，它会自动建议“好”——大模型做的事情本质上一样。只不过它看的不是前面几个字，而是前面几千甚至几十万个字。每次只“补”一个 Token（文本碎片），然后把这个碎片加进上下文，再预测下一个，如此循环，直到生成完整回答。
+当你在输入法里打“今天天气真”，它会自动建议“好”。自回归大模型也会根据已有上下文预测下一个 Token（文本碎片），把新 Token 加进上下文后继续预测，直到生成结束。
 
 这个过程叫做**自回归生成（Autoregressive Generation）**。
 
@@ -106,15 +106,15 @@ Token 不是“一个字”或“一个词”的严格等价物：
 | 糟糕       | 0.5               |
 | 紫色       | -8.0              |
 
-但原始分数不是概率——需要经过一次数学变换（**softmax**）才能变成每个候选被选中的概率。变换后大致是：
+原始分数不是概率，需要经过 **softmax** 才能得到概率分布。假设候选集合只有表中的五项，计算结果约为：
 
-| 候选 Token | 概率 |
-| ---------- | ---- |
-| 好         | 62%  |
-| 不错       | 20%  |
-| 棒         | 10%  |
-| 糟糕       | 5%   |
-| 紫色       | ≈ 0% |
+| 候选 Token | 概率     |
+| ---------- | -------- |
+| 好         | 81.21%   |
+| 不错       | 13.42%   |
+| 棒         | 4.47%    |
+| 糟糕       | 0.90%    |
+| 紫色       | < 0.001% |
 
 最后，模型按这个概率分布“抽签”（采样），决定输出哪个 Token。
 
@@ -223,7 +223,7 @@ Function Calling 这个名字很容易误导新人。很多人以为“模型调
 - [AI Agent 记忆系统：短期记忆、长期记忆与记忆演化机制](./agent/agent-memory.md)
 - [什么是 Model Context Protocol (MCP)？和 Function Calling、Agent 什么关系？](./agent/mcp.md)
 - [Agent Skills 是什么？和 Prompt、MCP 到底差在哪？](./agent/skills.md)
-- [一文搞懂 Harness Engineering：六层架构、上下文管理与一线团队实战](./agent/harness-engineering.md)
+- [Harness Engineering：六层检查框架、上下文管理与工程实践](./agent/harness-engineering.md)
 - [Loop Engineering 是什么？为什么说它是新瓶装旧酒？](./agent/loop-engineering.md)
 
 ### 什么是 Agent？
@@ -240,9 +240,9 @@ AI Agent 可以理解为一个能感知环境、做决策、执行动作的软�
 
 **推理与规划（Reasoning / Planning）**：用 LLM 分析当前任务状态，拆目标，决定下一步怎么做。Chain-of-Thought（CoT）提示技术可以让模型逐步推理，减少直接拍脑袋给答案的概率。
 
-记忆分两层。短期记忆通常是上下文历史，用来保持对话连续性；长期记忆一般是外部知识库，比如向量数据库或知识图谱。短期记忆解决”刚才说过什么”，长期记忆解决”过去积累了什么”。
+记忆分两层。短期记忆通常是上下文历史，用来保持对话连续性；长期记忆一般是外部知识库，比如向量数据库或知识图谱。短期记忆解决“刚才说过什么”，长期记忆解决“过去积累了什么”。
 
-**Tools（工具）**：让 LLM 能真正操作外部世界，比如查数据、调 API、读文件、执行代码。没有工具，Agent 很多时候只能停留在”建议你怎么做”。
+**Tools（工具）**：让 LLM 能真正操作外部世界，比如查数据、调 API、读文件、执行代码。没有工具，Agent 很多时候只能停留在“建议你怎么做”。
 
 工具执行后会返回结果，Agent 把这些结果放回上下文，再进入下一轮推理。这个反馈闭环就是 Observation（观察），也是 Agent Loop 能转起来的关键。
 
@@ -323,7 +323,7 @@ AI 工作流的数据结构是有向图（Graph），三个元素：Node（节�
 
 ### Context Engineering
 
-很多时候， Agent 做不好，不是模型能力太多，而是上下文太乱。
+很多时候，Agent 做不好并非模型能力不足，而是上下文太乱。
 
 Context Engineering 做的事情，就是在有限 Token 窗口里，把最有用的信息喂给模型，把噪声挡在外面。它很容易和 Prompt Engineering 混在一起。
 
@@ -351,7 +351,7 @@ Prompt Engineering 更偏提示词怎么写，Context Engineering 管得更宽�
 
 长期记忆和 RAG 技术上很像，都会用向量库和语义检索。但它们服务的对象不一样。
 
-RAG 挂载的是共享知识源，比如公司规章、产品文档、实时数据库查询结果。这些内容和“谁在使用”没有强绑定，对不同用户通常返回同一套知识库内容。RAG 的核心特征是非个性化，而不是一定静态，实时数据库查询结果也可以接入 RAG。
+RAG 挂载的是可检索知识源，比如公司规章、产品文档、实时数据库查询结果。它既可以服务共享知识库，也可以根据用户、租户、角色和会话执行权限过滤或个性化检索。RAG 与长期记忆的主要区别在数据来源和生命周期：前者检索外部知识，后者保存交互中形成、需要跨会话复用的信息。
 
 长期记忆管理的是 Agent 与特定用户交互中动态沉淀的个性化经验，比如用户偏好、习惯、历史决策、专属背景。它高度个性化，因人而异。
 
@@ -463,11 +463,11 @@ ReAct 也是这个思路：Reasoning 和 Acting 交替进行，模型走一步�
 
 相关原文：
 
-- [万字详解 RAG 基础概念](./rag/rag-basis.md)
-- [万字详解 RAG 向量索引算法和向量数据库](./rag/rag-vector-store.md)
+- [RAG 基础概念：检索、生成与工程取舍](./rag/rag-basis.md)
+- [RAG 向量索引算法和向量数据库](./rag/rag-vector-store.md)
 - [RAG 文档处理与切分策略：从解析、清洗、Chunking 到多模态内容处理](./rag/rag-document-processing.md)
-- [万字详解 RAG 优化：从召回、重排到上下文工程的系统调优](./rag/rag-optimization.md)
-- [万字详解 GraphRAG：为什么只靠向量检索撑不起复杂知识问答](./rag/graphrag.md)
+- [RAG 优化：从召回、重排到上下文工程](./rag/rag-optimization.md)
+- [GraphRAG：用图结构补充向量检索](./rag/graphrag.md)
 
 ### 什么是 RAG？
 
@@ -520,7 +520,7 @@ Embedding 就是把文本变成一串数字。更准确地说，它会把文本�
 
 ![Embedding：把文本映射到语义空间](https://oss.javaguide.cn/github/javaguide/ai/rag/rag-2-embedding-map-text-to-semantic-space.png)
 
-Embedding 维度通常是 768、1024、1536、3072 等。维度越高，能表达的信息越丰富，但存储、索引和相似度计算成本也越高。以 OpenAI Embedding 为例，`text-embedding-3-small` 默认输出 1536 维，`text-embedding-3-large` 默认输出 3072 维，并支持通过 `dimensions` 参数降低输出维度。
+Embedding 维度常见的有 768、1024、1536、3072 等。维度是模型设计和训练方式的一部分，不能脱离模型直接得出“维度越高，语义效果越好”的结论；较高维度通常会增加存储、索引和相似度计算成本。以 OpenAI Embedding 为例，`text-embedding-3-small` 默认输出 1536 维，`text-embedding-3-large` 默认输出 3072 维，并支持通过 `dimensions` 参数降低输出维度。
 
 ### 向量检索与向量数据库
 
@@ -537,7 +537,7 @@ RAG 的检索流程里，最基础的一步是：把用户问题和文档都变�
 
 ![Embedding 和向量检索是什么关系？](https://oss.javaguide.cn/github/javaguide/ai/rag/rag-embedding-vector-retrieval.png)
 
-简单说，Embedding 负责把文本变成可比较的向量，向量检索负责找到语义上最接近的内容。没有 Embedding，就没有语义向量；没有向量检索，RAG 就只能退回关键词搜索。
+Embedding 负责把文本变成可比较的向量，向量检索据此查找语义接近的内容。向量检索只是 RAG 的一种实现；RAG 还可以使用 BM25、SQL、知识图谱、搜索 API 或其他业务查询来取得外部证据。
 
 在小规模 Demo 里，几千条文档向量可以直接放在内存里暴力搜索。但真实 RAG 系统里，文档量很快会到百万级、千万级，甚至更大。
 
@@ -571,11 +571,11 @@ RAG 的检索流程里，最基础的一步是：把用户问题和文档都变�
 
 ![如何选择合适的切分策略？](https://oss.javaguide.cn/github/javaguide/ai/rag/rag-document-processing-chunking-strategy.png)
 
-如果你的文档本身有清晰的结构，按结构切反而是最靠谱的。NVIDIA 做过一组测试，Page-Level Chunking（按页面切分）在金融报告和法律文档上表现最好，平均准确率达到 0.648，方差也最低。道理很简单：当页面边界本身就是文档作者设定的语义边界时，不要强行拆散它。
+如果文档本身有清晰结构，按结构切通常更合适。NVIDIA 的一组测试中，Page-Level Chunking（按页面切分）在金融报告和法律文档上表现最好，平均准确率为 0.648，方差也最低。页面边界在这类材料中经常承载章节或版式语义，切分时应尽量保留。
 
 不过别盲目迷信页面级切分。这个优势相对于 Token 切分其实只有 0.3-4.5 个百分点，而且在 FinanceBench 数据集上，1024-token 切分反而比页面级更优（0.579 vs 0.566）。NVIDIA 测试的文档类型（金融报告、法律文档）是分页本身就携带语义的场景——如果你的 PDF 是 Word 随便导出的那种，页面级切分不会带来额外收益。另外，查询类型也影响最优策略：事实型查询适合 256-512 Token 的小块，分析型查询适合 1024+ Token 或页面级切分。
 
-不同文档类型对应的推荐切分方式，小 G 整理了一张表供参考：
+不同文档类型可以先从下面的切分方式开始评测：
 
 | 文档类型 | 推荐切分方式                  | 实现工具                          |
 | -------- | ----------------------------- | --------------------------------- |
@@ -674,11 +674,11 @@ Rerank 通常使用 Cross-Encoder 或专用重排模型，把 query 和候选文
 
 ![什么是 GraphRAG？](https://oss.javaguide.cn/github/javaguide/ai/rag/graphrag-simplified-architecture-diagram.png)
 
-GraphRAG（Graph-based Retrieval-Augmented Generation）可以理解为：**在传统向量检索之外引入知识图谱，把文档中的实体、关系和结构化上下文显式建模。检索时除了召回相似片段，还会沿着图关系收集证据，再交给大模型生成答案。**
+GraphRAG（Graph-based Retrieval-Augmented Generation）是一类把图结构用于检索增强的方案。系统可以把文档中的实体、关系和结构化上下文显式建模，查询时沿图关系收集证据，再交给大模型生成答案。
 
 注意，GraphRAG 的重点不是“用了图数据库”，而是**检索对象变了**。
 
-传统向量 RAG 检索的是 Chunk，也就是一个个文本片段。GraphRAG 检索的是一张“知识关系网”里的节点、边、路径、社区摘要，再结合原始文本证据回答问题。
+传统向量 RAG 主要检索文本 Chunk。GraphRAG 可以检索节点、边、图路径和原始文本证据；社区摘要是 Microsoft GraphRAG 等实现采用的一种索引形式，并非所有 GraphRAG 系统都要求使用。
 
 打个比方：
 

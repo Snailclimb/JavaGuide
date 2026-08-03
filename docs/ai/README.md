@@ -31,18 +31,16 @@ head:
 
 如果时间有限，先看 [AI 应用开发面试指南](./interview-questions/ai-interview-guide.md)，把大模型、Agent、RAG、Skills、MCP 和 AI 系统设计里最容易被追问的问题过一遍；如果你还没确定学习顺序，或者正从后端开发转向 AI 应用开发，可以先看 [Java/Go 开发者 AI 应用开发与 Agent 学习路线（2026 最新版）](../roadmap/java-to-ai-roadmap.md) 和 [后端开发者转型 AI Agent 学习建议（2026 最新版）](../roadmap/backend-to-ai-agent-roadmap.md)；如果想补得扎实一些，再按下面的阅读顺序推进。
 
-这应该是当前最全面系统的讲解，每一篇都花费了大量时间完善和优化，每篇文章都画了大量配图辅助理解：
+专题内容按大模型基础、Agent、RAG 和系统设计组织，文章之间通过阅读顺序和相关链接串联：
 
 ![AIGuide 内容概览，大量配图](https://oss.javaguide.cn/github/aiguide/aiguide-overview.png)
 
-本专栏所属 AIGuide 项目，对标 JavaGuide 质量（免费开源，欢迎 Star 鼓励）：
+本专栏内容同时收录在开源 AIGuide 项目中：
 
 - **项目地址**：[https://github.com/Snailclimb/AIGuide](https://github.com/Snailclimb/AIGuide)
 - **在线阅读**：[https://javaguide.cn/ai-coding/](https://javaguide.cn/ai-coding/)
 
-发布之后，也是收到了很多读者朋友的好评和推荐。非常感谢，一定会持续用心维护！
-
-![AIGuide 收到了很多读者朋友的好评和推荐](https://oss.javaguide.cn/github/aiguide/ai-guide-received-many-positive-reviews-and-recommendations-from-readers.png)
+文章会随 API、框架和模型能力变化持续校订，涉及版本、价格和产品能力时请同时核对对应官方文档。
 
 ## 适合谁看
 
@@ -68,9 +66,9 @@ AI 应用一旦上线，稳定性、可观测、成本控制、质量回归这�
 
 1. [AI 核心概念总览](./ai-core-concepts.md)：先把 LLM、Token、Agent、RAG、MCP、Skills、ReAct 这些概念放到同一条链路里。
 2. [AI 应用开发面试指南](./interview-questions/ai-interview-guide.md)：建立高频问题清单，知道面试和项目复盘最常被追问哪些点。
-3. [万字拆解 LLM 运行机制](./llm-basis/llm-operation-mechanism.md)、[大模型 API 调用工程实践](./llm-basis/llm-api-engineering.md)：理解模型调用链路、上下文和结构化返回。
-4. [一文搞懂 AI Agent 核心概念](./agent/agent-basis.md)、[大模型提示词工程实践指南](./agent/prompt-engineering.md)、[上下文工程实战指南](./agent/context-engineering.md)：建立 Agent 和 Prompt/Context 的基础认知。
-5. [万字详解 RAG 基础概念](./rag/rag-basis.md)、[RAG 文档处理与切分策略](./rag/rag-document-processing.md)、[万字详解 RAG 检索优化](./rag/rag-optimization.md)：补齐企业知识库问答主线。
+3. [LLM 运行机制](./llm-basis/llm-operation-mechanism.md)、[大模型 API 调用工程实践](./llm-basis/llm-api-engineering.md)：理解模型调用链路、上下文和结构化返回。
+4. [AI Agent 核心概念](./agent/agent-basis.md)、[大模型提示词工程](./agent/prompt-engineering.md)、[上下文工程](./agent/context-engineering.md)：建立 Agent 和 Prompt/Context 的基础认知。
+5. [RAG 基础概念](./rag/rag-basis.md)、[RAG 文档处理与切分策略](./rag/rag-document-processing.md)、[RAG 检索优化](./rag/rag-optimization.md)：补齐企业知识库问答主线。
 6. [AI 应用系统设计](./system-design/ai-application-architecture.md)、[大模型网关详解](./system-design/llm-gateway.md)、[AI 应用评测体系](./llm-basis/llm-evaluation.md)：把 Demo 放进真实后端系统里，补齐网关、评测和治理。
 
 ## 核心文章
@@ -90,7 +88,7 @@ AI 应用一旦上线，稳定性、可观测、成本控制、质量回归这�
 ### 大模型基础
 
 - [大模型基础专题](./llm-basis/)：从模型运行机制、API 调用、结构化输出到 AI 应用评测，先把调用链路看明白。
-- [万字拆解 LLM 运行机制](./llm-basis/llm-operation-mechanism.md)：把 Token、上下文窗口、Temperature 等概念还原为清晰、可控的工程参数。
+- [LLM 运行机制：Token、上下文窗口与采样参数怎么影响输出](./llm-basis/llm-operation-mechanism.md)：把 Token、上下文窗口、Temperature 等概念还原为清晰、可控的工程参数。
 - [大模型 API 调用工程实践](./llm-basis/llm-api-engineering.md)：拆解 Prompt 组装、模型网关、流式响应、重试限流和结构化返回。
 - [大模型结构化输出详解](./llm-basis/structured-output-function-calling.md)：讲清 JSON Schema、Function Calling、Tool Calling 与 MCP 的底层链路。
 - [AI 应用评测体系](./llm-basis/llm-evaluation.md)：覆盖 Golden Set、LLM-as-Judge、RAG/Agent 指标、Trace 回放和线上灰度闭环。
@@ -98,24 +96,24 @@ AI 应用一旦上线，稳定性、可观测、成本控制、质量回归这�
 ### AI Agent
 
 - [AI Agent 专题](./agent/)：从 Agent 基础概念、Memory、Prompt、Context 到 MCP、Skills 和 Harness Engineering。
-- [一文搞懂 AI Agent 核心概念](./agent/agent-basis.md)：理解 Agent 和传统编程、Workflow 的区别，以及 Agent Loop、Tools 注册等核心概念。
+- [AI Agent 核心概念](./agent/agent-basis.md)：理解 Agent 和传统编程、Workflow 的区别，以及 Agent Loop、Tools 注册等核心概念。
 - [AI Agent 记忆系统](./agent/agent-memory.md)：深入理解短期记忆、长期记忆、记忆生命周期和生产级优化策略。
-- [大模型提示词工程实践指南](./agent/prompt-engineering.md)：掌握 Prompt 四要素、常见技巧和 Prompt 注入防护。
-- [上下文工程实战指南](./agent/context-engineering.md)：理解静态规则编排、动态信息挂载、Token 预算降级和上下文持久化。
+- [大模型提示词工程](./agent/prompt-engineering.md)：掌握 Prompt 四要素、常见技巧和 Prompt 注入防护。
+- [上下文工程](./agent/context-engineering.md)：理解静态规则编排、动态信息挂载、Token 预算降级和上下文持久化。
 - [万字拆解 MCP 协议](./agent/mcp.md)：理解 MCP 的分层架构、核心能力和 MCP Server 生产实践。
 - [万字详解 Agent Skills](./agent/skills.md)：理解 Skills 与 Prompt、MCP、Function Calling 的本质区别。
-- [一文搞懂 Harness Engineering](./agent/harness-engineering.md)：拆解 Model + Harness 的工程化架构和一线团队实践。
+- [Harness Engineering：六层检查框架、上下文管理与工程实践](./agent/harness-engineering.md)：拆解 Model + Harness 的工程化架构和团队实践。
 - [AI 工作流中的 Workflow、Graph 与 Loop](./agent/workflow-graph-loop.md)：理解 AI 工作流的节点、边、状态、安全边界和实现方式。
 - [Loop Engineering 是什么？为什么说它是新瓶装旧酒？](./agent/loop-engineering.md)：说明代码 Agent 外层循环的触发、上下文、验证、状态和停止条件。
 
 ### RAG 检索增强生成
 
 - [RAG 专题](./rag/)：围绕企业知识库问答，梳理文档处理、向量数据库、GraphRAG、检索优化和知识库更新。
-- [万字详解 RAG 基础概念](./rag/rag-basis.md)：理解 RAG 是什么、为什么需要它、核心优势和局限性。
+- [RAG 基础概念](./rag/rag-basis.md)：理解 RAG 是什么、为什么需要它、核心优势和局限性。
 - [RAG 文档处理与切分策略](./rag/rag-document-processing.md)：覆盖文档解析、清洗、结构化、Chunking 和多模态内容处理。
-- [万字详解 RAG 向量索引算法和向量数据库](./rag/rag-vector-store.md)：掌握 HNSW、IVFFLAT 等索引算法和向量数据库选型。
-- [万字详解 RAG 检索优化](./rag/rag-optimization.md)：覆盖 Chunk 策略、Hybrid Search、Query Rewrite、Rerank 和上下文压缩。
-- [万字详解 GraphRAG](./rag/graphrag.md)：理解实体、关系、社区发现、全局检索与局部检索。
+- [RAG 向量索引算法和向量数据库](./rag/rag-vector-store.md)：掌握 HNSW、IVFFLAT 等索引算法和向量数据库选型。
+- [RAG 检索优化](./rag/rag-optimization.md)：覆盖 Chunk 策略、Hybrid Search、Query Rewrite、Rerank 和上下文压缩。
+- [GraphRAG](./rag/graphrag.md)：理解实体、关系、社区发现、全局检索与局部检索。
 - [RAG 知识库文档更新策略](./rag/rag-knowledge-update.md)：掌握增量更新、版本控制、去重和全量重建。
 
 ### AI 系统设计

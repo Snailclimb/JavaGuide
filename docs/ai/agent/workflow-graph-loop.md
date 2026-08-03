@@ -1,6 +1,6 @@
 ---
 title: AI 工作流中的 Workflow、Graph 与 Loop：从概念到实现
-description: 深度解析 AI 工作流中 Workflow、Graph、Loop 三大核心概念，对比传统工作流与 AI 工作流的差异，结合 Spring AI Alibaba 和 LangGraph 给出完整代码示例。
+description: 解析 AI 工作流中 Workflow、Graph、Loop 三个概念，对比传统工作流与 AI 工作流的差异，并用 Spring AI Alibaba Graph 展示状态、条件边和循环的实现方式。
 category: AI 应用开发
 icon: "mdi:robot-outline"
 head:
@@ -9,24 +9,15 @@ head:
       content: AI Workflow,Graph,Loop,AI工作流,Spring AI Alibaba,LangGraph,状态机,Agent,工作流引擎
 ---
 
-刚上手 AI 工作流时，很容易有类似的困惑——这不就是传统工作流换了个壳吗？为什么不用 Camunda、Temporal 这些成熟引擎？甚至觉得把几个 Prompt 用 if-else 串起来就算“工作流”了。
+Camunda、Temporal 等传统引擎同样支持事件、分支、重试和补偿。AI 工作流新增的麻烦在于，部分节点的输出由 LLM 生成，“结果是否达标”也可能需要模型或评分器在运行时判断。流程因此经常出现回边：生成、评估、修改，再回到评估。
 
-但真正上手做项目后，这些想法很快会被现实打脸。LLM 的输出天然不确定，单次生成往往不达标，工具调用随时可能失败，上下文窗口还有硬上限。光“跑一遍就完事”的线性流程不够用，你需要的是一套能**动态决策、自动修正、可控收敛**的执行机制。
-
-今天这篇文章就来系统梳理 AI 工作流中三个核心概念——**Workflow、Graph、Loop**，帮你建立从概念到实现的完整认知。本文接近 7300 字，建议收藏。通过本文你会搞懂：
-
-- 单轮对话和固定流程为什么不够用，动态决策、自动修正、可控收敛分别解决什么问题
-- Workflow、Graph、Loop 三者如何协作，为什么说 Workflow 是目标与过程，Graph 是结构与载体，Loop 是图上的控制模式
-- Graph 的核心元素 Node、Edge、State 分别是什么，State 的更新策略怎么选
-- Loop 的设计要点：固定次数循环 vs 条件驱动循环、嵌套循环的独立性、安全边界三要素
-- Spring AI Alibaba 和 LangGraph 的完整代码实现
-- 高抽象 vs 低抽象工作流的区别，以及 Node、Edge、State 的抽象原则
+Workflow 描述任务怎样完成，Graph 用 Node、Edge 和 State 表达执行结构，Loop 则是 Graph 上的回溯控制。下面沿着文章审核示例说明三者如何配合，并用 Spring AI Alibaba Graph 展示状态更新和条件边。
 
 ## 为什么 AI 系统需要工作流？
 
 单轮对话能回答问题，但很难稳定地**交付结果**。线上真实任务很少是“问一句答一句”就完事——检索信息、调用工具、输出结构化结果、校验格式、失败重试、不满意再来一轮，这些步骤串起来才叫交付。靠一段超长 Prompt 把所有逻辑塞进去，早晚会炸。你需要的是一种**可分支、可循环、可观测**的执行路径。
 
-传统软件流程通常是确定性的：**输入固定、步骤固定、输出相对稳定**。但 LLM 的特点恰恰相反——它“能力很强，但不完全稳定”。它可能答非所问、格式错误、产生幻觉，或者在调用工具时失败。这就引出了三个核心问题：
+传统业务流程通常会预先定义候选步骤和分支规则，节点仍可能因为人工操作或外部 API 而产生不同结果。加入 LLM 后，生成内容和质量判断又增加了一层不确定性。这会带来三个直接问题：
 
 1. 下一步并不唯一，需要根据当前结果动态决策路径；
 2. 当结果不理想时，系统需要自动修正，而不是直接失败；
@@ -48,7 +39,7 @@ head:
 
 先说基本定义：**Workflow** 就是为了完成某个目标，把任务拆成若干步骤，并规定这些步骤如何协作推进。它回答的问题是：“这件事怎么做完？”
 
-在传统工作流体系中，流程设计虽然也支持事件驱动和动态分支（如 BPMN 2.0 的信号事件、Camunda 的 DMN 决策表），但其核心假设是：**给定相同输入，同一节点的执行结果是确定的**。以 BPMN 2.0 规范为代表的主流工作流引擎（如 Camunda、Temporal、Apache Airflow）支持并行网关、包容网关、子流程、补偿事务等丰富的控制结构，远非简单的线性顺序。但分支条件通常在设计时确定，运行时按照预定义路径执行。
+传统工作流也能编排人工任务、外部 API 和其他非确定性活动，因此“相同输入必然得到相同节点结果”并不是它的前提。更常见的区别是：传统流程会预先定义活动、候选分支和补偿规则，运行时根据事件与业务数据选择路径。BPMN 2.0、Camunda、Temporal、Apache Airflow 都不局限于线性顺序。
 
 AI 工作流与传统工作流的关键差异在于：路径选择依赖于运行时生成内容的质量评估，且同一节点可能因输出不确定性而需要反复执行。例如审批流程、订单流转、ETL 数据管道等传统场景中，分支条件是明确的（金额 > 10000 走高级审批）；而 AI 场景中，“生成结果是否达标”这个判断本身就需要运行时评估，且评估结论可能驱使流程回到之前的步骤反复修正。
 
@@ -122,7 +113,7 @@ AI 工作流与传统工作流的关键差异在于：路径选择依赖于运�
 1. **固定次数循环**：更像 `for`。例如“最多重试 3 次”。
 2. **条件驱动循环**：更像 `while`。例如“只要评分低于 80 分，就继续修改”。
 
-AI 场景里，第二类通常更有代表性。因为“跑几次”往往不是先验确定的，而是由内容质量、工具执行结果、外部反馈共同决定的。但是实际开发中两者必须同时使用，因为 LLM 的不确定性可能会导致生成的内容一直不合格，此时我们就需要参考固定次数循环思想对内容进行降级兜底处理。
+AI 场景里，条件驱动循环更常见，因为迭代次数取决于内容质量、工具结果和外部反馈。生产实现通常还会叠加固定上限：条件负责决定是否继续，轮次、超时和 Token 预算负责强制退出。
 
 在实际工程中，还经常遇到**嵌套循环**的情况：外层循环负责“质量迭代”（生成 → 审核 → 修改），内层循环负责“工具重试”（某个节点内部调用外部 API 失败后的指数退避重试）。这两层循环的作用域、终止条件和计数器是独立的——内层重试耗尽不应影响外层的迭代预算，外层退出也不意味着内层可以无限制重试。设计嵌套循环时，需要为每层明确独立的退出条件和安全边界。
 
@@ -165,15 +156,15 @@ Spring AI Alibaba 和 LangGraph 里几个关键概念的对应关系：
 - **顺序边**：Spring AI Alibaba `addEdge(source, target)` 对应 LangGraph 的 `add_edge(source, target)`
 - **条件边**：Spring AI Alibaba `addConditionalEdges(source, fn, map)` 对应 LangGraph 的 `add_conditional_edges(source, fn)`
 - **循环**：两边都是条件边回指先前节点，Spring AI Alibaba 额外提供了 `LoopAgent`
-- **固定次数循环**：Spring AI Alibaba 有 `LoopMode.count(N)`，LangGraph 需要自己维护计数器
-- **条件驱动循环**：Spring AI Alibaba 用 `LoopMode.condition(predicate)`，LangGraph 用条件边 + while 逻辑
+- **固定次数循环**：两边都可以在 State 中维护计数器，再由条件边决定继续或退出
+- **条件驱动循环**：两边都可以让条件边读取评分、错误状态或外部事件后决定下一跳
 - **持久化**：Spring AI Alibaba 用 `MemorySaver` / `RedisSaver` 等，LangGraph 用 `MemorySaver` / `SqliteSaver`
 - **人机协同**：Spring AI Alibaba 用 `interruptBefore()` + `updateState()`，LangGraph 用 `interrupt_before` + `update_state`
 - **编译执行**：Spring AI Alibaba 需要 `StateGraph.compile(CompileConfig)`，LangGraph 直接 `StateGraph.compile()`
 
 ### 实现示例：用 Spring AI Alibaba 构建文章审核工作流
 
-考虑到我的公众号的读者偏 Java 技术栈，这里笔者就基于 Spring AI Alibaba Graph 来实现贯穿全文的“生成 → 审核 → 修改”工作流。
+下面用 Spring AI Alibaba Graph 实现贯穿全文的“生成 → 审核 → 修改”工作流。示例省略 import、依赖注入配置和模型供应商配置，节点、状态策略与图组装保持完整。
 
 **第一步：定义状态和更新策略**
 
@@ -231,25 +222,29 @@ public static class ReviewNode implements NodeAction {
         this.chatClient = builder.build();
     }
 
+    private record ReviewResult(double score, String feedback) {}
+
     @Override
     public Map<String, Object> apply(OverAllState state) throws Exception {
         String draft = state.value("current_draft").map(v -> (String) v).orElse("");
-        int count = state.value("iteration_count").map(v -> (int) v).orElse(0);
+        int count = state.value("iteration_count").map(v -> (Integer) v).orElse(0);
 
         String prompt = String.format(
             "请评估以下文章质量，给出 0-100 的评分和改进建议。\n" +
             "以JSON格式返回：{\"score\": 85, \"feedback\": \"...\"}\n\n%s", draft);
 
-        String response = chatClient.prompt().user(prompt).call().content();
-        // 解析评分和反馈（实际项目中使用 Jackson/Gson）
-        double score = parseScore(response);
-        String feedback = parseFeedback(response);
+        ReviewResult result = chatClient.prompt()
+            .user(prompt)
+            .call()
+            .entity(ReviewResult.class);
 
-        String nextNode = (score >= 80 || count >= 3) ? "exit" : "revise";
+        int nextCount = count + 1;
+        String nextNode =
+            (result.score() >= 80 || nextCount >= 3) ? "exit" : "revise";
         return Map.of(
-            "review_score", score,
-            "review_feedback", feedback,
-            "iteration_count", count + 1,
+            "review_score", result.score(),
+            "review_feedback", result.feedback(),
+            "iteration_count", nextCount,
             "next_node", nextNode
         );
     }
@@ -331,7 +326,7 @@ public static CompiledGraph buildWorkflow(ChatModel chatModel) throws GraphState
 
     workflow.addEdge("exit", END);
 
-    // 配置持久化：生产环境建议使用 RedisSaver 或数据库 Saver
+    // MemorySaver 只保存当前进程内的 checkpoint
     var saver = new MemorySaver();
     var compileConfig = CompileConfig.builder()
         .saverConfig(SaverConfig.builder().register(saver).build())
@@ -341,7 +336,9 @@ public static CompiledGraph buildWorkflow(ChatModel chatModel) throws GraphState
 }
 ```
 
-在这个实现中，可以看到：每个 Node 只做自己名字说的事（DraftNode 负责生成、ReviewNode 负责评估、ReviseNode 负责根据反馈修正），Edge（条件边）控制路由，State（`next_node`、`iteration_count`、`review_score`）驱动决策。Loop 通过 `review → revise → review` 的回边实现（审核不通过则由 ReviseNode 修正内容后重新进入审核），安全边界由 `iteration_count >= 3` 保证。持久化配置确保流程中断后可以从最近的 checkpoint 恢复，而不是从头开始——这对包含 Loop 的长时间运行工作流尤为重要：如果一个已迭代 2 轮的审核流程在第 3 轮中断，恢复后应该继续第 3 轮而不是重新从第 1 轮开始。
+每个 Node 只处理一种职责，条件边根据 `next_node` 路由，`iteration_count` 和 `review_score` 保存在 State 中。`review → revise → review` 形成回边，第三次审核后无论评分是否达标都会退出，避免无限循环。
+
+示例中的 `MemorySaver` 只能在当前进程和同一 Saver 实例内保留 checkpoint。恢复时还要使用稳定的线程或会话标识定位记录。需要在进程重启后恢复时，应换成 Redis 或数据库 Saver，并验证 checkpoint 的序列化、过期和并发更新行为。
 
 > 更完整的示例（包括人机协同、持久化、流式输出）可参考 [Spring AI Alibaba Graph 官方文档](https://java2ai.com/docs/frameworks/graph-core/quick-start/)。
 
@@ -398,7 +395,7 @@ Spring AI Alibaba 把错误分成四类，对应不同处理策略：
 
 这些策略和分布式系统里的弹性模式很接近：
 
-- **指数退避重试**：工具调用超时时按 1s、2s、4s 递增间隔重试，最多 5 次，认证失败这种不可恢复的干脆跳过
+- **指数退避重试**：工具调用超时时按 1s、2s、4s 递增间隔重试，并设置总时限；认证失败应停止相关分支、重新认证或转人工，不能跳过鉴权继续执行
 - **熔断器**：连续 N 次 LLM 输出格式校验失败就熔断，降级到模板输出或换更简单的模型，别继续浪费 Token
 - **舱壁隔离**：给不同外部 API 设独立的并发上限，防止某个慢服务把线程池打满
 - **补偿事务（Saga）**：多步骤操作某步挂了，按反序执行已完成步骤的回滚操作
@@ -417,25 +414,16 @@ Loop 会自然放大 Token 与延迟。设计时要提前思考：
 
 节点之间传什么、字段名怎么定义、结构化输出采用什么 schema，都应该尽早统一（例如统一用 JSON Schema 或 Pydantic 模型）。否则图一旦复杂，调试成本会急剧上升。
 
-## 总结
+## 上线前检查 State 和 Loop
 
-工作流框架会更新换代，但“图结构 + 状态 + 可控循环”这层抽象基本不会变。几个正在发生的演进方向：
+工作流中的 LLM 输出仍是不可信数据。进入数据库、前端模板、Shell 命令或下游工具前，要做对应类型的校验和编码；每个节点只获得当前任务所需的工具权限，删除、发送、付款等高风险操作通过审批节点控制。
 
-- **Agent 化**：节点从「固定脚本」变成「能自主选工具、拆子目标」的执行单元，但底层仍需要清晰的图与状态边界，否则难以观测与兜底。
-- **多智能体协作**：多个角色分工、对话或委托；与 CrewAI、LangGraph 多子图等思路一致，难点往往在**共享 State 的权限**与**冲突解决**。
-- **人机协同**：在关键节点插入人工审核、标注或纠偏，把 HITL（human-in-the-loop）当作一等公民写进图与状态机。
-- **更长上下文与记忆**：工作流与 RAG、会话记忆结合时，要特别注意 State 里哪些该进向量库、哪些只该留在本轮任务上下文，避免成本和隐私失控。
-- **Agent 安全**：工作流为 LLM 输出引入了结构和约束，但也带来了新的攻击面。根据 OWASP LLM Top 10，需要重点关注三类威胁：
-  - **提示注入的级联影响**：恶意用户输入可能覆盖系统提示，在工作流中逐节点传播放大。防御方式包括输入过滤、系统提示与用户输入严格分隔、对 LLM 输出做安全检测后再传递给下游节点。
-  - **工具调用的权限边界**：遵循最小权限原则，每个节点只能访问其任务所需的工具，高风险操作（删除、发送）需通过人机协同节点确认。
-  - **输出内容安全过滤**：LLM 输出在进入下游系统（数据库、前端渲染、Shell 命令）前必须经过校验，防止注入攻击、隐私泄露和幻觉传播。
-
-除了上述通用风险，工作流还有两类特有的安全考量：
+Graph 还要额外检查两类问题：
 
 - **State 污染**：恶意输入通过节点处理后写入 State 的路由控制字段（如 `next_node`），可能影响后续条件边路由，跳过审核节点直接到达输出。防御：对 State 中的路由控制字段做白名单校验。
 - **Loop 放大攻击**：恶意输入构造使 ReviewNode 永远返回低分，导致 Loop 达到最大轮次才退出，消耗大量 Token。防御：除了 `iteration_count` 上限外，增加 Token 消耗预算作为独立的安全边界。
 
-理解图结构、状态流转和可控循环这几层抽象，比追某个框架的 API 变化更有长期价值。具体语言和框架跟着团队技术栈走就行。
+最后用回放测试覆盖正常退出、达到迭代上限、工具超时、人工中断、认证失败和 checkpoint 恢复。框架 API 会变化，Node 的职责、Edge 的合法流转和 State 的更新规则应当在测试中固定下来。
 
 ## 面试准备要点
 
@@ -455,3 +443,9 @@ Loop 会自然放大 Token 与延迟。设计时要提前思考：
 - 节点内的错误怎么处理？（瞬时错误重试、LLM 可恢复错误循环回去、用户可修复错误转人工、意外错误冒泡）
 - Spring AI Alibaba 和 LangGraph 的循环实现有什么区别？（前者可用条件边回指或 LoopAgent，后者需自行维护计数器）
 - 工作流有哪些特有的安全风险？（State 污染影响路由、Loop 放大攻击消耗 Token）
+
+## 总结
+
+Workflow 描述任务的完成过程，Graph 用 Node、Edge 和 State 把过程组织成可执行结构，Loop 则让特定节点根据条件回到前序步骤继续修正。它们可以为包含 LLM 的生成、评估和工具调用提供比单条长 Prompt 更清晰的状态流转与故障处理方式。
+
+落地时要先定义 State 的职责和更新规则，再写清条件边、退出条件、最大轮次、超时与 Token 预算。所有进入路由、数据库、模板或外部工具的数据都要校验；重试、降级、人工中断和 checkpoint 恢复也应进入测试覆盖，避免循环在错误输入或异常依赖上持续放大成本。
