@@ -8,9 +8,7 @@ head:
       content: 大模型 API,LLM API,流式输出,Streaming,SSE,WebSocket,重试,限流,结构化返回,JSON Schema,AI 应用开发
 ---
 
-很多 AI 应用的第一个版本都很“顺”：本地调通一个大模型 API，页面上能看到回答，Demo 就算跑起来了。
-
-但一上生产，麻烦马上变得具体：
+本地调通一个大模型 API 只说明网络和参数基本可用。接进真实业务后，首字延迟、半截 JSON、429、取消和重复执行都要处理：
 
 - 用户等了 8 秒还看不到第一个字，以为系统卡死，直接刷新页面。
 - 模型返回了一半 JSON，前端解析失败，后端日志里只有一串残缺的 `{"answer": "根因是`。
@@ -18,25 +16,15 @@ head:
 - 用户点了取消，浏览器断开了，但后端还在消耗 Token。
 - 同一个业务请求因为重试执行了两次，落库、扣费、发通知全重复了。
 
-小 G 见过太多这样的事故。真正难的并非”怎么发一个 HTTP 请求给模型”，难点在于**如何把大模型 API 当成一个不稳定、昂贵、受配额约束的外部依赖来治理**。
+发送 HTTP 请求只是调用链的一小段。业务入口、Prompt 组装、模型路由、流式响应、状态落库和观测需要一起设计，尤其要处理取消、重试、配额和半成品输出。
 
-本文覆盖：
-
-1. **完整链路**：一次 AI 请求从业务入口、Prompt 组装、模型网关、供应商 API 到流式响应、解析、落库、观测是怎么跑起来的。
-2. **流式输出**：Streaming 为什么能降低 TTFT，SSE、WebSocket、HTTP chunked 分别适合什么场景，后端如何处理取消、超时、断流和重连。
-3. **重试与幂等**：哪些错误可以重试，哪些不能，指数退避、抖动、幂等 Key、请求去重和重复响应怎么设计。
-4. **限流与配额**：用户级、租户级、模型级、供应商级限流怎么分层，Token 预算、429 处理、排队、降级和熔断怎么落地。
-5. **结构化返回**：JSON Mode、JSON Schema、Structured Outputs 和 Function Calling 的工程价值，以及失败兜底策略。
-
-上文默认你理解 Token、上下文窗口、Temperature、Top-p 等基础概念。如果还有疑问，建议先看[《万字拆解 LLM 运行机制》](./llm-operation-mechanism.md)和[《大模型提示词工程实践指南》](../agent/prompt-engineering.md)。
+上文默认你理解 Token、上下文窗口、Temperature、Top-p 等基础概念。如果还有疑问，建议先看[《LLM 运行机制：Token、上下文窗口与采样参数怎么影响输出》](./llm-operation-mechanism.md)和[《大模型提示词工程（Prompt Engineering）是什么？提示词技巧有哪些？》](../agent/prompt-engineering.md)。
 
 说明：OpenAI、Anthropic、Gemini 等供应商能力和参数变化较快，生产系统应从控制台、响应头或配置中心动态管理，而非依赖文档里的静态数字。
 
 ## 一次生产级 LLM 调用包含哪些阶段？
 
-很多人排查大模型调用问题时，只盯着供应商返回了什么。这个视角太窄。
-
-一次生产级 LLM 调用，本质上是一条跨业务系统、上下文系统、模型网关、外部供应商和前端展示层的链路。任何一段没有治理好，最后都会表现成“模型不稳定”。
+只盯着供应商返回了什么，很难查清一次大模型调用的问题。请求会跨过业务系统、上下文系统、模型网关、外部供应商和前端展示层，任何一段缺少状态与错误处理，最后都可能表现成“模型不稳定”。
 
 ```mermaid
 flowchart LR
@@ -72,25 +60,19 @@ flowchart LR
 7. **状态回写**：保存完整回答、增量片段、Token 用量、调用成本、失败原因和业务状态。
 8. **观测与告警**：记录 traceId、providerRequestId、TTFT、总耗时、重试次数、429 次数、解析失败率。
 
-很多团队栽的最多的一件事：**把模型网关当成透明代理**。它不是代理，它是 AI 应用的稳定性控制面。
+模型调用最好收口到统一的 `LLMGateway` 或共享客户端层，由它处理 API Key、超时、重试、限流、日志和供应商切换。否则每个业务模块都会形成一套略有差异的失败语义，排查时很难复现。
 
-如果没有网关，每个业务系统都会自己处理 API Key、超时、重试、限流、日志、供应商切换。短期看省事，长期一定变成事故放大器。小 G 的建议是：哪怕第一版很轻，也要把模型调用收口到一个统一的 `LLMGateway`。
+![LLM 网关示意图](https://oss.javaguide.cn/github/javaguide/ai/llm/llm-gateway-overview.png)
 
 ## 同步返回和流式返回有什么区别？
 
-默认的同步调用很好理解：后端发起请求，模型生成完全部内容后，一次性返回完整结果。
-
-流式输出则是边生成边返回。模型每产生一段文本或一个事件，供应商就通过长连接把增量推给调用方。OpenAI 官方文档把 HTTP streaming 放在 SSE 场景下描述；Anthropic Messages API 也支持通过 SSE 增量返回事件；Gemini API 同样提供标准、流式和实时相关接口。具体字段和模型能力会变，**以官方文档最新展示为准**。
+同步调用要等模型生成完全部内容，再一次性返回完整结果。流式输出则是边生成边返回：模型每产生一段文本或一个事件，供应商就通过长连接把增量推给调用方。OpenAI 官方文档把 HTTP streaming 放在 SSE 场景下描述；Anthropic Messages API 也支持通过 SSE 增量返回事件；Gemini API 同样提供标准、流式和实时相关接口。具体字段和模型能力会变，**以官方文档最新展示为准**。
 
 **为什么 Streaming 能降低 TTFT？**
 
-TTFT（Time To First Token）指从请求发出到收到第一个可展示 Token 的时间。
+TTFT（Time To First Token）指从请求发出到收到第一个可展示 Token 的时间。同步返回时，用户要等模型生成完整答案；例如模型要生成 800 个 Token，后端必须等这 800 个 Token 都完成才把结果返回。流式返回只需等到第一个片段，用户就能看到内容逐步出现。
 
-同步返回时，用户要等模型生成完整答案。例如模型要生成 800 个 Token，后端必须等这 800 个 Token 都完成才把结果返回。
-
-流式返回时，用户只要等模型开始生成第一个片段，就能看到内容逐步出现。
-
-流式输出不是性能魔法。它没有让模型少算 Token，也不会天然省钱。它只是把等待过程拆成了可感知的进度，让用户觉得系统“活着”。
+流式输出没有让模型少算 Token，也不会天然省钱。它缩短的是首字等待时间，并不一定缩短整次生成的耗时。
 
 | 对比项       | 同步返回                   | 流式返回                             |
 | ------------ | -------------------------- | ------------------------------------ |
@@ -102,9 +84,9 @@ TTFT（Time To First Token）指从请求发出到收到第一个可展示 Token
 | 适合场景     | 短文本、后台任务、严格事务 | 聊天、写作、报告生成、长回答         |
 | 不适合场景   | 用户强交互的长回答         | 强事务、必须一次性校验完整结果的链路 |
 
-小 G 的经验：面向用户展示的长文本默认用流式，后台批处理和强结构化任务默认用同步。
+面向用户展示的长文本通常优先流式返回；后台批处理和必须拿到完整对象才能提交的任务更适合同步返回。
 
-## ⭐️ SSE、WebSocket 和 HTTP chunked 这三种流式协议怎么选
+## SSE、WebSocket 和 HTTP chunked 这三种流式协议怎么选
 
 流式输出有几种常见承载方式，别把它们混成一个东西。
 
@@ -113,6 +95,8 @@ TTFT（Time To First Token）指从请求发出到收到第一个可展示 Token
 | SSE          | 浏览器原生 `EventSource`，服务端到客户端单向推送，格式是 `text/event-stream` | 文本聊天、模型增量输出、状态通知       | 单向通信；复杂双向控制需要额外 HTTP 请求                    |
 | WebSocket    | 双向长连接，客户端和服务端都能随时发消息                                     | 实时语音、多人协作、需要频繁取消或插话 | 连接管理更复杂，网关、鉴权、心跳都要自己管好                |
 | HTTP chunked | HTTP/1.1 的分块传输机制，响应体分块发送                                      | 后端到后端流式代理、低层传输           | 它是传输机制，不是应用事件协议；HTTP/2 之后有自己的流式机制 |
+
+![SSE、WebSocket 与 HTTP chunked 的流式协议选型对比](https://oss.javaguide.cn/github/javaguide/ai/llm/llm-api-engineering-streaming-protocols.webp)
 
 SSE 的优势是简单。浏览器端几行代码就能接收事件，服务端按 `data:` 一段段写出去即可。MDN 对 EventSource 的描述也强调了它和 WebSocket 的区别：SSE 是服务端到客户端的单向数据流。
 
@@ -133,7 +117,7 @@ SSE 通常通过 HTTP 响应承载，媒体类型是 `text/event-stream`，消�
 | `id`    | 事件序号；配合浏览器重连语义可做断点提示       |
 | `retry` | 建议的重连间隔（毫秒）                         |
 
-**空行才是事件分隔符**。单个换行只是结束当前字段行，不会直接结束事件；真正容易出问题的是业务内容里混入了未转义的空行，或者服务端手写拼接 `data:` 时没有按行拆分，导致客户端把同一段模型增量误解析成多个事件。这也是很多团队在 Demo 里没问题、一上对话界面加 Markdown 或列表就炸裂的根因。
+**空行才是事件分隔符**。单个换行只是结束当前字段行，不会直接结束事件。服务端手写 `data:` 时如果没有给正文每一行加字段前缀，客户端可能丢掉后续行；额外写入空行还会提前结束事件。Markdown 列表和代码块很容易触发这些情况。
 
 小 G 在[《SpringAI 智能面试平台+RAG 知识库》](https://javaguide.cn/zhuanlan/interview-guide.html)的知识库问答里用的就是 SSE：模型一边生成，浏览器一边打字机展示；链路不长，但协议细节一个不落下。
 
@@ -166,25 +150,20 @@ Flux<String> tokens = chatClient.prompt()
 
 工程上要心里有数：WebMVC + `Flux` 只是在 Controller 出口用了响应式类型做 SSE，底层仍是 Servlet 容器。线程池、连接数和超时仍要按「长请求」来治理；Java 21 虚拟线程可以把「占着一个平台线程傻等」的成本降下来，这对动辄数十秒的生成链路很实用。
 
-### 模型正文换行导致的 SSE 截断
+### 模型正文包含换行时怎么处理
 
-假设你把某个 token 或片段直接塞进 `data:`，而片段里含有真实的换行符 `\n`。协议眼里这就是「字段结束 / 新字段开始」，前端事件边界立刻错位。
+手写原始 SSE 文本时，每一行正文都要带 `data:` 前缀，空行才表示一个事件结束。浏览器会把同一事件的多行 `data:` 用换行拼起来。
 
-血泪教训：别指望「模型不太会输出换行」——列表、代码块、道歉话术一来，线上必现。
-
-一条务实的做法是在应用层约定转义，例如在出站前把 `\n`、`\r` 转成字面量 `\\n`、`\\r`，前端收到后再还原：
+使用 Spring `ServerSentEvent` 和对应的消息编码器时，不要先把正文里的 `\n` 替换成字面量 `\\n`。手工替换会改变业务文本，还要求前端再做一轮容易冲突的反转义。把原始字符串交给编码器即可：
 
 ```java
 .map(chunk -> ServerSentEvent.<String>builder()
-    .data(chunk.replace("\n", "\\n").replace("\r", "\\r"))
+    .event("token")
+    .data(chunk)
     .build())
 ```
 
-```typescript
-const text = chunk.replace(/\\n/g, "\n").replace(/\\r/g, "\r");
-```
-
-更「协议原生」的做法也能做：把一行正文拆成多行 `data:`，由客户端按规范拼回一行内的 `\n`。选型核心是：团队要在服务端和前端固定同一种语义，并把单元测试覆盖到「含换行、含 CR、含空行」的片段。
+如果链路中间要经过自研网关或非 SSE 客户端，可以把每个增量封装成 JSON，例如 `{"sequence":12,"delta":"第一行\n第二行"}`，再由 JSON 编码器处理转义。两种方案都要测试 LF、CRLF、空行、代码块以及断流时的半个事件。
 
 ### Nginx 与网关的流式配置
 
@@ -207,9 +186,11 @@ location /api/ {
 
 ### 流式异常的四类场景
 
-流式链路最容易出问题的地方，往往不是“怎么开始”，而是“怎么结束”。
+流式链路的结束状态需要单独设计。取消、超时、断流和重连不能共用一个“失败”状态。
 
-**第一类：用户取消。**
+![流式调用中取消、TTFT 超时、连接断开和客户端重连的处理分支](https://oss.javaguide.cn/github/javaguide/ai/llm/llm-api-engineering-streaming-exceptions.webp)
+
+**用户取消。**
 
 用户关闭页面、点击停止生成、切换会话，都应该触发取消。后端要同时取消：
 
@@ -218,9 +199,9 @@ location /api/ {
 - 后续 TTS、工具调用、落库任务。
 - 还没提交的增量缓存。
 
-血泪教训：不要只在前端停止展示。前端停了，后端还在生成，账单照样跑。
+不能只在前端停止展示。前端停了而供应商请求仍在生成，Token 仍会继续消耗。
 
-**第二类：超时。**
+**超时。**
 
 超时至少分三层：
 
@@ -230,11 +211,11 @@ location /api/ {
 
 三者要分开记录。TTFT 超时通常指向模型排队、上下文过长或供应商抖动；总时长超时可能只是用户让模型写太长。
 
-**第三类：断流。**
+**断流。**
 
 断流时不要轻易把半截内容当成成功。正确做法是记录 `finish_reason` 或最后事件状态，如果没有正常结束标记，就把本次调用标记为 `INTERRUPTED`，前端展示“已中断，可重新生成”，而不是悄悄落成完整答案。
 
-**第四类：重连。**
+**重连。**
 
 SSE 的 `EventSource` 有自动重连能力，但大模型输出不是普通新闻推送。重连后是否能从断点续传，取决于你的服务端是否保存了事件序号、增量片段和供应商调用状态。多数情况下，供应商侧流已经断掉，无法真正从 Token 级别续上。
 
@@ -254,6 +235,8 @@ SSE 的 `EventSource` 有自动重连能力，但大模型输出不是普通新�
 1. **请求贵**：失败请求也可能消耗配额，甚至已经消耗了部分 Token。
 2. **输出非确定**：即使 Prompt 一样，第二次返回也可能和第一次不同。
 
+![从生成幂等 Key、原子占位、调用模型到退避重试和最终落库的处理流程](https://oss.javaguide.cn/github/javaguide/ai/llm/llm-api-engineering-retry-idempotency.webp)
+
 ### 错误类型对照表
 
 | 类型             | 示例                                | 是否建议重试 | 处理方式                                   |
@@ -268,13 +251,11 @@ SSE 的 `EventSource` 有自动重连能力，但大模型输出不是普通新�
 | 安全拒答         | 内容策略拒绝                        | 不建议       | 进入业务拒答流程                           |
 | 解析失败         | JSON 不完整、字段类型错误           | 可有限重试   | 带失败原因二次修复，最多 1-2 次            |
 
-OpenAI 官方限流文档建议对 rate limit error 使用随机指数退避，同时提醒失败请求也会计入每分钟限制；Anthropic 官方错误文档中明确列出了 429 rate limit、500 api error、504 timeout、529 overloaded 等错误类型。这里的结论不是某一家供应商专属，而是外部模型依赖的通用治理思路。
+OpenAI 官方限流文档建议对 rate limit error 使用随机指数退避，同时提醒失败请求也会计入每分钟限制；Anthropic 官方错误文档中明确列出了 429 rate limit、500 api error、504 timeout、529 overloaded 等错误类型。接入其他供应商时也需要按其错误码区分可重试、不可重试和过载状态。
 
 ### 指数退避和抖动
 
-指数退避的核心是：第 1 次失败等一小会儿，第 2 次失败等更久，第 3 次再更久，直到达到最大等待时间或最大重试次数。
-
-抖动（Jitter）的核心是：不要让所有请求在同一时间点一起重试。否则系统刚从限流里恢复，马上又被同一批重试打爆。
+指数退避会随着失败次数增加等待时间，直到达到最大等待时间或最大重试次数。抖动（Jitter）再给等待时间加一段随机量，避免所有请求同时重试，把刚恢复的系统再次打进限流。
 
 一个实用公式：
 
@@ -322,11 +303,11 @@ tenantId:userId:conversationId:messageId:attemptGroup
 
 落库时，只允许一个 attempt 成为 `final`。其他 attempt 保留为诊断记录，不参与用户上下文。这样既能排查问题，又不会污染下一轮 Prompt。
 
-## ⭐️ 为什么要限流？如何限流？
+## 为什么要限流？如何限流？
 
 很多团队的限流意识，是从收到第一个 429 开始的。
 
-这已经晚了。等供应商把你拦住，说明你的系统里根本没有容量管理。供应商的 429 是最后一道墙——如果你把它当容量规划工具用，迟早会在流量尖峰时被连续打脸。
+收到供应商 429 才开始限流，说明系统缺少自己的容量管理。429 只能作为外部保护信号，不能代替应用侧的预算、排队和并发控制。
 
 ### 限流的四层架构
 
@@ -402,7 +383,7 @@ Gemini 官方限流文档把限流维度拆成 RPM、输入 TPM、RPD，并说�
 - **最大输出**：`max_tokens` 或类似参数。
 - **日/月预算**：租户或用户总成本。
 
-小 G 的建议是：**先扣预算，再发请求**。
+请求应先扣预算，再发给供应商。
 
 请求进入网关后，先估算 `input_tokens + reserved_output_tokens`，在用户、租户、模型、供应商几个桶里尝试扣减。扣不到就不要发给供应商，直接排队、降级或拒绝。
 
@@ -417,7 +398,7 @@ Gemini 官方限流文档把限流维度拆成 RPM、输入 TPM、RPD，并说�
 | 并发信号量 | 流式生成、长任务       | 能限制同时占用连接       | 不控制单个请求 Token 成本 |
 | 优先级队列 | 多租户、多套餐         | 能保护高优先级请求       | 需要处理饥饿和超时        |
 
-生产里通常不是选一个，而是组合：
+生产系统通常会组合这些策略：
 
 - 用户级：滑动窗口 + 日 Token 上限。
 - 租户级：令牌桶 + 月度预算
@@ -467,7 +448,7 @@ HTTP 429 表示请求过多。后端处理 429 时，建议按这个顺序：
 - 流式返回时只拿到半个对象。
 - 安全拒答时压根不是业务 Schema。
 
-所以结构化返回的核心不只是“看起来像 JSON”，更关键的是**让模型输出能被程序稳定消费**。
+结构化返回要解决的是程序能否稳定消费模型输出，而不只是结果看起来像 JSON。
 
 ### JSON Mode、JSON Schema 和 Structured Output 的区别
 
@@ -479,6 +460,8 @@ HTTP 429 表示请求过多。后端处理 429 时，建议按这个顺序：
 | JSON Schema                 | 强       | 明确字段、类型、必填、枚举    | 不同供应商支持子集不同         |
 | Structured Outputs          | 更强     | 供应商在解码或 SDK 层增强约束 | 受模型、SDK、Schema 子集限制   |
 | Function Calling / Tool Use | 面向动作 | 适合让模型选择工具和参数      | 不是最终自然语言答案的万能替代 |
+
+![JSON Mode 保证语法，JSON Schema 定义契约，Structured Outputs 在生成阶段应用契约](https://oss.javaguide.cn/github/javaguide/ai/llm/structured-output-function-calling-three-layer-constraint.png)
 
 OpenAI 官方 Structured Outputs 文档强调可以让输出遵循开发者提供的 JSON Schema，并提供 `strict` 相关配置；Gemini 官方文档说明 structured output 使用 `response_format` 和 JSON Schema，且支持的是 JSON Schema 的子集；Anthropic 官方文档也提供 Structured Outputs 和 Strict tool use，二者解决的问题并不完全一样。具体模型、字段、Schema 子集变化较快，仍然以官方文档最新展示为准。
 
@@ -508,7 +491,7 @@ OpenAI 官方 Structured Outputs 文档强调可以让输出遵循开发者提�
 - `need_human_review` 必须存在。
 - 解析失败时可以进入修复或人工兜底流程。
 
-这就是结构化返回的价值：**把“模型生成”变成“可校验的数据契约”**。
+Schema 把模型生成的 JSON 变成了可校验的数据契约。
 
 ### 结构化输出失败后如何兜底
 
@@ -567,7 +550,7 @@ flowchart TB
 
 ## Java 后端怎么落地 LLM 调用？
 
-下面给一个简化版 Java 伪代码，重点不是绑定某个 SDK，而是展示工程结构：网关统一处理 Token 预算、限流、重试、流式解析、幂等和观测。
+这段 Java 伪代码不绑定具体 SDK。Token 预算、限流、重试、流式解析、幂等和观测都收口在同一个网关中：
 
 ```java
 public interface LLMClient {
@@ -608,14 +591,24 @@ public final class LLMGateway {
 
     public LLMResponse chatWithRetry(BusinessCommand command) {
         String idemKey = command.idempotencyKey();
-        IdempotencyRecord existed = idempotencyStore.find(idemKey);
-        if (existed != null && existed.isSuccess()) {
-            return existed.toResponse();
+        LLMRequest request = buildRequest(command);
+        String requestFingerprint = command.requestFingerprint();
+        IdempotencyClaim claim = idempotencyStore.claim(idemKey, requestFingerprint);
+
+        if (claim.isCompleted()) {
+            return claim.toResponse();
+        }
+        if (!claim.isOwner()) {
+            throw new LLMException("Request with the same idempotency key is already running");
         }
 
-        LLMRequest request = buildRequest(command);
         TokenBudget budget = tokenEstimator.estimate(request);
-        rateLimiter.acquire(command.tenantId(), request.model(), budget);
+        try {
+            rateLimiter.acquire(command.tenantId(), request.model(), budget);
+        } catch (RuntimeException ex) {
+            idempotencyStore.releaseClaim(idemKey, requestFingerprint);
+            throw ex;
+        }
 
         RetryPolicy retryPolicy = RetryPolicy.defaultPolicy();
         Throwable lastError = null;
@@ -625,7 +618,7 @@ public final class LLMGateway {
             long startNanos = System.nanoTime();
 
             try {
-                idempotencyStore.markRunning(idemKey, attemptId);
+                idempotencyStore.startAttempt(idemKey, requestFingerprint, attemptId);
                 LLMResponse response = client.chat(request.withAttemptId(attemptId));
 
                 ParsedAnswer parsed = parseAndValidate(response.content(), command.schema());
@@ -651,12 +644,26 @@ public final class LLMGateway {
     public void stream(BusinessCommand command, StreamHandler downstream) {
         String idemKey = command.idempotencyKey();
         LLMRequest request = buildRequest(command).enableStream();
-        TokenBudget budget = tokenEstimator.estimate(request);
-        rateLimiter.acquire(command.tenantId(), request.model(), budget);
-
         String messageId = command.messageId();
+        String requestFingerprint = command.requestFingerprint();
+        IdempotencyClaim claim = idempotencyStore.claim(idemKey, requestFingerprint);
+        if (!claim.isOwner()) {
+            downstream.onError(messageId,
+                    new LLMException("Duplicate or conflicting idempotency key"));
+            return;
+        }
+
+        TokenBudget budget = tokenEstimator.estimate(request);
+        try {
+            rateLimiter.acquire(command.tenantId(), request.model(), budget);
+        } catch (RuntimeException ex) {
+            idempotencyStore.releaseClaim(idemKey, requestFingerprint);
+            downstream.onError(messageId, ex);
+            return;
+        }
+
         StreamBuffer buffer = new StreamBuffer(messageId);
-        idempotencyStore.markRunning(idemKey, messageId);
+        idempotencyStore.startAttempt(idemKey, requestFingerprint, messageId);
 
         client.stream(request, new StreamHandler() {
             @Override
@@ -677,8 +684,14 @@ public final class LLMGateway {
             @Override
             public void onComplete(String ignored, LLMUsage usage) {
                 String fullText = buffer.fullText();
-                ParsedAnswer parsed = parseAndValidate(fullText, command.schema());
-                idempotencyStore.markSuccess(idemKey, messageId, fullText, parsed, usage);
+                try {
+                    ParsedAnswer parsed = parseAndValidate(fullText, command.schema());
+                    idempotencyStore.markSuccess(idemKey, messageId, fullText, parsed, usage);
+                } catch (Exception ex) {
+                    idempotencyStore.markFailed(idemKey, messageId, ex);
+                    downstream.onError(messageId, ex);
+                    return;
+                }
                 downstream.onComplete(messageId, usage);
             }
 
@@ -722,7 +735,9 @@ public final class LLMGateway {
 }
 ```
 
-这段代码有几个关键点：
+这段代码省略了存储接口和并发控制实现，`claim` 必须落到 Redis `SET NX`、数据库唯一约束或带条件的原子更新，不能用“先查询、再写入”代替。幂等键还要绑定请求指纹；同一个键对应不同请求时应返回冲突，而不是历史结果。
+
+其余几个关键点：
 
 - **业务入口不直接调用供应商 SDK**，统一走 `LLMGateway`。
 - **先估算 Token 并扣限流桶**，避免发出去才发现没额度。
@@ -789,7 +804,7 @@ provider_request_id
 
 一次调用从业务请求进入开始，先做用户、租户、权限和参数校验；然后组装 System Prompt、用户输入、历史消息、RAG 证据、工具定义和输出 Schema；接着估算 Token 预算，经过模型网关做路由、限流、超时、重试和供应商选择；供应商返回同步结果或流式事件后，后端解析增量、校验结构化输出、落库状态和 usage；最后把 TTFT、总耗时、错误码、重试次数、Token 成本写入观测系统。
 
-核心点是：**LLM 调用不能只看作一个 HTTP 请求，它是一条需要治理的生产链路**。
+因此，LLM 调用要按一条完整的生产链路治理，不能只封装成一个 HTTP 请求。
 
 ### 2. Streaming 为什么能改善体验
 
@@ -803,9 +818,9 @@ Streaming 让模型边生成边返回，用户可以更早看到第一个 Token�
 
 网络瞬断、连接重置、部分 5xx、504、供应商过载通常可以有限重试；429 要结合 `Retry-After`、限流头、排队和降级处理；400 参数错误、401/403 鉴权错误、内容安全拒答通常不能重试。结构化解析失败可以做 1-2 次格式修复，但不要无限重试。
 
-### 5. 为什么大模型调用必须做幂等
+### 5. 哪些大模型调用需要做幂等
 
-因为重试、用户重复点击、网关超时都会让同一个业务请求被执行多次。没有幂等 Key，就可能重复落库、重复扣费、重复发通知。正确做法是用业务消息 ID 生成幂等 Key，把多次模型调用 attempt 挂在同一条业务消息下，只允许一个 attempt 成为最终结果。
+纯文本生成不一定要求业务幂等，但重试仍可能产生重复费用和多个候选结果。涉及落库、扣费、发通知或工具写操作时，必须防止同一业务请求被执行多次。可以用业务消息 ID 生成幂等 Key，并绑定请求指纹；多次模型调用 attempt 挂在同一条业务消息下，只允许一个 attempt 成为最终结果。
 
 ### 6. 限流为什么不能只按 QPS
 
@@ -819,18 +834,11 @@ JSON Mode 更关注“输出是合法 JSON”，但不一定符合你的业务 S
 
 不要一边收到 delta 一边直接 `JSON.parse()` 完整对象。更稳的做法是：增量阶段只展示文本或记录片段，等收到正常结束事件后拼成完整内容，再做 Schema 校验。若供应商支持结构化流式事件或 SDK accumulator，可以使用官方累积器；否则自己维护 buffer、sequence 和结束状态。
 
-## 总结
+## 上线前检查
 
-收束一下这篇文章的几个工程判断：
+上线门禁至少覆盖四条失败链路：客户端取消能否传到供应商；可重试错误是否受总截止时间和原子幂等记录约束；RPM、TPM、并发与租户预算是否同时生效；结构化输出解析失败后是否进入明确失败状态。
 
-- **模型网关是稳定性入口**。路由、限流、重试、幂等、观测全在这里收口。没有网关的团队，每个业务模块各自处理 API Key 和重试逻辑，短期省事，长期一定出事故。
-- **Streaming 降低的是 TTFT，不是总成本**。它改善用户体感，但取消、超时、断流、重连和半成品 JSON 解析全是新问题。SSE 还要额外盯住事件边界、换行转义与 Nginx 缓冲——小 G 在项目里因为 `proxy_buffering` 没关，流式愣是变成了批量。
-- **重试必须和幂等绑定**。能重试的错误有限，不能让重试制造重复业务结果。用户狂点"重新发送"，后端如果没有幂等 Key 拦着，Token 账单和落库记录都会翻倍。
-- **限流不能只按 QPS**。一个 500 Token 请求和一个 80K Token 请求对供应商的压力差两个量级，必须同时看请求数、Token 数、并发和预算。
-- **结构化返回是数据契约**。JSON Schema、Structured Outputs、Tool Use 解决的是"让下游系统能稳定消费模型输出"，而不是"让输出看起来像 JSON"。
-- **没有观测就没有稳定性**。TTFT、usage、attempt、providerRequestId、parse failure rate——线上排查时少任何一个字段，都会让你多花几倍时间定位问题。
-
-大模型 API 调用，本质上是接入一个聪明但昂贵、偶尔排队、会被限流、输出还需要校验的外部系统。把这套工程治理做到位，AI 应用才算真正从 Demo 走向生产。
+观测记录要能串起 `messageId`、`attemptId` 和 `providerRequestId`，并保存 TTFT、总耗时、usage、结束原因与解析结果。缺少其中任一段，断流、重复执行和账单异常都会变得难以复现。
 
 ## 参考资料
 

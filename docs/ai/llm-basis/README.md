@@ -30,14 +30,14 @@ sidebar: false
 
 ## 建议阅读顺序
 
-1. [万字拆解 LLM 运行机制](./llm-operation-mechanism.md)：先理解 Token、上下文窗口和采样参数。
+1. [LLM 运行机制：Token、上下文窗口与采样参数怎么影响输出](./llm-operation-mechanism.md)：先理解 Token、上下文窗口和采样参数。
 2. [大模型 API 调用工程实践](./llm-api-engineering.md)：再看大模型调用如何接入真实后端链路。
 3. [大模型结构化输出详解](./structured-output-function-calling.md)：补齐结构化返回和工具调用基础。
 4. [AI 应用评测体系](./llm-evaluation.md)：最后建立质量评估和上线回归方法。
 
 ## 核心文章
 
-- [万字拆解 LLM 运行机制](./llm-operation-mechanism.md)：把 Token、上下文窗口、Temperature 等概念还原为可观察、可调试的工程参数。
+- [LLM 运行机制：Token、上下文窗口与采样参数怎么影响输出](./llm-operation-mechanism.md)：把 Token、上下文窗口、Temperature 等概念还原为可观察、可调试的工程参数。
 - [大模型 API 调用工程实践](./llm-api-engineering.md)：拆解 AI 应用调用大模型 API 的生产链路，覆盖流式输出、重试、限流、结构化返回与后端工程落地。
 - [大模型结构化输出详解](./structured-output-function-calling.md)：讲清 JSON Schema、Function Calling、Tool Calling 与 MCP 在一次工具调用里分别负责什么。
 - [AI 应用评测体系](./llm-evaluation.md)：从 Golden Set、LLM-as-Judge、RAG/Agent 指标、Trace 回放到 CI 回归，说明 AI 应用该怎么验收。

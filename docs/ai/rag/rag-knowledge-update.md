@@ -10,24 +10,17 @@ head:
 
 第一个企业知识库 RAG 系统上线后，很多团队都会碰到一个很真实的问题：文档明明更新了，回答还是老样子。
 
-这时候先别急着怪 LLM。更常见的原因是知识库没有同步更新，或者更新链路只做了“写入新内容”，没有处理旧版本、权限、索引一致性这些细节。文档变更频繁之后，问题会更明显：每次都全量重建索引，成本和耗时扛不住；只更新变化部分，又怕漏掉旧块；只插入新向量，不清理旧版本，过期内容还会继续被召回；换了 Embedding 模型，历史数据到底要不要全部重索引，也绕不开。
+这时候先别急着怪 LLM。更常见的原因是知识库没有同步更新，或者更新链路只做了“写入新内容”，没有处理旧版本、权限、索引一致性这些细节。
 
-这些问题背后，其实是 RAG 知识库的动态性、准确性、一致性、可回滚、可观测这几件事没有处理好。
+文档变更频繁之后，问题会更明显：每次都全量重建索引，成本和耗时扛不住；只更新变化部分，又怕漏掉旧块；只插入新向量，不清理旧版本，过期内容还会继续被召回；换了 Embedding 模型，历史数据到底要不要全部重索引，也绕不开。
 
-这篇文章讲 RAG 知识库更新的工程实践，全文接近 8000 字。重点看几个问题：
-
-1. 知识库更新到底要解决什么；
-2. 为什么 Embedding 模型一致性是第一条硬规则；
-3. 元数据怎么设计，才能支持增量更新和版本回滚；
-4. 文档新增、修改、删除怎么同步到向量库和全文索引；
-5. 增量更新和全量重建各适合什么场景；灰度发布、回滚和可观测性怎么落地；
-6. 生产里最容易踩的几个坑。
+知识库更新要同时处理版本、权限和多个索引之间的一致性。本文沿着新增、修改、删除三类事件，说明增量同步、全量重建、灰度、回滚和监控怎么配合。
 
 ## 知识库更新要解决哪些问题？
 
 在讲具体方案之前，先把目标说清楚。
 
-**知识库更新要解决的不是“怎么写一个同步任务”，而是更新之后，系统回答还能保持准、快、不越权，并且出了问题能定位、能恢复。**
+更新完成后，检索结果要与当前文档一致，不能越权；同步失败时还要能定位到具体文档和写入端，并能恢复到上一版索引。
 
 动态性指的是，文档变了，索引要能跟上。这个“及时”不一定都是秒级，可能是分钟级，也可能是天级，取决于业务对实时性的要求。内部制度库也许一天同步一次就够，客服知识库和合规条款就可能需要更快。
 
@@ -110,11 +103,11 @@ Embedding 模型会把文本转成向量，不同模型的向量空间并不通�
 
 `version_id` 记录文档修改次数。每次文档更新，`version_id` 加一。它配合 `content_hash` 使用，可以追踪变更历史，也方便回滚。
 
-`is_deleted` 是软删除标记，也是高频踩坑点。很多团队删除文档时，直接从向量库里删记录。问题是删除事件没有被保留下来，同一篇文档再次上传时，系统很难判断这是新文档，还是历史文档重新上传。加上 `is_deleted` 后，逻辑会清楚很多：收到删除事件时，把 `is_deleted` 设为 `true`；收到重新上传事件时，把它设回 `false`，并重新计算 `content_hash`；查询时默认只保留 `is_deleted = false` 的记录。
+`is_deleted` 是软删除标记。只从向量库删除记录而不在元数据库保留删除状态，会让审计、恢复和跨索引同步失去依据。收到删除事件时，可以先把 `is_deleted` 设为 `true`；重新上传时创建新版本或恢复记录，并重新计算 `content_hash`；查询时默认只保留 `is_deleted = false` 的记录。
 
 软删除不只是为了区分新旧文档，它还给审计、误删恢复、延迟物理删除、跨系统一致性留了缓冲窗口。
 
-`tenant_id` 和 `acl` 是多租户和权限控制的基础。查询时优先在检索阶段做租户和粗粒度 ACL 预过滤，避免无权限文档占用 Top-K，影响召回质量。复杂权限，比如动态权限、跨租户继承，可以在返回引用前再做二次鉴权，防止越权引用。
+`tenant_id` 和 `acl` 是多租户和权限控制的基础。所有会进入模型上下文的内容都必须先通过授权检查，通常在检索前或检索时按租户、角色、资源 ACL 过滤，避免无权限文档占用 Top-K 或泄露给模型。动态权限、跨组织继承等复杂规则可以在候选召回后再次校验，但二次校验必须发生在组装模型上下文之前；返回引用前还可以再核对一次，作为防御性检查。
 
 ## 新增、修改、删除文档如何同步？
 
@@ -172,27 +165,28 @@ flowchart TD
 
 修改比新增复杂，关键问题是旧版本数据怎么办。
 
-比较推荐的做法是软删除旧版本，再写入新版：
+需要避免查询同时看到两版内容，也要避免更新过程中暂时查不到任何版本。常见做法是先写入不可见的新版本，再原子切换活动版本：
 
-1. 根据 `doc_id` 查询元数据库，找到旧版本的 `chunk_id` 列表。
-2. 把旧 Chunk 标记为 `is_deleted = true`，或者直接物理删除。
-3. 写入新版本的 Chunk 和向量。
+1. 根据 `doc_id` 查询元数据库，记录当前活动版本和旧 `chunk_id` 列表。
+2. 写入带新 `version_id` 的 Chunk、向量和全文索引，并保持 `status = 'building'`，不参与在线检索。
+3. 校验三端写入结果后，在元数据库或索引别名中把活动版本原子切到新版。
+4. 将旧版标记为删除，按保留策略异步清理。
 
 如果向量库支持基于主键的原子更新，比如 Milvus 的 upsert，可以直接覆盖同一主键记录。但要注意，upsert 只能覆盖同一主键实体。如果文档重新切分后 Chunk 数量或 `chunk_id` 变化，仍然要按 `doc_id + version_id` 清理旧版本残留。
 
-如果不支持原子更新，就只能先删旧记录，再写新记录。两步之间会有一个很短的窗口，查询可能同时命中新旧内容。所以高风险业务要配合版本过滤或别名切换，避免用户看到混合结果。
+如果存储端不能原子替换整篇文档，就用 `active_version` 过滤、索引别名或双索引切换。直接先删旧记录再写新记录，会出现短暂的空窗；直接先写新记录但不做版本过滤，则可能同时命中新旧内容。
 
 一个很常见的坑是只写新向量，不删旧向量。
 
-我见过不止一个项目这样出问题：文档改了 10 版，向量库里留下 10 个版本。用户查询时，最匹配的反而可能是第 3 版旧内容，模型就会基于过时信息回答。修改操作必须包含清理旧向量这一步，否则知识库会持续失真。
+如果文档修改 10 次后，向量库仍保留 10 个可检索版本，查询可能命中过时内容。修改流程必须停用旧版本，并按保留策略清理旧向量，否则知识库会持续失真。
 
 ### 删除文档
 
 删除可以分为软删除和物理删除。
 
-软删除是把 `is_deleted` 标记设为 `true`。这是更推荐的做法，因为它保留了变更历史，支持误删恢复。
+软删除是把 `is_deleted` 标记设为 `true`。它便于保留变更历史和处理误删，但不适用于要求立即擦除数据的合规请求。
 
-物理删除是从向量库、元数据库、全文索引中彻底移除记录。通常建议软删除后等待一段时间，比如 30 天，确认没有问题后再做物理删除。
+物理删除是从向量库、元数据库、全文索引和相关缓存中移除记录。软删除保留多久，要根据业务恢复目标、数据分类和合规要求确定，不能把固定天数当作通用默认值。
 
 软删除方便恢复和审计，但会增加存储成本和过滤开销。物理删除更彻底，适合合规删除、敏感数据删除，但恢复成本高。生产上更常见的是“软删除 + 延迟物理删除 + 删除审计日志”。如果是敏感文档，还要清理 rerank 缓存、LLM 上下文缓存等旁路缓存。
 
@@ -200,7 +194,7 @@ flowchart TD
 
 ## 增量更新和全量重建各适合什么场景？
 
-生产环境里，这个问题很常见。我的经验是：增量更新负责日常变化，定期全量重建负责长期健康。
+常见组合是用增量更新处理日常变化，在模型升级、切分策略迁移或严重数据不一致时执行全量重建。是否定期全量重建，要看索引实现、更新频率和一致性检查结果。
 
 | 维度       | 增量更新             | 全量重建                                     |
 | ---------- | -------------------- | -------------------------------------------- |
@@ -210,7 +204,7 @@ flowchart TD
 | 更新延迟   | 低，可近实时         | 高，可能需要数小时                           |
 | 数据一致性 | 依赖变更检测准确性   | 需基于源系统快照或版本时间戳保证与源系统一致 |
 | 适用场景   | 日常变更、高频更新   | 模型升级、策略调整、故障恢复                 |
-| 主要风险   | 变更漏检导致数据陈旧 | 重建期间服务不可用                           |
+| 主要风险   | 变更漏检导致数据陈旧 | 占用额外算力和存储；切换方案不完整时影响服务 |
 
 ### 增量更新适合什么场景？
 
@@ -226,10 +220,10 @@ flowchart TD
 
 ### 全量重建适合什么场景？
 
-全量重建通常用于这几类情况：
+全量重建通常用于这些情况：
 
 - Embedding 模型升级。这是硬需求，绕不过去。
-- Chunk 策略调整。比如从固定 500 Token 改成语义切分，历史数据也要按新策略重新切。
+- Chunk 策略调整。比如从固定 500 Token 改成语义切分。可以全量重建，也可以用版本化索引逐批迁移，但同一评测和检索链路要能区分策略版本。
 - 数据结构变更。比如新增或修改元数据字段。
 - 严重故障恢复。增量链路长期失灵，数据已经明显陈旧。
 - 定期健康维护。部分向量库在高频删除后会留下 tombstone 删除标记、索引碎片，甚至出现召回退化。具体表现和索引类型、产品实现有关，比如基于 HNSW + tombstone 清理机制的产品，最好查对应向量库文档确认。
@@ -270,13 +264,9 @@ flowchart LR
 4. 保留旧索引 `index_v1` 一段时间，比如 7 天，用于快速回滚。
 5. 确认没问题后，删除旧索引。
 
-### 生产推荐的稳态策略
+### 生产环境的稳态策略
 
-比较稳的组合是：实时增量 + 定期全量重建 + 事件驱动的紧急重建。
-
-实时增量负责通过 Webhook 或 CDC 捕获变更事件，尽快更新向量库。定期全量重建负责清理残留数据、修正累积误差、确保数据完整性，可以按周或按月执行。紧急重建则用于模型升级、策略变更、大规模权限调整这类风险较高的变化。
-
-这个组合不花哨，但能同时兼顾实时性和长期健康。
+增量链路通过 Webhook 或 CDC 捕获日常变更，轮询和 reconciliation 用来发现漏写、漏删和乱序。全量重建按需触发：模型升级、索引策略迁移或一致性检查持续失败时再执行。部分系统会安排周期性重建，但周期要根据索引实现、删除比例、重建成本和一致性指标确定，不能统一按周或按月设置。
 
 ## 如何让更新链路稳定可靠？
 
@@ -292,36 +282,66 @@ flowchart LR
 2. 乐观锁 / 分布式锁：写入新版本前先拿锁，防止并发覆盖。
 3. 事务 outbox：变更事件先写入 outbox 表，再由消费者幂等处理。
 
-下面是基于唯一约束的示例：
+下面的示例在唯一约束之外增加了索引状态。`index_status` 可以取 `pending`、`processing`、`partial_failed` 和 `ready`；`claim_token` 与 `claimed_at` 用于防止多个消费者同时处理同一条记录，并允许超时任务被接管。
 
 ```python
+from uuid import uuid4
+
+
 def process_document_change(event):
     doc_id = event['doc_id']
     content = event['content']
     version_id = event.get('version_id', 1)
     chunk_hash = compute_hash(content)
 
-    # 基于 doc_id + chunk_hash 构造唯一 chunk_id（确定性）
-    chunk_id = f"{doc_id}_{version_id}_{compute_hash(content[:100])}"
+    # 使用完整内容哈希，避免前缀相同的不同内容发生碰撞
+    chunk_id = f"{doc_id}_{version_id}_{chunk_hash}"
 
-    # 尝试插入，利用数据库唯一约束幂等
+    # 重复事件不会创建新记录；失败记录仍可从原状态继续处理
+    db.execute("""
+        INSERT INTO chunks (
+            doc_id, chunk_id, content_hash, version_id, is_deleted, index_status
+        )
+        VALUES (
+            :doc_id, :chunk_id, :content_hash, :version_id, false, 'pending'
+        )
+        ON CONFLICT (doc_id, chunk_id) DO NOTHING
+    """, {
+        'doc_id': doc_id,
+        'chunk_id': chunk_id,
+        'content_hash': chunk_hash,
+        'version_id': version_id
+    })
+
+    claim_token = str(uuid4())
+    claimed = db.fetch_one("""
+        UPDATE chunks
+        SET index_status = 'processing',
+            claim_token = :claim_token,
+            claimed_at = CURRENT_TIMESTAMP
+        WHERE doc_id = :doc_id
+          AND chunk_id = :chunk_id
+          AND (
+              index_status IN ('pending', 'partial_failed')
+              OR (
+                  index_status = 'processing'
+                  AND claimed_at < CURRENT_TIMESTAMP - INTERVAL '10 minutes'
+              )
+          )
+        RETURNING chunk_id
+    """, {
+        'doc_id': doc_id,
+        'chunk_id': chunk_id,
+        'claim_token': claim_token
+    })
+
+    # 没有抢到任务，说明记录已完成或仍由另一个消费者处理
+    if claimed is None:
+        logger.info(f"Doc {doc_id} is ready or being processed, skipping")
+        return
+
     try:
-        db.execute("""
-            INSERT INTO chunks (doc_id, chunk_id, content_hash, version_id, is_deleted)
-            VALUES (:doc_id, :chunk_id, :content_hash, :version_id, false)
-            ON CONFLICT (doc_id, chunk_id) DO NOTHING
-        """, {
-            'doc_id': doc_id,
-            'chunk_id': chunk_id,
-            'content_hash': chunk_hash,
-            'version_id': version_id
-        })
-        # 只有插入成功才继续处理（冲突说明内容未变）
-        if db.rowcount == 0:
-            logger.info(f"Doc {doc_id} already exists, skipping")
-            return
-
-        # 生成向量并写入
+        # upsert 必须以 chunk_id 为幂等键，重复执行不会产生多份向量
         embedding = embedding_model.encode(content)
         vector_db.upsert(doc_id, chunk_id, embedding, {
             'doc_id': doc_id,
@@ -329,12 +349,39 @@ def process_document_change(event):
             'version_id': version_id,
             'updated_at': now()
         })
+
+        db.execute("""
+            UPDATE chunks
+            SET index_status = 'ready',
+                claim_token = NULL,
+                claimed_at = NULL
+            WHERE doc_id = :doc_id
+              AND chunk_id = :chunk_id
+              AND claim_token = :claim_token
+        """, {
+            'doc_id': doc_id,
+            'chunk_id': chunk_id,
+            'claim_token': claim_token
+        })
     except Exception as e:
+        db.execute("""
+            UPDATE chunks
+            SET index_status = 'partial_failed',
+                claim_token = NULL,
+                claimed_at = NULL
+            WHERE doc_id = :doc_id
+              AND chunk_id = :chunk_id
+              AND claim_token = :claim_token
+        """, {
+            'doc_id': doc_id,
+            'chunk_id': chunk_id,
+            'claim_token': claim_token
+        })
         logger.error(f"Failed to process {doc_id}: {e}")
         raise
 ```
 
-这段代码的重点是利用数据库唯一约束保证幂等，而不是先查再写。并发场景下，两条消息同时到达，数据库会拒绝重复插入，不会让应用层自己猜谁先谁后。
+唯一约束负责去重，条件更新负责原子抢占任务，`partial_failed` 则让后续重试可以继续写向量。这里使用 PostgreSQL 风格的 `RETURNING` 获取抢占结果，避免依赖不同数据库驱动行为不一致的 `rowcount`。如果业务数据库和向量数据库无法放进同一事务，向量写入必须按 `chunk_id` 幂等；即使向量已经写入、状态更新却失败，重试也可以安全地再次 `upsert`。生产环境还需要由定时任务扫描超过租约时间的 `processing` 记录。
 
 ### 乱序事件处理
 
@@ -355,12 +402,15 @@ def process_document_change(event):
 
 ```python
 def process_with_retry(event, max_retries=3):
-    for attempt in range(max_retries):
+    # max_retries 表示首次尝试失败后，最多再重试多少次
+    for attempt in range(max_retries + 1):
         try:
             process_document_change(event)
             return  # 成功，直接返回
         except TransientError as e:
-            wait_time = 2 ** attempt  # 指数退避：2s, 4s, 8s
+            if attempt == max_retries:
+                break
+            wait_time = 2 ** (attempt + 1)  # 指数退避：2s, 4s, 8s
             logger.warning(f"Attempt {attempt + 1} failed: {e}, retrying in {wait_time}s")
             time.sleep(wait_time)
         except PermanentError as e:
@@ -385,7 +435,7 @@ def process_with_retry(event, max_retries=3):
 
 索引别名切换的回滚最简单。别名切换后，如果新索引有问题，把别名指回旧索引即可。前提是旧索引还没删。
 
-模型升级的回滚，要在升级前记录旧模型的 `model_name` 和 `model_version`。如果新模型表现异常，就切回旧模型，同时触发基于旧模型的全量重建。
+模型升级的回滚，要在升级前记录旧模型的 `model_name`、`model_version` 和对应索引。如果新模型表现异常，优先把模型与索引一起切回旧版本；旧索引已经清理时，才需要基于旧模型重建。
 
 数据版本回滚可以利用 `updated_at` 和 `version_id` 字段。需要回滚到某个时间点时，从历史快照恢复。快照可以是向量库 snapshot，也可以放在独立对象存储里。
 
@@ -446,7 +496,7 @@ def rollback_to_version(target_version_id):
 
 从固定长度切分改成语义切分，从 500 Token 改成 800 Token，只对新文档生效，历史数据还是旧策略。这会导致一个知识库里混着多套切分逻辑，召回评估也会变得很乱。
 
-解决方式是 Chunk 策略变更触发全量重建。这不是增量能解决的问题。
+解决方式是给 Chunk 策略加版本。可以全量重建，也可以先写入新版索引并逐批迁移旧文档，验证后再切换活动版本；不能让两套策略在没有版本标记的情况下混用。
 
 ### 坑四：文档删除后仍被召回
 
@@ -486,6 +536,10 @@ Webhook 漏发、CDC 延迟、轮询间隔太大，都会导致文档已经变�
 | `acl_mismatch_count`          | 源系统 ACL 与索引 ACL 不一致数量       | > 0              |
 
 每次更新操作都应该记录审计日志，包括 `doc_id`、`change_type`（新增 / 修改 / 删除）、`timestamp`、`operator`（自动 / 手动）、`result`（成功 / 失败）、`error_message`。真正出问题时，这些字段能帮你快速定位是哪条记录、哪个环节、什么时候失败的。
+
+## 上线检查
+
+上线前要验证四件事：索引和查询使用同一套 Embedding 模型及版本；所有候选在进入模型上下文前完成鉴权；文档更新通过活动版本或别名原子切换；向量库、元数据库、全文索引和缓存的失败能够被补偿任务发现。`doc_id`、`content_hash`、`version_id`、索引状态和审计日志应当贯穿这条链路。
 
 ## 总结
 
