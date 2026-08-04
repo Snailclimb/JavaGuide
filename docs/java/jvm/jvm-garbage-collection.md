@@ -123,7 +123,7 @@ public class GCTest {
 
 大部分情况，对象都会首先在 Eden 区域分配。如果对象在 Eden 出生并经过第一次 Minor GC 后仍然能够存活，并且能被 Survivor 容纳的话，将被移动到 Survivor 空间（s0 或者 s1）中，并将对象年龄设为 1（Eden 区->Survivor 区后对象的初始年龄变为 1）。
 
-对象在 Survivor 中每熬过一次 MinorGC,年龄就增加 1 岁，当它的年龄增加到一定程度（默认为 15 岁），就会被晋升到老年代中。对象晋升到老年代的年龄阈值，可以通过参数 `-XX:MaxTenuringThreshold` 来设置。
+对象在 Survivor 中每熬过一次 Minor GC，年龄就增加 1 岁，当它的年龄达到晋升阈值时，就会被晋升到老年代中。`-XX:MaxTenuringThreshold` 用于设置对象晋升年龄的最大阈值，默认值与垃圾收集器有关。例如，JDK 8 中 Parallel GC 的默认值为 15，CMS 的默认值为 6；实际晋升阈值还可能由 JVM 动态调整。
 
 > 修正（[issue552](https://github.com/Snailclimb/JavaGuide/issues/552)）：“Hotspot 遍历所有对象时，按照年龄从小到大对其所占用的大小进行累积，当累积的某个年龄大小超过了 survivor 区的 50% 时（默认值是 50%，可以通过 `-XX:TargetSurvivorRatio=percent` 来设置，参见 [issue1199](https://github.com/Snailclimb/JavaGuide/issues/1199)），取这个年龄和 MaxTenuringThreshold 中更小的一个值，作为新的晋升年龄阈值”。
 >
@@ -241,9 +241,7 @@ public class ReferenceCountingGc {
 
 **对象可以被回收，就代表一定会被回收吗？**
 
-即使在可达性分析法中不可达的对象，也并非是“非死不可”的，这时候它们暂时处于“缓刑阶段”，要真正宣告一个对象死亡，至少要经历两次标记过程；可达性分析法中不可达的对象被第一次标记并且进行一次筛选，筛选的条件是此对象是否有必要执行 `finalize` 方法。当对象没有覆盖 `finalize` 方法，或 `finalize` 方法已经被虚拟机调用过时，虚拟机将这两种情况视为没有必要执行。
-
-被判定为需要执行的对象将会被放在一个队列中进行第二次标记，除非这个对象与引用链上的任何一个对象建立关联，否则就会被真的回收。
+对于重写了 `finalize()` 方法且该方法尚未执行过的对象，HotSpot 在确认对象不可达后，可能会将对应的终结引用加入待处理队列，由 Finalizer 线程异步处理。如果对象在 `finalize()` 方法中重新与引用链上的对象建立关联，它可以暂时逃过回收；否则，后续垃圾收集会再次确认其可回收状态。这个过程通常被概括为“两次标记”，但不代表垃圾收集器会同步等待 `finalize()` 方法执行，也不保证该方法一定会被调用。
 
 > `Object` 类中的 `finalize` 方法一直被认为是一个糟糕的设计，成为了 Java 语言的负担，影响了 Java 语言的安全和 GC 的性能。`Object.finalize()` 从 JDK 9 起被弃用，JEP 421 又在 JDK 18 中将终结机制标记为待移除。新代码不应依赖它。
 >
@@ -258,7 +256,7 @@ public class ReferenceCountingGc {
 
 JDK1.2 之前，Java 中引用的定义很传统：如果 reference 类型的数据存储的数值代表的是另一块内存的起始地址，就称这块内存代表一个引用。
 
-JDK1.2 以后，Java 对引用的概念进行了扩充，将引用分为强引用、软引用、弱引用、虚引用四种（引用强度逐渐减弱），强引用就是 Java 中普通的对象，而软引用、弱引用、虚引用在 JDK 中定义的类分别是 `SoftReference`、`WeakReference`、`PhantomReference`。
+JDK 1.2 以后，Java 对引用的概念进行了扩充，将引用分为强引用、软引用、弱引用、虚引用四种（引用强度逐渐减弱）。强引用就是程序代码中普遍存在的普通引用赋值，软引用、弱引用、虚引用在 JDK 中定义的类分别是 `SoftReference`、`WeakReference`、`PhantomReference`。
 
 ![Java 引用类型总结](https://oss.javaguide.cn/github/javaguide/java/jvm/java-reference-type.png)
 
@@ -270,7 +268,7 @@ JDK1.2 以后，Java 对引用的概念进行了扩充，将引用分为强引�
 String strongReference = new String("abc");
 ```
 
-如果一个对象具有强引用，那就类似于**必不可少的生活用品**，垃圾回收器绝不会回收它。当内存空间不足，Java 虚拟机宁愿抛出 OutOfMemoryError 错误，使程序异常终止，也不会靠随意回收具有强引用的对象来解决内存不足问题。
+如果一个对象仍然可以通过强引用访问，那就类似于**必不可少的生活用品**，垃圾回收器不会回收它。当内存空间不足，Java 虚拟机宁愿抛出 `OutOfMemoryError` 错误，使程序异常终止，也不会靠随意回收强可达对象来解决内存不足问题。
 
 **2．软引用（SoftReference）**
 
@@ -288,7 +286,7 @@ SoftReference<String> softReference2 = new SoftReference<>(new String("def")); /
 
 软引用对象在内存压力较大时可能会被回收，但 JVM 不保证只在内存不足时才清理。唯一强保证是：在抛出 OutOfMemoryError 之前，所有仅被软引用可达的对象一定会被清理。只要垃圾回收器没有回收它，该对象就可以被程序使用。软引用可用来实现内存敏感的高速缓存。
 
-软引用可以和一个引用队列（ReferenceQueue）联合使用，如果软引用所引用的对象被垃圾回收，JAVA 虚拟机就会把这个软引用加入到与之关联的引用队列中。
+软引用可以和一个引用队列（ReferenceQueue）联合使用。垃圾回收器清除软引用后，会在同一时间或稍后把已经注册引用队列的软引用加入对应队列。引用入队表示垃圾回收器已经检测到相应的可达性变化，并不用于证明对象占用的内存已经完成物理释放。
 
 **3．弱引用（WeakReference）**
 
@@ -306,11 +304,11 @@ WeakReference<String> weakReference2 = new WeakReference<>(new String("abc")); /
 
 弱引用与软引用的区别在于：只具有弱引用的对象拥有更短暂的生命周期。垃圾回收器确定某个对象仅弱可达时，会原子地清除指向该对象的弱引用。不过，清除动作要等到垃圾回收发生时才会执行，因此不保证对象变成弱可达后会立刻被回收。
 
-弱引用可以和一个引用队列（ReferenceQueue）联合使用，如果弱引用所引用的对象被垃圾回收，Java 虚拟机就会把这个弱引用加入到与之关联的引用队列中。
+弱引用可以和一个引用队列（ReferenceQueue）联合使用。垃圾回收器清除弱引用后，会在同一时间或稍后把已经注册引用队列的弱引用加入对应队列。
 
 **4．虚引用（PhantomReference）**
 
-“虚引用”顾名思义，就是形同虚设，与其他几种引用都不同，虚引用并不会决定对象的生命周期。如果一个对象仅持有虚引用，那么它就和没有任何引用一样，在任何时候都可能被垃圾回收。虚引用代码如下：
+“虚引用”顾名思义，就是形同虚设，与其他几种引用都不同，虚引用不会阻止垃圾回收器回收其指向的对象。虚引用代码如下：
 
 ```java
 // --- 示例1 ---
@@ -324,7 +322,7 @@ str = null; // 去除强引用
 PhantomReference phantomReference2 = new PhantomReference(new String("abc"), queue); // 匿名对象
 ```
 
-**虚引用主要用来跟踪对象被垃圾回收的活动**。
+**虚引用主要用于接收对象可达性发生变化的通知，并配合引用队列安排清理工作**。
 
 **虚引用与软引用和弱引用的一个区别在于：** 虚引用通常与引用队列（ReferenceQueue）联合使用。垃圾回收器确定对象进入虚可达状态后，会清除相关虚引用，并在同一时间或稍后将已注册引用队列的虚引用入队。`PhantomReference.get()` 始终返回 `null`，程序不能通过虚引用重新取得对象；它主要用于在对象已无法再被访问后安排清理工作。
 

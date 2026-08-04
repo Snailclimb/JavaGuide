@@ -553,13 +553,13 @@ graph LR
     %% 分支2：核心优势
     Root --> Advantage[核心优势]:::implement
     Advantage --> Adv1[某些 I/O 场景可减少中间复制]:::implement
-    Advantage --> Adv2[显著提高 I/O 性能]:::implement
+    Advantage --> Adv2[部分场景可提高 I/O 性能]:::implement
     Advantage --> Adv3[减少垃圾回收对应用的影响]:::implement
 
     %% 分支3：限制与异常
     Root --> Error[限制与异常]:::error
-    Error --> Error1[不受 Java 堆大小限制]:::error
-    Error --> Error2[受本机总内存及寻址空间限制]:::error
+    Error --> Error1[不计入 Java 堆]:::error
+    Error --> Error2[受直接内存上限及本机内存限制]:::error
     Error --> Error3[内存不足时抛出 OutOfMemoryError]:::error
 
     %% 线条样式
@@ -572,11 +572,11 @@ graph LR
 
 JDK1.4 中新加入的 **NIO（New I/O）**，引入了一种基于**通道（Channel）**与**缓冲区（Buffer）**的 I/O 方式。直接字节缓冲区可以在 Java 堆外分配内容，并通过 Java 堆中的 `DirectByteBuffer` 对象进行操作。JVM 会尽力直接在这种缓冲区上执行本地 I/O，从而在某些场景中减少中间缓冲区的数据复制；NIO 中只有可选择通道与 Selector 等部分提供非阻塞 I/O 能力，不能把整个 NIO 展开为 Non-Blocking I/O。
 
-直接内存的分配不会受到 Java 堆的限制，但是，既然是内存就会受到本机总内存大小以及处理器寻址空间的限制。
+直接内存不计入 Java 堆，但仍会受到本机总内存、处理器寻址空间等条件的限制。对于 NIO 直接缓冲区，还可以通过 [`-XX:MaxDirectMemorySize`](https://docs.oracle.com/en/java/javase/25/docs/specs/man/java.html#extra-options-for-java) 限制总分配量。
 
 类似的概念还有 **堆外内存**。在一些文章中将直接内存等价于堆外内存，个人觉得不是特别准确。
 
-堆外内存就是把内存对象分配在堆外的内存，这些内存直接受操作系统管理（而不是虚拟机），这样做的结果就是能够在一定程度上减少垃圾回收对应用程序造成的影响。
+堆外内存是分配在 Java 堆之外的内存的统称，底层通常使用操作系统提供的本地内存。它是否以及如何受到 JVM 或 JDK 管理，取决于具体的分配方式。例如，在 OpenJDK/HotSpot 中，`DirectByteBuffer` 对应的本地内存会关联 Java 堆中的缓冲区对象，并在对象变为不可达后通过 `Cleaner` 等机制参与清理。由于清理时机不由应用程序直接控制，使用堆外内存可以减少 Java 堆的压力，但仍然需要关注本地内存泄漏和 `OutOfMemoryError`。
 
 ## HotSpot 虚拟机对象探秘
 

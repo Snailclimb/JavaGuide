@@ -47,7 +47,7 @@ head:
 
 根据[Oracle 官方文档](https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/sizing.html)，在堆总可用内存配置完成之后，第二大影响因素是 `Young Generation` 在堆内存所占的比例。新生代的默认大小会受 JVM 实现、平台、垃圾收集器、堆大小和自适应策略影响，并不存在适用于所有环境的固定“最小 1310 MB”；`NewSize` 和 `MaxNewSize` 分别用于约束新生代大小的下限和上限。
 
-可以通过以下两种方式设置新生代内存大小：
+对于支持固定新生代大小参数的分代收集器，可以通过以下两种方式设置新生代内存大小：
 
 **1.通过 `-XX:NewSize` 和 `-XX:MaxNewSize` 指定**
 
@@ -69,6 +69,8 @@ head:
 ```bash
 -Xmn512m
 ```
+
+显式设置新生代大小会限制垃圾收集器的自适应调整能力。[Oracle 官方文档](https://docs.oracle.com/en/java/javase/25/docs/specs/man/java.html#extra-options-for-java)明确建议不要为 G1 设置 `-Xmn`；是否需要调整以及如何调整，应结合具体收集器和 GC 日志判断。
 
 GC 调优策略中很重要的一条经验总结是这样说的：
 
@@ -126,7 +128,7 @@ void MetaspaceGC::initialize() {
 }
 ```
 
-**3、`-XX:MaxMetaspaceSize` 的重要性：**如果不显式设置 -`XX:MaxMetaspaceSize`，元空间的最大大小理论上受限于可用的本地内存。在极端情况下（如类加载器泄漏导致不断加载类），这确实**可能耗尽大量本地内存**。因此，**强烈建议设置一个合理的 `-XX:MaxMetaspaceSize` 上限**，以防止对系统造成影响。
+**3、`-XX:MaxMetaspaceSize` 的作用：**如果不显式设置 `-XX:MaxMetaspaceSize`，元空间默认没有固定上限，持续增长的类元数据可能消耗大量本地内存。是否设置该参数以及设置多大，应结合类元数据使用情况和进程的本地内存预算决定。上限过小会增加元数据 GC 的频率，也可能提前触发 `OutOfMemoryError: Metaspace`，因此不存在适用于所有应用的推荐值。
 
 相关阅读：[issue 更正：MaxMetaspaceSize 如果不指定大小的话，不会耗尽内存 #1204](https://github.com/Snailclimb/JavaGuide/issues/1204)。
 
@@ -240,8 +242,8 @@ JDK 9 及之后应使用统一 JVM 日志框架 `-Xlog`。例如，下面的配�
 
 本文为 Java 开发者提供了一份实用的 JVM 常用参数配置指南，旨在帮助读者理解和优化 Java 应用的性能与稳定性。文章重点强调了以下几个方面：
 
-1. **堆内存配置：** 建议显式设置初始与最大堆内存 (`-Xms`, -`Xmx`，通常设为一致) 和新生代大小 (`-Xmn` 或 `-XX:NewSize/-XX:MaxNewSize`)，这对 GC 性能至关重要。
-2. **元空间管理 (Java 8+)：** 澄清了 `-XX:MetaspaceSize` 的实际作用（触发元数据 GC 的初始高水位阈值，而非初始容量），并强烈建议设置 `-XX:MaxMetaspaceSize` 以防止潜在的本地内存耗尽。
+1. **堆内存配置：** 可以根据部署环境显式设置初始与最大堆内存（`-Xms`、`-Xmx`，服务端应用通常设为一致）。新生代大小是否需要显式设置，应结合垃圾收集器和 GC 日志判断；G1 通常不建议设置 `-Xmn`。
+2. **元空间管理（Java 8+）：** `-XX:MetaspaceSize` 用于设置触发元数据 GC 的初始高水位阈值，而不是元空间的初始容量。`-XX:MaxMetaspaceSize` 可以限制类元数据使用的本地内存，但具体上限需要根据应用实际情况确定。
 3. **垃圾收集器选择与日志：**介绍了不同 GC 算法的适用场景，并强调在生产和测试环境中开启详细 GC 日志对于问题排查的必要性；JDK 8 使用传统 GC 日志参数，JDK 9 及之后使用 `-Xlog`。
 4. **OOM 故障排查：** 说明了如何通过 `-XX:+HeapDumpOnOutOfMemoryError` 等参数在发生 OOM 时自动生成堆转储文件，以便进行后续的内存泄漏分析。
 5. **其他参数：** 简要介绍了如字符串去重等其他有用参数，并指出了部分旧参数的现状。
