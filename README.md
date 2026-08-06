@@ -470,7 +470,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 
 ## Star 趋势
 
-![Stars](https://api.star-history.com/svg?repos=Snailclimb/JavaGuide&type=Date)
+[![Star History Chart](https://star-history.dera.page/svg?repos=Snailclimb/JavaGuide&type=date&legend=top-left)](https://star-history.dera.page/#Snailclimb/JavaGuide&type=date&legend=top-left)
 
 ## 公众号
 

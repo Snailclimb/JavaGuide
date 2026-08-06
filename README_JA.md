@@ -423,7 +423,7 @@ JVM の部分は主に [JVM 仕様 - Java 8](https://docs.oracle.com/javase/spec
 
 ## Star のトレンド
 
-![Stars](https://api.star-history.com/svg?repos=Snailclimb/JavaGuide&type=Date)
+[![Star History Chart](https://star-history.dera.page/svg?repos=Snailclimb/JavaGuide&type=date&legend=top-left)](https://star-history.dera.page/#Snailclimb/JavaGuide&type=date&legend=top-left)
 
 ## 公式公衆号
 

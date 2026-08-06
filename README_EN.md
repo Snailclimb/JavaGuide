@@ -438,7 +438,7 @@ Deploying multiple instances of the same service to avoid single point of failur
 
 ## Star Trend
 
-![Stars](https://api.star-history.com/svg?repos=Snailclimb/JavaGuide&type=Date)
+[![Star History Chart](https://star-history.dera.page/svg?repos=Snailclimb/JavaGuide&type=date&legend=top-left)](https://star-history.dera.page/#Snailclimb/JavaGuide&type=date&legend=top-left)
 
 ## Official Public Account
 
