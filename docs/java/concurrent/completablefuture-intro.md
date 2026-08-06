@@ -58,11 +58,9 @@ public interface Future<V> {
     boolean isDone();
     // 获取任务执行结果
     V get() throws InterruptedException, ExecutionException;
-    // 指定时间内没有返回计算结果就抛出 TimeOutException 异常
+    // 指定时间内没有返回计算结果就抛出 TimeoutException 异常
     V get(long timeout, TimeUnit unit)
-
-        throws InterruptedException, ExecutionException, TimeoutExceptio
-
+        throws InterruptedException, ExecutionException, TimeoutException;
 }
 ```
 

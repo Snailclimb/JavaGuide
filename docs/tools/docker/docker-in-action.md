@@ -169,26 +169,11 @@ systemctl enable docker
 docker pull mysql:8.4
 ```
 
-然而下载镜像的过程是非常慢的，所以我们需要配置一下镜像源加速下载，访问`阿里云`官网，点击控制台：
+在部分网络环境中，从 Docker Hub 拉取镜像可能较慢或失败。不过，不建议直接复制网上的第三方镜像加速地址：这类服务的适用范围、同步策略和可用性可能随时调整。
 
-![阿里云镜像加速](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-aliyun-mirror-admin.png)
+以阿里云容器镜像服务 ACR 为例，其镜像加速器自 2024 年 7 月 2 日起仅限阿里云用户在支持公网访问的阿里云产品上使用，并且只支持拉取限定范围内的容器镜像。当前官方文档还提示，该服务已停止同步最新镜像，非阿里云机器访问加速地址会返回 HTTP 403。具体限制请以[阿里云 ACR 镜像加速器功能调整公告](https://help.aliyun.com/zh/acr/product-overview/product-change-acr-mirror-accelerator-function-adjustment-announcement)和[官方镜像加速文档](https://help.aliyun.com/zh/acr/user-guide/accelerate-the-pulls-of-docker-official-images)为准。
 
-然后点击左上角的菜单，在弹窗的窗口中，将鼠标悬停在产品与服务上，并在右侧搜索容器镜像服务，最后点击容器镜像服务：
-
-![阿里云镜像加速](https://oss.javaguide.cn/github/javaguide/tools/docker/docker-aliyun-mirror-admin-accelerator.png)
-
-点击左侧的镜像加速器，并依次执行右侧的配置指令即可。
-
-```shell
-sudo mkdir -p /etc/docker
-sudo tee /etc/docker/daemon.json <<-'EOF'
-{
-  "registry-mirrors": ["https://679xpnpz.mirror.aliyuncs.com"]
-}
-EOF
-sudo systemctl daemon-reload
-sudo systemctl restart docker
-```
+如果使用的是阿里云 ECS，可以按照阿里云控制台提供的专属地址和官方文档进行配置。非阿里云环境不要照搬上述配置；生产环境建议减少对外部公共镜像服务的强依赖，将所需镜像同步到自建或云厂商提供的私有镜像仓库，并固定镜像版本或摘要。
 
 ## Docker 镜像指令
 
