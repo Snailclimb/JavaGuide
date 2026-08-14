@@ -66,6 +66,7 @@ MySQL 是后端开发最核心的关系型数据库考点之一，学习时建�
 - [MySQL 事务隔离级别详解](./mysql/transaction-isolation-level.md)：理解脏读、不可重复读、幻读和不同隔离级别的权衡。
 - [InnoDB 存储引擎对 MVCC 的实现](./mysql/innodb-implementation-of-mvcc.md)：理解 Read View、隐藏字段、undo log 和快照读。
 - [MySQL 三大日志详解](./mysql/mysql-logs.md)：理解 binlog、redo log、undo log 的作用和关系。
+- [MySQL 数据同步到 Elasticsearch 详解](./mysql/mysql-to-elasticsearch-sync.md)：对比应用层双写、定时同步、Canal、Debezium 和 Flink CDC，理解全量、增量和数据一致性问题。
 - [MySQL 执行计划分析](./mysql/mysql-query-execution-plan.md)：掌握 EXPLAIN 常见字段和慢 SQL 分析入口。
 
 ### Redis

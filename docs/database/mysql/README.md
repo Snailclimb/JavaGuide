@@ -1,6 +1,6 @@
 ---
 title: MySQL 专题：索引、事务、日志、备份恢复、MVCC 与性能优化
-description: MySQL 面试与性能优化学习路线，涵盖索引、索引失效、事务隔离级别、MVCC、binlog、redo log、undo log、备份恢复、执行计划和 SQL 优化。
+description: MySQL 面试与性能优化学习路线，涵盖索引、索引失效、事务隔离级别、MVCC、binlog、redo log、undo log、备份恢复、数据同步、执行计划和 SQL 优化。
 category: 数据库
 tag:
   - MySQL
@@ -12,17 +12,17 @@ sitemap:
 head:
   - - meta
     - name: keywords
-      content: MySQL,MySQL面试题,MySQL索引,索引失效,事务隔离级别,MVCC,binlog,redo log,undo log,MySQL备份,MySQL恢复,执行计划,SQL执行过程,MySQL性能优化,后端面试
+      content: MySQL,MySQL面试题,MySQL索引,索引失效,事务隔离级别,MVCC,binlog,redo log,undo log,MySQL备份,MySQL恢复,MySQL同步ES,Canal,Flink CDC,执行计划,SQL执行过程,MySQL性能优化,后端面试
 ---
 
-MySQL 是后端开发最常用的关系型数据库之一，也是数据库面试中最容易追问到底的专题。学习 MySQL 时，建议围绕“索引怎么让查询变快、事务怎么保证一致性、日志怎么保证恢复和复制、备份怎么兜住数据事故、执行计划怎么定位慢 SQL”这几条主线展开。
+MySQL 是后端开发最常用的关系型数据库之一，也是数据库面试中最容易追问到底的专题。学习 MySQL 时，建议围绕“索引怎么让查询变快、事务怎么保证一致性、日志怎么保证恢复和复制、数据怎么同步到搜索等异构系统、执行计划怎么定位慢 SQL”这几条主线展开。
 
 ## 适合谁看
 
 - 想系统学习 MySQL 原理和性能优化的后端开发者。
 - 准备 MySQL 索引、事务、MVCC、日志、执行计划相关面试题的同学。
 - 已经能写常规 SQL，但对慢 SQL 分析、索引设计和事务问题不够熟的读者。
-- 需要在项目中处理 MySQL 性能、数据一致性和字段设计问题的工程师。
+- 需要在项目中处理 MySQL 性能、数据一致性、异构数据同步和字段设计问题的工程师。
 
 ## 学习重点
 
@@ -32,6 +32,7 @@ MySQL 是后端开发最常用的关系型数据库之一，也是数据库面�
 - InnoDB 如何通过 MVCC、undo log 和 Read View 实现快照读？
 - binlog、redo log、undo log 分别解决复制、崩溃恢复和事务回滚中的哪些问题？
 - MySQL 如何通过全量备份、binlog 和 PITR 恢复到指定时间点？
+- MySQL 数据同步到 Elasticsearch 有哪些方案？如何处理全量、增量、乱序和数据对账？
 - 慢 SQL 优化应该如何从建表、索引、SQL 写法和执行计划逐层定位？
 
 ## 建议阅读顺序
@@ -39,8 +40,9 @@ MySQL 是后端开发最常用的关系型数据库之一，也是数据库面�
 1. [MySQL 常见面试题总结](./mysql-questions-01.md)：先建立 MySQL 高频问题清单。
 2. [MySQL 索引详解](./mysql-index.md)、[MySQL 索引失效场景总结](./mysql-index-invalidation.md)：理解索引原理和常见失效场景。
 3. [MySQL 事务隔离级别详解](./transaction-isolation-level.md)、[InnoDB 存储引擎对 MVCC 的实现](./innodb-implementation-of-mvcc.md)：掌握事务和一致性读。
-4. [MySQL 三大日志详解](./mysql-logs.md)、[MySQL备份与恢复详解](./mysql-backup-and-restore.md)、[SQL 语句在 MySQL 中的执行过程](./how-sql-executed-in-mysql.md)：理解写入、提交、恢复和执行链路。
-5. [MySQL 执行计划分析](./mysql-query-execution-plan.md)、[MySQL 高性能优化规范建议总结](./mysql-high-performance-optimization-specification-recommendations.md)：把原理落到慢 SQL 和工程规范上。
+4. [MySQL 三大日志详解](./mysql-logs.md)、[MySQL备份与恢复详解](./mysql-backup-and-restore.md)、[MySQL 数据同步到 Elasticsearch 详解](./mysql-to-elasticsearch-sync.md)：理解 binlog 在提交、恢复、复制和异构数据同步中的作用。
+5. [SQL 语句在 MySQL 中的执行过程](./how-sql-executed-in-mysql.md)：理解连接器、分析器、优化器、执行器和存储引擎如何协作。
+6. [MySQL 执行计划分析](./mysql-query-execution-plan.md)、[MySQL 高性能优化规范建议总结](./mysql-high-performance-optimization-specification-recommendations.md)：把原理落到慢 SQL 和工程规范上。
 
 ## 核心文章
 
@@ -57,12 +59,13 @@ MySQL 是后端开发最常用的关系型数据库之一，也是数据库面�
 - [MySQL 隐式转换造成索引失效](./index-invalidation-caused-by-implicit-conversion.md)：聚焦隐式类型转换导致的索引失效问题。
 - [MySQL 执行计划分析](./mysql-query-execution-plan.md)：掌握 EXPLAIN 的 type、key、rows、Extra 等关键字段。
 
-### 事务、MVCC 与日志
+### 事务、MVCC、日志与数据同步
 
 - [MySQL 事务隔离级别详解](./transaction-isolation-level.md)：理解读未提交、读已提交、可重复读、串行化以及并发读异常。
 - [InnoDB 存储引擎对 MVCC 的实现](./innodb-implementation-of-mvcc.md)：理解隐藏字段、undo log、Read View 和可见性判断。
 - [MySQL 三大日志详解](./mysql-logs.md)：理解 binlog、redo log、undo log 的作用、写入时机和两阶段提交。
 - [MySQL备份与恢复详解](./mysql-backup-and-restore.md)：理解 mysqldump、XtraBackup、binlog、PITR、RTO/RPO 和恢复演练。
+- [MySQL 数据同步到 Elasticsearch 详解](./mysql-to-elasticsearch-sync.md)：对比应用层双写、定时同步、Canal、Debezium 和 Flink CDC，并理解全量、增量与最终一致性问题。
 
 ### 执行过程与工程细节
 
@@ -81,6 +84,7 @@ MySQL 是后端开发最常用的关系型数据库之一，也是数据库面�
 - MVCC 是如何实现的？Read View 里有哪些关键字段？
 - binlog、redo log、undo log 有什么区别？两阶段提交解决什么问题？
 - MySQL 如何通过全量备份和 binlog 做按时间点恢复？
+- MySQL 数据同步到 Elasticsearch 有哪些方案？如何保证幂等并处理消息乱序？
 - 慢 SQL 优化应该从哪些维度入手？
 - 自增主键为什么不一定连续？
 - DATETIME 和 TIMESTAMP 应该如何选择？

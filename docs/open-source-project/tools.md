@@ -5,14 +5,18 @@ category: 开源项目
 icon: "mdi:tools"
 ---
 
+本页收录独立运行的 GUI、CLI、平台，以及接入构建流程的检查工具。可以直接作为业务代码依赖的通用库放在[工具类库](./tool-library.md)。
+
 ## 代码质量
 
-- [SonarQube](https://github.com/SonarSource/sonarqube "sonarqube")：静态代码检查工具，，帮助检查代码缺陷，可以快速的定位代码中潜在的或者明显的错误，改善代码质量，提高开发速度。
+- [SonarQube](https://github.com/SonarSource/sonarqube "sonarqube")：持续代码质量检查平台，用于发现缺陷、安全热点、重复代码和可维护性问题。
 - [Spotless](https://github.com/diffplug/spotless)：Spotless 是支持多种语言的代码格式化工具，支持 Maven 和 Gradle 以 Plugin 的形式构建。
-- [CheckStyle](https://github.com/checkstyle/checkstyle "checkstyle") : 类似于 Spotless，可帮助程序员编写符合编码标准的 Java 代码。
-- [PMD](https://github.com/pmd/pmd "pmd") : 可扩展的多语言静态代码分析器。
-- [SpotBugs](https://github.com/spotbugs/spotbugs "spotbugs") : FindBugs 的继任者。静态分析工具，用于查找 Java 代码中的错误。
-- [P3C](https://github.com/alibaba/p3c "p3c")：Alibaba Java Coding Guidelines pmd implements and IDE plugin。Eclipse 和 IDEA 上都有该插件。
+- [Checkstyle](https://github.com/checkstyle/checkstyle "checkstyle")：检查 Java 源码是否符合编码规范，可接入 Maven、Gradle 和 CI 流程。
+- [PMD](https://github.com/pmd/pmd "pmd")：可扩展的多语言静态代码分析器。
+- [SpotBugs](https://github.com/spotbugs/spotbugs "spotbugs")：FindBugs 的继任者，通过字节码静态分析查找 Java 代码中的缺陷。
+- [Error Prone](https://github.com/google/error-prone)：在编译阶段捕获常见 Java 编码错误，可接入 `javac`、Maven 和 Gradle 构建流程。
+- [NullAway](https://github.com/uber/NullAway)：低构建开销的 Java 空指针静态检查工具，通常与 Error Prone 配合使用。它依赖空值注解和增量接入，不能替代运行时测试。
+- [ArchUnit](https://github.com/TNG/ArchUnit)：用 Java 测试代码声明并检查分层、依赖方向、包结构等架构规则，适合把团队约定变成自动化测试。
 
 ## 代码安全
 
@@ -26,51 +30,30 @@ icon: "mdi:tools"
 ## 反编译
 
 - [JADX](https://github.com/skylot/jadx)：用于从 Android Dex 和 Apk 文件生成 Java 源代码的命令行和 GUI 工具。
-- [JD-GUI](https://github.com/java-decompiler/jd-gui):一个独立的 GUI 工具，可显示 CLASS 文件中的 Java 源代码。
 
 ## 数据库
 
-### 数据库建模
-
-- [CHINER](https://gitee.com/robergroup/chiner)：开源免费的国产数据库建模工具。目标是做一款丰富数据库生态，独立于具体数据库之外的，数据库关系模型设计平台。前生是 [PDMan](https://gitee.com/robergroup/pdman)，定位为 PowerDesigner 的免费替代方案。
-
-开源的数据库建模工具比较少，以下是一些非开源的数据库建模工具（部分需要付费才能使用） :
-
-- [MySQL Workbench](https://www.mysql.com/products/workbench/) : MySQL 官方为数据库架构师、开发人员和 DBA 提供的一个可视化工具。 MySQL Workbench 支持数据建模，SQL 开发以及服务器配置、用户管理、性能优化、数据库备份以及迁移等功能，支持 Windows、Linux 和 Mac OS X 平台。
-- [Navicat Data Modeler](https://www.navicat.com.cn/products/navicat-data-modeler) : 一款强大的和符合成本效益的数据库设计工具，它能帮助用户创建高质素的概念、逻辑和物理数据模型。让你可视化地设计数据库结构、执行逆向或正向工程程序、从 ODBC 数据源导入模型、生成复杂的 SQL/DDL 和打印模型到文件等。付费。
-- [DbSchema](https://dbschema.com/) : 一款功能强大的数据库设计和管理的可视化工具，支持几乎所有的关系型和 NoSQL 数据库。付费。
-- [dbdiagram.io](https://dbdiagram.io/home) : 是一款简单免费的在线 ER 图绘制工具，通过编写代码创建模型，专为开发人员和数据分析师而设计。它通过一个简单的自定义语言来生成数据模型，支持 MySQL、PostgreSQL、SQL Server 数据库 DDL 文件的正向工程和逆向工程、版本历史、在线共享、导出图片或者 PDF 等功能。dbdiagram.io 提供了免费版。
-
 ### 数据库管理
 
-- [Chat2DB](https://github.com/alibaba/Chat2DB)：阿里巴巴开源的一款智能的通用数据库工具和 SQL 客户端，支持 Windows、Mac 本地安装，也支持服务器端部署，Web 网页访问。和传统的数据库客户端软件 Navicat、DBeaver 相比 Chat2DB 集成了 AIGC 的能力，支持自然语言生成 SQL、SQL 性能优化等功能。
+- [Chat2DB](https://github.com/OtterMind/Chat2DB)：跨平台数据库客户端和 SQL 工作台，支持多种数据库，并提供 SQL 生成、解释和优化等 AI 辅助能力。
 - [Beekeeper Studio](https://github.com/beekeeper-studio/beekeeper-studio)：跨平台数据库管理工具，颜值高，支持 SQLite、MySQL、MariaDB、Postgres、CockroachDB、SQL Server、Amazon Redshift。
-- [Sequel Pro](https://github.com/sequelpro/sequelpro)：适用于 macOS 的 MySQL/MariaDB 数据库管理工具。
-- [DBeaver](https://github.com/dbeaver/dbeaver)：一个基于 Java 开发 ，并且支持几乎所有的数据库产品的开源数据库管理工具。DBeaver 社区版不光支持关系型数据库比如 MySQL、PostgreSQL、MariaDB、SQLite、Oracle、Db2、SQL Server，还比如 SQLite、H2 这些内嵌数据库。还支持常见的全文搜索引擎比如 Elasticsearch 和 Solr、大数据相关的工具比如 Hive 和 Spark。
-- [Kangaroo](https://gitee.com/dbkangaroo/kangaroo)：袋鼠是一款为热门数据库系统打造的管理客户端(SQLite / MySQL / PostgreSQL / ...) ，支持建表、查询、模型、同步、导入导出等功能，支持 Windows / Mac / Linux 等操作系统，力求打造成好用、好玩、开发友好的 SQL 工具。
-- [Arctype](https://arctype.com/)：一个桌面的数据库查询工具，可以连接各种数据库，在其中执行 SQL 语句，以可视化形式展示数据。
-- [Mongood](https://github.com/RenzHoly/Mongood) : MongoDB 图形化的管理工具。基于微软 Fluent UI，支持自动黑暗模式。
+- [DBeaver](https://github.com/dbeaver/dbeaver)：基于 Java 的跨平台数据库管理工具。社区版支持 MySQL、PostgreSQL、MariaDB、SQLite、Oracle、Db2、SQL Server 等多种数据库。
+- [Kangaroo](https://gitee.com/dbkangaroo/kangaroo)：跨平台数据库管理客户端，支持 SQLite、MySQL、PostgreSQL 等数据库，以及查询、建模、同步和导入导出等操作。
 
 ### Redis
 
-- [Another Redis Desktop Manager](https://github.com/qishibo/AnotherRedisDesktopManager/blob/master/README.zh-CN.md)：更快、更好、更稳定的 Redis 桌面(GUI)管理客户端，兼容 Windows、Mac、Linux。
-- [Tiny RDM](https://github.com/tiny-craft/tiny-rdm)：一个更现代化的 Redis 桌面(GUI)管理客户端，基于 Webview2，兼容 Windows、Mac、Linux。
-- [Redis Manager](https://github.com/ngbdf/redis-manager)：Redis 一站式管理平台，支持集群（cluster、master-replica、sentinel）的监控、安装（除 sentinel）、管理、告警以及基本的数据操作功能。
+- [Another Redis Desktop Manager](https://github.com/qishibo/AnotherRedisDesktopManager/blob/master/README.zh-CN.md)：跨平台 Redis 桌面客户端，兼容 Windows、macOS 和 Linux。
+- [Tiny RDM](https://github.com/tiny-craft/tiny-rdm)：基于 WebView2 的跨平台 Redis 桌面客户端，兼容 Windows、macOS 和 Linux。
+- [RedisInsight](https://github.com/RedisInsight/RedisInsight)：Redis 官方 GUI，可用于浏览键值、运行命令、分析内存占用和排查慢查询。
 - [CacheCloud](https://github.com/sohutv/cachecloud)：一个 Redis 云管理平台，支持 Redis 多种架构(Standalone、Sentinel、Cluster)高效管理、有效降低大规模 Redis 运维成本，提升资源管控能力和利用率。
 - [RedisShake](https://github.com/tair-opensource/RedisShake)：一个用于处理和迁移 Redis 数据的工具。
 
 ## Docker
 
-- [Portainer](https://github.com/portainer/portainer)：可视化管理 Docker，Web 应用的形式。
-- [lazydocker](https://github.com/jesseduffield/lazydocker)：适用于 docker 和 docker-compose 的简单终端 UI。
-
-## ZooKeeper
-
-- [PrettyZoo](https://github.com/vran-dev/PrettyZoo)：一个基于 Apache Curator 和 JavaFX 实现的 ZooKeeper 图形化管理客户端，颜值非常高，支持 Mac / Windows / Linux 。你可以使用 PrettyZoo 来实现对 ZooKeeper 的可视化增删改查。
-- [zktools](https://zktools.readthedocs.io/en/latest/#installing)：一个低延迟的 ZooKeeper 图形化管理客户端，颜值非常高，支持 Mac / Windows / Linux 。你可以使用 zktools 来实现对 ZooKeeper 的可视化增删改查。
+- [Portainer](https://github.com/portainer/portainer)：通过 Web 界面管理容器、镜像、网络和存储等资源。
 
 ## Kafka
 
-- [Kafka UI](https://github.com/provectus/kafka-ui)：免费的开源 Web UI，用于监控和管理 Apache Kafka 集群。
-- [Kafdrop](https://github.com/obsidiandynamics/kafdrop) : 一个用于查看 Kafka 主题和浏览消费者组的 Web UI。
-- [EFAK](https://github.com/smartloli/EFAK) （Eagle For Apache Kafka，以前叫做 Kafka Eagle）：一个简单的高性能监控系统，用于对 Kafka 集群进行全面的监控和管理。
+- [Kafbat UI](https://github.com/kafbat/kafka-ui)：用于监控和管理 Apache Kafka 集群的开源 Web UI。
+- [Kafdrop](https://github.com/obsidiandynamics/kafdrop)：用于查看 Kafka Topic、消息和 Consumer Group 的 Web UI。
+- [Redpanda Console](https://github.com/redpanda-data/console)：面向 Kafka 和 Redpanda 的 Web 管理界面，可浏览 Topic、Consumer Group、Schema 和实时消息。

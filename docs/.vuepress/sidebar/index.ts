@@ -246,6 +246,10 @@ export default sidebar({
                 text: "MySQL备份与恢复",
                 link: "mysql-backup-and-restore",
               },
+              {
+                text: "MySQL同步ES方案",
+                link: "mysql-to-elasticsearch-sync",
+              },
               "transaction-isolation-level",
               "innodb-implementation-of-mvcc",
               "how-sql-executed-in-mysql",
