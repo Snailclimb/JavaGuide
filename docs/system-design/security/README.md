@@ -19,6 +19,8 @@ head:
 
 安全不是某一个框架或某一个注解能兜住的事情。它需要从认证、授权、传输、存储、展示、输入校验和审计等多个环节一起设计。
 
+时间比较紧的话，可以先看面试突击版的 [认证与授权常见面试题总结](https://interview.javaguide.cn/system-design/authentication-and-authorization-interview-questions.html) 和 [Web 安全常见面试题总结](https://interview.javaguide.cn/system-design/security-interview-questions.html)，再回到本专题补完整原理和实现方案。
+
 ## 适合谁看
 
 - 正在学习登录鉴权、权限系统和数据安全的后端开发者。

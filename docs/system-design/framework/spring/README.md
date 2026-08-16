@@ -19,6 +19,8 @@ Spring 是 Java 后端最核心的基础设施之一。学习 Spring 不能只�
 
 Spring Boot 则进一步把配置、依赖管理、自动装配和生产可观测能力整合起来，让应用开发更快，但也更容易让人忽略底层原理。
 
+时间比较紧的话，可以先看面试突击版的 [Spring 常见面试题总结](https://interview.javaguide.cn/system-design/spring.html)，再回到本专题补 IoC、AOP、事务和自动装配的完整细节。
+
 ## 适合谁看
 
 - 正在系统学习 Spring、Spring MVC、Spring Boot 的 Java 后端开发者。

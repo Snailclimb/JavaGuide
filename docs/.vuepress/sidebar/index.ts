@@ -451,6 +451,10 @@ export default sidebar({
           link: "distributed-system-interview-questions",
         },
         {
+          text: "⭐微服务高频面试题",
+          link: "microservices-interview-questions",
+        },
+        {
           text: "理论&算法&协议",
           icon: ICONS.ALGORITHM,
           prefix: "protocol/",
@@ -560,7 +564,7 @@ export default sidebar({
         },
         {
           text: "⭐高性能系统设计高频面试题",
-          link: "high-performance-interview-questions",
+          link: "high-performance-system-interview-questions",
         },
         {
           text: "CDN",
@@ -590,6 +594,10 @@ export default sidebar({
           icon: ICONS.MQ,
           collapsible: true,
           children: [
+            {
+              text: "⭐消息队列高频面试题",
+              link: "message-queue-interview-questions",
+            },
             "message-queue",
             "disruptor-questions",
             "kafka-questions-01",
@@ -611,7 +619,7 @@ export default sidebar({
         },
         {
           text: "⭐高可用系统面试题总结",
-          link: "high-availability-interview-questions",
+          link: "high-availability-system-interview-questions",
         },
         {
           text: "高可用系统设计指南",

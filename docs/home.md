@@ -292,6 +292,8 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 ## 分布式
 
 - [⭐分布式高频面试题](https://interview.javaguide.cn/distributed-system/distributed-system.html)
+- [分布式系统面试准备](./distributed-system/distributed-system-interview-questions.md)
+- [微服务面试准备](./distributed-system/microservices-interview-questions.md)
 - [分布式系统入门](./distributed-system/distributed-system-intro.md)
 
 ### 理论&算法&协议
@@ -359,6 +361,7 @@ JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.
 
 ### 消息队列
 
+- [消息队列面试准备](./high-performance/message-queue/message-queue-interview-questions.md)
 - [消息队列基础知识总结](./high-performance/message-queue/message-queue.md)
 - [Disruptor 常见知识点&面试题总结](./high-performance/message-queue/disruptor-questions.md)
 - [RabbitMQ 常见知识点&面试题总结](./high-performance/message-queue/rabbitmq-questions.md)
