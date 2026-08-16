@@ -18,7 +18,7 @@ Agent 接到任务后，需要读取上下文、决定下一步动作、调用�
 
 ## Agent 基础
 
-相关内容：[《AI Agent 核心概念：Agent Loop、Plan-and-Execute、A2A、Agentic Workflows、Tools 注册》](../agent/agent-basis.md)
+相关内容：[《AI Agent 核心概念：Agent Loop、Plan-and-Execute、A2A、Agentic Workflows、Tools 注册》](../agent/agent-basis.md)、[《多 Agent 协作系统设计：任务拆分、状态共享、冲突处理与失败恢复》](../agent/multi-agent.md)
 
 这部分通常从 Agent 的定义开始，随后追问运行循环和编排方式。准备时要能分清 Chatbot、Workflow 与 Agent 在任务路径、状态和工具使用上的差别。
 
@@ -130,6 +130,8 @@ Harness Engineering 把注意力放到模型外部的执行环境，包括任务
 - 工作流有哪些特有的安全风险？
 
 ## 综合设计题
+
+项目面试除了考概念，还会继续追问架构、选型依据、效果证据和线上失败。完整的回答组织方法可以参考 [《Agent 项目面试怎么讲？从系统架构、技术选型到 Badcase 复盘》](./agent-project-interview-guide.md)。
 
 综合题会把前面的组件放进同一个任务里，重点检查选型和故障处理：
 

@@ -336,6 +336,8 @@ write_report(path, content)
 
 模型进入循环时可能反复调用同一工具。限速、超时、熔断和配额要由 Server 自身落实，不能假设 Host 一定会兜底。
 
+Prompt Injection、Token Passthrough、资源级鉴权、本地 Server 隔离和第三方 Skill/MCP 供应链的完整链路，可以继续看 [LLM/Agent 安全实战](../system-design/llm-security.md)。
+
 ### MCP Server 最小示例：先跑通一个工具
 
 用官方 Python SDK 写一个天气 Server，大概是这样：

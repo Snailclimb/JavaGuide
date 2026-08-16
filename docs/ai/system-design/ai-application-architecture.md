@@ -417,6 +417,8 @@ AI 应用的安全面比传统 CRUD 系统更宽。因为用户输入、检索�
 
 Prompt 注入、上下文分区和工具权限其实是连在一起的，前面提到的 [Prompt Engineering](../agent/prompt-engineering.md)、[Context Engineering](../agent/context-engineering.md) 和 [MCP](../agent/mcp.md) 这几篇可以配合看。
 
+如果系统已经允许 Agent 读取外部内容并调用写工具，还需要继续设计资源级鉴权、参数绑定审批、MCP Token、代码与网络隔离以及安全回归，详见 [LLM/Agent 安全实战](./llm-security.md)。
+
 ## Java 后端落地建议
 
 如果用 Java 做生产级 AI 应用，更适合按“领域能力”拆模块，不要按供应商 SDK 拆模块。

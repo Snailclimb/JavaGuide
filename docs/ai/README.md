@@ -68,8 +68,9 @@ AI 应用一旦上线，稳定性、可观测、成本控制、质量回归这�
 2. [AI 应用开发面试指南](./interview-questions/ai-interview-guide.md)：建立高频问题清单，知道面试和项目复盘最常被追问哪些点。
 3. [LLM 运行机制](./llm-basis/llm-operation-mechanism.md)、[大模型 API 调用工程实践](./llm-basis/llm-api-engineering.md)：理解模型调用链路、上下文和结构化返回。
 4. [AI Agent 核心概念](./agent/agent-basis.md)、[大模型提示词工程](./agent/prompt-engineering.md)、[上下文工程](./agent/context-engineering.md)：建立 Agent 和 Prompt/Context 的基础认知。
-5. [RAG 基础概念](./rag/rag-basis.md)、[RAG 文档处理与切分策略](./rag/rag-document-processing.md)、[RAG 检索优化](./rag/rag-optimization.md)：补齐企业知识库问答主线。
-6. [AI 应用系统设计](./system-design/ai-application-architecture.md)、[大模型网关详解](./system-design/llm-gateway.md)、[AI 应用评测体系](./llm-basis/llm-evaluation.md)：把 Demo 放进真实后端系统里，补齐网关、评测和治理。
+5. [多 Agent 协作系统设计](./agent/multi-agent.md)：继续学习任务拆分、状态共享、冲突处理和失败恢复。
+6. [RAG 基础概念](./rag/rag-basis.md)、[RAG 文档处理与切分策略](./rag/rag-document-processing.md)、[RAG 检索优化](./rag/rag-optimization.md)：补齐企业知识库问答主线。
+7. [AI 应用系统设计](./system-design/ai-application-architecture.md)、[LLM/Agent 安全实战](./system-design/llm-security.md)、[大模型网关详解](./system-design/llm-gateway.md)、[AI 应用评测体系](./llm-basis/llm-evaluation.md)：把 Demo 放进真实后端系统里，补齐权限、安全、网关、评测和治理。
 
 ## 核心文章
 
@@ -82,6 +83,7 @@ AI 应用一旦上线，稳定性、可观测、成本控制、质量回归这�
 - [AI 应用开发面试指南](./interview-questions/ai-interview-guide.md)：把 AI 应用开发常见追问放到一条复习路线里，适合先看。
 - [大模型基础面试题总结](./interview-questions/llm-interview-questions.md)：覆盖 Token、上下文窗口、采样参数、API 调用、结构化输出和评测体系。
 - [AI Agent 面试题总结](./interview-questions/agent-interview-questions.md)：覆盖 Agent Loop、Memory、Prompt、Context、MCP、Skills、Harness Engineering 和工作流。
+- [Agent 项目面试怎么讲？](./interview-questions/agent-project-interview-guide.md)：从系统架构、技术选型、效果证据讲到 Badcase 复盘，适合把真实项目整理成完整面试回答。
 - [RAG 面试题总结](./interview-questions/rag-interview-questions.md)：覆盖 RAG 基础、向量数据库、文档处理、检索优化、GraphRAG、知识库更新和评测。
 - [AI 系统设计面试题总结](./interview-questions/ai-system-design-interview-questions.md)：覆盖生产级 AI 应用架构、模型网关、可观测、评测、安全治理和实时语音 Agent。
 
@@ -98,6 +100,7 @@ AI 应用一旦上线，稳定性、可观测、成本控制、质量回归这�
 - [AI Agent 专题](./agent/)：从 Agent 基础概念、Memory、Prompt、Context 到 MCP、Skills 和 Harness Engineering。
 - [AI Agent 核心概念](./agent/agent-basis.md)：理解 Agent 和传统编程、Workflow 的区别，以及 Agent Loop、Tools 注册等核心概念。
 - [AI Agent 记忆系统](./agent/agent-memory.md)：深入理解短期记忆、长期记忆、记忆生命周期和生产级优化策略。
+- [多 Agent 协作系统设计](./agent/multi-agent.md)：讲清什么时候需要多 Agent，以及任务拆分、状态共享、冲突处理和失败恢复如何落地。
 - [大模型提示词工程](./agent/prompt-engineering.md)：掌握 Prompt 四要素、常见技巧和 Prompt 注入防护。
 - [上下文工程](./agent/context-engineering.md)：理解静态规则编排、动态信息挂载、Token 预算降级和上下文持久化。
 - [万字拆解 MCP 协议](./agent/mcp.md)：理解 MCP 的分层架构、核心能力和 MCP Server 生产实践。
@@ -120,6 +123,7 @@ AI 应用一旦上线，稳定性、可观测、成本控制、质量回归这�
 
 - [AI 系统设计专题](./system-design/)：把 Prompt Demo 放进真实后端系统里看，重点关注架构、模型网关、语音链路、可观测、评测和安全治理。
 - [AI 应用系统设计](./system-design/ai-application-architecture.md)：把 Prompt Demo 放进生产链路，覆盖 Prompt 管理、模型网关、RAG、Memory、Tool 调用、可观测、评测和安全合规。
+- [LLM/Agent 安全实战](./system-design/llm-security.md)：覆盖直接与间接 Prompt Injection、工具越权、MCP 授权、敏感数据、代码沙箱、供应链和安全回归。
 - [大模型网关详解](./system-design/llm-gateway.md)：理解 LLM Gateway 的多模型路由、fallback、限流配额、成本归因、观测审计和缓存策略。
 - [AI 语音技术详解](./system-design/ai-voice.md)：拆解 VAD、ASR、LLM、TTS、流式播放、打断处理和端云混合选型。
 

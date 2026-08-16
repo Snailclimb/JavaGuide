@@ -34,12 +34,14 @@ Agent 不是“会调用工具的聊天机器人”。一旦任务变长，它�
 2. [大模型提示词工程](./prompt-engineering.md)、[上下文工程](./context-engineering.md)：理解指令和上下文如何共同影响输出。
 3. [AI Agent 记忆系统](./agent-memory.md)：补齐短期记忆、长期记忆和记忆生命周期。
 4. [万字拆解 MCP 协议](./mcp.md)、[万字详解 Agent Skills](./skills.md)：理解工具接入和能力扩展。
-5. [Harness Engineering：六层检查框架、上下文管理与工程实践](./harness-engineering.md)、[AI 工作流中的 Workflow、Graph 与 Loop](./workflow-graph-loop.md)、[Loop Engineering 是什么](./loop-engineering.md)：进入生产级 Agent 工程化。
+5. [多 Agent 协作系统设计](./multi-agent.md)：理解任务拆分、状态共享、并发冲突和失败恢复。
+6. [Harness Engineering：六层检查框架、上下文管理与工程实践](./harness-engineering.md)、[AI 工作流中的 Workflow、Graph 与 Loop](./workflow-graph-loop.md)、[Loop Engineering 是什么](./loop-engineering.md)：进入生产级 Agent 工程化。
 
 ## 核心文章
 
 - [AI Agent 核心概念](./agent-basis.md)：梳理 AI Agent 的演进脉络，讲清 Agent Loop、Context Engineering、Tools 注册等基础概念。
 - [AI Agent 记忆系统](./agent-memory.md)：深入理解短期记忆与长期记忆设计，掌握记忆存储形式、生命周期操作与生产级工程优化策略。
+- [多 Agent 协作系统设计](./multi-agent.md)：从任务契约、共享状态和冲突处理讲到检查点、接管、补偿与人工介入。
 - [大模型提示词工程](./prompt-engineering.md)：从 Prompt 四要素、常见技巧讲到企业级安全实践。
 - [上下文工程](./context-engineering.md)：掌握静态规则编排、动态信息挂载、Token 预算降级等关键技术。
 - [万字详解 Agent Skills](./skills.md)：理解 Skills 的设计理念，以及 Skills 与 Prompt、MCP、Function Calling 的本质区别。
@@ -63,6 +65,7 @@ Agent 不是“会调用工具的聊天机器人”。一旦任务变长，它�
 - [大模型基础专题](../llm-basis/)
 - [RAG 专题](../rag/)
 - [AI 应用开发面试题专题](../interview-questions/)
+- [Agent 项目面试怎么讲？](../interview-questions/agent-project-interview-guide.md)
 
 ## 总结
 

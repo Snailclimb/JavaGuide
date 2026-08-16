@@ -117,3 +117,7 @@ GitHub 或者码云上面有很多实战类别项目，你可以选择一个来�
 并且，你还可以自定义检查规则。
 
 ![](https://oss.javaguide.cn/xingqiu/up-6b618ad3bad0bc3f76e6066d90c8cd2f255.png)
+
+## AI Agent 项目怎么准备？
+
+如果准备的是 AI Agent 项目，除了讲清自己做了什么，还要能回答为什么使用 Agent、请求如何流转、工具写操作如何兜底，以及一次失败是怎么定位和修复的。可以继续看 [《Agent 项目面试怎么讲？从系统架构、技术选型到 Badcase 复盘》](../ai/interview-questions/agent-project-interview-guide.md)。文章里的案例只能作为组织答案的参考，项目职责和指标仍然要以自己的真实经历为准。

@@ -302,6 +302,8 @@ Reflection 通常叠加在 ReAct 或 Plan-and-Execute 上：执行过程中加�
 
 当任务确实能按专业角色拆分时，Multi-Agent 可以并行执行，且单个子任务失败未必阻断整体。代价是 Agent 间的通信、协调和调试成本都会上升，Token 消耗也随之增加。
 
+落地时还要处理任务契约、共享状态、并行写冲突、Worker 接管和检查点恢复。详细设计可以看 [《多 Agent 协作系统设计：任务拆分、状态共享、冲突处理与失败恢复》](./multi-agent.md)。
+
 ### A2A 协议
 
 单个 Agent 升级到 Multi-Agent 后，Agent 之间怎么沟通会变成一个工程问题。

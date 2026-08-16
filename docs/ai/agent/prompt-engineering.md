@@ -494,6 +494,8 @@ Agent 场景风险更高，因为模型不只是聊天，还可能调工具、�
 
 Prompt 只能参与这套防护，不能替代工具权限和审批机制。
 
+如果需要继续设计检索前 ACL、工具资源鉴权、MCP Token、参数绑定审批、代码隔离和安全回归，可以看 [LLM/Agent 安全实战](../system-design/llm-security.md)。
+
 ## 从 Prompt 到 Agent
 
 ### Context Engineering 为什么变重要

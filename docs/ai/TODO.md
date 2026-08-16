@@ -8,20 +8,22 @@ head:
 
 # AI 内容规划 TODO
 
-最近整理：2026-06-21
+最近整理：2026-08-15
 
 配套素材索引：[AI 写作素材索引](./MATERIALS.md)。写新文章前先查素材索引和现有正文，避免重复检索、重复造概念框架。
 
 ## 已完成或已补齐
 
-| 内容                                           | 状态                                          |
-| ---------------------------------------------- | --------------------------------------------- |
-| `llm-basis/llm-evaluation.md`                  | 已完成，已进入大模型基础 README 和顶层 README |
-| `system-design/llm-gateway.md`                 | 已完成，已进入系统设计 README 和顶层 README   |
-| `agent/workflow-graph-loop.md`                 | 已进入 Agent README、顶层 README 和面试题     |
-| `system-design/ai-application-architecture.md` | 已进入系统设计 README、顶层 README 和面试题   |
-| `system-design/ai-voice.md`                    | 已进入系统设计 README、顶层 README 和面试题   |
-| `MATERIALS.md`                                 | 已新增为内部写作素材索引，不进站点索引        |
+| 内容                                                   | 状态                                                    |
+| ------------------------------------------------------ | ------------------------------------------------------- |
+| `llm-basis/llm-evaluation.md`                          | 已完成，已进入大模型基础 README 和顶层 README           |
+| `system-design/llm-gateway.md`                         | 已完成，已进入系统设计 README 和顶层 README             |
+| `agent/workflow-graph-loop.md`                         | 已进入 Agent README、顶层 README 和面试题               |
+| `agent/multi-agent.md`                                 | 已完成，已进入 Agent README、顶层 README 和面试题       |
+| `interview-questions/agent-project-interview-guide.md` | 已完成，已进入面试题 README、顶层 README 和项目经历指南 |
+| `system-design/ai-application-architecture.md`         | 已进入系统设计 README、顶层 README 和面试题             |
+| `system-design/ai-voice.md`                            | 已进入系统设计 README、顶层 README 和面试题             |
+| `MATERIALS.md`                                         | 已新增为内部写作素材索引，不进站点索引                  |
 
 ## P0 · 系统设计和安全补全
 
@@ -33,11 +35,10 @@ head:
 
 ## P1 · Agent 工程短板补全
 
-| 文件名                             | 标题                                               | 核心切入                                                                                   |
-| ---------------------------------- | -------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| `agent/agent-evaluation.md`        | Agent 评测与调试：如何判断 Agent 真的完成了任务    | 任务完成率、工具调用成功率、幻觉率、格式遵循率、延迟成本、Trace 回放和回归集               |
-| `agent/multi-agent.md`             | 多 Agent 协作：Sub-Agent、任务拆分与上下文隔离     | 面试高频：Agent 为什么不稳定、何时拆 Sub-Agent、上下文怎么隔离、评审/执行/验证角色如何分工 |
-| `llm-basis/llm-model-selection.md` | 大模型选型指南：通用、推理、代码、多模态模型怎么选 | 不同能力维度对比、Router/fallback/多模型编排、客服/RAG/代码/语音 Agent 的选型表            |
+| 文件名                             | 标题                                               | 核心切入                                                                        |
+| ---------------------------------- | -------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `agent/agent-evaluation.md`        | Agent 评测与调试：如何判断 Agent 真的完成了任务    | 任务完成率、工具调用成功率、幻觉率、格式遵循率、延迟成本、Trace 回放和回归集    |
+| `llm-basis/llm-model-selection.md` | 大模型选型指南：通用、推理、代码、多模态模型怎么选 | 不同能力维度对比、Router/fallback/多模型编排、客服/RAG/代码/语音 Agent 的选型表 |
 
 ## P1 · RAG 深水区扩展
 

@@ -1,14 +1,20 @@
 ---
-title: AI 可观测性与 Trace：如何还原一次 Agent 的完整执行过程？
+title: AI 可观测性与 Trace：如何还原 Agent 的完整执行过程
 description: 从一次接口成功但回答错误的请求出发，讲清 AI 应用的 Trace 设计、Span 拆分、上下文传播、采样、敏感数据处理，以及 Spring AI 项目的落地方式。
-category: AI
+category: AI 应用开发
 tag:
   - AI 可观测性
   - OpenTelemetry
   - AI Agent
   - Spring AI
   - AI 系统设计
+head:
+  - - meta
+    - name: keywords
+      content: AI可观测性,AI Observability,Agent Trace,OpenTelemetry,Spring AI,LLM Observability,RAG可观测性,大模型可观测性
 ---
+
+<!-- @include: @article-header.snippet.md -->
 
 接口返回 200，耗时也正常，智能客服给出的退款规则却是错的。
 

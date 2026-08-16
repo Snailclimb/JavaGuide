@@ -33,14 +33,16 @@ AI 应用开发面试很少只问“概念是什么”。更常见的是顺着�
 1. [AI 应用开发面试指南](./ai-interview-guide.md)：先看总入口，建立整体复习地图。
 2. [大模型基础面试题总结](./llm-interview-questions.md)：补齐 LLM 基础概念和 API 调用链路。
 3. [AI Agent 面试题总结](./agent-interview-questions.md)：掌握 Agent 相关高频概念和工程化问题。
-4. [RAG 面试题总结](./rag-interview-questions.md)：围绕企业知识库问答，复习召回、排序、更新和评测问题。
-5. [AI 系统设计面试题总结](./ai-system-design-interview-questions.md)：把前面的模块串成生产级系统设计表达。
+4. [Agent 项目面试怎么讲？](./agent-project-interview-guide.md)：把概念组织成项目背景、系统架构、技术选型、效果证据和 Badcase 复盘。
+5. [RAG 面试题总结](./rag-interview-questions.md)：围绕企业知识库问答，复习召回、排序、更新和评测问题。
+6. [AI 系统设计面试题总结](./ai-system-design-interview-questions.md)：把前面的模块串成生产级系统设计表达。
 
 ## 核心文章
 
 - [AI 应用开发面试指南](./ai-interview-guide.md)：AI 应用开发面试题总入口，按大模型基础、AI Agent、RAG、AI 系统设计组织复习路线。
 - [大模型基础面试题总结](./llm-interview-questions.md)：覆盖 Token、上下文窗口、采样参数、API 调用、结构化输出、Function Calling、MCP 与 AI 应用评测。
 - [AI Agent 面试题总结](./agent-interview-questions.md)：覆盖 Agent 核心概念、Memory、Prompt Engineering、Context Engineering、MCP、Agent Skills、Harness Engineering 与 AI 工作流。
+- [Agent 项目面试怎么讲？](./agent-project-interview-guide.md)：用一条可核验的证据链讲清 Agent 项目的架构、选型、指标和 Badcase，避免只堆技术名词。
 - [RAG 面试题总结](./rag-interview-questions.md)：覆盖 RAG 基础、Embedding、向量数据库、Chunk 策略、文档处理、检索优化、GraphRAG、知识库更新与 RAG 评测。
 - [AI 系统设计面试题总结](./ai-system-design-interview-questions.md)：覆盖生产级架构、模型网关、Prompt 管理、可观测、评测、安全治理与实时语音 Agent。
 

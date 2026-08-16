@@ -15,6 +15,7 @@ export const ai = arraySidebar([
       { text: "⭐️AI 应用开发面试指南", link: "ai-interview-guide" },
       { text: "大模型基础面试题总结", link: "llm-interview-questions" },
       { text: "AI Agent 面试题总结", link: "agent-interview-questions" },
+      { text: "Agent 项目面试实战", link: "agent-project-interview-guide" },
       { text: "RAG 面试题总结", link: "rag-interview-questions" },
       {
         text: "AI 系统设计面试题总结",
@@ -43,6 +44,7 @@ export const ai = arraySidebar([
     children: [
       { text: "⭐️AI Agent 核心概念详解", link: "agent-basis" },
       { text: "⭐️AI Agent 记忆系统详解", link: "agent-memory" },
+      { text: "多 Agent 协作系统设计", link: "multi-agent" },
       { text: "提示词工程实战指南", link: "prompt-engineering" },
       { text: "上下文工程实战指南", link: "context-engineering" },
       { text: "万字详解 Agent Skills", link: "skills" },
@@ -83,7 +85,9 @@ export const ai = arraySidebar([
         text: "AI 应用系统设计",
         link: "ai-application-architecture",
       },
+      { text: "LLM/Agent 安全实战", link: "llm-security" },
       { text: "大模型网关详解", link: "llm-gateway" },
+      { text: "AI 可观测性与 Trace", link: "ai-observability" },
       { text: "AI 语音技术详解", link: "ai-voice" },
     ],
   },

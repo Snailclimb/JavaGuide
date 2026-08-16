@@ -57,7 +57,7 @@ AI 系统设计题通常从一个具体场景开始，例如企业知识库、�
 
 ## 安全、权限与审计
 
-相关内容：[《AI 应用系统设计：从 Prompt Demo 到生产级架构》](../system-design/ai-application-architecture.md)、[《大模型结构化输出：从 JSON 契约到 Function Calling 落地》](../llm-basis/structured-output-function-calling.md)
+相关内容：[《LLM/Agent 安全实战：从 Prompt Injection、工具越权到沙箱隔离》](../system-design/llm-security.md)、[《AI 应用系统设计：从 Prompt Demo 到生产级架构》](../system-design/ai-application-architecture.md)、[《大模型结构化输出：从 JSON 契约到 Function Calling 落地》](../llm-basis/structured-output-function-calling.md)
 
 模型可以生成工具调用意图和参数，真正的业务操作仍由后端执行。这组题会继续追问身份、资源、参数、操作风险和审计记录应该在哪里校验。
 
@@ -112,6 +112,7 @@ AI 应用的发布检查除了接口是否成功，还要覆盖答案质量、�
 
 ## 综合设计题
 
+- 如何设计一个多 Agent 系统，让它支持任务拆分、并行执行、状态共享、冲突处理和失败恢复？参考：[《多 Agent 协作系统设计：任务拆分、状态共享、冲突处理与失败恢复》](../agent/multi-agent.md)
 - 如何设计一个带权限控制、引用溯源和知识库更新能力的企业 RAG 系统？
 - 如何设计一个支持长任务、工具调用、中断恢复和人工接管的 Agent 平台？
 - 智能客服流量突然增加，同时模型供应商开始限流，系统应该如何排队、降级和保护核心请求？
