@@ -14,15 +14,15 @@ head:
       content: AI可观测性,AI Observability,Agent Trace,OpenTelemetry,Spring AI,LLM Observability,RAG可观测性,大模型可观测性
 ---
 
-<!-- @include: @article-header.snippet.md -->
-
 接口返回 200，耗时也正常，智能客服给出的退款规则却是错的。
 
 打开监控面板，只能看到这次请求调用过大模型，并且正常生成了回答。再往下查就麻烦了：是知识库没有召回正确资料，Prompt 拼错了，模型忽略了上下文，还是某个工具返回了旧数据？普通接口日志通常回答不了这些问题。
 
 一次 AI 请求可能会经过问题改写、知识库检索、重排、模型调用、工具调用和结果校验。Agent 还可能重复执行其中几步。每一步看起来都调用成功，错误结果却会继续传给下一步，最后得到一段格式正常、内容有问题的回答。
 
-排查时需要顺着这条执行过程往回找：当时用了哪个模型和 Prompt，检索到了哪些文档，调用了什么工具，Agent 重试了几次，最终回答参考了哪些结果。这些信息都落在同一条调用链里，才能继续定位问题。
+排查时需要顺着这条执行过程往回找：当时用了哪个模型和 Prompt，检索到了哪些文档，调用了什么工具，Agent 重试了几次，最终回答参考了哪些结果。
+
+这些信息都落在同一条调用链里，才能继续定位问题。
 
 ## 为什么 AI 应用不能只看接口是否成功？
 
@@ -38,7 +38,9 @@ Trace 能还原系统实际执行过的步骤，读不到模型内部真实的�
 
 ## Metrics、Logs、Trace、Evaluation 和 Audit 有什么区别？
 
-AI 可观测性里经常同时出现 Metrics、Logs、Trace、Evaluation 和 Audit。这几个概念各自解决不同问题。
+AI 可观测性里经常同时出现 Metrics、Logs、Trace、Evaluation 和 Audit。
+
+这几个概念各自解决不同问题。
 
 | 信号       | 主要回答的问题                 | 典型内容                                         |
 | ---------- | ------------------------------ | ------------------------------------------------ |
@@ -47,6 +49,8 @@ AI 可观测性里经常同时出现 Metrics、Logs、Trace、Evaluation 和 Aud
 | Trace      | 一次请求经历了什么？           | 模型调用、检索、工具调用、Agent 执行和上下游关系 |
 | Evaluation | 输出质量是否合格？             | 正确性、忠实度、工具选择、任务完成度、安全性     |
 | Audit      | 谁在什么权限下执行了什么操作？ | 用户身份、审批记录、权限决策、外部写操作         |
+
+![AI 可观测信号各自解决的问题](https://oss.javaguide.cn/github/javaguide/ai/llm/ai-observability-signals-overview.webp)
 
 它们之间的配合关系可以用一句话说明：**指标发现异常，Trace 定位过程，评测判断质量，审计追踪责任。**
 
@@ -80,6 +84,8 @@ spanId：标识调用链中的某个操作
 attempt：标识同一步骤的第几次尝试
 ```
 
+![Session、Run、Trace、Span 和 Attempt 的层级关系](https://oss.javaguide.cn/github/javaguide/ai/llm/ai-observability-id-hierarchy.webp)
+
 重试也要单独处理。每次尝试都新建 Span，并用 `attempt` 标明次数。否则，第一次超时和第二次成功会混在同一条记录里，后面很难还原真实执行过程。
 
 ## 一次 Agent 请求应该怎样拆 Span？
@@ -105,6 +111,8 @@ agent.run
 │       └── POST /refunds
 └── ai.output.validate
 ```
+
+![一次 Agent 请求的 Span 拆分示意图](https://oss.javaguide.cn/github/javaguide/ai/llm/ai-observability-agent-span-trace.webp)
 
 这里并没有为 Prompt 模板渲染、字符串拼接之类的普通方法单独建 Span。通常满足下面任意一个条件，才值得独立记录：
 
@@ -351,6 +359,8 @@ Trace 可以证明应用发起过哪些调用，不能替代退款系统的业�
 
 单线程同步代码里，Trace 上下文通常能够自动沿调用栈传递。一旦切换线程、进程或消息队列，就需要明确处理传播问题。
 
+![Trace 上下文跨线程、进程和消息边界的传播方式](https://oss.javaguide.cn/github/javaguide/ai/llm/ai-observability-context-propagation.webp)
+
 ### 跨服务如何传播？
 
 [W3C Trace Context](https://www.w3.org/TR/trace-context/)定义了通用的 `traceparent` 和 `tracestate` 请求头。`traceparent` 用于传递 Trace ID、父 Span ID 和采样标记，`tracestate` 可以携带厂商相关的附加信息。
@@ -444,6 +454,8 @@ Spring AI 默认不导出 Prompt、Completion、工具参数、工具结果和�
 - 新版本和灰度实验的请求。
 
 尾部采样需要 Collector 暂存 Trace，会增加内存和等待成本，还要考虑分布式 Collector 如何让同一 Trace 到达同一个决策节点。OpenTelemetry Collector 的 [Tail Sampling Processor](https://explorer.opentelemetry.io/collector/components/contrib-tailsamplingprocessor?type=processor)目前对 Trace 标记为 Beta，生产使用前要压测容量和丢弃行为。
+
+![Trace 头部采样和尾部采样的区别](https://oss.javaguide.cn/github/javaguide/ai/llm/ai-observability-head-tail-sampling.webp)
 
 ### 比较实用的组合策略是什么？
 

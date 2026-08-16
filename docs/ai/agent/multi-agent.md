@@ -36,6 +36,8 @@ Prompt Chain 管理处理步骤，多 Agent 管理能够独立完成子目标的
 | 结果交付 | 节点输出通常作为后续节点的输入       | 可以传消息、共享状态，也可以交付结构化结果        |
 | 失败处理 | 重试失败节点或从 Workflow 检查点恢复 | 还要决定哪个角色可以降级、跳过或重新执行          |
 
+![多 Agent 和多阶段 Prompt Chain 的区别](https://oss.javaguide.cn/github/javaguide/ai/agent/multi-agent-vs-prompt-chain.webp)
+
 如果 AgentInvest 的四个角色只是四次固定模型调用，共用一份上下文和一组工具，每一步只加工上一步的文本，那它仍然是一条多阶段 Prompt Chain。
 
 项目里的每个角色都是独立的 `ReActAgent`，有自己的 Prompt、Toolkit、`maxIters` 和上下文。研究员能查行情、研报、新闻和财务数据，技术分析师关注 K 线与技术指标，舆情分析师查询市场情绪，投资经理读取上游 `<core_thesis>` 做综合判断。外层 Workflow 管理的是四个独立 Agent 的执行过程，不只是在四段文本之间传递结果。
@@ -120,6 +122,8 @@ AgentInvest 使用的是 **Sequential + Parallel + Aggregator** 混合编排。�
 动态委派是由 Manager 或 Supervisor 根据当前问题和中间结果决定调用哪些 Agent、拆出多少子任务以及是否继续探索。Anthropic 的 Multi-Agent Research 就属于这种模式，不同问题需要调查的方向不一样，很难提前画出一张固定 DAG。
 
 两种方式可以混用。例如，外层固定收集资料、分析和审核三个阶段，资料收集阶段再由主 Agent 根据问题创建 Subagent。审核和发布门槛仍由固定流程控制，调研方向可以在运行时扩展。
+
+![多 Agent 固定 DAG 和动态委派的区别](https://oss.javaguide.cn/github/javaguide/ai/agent/multi-agent-static-vs-dynamic-orchestration.webp)
 
 ## 如何把子任务拆成可执行契约？
 
@@ -356,6 +360,8 @@ WHERE task_id = :taskId
 处理方式由任务的成功标准决定，并在运行前写进任务契约。必答维度缺失时可以让整体失败；多个同类分支只需达到规定数量时，可以按 Quorum 归并；允许部分完成的任务则返回已有结果并标出缺失项。备用工具、模型和数据源属于 Fallback，高价值或高风险任务可以转人工补齐。
 
 AgentInvest 采用的是带门槛的 Best-effort：研究员必须成功，技术分析师和舆情分析师至少成功一个，投资经理才会继续。技术面失败但舆情结果可用时，投资经理可以根据已有结果继续，运行状态仍要保留技术面失败，不能把这次分析当成全量成功。两个补充角色都失败时，则不让投资经理硬凑结论。
+
+![多 Agent 分支失败后的处理策略](https://oss.javaguide.cn/github/javaguide/ai/agent/multi-agent-partial-failure-strategies.webp)
 
 ### 外部副作用怎么补偿？
 

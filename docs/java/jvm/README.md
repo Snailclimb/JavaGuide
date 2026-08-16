@@ -34,16 +34,18 @@ JVM 是 Java 后端绕不开的核心基础。学习 JVM 的目标不是背概�
 
 ## 建议阅读顺序
 
-1. [大白话带你认识 JVM](./jvm-intro.md)：先建立 JVM 的整体认知。
-2. [Java内存区域详解（重点）](./memory-area.md)：理解运行时数据区和常见 OOM 场景。
-3. [类文件结构详解](./class-file-structure.md)、[类加载过程详解](./class-loading-process.md)、[类加载器详解（重点）](./classloader.md)：掌握类从 `.class` 到可运行对象的过程。
-4. [JVM垃圾回收详解（重点）](./jvm-garbage-collection.md)：系统学习 GC 基础、算法和垃圾收集器。
-5. [最重要的JVM参数总结](./jvm-parameters-intro.md)、[JDK监控和故障处理工具总结](./jdk-monitoring-and-troubleshooting-tools.md)、[JVM线上问题排查和性能调优案例](./jvm-in-action.md)：进入参数配置和线上实践。
+1. 准备面试时先看 [JVM 常见面试题总结](./jvm-interview-questions.md)，找出自己答不完整的模块；系统学习可以从下一步开始。
+2. [大白话带你认识 JVM](./jvm-intro.md)：先建立 JVM 的整体认知。
+3. [Java内存区域详解（重点）](./memory-area.md)：理解运行时数据区和常见 OOM 场景。
+4. [类文件结构详解](./class-file-structure.md)、[类加载过程详解](./class-loading-process.md)、[类加载器详解（重点）](./classloader.md)：掌握类从 `.class` 到可运行对象的过程。
+5. [JVM垃圾回收详解（重点）](./jvm-garbage-collection.md)：系统学习 GC 基础、算法和垃圾收集器。
+6. [最重要的 JVM 参数总结](./jvm-parameters-intro.md)、[JDK 监控和故障处理工具总结](./jdk-monitoring-and-troubleshooting-tools.md)、[Java 后端线上问题排查](./jvm-in-action.md)：进入参数配置和线上实践。
 
 ## 核心文章
 
 ### JVM 基础与内存
 
+- [JVM 常见面试题总结](./jvm-interview-questions.md)：按内存、类加载、GC、参数工具和线上排查整理高频问题。
 - [大白话带你认识 JVM](./jvm-intro.md)：用整体视角理解 JVM 的定位和组成。
 - [Java内存区域详解（重点）](./memory-area.md)：讲解程序计数器、虚拟机栈、本地方法栈、堆、方法区和直接内存。
 - [类文件结构详解](./class-file-structure.md)：理解魔数、版本号、常量池、访问标志、字段表、方法表和属性表。
@@ -58,7 +60,7 @@ JVM 是 Java 后端绕不开的核心基础。学习 JVM 的目标不是背概�
 - [JVM垃圾回收详解（重点）](./jvm-garbage-collection.md)：理解对象存活判断、引用类型、垃圾收集算法、分代收集和主流垃圾收集器。
 - [最重要的JVM参数总结](./jvm-parameters-intro.md)：整理堆大小、GC 日志、OOM 转储、垃圾收集器和诊断相关参数。
 - [JDK监控和故障处理工具总结](./jdk-monitoring-and-troubleshooting-tools.md)：介绍 jps、jstat、jmap、jstack、jcmd、JConsole、VisualVM、JMC 等工具。
-- [JVM线上问题排查和性能调优案例](./jvm-in-action.md)：结合线上问题理解 CPU、内存、GC、线程和 Full GC 排查路径。
+- [Java 后端线上问题排查](./jvm-in-action.md)：从告警确认、止血留证开始，串起 CPU、内存、GC、线程池、连接池、慢 SQL、Redis 和消息积压的排查过程。
 
 ## 高频问题
 

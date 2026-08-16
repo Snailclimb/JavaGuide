@@ -40,7 +40,7 @@ head:
 
 1. [2026 最新版 Java 后端面试通关计划](./backend-interview-plan.md)：先建立 4-8 周复习路线和阶段目标。
 2. [如何高效准备 Java 面试？](./teach-you-how-to-prepare-for-the-interview-hand-in-hand.md)：理解求职导向学习、技能清单和复习方法。
-3. [程序员简历编写指南](./resume-guide.md) 和 [项目经验指南](./project-experience-guide.md)：先把简历和项目经历打磨到可深挖。
+3. [程序员简历编写指南](./resume-guide.md)、[项目经验指南](./project-experience-guide.md) 和 [后端项目面试怎么讲？](./backend-project-interview-guide.md)：先把简历和项目经历打磨到可深挖，再准备项目介绍、技术选型、难点和故障复盘。
 4. [2026 最新版 Java 后端面试重点总结](./key-points-of-interview.md)：按高频考点集中补技术短板。
 5. [常见面试题自测](./self-test-of-common-interview-questions.md)、[优质面经汇总](./interview-experience.md)：通过自测和面经做查漏补缺。
 6. [面试太紧张怎么办？](./how-to-handle-interview-nerves.md)：面试前补齐心态、表达和临场应对。
@@ -57,6 +57,7 @@ head:
 
 - [程序员简历编写指南](./resume-guide.md)：从简历筛选逻辑出发，讲清简历结构、技能描述、项目经历和模板选择。
 - [项目经验指南](./project-experience-guide.md)：帮助没有项目或项目平淡的同学补强项目亮点，学会复盘和表达。
+- [后端项目面试怎么讲？](./backend-project-interview-guide.md)：准备 30 秒和 3 分钟项目介绍，并围绕个人职责、核心链路、技术选型、量化指标和线上故障应对项目深挖。
 - [校招没有实习经历怎么办？实习经历怎么写？](./internship-experience.md)：讲清实习缺失时如何通过项目、简历和技术面试弥补短板。
 
 ### 技术重点与资料
@@ -76,6 +77,7 @@ head:
 - 校招和社招的准备重点有什么区别？
 - 简历应该怎么写，才能让面试官更容易看到亮点？
 - 项目经历比较普通，如何提炼技术难点和个人贡献？
+- 后端项目应该怎样介绍，如何应对技术选型、性能优化和线上故障追问？
 - 没有实习经历会不会影响校招？应该如何弥补？
 - Java、MySQL、Redis、Spring、JVM 哪些知识点最值得优先复习？
 - 面经应该怎么用，如何避免只背答案？

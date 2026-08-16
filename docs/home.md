@@ -113,6 +113,7 @@ JavaGuide 是一份系统化的 **Java 面试指南** 和**后端通用面试复
 
 JVM 这部分内容主要参考 [JVM 虚拟机规范-Java8](https://docs.oracle.com/javase/specs/jvms/se8/html/index.html) 和周志明老师的[《深入理解 Java 虚拟机（第 3 版）》](https://book.douban.com/subject/34907497/) （强烈建议阅读多遍！）。
 
+- **[⭐JVM 常见面试题总结](./java/jvm/jvm-interview-questions.md)**
 - **[Java 内存区域](./java/jvm/memory-area.md)**
 - **[JVM 垃圾回收](./java/jvm/jvm-garbage-collection.md)**
 - [类文件结构](./java/jvm/class-file-structure.md)
