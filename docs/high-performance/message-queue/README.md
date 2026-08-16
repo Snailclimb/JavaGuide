@@ -17,7 +17,7 @@ head:
 
 消息队列是高性能和高可用系统里都非常常见的中间件，主要用于异步处理、应用解耦、削峰填谷和流量缓冲。学习消息队列时，不能只背 Kafka、RocketMQ、RabbitMQ 的特性，更要理解消息可靠性、顺序性、幂等性、积压处理和技术选型。
 
-如果你准备面试，可以把 MQ 问题拆成一条链路：生产者怎么保证发出去，Broker 怎么保证存得住，消费者怎么保证处理成功，失败后怎么重试和补偿。这样比单独背“消息不丢失、重复消费、顺序消费”更容易讲清楚。
+如果你准备面试，建议先看 [消息队列面试题总结](./message-queue-interview-questions.md)，把 MQ 问题放进生产、存储、消费、确认和补偿链路中复习，再根据项目使用的中间件深入对应专题文章。
 
 ## 适合谁看
 
@@ -36,14 +36,16 @@ head:
 
 ## 建议阅读顺序
 
-1. [消息队列基础知识总结](./message-queue.md)：先理解 MQ 的通用模型、应用场景和常见问题。
-2. [Kafka 常见问题总结](./kafka-questions-01.md)：理解高吞吐日志流、分区、副本、Consumer Group 和 Rebalance。
-3. [RocketMQ 常见问题总结](./rocketmq-questions.md)：理解业务消息场景、事务消息、定时消息、顺序消息和消息存储。
-4. [RabbitMQ 常见问题总结](./rabbitmq-questions.md)：理解 AMQP、Exchange、消息确认、死信队列和延迟队列。
-5. [Disruptor 常见问题总结](./disruptor-questions.md)：理解高性能内存队列、无锁设计和低延迟场景。
+1. [消息队列面试题总结](./message-queue-interview-questions.md)：先建立可靠性、幂等、顺序、积压和选型的问题清单。
+2. [消息队列基础知识总结](./message-queue.md)：理解 MQ 的通用模型、应用场景和常见问题。
+3. [Kafka 常见问题总结](./kafka-questions-01.md)：理解高吞吐日志流、分区、副本、Consumer Group 和 Rebalance。
+4. [RocketMQ 常见问题总结](./rocketmq-questions.md)：理解业务消息场景、事务消息、定时消息、顺序消息和消息存储。
+5. [RabbitMQ 常见问题总结](./rabbitmq-questions.md)：理解 AMQP、Exchange、消息确认、死信队列和延迟队列。
+6. [Disruptor 常见问题总结](./disruptor-questions.md)：理解高性能内存队列、无锁设计和低延迟场景。
 
 ## 核心文章
 
+- [消息队列面试题总结](./message-queue-interview-questions.md)：按消息生命周期串联通用高频题、主流中间件原理、技术选型和项目追问。
 - [消息队列基础知识总结](./message-queue.md)：系统讲解应用场景、消息模型、消息可靠性、幂等性、顺序性、积压处理和技术选型。
 - [Kafka 常见问题总结](./kafka-questions-01.md)：覆盖 Broker、Topic、Partition、Consumer Group、零拷贝、顺序写、ACK、ISR 和 Rebalance。
 - [RocketMQ 常见问题总结](./rocketmq-questions.md)：覆盖 NameServer、Broker、Proxy、普通消息、顺序消息、事务消息、定时消息和存储机制。
