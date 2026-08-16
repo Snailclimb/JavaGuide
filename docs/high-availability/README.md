@@ -19,7 +19,7 @@ head:
 
 这份 **高可用系统知识体系** 面向后端学习、系统设计和面试复习，围绕“减少故障、隔离故障、快速恢复、降低重复请求和异常流量影响”整理本站高可用相关文章。
 
-如果你时间有限，建议先看 [高可用系统设计面试题总结](./high-availability-interview-questions.md)，快速建立高频问题清单；如果你想系统补基础，可以按下面的阅读顺序推进。
+如果你时间有限，建议先看 [高可用系统设计面试题总结](./high-availability-system-interview-questions.md)，快速建立高频问题清单；如果你想系统补基础，可以按下面的阅读顺序推进。
 
 ## 适合谁看
 
@@ -38,7 +38,7 @@ head:
 
 ## 建议阅读顺序
 
-1. [高可用系统设计面试题总结](./high-availability-interview-questions.md)：先建立 SLA、限流、熔断、重试、幂等、容灾和压测的高频问题清单。
+1. [高可用系统设计面试题总结](./high-availability-system-interview-questions.md)：先建立 SLA、限流、熔断、重试、幂等、容灾和压测的高频问题清单。
 2. [高可用系统设计详解](./high-availability-system-design.md)：系统理解高可用架构的整体设计方法。
 3. [服务限流详解](./limit-request.md)、[服务降级与熔断详解](./fallback-and-circuit-breaker.md)、[超时和重试机制详解](./timeout-and-retry.md)：掌握稳定性治理三件套。
 4. [接口幂等性设计详解](./idempotency.md)：理解重复请求、业务幂等和支付回调等场景。
@@ -48,9 +48,8 @@ head:
 
 ### 总览与面试路线
 
-- [高可用系统设计面试题总结](./high-availability-interview-questions.md)：串联 SLA、单点故障、限流降级熔断、超时重试、接口幂等、冗余容灾和性能压测。
+- [高可用系统设计面试题总结](./high-availability-system-interview-questions.md)：串联 SLA、单点故障、限流降级熔断、超时重试、接口幂等、冗余容灾和性能压测。
 - [高可用系统设计详解](./high-availability-system-design.md)：讲解 SLA、多少个 9、单点故障治理、缓存高可用、异步削峰、灰度发布和故障恢复。
-- [2026 最新高可用系统设计面试题总结](./high-availability-system-interview-questions.md)：覆盖高可用系统设计的高频问答和复习重点。
 
 ### 稳定性治理
 
