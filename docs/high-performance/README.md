@@ -19,7 +19,7 @@ head:
 
 这份 **高性能系统知识体系** 面向后端学习、系统设计和面试复习，围绕“减少延迟、提升吞吐、削峰填谷、降低数据库压力、优化数据访问路径”整理本站高性能相关文章。
 
-如果你时间有限，建议先看 [高性能系统设计面试题总结](./high-performance-interview-questions.md)，快速建立高频问题清单；如果你想系统补基础，可以按下面的阅读顺序推进。
+如果你时间有限，建议先看 [高性能系统设计面试题总结](./high-performance-system-interview-questions.md)，快速建立高频问题清单；如果你想系统补基础，可以按下面的阅读顺序推进。
 
 学习这部分内容时，不建议只记“加缓存、加 MQ、分库分表”这些方案名。高性能优化更像一条链路分析题：请求从用户侧进来，经过 CDN、负载均衡、应用服务、缓存、数据库、消息队列，每一段都有可能成为瓶颈。能讲清楚瓶颈在哪里、为什么选这个方案、会引入什么新问题，才算真的掌握。
 
@@ -51,11 +51,12 @@ head:
 
 ## 建议阅读顺序
 
-1. [高性能系统设计面试题总结](./high-performance-interview-questions.md)：先建立缓存、数据库、消息队列、负载均衡等高频问题清单。
+1. [高性能系统设计面试题总结](./high-performance-system-interview-questions.md)：先建立缓存、数据库、消息队列、负载均衡等高频问题清单。
 2. [CDN 工作原理详解](./cdn.md) 和 [负载均衡原理及算法详解](./load-balancing.md)：理解流量入口和请求分发。
 3. [读写分离和分库分表详解](./read-and-write-separation-and-library-subtable.md)、[常见 SQL 优化手段总结](./sql-optimization.md)、[深度分页介绍及优化建议](./deep-pagination-optimization.md)：补齐数据库性能优化主线。
-4. [消息队列基础知识总结](./message-queue/message-queue.md)：理解异步处理、解耦、削峰、消息可靠性、顺序性和幂等。
-5. 再根据技术栈深入 [Kafka 常见问题总结](./message-queue/kafka-questions-01.md)、[RocketMQ 常见问题总结](./message-queue/rocketmq-questions.md)、[RabbitMQ 常见问题总结](./message-queue/rabbitmq-questions.md)。
+4. [消息队列面试题总结](./message-queue/message-queue-interview-questions.md)：建立可靠性、幂等、顺序、积压和选型的问题清单。
+5. [消息队列基础知识总结](./message-queue/message-queue.md)：理解异步处理、解耦、削峰、消息可靠性、顺序性和幂等。
+6. 再根据技术栈深入 [Kafka 常见问题总结](./message-queue/kafka-questions-01.md)、[RocketMQ 常见问题总结](./message-queue/rocketmq-questions.md)、[RabbitMQ 常见问题总结](./message-queue/rabbitmq-questions.md)。
 
 ## 核心文章
 
@@ -74,6 +75,7 @@ head:
 ### 消息队列与异步削峰
 
 - [消息队列专题](./message-queue/)：从消息队列基础讲到 Kafka、RocketMQ、RabbitMQ 和 Disruptor 的使用边界。
+- [消息队列面试题总结](./message-queue/message-queue-interview-questions.md)：按消息生命周期复习可靠性、消费语义、主流产品和项目追问。
 - [消息队列基础知识总结](./message-queue/message-queue.md)：理解应用场景、消息模型、消息可靠性、顺序性、幂等和积压处理。
 - [Kafka 常见问题总结](./message-queue/kafka-questions-01.md)：掌握 Kafka 架构、高性能原理、消息可靠性、顺序性和 Rebalance。
 - [RocketMQ 常见问题总结](./message-queue/rocketmq-questions.md)：理解 RocketMQ 架构、消息类型、存储机制、可靠性和 5.x 新特性。
