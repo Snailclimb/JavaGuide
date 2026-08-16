@@ -19,7 +19,7 @@ head:
 
 这份 **分布式系统知识体系** 面向后端学习、系统设计和面试复习，按“分布式入门 -> 通信调用 -> 服务治理 -> 一致性与协调 -> 工程实践”的顺序整理本站分布式相关文章。
 
-如果你刚开始学分布式，建议先看 [分布式系统入门](./distributed-system-intro.md)，建立整体认知；如果你时间有限，建议先看 [分布式系统面试题总结](./distributed-system-interview-questions.md)，快速建立高频问题清单；如果你想系统补基础，可以按下面的专题顺序阅读。
+如果你刚开始学分布式，建议先看 [分布式系统入门](./distributed-system-intro.md)，建立整体认知；如果你时间有限，建议先看 [分布式系统面试题总结](./distributed-system-interview-questions.md)，快速建立高频问题清单。岗位明确考察微服务时，可以再看 [微服务面试题总结](./microservices-interview-questions.md)，串联服务拆分、通信、数据一致性和稳定性。
 
 ## 适合谁看
 
@@ -52,12 +52,13 @@ head:
 
 1. [分布式系统入门](./distributed-system-intro.md)：先理解什么是分布式系统，以及为什么拆成多节点后会引入通信、故障和一致性问题。
 2. [分布式系统面试题总结](./distributed-system-interview-questions.md)：建立高频问题清单，知道面试最常考哪些点。
-3. [分布式协调详解](./protocol/centralized-and-decentralized.md)：理解 Leader、Quorum、Gossip、Lease、脑裂和 Fencing Token 之间的关系。
-4. [CAP 定理与 BASE 理论详解](./protocol/cap-and-base-theorem.md)：理解分布式系统最核心的取舍逻辑。
-5. [拜占庭将军问题详解](./protocol/byzantine-generals-problem.md)：理解共识问题里的恶意节点、故障假设和 BFT 容错边界。
-6. [RPC 远程过程调用详解](./rpc/rpc-intro.md)：掌握服务之间如何通信，以及 RPC 框架解决了哪些工程问题。
-7. [分布式 ID 生成方案详解](./distributed-id.md)、[分布式锁入门](./distributed-lock.md)、[分布式事务解决方案详解](./distributed-transaction.md)：补齐高频工程实践。
-8. [ZooKeeper 入门指南](./distributed-process-coordination/zookeeper/zookeeper-intro.md) 和 [分布式配置中心详解](./distributed-configuration-center.md)：理解分布式协调和配置治理。
+3. [微服务面试题总结](./microservices-interview-questions.md)：理解服务拆分、服务通信、数据一致性、稳定性和迁移问题。
+4. [分布式协调详解](./protocol/centralized-and-decentralized.md)：理解 Leader、Quorum、Gossip、Lease、脑裂和 Fencing Token 之间的关系。
+5. [CAP 定理与 BASE 理论详解](./protocol/cap-and-base-theorem.md)：理解分布式系统最核心的取舍逻辑。
+6. [拜占庭将军问题详解](./protocol/byzantine-generals-problem.md)：理解共识问题里的恶意节点、故障假设和 BFT 容错边界。
+7. [RPC 远程过程调用详解](./rpc/rpc-intro.md)：掌握服务之间如何通信，以及 RPC 框架解决了哪些工程问题。
+8. [分布式 ID 生成方案详解](./distributed-id.md)、[分布式锁入门](./distributed-lock.md)、[分布式事务解决方案详解](./distributed-transaction.md)：补齐高频工程实践。
+9. [ZooKeeper 入门指南](./distributed-process-coordination/zookeeper/zookeeper-intro.md) 和 [分布式配置中心详解](./distributed-configuration-center.md)：理解分布式协调和配置治理。
 
 ## 核心文章
 
@@ -66,6 +67,7 @@ head:
 这部分适合先建立分布式系统的底层认知，重点理解一致性、可用性、分区容错、共识算法和数据分布。
 
 - [分布式系统入门](./distributed-system-intro.md)：理解分布式系统的定义、架构演进、典型特征、常见系统和学习路线。
+- [微服务面试题总结](./microservices-interview-questions.md)：串联服务拆分、RPC 与消息、数据归属、分布式事务、容错、观测和迁移。
 - [分布式理论、算法与协议专题](./protocol/)：把 CAP、BASE、Paxos、Raft、ZAB、Gossip 和一致性哈希放在同一条学习线上。
 - [分布式协调详解](./protocol/centralized-and-decentralized.md)：串起 Leader/Quorum、脑裂、Lease、Fencing Token 和 Gossip，理解“谁来做决定、状态怎么传播”这两个问题。
 - [CAP 定理与 BASE 理论详解](./protocol/cap-and-base-theorem.md)：理解一致性、可用性、分区容错和最终一致性。
@@ -123,6 +125,8 @@ API 网关负责统一接入、路由转发、认证鉴权、限流熔断、灰�
 - Redis 分布式锁有哪些坑？Redlock 是否一定可靠？
 - 分布式事务有哪些方案？TCC、Saga、本地消息表分别适合什么场景？
 - 配置中心和注册中心有什么区别？Apollo、Nacos、Spring Cloud Config 如何选型？
+- 微服务应该怎样拆分？什么情况下拆分会变成分布式单体？
+- 微服务之间怎样处理通信失败、跨服务数据一致性和灰度发布？
 
 ## 相关专题
 
