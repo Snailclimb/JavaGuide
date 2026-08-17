@@ -494,10 +494,6 @@ export default sidebar({
       collapsible: true,
       children: [
         {
-          text: "分布式系统知识体系",
-          link: "/distributed-system/",
-        },
-        {
           text: "分布式系统入门",
           link: "distributed-system-intro",
         },
@@ -614,10 +610,6 @@ export default sidebar({
       collapsible: true,
       children: [
         {
-          text: "高性能系统知识体系",
-          link: "/high-performance/",
-        },
-        {
           text: "⭐高性能系统设计高频面试题",
           link: "high-performance-system-interview-questions",
         },
@@ -668,10 +660,6 @@ export default sidebar({
       prefix: "high-availability/",
       collapsible: true,
       children: [
-        {
-          text: "高可用系统知识体系",
-          link: "/high-availability/",
-        },
         {
           text: "⭐高可用系统面试题总结",
           link: "high-availability-system-interview-questions",

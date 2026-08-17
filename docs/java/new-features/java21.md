@@ -1,18 +1,18 @@
 ---
-title: Java 21 新特性概览(重要)
-description: 概览 JDK 21 的关键新特性与实践影响，重点介绍字符串模板、Sequenced Collections、分代 ZGC、虚拟线程等。
+title: Java 21（JDK 21）新特性：虚拟线程、分代 ZGC 与有序集合
+description: Java 21（JDK 21）新特性详解，涵盖虚拟线程、分代 ZGC、Sequenced Collections、记录模式、switch 模式匹配及 LTS 支持周期，并说明已撤回的字符串模板预览功能。
 category: Java
 tag:
   - Java新特性
 head:
   - - meta
     - name: keywords
-      content: Java 21,JDK21,LTS,字符串模板,Sequenced Collections,分代 ZGC,记录模式,switch 模式匹配,虚拟线程,外部函数与内存 API
+      content: Java 21,JDK 21,JDK21新特性,Java21新特性,LTS,虚拟线程,Sequenced Collections,分代 ZGC,记录模式,switch 模式匹配,字符串模板,外部函数与内存 API
 ---
 
-JDK 21 于 2023 年 9 月 19 日 发布，这是一个非常重要的版本，里程碑式。
+Java 21（JDK 21）于 2023 年 9 月 19 日正式发布，是 Oracle 认定的长期支持（LTS）版本。
 
-JDK 21 是 LTS（长期支持版）。Oracle 当前列出的 LTS 版本包括 JDK 8、JDK 11、JDK 17、JDK 21 和 JDK 25。
+按照 Oracle 2026 年 4 月更新的 Java SE 支持路线图，Oracle JDK 21 的 Premier Support 持续到 2028 年 9 月，Extended Support 持续到 2031 年 9 月。不同 JDK 发行版的免费更新和商业支持周期可能不同。
 
 JDK 21 共有 15 个新特性，这篇文章会挑选其中较为重要的一些新特性进行详细介绍：
 
@@ -25,6 +25,8 @@ JDK 21 共有 15 个新特性，这篇文章会挑选其中较为重要的一些
 - [JEP 443: Unnamed Patterns and Variables（未命名模式和变量）](https://openjdk.org/jeps/443)（预览）
 - [JEP 444: Virtual Threads（虚拟线程）](https://openjdk.org/jeps/444)
 - [JEP 445: Unnamed Classes and Instance Main Methods（未命名类和实例 main 方法）](https://openjdk.org/jeps/445)（预览）
+
+如果主要关注生产升级，可以先看 Sequenced Collections、分代 ZGC 和虚拟线程。String Templates 只在 JDK 21、22 中提供过预览实现，后续提案已经撤回，当前 JDK 不再提供这套 API 和语法。
 
 下图是从 JDK 8 到 JDK 24 每个版本的更新带来的新特性数量和更新时间：
 

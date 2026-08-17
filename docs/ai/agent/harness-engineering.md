@@ -1,24 +1,26 @@
 ---
-title: Harness Engineering：六层检查框架、上下文管理与工程实践
-description: 深度解析 Harness Engineering，梳理 Agent = Model + Harness 的核心定义，拆解 OpenAI、Anthropic、Stripe 等一线团队的实战经验与踩坑教训。
+title: Harness 是什么？Harness Engineering 六层架构与 Agent 工程实践
+description: Harness 是什么？本文从 Agent = Model + Harness 出发，讲解 Agent Harness 的六层架构、上下文管理、工具调用、验证闭环与故障恢复，并结合 OpenAI、Anthropic、Stripe 等团队的工程实践说明设计取舍。
 category: AI 应用开发
 head:
   - - meta
     - name: keywords
-      content: Harness Engineering,AI Agent,智能体,Claude Code,Codex,AGENTS.md,上下文工程,Agent架构
+      content: Harness是什么,Harness Engineering,Agent Harness,Harness架构,Harness工程,AI Agent,智能体,Claude Code,Codex,AGENTS.md,上下文工程,Agent架构
 ---
+
+Agent Harness 是运行在大模型外部的一套执行系统。它负责组织上下文、提供工具和执行环境，并把权限控制、状态管理、结果验证与失败恢复接入任务流程。Harness Engineering 研究的就是这套系统应该怎样设计。
 
 Can.ac 的一次编码评测中，同一个模型仅替换文件编辑接口，得分就从 6.7% 升到 68.3%。模型参数没有变化，差别出在接口提供了什么操作、怎样返回结果，以及错误能否被下一步利用。
 
 这类差异也解释了常见的 Agent 故障：重复调工具、忽略约束或在长任务中丢失状态，往往不能只靠换模型或补一句提示词解决。工具接口、执行环境、反馈和恢复机制同样决定任务能否继续。
 
-Harness Engineering 讨论的就是这套模型外部系统。下文先拆开它的组件与分层，再对照 OpenAI、Anthropic、Stripe 和 Mitchell Hashimoto 的实现取舍。
+后文先看 Harness 的组件与分层，再对照 OpenAI、Anthropic、Stripe 和 Mitchell Hashimoto 的实现取舍。
 
-## Harness 基本概念
+## Harness 是什么？
 
-### Harness 到底是什么？
+### Agent = Model + Harness
 
-可以先记住一个工程上的划分：Agent = Model + Harness。模型负责推理和生成；Harness 管理系统提示词、工具调用、文件系统、沙箱、编排逻辑、钩子中间件、反馈回路和约束。
+工程上常用 `Agent = Model + Harness` 区分两部分。模型负责推理和生成；Harness 管理系统提示词、工具调用、文件系统、沙箱、编排逻辑、钩子中间件、反馈回路和约束。
 
 模型本身不会保存跨会话状态，也无法执行命令或读取测试结果。Harness 要把任务状态、操作入口、执行环境和安全边界接起来，使模型输出转成可验证的动作。
 

@@ -1,22 +1,22 @@
 ---
-title: Java 17 新特性概览（重要）
-description: 总结 JDK 17 的重要更新与 JEP，涵盖密封类、记录类与模式匹配等特性。
+title: Java 17（JDK 17）新特性：密封类、switch 模式匹配与随机数 API
+description: Java 17（JDK 17）新特性详解，涵盖密封类、switch 模式匹配、新随机数 API、外部函数与内存 API，以及 LTS 支持周期和升级时需要关注的变化。
 category: Java
 tag:
   - Java新特性
 head:
   - - meta
     - name: keywords
-      content: Java 17,JDK17,LTS,密封类,记录类,模式匹配,API 更新,JEP
+      content: Java 17,JDK 17,JDK17新特性,Java17新特性,LTS,密封类,switch模式匹配,随机数 API,外部函数与内存 API,JEP
 ---
 
-Java 17 在 2021 年 9 月 14 日正式发布，是一个长期支持（LTS）版本。
+Java 17（JDK 17）于 2021 年 9 月 14 日正式发布，是 Oracle 认定的长期支持（LTS）版本。
 
-下面这张图是 Oracle 官方给出的 Oracle JDK 支持的时间线。可以看得到，Java 17 最多可以支持到 2029 年 9 月份。
+按照 Oracle 2026 年 4 月更新的 Java SE 支持路线图，Oracle JDK 17 的 Premier Support 持续到 2026 年 9 月，Extended Support 持续到 2029 年 9 月。不同 JDK 发行版的免费更新和商业支持周期并不相同，生产环境还要以实际使用的发行版为准。
 
 ![](https://oss.javaguide.cn/github/javaguide/java/new-features/4c1611fad59449edbbd6e233690e9fa7.png)
 
-Java 17 将是继 Java 8 以来最重要的长期支持（LTS）版本，是 Java 社区八年努力的成果。Spring 6.x 和 Spring Boot 3.x 最低支持的就是 Java 17。
+从 JDK 11 升级到 JDK 17 时，建议重点关注密封类、switch 模式匹配、新的伪随机数 API，以及 JDK 内部 API 强封装带来的兼容性变化。Spring 6.x 和 Spring Boot 3.x 的最低 Java 版本也是 Java 17。
 
 JDK 17 共有 14 个新特性，这篇文章会挑选其中较为重要的一些新特性进行详细介绍：
 

@@ -737,7 +737,7 @@ MIT6.824: Distributed System 这门公开课挺经典的。这门课每节课都
 - [CAP & BASE 理论详解](https://javaguide.cn/distributed-system/protocol/cap-and-base-theorem.html)
 - [Paxos 算法详解](https://javaguide.cn/distributed-system/protocol/paxos-algorithm.html)
 - [Raft 算法详解](https://javaguide.cn/distributed-system/protocol/raft-algorithm.html)
-- [Gossip 协议详解](https://javaguide.cn/distributed-system/protocol/gossip-protocl.html)
+- [Gossip 协议详解](https://javaguide.cn/distributed-system/protocol/gossip-protocol.html)
 
 ### 远程调用
 

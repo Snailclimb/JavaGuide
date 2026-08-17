@@ -44,7 +44,7 @@ Paxos 算法是 Leslie Lamport（莱斯利·兰伯特）在 **1990** 年提出�
 
 共识算法的作用是让分布式系统中的多个节点对某个提案（proposal）达成一致。“提案”在不同系统里可指代的对象很广，如选主、事件排序等都可以是提案。
 
-由于 Paxos 算法公认难以理解和实现，2013 年诞生了更易理解的 [Raft 算法](https://javaguide.cn/distributed-system/theorem&algorithm&protocol/raft-algorithm.html)。
+由于 Paxos 算法公认难以理解和实现，2013 年诞生了更易理解的 [Raft 算法](./raft-algorithm.md)。
 
 **关于 Raft 与 Paxos 的关系**：从学术角度，Raft 并非 Paxos 的严格变体——两者在底层设计哲学（如日志空洞、Leader 权限）上存在本质差异。但从工程实践角度，Raft 的设计灵感源于 Multi-Paxos，可理解为“受 Multi-Paxos 启发的重新设计”。本文后文将详细对比二者区别。
 
@@ -89,7 +89,7 @@ flowchart LR
 
 为了减少实现该算法所需的节点数，一个节点可以身兼多个角色。并且，一个提案被选定需要被半数以上的 Acceptor 接受。这样的话，Basic Paxos 算法还具备容错性，在少于一半的节点出现故障时，集群仍能正常工作。
 
-### 执行流程
+### Basic Paxos 执行流程
 
 Basic Paxos 通过两个阶段达成共识：**Prepare/Promise（准备/承诺）阶段**和 **Accept/Accepted（接受/已接受）阶段**。
 
@@ -341,7 +341,7 @@ sequenceDiagram
     Note over SM: 状态机执行 "X"<br/>（空洞/已接受值已安全处理）
 ```
 
-### 执行流程
+### Multi-Paxos 执行流程
 
 1. **Leader 选举**：通过 Basic Paxos 选出 Leader
 2. **日志复制**：Leader 接收客户端请求，追加到本地日志，分配递增索引

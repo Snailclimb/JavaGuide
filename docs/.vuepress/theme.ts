@@ -25,6 +25,52 @@ const docsearchOptions =
 const MIN_META_DESCRIPTION_LENGTH = 150;
 const MAX_META_DESCRIPTION_LENGTH = 160;
 
+// Keep high-value legacy URLs found in Search Console working after file moves.
+// The redirect plugin normalizes directory-style sources to `index.html`.
+const legacyRedirects = {
+  "/ai/ai-coding/cc-glm5.1.html": "/ai-coding/cases/cc-glm5.1.html",
+  "/ai/ai-coding/trae-m2.7.html": "/ai-coding/cases/trae-m2.7.html",
+  "/ai/llm-basis/ai-ide.html": "/ai-coding/practices/ai-ide.html",
+  "/category/分布式系统/": "/distributed-system/",
+  "/cs-basics/data-structure/bloom-filter/":
+    "/cs-basics/data-structure/bloom-filter.html",
+  "/cs-basics/network/osi&tcp-ip-model.html":
+    "/cs-basics/network/osi-and-tcp-ip-model.html",
+  "/database/mysql/mysql知识点&面试题总结/":
+    "/database/mysql/mysql-questions-01.html",
+  "/distributed-system/protocol/gossip-protocl.html":
+    "/distributed-system/protocol/gossip-protocol.html",
+  "/distributed-system/theorem&algorithm&protocol/cap&base-theorem.html":
+    "/distributed-system/protocol/cap-and-base-theorem.html",
+  "/distributed-system/theorem&algorithm&protocol/paxos-algorithm.html":
+    "/distributed-system/protocol/paxos-algorithm.html",
+  "/distributed-system/theorem&algorithm&protocol/raft-algorithm.html":
+    "/distributed-system/protocol/raft-algorithm.html",
+  "/distributed-system/理论&算法/paxos&raft算法/":
+    "/distributed-system/protocol/",
+  "/high-performance/读写分离&分库分表/":
+    "/high-performance/read-and-write-separation-and-library-subtable.html",
+  "/interview-preparation/java-interview-plan.html":
+    "/interview-preparation/backend-interview-plan.html",
+  "/java/basis/why-there-only-value-passing-in-java/":
+    "/java/basis/why-there-only-value-passing-in-java.html",
+  "/java/collection/arraylist-source-code/":
+    "/java/collection/arraylist-source-code.html",
+  "/java/collection/concurrent-hash-map-source-code/":
+    "/java/collection/concurrent-hash-map-source-code.html",
+  "/java/collection/hashmap-source-code/":
+    "/java/collection/hashmap-source-code.html",
+  "/java/concurrent/java并发进阶常见面试题总结/":
+    "/java/concurrent/java-concurrent-questions-02.html",
+  "/java/jvm/jvm-parameters-intro/": "/java/jvm/jvm-parameters-intro.html",
+  "/system-design/basis/naming/": "/system-design/basis/naming.html",
+  "/system-design/framework/netty/": "/system-design/framework/netty.html",
+  "/system-design/security/advantages&disadvantages-of-jwt.html":
+    "/system-design/security/advantages-and-disadvantages-of-jwt.html",
+  "/zh-CN/jwt-authentication-pros-and-cons/":
+    "/system-design/security/advantages-and-disadvantages-of-jwt.html",
+};
+
 const segmentDisplayNames = {
   ai: "AI",
   "ai-coding": "AI 编程",
@@ -231,6 +277,9 @@ export default hopeTheme({
     codeTabs: true,
     mermaid: true,
     gfm: true,
+    linksCheck: {
+      build: "error",
+    },
     include: {
       resolvePath: (file, cwd) => {
         if (file.startsWith("@"))
@@ -445,6 +494,10 @@ export default hopeTheme({
     },
     sitemap: {
       changefreq: "monthly",
+    },
+
+    redirect: {
+      config: legacyRedirects,
     },
 
     // The upstream copyright plugin can throw during hydration if `#app` is unavailable.

@@ -20,6 +20,8 @@ head:
 
 这篇文章是 JavaGuide 高性能专题的复习入口，按流量入口、数据库优化、消息队列和综合系统设计四部分整理。每部分列出常见追问，具体原理和实现放在对应专题文章中。
 
+时间比较紧的话，可以先看 [高性能系统常见面试题总结](https://interview.javaguide.cn/high-performance/high-performance-system-interview-questions.html)，把暂时讲不清的问题标出来，再回到本文补原理和工程细节。
+
 ## 复习时先抓住哪些问题？
 
 | 模块       | 需要讲清楚的内容                                 | 常见追问方向                                            |
