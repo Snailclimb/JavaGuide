@@ -227,13 +227,16 @@ PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a, b) -> Integer.compare(b
 
 Top K 问题常见选择：
 
-- 求第 K 大：维护大小为 K 的小顶堆。
+- 通用场景或数据流中求第 K 大：维护大小为 K 的小顶堆，时间复杂度为 `O(nlogk)`，空间复杂度为 `O(k)`。
+- 一次性数组中求第 K 大，且要求线性时间：使用快速选择，平均时间复杂度为 `O(n)`。
 - 求前 K 高频：先用哈希表计数，再用小顶堆保留 K 个高频元素。
 - 数据流中位数：一个大顶堆维护较小的一半，一个小顶堆维护较大的一半。
 
+需要注意的是，小顶堆是求第 K 大的通用解法，但不满足所有题目的复杂度要求。例如，[LeetCode 215. 数组中的第 K 个最大元素](https://leetcode.cn/problems/kth-largest-element-in-an-array/) 要求使用 `O(n)` 时间复杂度的算法，通常应采用随机化快速选择，其期望时间复杂度为 `O(n)`；如果严格要求最坏时间复杂度为 `O(n)`，则需要使用 BFPRT 算法。具体的方案对比可以参考 [Top K 问题面试题总结](../algorithms/top-k.md#快排分区思路)。
+
 ## Java 代码模板
 
-第 K 大问题可以用大小为 K 的小顶堆。堆顶始终是当前前 K 大里最小的那个元素，如果新元素比堆顶大，就替换堆顶。
+第 K 大问题可以用大小为 K 的小顶堆。堆顶始终是当前前 K 大里最小的那个元素，如果新元素比堆顶大，就替换堆顶。这种写法的时间复杂度为 `O(nlogk)`，空间复杂度为 `O(k)`，适合通用 Top K 和数据流场景。
 
 ```java
 int findKthLargest(int[] nums, int k) {
@@ -293,7 +296,7 @@ int[] topKFrequent(int[] nums, int k) {
 
 ## 推荐练习题
 
-- [215. 数组中的第 K 个最大元素](https://leetcode.cn/problems/kth-largest-element-in-an-array/)
+- [215. 数组中的第 K 个最大元素](https://leetcode.cn/problems/kth-largest-element-in-an-array/)（题目要求 `O(n)` 时间复杂度，优先练习快速选择）
 - [347. 前 K 个高频元素](https://leetcode.cn/problems/top-k-frequent-elements/)
 - [703. 数据流中的第 K 大元素](https://leetcode.cn/problems/kth-largest-element-in-a-stream/)
 - [295. 数据流的中位数](https://leetcode.cn/problems/find-median-from-data-stream/)
