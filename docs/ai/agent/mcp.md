@@ -1,11 +1,11 @@
 ---
 title: 什么是 Model Context Protocol (MCP)？和 Function Calling、Agent 什么关系？
-description: MCP（Model Context Protocol）核心概念、四层分层架构、JSON-RPC 2.0 通信机制及生产级 MCP Server 开发实践。
+description: MCP（Model Context Protocol）2026-07-28 核心概念、无状态请求、JSON-RPC 2.0 通信机制及生产级 MCP Server 实践。
 category: AI 应用开发
 head:
   - - meta
     - name: keywords
-      content: MCP,Model Context Protocol,JSON-RPC,Function Calling,AI Agent,工具接入,Anthropic
+      content: MCP,Model Context Protocol,JSON-RPC,Function Calling,AI Agent,Streamable HTTP,MCP Server,工具接入,Anthropic
 ---
 
 同一个 Git 工具接到 Claude Desktop、Cursor 和自建 Agent 时，往往要各写一层适配。工具参数、鉴权方式或版本一变，接入它的多个客户端都得跟着改。
@@ -14,7 +14,7 @@ MCP 约定外部系统以 Server 形式暴露能力，支持该协议的 Host �
 
 ![MCP 图解](https://oss.javaguide.cn/github/javaguide/ai/skills/mcp-simple-diagram.png)
 
-> 本文以当前稳定的 [2025-11-25 revision](https://modelcontextprotocol.io/specification/2025-11-25) 为主。2025-03-26 版本把早期 HTTP+SSE 传输调整为 Streamable HTTP，2025-06-18 加入 Elicitation，2025-11-25 又增加了实验性的 Tasks、URL 模式 Elicitation 等内容。客户端和 SDK 可能只实现其中一部分，接入前要同时确认协议 revision、SDK 版本和 Host 能力。
+> 本文以当前稳定的 [2026-07-28 revision](https://modelcontextprotocol.io/specification/2026-07-28) 为主。这个版本移除了协议级 Session 和 `initialize` 握手，改用无状态请求、逐请求能力声明和 `server/discover`。2025-11-25 及更早版本属于旧式握手协议。客户端和 SDK 可能还在兼容旧版本，接入前要同时确认协议 revision、SDK 版本和 Host 能力。
 
 ## MCP 到底是什么？
 
@@ -84,7 +84,7 @@ MCP 的通信链路由 Host、Client 和 Server 组成。
 
 Host 是用户使用的 AI 应用，例如 Claude Desktop、Cursor、VS Code 中的 AI 插件或自建 Agent 平台。
 
-Client 位于 Host 内部，负责与 MCP Server 建立会话和交换协议消息。一个 Host 可以连多个 Server，通常每个 Server 对应一个 Client 会话。
+Client 位于 Host 内部，负责与 MCP Server 交换协议消息。一个 Host 可以连接多个 Server，通常为每个 Server 维护独立的 Client 实例和配置。
 
 开发者主要编写 Server。文件读取、SQL 查询、GitHub Issue 查询和内部工单查询等能力，都可以由它向 Host 暴露。
 
@@ -100,9 +100,9 @@ Server 后面才是实际的数据源：本地文件、数据库、内部平台�
 
 工具的名称、`description`、参数说明和禁用场景会直接影响模型的选择。Server 接收到的参数也必须视为不可信输入：文件读取要限制目录，SQL 要参数化，高危操作要审批，返回数据要脱敏。
 
-还有一步容易被忽略：Client 和 Server 在正式调用工具前，会先完成初始化握手。Client 发送 `initialize` 请求，带上自己支持的协议版本和能力列表；Server 返回自己支持的协议版本、能力和基础信息。确认之后，Client 再发 `initialized` 通知，双方才进入可用状态。
+2026-07-28 不再要求初始化握手。Client 在每个请求的 `_meta` 中声明协议版本、客户端信息和能力。Server 必须实现 `server/discover`，返回支持的版本、能力和身份；Client 可以先调用它，也可以直接发业务请求，再根据 `UnsupportedProtocolVersionError` 选择双方都支持的版本。
 
-这一步的意义在于：Client 能通过它知道 Server 支持哪些能力（只有 Tools？还是有 Resources 和 Prompts？），Server 也能知道 Client 的限制。很多“Server 配好了但工具没出现”的问题，排查时都应该先看初始化阶段有没有失败。
+这套机制把版本和能力绑定到每次请求，不再依赖连接级 Session。排查“Server 配好了但工具没出现”时，先确认 `server/discover`、逐请求 `_meta` 和传输层版本头是否一致。只有兼容 2025-11-25 及更早版本时，才回退到 `initialize` 和 `initialized`。
 
 ## MCP 暴露的能力只有 Tools 吗？
 
@@ -134,17 +134,13 @@ LLM 扮演厨师，它知道凉拌黄瓜大概怎么做，但它还需要外部�
 
 落到生产环境，工具名、参数描述和返回结构都直接影响 Agent 的选择和后续判断。Server 能启动只是开始，能力边界还要让模型能准确理解。
 
-### Roots、Sampling 和 Elicitation
+### Elicitation、Roots 和 Sampling
 
-除了 Server 侧能力，Client 侧也可以提供一些能力给 Server 使用，比如 Roots、Sampling、Elicitation。
+Elicitation 允许 Server 在执行过程中向用户补充询问信息。2026-07-28 使用 Multi Round-Trip Requests：Server 返回 `InputRequiredResult`，Client 收集信息后重试原请求。普通字段可以使用表单模式；密码、API Key、访问令牌和支付凭据必须走 URL 模式，不能经过 MCP Client。
 
-Roots 由 Host 通过 Client 告诉 Server：当前会话预期在哪些文件系统根目录内工作。例如，Host 可以只公布当前项目目录，不公布用户主目录。它是能力协商和范围提示，不会自动形成文件系统沙箱；Server 仍要做路径规范化、越界检查和操作系统级权限隔离。
+Roots 和 Sampling 在 2026-07-28 中已经进入[弃用期](https://modelcontextprotocol.io/specification/2026-07-28/deprecated)。Roots 曾用于提示 Server 可访问的文件系统范围，Sampling 曾允许 Server 请求 Host 侧模型生成内容。兼容旧客户端时仍可能遇到它们，但新实现不应再新增依赖。文件或目录范围可以改用工具参数、资源 URI 或 Server 配置，模型调用则由应用直接接入模型服务。
 
-Sampling 比较特殊，它允许 Server 请求 Host 侧的 LLM 做一次生成。比如 Server 读取到一段日志后，希望借助模型做摘要或分类。
-
-Elicitation 则是 Server 在执行过程中向用户补充询问信息的能力。比如参数不完整、选项有歧义、执行前需要用户确认，就可以由 Host 侧展示交互。
-
-这些能力要按场景选择。大多数 MCP Server 可以先只提供 Tools；需要只读上下文或可复用任务入口时，再考虑 Resources、Prompts。Roots、Sampling、Elicitation 和 Tasks 还取决于对应 Client 是否实现，不能只看 Server SDK 有无接口。
+大多数 MCP Server 可以先只提供 Tools；需要只读上下文或可复用任务入口时，再考虑 Resources、Prompts。Elicitation 和 Tasks 等能力还取决于对应 Client 是否实现，不能只看 Server SDK 有无接口。
 
 ## 为什么 MCP 用 JSON-RPC？
 
@@ -162,6 +158,14 @@ REST 更偏资源，比如 `/users/1`、`/orders/100`。JSON-RPC 更偏方法调
     "name": "read_file",
     "arguments": {
       "path": "/path/to/file.txt"
+    },
+    "_meta": {
+      "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+      "io.modelcontextprotocol/clientInfo": {
+        "name": "example-client",
+        "version": "1.0.0"
+      },
+      "io.modelcontextprotocol/clientCapabilities": {}
     }
   },
   "id": 1
@@ -175,6 +179,7 @@ REST 更偏资源，比如 `/users/1`、`/orders/100`。JSON-RPC 更偏方法调
   "jsonrpc": "2.0",
   "id": 1,
   "result": {
+    "resultType": "complete",
     "content": [
       {
         "type": "text",
@@ -214,10 +219,15 @@ stdio 模式下，stdout 是 JSON-RPC 消息通道，不能用于打印调试日
 
 ```http
 POST /mcp
+Content-Type: application/json
+Accept: application/json, text/event-stream
+MCP-Protocol-Version: 2026-07-28
+Mcp-Method: tools/call
+Mcp-Name: search
 Authorization: Bearer xxx
 ```
 
-响应可能是普通 JSON，也可能是 SSE 流，取决于请求类型。
+协议版本还要出现在请求体的 `_meta` 中，并与 `MCP-Protocol-Version` 头一致。SDK 应自动生成这些协议字段。响应可能是普通 JSON，也可能是当前请求专用的 SSE 流。
 
 选择传输方式时，可以按部署位置和访问范围判断：
 
@@ -226,6 +236,36 @@ Authorization: Bearer xxx
 - 涉及写操作和敏感数据时，不管哪种传输方式，都要额外做鉴权、限流和审计。
 
 ![MCP 传输方式选择](https://oss.javaguide.cn/github/javaguide/ai/skills/mcp-transport-decision.png)
+
+### 远程 MCP 实战：用 Xquik 查询 X 公共数据
+
+前面的本地天气 Server 适合验证 stdio。要验证远程 Streamable HTTP、能力发现和 OAuth，可以连接 Xquik 的公开 MCP 端点。它支持 2026-07-28，并通过同一个端点兼容旧客户端。
+
+先读取公开发现文档，确认端点和协议版本。这个请求不需要登录：
+
+```bash
+curl -sS https://xquik.com/.well-known/mcp.json | jq '.remotes'
+```
+
+Claude Code 可以直接添加远程 Server：
+
+```bash
+claude mcp add --transport http xquik https://xquik.com/mcp
+```
+
+进入 Claude Code 后运行 `/mcp`，选择 `xquik`，再完成浏览器授权。Codex CLI 可以这样配置：
+
+```bash
+codex mcp add xquik --url https://xquik.com/mcp
+codex mcp login xquik
+codex mcp list
+```
+
+连接成功后，可以先让 Agent 使用只读的 `explore` 工具查找“按关键词搜索公开推文”的接口，再确认参数和费用。只有在需要真实结果时，才调用 `xquik` 工具。涉及写操作、私有数据、监控或付费批量任务时，应先展示影响并取得明确确认。
+
+这个例子对应完整的远程链路：Client 先发现 Server，OAuth 保护用户授权，Host 展示工具，Agent 再选择只读发现或实际调用。配置详情和安全边界可以查看 [Xquik MCP 文档](https://docs.xquik.com/mcp/overview)。
+
+> Xquik is an independent third-party service. Not affiliated with X Corp. "Twitter" and "X" are trademarks of X Corp.
 
 ## MCP 的意义只是让模型会调接口吗？
 
@@ -281,7 +321,7 @@ Server 的 `description`、Prompt 模板和返回内容同样需要审核：恶�
 
 ### 成本归因
 
-- 每次调用是否能关联到用户、业务线、工具和会话？
+- 每次调用是否能关联到用户、业务线、工具和交互记录？
 - Token 成本、API 成本、云资源成本是否能拆分统计？
 - 是否有配额和预算告警？
 - 模型循环调用工具时，是否有调用次数上限？
@@ -390,9 +430,9 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 ## 接入时记录协议 revision
 
-MCP 统一了 Host 与外部工具、数据源之间的发现和调用方式，但不会替代业务鉴权、数据权限和执行审计。一个 Server 在某个 Host 中可用，也不代表换到另一个 Host 后仍支持 Sampling、Elicitation、Tasks 等可选能力。
+MCP 统一了 Host 与外部工具、数据源之间的发现和调用方式，但不会替代业务鉴权、数据权限和执行审计。一个 Server 在某个 Host 中可用，也不代表换到另一个 Host 后仍支持 Elicitation、Tasks 等可选能力或兼容功能。
 
-实现最小 Server 时，先固定协议 revision 和 SDK 版本，使用 Inspector 验证初始化、能力协商、参数校验和错误响应。准备接入远程服务后，再补 OAuth、限流、Trace、版本兼容和回滚；文件与命令工具还要在 Server 侧落实目录校验和沙箱。
+实现最小 Server 时，先固定协议 revision 和 SDK 版本，使用 Inspector 验证能力发现、逐请求元数据、参数校验和错误响应。准备接入远程服务后，再补 OAuth、限流、Trace、版本兼容和回滚；文件与命令工具还要在 Server 侧落实目录校验和沙箱。
 
 ## 总结
 
