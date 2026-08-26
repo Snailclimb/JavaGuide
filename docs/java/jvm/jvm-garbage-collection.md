@@ -1,13 +1,13 @@
 ---
 title: JVM垃圾回收详解（重点）
-description: JVM垃圾回收详解：全面讲解GC算法（标记清除、复制、标记整理）、分代回收机制、常用垃圾回收器（Serial、Parallel、CMS、G1、ZGC）、GC调优实践。
+description: JVM垃圾回收详解：全面讲解GC算法（标记清除、复制、标记整理）、分代回收机制、常用垃圾回收器（Serial、Parallel、CMS、G1、ZGC、Shenandoah）、GC调优实践。
 category: Java
 tag:
   - JVM
 head:
   - - meta
     - name: keywords
-      content: JVM垃圾回收,GC算法,垃圾回收器,分代回收,标记清除,复制算法,G1 GC,ZGC,GC调优
+      content: JVM垃圾回收,GC算法,垃圾回收器,分代回收,标记清除,复制算法,G1 GC,ZGC,Shenandoah,GC调优
 ---
 
 > 如果没有特殊说明，都是针对的是 HotSpot 虚拟机。
@@ -352,6 +352,8 @@ PhantomReference phantomReference2 = new PhantomReference(new String("abc"), que
 - 加载该类的 `ClassLoader` 已经被回收。
 - 该类对应的 `java.lang.Class` 对象没有在任何地方被引用，无法在任何地方通过反射访问该类的方法。
 
+> JNI 场景下要特别小心第 3 个条件：通过 `NewGlobalRef` 创建的 `jclass` 全局引用同样会阻止类被卸载。一个常见的坑是 JNI 层缓存了反射结果：`jmethodID`/`jfieldID` 只有在类保持已加载状态时才保证有效，因此长期运行的程序通常会为 `jclass` 创建全局引用来保活。这也意味着只要这个全局引用没有释放，对应的类就永远无法卸载（参见 [issue#2908](https://github.com/Snailclimb/JavaGuide/issues/2908)）。
+
 虚拟机可以对满足上述 3 个条件的无用类进行回收，这里说的仅仅是“可以”，而并不是和对象一样不使用了就会必然被回收。
 
 ## 垃圾收集算法
@@ -564,6 +566,22 @@ java -XX:+UseZGC className
 - [从历代 GC 算法角度剖析 ZGC - 京东技术](https://mp.weixin.qq.com/s/ExkB40cq1_Z0ooDzXn7CVw)
 - [新一代垃圾回收器 ZGC 的探索与实践 - 美团技术团队](https://tech.meituan.com/2020/08/06/new-zgc-practice-in-meituan.html)
 - [极致八股文之 JVM 垃圾回收器 G1&ZGC 详解 - 阿里云开发者](https://mp.weixin.qq.com/s/Ywj3XMws0IIK-kiUllN87Q)
+
+### Shenandoah 收集器
+
+与 ZGC 类似，Shenandoah 也是面向低延迟的收集器，由 Red Hat 主导开发，在 Java 12 中通过 [JEP 189](https://openjdk.org/jeps/189) 以实验特性引入，Java 15 起成为正式特性（[JEP 379](https://openjdk.org/jeps/379)）。
+
+Shenandoah 的核心思路是**并发整理**：大部分堆整理工作与应用线程同时进行，暂停时间可以控制在亚毫秒级，且不受堆大小影响。它主要通过**转发指针（Brooks Pointer）**和**读屏障**实现并发整理时对象移动对应用线程的透明。
+
+需要注意的是，早期 Shenandoah 和早期 ZGC 一样是非分代收集器，吞吐量上有一定代价。分代 Shenandoah 仍在演进中（如 [JEP 535](https://openjdk.org/jeps/535)、[JEP 521](https://openjdk.org/jeps/521)），值得持续关注。
+
+你可以通过下面的参数启用 Shenandoah：
+
+```bash
+java -XX:+UseShenandoahGC className
+```
+
+> 注意：Shenandoah 不在 Oracle JDK 的默认支持列表中，主要随 OpenJDK（如 Red Hat、Amazon Corretto 等发行版）提供，使用前需要确认所用 JDK 发行版是否包含并默认启用了 Shenandoah（`-XX:+PrintFlagsFinal -version | grep UseShenandoahGC`）。
 
 ## 参考
 
