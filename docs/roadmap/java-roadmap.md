@@ -12,7 +12,7 @@ head:
 
 这篇文章可能是你所见过的最用心、最全面的 Java 后端学习路线，共 4w+ 字。不过，也不用担心内容太多学不完，我会按照学习难度给出找一份小厂工作必学的内容以及适合循序渐进提高 Java 后端开发能力的学习路线。
 
-对于初学者，你可以按照这篇文章推荐的学习路线和资料进行系统性的学习；对于有经验的开发者，你可以根据这篇文章更一步地深入学习 Java 后端开发，提升个人竞争力。
+对于初学者，你可以按照这篇文章推荐的学习路线和资料进行系统性的学习；对于有经验的开发者，你可以根据这篇文章更进一步地深入学习 Java 后端开发，提升个人竞争力。
 
 为了保证内容不至于太杂，这篇文章不会展开讲学习方法和成长建议，这部分可以看 JavaGuide「程序人生」里的几篇文章：
 
@@ -75,7 +75,7 @@ head:
 **RMI（Remote Method Invocation）**
 
 - **原因**：RMI 是一种早期的 Java 远程调用技术，但兼容性差、配置繁琐，且性能较差。
-- **替代方案**：RESTful API 和 PRC 提供了更简单、高效的远程调用解决方案，完全取代了 RMI。
+- **替代方案**：RESTful API 和 RPC 提供了更简单、高效的远程调用解决方案，完全取代了 RMI。
 
 **Swing / JavaFX**
 
@@ -120,7 +120,7 @@ head:
 
 ![《Head First Java》-豆瓣](https://oss.javaguide.cn/github/javaguide/books/image-20220424103035793.png)
 
-《Head First Java》这本书的内容很轻松有趣，可以说是我学习编程初期最喜欢的几本书之一了。同时，这本书也是我的 Java 启蒙书籍。我在学习 Java 的初期多亏了这本书的帮助，自己才算是跨进 Java 语言的大门。我在 Java 这块能够坚持下来，这本书有很大的功劳。我身边的的很多朋友学习 Java 初期都是看的这本书。
+《Head First Java》这本书的内容很轻松有趣，可以说是我学习编程初期最喜欢的几本书之一了。同时，这本书也是我的 Java 启蒙书籍。我在学习 Java 的初期多亏了这本书的帮助，自己才算是跨进 Java 语言的大门。我在 Java 这块能够坚持下来，这本书有很大的功劳。我身边的很多朋友学习 Java 初期都是看的这本书。
 
 有很多小伙伴就会问了：**这本书适不适合编程新手阅读呢？**
 
@@ -140,7 +140,7 @@ head:
 
 学完 Java 基础之后，你可以用自己学的东西实现一个简单的 Java 程序，也可以尝试用 Java 解决一些编程问题，以此来将自己学到的东西付诸于实践。
 
-不太建议学习 Java 基础的之后通过做游戏来巩固。为什么培训班喜欢通过这种方式呢？说白点就是为了找到你的 G 点。新手学习完 Java 基础后做游戏一般是不太现实的，还不如找一些简单的程序问题解决一下比如简单的算法题。
+不太建议在学习 Java 基础之后通过做游戏来巩固。为什么培训班喜欢通过这种方式呢？说白点就是为了找到你的 G 点。新手学习完 Java 基础后做游戏一般是不太现实的，还不如找一些简单的程序问题解决一下比如简单的算法题。
 
 记得多总结！打好基础！把自己重要的东西都记录下来。 API 文档放在自己可以看到的地方，以备自己可以随时查阅。为了能让自己写出更优秀的代码，《Effective Java》、《重构》 这两本书没事也可以看。
 
@@ -257,7 +257,7 @@ JVM 属于是比并发更高阶一些的内容，学习顺序可以适当延后�
 
 数据库基础知识点的话，其实是可选择性学习的。对于计算机专业的同学来说，大学的时候应该也学习过。不过，绝大部分学了之后也相当于没学，没学过的也不用担心哈！
 
-这里还是提供一些学习资料给想要学习数据库基础知识的同学把！
+这里还是提供一些学习资料给想要学习数据库基础知识的同学吧！
 
 书籍的话，强烈推荐《数据库系统概念》，这本书涵盖了数据库系统的全套概念，知识体系清晰，是学习数据库系统非常经典的教材！不是参考书！
 
@@ -418,7 +418,7 @@ Git 技能对于程序员来说也是必备的！试着在学习的过程中将�
 
 ![](https://oss.javaguide.cn/github/javaguide/interview-preparation/java-learning-route/20210423182350378.png)
 
-如果你是在不知道答案的话，还可以使用 `show solution` 命令查看答案。
+如果你实在不知道答案的话，还可以使用 `show solution` 命令查看答案。
 
 ![](https://oss.javaguide.cn/github/javaguide/interview-preparation/java-learning-route/20210423181725451.png)
 
@@ -446,7 +446,7 @@ Docker 的出现完美地解决了这一问题，我们可以在容器中安装 
 2. 对进程进行封装隔离，容器与容器之间互不影响，更高效地利用系统资源
 3. 可以通过镜像复制多个一致的容器
 
-Docker 常见概念解读，可以看这篇 JavaGuide 的这篇[Docker 基本概念解读](https://javaguide.cn/tools/docker/docker-intro.html) ，从零到上手实战可以看[Docker 从入门到上手干事](https://javaguide.cn/tools/docker/docker-in-action.html)这篇文章，内容非常详细！
+Docker 常见概念解读，可以看 JavaGuide 的这篇[Docker 基本概念解读](https://javaguide.cn/tools/docker/docker-intro.html) ，从零到上手实战可以看[Docker 从入门到上手干事](https://javaguide.cn/tools/docker/docker-in-action.html)这篇文章，内容非常详细！
 
 另外，再给大家推荐一本质量非常高的开源书籍[《Docker 从入门到实践》](https://yeasy.gitbook.io/docker_practice/introduction/why)，这本书的内容非常新，毕竟书籍的内容是开源的，可以随时改进。
 
@@ -466,9 +466,9 @@ Docker 常见概念解读，可以看这篇 JavaGuide 的这篇[Docker 基本概
 
 在我们平时工作的业务开发中，如果你不会设计模式，你或许也可以完成项目的功能需求。但是！单纯 CRUD 多没意思啊！我们要思考如何写出质量更高的业务代码。另外，各种框架比如 Spring、MyBatis 中都大量使用了设计模式。如果，你想要搞懂他们的原理，设计模式也是你的必备利器。
 
-设计模式不光需要我们在学习，最重要的还是要不断去实践体会。但是！设计模式不是银弹，**不要为了用设计模式而用设计模式**。
+设计模式不光需要我们学习，最重要的还是要不断去实践体会。但是！设计模式不是银弹，**不要为了用设计模式而用设计模式**。
 
-想要看书学习设计模式的话，首推 《重学 Java 设计模式》 。有趣的例子，配合形象的图片，通过实战案例讲解设计模式的方式秒极了！文中的每一个细节无不透露着作者的用心！每一种设计模式实际都不难理解，大部分读者最需要的还是设计模式的实战经验。如果你能细心思考实践《重学 Java 设计模式》 中的每一个案例，我相信，你对设计模式的理解一定会更上一层楼！
+想要看书学习设计模式的话，首推 《重学 Java 设计模式》 。有趣的例子，配合形象的图片，通过实战案例讲解设计模式的方式妙极了！文中的每一个细节无不透露着作者的用心！每一种设计模式实际都不难理解，大部分读者最需要的还是设计模式的实战经验。如果你能细心思考实践《重学 Java 设计模式》 中的每一个案例，我相信，你对设计模式的理解一定会更上一层楼！
 
 ![](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b4da6f8cc0cf4a8e8238d3d8671e0462~tplv-k3u1fbpfcp-watermark.image)
 
@@ -480,7 +480,7 @@ Docker 常见概念解读，可以看这篇 JavaGuide 的这篇[Docker 基本概
 
 ## Linux
 
-对于 Java 程序员来说， 我们需要掌握 Linux 基本的使用，尤其是是各种常用的命令比如：目录切换命令、目录操作命令、文件的操作命令、压缩或者解压文件的命令等等。像 Linux 内核架构、底层原理这些底层内容，不是必需的，可以根据自身情况来决定是否学习。
+对于 Java 程序员来说， 我们需要掌握 Linux 基本的使用，尤其是各种常用的命令比如：目录切换命令、目录操作命令、文件的操作命令、压缩或者解压文件的命令等等。像 Linux 内核架构、底层原理这些底层内容，不是必需的，可以根据自身情况来决定是否学习。
 
 对于想要快速入门 Linux 的同学来说，建议阅读我写的 [Linux 基础知识总结](https://javaguide.cn/cs-basics/operating-system/linux-intro.html)这篇文章，里面介绍了 Java 程序员必知的 Linux 的一些概念以及常见命令。
 
@@ -528,7 +528,7 @@ JavaScript 的水更深，也是前端面试中的重心。
 
 `Servlet` 属于比较古老的技术了，现在你几乎不会直接使用到 `Servlet` 相关的 API。不过，学习 `Servlet` 有助于我们搞清各种封装的比较好的 Web 框架的原理，比如 `Spring MVC` 不过就是对 `Servlet` 的封装，它的底层还是依赖于 `Servlet`。
 
-在 Java Web 程序中，`Servlet` 主要负责接收用户请求 `HttpServletRequest`,在`doGet()`,`doPost()`中做相应的处理，并将回应`HttpServletResponse`反馈给用户。
+在 Java Web 程序中，`Servlet` 主要负责接收用户请求 `HttpServletRequest`,在`doGet()`,`doPost()`中做相应的处理，并将响应`HttpServletResponse`反馈给用户。
 
 你可以通过书籍《Head First Servlets & JSP（中文版）》或者《Servlet 和 JSP 学习指南》来学习 Servlet 基础知识。
 
@@ -553,7 +553,7 @@ Tomcat 是 Apache 基金会下的一个项目，主要用作 Web 服务器。
 
 除了 Tomcat 之外，Nginx 也是必须要学习的！
 
-Nginx 是一个高性能的 HTTP 和反向代理服务服务器，经常被拿来做反向代理和负载均衡。
+Nginx 是一个高性能的 HTTP 和反向代理服务器，经常被拿来做反向代理和负载均衡。
 
 如果你要学习 Nginx 的话，可以看看[《Nginx 核心知识 150 讲》](http://gk.link/a/10r1D) 。内容很全面，从概念、代码再到实战，从 HTTP 到 OpenResty 。
 
@@ -634,7 +634,7 @@ Netty 是 Java 网络编程最热门的框架，大家可以根据个人需要�
 
 不过，个人建议学有余力的同学还是抽时间认真学习一下，对个人开发能力的提升还是很有帮助的。
 
-1. Netty 基于 NIO （NIO 是一种同步非阻塞的 I/O 模型，在 Java 1.4 中引入了 NIO ）。使用 Netty 可以极大地简化并简化了 TCP 和 UDP 套接字服务器等网络编程,并且性能以及安全性等很多方面都非常优秀。
+1. Netty 基于 NIO （NIO 是一种同步非阻塞的 I/O 模型，在 Java 1.4 中引入了 NIO ）。使用 Netty 可以极大地简化 TCP 和 UDP 套接字服务器等网络编程,并且性能以及安全性等很多方面都非常优秀。
 2. 我们平常经常接触的 Dubbo、RocketMQ、Elasticsearch、gRPC、Spark、Elasticsearch 等等热门开源项目都用到了 Netty。
 3. 大部分微服务框架底层涉及到网络通信的部分都是基于 Netty 来做的，比如说 Spring Cloud 生态系统中的网关 Spring Cloud Gateway 。
 
@@ -696,7 +696,7 @@ ps：Flowable 和 Camunda 都是 Activiti5 的一个分支发展而来， 三者
 
 ## 分布式&微服务（进阶）
 
-这部门内容涉及到的知识点比较多，我这里只列举比较重要的部分比如分布式算法和协议、配置中心、分布式事务。
+这部分内容涉及到的知识点比较多，我这里只列举比较重要的部分比如分布式算法和协议、配置中心、分布式事务。
 
 学习分布式知识，个人比较建议阅读书籍和博客。当然了，如果比较喜欢看视频的话，也可以找一些不错的教程视频或者公开课来看，用适合自己的学习方式去学习即可！
 
@@ -718,7 +718,7 @@ ps：Flowable 和 Camunda 都是 Activiti5 的一个分支发展而来， 三者
 
 MIT6.824: Distributed System 这门公开课挺经典的。这门课每节课都会精读一篇分布式系统领域的经典论文，并由此传授分布式系统设计与实现的重要原则和关键技术。
 
-- [如何的才能更好地学习 MIT6.824 分布式系统课程？](https://www.zhihu.com/question/29597104)
+- [如何才能更好地学习 MIT6.824 分布式系统课程？](https://www.zhihu.com/question/29597104)
 - [MIT6.824: Distributed System（中文翻译 wiki）](https://mit-public-courses-cn-translatio.gitbook.io/mit6-824/)
 - [MIT6.824: Distributed System - CS 自学指南](https://csdiy.wiki/%E5%B9%B6%E8%A1%8C%E4%B8%8E%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/MIT6.824/)
 
@@ -759,7 +759,7 @@ OpenFeign 和 Dubbo 都是目前广泛应用于微服务架构的远程调用框
 
 Eureka、Zookeeper、Consul、Nacos 都可以提供服务注册与发现的功能。
 
-个人比较建议学习 Nacos，国内用的比较多，功能也更强大！除了提供服务注册与发现工功能之外，还可以作为配置中心使用。
+个人比较建议学习 Nacos，国内用的比较多，功能也更强大！除了提供服务注册与发现功能之外，还可以作为配置中心使用。
 
 学习 Nacos 的话，官方文档是一定要看的：<https://nacos.io/zh-cn/docs/v2/quickstart/quick-start.html> 。
 
@@ -779,7 +779,7 @@ Eureka、Zookeeper、Consul、Nacos 都可以提供服务注册与发现的功�
 
 关于 API 网关的基础知识和技术选型推荐阅读我写的 [API 网关基础知识总结](https://javaguide.cn/distributed-system/api-gateway.html)这篇文章。
 
-Spring Cloud 微服务项目比较推荐实用 SpringCloud Gateway 作为 API 网关，这是 Spring Cloud 的一个全新项目，为了取代 Netflix Zuul。为了提升网关的性能，SpringCloud Gateway 是基于 WebFlux 实现。Spring Cloud Gateway 的目标是不仅提供统一的路由方式，并且基于 Filter 链的方式提供了网关基本的功能，例如：安全，监控/指标，和限流。
+Spring Cloud 微服务项目比较推荐使用 Spring Cloud Gateway 作为 API 网关，这是 Spring Cloud 的一个全新项目，为了取代 Netflix Zuul。为了提升网关的性能，SpringCloud Gateway 是基于 WebFlux 实现。Spring Cloud Gateway 的目标是不仅提供统一的路由方式，并且基于 Filter 链的方式提供了网关基本的功能，例如：安全，监控/指标，和限流。
 
 下面这些是我觉得还不错的学习资料：
 
@@ -819,7 +819,7 @@ ID 是数据的唯一标识，分布式 ID 是分布式系统下的 ID。
 
 微服务架构下，一个系统被拆分为多个小的微服务。
 
-每个微服务都可能存在不同的机器上，并且每个微服务可能都有一个单独的数据库供自己使用。这种情况下，一组操作可能会涉及到多个微服务以及多个数据库。
+每个微服务都可能部署在不同的机器上，并且每个微服务可能都有一个单独的数据库供自己使用。这种情况下，一组操作可能会涉及到多个微服务以及多个数据库。
 
 举个例子：电商系统中，你创建一个订单往往会涉及到订单服务（订单数加一）、库存服务（库存减一）等等服务，这些服务会有供自己单独使用的数据库。
 
@@ -864,7 +864,7 @@ CDN 就是将静态资源分发到多个不同的地方以实现就近访问，�
 
 1. [RocketMQ](https://github.com/apache/rocketmq "RocketMQ") ：阿里巴巴开源的一款高性能、高吞吐量的分布式消息中间件。
 2. [Kafka](https://github.com/apache/kafka "Kafaka"): Kafka 是一种分布式的，基于发布 / 订阅的消息系统。
-3. [RabbitMQ](https://github.com/rabbitmq "RabbitMQ") :基于 erlang 开发的基于 AMQP（Advanced Message Queue 高级消息队列协议）协议实现的消息队列。
+3. [RabbitMQ](https://github.com/rabbitmq "RabbitMQ") :基于 Erlang 开发的、基于 AMQP（Advanced Message Queue 高级消息队列协议）协议实现的消息队列。
 4. [Pulsar](https://github.com/apache/pulsar)：下一代云原生分布式消息流平台。
 
 建议选择 RocketMQ 和 Kafka 其中的一个进行深入学习，其他消息队列了解即可。
@@ -875,7 +875,7 @@ Kafka、RocketMQ、RabbitMQ 学习资源推荐请看[知识星球](https://javag
 
 ### 读写分离&分库分表（掌握概念和原理即可）
 
-读写分离主要是为了将数据库的读和写操作分不到不同的数据库节点上。主服务器负责写，从服务器负责读。另外，一主一从或者一主多从都可以。
+读写分离主要是为了将数据库的读和写操作分配到不同的数据库节点上。主服务器负责写，从服务器负责读。另外，一主一从或者一主多从都可以。
 
 读写分离可以大幅提高读性能，小幅提高写的性能。因此，读写分离更适合单机并发读请求比较多的场景。
 
@@ -893,7 +893,7 @@ Kafka、RocketMQ、RabbitMQ 学习资源推荐请看[知识星球](https://javag
 
 负载均衡系统通常用于将任务比如用户请求处理分配到多个服务器处理以提高网站、应用或者数据库的性能和可靠性。
 
-开发过程中，我们接触到的负载均衡可以简单分为 **服务端负载均衡** 和 **客户端负载均衡** 这两种。服务端负载均衡可以通过硬件（比如 F5、A10、Array ）或者软件（比如 LVS、Nginx、HAproxy ）实现。Java 领域主流的微服务框架 Dubbo、Spring Cloud 等都内置了开箱即用的客户端负载均衡实现。Dubbo 属于是默认自带了负载均衡功能，Spring Cloud 是通过组件的形式实现的负载均衡，属于可选项，比较常用的是 Spring Cloud Load Balancer（官方，推荐） 和 Ribbon（Netflix，已被启用）。
+开发过程中，我们接触到的负载均衡可以简单分为 **服务端负载均衡** 和 **客户端负载均衡** 这两种。服务端负载均衡可以通过硬件（比如 F5、A10、Array ）或者软件（比如 LVS、Nginx、HAproxy ）实现。Java 领域主流的微服务框架 Dubbo、Spring Cloud 等都内置了开箱即用的客户端负载均衡实现。Dubbo 属于是默认自带了负载均衡功能，Spring Cloud 是通过组件的形式实现的负载均衡，属于可选项，比较常用的是 Spring Cloud Load Balancer（官方，推荐） 和 Ribbon（Netflix，已被弃用）。
 
 个人建议学习一下 Nginx 和 Spring Cloud Load Balancer。
 
@@ -937,7 +937,7 @@ Netflix 开源的[Hystrix](https://github.com/Netflix/Hystrix "Hystrix") 和阿�
 
 ### 超时和重试机制
 
-**一旦用户的请求超过某个时间得不到响应就结束此次请求并抛出异常。** 如果不进行超时设置可能会导致请求响应速度慢，甚至导致请求堆积进而让系统无法在处理请求。
+**一旦用户的请求超过某个时间得不到响应就结束此次请求并抛出异常。** 如果不进行超时设置可能会导致请求响应速度慢，甚至导致请求堆积进而让系统无法再处理请求。
 
 另外，重试的次数一般设为 3 次，再多次的重试没有好处，反而会加重服务器压力（部分场景使用失败重试机制会不太适合）。
 
