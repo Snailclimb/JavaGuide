@@ -13,27 +13,17 @@ head:
       content: Claude Code,Hooks,生命周期钩子,AI编程,自动化工作流,PreToolUse,PostToolUse,UserPromptSubmit,SessionStart,权限控制
 ---
 
-用 Claude Code 写代码到一定阶段之后，很多人会遇到同一个问题。
+用 Claude Code/ Codex 写代码到一定阶段之后，很多人会遇到同一个问题。
 
 问题通常不在模型能力上。
 
 恰恰相反，是它太能干了。它能改文件、跑命令、查项目结构、生成脚本，也能一口气处理一串很长的任务。于是你会很自然地开始把更多动作交给它。
 
-然后问题就来了。
+然后问题就来了：改完文件，它这次会不会忘了格式化？准备跑 Bash 命令时，它会不会不小心带上 `rm -rf`？它会不会顺手改到 `.env`、`.git/` 或生产配置？它卡在权限弹窗时，我能不能不用一直盯着终端？......
 
-改完文件，它这次会不会忘了格式化？
+它们都不适合只靠提示词解决，因为提示词约束不够，无法完全保证。
 
-准备跑 Bash 命令时，它会不会不小心带上 `rm -rf`？
-
-它会不会顺手改到 `.env`、`.git/` 或生产配置？
-
-它卡在权限弹窗时，我能不能不用一直盯着终端？
-
-上下文压缩之后，那些项目规矩能不能自动补回来？
-
-这些问题有个共同点，它们都不适合只靠提示词解决。
-
-提示词解决的是“尽量记得”。Hooks 解决的是“到了这个时刻，就一定执行”。
+这个时候就需要用到了 Hooks 了，它解决的就是这些问题，自动触发执行。
 
 这两者的差别，可以先用一张图概括：
 
@@ -47,7 +37,9 @@ Hook 配置主要看事件和 handler。事件决定什么时候触发，handler
 
 比如把一个 `command` handler 挂到 `PostToolUse`：Claude 成功修改文件后，Claude Code 会把这次工具调用的 JSON 交给脚本，脚本再决定是否运行 formatter。整个过程不需要 Claude 回头读提示词，也可以把脚本拿出来单独测试。
 
-handler 也不限于 shell command，官方还支持 HTTP endpoint、MCP 工具和 LLM prompt 等形式。
+handler 也不限于 shell command，官方还支持 HTTP endpoint、MCP 工具和 LLM prompt 等形式（见官方文档 [Hooks reference](https://code.claude.com/docs/en/hooks) 中 "Hook handler fields" 一节）。
+
+![Claude Code 官方文档 Hooks reference 页面列出的五类 handler：command、http、mcp_tool、prompt 和 agent](https://oss.javaguide.cn/github/javaguide/ai/coding/claudecode/hooks-handler-types-official-docs.png)
 
 下图标出了常用触发点：
 
@@ -63,7 +55,15 @@ Hook handler 主要有五类：
 | `prompt`   | 用一次模型判断返回 yes/no 风格 JSON  | 轻量判断，比如 Stop 前检查任务是否完成 |
 | `agent`    | 启动带工具访问能力的 subagent 做验证 | 需要读文件、搜代码、跑命令的验证       |
 
-不过，这五类 handler 不是每个事件都能用。`PreToolUse`、`PostToolUse`、`PermissionRequest`、`Stop` 等事件支持全部五种类型；`Notification`、`PreCompact`、`ConfigChange` 等事件不支持 `prompt` 和 `agent`；`SessionStart`、`Setup` 只支持 `command` 和 `mcp_tool`。准备使用非 command handler 时，最好先查一下对应事件的兼容范围。
+不过，这五类 handler 不是每个事件都能用：
+
+- `PreToolUse`、`PostToolUse`、`PermissionRequest`、`Stop` 等事件支持全部五种类型；
+- `Notification`、`PreCompact`、`ConfigChange` 等事件不支持 `prompt` 和 `agent`；
+- `SessionStart`、`Setup` 只支持 `command` 和 `mcp_tool`。
+
+准备使用非 command handler 时，最好先查一下对应事件的兼容范围。
+
+这一步直接交给 AI 去做就好，你只需要提供我写的这篇文章给你使用的 Coding Agent 或者直接发一下官方的文档链接给它。
 
 能确定性地写成脚本的规则，优先交给 `command`。脚本可以脱离 Claude Code 单独运行，失败原因也更容易复现。
 
@@ -139,11 +139,10 @@ matcher 应该贴着实际输入写。格式化文件就匹配 `Edit|Write`，�
 
 ## Hook 输入输出怎么工作
 
-Hook 触发时，Claude Code 会把事件上下文作为 JSON 传给 handler。
+Hook 触发时，Claude Code 会把事件上下文作为 JSON 传给 handler：
 
-如果是 `command` hook，这段 JSON 走 stdin。
-
-如果是 `http` hook，这段 JSON 会作为 POST body 发给服务端。
+- 如果是 `command` hook，这段 JSON 走 stdin。
+- 如果是 `http` hook，这段 JSON 会作为 POST body 发给服务端。
 
 所有事件都会有一些公共字段，比如：
 
@@ -229,6 +228,10 @@ Claude Code 会在每个退出码下检查 stdout。如果去掉开头空白后�
 所以，只要 Hook 会写日志、发请求、改文件，就应该自己判断要不要执行。不要假设另一个安全 Hook 会先跑、会先拦住风险。
 
 改工具输入也一样要克制。官方文档特别提醒过，**如果多个 Hook 都尝试改同一个工具输入，最后生效的是最后完成的那个；但 Hook 是并行执行的，谁最后完成并不稳定。**
+
+另外，`command` Hook 会直接以当前用户的权限运行 shell 命令。它能访问、修改甚至删除当前用户有权限操作的文件，所以接入第三方脚本前，一定要先看懂并单独测试。
+
+![Claude Code 官方文档提醒 command Hook 会以当前用户权限执行 shell 命令，可能访问、修改或删除文件](https://oss.javaguide.cn/github/javaguide/ai/coding/claudecode/hooks-security-warning-official-docs.png)
 
 ## 常用生命周期事件怎么理解
 
@@ -436,15 +439,21 @@ chmod +x .claude/hooks/guard.sh
 
 ## Hooks 和 Skills 到底怎么分
 
-这个问题特别容易混。
+这俩概念也特别容易混。
 
-官方 Skills 文档说，Skills 通过 `SKILL.md` 扩展 Claude 的能力。Claude 会在相关时使用 skill，你也可以用 `/skill-name` 显式调用。Skill 的正文只有在使用时才加载进上下文，所以很适合沉淀长流程、检查清单、项目知识、脚本和参考资料。
+Skills 通过 `SKILL.md` 扩展 Coding Agent 的能力。Coding Agent 在执行任务时，会主动决定是否使用相关 skill，你也可以用 `/skill-name` 显式调用。
+
+Skill 的正文只有在使用时才加载进上下文（渐进式加载），所以很适合沉淀长流程、检查清单、项目知识、脚本和参考资料。
+
+![Skill 渐进式披露](https://oss.javaguide.cn/github/javaguide/ai/skills/agent-skills-progressive-disclosure.webp)
 
 如果想系统理解 Skills 和 Prompt、MCP、Function Calling 的分工，可以看 [Agent Skills 是什么？和 Prompt、MCP 到底差在哪？](https://javaguide.cn/ai/agent/skills.html)。
 
 ![Agent 执行链路](https://oss.javaguide.cn/github/javaguide/ai/skills/skill-agent-execution-link.webp)
 
 Hooks 在生命周期节点上自动执行动作，Skills 则把完成某类任务所需的说明、脚本和参考资料交给 Claude。两者可以按下表区分：
+
+![Hooks 适合自动触发、固定动作和安全阻断，Skills 适合按需加载、上下文判断和复杂流程](https://oss.javaguide.cn/github/javaguide/ai/coding/claudecode/hooks-vs-skills-responsibilities.webp)
 
 | 维度             | Hooks                                                        | Skills                                                   |
 | ---------------- | ------------------------------------------------------------ | -------------------------------------------------------- |
@@ -459,11 +468,13 @@ Hooks 在生命周期节点上自动执行动作，Skills 则把完成某类任�
 
 代码审查和接口超时排查就没这么固定了。Claude 要先读代码、日志和任务要求，再决定检查哪些文件、运行哪些命令，这类流程放进 Skill 更合适。
 
-两者也可以接在同一条工作流上：Skill 规定代码审查要检查什么，Hook 负责在文件修改后运行 formatter、在危险命令执行前拦截，以及在响应结束前检查是否留下测试结果。
+两者也可以接在同一条工作流上：**Skill 规定代码审查要检查什么，Hook 负责在文件修改后运行 formatter、在危险命令执行前拦截，以及在响应结束前检查是否留下测试结果。**
 
 ## 实际落地：先把三个 Hook 跑稳
 
 第一版不用急着覆盖所有生命周期事件，按 `Notification`、`PostToolUse`、`PreToolUse` 的顺序接入就够了。
+
+![Claude Code Hooks 建议按 Notification、PostToolUse、PreToolUse 的顺序渐进接入](https://oss.javaguide.cn/github/javaguide/ai/coding/claudecode/hooks-progressive-rollout.webp)
 
 Hook 配得越多，出问题时越难定位。比如 Claude 突然不再响应，你得逐个确认：`PreToolUse` 有没有返回 deny，`PermissionRequest` 有没有给出权限决定，`Stop` 是否反复触发，某个 `PostToolUse` 脚本是不是跑超时了。这几种问题表面上很像，排查方式却完全不同。
 
@@ -483,49 +494,77 @@ Hook 配得越多，出问题时越难定位。比如 Claude 突然不再响应�
 
 普通 `claude -p` 没有这套权限请求流程，需要自动决定权限时，应把规则放到 `PreToolUse`。官方示例只自动批准 `ExitPlanMode`。照搬示例时，matcher 和事件输入也要一起保留，别用一条宽泛的 allow 规则接管所有权限请求。删除文件、操作生产环境、读取凭证或调用外部 API 写数据，继续交给人确认更稳妥。
 
-## 常见问题
+## Hook 没按预期工作，怎么排查
 
-**Hook 会消耗很多 token 吗？**
+配置写进去了，Claude Code 却毫无反应；或者 Hook 明明运行了，危险命令还是继续执行。像事件有哪些字段、某个 `handler` 支持哪些事件、`stdout` 会不会进入上下文，这类细节跟版本有关，用到时让 AI 对照当前官方文档查就行。
 
-`command` Hook 只是启动本机命令或脚本，不会请求模型。真正需要关心的是脚本跑了多久、有没有访问外部服务，以及它会不会修改文件。换成 `prompt` 或 `agent` 后才会调用模型，这时还要把 token、超时和判断稳定性算进去。
+真遇到问题，我更建议按下面的顺序排查：
 
-**stdout 写什么都会进 Claude 上下文吗？**
+![Claude Code Hook 没生效时，从配置加载、脚本单独运行到 matcher 逐层排查](https://oss.javaguide.cn/github/javaguide/ai/coding/claudecode/hooks-troubleshooting-flow.webp)
 
-要看事件类型。`UserPromptSubmit`、`UserPromptExpansion`、`SessionStart` 等事件可以把 stdout 加入 Claude 可见的上下文；其他事件更多是从 stdout 读取 JSON 或结构化决策。
+1. 先运行 `/hooks`，确认配置已经加载，并且挂在预期的事件上。如果这里看不到，先检查 settings 文件的位置和 JSON 格式，暂时不用管脚本逻辑。
 
-只要准备返回 JSON，stdout 就不要再混入调试信息。一个多余的日志行就可能导致 JSON 校验失败。日志写到 stderr 或单独的文件里。
+   ![Claude Code 官方文档说明 /hooks 菜单可以查看事件、matcher、handler 详情和配置来源](https://oss.javaguide.cn/github/javaguide/ai/coding/claudecode/hooks-menu-official-docs.png)
 
-**能不能用 Hook 触发 slash command 或工具调用？**
+2. 把脚本从 Claude Code 里拿出来单独运行。Hook 脚本会从 `stdin` 读取 JSON，先确认它能读到字段、给出预期的退出码，再接回配置。
 
-不能直接触发。`command` Hook 运行的是外部命令，它与 Claude Code 的通信渠道只有 stdout、stderr 和 exit code。需要调用已经连接的 MCP 工具时，使用 `type: "mcp_tool"`；需要 Claude 参与判断时，使用 `prompt` 或 `agent`。
+   ```bash
+   printf '%s\n' '{"tool_name":"Bash","tool_input":{"command":"rm -rf /tmp/demo"}}' \
+     | .claude/hooks/guard.sh
 
-**为什么我的 Hook 没生效？**
+   echo $?
+   # 预期输出 2
+   ```
 
-可以从 Hook 注册状态查起：
+3. 脚本单独运行正常，再记录 Claude Code 实际传进来的事件数据。调试信息写到 `stderr` 或临时日志，不要混进准备返回 JSON 的 `stdout`。
 
-1. 运行 `/hooks`，确认 Hook 已经注册到预期事件。这个页面只展示配置来源、事件、matcher、handler、命令或 URL，不负责修改配置。
-2. 确认配置文件放对了位置，并且 JSON 能正常解析：用户级配置在 `~/.claude/settings.json`，项目共享配置在 `.claude/settings.json`，本机私有配置在 `.claude/settings.local.json`。
-3. 按事件检查 matcher。`Notification` 匹配通知类型，`SessionStart` 匹配启动来源，`PreCompact` 和 `PostCompact` 匹配 `manual` 或 `auto`，它们匹配的都不是工具名。
-4. 如果问题出在 `PermissionRequest`，还要确认当前运行方式有没有权限请求流程。后台非交互 subagent 即使不能显示确认框，也会运行这个 Hook；普通 `claude -p` 没有这套流程，需要使用 `PreToolUse` 做自动权限决策。必须稳定执行的拦截规则也应该放在 `PreToolUse`。
+   ```bash
+   input="$(cat)"
+   printf '%s\n' "$input" >> /tmp/claude-hook-debug.log
+   ```
 
-**想阻断工具调用，用 `exit 1` 行吗？**
+   日志里可能包含文件路径、命令和 Prompt 内容，排查结束后记得删掉，不要提交进仓库。
 
-如果 stdout 为空、是普通文本，或者 JSON 没通过校验，大多数事件会把 `exit 1` 记为非阻断 hook error，然后继续原来的流程；如果 stdout 是符合事件 schema 的 JSON，采用标准决策模型的事件会按 JSON 处理。要直接阻断工具调用，`PreToolUse` 可以使用 `exit 2` 并把原因写入 stderr；要返回 `allow`、`deny` 等精细决策，推荐使用 `exit 0`，stdout 只输出符合事件 schema 的 JSON。`PermissionRequest` 不接受 `exit 2` 阻断，需要通过 `decision.behavior` 返回拒绝结果。
+4. 一次只启用一个 Hook。多个 Hook 同时命中时会并行运行，只看最终表现很难判断是哪一条出了问题。单个脚本跑通后，再逐个恢复其他规则。
 
-**`PostToolUse` 能不能做安全门？**
+如果已经出现明确症状，可以先查对应这一项：
 
-不适合。等 `PostToolUse` 收到事件，文件修改和 Bash 命令都已经执行完了，它只能处理结果，撤不回刚才的副作用。格式化、记日志可以放这里；敏感路径和危险命令要在 `PreToolUse` 阶段检查。
+| 现象                           | 优先检查                                                      |
+| ------------------------------ | ------------------------------------------------------------- |
+| `/hooks` 里看不到配置          | settings 文件位置、JSON 格式                                  |
+| 已注册，但一直没有触发         | 事件是否选对、matcher 是否匹配实际输入                        |
+| 脚本报错了，工具调用仍在继续   | 是否误用了 `exit 1`；安全拦截是否放在 `PreToolUse`            |
+| Claude 不停继续处理，无法结束  | `Stop` Hook 是否缺少退出条件                                  |
+| 每次操作都运行 formatter       | matcher 是否省略或写得太宽                                    |
+| 通知脚本执行了，但没有弹窗     | 先手动运行通知命令，再检查操作系统的通知权限                  |
+| 交互模式正常，`claude -p` 异常 | 不要依赖 `PermissionRequest`，需要自动决策时改用 `PreToolUse` |
 
-**Hook 和权限规则冲突时谁更硬？**
+还定位不出来，可以把 `claude --version` 的输出、Hook 配置、脚本和实际现象一起交给 AI，让它对照当前官方文档检查。粘贴之前，记得删掉密钥、Token 和业务敏感信息。提示词不用写得很复杂：
 
-一次工具调用会先经过 `PreToolUse`，再进入权限检查。Hook 返回 deny，调用到这里就会停下；返回 allow，只是把它交给下一层，settings 里的 deny 仍然可能拒绝。现有的权限模式、沙箱和人工确认不用因为加了 Hook 而删掉。
+```text
+我在 Claude Code <版本号> 中配置了下面这个 Hook。
+
+预期行为：<希望它做什么>
+实际行为：<现在发生了什么>
+
+Hook 配置：
+<粘贴配置>
+
+脚本：
+<粘贴脚本>
+
+请先查阅 Claude Code 当前版本的官方文档，再依次检查事件、matcher、输入字段、退出码和 JSON 输出格式。
+只指出会导致当前问题的地方，不要扩展其他配置。
+```
 
 ## 总结
 
-Hooks 配起来不算复杂，真正容易踩坑的是一开始塞太多规则。
+聊到这里，你应该已经能抓住 Hooks 的重点了：它会在 Claude Code 的关键节点自动执行固定动作，例如格式化、危险命令检查、权限通知。
 
-建议第一版还从 `Notification`、`PostToolUse` 和 `PreToolUse` 开始。通知先确认配置加载正常，格式化脚本单独跑通，安全规则只拦几类明确的高风险操作。日志里能看到输入、返回值和拦截原因，这三个 Hook 才算真的跑稳了。
+自动格式化放在 `PostToolUse`，危险命令和敏感文件拦截放在 `PreToolUse`，离开电脑时想及时收到提醒，就用 `Notification`。
 
-至于代码审查、故障排查和部署流程，执行步骤会跟着上下文变化，继续放在 Skill 或当前任务里。等项目确实遇到了压缩后规则丢失、配置变更审计或完成检查的问题，再去加 `PreCompact`、`ConfigChange`、`Stop`，不用为了覆盖生命周期而提前配满。
+就我个人使用经验来说，不建议大家刚开始就配太多，没太大意义，还容易乱。
 
-权限相关的规则建议再保守一点。删文件、碰生产环境、读凭证和调用外部 API 写数据，这些操作多一次人工确认，比一条过宽的自动批准规则更让人放心。
+先把这三个 Hook 跑稳。尤其是安全和权限规则，宁可收紧范围、慢慢补，也别一上来就自动批准所有操作。Hooks 能帮你守住固定流程，但沙箱、权限配置、CI 和人工 Review 还是要保留。
+
+还有一个容易混淆的地方：能写成确定脚本的规则交给 Hook；代码审查、故障排查这类需要结合上下文判断的任务，继续放在 Skill 里。按这个思路分工，配置会简单不少，后面排错也更轻松。
