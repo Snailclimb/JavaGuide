@@ -388,6 +388,35 @@ npx @modelcontextprotocol/inspector node build/index.js
 
 生产环境别依赖全局 `python` 里刚好装了 `mcp`。用虚拟环境解释器，或者像上面这样用 `uv run --with mcp ...` 显式声明依赖，会稳一点。如果 Claude Desktop 启动失败，先看 `mcp.log`，别一上来怀疑协议有问题，很多时候只是路径或依赖没配对。
 
+## 用 Inspector 验证远程 Server
+
+上面的例子通过 stdio 启动本地进程。要观察远程 Server 的初始化、工具发现和调用，可以继续用 [MCP Inspector](https://github.com/modelcontextprotocol/inspector)，换成 Streamable HTTP 连接。
+
+这里以 [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) 为例。它提供网页搜索 `web_search` 和网页内容提取 `web_fetch`，匿名入口是 `https://search.parallel.ai/mcp`，不需要 Parallel 账号或 API Key，免费访问有速率限制。
+
+下面使用 Inspector 2.5.0，需要 Node.js 22.19.0 或更高版本。在终端先列出工具：
+
+```bash
+npx --yes @modelcontextprotocol/inspector@2.5.0 --cli \
+  https://search.parallel.ai/mcp --transport http --method tools/list
+```
+
+`--transport http` 指定 Streamable HTTP。Inspector 会先完成初始化，再发送 `tools/list`；返回结果中应能看到 `web_search`、`web_fetch` 及其参数 Schema。这个匿名示例不传 `Authorization` 请求头。
+
+接着调用一次搜索工具，查找 Java 虚拟线程的官方资料：
+
+```bash
+npx --yes @modelcontextprotocol/inspector@2.5.0 --cli \
+  https://search.parallel.ai/mcp --transport http \
+  --method tools/call --tool-name web_search \
+  --tool-arg 'objective=查找 OpenJDK 关于 Java 虚拟线程的官方说明' \
+  --tool-arg 'search_queries=["OpenJDK JEP 444 virtual threads"]'
+```
+
+`objective` 和 `search_queries` 都是必填参数，后者是 JSON 数组。工具结果会包含来源 URL 和内容摘录，可以沿着链接核对答案。排查时要区分连接失败、JSON-RPC 错误和工具返回的 `isError: true`；仅收到 HTTP 200 不代表工具执行成功。
+
+执行搜索或提取时，查询词、目标 URL 和传入的目标描述等上下文会发送给 Parallel，请只使用适合交给第三方处理的内容。这里的 CLI 命令执行完会断开连接，不会给其他 Host 安装服务；如果之后在 Agent 中启用这些工具，Agent 也可能按任务需要自行调用，用完可在对应 Host 中禁用或移除连接。
+
 ## 接入时记录协议 revision
 
 MCP 统一了 Host 与外部工具、数据源之间的发现和调用方式，但不会替代业务鉴权、数据权限和执行审计。一个 Server 在某个 Host 中可用，也不代表换到另一个 Host 后仍支持 Sampling、Elicitation、Tasks 等可选能力。
