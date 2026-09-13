@@ -14,7 +14,7 @@ MCP 约定外部系统以 Server 形式暴露能力，支持该协议的 Host �
 
 ![MCP 图解](https://oss.javaguide.cn/github/javaguide/ai/skills/mcp-simple-diagram.png)
 
-> 本文以当前稳定的 [2025-11-25 revision](https://modelcontextprotocol.io/specification/2025-11-25) 为主。2025-03-26 版本把早期 HTTP+SSE 传输调整为 Streamable HTTP，2025-06-18 加入 Elicitation，2025-11-25 又增加了实验性的 Tasks、URL 模式 Elicitation 等内容。客户端和 SDK 可能只实现其中一部分，接入前要同时确认协议 revision、SDK 版本和 Host 能力。
+> 本文以当前稳定的 [2026-07-28 revision](https://modelcontextprotocol.io/specification/2026-07-28) 为主。上一代 `2025-11-25` revision 使用初始化握手和传输层会话；`2026-07-28` 改为无状态、自描述请求，移除了 `initialize`/`initialized` 握手和 `Mcp-Session-Id`，并将 Tasks 移至 `io.modelcontextprotocol/tasks` 扩展。兼容旧版的客户端和 SDK 可能仍使用 `2025-11-25`，接入前要同时确认协议 revision、SDK 版本和 Host 能力。
 
 ## MCP 到底是什么？
 
@@ -84,7 +84,7 @@ MCP 的通信链路由 Host、Client 和 Server 组成。
 
 Host 是用户使用的 AI 应用，例如 Claude Desktop、Cursor、VS Code 中的 AI 插件或自建 Agent 平台。
 
-Client 位于 Host 内部，负责与 MCP Server 建立会话和交换协议消息。一个 Host 可以连多个 Server，通常每个 Server 对应一个 Client 会话。
+Client 位于 Host 内部，负责与 MCP Server 交换协议消息。对于 `2025-11-25` 及更早 revision，Client 通过初始化握手建立会话；`2026-07-28` 则使用无状态请求，不再建立 MCP 传输会话。一个 Host 可以连接多个 Server，通常每个 Server 对应一个 Client。
 
 开发者主要编写 Server。文件读取、SQL 查询、GitHub Issue 查询和内部工单查询等能力，都可以由它向 Host 暴露。
 
@@ -100,9 +100,7 @@ Server 后面才是实际的数据源：本地文件、数据库、内部平台�
 
 工具的名称、`description`、参数说明和禁用场景会直接影响模型的选择。Server 接收到的参数也必须视为不可信输入：文件读取要限制目录，SQL 要参数化，高危操作要审批，返回数据要脱敏。
 
-还有一步容易被忽略：Client 和 Server 在正式调用工具前，会先完成初始化握手。Client 发送 `initialize` 请求，带上自己支持的协议版本和能力列表；Server 返回自己支持的协议版本、能力和基础信息。确认之后，Client 再发 `initialized` 通知，双方才进入可用状态。
-
-这一步的意义在于：Client 能通过它知道 Server 支持哪些能力（只有 Tools？还是有 Resources 和 Prompts？），Server 也能知道 Client 的限制。很多“Server 配好了但工具没出现”的问题，排查时都应该先看初始化阶段有没有失败。
+在 `2026-07-28` revision 中，MCP 不再要求 `initialize`/`initialized` 握手或 `Mcp-Session-Id`。每个请求都自包含协议版本和客户端能力；如果 Client 希望先获取 Server 能力，可以调用可选的 `server/discover`。使用 `2025-11-25` 或更早 revision 的兼容客户端仍会执行初始化握手。排查工具未出现时，先确认 Client 和 Server 选用的 revision，再检查现代请求的能力元数据或旧版握手结果。
 
 ## MCP 暴露的能力只有 Tools 吗？
 
@@ -136,15 +134,15 @@ LLM 扮演厨师，它知道凉拌黄瓜大概怎么做，但它还需要外部�
 
 ### Roots、Sampling 和 Elicitation
 
-除了 Server 侧能力，Client 侧也可以提供一些能力给 Server 使用，比如 Roots、Sampling、Elicitation。
+除了 Server 侧能力，Client 侧也可以提供一些能力给 Server 使用，比如 Roots、Sampling、Elicitation。`2026-07-28` 将 Roots、Sampling 和 Logging 标记为 deprecated（仍会保留至少十二个月）；Tasks 则移至 `io.modelcontextprotocol/tasks` 扩展。新实现应先确认目标 Client/Host 对这些能力或扩展的支持情况。
 
-Roots 由 Host 通过 Client 告诉 Server：当前会话预期在哪些文件系统根目录内工作。例如，Host 可以只公布当前项目目录，不公布用户主目录。它是能力协商和范围提示，不会自动形成文件系统沙箱；Server 仍要做路径规范化、越界检查和操作系统级权限隔离。
+Roots 由 Host 通过 Client 告诉 Server：当前工作范围预期在哪些文件系统根目录内。例如，Host 可以只公布当前项目目录，不公布用户主目录。它是能力协商和范围提示，不会自动形成文件系统沙箱；Server 仍要做路径规范化、越界检查和操作系统级权限隔离。
 
 Sampling 比较特殊，它允许 Server 请求 Host 侧的 LLM 做一次生成。比如 Server 读取到一段日志后，希望借助模型做摘要或分类。
 
 Elicitation 则是 Server 在执行过程中向用户补充询问信息的能力。比如参数不完整、选项有歧义、执行前需要用户确认，就可以由 Host 侧展示交互。
 
-这些能力要按场景选择。大多数 MCP Server 可以先只提供 Tools；需要只读上下文或可复用任务入口时，再考虑 Resources、Prompts。Roots、Sampling、Elicitation 和 Tasks 还取决于对应 Client 是否实现，不能只看 Server SDK 有无接口。
+这些能力要按场景选择。大多数 MCP Server 可以先只提供 Tools；需要只读上下文或可复用任务入口时，再考虑 Resources、Prompts。Roots、Sampling、Elicitation 以及 Tasks 扩展都取决于对应 Client/Host 是否实现，不能只看 Server SDK 有无接口。
 
 ## 为什么 MCP 用 JSON-RPC？
 
@@ -210,7 +208,7 @@ JSON-RPC 的消息是文本格式，便于记录日志，也不绑定具体传�
 
 stdio 模式下，stdout 是 JSON-RPC 消息通道，不能用于打印调试日志。一行 `print()` 输出就可能破坏消息格式，导致 Host 解析失败或 Server 断连。调试日志应写入 stderr 或文件；排查“Server 启动失败”时，也要确认 stdout 中没有混入日志。
 
-远程 Server 更适合使用 Streamable HTTP。MCP 早期远程传输常见 HTTP + SSE，后来逐步转向 Streamable HTTP。消息收敛到统一端点后，认证、负载均衡和网关接入可以沿用普通 HTTP 服务的运维方式。
+远程 Server 更适合使用 Streamable HTTP。MCP 早期远程传输常见 HTTP + SSE，后来转向 Streamable HTTP；旧版 HTTP+SSE 已被标记为 deprecated。`2026-07-28` 继续使用 Streamable HTTP，但采用无状态请求，并要求请求携带 `Mcp-Method` 和 `Mcp-Name` 头，认证、负载均衡和网关接入可以沿用普通 HTTP 服务的运维方式。
 
 ```http
 POST /mcp
@@ -384,13 +382,13 @@ npx @modelcontextprotocol/inspector uv run --with mcp /path/to/weather_server.py
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-它可以模拟 Host 发请求。Server 初始化有没有问题、工具能不能被发现、参数校验有没有报错，基本都能先在这里看出来。
+它可以模拟 Host 发请求。Server 是否能连接、工具能不能被发现、参数校验有没有报错，基本都能先在这里看出来。
 
 生产环境别依赖全局 `python` 里刚好装了 `mcp`。用虚拟环境解释器，或者像上面这样用 `uv run --with mcp ...` 显式声明依赖，会稳一点。如果 Claude Desktop 启动失败，先看 `mcp.log`，别一上来怀疑协议有问题，很多时候只是路径或依赖没配对。
 
 ## 用 Inspector 验证远程 Server
 
-上面的例子通过 stdio 启动本地进程。要观察远程 Server 的初始化、工具发现和调用，可以继续用 [MCP Inspector](https://github.com/modelcontextprotocol/inspector)，换成 Streamable HTTP 连接。
+上面的例子通过 stdio 启动本地进程。要观察远程 Server 的连接协商、工具发现和调用，可以继续用 [MCP Inspector](https://github.com/modelcontextprotocol/inspector)，换成 Streamable HTTP 连接。
 
 这里以 [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) 为例。它提供网页搜索 `web_search` 和网页内容提取 `web_fetch`，匿名入口是 `https://search.parallel.ai/mcp`，不需要 Parallel 账号或 API Key，免费访问有速率限制。
 
@@ -401,7 +399,7 @@ npx --yes @modelcontextprotocol/inspector@2.5.0 --cli \
   https://search.parallel.ai/mcp --transport http --method tools/list
 ```
 
-`--transport http` 指定 Streamable HTTP。Inspector 会先完成初始化，再发送 `tools/list`；返回结果中应能看到 `web_search`、`web_fetch` 及其参数 Schema。这个匿名示例不传 `Authorization` 请求头。
+`--transport http` 指定 Streamable HTTP。Inspector 会根据 Server 支持的协议 revision 选择现代无状态流程或兼容的旧版初始化流程，然后发送 `tools/list`；返回结果中应能看到 `web_search`、`web_fetch` 及其参数 Schema。这个匿名示例不传 `Authorization` 请求头。
 
 接着调用一次搜索工具，查找 Java 虚拟线程的官方资料：
 
@@ -421,7 +419,7 @@ npx --yes @modelcontextprotocol/inspector@2.5.0 --cli \
 
 MCP 统一了 Host 与外部工具、数据源之间的发现和调用方式，但不会替代业务鉴权、数据权限和执行审计。一个 Server 在某个 Host 中可用，也不代表换到另一个 Host 后仍支持 Sampling、Elicitation、Tasks 等可选能力。
 
-实现最小 Server 时，先固定协议 revision 和 SDK 版本，使用 Inspector 验证初始化、能力协商、参数校验和错误响应。准备接入远程服务后，再补 OAuth、限流、Trace、版本兼容和回滚；文件与命令工具还要在 Server 侧落实目录校验和沙箱。
+实现最小 Server 时，先固定协议 revision 和 SDK 版本，使用 Inspector 验证连接协商、能力发现、参数校验和错误响应。准备接入远程服务后，再补 OAuth、限流、Trace、版本兼容和回滚；文件与命令工具还要在 Server 侧落实目录校验和沙箱。
 
 ## 总结
 
