@@ -1,0 +1,168 @@
+body {
+  @media (min-width: 1440px) {
+    font-size: 16px;
+  }
+}
+
+#markdown-content img,
+.vp-content img,
+.theme-hope-content img {
+  max-width: 100%;
+  height: auto;
+}
+
+.article-promo-image {
+  display: block;
+  margin: 1rem auto;
+
+  img {
+    display: block;
+    width: min(100%, 1774px);
+    aspect-ratio: 1774 / 887;
+    height: auto;
+    margin: 0 auto;
+  }
+}
+
+.article-footer-qrcode {
+  display: block;
+  width: min(612px, 100%);
+  margin: 0 auto;
+}
+
+// ============================================
+// Chế độ đọc tập trung - ẩn navbar, sidebar và mục lục
+// ============================================
+
+// Animation chuyển cảnh
+.vp-navbar,
+.vp-sidebar,
+.vp-page,
+.theme-container .vp-page {
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease,
+    margin 0.3s ease,
+    padding 0.3s ease,
+    width 0.3s ease;
+}
+
+// Chế độ ẩn layout
+html.layout-hidden {
+  // Ẩn navbar trên cùng
+  .vp-navbar {
+    transform: translateY(-100%) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  // Ẩn sidebar bên trái
+  .vp-sidebar {
+    transform: translateX(-100%) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    width: 0 !important;
+  }
+
+  // Ẩn nút bật/tắt sidebar (nút mở rộng trên màn hình nhỏ)
+  .toggle-sidebar-wrapper {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  // Ẩn lớp phủ của sidebar
+  .vp-sidebar-mask {
+    display: none !important;
+  }
+
+  // Wrapper của sidebar
+  .vp-sidebar-wrapper,
+  .sidebar-wrapper {
+    width: 0 !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  // Ẩn mục lục bên phải (TOC)
+  .vp-toc-placeholder,
+  .toc-wrapper,
+  .vp-toc,
+  aside.vp-toc,
+  .toc {
+    display: none !important;
+    width: 0 !important;
+  }
+
+  // Điều chỉnh container chính - bỏ padding/margin bên trái
+  .theme-container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+
+    .vp-page {
+      padding-left: 2rem !important;
+      padding-right: 2rem !important;
+      padding-top: 1rem !important;
+      margin-left: 0 !important;
+      max-width: 100% !important;
+      width: 100% !important;
+    }
+  }
+
+  // Điều chỉnh vùng nội dung của theme - cho nội dung rộng hơn
+  .theme-hope-content,
+  .vp-page-content,
+  .vp-content {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 1rem 2rem !important;
+  }
+
+  // Điều chỉnh container của trang
+  .vp-page-container {
+    padding-top: 1rem !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    max-width: 100% !important;
+  }
+
+  // Đảm bảo vùng nội dung căn giữa và có bề rộng vừa phải
+  .theme-container > main {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    max-width: 100% !important;
+  }
+
+  // Điều chỉnh responsive
+  @media (min-width: 960px) {
+    .theme-container .vp-page {
+      margin-left: 0 !important;
+      padding-left: 3rem !important;
+      padding-right: 3rem !important;
+    }
+
+    .theme-hope-content,
+    .vp-page-content,
+    .vp-content {
+      max-width: 100% !important;
+      padding: 1rem 2rem !important;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .theme-container .vp-page {
+      margin-left: 0 !important;
+      padding-left: 4rem !important;
+      padding-right: 4rem !important;
+    }
+
+    .theme-hope-content,
+    .vp-page-content,
+    .vp-content {
+      max-width: 100% !important;
+      padding: 1rem 3rem !important;
+    }
+  }
+}

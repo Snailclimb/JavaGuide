@@ -1,0 +1,7 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "vuepress build docs -c i18n/cn.config.ts && vuepress build vi",
+  "outputDirectory": "dist",
+  "framework": null,
+  "github": { "silent": true }
+}

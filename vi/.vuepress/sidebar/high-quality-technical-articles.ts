@@ -1,0 +1,71 @@
+import { arraySidebar } from "vuepress-theme-hope";
+import { ICONS } from "./constants.js";
+
+export const highQualityTechnicalArticles = arraySidebar([
+  {
+    text: "Bí kíp lên trình",
+    icon: ICONS.PERFORMANCE,
+    prefix: "advanced-programmer/",
+    collapsible: false,
+    children: [
+      "programmer-quickly-learn-new-technology",
+      "the-growth-strategy-of-the-technological-giant",
+      "ten-years-of-dachang-growth-road",
+      "meituan-three-year-summary-lesson-10",
+      "seven-tips-for-becoming-an-advanced-programmer",
+      "20-bad-habits-of-bad-programmers",
+      "thinking-about-technology-and-business-after-five-years-of-work",
+    ],
+  },
+  {
+    text: "Trải nghiệm cá nhân",
+    icon: ICONS.EXPERIENCE,
+    prefix: "personal-experience/",
+    collapsible: false,
+    children: [
+      "four-year-work-in-tencent-summary",
+      "two-years-of-back-end-develop--experience-in-didi-and-toutiao",
+      "8-years-programmer-work-summary",
+      "huawei-od-275-days",
+    ],
+  },
+  {
+    text: "Lập trình viên",
+    icon: ICONS.CODE,
+    prefix: "programmer/",
+    collapsible: false,
+    children: [
+      "programmer-career-directions",
+      "high-value-certifications-for-programmers",
+      "how-do-programmers-publish-a-technical-book",
+      "efficient-book-publishing-and-practice-guide",
+    ],
+  },
+  {
+    text: "Phỏng vấn",
+    icon: ICONS.INTERVIEW,
+    prefix: "interview/",
+    collapsible: true,
+    children: [
+      "the-experience-of-get-offer-from-over-20-big-companies",
+      "the-experience-and-thinking-of-an-interview-experienced-by-an-older-programmer",
+      "technical-preliminary-preparation",
+      "screen-candidates-for-packaging",
+      "summary-of-spring-recruitment",
+      "my-personal-experience-in-2021",
+      "how-to-examine-the-technical-ability-of-programmers-in-the-first-test-of-technology",
+      "some-secrets-about-alibaba-interview",
+    ],
+  },
+  {
+    text: "Công việc",
+    icon: ICONS.WORK,
+    prefix: "work/",
+    collapsible: true,
+    children: [
+      "get-into-work-mode-quickly-when-you-join-a-company",
+      "32-tips-improving-career",
+      "employee-performance",
+    ],
+  },
+]);
