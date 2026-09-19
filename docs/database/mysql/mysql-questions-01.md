@@ -868,7 +868,7 @@ SELECT ... FOR UPDATE;
 
 ```sql
 SELECT ... FOR UPDATE
-# 共享锁 可以在 MySQL 5.7 和 MySQL 8.0 中使用
+# 排他锁（这不是共享锁） 可以在 MySQL 5.7 和 MySQL 8.0 中使用
 SELECT ... LOCK IN SHARE MODE;
 # 共享锁 可以在 MySQL 8.0 中使用
 SELECT ... FOR SHARE;
