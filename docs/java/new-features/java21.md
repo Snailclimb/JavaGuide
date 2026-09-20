@@ -265,15 +265,11 @@ System.out.println(map.reversed());   //{3=Three, 2=Two, 1=One}
 JDK21 中对 ZGC 进行了功能扩展，增加了分代 GC 功能。不过，默认是关闭的，需要通过配置打开：
 
 ```bash
-// 启用分代ZGC
+# 在 JDK 21 中启用分代 ZGC
 java -XX:+UseZGC -XX:+ZGenerational ...
 ```
 
-在未来的版本中，官方会把 ZGenerational 设为默认值，即默认打开 ZGC 的分代 GC。在更晚的版本中，非分代 ZGC 就被移除。
-
-> In a future release we intend to make Generational ZGC the default, at which point -XX:-ZGenerational will select non-generational ZGC. In an even later release we intend to remove non-generational ZGC, at which point the ZGenerational option will become obsolete.
->
-> 在将来的版本中，我们打算将 Generational ZGC 作为默认选项，此时-XX:-ZGenerational 将选择非分代 ZGC。在更晚的版本中，我们打算移除非分代 ZGC，此时 ZGenerational 选项将变得过时。
+后续版本已经完成了这两步演进：JDK 23 通过 [JEP 474](https://openjdk.org/jeps/474) 将分代模式设为 ZGC 的默认模式，JDK 24 通过 [JEP 490](https://openjdk.org/jeps/490) 移除了非分代模式。因此，在 JDK 23 及之后的版本中，使用 `-XX:+UseZGC` 即可启用分代 ZGC，无需再添加 `-XX:+ZGenerational`。这不代表 JVM 默认选择 ZGC；JDK 21、22 仍需按上面的命令显式开启分代模式。
 
 分代 ZGC 在保持 ZGC 低暂停目标的同时，主要通过更频繁地回收年轻对象来降低分配停顿风险、减少所需堆内存并提高吞吐量。
 

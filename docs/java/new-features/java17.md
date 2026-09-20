@@ -22,6 +22,7 @@ JDK 17 共有 14 个新特性，这篇文章会挑选其中较为重要的一些
 
 - [JEP 356: Enhanced Pseudo-Random Number Generators（增强的伪随机数生成器）](https://openjdk.java.net/jeps/356)
 - [JEP 398: Deprecate the Applet API for Removal（标记弃用 Applet API 以便移除）](https://openjdk.java.net/jeps/398)
+- [JEP 403: Strongly Encapsulate JDK Internals（强封装 JDK 内部 API）](https://openjdk.org/jeps/403)
 - [JEP 406: Pattern Matching for switch (Preview)（switch 模式匹配，预览）](https://openjdk.java.net/jeps/406)
 - [JEP 407: Remove RMI Activation（移除 RMI 激活机制）](https://openjdk.java.net/jeps/407)
 - [JEP 409: Sealed Classes（密封类，转正）](https://openjdk.java.net/jeps/409)
@@ -59,6 +60,20 @@ randomGenerator.nextInt(10);
 Applet API 用于编写在 Web 浏览器端运行的 Java 小程序，很多年前就已经被淘汰了，已经没有理由使用了。
 
 Applet API 在 Java 9 时被标记弃用（[JEP 289](https://openjdk.java.net/jeps/289)），但不是为了删除。
+
+## JEP 403: Strongly Encapsulate JDK Internals（强封装 JDK 内部 API）
+
+JDK 17 进一步强封装 JDK 内部 API。部分旧版框架、序列化库、字节码工具或 Java Agent 依赖对 JDK 内部成员的反射访问，升级后可能抛出 `InaccessibleObjectException`，因此不能只验证业务代码能否编译通过。
+
+升级前可以用 `jdeps --jdk-internals` 辅助查找对内部 API 的静态依赖，但它无法发现所有反射访问，仍需覆盖应用启动、核心接口、定时任务和监控探针的运行验证。发现不兼容时，应优先升级依赖，或改用受支持的公开 API，具体步骤可参考 [Oracle JDK 17 迁移准备指南](https://docs.oracle.com/en/java/javase/17/migrate/preparing-migration.html)。
+
+**JDK 17 中，`--illegal-access=permit` 已不能恢复过去的宽松访问行为。** 对暂时无法升级的依赖，可以根据异常信息，使用 `--add-opens` 有针对性地开放必要的包。例如，下面的参数允许类路径上的代码对 `java.base` 模块的 `java.lang` 包进行深反射访问：
+
+```bash
+--add-opens java.base/java.lang=ALL-UNNAMED
+```
+
+这只是特定访问问题的兼容措施，不应作为所有应用通用的启动参数，也不能解决全部 JDK 升级问题。具体边界见 [JEP 403](https://openjdk.org/jeps/403)。如果升级时还计划切换 ZGC，建议将依赖兼容性验证与收集器性能对比分开进行，参见 [ZGC 收集器](../jvm/jvm-garbage-collection.md#zgc-收集器)。
 
 ## JEP 406: Pattern Matching for switch（switch 模式匹配，预览）
 
