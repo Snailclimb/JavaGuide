@@ -867,10 +867,11 @@ SELECT ... FOR UPDATE;
 **快照读**（一致性非锁定读）就是单纯的 `SELECT` 语句，但不包括下面这两类 `SELECT` 语句：
 
 ```sql
+# 排他锁，可以在 MySQL 5.7 和 MySQL 8.0 中使用
 SELECT ... FOR UPDATE
-# 共享锁 可以在 MySQL 5.7 和 MySQL 8.0 中使用
+# 共享锁，可以在 MySQL 5.7 和 MySQL 8.0 中使用
 SELECT ... LOCK IN SHARE MODE;
-# 共享锁 可以在 MySQL 8.0 中使用
+# 共享锁，可以在 MySQL 8.0 中使用
 SELECT ... FOR SHARE;
 ```
 
