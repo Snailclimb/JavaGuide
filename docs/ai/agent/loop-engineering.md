@@ -109,7 +109,7 @@ TDD、CI、ReAct 和工作流图早就有循环。代码 Agent 把原来由人�
 
 ## Claude Code 的 /loop、/goal 可以怎么理解？
 
-`/loop` 按时间再次运行 Prompt，`/goal` 按完成条件决定是否继续。更多说明可以参考 [Claude Code 命令详解](https://javaguide.cn/ai-coding/claudecode-commands.html)。
+`/loop` 按时间再次运行 Prompt，`/goal` 按完成条件决定是否继续。更多说明可以参考 [Claude Code 命令详解](https://javaguide.cn/ai-coding/practices/claudecode-commands.html)。
 
 ![Claude Code 推荐使用 loop 命令](https://oss.javaguide.cn/github/javaguide/ai/coding/claudecode/claudecode-father-loop.png)
 

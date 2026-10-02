@@ -38,7 +38,7 @@ head:
 本专栏内容同时收录在开源 AIGuide 项目中：
 
 - **项目地址**：[https://github.com/Snailclimb/AIGuide](https://github.com/Snailclimb/AIGuide)
-- **在线阅读**：[https://javaguide.cn/ai-coding/](https://javaguide.cn/ai-coding/)
+- **在线阅读**：[https://javaguide.cn/ai/](https://javaguide.cn/ai/)
 
 文章会随 API、框架和模型能力变化持续校订，涉及版本、价格和产品能力时请同时核对对应官方文档。
 
@@ -69,6 +69,9 @@ AI 应用一旦上线，稳定性、可观测、成本控制、质量回归这�
 3. [LLM 运行机制](./llm-basis/llm-operation-mechanism.md)、[大模型 API 调用工程实践](./llm-basis/llm-api-engineering.md)：理解模型调用链路、上下文和结构化返回。
 4. [AI Agent 核心概念](./agent/agent-basis.md)、[大模型提示词工程](./agent/prompt-engineering.md)、[上下文工程](./agent/context-engineering.md)：建立 Agent 和 Prompt/Context 的基础认知。
 5. [多 Agent 协作系统设计](./agent/multi-agent.md)：继续学习任务拆分、状态共享、冲突处理和失败恢复。
+
+   Memory、MCP、Skills、Harness、Workflow、Loop 的完整顺序见 [Agent 专题 README](./agent/README.md)。
+
 6. [RAG 基础概念](./rag/rag-basis.md)、[RAG 文档处理与切分策略](./rag/rag-document-processing.md)、[RAG 检索优化](./rag/rag-optimization.md)：补齐企业知识库问答主线。
 7. [AI 应用系统设计](./system-design/ai-application-architecture.md)、[LLM/Agent 安全实战](./system-design/llm-security.md)、[大模型网关详解](./system-design/llm-gateway.md)、[AI 应用评测体系](./llm-basis/llm-evaluation.md)：把 Demo 放进真实后端系统里，补齐权限、安全、网关、评测和治理。
 

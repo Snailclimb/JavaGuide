@@ -1,7 +1,7 @@
 ---
 title: 多 Agent 协作系统设计：任务拆分、状态共享、冲突处理与失败恢复
 description: 结合 AgentInvest、技术调研、客服与代码审查等场景，讲清多 Agent 与 Prompt Chain 的区别、编排、通信、状态、冲突、恢复与评测。
-category: AI
+category: AI 应用开发
 tag:
   - AI Agent
   - Multi-Agent

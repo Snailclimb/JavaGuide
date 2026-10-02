@@ -10,7 +10,7 @@ head:
 
 Agent Harness 是运行在大模型外部的一套执行系统。它负责组织上下文、提供工具和执行环境，并把权限控制、状态管理、结果验证与失败恢复接入任务流程。Harness Engineering 研究的就是这套系统应该怎样设计。
 
-Can.ac 的一次编码评测中，同一个模型仅替换文件编辑接口，得分就从 6.7% 升到 68.3%。模型参数没有变化，差别出在接口提供了什么操作、怎样返回结果，以及错误能否被下一步利用。
+Can.ac 的一次编码评测中，Grok Code Fast 1 仅替换文件编辑接口，得分就[从 6.7% 升到 68.3%](https://blog.can.ac/2026/02/12/the-harness-problem/)。模型参数没有变化，差别出在接口提供了什么操作、怎样返回结果，以及错误能否被下一步利用。
 
 这类差异也解释了常见的 Agent 故障：重复调工具、忽略约束或在长任务中丢失状态，往往不能只靠换模型或补一句提示词解决。工具接口、执行环境、反馈和恢复机制同样决定任务能否继续。
 
@@ -88,13 +88,13 @@ Prompt 能澄清局部指令，却不能提供文件访问、测试执行、状�
 
 ### 为什么瓶颈经常不在模型？
 
-Can.ac 的结果说明，工具调用格式本身就会改变任务完成率。LangChain 优化文档组织、验证回路和追踪系统后，在 Terminal Bench 2.0 上从第 30 名升至第 5 名，得分从 52.8% 升至 66.5%；模型没有更换。
+Can.ac 的结果说明，工具调用格式本身就会改变任务完成率。LangChain 调整系统提示词、工具和中间件，并借助追踪分析优化验证回路后，在 Terminal Bench 2.0 上从当时前 30 名之外进入前 5 名，得分[从 52.8% 升至 66.5%](https://www.langchain.com/blog/improving-deep-agents-with-harness-engineering)；模型没有更换。
 
 因此，Agent 表现不稳时，先检查它拿到的工具接口、错误输出和验证闭环。接口让模型难以表达操作意图，或测试失败后只返回模糊错误，换更强的模型也只能在同一处反复试错。
 
 还要注意 model-harness 耦合。Claude Code、Codex 这类产品会同时调优模型和工具逻辑；模型熟悉某套工具后，换到另一套 Harness 的效果可能下降。LangChain 在 Terminal Bench 2.0 排行榜中观察到，Opus 在 Claude Code Harness 下的得分低于它在其他 Harness 中的得分。
 
-the best harness for your task is not necessarily the one a model was post-trained with。选型时应以任务的工具、约束和验证需求为准，而不是默认采用模型自带的 Harness。
+最适合当前任务的 Harness，不一定是模型在后训练时使用的那一套。选型时应以任务的工具、约束和验证需求为准，而不是默认采用模型自带的 Harness。
 
 ### 为什么上下文喂越多，Agent 反而越蠢？
 
@@ -178,17 +178,17 @@ Stripe Minions 在大型既有代码库中运行。对于缺少模块边界、�
 
 ### OpenAI：三个人，五个月，一百万行，零手写代码
 
-先看数据：
+先看 [OpenAI 原文披露的数据](https://openai.com/index/harness-engineering/)：
 
-| 指标       | 数值                    |
-| ---------- | ----------------------- |
-| 团队规模   | 3 名工程师，后扩至 7 人 |
-| 持续时间   | 5 个月，2025 年 8 月起  |
-| 代码规模   | 约 100 万行             |
-| 手写代码   | 0 行，设计约束          |
-| 合并 PR 数 | 约 1,500 个             |
-| 日均 PR/人 | 3.5 个                  |
-| 效率提升   | 约 10 倍                |
+| 指标       | 数值                           |
+| ---------- | ------------------------------ |
+| 团队规模   | 3 名工程师，后扩至 7 人        |
+| 持续时间   | 5 个月，2025 年 8 月起         |
+| 代码规模   | 约 100 万行                    |
+| 手写代码   | 0 行，设计约束                 |
+| 合并 PR 数 | 约 1,500 个                    |
+| 日均 PR/人 | 3.5 个                         |
+| 效率提升   | 团队估计耗时约为手写的十分之一 |
 
 这些数字依赖相应的团队投入，不能直接用作一般团队的预期。表后的内容只拆解其中的工程做法。
 
@@ -354,7 +354,7 @@ Birgitta Böckeler 是 Thoughtworks 的 Distinguished Engineer。她在 Martin F
 
 棕地项目是最容易暴露这个边界的场景。一个运行多年、缺少架构约束的代码库接入 Agent 后，类型错误、依赖违规和测试失败可能会同时出现，最初得到的是一长串待处理事项。Böckeler 用 Ambient Affordances 描述代码库本身提供的条件：强类型语言提供类型检查，明确的模块边界允许定义依赖规则，Spring 等框架会封装部分实现细节。Stripe 的案例证明既有代码库可以运行 Agent；这些条件仍需在具体仓库中逐项检查。
 
-功能正确性的独立验证依然是空白。架构检查能阻止错误的依赖方向，清理任务能删除重复实现，但两者都不能证明用户流程符合预期。测试和实现都由同一类模型生成时，测试通过只说明两者共享的假设没有被打破。Böckeler 的评价是：puts a lot of faith into AI-generated tests, that's not good enough yet。
+功能正确性的独立验证依然是空白。架构检查能阻止错误的依赖方向，清理任务能删除重复实现，但两者都不能证明用户流程符合预期。测试和实现都由同一类模型生成时，测试通过只说明两者共享的假设没有被打破。Böckeler 的评价是：“这种做法对 AI 生成的测试寄予了很大的信任，但目前这还不够。”见她对[功能行为验证的讨论](https://martinfowler.com/articles/harness-engineering.html)。
 
 ## 总结
 
@@ -363,3 +363,10 @@ Birgitta Böckeler 是 Thoughtworks 的 Distinguished Engineer。她在 Martin F
 实际落地时可以从最短的闭环开始：为任务写清入口和约束，让 Agent 能编译并运行测试，再把失败原因反馈成下一步可执行的操作。任务变长后，再增加状态文件、上下文压缩和端到端验证；代码持续生成后，把重复逻辑、过期文档和架构违规纳入定期清理。
 
 Harness 也要随模型能力变化重新检查。某个 Linter、评估器或多 Agent 环节曾经必要，并不意味着它会一直保留。保留能捕获真实错误的机制，移除只增加上下文和编排成本的部分，才能让 Agent 在具体项目里稳定推进。
+
+## 参考资料
+
+- [Can.ac：仅改变 Harness 的编码评测](https://blog.can.ac/2026/02/12/the-harness-problem/)
+- [LangChain：通过 Harness Engineering 改进 Deep Agents](https://www.langchain.com/blog/improving-deep-agents-with-harness-engineering)
+- [OpenAI：Harness engineering 实践](https://openai.com/index/harness-engineering/)
+- [Birgitta Böckeler：面向编码 Agent 使用者的 Harness Engineering](https://martinfowler.com/articles/harness-engineering.html)

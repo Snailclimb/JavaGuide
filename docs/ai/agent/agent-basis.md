@@ -1,5 +1,5 @@
 ---
-title: AI Agent 核心概念：Agent Loop、Plan-and-Execute、A2A、Agentic Workflows、Tools 注册
+title: AI Agent 核心概念：Agent Loop、Plan-and-Execute、结构化任务契约、Agentic Workflows、Tools 注册
 description: 深入解析 AI Agent 核心概念，梳理从被动响应到常驻自治的演进历程，对比 Agent、传统编程、Workflow 的区别和适用场景。
 category: AI 应用开发
 head:
@@ -70,7 +70,7 @@ Agent：用户说意图 → AI 决策 → 动态执行
 
 聊 Agent 不能只讲愿景，也得说点真实问题。
 
-- 长任务跑久了，历史信息会被截断，模型会”失忆”。更烦的是，上下文变长后推理质量不一定更好，很多模型对中间位置的信息利用效率并不高
+- 长任务跑久了，历史信息会被截断，模型会“失忆”。更烦的是，上下文变长后推理质量不一定更好，很多模型对中间位置的信息利用效率并不高
 - 工具调用可以降低幻觉，但不能彻底消灭。LLM 在推理步骤里仍然可能生成错误判断，工具返回结果也不一定能把它拉回来
 - 多轮迭代、工具调用、日志回传、上下文压缩，每一项都在烧 Token。复杂任务跑一轮，账单可能真会让人清醒
 - Agent 能执行代码、调 API、读写文件，也就一定会面对 Prompt Injection 和越权操作风险。更现实的做法是权限最小化、沙箱隔离、高危操作人工确认
@@ -95,6 +95,8 @@ AI Agent 是能感知环境、决策并执行动作的软件系统。LLM 处理�
 
 **Tools（工具）**负责查询数据、调用 API、读写文件或执行代码。执行结果必须追加进上下文，成为下一轮的 Observation（观察）；否则模型看不到外部操作的反馈，后续动作也就无从判断。
 
+工具调用的完整链路、权限、二次确认、幂等、审计、超时和 Java 示例，见 [结构化输出与 Function Calling](../llm-basis/structured-output-function-calling.md)；任务完成率、工具调用和执行轨迹等指标，见 [Agent 应用怎么评测](../llm-basis/llm-evaluation.md#agent-应用怎么评测)。
+
 ### 什么是 Agent Loop？
 
 Agent Loop 把这条反馈链路连续跑起来。每轮先由 LLM 根据上下文选择动作，再执行工具并写回结果；任务完成或命中停止条件时退出。
@@ -103,7 +105,7 @@ Agent Loop 把这条反馈链路连续跑起来。每轮先由 LLM 根据上下�
 
 Loop 初始化时载入 System Prompt、工具列表和用户请求。之后模型在“直接回复”和“调用工具”之间选择；工具结果写回上下文，直到模型不再请求工具。
 
-最大迭代轮次通常设在 10 到 20 轮，也可以按 Token 消耗终止。这个边界用来阻止错误判断把任务带进无限循环。
+最大迭代轮次设在 10 到 20 轮是常见上限之一，也可以按 Token 消耗终止。这个边界用来阻止错误判断把任务带进无限循环。
 
 上下文会随着每轮结果不断变长，关键信息被稀释后，模型更容易跑偏。Context Engineering 处理的正是筛选和组织这些信息的问题。LangChain、LlamaIndex、Spring AI 提供的封装不同，底层都绕不开这条 Loop。
 
@@ -228,7 +230,7 @@ Prompt Engineering 更偏提示词怎么写，Context Engineering 管得更宽�
 
 ![Context Engineering 和 Prompt Engineering 差别](https://oss.javaguide.cn/github/javaguide/ai/context-engineering/context-engineering-vs-context-engineering-dimension-comparison.png)
 
-这块展开讲内容很多，可以单独看这篇：[《提示词工程（Prompt Engineering）》](https://javaguide.cn/ai/agent/prompt-engineering.html) 和 [《上下文工程（Context Engineering）》](https://javaguide.cn/ai/agent/context-engineering.html)。
+这块展开讲内容很多，可以单独看这两篇：[《提示词工程（Prompt Engineering）》](https://javaguide.cn/ai/agent/prompt-engineering.html) 和 [《上下文工程（Context Engineering）》](https://javaguide.cn/ai/agent/context-engineering.html)。
 
 ## Agent 核心范式有哪些？
 
@@ -304,21 +306,23 @@ Reflection 通常叠加在 ReAct 或 Plan-and-Execute 上：执行过程中加�
 
 落地时还要处理任务契约、共享状态、并行写冲突、Worker 接管和检查点恢复。详细设计可以看 [《多 Agent 协作系统设计：任务拆分、状态共享、冲突处理与失败恢复》](./multi-agent.md)。
 
-### A2A 协议
+### 结构化任务契约
 
 单个 Agent 升级到 Multi-Agent 后，Agent 之间怎么沟通会变成一个工程问题。
 
 如果还靠自然语言互相聊天，Token 消耗很高，也容易出现格式解析错误。
 
-A2A 协议就是为了解决这个问题。
+结构化任务契约可以减少这类交接问题。
 
-它让 Agent 之间用结构化数据交互，比如带 Schema 的 JSON、XML，或者状态流转指令，而不是一堆自然语言废话。
+它要求角色之间交付带 Schema 的结果，而不是一段自然语言，比如用 JSON、XML 表达任务字段、结果和状态流转指令。
 
 类比一下，后端微服务之间不会通过解析 HTML 页面交换数据，而是用 RESTful 或 RPC 接口传结构化对象。
 
-A2A 协议就是给 Agent 之间定义接口契约。
+结构化任务契约明确每个角色接收什么、交付什么，以及如何校验结果。
 
 比如“产品经理 Agent”写完需求后，不会输出一句“我写好了，你开发一下”。它应该输出一个标准 JSON Payload，里面包含 TaskID、Dependencies、AcceptanceCriteria。开发 Agent 拿到后直接反序列化，进入执行流程。
+
+这种结构化交付不等于实现了 A2A 协议；跨进程 Agent 的能力发现、任务状态和产物交付，见 [多 Agent 篇的 A2A 一节](./multi-agent.md#a2a-能解决什么-不能解决什么)。
 
 ![A2A 协议架构](https://oss.javaguide.cn/github/javaguide/ai/agent/agent-a2a.png)
 

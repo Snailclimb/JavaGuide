@@ -37,6 +37,14 @@ Agent 不是“会调用工具的聊天机器人”。一旦任务变长，它�
 5. [多 Agent 协作系统设计](./multi-agent.md)：理解任务拆分、状态共享、并发冲突和失败恢复。
 6. [Harness Engineering：六层检查框架、上下文管理与工程实践](./harness-engineering.md)、[AI 工作流中的 Workflow、Graph 与 Loop](./workflow-graph-loop.md)、[Loop Engineering 是什么](./loop-engineering.md)：进入生产级 Agent 工程化。
 
+阅读时注意区分三种循环：
+
+| 层次                  | 负责什么                                                          | 对应文章                                                                |
+| --------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| 内层 Agent Loop       | 一次任务中反复推理、调用工具、读取结果，直到完成或触发停止条件。  | [Agent 核心概念](./agent-basis.md#什么是-agent-loop)                    |
+| 工作流图上的回边      | 按状态和条件返回先前节点，让局部流程继续迭代。                    | [Workflow、Graph 与 Loop](./workflow-graph-loop.md#loop-graph-上的回溯) |
+| 外层 Loop Engineering | 把已有循环接到 CI、定时任务和停止条件上，决定何时启动下一轮任务。 | [Loop Engineering](./loop-engineering.md)                               |
+
 ## 核心文章
 
 - [AI Agent 核心概念](./agent-basis.md)：梳理 AI Agent 的演进脉络，讲清 Agent Loop、Context Engineering、Tools 注册等基础概念。
@@ -49,6 +57,11 @@ Agent 不是“会调用工具的聊天机器人”。一旦任务变长，它�
 - [Harness Engineering：六层检查框架、上下文管理与工程实践](./harness-engineering.md)：拆解 OpenAI、Anthropic、Stripe 等团队在 Agent 工程化上的实践思路。
 - [AI 工作流中的 Workflow、Graph 与 Loop](./workflow-graph-loop.md)：对比传统工作流与 AI 工作流的差异，覆盖 Spring AI Alibaba 和 LangGraph 实现。
 - [Loop Engineering 是什么？为什么说它是新瓶装旧酒？](./loop-engineering.md)：把 Loop Engineering 放回 Agent Loop、Context、Harness、Skills、MCP 和验证闭环里，理解它到底新在哪里。
+
+工具调用和评测的完整内容在已有文章中：
+
+- [结构化输出与 Function Calling](../llm-basis/structured-output-function-calling.md)：覆盖工具调用完整链路、权限、二次确认、幂等、审计、超时和 Java 示例。
+- [Agent 应用怎么评测](../llm-basis/llm-evaluation.md#agent-应用怎么评测)：覆盖任务完成率、工具调用、执行轨迹、错误恢复和多次运行一致性等指标。
 
 ## 高频问题
 

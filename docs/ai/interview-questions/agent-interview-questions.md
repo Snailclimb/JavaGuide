@@ -1,6 +1,6 @@
 ---
 title: AI Agent 面试题总结
-description: 系统整理 AI Agent 高频面试题，覆盖 Agent 核心概念、Agent Loop、Memory、Prompt Engineering、Context Engineering、MCP、Agent Skills、Harness Engineering、Workflow、Graph、Loop 等核心考点，并附对应参考文章。
+description: 系统整理 AI Agent 高频面试题，覆盖 Agent 核心概念、Agent Loop、Memory、Prompt Engineering、Context Engineering、MCP、Agent Skills、Harness Engineering、Workflow、Graph，以及外层 Loop 的触发、停止与人工接管等工程考点，并附对应参考文章。
 category: AI
 tag:
   - Agent面试
@@ -9,7 +9,7 @@ tag:
 head:
   - - meta
     - name: keywords
-      content: AI Agent面试题,Agent面试题,AI Agent面试,Agent Loop面试,Agent Memory面试题,MCP面试题,Prompt工程面试题,Context Engineering面试,Harness Engineering面试,Agent Skills面试题
+      content: AI Agent面试题,Agent面试题,AI Agent面试,Agent Loop面试,Agent Memory面试题,MCP面试题,Prompt工程面试题,Context Engineering面试,Harness Engineering面试,Agent Skills面试题,Workflow面试,Graph Loop面试,外层Loop,Loop Engineering,停止条件,人工接管
 ---
 
 Agent 接到任务后，需要读取上下文、决定下一步动作、调用工具、观察结果，再判断继续、结束还是交给人工。AI Agent 面试题基本沿着这条执行链路展开，Memory、MCP、Skills、Harness 和 Workflow 都可以放回链路中理解。
@@ -18,7 +18,9 @@ Agent 接到任务后，需要读取上下文、决定下一步动作、调用�
 
 ## Agent 基础
 
-相关内容：[《AI Agent 核心概念：Agent Loop、Plan-and-Execute、A2A、Agentic Workflows、Tools 注册》](../agent/agent-basis.md)、[《多 Agent 协作系统设计：任务拆分、状态共享、冲突处理与失败恢复》](../agent/multi-agent.md)
+相关内容：[《AI Agent 核心概念：Agent Loop、Plan-and-Execute、结构化任务契约、Agentic Workflows、Tools 注册》](../agent/agent-basis.md)、[《多 Agent 协作系统设计：任务拆分、状态共享、冲突处理与失败恢复》](../agent/multi-agent.md)
+
+工具调用完整链路、权限、二次确认、幂等、审计、超时和 Java 示例，见 [结构化输出与 Function Calling](../llm-basis/structured-output-function-calling.md)；任务完成率、工具调用和执行轨迹等评测指标，见 [Agent 应用怎么评测](../llm-basis/llm-evaluation.md#agent-应用怎么评测)。
 
 这部分通常从 Agent 的定义开始，随后追问运行循环和编排方式。准备时要能分清 Chatbot、Workflow 与 Agent 在任务路径、状态和工具使用上的差别。
 
@@ -113,15 +115,18 @@ Harness Engineering 把注意力放到模型外部的执行环境，包括任务
 
 ## Workflow、Graph 与 Loop
 
-相关内容：[《AI 工作流中的 Workflow、Graph 与 Loop：从概念到实现》](../agent/workflow-graph-loop.md)
+相关内容：[《AI 工作流中的 Workflow、Graph 与 Loop：从概念到实现》](../agent/workflow-graph-loop.md)、[《Loop Engineering 是什么？为什么说它是新瓶装旧酒？》](../agent/loop-engineering.md)
 
-工作流题主要检查流程结构、状态保存和循环控制。除了解释 Node、Edge、State，还要准备中断恢复、并行更新和停止条件等工程问题。
+工作流题主要检查流程结构、状态保存和循环控制。除了解释 Node、Edge、State，还要准备中断恢复、并行更新和停止条件等工程问题。外层 Loop Engineering 在这里指把已有循环接到 CI、定时任务和停止条件上的工程实践，重点是如何调度、验证和停止。
 
 常见面试题：
 
 - 为什么 AI 系统需要工作流？
 - Workflow、Graph、Loop 三者是什么关系？
 - Graph Loop 和 Agent Loop 有什么区别？
+- 外层 Loop 由谁触发下一轮：CI 事件、定时任务、目标检查还是人工审批？
+- 外层 Loop 与一次任务内部的 Agent Loop 有什么区别，状态和验证结果怎样交接？
+- 哪些任务不适合无人值守？缺少可靠验收信号、涉及高风险写操作或需要业务判断时，怎样停止并转人工？
 - Loop 如何防止死循环？
 - State 的更新策略怎么选？Replace、Append、Reducer 分别适合什么字段？
 - 条件边和动态路由有什么区别？

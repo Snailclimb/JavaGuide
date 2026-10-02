@@ -18,7 +18,7 @@ Context Engineering 处理的就是调用前的信息组装：哪些规则进入
 
 这里以电商售后为例。
 
-G 友发来一句话： “MD，我上周买的耳机右耳没声音了，怎么处理？”
+G 友发来一句话： “我上周买的耳机右耳没声音了，怎么处理？”
 
 如果 Agent 拿到的上下文很少，它大概率会这么回：“抱歉给您带来不便。请问您购买的是哪款耳机？订单号是多少？能否描述一下具体故障表现？”
 
@@ -95,6 +95,8 @@ JSON Schema、Function Calling 的参数结构和返回约束会限制当前调�
 窗口容量增加后，筛选问题仍然存在。输入超出当前任务所需范围时，额外材料可能只会增加干扰。
 
 ![上下文利用率的 40% 阈值现象](https://oss.javaguide.cn/github/javaguide/ai/harness/context-utilization-40-percent-threshold-phenomenon.svg)
+
+图中的 40% 来自特定模型和任务的观察，不是通用阈值；Lost in the Middle 的位置偏差与上下文增长后信息利用率下降是两件事，不能混为一谈。
 
 以老用户登录改造为例：历史需求、接口文档和会议记录同时进入窗口，其中“仍依赖旧版 token 校验，不能直接切到新鉴权模块”可能只有一行。模型即使读取了全部资料，也可能没有把这一行当作方案前提。
 
@@ -218,7 +220,7 @@ Anthropic 在《How we built our multi-agent research system》中介绍过这�
 
 ### 先看一轮 LLM 调用前，系统到底要组装什么
 
-```python
+```text
 # 输入：用户任务信息、当前会话状态、业务上下文
 input: user_task, session_state, business_context
 
@@ -365,7 +367,7 @@ Few-shot 示例应覆盖不同的标准场景。保留 3 到 5 个能代表策�
 - LangChain、LangGraph 负责控制流、状态管理和循环调度；工具调用与节点回退通常在这一层组织。
 - LlamaIndex 偏向 RAG 的数据摄取、索引生成和检索优化，适用于文档摄取与检索构成主要链路的场景。
 - Pinecone、Weaviate、Chroma、Qdrant 等提供 Embedding 存储和语义搜索。小项目可先用本地 Chroma，再按规模评估 Qdrant、Milvus 或 Pinecone。
-- MCP 规定工具如何标准化接入宿主程序。当前 2025-11-25 revision 基于 JSON-RPC 2.0，区分 Host、Client、Server，并通过 Server Features 暴露 Resources、Prompts、Tools 等能力。
+- MCP 规定工具如何标准化接入宿主程序，区分 Host、Client、Server，并暴露 Resources、Prompts、Tools 等能力。协议版本与调用示例统一见 [MCP 专文](https://javaguide.cn/ai/agent/mcp.html)。
 - Mem0、LETTA（原 MemGPT）、ZEP 面向 Agent 记忆层，通常在向量库之上封装记忆写入、检索和遗忘等生命周期管理。
 
 通过 MCP 接入的工具也是副作用入口。读文件、查询数据库、发请求和修改配置要区分权限、调用条件与审计边界，否则问题难以定位和回放。
@@ -410,7 +412,7 @@ Anthropic 反复强调过一句话：`do the simplest thing that works`。
 - [OpenAI API Models Compare](https://developers.openai.com/api/docs/models/compare)
 - [Claude API Models Overview](https://platform.claude.com/docs/en/about-claude/models/overview)
 - [DeepSeek V4 Preview Release](https://api-docs.deepseek.com/news/news260424)
-- [MCP 2025-11-25 Specification](https://modelcontextprotocol.io/specification/2025-11-25)
+- [MCP：协议版本、能力与调用示例](https://javaguide.cn/ai/agent/mcp.html)
 - [Context Rot: How Increasing Input Tokens Impacts LLM Performance](https://www.trychroma.com/research/context-rot)
 - [Lost in the Middle: How Language Models Use Long Contexts](https://arxiv.org/abs/2307.03172)
 - [Context Engineering: The New Frontier of AI Development](https://medium.com/techacc/context-engineering-a8c3a4b39c07)

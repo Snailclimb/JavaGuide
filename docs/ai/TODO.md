@@ -27,18 +27,18 @@ head:
 
 ## P0 · 系统设计和安全补全
 
-| 文件名                              | 标题                                                      | 核心切入                                                                                                                                                  |
-| ----------------------------------- | --------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `system-design/llm-security.md`     | LLM 应用安全实战：Prompt 注入、工具越权与数据泄露防护     | 从传统“输入不可信”切入 AI 新攻击面，覆盖 Prompt Injection、Indirect Injection、工具权限边界、MCP Server 风险、最小权限、审计和 OWASP LLM Top 10           |
-| `system-design/ai-observability.md` | AI 可观测性与 Trace：为什么 Agent 失败不能只看最终答案    | 一次请求里的模型调用、检索、工具调用、上下文拼装、重试、fallback 全链路 span，覆盖 Langfuse、OpenTelemetry、自建审计表和 Java 后端落地结构                |
-| `agent/tool-calling.md`             | Agent 工具调用详解：Function Calling、MCP Tool 与权限控制 | 串起 `structured-output-function-calling.md`、`mcp.md` 和 `ai-application-architecture.md`，重点讲工具 Schema、参数校验、权限审批、执行结果回传和失败恢复 |
+| 文件名                              | 标题                                                   | 核心切入                                                                                                                                        |
+| ----------------------------------- | ------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `system-design/llm-security.md`     | LLM 应用安全实战：Prompt 注入、工具越权与数据泄露防护  | 从传统“输入不可信”切入 AI 新攻击面，覆盖 Prompt Injection、Indirect Injection、工具权限边界、MCP Server 风险、最小权限、审计和 OWASP LLM Top 10 |
+| `system-design/ai-observability.md` | AI 可观测性与 Trace：为什么 Agent 失败不能只看最终答案 | 一次请求里的模型调用、检索、工具调用、上下文拼装、重试、fallback 全链路 span，覆盖 Langfuse、OpenTelemetry、自建审计表和 Java 后端落地结构      |
+| `agent/tool-calling.md`（不新建）   | 补链接到已有工具调用文章（已补）                       | 已链接 [结构化输出与 Function Calling](./llm-basis/structured-output-function-calling.md)；只有 Agent Loop 特有、现文未覆盖的缺口才另写         |
 
 ## P1 · Agent 工程短板补全
 
-| 文件名                             | 标题                                               | 核心切入                                                                        |
-| ---------------------------------- | -------------------------------------------------- | ------------------------------------------------------------------------------- |
-| `agent/agent-evaluation.md`        | Agent 评测与调试：如何判断 Agent 真的完成了任务    | 任务完成率、工具调用成功率、幻觉率、格式遵循率、延迟成本、Trace 回放和回归集    |
-| `llm-basis/llm-model-selection.md` | 大模型选型指南：通用、推理、代码、多模态模型怎么选 | 不同能力维度对比、Router/fallback/多模型编排、客服/RAG/代码/语音 Agent 的选型表 |
+| 文件名                                | 标题                                               | 核心切入                                                                                                                    |
+| ------------------------------------- | -------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `agent/agent-evaluation.md`（不新建） | 补链接到已有评测文章（已补）                       | 已链接 [Agent 应用怎么评测](./llm-basis/llm-evaluation.md#agent-应用怎么评测)；只有 Agent Loop 特有、现文未覆盖的缺口才另写 |
+| `llm-basis/llm-model-selection.md`    | 大模型选型指南：通用、推理、代码、多模态模型怎么选 | 不同能力维度对比、Router/fallback/多模型编排、客服/RAG/代码/语音 Agent 的选型表                                             |
 
 ## P1 · RAG 深水区扩展
 
@@ -68,7 +68,7 @@ head:
 
 1. `system-design/llm-security.md`：JavaGuide 读者对安全话题接受度高，可以从传统 Web 安全自然过渡到 AI 新攻击面。
 2. `system-design/ai-observability.md`：能和 `harness-engineering.md`、`rag-optimization.md`、`llm-evaluation.md` 接上，形成“调试 -> 评测 -> 观测”闭环。
-3. `agent/tool-calling.md`：把 Function Calling、MCP Tool、权限审批和工具执行链路单独讲透，后续安全和系统设计都能复用。
+3. 工具调用与 Agent 评测入口：已在 Agent README、入门篇和面试题补链接到已有文章；不新建 `agent/tool-calling.md` 或 `agent/agent-evaluation.md`，只有 Agent Loop 特有、现文未覆盖的缺口才另写。
 4. `framework/README.md` + `framework/spring-ai.md`：`framework/` 目前为空，先补 Java 读者最容易用上的 Spring AI。
 
 ## 维护规则

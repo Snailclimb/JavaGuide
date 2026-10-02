@@ -100,7 +100,7 @@ Server 后面才是实际的数据源：本地文件、数据库、内部平台�
 
 工具的名称、`description`、参数说明和禁用场景会直接影响模型的选择。Server 接收到的参数也必须视为不可信输入：文件读取要限制目录，SQL 要参数化，高危操作要审批，返回数据要脱敏。
 
-在 `2026-07-28` revision 中，MCP 不再要求 `initialize`/`initialized` 握手或 `Mcp-Session-Id`。每个请求都自包含协议版本和客户端能力；如果 Client 希望先获取 Server 能力，可以调用可选的 `server/discover`。使用 `2025-11-25` 或更早 revision 的兼容客户端仍会执行初始化握手。排查工具未出现时，先确认 Client 和 Server 选用的 revision，再检查现代请求的能力元数据或旧版握手结果。
+在 `2026-07-28` revision 中，MCP 不再要求 `initialize`/`initialized` 握手或 `Mcp-Session-Id`。每个请求都自包含协议版本和客户端能力；[规范要求](https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning) Server 必须实现 `server/discover`，但 Client 可以不调用，直接发送其他请求。使用 `2025-11-25` 或更早 revision 的兼容客户端仍会执行初始化握手。排查工具未出现时，先确认 Client 和 Server 选用的 revision，再检查现代请求的能力元数据或旧版握手结果。
 
 ## MCP 暴露的能力只有 Tools 吗？
 
@@ -150,7 +150,7 @@ MCP 底层通信使用 JSON-RPC 2.0。
 
 REST 更偏资源，比如 `/users/1`、`/orders/100`。JSON-RPC 更偏方法调用，比如 `tools/call`、`resources/read`。AI 工具调用天然就是“我要执行某个动作”，所以 JSON-RPC 和 MCP 的使用场景比较贴。
 
-一个工具调用请求大概长这样：
+按 [2026-07-28 规范的请求元数据字段](https://modelcontextprotocol.io/specification/2026-07-28/basic/index)，工具调用请求可以写成下面这样。`_meta` 位于 `params` 内，与 `name`、`arguments` 同级；这里的 `my-app` 和 `1.0` 是示例客户端的名称与版本，空能力对象表示本次请求不声明可选客户端能力：
 
 ```json
 {
@@ -160,6 +160,14 @@ REST 更偏资源，比如 `/users/1`、`/orders/100`。JSON-RPC 更偏方法调
     "name": "read_file",
     "arguments": {
       "path": "/path/to/file.txt"
+    },
+    "_meta": {
+      "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+      "io.modelcontextprotocol/clientInfo": {
+        "name": "my-app",
+        "version": "1.0"
+      },
+      "io.modelcontextprotocol/clientCapabilities": {}
     }
   },
   "id": 1
@@ -173,6 +181,7 @@ REST 更偏资源，比如 `/users/1`、`/orders/100`。JSON-RPC 更偏方法调
   "jsonrpc": "2.0",
   "id": 1,
   "result": {
+    "resultType": "complete",
     "content": [
       {
         "type": "text",
@@ -211,11 +220,16 @@ stdio 模式下，stdout 是 JSON-RPC 消息通道，不能用于打印调试日
 远程 Server 更适合使用 Streamable HTTP。MCP 早期远程传输常见 HTTP + SSE，后来转向 Streamable HTTP；旧版 HTTP+SSE 已被标记为 deprecated。`2026-07-28` 继续使用 Streamable HTTP，但采用无状态请求，并要求请求携带 `Mcp-Method` 和 `Mcp-Name` 头，认证、负载均衡和网关接入可以沿用普通 HTTP 服务的运维方式。
 
 ```http
-POST /mcp
+POST /mcp HTTP/1.1
 Authorization: Bearer xxx
+Content-Type: application/json
+Accept: application/json, text/event-stream
+MCP-Protocol-Version: 2026-07-28
+Mcp-Method: tools/call
+Mcp-Name: read_file
 ```
 
-响应可能是普通 JSON，也可能是 SSE 流，取决于请求类型。
+以上是前面 `read_file` 调用对应的 HTTP 请求头，请求体使用前面的 JSON；`Mcp-Method` 与方法名、`Mcp-Name` 与工具名保持一致，参见 [官方版本说明](https://blog.modelcontextprotocol.io/posts/2026-07-28/)。响应可能是普通 JSON，也可能是 SSE 流，取决于请求类型。
 
 选择传输方式时，可以按部署位置和访问范围判断：
 
@@ -322,7 +336,7 @@ write_report(path, content)
 
 日志、Markdown 文档、网页 HTML 和 CSV 文件可能远超模型上下文。资源接口可以先返回文件名、大小、更新时间、摘要和可读取范围；需要内容时再按 chunk 读取。
 
-单个 chunk 可以控制在约 100KB，资源超过 10MB 时只返回说明和可选读取方式，不直接返回全文。这样既避免一次请求塞满上下文，也能防止 Server 因大文件消耗过多内存或网络资源。
+chunk 大小应按上下文预算、响应大小限制和服务端资源预算确定；大资源先只返回引用、摘要和可选读取方式，需要时再分块读取，不直接返回全文。这样既避免一次请求塞满上下文，也能防止 Server 因大文件消耗过多内存或网络资源。
 
 不要把限制绑定到某个模型的 tokenizer。不同模型的 token 计算不同，Server 用字符数或字节数做粗粒度控制即可；上下文裁剪由 Host 或上层应用负责。
 
@@ -338,7 +352,7 @@ Prompt Injection、Token Passthrough、资源级鉴权、本地 Server 隔离和
 
 ### MCP Server 最小示例：先跑通一个工具
 
-用官方 Python SDK 写一个天气 Server，大概是这样：
+用 Python SDK 的 FastMCP 风格写一个天气 Server，大概是这样。下面的导入路径和启动方式需要按项目锁定的 SDK 版本核对，这里未验证它们与支持 `2026-07-28` 的 SDK 版本一致：
 
 ```python
 from mcp.server.fastmcp import FastMCP

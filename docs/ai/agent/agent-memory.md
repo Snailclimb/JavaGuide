@@ -12,7 +12,7 @@ head:
 
 长任务一跑起来，很快就会撞到几件硬约束：上下文窗口有上限，Token 账单会一路涨，Session 结束后如果没有落库，上一轮轨迹默认就跟进程一起消失。模型即使能完成当前推理，也缺少保存和复用历史记录的位置。
 
-记忆层需要同时保住当前对话的关键事实，并让新 Session 能取回用户偏好、背景和历史决策。文章依次讨论记忆的表征和功能分类、读写生命周期、短期与长期实现、主流产品和检索优化，以及 Markdown 记忆。滑动窗口怎么裁、overload 怎么卸，和同站的 [《上下文工程(Context Engineering) 是什么？和 Prompt Engineering 有什么区别？》](./context-engineering.md) 有交集，两篇可以对着看。
+记忆层需要同时保住当前对话的关键事实，并让新 Session 能取回用户偏好、背景和历史决策。文章依次讨论记忆的表征和功能分类、读写生命周期、短期与长期实现、主流产品和检索优化，以及 Markdown 记忆。滑动窗口怎么裁、offload 怎么卸，和同站的 [《上下文工程(Context Engineering) 是什么？和 Prompt Engineering 有什么区别？》](./context-engineering.md) 有交集，两篇可以对着看。
 
 ## Agent 的记忆系统是如何设计的？
 
@@ -82,6 +82,8 @@ head:
 窗口大，不等于可以无限塞上下文。推理成本会随 Token 数线性增长。《Lost in the Middle》研究也表明，在多文档检索型任务中，模型更容易利用上下文首尾的信息，中间段的信息利用率明显更低。窗口越长，这种位置偏差越明显，所以上下文工程里要主动控制输入信息的分布。
 
 ![上下文利用率的 40% 阈值现象](https://oss.javaguide.cn/github/javaguide/ai/harness/context-utilization-40-percent-threshold-phenomenon.svg)
+
+图中的 40% 来自特定模型和任务的观察，不是通用阈值；Lost in the Middle 的位置偏差与上下文增长后信息利用率下降是两件事，不能混为一谈。
 
 为了控制短期记忆膨胀，框架层常见三种做法，和上下文工程里的 Token 降级、JIT 卸载属于同一类思路。
 
