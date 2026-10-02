@@ -578,7 +578,7 @@ JDK 17 不支持 `-XX:+ZGenerational`，也不能把分代 ZGC 的调优经验�
 关于 ZGC 收集器的详细介绍推荐看看这几篇文章：
 
 - [从历代 GC 算法角度剖析 ZGC - 京东技术](https://mp.weixin.qq.com/s/ExkB40cq1_Z0ooDzXn7CVw)
-- [新一代垃圾回收器 ZGC 的探索与实践 - 美团技术团队](https://tech.meituan.com/2020/08/06/new-zgc-practice-in-meituan.html)
+- [新一代垃圾回收器 ZGC 的探索与实践 - 美团技术团队](https://tech.meituan.com/2020/08/06/ZGC-in-Meituan.html)
 - [极致八股文之 JVM 垃圾回收器 G1&ZGC 详解 - 阿里云开发者](https://mp.weixin.qq.com/s/Ywj3XMws0IIK-kiUllN87Q)
 
 ### Shenandoah 收集器
