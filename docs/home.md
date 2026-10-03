@@ -19,7 +19,7 @@ JavaGuide 是一份系统化的 **Java 面试指南** 和**后端通用面试复
 
 如果你正在准备校招、社招或跳槽面试，可以从 [Java 后端面试通关计划](./interview-preparation/backend-interview-plan.md) 开始，再按下面的模块逐步复习高频 Java 八股文和后端面试题。
 
-本站所有内容都已免费开源，欢迎一起[维护完善](http://localhost:8080/javaguide/contribution-guideline.html)，有帮助的话，欢迎 Star！
+本站所有内容都已免费开源，欢迎一起[维护完善](https://javaguide.cn/javaguide/contribution-guideline.html)，有帮助的话，欢迎 Star！
 
 - **项目地址**：<https://github.com/Snailclimb/JavaGuide>
 - **在线阅读**：<https://javaguide.cn/>
