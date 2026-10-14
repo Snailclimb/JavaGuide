@@ -828,7 +828,7 @@ public class SynchronizedDemo {
 > 为了更好理解这个方法，借用 Stack Overflow 上的一个案例，可以更好地理解 `lockInterruptibly()` 可以响应中断：
 >
 > ```JAVA
-> public class MyRentrantlock {
+> public class MyReentrantLock {
 >     Thread t = new Thread() {
 >         @Override
 >         public void run() {
@@ -841,12 +841,12 @@ public class SynchronizedDemo {
 >
 >             // 2、中断当前线程，通过 Thread.currentThread().isInterrupted() 可以看到当前线程的中断状态为 true
 >             interrupt();
->             System.out.println("Current thread is intrupted");
+>             System.out.println("Current thread is interrupted");
 >
 >             // 3.1、尝试获取锁，可以成功获取
 >             r.tryLock();
 >             // 3.2、此时锁的重入次数为 2
->             System.out.println("tryLock() on intrupted thread lock count :" + r.getHoldCount());
+>             System.out.println("tryLock() on interrupted thread lock count :" + r.getHoldCount());
 >             try {
 >                 // 4、打印线程的中断状态为 true，那么调用 lockInterruptibly() 方法就会抛出 InterruptedException 异常
 >                 System.out.println("Current Thread isInterrupted:" + Thread.currentThread().isInterrupted());
@@ -869,7 +869,7 @@ public class SynchronizedDemo {
 >         }
 >     };
 >     public static void main(String str[]) {
->         MyRentrantlock m = new MyRentrantlock();
+>         MyReentrantLock m = new MyReentrantLock();
 >         m.t.start();
 >     }
 > }
@@ -879,8 +879,8 @@ public class SynchronizedDemo {
 >
 > ```BASH
 > lock() : lock count :1
-> Current thread is intrupted
-> tryLock() on intrupted thread lock count :2
+> Current thread is interrupted
+> tryLock() on interrupted thread lock count :2
 > Current Thread isInterrupted:true
 > Error
 > lockInterruptibly() not able to Acqurie lock: lock count :2
