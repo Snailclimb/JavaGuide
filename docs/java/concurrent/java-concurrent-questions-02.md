@@ -828,7 +828,7 @@ public class SynchronizedDemo {
 > 为了更好理解这个方法，借用 Stack Overflow 上的一个案例，可以更好地理解 `lockInterruptibly()` 可以响应中断：
 >
 > ```JAVA
-> public class MyRentrantlock {
+> public class MyReentrantLock {
 >     Thread t = new Thread() {
 >         @Override
 >         public void run() {
@@ -869,7 +869,7 @@ public class SynchronizedDemo {
 >         }
 >     };
 >     public static void main(String str[]) {
->         MyRentrantlock m = new MyRentrantlock();
+>         MyReentrantLock m = new MyReentrantLock();
 >         m.t.start();
 >     }
 > }
