@@ -346,6 +346,114 @@ Java 21 正式版保证虚拟线程支持 `ThreadLocal`，这有利于兼容老�
 
 更麻烦的是混用模型：外层虚拟线程，内层又大量使用异步回调和线程池，排查时可能同时面对虚拟线程、事件循环、业务线程池、连接池几套上下文。迁移时最好先挑同步阻塞链路试点，而不是全系统一键替换。
 
+## 如何从传统线程池迁移到虚拟线程？
+
+对于已有的同步阻塞代码，`submit()`、`Future.get()` 这些用法通常可以保留。迁移时要检查原来的线程池还承担了哪些职责，比如限制下游并发、控制排队任务数量、拒绝过载请求。
+
+Oracle 的[虚拟线程迁移指南](https://docs.oracle.com/en/java/javase/21/core/virtual-threads.html)给出了对应的做法：每个任务创建一个虚拟线程，访问受限资源时用 `Semaphore` 等工具控制并发。
+
+### 迁移前：用平台线程池执行 HTTP 调用
+
+假设应用共用一个专门调用某个下游服务的线程池，最多使用 20 个平台线程，队列最多放 100 个任务。下面只展示任务提交和结果获取，省略导入、HTTP 客户端初始化、异常处理以及应用关闭时的资源释放：
+
+```java
+ExecutorService executor = new ThreadPoolExecutor(
+    20, 20,
+    0L, TimeUnit.MILLISECONDS,
+    new ArrayBlockingQueue<>(100),
+    Thread.ofPlatform().name("remote-call-", 0).factory(),
+    new ThreadPoolExecutor.AbortPolicy());
+
+Future<String> future = executor.submit(() ->
+    httpClient.send(request, HttpResponse.BodyHandlers.ofString()).body());
+
+String body = future.get(3, TimeUnit.SECONDS);
+```
+
+这里的 20 个线程也限制了同时执行的调用数量。线程全部忙碌时，新任务进入队列；队列也满了，就由 `AbortPolicy` 抛出 `RejectedExecutionException`。
+
+直接把这个线程池替换成 `Executors.newVirtualThreadPerTaskExecutor()`，原来的并发和排队限制就没有了。[`Executors` 的 API 文档](<https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Executors.html#newVirtualThreadPerTaskExecutor()>)说明，这个执行器不限制创建的虚拟线程数量，应用仍然受 CPU、内存等资源约束。
+
+### 迁移后：每个任务一个虚拟线程，单独限制下游并发
+
+下面的示例使用 Java 21 正式 API，保留同步 HTTP 调用和 `Future`，用 `Semaphore` 限制本地同时执行的下游调用。20 个许可、200ms 等待时间和后面的超时时间都只是示例值，实际要按下游容量和接口耗时配置。示例直接返回响应体，实际业务还需要根据 HTTP 状态码处理调用结果。
+
+```java
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.time.Duration;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.RejectedExecutionException;
+import java.util.concurrent.Semaphore;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+
+public class RemoteServiceClient implements AutoCloseable {
+  private final ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor();
+  private final Semaphore limit = new Semaphore(20);
+  private final HttpClient httpClient = HttpClient.newBuilder()
+      .connectTimeout(Duration.ofSeconds(1))
+      .build();
+
+  public String fetch(URI uri)
+      throws InterruptedException, ExecutionException, TimeoutException {
+    Future<String> future = executor.submit(() -> {
+      if (!limit.tryAcquire(200, TimeUnit.MILLISECONDS)) {
+        throw new RejectedExecutionException("等待下游调用许可超时");
+      }
+
+      try {
+        HttpRequest request = HttpRequest.newBuilder(uri)
+            .timeout(Duration.ofSeconds(2))
+            .GET()
+            .build();
+        return httpClient.send(request, HttpResponse.BodyHandlers.ofString()).body();
+      } finally {
+        limit.release();
+      }
+    });
+
+    try {
+      return future.get(3, TimeUnit.SECONDS);
+    } catch (TimeoutException | InterruptedException e) {
+      future.cancel(true);
+      throw e;
+    }
+  }
+
+  @Override
+  public void close() {
+    executor.close();
+    httpClient.close();
+  }
+}
+```
+
+同一个下游的调用要共享这个 `RemoteServiceClient` 实例，例如交给 Spring 作为单例 Bean 管理，并在应用关闭时调用 `close()`。每次请求都创建一个实例，会各自拿到 20 个许可，起不到统一限制并发的作用。应用部署了多个实例时，各实例的许可也是独立的。
+
+获取许可失败时，任务里的 `RejectedExecutionException` 会被包装进 `ExecutionException`，调用方可以用 `getCause()` 判断原因。它和迁移前在提交任务时直接抛出的拒绝异常，处理位置不一样。
+
+这个示例限制了调用并发，也给等待许可设了超时，但没有保留原来最多排队 100 个任务的限制。短时间涌入大量请求时，仍然可能创建大量等待许可的虚拟线程。原来依赖有界队列保护内存的系统，还需要在入口限制在途请求数量，或使用有容量上限的队列、快速拒绝等方式处理过载。
+
+### 超时和任务取消还要注意什么？
+
+[`Future.get(3, TimeUnit.SECONDS)`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Future.html)从调用 `get()` 时开始限制等待时间，超时后任务可能还在运行。示例在等待超时或调用方被中断时，调用 `future.cancel(true)` 尝试取消任务，再把异常抛给上层。平台线程池同样需要处理这两种情况。
+
+这里继续抛出 `InterruptedException` 即可；如果捕获后不能继续抛出，通常需要用 `Thread.currentThread().interrupt()` 恢复中断标记，避免上层丢失中断信号。
+
+示例中的几个超时有不同的起点：200ms 用于等待许可，连接超时和 HTTP 请求超时由 HTTP 客户端处理，3 秒则用于等待整个任务的结果，期间可能包含等待许可和 HTTP 调用。它们的时间可能重叠，不能直接相加。涉及多次下游调用时，还要按请求的剩余时间分配超时预算。
+
+异常也要分清：`get()` 等待超时会直接抛出 `TimeoutException`；[`HttpRequest.Builder.timeout()`](<https://docs.oracle.com/en/java/javase/21/docs/api/java.net.http/java/net/http/HttpRequest.Builder.html#timeout(java.time.Duration)>)触发的 `HttpTimeoutException` 发生在任务内部，调用方拿到的是包装了它的 `ExecutionException`。只捕获 `TimeoutException`，处理不到 HTTP 客户端的请求超时。
+
+`cancel(true)` 依赖任务响应中断，不能保证任务立刻停止。JDK 默认的 [`HttpClient.send()` 实现](<https://docs.oracle.com/en/java/javase/21/docs/api/java.net.http/java/net/http/HttpClient.html#send(java.net.http.HttpRequest,java.net.http.HttpResponse.BodyHandler)>)在被中断时会尝试取消 HTTP 交换，但请求可能已经发到服务端，远端业务也可能继续执行。换成 JDBC 驱动或第三方 SDK 时，需要核对它们的超时和中断行为；涉及写操作，还要考虑幂等性。
+
+另外，[`ExecutorService.close()`](<https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ExecutorService.html#close()>)会等待已提交任务结束。如果在一次请求里使用 `try-with-resources` 创建执行器，即使 `get()` 已经超时，退出代码块时也可能继续等。上面的示例把执行器作为客户端成员复用，在应用关闭时统一释放。`close()` 本身没有等待时限，对停机时间有要求的服务，还需要设计有超时的关闭流程。
+
 ## Spring Boot 如何开启虚拟线程？
 
 Spring Boot 3.2 开始提供了比较直接的开关。使用 Java 21 或更高版本时，可以在配置中开启：
@@ -448,6 +556,11 @@ I/O 密集型任务大部分时间在等待外部资源。平台线程等待时�
 
 - [JEP 444: Virtual Threads](https://openjdk.org/jeps/444)
 - [Oracle Java 21 Documentation: Virtual Threads](https://docs.oracle.com/en/java/javase/21/core/virtual-threads.html)
+- [Java 21 API: Executors](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Executors.html)
+- [Java 21 API: Future](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Future.html)
+- [Java 21 API: ExecutorService](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ExecutorService.html)
+- [Java 21 API: HttpClient](https://docs.oracle.com/en/java/javase/21/docs/api/java.net.http/java/net/http/HttpClient.html)
+- [Java 21 API: HttpRequest.Builder](https://docs.oracle.com/en/java/javase/21/docs/api/java.net.http/java/net/http/HttpRequest.Builder.html)
 - [JEP 491: Synchronize Virtual Threads without Pinning](https://openjdk.org/jeps/491)
 - [JEP 506: Scoped Values](https://openjdk.org/jeps/506)
 - [Spring Boot Reference Documentation: Virtual threads](https://docs.spring.io/spring-boot/reference/features/spring-application.html#features.spring-application.virtual-threads)
