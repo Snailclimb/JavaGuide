@@ -107,7 +107,7 @@ GraphRAG 题集中在实体关系、多跳推理和全局问题，也会追问�
 
 ## 知识库更新与评测
 
-相关内容：[《RAG 知识库文档如何更新：增量更新、版本控制、去重与全量重建》](../rag/rag-knowledge-update.md)、[《AI 应用评测体系：从 Golden Set 构建到线上灰度闭环》](../llm-basis/llm-evaluation.md)
+相关内容：[《RAG 知识库文档如何更新：增量更新、版本控制、去重与全量重建》](../rag/rag-knowledge-update.md)、[《RAG 评测：从离线数据集到线上可观测性》](../rag/rag-evaluation.md)、[《AI 应用评测体系：从 Golden Set 构建到线上灰度闭环》](../llm-basis/llm-evaluation.md)
 
 知识库上线后，文档、权限、Embedding 模型和 Chunk 策略都会变化。更新题关注数据与索引如何保持一致，评测题则要求把检索质量和生成质量分开观察。
 

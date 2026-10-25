@@ -74,6 +74,7 @@ export const ai = arraySidebar([
       },
       { text: "GraphRAG 详解", link: "graphrag" },
       { text: "RAG 检索优化", link: "rag-optimization" },
+      { text: "RAG 评测与线上可观测性", link: "rag-evaluation" },
     ],
   },
   {

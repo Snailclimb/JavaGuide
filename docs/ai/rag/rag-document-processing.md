@@ -10,21 +10,17 @@ head:
 
 RAG 检索前要先把 PDF、Word、Excel 或扫描件转换成可检索内容。多栏 PDF 的阅读顺序、表格的行列关系、标题层级和 OCR 错误如果在这一步处理错了，后续更换 Embedding 模型或向量数据库也无法恢复丢失的信息。
 
-本文会依次说明文档上传、解析、切分、校验和多模态入库的做法与限制。
-
-> **术语约定**：本文中 "Chunking" 与“切分”、"Embedding" 与“嵌入”、"Chunk" 与“块” 含义相同，统一使用中文表述以保持可读性。
+本文按文档从上传、解析、切分、校验到多模态入库的顺序，说明各环节的工程做法与边界。
 
 ## 文档从上传到入库要经过哪些环节？
 
-在说具体策略之前，先把链路画清楚。文档从上传到进入向量库，中间要经过至少六个环节：
+文档从上传到进入向量库，中间至少要经过六个环节：
 
 ![RAG 文档处理总链路：上传前半段决定了后半段效果上限](https://oss.javaguide.cn/github/javaguide/ai/rag/rag-document-processing-overall-link.png)
 
-这张图里有个容易忽略的点：质量校验不应该只发生在入库之后。在 Chunking 阶段做完采样校验，能提前发现问题，避免把低质量数据大批量写入向量库。
+质量校验不能留到入库之后才做。在解析和 Chunking 阶段加入分层抽样校验，可以提前拦截损坏文件、乱码和异常切分，避免低质量数据大批量写入向量库。
 
-> 注：本图简化展示了 Chunking 阶段的校验，完整的分层校验策略见后文“如何设计分层校验策略”章节，涵盖格式校验、解析校验和 Chunking 校验三层。
-
-每个环节的核心风险：
+各环节的常见问题与下游影响如下：
 
 | 环节        | 典型问题                           | 最终影响                   |
 | ----------- | ---------------------------------- | -------------------------- |
@@ -36,65 +32,55 @@ RAG 检索前要先把 PDF、Word、Excel 或扫描件转换成可检索内容�
 | Metadata    | 没保存来源、页码、版本、权限       | 无法过滤、无法引用         |
 | 入库        | 向量维度不一致、Token 超限         | 检索失败、索引损坏         |
 
-Embedding 模型和向量库只能处理输入给它们的内容。多栏 PDF 的阅读顺序错乱、表格列关系丢失或 OCR 错字一旦进入索引，后续检索无法从向量中还原原始结构。
+Embedding 模型和向量库只能处理输入给它们的文本。多栏 PDF 的阅读顺序错乱、表格列关系丢失或 OCR 错字一旦进入索引，检索阶段无法从向量中还原原始结构。
 
 ## 如何选择合适的 Chunking 策略？
 
 ![如何选择合适的切分策略？](https://oss.javaguide.cn/github/javaguide/ai/rag/rag-document-processing-chunking-strategy.png)
 
-### 固定长度切分：够用但不完美
+### 固定长度切分：建立评测基线
 
-固定长度切分只需要设定块大小和重叠量。例如，每 1000 个 Token 切一块，相邻块之间重叠 200 Token。
+固定长度切分只需设定块大小（`chunk_size`）和相邻块重叠量（`chunk_overlap`），例如每 512 个 Token 切一块，相邻块重叠 50 到 100 个 Token。
 
-这种方式实现简单、行为可预测，在短文档和 FAQ 类场景下效果不差。但它的硬伤也很明显：它不懂什么是段落、什么是表格、什么是代码块。
+这种方式实现简单、切分耗时极低，在短文档和单条 FAQ 场景下可以直接作为评测基线。它的局限在于不感知段落、表格和代码块边界。
 
-把固定长度切分作为评测基线后，才能判断递归切分带来的收益是否覆盖额外复杂度。比较时应固定文档集和问题集，同时观察召回率、上下文完整性和索引成本；其他知识库上的百分点差异不能直接套用。
+举个例子，某段售后政策写着：
 
-举个例子，一段政策文档里写着：
+> 除以下情况外，均可申请七天无理由退货：（一）定制商品；（二）鲜活易腐商品；（三）在线下载的数字化商品……
 
-> “除以下情况外，均可申请七天无理由退货：（一）定制商品；（二）鲜活易腐商品；（三）在线下载的数字化商品...”
+如果这个列表刚好跨在固定长度的切分边界上，前一块只剩“除以下情况外，均可申请七天无理由退货”，后一块只有“（一）定制商品……”。无论召回哪一块，上下文都不完整，模型很容易漏掉限制条件。评估更复杂的切分方案前，可以先用固定长度切分跑通问题集，再看结构化切分能否显著改善这类边界断句。
 
-如果这个列表刚好跨在 1000 Token 的边界上，前一块可能只有“除以下情况外，均可申请七天无理由退货”，后一块只有“（一）定制商品...”。单独看哪个都不完整，模型很容易断章取义。
+### 递归字符切分：保留段落与句子边界
 
-这类边界问题正是固定长度方案需要与其他策略对比的原因。
+递归字符切分（Recursive Character Splitting）按一组分隔符优先级（如 `["\n\n", "\n", "。", " ", ""]`）逐层尝试。只有当一个自然段落超过目标块大小时，才会退一步按换行或句号继续拆分，从而在受控的 Token 范围内尽量保持章节、段落和句子的完整。
 
-### 递归字符切分：保留层级结构
+标题层级不规范、段落长短不一的文档（如技术博客、产品手册和研究报告）通常优先采用这种方案。LangChain 的 `RecursiveCharacterTextSplitter` 是典型实现，通用中文或英文技术文档可以从 400–800 Token 的块大小和 10%–15% 的重叠率开始测试；针对代码文件，则应使用 `RecursiveCharacterTextSplitter.from_language(Language.PYTHON, ...)` 等语言感知切分器，优先沿着 `class`、`def` 等语法边界切分，避免把单个函数体从中间截断。
 
-递归切分（Recursive Character Splitting）按一组优先级分隔符逐层尝试：先保留段落，段落仍超长再按句子处理，最后才使用空格等更细的边界。这样产生的块仍受目标大小约束，但会优先保留章节、段落和句子的边界。
+### 语义切分：按主题边界聚合
 
-标题层级不完整、段落长度差异明显的文档可以纳入这类方案的评测范围，例如技术博客、产品手册和研究报告。是否采用仍取决于它在当前问题集上的结果。
+语义切分（Semantic Chunking）不直接依赖固定字符数，而是先用句子分隔符拆出句子列表，计算相邻句子或滑窗的 Embedding 余弦距离，当语义距离突变超过阈值（如百分位阈值或标准差阈值）时才断开，把语义连贯的句子归入同一块。
 
-LangChain 的 `RecursiveCharacterTextSplitter` 是这种思路的典型实现。对于 Python 代码这类结构化内容，使用约 100 Token 的块大小和约 15 Token 的重叠，能在上下文精度和召回率之间取得不错的平衡。注意：此参数针对代码文档优化，通用文本文档建议使用 400-512 Token。
+这种策略的代价是离线构建阶段必须对大量句子计算 Embedding，索引耗时和成本明显高于字符切分。如果未配置最小与最大块长约束（`min_chunk_size` / `max_chunk_size`），主题频繁切换的位置会产生只有一两句话的极小块，单一主题长段落又可能超出上下文预算。上线前需要检查分块后的长度均值、P95 和过小块占比。
 
-### 语义切分：按意义分，但有代价
+### 按文档结构切：复用版面与语法边界
 
-语义切分先计算句子或段落之间的相似度，再把连续、相近的内容归入同一块，而不是直接遵循字符数或标题边界。
+当文档本身具备清晰的版面或语法结构时，直接沿结构边界切分通常比纯字符统计更稳。
 
-它需要额外生成句子或段落的 Embedding。没有最小块约束时，某些主题转折处只会留下一个或两个句子的块，检索命中后仍不足以支持回答。
+在金融财报、法律合同等版式固定的文档中，单页往往对应一个相对独立的主题单元。NVIDIA 针对金融报告和法律文档的一组基准测试显示，按页面切分（Page-Level Chunking）的平均准确率为 0.648，方差也低于固定 Token 切分。但页面级切分并非在所有数据集上都占优：在 FinanceBench 数据集上，1024-Token 切分的准确率（0.579）就略高于页面级切分（0.566）。如果 PDF 只是普通 Word 文档随意导出的流式跨页排版，分页符本身不具备语义边界，按页切分并不会带来收益。此外，事实型查询通常偏好 256–512 Token 的细粒度块，而跨段落分析型查询更适合 1024+ Token 或页面级切分。
 
-阈值与 `min_chunk_size` 会改变块大小分布。可从 200-400 Token 的候选范围开始，随后检查最小值、均值、分位数和过小块占比，并由本地评测确定参数。
+常见文档结构与起步切分方式如下：
 
-### 按文档结构切：天然语义边界
+| 文档类型 | 推荐切分方式                  | 常用工具 / 思路                                             |
+| -------- | ----------------------------- | ----------------------------------------------------------- |
+| Markdown | 按标题层级（H1/H2/H3）切      | `MarkdownHeaderTextSplitter` + 超长章节二次递归切分         |
+| HTML     | 按语义标签切（h1~h6、p、div） | `HTMLHeaderTextSplitter` / `HTMLSectionSplitter`            |
+| PDF      | 按章节标题、表格或页面切      | Docling、LlamaParse、`chunk_by_title`                       |
+| 代码     | 按语法树（AST）、类、函数切   | Tree-sitter、`RecursiveCharacterTextSplitter.from_language` |
+| 法规合同 | 按编、章、节、条、款切        | 正则结构识别 + 层级路径回填                                 |
 
-金融报告、法律文档等材料中，页面往往对应一个可阅读的版式单元。NVIDIA 的一组测试中，Page-Level Chunking（按页面切分）在这两类文档上的平均准确率为 0.648，方差也最低；这说明页面边界可以作为待验证的切分边界。
+### Parent-Child Chunk：分离召回粒度与阅读粒度
 
-不过别盲目迷信页面级切分。这个优势相对于 Token 切分其实只有 0.3-4.5 个百分点，而且在 FinanceBench 数据集上，1024-token 切分反而比页面级更优（0.579 vs 0.566）。NVIDIA 测试的文档类型（金融报告、法律文档）是分页本身就携带语义的场景——如果你的 PDF 是 Word 随便导出的那种，页面级切分不会带来额外收益。另外，查询类型也影响最优策略：事实型查询适合 256-512 Token 的小块，分析型查询适合 1024+ Token 或页面级切分。
-
-下表列出不同文档类型可用于起步评测的切分方式：
-
-| 文档类型 | 推荐切分方式                  | 实现工具                          |
-| -------- | ----------------------------- | --------------------------------- |
-| Markdown | 按标题层级（H1/H2/H3）切      | `MarkdownHeaderTextSplitter`      |
-| HTML     | 按标签层级切（h1~h6、p、div） | `HTMLHeaderTextSplitter`          |
-| PDF      | 按页或章节切                  | `chunk_by_title`、`chunk_by_page` |
-| 代码     | 按函数、类、包切              | `PythonCodeTextSplitter`          |
-| 论文     | 按章节、段落、表格切          | Layout-aware Parser               |
-
-### Parent-Child Chunk：召回和上下文的折中
-
-向量检索需要足够小的单元来区分相近主题，生成模型又需要更完整的上下文。Parent-Child Chunk 将这两个对象分开处理。
-
-例如，可将约 300 Token 的子块写入向量索引，并记录它所属的约 1200 Token 父段落。查询先命中子块，再按关联读取父段落作为上下文。父子块的大小、关联查询的延迟和存储成本都需要与召回结果一起评估。
+向量检索需要较小、主题聚焦的文本块来提高匹配精度，而生成模型需要包含前置条件和上下文的较长段落。Parent-Child Chunk（父子分块）将这两个目标拆开处理：用约 200–400 Token 的子块（Child Chunk）生成向量并建索引，同时通过 `parent_id` 关联到约 1000–1500 Token 的父块（Parent Chunk）或所属章节；在线检索命中子块后，按 `parent_id` 去重并拉取对应的父块送入 LLM 上下文。
 
 ```mermaid
 flowchart TB
@@ -117,318 +103,274 @@ flowchart TB
     linkStyle default stroke-width:2px,stroke:#333333,opacity:0.8
 ```
 
-这种模式在长文档、教程、政策解读、故障手册等场景下效果明显。缺点是索引存储量会增加（每个子 Chunk 都要关联父 Chunk），检索时多一次关联查询。
+这种模式在长篇技术手册、制度汇编和故障排查指南中很实用，代价是存储侧需要额外维护父块文档库（DocStore），且检索后多一次按主键批量回查。
 
-### 重叠控制：边界问题的解法
+### 重叠控制：缓解边界截断
 
-不管用哪种切分策略，块边界都是个麻烦。连续两页讲的是同一件事，上一页结尾和下一页开头被页码硬切开了，检索时两块都缺一半。
+无论采用固定长度还是递归切分，跨块边界都可能拆开同一件事。设置重叠窗口（Overlap）可以让边界附近的句子同时出现在前后两个 Chunk 中，但重叠比例过大会增加索引体积，还会让 Top-K 召回结果出现大量重复文本。
 
-重叠（Overlap）是应对这个问题的常用手段，但重叠也不是越大越好。太小了边界处语义断裂，太大了重复内容过多，浪费向量空间还增加检索噪声。它应当作为评测参数，而不是固定值。
-
-一项针对 30 个隆鼻术后问题的研究报告称，自适应切分的回答准确率为 87%，固定大小切分为 50%（p = 0.001）。这个结果来自特定医疗问题、知识库和 Gemini 1.0 Pro，只能说明该实验中自适应切分更好，不能外推为通用 RAG 的预期收益。详见[原始研究](https://pubmed.ncbi.nlm.nih.gov/41301150/)。
-
-通用文本可以从 512 Token、50-100 Token 重叠开始建立基线；代码优先按函数和类切分，法规合同按条、款、项保留法律效力单元，表格尽量保持完整。这里的数值是调参起点，不是生产默认值。
+通用文本通常可以从 512 Token 块长、50–100 Token 重叠开始建立基线；代码、法规条文和独立表格则应优先保持语法或条款单元完整，仅在单元内部超长时使用重叠切分。文献中常能看到不同切分策略带来几十个百分点准确率差异的报告（例如[一项针对 30 个医疗问答样本的实验](https://pubmed.ncbi.nlm.nih.gov/41301150/)对比了自适应切分与固定切分），但这类结论高度依赖特定语料与问题设计，落地时必须基于自有评测集确定参数。
 
 ## 什么是语义丢失，为什么会发生？
 
 ![语义丢失：上下文依赖关系被切碎](https://oss.javaguide.cn/github/javaguide/ai/rag/rag-document-processing-semantic-loss.png)
 
-语义丢失指原始文档中的关键信息在解析、清洗、切分或入库过程中被削弱或丢失。
+语义丢失是指原始文档中的前置条件、指代对象或结构关系，在解析、清洗、切分过程中被削弱或剥离，导致单看切分后的 Chunk 无法还原原意。
 
-### 语义丢失的典型场景
+### 语义丢失的四类常见场景
 
-**第一种：结构截断。** 一个完整的业务逻辑被拆到两个 Chunk 里。第一个 Chunk 讲“申请条件”，第二个 Chunk 讲“审批流程”，但中间那个关键条件“如果满足 X，则需要额外提供 Y 材料”被切在边界上，成了两个 Chunk 都有的“残缺信息”。
+1. **条件与结论分离**：一段业务规则前半部分写申请条件，后半部分写审批流程，中间的例外条款“若满足 X，需补充 Y 材料”恰好落在切分边界上，导致前后两个块各自缺失关键约束。
+2. **指代与背景丢失**：Chunk 只保留了孤立正文，丢掉了所属章节标题。模型读到“过去三年中该比例持续下降”时，无法判断“该比例”指的是某供应商的不良率还是某业务线的退货率。
+3. **表格行列关系破坏**：多行多列表格被普通文本提取器拉平为一串失去对齐的纯文本，表头、行主键与数值单元格之间的对应关系彻底丢失。
+4. **专有名词截断或断词**：英文 PDF 跨行连字符（如 `micro-\nservice`）、OCR 误识别（如把 `OAuth2` 识别成 `0Auth2`）或硬性按字符切分，把产品型号、接口名或内部代号拆碎，导致向量与关键词检索都无法命中。
 
-**第二种：上下文蒸发。** Chunk 只保留了文本内容，但丢失了它在文档里的位置信息。模型读到“在过去三年中...”时不知道这是在讲“某供应商的风险评估”还是“某客户的历史交易”，因为这些背景在切分时被丢了。
+### 为什么单块 Embedding 救不回丢失的上下文
 
-**第三种：表格结构破坏。** 一个多行多列的表格被解析成混乱的文本，列与列之间的语义关系（谁是主键、谁是从属、谁是数值）完全丢失。
+标准 Embedding 模型编码时每次只接收单个 Chunk 的文本。如果跨段落的主语、适用范围和表格表头没有保留在当前块内，生成的向量就只反映局部字面含义。
 
-**第四种：专有名词变形。** 文档里写的是“SSO 单点登录”，切分后变成了“SSO 单点...”，embedding 时专有名词被截断，检索时根本匹配不到。
+工程上可以从四个方向补齐上下文，按改造成本从低到高排列：
 
-### 为什么会丢失语义
-
-Embedding 请求只接收当前 Chunk。原文中跨段、跨页的条件、指代和表格关系若没有被保留到同一块或关联元数据中，向量表示就缺少这部分信息。
-
-因此，页面本身构成语义单元时，按页切分可能优于更细的切分：它保留了同一页面内原本相互依赖的内容。这一判断仍应放到具体文档和查询类型中验证。
-
-### 应对策略
-
-一种做法是增加检索入口：除正文外，再为 Chunk 生成摘要或可能回答的问题。用户问“钱怎么退”，文档写的是“退款申请路径”，两段文本会被同一个 Embedding 模型映射到同一向量空间，但距离和排序未必足以让原文进入 Top-K。增加问题变体可能改善这类表达差异，收益仍需用评测集确认。
-
-另一个被低估的手段是保留层级元数据。在 Metadata 里记录章节路径、父子标题、段落编号等信息，检索时可以按层级过滤，生成时也能补回上下文。这块成本低但收益大，很多团队却忽略了。
-
-如果预算允许，可以试试 Late Chunking。这是一种比较新的做法：先把完整文档通过 Transformer 编码一次，让每个 Token 的 embedding 都包含全文注意力，然后再在 embedding 空间做切分和池化。好处是每个 Chunk 的向量都保留了完整的文档上下文，缺点是计算成本高，适合文档量不大但对精度要求极高的场景。
-
-还有一种思路是用另一个 LLM 来分析文档结构，让它告诉你该怎么切（Contextual Chunking）。这种方式成本也高，但对复杂文档结构（比如嵌套表格、混合图文）的处理能力确实更强。
+1. **章节路径回填（Title / Breadcrumb Prepends）**：切分时把文档标题和各级父标题拼到每个 Chunk 开头（如 `[订单系统 > 退款规范 > 特殊商品] 正文...`），并同步写入 Metadata。这个做法几乎不增加额外算力，却能有效消除指代不明问题。
+2. **多检索入口扩充（摘要与假设问题）**：为重要 Chunk 生成简短摘要或 2–3 个可能回答的用户问题（如“钱怎么退”对应正文“退款申请路径”），将问题向量与正文向量同时关联到原 Chunk，缩小用户口语提问与严谨公文之间的表述差距。
+3. **上下文增强切分（Contextual Chunking）**：Anthropic 等团队提出的做法是在切分后调用小模型，结合整篇文档为每个 Chunk 生成 50–100 Token 的背景说明，拼接在 Chunk 前再做 Embedding 和 BM25 索引。效果提升明显，但离线构建需要额外的 LLM Token 成本，可通过 Prompt Caching 降低开销。
+4. **延迟切分（Late Chunking）**：先将整篇长文档（在长上下文 Embedding 模型窗口允许范围内，如 8192 Token）送入 Transformer 编码层，让每个 Token 的隐状态融合全文注意力，最后再按 Chunk 边界对 Token 向量做均值池化（Mean Pooling）。这种方式无需调用生成模型就能保留全文指代信息，适合支持长输入的本地 Embedding 模型。
 
 ## 如何处理结构丢失问题？
 
 ![结构丢失问题：不同格式，坑完全不一样](https://oss.javaguide.cn/github/javaguide/ai/rag/rag-document-processing-structure-loss.png)
 
-结构丢失是语义丢失的一个子集，但它的场景更具体，影响也更直接。
+不同文件格式在解析阶段丢失结构的原因各不相同，不能全部交给同一个纯文本提取器。
 
-### PDF 多栏布局
+### PDF 多栏布局与复杂表格
 
-很多 PDF 使用双栏或多栏排版，但底层文本对象的存储顺序未必等于阅读顺序。解析器如果只按对象顺序提取，可能把左栏结论接到右栏论据前面，得到顺序错乱的文本。
+PDF 本质上是版面绘制指令集合，底层文本对象的存储顺序未必等于人类的阅读顺序。双栏论文或财报如果只用基础的 PyPDF 按流顺序提取，经常把左栏上半句和右栏上半句拼在同一行；遇到跨行合并单元格或无线框财务表格时，行列错位会更严重。
 
-这类文档可以评估 Layout-Aware Parser。解析器会结合文本的物理位置（x、y 坐标）、字体大小和段落间距推断阅读顺序，LlamaParse、Docling、Marker-PDF 都提供了相关能力。
+这类文档需要引入版面感知解析器（Layout-Aware Parser），先通过视觉模型识别标题、正文栏、表格、公式和页眉页脚的边界框（Bounding Box），还原阅读顺序后再提取内容。开源方案可以评估 Docling（内置针对表格结构的 TableFormer）、MinerU、Marker，商用或云端服务可以评估 LlamaParse、Azure Document Intelligence 等。对于合同、财报等高价值文档，如果解析出的表格列数不一或数值校验不平，应将对应页面打标转入人工复核队列。
 
-高价值文档可以用两种解析器处理并比较输出。差异较大的页面应进入人工审核或降级流程；两份输出一致也不代表一定正确，仍要抽查阅读顺序、表格结构和页码引用。
+### Word 标题层级还原
 
-还有一个容易翻车的场景：财务报表里的合并单元格。跨列的表头、跨行的数值项，如果只按文本流解析，结构会完全乱掉。这类文档别硬撑，直接上专门的表格提取工具（如 Docling 的 TableFormer 模块）。
+Word（`.docx`）文档通常依赖段落样式（`Heading 1`、`Heading 2`、正文）组织结构，但实际业务文档往往排版不规范：有的作者直接把普通段落加粗放大当标题，有的整篇只用一级标题，或者在一级标题下紧接着写二级标题而中间没有正文。
 
-### Word 标题层级
-
-Word 文档的结构通常靠标题样式体现（Heading 1、Heading 2、正文），但样式未必可靠：有的文档用加大字体的普通段落当标题，有的把正文套成 Heading 3，甚至整篇都使用 Heading 1。解析时需要同时检查样式、字体和段落位置，不能只信样式名称。
-
-如果直接按纯文本切分，标题层级会丢失。可以用 `python-docx` 或其他支持 Word 样式的解析器读取样式信息，按标题层级重建文档树。切分后把章节路径写入 Metadata，供检索和生成使用。
+解析 Word 时，不仅要读取段落样式或大纲级别，还要用栈结构维护当前的标题层级路径，防止父标题被紧随其后的子标题覆盖，或丢失第一个标题之前的导言内容：
 
 ```python
-# 读取 Word 文档并保留标题层级
 from docx import Document
+
 
 def extract_sections(doc_path):
     """
-    按 Word 文档标题层级提取章节内容
+    按 Word 标题层级提取章节内容，并保留完整的章节路径（section_path）
     """
     doc = Document(doc_path)
-    current_heading = None
+    heading_stack = []  # 元素为 (level, heading_text)
     current_content = []
 
+    def current_path():
+        return " / ".join(text for _, text in heading_stack) if heading_stack else "正文导言"
+
     for para in doc.paragraphs:
-        if para.style.name.startswith("Heading"):
-            # 保存上一个标题下的内容
-            if current_heading and current_content:
+        text = para.text.strip()
+        if not text:
+            continue
+
+        style_name = para.style.name if para.style else ""
+        if style_name.startswith("Heading"):
+            # 遇到新标题前，先输出上一段累积的正文
+            if current_content:
                 yield {
-                    "heading": current_heading,
+                    "section_path": current_path(),
                     "content": "\n".join(current_content),
                 }
-            current_heading = para.text
-            current_content = []
-        else:
-            if para.text.strip():
-                current_content.append(para.text)
+                current_content = []
 
-    # 处理最后一个章节
-    if current_heading and current_content:
+            # 解析标题级别（如 "Heading 2" -> 2），弹出栈中同级或更深层级的旧标题
+            parts = style_name.split()
+            level = int(parts[1]) if len(parts) > 1 and parts[1].isdigit() else 1
+            while heading_stack and heading_stack[-1][0] >= level:
+                heading_stack.pop()
+            heading_stack.append((level, text))
+        else:
+            current_content.append(text)
+
+    if current_content:
         yield {
-            "heading": current_heading,
+            "section_path": current_path(),
             "content": "\n".join(current_content),
         }
 ```
 
 ### Excel 字段关联
 
-Excel 的字段关系可能由表头、合并单元格、颜色和公式共同表达，单独读取单元格并不能得到完整记录。
+Excel 的单元格含义由行表头、列表头、合并单元格和 Sheet 名称共同决定。如果把单元格拆散成纯文本，字段名与数值的对应关系就会断开。
 
-例如，把每个单元格独立写入索引，会切断字段名、数值和同一行记录之间的关联。应先确定数据区域与表头，再决定生成何种检索对象。
+处理 Excel 或 CSV 时，应先识别有效数据区域与多级表头，再按文档用途转换：
 
-正确的做法取决于 Excel 的用途：
+- **明细与统计报表**：将每一行（或一组聚合记录）拼接为包含完整表头键值对的 JSON 或 Markdown 行记录，并附上 Sheet 名称、统计口径和单位。
+- **配置与参数映射表**：将“参数名 - 默认值 - 说明”组装为自包含的条目文本。
+- **大规模数值表**：如果用户高频问题涉及求和、同比计算或条件筛选，单纯靠向量检索文本块很难算准，建议将结构化表同步写入关系型数据库，通过 Text2SQL 或工具调用查询。
 
-- 数据表格（财务报表、统计报表）：按行或按数据区域提取为结构化 JSON，每行作为一条记录。
-- 配置表格（参数表、映射表）：把表头和值配对提取，保留字段名。
-- 混合文档（既有说明文字又有表格）：文字部分按段落处理，表格部分按结构化数据处理。
+### 扫描件的 OCR 质量控制
 
-### 扫描件的 OCR 质量
+扫描版 PDF 和图片文档依赖 OCR 转成文本，识别准确率受分辨率、印章遮挡、倾斜度和手写批注影响很大。常见错误集中在三处：字符混淆（如数字 `0` 与字母 `O`、数字 `1` 与字母 `l`），这会直接导致产品型号、合同编号检索失效；表格框线断裂导致跨列串行；双栏或批注与正文混排导致段落错乱。
 
-扫描件通过 OCR 转成数字文本，质量取决于扫描分辨率、字体、版面、语言和纸张背景。处理链路应默认 OCR 结果可能出错，并为关键字段设置校验。
-
-OCR 结果需要分别检查字符、表格和段落三个层面。数字 0 与字母 O、繁简体等字符误识别会影响产品编号、身份证号等关键字段；表格线识别不准会使行列错位；不同段落被合并后，原有上下文也会消失。
-
-OCR 引擎要按语言、版面类型、部署方式和实测准确率选择，Tesseract 4.x+、Google Document AI、AWS Textract 都可以作为候选。关键文档可使用双引擎对比：不一致的位置优先人工复核，但一致也不等于正确。数值密集型文档还要增加业务一致性校验，例如列求和能否对上总计、编号是否符合校验规则。
+处理扫描件时，可以在 OCR 前先做图像纠偏与去噪，选用支持版面分析的 OCR 引擎（如 PaddleOCR、Surya、Google Document AI 或 AWS Textract）。对型号、身份证号、金额等关键字段，入库前应配合正则表达式或“分项之和等于合计”等业务规则校验，校验失败的页面触发告警或人工核对。
 
 ## 如何设计分层校验策略？
 
 ![分层校验策略：没有质检的管线，不是生产级管线](https://oss.javaguide.cn/github/javaguide/ai/rag/rag-document-processing-hierarchical-verification-strategy.png)
 
-不是所有文档都能成功解析，也不是所有解析结果都能用。RAG 管线必须有降级处理机制，否则低质量数据会污染整个知识库。
+生产环境中的上传文档质量参差不齐，文档处理管线必须在上传、解析和切分三个阶段设置校验关卡，并为失败文档准备明确的降级路径。
 
-### 校验分层
+### 三道校验关卡
 
-校验可以分成三道关卡，每道处理不同问题。
-
-先是格式校验。文件上传后立刻检查扩展名、MIME 类型、文件大小。这一层解决的是“恶意上传”和“参数错误”问题，拦截成本最低，效果最快。
+第一道是上传阶段的文件格式校验，在落盘或进入解析队列前检查扩展名、真实 MIME 类型（基于文件魔数 Magic Bytes，如 Apache Tika 检测，防止把 `.exe` 或损坏压缩包改名为 `.pdf`）、文件大小和加密状态。
 
 ```java
 public class DocumentValidationException extends RuntimeException {
-    private final ValidationErrorType errorType;
-    private final String fileName;
-    private final Object rejectedValue;
+  private final ValidationErrorType errorType;
+  private final String fileName;
+  private final Object rejectedValue;
 
-    public enum ValidationErrorType {
-        FILE_TOO_LARGE,           // 文件大小超限
-        UNSUPPORTED_FORMAT,       // 不支持的格式
-        MIME_TYPE_MISMATCH,       // 扩展名与实际类型不符
-        CORRUPTED_FILE,           // 文件损坏
-        EMPTY_FILE,               // 空文件
-        ENCODING_ERROR            // 编码错误
-    }
+  public enum ValidationErrorType {
+    FILE_TOO_LARGE,     // 文件大小超限
+    UNSUPPORTED_FORMAT, // 不支持的格式
+    MIME_TYPE_MISMATCH, // 扩展名与实际 MIME 类型不符
+    CORRUPTED_FILE,     // 文件损坏或加密无法读取
+    EMPTY_FILE,         // 空文件
+    ENCODING_ERROR      // 字符编码异常
+  }
 }
 ```
 
-解析完成后，需要检查是否成功提取内容、内容长度是否处于合理范围，以及是否存在明显乱码。
+第二道是解析结果校验。解析器返回文本后，检查提取出的字符数是否为空或异常偏短（例如 50 页的扫描版 PDF 用纯文本解析器只抽出几十个空白字符，说明需要转走 OCR 分支），并统计乱码字符（如 `` 及不可见控制字符）比例。
 
 ```java
 public class ParseResultValidator {
 
-    public ValidationResult validate(DocumentParseResult parseResult) {
-        List<String> errors = new ArrayList<>();
+  public ValidationResult validate(DocumentParseResult parseResult) {
+    List<String> errors = new ArrayList<>();
 
-        // 空内容检查
-        if (parseResult.getContent().isEmpty()) {
-            errors.add("解析结果为空");
-        }
-
-        // 乱码率检查
-        double garbledRate = calculateGarbledRate(parseResult.getContent());
-        if (garbledRate > 0.05) {  // 超过 5% 乱码
-            errors.add("乱码率过高: " + String.format("%.2f%%", garbledRate * 100));
-        }
-
-        // 内容长度异常检查
-        int contentLength = parseResult.getContent().length();
-        if (contentLength < 100) {
-            errors.add("内容过短，可能解析失败");
-        }
-        if (contentLength > 10_000_000) {  // 超过 10MB 文本
-            errors.add("内容过长，需要分片处理");
-        }
-
-        // 结构完整性检查（如果有结构信息）
-        if (parseResult.hasStructure()) {
-            validateStructure(parseResult.getStructure())
-                .forEach(errors::add);
-        }
-
-        return new ValidationResult(errors);
+    if (parseResult.getContent().isEmpty()) {
+      errors.add("解析结果为空，可能是纯图片扫描件或加密文档");
     }
+
+    double garbledRate = calculateGarbledRate(parseResult.getContent());
+    if (garbledRate > 0.05) { // 超过 5% 乱码字符
+      errors.add("乱码率过高: " + String.format("%.2f%%", garbledRate * 100));
+    }
+
+    int contentLength = parseResult.getContent().length();
+    if (contentLength < 50) {
+      errors.add("有效内容过短，可能解析不完整");
+    }
+    if (contentLength > 10_000_000) {
+      errors.add("单文档文本超过上限，需按章节拆分处理");
+    }
+
+    if (parseResult.hasStructure()) {
+      validateStructure(parseResult.getStructure()).forEach(errors::add);
+    }
+
+    return new ValidationResult(errors);
+  }
 }
 ```
 
-最后一道是 Chunking 校验。切分完成后抽样检查 Chunk 质量：块大小分布是否合理、边界是否在合理位置、是否有明显的截断问题。
+第三道是切分质量校验。Chunking 完成后，检查生成的块数量、最小/最大长度、长度标准差，排查是否出现了大量只有几个字符的碎片块，或者超出 Embedding 模型输入上限的超大块。
 
 ```java
 public class ChunkingQualityReport {
-    private final int totalChunks;
-    private final int totalCharacters;
-    private final double averageChunkSize;
-    private final int minChunkSize;
-    private final int maxChunkSize;
-    private final double chunkSizeStdDev;
+  private final int totalChunks;
+  private final int totalCharacters;
+  private final double averageChunkSize;
+  private final int minChunkSize;
+  private final int maxChunkSize;
+  private final double chunkSizeStdDev;
 
-    // 警告项
-    private final List<String> warnings = new ArrayList<>();
-    private final List<String> errors = new ArrayList<>();
+  private final List<String> warnings = new ArrayList<>();
+  private final List<String> errors = new ArrayList<>();
 
-    public boolean isAcceptable() {
-        // Chunk 大小标准差过大说明分布不均匀
-        if (chunkSizeStdDev > averageChunkSize * 0.5) {
-            warnings.add("Chunk 大小分布不均匀，标准差过大");
-        }
-
-        // 最小块过小可能是切分异常
-        if (minChunkSize < 50) {
-            errors.add("存在过小的 Chunk，可能切分异常");
-        }
-
-        // 最大块过大可能截断失败
-        if (maxChunkSize > 5000) {
-            warnings.add("存在过大的 Chunk，可能超出模型上下文");
-        }
-
-        return errors.isEmpty();
+  public boolean isAcceptable() {
+    if (chunkSizeStdDev > averageChunkSize * 0.5) {
+      warnings.add("Chunk 大小分布波动较大，请检查结构分隔符是否匹配当前文档");
     }
+
+    if (minChunkSize < 20) {
+      warnings.add("存在过小的碎片 Chunk，建议合并到相邻块");
+    }
+
+    if (maxChunkSize > 5000) {
+      errors.add("存在超长 Chunk，可能超出 Embedding 模型 Token 上限");
+    }
+
+    return errors.isEmpty();
+  }
 }
 ```
 
-### 降级处理策略
+### 异常降级策略
 
-| 校验失败类型  | 处理策略                                  |
-| ------------- | ----------------------------------------- |
-| 空文件        | 拒绝入库，记录异常日志，通知上传者        |
-| 格式不支持    | 拒绝入库，建议转换格式                    |
-| 解析失败      | 进入人工处理队列，或使用备用解析器重试    |
-| 乱码率高      | 尝试 OCR 或格式转换，仍失败则降级为纯文本 |
-| Chunking 异常 | 改用固定长度切分作为兜底方案              |
-| 部分解析成功  | 提取可解析部分入库，对不可解析部分打标签  |
+校验未通过时，不能静默丢弃失败页面，而应按失败原因分流：
 
-降级的目标是保留可确认正确的内容，而不是悄悄吞掉失败页面。一份 100 页的 PDF 如果有 10 页解析失败，可以只在业务允许不完整索引时接收其余页面，同时记录缺页范围、阻止系统对缺失部分作完整性承诺，并进入重试或人工复核；合同、法规等要求完整性的材料应暂缓发布。
+| 校验失败类型     | 处理策略                                                   |
+| ---------------- | ---------------------------------------------------------- |
+| 空文件或格式伪造 | 直接拒绝入库，记录审计日志并向调用方返回明确错误码         |
+| 纯图片扫描件 PDF | 自动路由至 OCR + 版面分析管线重新提取                      |
+| 复杂解析器失败   | 切换备用解析器重试，仍失败则转入人工复核队列               |
+| 结构化切分异常   | 合并碎片块，或回退到带章节前缀的递归字符切分               |
+| 部分页面解析失败 | 记录缺页页码并标记文档状态为“部分可用”；合同法规类暂缓发布 |
+
+一份 100 页的文档如果有 10 页表格解析失败，绝不能把剩下 90 页直接标为“完整入库”。对于合同、法规、财务报告等要求证据完整的资料，存在缺页时应阻断上线并通知人工处理；对于允许部分入库的普通参考资料，也必须在文档元数据中记录缺失页码，防止系统对缺失范围给出确定性回答。
 
 ## 如何处理多模态内容？
 
-传统 RAG 只处理文本，但真实世界的文档里还有大量图片、表格、图表。如果这些内容被忽略，知识库就是不完整的。
+真实企业文档中包含大量架构图、界面截图、流程图、跨页表格和统计图表。如果解析管线直接丢弃非文本元素，涉及图表和流程的提问就会因为缺少证据而答错。
 
-### 图片内容：三种处理路径
+### 图片内容的三条处理路径
 
-图片在文档里的作用有两类：信息载体（截图、流程图、照片）和装饰性内容（页眉、logo、水印）。处理策略完全不同。
+首先要在解析阶段过滤掉页眉 Logo、背景底纹、纯装饰性图标等无信息量图片（可按尺寸阈值、纵横比或同一位置跨页重复出现频率剔除），只对承载业务信息的截图、架构图和流程图做入库处理。常用方案有三种：
 
-一种做法是用 CLIP 向量化 + 原始图片回传。用支持图文对齐的 CLIP 模型把图片转成向量，检索时命中图片向量后，再从对象存储拉取原图并交给多模态 LLM。CLIP 更擅长自然图片，对包含密集文字、坐标轴和复杂表格的截图或图表，需要单独评测。
-
-另一种思路是用 MLLM 描述 + 文本检索。不用 CLIP 向量化图片，而是用多模态大模型生成图片的文本描述，把描述文本和原始图片一起存储。检索时匹配文本，命中后再用原始图片做生成增强。对截图、流程图和仪表盘，这种做法可能比通用 CLIP 表示包含更多文字和结构信息，但模型描述也可能漏字段或读错数值，需要抽样评测。
-
-多向量索引（Multi-Vector Retriever）会先用 MLLM 生成图片的结构化摘要（如 "This is a flowchart showing the order processing pipeline..."），摘要进入文本向量索引，原图存入 docstore。检索时先命中摘要，再通过 `doc_id` 关联原图，交给多模态 LLM 生成。
+1. **多模态 Embedding（如 CLIP / SigLIP / ColPali）+ 原图回传**：将图片直接编码进图文对齐向量空间（或像 ColPali 那样直接对文档页面图像生成多向量表示），查询时用文本向量匹配图片向量，命中后将原图从对象存储取出交给多模态大模型（MLLM）作答。需注意通用 CLIP 模型对自然图像效果较好，但对包含密集中文小字、复杂连线的系统架构图或报错截图区分度有限。
+2. **MLLM 生成图像详述 + 文本检索**：离线入库时调用视觉大模型（结合图片上下文标题与正文中对该图的引用段落）生成详细的文本描述，将描述文本写入常规向量库和全文索引，同时在 Metadata 中保留原图对象存储 URI。
+3. **多向量索引（Multi-Vector Retriever）**：将上述第二步工程化——向量索引中存放便于检索的图片结构化摘要（包含图中文字、节点流向、核心结论），DocStore（如对象存储 + 键值库）存放原始高清图。检索命中摘要后，根据 `doc_id` 取回原图连同文本上下文一并送入多模态 LLM。
 
 ```python
 # LangChain 多向量检索示例
+# 注：LangChain 0.3 可从 langchain.retrievers.multi_vector 导入；LangChain 1.0+ 迁移至 langchain_classic
 from langchain_classic.retrievers.multi_vector import MultiVectorRetriever
 from langchain_core.stores import InMemoryByteStore
 
-# 摘要向量存储
-vectorstore = Chroma(collection_name="summaries", embedding_function=OpenAIEmbeddings())
+# 向量库存储图像/表格的文本摘要，用于检索匹配
+vectorstore = Chroma(
+    collection_name="multimodal_summaries",
+    embedding_function=OpenAIEmbeddings(),
+)
 
-# 原始文档存储
+# DocStore 存储原始图片字节或完整表格内容（生产环境应替换为 S3 + Redis/PostgreSQL）
 docstore = InMemoryByteStore()
 
 retriever = MultiVectorRetriever(
     vectorstore=vectorstore,
     byte_store=docstore,
     id_key="doc_id",
-    search_kwargs={"k": 5}
+    search_kwargs={"k": 5},
 )
-# 注意：InMemoryByteStore 仅用于演示，生产环境应替换为持久化存储（如 Redis、MongoDB、S3 等）
 ```
 
-### 表格内容：结构化抽取是核心
+### 表格内容的结构化保留
 
-表格是 RAG 里的老大难问题。传统 PDF 解析会把表格转成混乱的文本，列与列之间的关系完全丢失。
+表格一旦被当成普通连续文本切分，不仅表头和数值脱节，切分在中间的行还会彻底失去表头信息。工程上通常结合以下做法：
 
-最基础的做法是表格解析 + Markdown 化。用专门的表格解析工具（LlamaParse、Docling、TableFormer）提取表格结构，转成 Markdown 表格格式。Markdown 表格至少保留了行列关系，LLM 能更好地理解。
+1. **保留结构化格式**：利用 Docling、LlamaParse 等工具将表格还原为 Markdown 表格、HTML `<table>`（含 `rowspan` / `colspan` 合并单元格信息）或 JSON 行数组。若单个大表超过 Chunk 长度上限，按行拆分时必须在每个子块顶部重复拼接完整表头。
+2. **生成表格语义摘要**：纯数字密集的财务或监控表格在向量空间中很难与自然语言提问对齐。可以为每个表格生成一段包含所属章节、表格标题、时间范围、统计维度与核心指标的文字摘要（例如：“华东区 2024 年度各产品线销量汇总表，包含手机 A、手机 B 在 Q1/Q2 的销量与环比增长率，单位：台”），对摘要建向量索引，命中后把完整 Markdown/JSON 表格带入生成上下文。
 
-```markdown
-| 产品名称 | Q1 销量 | Q2 销量 | 环比增长 |
-| -------- | ------- | ------- | -------- |
-| 手机 A   | 10,000  | 12,000  | +20%     |
-| 手机 B   | 8,000   | 7,500   | -6.25%   |
-```
+### 图表内容（Charts）的上下文绑定
 
-如果表格是数值型的（比如财务报表），转成结构化 JSON 格式更利于数值检索和计算。可以用自然语言查询表格内容："Which product had the highest growth in Q2?"
-
-```json
-{
-  "table_name": "Sales Quarterly Report",
-  "headers": ["Product", "Q1 Sales", "Q2 Sales", "Growth Rate"],
-  "rows": [
-    { "product": "Phone A", "q1": 10000, "q2": 12000, "growth": "20%" },
-    { "product": "Phone B", "q1": 8000, "q2": 7500, "growth": "-6.25%" }
-  ]
-}
-```
-
-表格描述应包含所在章节、标题、单位和时间范围，使检索端能区分名称相同但业务范围不同的表格。是否保留这些字段，应通过检索评测确认，而不是只看描述是否更完整。
-
-比如同样是销售数据表，在“华东区年度总结”章节下的描述应该是：
-
-> “华东区 2024 年度各产品线销量汇总表，展示了手机 A 和手机 B 在 Q1/Q2 的销售数据及环比增长率，用于分析产品市场表现和制定下季度策略。”
-
-哪种描述更适合当前知识库，需要在相同问题集上比较。
-
-### 图表内容：Caption 和上下文同样重要
-
-图表不能只按图片处理。标题、坐标轴、图例、单位、数据来源和所属章节共同限定了数据含义；缺少其中任何一项，都可能把同一组数值解释错。
-
-Caption 应写清对象、时间范围、度量单位和可验证的图中信息。例如，“折线图展示 2020-2024 年公司季度营收趋势，Q4 2024 营收达到峰值 12.5 亿元”比 “Revenue chart” 多出了检索和生成所需的限定条件。图表附近的正文通常包含作者解读，也应保留关联关系。
+折线图、柱状图和饼图的含义高度依赖图题（Caption）、坐标轴名称、图例、度量单位以及正文中引用该图的分析段落。离线调用 MLLM 提取图表信息时，应把图表所在页的图题和前后相邻段落一并传入，要求模型输出结构化描述（包含统计对象、时间区间、单位、极值点与趋势结论）及对应的数据表，避免单看裸图把“百万元”误读为“元”或弄混系列图例。
 
 ### 完整的多模态 RAG 链路
+
+将文本、表格和图片的解析、摘要索引与原始素材回传串联起来，完整的多模态处理架构如下：
 
 ```mermaid
 flowchart LR
@@ -446,15 +388,15 @@ flowchart LR
     TableBranch[表格分支]:::process
     ImageBranch[图片分支]:::process
 
-    TextSum[文本摘要]:::llm
-    TableSum[表格结构化]:::process
+    TextSum[文本切块与章节前缀]:::llm
+    TableSum[表格摘要与结构化]:::process
     ImageSum[图片 MLLM 描述]:::llm
 
-    VecIndex[(向量索引)]:::storage
-    DocStore[(DocStore<br/>原始素材)]:::storage
+    VecIndex[(向量与全文索引)]:::storage
+    DocStore[(DocStore<br/>原始段落/表格/原图)]:::storage
 
     Query[用户 Query]:::input
-    Retrieve[多向量检索]:::process
+    Retrieve[多向量混合检索]:::process
     Synthesize[多模态 LLM<br/>综合生成]:::llm
     Answer[最终答案]:::success
 
@@ -466,41 +408,40 @@ flowchart LR
     TextBranch --> TextSum --> VecIndex
     TextBranch -->|原文| DocStore
     TableBranch --> TableSum --> VecIndex
-    TableBranch -->|原始表格| DocStore
+    TableBranch -->|完整表格| DocStore
     ImageBranch --> ImageSum --> VecIndex
     ImageBranch -->|原始图片| DocStore
 
     Query --> Retrieve
     VecIndex --> Retrieve
-    Retrieve -->|命中摘要| DocStore
+    Retrieve -->|按 doc_id 回查| DocStore
     DocStore -->|原始素材| Synthesize
-    Retrieve -->|命中摘要| Synthesize
+    Retrieve -->|命中上下文| Synthesize
     Synthesize --> Answer
 
     linkStyle default stroke-width:2px,stroke:#333333,opacity:0.8
 ```
 
-这套链路的思路是：摘要用于检索，原文用于生成。向量索引里存的是结构化摘要（或描述），而原始的多模态内容存在 docstore 里，检索命中的时候再取出来交给多模态 LLM 综合。
+这套链路的核心设计是检索表示与生成素材分离：向量与全文索引中存储易于语义匹配的文本块、表格说明和图片描述；DocStore 中保留未压缩的完整表格、父段落与高清原图，检索命中后再按 `doc_id` 组装给生成模型。
 
 ## 如何从零搭建文档处理管线？
 
 ![如何从零搭一套企业级文档处理管线？](https://oss.javaguide.cn/github/javaguide/ai/rag/rag-document-processing-build-enterprise-document-processing-pipeline-from-scratch.png)
 
-格式覆盖范围可以按风险递增。先验证 Markdown、HTML、TXT 的解析、切分、索引和入库，再扩展到 PDF、多栏页面、表格和图像。每新增一种格式，都应检查标题层级、Chunk 大小分布和 Metadata 是否符合预期。
+搭建企业文档处理管线时，建议按格式复杂度分阶段推进，不要一开始就在所有文件上叠加高成本的视觉模型：
 
-PDF 的表格、图表和多栏依赖 Layout-Aware Parser（如 LlamaParse 或 Docling）。验证样本要覆盖实际会出现的版式；样本数量取决于版式种类和出错风险，而不是某个固定数目。
-
-图片和表格占比较高的材料（如财务报告、产品手册）需要尽早纳入多模态处理。以文本为主的知识库可以后置这部分工作，但入库前仍应抽样检查：用真实 Query 比较解析前后的内容保真度、召回结果和答案引用。
-
-## 上线前检查
-
-上线前至少抽查解析后的阅读顺序、表格行列、标题层级、页码引用和 OCR 关键字段；同时记录 Chunk 大小分布、来源、版本、权限与章节路径。解析器或切分策略变更后，应使用同一批问题重新评测召回和答案引用，不能只检查任务是否执行成功。
+1. **阶段一（结构化纯文本基线）**：先打通 Markdown、HTML、规范 Word 文档的解析，实现基于标题层级的递归切分，把 `doc_id`、`section_path`、更新时间、权限 ACL 写入 Metadata，跑通基础评测集。
+2. **阶段二（复杂版面 PDF 与表格治理）**：针对多栏 PDF、合并单元格表格和扫描件，接入 Docling、MinerU 或 LlamaParse 等版面感知解析器与 OCR 管线，补齐三层质量校验、超长表头重复拼接与异常文档降级队列。
+3. **阶段三（父子分块与多模态扩展）**：当坏例分析发现细粒度召回与长上下文完整性冲突时，引入 Parent-Child 分块或章节上下文增强；当业务高度依赖流程图、架构图或财报图表时，再按需接入 MLLM 图表描述与 Multi-Vector 检索。
 
 ## 总结
 
-验收时应确认解析结果仍可被追溯和正确理解：阅读顺序与表格结构没有损坏，Chunk 保留了回答所需的上下文，Metadata 可以定位来源、版本、权限和章节路径，图片与图表的关键信息没有被跳过。
+文档处理与切分决定了索引里到底有没有完整、准确的证据。上线和后续迭代解析器或切分参数时，至少需要核对四项检查：
 
-这些检查应持续放在解析器、切分策略和模型版本变更之后。检索层的效果取决于它接收到的数据，而不是单靠更换 Embedding 模型补救。
+1. **版面与结构保真**：抽查多栏 PDF 的阅读顺序、跨页表格的行列对应关系、Word/Markdown 的章节路径（`section_path`）以及扫描件关键字段的 OCR 准确率。
+2. **块粒度与上下文完整**：确认 Chunk 没有把前置条件与结论硬性截断，长表拆分保留了表头，统计并监控块长分布与碎片块比例。
+3. **Metadata 齐全可查**：每个 Chunk 都绑定了来源文档 ID、版本号、页码、章节路径和权限 ACL，支持前置过滤与答案溯源。
+4. **固定评测集回归**：每次更换解析工具或调整 `chunk_size` / `chunk_overlap` 后，都在同一批覆盖表格、跨段条件和专有名词的问题集上对比 Context Recall 与最终答案准确率。
 
 ## 参考资料
 
