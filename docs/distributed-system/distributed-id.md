@@ -540,6 +540,6 @@ Java 语言使用示例：<https://github.com/yitter/idgenerator/tree/master/Jav
 | **Snowflake**  | 高       | 趋势递增              | 中           | 大中型分布式系统，需要处理 Worker ID、时钟回拨和容量规划       |
 | **UUID v7**    | 高       | 趋势递增              | 极低         | 云原生、无中心化集群、追求开箱即用；主键场景仍建议唯一索引兜底 |
 
-不过，本文主要介绍的是分布式 ID 的理论知识。在实际的面试中，面试官可能会结合具体的业务场景来考察你对分布式 ID 的设计，你可以参考这篇文章：[分布式 ID 设计指南](./distributed-id-design)（对于实际工作中分布式 ID 的设计也非常有帮助）。
+不过，本文主要介绍的是分布式 ID 的理论知识。在实际的面试中，面试官可能会结合具体的业务场景来考察你对分布式 ID 的设计，你可以参考这篇文章：[分布式 ID 设计指南](./distributed-id-design.md)（对于实际工作中分布式 ID 的设计也非常有帮助）。
 
 <!-- @include: @article-footer.snippet.md -->
