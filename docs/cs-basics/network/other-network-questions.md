@@ -195,7 +195,7 @@ ECDHE 不直接传输共享秘密。客户端和服务端各自生成临时密�
 
 所以一句话总结：**RSA 是客户端把秘密加密送过去；ECDHE 是双方用临时密钥协商出秘密。ECDHE 支持前向安全，也因此成为现代 HTTPS 的主流方向。**
 
-详细介绍：[HTTPS 握手里的 RSA 和 ECDHE，到底差在哪？（应用层）](./https-rsa-vs-ecdhe)
+详细介绍：[HTTPS 握手里的 RSA 和 ECDHE，到底差在哪？（应用层）](./https-rsa-vs-ecdhe.md)
 
 ### ⭐️ 有了 HTTP，为什么还要 RPC？
 
