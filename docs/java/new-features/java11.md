@@ -113,7 +113,7 @@ Java 11 增加了一系列的字符串处理方法：
 //去除字符串首部空格
 " Java ".stripLeading();   // "Java "
 //去除字符串尾部空格
-" Java ".stripTrailing();  // "Java"
+" Java ".stripTrailing();  // " Java"
 //重复字符串多少次
 "Java".repeat(3);             // "JavaJavaJava"
 //返回由行终止符分隔的字符串集合。
