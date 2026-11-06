@@ -34,6 +34,7 @@ RAG 不只是把文档切块后做向量检索。这份 **RAG 专题** 面向企
 3. [RAG 向量索引算法和向量数据库](./rag-vector-store.md)，补齐向量索引和数据库选型基础。
 4. [RAG 优化：从召回、重排到上下文工程](./rag-optimization.md)，掌握召回、重排、改写和上下文压缩。
 5. [GraphRAG：用图结构补充向量检索](./graphrag.md)、[RAG 知识库文档更新策略](./rag-knowledge-update.md)，进一步理解复杂知识组织和持续更新。
+6. [RAG 评测：从离线数据集到线上可观测性](./rag-evaluation.md)，学习分别评测检索与生成，并用评测结果指导优化。
 
 ## 核心文章
 
@@ -43,6 +44,7 @@ RAG 不只是把文档切块后做向量检索。这份 **RAG 专题** 面向企
 - [RAG 优化：从召回、重排到上下文工程](./rag-optimization.md)（Hybrid Search、Query Rewrite、Rerank、上下文压缩与坏例排查）
 - [GraphRAG：用图结构补充向量检索](./graphrag.md)（实体关系抽取、社区发现、Local/Global Search 与 Neo4j 方案）
 - [RAG 知识库文档更新策略](./rag-knowledge-update.md)（增量同步、版本切换、幂等去重、全量重建与灰度回滚）
+- [RAG 评测：从离线数据集到线上可观测性](./rag-evaluation.md)（评测集构建、检索与生成指标、拒答评测、版本比较与线上可观测性）
 
 ## 高频问题
 

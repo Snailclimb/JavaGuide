@@ -232,7 +232,7 @@ HNSW 上的强过滤也有代价：在海量图谱里只保留少数租户标签
 
 当候选库已有所需信息时，先修检索链路通常比扩大写入更直接。
 
-Mem0 在 LoCoMo 上达到 91.6，较旧算法 +20 分；LongMemEval 上达到 93.4，+26 分；BEAM (1M) 上达到 64.1；每次检索约消耗 7K Token，对比全上下文方案的 25K+ 更省。详见 [Mem0 官方 benchmark](https://docs.mem0.ai/core-concepts/memory-evaluation)。
+按 [Mem0 官方基准页](https://docs.mem0.ai/core-concepts/memory-evaluation)的数据（2026-11-03 核对），其托管平台在单次检索、`top_200` 检索预算下的 Overall 分数为：LoCoMo 92.5、LongMemEval 94.4、BEAM (1M) 64.1。每次检索平均使用不足 7K Token，同页介绍的全上下文方案通常使用 25K+ Token。这些结果包含托管平台的专有优化，不能直接作为开源 SDK 的效果保证。
 
 记忆没有生效时，先看 Trace：query 怎样改写、过滤条件是否正确、哪些条目进入候选集、Reranker 如何打分。候选库确实缺少所需信息，再去改抽取规则或增加写入预算。
 
@@ -373,7 +373,7 @@ Auto Memory 会把对话中的调试方式、代码习惯和工作流偏好写�
 
 禁用 Auto Memory 可以使用 `/memory`、`autoMemoryEnabled` 配置，或设置环境变量 `CLAUDE_CODE_DISABLE_AUTO_MEMORY=1`。CI/CD 运行通常不需要沉淀临时笔记，可在该环境中关闭。
 
-Auto Memory 需要 Claude Code v2.1.59+，默认开启。
+Auto Memory 从 [Claude Code v2.1.59](https://github.com/anthropics/claude-code/releases/tag/v2.1.59) 开始提供；[官方记忆文档](https://code.claude.com/docs/en/memory#enable-or-disable-auto-memory)说明，本地会话中默认开启。
 
 ### Markdown 记忆如何分层设计？
 

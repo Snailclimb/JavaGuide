@@ -60,7 +60,7 @@ Tokenizer 版本也会改变换算结果。早期模型（如 GPT-3.5）的中�
 支持视觉输入的模型会把图片转换为内部表示，并按各自规则折算输入 Token。这个数不能只根据“有一张图”估算：
 
 - OpenAI 视觉模型会结合模型、图片尺寸和 `detail` 模式计费。以采用 512 像素分块规则的模型为例，低细节使用固定基础额度；高细节还会按缩放后的分块数量增加 Token。
-- Anthropic 按缩放后的图片像素数估算，官方给出的近似公式是 `tokens ≈ width × height / 750`。一张没有被缩放的 1024×1024 图片约为 1398 Tokens，并非固定的 5 或 85 Tokens。
+- Anthropic 按处理后的图片尺寸计算视觉 Token。官方文档给出的公式是 `tokens = ⌈width / 28⌉ × ⌈height / 28⌉`（2026-11-03 核对），即每个 28×28 像素块计为 1 个视觉 Token；超过目标模型尺寸或视觉 Token 上限的普通图片会先缩小。一张没有被缩放的 1024×1024 图片按此公式得到 1369 个视觉 Token，并非固定的 5 或 85 Tokens。
 - Gemini 对较小图片和较大图片使用不同的分块规则。官方文档中的 258 Tokens 有尺寸条件，不能直接套到任意 1024×1024 图片上。
 
 模型版本会改变图片计费规则。上线前应使用供应商提供的 Token 计算接口或官方公式，并分别覆盖缩略图、截图、长图和多图请求。可参考 [OpenAI 图片与视觉输入](https://developers.openai.com/api/docs/guides/images-vision)、[Anthropic Vision](https://platform.claude.com/docs/en/build-with-claude/vision) 和 [Gemini Token 计算](https://ai.google.dev/gemini-api/docs/tokens)。

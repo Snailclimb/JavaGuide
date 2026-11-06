@@ -725,7 +725,7 @@ MAX_RETRIES = 3 # 三次重试在可靠性和耗时之间比较均衡
 - Anthropic 官方 skill-creator：<https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md>
 - Superpowers：<https://github.com/obra/superpowers>
 - sanyuan-skills：<https://github.com/sanyuan0704/sanyuan-skills>
-- Everything Claude Code：<https://github.com/nicekid1/everything-claude-code>
+- ECC（Everything Claude Code）：<https://github.com/affaan-m/ECC>
 - skills.sh（查找现成 Skills 的平台）：<https://skills.sh/>
 
 <!-- @include: @article-footer.snippet.md -->
