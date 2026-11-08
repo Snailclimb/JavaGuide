@@ -477,6 +477,7 @@ List<Integer> list = List.of(array);
 如果你需要一个可以继续修改的集合，可以将其再包装为 `ArrayList`：
 
 ```java
+Integer[] array = {1, 2, 3};
 List<Integer> mutableList = new ArrayList<>(List.of(array));
 mutableList.add(4); // 正常执行
 ```
