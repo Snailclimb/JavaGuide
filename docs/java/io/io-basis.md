@@ -251,9 +251,9 @@ The content read from file:我是Guide。
 
 - `write(int c)` : 写入单个字符。
 - `write(char[] cbuf)`：写入字符数组 `cbuf`，等价于 `write(cbuf, 0, cbuf.length)`。
-- `write(char[] cbuf, int off, int len)`：在 `write(char[] cbuf)` 方法的基础上增加了 `off` 参数（偏移量）和 `len` 参数（要读取的最大字符数）。
+- `write(char[] cbuf, int off, int len)`：在 `write(char[] cbuf)` 方法的基础上增加了 `off` 参数（偏移量）和 `len` 参数（要写入的最大字符数）。
 - `write(String str)`：写入字符串，等价于 `write(str, 0, str.length())`。
-- `write(String str, int off, int len)`：在 `write(String str)` 方法的基础上增加了 `off` 参数（偏移量）和 `len` 参数（要读取的最大字符数）。
+- `write(String str, int off, int len)`：在 `write(String str)` 方法的基础上增加了 `off` 参数（偏移量）和 `len` 参数（要写入的最大字符数）。
 - `append(CharSequence csq)`：将指定的字符序列附加到指定的 `Writer` 对象并返回该 `Writer` 对象。
 - `append(char c)`：将指定的字符附加到指定的 `Writer` 对象并返回该 `Writer` 对象。
 - `flush()`：刷新此输出流并强制写出所有缓冲的输出字符。
