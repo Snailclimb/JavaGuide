@@ -115,7 +115,7 @@ input.close();
 
 - `write(int b)`：将特定字节写入输出流。
 - `write(byte b[ ])` : 将数组 `b` 写入到输出流，等价于 `write(b, 0, b.length)`。
-- `write(byte[] b, int off, int len)` : 在 `write(byte b[ ])` 方法的基础上增加了 `off` 参数（偏移量）和 `len` 参数（要读取的最大字节数）。
+- `write(byte[] b, int off, int len)` : 在 `write(byte b[ ])` 方法的基础上增加了 `off` 参数（偏移量）和 `len` 参数（要写入的最大字节数）。
 - `flush()`：刷新此输出流并强制写出所有缓冲的输出字节。
 - `close()`：关闭输出流释放相关的系统资源。
 
