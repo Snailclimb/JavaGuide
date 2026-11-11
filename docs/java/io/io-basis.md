@@ -115,7 +115,7 @@ input.close();
 
 - `write(int b)`：将特定字节写入输出流。
 - `write(byte b[ ])` : 将数组 `b` 写入到输出流，等价于 `write(b, 0, b.length)`。
-- `write(byte[] b, int off, int len)` : 在 `write(byte b[ ])` 方法的基础上增加了 `off` 参数（偏移量）和 `len` 参数（要读取的最大字节数）。
+- `write(byte[] b, int off, int len)` : 在 `write(byte b[ ])` 方法的基础上增加了 `off` 参数（偏移量）和 `len` 参数（要写入的最大字节数）。
 - `flush()`：刷新此输出流并强制写出所有缓冲的输出字节。
 - `close()`：关闭输出流释放相关的系统资源。
 
@@ -251,9 +251,9 @@ The content read from file:我是Guide。
 
 - `write(int c)` : 写入单个字符。
 - `write(char[] cbuf)`：写入字符数组 `cbuf`，等价于 `write(cbuf, 0, cbuf.length)`。
-- `write(char[] cbuf, int off, int len)`：在 `write(char[] cbuf)` 方法的基础上增加了 `off` 参数（偏移量）和 `len` 参数（要读取的最大字符数）。
+- `write(char[] cbuf, int off, int len)`：在 `write(char[] cbuf)` 方法的基础上增加了 `off` 参数（偏移量）和 `len` 参数（要写入的最大字符数）。
 - `write(String str)`：写入字符串，等价于 `write(str, 0, str.length())`。
-- `write(String str, int off, int len)`：在 `write(String str)` 方法的基础上增加了 `off` 参数（偏移量）和 `len` 参数（要读取的最大字符数）。
+- `write(String str, int off, int len)`：在 `write(String str)` 方法的基础上增加了 `off` 参数（偏移量）和 `len` 参数（要写入的最大字符数）。
 - `append(CharSequence csq)`：将指定的字符序列附加到指定的 `Writer` 对象并返回该 `Writer` 对象。
 - `append(char c)`：将指定的字符附加到指定的 `Writer` 对象并返回该 `Writer` 对象。
 - `flush()`：刷新此输出流并强制写出所有缓冲的输出字符。
@@ -403,7 +403,7 @@ void copy_pdf_to_another_pdf_with_byte_array_stream() {
 
 ### BufferedInputStream（字节缓冲输入流）
 
-`BufferedInputStream` 从源头（通常是文件）读取数据（字节信息）到内存的过程中不会一个字节一个字节的读取，而是会先将读取到的字节存放在缓存区，并从内部缓冲区中单独读取字节。这样大幅减少了 IO 次数，提高了读取效率。
+`BufferedInputStream` 从源头（通常是文件）读取数据（字节信息）到内存的过程中，不会每次只从底层读取一个字节，而是会先将一批读取到的字节存放在内部缓冲区，再从内部缓冲区中逐个读取字节。这样大幅减少了 IO 次数，提高了读取效率。
 
 `BufferedInputStream` 内部维护了一个缓冲区，这个缓冲区实际就是一个字节数组，通过阅读 `BufferedInputStream` 源码即可得到这个结论。
 
@@ -433,7 +433,7 @@ class BufferedInputStream extends FilterInputStream {
 
 ### BufferedOutputStream（字节缓冲输出流）
 
-`BufferedOutputStream` 将数据（字节信息）写入到目的地（通常是文件）的过程中不会一个字节一个字节的写入，而是会先将要写入的字节存放在缓存区，并从内部缓冲区中单独写入字节。这样大幅减少了 IO 次数，提高了效率
+`BufferedOutputStream` 将数据（字节信息）写入到目的地（通常是文件）的过程中，不会每次都将一个字节写入底层目的地，而是会先将要写入的字节逐个存放在内部缓冲区，再将缓冲区中的数据批量写入底层输出流。这样大幅减少了 IO 次数，提高了写入效率。
 
 ```java
 try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream("output.txt"))) {

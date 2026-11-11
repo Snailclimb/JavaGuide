@@ -311,6 +311,10 @@ System.out.println("列表清空后为：" + list);
 输出：
 
 ```plain
+初始列表：[Java, Python, C++]
+列表第二个元素为：Python
+删除结果：true
+列表删除元素后为：[Java, Python]
 列表更新后为：[Java, Golang]
 列表插入元素后为：[PHP, Java, Golang]
 列表大小为：3
