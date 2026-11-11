@@ -403,7 +403,7 @@ void copy_pdf_to_another_pdf_with_byte_array_stream() {
 
 ### BufferedInputStream（字节缓冲输入流）
 
-`BufferedInputStream` 从源头（通常是文件）读取数据（字节信息）到内存的过程中不会一个字节一个字节的读取，而是会先将读取到的字节存放在缓存区，并从内部缓冲区中单独读取字节。这样大幅减少了 IO 次数，提高了读取效率。
+`BufferedInputStream` 从源头（通常是文件）读取数据（字节信息）到内存的过程中，不会每次只从底层读取一个字节，而是会先将一批读取到的字节存放在内部缓冲区，再从内部缓冲区中逐个读取字节。这样大幅减少了 IO 次数，提高了读取效率。
 
 `BufferedInputStream` 内部维护了一个缓冲区，这个缓冲区实际就是一个字节数组，通过阅读 `BufferedInputStream` 源码即可得到这个结论。
 
@@ -433,7 +433,7 @@ class BufferedInputStream extends FilterInputStream {
 
 ### BufferedOutputStream（字节缓冲输出流）
 
-`BufferedOutputStream` 将数据（字节信息）写入到目的地（通常是文件）的过程中不会一个字节一个字节的写入，而是会先将要写入的字节存放在缓存区，并从内部缓冲区中单独写入字节。这样大幅减少了 IO 次数，提高了效率
+`BufferedOutputStream` 将数据（字节信息）写入到目的地（通常是文件）的过程中，不会每次都将一个字节写入底层目的地，而是会先将要写入的字节逐个存放在内部缓冲区，再将缓冲区中的数据批量写入底层输出流。这样大幅减少了 IO 次数，提高了写入效率。
 
 ```java
 try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream("output.txt"))) {
