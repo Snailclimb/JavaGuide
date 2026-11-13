@@ -8,9 +8,9 @@ head:
       content: MCP,Model Context Protocol,JSON-RPC,Function Calling,AI Agent,工具接入,Anthropic
 ---
 
-同一个 Git 工具接到 Claude Desktop、Cursor 和自建 Agent 时，往往要各写一层适配。工具参数、鉴权方式或版本一变，接入它的多个客户端都得跟着改。
+读取 Git 提交记录的代码已经写好了，接入 Claude Desktop 要适配一次，换成 Cursor 或自建 Agent 又要适配一次。重复的工作往往出在工具怎样被发现、参数怎样传入、结果怎样返回。
 
-MCP 约定外部系统以 Server 形式暴露能力，支持该协议的 Host 通过 Client 发现并调用这些能力。它处理的是工具和数据源的接入；模型如何决定调用、任务如何编排，仍属于 Function Calling 和 Agent 的职责。
+MCP 统一的就是这部分通信。把 Git 工具放进 MCP Server，各应用通过自己的 Client 调用它；拿到提交记录以后，是总结改动还是继续分析代码，再由上层应用决定。
 
 ![MCP 图解](https://oss.javaguide.cn/github/javaguide/ai/skills/mcp-simple-diagram.png)
 
@@ -18,35 +18,21 @@ MCP 约定外部系统以 Server 形式暴露能力，支持该协议的 Host �
 
 ## MCP 到底是什么？
 
-MCP 全称是 Model Context Protocol，中文一般叫“模型上下文协议”。
-
-把 MCP 的全称拆开来看，其实就很清晰了：
-
-- Model：面向大模型应用；
-- Context：把外部上下文、工具和数据源带给模型；
-- Protocol：用一套标准协议把交互方式定下来。
+MCP 全称是 Model Context Protocol，通常译为“模型上下文协议”。协议规定 Client 和 Server 怎样交换消息，包括发现工具、读取资源、调用工具和取得提示词模板。
 
 不过，也不要把 MCP 理解成给模型加插件这么简单。之前在星球群里看大家讨论 MCP 的时候，有不少同学都是这样认为的。
 
-更准确一点说，MCP 是 **MCP Client 和 MCP Server 之间的通信协议**。Host 负责承载用户交互和模型调用，Client 负责和 Server 说话，Server 负责把具体能力暴露出来。
+这里要分清三个角色：用户面对的是 **Host**，例如桌面应用或 IDE；Host 内的 **Client** 发送协议请求；**Server** 收到请求后执行查询等操作。模型通常由 Host 调用，并不直接和 Server 建立连接。
 
-举个很常见的场景。
-
-G 友问：“帮我看看这个项目最近一次提交改了什么。”
-
-你用的模型或者 Agent 当然不知道你本地 Git 仓库的提交记录。它得借助外部能力读取 Git 日志。
-
-没有 MCP 时，每个 AI 应用都得自己定义一套“怎么连 Git 工具、怎么传参数、怎么拿结果”的方式。
+比如 G 友问：“帮我看看这个项目最近一次提交改了什么。”模型没有这份本地提交记录，需要应用读取 Git 日志。应用可以直接调用本地函数，也可以连接一个提供 Git 工具的 MCP Server。
 
 有了 MCP 之后，Git 相关能力可以被封装成一个 MCP Server。Host 里的 MCP Client 连上它，先发现有哪些工具，再按协议调用工具，最后把结果交给模型继续分析。
 
-Git 工具的协议适配集中在 Server 一侧，Agent 或 AI 应用只需理解用户问题、选择工具并组织结果。两边不必为每个客户端重新约定一套私有接口。
+同一个 Server 可以被其他支持 MCP 的 Host 接入。协议复用了，但每个 Host 的授权、工具展示和结果处理仍要配置，不能把“支持 MCP”理解成所有功能都会自动可用。
 
 ## MCP、Function Calling、Agent 到底是什么关系？
 
-一次“读取仓库最新提交”的任务，Function Calling、MCP 和 Agent 可能同时出现，但分别卡在不同位置：模型先给出结构化的调用意图，Host 再把它送到实际工具，Agent 则根据返回结果决定要不要继续。
-
-以模型输出的调用意图为例：
+模型分析提交记录时发现缺少项目背景，可能提出读取 README 的请求。Function Calling 返回的调用信息可以包含下面这些字段：
 
 ```json
 {
@@ -57,14 +43,13 @@ Git 工具的协议适配集中在 Server 一侧，Agent 或 AI 应用只需理�
 }
 ```
 
-OpenAI 把这类机制称为 Function Calling，Anthropic 称为 Tool Use。模型借它输出“调用 `read_file`，参数是这个路径”这样的结构化数据。
+OpenAI 将这类机制称为 Function Calling，Anthropic 称为 Tool Use。模型输出的只是工具名和参数，文件此时还没有被读取。
 
-MCP 负责把这个意图接到外部系统：工具从哪个 Server 发现、请求如何传输、结果如何返回。
+如果 `read_file` 来自 MCP Server，Host 会将调用交给对应的 Client，再按 MCP 协议请求 Server。Server 检查路径权限、读取文件并返回内容；工具来自本地函数时，则可以直接调用，不必经过 MCP。
 
-Agent 关心任务的下一步。它会读取工具结果，继续调用、结束任务，或等待人工确认；规划、记忆和循环也属于这一层。
+README 返回后，模型发现仍缺少某个配置文件，就再提出一次读取请求。应用继续执行、回传结果，这样接起来的是 Agent Loop。MCP 负责其中 Client 与 Server 之间的消息传递，不负责判断还缺什么材料。
+
 ![FC/MCP/Agent 三层关系图](https://oss.javaguide.cn/github/javaguide/ai/skills/mcp-fc-agent-layer.png)
-
-把三者放在一条请求链路里看更直观：Function Calling 产生命令，MCP 传递命令并连接工具，Agent 决定这条链路何时继续、何时结束。
 
 不同场景的关注重点如下：
 
@@ -74,7 +59,7 @@ Agent 关心任务的下一步。它会读取工具结果，继续调用、结�
 | 让 Claude Desktop 读取本地文件 | MCP              | 重点是宿主和本地文件系统之间有标准接口 |
 | 让 AI 自动排查线上故障         | Agent            | 重点是多步决策、工具调用和结果反馈     |
 
-实际项目里三者通常会一起出现，表格只是用来区分主要责任边界。
+Agent 可以直接调用本地工具，MCP 也可以为固定工作流提供数据，三者并不要求同时使用。
 
 ## MCP 里到底有哪些东西？
 
@@ -84,11 +69,11 @@ MCP 的通信链路由 Host、Client 和 Server 组成。
 
 Host 是用户使用的 AI 应用，例如 Claude Desktop、Cursor、VS Code 中的 AI 插件或自建 Agent 平台。
 
-Client 位于 Host 内部，负责与 MCP Server 交换协议消息。对于 `2025-11-25` 及更早 revision，Client 通过初始化握手建立会话；`2026-07-28` 则使用无状态请求，不再建立 MCP 传输会话。一个 Host 可以连接多个 Server，通常每个 Server 对应一个 Client。
+一个 Host 可以同时连接 Git、文件和数据库 Server，通常为每个 Server 维护一个 Client。Client 按对应 revision 发送消息：旧版 `2025-11-25` 有初始化握手，新版 `2026-07-28` 改为无状态请求。这里的无状态指 MCP 传输，不代表应用不能保存用户任务或业务数据。
 
 开发者主要编写 Server。文件读取、SQL 查询、GitHub Issue 查询和内部工单查询等能力，都可以由它向 Host 暴露。
 
-Server 后面才是实际的数据源：本地文件、数据库、内部平台、GitHub 或第三方 API。它们不属于 MCP 的协议角色。Host 只通过 Client 调用 Server；查库、请求 API 等底层实现留在 Server 内部处理。
+图里 Server 后面的数据库、文件和第三方 API 是能力的实际来源，不是新增的 MCP 角色。比如同一个订单查询工具，内部可以查数据库，也可以请求已有业务服务，Host 仍按相同的工具定义调用。
 
 ## 一次 MCP 调用大概怎么走？
 
@@ -104,7 +89,7 @@ Server 后面才是实际的数据源：本地文件、数据库、内部平台�
 
 ## MCP 暴露的能力只有 Tools 吗？
 
-技术群里很多读者聊 MCP 时只讲 Tools，这也正常，因为工具调用最直观。但 MCP 里不只有工具。
+除了执行工具，Server 还可以提供可读取的资源和可复用的提示词模板。
 
 ### Resources、Tools 和 Prompts
 
@@ -112,43 +97,33 @@ Server 可以提供 Resources、Tools 和 Prompts 三类能力。
 
 Resources 用于提供只读上下文，例如本地文件、日志片段、数据库 Schema 或配置记录。
 
-Tools 用于执行动作，例如查询数据库、发送消息、创建工单或调用业务接口。会主动执行逻辑、可能改变外部状态的能力，应当放在 Tools 中。
+Tools 暴露可调用的函数，例如查询数据库、发送消息、创建工单或调用业务接口。工具既可以只读，也可以产生副作用，Server 要分别校验权限。
 
 Prompts 是可复用的提示词模板，例如“按团队规范做代码审查”或“把接口文档整理成测试用例”。
 
 Tools 通常由模型选择并调用；Resources 和 Prompts 的展示、选择方式还可以由 Host、用户界面或应用逻辑决定。
 
-用一个生活例子理解 Resources、Tools、Prompts。
+继续看仓库分析场景：项目说明可以作为 Resource 供应用读取，查询某次提交可以暴露为 Tool，“按团队规范审查这次 Diff”则可以做成 Prompt 模板。三者分别提供材料、操作和任务入口。
 
-G 友说：“我想吃凉拌黄瓜。”
-
-LLM 扮演厨师，它知道凉拌黄瓜大概怎么做，但它还需要外部条件：
-
-- Resources 像食材和菜谱，比如冰箱里有什么、家里有没有黄瓜、调料放在哪里；
-- Tools 像具体动作，比如切菜、拌料、开火、下单买菜；
-- Prompts 像家里的固定偏好，比如少放辣、必须放香菜、不能放蒜。
-
-如果工具描述写错了，比如把“黄瓜”描述成“西红柿”，模型就可能选错东西。
-
-落到生产环境，工具名、参数描述和返回结构都直接影响 Agent 的选择和后续判断。Server 能启动只是开始，能力边界还要让模型能准确理解。
+Resource 由 URI 标识，Host 决定何时将它加入上下文，具体见[规范说明](https://modelcontextprotocol.io/specification/2026-07-28/server/resources)。Prompt 模板也不等同于长期用户偏好，只有被选取并加入本次交互后才会参与模型调用。
 
 ### Roots、Sampling 和 Elicitation
 
 除了 Server 侧能力，Client 侧也可以提供一些能力给 Server 使用，比如 Roots、Sampling、Elicitation。`2026-07-28` 将 Roots、Sampling 和 Logging 标记为 deprecated（仍会保留至少十二个月）；Tasks 则移至 `io.modelcontextprotocol/tasks` 扩展。新实现应先确认目标 Client/Host 对这些能力或扩展的支持情况。
 
-Roots 由 Host 通过 Client 告诉 Server：当前工作范围预期在哪些文件系统根目录内。例如，Host 可以只公布当前项目目录，不公布用户主目录。它是能力协商和范围提示，不会自动形成文件系统沙箱；Server 仍要做路径规范化、越界检查和操作系统级权限隔离。
+Roots 传递的是预期的文件工作范围。例如 Host 只公布项目目录，Server 就知道任务围绕哪个仓库展开。不过这份目录列表并没有修改操作系统权限。Server 读文件前仍要规范化路径、检查越界，需要强隔离时再使用沙箱。
 
-Sampling 比较特殊，它允许 Server 请求 Host 侧的 LLM 做一次生成。比如 Server 读取到一段日志后，希望借助模型做摘要或分类。
+日志 Server 已经拿到日志，想借用 Host 的模型生成摘要，可以发起 Sampling 请求。这里请求从 Server 发向 Client，实际是否调用模型仍由 Host 控制。
 
-Elicitation 则是 Server 在执行过程中向用户补充询问信息的能力。比如参数不完整、选项有歧义、执行前需要用户确认，就可以由 Host 侧展示交互。
+缺少的是用户输入时，则使用 Elicitation。例如某个选项尚未确定，Server 可以请 Host 向用户询问。请求发出后，用户能否看到交互，还取决于 Host 有没有实现这项能力。
 
-这些能力要按场景选择。大多数 MCP Server 可以先只提供 Tools；需要只读上下文或可复用任务入口时，再考虑 Resources、Prompts。Roots、Sampling、Elicitation 以及 Tasks 扩展都取决于对应 Client/Host 是否实现，不能只看 Server SDK 有无接口。
+因此，SDK 里能调用某个方法，不代表目标 Host 就支持它。先按工具需求实现 Tools，需要提供只读材料或任务模板时再加入 Resources、Prompts；Roots、Sampling、Elicitation 和 Tasks 扩展另行核对两端支持情况。
 
 ## 为什么 MCP 用 JSON-RPC？
 
 MCP 底层通信使用 JSON-RPC 2.0。
 
-REST 更偏资源，比如 `/users/1`、`/orders/100`。JSON-RPC 更偏方法调用，比如 `tools/call`、`resources/read`。AI 工具调用天然就是“我要执行某个动作”，所以 JSON-RPC 和 MCP 的使用场景比较贴。
+JSON-RPC 用 `method` 表示方法，用 `params` 携带参数，用 `id` 关联请求和响应。MCP 的 `tools/call`、`resources/read` 就是这样的方法名。与 `/users/1` 这类 REST 资源路径相比，这种消息直接表达要调用哪个操作。
 
 按 [2026-07-28 规范的请求元数据字段](https://modelcontextprotocol.io/specification/2026-07-28/basic/index)，工具调用请求可以写成下面这样。`_meta` 位于 `params` 内，与 `name`、`arguments` 同级；这里的 `my-app` 和 `1.0` 是示例客户端的名称与版本，空能力对象表示本次请求不声明可选客户端能力：
 
@@ -192,7 +167,7 @@ REST 更偏资源，比如 `/users/1`、`/orders/100`。JSON-RPC 更偏方法调
 }
 ```
 
-失败时才返回 `error`：
+JSON-RPC 协议层错误通过 `error` 返回，例如请求参数不符合协议要求：
 
 ```json
 {
@@ -205,15 +180,15 @@ REST 更偏资源，比如 `/users/1`、`/orders/100`。JSON-RPC 更偏方法调
 }
 ```
 
-成功响应只返回 `result`，失败响应才返回 `error`；不要在成功响应中再附上 `error: null`。
+JSON-RPC 响应中的 `result` 与 `error` 不能同时出现，也不要附上 `error: null`。但拿到 `result` 不代表业务操作成功：[MCP 工具执行错误](https://modelcontextprotocol.io/specification/2026-07-28/server/tools#error-handling)通过 `result.isError: true` 和错误内容返回，例如业务校验不通过或下游 API 调用失败。Client 需要同时区分协议错误与工具执行错误。
 
-JSON-RPC 的消息是文本格式，便于记录日志，也不绑定具体传输方式。代价是它没有 gRPC 那样的强 IDL 和编译期类型约束。MCP 虽然能用 JSON Schema 描述工具参数，但 Schema 既是运行时校验规则，也是给模型的提示；Server 仍需对所有参数做严格校验。
+`id: 1` 让 Client 能把响应对应回请求，`result` 或 `error` 则说明这次协议调用的结果。JSON-RPC 自身不检查 `read_file` 的路径类型和访问权限，这些规则来自工具 Schema 和 Server 实现。日志可以记录消息摘要，但其中的密钥、业务数据需要脱敏。
 
 ## stdio 和 Streamable HTTP 怎么选？
 
 本地 Server 通常使用 stdio。Host 将它作为子进程启动，再通过 stdin/stdout 交换消息；Claude Desktop 中的很多本地 Server 都采用这种方式。它没有额外的网络部署成本，但 Server 运行在本机，文件、Shell 和数据库权限要单独收紧。
 
-如果是第三方 Server，最好别直接裸跑。至少先看源码，或者用 Docker、cgroups、namespace 这类方式隔离一下。尤其是文件系统、Shell、数据库相关的 Server，权限一旦给大，后面很难补。
+尤其要看启动进程继承了什么权限。第三方 Server 以当前用户运行时，可能读到该用户可访问的文件。审核源码和依赖之外，还应限制挂载目录、环境变量和网络访问；Linux 中可结合 namespace、cgroups 或容器配置隔离，不能只启动一个容器就认为权限已经收紧。
 
 stdio 模式下，stdout 是 JSON-RPC 消息通道，不能用于打印调试日志。一行 `print()` 输出就可能破坏消息格式，导致 Host 解析失败或 Server 断连。调试日志应写入 stderr 或文件；排查“Server 启动失败”时，也要确认 stdout 中没有混入日志。
 
@@ -231,27 +206,19 @@ Mcp-Name: read_file
 
 以上是前面 `read_file` 调用对应的 HTTP 请求头，请求体使用前面的 JSON；`Mcp-Method` 与方法名、`Mcp-Name` 与工具名保持一致，参见 [官方版本说明](https://blog.modelcontextprotocol.io/posts/2026-07-28/)。响应可能是普通 JSON，也可能是 SSE 流，取决于请求类型。
 
-选择传输方式时，可以按部署位置和访问范围判断：
-
-- 本地工具、本地文件、个人使用，优先 stdio。
-- 团队服务、远程 API、多用户访问，优先 Streamable HTTP。
-- 涉及写操作和敏感数据时，不管哪种传输方式，都要额外做鉴权、限流和审计。
+个人使用的本地文件工具通常从 stdio 开始，省去网络服务部署。多个用户共享一个远程业务接口时，再使用 Streamable HTTP。传输方式改变的是消息怎样送达，读写权限、限流和审计仍由两端实现。
 
 ![MCP 传输方式选择](https://oss.javaguide.cn/github/javaguide/ai/skills/mcp-transport-decision.png)
 
 ## MCP 的意义只是让模型会调接口吗？
 
-Function Calling 已经可以让模型表达“调用哪个接口”。MCP 解决的是同一个工具交付给多个 Host 时的重复集成。
+假设团队把工单查询接成了 MCP Server。桌面应用可以使用它，自建的值班 Agent 也可以使用它，工单后端不必分别实现两套工具发现协议。这是 MCP 能减少的集成工作。
 
-例如，内部工单系统接入一个 Agent 后，换成另一个 Host 往往还要重写连接、参数和结果处理。将能力封装为 MCP Server 后，支持 MCP Client 的应用可以按同一套发现和调用方式接入。
-
-这个边界和前后端通过接口契约协作相似：Agent 开发关注任务和交互，工具开发关注能力实现、数据权限和操作边界。
-
-团队里的操作手册、值班文档、故障复盘和排查脚本常分散在文档库、Wiki 或脚本仓库中。把可授权的查询和排查能力整理成 Server 后，Agent 才能在既定范围内查文档、读配置或运行工具，而不是只给出一段泛泛的说明。
+但 Server 只能提供已经实现的能力。值班文档还在 Wiki 中、排查脚本没有封装接口时，接入 MCP 不会自动让 Agent 获得这些材料。开发者仍要选择暴露哪些资源或工具，并配置调用身份和数据范围。
 
 ## MCP 接进来之后，就能直接上生产吗？
 
-不能。Demo 中“装一个 Server，问一句话，拿到结果”的链路很短；生产环境要补齐接口约束、审计和运行治理。
+一次工具调用成功，只验证了这次输入和权限组合。换一个用户、传入错误参数，或者下游超时，Server 还需要给出可判断的结果。
 
 时间字段是 ISO-8601 还是时间戳、金额单位是元还是分、分页默认值是什么，都要写进 Schema、字段说明和示例。Server 要据此校验参数，并返回模型能够据以修正请求的错误信息。
 
@@ -286,32 +253,23 @@ Server 的 `description`、Prompt 模板和返回内容同样需要审核：恶�
 
 ### 可观测性
 
-- 每次用户请求是否有 Trace ID？
-- 工具调用参数、耗时、结果摘要、错误码是否有结构化日志？
-- 是否能还原一次 Agent 回答背后的完整工具调用链？
-- 是否有超时、限流、熔断和重试策略？
+选一次经过多个工具的请求，沿 Trace ID 能否找到各次调用？记录中应有工具名、参数与结果摘要、耗时和错误码。再模拟一次超时，检查日志能否区分“请求没到 Server”和“下游处理慢”，并确认重试没有绕过总时限。
 
 ### 成本归因
 
-- 每次调用是否能关联到用户、业务线、工具和会话？
-- Token 成本、API 成本、云资源成本是否能拆分统计？
-- 是否有配额和预算告警？
-- 模型循环调用工具时，是否有调用次数上限？
+账单上涨时，要能找到是哪次任务、哪个工具增加了调用。记录用户、业务线、会话和工具后，可以把模型 Token、外部 API 和云资源费用分开统计，再给相应任务设置配额与告警。否则只能看到总费用变高，找不到重复运行的那条 Loop。
 
 ### 依赖治理
 
-- MCP SDK、第三方库、第三方 Server 是否有维护者和更新记录？
-- 安全漏洞谁负责跟进？
-- Server 升级是否有测试环境和回滚策略？
-- 是否避免把核心能力押在无人维护的三方扩展上？
+Server 升级后，原来能用的参数可能不再接受，返回字段或错误码也可能变化。保留一批旧版调用用于回放，才能在切换前发现这些差异，再决定同步修改 Client 还是暂缓升级、回滚 Server。
 
-这些检查项和普通后端服务没有本质区别。MCP 改变了工具接入方式，不会替代鉴权、审计、日志、版本和限流。
+SDK、第三方库和 Server 本身都应记录版本、维护者和更新来源。某个扩展已经无人维护，即使当前调用正常，也需要有人负责后续漏洞修复。
 
 ## 写 MCP Server 时，有什么需要注意的？
 
 ### 别先追求大而全
 
-一个 Server 常见的错误，是用少量“万能工具”承载所有操作：
+以查询订单为例，如果 Server 只提供 SQL 和通用 HTTP 接口，模型就得先选择数据表或 URL，再拼装请求。接口看起来很少，但每次调用要作出的判断更多：
 
 ```text
 execute_sql(sql)
@@ -319,7 +277,7 @@ file_operation(op, path, data)
 call_api(url, method, body)
 ```
 
-`execute_sql`、`file_operation` 这类接口把操作范围和权限都交给模型猜，参数越多，误用和越权的空间越大。按业务动作拆分后，Schema、权限和审计规则才能分别落到具体工具上：
+业务只需要查用户、列订单和写报告时，可以把固定查询封装进 Server。模型提交用户 ID，Server 执行预先定义的查询，不必每次重新生成 SQL。通用文件接口仍可保留，但允许访问的目录要由 Server 检查：
 
 ```text
 get_user_by_id(id)
@@ -328,25 +286,25 @@ read_file(path)
 write_report(path, content)
 ```
 
-工具名可以采用动词加名词，`description` 则说明适用条件、必填参数和禁用场景。
+[Anthropic 的工具设计实践](https://www.anthropic.com/research/writing-tools-for-agents)建议从实际任务选择接口，并允许一个工具组合相关操作。粒度不必一律越细越好：查订单时，可以一起返回后续判断需要的状态和时间，减少模型再发几次查询；返回字段仍应限制在当前任务所需范围。
+
+`description` 要帮助模型区分工具。例如 `list_active_orders` 需要说明“活跃”包含哪些状态、是否分页，以及未找到订单时返回空列表还是错误。名称相近的工具更需要把差别写清楚。
 
 例如，查慢 SQL 的工具除了“查询慢 SQL 日志”，还应写明：服务响应慢、数据库超时、CPU 飙升且怀疑与数据库相关时使用；用户询问网络或内存问题时不要调用它。这样的约束能减少模型把相近问题送到错误工具的情况。
 
 ### 大文件和长文本要小心
 
-日志、Markdown 文档、网页 HTML 和 CSV 文件可能远超模型上下文。资源接口可以先返回文件名、大小、更新时间、摘要和可读取范围；需要内容时再按 chunk 读取。
+读取 CSV 不一定要先把整份文件交给模型。接口可以先返回文件名、大小、更新时间、摘要和可读取范围，模型确定要看哪一部分后，再请求对应的 chunk。日志、Markdown 和网页 HTML 也可以这样处理。
 
-chunk 大小应按上下文预算、响应大小限制和服务端资源预算确定；大资源先只返回引用、摘要和可选读取方式，需要时再分块读取，不直接返回全文。这样既避免一次请求塞满上下文，也能防止 Server 因大文件消耗过多内存或网络资源。
-
-不要把限制绑定到某个模型的 tokenizer。不同模型的 token 计算不同，Server 用字符数或字节数做粗粒度控制即可；上下文裁剪由 Host 或上层应用负责。
+单块返回多少，要同时看 Host 剩余的上下文、响应大小限制和 Server 的内存及网络预算。Server 可以用字符数或字节数限制单次读取，避免绑定某个模型的 tokenizer；Host 再按实际模型计算 Token 并组织上下文。分块以后仍要限制每次返回量，否则只是把一次超大的响应换成了另一次。
 
 ### 安全问题不能靠相信模型解决
 
-文件读取要在路径规范化后检查目录边界，不能让 `../` 越出允许范围。SQL 查询使用参数化语句，不能将模型生成的字符串直接执行。
+`read_file(path)` 收到的路径属于外部输入。Server 需要规范化路径，再检查它是否仍位于允许访问的目录，不能仅凭模型说“这是项目文件”就读取。数据库工具也应将参数作为值绑定到预先定义的 SQL 中，不直接执行模型拼出的语句；能发现一个工具，并不代表调用者有权访问工具背后的所有数据。
 
-手机号、邮箱、Token、密钥和内部链接等返回数据需要脱敏。删除文件、修改数据库、发送邮件和调用生产接口等写操作默认收紧权限，并设置人工确认与审计。
+查询订单只需要状态和金额时，返回对象就可以省略手机号、邮箱和内部链接。确实需要敏感字段，再按调用者权限返回或脱敏；Token 和密钥不应进入模型上下文。
 
-模型进入循环时可能反复调用同一工具。限速、超时、熔断和配额要由 Server 自身落实，不能假设 Host 一定会兜底。
+写操作还要核对具体动作。允许读订单，不等于允许退款；允许生成邮件草稿，也不等于允许发送。Server 在执行前检查授权并记录审计，Host 再提供必要的确认交互。调用频率也由 Server 限制，避免一个合法工具被反复调用到耗尽资源。
 
 Prompt Injection、Token Passthrough、资源级鉴权、本地 Server 隔离和第三方 Skill/MCP 供应链的完整链路，可以继续看 [LLM/Agent 安全实战](../system-design/llm-security.md)。
 
@@ -386,7 +344,7 @@ Claude Desktop 里可以这样配：
 }
 ```
 
-本地调试建议直接用 MCP Inspector：
+可以先用 MCP Inspector 检查进程能否启动、工具是否可发现：
 
 ```bash
 # Python Server
@@ -396,9 +354,9 @@ npx @modelcontextprotocol/inspector uv run --with mcp /path/to/weather_server.py
 npx @modelcontextprotocol/inspector node build/index.js
 ```
 
-它可以模拟 Host 发请求。Server 是否能连接、工具能不能被发现、参数校验有没有报错，基本都能先在这里看出来。
+先确认 Inspector 能列出 `get_weather`，再传入 `city` 调用它。这个函数目前返回的是固定天气字符串，只用来观察调用链；要查询真实天气，还需接入天气数据源。
 
-生产环境别依赖全局 `python` 里刚好装了 `mcp`。用虚拟环境解释器，或者像上面这样用 `uv run --with mcp ...` 显式声明依赖，会稳一点。如果 Claude Desktop 启动失败，先看 `mcp.log`，别一上来怀疑协议有问题，很多时候只是路径或依赖没配对。
+如果 Inspector 能运行，而 Claude Desktop 启动失败，先检查 `mcp.log` 中的命令路径、工作目录和依赖错误。使用虚拟环境解释器，或通过 `uv run --with mcp ...` 声明依赖，可以减少对全局 Python 环境的依赖；生产部署还应锁定 SDK 版本，不能把未指定版本的命令当作可复现环境。
 
 ## 用 Inspector 验证远程 Server
 

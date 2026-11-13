@@ -8,23 +8,23 @@ head:
       content: Agent Skills,MCP,Function Calling,Prompt,AI Agent,智能体,延迟加载,上下文注入,SKILL.md
 ---
 
-一次 Code Review 可能要看架构、安全、性能和项目约定。临时把这些规则放进 Prompt，换个会话后又要重新粘贴。
+做 Code Review 时，经常需要同一份检查清单：这次改动有没有越权风险，有没有循环查库，是否符合项目约定。把清单保存在 Skill 中，下一次审查就能按需读取，不必每次重新粘贴。
 
-全局项目约定可以留在 `AGENTS.md`；Review 的检查顺序、检查项和参考资料应随 Review 任务加载。Skill 为这部分内容提供了独立入口。
+全局项目约定仍可以放在 `AGENTS.md`。Skill 保存的是这类任务的操作说明，只有审查任务需要的长清单和资料，也可以跟着它一起管理。
 
 ## Agent Skills 是什么？
 
-Skill 是可被 Agent 发现、按需读取的任务说明。接口返回格式、日志字段、慢 SQL 的排查路径、Review 的关注顺序，都可以写进 `SKILL.md`。
+**Skill 是一个以 `SKILL.md` 为入口的任务资料包**，其中可以包含指令、参考文件、脚本和模板。Agent 先看到名称与描述，需要执行这类任务时再读取详细说明。
 
-Skill 本身不提供工具能力。它解决的是“这类任务该按什么规则做”，由宿主在任务命中时把对应说明交给 Agent。
+例如慢 SQL 排查 Skill 可以记录日志字段、执行计划检查方式和报告格式。读取了说明，不代表数据库已经查过；Agent 还需要可用的工具来运行查询或脚本。
 
 ## Skill 和 Prompt、MCP、Function Calling 有什么联系？
 
-它们处在同一条执行链路的不同位置：Prompt 说明用户要做什么，Function Calling 发起动作，MCP 接入外部能力，Skill 规定完成任务时采用的流程和约束。
+这几个概念常同时出现，但可以沿一次报表分析把它们分开。
 
 拿“帮我分析这份报表”这个请求来说，用户说的话是 **Prompt**。模型决定调用 `read_file` 并生成结构化参数时，用到的是 **Function Calling**；`read_file` 若由 MCP Server 提供，**MCP** 负责的是连接和协议。
 
-“先确认字段含义，再找异常值，最后给业务结论，不要只堆统计指标”则属于 **Skill**。它描述处理顺序和约束，不替代前面的请求、调用方式或外部连接。
+如果团队要求分析前先确认字段口径，再查异常值，可以把这套要求写进 **Skill**。Skill 加载后成为上下文中的指令材料，模型再据此调用读文件或数据分析工具。用户请求、操作说明、工具调用和连接协议分别完成各自的工作。
 
 ![ Skill 和 Prompt、MCP、Function Calling 对比](https://oss.javaguide.cn/github/javaguide/ai/skills/skill-prompt-function-calling-mcp-comparison.webp)
 
@@ -116,22 +116,21 @@ If you did not watch the test fail, the test is not trusted.
 
 ### 先看官方的 skill-creator
 
-[`skill-creator`](https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md) 是 Anthropic 官方 Skills 仓库提供的创建 Skill 的 Skill。它会先要求 Agent 确认任务、触发条件和边界，再决定哪些内容留在 `SKILL.md`，哪些拆到 `scripts/` 或 `references/`。
+[`skill-creator`](https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md) 是 Anthropic 官方 Skills 仓库提供的创建 Skill 的 Skill。使用它时，需要先说明希望 Agent 完成什么任务、哪些请求应该触发，再整理正文、脚本和参考资料。
 
-它体现了两个实际取舍：`description` 要能让宿主识别适用任务；可由脚本稳定执行的步骤和只在特定场景需要的长资料，应拆出主文件。Claude 官方帮助文档也建议将这类额外内容按需访问。
+以 PDF 处理为例，“提取文本”是触发场景，提取命令是执行步骤，表单填写指南则可以留在独立文件里。先把这些用途分开，主文件就不会同时承担项目介绍、API 手册和全部操作说明。
 
 ### 元数据（Frontmatter）
 
-元数据决定 Skill 能不能被正确发现和触发。一般来说，至少要写清楚两个字段：`name` 和 `description`。
+宿主发现 Skill 时通常先读取 `name` 和 `description`。前者用于标识，后者帮助模型判断任务是否匹配。正文写得再详细，如果描述没说明适用场景，模型也可能根本不去打开它。
 
-`name` 就是 Skill 的标识，主要给系统和人定位用；`description` 则更像路由说明，告诉 Agent 什么时候该把这个 Skill 加载进来，也就是什么时候用。
+按 [Agent Skills 规范](https://agentskills.io/specification)，`name` 的要求包括：
 
-先看 `name`。它有几个硬性要求：
+- 1–64 个字符，使用小写字母、数字和连字符
+- 不能以连字符开头或结尾，不能出现连续连字符
+- 必须与父目录名称一致
 
-- 最多 64 个字符
-- 只能包含小写字母、数字和连字符
-- 不能包含 XML 标签
-- 不能包含保留字，比如 `anthropic`、`claude`
+[Claude 的编写指南](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices)还限制 XML 标签和 `anthropic`、`claude` 等保留字。宿主特有的要求与通用格式规范要分别核对。
 
 命名时可以优先用动名词形式，也就是“动词 + -ing”。这样一眼就能看出这个 Skill 提供的是什么能力。
 
@@ -196,17 +195,13 @@ description: 生成提交消息。
 
 ### 正文
 
-正文是 Agent 命中 Skill 后才会读取的操作说明。启动阶段通常只有 `name` 和 `description` 参与路由；正文加载后，会与系统提示、用户请求和已有资料共用上下文空间。
+命中 PDF 提取任务后，Agent 才需要知道使用哪个库、输入文件在哪里、输出放到哪里，以及读不到文本时怎么办。这些内容放进正文；PDF 的历史和通用定义通常不影响操作，可以省略。
 
-因此，正文只保留任务执行时需要的默认方案、项目约定、输入输出和失败处理。规则藏在大段科普里，Agent 需要时反而更难找到。
+正文一旦加载，就会和对话历史、系统提示共用上下文。省下无关解释，是为了让文件路径和处理条件更容易被找到。
 
 ![上下文为什么会失效](https://oss.javaguide.cn/github/javaguide/ai/context-engineering/why-does-the-following-content-fail.png)
 
-筛正文时可以依次确认：
-
-- Agent 真的需要这段解释吗？
-- 这是项目里的私有知识，还是通用常识？
-- 这段话值不值得占用上下文？
+检查一段说明是否需要保留，可以看删掉它会不会改变执行。例如默认库、输出路径和错误处理会改变动作；“PDF 是一种常见文件格式”通常不会。
 
 处理 PDF 文本时，正文直接给默认库和调用方式：
 
@@ -234,7 +229,7 @@ PDF（便携式文档格式）是一种常见文件格式，通常包含文本�
 首先，你需要使用 pip 安装它，然后再编写下面的代码……
 ```
 
-Agent 需要的是默认使用什么、如何调用、输出如何处理，以及遇到特殊情况时怎么分支。项目里那些无法从通用知识推断出来的约束尤其要写清楚，例如：
+项目约定也不能靠模型猜。例如同样是查询 `users` 表，项目采用软删除时要额外加条件：
 
 ```markdown
 users 表使用软删除。所有正式查询都必须加 `WHERE deleted_at IS NULL`。
@@ -246,7 +241,7 @@ users 表使用软删除。所有正式查询都必须加 `WHERE deleted_at IS N
 软删除是一种常见的数据删除方式，通常不会真正删除数据库记录，而是通过字段标记记录状态。
 ```
 
-主文件过长时，把只在特定步骤才用到的内容拆到单独文件。Anthropic 建议将 `SKILL.md` 正文尽量控制在 500 行以内，通过渐进式披露按需读取细节。
+Anthropic 建议 `SKILL.md` 正文尽量少于 500 行。这是组织内容的建议，不是超出一行就无法加载的硬限制。篇幅增长时，可以先找只在某个分支使用的资料，将其移到参考文件，并留下读取条件。
 
 ![SKILL.md 正文最好控制在 500 行以内](https://oss.javaguide.cn/github/javaguide/ai/skills/keep-skill-md-content-under-500-lines-for-best-performance.png)
 
@@ -258,11 +253,11 @@ users 表使用软删除。所有正式查询都必须加 `WHERE deleted_at IS N
 
 `references/solid-checklist.md` 保存具体 checklist；任务不涉及设计检查时，Agent 不必读取它。
 
-这些开源 Skill 集合展示了主文件与参考资料的拆分方式：
+不知道哪些内容留在主文件时，可以对照这几个仓库看实际文件：
 
-- [Superpowers](https://github.com/obra/superpowers)：包含 TDD、brainstorming、代码审查等 Skill，TDD 那个结构很清楚，适合看正文怎么组织。
-- [sanyuan-skills](https://github.com/sanyuan0704/sanyuan-skills)：Code Review Expert 把更细的检查项拆进 `references/`，主文件只保留触发和加载说明，适合作为渐进式披露的例子。
-- [Anthropic 官方 Skills 仓库](https://github.com/anthropics/skills)：目录结构和写法可以作为基准参考。
+- [Superpowers](https://github.com/obra/superpowers) 的 TDD Skill 把 RED、GREEN、REFACTOR 和每一步的验证要求放在正文里。要写有执行顺序的 Skill，可以看它怎样规定进入下一步的条件。
+- [sanyuan-skills](https://github.com/sanyuan0704/sanyuan-skills) 的 [Code Review Expert](https://github.com/sanyuan0704/sanyuan-skills/blob/main/skills/code-review-expert/SKILL.md) 在主文件中保留审查流程、严重等级和输出格式，SOLID 等细项则放进 `references/`。主文件仍然有操作步骤，并非只剩几个资料链接。
+- [Anthropic 官方 Skills 仓库](https://github.com/anthropics/skills) 同时提供基础模板和 PDF、DOCX 等文档 Skill。可以先看模板需要填写什么，再对照文档 Skill 查看脚本和参考资料怎样配合正文使用。
 
 ![查找自己需要和热门的 Skills](https://oss.javaguide.cn/github/javaguide/ai/skills/skillssh.png)
 
@@ -272,33 +267,7 @@ users 表使用软删除。所有正式查询都必须加 `WHERE deleted_at IS N
 
 ## 自由度怎么把控？
 
-数据库迁移和生产部署要在 Skill 中固定命令、参数、校验与回滚条件；这类操作出错后往往要恢复数据或服务状态。
-
-代码审查和技术方案评估需要结合变更内容判断。Skill 固定安全、性能、可维护性和项目约定这些检查维度即可，无需为每个文件指定顺序。
-
-下表按任务风险划分自由度：
-
-| **自由度** | **适合场景**                 | **写法**               |
-| ---------- | ---------------------------- | ---------------------- |
-| 高         | 需要判断和取舍，答案不唯一   | 给检查方向，不写死步骤 |
-| 中         | 有固定模板，但允许按场景调整 | 给模板、参数和边界     |
-| 低         | 操作脆弱，出错代价高         | 给精确命令，明确不能改 |
-
-Superpowers 的 TDD Skill 固定了流程顺序：
-
-```text
-NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST
-```
-
-Red、Green、Refactor 不能调换；实现前必须先看到预期的失败。该 Skill 还写明：
-
-```text
-Write code before the test? Delete it. Start over.
-```
-
-测试对象、名称和断言则由当前功能决定。Code Review 的检查框架也可以固定为 SOLID、安全风险、性能和可维护性，具体问题仍由 Agent 根据 diff 判断。
-
-低自由度的写法可以这样：
+假设数据库迁移已经确认使用 `python scripts/migrate.py --verify --backup`。此时需要 Agent 执行的就是这条命令，不能因为运行失败，就自行删掉参数重试。Skill 可以直接写明：
 
 ````markdown
 ## 数据库迁移
@@ -314,7 +283,7 @@ python scripts/migrate.py --verify --backup
 如果命令失败，停止执行，并把错误输出返回给用户。
 ````
 
-代码审查这类任务可以只给检查范围：
+代码审查则需要给 Agent 留出追踪问题的空间。Skill 可以约定检查项和报告要求：
 
 ```markdown
 ## 代码审查
@@ -330,7 +299,15 @@ python scripts/migrate.py --verify --backup
 输出时优先写会影响正确性和线上稳定性的问题，不要只做格式建议。
 ```
 
-这里没有指定文件顺序，但限定了审查范围和输出重点。改数据、发请求、部署、迁移或删除文件时收紧自由度；分析、评审、总结和生成草稿保留判断空间。
+审查过程中要追踪哪个调用、继续打开哪个文件，取决于 diff 中发现了什么。把文件顺序全部写死，可能反而妨碍追查问题。迁移命令和代码审查需要的约束不同，[Claude 的编写指南](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices#set-appropriate-degrees-of-freedom)将这种可调整的范围分为三档：
+
+| **自由度** | **适合场景**                 | **写法**               |
+| ---------- | ---------------------------- | ---------------------- |
+| 高         | 需要判断和取舍，答案不唯一   | 给检查方向，不写死步骤 |
+| 中         | 有固定模板，但允许按场景调整 | 给模板、参数和边界     |
+| 低         | 操作脆弱，出错代价高         | 给精确命令，明确不能改 |
+
+报告模板介于两者之间：可以固定字段，让 Agent 按当前 diff 填写问题和依据。同一份 Skill 也可以分别约束各个步骤，不必把阅读、判断和执行命令都定为同一档。
 
 ## ⭐️延迟加载与渐进式披露
 
@@ -338,39 +315,29 @@ python scripts/migrate.py --verify --backup
 
 ### 为什么不能把所有 Skill 一次性全塞进去？
 
-Agent 的上下文窗口是有限的，至少现在还是这样。
+PDF Skill 的目录里可以同时放着提取文本、填写表单的说明。用户只要求提取文本时，填表手册留在磁盘上即可，不需要陪着提取结果一起进入上下文。
 
-而且，窗口大了只是能装下更多内容，不代表它能自动挑出重点。比如你给它分析一份长需求文档，真正关键的限制条件可能就三句话，但夹在各种背景和说明中，模型很容易忽略中间的那些关键句。
+**文件已经安装，与模型已经读过它，是两回事。** 渐进式披露安排的就是读取时机：先提供用于选择 Skill 的描述，选中后再读取正文，执行到某个分支时才补充对应资料。
 
-这就是大家常说的 **Context Rot**，上下文腐化。**上下文越长，信息越杂，模型利用上下文的稳定性就越可能变差。**
-
-**Lost in the Middle** 指模型更容易忽略上下文中间的信息，具体解释见 [上下文为什么会失效](./context-engineering.md#上下文为什么会失效)。
-
-所以，Skill 不应该写成资料库。
-
-更好的方式是渐进式披露：**先给模型一份轻量目录，真正用到哪块，再去加载哪块。**
+这样能减少无关内容的占用，至于回答是否更准确，还要用具体任务检查。**Context Rot（上下文腐化）**讨论上下文增长后的信息利用问题，**Lost in the Middle** 关注相关信息所处的位置；输入长度本身不能说明是哪种问题，具体区别见 [上下文为什么会失效](./context-engineering.md#上下文为什么会失效)。
 
 ![渐进式披露](https://oss.javaguide.cn/github/javaguide/ai/skills/skills-progressive-disclosure.svg)
 
-就像查书一样。你不会先把整本书背下来，而是先看目录，确定章节，再翻到具体那一页。
-
-一般可以分成三层：
+以这份 PDF Skill 为例，三层加载分别读取不同的内容：
 
 ![渐进式披露（三层模型）](https://oss.javaguide.cn/github/javaguide/ai/skills/skills-progressive-disclosure-three-layer-model.png)
 
 **1. 广告层：先让模型知道有这个 Skill**
 
-启动时通常只加载 Skill 的元数据，比如 `name` 和 `description`。这部分很短，用来告诉模型：我是谁，我适合什么场景。
+宿主提供 `name` 和 `description` 后，模型就能知道有哪些 PDF 操作可选。此时还没有读到提取命令，也没有读到填表指南。
 
 **2. 指令层：命中后再读正文**
 
-当 Agent 判断当前任务确实相关时，才读取对应的 `SKILL.md` 正文。正文里放流程、规则、边界和关键示例。这里不要写太长，Anthropic 的建议是正文尽量控制在 500 行以内。
+请求匹配后，Agent 打开 `SKILL.md`，这时才拿到提取命令。正文里还应写明：遇到填表任务，去哪里找后续步骤。
 
 **3. 资源层：执行时再读细节**
 
-如果正文里引用了 `references/`、`scripts/` 这类文件，Agent 再按需读取或执行。比如只是执行脚本，通常只需要把脚本输出放进上下文；如果要阅读或修改脚本，那源码才需要进上下文。
-
-所以你会经常看到这种写法：
+填表时读取 `FORMS.md`，查询 API 用法时读取 `REFERENCE.md`。主文件要提供这些入口：
 
 ```markdown
 ## 高级功能
@@ -380,11 +347,11 @@ Agent 的上下文窗口是有限的，至少现在还是这样。
 **API 参考**：所有方法请参阅 [REFERENCE.md](REFERENCE.md)
 ```
 
-任务命中表单填充时，Agent 才读取 `FORMS.md`；普通文本提取无需加载该文件。
+脚本的执行和源码的读取也要分开。已有调用方式足以完成任务时，Agent 可以直接运行脚本；需要排查错误或修改实现，再打开源码。脚本在磁盘上，并不意味着源码已经占用了上下文。
 
 ### 实际项目中怎么组织文件？
 
-以一个数据分析类 Skill 为例，可以这么拆：
+数据分析 Skill 可以按业务域保存指标说明：
 
 ```text
 bigquery-analysis/
@@ -396,7 +363,7 @@ bigquery-analysis/
     └── marketing.md      # 活动、归因、电子邮件
 ```
 
-主文件只列出可用数据集和对应资料，数据口径留在各自的参考文件中：
+`SKILL.md` 负责把请求引到对应文件，具体指标口径由各文件维护：
 
 ```markdown
 # BigQuery 数据分析
@@ -412,15 +379,15 @@ bigquery-analysis/
 **营销**：活动、归因、电子邮件 → 参阅 [reference/marketing.md](reference/marketing.md)
 ```
 
-用户问“上个季度的销售管道怎么样”时，Agent 只需打开 `reference/sales.md`；财务、产品和营销资料无需加载。
+用户问“上个季度的销售管道怎么样”，从这个入口就能找到 `reference/sales.md`。查询没有涉及财务、产品和营销时，其余三份资料仍可留在磁盘上。
 
-必需规则经过多层引用后，Agent 很难直接定位：
+如果关键口径要连续打开几个文件才能找到，拆分反而增加了查找步骤：
 
 ```markdown
 SKILL.md → advanced.md → details.md → 最关键的规则藏在这里
 ```
 
-把基本用法和下一层资料都列在主文件里：
+这里可以让主文件直接链接到需要的资料：
 
 ```markdown
 SKILL.md
@@ -429,30 +396,29 @@ SKILL.md
 └── API 参考 → reference.md
 ```
 
-Agent 读取主文件后即可定位资料。参考文件较长时，在文件开头列出目录，方便先确认可用内容。
+参考文件本身很长，可以在文件内加目录。Agent 从主文件找到它后，还能继续定位到具体章节；主文件变短不应以增加多层跳转为代价。
 
 ## 工作流和反馈循环怎么设计？
 
-简单点的任务，写几条规则就够用了。但遇到复杂一些的场景，这样做就不太够了。
-
-Agent 很可能会跳过一些步骤，例如检查输出质量、跑测试代码，然后直接说它已经做完了。
-
-为了避免这种问题，需要写清楚这两个点：
-
-1. 每一步按什么顺序走
-2. 哪些地方必须停下来验证
+一个开发任务做到哪一步算完成，要看验收条件。若要求测试通过，只生成实现文件还不够，交付时还得有对应的运行结果。Skill 应把执行、检查以及检查失败后的去向接起来。
 
 ![Skill 工作流设计](https://oss.javaguide.cn/github/javaguide/ai/skills/agent-skills-workflow-design.webp)
 
-图示：复杂 Skill 要把任务分类、条件分支、验证节点和失败兜底写进流程里。
-
 ### 用清单把步骤串起来
 
-Superpowers 的 TDD Skill 就是一个很好的例子。
+Superpowers 的 TDD Skill 要求先看到测试失败，再写生产代码：
 
-它没有只写一句“先写测试，再写代码”。这种话太粗了，Agent 真执行时还是容易糊弄过去。
+```text
+NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST
+```
 
-它是直接把流程拆成了几个明确阶段，简化版本如下：
+如果顺序反了，已经提前写了实现，它的要求是：
+
+```text
+Write code before the test? Delete it. Start over.
+```
+
+这里指的是按该流程开发时提前写出的实现，不包括用户或其他任务已有的代码。测试对象和断言仍由当前功能决定；固定的是执行顺序：
 
 ```markdown
 ### RED - Write Failing Test
@@ -485,13 +451,9 @@ After green only:
 Keep tests green. Don't add behavior.
 ```
 
-**Verify RED** 规定：Agent 必须先看到预期的失败，再开始实现。
+RED 和 Verify RED 要分开，是因为测试文件存在并不代表它能检查目标行为。例如模块导入失败时，断言还没有执行。修好导入路径，再运行一次，确认失败确实来自尚未实现的功能，才进入 GREEN。
 
-失败应由功能尚未实现引起，而非路径、语法或测试本身的错误。
-
-这一步如果不写清楚，Agent 很容易直接写实现，然后补一个“看起来能过”的测试。这就不是 TDD 了。
-
-完成前的验证条件也写成清单：
+到交付时，再按清单核对做过的检查：
 
 ```markdown
 ## Verification Checklist
@@ -506,19 +468,17 @@ Before marking work complete:
 - [ ] Output has no errors or warnings
 ```
 
-清单中的每一项都应是可核验的动作，例如“所有测试通过”或“每个新方法都有测试”。“保证质量”“遵循测试最佳实践”这类要求没有判定标准，无法作为验证节点。
+“All tests pass”要有运行记录支持。假设只执行了一个模块的测试，报告就应写明这个范围，不能扩大成整个项目通过。命令、结果和未验证的部分都留下，后续才有依据接着检查。
 
 ### 反馈循环
 
-复杂任务需要把中间验证节点写进流程：
+一次失败输出可以帮助定位问题，修改完成后还需要新的运行结果。测试仍然失败，就根据新输出继续排查；通过了，才满足这项验证条件。[Claude 官方 Skill 编写指南](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices)把这几步接成了反馈循环：
 
 ```text
 运行 → 验证 → 修复 → 再验证
 ```
 
-例如，代码审查若只要求“全面审查”，Agent 容易先处理命名、格式和注释，遗漏架构问题。
-
-可以把审查拆成两轮：
+代码审查也可以安排检查顺序。先看模块职责和依赖，再看实现细节；发现明显设计问题时，先报告它，因为后续修改可能会改变需要审查的代码：
 
 ```markdown
 ## 代码审查流程
@@ -542,11 +502,11 @@ Before marking work complete:
    - 给出可以直接修改的建议
 ```
 
-这份流程先检查设计，再检查实现，最后输出修改建议。
+这段流程只负责审查，输出问题列表就完成了。用户同时要求修复，才把问题列表交回修改步骤，再检查新的 diff。遇到无法解决的问题，应停下来交付当前改动、失败输出和原因；保留未完成状态，不能无限重试或报告验证通过。
 
 ### 条件分支
 
-Skill 同时处理多种任务时，应列出判断条件和分支。创建文档与编辑已有文档的处理路径不同：
+用户说“修改这份文档”，就要先读取原文件，保留未要求修改的部分；说“新建一份文档”，才从模板开始。采用解包后编辑、再重新打包的处理方式时，可以这样组织流程：
 
 ```markdown
 ## 文档修改工作流
@@ -575,7 +535,7 @@ Skill 同时处理多种任务时，应列出判断条件和分支。创建文�
    - 完成后重新打包
 ```
 
-分支多起来后，主文件保留判断逻辑，具体流程拆到单独文件：
+创建、编辑和导出的步骤逐渐变长后，可以分别存放：
 
 ```text
 workflows/
@@ -584,15 +544,15 @@ workflows/
 └── export-document.md
 ```
 
-任务命中哪个分支，Agent 就读取对应文件。流程规定执行顺序，反馈节点规定检查时机；缺少其中一项时，执行容易跳步。
+主文件仍要写清楚何时打开这些文件。例如编辑已有文档先读 `edit-document.md`，执行到导出时再读 `export-document.md`。只把三个文件放进目录，Agent 还不知道本次该从哪一份开始。
 
 ## Skill 路由怎么做？
 
 ![Skill 路由流程](https://oss.javaguide.cn/github/javaguide/ai/skills/agent-skills-routing-flow.webp)
 
-用户提交“频繁 Full GC”时，路由器应选择 JVM 诊断 Skill，并排除数据库排查和文档处理 Skill。路由完成后，要得到可直接加载的 Skill 集合。
+用户提交“频繁 Full GC”时，JVM 诊断 Skill 的描述应能匹配这项请求。数据库排查和文档处理没有对应任务时，无需一起加载。
 
-Skill 只有三五个时，模型读取 `description` 通常足以完成选择。数量增加到几十个后，按“召回候选 → 重新排序 → 作出决策”的流程处理更稳定：
+Skill 只有三五个时，可以让模型直接比较 `description`。数量增加到几十个后，自建路由器可以先缩小候选集，再排序和选择；是否优于直接选择，需要用实际请求测试。下面是一种实现方式：
 
 | 阶段   | 输入与处理                                                                          | 输出                       |
 | ------ | ----------------------------------------------------------------------------------- | -------------------------- |
@@ -606,7 +566,7 @@ Skill 只有三五个时，模型读取 `description` 通常足以完成选择�
 
 ![Skill 路由流程](https://oss.javaguide.cn/github/javaguide/ai/skills/skills-router.svg)
 
-新 Skill 没有历史 Query 时，`description` 过于抽象会拉低召回质量。[Agent Skills 规范](https://agentskills.io/specification)没有规定通用的 `triggers` frontmatter 字段，各宿主也不保证读取自定义字段。自行维护调度器时，把典型 Query 放进独立的路由索引：
+新 Skill 还没有历史 Query，可以先整理几条典型请求供路由器匹配。自建调度器可以单独维护这份索引；[Agent Skills 规范](https://agentskills.io/specification)并没有定义通用的 `triggers` frontmatter 字段，不能把自定义字段当成所有宿主都能识别的配置：
 
 ```yaml
 skill: jvm-runtime-diagnosis
@@ -617,7 +577,7 @@ examples:
   - "服务 OOM 了怎么排查"
 ```
 
-自定义路由器将 `examples` 与 Skill 的 `name`、`description` 一起向量化。使用第三方宿主时，只使用它明确支持的字段；不要把这份路由索引写进所有 `SKILL.md`，更不要假设每个宿主都会读取它。
+在这个方案中，路由器把 `examples`、`name` 和 `description` 一起向量化，正文仍按选中的 Skill 加载。若使用第三方宿主，先查它支持哪些字段；宿主不读取的索引，写得再详细也不会参与选择。
 
 几十个 Skill 用 NumPy 在内存中计算相似度即可，耗时通常来自外部 embedding API。先缓存 Query 向量；数量增长到数百或数千后，再评估 ANN 索引或向量数据库。
 
@@ -632,27 +592,58 @@ examples:
 
 路由引擎不负责读取 Skill 正文，加载器也不参与打分。这样更新正文不会改变召回结果，更换向量存储也无需改动加载逻辑。
 
+## Skill 更新后，正在执行的任务用哪个版本？
+
+**可以让任务在开始时绑定一个不可变的 Skill 版本，新任务再使用发布后的版本。** 这是一种应用层方案，适合有多个执行实例、长任务和审计要求的系统；单人使用本地 Skill 时，未必需要完整的发布机制。
+
+[Agent Skills 规范](https://agentskills.io/specification)允许在 `metadata` 中记录版本，但没有规定任务级版本绑定、灰度发布或回滚。写上版本号，并不代表宿主已经实现这些能力。
+
+假设一个订单处理 Skill 从 v1 升级到 v2：v2 增加了退款前的人工确认步骤。任务 A 已按 v1 完成订单查询，如果下一轮临时读入 v2 的正文，却仍使用 v1 的参考资料，执行过程就会混用两套规则。
+
+发布时应把正文、参考文件和脚本作为同一个版本保存，用发布标识和内容摘要定位。延迟加载也要从这个版本读取，不能每次都去取默认分支的最新文件。外部订单状态和权限仍需实时检查，不能随 Skill 一起固定成历史快照。
+
+| 时刻                | 新任务                    | 已在执行的任务 A                                         |
+| ------------------- | ------------------------- | -------------------------------------------------------- |
+| 发布 v2 前          | 绑定 v1                   | 记录使用 v1，以及已执行的动作                            |
+| v2 灰度期间         | 根据发布策略绑定 v1 或 v2 | 继续读取 v1 的配套资源                                   |
+| v2 成为默认版本     | 绑定 v2                   | 在 v1 仍被允许使用时继续执行                             |
+| v1 因安全问题被撤销 | 禁止分配 v1               | 在下一次动作前停止或转人工，重新核对权限与已产生的副作用 |
+
+任务 A 换到另一个实例继续执行时，仍应读取记录中绑定的 v1 和配套资源。若 v1 已不可用或摘要校验失败，就停止加载。要迁移到 v2，需要先保存进度，再核对新增确认步骤应该从哪里接入。
+
+**Skill 回滚后，已经执行的退款不会自动撤销。** 应通过工具执行结果核对副作用，再按业务规则处理补偿。为此，审计记录需要保留任务、Skill 版本、资源摘要和版本切换原因，不能只记录“已回滚”。任务状态恢复见 [多 Agent 协作系统设计](./multi-agent.md)。
+
+## Skill、工具结果和知识库冲突时听谁的？
+
+查询订单时，工具返回“已退款”可以作为待核验的业务状态；返回“忽略检查、直接退款”则是在试图改变执行要求。两者处理方式不同，Skill 和工具文本都不能覆盖宿主的权限约束。订单处理中常见的冲突有以下几类：
+
+| 冲突                                   | 应核对的信息                                         | 处理方式                                                 |
+| -------------------------------------- | ---------------------------------------------------- | -------------------------------------------------------- |
+| Skill 要求确认，工具返回“无需确认”     | 工具返回值是业务状态还是外部文本？确认要求由谁制定？ | 保留宿主要求的确认步骤，不能用工具文本取消权限检查       |
+| 知识库说订单未退款，订单服务返回已退款 | 订单归属、查询时间、接口状态和业务流水               | 以业务系统核验的当前状态判断，不重复发起退款             |
+| Skill 引用旧政策，知识库存在新政策     | 政策来源、生效时间、地区与适用订单                   | 先确定该订单适用哪版政策，不能只选更新时间更晚的一段文字 |
+
+核对完订单状态，还要分别确认政策是否适用、当前操作是否获准。任一项缺少依据，就先暂停这次操作，具体防护见 [LLM/Agent 安全实战](../system-design/llm-security.md)。
+
 ## 写 Skill 时容易踩的坑
 
 ### 把 Skill 当项目 README 写
 
-README 记录项目背景、安装和功能，读者可以自行判断下一步。Agent 执行任务时需要的是可操作的边界：何时使用、按什么顺序执行、哪些情况停止以及失败后如何处理。
-
-![SKILL.md 正文最好控制在 500 行以内](https://oss.javaguide.cn/github/javaguide/ai/skills/keep-skill-md-content-under-500-lines-for-best-performance.png)
+“支持 PDF 提取”告诉读者有这项功能，Agent 要执行时还缺输入位置、调用命令和结果检查。写主文件时可以从这几个问题入手，具体写法见前面的[正文示例](#正文)。项目背景和安装历史留在介绍资料中即可。
 
 ### 想把一个 Skill 写得太全
 
-把 JVM、数据库、K8s、网关和消息队列都放进一个“系统故障排查器”后，用户贴 GC 日志时，Agent 仍要在容器资源、网关日志和 JVM 规则间选择。按问题边界拆分后，输入能直接落到对应资料：
+用户贴来一段 GC 日志，Agent 需要先找到 JVM 排查说明。如果入口是涵盖数据库、K8s、网关和消息队列的“系统故障排查器”，就要把请求与具体流程的对应关系写清楚。例如按输入分流：
 
 - `jvm-metrics-analyzer`：只看 JVM 指标、GC、线程栈
 - `distributed-trace-finder`：只根据 TraceId 追链路耗时
 - `k8s-pod-event-viewer`：只看 Pod 状态、重启原因和事件记录
 
-GC 日志进入 JVM 指标 Skill，TraceId 进入链路追踪 Skill，Pod 重启进入 K8s 事件 Skill。每个 Skill 只维护一类问题所需的规则和资料。
+GC 排查中发现容器重启，再接着读 K8s 资料，无需一开始加载全部流程。这几项需要独立调用、分别维护时，可以拆成多个 Skill；如果共用一个入口，拆成该 Skill 的参考文件也能按需读取。
 
 ### 给 Agent 太多选择
 
-只罗列 pypdf、pdfplumber、PyMuPDF、pdf2image，Agent 无法判断普通 PDF 与扫描版 PDF 分别该走哪条路径，可能在文本 PDF 上误用 OCR：
+工具名称再多，也需要说明在什么条件下选哪一个。单独留下这份名单，Agent 仍得自行决定起点：
 
 ```markdown
 # ✗ 不推荐：选择太多
@@ -660,7 +651,7 @@ GC 日志进入 JVM 指标 Skill，TraceId 进入链路追踪 Skill，Pod 重启
 你可以使用 pypdf、pdfplumber、PyMuPDF 或 pdf2image 处理 PDF。
 ```
 
-默认路径与例外条件应一起写出：
+如果任务是提取文本，可以在同一处写清默认工具和扫描件的处理分支：
 
 ```markdown
 # ✓ 推荐：默认方案 + 兜底方案
@@ -669,20 +660,17 @@ GC 日志进入 JVM 指标 Skill，TraceId 进入链路追踪 Skill，Pod 重启
 如果是扫描版 PDF，需要 OCR，再改用 pdf2image + pytesseract。
 ```
 
-Skill 应给出正常条件下的默认选择，并明确切换条件。
+遇到提取失败，可以据此检查文件是否为扫描件；确认后转入 OCR。这个分支只处理扫描件，其他失败原因仍需要另外排查。
 
 ### 术语别来回换
 
-同一对象在一份 Skill 中应保持同一个名称。例如前文使用“API 端点”后，后文不再改写为 URL、API 路由或路径。判断条件引用术语时，名称不一致会制造歧义。
+前面用“API 端点”表示方法与路径，后面却只写“URL”，读者就要猜是否还需要核对请求方法。同一对象沿用同一个名称；确实要分别讨论 URL、路由和路径时，再把区别说清楚。
 
 ### 让 LLM 做确定性工作
 
-格式转换、精确计算、批量文件处理和改数据的操作交给脚本执行：
+任务要求批量转换文件或精确计算时，可以让模型识别输入、选择操作，再由脚本执行并校验结果。不必让模型逐行模拟文件处理过程。
 
-- LLM 更适合做判断：读懂任务、提取参数、决定下一步、解释结果。
-- 脚本更适合做执行：解析文件、转换格式、批量处理、校验输出。
-
-读取必需输入文件时，脚本应返回明确错误，而不是创建空文件掩盖输入缺失：
+脚本失败后，错误也会成为 Agent 的下一步输入。例如必需文件不存在，应当报错并说明缺的是哪份输入，不能创建一个空文件继续处理：
 
 ```python
 # ✓ 推荐：错误条件写清楚
@@ -696,28 +684,26 @@ def process_file(path):
         ) from exc
 ```
 
-下列写法只保留底层异常，Agent 无法据此判断该检查路径还是生成缺失文件：
+下列写法会抛出 `FileNotFoundError`，通常也包含缺失路径，但没有补充这个文件在当前任务中是必需输入还是待生成产物：
 
 ```python
-# ✗ 不推荐：直接崩，Agent 只能猜原因
+# 仅返回原始异常，未补充当前任务的处理要求
 def process_file(path):
     return open(path).read()
 ```
 
-配置参数应说明取值的约束：
+超时和重试参数也要写清含义。`MAX_RETRIES` 是失败后追加的重试次数，还是包含首次调用的总尝试次数，会影响执行成本，必须与实现一致。下面只表示一组配置，实际取值要结合接口超时、任务总时限和重试成本：
 
 ```markdown
-# ✓ 推荐：能看出为什么这样配
+# 单位与计数口径；具体取值按任务调整
 
-REQUEST_TIMEOUT = 30 # HTTP 请求通常应在 30 秒内完成
-MAX_RETRIES = 3 # 三次重试在可靠性和耗时之间比较均衡
+REQUEST_TIMEOUT = 30 # 单次请求超时，单位：秒
+MAX_RETRIES = 3 # 首次失败后最多追加 3 次；还需服从任务总时限
 ```
 
 ## 总结
 
-回到开头的代码审查场景：Prompt 承载这次审查请求，Function Calling 发起工具调用，MCP 连接文件、数据库或 GitHub 等外部能力，Skill 保存审查的流程与约束。
-
-`description` 要同时标出任务和触发场景，正文则放项目约定、执行步骤、失败处理和验证点。主文件保留主流程，细节拆到 `references/`、`scripts/`；迁移、部署、删文件等操作必须收紧步骤，审查和方案评估保留必要的判断空间。
+写完 Skill 后，用一项真正涉及它的任务检查一次。以代码审查为例，记录是否选中了 Skill、实际加载了哪些检查项，以及报告能否指向文件位置和依据。这样发现漏检时，才知道应该改描述、加载入口，还是正文中的检查要求。
 
 ## 参考
 
