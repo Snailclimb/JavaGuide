@@ -55,6 +55,22 @@ head:
 
 ## 认识 Git
 
+### Git 简介
+
+官网；https://git-scm.com/ 
+Source Code: https://github.com/git/git
+
+> Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
+> Git is lightning fast and has a huge ecosystem of GUIs, hosting services, and command-line tools.
+
+Git 是一个免费、开源的分布式版本控制系统，旨在快速、高效的处理从小型到超大型的各种项目。
+- 分布式：每个开发者本地都有完整的仓库副本（含历史记录），不依赖中央服务器也能提交、查看历史、分支；联网时再与远端同步；
+- 版本控制系统：记录文件每次变更，可回滚、对比、追溯；
+- 开源免费：GPLv2许可证。
+- 生态庞大：GUI（GitHub Desktop、GitKraken……）、托管服务（GitHub、GitLab、Gitee）、命令行工具（Git Bash……）
+
+Git 速度极快，拥有庞大的生态系统，包括图形界面（GUI），托管服务和命令行工具。
+
 ### Git 简史
 
 Linux 内核项目组当时使用分布式版本控制系统 BitKeeper 来管理和维护代码。但是，后来开发 BitKeeper 的商业公司同 Linux 内核开源社区的合作关系结束，他们收回了 Linux 内核社区免费使用 BitKeeper 的权力。 Linux 开源社区（特别是 Linux 的缔造者 Linus Torvalds）基于使用 BitKeeper 时的经验教训，开发出自己的版本系统，而且对新的版本控制系统做了很多改进。
