@@ -217,7 +217,7 @@ public boolean offer(E e) {
 
 ![](https://oss.javaguide.cn/github/javaguide/java/collection/delayqueue-take-1.png)
 
-注意，调用 `await` 之后 t1 就会释放 `lcok` 锁，假如 `DelayQueue` 持续为空，那么 t2、t3 也会像 t1 一样执行相同的逻辑并进入 `conditionWaiter` 队列中。
+注意，调用 `await` 之后 t1 就会释放 `lock` 锁，假如 `DelayQueue` 持续为空，那么 t2、t3 也会像 t1 一样执行相同的逻辑并进入 `conditionWaiter` 队列中。
 
 ![](https://oss.javaguide.cn/github/javaguide/java/collection/delayqueue-take-2.png)
 

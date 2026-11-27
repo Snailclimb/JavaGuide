@@ -512,6 +512,8 @@ System.out.println("清空后的链表：" + list);
 输出：
 
 ```plain
+链表内容：[apple, banana, pear]
+链表内容：[apple, orange, banana, pear]
 索引为 2 的元素：banana
 链表内容：[apple, orange, banana, grape]
 链表内容：[orange, banana, grape]
