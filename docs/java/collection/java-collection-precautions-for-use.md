@@ -403,7 +403,9 @@ protected void removeRange(int fromIndex, int toIndex) {
 }
 ```
 
-**那我们如何正确的将数组转换为 `ArrayList` ?**
+**那我们如何将数组转换为 `List`？**
+
+下面的方法返回的列表不一定可修改；如果需要增删元素，可以使用 `new ArrayList<>(Arrays.asList(array))` 创建可变列表。
 
 1、手动实现工具类
 
@@ -463,11 +465,23 @@ List<String> list = new ArrayList<String>();
 CollectionUtils.addAll(list, str);
 ```
 
-6、 使用 Java9 的 `List.of()` 方法
+6、使用 Java 9 的 `List.of()` 方法创建不可修改的列表
+
+`List.of()` 返回的不是可变的 `ArrayList`。对它调用 `add()`、`remove()` 或 `set()` 等修改方法都会抛出 `UnsupportedOperationException`。与 `Arrays.asList()` 不同，它也不支持替换元素，并且不允许包含 `null` 元素，否则创建时会抛出 `NullPointerException`。
 
 ```java
 Integer[] array = {1, 2, 3};
 List<Integer> list = List.of(array);
+// list.add(4);    // 抛出 UnsupportedOperationException
+// list.set(0, 4); // 抛出 UnsupportedOperationException
+```
+
+如果需要可变列表，可以复制到 `ArrayList` 中：
+
+```java
+List<Integer> mutableList = new ArrayList<>(list);
+mutableList.add(4);    // [1, 2, 3, 4]
+mutableList.set(0, 5); // [5, 2, 3, 4]
 ```
 
 <!-- @include: @article-footer.snippet.md -->
