@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="330" viewBox="0 0 500 330" role="img" aria-labelledby="title desc" lang="zh-CN">
+  <title id="title">服务器 A 和 B 争最后一个名额</title>
+  <desc id="desc">同一用户已放行两次。分开查询和写入时，两台服务器可能都读到二，先后写入使计数达到四。用 Lua 在同一个 Redis 节点执行，A 放行后 B 读到三并拒绝，总数保持三。图中时间从左往右。</desc>
+  <style>
+    text { font-family: "PingFang SC","Microsoft YaHei","Noto Sans CJK SC",sans-serif; fill: #232a2b }
+    .title { font-size: 23px; font-weight: 650 }
+    .label { font-size: 17px }
+    .step { font-size: 17px; font-weight: 600 }
+    .note { font-size: 16px; fill: #535957 }
+    .blue { fill: #315570 }
+  </style>
+  <rect width="500" height="330" rx="12" fill="#faf9f6"/>
+  <text class="title" x="22" y="35">A 和 B 都想拿最后一个名额</text>
+  <text class="note" x="22" y="64">同一用户已放行 2 次，上限 3 次。时间从左往右。</text>
+  <text class="label" x="22" y="106">分别查询、写入</text>
+  <path d="M72 142h350" stroke="#bdbeb7" stroke-width="2"/>
+  <g fill="#fffefa" stroke="#d8d9d1">
+    <rect x="22" y="120" width="100" height="45" rx="6"/>
+    <rect x="140" y="120" width="100" height="45" rx="6"/>
+    <rect x="258" y="120" width="100" height="45" rx="6"/>
+    <rect x="376" y="120" width="100" height="45" rx="6"/>
+  </g>
+  <g class="step" text-anchor="middle">
+    <text x="72" y="149">A 读到 2</text><text x="190" y="149">B 读到 2</text>
+    <text x="308" y="149">A 放行</text><text x="426" y="149">B 放行</text>
+  </g>
+  <text class="note" x="476" y="190" text-anchor="end">两次都写入，共放行 4 次</text>
+  <path d="M22 204h454" stroke="#d8d9d1"/>
+  <text class="label" x="22" y="234">在 Redis 上依次执行 Lua 脚本</text>
+  <g fill="#edf1f3" stroke="#8d9ca4">
+    <rect x="22" y="247" width="210" height="45" rx="6"/>
+    <rect x="266" y="247" width="210" height="45" rx="6"/>
+  </g>
+  <path d="M236 269h24m-6-5 6 5-6 5" fill="none" stroke="#315570" stroke-width="2"/>
+  <text class="step blue" x="127" y="276" text-anchor="middle">A 读到 2，放行并写入</text>
+  <text class="step blue" x="371" y="276" text-anchor="middle">B 读到 3，拒绝</text>
+  <text class="note" x="476" y="316" text-anchor="end">只有 A 写入，共放行 3 次</text>
+</svg>

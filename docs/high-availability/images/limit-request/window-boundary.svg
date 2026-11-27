@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="298" viewBox="0 0 500 298" role="img" aria-labelledby="title desc" lang="zh-CN">
+  <title id="title">相隔 200 毫秒的第四次请求</title>
+  <desc id="desc">放大十秒分界线附近：9.900 秒三次请求均已放行，10.100 秒第四次到来。固定窗口计数已清零；向前滚动十秒仍包含前三次，应拒绝。</desc>
+  <style>
+    text { font-family: "PingFang SC","Microsoft YaHei","Noto Sans CJK SC",sans-serif; fill: #232a2b }
+    .title { font-size: 23px; font-weight: 650 }
+    .label { font-size: 17px }
+    .time { font: 15.5px Menlo,Consolas,monospace; fill: #315570 }
+    .muted { fill: #535957 }
+    .strong { font-weight: 650 }
+  </style>
+  <rect width="500" height="298" rx="12" fill="#faf9f6"/>
+  <text class="title" x="22" y="35">第四次请求，跨过了哪条线？</text>
+  <rect x="22" y="55" width="456" height="114" rx="7" fill="#edf1f3"/>
+  <path d="M250 55h221q7 0 7 7v100q0 7-7 7H250Z" fill="#f1ede5"/>
+  <path d="M250 54v115" stroke="#787d77" stroke-dasharray="4 4"/>
+  <text class="label strong" x="108" y="84" text-anchor="middle">已放行 × 3</text>
+  <text class="label strong" x="392" y="84" text-anchor="middle">第 4 次到来</text>
+  <path d="M44 114H456m-7-4 7 4-7 4" fill="none" stroke="#535957" stroke-width="1.6"/>
+  <circle cx="108" cy="114" r="7" fill="#315570"/>
+  <path d="m392 106 8 8-8 8-8-8Z" fill="#fffefa" stroke="#315570" stroke-width="2"/>
+  <text class="time" x="108" y="147" text-anchor="middle">9.900 s</text>
+  <text class="time" x="250" y="147" text-anchor="middle">10.000 s</text>
+  <text class="time" x="392" y="147" text-anchor="middle">10.100 s</text>
+  <text class="label strong" x="23" y="203">固定窗口</text>
+  <text class="label muted" x="119" y="203">跨过 10 秒，已有 0 次</text>
+  <text class="label strong" x="473" y="203" text-anchor="end">放行</text>
+  <path d="M22 217h456" stroke="#d8d9d1"/>
+  <text class="label strong" x="23" y="245">滚动窗口</text>
+  <text class="label muted" x="119" y="245">往前看 10 秒，已有 3 次</text>
+  <text class="label strong" x="473" y="245" text-anchor="end" style="fill:#315570">拒绝</text>
+  <text class="label muted" x="23" y="278">到 19.900 秒，最早的三次请求同时移出窗口。</text>
+</svg>

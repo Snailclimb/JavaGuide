@@ -50,7 +50,7 @@ head:
 
 滑动窗口计数器算法相比于固定窗口计数器算法的优化在于：**它将一个固定窗口划分为多个更小的子窗口（格子）** 。
 
-例如我们的接口限流每分钟处理 60 个请求，我们可以把 1 分钟分为 60 个窗口。每隔 1 秒移动一次，每个窗口一秒只能处理不大于 `60(请求数)/60（窗口数）` 的请求， 如果当前窗口的请求计数总和超过了限制的数量的话就不再处理其他请求。
+例如，接口每分钟最多放行 60 次请求，可以按秒分成 60 个格子，每个格子记录这一秒放行了多少次。新请求到来时，先把窗口滑到当前格子，再看这 60 个格子的计数之和。假设之前只放行了 10 次，这一秒再来 2 次，都可以放行。这里限制的是整个窗口的总量。
 
 很显然， **当滑动窗口的格子划分得越多，滑动窗口的滚动就越平滑，限流的统计就会越精确。**
 
@@ -261,15 +261,53 @@ Resilience4j 不仅提供限流，还提供了熔断、负载保护、自动重�
 - **减少了网络开销**：我们可以利用 Lua 脚本来批量执行多条 Redis 命令，这些 Redis 命令会被提交到 Redis 服务器一次性执行完成，大幅减小了网络开销。
 - **原子性**：一段 Lua 脚本可以视作一条命令执行，一段 Lua 脚本执行过程中不会有其他脚本或 Redis 命令同时执行，保证了操作不会被其他指令插入或打扰。
 
-需要注意的是，Lua 脚本在 Redis 中会原子执行，也意味着脚本执行期间会阻塞 Redis 的其他操作。因此，限流脚本要尽量保持轻量，避免复杂计算或大范围遍历，并结合 Redis 的 `lua-time-limit` 配置防止脚本执行时间失控。
+脚本执行期间，同一 Redis 节点上的其他命令需要等待，所以限流脚本要尽量短。[Redis 脚本执行说明](https://redis.io/docs/latest/develop/programmability/eval-intro/)
 
-我这里就不放具体的限流脚本代码了，网上也有很多现成的优秀的限流脚本供你参考，就比如 Apache 网关项目 ShenYu 的 RateLimiter 限流插件就基于 Redis + Lua 实现了令牌桶算法/并发令牌桶算法、漏桶算法、滑动窗口算法。
+### 多台服务器如何限制同一用户任意 10 秒最多请求 3 次？
 
-> ShenYu 地址: <https://github.com/apache/incubator-shenyu>
+同一个用户在第 9.9 秒连发三次请求，都成功了。第 10.1 秒，他又发来一次。这次该放行吗？按整十秒清零的计数器会放行，可这四次请求前后只差 200 毫秒。要满足**任意连续 10 秒最多放行 3 次**，第四次就得拒绝。等到第 19.9 秒，前三次请求恰好满 10 秒，名额才空出来。
+
+![固定窗口与滚动窗口对第 4 次请求的判断](./images/limit-request/window-boundary.svg)
+
+这道题可以用滑动窗口日志来做。前面的分桶计数器按格子统计，这里给每次放行单独记一个时间。所有实例都往同一个用户的 ZSET 里记，例如用户 42 在点赞接口上用 `limit:like:42`。score 存 Redis 当前的毫秒时间戳，member 存**限流尝试 ID**（例如 UUID），由业务服务在每次执行限流判断前生成。同一笔业务超时后重试，如果要重新判断是否放行，也要生成新的限流尝试 ID。如果把时间戳也当作 member，同一毫秒来的三次请求就只会留下一个成员。[Redis ZADD 文档](https://redis.io/docs/latest/commands/zadd/)
+
+为什么把判断也放进 Redis？假设窗口里已经有两条记录，服务器 A 和 B 同时来争最后一个名额。如果两边各自先查数量、再决定写入，就可能都读到 2，各放行一次。把清理、计数和写入放进同一段 Lua，A 用掉最后一个名额后，B 再查到的就是 3。
+
+![服务器 A 和 B 争最后一个名额的两种执行顺序](./images/limit-request/last-permit.svg)
+
+```lua
+-- Redis 7+。KEYS[1] 标识当前接口和用户，ARGV[1] 是本次的限流尝试 ID
+local key = KEYS[1]
+local window_ms = 10000
+local time = redis.call('TIME')
+local now = tonumber(time[1]) * 1000 + math.floor(tonumber(time[2]) / 1000)
+
+-- 窗口为 (now - 10000, now]，恰好满 10 秒的记录也要移出
+redis.call('ZREMRANGEBYSCORE', key, '-inf', now - window_ms)
+if redis.call('ZCARD', key) >= 3 then
+    return 0
+end
+
+redis.call('ZADD', key, now, ARGV[1])
+redis.call('PEXPIRE', key, window_ms)
+return 1
+```
+
+脚本返回 `1` 就放行，返回 `0` 就拒绝。只有放行才写记录，所以被拒的请求不会延长等待时间。这里的 TTL 用来回收不再访问的用户键；活跃用户的窗口则随每次调用向前移动。可以用下面三组请求检查实现，每行从独立的初始状态开始：
+
+| 场景                   | 请求怎么发                                                  | 应该看到什么                           |
+| ---------------------- | ----------------------------------------------------------- | -------------------------------------- |
+| 跨窗口和恰好到期       | 在 9.900 秒放行三次，再分别于 10.100、19.899、19.900 秒请求 | 10.100 和 19.899 秒被拒，19.900 秒放行 |
+| 同一毫秒               | 同一用户在同一毫秒执行四次判断，每次使用不同的限流尝试 ID   | 恰好三次放行，ZSET 中有三个成员        |
+| 两个实例争最后一个名额 | 窗口里已有两次放行，A 和 B 各发一个请求                     | 一个返回 `1`，另一个返回 `0`           |
+
+这道题每个用户最多存三条记录。如果换成滚动一天、每个用户允许一百万次，逐条记录的内存成本就值得重新算了。业务能接受分钟粒度的误差时，可以按分钟分桶。这也是[这份 B 站面经](https://www.nowcoder.com/feed/main/detail/df0d82edbf9548fda4868be5e5d3a6c2)里从滚动限流延伸出来的追问。更多 Lua 实现可以参考 [Apache ShenYu 的限流插件](https://github.com/apache/shenyu)。
 
 ![ShenYu 限流脚本](https://oss.javaguide.cn/github/javaguide/high-availability/limit-request/shenyu-ratelimit-lua-scripts.png)
 
-另外，如果不想自己写 Lua 脚本的话，也可以直接利用 Redisson 中的 `RRateLimiter` 来实现分布式限流，其底层实现就是基于 Lua 代码+令牌桶算法。
+### 如何用 Redisson 配置分布式限流？
+
+如果需求是让多个 Java 服务实例共享一份调用额度，可以用 Redisson 的 `RRateLimiter`。例如，几个实例共用一个第三方服务账号，每小时一共有 100 次调用机会，就让它们使用同一个限流器名称，并选择 `RateType.OVERALL`。[Redisson 限流器文档](https://redisson.pro/docs/data-and-services/objects/#ratelimiter)
 
 Redisson 是一个开源的 Java 语言 Redis 客户端，提供了很多开箱即用的功能，比如 Java 中常用的数据结构实现、分布式锁、延迟队列等等。并且，Redisson 还支持 Redis 单机、Redis Sentinel、Redis Cluster 等多种部署架构。
 
@@ -281,7 +319,7 @@ RedissonClient redissonClient = Redisson.create();
 // 获取一个名为 "javaguide.limiter" 的限流器对象
 RRateLimiter rateLimiter = redissonClient.getRateLimiter("javaguide.limiter");
 // 尝试设置限流器的速率为每小时 100 次
-// RateType 有两种，OVERALL 是全局限流，PER_CLIENT 是单 Client 限流（可以认为就是单机限流）
+// RateType 有两种，OVERALL 是全局限流，PER_CLIENT 是每个 Redisson 客户端实例单独计数
 rateLimiter.trySetRate(RateType.OVERALL, 100, 1, RateIntervalUnit.HOURS);
 ```
 
@@ -296,7 +334,7 @@ rateLimiter.acquire(1);
 boolean res = rateLimiter.tryAcquire(1, 5, TimeUnit.SECONDS);
 ```
 
-`RRateLimiter` 的限流精度会受到 Redis 性能和网络延迟影响，在超高并发场景下可能出现轻微超限。Redis 故障或主从切换时，`tryAcquire()` 可能抛出异常，业务层需要提前确定降级策略：回退到本地限流、直接拒绝，还是短时间放行，取决于业务对稳定性和可用性的取舍。
+Redis 故障或主从切换时，`tryAcquire()` 可能抛出异常，业务层需要提前确定降级策略：回退到本地限流、直接拒绝，还是短时间放行，取决于业务对稳定性和可用性的取舍。
 
 ## 总结
 
