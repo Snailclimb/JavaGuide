@@ -51,6 +51,11 @@ SQL 可以帮助我们：
 
 由于 MySQL 是开源免费并且比较成熟的数据库，因此，MySQL 被大量使用在各种系统中。任何人都可以在 GPL(General Public License) 的许可下下载并根据个性化的需要对其进行修改。MySQL 的默认端口号是**3306**。
 
+>摘抄于官网： MySQL 是一个开源的关系型数据库管理系统（RDBMS），用于存储和管理数据。其可靠性、性能、可扩展性和易用性使 MySQL 成为开发者的热门选择。事实上，在许多要求严苛、高流量的应用程序的核心架构中，你都能看到它的身影，例如 Facebook、Netflix、Uber、Airbnb、Shopify 和 Booking.com。
+>MySQL is an open source relational database management system (RDBMS) that’s used to store and manage data. Its reliability, performance, scalability, and ease of use make MySQL a popular choice for developers. In fact, you’ll find it at the heart of demanding, high-traffic applications such as Facebook, Netflix, Uber, Airbnb, Shopify, and Booking.com.
+
+
+
 ### ⭐️MySQL 有什么优点？
 
 这个问题本质上是在问 MySQL 如此流行的原因。
