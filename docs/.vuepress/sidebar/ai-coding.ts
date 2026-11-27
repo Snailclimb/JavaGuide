@@ -102,6 +102,10 @@ export const aiCoding = arraySidebar([
         link: "practices/mattpocock-skills",
       },
       {
+        text: "mattpocock/skills 精选 10 个 Skill",
+        link: "practices/mattpocock-skills-picks",
+      },
+      {
         text: "一个好用的 AI 绘图 Skill",
         link: "practices/drawio-chart-skill",
       },

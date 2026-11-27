@@ -84,6 +84,7 @@ AI 生成的代码，一定要过测试、审查和可回滚的提交管理。�
 - [AI 编程必备 Skills 推荐](./practices/programmer-essential-skills.md)：按任务场景整理 TDD、代码审查、UI 设计、网页自动化和 Skill 开发工作流，并说明哪些情况不值得安装。
 - [强模型时代，AI 编程 Skills 还有必要装吗？](./practices/skill-selection-and-pruning.md)：从 Superpowers 和 `grilling` 的实际使用出发，讨论哪些 Skill 值得保留，以及怎么给 Skill 列表做减法。
 - [mattpocock/skills 深度使用指南](./practices/mattpocock-skills.md)：结合真实案例拆解 `grilling`、`research`、`diagnosing-bugs` 和 `code-review` 的适用场景。
+- [mattpocock/skills 精选 10 个 Skill](./practices/mattpocock-skills-picks.md)：逐项说明需求澄清、原型、拆任务、测试、代码审查和会话交接等场景下的 Skill 用法。
 - [drawio-chart Skill 开源](./practices/drawio-chart-skill.md)：分享如何用 Agent 自动生成可编辑的 draw.io 技术图，适合流程图、架构图和模块关系图。
 - [OpenAI Codex 最佳实践指南](./practices/codex-best-practices.md)：讲 Codex 云端智能体和 CLI 怎么配提示词、工具权限和安全策略。
 - [高颜值 Claude Code 替代 OMP](./practices/oh-my-pi.md)：介绍这个高颜值 Claude Code 替代工具的 Hashline、LSP/DAP、内置工具、多模型路由和上手配置。
