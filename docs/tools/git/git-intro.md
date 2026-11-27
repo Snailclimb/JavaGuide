@@ -55,6 +55,12 @@ head:
 
 ## 认识 Git
 
+### Git 简介
+
+Git 是一个免费、开源的分布式版本控制系统，既可用于个人项目，也能支持大型项目的多人协作。
+
+相关链接：[Git 官网](https://git-scm.com/)、[Git 源码](https://github.com/git/git)。
+
 ### Git 简史
 
 Linux 内核项目组当时使用分布式版本控制系统 BitKeeper 来管理和维护代码。但是，后来开发 BitKeeper 的商业公司同 Linux 内核开源社区的合作关系结束，他们收回了 Linux 内核社区免费使用 BitKeeper 的权力。 Linux 开源社区（特别是 Linux 的缔造者 Linus Torvalds）基于使用 BitKeeper 时的经验教训，开发出自己的版本系统，而且对新的版本控制系统做了很多改进。
