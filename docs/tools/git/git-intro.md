@@ -57,19 +57,9 @@ head:
 
 ### Git 简介
 
-官网；https://git-scm.com/ 
-Source Code: https://github.com/git/git
+Git 是一个免费、开源的分布式版本控制系统，既可用于个人项目，也能支持大型项目的多人协作。
 
-> Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
-> Git is lightning fast and has a huge ecosystem of GUIs, hosting services, and command-line tools.
-
-Git 是一个免费、开源的分布式版本控制系统，旨在快速、高效的处理从小型到超大型的各种项目。
-- 分布式：每个开发者本地都有完整的仓库副本（含历史记录），不依赖中央服务器也能提交、查看历史、分支；联网时再与远端同步；
-- 版本控制系统：记录文件每次变更，可回滚、对比、追溯；
-- 开源免费：GPLv2许可证。
-- 生态庞大：GUI（GitHub Desktop、GitKraken……）、托管服务（GitHub、GitLab、Gitee）、命令行工具（Git Bash……）
-
-Git 速度极快，拥有庞大的生态系统，包括图形界面（GUI），托管服务和命令行工具。
+相关链接：[Git 官网](https://git-scm.com/)、[Git 源码](https://github.com/git/git)。
 
 ### Git 简史
 
