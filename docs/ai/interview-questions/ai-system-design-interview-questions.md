@@ -31,8 +31,18 @@ AI 系统设计题通常从一个具体场景开始，例如企业知识库、�
 - 同步返回、流式返回和异步任务分别适合什么场景？
 - Prompt 为什么要做版本管理？模板、变量和模型版本应该如何关联？
 - RAG、Memory 和 Tool 分别管理什么信息？为什么要分开治理？
-- 长任务的中间状态如何保存？服务重启后怎么恢复？
+- Agent 服务部署多个实例时，任务状态和 Checkpoint 如何保存？实例宕机后，其他实例怎样接管任务并避免重复执行写操作？参考：[Workflow、Graph 与 Loop](../agent/workflow-graph-loop.md)、[Agent 项目的稳定性设计](./agent-project-interview-guide.md#agent-项目的稳定性如何设计)。
+- Java 业务服务与 Python Agent 服务如何通信？普通请求、流式返回和异步任务分别怎么处理，如何关联任务状态和执行结果？参考：[Java 与 Python 服务协作](../system-design/ai-application-architecture.md#java-业务服务与-python-agent-服务如何协作)。
 - 为了支持问题回放，一次请求至少要记录哪些数据？
+
+## Spring AI 应用实践
+
+相关内容：[Spring AI 应用实践：从知识库问答到工具调用](../framework/spring-ai.md)
+
+- ChatClient、ChatModel 和 Advisor 分别负责什么？Advisor 顺序如何影响检索、记忆和工具调用？
+- ChatMemory 为什么不能替代完整聊天历史？工具调用中间消息是否会保存，需要检查哪些配置？
+- Spring AI 支持流式输出，为什么仍需要检查工具阻塞、取消与 Trace 传播？
+- 业务权限校验与退款确认应该放在哪里，为什么不能只依赖工具描述？
 
 ## 模型网关与调用治理
 
@@ -75,13 +85,14 @@ AI 系统设计题通常从一个具体场景开始，例如企业知识库、�
 
 ## 可观测、评测与发布
 
-相关内容：[《AI 应用评测体系：从 Golden Set 构建到线上灰度闭环》](../llm-basis/llm-evaluation.md)、[《AI 应用系统设计：从 Prompt Demo 到生产级架构》](../system-design/ai-application-architecture.md)
+相关内容：[《AI 应用评测体系：从 Golden Set 构建到线上灰度闭环》](../llm-basis/llm-evaluation.md)、[《AI 可观测性与 Trace：如何还原 Agent 的完整执行过程》](../system-design/ai-observability.md)、[《AI 应用系统设计：从 Prompt Demo 到生产级架构》](../system-design/ai-application-architecture.md)
 
 AI 应用的发布检查除了接口是否成功，还要覆盖答案质量、检索结果、工具轨迹和结构化输出。模型、Prompt、检索配置和代码发生变化时，都需要能够比较和回滚。
 
 常见面试题：
 
 - AI 应用的可观测指标应该包括哪些内容？
+- 同一类 Agent 任务突然变慢，如何通过 Trace 区分上下文增长、模型调用次数增加、工具响应变慢和多层重试？参考：[Agent 任务变慢的排查](../system-design/ai-observability.md#同一类-agent-任务为什么突然变慢)。
 - 为什么没有评测集就很难判断一次改动是否有效？
 - Golden Set 如何覆盖正常路径、边缘场景、对抗样本和高风险失败？
 - 离线评测、Trace 回放和线上灰度分别解决什么问题？

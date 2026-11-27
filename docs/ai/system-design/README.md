@@ -46,6 +46,8 @@ Prompt Demo 能跑起来，只说明模型在某个样例里给过一个可用�
 - [AI 可观测性与 Trace](./ai-observability.md)：讲清 Session、Run、Trace、Span 和 Attempt，并覆盖 Agent/RAG/Tool Span、上下文传播、采样、敏感数据与 Spring AI 接入。
 - [AI 语音技术详解](./ai-voice.md)：沿语音系统链路展开 VAD、ASR、LLM、TTS、流式播放、打断处理与端云混合选型。
 
+框架中的具体请求过程见 [Spring AI 应用实践](../framework/spring-ai.md)。
+
 ## 高频问题
 
 - Prompt Demo 上线前还缺哪些工程能力？

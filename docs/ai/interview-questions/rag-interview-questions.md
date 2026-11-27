@@ -25,7 +25,7 @@ head:
 - 什么是 RAG？为什么需要 RAG？
 - RAG 和传统搜索引擎有什么区别？
 - RAG 和微调怎么选？什么时候用 RAG，什么时候微调，什么时候两者结合？
-- RAG 系统中 Embedding 模型怎么选？为什么？
+- RAG 系统中 Embedding 模型怎么选？为什么？参考：[Embedding 与 Reranker 选型](../rag/embedding-reranker.md)。
 - 余弦相似度、内积和欧氏距离有什么区别？
 - RAG 的幻觉问题怎么解决？RAG 一定不会产生幻觉吗？
 - 什么是 Lost in the Middle 问题？怎么应对？
@@ -83,6 +83,7 @@ head:
 - Hybrid Search 是什么？BM25 和向量检索怎么融合？
 - Query Rewrite、HyDE、Self-Query 分别适合什么场景？
 - Rerank 解决什么问题？为什么不能只依赖向量相似度排序？
+- 如何分别比较 Embedding 与 Reranker，避免把召回变化误判为重排效果？参考：[模型对照与逐题比较](../rag/embedding-reranker.md)。
 - 上下文压缩有什么价值？什么时候会伤害答案质量？
 - RAG 优化为什么必须先建立失败样本集？
 - 线上 RAG 出现“答非所问”，应该按什么路径定位？

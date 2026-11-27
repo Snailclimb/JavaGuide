@@ -75,6 +75,16 @@ export const ai = arraySidebar([
       { text: "GraphRAG 详解", link: "graphrag" },
       { text: "RAG 检索优化", link: "rag-optimization" },
       { text: "RAG 评测与线上可观测性", link: "rag-evaluation" },
+      { text: "Embedding 与 Reranker 选型", link: "embedding-reranker" },
+    ],
+  },
+  {
+    text: "Java AI 框架",
+    icon: ICONS.DESIGN,
+    prefix: "framework/",
+    children: [
+      { text: "Java AI 框架专题", link: "" },
+      { text: "Spring AI 应用实践", link: "spring-ai" },
     ],
   },
   {

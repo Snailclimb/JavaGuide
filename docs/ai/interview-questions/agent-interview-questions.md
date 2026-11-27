@@ -74,6 +74,8 @@ Prompt 题关注指令如何表达，Context 题还会涉及历史状态、工�
 - Context Engineering 要解决哪些问题？
 - 静态规则、动态信息、工具结果、记忆应该如何进入上下文？
 - 长任务上下文溢出时，Compaction、结构化笔记、Sub-agent 分别怎么用？
+- 压缩上下文时，哪些信息必须保留？如何检查摘要有没有遗漏任务约束、关键事实和未完成事项？参考：[压缩后的信息核验](../agent/context-engineering.md#上下文压缩后-怎么检查有没有丢信息)。
+- 工具返回大量日志或长文档时，如何控制 Token 开销？裁剪或摘要后，怎样保留排障需要的原始证据？参考：[压缩后的交接记录](../agent/context-engineering.md#压缩后的交接记录保留什么)。
 
 ![Prompt engineering vs. context engineering](https://oss.javaguide.cn/github/javaguide/ai/context-engineering/context-engineering-vs-prompt-engineering.png)
 
@@ -91,9 +93,11 @@ Function Calling、MCP 和 Skills 位于不同环节：模型需要表达调用�
 - MCP 和 Function Calling 有什么区别？
 - 生产级 MCP Server 要做哪些安全治理？
 - Agent Skills 是什么？它和 Prompt、MCP、Function Calling 的边界是什么？
-- Skills 为什么要延迟加载？
+- Skills 为什么要延迟加载？Skill 数量增加后，如何避免无关指令和参考资料占满上下文？参考：[延迟加载与渐进式披露](../agent/skills.md#⭐️延迟加载与渐进式披露)。
 - Skill 路由怎么做？为什么它和 RAG 相似但目标不同？
-- 写一个 `SKILL.md` 最容易踩哪些坑？
+- 如何为一个具体任务设计 Skill？哪些内容放进 `SKILL.md`，哪些拆到参考文件，哪些交给脚本执行？参考：[Skill 文件组织](../agent/skills.md#实际项目中怎么组织文件)。
+- Skill 如何做版本管理？更新后，不同服务实例和正在执行的任务如何选择版本？参考：[Skill 版本与任务绑定](../agent/skills.md#skill-更新后-正在执行的任务用哪个版本)。
+- Skill 指令、MCP 工具返回值和知识库资料发生冲突时，如何核对来源、有效版本和业务规则？参考：[来源冲突处理](../agent/skills.md#skill、工具结果和知识库冲突时听谁的)。
 
 ## Harness Engineering
 
@@ -130,6 +134,7 @@ Harness Engineering 把注意力放到模型外部的执行环境，包括任务
 - Loop 如何防止死循环？
 - State 的更新策略怎么选？Replace、Append、Reducer 分别适合什么字段？
 - 条件边和动态路由有什么区别？
+- 项目为什么选择 LangGraph 等编排框架？以一条实际业务流程为例，节点、条件边和 State 分别怎么设计？参考：[Graph 编排的选型案例](../agent/workflow-graph-loop.md#项目为什么选择-graph-编排)。
 - 工具调用失败时，哪些错误适合重试？认证失败和非幂等写操作怎么处理？
 - 工作流中断后怎么恢复？
 - 工作流有哪些特有的安全风险？
@@ -146,3 +151,4 @@ Harness Engineering 把注意力放到模型外部的执行环境，包括任务
 - 工具包含写操作时，权限、参数校验、二次确认和审计怎么设计？
 - 什么情况下需要 Multi-Agent？如何控制通信成本和状态一致性？
 - 你会记录哪些 Trace，并用哪些指标评估任务完成率、工具调用和执行轨迹？
+- Coding Agent 反复修改代码却始终修不好问题，应该检查哪些代码差异和测试结果？什么时候继续尝试，什么时候回退或转人工？参考：[Coding Agent 的失败处理](../agent/loop-engineering.md#coding-agent-反复修不好-下一轮还要继续吗)。

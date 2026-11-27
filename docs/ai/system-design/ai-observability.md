@@ -342,6 +342,20 @@ Spring AI 的观测设计也采用了类似原则：[低基数键会进入 Metri
 
 Trace 可以证明应用发起过哪些调用，不能替代退款系统的业务记录。如果调用超时，即使 Span 状态是 `ERROR`，或者应用属性把任务记成 `CANCELED`，也不能据此认定远端操作已经停止。
 
+### 同一类 Agent 任务为什么突然变慢？
+
+先取相近输入规模、相同业务路径的正常与慢请求对照，沿 Trace 找关键路径。并行 Span 的耗时不能直接相加，父 Span 也可能已经包含子调用时间。
+
+| 观察到的变化                      | 下一步核对                                                   |
+| --------------------------------- | ------------------------------------------------------------ |
+| 单次模型调用更慢，输入 Token 增加 | 历史消息、工具结果和检索片段是否持续累积，缓存命中是否变化   |
+| 单次调用耗时接近，但调用次数变多  | 工具循环、校验失败、重新规划是否增加，有没有重复读取相同证据 |
+| 工具 Span 变长                    | 工具服务的排队、连接池、下游请求与限流等待，而非只看模型耗时 |
+| 相同操作出现多个 Attempt          | SDK、网关和业务层是否同时重试，退避等待是否被记录            |
+| 子调用很短，整体任务却很长        | 编排排队、人工等待、事件消费延迟或未埋点区间                 |
+
+模型、Prompt、检索配置和工具版本应随 Trace 保留，否则两次任务可能执行了不同流程。定位到耗时来源后再比较相应配置，不能只凭总耗时上涨就判断模型退化。
+
 ### 多 Agent 汇总为什么漏了一份结果？
 
 先找到工作流 Span，再检查每个子 Agent 的状态和时间区间：
@@ -393,7 +407,7 @@ executorService.submit(context.wrap(() -> {
 
 不能直接这样假设。
 
-以 Spring AI 2.0.0 当前文档为例，同步的 OpenAI 和 Anthropic 调用能够把 HTTP Span 正确挂到模型 Span 下；流式调用的异步路径会切换到 `ForkJoinPool.commonPool()`，导致 HTTP Span 被记录下来，却没有成为模型 Span 的子节点。这是 [Spring AI 官方 Observability 文档](https://docs.spring.io/spring-ai/reference/observability/index.html#_chat_model)明确记录的当前限制。
+以 2026-11-06 核对的 Spring AI 2.0.2 文档为例，同步的 OpenAI、Anthropic 调用及 Anthropic 流式调用可以将 HTTP Span 关联到模型 Span。官方记录的这一限制针对 OpenAI 流式调用：SDK 的异步路径切换到 `ForkJoinPool.commonPool()` 后丢失调用线程的观测上下文，导致 HTTP Span 虽被记录，却未成为模型 Span 的子节点。不能将这个限制泛化到所有供应商的流式调用，具体见 [Spring AI 官方 Observability 文档](https://docs.spring.io/spring-ai/reference/observability/index.html#_chat_model)。
 
 这个例子说明，框架提供自动埋点以后，仍然要用集成测试检查实际拓扑。至少覆盖同步调用、流式调用、线程池、虚拟线程、消息队列和跨服务工具调用，确认 `traceId` 没有在边界处丢失。
 

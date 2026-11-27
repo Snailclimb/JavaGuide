@@ -121,12 +121,20 @@ AI 应用一旦上线，稳定性、可观测、成本控制、质量回归这�
 - [RAG 检索优化](./rag/rag-optimization.md)：覆盖 Chunk 策略、Hybrid Search、Query Rewrite、Rerank 和上下文压缩。
 - [GraphRAG](./rag/graphrag.md)：理解实体、关系、社区发现、全局检索与局部检索。
 - [RAG 知识库文档更新策略](./rag/rag-knowledge-update.md)：掌握增量更新、版本控制、去重和全量重建。
+- [RAG 评测](./rag/rag-evaluation.md)：分别检查检索、生成和拒答质量，用固定样本比较版本。
+- [Embedding 与 Reranker 选型](./rag/embedding-reranker.md)：筛选候选模型，分别设计对照并解读逐题结果。
+
+### Java AI 框架
+
+- [Java AI 框架专题](./framework/)：沿业务请求理解 Java AI 组件与应用职责。
+- [Spring AI 应用实践](./framework/spring-ai.md)：以售后问答为例，说明 ChatClient、Advisor、会话记忆、检索和工具调用。
 
 ### AI 系统设计
 
 - [AI 系统设计专题](./system-design/)：把 Prompt Demo 放进真实后端系统里看，重点关注架构、模型网关、语音链路、可观测、评测和安全治理。
 - [AI 应用系统设计](./system-design/ai-application-architecture.md)：把 Prompt Demo 放进生产链路，覆盖 Prompt 管理、模型网关、RAG、Memory、Tool 调用、可观测、评测和安全合规。
 - [LLM/Agent 安全实战](./system-design/llm-security.md)：覆盖直接与间接 Prompt Injection、工具越权、MCP 授权、敏感数据、代码沙箱、供应链和安全回归。
+- [AI 可观测性与 Trace](./system-design/ai-observability.md)：还原模型、检索、工具和异步任务的执行过程。
 - [大模型网关详解](./system-design/llm-gateway.md)：理解 LLM Gateway 的多模型路由、fallback、限流配额、成本归因、观测审计和缓存策略。
 - [AI 语音技术详解](./system-design/ai-voice.md)：拆解 VAD、ASR、LLM、TTS、流式播放、打断处理和端云混合选型。
 
