@@ -34,7 +34,7 @@ Redis 不同于 Memcached 的很重要一点就是，Redis 支持持久化，而
 **关键行为差异**：
 
 - **AOF rewrite 内存占用**：Redis 7.0 之前重写期间增量数据需在内存中保留，7.0+ 使用 Multi-Part AOF 解决
-- **混合持久化**：Redis 4.0-6.x 需手动开启，Redis 7.0+ 默认启用。
+- **混合持久化**：Redis 4.0 默认关闭，需手动开启；Redis 5.0 起默认启用。
 
 检查你的 Redis 版本：
 
@@ -390,7 +390,7 @@ AOF 是高频追加写入的文本日志。如果每次追加命令都要重新�
 # 开启 AOF
 appendonly yes
 
-# 开启混合持久化（Redis 7.0+ 默认启用）
+# 开启混合持久化（Redis 5.0+ 默认启用）
 aof-use-rdb-preamble yes
 
 # 优化重写触发条件
@@ -400,8 +400,8 @@ auto-aof-rewrite-min-size 64mb    # AOF 文件至少达到 64MB 才触发重写
 
 **版本差异**：
 
-- **Redis 4.0-6.x**：混合持久化默认关闭，需手动配置 `aof-use-rdb-preamble yes`
-- **Redis 7.0+**：混合持久化**默认启用**，无需额外配置
+- **Redis 4.0**：混合持久化默认关闭，需手动配置 `aof-use-rdb-preamble yes`
+- **Redis 5.0+**：混合持久化**默认启用**，无需额外配置
 
 #### 工作原理
 
